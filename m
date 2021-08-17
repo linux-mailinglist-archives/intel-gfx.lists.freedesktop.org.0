@@ -1,62 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41FA83EEAF2
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 12:27:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1853EEB61
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 13:11:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DE0C6E057;
-	Tue, 17 Aug 2021 10:27:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1174C89B0D;
+	Tue, 17 Aug 2021 11:11:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDE4C6E057
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 10:27:32 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id z9so27735175wrh.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 03:27:32 -0700 (PDT)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0990F89B0D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 11:11:45 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id z9so27927305wrh.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 04:11:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=SHA4IdDcGpRI6MemrnsG5ArP2VBeKDd0hz3pF6SDi1s=;
- b=kNGU7a0uVjGaz/cKV/olkGRArLP1fYZAXRZ4jo8PgSb8KP3a+IG/sZsrvWkT2Nze8D
- 1DpQwmb/prv7/9+XZ5TOfoGKRS8coON4rv/Xqli7sqh6vB/MGTpQlwaT1dl4XEeLAJvm
- OK5mxpWi5yhtsnS0l5IVQAcF8avwJNrdeGsDs=
+ bh=q95KrwS6wVzCfj97+ghv99nZ6nPw+Az6C8LFOa1sU/E=;
+ b=VKbLtpzDWcn53Qr99KQ6SaC9GKEIM1Dj9u6T49TRAMq1DfM3SZ9fizKicvlqs/3mgM
+ LhE5LYCxVq9FpGkYzpDa5bAXeNvZO+A0xOAM/dxCapF+cy+zTgFpXNNx70qPF0jStmUu
+ I/GfZMWpZuKhE+t0/GdxsXmzdbZYli1cSOHHU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=SHA4IdDcGpRI6MemrnsG5ArP2VBeKDd0hz3pF6SDi1s=;
- b=M0a8OYRYP1vEs2qy7yJtHLGgnqggM8NrKfgJDpreC3DEfFSS17/KchIo6KsBJXjEoq
- U1E+FOC3V58t73teXA8Wr0KejfyvGpLlzFfshRH3c9uACf/raFU3erVrX+OaLbbTaomC
- YN8/FJkkulO8WC2Vu/9Pg1GiMkHkZyGlzG2/8k/mEF9xzoEipPqBYTubyJW4EJqch4Km
- WzrCB9qdzRxfjsFq7M+ozbT4Bw9XwYSBUltq2G4kJ9z9HYF7HYugoNpAWaB7gKHRMp69
- PNyjWPZ0bCtFWgpqoM/WMFTdrAAyFI2VbsX38EAouFleETvmy7q1CS97C5zWyabemEPj
- QjCA==
-X-Gm-Message-State: AOAM533IkIPBacRLcVBWcSaTNFNZB3VhUhGmnUPjTl1tF8pd2bBDh1Yh
- IC5l2OEnhz4ueIMOW/nnVqkHcllX9jT1IQ==
-X-Google-Smtp-Source: ABdhPJzZvS7NjUE4sdqhavcNhbjwgcp65ogD6ExpfkocCbFUVDO5MGAEdewko8izBLElY8VCcZ1TTw==
-X-Received: by 2002:adf:d0c6:: with SMTP id z6mr3220038wrh.382.1629196051269; 
- Tue, 17 Aug 2021 03:27:31 -0700 (PDT)
+ bh=q95KrwS6wVzCfj97+ghv99nZ6nPw+Az6C8LFOa1sU/E=;
+ b=gwol/Jpt8PPJCITSktAlq8ZY4dCzwUdGagrVE9/ANift5OqaaLRLNcDbAsIFgUhORP
+ KhTq1pzNfk1H+kgMOLoSdBLIqe1PtZFUmqYSWC0ktRqQlbbAjG+3YN1fFENDRacsZ/kz
+ ShQcUD1K/NkDJGoEQDN6jEhphoHZBpfAVt3SHR2bH07zSXg3zEovWxq0eixtOHwO4ZrG
+ ZUl5tOoLgSc5Mvu94cFr3cQ7mFUizuMPMK2zsCUJwvpdCvkljeBITBO650/XWKAmlETQ
+ MT1UBkl4BZ7v5j0cRV9U00xK8/9R39Tntb+3kGjm4XQD5uQD7ev6DCDuc2nKt/hHMB+w
+ dbtg==
+X-Gm-Message-State: AOAM530Mmruv2LIlSbyv/UrqHeu/kUREfcpOjfXtSmiOd7rWCxO6GAAM
+ +0TbHtuJJsfW4QTp2eodW3nlCQ==
+X-Google-Smtp-Source: ABdhPJx1ooS1fs2m+25TqEb6uLhznClOpE26ls1etWxRBx6idyM3IBLMaKzjZvaE0HyA22jsle3nXw==
+X-Received: by 2002:a5d:6d8f:: with SMTP id l15mr3420739wrs.42.1629198704226; 
+ Tue, 17 Aug 2021 04:11:44 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id n3sm1518382wms.2.2021.08.17.03.27.30
+ by smtp.gmail.com with ESMTPSA id w29sm2263507wra.88.2021.08.17.04.11.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Aug 2021 03:27:30 -0700 (PDT)
-Date: Tue, 17 Aug 2021 12:27:29 +0200
+ Tue, 17 Aug 2021 04:11:43 -0700 (PDT)
+Date: Tue, 17 Aug 2021 13:11:41 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  daniel.vetter@ffwll.ch
-Message-ID: <YRuPEeq2e8qdKBc2@phenom.ffwll.local>
+Message-ID: <YRuZbTJmeUAElOZj@phenom.ffwll.local>
 References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-20-matthew.brost@intel.com>
+ <20210816135139.10060-23-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210816135139.10060-20-matthew.brost@intel.com>
+In-Reply-To: <20210816135139.10060-23-matthew.brost@intel.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 19/22] drm/i915/guc: Proper xarray usage for
- contexts_lookup
+Subject: Re: [Intel-gfx] [PATCH 22/22] drm/i915/guc: Add GuC kernel doc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,259 +71,373 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 16, 2021 at 06:51:36AM -0700, Matthew Brost wrote:
-> Lock the xarray and take ref to the context if needed.
-> 
-> v2:
->  (Checkpatch)
->   - Add new line after declaration
+On Mon, Aug 16, 2021 at 06:51:39AM -0700, Matthew Brost wrote:
+> Add GuC kernel doc for all structures added thus far for GuC submission
+> and update the main GuC submission section with the new interface
+> details.
 > 
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+There's quite a bit more, e.g. intel_guc_ct, which has it's own world of
+locking design that also doesn't feel too consistent.
+
 > ---
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 84 ++++++++++++++++---
->  1 file changed, 73 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_context_types.h |  42 +++++---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  19 +++-
+>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 101 ++++++++++++++----
+>  drivers/gpu/drm/i915/i915_request.h           |  18 ++--
+>  4 files changed, 131 insertions(+), 49 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index f6989e6807f7..75d609a1bc33 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -156,44 +156,56 @@ struct intel_context {
+>  	u8 wa_bb_page; /* if set, page num reserved for context workarounds */
+>  
+>  	struct {
+> -		/** lock: protects everything in guc_state */
+> +		/** @lock: protects everything in guc_state */
+>  		spinlock_t lock;
+>  		/**
+> -		 * sched_state: scheduling state of this context using GuC
+> +		 * @sched_state: scheduling state of this context using GuC
+>  		 * submission
+>  		 */
+>  		u32 sched_state;
+>  		/*
+> -		 * fences: maintains of list of requests that have a submit
+> -		 * fence related to GuC submission
+> +		 * @fences: maintains a list of requests are currently being
+> +		 * fenced until a GuC operation completes
+>  		 */
+>  		struct list_head fences;
+> -		/* GuC context blocked fence */
+> +		/**
+> +		 * @blocked_fence: fence used to signal when the blocking of a
+> +		 * contexts submissions is complete.
+> +		 */
+>  		struct i915_sw_fence blocked_fence;
+> -		/* GuC committed requests */
+> +		/** @number_committed_requests: number of committed requests */
+>  		int number_committed_requests;
+>  	} guc_state;
+>  
+>  	struct {
+> -		/** lock: protects everything in guc_active */
+> +		/** @lock: protects everything in guc_active */
+>  		spinlock_t lock;
+
+Why do we have two locks spinlocks to protect guc context state?
+
+I do understand the need for a spinlock (at least for now) because of how
+i915-scheduler runs in tasklet context. But beyond that we really
+shouldn't need more than two locks to protect context state. You still
+have an entire pile here, plus some atomics, plus more.
+
+And this is on a single context, where concurrently submitting stuff
+really isn't a thing. I'd expect actual benchmarking would show a perf
+hit, since all these locks and atomics aren't free. This is at least the
+case with execbuf and the various i915_vma locks we currently have.
+
+What I expect intel_context locking to be is roughly:
+
+- One lock to protect all intel_context state. This probably should be a
+  dma_resv_lock for a few reasons, least so we can pin state objects
+  underneath that lock.
+
+- A separate lock if there's anything you need to coordinate with the
+  backend scheduler while that's running, to avoid dma_fence inversions.
+  Right now this separate lock might need to be a spinlock because our
+  scheduler runs in tasklets, and that might mean we need both a mutex and
+  a spinlock here.
+
+Anything that goes beyond that is premature optimization and kills us code
+complexity vise. I'd be _extremely_ surprised if an IA core cannot keep up
+with GuC, and therefore anything that goes beyond "one lock per object",
+plus/minus execution context issues like the above tasklet issue, is
+likely just going to slow everything down.
+
+> -		/** requests: active requests on this context */
+> +		/** @requests: list of active requests on this context */
+>  		struct list_head requests;
+> -		/*
+> -		 * GuC priority management
+> -		 */
+> +		/** @guc_prio: the contexts current guc priority */
+>  		u8 guc_prio;
+> +		/**
+> +		 * @guc_prio_count: a counter of the number requests inflight in
+> +		 * each priority bucket
+> +		 */
+>  		u32 guc_prio_count[GUC_CLIENT_PRIORITY_NUM];
+>  	} guc_active;
+>  
+> -	/* GuC LRC descriptor ID */
+> +	/**
+> +	 * @guc_id: unique handle which is used to communicate information with
+> +	 * the GuC about this context, protected by guc->contexts_lock
+> +	 */
+>  	u16 guc_id;
+>  
+> -	/* GuC LRC descriptor reference count */
+> +	/**
+> +	 * @guc_id_ref: the number of references to the guc_id, when
+> +	 * transitioning in and out of zero protected by guc->contexts_lock
+> +	 */
+>  	atomic_t guc_id_ref;
+
+All this guc_id related stuff (including the guc->context_lookup xarray I
+guess) also has quite a pile of atomics and locks.
+
+>  
+> -	/*
+> -	 * GuC ID link - in list when unpinned but guc_id still valid in GuC
+> +	/**
+> +	 * @guc_id_link: in guc->guc_id_list when the guc_id has no refs but is
+> +	 * still valid, protected by guc->contexts_lock
+>  	 */
+>  	struct list_head guc_id_link;
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index 2e27fe59786b..c0b3fdb601f0 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -41,6 +41,10 @@ struct intel_guc {
+>  	spinlock_t irq_lock;
+>  	unsigned int msg_enabled_mask;
+>  
+> +	/**
+> +	 * @outstanding_submission_g2h: number of outstanding G2H related to GuC
+> +	 * submission, used to determine if the GT is idle
+> +	 */
+>  	atomic_t outstanding_submission_g2h;
+
+atomic_t is good for statistcs, but not for code flow control. If you use
+if for that you either need a lot of barriers and comments, which means
+there needs to be some real perf numbers showing that this is required in
+a workload we care about.
+
+Or you stuff this into a related lock. E.g. from high-level view stuff
+this into intel_guc_ct (which also has definitely way more locks than it
+needs) could make sense?
+
+>  
+>  	struct {
+> @@ -49,12 +53,16 @@ struct intel_guc {
+>  		void (*disable)(struct intel_guc *guc);
+>  	} interrupts;
+>  
+> -	/*
+> -	 * contexts_lock protects the pool of free guc ids and a linked list of
+> -	 * guc ids available to be stolen
+> +	/**
+> +	 * @contexts_lock: protects guc_ids, guc_id_list, ce->guc_id, and
+> +	 * ce->guc_id_ref when transitioning in and out of zero
+>  	 */
+>  	spinlock_t contexts_lock;
+> +	/** @guc_ids: used to allocate new guc_ids */
+>  	struct ida guc_ids;
+> +	/**
+> +	 * @guc_id_list: list of intel_context with valid guc_ids but no refs
+> +	 */
+>  	struct list_head guc_id_list;
+>  
+>  	bool submission_supported;
+> @@ -70,7 +78,10 @@ struct intel_guc {
+>  	struct i915_vma *lrc_desc_pool;
+>  	void *lrc_desc_pool_vaddr;
+>  
+> -	/* guc_id to intel_context lookup */
+> +	/**
+> +	 * @context_lookup: used to intel_context from guc_id, if a context is
+> +	 * present in this structure it is registered with the GuC
+> +	 */
+>  	struct xarray context_lookup;
+>  
+>  	/* Control params for fw initialization */
 > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index ba19b99173fc..2ecb2f002bed 100644
+> index eb06a4c7534e..18ef363c6e5d 100644
 > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -599,8 +599,18 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
->  	unsigned long index, flags;
->  	bool pending_disable, pending_enable, deregister, destroyed, banned;
->  
-> +	xa_lock_irqsave(&guc->context_lookup, flags);
->  	xa_for_each(&guc->context_lookup, index, ce) {
-> -		spin_lock_irqsave(&ce->guc_state.lock, flags);
-> +		/*
-> +		 * Corner case where the ref count on the object is zero but and
-> +		 * deregister G2H was lost. In this case we don't touch the ref
-> +		 * count and finish the destroy of the context.
-> +		 */
-> +		bool do_put = kref_get_unless_zero(&ce->ref);
+> @@ -28,21 +28,6 @@
+>  /**
+>   * DOC: GuC-based command submission
+>   *
+> - * IMPORTANT NOTE: GuC submission is currently not supported in i915. The GuC
+> - * firmware is moving to an updated submission interface and we plan to
+> - * turn submission back on when that lands. The below documentation (and related
+> - * code) matches the old submission model and will be updated as part of the
+> - * upgrade to the new flow.
+> - *
+> - * GuC stage descriptor:
+> - * During initialization, the driver allocates a static pool of 1024 such
+> - * descriptors, and shares them with the GuC. Currently, we only use one
+> - * descriptor. This stage descriptor lets the GuC know about the workqueue and
+> - * process descriptor. Theoretically, it also lets the GuC know about our HW
+> - * contexts (context ID, etc...), but we actually employ a kind of submission
+> - * where the GuC uses the LRCA sent via the work item instead. This is called
+> - * a "proxy" submission.
+> - *
+>   * The Scratch registers:
+>   * There are 16 MMIO-based registers start from 0xC180. The kernel driver writes
+>   * a value to the action register (SOFT_SCRATCH_0) along with any data. It then
+> @@ -51,14 +36,86 @@
+>   * processes the request. The kernel driver polls waiting for this update and
+>   * then proceeds.
+>   *
+> - * Work Items:
+> - * There are several types of work items that the host may place into a
+> - * workqueue, each with its own requirements and limitations. Currently only
+> - * WQ_TYPE_INORDER is needed to support legacy submission via GuC, which
+> - * represents in-order queue. The kernel driver packs ring tail pointer and an
+> - * ELSP context descriptor dword into Work Item.
+> - * See guc_add_request()
+> + * Command Transport buffers (CTBs):
+> + * Covered in detail in other sections but CTBs (host-to-guc, H2G, guc-to-host
+> + * G2H) are a message interface between the i915 and GuC used to controls
+> + * submissions.
+> + *
+> + * Context registration:
+> + * Before a context can be submitted it must be registered with the GuC via a
+> + * H2G. A unique guc_id is associated with each context. The context is either
+> + * registered at request creation time (normal operation) or at submission time
+> + * (abnormal operation, e.g. after a reset).
+> + *
+> + * Context submission:
+> + * The i915 updates the LRC tail value in memory. Either a schedule enable H2G
+> + * or context submit H2G is used to submit a context.
+> + *
+> + * Context unpin:
+> + * To unpin a context a H2G is used to disable scheduling and when the
+> + * corresponding G2H returns indicating the scheduling disable operation has
+> + * completed it is safe to unpin the context. While a disable is in flight it
+> + * isn't safe to resubmit the context so a fence is used to stall all future
+> + * requests until the G2H is returned.
+> + *
+> + * Context deregistration:
+> + * Before a context can be destroyed or we steal its guc_id we must deregister
+> + * the context with the GuC via H2G. If stealing the guc_id it isn't safe to
+> + * submit anything to this guc_id until the deregister completes so a fence is
+> + * used to stall all requests associated with this guc_ids until the
+> + * corresponding G2H returns indicating the guc_id has been deregistered.
+> + *
+> + * guc_ids:
+> + * Unique number associated with private GuC context data passed in during
+> + * context registration / submission / deregistration. 64k available. Simple ida
+> + * is used for allocation.
+> + *
+> + * Stealing guc_ids:
+> + * If no guc_ids are available they can be stolen from another context at
+> + * request creation time if that context is unpinned. If a guc_id can't be found
+> + * we punt this problem to the user as we believe this is near impossible to hit
+> + * during normal use cases.
+> + *
+> + * Locking:
+> + * In the GuC submission code we have 4 basic spin locks which protect
+> + * everything. Details about each below.
+> + *
+> + * sched_engine->lock
+> + * This is the submission lock for all contexts that share a i915 schedule
+> + * engine (sched_engine), thus only 1 context which share a sched_engine can be
+> + * submitting at a time. Currently only 1 sched_engine used for all of GuC
+> + * submission but that could change in the future.
 
-This looks really scary, because in another loop below you have an
-unconditional refcount increase. This means sometimes guc->context_lookup
-xarray guarantees we hold a full reference on the context, sometimes we
-don't. So we're right back in "protect the code" O(N^2) review complexity
-instead of invariant rules about the datastructure, which is linear.
+There's at least 3 more spinlocks for intel_guc_ct ...
 
-Essentially anytime you feel like you have to add a comment to explain
-what's going on about concurrent stuff you're racing with, you're
-protecting code, not data.
+> + *
+> + * guc->contexts_lock
+> + * Protects guc_id allocation. Global lock i.e. Only 1 context that uses GuC
+> + * submission can hold this at a time.
 
-Since guc can't do a hole lot without the guc_id registered and all that,
-I kinda expected you'd always have a full reference here. If there's
-intermediate stages (e.g. around unregister) where this is currently not
-always the case, then those should make sure a full reference is held.
+Plus you forgot the spinlock of the xarrray, which is also used in the
+code with this patch set, not just internally in the xarray, so we have to
+think about that one too.
 
-Another option would be to threa ->context_lookup as a weak reference that
-we lazily clean up when the context is finalized. That works too, but
-probably not with a spinlock (since you most likely have to wait for all
-pending guc transations to complete), but it's another option.
+Iow still way too many locks.
 
-Either way I think standard process is needed here for locking design,
-i.e.
-1. come up with the right invariants ("we always have a full reference
-when a context is ont he guc->context_lookup xarray")
-2. come up with the locks. From the guc side the xa_lock is maybe good
-enough, but from the context side this doesn't protect against a
-re-registering racing against a deregistering. So probably needs more
-rules on top, and then you have a nice lock inversion in a few places like
-here.
-3. document it and roll it out.
+> + *
+> + * ce->guc_state.lock
+> + * Protects everything under ce->guc_state. Ensures that a context is in the
+> + * correct state before issuing a H2G. e.g. We don't issue a schedule disable
+> + * on disabled context (bad idea), we don't issue schedule enable when a
+> + * schedule disable is inflight, etc... Lock individual to each context.
+> + *
+> + * ce->guc_active.lock
+> + * Protects everything under ce->guc_active which is the current requests
+> + * inflight on the context / priority management. Lock individual to each
+> + * context.
+> + *
+> + * Lock ordering rules:
+> + * sched_engine->lock -> ce->guc_active.lock
+> + * sched_engine->lock -> ce->guc_state.lock
+> + * guc->contexts_lock -> ce->guc_state.lock
+>   *
+> + * Reset races:
+> + * When a GPU full reset is triggered it is assumed that some G2H responses to
+> + * a H2G can be lost as the GuC is likely toast. Losing these G2H can prove to
+> + * fatal as we do certain operations upon receiving a G2H (e.g. destroy
+> + * contexts, release guc_ids, etc...). Luckly when this occurs we can scrub
+> + * context state and cleanup appropriately, however this is quite racey. To
+> + * avoid races the rules are check for submission being disabled (i.e. check for
+> + * mid reset) with the appropriate lock being held. If submission is disabled
+> + * don't send the H2G or update the context state. The reset code must disable
+> + * submission and grab all these locks before scrubbing for the missing G2H.
 
-The other thing is that this is a very tricky iterator, and there's a few
-copies of it. That is, if this is the right solution. As-is this should be
-abstracted away into guc_context_iter_begin/next_end() helpers, e.g. like
-we have for drm_connector_list_iter_begin/end_next as an example.
+Can we make this all a lot less racy? Instead of a huge state machinery
+can't we just do all that under a context look, i.e.
 
-Cheers, Daniel
+1. take context lock
+2. send guc message that is tricky, like register or deregister or
+whatever
+3. wait for that reply, our context is blocked anyway, no harm holding a
+lock, other contexts can keep processing
+4. the lower-level guc_ct code guarantees that we either get the reply, or
+a -ERESET or whatever indicating that we raced with a reset, in which case
+we can just restart whatever it is we wanted to do (or for deregister, do
+nothing since the guc reset has solved that problem)
+5. unlock
 
-> +
-> +		xa_unlock(&guc->context_lookup);
-> +
-> +		spin_lock(&ce->guc_state.lock);
+Massively lockless state machines are cool, but also very hard to maintain
+and keep correct.
+-Daniel
+
+>   */
 >  
->  		/*
->  		 * Once we are at this point submission_disabled() is guaranteed
-> @@ -616,7 +626,9 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
->  		banned = context_banned(ce);
->  		init_sched_state(ce);
+>  /* GuC Virtual Engine */
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index d818cfbfc41d..177eaf55adff 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -290,18 +290,20 @@ struct i915_request {
+>  		struct hrtimer timer;
+>  	} watchdog;
 >  
-> -		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> +		spin_unlock(&ce->guc_state.lock);
-> +
-> +		GEM_BUG_ON(!do_put && !destroyed);
+> -	/*
+> -	 * Requests may need to be stalled when using GuC submission waiting for
+> -	 * certain GuC operations to complete. If that is the case, stalled
+> -	 * requests are added to a per context list of stalled requests. The
+> -	 * below list_head is the link in that list.
+> +	/**
+> +	 * @guc_fence_link: Requests may need to be stalled when using GuC
+> +	 * submission waiting for certain GuC operations to complete. If that is
+> +	 * the case, stalled requests are added to a per context list of stalled
+> +	 * requests. The below list_head is the link in that list. Protected by
+> +	 * ce->guc_state.lock.
+>  	 */
+>  	struct list_head guc_fence_link;
 >  
->  		if (pending_enable || destroyed || deregister) {
->  			atomic_dec(&guc->outstanding_submission_g2h);
-> @@ -645,7 +657,12 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
->  
->  			intel_context_put(ce);
->  		}
-> +
-> +		if (do_put)
-> +			intel_context_put(ce);
-> +		xa_lock(&guc->context_lookup);
->  	}
-> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
->  }
->  
->  static inline bool
-> @@ -866,16 +883,26 @@ void intel_guc_submission_reset(struct intel_guc *guc, bool stalled)
->  {
->  	struct intel_context *ce;
->  	unsigned long index;
-> +	unsigned long flags;
->  
->  	if (unlikely(!guc_submission_initialized(guc))) {
->  		/* Reset called during driver load? GuC not yet initialised! */
->  		return;
->  	}
->  
-> -	xa_for_each(&guc->context_lookup, index, ce)
-> +	xa_lock_irqsave(&guc->context_lookup, flags);
-> +	xa_for_each(&guc->context_lookup, index, ce) {
-> +		intel_context_get(ce);
-> +		xa_unlock(&guc->context_lookup);
-> +
->  		if (intel_context_is_pinned(ce))
->  			__guc_reset_context(ce, stalled);
->  
-> +		intel_context_put(ce);
-> +		xa_lock(&guc->context_lookup);
-> +	}
-> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> +
->  	/* GuC is blown away, drop all references to contexts */
->  	xa_destroy(&guc->context_lookup);
->  }
-> @@ -950,11 +977,21 @@ void intel_guc_submission_cancel_requests(struct intel_guc *guc)
->  {
->  	struct intel_context *ce;
->  	unsigned long index;
-> +	unsigned long flags;
-> +
-> +	xa_lock_irqsave(&guc->context_lookup, flags);
-> +	xa_for_each(&guc->context_lookup, index, ce) {
-> +		intel_context_get(ce);
-> +		xa_unlock(&guc->context_lookup);
->  
-> -	xa_for_each(&guc->context_lookup, index, ce)
->  		if (intel_context_is_pinned(ce))
->  			guc_cancel_context_requests(ce);
->  
-> +		intel_context_put(ce);
-> +		xa_lock(&guc->context_lookup);
-> +	}
-> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> +
->  	guc_cancel_sched_engine_requests(guc->sched_engine);
->  
->  	/* GuC is blown away, drop all references to contexts */
-> @@ -2848,21 +2885,26 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine)
->  	struct intel_context *ce;
->  	struct i915_request *rq;
->  	unsigned long index;
-> +	unsigned long flags;
->  
->  	/* Reset called during driver load? GuC not yet initialised! */
->  	if (unlikely(!guc_submission_initialized(guc)))
->  		return;
->  
-> +	xa_lock_irqsave(&guc->context_lookup, flags);
->  	xa_for_each(&guc->context_lookup, index, ce) {
-> +		intel_context_get(ce);
-> +		xa_unlock(&guc->context_lookup);
-> +
->  		if (!intel_context_is_pinned(ce))
-> -			continue;
-> +			goto next;
->  
->  		if (intel_engine_is_virtual(ce->engine)) {
->  			if (!(ce->engine->mask & engine->mask))
-> -				continue;
-> +				goto next;
->  		} else {
->  			if (ce->engine != engine)
-> -				continue;
-> +				goto next;
->  		}
->  
->  		list_for_each_entry(rq, &ce->guc_active.requests, sched.link) {
-> @@ -2872,9 +2914,17 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine)
->  			intel_engine_set_hung_context(engine, ce);
->  
->  			/* Can only cope with one hang at a time... */
-> -			return;
-> +			intel_context_put(ce);
-> +			xa_lock(&guc->context_lookup);
-> +			goto done;
->  		}
-> +next:
-> +		intel_context_put(ce);
-> +		xa_lock(&guc->context_lookup);
-> +
->  	}
-> +done:
-> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
->  }
->  
->  void intel_guc_dump_active_requests(struct intel_engine_cs *engine,
-> @@ -2890,23 +2940,32 @@ void intel_guc_dump_active_requests(struct intel_engine_cs *engine,
->  	if (unlikely(!guc_submission_initialized(guc)))
->  		return;
->  
-> +	xa_lock_irqsave(&guc->context_lookup, flags);
->  	xa_for_each(&guc->context_lookup, index, ce) {
-> +		intel_context_get(ce);
-> +		xa_unlock(&guc->context_lookup);
-> +
->  		if (!intel_context_is_pinned(ce))
-> -			continue;
-> +			goto next;
->  
->  		if (intel_engine_is_virtual(ce->engine)) {
->  			if (!(ce->engine->mask & engine->mask))
-> -				continue;
-> +				goto next;
->  		} else {
->  			if (ce->engine != engine)
-> -				continue;
-> +				goto next;
->  		}
->  
->  		spin_lock_irqsave(&ce->guc_active.lock, flags);
->  		intel_engine_dump_active_requests(&ce->guc_active.requests,
->  						  hung_rq, m);
->  		spin_unlock_irqrestore(&ce->guc_active.lock, flags);
-> +
-> +next:
-> +		intel_context_put(ce);
-> +		xa_lock(&guc->context_lookup);
->  	}
-> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
->  }
->  
->  void intel_guc_submission_print_info(struct intel_guc *guc,
-> @@ -2960,7 +3019,9 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
->  {
->  	struct intel_context *ce;
->  	unsigned long index;
-> +	unsigned long flags;
->  
-> +	xa_lock_irqsave(&guc->context_lookup, flags);
->  	xa_for_each(&guc->context_lookup, index, ce) {
->  		drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
->  		drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
-> @@ -2979,6 +3040,7 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
->  
->  		guc_log_context_priority(p, ce);
->  	}
-> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
->  }
->  
->  static struct intel_context *
+>  	/**
+> -	 * Priority level while the request is inflight. Differs from i915
+> -	 * scheduler priority. See comment above
+> -	 * I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP for details.
+> +	 * @guc_prio: Priority level while the request is inflight. Differs from
+> +	 * i915 scheduler priority. See comment above
+> +	 * I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP for details. Protected by
+> +	 * ce->guc_active.lock.
+>  	 */
+>  #define	GUC_PRIO_INIT	0xff
+>  #define	GUC_PRIO_FINI	0xfe
 > -- 
 > 2.32.0
 > 
