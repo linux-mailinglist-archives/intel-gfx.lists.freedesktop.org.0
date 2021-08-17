@@ -2,40 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BAA93EF025
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 18:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 916133EF026
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 18:27:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65D6E8902A;
-	Tue, 17 Aug 2021 16:26:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3E468902A;
+	Tue, 17 Aug 2021 16:27:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D7CB6E1EC
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 16:26:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="203337577"
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="203337577"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 09:26:17 -0700
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="640987324"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 09:26:17 -0700
-Date: Tue, 17 Aug 2021 09:26:16 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-Message-ID: <20210817162616.GT1556418@mdroper-desk1.amr.corp.intel.com>
-References: <20210816204112.2960624-1-matthew.d.roper@intel.com>
- <162921613493.22609.5351941758725285675@emeril.freedesktop.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E0EA18902A;
+ Tue, 17 Aug 2021 16:27:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D76F5AADD6;
+ Tue, 17 Aug 2021 16:27:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <162921613493.22609.5351941758725285675@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/adl=5Fp=3A_Also_disable_underrun_recovery_with_MSO?=
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Aug 2021 16:27:19 -0000
+Message-ID: <162921763987.22608.1277267270808701831@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/sched_dependency_handling_and_implicit_sync_fixes_=28re?=
+ =?utf-8?b?djQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,116 +42,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 04:02:14PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915/adl_p: Also disable underrun recovery with MSO
-> URL   : https://patchwork.freedesktop.org/series/93732/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_10490 -> Patchwork_20835
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_20835 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_20835, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_20835:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@i915_selftest@live@hangcheck:
->     - fi-ivb-3770:        [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10490/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+== Series Details ==
 
-This IVB error is unrelated to the patch here (which would only affect
-platforms with display version >= 13).
+Series: drm/sched dependency handling and implicit sync fixes (rev4)
+URL   : https://patchwork.freedesktop.org/series/93415/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+0d891258e40a drm/sched: Split drm_sched_job_init
+-:240: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#240: FILE: drivers/gpu/drm/scheduler/sched_fence.c:173:
++	unsigned seq;
+
+-:336: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#336: FILE: drivers/gpu/drm/scheduler/sched_main.c:623:
++	BUG_ON(!entity);
+
+-:405: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#405: FILE: include/drm/gpu_scheduler.h:391:
++struct drm_sched_fence *drm_sched_fence_alloc(
+
+-:413: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 3 warnings, 1 checks, 248 lines checked
+27dbe1a630f0 drm/msm: Improve drm/sched point of no return rules
+-:78: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+5b5164ff17f2 drm/sched: Barriers are needed for entity->last_scheduled
+-:88: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+255f53586a60 drm/sched: Add dependency tracking
+-:195: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#195: FILE: drivers/gpu/drm/scheduler/sched_main.c:729:
++
++
+
+-:271: WARNING:TYPO_SPELLING: 'ommitted' may be misspelled - perhaps 'omitted'?
+#271: FILE: include/drm/gpu_scheduler.h:244:
++	 * drm_sched_job_add_implicit_dependencies() this can be ommitted and
+ 	                                                         ^^^^^^^^
+
+-:286: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#286: FILE: include/drm/gpu_scheduler.h:378:
++
++
+
+-:289: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 2 warnings, 2 checks, 230 lines checked
+ebfbb6077485 drm/sched: drop entity parameter from drm_sched_push_job
+-:228: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 110 lines checked
+f4b4e005b964 drm/sched: improve docs around drm_sched_entity
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 620e762f9a98 ("drm/scheduler: move entity handling into separate file")'
+#17: 
+  move here: 620e762f9a98 ("drm/scheduler: move entity handling into
+
+-:413: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 346 lines checked
+6687763f729e drm/panfrost: use scheduler dependency tracking
+-:215: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 158 lines checked
+ca1c5aec7cde drm/lima: use scheduler dependency tracking
+-:119: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
+1663a9467a04 drm/v3d: Move drm_sched_job_init to v3d_job_init
+-:344: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 288 lines checked
+2c445c2eb7fe drm/v3d: Use scheduler dependency handling
+-:207: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 162 lines checked
+e63e89cc8ac5 drm/etnaviv: Use scheduler dependency handling
+-:13: WARNING:REPEATED_WORD: Possible repeated word: 'to'
+#13: 
+I wanted to to in the previous round (and did, for all other drivers).
+
+-:122: WARNING:LINE_SPACING: Missing a blank line after declarations
+#122: FILE: drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c:552:
++		struct dma_fence *in_fence = sync_file_get_fence(args->fence_fd);
++		if (!in_fence) {
+
+-:297: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 3 warnings, 0 checks, 243 lines checked
+9f2a9ecfea9c drm/msm: Use scheduler dependency handling
+-:132: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 90 lines checked
+e5b7840798ca drm/gem: Delete gem array fencing helpers
+-:141: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+8f51a69d4e74 drm/sched: Don't store self-dependencies
+-:19: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
+#19: 
+drivers wont miss it.
+        ^^^^
+
+-:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 2 warnings, 0 checks, 13 lines checked
+7650a6f74b18 drm/sched: Check locking in drm_sched_job_await_implicit
+-:33: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+a3c9153955a4 drm/msm: Don't break exclusive fence ordering
+-:43: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+2eb5ca447466 drm/etnaviv: Don't break exclusive fence ordering
+-:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#20: 
+https://lore.kernel.org/dri-devel/20210610210925.642582-7-jason@jlekstrand.net/
+
+-:58: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 2 warnings, 0 checks, 24 lines checked
+ab0a3f52cac3 drm/i915: delete exclude argument from i915_sw_fence_await_reservation
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit d07f0e59b2c7 ("drm/i915: Move GEM activity tracking into a common struct reservation_object")'
+#12: 
+commit d07f0e59b2c762584478920cd2d11fba2980a94a
+
+-:100: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 55 lines checked
+8c4011c29394 drm/i915: Don't break exclusive fence ordering
+-:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#23: 
+https://lore.kernel.org/dri-devel/20210610210925.642582-7-jason@jlekstrand.net/
+
+-:56: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 2 warnings, 0 checks, 18 lines checked
+724ee6ec9713 dma-resv: Give the docs a do-over
+-:290: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 216 lines checked
 
 
-Matt
-
-> 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_20835 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@amdgpu/amd_basic@semaphore:
->     - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-> 
->   * igt@core_hotunplug@unbind-rebind:
->     - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#3718])
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-> 
->   * igt@kms_chamelium@dp-crc-fast:
->     - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-> 
->   * igt@runner@aborted:
->     - fi-ivb-3770:        NOTRUN -> [FAIL][6] ([fdo#109271])
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-ivb-3770/igt@runner@aborted.html
-> 
->   
->   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->   [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
->   [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-> 
-> 
-> Participating hosts (36 -> 34)
-> ------------------------------
-> 
->   Missing    (2): fi-bsw-cyan fi-bdw-samus 
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_10490 -> Patchwork_20835
-> 
->   CI-20190529: 20190529
->   CI_DRM_10490: 3bd74b377986fcb89cf4563629f97c5b3199ca6f @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_6177: f474644e7226dd319195ca03b3cde82ad10ac54c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_20835: 4a9bac99ddffb1e355f2084d1b46465aac20b6c8 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
-> == Linux commits ==
-> 
-> 4a9bac99ddff drm/i915/adl_p: Also disable underrun recovery with MSO
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/index.html
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
