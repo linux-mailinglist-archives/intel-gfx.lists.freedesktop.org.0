@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 814343EF53F
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 23:52:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C72F3EF542
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 23:52:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCE656E2BC;
-	Tue, 17 Aug 2021 21:52:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FFEA6E2A3;
+	Tue, 17 Aug 2021 21:52:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A7366E2BC
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 21:52:32 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551A06E2A3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 21:52:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1629237151;
+ s=mimecast20190719; t=1629237154;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=2hm5AaMZjUuTlAOdZFMz8JatVQF7oRRA32TFSnkLRF0=;
- b=FifxOcFbwRfXL+mT/6TP7clHRsoTD4tLBnBv6ZpgLLo/G/7z+hm5/Jeht/AqOGTYxMIRNV
- KoELzE04kGoDvRNErtFYcmuaC5DVP4MqMJnfD2ymCExeTu8HP6s2hNhMSnXyCO2+IaMULz
- Gz+8d4b+mEtw65zMBu93BDPTEAQuiNw=
+ bh=J0XOPky0n5K1+Rj9fYhvzENPaEC2/lCnRT5I8myIw6g=;
+ b=XESw9tm3ja21F4O9+OFxRWglkEcSCZe+/wDSxT2sOrJpBrWO7QhpCofc3wulv09DOAinxL
+ rD2G40x3Vvlp38Ij6gLN3Rnmtl9T+VjHay0cs0BZRwOhiSZrR52Gs6fusGG7IjrxWE2Xib
+ im5GHzp1Mhh/hKm3BQOHFkwtH/5i31k=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-214-7dkJsrFlMSuAK8Sx1Coyaw-1; Tue, 17 Aug 2021 17:52:27 -0400
-X-MC-Unique: 7dkJsrFlMSuAK8Sx1Coyaw-1
+ us-mta-571-q5ubL2d2Nau9TRI6JPvY-Q-1; Tue, 17 Aug 2021 17:52:31 -0400
+X-MC-Unique: q5ubL2d2Nau9TRI6JPvY-Q-1
 Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
  [10.5.11.22])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9E797801E72;
- Tue, 17 Aug 2021 21:52:25 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 246AB875047;
+ Tue, 17 Aug 2021 21:52:29 +0000 (UTC)
 Received: from x1.localdomain (unknown [10.39.192.15])
- by smtp.corp.redhat.com (Postfix) with ESMTP id B7513100763B;
- Tue, 17 Aug 2021 21:52:19 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E2F8F10013D6;
+ Tue, 17 Aug 2021 21:52:25 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
@@ -50,15 +50,15 @@ Cc: Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
  David Airlie <airlied@linux.ie>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
  dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org
-Date: Tue, 17 Aug 2021 23:51:58 +0200
-Message-Id: <20210817215201.795062-6-hdegoede@redhat.com>
+Date: Tue, 17 Aug 2021 23:51:59 +0200
+Message-Id: <20210817215201.795062-7-hdegoede@redhat.com>
 In-Reply-To: <20210817215201.795062-1-hdegoede@redhat.com>
 References: <20210817215201.795062-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: [Intel-gfx] [PATCH 5/8] drm/i915: Associate ACPI connector nodes
- with connector entries (v2)
+Subject: [Intel-gfx] [PATCH 6/8] drm/i915/dp: Add support for out-of-bound
+ hotplug events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,123 +74,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+On some Cherry Trail devices, DisplayPort over Type-C is supported through
+a USB-PD microcontroller (e.g. a fusb302) + a mux to switch the superspeed
+datalines between USB-3 and DP (e.g. a pi3usb30532). The kernel in this
+case does the PD/alt-mode negotiation itself, rather then everything being
+handled in firmware.
 
-On Intel platforms we know that the ACPI connector device
-node order will follow the order the driver (i915) decides.
-The decision is made using the custom Intel ACPI OpRegion
-(intel_opregion.c), though the driver does not actually know
-that the values it sends to ACPI there are used for
-associating a device node for the connectors, and assigning
-address for them.
+So the kernel itself picks an alt-mode, tells the Type-C "dongle" to switch
+to DP mode and sets the mux accordingly. In this setup the HPD pin is not
+connected, so the i915 driver needs to respond to a software event and scan
+the DP port for changes manually.
 
-In reality that custom Intel ACPI OpRegion actually violates
-ACPI specification (we supply dynamic information to objects
-that are defined static, for example _ADR), however, it
-makes assigning correct connector node for a connector entry
-straightforward (it's one-on-one mapping).
+This commit adds support for this. Together with the recent addition of
+DP alt-mode support to the Type-C subsystem this makes DP over Type-C
+work on these devices.
 
-Changes in v2 (Hans de goede):
-- Take a reference on the fwnode which we assign to the connector,
-  for ACPI nodes this is a no-op but in the future we may see
-  software-fwnodes assigned to connectors which are ref-counted.
-
-Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 Tested-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_acpi.c    | 46 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_acpi.h    |  3 ++
- drivers/gpu/drm/i915/display/intel_display.c |  1 +
- 3 files changed, 50 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-index 7cfe91fc05f2..72cac55c0f0f 100644
---- a/drivers/gpu/drm/i915/display/intel_acpi.c
-+++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-@@ -282,3 +282,49 @@ void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
- 	}
- 	drm_connector_list_iter_end(&conn_iter);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 75d4ebc66941..e807ffc2d782 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4590,6 +4590,17 @@ static int intel_dp_connector_atomic_check(struct drm_connector *conn,
+ 	return intel_modeset_synced_crtcs(state, conn);
  }
-+
-+/* NOTE: The connector order must be final before this is called. */
-+void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915)
+ 
++static void intel_dp_oob_hotplug_event(struct drm_connector *connector)
 +{
-+	struct drm_connector_list_iter conn_iter;
-+	struct drm_device *drm_dev = &i915->drm;
-+	struct fwnode_handle *fwnode = NULL;
-+	struct drm_connector *connector;
-+	struct acpi_device *adev;
++	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
++	struct drm_i915_private *i915 = to_i915(connector->dev);
 +
-+	drm_connector_list_iter_begin(drm_dev, &conn_iter);
-+	drm_for_each_connector_iter(connector, &conn_iter) {
-+		/* Always getting the next, even when the last was not used. */
-+		fwnode = device_get_next_child_node(drm_dev->dev, fwnode);
-+		if (!fwnode)
-+			break;
-+
-+		switch (connector->connector_type) {
-+		case DRM_MODE_CONNECTOR_LVDS:
-+		case DRM_MODE_CONNECTOR_eDP:
-+		case DRM_MODE_CONNECTOR_DSI:
-+			/*
-+			 * Integrated displays have a specific address 0x1f on
-+			 * most Intel platforms, but not on all of them.
-+			 */
-+			adev = acpi_find_child_device(ACPI_COMPANION(drm_dev->dev),
-+						      0x1f, 0);
-+			if (adev) {
-+				connector->fwnode =
-+					fwnode_handle_get(acpi_fwnode_handle(adev));
-+				break;
-+			}
-+			fallthrough;
-+		default:
-+			connector->fwnode = fwnode_handle_get(fwnode);
-+			break;
-+		}
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
-+	/*
-+	 * device_get_next_child_node() takes a reference on the fwnode, if
-+	 * we stopped iterating because we are out of connectors we need to
-+	 * put this, otherwise fwnode is NULL and the put is a no-op.
-+	 */
-+	fwnode_handle_put(fwnode);
++	spin_lock_irq(&i915->irq_lock);
++	i915->hotplug.event_bits |= BIT(encoder->hpd_pin);
++	spin_unlock_irq(&i915->irq_lock);
++	queue_delayed_work(system_wq, &i915->hotplug.hotplug_work, 0);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_acpi.h b/drivers/gpu/drm/i915/display/intel_acpi.h
-index 9f197401c313..4a760a2baed9 100644
---- a/drivers/gpu/drm/i915/display/intel_acpi.h
-+++ b/drivers/gpu/drm/i915/display/intel_acpi.h
-@@ -13,6 +13,7 @@ void intel_register_dsm_handler(void);
- void intel_unregister_dsm_handler(void);
- void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915);
- void intel_acpi_device_id_update(struct drm_i915_private *i915);
-+void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915);
- #else
- static inline void intel_register_dsm_handler(void) { return; }
- static inline void intel_unregister_dsm_handler(void) { return; }
-@@ -20,6 +21,8 @@ static inline
- void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915) { return; }
- static inline
- void intel_acpi_device_id_update(struct drm_i915_private *i915) { return; }
-+static inline
-+void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915) { return; }
- #endif /* CONFIG_ACPI */
++
+ static const struct drm_connector_funcs intel_dp_connector_funcs = {
+ 	.force = intel_dp_force,
+ 	.fill_modes = drm_helper_probe_single_connector_modes,
+@@ -4600,6 +4611,7 @@ static const struct drm_connector_funcs intel_dp_connector_funcs = {
+ 	.destroy = intel_connector_destroy,
+ 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+ 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
++	.oob_hotplug_event = intel_dp_oob_hotplug_event,
+ };
  
- #endif /* __INTEL_ACPI_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a257e5dc381c..88e5fff64b8c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -12561,6 +12561,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
- 
- 	drm_modeset_lock_all(dev);
- 	intel_modeset_setup_hw_state(dev, dev->mode_config.acquire_ctx);
-+	intel_acpi_assign_connector_fwnodes(i915);
- 	drm_modeset_unlock_all(dev);
- 
- 	for_each_intel_crtc(dev, crtc) {
+ static const struct drm_connector_helper_funcs intel_dp_connector_helper_funcs = {
 -- 
 2.31.1
 
