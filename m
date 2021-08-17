@@ -1,58 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E985B3EEF6A
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 17:49:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7269A3EEFEC
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 18:02:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C86F6E1E8;
-	Tue, 17 Aug 2021 15:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1275D6E1F1;
+	Tue, 17 Aug 2021 16:02:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com
- [IPv6:2607:f8b0:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA0536E1E9
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 15:49:17 +0000 (UTC)
-Received: by mail-ot1-x335.google.com with SMTP id
- v33-20020a0568300921b0290517cd06302dso12652978ott.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 08:49:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=o/vICcBtnNCU8WCMxEtqZ53lVyopyQUHS0Y7oMZDlHk=;
- b=UhoJSpe9tSN0jvaw84SmNexRBOvStkaGC05JrDa+8mVo3NK0qoYMWIKUbmltpJe+ne
- 7vjCzThIxCskCU6SqruabYriXF5oFpAiNaF4x/TsZRDnFmQMDela/eddvJ2VOoWYxWbr
- ACY4oGEhLyRu2Tsb7ZEjJIFMDXXYzDmH4lVzo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=o/vICcBtnNCU8WCMxEtqZ53lVyopyQUHS0Y7oMZDlHk=;
- b=c3acGpp26SesTU1JwM5Pkv05T6EZu0S16VkiUAMXqeRvwzbi4CX69lJVqOd4448Uz2
- ldf8BiJAwrU0yTgtz84w/2BvnkI05jLoc4j4mMc9fH+Ln+LzIrh6MTTXlxR69XbBBXcG
- xtwiwe+5Zcu3DW9fyxUowfG/gDMVGAAjmfGJGPB5IYs52V2NHW2pl8qMQK0bBdEknTMd
- oM2qViGh/svp0cVqSqSzIMAvKrIRST34sDKKtBOu7zYLeBkcQWN2Qy0/NdQV8/Y7ecI0
- eeiK1Dr+w0NhQy/bS8B1AV68OAra4FgLC3UaLWjdp7FZYdDpGvOmequvSP8NaVmO1Tk4
- kpkA==
-X-Gm-Message-State: AOAM532UkIbh8w+fMejkiJEiYWW/HTeI5eLNRjRIYbVabPqrLePHmfl2
- MhulQi3G50WFg4Rv6/p5Izd6Cj4ZM0MskF4sGkecNA==
-X-Google-Smtp-Source: ABdhPJyp9wcOApUcLDRM0XxBUPJ3VVQLbhX+YyrM4l/6nQTE9p+8JdfHK1gMYd89q+ikq7CLQehFUcJ6x+mhHOqLaMA=
-X-Received: by 2002:a9d:27a4:: with SMTP id c33mr3201762otb.281.1629215357057; 
- Tue, 17 Aug 2021 08:49:17 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 66C2C6E1F1;
+ Tue, 17 Aug 2021 16:02:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EB9FDA8836;
+ Tue, 17 Aug 2021 16:02:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2556817990078881381=="
 MIME-Version: 1.0
-References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-7-matthew.brost@intel.com>
- <YRt/lynczP00iJqF@phenom.ffwll.local>
- <20210817150809.GA19163@jons-linux-dev-box>
-In-Reply-To: <20210817150809.GA19163@jons-linux-dev-box>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 17 Aug 2021 17:49:05 +0200
-Message-ID: <CAKMK7uHRjJ_yq9nR3ECO67VkFA=sEZ6zimxx_sSN5c9S_yXUFA@mail.gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 06/22] drm/i915/execlists: Do not propagate
- errors to dependent fences
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Aug 2021 16:02:14 -0000
+Message-ID: <162921613493.22609.5351941758725285675@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210816204112.2960624-1-matthew.d.roper@intel.com>
+In-Reply-To: <20210816204112.2960624-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/adl=5Fp=3A_Also_disable_underrun_recovery_with_MSO?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,100 +41,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 5:13 PM Matthew Brost <matthew.brost@intel.com> wrote:
-> On Tue, Aug 17, 2021 at 11:21:27AM +0200, Daniel Vetter wrote:
-> > On Mon, Aug 16, 2021 at 06:51:23AM -0700, Matthew Brost wrote:
-> > > Progagating errors to dependent fences is wrong, don't do it. Selftest
-> > > in following patch exposes this bug.
-> >
-> > Please explain what "this bug" is, it's hard to read minds, especially at
-> > a distance in spacetime :-)
-> >
->
-> Not a very good explaination.
->
-> > > Fixes: 8e9f84cf5cac ("drm/i915/gt: Propagate change in error status to children on unhold")
-> >
-> > I think it would be better to outright revert this, instead of just
-> > disabling it like this.
-> >
->
-> I tried revert and git did some really odd things that I couldn't
-> resolve, hence the new patch.
+--===============2556817990078881381==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If there's any conflict git just gives you your current code, and what
-was there with the revert applied, with the block markers. Then it's
-your job to manually apply that change.
+== Series Details ==
 
-Occasionally (when there's been ridiculous amounts of code movement)
-it gets completely lost and puts these into very non-intuitive places.
-In that case just delete it, keep the current code, and check what
-change you're missing that needs to be manually reverted still. Also
-sometimes there's a follow-up patch that you should revert first,
-which makes the revert clean. In that case it's generally the right
-thing to revert the follow-up first, and then apply your revert. Often
-there's subtle functional dependencies hiding.
--Daniel
+Series: drm/i915/adl_p: Also disable underrun recovery with MSO
+URL   : https://patchwork.freedesktop.org/series/93732/
+State : failure
 
->
-> > Also please cite the dma_fence error propagation revert from Jason:
-> >
-> > commit 93a2711cddd5760e2f0f901817d71c93183c3b87
-> > Author: Jason Ekstrand <jason@jlekstrand.net>
-> > Date:   Wed Jul 14 14:34:16 2021 -0500
-> >
-> >     Revert "drm/i915: Propagate errors on awaiting already signaled fences"
-> >
-> > Maybe in full, if you need the justification.
-> >
->
-> Will site.
->
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: <stable@vger.kernel.org>
-> >
-> > Unless "this bug" is some real world impact thing I wouldn't put cc:
-> > stable on this.
->
-> Got it.
->
-> Matt
->
-> > -Daniel
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ----
-> > >  1 file changed, 4 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > index de5f9c86b9a4..cafb0608ffb4 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > @@ -2140,10 +2140,6 @@ static void __execlists_unhold(struct i915_request *rq)
-> > >                     if (p->flags & I915_DEPENDENCY_WEAK)
-> > >                             continue;
-> > >
-> > > -                   /* Propagate any change in error status */
-> > > -                   if (rq->fence.error)
-> > > -                           i915_request_set_error_once(w, rq->fence.error);
-> > > -
-> > >                     if (w->engine != rq->engine)
-> > >                             continue;
-> > >
-> > > --
-> > > 2.32.0
-> > >
-> >
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10490 -> Patchwork_20835
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20835 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20835, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20835:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10490/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20835 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#3718])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@runner@aborted:
+    - fi-ivb-3770:        NOTRUN -> [FAIL][6] ([fdo#109271])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-ivb-3770/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
 
 
+Participating hosts (36 -> 34)
+------------------------------
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10490 -> Patchwork_20835
+
+  CI-20190529: 20190529
+  CI_DRM_10490: 3bd74b377986fcb89cf4563629f97c5b3199ca6f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6177: f474644e7226dd319195ca03b3cde82ad10ac54c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20835: 4a9bac99ddffb1e355f2084d1b46465aac20b6c8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4a9bac99ddff drm/i915/adl_p: Also disable underrun recovery with MSO
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/index.html
+
+--===============2556817990078881381==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/adl_p: Also disable underrun recovery with MSO</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93732/">https://patchwork.freedesktop.org/series/93732/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10490 -&gt; Patchwork_20835</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20835 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20835, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20835:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10490/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20835 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20835/fi-ivb-3770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (36 -&gt; 34)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10490 -&gt; Patchwork_20835</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10490: 3bd74b377986fcb89cf4563629f97c5b3199ca6f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6177: f474644e7226dd319195ca03b3cde82ad10ac54c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20835: 4a9bac99ddffb1e355f2084d1b46465aac20b6c8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>4a9bac99ddff drm/i915/adl_p: Also disable underrun recovery with MSO</p>
+
+</body>
+</html>
+
+--===============2556817990078881381==--
