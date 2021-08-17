@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90AE03EF066
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 18:49:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCDD53EF082
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 18:57:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 860386E1F9;
-	Tue, 17 Aug 2021 16:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA0776E1F9;
+	Tue, 17 Aug 2021 16:57:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE2D16E1F3;
- Tue, 17 Aug 2021 16:49:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="213023384"
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="213023384"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 09:49:32 -0700
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="510541221"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 09:49:32 -0700
-Date: Tue, 17 Aug 2021 09:44:19 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch
-Message-ID: <20210817164417.GA30732@jons-linux-dev-box>
-References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-9-matthew.brost@intel.com>
- <YRuFySMEGtbQegKa@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 648306E1F9;
+ Tue, 17 Aug 2021 16:57:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4A67BAA0EA;
+ Tue, 17 Aug 2021 16:57:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6220944561156930583=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YRuFySMEGtbQegKa@phenom.ffwll.local>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 08/22] drm/i915/guc: Don't enable scheduling
- on a banned context, guc_id invalid, not registered
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Aug 2021 16:57:08 -0000
+Message-ID: <162921942827.22609.13862086073614948776@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/sched_dependency_handling_and_implicit_sync_fixes_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,59 +41,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 11:47:53AM +0200, Daniel Vetter wrote:
-> On Mon, Aug 16, 2021 at 06:51:25AM -0700, Matthew Brost wrote:
-> > When unblocking a context, do not enable scheduling if the context is
-> > banned, guc_id invalid, or not registered.
-> > 
-> > Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org>
-> > ---
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index c3b7bf7319dd..353899634fa8 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -1579,6 +1579,9 @@ static void guc_context_unblock(struct intel_context *ce)
-> >  	spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >  
-> >  	if (unlikely(submission_disabled(guc) ||
-> > +		     intel_context_is_banned(ce) ||
-> > +		     context_guc_id_invalid(ce) ||
-> > +		     !lrc_desc_registered(guc, ce->guc_id) ||
-> >  		     !intel_context_is_pinned(ce) ||
-> >  		     context_pending_disable(ce) ||
-> >  		     context_blocked(ce) > 1)) {
-> 
-> I think this entire if condition here is screaming that our intel_context
-> state machinery for guc is way too complex, and on the wrong side of
-> incomprehensible.
-> 
-> Also some of these check state outside of the context, and we don't seem
-> to hold spinlocks for those, or anything else.
-> 
-> I general I have no idea which of these are defensive programming and
-> cannot ever happen, and which actually can happen. There's for sure way
-> too many races going on given that this is all context-local stuff.
+--===============6220944561156930583==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-A lot of this is guarding against a full GT reset while trying to
-cancel a request. Full GT resets make everything really hard and in
-pratice should never really happen because the GuC does per engine /
-context resets. Unfortunately IGTs do weird things like turn off per
-engine / contexts resets and full GT reset the only way to recover so
-the IGTs can will expose all the races around GT reset, especially when
-we run IGTs a pre-prod HW that tends to hang for whatever reason.
+== Series Details ==
 
-Matt 
+Series: drm/sched dependency handling and implicit sync fixes (rev4)
+URL   : https://patchwork.freedesktop.org/series/93415/
+State : success
 
-> -Daniel
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10490 -> Patchwork_20836
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20836 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+
+
+Participating hosts (36 -> 34)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10490 -> Patchwork_20836
+
+  CI-20190529: 20190529
+  CI_DRM_10490: 3bd74b377986fcb89cf4563629f97c5b3199ca6f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6177: f474644e7226dd319195ca03b3cde82ad10ac54c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20836: 724ee6ec97135c8a4fd57f8b19d9802834ad62fc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+724ee6ec9713 dma-resv: Give the docs a do-over
+8c4011c29394 drm/i915: Don't break exclusive fence ordering
+ab0a3f52cac3 drm/i915: delete exclude argument from i915_sw_fence_await_reservation
+2eb5ca447466 drm/etnaviv: Don't break exclusive fence ordering
+a3c9153955a4 drm/msm: Don't break exclusive fence ordering
+7650a6f74b18 drm/sched: Check locking in drm_sched_job_await_implicit
+8f51a69d4e74 drm/sched: Don't store self-dependencies
+e5b7840798ca drm/gem: Delete gem array fencing helpers
+9f2a9ecfea9c drm/msm: Use scheduler dependency handling
+e63e89cc8ac5 drm/etnaviv: Use scheduler dependency handling
+2c445c2eb7fe drm/v3d: Use scheduler dependency handling
+1663a9467a04 drm/v3d: Move drm_sched_job_init to v3d_job_init
+ca1c5aec7cde drm/lima: use scheduler dependency tracking
+6687763f729e drm/panfrost: use scheduler dependency tracking
+f4b4e005b964 drm/sched: improve docs around drm_sched_entity
+ebfbb6077485 drm/sched: drop entity parameter from drm_sched_push_job
+255f53586a60 drm/sched: Add dependency tracking
+5b5164ff17f2 drm/sched: Barriers are needed for entity->last_scheduled
+27dbe1a630f0 drm/msm: Improve drm/sched point of no return rules
+0d891258e40a drm/sched: Split drm_sched_job_init
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/index.html
+
+--===============6220944561156930583==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/sched dependency handling and implicit sync fixes (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93415/">https://patchwork.freedesktop.org/series/93415/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10490 -&gt; Patchwork_20836</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20836 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20836/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (36 -&gt; 34)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10490 -&gt; Patchwork_20836</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10490: 3bd74b377986fcb89cf4563629f97c5b3199ca6f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6177: f474644e7226dd319195ca03b3cde82ad10ac54c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20836: 724ee6ec97135c8a4fd57f8b19d9802834ad62fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>724ee6ec9713 dma-resv: Give the docs a do-over<br />
+8c4011c29394 drm/i915: Don't break exclusive fence ordering<br />
+ab0a3f52cac3 drm/i915: delete exclude argument from i915_sw_fence_await_reservation<br />
+2eb5ca447466 drm/etnaviv: Don't break exclusive fence ordering<br />
+a3c9153955a4 drm/msm: Don't break exclusive fence ordering<br />
+7650a6f74b18 drm/sched: Check locking in drm_sched_job_await_implicit<br />
+8f51a69d4e74 drm/sched: Don't store self-dependencies<br />
+e5b7840798ca drm/gem: Delete gem array fencing helpers<br />
+9f2a9ecfea9c drm/msm: Use scheduler dependency handling<br />
+e63e89cc8ac5 drm/etnaviv: Use scheduler dependency handling<br />
+2c445c2eb7fe drm/v3d: Use scheduler dependency handling<br />
+1663a9467a04 drm/v3d: Move drm_sched_job_init to v3d_job_init<br />
+ca1c5aec7cde drm/lima: use scheduler dependency tracking<br />
+6687763f729e drm/panfrost: use scheduler dependency tracking<br />
+f4b4e005b964 drm/sched: improve docs around drm_sched_entity<br />
+ebfbb6077485 drm/sched: drop entity parameter from drm_sched_push_job<br />
+255f53586a60 drm/sched: Add dependency tracking<br />
+5b5164ff17f2 drm/sched: Barriers are needed for entity-&gt;last_scheduled<br />
+27dbe1a630f0 drm/msm: Improve drm/sched point of no return rules<br />
+0d891258e40a drm/sched: Split drm_sched_job_init</p>
+
+</body>
+</html>
+
+--===============6220944561156930583==--
