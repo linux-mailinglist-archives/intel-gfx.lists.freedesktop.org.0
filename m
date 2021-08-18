@@ -1,75 +1,81 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE5913F0710
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 16:50:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF0A3F0722
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 16:52:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BCA76E908;
-	Wed, 18 Aug 2021 14:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DF086E915;
+	Wed, 18 Aug 2021 14:52:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31A976E90F;
- Wed, 18 Aug 2021 14:50:09 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id w6so1932828plg.9;
- Wed, 18 Aug 2021 07:50:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=6Uh8FBGFVJ1JdTCeddx1mUTf33ZOu2+YFROQAiC4wXw=;
- b=FvxDgvbsWlWgiHHfo1cKELhnM2uSeTuVKkYL2a8NcwGFJLwbeRWzgzRHZ8LWuG5NXb
- VBDbxFm+4D48ZsM+JzqFGDXsR8/MRg7RcLNCTLAb/qRBj0LrTjF+EoGTNZ/5UDl0VIDs
- yi4RDyhBIfbtt4V0QSVU8m8PekoGAmb/y6FaL5QMxUynMoAF/3DGPMkYnvRX6SgglbFZ
- mawgbJD1NySe74n5M2h+iekGuME65Y14JCyXEVYJd5jWsZfD64RfyzT5lmyWIQiHuHpx
- 6qgGkSn19WksDxegdxPDTs/Iv798MUgIt59ehxFNZZl8bO57ZUqixbljydZbbWhvJK47
- ZaSA==
+Received: from smtp-relay-canonical-1.canonical.com
+ (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A59F6E912
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 14:52:24 +0000 (UTC)
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
+ [209.85.215.199])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id CBA83412C8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 14:52:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1629298340;
+ bh=C63KvaJ+cWhAEINSiaxTGMz7FLf9euvtefJ5UKJKvuw=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+ b=aU/M0lDC3lnWmWPUa2sIxOGmfjLAmCGdzn+Vlb+3oTTNJ6w0y28PZer6Zhk5AiNO7
+ i/VvFqLWkFnm94H9rDL3ufDFmmVgec3CZO5avjNGL+ZrqGyyqdHGTcciRN5r1MtMlj
+ JR+T7BCG627JjzgjPg1MOVLVVX/jmDJuCDX0CFt9ZnpSwuUbrpnsmrxDIJM6YPVvIi
+ 77VkWbypUnmgTk92Cpt4gwFB10MeASo0EiA/94jHvy1pk1bIu4VTaDaw8SUlbFSEV3
+ jHTO8KhS27s4qD8snT96XdUr2DX4GEURih5bm/6EZ7Dtvbq0daRLyLfXeuvPsfhl+L
+ QoXsKRZVZerWA==
+Received: by mail-pg1-f199.google.com with SMTP id
+ t28-20020a63461c000000b00252078b83e4so1564135pga.15
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 07:52:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=6Uh8FBGFVJ1JdTCeddx1mUTf33ZOu2+YFROQAiC4wXw=;
- b=XcDls984Rc/00TjticD+NgpGrLnCpIEYjv67gzslrWMLFYP9ilbRUVVaSQAr7KBP9M
- u/5CC/mb2+zD0qgdsbxVCfjN/GvMY9nPs4SZEymL9PrWTjcjM0U7U1g8HOydl4XcmKV1
- cfPAWjO966DdLdrI4nwsWWA31kHz42ZznBEl6ZBGozYr6IDaPy6hydgnC5Y3vOW8p8A5
- ly+N0WL604i8LfZcEm3+jGF2cFudNFDwd+cu7cZI0Mz/dnBQLGTemYTpK43CB90n30Ac
- ORrsrt4z3KVJC10H+JLXielKXIL/oO6Wy5Zt+uvAGGsWqndy3vx6zYCQx/Kb1ztJOhlE
- mj/A==
-X-Gm-Message-State: AOAM533ef1n80ZiO7lfEREjbPKishs0tIdSsOE0F/2d79blMqoL/S9p5
- UWrU66RJ+jvcJ6UfmOmiypM=
-X-Google-Smtp-Source: ABdhPJwK6zZDS5MxiSPQQly8zibq21bpqwtpHyPoIGe12pbxG6FIcKasukxZTM8/HiLQS9uS1RYPEQ==
-X-Received: by 2002:a17:90b:3784:: with SMTP id
- mz4mr9897189pjb.127.1629298208817; 
- Wed, 18 Aug 2021 07:50:08 -0700 (PDT)
-Received: from [192.168.1.237] ([118.200.190.93])
- by smtp.gmail.com with ESMTPSA id 64sm6780126pfy.114.2021.08.18.07.50.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 18 Aug 2021 07:50:08 -0700 (PDT)
-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
- christian.koenig@amd.com, axboe@kernel.dk, oleg@redhat.com,
- tglx@linutronix.de, dvyukov@google.com, walter-zh.wu@mediatek.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
-References: <20210818073824.1560124-1-desmondcheongzx@gmail.com>
- <20210818073824.1560124-3-desmondcheongzx@gmail.com>
- <YRzbTUM8ggXlIEyr@phenom.ffwll.local>
-From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Message-ID: <a69a6870-18fe-5bbc-074e-871753a8f593@gmail.com>
-Date: Wed, 18 Aug 2021 22:50:00 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ bh=C63KvaJ+cWhAEINSiaxTGMz7FLf9euvtefJ5UKJKvuw=;
+ b=Y7vI+p1d0Ao6QAOZULneDv9CvWo89jmfTgd7f4E2rxQqNzXMoyK1DQ7ltNtyyCqSjW
+ 8AfmhOa6ZqUfSVRfw5yCVgfucPgp/HNTluJC0l7nOUf1TJaGA2Wa/IoPuBJiAGdusvIb
+ QdQE3/1yK9a0EghYzN2vEAAhGkfawWa95pPkTi5MqiDl0YtWHO00AWh2dSdjuWH48UWH
+ Ku9sjg4zLHOUCUJ0YofgtsD+Z7tTjxMVM7VUNk9X+WpWX1XiyESoCxlf+v+px+cVwgpM
+ Jq64y67OmNwY2svkqqaicDKchJZzly2VMsowYnTsr4/+8wt3ScBcTS2plb1b5A+c5YAH
+ seXQ==
+X-Gm-Message-State: AOAM530K82w+1EEnrlORrPgLJBrCu3/8aI9jbbfKx7ok/c+aZf6yPcp6
+ hFaoSFoE/WLCCebYyi5q2hqETCa7nvmv++/5k6W9kXMbPhumebE2Zd1nMctkZ04360MzvsXALJp
+ LxhXx7RtQNw1ZeD45XKWOQcNgqV5z5eMzjQF00bwscKbtOA==
+X-Received: by 2002:a17:90a:f314:: with SMTP id
+ ca20mr10053553pjb.210.1629298339358; 
+ Wed, 18 Aug 2021 07:52:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzIX0xUNdP8jrpWXr9FRIo/5CxYkCcC18au0WkZhrfprpv1h8lb2dEHNI4DzTUBH3RtKFQesg==
+X-Received: by 2002:a17:90a:f314:: with SMTP id
+ ca20mr10053525pjb.210.1629298339084; 
+ Wed, 18 Aug 2021 07:52:19 -0700 (PDT)
+Received: from localhost.localdomain ([69.163.84.166])
+ by smtp.gmail.com with ESMTPSA id 73sm7331pfz.73.2021.08.18.07.52.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 Aug 2021 07:52:18 -0700 (PDT)
+From: Tim Gardner <tim.gardner@canonical.com>
+To: linux-kernel@vger.kernel.org
+Cc: tim.gardner@canonical.com, stable@vger.kernel.org,
+ kernel-janitors@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org
+Date: Wed, 18 Aug 2021 08:51:59 -0600
+Message-Id: <20210818145159.12402-1-tim.gardner@canonical.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <YRzbTUM8ggXlIEyr@phenom.ffwll.local>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 2/9] drm: hold master_lookup_lock when
- releasing a drm_file's master
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Avoid NULL dereference in
+ __i915_gem_object_lock()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,51 +91,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 18/8/21 6:05 pm, Daniel Vetter wrote:
-> On Wed, Aug 18, 2021 at 03:38:17PM +0800, Desmond Cheong Zhi Xi wrote:
->> When drm_file.master changes value, the corresponding
->> drm_device.master_lookup_lock should be held.
->>
->> In drm_master_release, a call to drm_master_put sets the
->> file_priv->master to NULL, so we protect this section with
->> drm_device.master_lookup_lock.
->>
->> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-> 
-> At this points all refcounts to drm_file have disappeared, so yeah this is
-> a lockless access, but also no one can observe it anymore. See also next
-> patch.
-> 
-> Hence I think the current code is fine.
-> -Daniel
-> 
+Coverity warns of a possible NULL dereference:
 
-Ah ok got it, I didn't realize that. I'll drop patch 2 and 3 from the 
-series then.
+Both dma_resv_lock_interruptible() and dma_resv_lock() can return -EDEADLK. Protect
+against a NULL dereference by checking for NULL before saving the object pointer. This
+is consistent with previous checks for ww==NULL.
 
->> ---
->>   drivers/gpu/drm/drm_auth.c | 5 ++++-
->>   1 file changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
->> index 8efb58aa7d95..8c0e0dba1611 100644
->> --- a/drivers/gpu/drm/drm_auth.c
->> +++ b/drivers/gpu/drm/drm_auth.c
->> @@ -373,8 +373,11 @@ void drm_master_release(struct drm_file *file_priv)
->>   	}
->>   
->>   	/* drop the master reference held by the file priv */
->> -	if (file_priv->master)
->> +	if (file_priv->master) {
->> +		spin_lock(&dev->master_lookup_lock);
->>   		drm_master_put(&file_priv->master);
->> +		spin_unlock(&dev->master_lookup_lock);
->> +	}
->>   	mutex_unlock(&dev->master_mutex);
->>   }
->>   
->> -- 
->> 2.25.1
->>
-> 
+Addresses-Coverity: ("Dereference after null check")
+
+Cc: stable@vger.kernel.org
+Fixes: 80f0b679d6f0683f23cf98a511af3e44dd509472 ("drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.")
+Cc: kernel-janitors@vger.kernel.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: linaro-mm-sig@lists.linaro.org
+Signed-off-by: Tim Gardner <tim.gardner@canonical.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 48112b9d76df..3391ca4f662a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -187,7 +187,7 @@ static inline int __i915_gem_object_lock(struct drm_i915_gem_object *obj,
+ 	if (ret == -EALREADY)
+ 		ret = 0;
+ 
+-	if (ret == -EDEADLK) {
++	if (ret == -EDEADLK && ww) {
+ 		i915_gem_object_get(obj);
+ 		ww->contended = obj;
+ 	}
+-- 
+2.33.0
 
