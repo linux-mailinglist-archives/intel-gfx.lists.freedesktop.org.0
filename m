@@ -2,42 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33CA33EFDB9
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 09:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D16363F0060
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 11:26:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6C1A6E45C;
-	Wed, 18 Aug 2021 07:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9D5188549;
+	Wed, 18 Aug 2021 09:26:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 909D56E454
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 07:24:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="216268536"
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="216268536"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 00:24:46 -0700
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="520788840"
-Received: from mdbadill-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.249.42.92])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 00:24:42 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, =?utf-8?Q?Jos=C3=A9?= Roberto de
- Souza <jose.souza@intel.com>
-In-Reply-To: <20210818004216.220279-4-jose.souza@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210818004216.220279-1-jose.souza@intel.com>
- <20210818004216.220279-4-jose.souza@intel.com>
-Date: Wed, 18 Aug 2021 10:24:39 +0300
-Message-ID: <875yw3i5ag.fsf@intel.com>
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com
+ [IPv6:2607:f8b0:4864:20::c29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EDCE88FC1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 09:26:43 +0000 (UTC)
+Received: by mail-oo1-xc29.google.com with SMTP id
+ o17-20020a4a64110000b0290263e1ba7ff9so515100ooc.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 02:26:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=E4lb222ctewTRBgIfyPIR4Jz05zm7RZaeIy9WKCwd1k=;
+ b=WgVVh/azO4vnY9UgGF5MTr9277sgfzD5KhasG/wVimBBfateUyKwMj+jHsPPNHc+++
+ cK8t86BSKoJAs+zUmXlaehged9JVdlyxddqXO+zF4TsIwgi/uiVQY0svHFHIR2znUd8w
+ mCKFiYl0SBIHRh4PW/NyUVd/sT4Dye8cGL5f8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=E4lb222ctewTRBgIfyPIR4Jz05zm7RZaeIy9WKCwd1k=;
+ b=ZTWMW25N2BkMRGfqGxIKcO72sj/DXq6Z2jemubxmbTKqq7M4KMPuesemA1YL2wIwqy
+ 2+FTZZzqmmZbmqd/HN451/e4ZVM5memZrvCR3g/E5ftyPQNZA17T+06eB15DRBhXdOC0
+ oG8rRPQBbmurBAKMwkVSW8QnwKDrH7Xyp/wsXKzE06INIs3Wdq+oiMTMsGDg95fMwYbx
+ B8cxR9BtS6M4wFDml0tdA+FJD54ukx4N6VRWyoh30TFC8ORQ508GQSnLQvsO+Q4xfoFH
+ nCRe+q5lt0/WmHT9MXP95SLxkVlTLQyrq5I01w5iXjnceynRGJkm+EW+CwyoyvTScqz4
+ +lAQ==
+X-Gm-Message-State: AOAM531F/NbvQTGFGUb5bOS+stMt0rlqxqP18SrpGPejYbtWSFxQt3rd
+ vXAvy33xwOP5xUDdl18ScAqi/oYGmgI5u8qY7ldeYg==
+X-Google-Smtp-Source: ABdhPJzcah9mk7rASRYNxvRtdeUW9b+xypIdII3tzY9DolGFSob7pYIahl2xdCeex57iPZVJkFH/t2h9WL12H2E5Mzg=
+X-Received: by 2002:a4a:2549:: with SMTP id v9mr5892310ooe.28.1629278801951;
+ Wed, 18 Aug 2021 02:26:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915/display: Move DRRS code its
- own file
+References: <20210729003400.151864-1-matthew.brost@intel.com>
+ <20210729003400.151864-2-matthew.brost@intel.com>
+ <eea0bdb7-681b-0acb-0b9c-041fb38a7119@intel.com>
+ <1b75f6c6-e458-6bc7-f867-12f1b5b18af0@linux.intel.com>
+ <e6e893a7-a0e2-0441-260f-75da3760de0b@intel.com>
+ <58cb6331-813a-7007-dac5-65a2f2ad344e@linux.intel.com>
+ <b3d7ae68-ce4b-ec2c-c70d-9f81e2ea07d7@intel.com>
+ <CAKMK7uF_xBt2WTLkyWf0tfwtzpbFEigZLMUqy4tHQXx47fJRBQ@mail.gmail.com>
+ <f47d3478-be0f-9dc3-2ffe-728d92347cb8@intel.com>
+ <YRIeaQjEVrTFpKlW@phenom.ffwll.local>
+ <3734361b-47f5-81be-76da-1f241fa3f034@intel.com>
+In-Reply-To: <3734361b-47f5-81be-76da-1f241fa3f034@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 18 Aug 2021 11:26:30 +0200
+Message-ID: <CAKMK7uEzjaECUKX4j4AUAHCvbGYJPDOkvGu=Zekxj92gtMqHfQ@mail.gmail.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, 
+ intel-gfx <intel-gfx@lists.freedesktop.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Check if engine has heartbeat
+ when closing a context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,1213 +77,546 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Aug 2021, Jos=C3=A9 Roberto de Souza <jose.souza@intel.com> wrot=
-e:
-> intel_dp.c is a 5k lines monster, so moving DRRS out of it to reduce
-> some lines from it.
+On Wed, Aug 18, 2021 at 2:28 AM John Harrison <john.c.harrison@intel.com> wrote:
+> On 8/9/2021 23:36, Daniel Vetter wrote:
+> > On Mon, Aug 09, 2021 at 04:12:52PM -0700, John Harrison wrote:
+> >> On 8/6/2021 12:46, Daniel Vetter wrote:
+> >>> Seen this fly by and figured I dropped a few thoughts in here. At the
+> >>> likely cost of looking a bit out of whack :-)
+> >>>
+> >>> On Fri, Aug 6, 2021 at 8:01 PM John Harrison <john.c.harrison@intel.com> wrote:
+> >>>> On 8/2/2021 02:40, Tvrtko Ursulin wrote:
+> >>>>> On 30/07/2021 19:13, John Harrison wrote:
+> >>>>>> On 7/30/2021 02:49, Tvrtko Ursulin wrote:
+> >>>>>>> On 30/07/2021 01:13, John Harrison wrote:
+> >>>>>>>> On 7/28/2021 17:34, Matthew Brost wrote:
+> >>>>>>>>> If an engine associated with a context does not have a heartbeat,
+> >>>>>>>>> ban it
+> >>>>>>>>> immediately. This is needed for GuC submission as a idle pulse
+> >>>>>>>>> doesn't
+> >>>>>>>>> kick the context off the hardware where it then can check for a
+> >>>>>>>>> heartbeat and ban the context.
+> >>>>>>> Pulse, that is a request with I915_PRIORITY_BARRIER, does not
+> >>>>>>> preempt a running normal priority context?
+> >>>>>>>
+> >>>>>>> Why does it matter then whether or not heartbeats are enabled - when
+> >>>>>>> heartbeat just ends up sending the same engine pulse (eventually,
+> >>>>>>> with raising priority)?
+> >>>>>> The point is that the pulse is pointless. See the rest of my comments
+> >>>>>> below, specifically "the context will get resubmitted to the hardware
+> >>>>>> after the pulse completes". To re-iterate...
+> >>>>>>
+> >>>>>> Yes, it preempts the context. Yes, it does so whether heartbeats are
+> >>>>>> enabled or not. But so what? Who cares? You have preempted a context.
+> >>>>>> It is no longer running on the hardware. BUT IT IS STILL A VALID
+> >>>>>> CONTEXT.
+> >>>>> It is valid yes, and it even may be the current ABI so another
+> >>>>> question is whether it is okay to change that.
+> >>>>>
+> >>>>>> The backend scheduler will just resubmit it to the hardware as soon
+> >>>>>> as the pulse completes. The only reason this works at all is because
+> >>>>>> of the horrid hack in the execlist scheduler's back end
+> >>>>>> implementation (in __execlists_schedule_in):
+> >>>>>>            if (unlikely(intel_context_is_closed(ce) &&
+> >>>>>>                         !intel_engine_has_heartbeat(engine)))
+> >>>>>>                    intel_context_set_banned(ce);
+> >>>>> Right, is the above code then needed with this patch - when ban is
+> >>>>> immediately applied on the higher level?
+> >>>>>
+> >>>>>> The actual back end scheduler is saying "Is this a zombie context? Is
+> >>>>>> the heartbeat disabled? Then ban it". No other scheduler backend is
+> >>>>>> going to have knowledge of zombie context status or of the heartbeat
+> >>>>>> status. Nor are they going to call back into the higher levels of the
+> >>>>>> i915 driver to trigger a ban operation. Certainly a hardware
+> >>>>>> implemented scheduler is not going to be looking at private i915
+> >>>>>> driver information to decide whether to submit a context or whether
+> >>>>>> to tell the OS to kill it off instead.
+> >>>>>>
+> >>>>>> For persistence to work with a hardware scheduler (or a non-Intel
+> >>>>>> specific scheduler such as the DRM one), the handling of zombie
+> >>>>>> contexts, banning, etc. *must* be done entirely in the front end. It
+> >>>>>> cannot rely on any backend hacks. That means you can't rely on any
+> >>>>>> fancy behaviour of pulses.
+> >>>>>>
+> >>>>>> If you want to ban a context then you must explicitly ban that
+> >>>>>> context. If you want to ban it at some later point then you need to
+> >>>>>> track it at the top level as a zombie and then explicitly ban that
+> >>>>>> zombie at whatever later point.
+> >>>>> I am still trying to understand it all. If I go by the commit message:
+> >>>>>
+> >>>>> """
+> >>>>> This is needed for GuC submission as a idle pulse doesn't
+> >>>>> kick the context off the hardware where it then can check for a
+> >>>>> heartbeat and ban the context.
+> >>>>> """
+> >>>>>
+> >>>>> That did not explain things for me. Sentence does not appear to make
+> >>>>> sense. Now, it seems "kick off the hardware" is meant as revoke and
+> >>>>> not just preempt. Which is fine, perhaps just needs to be written more
+> >>>>> explicitly. But the part of checking for heartbeat after idle pulse
+> >>>>> does not compute for me. It is the heartbeat which emits idle pulses,
+> >>>>> not idle pulse emitting heartbeats.
+> >>>> I am in agreement that the commit message is confusing and does not
+> >>>> explain either the problem or the solution.
+> >>>>
+> >>>>
+> >>>>> But anyway, I can buy the handling at the front end story completely.
+> >>>>> It makes sense. We just need to agree that a) it is okay to change the
+> >>>>> ABI and b) remove the backend check from execlists if it is not needed
+> >>>>> any longer.
+> >>>>>
+> >>>>> And if ABI change is okay then commit message needs to talk about it
+> >>>>> loudly and clearly.
+> >>>> I don't think we have a choice. The current ABI is not and cannot ever
+> >>>> be compatible with any scheduler external to i915. It cannot be
+> >>>> implemented with a hardware scheduler such as the GuC and it cannot be
+> >>>> implemented with an external software scheduler such as the DRM one.
+> >>> So generally on linux we implement helper libraries, which means
+> >>> massive flexibility everywhere.
+> >>>
+> >>> https://blog.ffwll.ch/2016/12/midlayers-once-more-with-feeling.html
+> >>>
+> >>> So it shouldn't be an insurmountable problem to make this happen even
+> >>> with drm/scheduler, we can patch it up.
+> >>>
+> >>> Whether that's justified is another question.
+> >> Helper libraries won't work with a hardware scheduler.
+> > Hm I guess I misunderstood then what exactly the hold-up is. This entire
+> > discussion feels at least a bit like "heartbeat is unchangeable and guc
+> > must fit", which is pretty much the midlayer mistake. We need to figure
+> > out an implementation that works with GuC of the goals of the uapi,
+> > instead of assuming that the current heartbeat is the only possible way to
+> > achieve that.
+> >
+> > Or I'm just very confused about what the problem is.
+>
+> What I mean is that you can't add helper callback hook things into a
+> hardware scheduler. It's hardware. It does what it does. Sure, the GuC
+> is firmware but it is very limited in what it can do. It certainly can't
+> peek into internal KMD state such as the heartbeat. Nor can it call back
+> to i915 to execute code every time it wants to make a scheduling
+> decision. That would be defeating the whole point of it being a CPU
+> offload accelerator thing.
+>
+> Also, what I'm arguing is that the heartbeat should not be involved in
+> the management of persistent contexts in the first place. It is way over
+> complicated, unnecessary and not intuitive to an end user in the slightest.
 
-The functions in a file should be named after the file prefix,
-i.e. intel_drrs_*() here. The renames don't need to be in the same
-patch, but I think we need to have them. (Probably should be a separate
-patch to keep the code movement easier to review.)
+Yeah so heartbeat was also the attempt to support long-running compute
+jobs without changing the uapi. That part is reverted, and now it's
+essentially just a tool to make sure the gpu keeps preempting when we
+expect it too.
 
+Which also I guess should be GuC's job now, so why do we need
+heartbeat even still with the guc backend? This is the part where I
+meant we're looking at this way too strictly, you most definitely
+_can_ change anything in the i915 kmd and igt test suite that doesn't
+fit. We're maybe saying the same thing really, dunno.
 
-BR,
-Jani.
+Orthogonal issue, the current code trying to support changing
+heartbeat status while the driver is running is also bonkers, we don't
+support that. That should simplify at least the decision making a lot,
+becuse we can safely assume that a persistent or non-persistent
+context was only created when we thought it's ok to do so.
 
+> >>>> My view is that any implementation involving knowledge of the heartbeat
+> >>>> is fundamentally broken.
+> >>>>
+> >>>> According to Daniel Vetter, the DRM ABI on this subject is that an
+> >>>> actively executing context should persist until the DRM file handle is
+> >>>> closed. That seems like a much more plausible and simple ABI than one
+> >>> DRM ABI is maybe a bit an overkill statement. It's more "what other
+> >>> drivers do", but it's generally a good idea to not ignore that :-)
+> >>>
+> >>>> that says 'if the heartbeat is running then a context will persist
+> >>>> forever, if the heartbeat is not running then it will be killed
+> >>>> immediately, if the heart was running but then stops running then the
+> >>>> context will be killed on the next context switch, ...'. And if I
+> >>>> understand it correctly, the current ABI allows a badly written user app
+> >>>> to cause a denial of service by leaving contexts permanently running an
+> >>>> infinite loop on the hardware even after the app has been killed! How
+> >>>> can that ever be considered a good idea?
+> >>> We're not going to support changing all these settings at runtime.
+> >>> There's just not point in trying to make that work race-free, it
+> >>> either adds complexity to the code for no reason, or it adds overhead
+> >>> to the code for no reason.
+> >>>
+> >>> Yes I know existing customers and all that, but
+> >>> - they can change this stuff, and when they change it while anyting is
+> >>> in-flight they get to keep the pieces. These options taint the kernel
+> >>> for a reason (and if they don't, that should be fixed)
+> >>> - quite a few around heartbeat and compute support as we've merged a
+> >>> while ago hang by design when trying to smash them into drm rules.
+> >>> We're not going to fix that, and we should not use any existing such
+> >>> assumptions as justification for code changes.
+> >>>
+> >>> Wrt infinitely running: Right now nothing is allowed to run forever,
+> >>> because hangcheck will step in and kill that job. Once we add compute
+> >>> mode ctx flag we'll require killing on process exit to stop escape.
+> >> If the infinite loop is pre-emptible then the heartbeat won't kill it off.
+> >> It will just run forever. Okay, it won't be a huge denial of service because
+> >> other work can pre-empt and run. However, you are down one timeslice
+> >> execution slot at that priority level. You have also permanently lost
+> >> whatever memory is allocated and in use by that workload.
+> > Ok I think I'm definitely lost.
+> >
+> > Right now, in upstream, you can't run forever without regularly calling
+> > execbuf to stuff new work in. So it will die out, it wont be persistent
+> > for very long.
+> It is possible to write an infinite loop batch buffer that is
+> pre-emptible. Once you set that running, no amount of heartbeats will
+> kill it off. The heartbeat will happily pre-empt it and tell you that
+> the system as a whole is still running just fine. And then the scheduler
+> will set the infinite loop task running again because it still has more
+> 'work' to do.
+
+There is a hangcheck timeout which kills you after 20s (which is
+probably about 15s too long, but that's another bikeshed). This is
+part of the contract that we can't remove, but we did (I think it's
+still not yet in DII, not sure about status) and took quite long to
+restore that.
+
+So no, your scenario doesn't happen.
+
+> >>>> Therefore, the context close implementation should be to add an active
+> >>>> context to a zombie list. If a context is in zombie state and its last
+> >>>> request completes then the context can be immediately killed at that
+> >>>> point. Otherwise, on DRM handle close, we go through the zombie list and
+> >>>> immediately kill all contexts.
+> >>>>
+> >>>> Simple, clean, no back-end scheduler hacks, no reliance on heartbeats or
+> >>>> pulses. Also no opportunity for rogue (or just badly written) user
+> >>>> processes to leave zombie contexts running on the hardware forever and
+> >>>> causing a denial of service attack. If the host process is killed, all
+> >>>> of its GPU processes are also killed irrespective of what dodgy context
+> >>>> flags they may or may not have set.
+> >>> Uh, the intel_context state machine is already a bit too complex, and
+> >>> the implementation lacks a bunch of barriers at least from the cursor
+> >>> look I've given it thus far.
+> >>>
+> >>> So if we really need to make that more complex with more states then I
+> >>> think someone needs to come up with an actual clean design, with
+> >>> proper state transitions and all the barriers (or really, a design
+> >>> which doesn't need barriers). This is going to be work.
+> >>> -Daniel
+> >> Personally, I would rather just drop the whole persistence/zombie idea
+> >> completely. If you close your context then you should expect that context to
+> >> be destroyed and any outstanding workloads killed off. If you wanted the
+> >> results then you should have waited for them.
+> >>
+> >> If we do have to support some level of persistence then it doesn't seem like
+> >> tracking closed contexts should be especially complex. Not sure why it would
+> >> need special barriers either.
+> > Frankly I think I'm lost, and I think the confusion (for me at least)
+> > starts with what the current uapi is.
+> >
+> > Can someone please document that, with kerneldoc in the uapi header
+> > ideally? Once we have that defined I think we can have an actual
+> > discussion about what exactly this should look like with GuC (and also
+> > eventually with drm/scheduler), and which parts of the uapi are just
+> > artifacts of the current implementation, and which parts actually matter.
+> >
+> > Otherwise I think we're just spinning wheels a bit much here.
+> > -Daniel
+> See other branch of this thread - feel free to write it yourself or
+> elect someone who actually knows the history/reasons behind this to
+> write it up. All I can do is reverse engineer the code and document what
+> it currently does and what is required to pass the IGT test.
+>
+> If you want documentation about what the interface *should* be then I
+> can offer two options:
+>
+> 1. No persistence at all.
+> If you close a context (whether explicitly through a close context call
+> or implicitly through closing the DRM file handle, being killed, etc.)
+> then that context is destroyed immediately. All outstanding work is
+> discarded.
+>
+> 2. Persistence until DRM handle closure.
+> You can close a context and have it keep running previously submitted
+> work. However, as soon as the DRM file handle is closed (either
+> explicitly or by being killed, etc.) then all contexts are immediately
+> destroyed and all outstanding work is discarded.
+
+This one is pretty close to what I think drm/sched does too. We might
+need a slight change in that userspace which explicitly asked for
+non-persistent context to kill those immediately in all cases.
+
+> Simple. Concise. Sensible. No long discussions about what the heartbeat
+> enable state was when the context was closed versus what that state is
+> at some future point. No platform specific caveats or interactions. And
+> no opportunity to cause denial of service attacks either deliberately or
+> accidentally (and no opportunity for hideously complex KMD
+> implementations to introduce potential DOS bugs either).
+
+That's another thing: That implementation just needs to be simplified.
+It supports a lot of things that make little to no sense, and
+especially if soemthing is in the way we should just remove it.
+-Daniel
 
 >
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  Documentation/gpu/i915.rst                    |  14 +-
->  drivers/gpu/drm/i915/Makefile                 |   1 +
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   1 +
->  .../drm/i915/display/intel_display_debugfs.c  |   1 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 467 +----------------
->  drivers/gpu/drm/i915/display/intel_dp.h       |  11 -
->  drivers/gpu/drm/i915/display/intel_drrs.c     | 477 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_drrs.h     |  32 ++
->  .../gpu/drm/i915/display/intel_frontbuffer.c  |   1 +
->  9 files changed, 521 insertions(+), 484 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_drrs.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_drrs.h
+> John.
 >
-> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> index 204ebdaadb45a..03021dfa0dd81 100644
-> --- a/Documentation/gpu/i915.rst
-> +++ b/Documentation/gpu/i915.rst
-> @@ -183,25 +183,25 @@ Frame Buffer Compression (FBC)
->  Display Refresh Rate Switching (DRRS)
->  -------------------------------------
->=20=20
-> -.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dp.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_drrs.c
->     :doc: Display Refresh Rate Switching (DRRS)
->=20=20
-> -.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dp.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_drrs.c
->     :functions: intel_dp_set_drrs_state
->=20=20
-> -.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dp.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_drrs.c
->     :functions: intel_edp_drrs_enable
->=20=20
-> -.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dp.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_drrs.c
->     :functions: intel_edp_drrs_disable
->=20=20
-> -.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dp.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_drrs.c
->     :functions: intel_edp_drrs_invalidate
->=20=20
-> -.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dp.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_drrs.c
->     :functions: intel_edp_drrs_flush
->=20=20
-> -.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dp.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_drrs.c
->     :functions: intel_dp_drrs_init
->=20=20
->  DPIO
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 642a5b5a1b81c..c7cf4dfdc6379 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -212,6 +212,7 @@ i915-y +=3D \
->  	display/intel_dpio_phy.o \
->  	display/intel_dpll.o \
->  	display/intel_dpll_mgr.o \
-> +	display/intel_drrs.o \
->  	display/intel_dsb.o \
->  	display/intel_fb.o \
->  	display/intel_fbc.o \
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 1ef7a65feb660..828df570a4809 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -40,6 +40,7 @@
->  #include "intel_dp_link_training.h"
->  #include "intel_dp_mst.h"
->  #include "intel_dpio_phy.h"
-> +#include "intel_drrs.h"
->  #include "intel_dsi.h"
->  #include "intel_fdi.h"
->  #include "intel_fifo_underrun.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
-rs/gpu/drm/i915/display/intel_display_debugfs.c
-> index 8fdacb252bb19..b136a0fc0963b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -13,6 +13,7 @@
->  #include "intel_display_types.h"
->  #include "intel_dmc.h"
->  #include "intel_dp.h"
-> +#include "intel_drrs.h"
->  #include "intel_fbc.h"
->  #include "intel_hdcp.h"
->  #include "intel_hdmi.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 75d4ebc669411..10583b0aa489e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -55,6 +55,7 @@
->  #include "intel_dp_mst.h"
->  #include "intel_dpio_phy.h"
->  #include "intel_dpll.h"
-> +#include "intel_drrs.h"
->  #include "intel_fifo_underrun.h"
->  #include "intel_hdcp.h"
->  #include "intel_hdmi.h"
-> @@ -1603,46 +1604,6 @@ intel_dp_compute_hdr_metadata_infoframe_sdp(struct=
- intel_dp *intel_dp,
->  		intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA);
->  }
->=20=20
-> -static void
-> -intel_dp_drrs_compute_config(struct intel_dp *intel_dp,
-> -			     struct intel_crtc_state *pipe_config,
-> -			     int output_bpp, bool constant_n)
-> -{
-> -	struct intel_connector *intel_connector =3D intel_dp->attached_connecto=
-r;
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -	int pixel_clock;
-> -
-> -	if (pipe_config->vrr.enable)
-> -		return;
-> -
-> -	/*
-> -	 * DRRS and PSR can't be enable together, so giving preference to PSR
-> -	 * as it allows more power-savings by complete shutting down display,
-> -	 * so to guarantee this, intel_dp_drrs_compute_config() must be called
-> -	 * after intel_psr_compute_config().
-> -	 */
-> -	if (pipe_config->has_psr)
-> -		return;
-> -
-> -	if (!intel_connector->panel.downclock_mode ||
-> -	    dev_priv->drrs.type !=3D SEAMLESS_DRRS_SUPPORT)
-> -		return;
-> -
-> -	pipe_config->has_drrs =3D true;
-> -
-> -	pixel_clock =3D intel_connector->panel.downclock_mode->clock;
-> -	if (pipe_config->splitter.enable)
-> -		pixel_clock /=3D pipe_config->splitter.link_count;
-> -
-> -	intel_link_compute_m_n(output_bpp, pipe_config->lane_count, pixel_clock,
-> -			       pipe_config->port_clock, &pipe_config->dp_m2_n2,
-> -			       constant_n, pipe_config->fec_enable);
-> -
-> -	/* FIXME: abstract this better */
-> -	if (pipe_config->splitter.enable)
-> -		pipe_config->dp_m2_n2.gmch_m *=3D pipe_config->splitter.link_count;
-> -}
-> -
->  int
->  intel_dp_compute_config(struct intel_encoder *encoder,
->  			struct intel_crtc_state *pipe_config,
-> @@ -4715,432 +4676,6 @@ intel_dp_add_properties(struct intel_dp *intel_dp=
-, struct drm_connector *connect
->  		drm_connector_attach_vrr_capable_property(connector);
->  }
->=20=20
-> -/**
-> - * intel_dp_set_drrs_state - program registers for RR switch to take eff=
-ect
-> - * @dev_priv: i915 device
-> - * @crtc_state: a pointer to the active intel_crtc_state
-> - * @refresh_rate: RR to be programmed
-> - *
-> - * This function gets called when refresh rate (RR) has to be changed fr=
-om
-> - * one frequency to another. Switches can be between high and low RR
-> - * supported by the panel or to any other RR based on media playback (in
-> - * this case, RR value needs to be passed from user space).
-> - *
-> - * The caller of this function needs to take a lock on dev_priv->drrs.
-> - */
-> -static void intel_dp_set_drrs_state(struct drm_i915_private *dev_priv,
-> -				    const struct intel_crtc_state *crtc_state,
-> -				    int refresh_rate)
-> -{
-> -	struct intel_dp *intel_dp =3D dev_priv->drrs.dp;
-> -	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> -	enum drrs_refresh_rate_type index =3D DRRS_HIGH_RR;
-> -
-> -	if (refresh_rate <=3D 0) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Refresh rate should be positive non-zero.\n");
-> -		return;
-> -	}
-> -
-> -	if (intel_dp =3D=3D NULL) {
-> -		drm_dbg_kms(&dev_priv->drm, "DRRS not supported.\n");
-> -		return;
-> -	}
-> -
-> -	if (!crtc) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "DRRS: intel_crtc not initialized\n");
-> -		return;
-> -	}
-> -
-> -	if (dev_priv->drrs.type < SEAMLESS_DRRS_SUPPORT) {
-> -		drm_dbg_kms(&dev_priv->drm, "Only Seamless DRRS supported.\n");
-> -		return;
-> -	}
-> -
-> -	if (drm_mode_vrefresh(intel_dp->attached_connector->panel.downclock_mod=
-e) =3D=3D
-> -			refresh_rate)
-> -		index =3D DRRS_LOW_RR;
-> -
-> -	if (index =3D=3D dev_priv->drrs.refresh_rate_type) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "DRRS requested for previously set RR...ignoring\n");
-> -		return;
-> -	}
-> -
-> -	if (!crtc_state->hw.active) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "eDP encoder disabled. CRTC not Active\n");
-> -		return;
-> -	}
-> -
-> -	if (DISPLAY_VER(dev_priv) >=3D 8 && !IS_CHERRYVIEW(dev_priv)) {
-> -		switch (index) {
-> -		case DRRS_HIGH_RR:
-> -			intel_dp_set_m_n(crtc_state, M1_N1);
-> -			break;
-> -		case DRRS_LOW_RR:
-> -			intel_dp_set_m_n(crtc_state, M2_N2);
-> -			break;
-> -		case DRRS_MAX_RR:
-> -		default:
-> -			drm_err(&dev_priv->drm,
-> -				"Unsupported refreshrate type\n");
-> -		}
-> -	} else if (DISPLAY_VER(dev_priv) > 6) {
-> -		i915_reg_t reg =3D PIPECONF(crtc_state->cpu_transcoder);
-> -		u32 val;
-> -
-> -		val =3D intel_de_read(dev_priv, reg);
-> -		if (index > DRRS_HIGH_RR) {
-> -			if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-> -				val |=3D PIPECONF_EDP_RR_MODE_SWITCH_VLV;
-> -			else
-> -				val |=3D PIPECONF_EDP_RR_MODE_SWITCH;
-> -		} else {
-> -			if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-> -				val &=3D ~PIPECONF_EDP_RR_MODE_SWITCH_VLV;
-> -			else
-> -				val &=3D ~PIPECONF_EDP_RR_MODE_SWITCH;
-> -		}
-> -		intel_de_write(dev_priv, reg, val);
-> -	}
-> -
-> -	dev_priv->drrs.refresh_rate_type =3D index;
-> -
-> -	drm_dbg_kms(&dev_priv->drm, "eDP Refresh Rate set to : %dHz\n",
-> -		    refresh_rate);
-> -}
-> -
-> -static void
-> -intel_edp_drrs_enable_locked(struct intel_dp *intel_dp)
-> -{
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -
-> -	dev_priv->drrs.busy_frontbuffer_bits =3D 0;
-> -	dev_priv->drrs.dp =3D intel_dp;
-> -}
-> -
-> -/**
-> - * intel_edp_drrs_enable - init drrs struct if supported
-> - * @intel_dp: DP struct
-> - * @crtc_state: A pointer to the active crtc state.
-> - *
-> - * Initializes frontbuffer_bits and drrs.dp
-> - */
-> -void intel_edp_drrs_enable(struct intel_dp *intel_dp,
-> -			   const struct intel_crtc_state *crtc_state)
-> -{
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -
-> -	if (!crtc_state->has_drrs)
-> -		return;
-> -
-> -	drm_dbg_kms(&dev_priv->drm, "Enabling DRRS\n");
-> -
-> -	mutex_lock(&dev_priv->drrs.mutex);
-> -
-> -	if (dev_priv->drrs.dp) {
-> -		drm_warn(&dev_priv->drm, "DRRS already enabled\n");
-> -		goto unlock;
-> -	}
-> -
-> -	intel_edp_drrs_enable_locked(intel_dp);
-> -
-> -unlock:
-> -	mutex_unlock(&dev_priv->drrs.mutex);
-> -}
-> -
-> -static void
-> -intel_edp_drrs_disable_locked(struct intel_dp *intel_dp,
-> -			      const struct intel_crtc_state *crtc_state)
-> -{
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -
-> -	if (dev_priv->drrs.refresh_rate_type =3D=3D DRRS_LOW_RR) {
-> -		int refresh;
-> -
-> -		refresh =3D drm_mode_vrefresh(intel_dp->attached_connector->panel.fixe=
-d_mode);
-> -		intel_dp_set_drrs_state(dev_priv, crtc_state, refresh);
-> -	}
-> -
-> -	dev_priv->drrs.dp =3D NULL;
-> -}
-> -
-> -/**
-> - * intel_edp_drrs_disable - Disable DRRS
-> - * @intel_dp: DP struct
-> - * @old_crtc_state: Pointer to old crtc_state.
-> - *
-> - */
-> -void intel_edp_drrs_disable(struct intel_dp *intel_dp,
-> -			    const struct intel_crtc_state *old_crtc_state)
-> -{
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -
-> -	if (!old_crtc_state->has_drrs)
-> -		return;
-> -
-> -	mutex_lock(&dev_priv->drrs.mutex);
-> -	if (!dev_priv->drrs.dp) {
-> -		mutex_unlock(&dev_priv->drrs.mutex);
-> -		return;
-> -	}
-> -
-> -	intel_edp_drrs_disable_locked(intel_dp, old_crtc_state);
-> -	mutex_unlock(&dev_priv->drrs.mutex);
-> -
-> -	cancel_delayed_work_sync(&dev_priv->drrs.work);
-> -}
-> -
-> -/**
-> - * intel_edp_drrs_update - Update DRRS state
-> - * @intel_dp: Intel DP
-> - * @crtc_state: new CRTC state
-> - *
-> - * This function will update DRRS states, disabling or enabling DRRS when
-> - * executing fastsets. For full modeset, intel_edp_drrs_disable() and
-> - * intel_edp_drrs_enable() should be called instead.
-> - */
-> -void
-> -intel_edp_drrs_update(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state)
-> -{
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -
-> -	if (dev_priv->drrs.type !=3D SEAMLESS_DRRS_SUPPORT)
-> -		return;
-> -
-> -	mutex_lock(&dev_priv->drrs.mutex);
-> -
-> -	/* New state matches current one? */
-> -	if (crtc_state->has_drrs =3D=3D !!dev_priv->drrs.dp)
-> -		goto unlock;
-> -
-> -	if (crtc_state->has_drrs)
-> -		intel_edp_drrs_enable_locked(intel_dp);
-> -	else
-> -		intel_edp_drrs_disable_locked(intel_dp, crtc_state);
-> -
-> -unlock:
-> -	mutex_unlock(&dev_priv->drrs.mutex);
-> -}
-> -
-> -static void intel_edp_drrs_downclock_work(struct work_struct *work)
-> -{
-> -	struct drm_i915_private *dev_priv =3D
-> -		container_of(work, typeof(*dev_priv), drrs.work.work);
-> -	struct intel_dp *intel_dp;
-> -
-> -	mutex_lock(&dev_priv->drrs.mutex);
-> -
-> -	intel_dp =3D dev_priv->drrs.dp;
-> -
-> -	if (!intel_dp)
-> -		goto unlock;
-> -
-> -	/*
-> -	 * The delayed work can race with an invalidate hence we need to
-> -	 * recheck.
-> -	 */
-> -
-> -	if (dev_priv->drrs.busy_frontbuffer_bits)
-> -		goto unlock;
-> -
-> -	if (dev_priv->drrs.refresh_rate_type !=3D DRRS_LOW_RR) {
-> -		struct drm_crtc *crtc =3D dp_to_dig_port(intel_dp)->base.base.crtc;
-> -
-> -		intel_dp_set_drrs_state(dev_priv, to_intel_crtc(crtc)->config,
-> -			drm_mode_vrefresh(intel_dp->attached_connector->panel.downclock_mode)=
-);
-> -	}
-> -
-> -unlock:
-> -	mutex_unlock(&dev_priv->drrs.mutex);
-> -}
-> -
-> -/**
-> - * intel_edp_drrs_invalidate - Disable Idleness DRRS
-> - * @dev_priv: i915 device
-> - * @frontbuffer_bits: frontbuffer plane tracking bits
-> - *
-> - * This function gets called everytime rendering on the given planes sta=
-rt.
-> - * Hence DRRS needs to be Upclocked, i.e. (LOW_RR -> HIGH_RR).
-> - *
-> - * Dirty frontbuffers relevant to DRRS are tracked in busy_frontbuffer_b=
-its.
-> - */
-> -void intel_edp_drrs_invalidate(struct drm_i915_private *dev_priv,
-> -			       unsigned int frontbuffer_bits)
-> -{
-> -	struct intel_dp *intel_dp;
-> -	struct drm_crtc *crtc;
-> -	enum pipe pipe;
-> -
-> -	if (dev_priv->drrs.type =3D=3D DRRS_NOT_SUPPORTED)
-> -		return;
-> -
-> -	cancel_delayed_work(&dev_priv->drrs.work);
-> -
-> -	mutex_lock(&dev_priv->drrs.mutex);
-> -
-> -	intel_dp =3D dev_priv->drrs.dp;
-> -	if (!intel_dp) {
-> -		mutex_unlock(&dev_priv->drrs.mutex);
-> -		return;
-> -	}
-> -
-> -	crtc =3D dp_to_dig_port(intel_dp)->base.base.crtc;
-> -	pipe =3D to_intel_crtc(crtc)->pipe;
-> -
-> -	frontbuffer_bits &=3D INTEL_FRONTBUFFER_ALL_MASK(pipe);
-> -	dev_priv->drrs.busy_frontbuffer_bits |=3D frontbuffer_bits;
-> -
-> -	/* invalidate means busy screen hence upclock */
-> -	if (frontbuffer_bits && dev_priv->drrs.refresh_rate_type =3D=3D DRRS_LO=
-W_RR)
-> -		intel_dp_set_drrs_state(dev_priv, to_intel_crtc(crtc)->config,
-> -					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-> -
-> -	mutex_unlock(&dev_priv->drrs.mutex);
-> -}
-> -
-> -/**
-> - * intel_edp_drrs_flush - Restart Idleness DRRS
-> - * @dev_priv: i915 device
-> - * @frontbuffer_bits: frontbuffer plane tracking bits
-> - *
-> - * This function gets called every time rendering on the given planes has
-> - * completed or flip on a crtc is completed. So DRRS should be upclocked
-> - * (LOW_RR -> HIGH_RR). And also Idleness detection should be started ag=
-ain,
-> - * if no other planes are dirty.
-> - *
-> - * Dirty frontbuffers relevant to DRRS are tracked in busy_frontbuffer_b=
-its.
-> - */
-> -void intel_edp_drrs_flush(struct drm_i915_private *dev_priv,
-> -			  unsigned int frontbuffer_bits)
-> -{
-> -	struct intel_dp *intel_dp;
-> -	struct drm_crtc *crtc;
-> -	enum pipe pipe;
-> -
-> -	if (dev_priv->drrs.type =3D=3D DRRS_NOT_SUPPORTED)
-> -		return;
-> -
-> -	cancel_delayed_work(&dev_priv->drrs.work);
-> -
-> -	mutex_lock(&dev_priv->drrs.mutex);
-> -
-> -	intel_dp =3D dev_priv->drrs.dp;
-> -	if (!intel_dp) {
-> -		mutex_unlock(&dev_priv->drrs.mutex);
-> -		return;
-> -	}
-> -
-> -	crtc =3D dp_to_dig_port(intel_dp)->base.base.crtc;
-> -	pipe =3D to_intel_crtc(crtc)->pipe;
-> -
-> -	frontbuffer_bits &=3D INTEL_FRONTBUFFER_ALL_MASK(pipe);
-> -	dev_priv->drrs.busy_frontbuffer_bits &=3D ~frontbuffer_bits;
-> -
-> -	/* flush means busy screen hence upclock */
-> -	if (frontbuffer_bits && dev_priv->drrs.refresh_rate_type =3D=3D DRRS_LO=
-W_RR)
-> -		intel_dp_set_drrs_state(dev_priv, to_intel_crtc(crtc)->config,
-> -					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-> -
-> -	/*
-> -	 * flush also means no more activity hence schedule downclock, if all
-> -	 * other fbs are quiescent too
-> -	 */
-> -	if (!dev_priv->drrs.busy_frontbuffer_bits)
-> -		schedule_delayed_work(&dev_priv->drrs.work,
-> -				msecs_to_jiffies(1000));
-> -	mutex_unlock(&dev_priv->drrs.mutex);
-> -}
-> -
-> -/**
-> - * DOC: Display Refresh Rate Switching (DRRS)
-> - *
-> - * Display Refresh Rate Switching (DRRS) is a power conservation feature
-> - * which enables swtching between low and high refresh rates,
-> - * dynamically, based on the usage scenario. This feature is applicable
-> - * for internal panels.
-> - *
-> - * Indication that the panel supports DRRS is given by the panel EDID, w=
-hich
-> - * would list multiple refresh rates for one resolution.
-> - *
-> - * DRRS is of 2 types - static and seamless.
-> - * Static DRRS involves changing refresh rate (RR) by doing a full modes=
-et
-> - * (may appear as a blink on screen) and is used in dock-undock scenario.
-> - * Seamless DRRS involves changing RR without any visual effect to the u=
-ser
-> - * and can be used during normal system usage. This is done by programmi=
-ng
-> - * certain registers.
-> - *
-> - * Support for static/seamless DRRS may be indicated in the VBT based on
-> - * inputs from the panel spec.
-> - *
-> - * DRRS saves power by switching to low RR based on usage scenarios.
-> - *
-> - * The implementation is based on frontbuffer tracking implementation.  =
-When
-> - * there is a disturbance on the screen triggered by user activity or a =
-periodic
-> - * system activity, DRRS is disabled (RR is changed to high RR).  When t=
-here is
-> - * no movement on screen, after a timeout of 1 second, a switch to low R=
-R is
-> - * made.
-> - *
-> - * For integration with frontbuffer tracking code, intel_edp_drrs_invali=
-date()
-> - * and intel_edp_drrs_flush() are called.
-> - *
-> - * DRRS can be further extended to support other internal panels and also
-> - * the scenario of video playback wherein RR is set based on the rate
-> - * requested by userspace.
-> - */
-> -
-> -/**
-> - * intel_dp_drrs_init - Init basic DRRS work and mutex.
-> - * @connector: eDP connector
-> - * @fixed_mode: preferred mode of panel
-> - *
-> - * This function is  called only once at driver load to initialize basic
-> - * DRRS stuff.
-> - *
-> - * Returns:
-> - * Downclock mode if panel supports it, else return NULL.
-> - * DRRS support is determined by the presence of downclock mode (apart
-> - * from VBT setting).
-> - */
-> -static struct drm_display_mode *
-> -intel_dp_drrs_init(struct intel_connector *connector,
-> -		   struct drm_display_mode *fixed_mode)
-> -{
-> -	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
-> -	struct drm_display_mode *downclock_mode =3D NULL;
-> -
-> -	INIT_DELAYED_WORK(&dev_priv->drrs.work, intel_edp_drrs_downclock_work);
-> -	mutex_init(&dev_priv->drrs.mutex);
-> -
-> -	if (DISPLAY_VER(dev_priv) <=3D 6) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "DRRS supported for Gen7 and above\n");
-> -		return NULL;
-> -	}
-> -
-> -	if (dev_priv->vbt.drrs_type !=3D SEAMLESS_DRRS_SUPPORT) {
-> -		drm_dbg_kms(&dev_priv->drm, "VBT doesn't support DRRS\n");
-> -		return NULL;
-> -	}
-> -
-> -	downclock_mode =3D intel_panel_edid_downclock_mode(connector, fixed_mod=
-e);
-> -	if (!downclock_mode) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Downclock mode is not found. DRRS not supported\n");
-> -		return NULL;
-> -	}
-> -
-> -	dev_priv->drrs.type =3D dev_priv->vbt.drrs_type;
-> -
-> -	dev_priv->drrs.refresh_rate_type =3D DRRS_HIGH_RR;
-> -	drm_dbg_kms(&dev_priv->drm,
-> -		    "seamless DRRS supported for eDP panel.\n");
-> -	return downclock_mode;
-> -}
-> -
->  static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->  				     struct intel_connector *intel_connector)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index 680631b5b4378..38ff0e4f65504 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -70,17 +70,6 @@ int intel_dp_max_link_rate(struct intel_dp *intel_dp);
->  int intel_dp_max_lane_count(struct intel_dp *intel_dp);
->  int intel_dp_rate_select(struct intel_dp *intel_dp, int rate);
->=20=20
-> -void intel_edp_drrs_enable(struct intel_dp *intel_dp,
-> -			   const struct intel_crtc_state *crtc_state);
-> -void intel_edp_drrs_disable(struct intel_dp *intel_dp,
-> -			    const struct intel_crtc_state *crtc_state);
-> -void intel_edp_drrs_update(struct intel_dp *intel_dp,
-> -			   const struct intel_crtc_state *crtc_state);
-> -void intel_edp_drrs_invalidate(struct drm_i915_private *dev_priv,
-> -			       unsigned int frontbuffer_bits);
-> -void intel_edp_drrs_flush(struct drm_i915_private *dev_priv,
-> -			  unsigned int frontbuffer_bits);
-> -
->  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
->  			   u8 *link_bw, u8 *rate_select);
->  bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp);
-> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/=
-i915/display/intel_drrs.c
-> new file mode 100644
-> index 0000000000000..be9b6d4482f04
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-> @@ -0,0 +1,477 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright =C2=A9 2021 Intel Corporation
-> + */
-> +
-> +#include "i915_drv.h"
-> +#include "intel_atomic.h"
-> +#include "intel_de.h"
-> +#include "intel_display_types.h"
-> +#include "intel_drrs.h"
-> +#include "intel_panel.h"
-> +
-> +/**
-> + * DOC: Display Refresh Rate Switching (DRRS)
-> + *
-> + * Display Refresh Rate Switching (DRRS) is a power conservation feature
-> + * which enables swtching between low and high refresh rates,
-> + * dynamically, based on the usage scenario. This feature is applicable
-> + * for internal panels.
-> + *
-> + * Indication that the panel supports DRRS is given by the panel EDID, w=
-hich
-> + * would list multiple refresh rates for one resolution.
-> + *
-> + * DRRS is of 2 types - static and seamless.
-> + * Static DRRS involves changing refresh rate (RR) by doing a full modes=
-et
-> + * (may appear as a blink on screen) and is used in dock-undock scenario.
-> + * Seamless DRRS involves changing RR without any visual effect to the u=
-ser
-> + * and can be used during normal system usage. This is done by programmi=
-ng
-> + * certain registers.
-> + *
-> + * Support for static/seamless DRRS may be indicated in the VBT based on
-> + * inputs from the panel spec.
-> + *
-> + * DRRS saves power by switching to low RR based on usage scenarios.
-> + *
-> + * The implementation is based on frontbuffer tracking implementation.  =
-When
-> + * there is a disturbance on the screen triggered by user activity or a =
-periodic
-> + * system activity, DRRS is disabled (RR is changed to high RR).  When t=
-here is
-> + * no movement on screen, after a timeout of 1 second, a switch to low R=
-R is
-> + * made.
-> + *
-> + * For integration with frontbuffer tracking code, intel_edp_drrs_invali=
-date()
-> + * and intel_edp_drrs_flush() are called.
-> + *
-> + * DRRS can be further extended to support other internal panels and also
-> + * the scenario of video playback wherein RR is set based on the rate
-> + * requested by userspace.
-> + */
-> +
-> +void
-> +intel_dp_drrs_compute_config(struct intel_dp *intel_dp,
-> +			     struct intel_crtc_state *pipe_config,
-> +			     int output_bpp, bool constant_n)
-> +{
-> +	struct intel_connector *intel_connector =3D intel_dp->attached_connecto=
-r;
-> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> +	int pixel_clock;
-> +
-> +	if (pipe_config->vrr.enable)
-> +		return;
-> +
-> +	/*
-> +	 * DRRS and PSR can't be enable together, so giving preference to PSR
-> +	 * as it allows more power-savings by complete shutting down display,
-> +	 * so to guarantee this, intel_dp_drrs_compute_config() must be called
-> +	 * after intel_psr_compute_config().
-> +	 */
-> +	if (pipe_config->has_psr)
-> +		return;
-> +
-> +	if (!intel_connector->panel.downclock_mode ||
-> +	    dev_priv->drrs.type !=3D SEAMLESS_DRRS_SUPPORT)
-> +		return;
-> +
-> +	pipe_config->has_drrs =3D true;
-> +
-> +	pixel_clock =3D intel_connector->panel.downclock_mode->clock;
-> +	if (pipe_config->splitter.enable)
-> +		pixel_clock /=3D pipe_config->splitter.link_count;
-> +
-> +	intel_link_compute_m_n(output_bpp, pipe_config->lane_count, pixel_clock,
-> +			       pipe_config->port_clock, &pipe_config->dp_m2_n2,
-> +			       constant_n, pipe_config->fec_enable);
-> +
-> +	/* FIXME: abstract this better */
-> +	if (pipe_config->splitter.enable)
-> +		pipe_config->dp_m2_n2.gmch_m *=3D pipe_config->splitter.link_count;
-> +}
-> +
-> +/**
-> + * intel_dp_set_drrs_state - program registers for RR switch to take eff=
-ect
-> + * @dev_priv: i915 device
-> + * @crtc_state: a pointer to the active intel_crtc_state
-> + * @refresh_rate: RR to be programmed
-> + *
-> + * This function gets called when refresh rate (RR) has to be changed fr=
-om
-> + * one frequency to another. Switches can be between high and low RR
-> + * supported by the panel or to any other RR based on media playback (in
-> + * this case, RR value needs to be passed from user space).
-> + *
-> + * The caller of this function needs to take a lock on dev_priv->drrs.
-> + */
-> +static void intel_dp_set_drrs_state(struct drm_i915_private *dev_priv,
-> +				    const struct intel_crtc_state *crtc_state,
-> +				    int refresh_rate)
-> +{
-> +	struct intel_dp *intel_dp =3D dev_priv->drrs.dp;
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	enum drrs_refresh_rate_type index =3D DRRS_HIGH_RR;
-> +
-> +	if (refresh_rate <=3D 0) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "Refresh rate should be positive non-zero.\n");
-> +		return;
-> +	}
-> +
-> +	if (intel_dp =3D=3D NULL) {
-> +		drm_dbg_kms(&dev_priv->drm, "DRRS not supported.\n");
-> +		return;
-> +	}
-> +
-> +	if (!crtc) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "DRRS: intel_crtc not initialized\n");
-> +		return;
-> +	}
-> +
-> +	if (dev_priv->drrs.type < SEAMLESS_DRRS_SUPPORT) {
-> +		drm_dbg_kms(&dev_priv->drm, "Only Seamless DRRS supported.\n");
-> +		return;
-> +	}
-> +
-> +	if (drm_mode_vrefresh(intel_dp->attached_connector->panel.downclock_mod=
-e) =3D=3D
-> +			refresh_rate)
-> +		index =3D DRRS_LOW_RR;
-> +
-> +	if (index =3D=3D dev_priv->drrs.refresh_rate_type) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "DRRS requested for previously set RR...ignoring\n");
-> +		return;
-> +	}
-> +
-> +	if (!crtc_state->hw.active) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "eDP encoder disabled. CRTC not Active\n");
-> +		return;
-> +	}
-> +
-> +	if (DISPLAY_VER(dev_priv) >=3D 8 && !IS_CHERRYVIEW(dev_priv)) {
-> +		switch (index) {
-> +		case DRRS_HIGH_RR:
-> +			intel_dp_set_m_n(crtc_state, M1_N1);
-> +			break;
-> +		case DRRS_LOW_RR:
-> +			intel_dp_set_m_n(crtc_state, M2_N2);
-> +			break;
-> +		case DRRS_MAX_RR:
-> +		default:
-> +			drm_err(&dev_priv->drm,
-> +				"Unsupported refreshrate type\n");
-> +		}
-> +	} else if (DISPLAY_VER(dev_priv) > 6) {
-> +		i915_reg_t reg =3D PIPECONF(crtc_state->cpu_transcoder);
-> +		u32 val;
-> +
-> +		val =3D intel_de_read(dev_priv, reg);
-> +		if (index > DRRS_HIGH_RR) {
-> +			if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-> +				val |=3D PIPECONF_EDP_RR_MODE_SWITCH_VLV;
-> +			else
-> +				val |=3D PIPECONF_EDP_RR_MODE_SWITCH;
-> +		} else {
-> +			if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-> +				val &=3D ~PIPECONF_EDP_RR_MODE_SWITCH_VLV;
-> +			else
-> +				val &=3D ~PIPECONF_EDP_RR_MODE_SWITCH;
-> +		}
-> +		intel_de_write(dev_priv, reg, val);
-> +	}
-> +
-> +	dev_priv->drrs.refresh_rate_type =3D index;
-> +
-> +	drm_dbg_kms(&dev_priv->drm, "eDP Refresh Rate set to : %dHz\n",
-> +		    refresh_rate);
-> +}
-> +
-> +static void
-> +intel_edp_drrs_enable_locked(struct intel_dp *intel_dp)
-> +{
-> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> +
-> +	dev_priv->drrs.busy_frontbuffer_bits =3D 0;
-> +	dev_priv->drrs.dp =3D intel_dp;
-> +}
-> +
-> +/**
-> + * intel_edp_drrs_enable - init drrs struct if supported
-> + * @intel_dp: DP struct
-> + * @crtc_state: A pointer to the active crtc state.
-> + *
-> + * Initializes frontbuffer_bits and drrs.dp
-> + */
-> +void intel_edp_drrs_enable(struct intel_dp *intel_dp,
-> +			   const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> +
-> +	if (!crtc_state->has_drrs)
-> +		return;
-> +
-> +	drm_dbg_kms(&dev_priv->drm, "Enabling DRRS\n");
-> +
-> +	mutex_lock(&dev_priv->drrs.mutex);
-> +
-> +	if (dev_priv->drrs.dp) {
-> +		drm_warn(&dev_priv->drm, "DRRS already enabled\n");
-> +		goto unlock;
-> +	}
-> +
-> +	intel_edp_drrs_enable_locked(intel_dp);
-> +
-> +unlock:
-> +	mutex_unlock(&dev_priv->drrs.mutex);
-> +}
-> +
-> +static void
-> +intel_edp_drrs_disable_locked(struct intel_dp *intel_dp,
-> +			      const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> +
-> +	if (dev_priv->drrs.refresh_rate_type =3D=3D DRRS_LOW_RR) {
-> +		int refresh;
-> +
-> +		refresh =3D drm_mode_vrefresh(intel_dp->attached_connector->panel.fixe=
-d_mode);
-> +		intel_dp_set_drrs_state(dev_priv, crtc_state, refresh);
-> +	}
-> +
-> +	dev_priv->drrs.dp =3D NULL;
-> +}
-> +
-> +/**
-> + * intel_edp_drrs_disable - Disable DRRS
-> + * @intel_dp: DP struct
-> + * @old_crtc_state: Pointer to old crtc_state.
-> + *
-> + */
-> +void intel_edp_drrs_disable(struct intel_dp *intel_dp,
-> +			    const struct intel_crtc_state *old_crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> +
-> +	if (!old_crtc_state->has_drrs)
-> +		return;
-> +
-> +	mutex_lock(&dev_priv->drrs.mutex);
-> +	if (!dev_priv->drrs.dp) {
-> +		mutex_unlock(&dev_priv->drrs.mutex);
-> +		return;
-> +	}
-> +
-> +	intel_edp_drrs_disable_locked(intel_dp, old_crtc_state);
-> +	mutex_unlock(&dev_priv->drrs.mutex);
-> +
-> +	cancel_delayed_work_sync(&dev_priv->drrs.work);
-> +}
-> +
-> +/**
-> + * intel_edp_drrs_update - Update DRRS state
-> + * @intel_dp: Intel DP
-> + * @crtc_state: new CRTC state
-> + *
-> + * This function will update DRRS states, disabling or enabling DRRS when
-> + * executing fastsets. For full modeset, intel_edp_drrs_disable() and
-> + * intel_edp_drrs_enable() should be called instead.
-> + */
-> +void
-> +intel_edp_drrs_update(struct intel_dp *intel_dp,
-> +		      const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> +
-> +	if (dev_priv->drrs.type !=3D SEAMLESS_DRRS_SUPPORT)
-> +		return;
-> +
-> +	mutex_lock(&dev_priv->drrs.mutex);
-> +
-> +	/* New state matches current one? */
-> +	if (crtc_state->has_drrs =3D=3D !!dev_priv->drrs.dp)
-> +		goto unlock;
-> +
-> +	if (crtc_state->has_drrs)
-> +		intel_edp_drrs_enable_locked(intel_dp);
-> +	else
-> +		intel_edp_drrs_disable_locked(intel_dp, crtc_state);
-> +
-> +unlock:
-> +	mutex_unlock(&dev_priv->drrs.mutex);
-> +}
-> +
-> +static void intel_edp_drrs_downclock_work(struct work_struct *work)
-> +{
-> +	struct drm_i915_private *dev_priv =3D
-> +		container_of(work, typeof(*dev_priv), drrs.work.work);
-> +	struct intel_dp *intel_dp;
-> +
-> +	mutex_lock(&dev_priv->drrs.mutex);
-> +
-> +	intel_dp =3D dev_priv->drrs.dp;
-> +
-> +	if (!intel_dp)
-> +		goto unlock;
-> +
-> +	/*
-> +	 * The delayed work can race with an invalidate hence we need to
-> +	 * recheck.
-> +	 */
-> +
-> +	if (dev_priv->drrs.busy_frontbuffer_bits)
-> +		goto unlock;
-> +
-> +	if (dev_priv->drrs.refresh_rate_type !=3D DRRS_LOW_RR) {
-> +		struct drm_crtc *crtc =3D dp_to_dig_port(intel_dp)->base.base.crtc;
-> +
-> +		intel_dp_set_drrs_state(dev_priv, to_intel_crtc(crtc)->config,
-> +					drm_mode_vrefresh(intel_dp->attached_connector->panel.downclock_mod=
-e));
-> +	}
-> +
-> +unlock:
-> +	mutex_unlock(&dev_priv->drrs.mutex);
-> +}
-> +
-> +/**
-> + * intel_edp_drrs_invalidate - Disable Idleness DRRS
-> + * @dev_priv: i915 device
-> + * @frontbuffer_bits: frontbuffer plane tracking bits
-> + *
-> + * This function gets called everytime rendering on the given planes sta=
-rt.
-> + * Hence DRRS needs to be Upclocked, i.e. (LOW_RR -> HIGH_RR).
-> + *
-> + * Dirty frontbuffers relevant to DRRS are tracked in busy_frontbuffer_b=
-its.
-> + */
-> +void intel_edp_drrs_invalidate(struct drm_i915_private *dev_priv,
-> +			       unsigned int frontbuffer_bits)
-> +{
-> +	struct intel_dp *intel_dp;
-> +	struct drm_crtc *crtc;
-> +	enum pipe pipe;
-> +
-> +	if (dev_priv->drrs.type =3D=3D DRRS_NOT_SUPPORTED)
-> +		return;
-> +
-> +	cancel_delayed_work(&dev_priv->drrs.work);
-> +
-> +	mutex_lock(&dev_priv->drrs.mutex);
-> +
-> +	intel_dp =3D dev_priv->drrs.dp;
-> +	if (!intel_dp) {
-> +		mutex_unlock(&dev_priv->drrs.mutex);
-> +		return;
-> +	}
-> +
-> +	crtc =3D dp_to_dig_port(intel_dp)->base.base.crtc;
-> +	pipe =3D to_intel_crtc(crtc)->pipe;
-> +
-> +	frontbuffer_bits &=3D INTEL_FRONTBUFFER_ALL_MASK(pipe);
-> +	dev_priv->drrs.busy_frontbuffer_bits |=3D frontbuffer_bits;
-> +
-> +	/* invalidate means busy screen hence upclock */
-> +	if (frontbuffer_bits && dev_priv->drrs.refresh_rate_type =3D=3D DRRS_LO=
-W_RR)
-> +		intel_dp_set_drrs_state(dev_priv, to_intel_crtc(crtc)->config,
-> +					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-> +
-> +	mutex_unlock(&dev_priv->drrs.mutex);
-> +}
-> +
-> +/**
-> + * intel_edp_drrs_flush - Restart Idleness DRRS
-> + * @dev_priv: i915 device
-> + * @frontbuffer_bits: frontbuffer plane tracking bits
-> + *
-> + * This function gets called every time rendering on the given planes has
-> + * completed or flip on a crtc is completed. So DRRS should be upclocked
-> + * (LOW_RR -> HIGH_RR). And also Idleness detection should be started ag=
-ain,
-> + * if no other planes are dirty.
-> + *
-> + * Dirty frontbuffers relevant to DRRS are tracked in busy_frontbuffer_b=
-its.
-> + */
-> +void intel_edp_drrs_flush(struct drm_i915_private *dev_priv,
-> +			  unsigned int frontbuffer_bits)
-> +{
-> +	struct intel_dp *intel_dp;
-> +	struct drm_crtc *crtc;
-> +	enum pipe pipe;
-> +
-> +	if (dev_priv->drrs.type =3D=3D DRRS_NOT_SUPPORTED)
-> +		return;
-> +
-> +	cancel_delayed_work(&dev_priv->drrs.work);
-> +
-> +	mutex_lock(&dev_priv->drrs.mutex);
-> +
-> +	intel_dp =3D dev_priv->drrs.dp;
-> +	if (!intel_dp) {
-> +		mutex_unlock(&dev_priv->drrs.mutex);
-> +		return;
-> +	}
-> +
-> +	crtc =3D dp_to_dig_port(intel_dp)->base.base.crtc;
-> +	pipe =3D to_intel_crtc(crtc)->pipe;
-> +
-> +	frontbuffer_bits &=3D INTEL_FRONTBUFFER_ALL_MASK(pipe);
-> +	dev_priv->drrs.busy_frontbuffer_bits &=3D ~frontbuffer_bits;
-> +
-> +	/* flush means busy screen hence upclock */
-> +	if (frontbuffer_bits && dev_priv->drrs.refresh_rate_type =3D=3D DRRS_LO=
-W_RR)
-> +		intel_dp_set_drrs_state(dev_priv, to_intel_crtc(crtc)->config,
-> +					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-> +
-> +	/*
-> +	 * flush also means no more activity hence schedule downclock, if all
-> +	 * other fbs are quiescent too
-> +	 */
-> +	if (!dev_priv->drrs.busy_frontbuffer_bits)
-> +		schedule_delayed_work(&dev_priv->drrs.work,
-> +				      msecs_to_jiffies(1000));
-> +	mutex_unlock(&dev_priv->drrs.mutex);
-> +}
-> +
-> +/**
-> + * intel_dp_drrs_init - Init basic DRRS work and mutex.
-> + * @connector: eDP connector
-> + * @fixed_mode: preferred mode of panel
-> + *
-> + * This function is  called only once at driver load to initialize basic
-> + * DRRS stuff.
-> + *
-> + * Returns:
-> + * Downclock mode if panel supports it, else return NULL.
-> + * DRRS support is determined by the presence of downclock mode (apart
-> + * from VBT setting).
-> + */
-> +struct drm_display_mode *
-> +intel_dp_drrs_init(struct intel_connector *connector,
-> +		   struct drm_display_mode *fixed_mode)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
-> +	struct drm_display_mode *downclock_mode =3D NULL;
-> +
-> +	INIT_DELAYED_WORK(&dev_priv->drrs.work, intel_edp_drrs_downclock_work);
-> +	mutex_init(&dev_priv->drrs.mutex);
-> +
-> +	if (DISPLAY_VER(dev_priv) <=3D 6) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "DRRS supported for Gen7 and above\n");
-> +		return NULL;
-> +	}
-> +
-> +	if (dev_priv->vbt.drrs_type !=3D SEAMLESS_DRRS_SUPPORT) {
-> +		drm_dbg_kms(&dev_priv->drm, "VBT doesn't support DRRS\n");
-> +		return NULL;
-> +	}
-> +
-> +	downclock_mode =3D intel_panel_edid_downclock_mode(connector, fixed_mod=
-e);
-> +	if (!downclock_mode) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "Downclock mode is not found. DRRS not supported\n");
-> +		return NULL;
-> +	}
-> +
-> +	dev_priv->drrs.type =3D dev_priv->vbt.drrs_type;
-> +
-> +	dev_priv->drrs.refresh_rate_type =3D DRRS_HIGH_RR;
-> +	drm_dbg_kms(&dev_priv->drm,
-> +		    "seamless DRRS supported for eDP panel.\n");
-> +	return downclock_mode;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.h b/drivers/gpu/drm/=
-i915/display/intel_drrs.h
-> new file mode 100644
-> index 0000000000000..ffa175b4cf4f4
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_drrs.h
-> @@ -0,0 +1,32 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2021 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_DRRS_H__
-> +#define __INTEL_DRRS_H__
-> +
-> +#include <linux/types.h>
-> +
-> +struct drm_i915_private;
-> +struct intel_crtc_state;
-> +struct intel_connector;
-> +struct intel_dp;
-> +
-> +void intel_edp_drrs_enable(struct intel_dp *intel_dp,
-> +			   const struct intel_crtc_state *crtc_state);
-> +void intel_edp_drrs_disable(struct intel_dp *intel_dp,
-> +			    const struct intel_crtc_state *crtc_state);
-> +void intel_edp_drrs_update(struct intel_dp *intel_dp,
-> +			   const struct intel_crtc_state *crtc_state);
-> +void intel_edp_drrs_invalidate(struct drm_i915_private *dev_priv,
-> +			       unsigned int frontbuffer_bits);
-> +void intel_edp_drrs_flush(struct drm_i915_private *dev_priv,
-> +			  unsigned int frontbuffer_bits);
-> +void intel_dp_drrs_compute_config(struct intel_dp *intel_dp,
-> +				  struct intel_crtc_state *pipe_config,
-> +				  int output_bpp, bool constant_n);
-> +struct drm_display_mode *intel_dp_drrs_init(struct intel_connector *conn=
-ector,
-> +					    struct drm_display_mode *fixed_mode);
-> +
-> +#endif /* __INTEL_DRRS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/g=
-pu/drm/i915/display/intel_frontbuffer.c
-> index 8e75debcce1a9..e4834d84ce5e3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> @@ -62,6 +62,7 @@
->  #include "intel_display_types.h"
->  #include "intel_fbc.h"
->  #include "intel_frontbuffer.h"
-> +#include "intel_drrs.h"
->  #include "intel_psr.h"
->=20=20
->  /**
+>
+> >
+> >> John.
+> >>
+> >>>> John.
+> >>>>
+> >>>>
+> >>>>> Or perhaps there is no ABI change? I am not really clear how does
+> >>>>> setting banned status propagate to the GuC backend. I mean at which
+> >>>>> point does i915 ends up passing that info to the firmware?
+> >>>>>
+> >>>>> Regards,
+> >>>>>
+> >>>>> Tvrtko
+> >>>>>
+> >>>>>>>> It's worse than this. If the engine in question is an individual
+> >>>>>>>> physical engine then sending a pulse (with sufficiently high
+> >>>>>>>> priority) will pre-empt the engine and kick the context off.
+> >>>>>>>> However, the GuC
+> >>>>>>> Why it is different for physical vs virtual, aren't both just
+> >>>>>>> schedulable contexts with different engine masks for what GuC is
+> >>>>>>> concerned? Oh, is it a matter of needing to send pulses to all
+> >>>>>>> engines which comprise a virtual one?
+> >>>>>> It isn't different. It is totally broken for both. It is potentially
+> >>>>>> more broken for virtual engines because of the question of which
+> >>>>>> engine to pulse. But as stated above, the pulse is pointless anyway
+> >>>>>> so the which engine question doesn't even matter.
+> >>>>>>
+> >>>>>> John.
+> >>>>>>
+> >>>>>>
+> >>>>>>>> scheduler does not have hacks in it to check the state of the
+> >>>>>>>> heartbeat or whether a context is actually a zombie or not. Thus,
+> >>>>>>>> the context will get resubmitted to the hardware after the pulse
+> >>>>>>>> completes and effectively nothing will have happened.
+> >>>>>>>>
+> >>>>>>>> I would assume that the DRM scheduler which we are meant to be
+> >>>>>>>> switching to for execlist as well as GuC submission is also
+> >>>>>>>> unlikely to have hacks for zombie contexts and tests for whether
+> >>>>>>>> the i915 specific heartbeat has been disabled since the context
+> >>>>>>>> became a zombie. So when that switch happens, this test will also
+> >>>>>>>> fail in execlist mode as well as GuC mode.
+> >>>>>>>>
+> >>>>>>>> The choices I see here are to simply remove persistence completely
+> >>>>>>>> (it is a basically a bug that became UAPI because it wasn't caught
+> >>>>>>>> soon enough!) or to implement it in a way that does not require
+> >>>>>>>> hacks in the back end scheduler. Apparently, the DRM scheduler is
+> >>>>>>>> expected to allow zombie contexts to persist until the DRM file
+> >>>>>>>> handle is closed. So presumably we will have to go with option two.
+> >>>>>>>>
+> >>>>>>>> That means flagging a context as being a zombie when it is closed
+> >>>>>>>> but still active. The driver would then add it to a zombie list
+> >>>>>>>> owned by the DRM client object. When that client object is closed,
+> >>>>>>>> i915 would go through the list and genuinely kill all the contexts.
+> >>>>>>>> No back end scheduler hacks required and no intimate knowledge of
+> >>>>>>>> the i915 heartbeat mechanism required either.
+> >>>>>>>>
+> >>>>>>>> John.
+> >>>>>>>>
+> >>>>>>>>
+> >>>>>>>>> This patch also updates intel_engine_has_heartbeat to be a vfunc
+> >>>>>>>>> as we
+> >>>>>>>>> now need to call this function on execlists virtual engines too.
+> >>>>>>>>>
+> >>>>>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >>>>>>>>> ---
+> >>>>>>>>>     drivers/gpu/drm/i915/gem/i915_gem_context.c   |  5 +++--
+> >>>>>>>>>     drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
+> >>>>>>>>>     drivers/gpu/drm/i915/gt/intel_engine.h        | 21
+> >>>>>>>>> ++-----------------
+> >>>>>>>>>     .../drm/i915/gt/intel_execlists_submission.c  | 14 +++++++++++++
+> >>>>>>>>>     .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 +++++-
+> >>>>>>>>>     .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  2 --
+> >>>>>>>>>     6 files changed, 26 insertions(+), 24 deletions(-)
+> >>>>>>>>>
+> >>>>>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> >>>>>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> >>>>>>>>> index 9c3672bac0e2..b8e01c5ba9e5 100644
+> >>>>>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> >>>>>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> >>>>>>>>> @@ -1090,8 +1090,9 @@ static void kill_engines(struct
+> >>>>>>>>> i915_gem_engines *engines, bool ban)
+> >>>>>>>>>          */
+> >>>>>>>>>         for_each_gem_engine(ce, engines, it) {
+> >>>>>>>>>             struct intel_engine_cs *engine;
+> >>>>>>>>> +        bool local_ban = ban ||
+> >>>>>>>>> !intel_engine_has_heartbeat(ce->engine);
+> >>>>>>> In any case (pending me understanding what's really going on there),
+> >>>>>>> why would this check not be in kill_context with currently does this:
+> >>>>>>>
+> >>>>>>>       bool ban = (!i915_gem_context_is_persistent(ctx) ||
+> >>>>>>>               !ctx->i915->params.enable_hangcheck);
+> >>>>>>> ...
+> >>>>>>>           kill_engines(pos, ban);
+> >>>>>>>
+> >>>>>>> So whether to ban decision would be consolidated to one place.
+> >>>>>>>
+> >>>>>>> In fact, decision on whether to allow persistent is tied to
+> >>>>>>> enable_hangcheck, which also drives hearbeat emission. So perhaps
+> >>>>>>> one part of the correct fix is to extend the above (kill_context)
+> >>>>>>> ban criteria to include hearbeat values anyway. Otherwise isn't it a
+> >>>>>>> simple miss that this check fails to account to hearbeat disablement
+> >>>>>>> via sysfs?
+> >>>>>>>
+> >>>>>>> Regards,
+> >>>>>>>
+> >>>>>>> Tvrtko
+> >>>>>>>
+> >>>>>>>>> -        if (ban && intel_context_ban(ce, NULL))
+> >>>>>>>>> +        if (local_ban && intel_context_ban(ce, NULL))
+> >>>>>>>>>                 continue;
+> >>>>>>>>>             /*
+> >>>>>>>>> @@ -1104,7 +1105,7 @@ static void kill_engines(struct
+> >>>>>>>>> i915_gem_engines *engines, bool ban)
+> >>>>>>>>>             engine = active_engine(ce);
+> >>>>>>>>>             /* First attempt to gracefully cancel the context */
+> >>>>>>>>> -        if (engine && !__cancel_engine(engine) && ban)
+> >>>>>>>>> +        if (engine && !__cancel_engine(engine) && local_ban)
+> >>>>>>>>>                 /*
+> >>>>>>>>>                  * If we are unable to send a preemptive pulse to bump
+> >>>>>>>>>                  * the context from the GPU, we have to resort to a
+> >>>>>>>>> full
+> >>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> >>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> >>>>>>>>> index e54351a170e2..65f2eb2a78e4 100644
+> >>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> >>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> >>>>>>>>> @@ -55,6 +55,8 @@ struct intel_context_ops {
+> >>>>>>>>>         void (*reset)(struct intel_context *ce);
+> >>>>>>>>>         void (*destroy)(struct kref *kref);
+> >>>>>>>>> +    bool (*has_heartbeat)(const struct intel_engine_cs *engine);
+> >>>>>>>>> +
+> >>>>>>>>>         /* virtual engine/context interface */
+> >>>>>>>>>         struct intel_context *(*create_virtual)(struct
+> >>>>>>>>> intel_engine_cs **engine,
+> >>>>>>>>>                             unsigned int count);
+> >>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h
+> >>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_engine.h
+> >>>>>>>>> index c2a5640ae055..1b11a808acc4 100644
+> >>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> >>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> >>>>>>>>> @@ -283,28 +283,11 @@ struct intel_context *
+> >>>>>>>>>     intel_engine_create_virtual(struct intel_engine_cs **siblings,
+> >>>>>>>>>                     unsigned int count);
+> >>>>>>>>> -static inline bool
+> >>>>>>>>> -intel_virtual_engine_has_heartbeat(const struct intel_engine_cs
+> >>>>>>>>> *engine)
+> >>>>>>>>> -{
+> >>>>>>>>> -    /*
+> >>>>>>>>> -     * For non-GuC submission we expect the back-end to look at the
+> >>>>>>>>> -     * heartbeat status of the actual physical engine that the work
+> >>>>>>>>> -     * has been (or is being) scheduled on, so we should only reach
+> >>>>>>>>> -     * here with GuC submission enabled.
+> >>>>>>>>> -     */
+> >>>>>>>>> -    GEM_BUG_ON(!intel_engine_uses_guc(engine));
+> >>>>>>>>> -
+> >>>>>>>>> -    return intel_guc_virtual_engine_has_heartbeat(engine);
+> >>>>>>>>> -}
+> >>>>>>>>> -
+> >>>>>>>>>     static inline bool
+> >>>>>>>>>     intel_engine_has_heartbeat(const struct intel_engine_cs *engine)
+> >>>>>>>>>     {
+> >>>>>>>>> -    if (!IS_ACTIVE(CONFIG_DRM_I915_HEARTBEAT_INTERVAL))
+> >>>>>>>>> -        return false;
+> >>>>>>>>> -
+> >>>>>>>>> -    if (intel_engine_is_virtual(engine))
+> >>>>>>>>> -        return intel_virtual_engine_has_heartbeat(engine);
+> >>>>>>>>> +    if (engine->cops->has_heartbeat)
+> >>>>>>>>> +        return engine->cops->has_heartbeat(engine);
+> >>>>>>>>>         else
+> >>>>>>>>>             return READ_ONCE(engine->props.heartbeat_interval_ms);
+> >>>>>>>>>     }
+> >>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> >>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> >>>>>>>>> index de5f9c86b9a4..18005b5546b6 100644
+> >>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> >>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> >>>>>>>>> @@ -3619,6 +3619,18 @@ virtual_get_sibling(struct intel_engine_cs
+> >>>>>>>>> *engine, unsigned int sibling)
+> >>>>>>>>>         return ve->siblings[sibling];
+> >>>>>>>>>     }
+> >>>>>>>>> +static bool virtual_engine_has_heartbeat(const struct
+> >>>>>>>>> intel_engine_cs *ve)
+> >>>>>>>>> +{
+> >>>>>>>>> +    struct intel_engine_cs *engine;
+> >>>>>>>>> +    intel_engine_mask_t tmp, mask = ve->mask;
+> >>>>>>>>> +
+> >>>>>>>>> +    for_each_engine_masked(engine, ve->gt, mask, tmp)
+> >>>>>>>>> +        if (READ_ONCE(engine->props.heartbeat_interval_ms))
+> >>>>>>>>> +            return true;
+> >>>>>>>>> +
+> >>>>>>>>> +    return false;
+> >>>>>>>>> +}
+> >>>>>>>>> +
+> >>>>>>>>>     static const struct intel_context_ops virtual_context_ops = {
+> >>>>>>>>>         .flags = COPS_HAS_INFLIGHT,
+> >>>>>>>>> @@ -3634,6 +3646,8 @@ static const struct intel_context_ops
+> >>>>>>>>> virtual_context_ops = {
+> >>>>>>>>>         .enter = virtual_context_enter,
+> >>>>>>>>>         .exit = virtual_context_exit,
+> >>>>>>>>> +    .has_heartbeat = virtual_engine_has_heartbeat,
+> >>>>>>>>> +
+> >>>>>>>>>         .destroy = virtual_context_destroy,
+> >>>>>>>>>         .get_sibling = virtual_get_sibling,
+> >>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> >>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> >>>>>>>>> index 89ff0e4b4bc7..ae70bff3605f 100644
+> >>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> >>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> >>>>>>>>> @@ -2168,6 +2168,8 @@ static int guc_virtual_context_alloc(struct
+> >>>>>>>>> intel_context *ce)
+> >>>>>>>>>         return lrc_alloc(ce, engine);
+> >>>>>>>>>     }
+> >>>>>>>>> +static bool guc_virtual_engine_has_heartbeat(const struct
+> >>>>>>>>> intel_engine_cs *ve);
+> >>>>>>>>> +
+> >>>>>>>>>     static const struct intel_context_ops virtual_guc_context_ops = {
+> >>>>>>>>>         .alloc = guc_virtual_context_alloc,
+> >>>>>>>>> @@ -2183,6 +2185,8 @@ static const struct intel_context_ops
+> >>>>>>>>> virtual_guc_context_ops = {
+> >>>>>>>>>         .enter = guc_virtual_context_enter,
+> >>>>>>>>>         .exit = guc_virtual_context_exit,
+> >>>>>>>>> +    .has_heartbeat = guc_virtual_engine_has_heartbeat,
+> >>>>>>>>> +
+> >>>>>>>>>         .sched_disable = guc_context_sched_disable,
+> >>>>>>>>>         .destroy = guc_context_destroy,
+> >>>>>>>>> @@ -3029,7 +3033,7 @@ guc_create_virtual(struct intel_engine_cs
+> >>>>>>>>> **siblings, unsigned int count)
+> >>>>>>>>>         return ERR_PTR(err);
+> >>>>>>>>>     }
+> >>>>>>>>> -bool intel_guc_virtual_engine_has_heartbeat(const struct
+> >>>>>>>>> intel_engine_cs *ve)
+> >>>>>>>>> +static bool guc_virtual_engine_has_heartbeat(const struct
+> >>>>>>>>> intel_engine_cs *ve)
+> >>>>>>>>>     {
+> >>>>>>>>>         struct intel_engine_cs *engine;
+> >>>>>>>>>         intel_engine_mask_t tmp, mask = ve->mask;
+> >>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> >>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> >>>>>>>>> index c7ef44fa0c36..c2afc3b88fd8 100644
+> >>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> >>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> >>>>>>>>> @@ -29,8 +29,6 @@ void intel_guc_dump_active_requests(struct
+> >>>>>>>>> intel_engine_cs *engine,
+> >>>>>>>>>                         struct i915_request *hung_rq,
+> >>>>>>>>>                         struct drm_printer *m);
+> >>>>>>>>> -bool intel_guc_virtual_engine_has_heartbeat(const struct
+> >>>>>>>>> intel_engine_cs *ve);
+> >>>>>>>>> -
+> >>>>>>>>>     int intel_guc_wait_for_pending_msg(struct intel_guc *guc,
+> >>>>>>>>>                        atomic_t *wait_var,
+> >>>>>>>>>                        bool interruptible,
+> >>>>>>>> _______________________________________________
+> >>>>>>>> Intel-gfx mailing list
+> >>>>>>>> Intel-gfx@lists.freedesktop.org
+> >>>>>>>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
