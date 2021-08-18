@@ -2,38 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D7793F0A03
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 19:13:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A85F83F0A0D
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 19:15:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5AEE6E871;
-	Wed, 18 Aug 2021 17:13:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEBB96E878;
+	Wed, 18 Aug 2021 17:15:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85CCD6E871;
- Wed, 18 Aug 2021 17:13:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="216413311"
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="216413311"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 10:12:11 -0700
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="521161874"
-Received: from moloings-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.10.29])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 10:12:09 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 18 Aug 2021 18:12:03 +0100
-Message-Id: <20210818171203.237687-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from smtp-relay-canonical-1.canonical.com
+ (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B6D06E878;
+ Wed, 18 Aug 2021 17:15:13 +0000 (UTC)
+Received: from localhost.localdomain (1-171-94-217.dynamic-ip.hinet.net
+ [1.171.94.217])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 6944F412AE; 
+ Wed, 18 Aug 2021 17:15:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1629306911;
+ bh=iRuFjsARmqnJPsilk5plyw8IeGSZnpqAZVyvL098pEk=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
+ b=jiYdyVSPQAebYzKXrA/NqUaZV1sUHDSbxQGXsxlfqNO9uybD9g3qxSuiW4cTMDysl
+ xs/D5ia+LiIEXLnylbYYb9t/9fIojFas9I71n1ft78fbbcW2XxDq/QEJJLLYqhfoYB
+ eXMGKrszNZ72RxBPVW5fMSqLfL9Y3f6Db4hPZY3BBglf36Br2ixp+GZ2jmzK0+37re
+ slS1T5UeyBbbWsRwwa8B9eznbAbC40JXbyK8if+fz4AyR19c2LpYUuH43x+D4epSez
+ Cl3I78opnMUdRdbw9XAE70VDbF98JnCs5bkZ1z8JU+9mEl6H/emeyPAc8FViLf1TEw
+ 77AxTaNLGTBPA==
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com
+Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Imre Deak <imre.deak@intel.com>, Uma Shankar <uma.shankar@intel.com>,
+ Manasi Navare <manasi.d.navare@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Thu, 19 Aug 2021 01:14:55 +0800
+Message-Id: <20210818171457.536107-1-kai.heng.feng@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/ttm: ensure we release the
- intel_memory_region
+Subject: [Intel-gfx] [PATCH v2] drm/i915/dp: Use max params for panels < eDP
+ 1.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,49 +65,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the ttm_bo_init_reserved() call fails ensure we also release the
-region, otherwise we leak the reference, or worse hit some uaf, when we
-start using the objects.list. Also remove the make_unshrinkable call
-here, which doesn't do anything.
+Users reported that after commit 2bbd6dba84d4 ("drm/i915: Try to use
+fast+narrow link on eDP again and fall back to the old max strategy on
+failure"), the screen starts to have wobbly effect.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Commit a5c936add6a2 ("drm/i915/dp: Use slow and wide link training for
+everything") doesn't help either, that means the affected eDP 1.2 panels
+only work with max params.
+
+So use max params for panels < eDP 1.4 as Windows does to solve the
+issue.
+
+v2:
+ - Check eDP 1.4 instead of DPCD 1.1 to apply max params
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3714
+Fixes: 2bbd6dba84d4 ("drm/i915: Try to use fast+narrow link on eDP again and fall back to the old max strategy on failure")
+Fixes: a5c936add6a2 ("drm/i915/dp: Use slow and wide link training for everything")
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 771eb2963123..2e8cdcd5e4f7 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -909,7 +909,6 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
- 	drm_gem_private_object_init(&i915->drm, &obj->base, size);
- 	i915_gem_object_init(obj, &i915_gem_ttm_obj_ops, &lock_class, flags);
- 	i915_gem_object_init_memory_region(obj, mem);
--	i915_gem_object_make_unshrinkable(obj);
- 	INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL | __GFP_NOWARN);
- 	mutex_init(&obj->ttm.get_io_page.lock);
- 	bo_type = (obj->flags & I915_BO_ALLOC_USER) ? ttm_bo_type_device :
-@@ -932,7 +931,7 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
- 				   page_size >> PAGE_SHIFT,
- 				   &ctx, NULL, NULL, i915_ttm_bo_destroy);
- 	if (ret)
--		return i915_ttm_err_to_gem(ret);
-+		goto err_release_mr;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 75d4ebc669411..f87fad78f1a9f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1330,14 +1330,16 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 	limits.min_bpp = intel_dp_min_bpp(pipe_config->output_format);
+ 	limits.max_bpp = intel_dp_max_bpp(intel_dp, pipe_config);
  
- 	obj->ttm.created = true;
- 	i915_ttm_adjust_domains_after_move(obj);
-@@ -940,6 +939,10 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
- 	i915_gem_object_unlock(obj);
- 
- 	return 0;
-+
-+err_release_mr:
-+	i915_gem_object_release_memory_region(obj);
-+	return i915_ttm_err_to_gem(ret);
- }
- 
- static const struct intel_memory_region_ops ttm_system_region_ops = {
+-	if (intel_dp->use_max_params) {
++	if (intel_dp->use_max_params ||
++	    intel_dp->edp_dpcd[0] < DP_EDP_14) {
+ 		/*
+ 		 * Use the maximum clock and number of lanes the eDP panel
+ 		 * advertizes being capable of in case the initial fast
+-		 * optimal params failed us. The panels are generally
+-		 * designed to support only a single clock and lane
+-		 * configuration, and typically on older panels these
+-		 * values correspond to the native resolution of the panel.
++		 * optimal params failed us or the EDP rev is earlier than 1.4.
++		 * The panels are generally designed to support only a single
++		 * clock and lane configuration, and typically on older panels
++		 * these values correspond to the native resolution of the
++		 * panel.
+ 		 */
+ 		limits.min_lane_count = limits.max_lane_count;
+ 		limits.min_clock = limits.max_clock;
 -- 
-2.26.3
+2.32.0
 
