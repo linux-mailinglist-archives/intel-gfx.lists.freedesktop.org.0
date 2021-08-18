@@ -1,62 +1,86 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B319C3F0C0E
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 21:48:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D0F3F0C1F
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 21:54:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94AA26E82C;
-	Wed, 18 Aug 2021 19:48:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4AAE6E932;
+	Wed, 18 Aug 2021 19:54:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A56AB6E82C
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 19:48:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="216409366"
-X-IronPort-AV: E=Sophos;i="5.84,332,1620716400"; d="scan'208";a="216409366"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 12:48:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,332,1620716400"; d="scan'208";a="678697833"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga006.fm.intel.com with ESMTP; 18 Aug 2021 12:48:04 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 18 Aug 2021 12:48:03 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 18 Aug 2021 12:48:03 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.010;
- Wed, 18 Aug 2021 12:48:03 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-CC: "daniel@ffwll.ch" <daniel@ffwll.ch>, "Mun, Gwan-gyeong"
- <gwan-gyeong.mun@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
-Thread-Topic: [PATCH 7/8] drm/i915/display/skl+: Drop frontbuffer rendering
- support
-Thread-Index: AQHXk8k8VgMfC9hwMkq8GBQkmfZxWat5z+iAgABTJwA=
-Date: Wed, 18 Aug 2021 19:48:03 +0000
-Message-ID: <d00bde0b13b498b6fa141f4353caf168c95c8b4e.camel@intel.com>
-References: <20210818004216.220279-1-jose.souza@intel.com>
- <20210818004216.220279-8-jose.souza@intel.com> <YR0fWUHZk9/4o33s@intel.com>
-In-Reply-To: <YR0fWUHZk9/4o33s@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7606BD5A63D5374BAC667FE0EADD0473@intel.com>
-Content-Transfer-Encoding: base64
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 918196E932
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 19:54:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1629316474;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=RWuqWxoooixx1ZwrMSvcRj/ZwLP+Bv0bjDXPooc4kEU=;
+ b=Rc/M3+qlqCd09OvNCXnwqd6z66WLYIFPOMOWcuGWU82rARfOmqi+VK92jmCQExAGOSDte/
+ /igm+UHqC/DDh4IeveQ9A4c0e2k/yGVlGq6ryWv+HbVo0XbdRJzkLTaEsVDX4CJEMJ0U7E
+ 2CSKKBXWYMXfiw/InG7JwQZLed6r0kI=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-586-bmNAvGJoNt-IwnTBbZLhuw-1; Wed, 18 Aug 2021 15:54:31 -0400
+X-MC-Unique: bmNAvGJoNt-IwnTBbZLhuw-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ bx23-20020a0564020b5700b003bf2eb11718so1587637edb.20
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 12:54:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=RWuqWxoooixx1ZwrMSvcRj/ZwLP+Bv0bjDXPooc4kEU=;
+ b=qGN4xBkdM1AV9oKyYXyjByt0aKl86ZlBT/2urBmkqavpcLjPeNzGizApDrGQzYRp0K
+ A3LSDppuac3yMWpZu8GcwhIE0EoWAKK52q85WCtLbk2myX09Tc7Cq0+QO4u7i1xq7J9f
+ 1uh9Gy6nxuOaU8bodQYnnhfeyV32Pa+98mg+5x3bRwMw1JhXeX3HP8B23UnBktlGwRVr
+ XsrYas4cMvMHgbHie4hSNnTKq2txonGzA+pG3569ZAe44Yx4B2DbgIP1QkeIBDDV0O9O
+ q4FsoP2F01gY6nT8JY3Bkfh1fJ4iyIgRgVW+T+0U4UCsdNxSf78Lg30j1umzjBlnaz58
+ KaVw==
+X-Gm-Message-State: AOAM532qFBojmjfngZ3QRJ9turI8sJg8rZcSoV6XiRBU4Ty/wCiYI3dW
+ hBC1sfprnHScnWrkaBVEVWThfn8zPWuSJ9qvW/CGtmzwrZ7aiJi/X1R81XZm3oUNrpNxTjZJfiD
+ nAiVIk5aC4FhdSkrvcTh8VXzc+vZsy9h/gUysO6/EvTb9PfCN2VQo7p1vb8kI7qbr5xMiNfSYGk
+ YV3v4w
+X-Received: by 2002:a17:906:e8d:: with SMTP id
+ p13mr11624411ejf.85.1629316470194; 
+ Wed, 18 Aug 2021 12:54:30 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzJHcNRzj1x9Ed9blyOh5KzlFKAvza9KBrs3MBwFGfq3nkInTIAhQyD2wlKj1UdeqPC39fAvw==
+X-Received: by 2002:a17:906:e8d:: with SMTP id
+ p13mr11624393ejf.85.1629316469785; 
+ Wed, 18 Aug 2021 12:54:29 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id s7sm555329edu.23.2021.08.18.12.54.29
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 18 Aug 2021 12:54:29 -0700 (PDT)
+To: intel-gfx@lists.freedesktop.org
+References: <20210817215201.795062-1-hdegoede@redhat.com>
+ <162924530163.16675.12698639172189836634@emeril.freedesktop.org>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <b1f7c3b2-2dd7-791b-bcaa-615f3d55bdf5@redhat.com>
+Date: Wed, 18 Aug 2021 21:54:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/display/skl+: Drop frontbuffer
- rendering support
+In-Reply-To: <162924530163.16675.12698639172189836634@emeril.freedesktop.org>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?_+_usb-type-c=3A_Add_support_for_out-of-band_hotplug_notificati?=
+ =?utf-8?q?on_=28v4_resend=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,22 +96,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTA4LTE4IGF0IDE3OjU1ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFR1ZSwgQXVnIDE3LCAyMDIxIGF0IDA1OjQyOjE1UE0gLTA3MDAsIEpvc8OpIFJvYmVy
-dG8gZGUgU291emEgd3JvdGU6DQo+ID4gQnkgbm93IGFsbCB0aGUgdXNlcnNwYWNlIGFwcGxpY2F0
-aW9ucyBzaG91bGQgaGF2ZSBtaWdyYXRlZCB0byBhdG9taWMNCj4gPiBvciBhdCBsZWFzdCBiZSBj
-YWxsaW5nIERSTV9JT0NUTF9NT0RFX0RJUlRZRkIuDQo+ID4gDQo+ID4gV2l0aCB0aGF0IHdlIGNh
-biBraWxsIGZyb250YnVmZmVyIHJlbmRlcmluZyBzdXBwb3J0IGluIGk5MTUgZm9yDQo+ID4gbW9k
-ZXJuIHBsYXRmb3Jtcy4NCj4gPiANCj4gPiBTbyBoZXJlIGNvbnZlcnRpbmcgbGVnYWN5IEFQSXMg
-aW50byBhdG9taWMgY29tbWl0cyBzbyBpdCBjYW4gYmUNCj4gPiBwcm9wZXJseSBoYW5kbGVkIGJ5
-IGRyaXZlciBpOTE1Lg0KPiA+IA0KPiA+IFNldmVyYWwgSUdUIHRlc3RzIHdpbGwgZmFpbCB3aXRo
-IHRoaXMgY2hhbmdlcywgYmVjYXVzZSBzb21lIHRlc3RzDQo+ID4gd2VyZSBzdHJlc3NpbmcgdGhv
-c2UgZnJvbnRidWZmZXIgcmVuZGVyaW5nIHNjZW5hcmlvcyB0aGF0IG5vIHVzZXJzcGFjZQ0KPiA+
-IHNob3VsZCBiZSB1c2luZyBieSBub3csIGZpeGVzIHRvIElHVCBzaG91bGQgYmUgc2VudCBzb29u
-Lg0KPiANCj4gQmxvY2tpbmcgYXRvbWljIGNvbW1pdHMgaW5zdGVhZCBvZiB0aGUgY3VycmVudCBs
-aWdodHdlaWdodCBmcm9udGJ1ZmZlcg0KPiBpbnRlcmZhY2Ugc291bmRzIGxpa2UgYSB0ZXJyaWJs
-ZSBwbGFuLiBIb3cgdW51c2FibGUgaXMgWCB3aXRoIHRoaXMNCj4gYXBwcm9hY2g/DQoNCjEwMCUg
-dXNhYmxlLCBoYWQgbm8gaXNzdWVzIHdoZW4gcnVubmluZyBYIGluIFRHTCBhbmQgQURMLVAuDQpB
-ZGRlZCBhIGRlYnVnIG1lc3NhZ2UgaW4gaW50ZWxfdXNlcl9mcmFtZWJ1ZmZlcl9kaXJ0eSgpIGFu
-ZCBYIGlzIG5vdCBldmVuIHVzaW5nIGZyb250YnVmZmVyIHJlbmRlcmluZyBhdCBhbGwuDQoNCj4g
-DQoNCg==
+Hi,
+
+On 8/18/21 2:08 AM, Patchwork wrote:
+> *Patch Details*
+> *Series:*	drm + usb-type-c: Add support for out-of-band hotplug notification (v4 resend)
+> *URL:*	https://patchwork.freedesktop.org/series/93762/ <https://patchwork.freedesktop.org/series/93762/>
+> *State:*	failure
+> *Details:*	https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20838/index.html <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20838/index.html>
+> 
+> 
+>   CI Bug Log - changes from CI_DRM_10491_full -> Patchwork_20838_full
+> 
+> 
+>     Summary
+> 
+> *FAILURE*
+> 
+> Serious unknown changes coming with Patchwork_20838_full absolutely need to be
+> verified manually.
+> 
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_20838_full, please notify your bug team to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in Patchwork_20838_full:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   *
+> 
+>     igt@i915_pm_backlight@bad-brightness:
+> 
+>       o shard-iclb: PASS <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10491/shard-iclb4/igt@i915_pm_backlight@bad-brightness.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20838/shard-iclb4/igt@i915_pm_backlight@bad-brightness.html>
+>   *
+> 
+>     igt@sysfs_heartbeat_interval@mixed@vcs0:
+> 
+>       o shard-skl: PASS <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10491/shard-skl2/igt@sysfs_heartbeat_interval@mixed@vcs0.html> -> WARN <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20838/shard-skl9/igt@sysfs_heartbeat_interval@mixed@vcs0.html>
+
+
+I believe that these both are false-positives. This patch-set has little to
+do with either test; and this is a rebased (with no changes) resend of
+a version which did pass CI before.
+
+Regards,
+
+Hans
+
