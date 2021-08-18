@@ -2,75 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F39C3F0110
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 11:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE163F02A0
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 13:25:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F31836E50B;
-	Wed, 18 Aug 2021 09:57:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC2016E55C;
+	Wed, 18 Aug 2021 11:25:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 872406E50D
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 09:57:11 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id b7so2264907edu.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 02:57:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=Rn4A30qTQOxkstQYw62Y3prioOpHXXbJvzGKouAI1jo=;
- b=HxuZ7amf0x5rDg8Pv2sDkTar7KFdTSrkayed1hQb/rSNUcLT73vKapTE8H9oodlrl+
- XrKtbghyhAs5x9vzvwVUrXrR09KztnaG2Yh4SVOy5u7XPIz8jTtUtcddn80S6gYaezG8
- v4/iegN2atmH28uNfVXvvavIu21o+9JE6gq04=
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E91A6E456;
+ Wed, 18 Aug 2021 07:39:27 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ j12-20020a17090aeb0c00b00179530520b3so8416787pjz.0; 
+ Wed, 18 Aug 2021 00:39:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=e6vxkGEC/5cBQ7RDSXvwNkc+jNWhSIL2gt3cyXjlMy0=;
+ b=i4L99wf64dEZ9LMIjZCdq5HBsL7YO+w6mPeYaGb3CXwuW15cjMopamJ7i+UtFSaN25
+ z4rZKcLO5w15cg7+P4rlboKjkGbHm2INjwHBCSyIBdvOIIHKMs8iq36Uc2t2HpR4U6DS
+ PeVX7wc1SgqOfwrOtaOMAAAbWfhKZOxgQEPpTAD2DwGmKJuxv9SRbs1jI4DjEfvYP16W
+ GdHdUTB0UPtvFtAUhhcXY6s7AuE8PdIXUBbgVw/jQ8o6Dek7vaaLJH/PPPw6v2VcG07L
+ knSCx6Bi7AAG29YttwsWCAtn2JIenaQ0ncOp7C6cEebcrLUcHzclF2lQeLIn61qhRq9F
+ j7Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=Rn4A30qTQOxkstQYw62Y3prioOpHXXbJvzGKouAI1jo=;
- b=Rh+dNp0bVCuCYhoji8EXMZjK1FTluLfSeMAMLlQWjvWH/6BvJU0yHQlaSQoMP8c83H
- G6Fp5UPRFEP5MZ33QnX0HP06NdN+FxHWsq91dgKFHxP3cgOyXQ8j7HE9MmnGtdGkPg7S
- g/uOLZaaIaq5bUCfhK0M6cDmtw27jZXPbaeDAfIwpooOu8Bv5bqxIkXqJ4mztxDJ6DbF
- yIGolOYluT7QZBOT9ZI52Q4KoQmaupW+iGP+xrolKBKrCMSM5nfcdKYI4QZDHN0Jxd9l
- QMPtIlFWrNvWrjkFwwEcv29LlCh7pGX5CfanIMZ1buA4QI+OUp3eU32/hcuVgXurCks0
- LLxg==
-X-Gm-Message-State: AOAM533kKUC++T7bHjgW7ZKKwXfYZXVPT04tRw61zPQJzdj8JANVUWs4
- SurVRhoRTuV98TGcmugatltoHA==
-X-Google-Smtp-Source: ABdhPJwYW1o49qUAQxejWY4Sn7eDQRTvw9cFiL03omJ6m7BCOJhQgKMgxhygSTQ/CZCejqpBO/2g4w==
-X-Received: by 2002:a05:6402:29a:: with SMTP id
- l26mr9269082edv.347.1629280629996; 
- Wed, 18 Aug 2021 02:57:09 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q21sm1789736eji.59.2021.08.18.02.57.09
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=e6vxkGEC/5cBQ7RDSXvwNkc+jNWhSIL2gt3cyXjlMy0=;
+ b=X12cMjXFilJjrwikMWKsW64Ilc3LI07eBFvPOX2OLSTCm37pZ5sN7lRcpxc7cZHcr2
+ Y5KVnz241CCqH7jNalXOekxyOOOYJc4z6k5uiwpVAb97G+glSBAVMHY95zN/1KfgQ79o
+ GDo1e6K3cNS+VPEKQ12S6wDLhCO4nfn5r9tiuKfJKheMH/cRo0b6vOv57ibsbRHHdgPK
+ DkkdK3hSevVpL04fBfMdaP+6Dkrllm3ymoI7jsmz2+i/ViHmreBZOvoGs8AhPCBXeJ2L
+ FeMJE4gtJptCeP4GbwlIGsz9x//4P0I2DAk9NbHwn+De6HjEjMBN5t3bDDqOkCNPSzTn
+ AV3g==
+X-Gm-Message-State: AOAM5338vz8OrTw7aDD5D82dfK9/4NhZXnjgNqtl1+UusPfRhfy9N4sz
+ u9I/tkU+co92Fz3HioS8ne4=
+X-Google-Smtp-Source: ABdhPJwsjLetmmkwthytXHRAjBgzfi7amhs4Th7JIiNaKTNGuKsh8scjwN6S/Fd61RcIgh641geZBg==
+X-Received: by 2002:a17:90a:8b12:: with SMTP id
+ y18mr8016646pjn.72.1629272366618; 
+ Wed, 18 Aug 2021 00:39:26 -0700 (PDT)
+Received: from localhost.localdomain ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id u3sm3886729pjr.2.2021.08.18.00.39.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Aug 2021 02:57:09 -0700 (PDT)
-Date: Wed, 18 Aug 2021 11:57:07 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Kees Cook <keescook@chromium.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,
- Jason Ekstrand <jason@jlekstrand.net>, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Message-ID: <YRzZcwR0O9Fv8asJ@phenom.ffwll.local>
-Mail-Followup-To: Kees Cook <keescook@chromium.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,
- Jason Ekstrand <jason@jlekstrand.net>, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20210817233357.2379455-1-keescook@chromium.org>
+ Wed, 18 Aug 2021 00:39:26 -0700 (PDT)
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
+ christian.koenig@amd.com, axboe@kernel.dk, oleg@redhat.com,
+ tglx@linutronix.de, dvyukov@google.com, walter-zh.wu@mediatek.com
+Cc: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+Date: Wed, 18 Aug 2021 15:38:15 +0800
+Message-Id: <20210818073824.1560124-1-desmondcheongzx@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210817233357.2379455-1-keescook@chromium.org>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use designated initializers for
- init/exit table
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 18 Aug 2021 11:25:38 +0000
+Subject: [Intel-gfx] [PATCH v3 0/9] drm, kernel: update locking for DRM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,84 +79,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 04:33:57PM -0700, Kees Cook wrote:
-> The kernel builds with -Werror=designated-init, and __designated_init
-> is used by CONFIG_GCC_PLUGIN_RANDSTRUCT for automatically selected (all
-> function pointer) structures. Include the field names in the init/exit
-> table. Avoids warnings like:
-> 
-> drivers/gpu/drm/i915/i915_module.c:59:4: error: positional initialization of field in 'struct' declared with 'designated_init' attribute [-Werror=designated-init]
-> 
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Fixes: a04ea6ae7c67 ("drm/i915: Use a table for i915_init/exit (v2)")
-> Signed-off-by: Kees Cook <keescook@chromium.org>
+Hi,
 
-Applied to drm-intel-gt-next, should show up in linux-next/next merge
-window eventually (that branch isn't in linux-next for reasons).
--Daniel
+The patches in this series are largely fixes and prepwork leading up to
+the final patch which plugs races with modesetting rights. Most of the
+fixes don't have bug reports, so comments would be very appreciated.
 
-> ---
->  drivers/gpu/drm/i915/i915_module.c | 37 +++++++++++++++++++-----------
->  1 file changed, 24 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
-> index c578ea8f56a0..d8b4482c69d0 100644
-> --- a/drivers/gpu/drm/i915/i915_module.c
-> +++ b/drivers/gpu/drm/i915/i915_module.c
-> @@ -47,19 +47,30 @@ static const struct {
->     int (*init)(void);
->     void (*exit)(void);
->  } init_funcs[] = {
-> -	{ i915_check_nomodeset, NULL },
-> -	{ i915_active_module_init, i915_active_module_exit },
-> -	{ i915_buddy_module_init, i915_buddy_module_exit },
-> -	{ i915_context_module_init, i915_context_module_exit },
-> -	{ i915_gem_context_module_init, i915_gem_context_module_exit },
-> -	{ i915_objects_module_init, i915_objects_module_exit },
-> -	{ i915_request_module_init, i915_request_module_exit },
-> -	{ i915_scheduler_module_init, i915_scheduler_module_exit },
-> -	{ i915_vma_module_init, i915_vma_module_exit },
-> -	{ i915_mock_selftests, NULL },
-> -	{ i915_pmu_init, i915_pmu_exit },
-> -	{ i915_register_pci_driver, i915_unregister_pci_driver },
-> -	{ i915_perf_sysctl_register, i915_perf_sysctl_unregister },
-> +	{ .init = i915_check_nomodeset },
-> +	{ .init = i915_active_module_init,
-> +	  .exit = i915_active_module_exit },
-> +	{ .init = i915_buddy_module_init,
-> +	  .exit = i915_buddy_module_exit },
-> +	{ .init = i915_context_module_init,
-> +	  .exit = i915_context_module_exit },
-> +	{ .init = i915_gem_context_module_init,
-> +	  .exit = i915_gem_context_module_exit },
-> +	{ .init = i915_objects_module_init,
-> +	  .exit = i915_objects_module_exit },
-> +	{ .init = i915_request_module_init,
-> +	  .exit = i915_request_module_exit },
-> +	{ .init = i915_scheduler_module_init,
-> +	  .exit = i915_scheduler_module_exit },
-> +	{ .init = i915_vma_module_init,
-> +	  .exit = i915_vma_module_exit },
-> +	{ .init = i915_mock_selftests },
-> +	{ .init = i915_pmu_init,
-> +	  .exit = i915_pmu_exit },
-> +	{ .init = i915_register_pci_driver,
-> +	  .exit = i915_unregister_pci_driver },
-> +	{ .init = i915_perf_sysctl_register,
-> +	  .exit = i915_perf_sysctl_unregister },
->  };
->  static int init_progress;
->  
-> -- 
-> 2.30.2
-> 
+The biggest change from the previous version is that we convert
+drm_device.master_mutex into master_rwsem, instead of introducing
+master_rwsem as a third lock.
+
+Overall, this series makes the following changes:
+
+- Patch 1: Move master_lookup_lock into struct drm_device (enables us to
+use it to protect attributes accessed by different drm_files)
+
+- Patch 2: Add a missing master_lookup_lock in drm_master_release
+
+- Patch 3: Fix a potential race in drm_is_current_master_locked
+
+- Patch 4: Fix potential null ptr dereferences in drm_{auth, ioctl}
+
+- Patch 5: Move magic_map,unique{_len} out from master_mutex's
+protection into master_lookup_lock's protection (allows us to avoid
+read_lock -> write_lock deadlocks)
+
+- Patch 6: Convert master_mutex into rwsem (avoids creating a new lock)
+
+- Patch 7: Update global mutex locking in the ioctl handler (avoids
+deadlock when grabbing read lock on master_rwsem in drm_ioctl_kernel)
+
+- Patch 8: Export task_work_add (enables us to write drm_master_flush)
+
+- Patch 9: Plug races with drm modesetting rights
+
+v2 -> v3:
+- Unexport drm_master_flush, as suggested by Daniel Vetter.
+- Merge master_mutex and master_rwsem, as suggested by Daniel Vetter.
+- Export task_work_add, reported by kernel test robot.
+- Make master_flush static, reported by kernel test robot.
+- Move master_lookup_lock into struct drm_device.
+- Add a missing lock on master_lookup_lock in drm_master_release.
+- Fix a potential race in drm_is_current_master_locked.
+- Fix potential null ptr dereferences in drm_{auth, ioctl}.
+- Protect magic_map,unique{_len} with  master_lookup_lock.
+- Convert master_mutex into a rwsem.
+- Update global mutex locking in the ioctl handler.
+
+v1 -> v2 (suggested by Daniel Vetter):
+- Address an additional race when drm_open runs.
+- Switch from SRCU to rwsem to synchronise readers and writers.
+- Implement drm_master_flush with task_work so that flushes can be
+queued to run before returning to userspace without creating a new
+DRM_MASTER_FLUSH ioctl flag.
+
+Best wishes,
+Desmond
+
+Desmond Cheong Zhi Xi (9):
+  drm: move master_lookup_lock into drm_device
+  drm: hold master_lookup_lock when releasing a drm_file's master
+  drm: check for null master in drm_is_current_master_locked
+  drm: fix potential null ptr dereferences in drm_{auth,ioctl}
+  drm: protect magic_map,unique{_len} with master_lookup_lock
+  drm: convert drm_device.master_mutex into a rwsem
+  drm: update global mutex lock in the ioctl handler
+  kernel: export task_work_add
+  drm: avoid races with modesetting rights
+
+ drivers/gpu/drm/drm_auth.c     | 108 ++++++++++++++++++++++++---------
+ drivers/gpu/drm/drm_debugfs.c  |   4 +-
+ drivers/gpu/drm/drm_drv.c      |   4 +-
+ drivers/gpu/drm/drm_file.c     |   1 -
+ drivers/gpu/drm/drm_internal.h |   1 +
+ drivers/gpu/drm/drm_ioctl.c    |  39 +++++++-----
+ drivers/gpu/drm/drm_lease.c    |   1 +
+ include/drm/drm_auth.h         |   6 +-
+ include/drm/drm_device.h       |  27 +++++++--
+ include/drm/drm_file.h         |  20 +++---
+ kernel/task_work.c             |   1 +
+ 11 files changed, 145 insertions(+), 67 deletions(-)
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.25.1
+
