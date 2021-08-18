@@ -2,45 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E643F078E
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 17:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 756553F0821
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 17:37:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC01E6E90F;
-	Wed, 18 Aug 2021 15:11:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 495086E844;
+	Wed, 18 Aug 2021 15:37:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9E956E90F;
- Wed, 18 Aug 2021 15:11:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="277367340"
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="277367340"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 08:11:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="678604955"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga006.fm.intel.com with ESMTP; 18 Aug 2021 08:11:19 -0700
-Received: from [10.249.134.4] (mwajdecz-MOBL.ger.corp.intel.com [10.249.134.4])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 17IFBIRk029713; Wed, 18 Aug 2021 16:11:18 +0100
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210701155513.2024-1-michal.wajdeczko@intel.com>
- <20210701155513.2024-3-michal.wajdeczko@intel.com>
- <YR0XFp/Q+f8Todgk@phenom.ffwll.local>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <7bdb20cf-550f-9c65-5c9b-60cc87de33b2@intel.com>
-Date: Wed, 18 Aug 2021 17:11:17 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.12.0
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
+ [IPv6:2607:f8b0:4864:20::1033])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E27D6E844;
+ Wed, 18 Aug 2021 15:37:19 +0000 (UTC)
+Received: by mail-pj1-x1033.google.com with SMTP id
+ u13-20020a17090abb0db0290177e1d9b3f7so9175195pjr.1; 
+ Wed, 18 Aug 2021 08:37:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=hf+PYnU598KTcaGn+kaY/aSf215EGIiFQvdsiOz+iNE=;
+ b=CRReCz8U1P4Vv/4YGcZ1yXzH+D47/TB1oHO0dVMmc5eJZFDAPmpymyNAEiBN5WDZyc
+ NLB4xpGh5K2xs7hcYiNjXy3kjkwe/wYIu7m7c06ELfE/fUF4dPSfnhpowkVFnHyQlWLe
+ jn1hD7cIAUnNAa+AkHUsJzHIX72hvs0va83jAGwW3SZgKxi1D7Xzfl2g00lA7Xl0Q7kV
+ NYVYOxslSek9f4SQTMl4vz0gLls1vYwbRtdDkLY2IkRxn574O3FUUO1DaoL+MnK8iWvX
+ JcfR0P72LfOlmhcDM5BzprPbafaZjAMdVEZYmXUjP2ieYuwkmxm+vmnOvdonssKqlW+q
+ ujqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=hf+PYnU598KTcaGn+kaY/aSf215EGIiFQvdsiOz+iNE=;
+ b=IhYmA6wvsCucAztsJJohYj0OHevCMuIbtdUfd68skcsnDZNY65yMjLEb0DpzgRLWJu
+ 2LvHyiEbeCa99vPLbzBpbTjZZtgMsqF3Ct3kdolc5299/n5sC95lPxQGTbbEXgv3IV7J
+ js4rrr4U2MU5sy5Udo0VIADE2LbdC3806P8tLNraGMLnZ7eTLursMoQRF/eupq9o6Vs7
+ j8b3lmD1sqnNelKhwiwMcQ6p90drflQcyxRbdE+e725454/8xHiT6YFF0/JvsjntFFUh
+ 3Nz8UldsJHICYEEZWR6/bAJKURmHDL2iW/MQLKtTGU4Gz0KI2mn1n/IySTIKCSTMMzLK
+ UoRw==
+X-Gm-Message-State: AOAM531i7DJDfsLAs/C6D0Z2C+ODETlvgrhh8XeCnjSS99SEkSgg5MFJ
+ E/5SPT9siwlwDGcJcr/mDYg=
+X-Google-Smtp-Source: ABdhPJxnOCxmhvFCsrLoYA3U+x8QTr55RHKLH9kbAlQwE+cwDJdAHyVY/t70CXCisMkBQjAYex3AVQ==
+X-Received: by 2002:a17:90a:2b89:: with SMTP id
+ u9mr9961429pjd.116.1629301038807; 
+ Wed, 18 Aug 2021 08:37:18 -0700 (PDT)
+Received: from [192.168.1.237] ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id c15sm223676pjr.22.2021.08.18.08.37.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 18 Aug 2021 08:37:18 -0700 (PDT)
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
+ christian.koenig@amd.com, axboe@kernel.dk, oleg@redhat.com,
+ tglx@linutronix.de, dvyukov@google.com, walter-zh.wu@mediatek.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+References: <20210818073824.1560124-1-desmondcheongzx@gmail.com>
+ <20210818073824.1560124-5-desmondcheongzx@gmail.com>
+ <YRzcuiQrLFsWowas@phenom.ffwll.local>
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Message-ID: <53a63ac8-f2de-91f7-4e0f-20b0f3f61d52@gmail.com>
+Date: Wed, 18 Aug 2021 23:37:08 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <YR0XFp/Q+f8Todgk@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <YRzcuiQrLFsWowas@phenom.ffwll.local>
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/guc: Print error name on CTB
- (de)registration failure
+Subject: Re: [Intel-gfx] [PATCH v3 4/9] drm: fix potential null ptr
+ dereferences in drm_{auth, ioctl}
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,67 +86,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 18.08.2021 16:20, Daniel Vetter wrote:
-> On Thu, Jul 01, 2021 at 05:55:11PM +0200, Michal Wajdeczko wrote:
->> Instead of plain error value (%d) print more user friendly error
->> name (%pe).
+On 18/8/21 6:11 pm, Daniel Vetter wrote:
+> On Wed, Aug 18, 2021 at 03:38:19PM +0800, Desmond Cheong Zhi Xi wrote:
+>> There are three areas where we dereference struct drm_master without
+>> checking if the pointer is non-NULL.
 >>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> 1. drm_getmagic is called from the ioctl_handler. Since
+>> DRM_IOCTL_GET_MAGIC has no ioctl flags, drm_getmagic is run without
+>> any check that drm_file.master has been set.
+>>
+>> 2. Similarly, drm_getunique is called from the ioctl_handler, but
+>> DRM_IOCTL_GET_UNIQUE has no ioctl flags. So there is no guarantee that
+>> drm_file.master has been set.
+> 
+> I think the above two are impossible, due to the refcounting rules for
+> struct file.
+> 
+
+Right, will drop those two parts from the patch.
+
+>> 3. drm_master_release can also be called without having a
+>> drm_file.master set. Here is one error path:
+>>    drm_open():
+>>      drm_open_helper():
+>>        drm_master_open():
+>>          drm_new_set_master(); <--- returns -ENOMEM,
+>>                                     drm_file.master not set
+>>        drm_file_free():
+>>          drm_master_release(); <--- NULL ptr dereference
+>>                                     (file_priv->master->magic_map)
+>>
+>> Fix these by checking if the master pointers are NULL before use.
+>>
+>> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
 >> ---
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>   drivers/gpu/drm/drm_auth.c  | 16 ++++++++++++++--
+>>   drivers/gpu/drm/drm_ioctl.c |  5 +++++
+>>   2 files changed, 19 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> index a26bb55c0898..18d52c39f0c2 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> @@ -167,8 +167,8 @@ static int ct_register_buffer(struct intel_guc_ct *ct, u32 type,
->>  	err = guc_action_register_ct_buffer(ct_to_guc(ct), type,
->>  					    desc_addr, buff_addr, size);
->>  	if (unlikely(err))
->> -		CT_ERROR(ct, "Failed to register %s buffer (err=%d)\n",
->> -			 guc_ct_buffer_type_to_str(type), err);
->> +		CT_ERROR(ct, "Failed to register %s buffer (%pe)\n",
->> +			 guc_ct_buffer_type_to_str(type), ERR_PTR(err));
+>> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+>> index f9267b21556e..b7230604496b 100644
+>> --- a/drivers/gpu/drm/drm_auth.c
+>> +++ b/drivers/gpu/drm/drm_auth.c
+>> @@ -95,11 +95,18 @@ EXPORT_SYMBOL(drm_is_current_master);
+>>   int drm_getmagic(struct drm_device *dev, void *data, struct drm_file *file_priv)
+>>   {
+>>   	struct drm_auth *auth = data;
+>> +	struct drm_master *master;
+>>   	int ret = 0;
+>>   
+>>   	mutex_lock(&dev->master_mutex);
+>> +	master = file_priv->master;
+>> +	if (!master) {
+>> +		mutex_unlock(&dev->master_mutex);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>>   	if (!file_priv->magic) {
+>> -		ret = idr_alloc(&file_priv->master->magic_map, file_priv,
+>> +		ret = idr_alloc(&master->magic_map, file_priv,
+>>   				1, 0, GFP_KERNEL);
+>>   		if (ret >= 0)
+>>   			file_priv->magic = ret;
+>> @@ -355,8 +362,12 @@ void drm_master_release(struct drm_file *file_priv)
+>>   
+>>   	mutex_lock(&dev->master_mutex);
+>>   	master = file_priv->master;
+>> +
+>> +	if (!master)
+>> +		goto unlock;
 > 
-> errname() is what you want here, not this convoluted jumping through hoops
-> to fake an error pointer.
+> This is a bit convoluted, since we're in the single-threaded release path
+> we don't need any locking for file_priv related things. Therefore we can
+> pull the master check out and just directly return.
+> 
+> But since it's a bit surprising maybe a comment that this can happen when
+> drm_master_open in drm_open_helper fails?
+> 
 
-nope, I was already trying that shortcut, but errname() is not exported
-so we fail with
+Sounds good. This can actually also happen in the failure path of 
+mock_drm_getfile if anon_inode_getfile fails. I'll leave a short note 
+about both of them.
 
-ERROR: modpost: "errname" [drivers/gpu/drm/i915/i915.ko] undefined!
-
-so unless we add that export we must follow initial approach [1]
-
--Michal
-
-[1]
-https://cgit.freedesktop.org/drm/drm-tip/commit/?id=57f5677e535ba24b8926a7125be2ef8d7f09323c
+> Another option, and maybe cleaner, would be to move the drm_master_release
+> from drm_file_free into drm_close_helper. That would be fully symmetrical
+> and should also fix the bug here?
+> -Daniel
+> 
+Hmmm maybe the first option to move the check out of the lock might be 
+better. If I'm not wrong, we would otherwise also need to move 
+drm_master_release into drm_client_close.
 
 > 
-> With that: Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>  	return err;
->>  }
->>  
->> @@ -195,8 +195,8 @@ static int ct_deregister_buffer(struct intel_guc_ct *ct, u32 type)
->>  	int err = guc_action_deregister_ct_buffer(ct_to_guc(ct), type);
->>  
->>  	if (unlikely(err))
->> -		CT_ERROR(ct, "Failed to deregister %s buffer (err=%d)\n",
->> -			 guc_ct_buffer_type_to_str(type), err);
->> +		CT_ERROR(ct, "Failed to deregister %s buffer (%pe)\n",
->> +			 guc_ct_buffer_type_to_str(type), ERR_PTR(err));
->>  	return err;
->>  }
->>  
+>> +
+>>   	if (file_priv->magic)
+>> -		idr_remove(&file_priv->master->magic_map, file_priv->magic);
+>> +		idr_remove(&master->magic_map, file_priv->magic);
+>>   
+>>   	if (!drm_is_current_master_locked(file_priv))
+>>   		goto out;
+>> @@ -379,6 +390,7 @@ void drm_master_release(struct drm_file *file_priv)
+>>   		drm_master_put(&file_priv->master);
+>>   		spin_unlock(&dev->master_lookup_lock);
+>>   	}
+>> +unlock:
+>>   	mutex_unlock(&dev->master_mutex);
+>>   }
+>>   
+>> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+>> index 26f3a9ede8fe..4d029d3061d9 100644
+>> --- a/drivers/gpu/drm/drm_ioctl.c
+>> +++ b/drivers/gpu/drm/drm_ioctl.c
+>> @@ -121,6 +121,11 @@ int drm_getunique(struct drm_device *dev, void *data,
+>>   
+>>   	mutex_lock(&dev->master_mutex);
+>>   	master = file_priv->master;
+>> +	if (!master) {
+>> +		mutex_unlock(&dev->master_mutex);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>>   	if (u->unique_len >= master->unique_len) {
+>>   		if (copy_to_user(u->unique, master->unique, master->unique_len)) {
+>>   			mutex_unlock(&dev->master_mutex);
 >> -- 
 >> 2.25.1
 >>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 > 
+
