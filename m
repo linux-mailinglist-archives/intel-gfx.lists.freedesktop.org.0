@@ -2,44 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E55F73F08DE
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 18:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC083F08F8
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 18:22:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FDCA6E851;
-	Wed, 18 Aug 2021 16:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC4DB6E85E;
+	Wed, 18 Aug 2021 16:22:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFDAD6E851
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 16:17:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="196624920"
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="196624920"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 09:17:19 -0700
-X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="594082695"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 09:17:16 -0700
-Date: Wed, 18 Aug 2021 19:17:12 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "20210706152541.25021-1-shawn.c.lee@intel.com"
- <20210706152541.25021-1-shawn.c.lee@intel.com>
-Cc: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Chiou, Cooper" <cooper.chiou@intel.com>,
- "Tseng, William" <william.tseng@intel.com>
-Message-ID: <20210818161712.GA2831921@ideak-desk.fi.intel.com>
-References: <20210706152541.25021-1-shawn.c.lee@intel.com>
- <bc5e0ada3f3270a8e1531486ba4302dcdb1c80e6.camel@intel.com>
- <CO6PR11MB56513D4354949879295355E3A31A9@CO6PR11MB5651.namprd11.prod.outlook.com>
- <CO6PR11MB565113D39F6A44130F72386DA3FF9@CO6PR11MB5651.namprd11.prod.outlook.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C068F6E85D;
+ Wed, 18 Aug 2021 16:22:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BA961A8836;
+ Wed, 18 Aug 2021 16:22:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2232763828038452514=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CO6PR11MB565113D39F6A44130F72386DA3FF9@CO6PR11MB5651.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: return proper DPRX link
- training result
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tim Gardner" <tim.gardner@canonical.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Aug 2021 16:22:00 -0000
+Message-ID: <162930372076.16674.242308476223131613@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210818145159.12402-1-tim.gardner@canonical.com>
+In-Reply-To: <20210818145159.12402-1-tim.gardner@canonical.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Avoid_NULL_dereference_in_=5F=5Fi915=5Fgem=5Fobjec?=
+ =?utf-8?b?dF9sb2NrKCk=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,86 +42,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 18, 2021 at 06:09:43PM +0300, Lee, Shawn C wrote:
-> On Tue, 2021-07-07, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> >On Tue, 2021-07-07, Almahallawy, Khaled <khaled.almahallawy@intel.com> wrote:
-> >>I believe Imre's LT fallback:
-> >>https://github.com/ideak/linux/commits/linktraining-fallback-fix  and Chrome user space fix:
-> >>https://chromium-review.googlesource.com/c/chromium/src/+/3003487
-> >>should address Chrome concerns for LT failure and LTTPRs
-> >>
-> >
-> >Thanks for comment! The new fallback patch should help on this DPRX problem.
-> >One more thing. If driver did not handle DPRX link train failed properly.
-> >It would impact link layer compliance test case in below.
-> >
-> >400.3.1.3
-> >400.3.1.4
-> >400.3.1.6
-> >400.3.1.12
-> >400.3.1.13
-> >400.3.1.14
-> >
-> >Best regards,
-> >Shawn
-> >
-> 
-> Hi all, before Imre's patch series land on upstream driver. The link train failed
-> handling works for LTTPR only. But DPRX does not. Could you please consider to have
-> this change as temporary solution? Thanks!
+--===============2232763828038452514==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I sent already fixing this, see
-https://lore.kernel.org/intel-gfx/20201027133600.3656665-1-imre.deak@intel.com/
+== Series Details ==
 
-but it fell through the cracks. Applied now your patch, thanks.
+Series: drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()
+URL   : https://patchwork.freedesktop.org/series/93787/
+State : success
 
-> 
-> Best regards,
-> Shawn
-> 
-> >>Thanks
-> >>Khaled
-> >>
-> >>On Tue, 2021-07-06 at 23:25 +0800, Lee Shawn C wrote:
-> >>> After DPRX link training, intel_dp_link_train_phy() did not return
-> >>> the training result properly. If link training failed,
-> >>> i915 driver would not run into link train fallback function.
-> >>> And no hotplug uevent would be received by user space application.
-> >>>
-> >>> Fixes: b30edfd8d0b4 ("drm/i915: Switch to LTTPR non-transparent mode
-> >>> link training")
-> >>> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> >>> Cc: Imre Deak <imre.deak@intel.com>
-> >>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> >>> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> >>> Cc: William Tseng <william.tseng@intel.com>
-> >>> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> >>> ---
-> >>>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
-> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >>> b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >>> index 08bceae40aa8..e44788b2c564 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >>> @@ -849,7 +849,7 @@ intel_dp_link_train_all_phys(struct intel_dp
-> >>> *intel_dp,
-> >>>     }
-> >>>
-> >>>     if (ret)
-> >>> -           intel_dp_link_train_phy(intel_dp, crtc_state,
-> >>> DP_PHY_DPRX);
-> >>> +           ret = intel_dp_link_train_phy(intel_dp, crtc_state,
-> >>> DP_PHY_DPRX);
-> >>>
-> >>>     if (intel_dp->set_idle_link_train)
-> >>>             intel_dp->set_idle_link_train(intel_dp, crtc_state);
-> >>
-> >_______________________________________________
-> >Intel-gfx mailing list
-> >Intel-gfx@lists.freedesktop.org
-> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10495 -> Patchwork_20845
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20845 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-icl-y:           NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +27 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#3718])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@coherency:
+    - fi-icl-y:           [INCOMPLETE][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-icl-y/igt@i915_selftest@live@coherency.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@i915_selftest@live@coherency.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [DMESG-WARN][7] ([i915#3958]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
+
+
+Participating hosts (35 -> 34)
+------------------------------
+
+  Missing    (1): fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10495 -> Patchwork_20845
+
+  CI-20190529: 20190529
+  CI_DRM_10495: 63052a17b50710a64ac3c5064d3aa7d92d82a6b9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6178: 146260200f9a6d4536e48a195e2ab49a07d4f0c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20845: c2b783f48fd3a99c1832fd1a3099882a6f20c966 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c2b783f48fd3 drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html
+
+--===============2232763828038452514==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93787/">https://patchwork.freedesktop.org/series/93787/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10495 -&gt; Patchwork_20845</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20845 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>
+<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-icl-y/igt@i915_selftest@live@coherency.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@i915_selftest@live@coherency.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (35 -&gt; 34)</h2>
+<p>Missing    (1): fi-bsw-cyan </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10495 -&gt; Patchwork_20845</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10495: 63052a17b50710a64ac3c5064d3aa7d92d82a6b9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6178: 146260200f9a6d4536e48a195e2ab49a07d4f0c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20845: c2b783f48fd3a99c1832fd1a3099882a6f20c966 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c2b783f48fd3 drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()</p>
+
+</body>
+</html>
+
+--===============2232763828038452514==--
