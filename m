@@ -2,80 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8160D3F023B
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 13:06:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1ACF3F0248
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 13:11:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D6B86E530;
-	Wed, 18 Aug 2021 11:06:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF736E530;
+	Wed, 18 Aug 2021 11:11:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B443B6E530
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 11:06:40 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id r7so2962362wrs.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 04:06:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=NPOr3Gsm++Jn+YbgaVuAdXWQs+lGHRq4aVwKxZvTaSw=;
- b=Gb+bX/DMqPhU/Gs13lF8AY1wqU95YsbV5W+CDvEpOSq0hnHYwwvnW6d/lNA9UADnZX
- 09wq+/BL4admOxeXXY4T1RPPuMJyOhLwUN6623S+X/BbKTRUPVQ4UIq69HbzA1KcPZ+B
- Hjsq2uYLK6ZiY0UjkL8U9aT8QL0lkk0TXVXCo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=NPOr3Gsm++Jn+YbgaVuAdXWQs+lGHRq4aVwKxZvTaSw=;
- b=R4WnARS9IxkiCaIcEq5/9yj5dX+i48DNlA/ynwwCaV5A++ibTTz0tm5qdUWGtEW1NK
- xZ3eu1XmKyYBm5G6BW9w5AEBEF3UT9ipZmIMO+O0MQu8BlX2Lf4Kerr3qPm8fiKkVNED
- +7PHKa9KN8I+XVnHMC5nWGNLWdeo/D0QfsUgRY4uOLq3li9dZ7OMBqLXfPz8cOOEVDlm
- of0Bdh7y0inItpBM+qRQnAOgGTo33XSXXe6cZMmpV++tGpHtnu+UycaBZCDit0tcsQJU
- yPE9p6e6nHFs7zMmputsUDZRs3bgjuGgjvrVjQ0rAV6oeyJE07XyK+iFOzY1rXC6jMSO
- Q3bw==
-X-Gm-Message-State: AOAM5330d9MPph8Y0HayKS31nKFVUHrfvhgoHGTkEcKn3YILGXPIKr++
- kYaURhrx0v5pMMexoq964K5yGw==
-X-Google-Smtp-Source: ABdhPJy3direa3AYQ9AORP/zJ+ru6FCIsPvkYBAl/d0IdWCjpdrItlf4YzM0hadmH90C6qm9MQnNjg==
-X-Received: by 2002:adf:f282:: with SMTP id k2mr9819865wro.255.1629284799276; 
- Wed, 18 Aug 2021 04:06:39 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id d8sm5575127wrx.12.2021.08.18.04.06.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Aug 2021 04:06:38 -0700 (PDT)
-Date: Wed, 18 Aug 2021 13:06:36 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch,
- sumit.semwal@linaro.org, christian.koenig@amd.com, axboe@kernel.dk,
- oleg@redhat.com, tglx@linutronix.de, dvyukov@google.com,
- walter-zh.wu@mediatek.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- skhan@linuxfoundation.org, gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- kernel test robot <lkp@intel.com>
-Message-ID: <YRzpvHBQuq0kFtzH@phenom.ffwll.local>
-Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
- christian.koenig@amd.com, axboe@kernel.dk, oleg@redhat.com,
- tglx@linutronix.de, dvyukov@google.com, walter-zh.wu@mediatek.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- kernel test robot <lkp@intel.com>
-References: <20210818073824.1560124-1-desmondcheongzx@gmail.com>
- <20210818073824.1560124-9-desmondcheongzx@gmail.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2466E530
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 11:11:02 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="203499699"
+X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="203499699"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2021 04:11:00 -0700
+X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="521016053"
+Received: from mdbadill-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.249.42.92])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2021 04:10:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Lee Shawn C <shawn.c.lee@intel.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ Cooper Chiou <cooper.chiou@intel.com>, William Tseng <william.tseng@intel.com>
+In-Reply-To: <20210813024649.7197-1-shawn.c.lee@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210812154237.13911-8-shawn.c.lee@intel.com>
+ <20210813024649.7197-1-shawn.c.lee@intel.com>
+Date: Wed, 18 Aug 2021 14:10:54 +0300
+Message-ID: <87zgtfgg8x.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210818073824.1560124-9-desmondcheongzx@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v3 8/9] kernel: export task_work_add
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [v4] drm/i915/dsi: Send proper brightness value via
+ MIPI DCS command
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,52 +53,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 18, 2021 at 03:38:23PM +0800, Desmond Cheong Zhi Xi wrote:
-> The task_work_add function is needed to prevent userspace races with
-> DRM modesetting rights.
-> 
-> Some DRM ioctls can change modesetting permissions while other
-> concurrent users are performing modesetting. To prevent races with
-> userspace, such functions should flush readers of old permissions
-> before returning to user mode. As the function that changes
-> permissions might itself be a reader of the old permissions, we intend
-> to schedule this flush using task_work_add.
-> 
-> However, when DRM is compiled as a loadable kernel module without
-> exporting task_work_add, we get the following compilation error:
-> 
-> ERROR: modpost: "task_work_add" [drivers/gpu/drm/drm.ko] undefined!
-> 
+On Fri, 13 Aug 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+> Driver has to swap the endian before send brightness level value
+> to tcon.
+>
+> v2: Use __be16 instead of u16 to fix sparse warning.
+>
 > Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-
-Just realized another benefit of pushing the dev->master_rwsem write
-locks down into ioctls that need them: We wouldn't need this function here
-exported for use in drm. But also I'm not sure that works any better than
-the design in your current patch set ...
--Daniel
-
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Cc: William Tseng <william.tseng@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 > ---
->  kernel/task_work.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/kernel/task_work.c b/kernel/task_work.c
-> index 1698fbe6f0e1..90000404af2b 100644
-> --- a/kernel/task_work.c
-> +++ b/kernel/task_work.c
-> @@ -60,6 +60,7 @@ int task_work_add(struct task_struct *task, struct callback_head *work,
+>  drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+> index cd85520d36e2..71c2adfa8931 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+> @@ -66,10 +66,9 @@ static void dcs_set_backlight(const struct drm_connector_state *conn_state, u32
+>  {
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(conn_state->best_encoder));
+>  	struct mipi_dsi_device *dsi_device;
+> -	u8 data = level;
+> +	__be16 data = cpu_to_be16(level);
+
+Just discussed this with Vandita. Both the set and get brightness need
+to be adjusted, and the read/write size (one or two bytes) has to depend
+on the precision. From MIPI DCS spec:
+
+	Note: It is up to display manufacturer to determine the
+	implementation of this register and background logic. Only one
+	parameter shall be sent for devices that support 8-bit
+	brightness levels. Two parameters shall be sent for devices that
+	support between 9-bit and 16-bit brightness levels.
+
+BR,
+Jani.
+
+
+>  	enum port port;
 >  
->  	return 0;
->  }
-> +EXPORT_SYMBOL(task_work_add);
->  
->  /**
->   * task_work_cancel_match - cancel a pending work added by task_work_add()
-> -- 
-> 2.25.1
-> 
+> -	/* FIXME: Need to take care of 16 bit brightness level */
+>  	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
+>  		dsi_device = intel_dsi->dsi_hosts[port]->device;
+>  		mipi_dsi_dcs_write(dsi_device, MIPI_DCS_SET_DISPLAY_BRIGHTNESS,
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel Open Source Graphics Center
