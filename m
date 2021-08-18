@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB41B3F02BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 13:30:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F4C3F02BF
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 13:32:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 994F26E558;
-	Wed, 18 Aug 2021 11:30:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4081E6E544;
+	Wed, 18 Aug 2021 11:32:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 63F396E544;
- Wed, 18 Aug 2021 11:30:28 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3ED076E544;
+ Wed, 18 Aug 2021 11:32:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4A6BBAADCF;
- Wed, 18 Aug 2021 11:30:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 366B5AADCF;
+ Wed, 18 Aug 2021 11:32:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Aug 2021 11:30:28 -0000
-Message-ID: <162928622829.16674.12807579053229297435@emeril.freedesktop.org>
+Date: Wed, 18 Aug 2021 11:32:06 -0000
+Message-ID: <162928632622.16672.14738778035590219784@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <cover.1629281426.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1629281426.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_header_cleanups?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_header_cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,17 +53,15 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-ddebfe5d1496 drm/i915/irq: reduce inlines to reduce header dependencies
-e2382f06ea1f drm/i915: intel_runtime_pm.h does not actually need intel_display.h
-95ad020b21a2 drm/i915/pm: use forward declaration to remove an include
-33cd75959166 drm/i915/panel: move intel_panel_use_ssc() out of headers
--:55: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
-#55: FILE: drivers/gpu/drm/i915/display/intel_panel.c:49:
-+	return i915->vbt.lvds_use_ssc
-+		&& !(i915->quirks & QUIRK_LVDS_SSC_DISABLE);
-
-total: 0 errors, 0 warnings, 1 checks, 42 lines checked
-bd3b1339d175 drm/i915/fdi: move intel_fdi_link_freq() to intel_fdi.[ch]
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
 
 
