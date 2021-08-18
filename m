@@ -2,80 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF0A3F0722
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 16:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56FB13F0734
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 16:55:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DF086E915;
-	Wed, 18 Aug 2021 14:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7736E910;
+	Wed, 18 Aug 2021 14:55:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-relay-canonical-1.canonical.com
- (smtp-relay-canonical-1.canonical.com [185.125.188.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A59F6E912
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 14:52:24 +0000 (UTC)
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
- [209.85.215.199])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id CBA83412C8
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 14:52:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1629298340;
- bh=C63KvaJ+cWhAEINSiaxTGMz7FLf9euvtefJ5UKJKvuw=;
- h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
- b=aU/M0lDC3lnWmWPUa2sIxOGmfjLAmCGdzn+Vlb+3oTTNJ6w0y28PZer6Zhk5AiNO7
- i/VvFqLWkFnm94H9rDL3ufDFmmVgec3CZO5avjNGL+ZrqGyyqdHGTcciRN5r1MtMlj
- JR+T7BCG627JjzgjPg1MOVLVVX/jmDJuCDX0CFt9ZnpSwuUbrpnsmrxDIJM6YPVvIi
- 77VkWbypUnmgTk92Cpt4gwFB10MeASo0EiA/94jHvy1pk1bIu4VTaDaw8SUlbFSEV3
- jHTO8KhS27s4qD8snT96XdUr2DX4GEURih5bm/6EZ7Dtvbq0daRLyLfXeuvPsfhl+L
- QoXsKRZVZerWA==
-Received: by mail-pg1-f199.google.com with SMTP id
- t28-20020a63461c000000b00252078b83e4so1564135pga.15
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 07:52:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=C63KvaJ+cWhAEINSiaxTGMz7FLf9euvtefJ5UKJKvuw=;
- b=Y7vI+p1d0Ao6QAOZULneDv9CvWo89jmfTgd7f4E2rxQqNzXMoyK1DQ7ltNtyyCqSjW
- 8AfmhOa6ZqUfSVRfw5yCVgfucPgp/HNTluJC0l7nOUf1TJaGA2Wa/IoPuBJiAGdusvIb
- QdQE3/1yK9a0EghYzN2vEAAhGkfawWa95pPkTi5MqiDl0YtWHO00AWh2dSdjuWH48UWH
- Ku9sjg4zLHOUCUJ0YofgtsD+Z7tTjxMVM7VUNk9X+WpWX1XiyESoCxlf+v+px+cVwgpM
- Jq64y67OmNwY2svkqqaicDKchJZzly2VMsowYnTsr4/+8wt3ScBcTS2plb1b5A+c5YAH
- seXQ==
-X-Gm-Message-State: AOAM530K82w+1EEnrlORrPgLJBrCu3/8aI9jbbfKx7ok/c+aZf6yPcp6
- hFaoSFoE/WLCCebYyi5q2hqETCa7nvmv++/5k6W9kXMbPhumebE2Zd1nMctkZ04360MzvsXALJp
- LxhXx7RtQNw1ZeD45XKWOQcNgqV5z5eMzjQF00bwscKbtOA==
-X-Received: by 2002:a17:90a:f314:: with SMTP id
- ca20mr10053553pjb.210.1629298339358; 
- Wed, 18 Aug 2021 07:52:19 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzIX0xUNdP8jrpWXr9FRIo/5CxYkCcC18au0WkZhrfprpv1h8lb2dEHNI4DzTUBH3RtKFQesg==
-X-Received: by 2002:a17:90a:f314:: with SMTP id
- ca20mr10053525pjb.210.1629298339084; 
- Wed, 18 Aug 2021 07:52:19 -0700 (PDT)
-Received: from localhost.localdomain ([69.163.84.166])
- by smtp.gmail.com with ESMTPSA id 73sm7331pfz.73.2021.08.18.07.52.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Aug 2021 07:52:18 -0700 (PDT)
-From: Tim Gardner <tim.gardner@canonical.com>
-To: linux-kernel@vger.kernel.org
-Cc: tim.gardner@canonical.com, stable@vger.kernel.org,
- kernel-janitors@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org
-Date: Wed, 18 Aug 2021 08:51:59 -0600
-Message-Id: <20210818145159.12402-1-tim.gardner@canonical.com>
-X-Mailer: git-send-email 2.33.0
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9C86E910
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 14:55:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="238440164"
+X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="238440164"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2021 07:55:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; d="scan'208";a="521081515"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 18 Aug 2021 07:55:22 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Aug 2021 17:55:21 +0300
+Date: Wed, 18 Aug 2021 17:55:21 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <YR0fWUHZk9/4o33s@intel.com>
+References: <20210818004216.220279-1-jose.souza@intel.com>
+ <20210818004216.220279-8-jose.souza@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Avoid NULL dereference in
- __i915_gem_object_lock()
+In-Reply-To: <20210818004216.220279-8-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/display/skl+: Drop frontbuffer
+ rendering support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,46 +55,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Coverity warns of a possible NULL dereference:
+On Tue, Aug 17, 2021 at 05:42:15PM -0700, José Roberto de Souza wrote:
+> By now all the userspace applications should have migrated to atomic
+> or at least be calling DRM_IOCTL_MODE_DIRTYFB.
+> 
+> With that we can kill frontbuffer rendering support in i915 for
+> modern platforms.
+> 
+> So here converting legacy APIs into atomic commits so it can be
+> properly handled by driver i915.
+> 
+> Several IGT tests will fail with this changes, because some tests
+> were stressing those frontbuffer rendering scenarios that no userspace
+> should be using by now, fixes to IGT should be sent soon.
 
-Both dma_resv_lock_interruptible() and dma_resv_lock() can return -EDEADLK. Protect
-against a NULL dereference by checking for NULL before saving the object pointer. This
-is consistent with previous checks for ww==NULL.
+Blocking atomic commits instead of the current lightweight frontbuffer
+interface sounds like a terrible plan. How unusable is X with this
+approach?
 
-Addresses-Coverity: ("Dereference after null check")
-
-Cc: stable@vger.kernel.org
-Fixes: 80f0b679d6f0683f23cf98a511af3e44dd509472 ("drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.")
-Cc: kernel-janitors@vger.kernel.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-media@vger.kernel.org
-Cc: linaro-mm-sig@lists.linaro.org
-Signed-off-by: Tim Gardner <tim.gardner@canonical.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 48112b9d76df..3391ca4f662a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -187,7 +187,7 @@ static inline int __i915_gem_object_lock(struct drm_i915_gem_object *obj,
- 	if (ret == -EALREADY)
- 		ret = 0;
- 
--	if (ret == -EDEADLK) {
-+	if (ret == -EDEADLK && ww) {
- 		i915_gem_object_get(obj);
- 		ww->contended = obj;
- 	}
 -- 
-2.33.0
-
+Ville Syrjälä
+Intel
