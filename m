@@ -2,34 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC083F08F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 18:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D7C03F092A
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 18:33:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC4DB6E85E;
-	Wed, 18 Aug 2021 16:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6156E85A;
+	Wed, 18 Aug 2021 16:33:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C068F6E85D;
- Wed, 18 Aug 2021 16:22:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BA961A8836;
- Wed, 18 Aug 2021 16:22:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2232763828038452514=="
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
+ [IPv6:2607:f8b0:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A88B96E85F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 16:33:36 +0000 (UTC)
+Received: by mail-ot1-x336.google.com with SMTP id
+ f16-20020a056830205000b00519b99d3dcbso4827891otp.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 09:33:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=eCXA2zyPQAHS4vo82QVOH0nIRnuHikfTX6KZzHmuKg8=;
+ b=QjC5m39FFqS5LCTw1JjDcl5B6GEqE4J6pQQCAqHO0dIZPp0kFChKdVrcqgX4J7k2iN
+ 0W461aQvEEZJ/77xOGhMtNPK37ArAb6nSZnXdeFen/mBS7y8blIxPeDo6/iH9Jv7dxjG
+ XYx0/mcOxznQU7DqJ23C8B9nlMbTUOgVqLoX4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=eCXA2zyPQAHS4vo82QVOH0nIRnuHikfTX6KZzHmuKg8=;
+ b=VcYtRkWu8Q0jJl/ImkEXDtJXsVSZDs73Y7Rc0dqsNLrwF4QTnFORlvEP5nQkoVheOj
+ 4YZzisAkj/cQP4njs+3VnAD9PoAjSBYz6eiBKsJNaB5mdId3FEvNPoG8LdzXznicLAtl
+ mjyqQZ+hc9ycv32PgIiu6yknbiZ4r+8qbD4QaDjJJO7cYMqIUYgCdCqPQjWs76B+cb4c
+ bYLfO4Ln217iCqt3Ew45J8Z90NfsdGwOGXFDiGFhz3BGaDXM7nlhIBA8+uJv9smpSTuQ
+ GgTBoqzP1dPUk88S5C6HHLezJVAvlm5AWGC54vUYomgADmq9ZJeeB9HwHwgviVMqGmwq
+ okSg==
+X-Gm-Message-State: AOAM530eqxn+KwGjAPpvRIl0rUqy+uaE8KE9J8+W0wNAHhfHknzxXPTl
+ w7XOMNbHFGkrkisMfHVsqzgZrVX5FkrxtTfuJ0QimA==
+X-Google-Smtp-Source: ABdhPJxWStQd2lhV6/8pAdrwTDTsMPhhFVB2e1gL192lZFqb5+22njoozSqbDmc46xhVjO9OiXZ5h3OsAHALgZyXtck=
+X-Received: by 2002:a9d:4785:: with SMTP id b5mr7756337otf.188.1629304415812; 
+ Wed, 18 Aug 2021 09:33:35 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tim Gardner" <tim.gardner@canonical.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Aug 2021 16:22:00 -0000
-Message-ID: <162930372076.16674.242308476223131613@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210818145159.12402-1-tim.gardner@canonical.com>
-In-Reply-To: <20210818145159.12402-1-tim.gardner@canonical.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Avoid_NULL_dereference_in_=5F=5Fi915=5Fgem=5Fobjec?=
- =?utf-8?b?dF9sb2NrKCk=?=
+References: <20210818073824.1560124-1-desmondcheongzx@gmail.com>
+ <20210818073824.1560124-5-desmondcheongzx@gmail.com>
+ <YRzcuiQrLFsWowas@phenom.ffwll.local>
+ <53a63ac8-f2de-91f7-4e0f-20b0f3f61d52@gmail.com>
+In-Reply-To: <53a63ac8-f2de-91f7-4e0f-20b0f3f61d52@gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 18 Aug 2021 18:33:24 +0200
+Message-ID: <CAKMK7uG+nqnkNd56WPhze3V=e1ioL0PTLQxveBofQT3gNPB9HA@mail.gmail.com>
+To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@linux.ie>, 
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jens Axboe <axboe@kernel.dk>, Oleg Nesterov <oleg@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Dmitry Vyukov <dvyukov@google.com>, walter-zh.wu@mediatek.com, 
+ dri-devel <dri-devel@lists.freedesktop.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, 
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>, 
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Greg KH <gregkh@linuxfoundation.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v3 4/9] drm: fix potential null ptr
+ dereferences in drm_{auth, ioctl}
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,202 +79,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2232763828038452514==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Aug 18, 2021 at 5:37 PM Desmond Cheong Zhi Xi
+<desmondcheongzx@gmail.com> wrote:
+>
+> On 18/8/21 6:11 pm, Daniel Vetter wrote:
+> > On Wed, Aug 18, 2021 at 03:38:19PM +0800, Desmond Cheong Zhi Xi wrote:
+> >> There are three areas where we dereference struct drm_master without
+> >> checking if the pointer is non-NULL.
+> >>
+> >> 1. drm_getmagic is called from the ioctl_handler. Since
+> >> DRM_IOCTL_GET_MAGIC has no ioctl flags, drm_getmagic is run without
+> >> any check that drm_file.master has been set.
+> >>
+> >> 2. Similarly, drm_getunique is called from the ioctl_handler, but
+> >> DRM_IOCTL_GET_UNIQUE has no ioctl flags. So there is no guarantee that
+> >> drm_file.master has been set.
+> >
+> > I think the above two are impossible, due to the refcounting rules for
+> > struct file.
+> >
+>
+> Right, will drop those two parts from the patch.
+>
+> >> 3. drm_master_release can also be called without having a
+> >> drm_file.master set. Here is one error path:
+> >>    drm_open():
+> >>      drm_open_helper():
+> >>        drm_master_open():
+> >>          drm_new_set_master(); <--- returns -ENOMEM,
+> >>                                     drm_file.master not set
+> >>        drm_file_free():
+> >>          drm_master_release(); <--- NULL ptr dereference
+> >>                                     (file_priv->master->magic_map)
+> >>
+> >> Fix these by checking if the master pointers are NULL before use.
+> >>
+> >> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> >> ---
+> >>   drivers/gpu/drm/drm_auth.c  | 16 ++++++++++++++--
+> >>   drivers/gpu/drm/drm_ioctl.c |  5 +++++
+> >>   2 files changed, 19 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+> >> index f9267b21556e..b7230604496b 100644
+> >> --- a/drivers/gpu/drm/drm_auth.c
+> >> +++ b/drivers/gpu/drm/drm_auth.c
+> >> @@ -95,11 +95,18 @@ EXPORT_SYMBOL(drm_is_current_master);
+> >>   int drm_getmagic(struct drm_device *dev, void *data, struct drm_file *file_priv)
+> >>   {
+> >>      struct drm_auth *auth = data;
+> >> +    struct drm_master *master;
+> >>      int ret = 0;
+> >>
+> >>      mutex_lock(&dev->master_mutex);
+> >> +    master = file_priv->master;
+> >> +    if (!master) {
+> >> +            mutex_unlock(&dev->master_mutex);
+> >> +            return -EINVAL;
+> >> +    }
+> >> +
+> >>      if (!file_priv->magic) {
+> >> -            ret = idr_alloc(&file_priv->master->magic_map, file_priv,
+> >> +            ret = idr_alloc(&master->magic_map, file_priv,
+> >>                              1, 0, GFP_KERNEL);
+> >>              if (ret >= 0)
+> >>                      file_priv->magic = ret;
+> >> @@ -355,8 +362,12 @@ void drm_master_release(struct drm_file *file_priv)
+> >>
+> >>      mutex_lock(&dev->master_mutex);
+> >>      master = file_priv->master;
+> >> +
+> >> +    if (!master)
+> >> +            goto unlock;
+> >
+> > This is a bit convoluted, since we're in the single-threaded release path
+> > we don't need any locking for file_priv related things. Therefore we can
+> > pull the master check out and just directly return.
+> >
+> > But since it's a bit surprising maybe a comment that this can happen when
+> > drm_master_open in drm_open_helper fails?
+> >
+>
+> Sounds good. This can actually also happen in the failure path of
+> mock_drm_getfile if anon_inode_getfile fails. I'll leave a short note
+> about both of them.
+>
+> > Another option, and maybe cleaner, would be to move the drm_master_release
+> > from drm_file_free into drm_close_helper. That would be fully symmetrical
+> > and should also fix the bug here?
+> > -Daniel
+> >
+> Hmmm maybe the first option to move the check out of the lock might be
+> better. If I'm not wrong, we would otherwise also need to move
+> drm_master_release into drm_client_close.
 
-== Series Details ==
+Do we have to?
 
-Series: drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()
-URL   : https://patchwork.freedesktop.org/series/93787/
-State : success
+If I haven't missed anything, the drm_client stuff only calls
+drm_file_alloc and doesn't set up a master. So this should work?
+-Daniel
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10495 -> Patchwork_20845
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20845 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-icl-y:           NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +27 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#3718])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@coherency:
-    - fi-icl-y:           [INCOMPLETE][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-icl-y/igt@i915_selftest@live@coherency.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@i915_selftest@live@coherency.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [DMESG-WARN][7] ([i915#3958]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
+>
+> >
+> >> +
+> >>      if (file_priv->magic)
+> >> -            idr_remove(&file_priv->master->magic_map, file_priv->magic);
+> >> +            idr_remove(&master->magic_map, file_priv->magic);
+> >>
+> >>      if (!drm_is_current_master_locked(file_priv))
+> >>              goto out;
+> >> @@ -379,6 +390,7 @@ void drm_master_release(struct drm_file *file_priv)
+> >>              drm_master_put(&file_priv->master);
+> >>              spin_unlock(&dev->master_lookup_lock);
+> >>      }
+> >> +unlock:
+> >>      mutex_unlock(&dev->master_mutex);
+> >>   }
+> >>
+> >> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+> >> index 26f3a9ede8fe..4d029d3061d9 100644
+> >> --- a/drivers/gpu/drm/drm_ioctl.c
+> >> +++ b/drivers/gpu/drm/drm_ioctl.c
+> >> @@ -121,6 +121,11 @@ int drm_getunique(struct drm_device *dev, void *data,
+> >>
+> >>      mutex_lock(&dev->master_mutex);
+> >>      master = file_priv->master;
+> >> +    if (!master) {
+> >> +            mutex_unlock(&dev->master_mutex);
+> >> +            return -EINVAL;
+> >> +    }
+> >> +
+> >>      if (u->unique_len >= master->unique_len) {
+> >>              if (copy_to_user(u->unique, master->unique, master->unique_len)) {
+> >>                      mutex_unlock(&dev->master_mutex);
+> >> --
+> >> 2.25.1
+> >>
+> >
+>
 
 
-Participating hosts (35 -> 34)
-------------------------------
-
-  Missing    (1): fi-bsw-cyan 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10495 -> Patchwork_20845
-
-  CI-20190529: 20190529
-  CI_DRM_10495: 63052a17b50710a64ac3c5064d3aa7d92d82a6b9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6178: 146260200f9a6d4536e48a195e2ab49a07d4f0c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20845: c2b783f48fd3a99c1832fd1a3099882a6f20c966 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c2b783f48fd3 drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html
-
---===============2232763828038452514==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93787/">https://patchwork.freedesktop.org/series/93787/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10495 -&gt; Patchwork_20845</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20845 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>
-<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@coherency:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-icl-y/igt@i915_selftest@live@coherency.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-icl-y/igt@i915_selftest@live@coherency.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10495/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20845/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Missing    (1): fi-bsw-cyan </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10495 -&gt; Patchwork_20845</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10495: 63052a17b50710a64ac3c5064d3aa7d92d82a6b9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6178: 146260200f9a6d4536e48a195e2ab49a07d4f0c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20845: c2b783f48fd3a99c1832fd1a3099882a6f20c966 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c2b783f48fd3 drm/i915/gem: Avoid NULL dereference in __i915_gem_object_lock()</p>
-
-</body>
-</html>
-
---===============2232763828038452514==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
