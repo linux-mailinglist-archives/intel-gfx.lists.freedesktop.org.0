@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A2D3F0682
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 16:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E853F069C
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 16:24:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 181A06E7D0;
-	Wed, 18 Aug 2021 14:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC5936E7D3;
+	Wed, 18 Aug 2021 14:24:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BAA06E5D5
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 14:22:14 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id
- q11-20020a7bce8b0000b02902e6880d0accso4561138wmj.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 07:22:13 -0700 (PDT)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F04F6E7D5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 14:24:55 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id f10so1763928wml.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Aug 2021 07:24:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=OMslOJEuJfx7UwYzaDW1PkK+5gkcD85wLupYV5jvtE0=;
- b=IqQoUY1c7t1Dy/XY8BFVq9/yjGy4WSeFe+F3GOUTJmzwkRWfsLRqB953K0GyWWADgJ
- l2Fhp6Kir5zO3gvPeYWYiuBrA9gyx6j4ZnckVcr5adq1hGQ2Iz7SSROckgMBNE8id0ex
- IWevuxMqoC9wyQYZTLCSa5Qn9lGIWVLpqiGc4=
+ bh=B4O54JuoV0Er2c1W0L0G6IcfKDZygChDFOCTGNOVUBw=;
+ b=B+TaWnSYnl8UZKCoGwO095gz0fW1XJZJ5Er0FPo3FVvtsj6ni7T3Vp3ZYL/XzXEgtF
+ Zw4UiE+t3PVwbxqicgNoQZmKs9k5sWGrh6PQsfPf9dlfSDu6j5F6ziz0vm9d6HFTmt9l
+ r+Y/0QcoIjLXXbH/uB7jPI6FGsRt1FJM7wn6U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=OMslOJEuJfx7UwYzaDW1PkK+5gkcD85wLupYV5jvtE0=;
- b=bvZ0FTPQ/jCvaDSA1GM/jqWpKYbJi4DfCp2yZlLjfs24CctrncsSjaPhrTgxGN9CZM
- 94TFYOxGKmxkxRd9c7kFCPFxnTnVztGHiw1NusccsJATXS9yqqqWwledXyhvMuh1DXJf
- 5SOs5Ug8l08w46mLxOfHc49l3GujGXLfs6pVJBWcAjys0RXkj4fJOE6PEwR6rOvbIrS4
- huKO46OC0LLaTvAvn8NYq1o8V2LJa28Wmp5Jv+9Rj1O/7dnUNIrDXmjaKxhs3qM5tK2N
- OD4mWbRfIJLqB1b2Rn5NRi6hspCS0nDyjbWWT6PoLZqmyfh/YkJ8QHIjPx/WyW23pHE8
- 2kpw==
-X-Gm-Message-State: AOAM530F+47oXuMWULaYdDYGYB4mGGFlAxZq7s7KfGz+LwkkpaSXwnvi
- TfBr/QWDpyxJRCAc3mHA73w5Py+v3ADhtw==
-X-Google-Smtp-Source: ABdhPJza9+p9mbwpUBlQorKlVNxncOq9pBf2zhvw73hfX/b2ZoEKStDB/9eQLgFvsNxcFtgMteQxUg==
-X-Received: by 2002:a7b:c38f:: with SMTP id s15mr8609971wmj.179.1629296532586; 
- Wed, 18 Aug 2021 07:22:12 -0700 (PDT)
+ bh=B4O54JuoV0Er2c1W0L0G6IcfKDZygChDFOCTGNOVUBw=;
+ b=LBsn8kIgy0gf2/njwtEO81suwqMmMtcGwR5iR2LeLgpk/CaZvwYurBslFeXvq/CQQS
+ KsguGX7VgZIneuytduByO8KDPBOiJqw2KSKCpTRWJ/B+Z56ikBR5O1ERFZSIfmPQfATq
+ 1uy8xbBienxhHgn5NQn6XmtFwDQjnCaI/0FhZAIpCp+cxxRFLcjBZQDJVcqcVIlC5XNz
+ 08SvXSPBehY6A3LnC5181Q0eKGCC40V8vdw0gghahPqmkqQU1uDp0bRs9SkzDNr9VHiy
+ maLSnF0/O4lRBlJgQZHt89/HL2w8vRx60DHFAc4ssQak2vu58Y9U9NRMiJ965yr9KVJf
+ H+kA==
+X-Gm-Message-State: AOAM5302Qwr3PSvgkUpy/8MGQtGCnuV4enZR2pscN+a0lPwDZ9BHz53F
+ 3nUhjWuNe/TdUct94b6p8H15LcvaSH/2Gg==
+X-Google-Smtp-Source: ABdhPJz2WBRGcHMjvb0VwJASUE1CmFUAMja14YsCgJ8ky1Q49b2/dKalSrMDd53TCNo8xpxK5gOUTw==
+X-Received: by 2002:a7b:c102:: with SMTP id w2mr6478733wmi.133.1629296693978; 
+ Wed, 18 Aug 2021 07:24:53 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c2sm5971249wrs.60.2021.08.18.07.22.11
+ by smtp.gmail.com with ESMTPSA id m21sm17302wms.3.2021.08.18.07.24.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Aug 2021 07:22:11 -0700 (PDT)
-Date: Wed, 18 Aug 2021 16:22:09 +0200
+ Wed, 18 Aug 2021 07:24:53 -0700 (PDT)
+Date: Wed, 18 Aug 2021 16:24:51 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <YR0XkdmLCokUyiWn@phenom.ffwll.local>
+Message-ID: <YR0YMwmNHfzXT9XP@phenom.ffwll.local>
 References: <20210701155513.2024-1-michal.wajdeczko@intel.com>
- <20210701155513.2024-4-michal.wajdeczko@intel.com>
+ <20210701155513.2024-5-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210701155513.2024-4-michal.wajdeczko@intel.com>
+In-Reply-To: <20210701155513.2024-5-michal.wajdeczko@intel.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/guc: Print error name on CTB
- send failure
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Move and improve error
+ message for missed CTB reply
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,35 +71,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 01, 2021 at 05:55:12PM +0200, Michal Wajdeczko wrote:
-> Instead of plain error value (%d) print more user friendly error
-> name (%pe).
+On Thu, Jul 01, 2021 at 05:55:13PM +0200, Michal Wajdeczko wrote:
+> If we timeout waiting for a CT reply we print very simple error
+> message. Improve that and by moving error reporting to the caller
+> we can use CT_ERROR instead of DRM_ERROR and report just fence
+> as error code will be reported later anyway.
 > 
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 18d52c39f0c2..8110586ce1fd 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -580,8 +580,8 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
->  
->  	ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
->  	if (unlikely(ret < 0)) {
-> -		CT_ERROR(ct, "Sending action %#x failed (err=%d status=%#X)\n",
-> -			 action[0], ret, status);
-> +		CT_ERROR(ct, "Sending action %#x failed (%pe) status=%#X\n",
-> +			 action[0], ERR_PTR(ret), status);
 
-errname(), not this, with that:
+Look reasonable.
+
+Btw for within the driver we generally never document static inline
+functions with full kerneldoc. That's overkill and they get stale real
+fast. What would be useful to document is the interface with the driver at
+large (i.e. non-static functions), especially for something that's used
+all over like CTB will be. But then we're back to responsibilities and
+especialy aroung gpu reset, so not sure whether documenting the current
+code before that's sorted is the best idea.
 
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
->  	} else if (unlikely(ret)) {
->  		CT_DEBUG(ct, "send action %#x returned %d (%#x)\n",
->  			 action[0], ret, ret);
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 8110586ce1fd..f488a51e1ebe 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -490,9 +490,6 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+>  		err = wait_for(done, 10);
+>  #undef done
+>  
+> -	if (unlikely(err))
+> -		DRM_ERROR("CT: fence %u err %d\n", req->fence, err);
+> -
+>  	*status = req->status;
+>  	return err;
+>  }
+> @@ -536,8 +533,11 @@ static int ct_send(struct intel_guc_ct *ct,
+>  	intel_guc_notify(ct_to_guc(ct));
+>  
+>  	err = wait_for_ct_request_update(&request, status);
+> -	if (unlikely(err))
+> +	if (unlikely(err)) {
+> +		CT_ERROR(ct, "No response for request %#x (fence %u)\n",
+> +			 action[0], request.fence);
+>  		goto unlink;
+> +	}
+>  
+>  	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, *status) != GUC_HXG_TYPE_RESPONSE_SUCCESS) {
+>  		err = -EIO;
 > -- 
 > 2.25.1
 > 
