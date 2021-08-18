@@ -2,59 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 745723F0311
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 13:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A44973F0319
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Aug 2021 13:58:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 802916E563;
-	Wed, 18 Aug 2021 11:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F166E55C;
+	Wed, 18 Aug 2021 11:58:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com
- [IPv6:2607:f8b0:4864:20::f29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 676986E563;
- Wed, 18 Aug 2021 11:55:37 +0000 (UTC)
-Received: by mail-qv1-xf29.google.com with SMTP id q6so1478916qvs.12;
- Wed, 18 Aug 2021 04:55:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=pybp1h57rSgejjB5qeOIxXCpxMSfcbtU4L01XqE4NBQ=;
- b=SZTW27Mn8ya2gYpBZAYbIhyFF51oIaaZgzm5qElOoukcZPB6CVx/CNCyFM6DsXavUI
- UH+pmeMmWML8vV5BFO+Hl3iG2EBcb2J/MbzRaPdzf8Dhd0vDyhmac763XmpOcovpfj7r
- VmTFrrhWtR1s+Zw58FI1Ui5BfFJ/ZiF2yQC6My0JxCcclZD9oR4El7e4XDcNbeHc3YTw
- i7WaVAyL4hAUi1yHgck51jBxMPz3iBEv3sYGUpWRAFnbySf3rn98t317njNmApWkj4dM
- wxf7gaLXT5b3RHN4D7qHZmLyv3Z/CI8C1l8vaGKSX2082Z7acKybtBApH4iGgKHcwb63
- qjZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=pybp1h57rSgejjB5qeOIxXCpxMSfcbtU4L01XqE4NBQ=;
- b=lMZFMn4ojTfrMhsN0lnoAzMdapaIlYXcU0yk4O6VsUgG5LBzrrzkbn2z+2nIHYKMlK
- kJc5GB94/mlD8/zm5Fv635GUmCoRoWPjQZaBwG+YMe1RZNln/KKA3kdc57WO04bULPHP
- GrgLSSGdkbtLMvWhEBrY379tqhG/mrRiLTjmiIljx5hqK5z1PjqCHef+jMq1JEJZomu8
- GB8ZzEBUVq5wj5I3yxKuBYdd9teaywasPLt1NvVb2pFgHftSfz+77FZjNCoMqDbptuv/
- 9b5xCQogDn+14sR+o5egejatxla37u3JbjCwv+dh98uSAYeVQYXHlwBb8r/OAVCI0aPp
- CsFw==
-X-Gm-Message-State: AOAM530TmIJ3xWSRPwVpq5lQQAFDuo2nVWM/lGoK5peEU0/DYNCrlzWS
- 0MRuaNfNdJfVf4+8yhcNqRamP4taZvFj+SjDXUbywJ+DizE=
-X-Google-Smtp-Source: ABdhPJwdq2qrgN2f/CrK5JV/wojv8FLXFt/apl6fl93D1kv23W7OWSDtGRTg8RsDNVmf6eRQv4p70M9n9uuJnJB20ZY=
-X-Received: by 2002:a0c:ffae:: with SMTP id d14mr8526854qvv.41.1629287736471; 
- Wed, 18 Aug 2021 04:55:36 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9DABB6E563;
+ Wed, 18 Aug 2021 11:57:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4EB44A8830;
+ Wed, 18 Aug 2021 11:57:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8266403146828211854=="
 MIME-Version: 1.0
-References: <20210816171444.105469-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210816171444.105469-1-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 18 Aug 2021 12:55:09 +0100
-Message-ID: <CAM0jSHPzZ532ey6ZxbBaxDYbm6agDtMu7HFSSrSwaWmYKjfu8g@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- ML dri-devel <dri-devel@lists.freedesktop.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Ditch the i915_gem_ww_ctx loop
- member
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Aug 2021 11:57:41 -0000
+Message-ID: <162928786129.16675.420968192530129923@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1629281426.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1629281426.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_header_cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,22 +41,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 16 Aug 2021 at 18:14, Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
->
-> It's only used by the for_i915_gem_ww() macro and we can use
-> the (typically) on-stack _err variable in its place.
->
-> v2:
-> - Don't clear the _err variable when entering the loop
->   (Matthew Auld, Maarten Lankhorst).
-> - Use parentheses around the _err macro argument.
-> - Fix up comment.
->
-> Cc: Matthew Auld <matthew.william.auld@gmail.com>
-> Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+--===============8266403146828211854==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: header cleanups
+URL   : https://patchwork.freedesktop.org/series/93777/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10493 -> Patchwork_20843
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20843 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-cml-u2:          [PASS][2] -> [DMESG-WARN][3] ([i915#95])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10493/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][4] ([i915#1993]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10493/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [DMESG-WARN][6] ([i915#3958]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10493/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
+  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (35 -> 33)
+------------------------------
+
+  Missing    (2): fi-dg1-1 fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10493 -> Patchwork_20843
+
+  CI-20190529: 20190529
+  CI_DRM_10493: 188dd5885be3b1ac44f60212bddd74e2583db32d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6178: 146260200f9a6d4536e48a195e2ab49a07d4f0c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20843: bd3b1339d1754162404b52d259af080bcdf738af @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bd3b1339d175 drm/i915/fdi: move intel_fdi_link_freq() to intel_fdi.[ch]
+33cd75959166 drm/i915/panel: move intel_panel_use_ssc() out of headers
+95ad020b21a2 drm/i915/pm: use forward declaration to remove an include
+e2382f06ea1f drm/i915: intel_runtime_pm.h does not actually need intel_display.h
+ddebfe5d1496 drm/i915/irq: reduce inlines to reduce header dependencies
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/index.html
+
+--===============8266403146828211854==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: header cleanups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93777/">https://patchwork.freedesktop.org/series/93777/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10493 -&gt; Patchwork_20843</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20843 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10493/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10493/fi-tgl-dsi/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1993">i915#1993</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-tgl-dsi/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10493/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20843/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (35 -&gt; 33)</h2>
+<p>Missing    (2): fi-dg1-1 fi-bsw-cyan </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10493 -&gt; Patchwork_20843</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10493: 188dd5885be3b1ac44f60212bddd74e2583db32d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6178: 146260200f9a6d4536e48a195e2ab49a07d4f0c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20843: bd3b1339d1754162404b52d259af080bcdf738af @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bd3b1339d175 drm/i915/fdi: move intel_fdi_link_freq() to intel_fdi.[ch]<br />
+33cd75959166 drm/i915/panel: move intel_panel_use_ssc() out of headers<br />
+95ad020b21a2 drm/i915/pm: use forward declaration to remove an include<br />
+e2382f06ea1f drm/i915: intel_runtime_pm.h does not actually need intel_display.h<br />
+ddebfe5d1496 drm/i915/irq: reduce inlines to reduce header dependencies</p>
+
+</body>
+</html>
+
+--===============8266403146828211854==--
