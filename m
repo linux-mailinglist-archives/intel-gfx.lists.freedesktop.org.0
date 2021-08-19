@@ -1,85 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C878F3F12C6
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 07:32:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7F63F1351
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 08:22:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7EAA6E86A;
-	Thu, 19 Aug 2021 05:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0E96E94C;
+	Thu, 19 Aug 2021 06:21:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
- [IPv6:2607:f8b0:4864:20::102f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 160678952F;
- Thu, 19 Aug 2021 05:31:58 +0000 (UTC)
-Received: by mail-pj1-x102f.google.com with SMTP id
- w13-20020a17090aea0db029017897a5f7bcso3944473pjy.5; 
- Wed, 18 Aug 2021 22:31:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:subject:to:cc:references:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=CFAh2ohJN76u6Eruh33dHQq9ass8KChMC1IajJFgPH8=;
- b=HYJgzpgvWaAw7btZx7v+sX1ebqDpXWCM6m12POBpIsuzItZ06SvUkJuPbKSrk3FuUc
- oamxPO8fPNZoUWWvVhUe6rkiV+DYt4vrGo9UKMbe/DJzyAfx8pVYL9oT7wzEDEaT/S91
- MmLakU9Uc62a1+VqiSNx91xei08VB93GtjMoJBPhYeX1dBjzDD3H5aGUw6MbhZ1YAJMp
- edbzJMAQUCan7g7Pb4YcfY8ahN+yNPwK2RvCSSwdgqkVqiEWtb0r94XSsLROR+zdX6oL
- +zvE2OvSSn57qPUP3aFejiG5nF2zHujYVVjjWPVvVKzuYc/oIodXR+Uo9xiPffPqY+S6
- 3eMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:subject:to:cc:references:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=CFAh2ohJN76u6Eruh33dHQq9ass8KChMC1IajJFgPH8=;
- b=rKHbPvqCYU5LZS7oU6ocX9SzMHERkAEIDaSWdD9K5m0E6ay0veXsA9CNYHu0eJQTeu
- fDJ9QHFLEeK5LAWedrDkpwope+eomCsEOEDLEIfyBtdlP0JYt/cW6+xH6RznYVYhFdDO
- 5Q94dEytefP75EnyF0oPnDfwenuVM60x4nrpvttJRSmRF7GbUIWuGwklTaGsjn1qGaFg
- SmRgjmBXo4jFkmtFZULriDx6fV4NAXpwlbaDFYk7zibAtVBbEjw/k8Ycyjr7MHaSHS6h
- PNoheuyyz7WMcXhUlzCVtR6UYlJIkvwDjYVjJ1C0AywAuokwdRJzu4xWf6h7H5RezdZB
- gubA==
-X-Gm-Message-State: AOAM531hkHJhnDLyanzTKOmrHi8T6flUWG0DgYRFP0CKFV3eF+5sNVXD
- K32WzCUWbvOIaAp3up5d0ng=
-X-Google-Smtp-Source: ABdhPJzHWe7IqBDZJBR5DhOXYwVbuf1qus5KD/vagYpAW2JTmvesSwzD7dXboeZyB3QuDoSce3EDfQ==
-X-Received: by 2002:a17:90a:9f91:: with SMTP id
- o17mr12909893pjp.29.1629351117654; 
- Wed, 18 Aug 2021 22:31:57 -0700 (PDT)
-Received: from [192.168.1.237] ([118.200.190.93])
- by smtp.gmail.com with ESMTPSA id s26sm1873118pgv.46.2021.08.18.22.31.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 18 Aug 2021 22:31:57 -0700 (PDT)
-From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Dave Airlie <airlied@linux.ie>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Jens Axboe <axboe@kernel.dk>, Oleg Nesterov <oleg@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Dmitry Vyukov <dvyukov@google.com>,
- walter-zh.wu@mediatek.com, dri-devel <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK"
- <linaro-mm-sig@lists.linaro.org>, Shuah Khan <skhan@linuxfoundation.org>,
- Greg KH <gregkh@linuxfoundation.org>,
- linux-kernel-mentees@lists.linuxfoundation.org
-References: <20210818073824.1560124-1-desmondcheongzx@gmail.com>
- <20210818073824.1560124-5-desmondcheongzx@gmail.com>
- <YRzcuiQrLFsWowas@phenom.ffwll.local>
- <53a63ac8-f2de-91f7-4e0f-20b0f3f61d52@gmail.com>
- <CAKMK7uG+nqnkNd56WPhze3V=e1ioL0PTLQxveBofQT3gNPB9HA@mail.gmail.com>
-Message-ID: <18df91cb-3948-f4f4-d548-8d23107540ae@gmail.com>
-Date: Thu, 19 Aug 2021 13:31:51 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 449736E4B5;
+ Thu, 19 Aug 2021 06:21:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="216220743"
+X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="216220743"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2021 23:21:54 -0700
+X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="511675163"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2021 23:21:54 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Cc: <daniel.vetter@ffwll.ch>
+Date: Wed, 18 Aug 2021 23:16:12 -0700
+Message-Id: <20210819061639.21051-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uG+nqnkNd56WPhze3V=e1ioL0PTLQxveBofQT3gNPB9HA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 4/9] drm: fix potential null ptr
- dereferences in drm_{auth, ioctl}
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/27] Clean up GuC CI failures, simplify locking,
+ and kernel DOC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,150 +47,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 19/8/21 12:33 am, Daniel Vetter wrote:
-> On Wed, Aug 18, 2021 at 5:37 PM Desmond Cheong Zhi Xi
-> <desmondcheongzx@gmail.com> wrote:
->>
->> On 18/8/21 6:11 pm, Daniel Vetter wrote:
->>> On Wed, Aug 18, 2021 at 03:38:19PM +0800, Desmond Cheong Zhi Xi wrote:
->>>> There are three areas where we dereference struct drm_master without
->>>> checking if the pointer is non-NULL.
->>>>
->>>> 1. drm_getmagic is called from the ioctl_handler. Since
->>>> DRM_IOCTL_GET_MAGIC has no ioctl flags, drm_getmagic is run without
->>>> any check that drm_file.master has been set.
->>>>
->>>> 2. Similarly, drm_getunique is called from the ioctl_handler, but
->>>> DRM_IOCTL_GET_UNIQUE has no ioctl flags. So there is no guarantee that
->>>> drm_file.master has been set.
->>>
->>> I think the above two are impossible, due to the refcounting rules for
->>> struct file.
->>>
->>
->> Right, will drop those two parts from the patch.
->>
->>>> 3. drm_master_release can also be called without having a
->>>> drm_file.master set. Here is one error path:
->>>>     drm_open():
->>>>       drm_open_helper():
->>>>         drm_master_open():
->>>>           drm_new_set_master(); <--- returns -ENOMEM,
->>>>                                      drm_file.master not set
->>>>         drm_file_free():
->>>>           drm_master_release(); <--- NULL ptr dereference
->>>>                                      (file_priv->master->magic_map)
->>>>
->>>> Fix these by checking if the master pointers are NULL before use.
->>>>
->>>> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
->>>> ---
->>>>    drivers/gpu/drm/drm_auth.c  | 16 ++++++++++++++--
->>>>    drivers/gpu/drm/drm_ioctl.c |  5 +++++
->>>>    2 files changed, 19 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
->>>> index f9267b21556e..b7230604496b 100644
->>>> --- a/drivers/gpu/drm/drm_auth.c
->>>> +++ b/drivers/gpu/drm/drm_auth.c
->>>> @@ -95,11 +95,18 @@ EXPORT_SYMBOL(drm_is_current_master);
->>>>    int drm_getmagic(struct drm_device *dev, void *data, struct drm_file *file_priv)
->>>>    {
->>>>       struct drm_auth *auth = data;
->>>> +    struct drm_master *master;
->>>>       int ret = 0;
->>>>
->>>>       mutex_lock(&dev->master_mutex);
->>>> +    master = file_priv->master;
->>>> +    if (!master) {
->>>> +            mutex_unlock(&dev->master_mutex);
->>>> +            return -EINVAL;
->>>> +    }
->>>> +
->>>>       if (!file_priv->magic) {
->>>> -            ret = idr_alloc(&file_priv->master->magic_map, file_priv,
->>>> +            ret = idr_alloc(&master->magic_map, file_priv,
->>>>                               1, 0, GFP_KERNEL);
->>>>               if (ret >= 0)
->>>>                       file_priv->magic = ret;
->>>> @@ -355,8 +362,12 @@ void drm_master_release(struct drm_file *file_priv)
->>>>
->>>>       mutex_lock(&dev->master_mutex);
->>>>       master = file_priv->master;
->>>> +
->>>> +    if (!master)
->>>> +            goto unlock;
->>>
->>> This is a bit convoluted, since we're in the single-threaded release path
->>> we don't need any locking for file_priv related things. Therefore we can
->>> pull the master check out and just directly return.
->>>
->>> But since it's a bit surprising maybe a comment that this can happen when
->>> drm_master_open in drm_open_helper fails?
->>>
->>
->> Sounds good. This can actually also happen in the failure path of
->> mock_drm_getfile if anon_inode_getfile fails. I'll leave a short note
->> about both of them.
->>
->>> Another option, and maybe cleaner, would be to move the drm_master_release
->>> from drm_file_free into drm_close_helper. That would be fully symmetrical
->>> and should also fix the bug here?
->>> -Daniel
->>>
->> Hmmm maybe the first option to move the check out of the lock might be
->> better. If I'm not wrong, we would otherwise also need to move
->> drm_master_release into drm_client_close.
-> 
-> Do we have to?
-> 
-> If I haven't missed anything, the drm_client stuff only calls
-> drm_file_alloc and doesn't set up a master. So this should work?
-> -Daniel
-> 
+Daniel Vetter pointed out that locking in the GuC submission code was
+overly complicated, let's clean this up a bit before introducing more
+features in the GuC submission backend.
 
-Ahhhh ok yes, I understand what's going on better now. I think you're 
-right, moving drm_master_release into drm_close_helper should fix all 
-the places it can go wrong.
+Also fix some CI failures, port fixes from our internal tree, and add a
+few more selftests for coverage.
 
->>
->>>
->>>> +
->>>>       if (file_priv->magic)
->>>> -            idr_remove(&file_priv->master->magic_map, file_priv->magic);
->>>> +            idr_remove(&master->magic_map, file_priv->magic);
->>>>
->>>>       if (!drm_is_current_master_locked(file_priv))
->>>>               goto out;
->>>> @@ -379,6 +390,7 @@ void drm_master_release(struct drm_file *file_priv)
->>>>               drm_master_put(&file_priv->master);
->>>>               spin_unlock(&dev->master_lookup_lock);
->>>>       }
->>>> +unlock:
->>>>       mutex_unlock(&dev->master_mutex);
->>>>    }
->>>>
->>>> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
->>>> index 26f3a9ede8fe..4d029d3061d9 100644
->>>> --- a/drivers/gpu/drm/drm_ioctl.c
->>>> +++ b/drivers/gpu/drm/drm_ioctl.c
->>>> @@ -121,6 +121,11 @@ int drm_getunique(struct drm_device *dev, void *data,
->>>>
->>>>       mutex_lock(&dev->master_mutex);
->>>>       master = file_priv->master;
->>>> +    if (!master) {
->>>> +            mutex_unlock(&dev->master_mutex);
->>>> +            return -EINVAL;
->>>> +    }
->>>> +
->>>>       if (u->unique_len >= master->unique_len) {
->>>>               if (copy_to_user(u->unique, master->unique, master->unique_len)) {
->>>>                       mutex_unlock(&dev->master_mutex);
->>>> --
->>>> 2.25.1
->>>>
->>>
->>
-> 
-> 
+Lastly, add some kernel DOC explaining how the GuC submission backend
+works.
+
+v2: Fix logic error in 'Workaround reset G2H is received after schedule
+done G2H', don't propagate errors to dependent fences in execlists
+submissiom, resolve checkpatch issues, resend to correct lists
+v3: Fix issue kicking tasklet, drop guc_active, fix ref counting in
+xarray, add guc_id sub structure, drop inline fuctions, and various
+other cleanup suggested by Daniel
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+Matthew Brost (27):
+  drm/i915/guc: Fix blocked context accounting
+  drm/i915/guc: Fix outstanding G2H accounting
+  drm/i915/guc: Unwind context requests in reverse order
+  drm/i915/guc: Don't drop ce->guc_active.lock when unwinding context
+  drm/i915/guc: Process all G2H message at once in work queue
+  drm/i915/guc: Workaround reset G2H is received after schedule done G2H
+  Revert "drm/i915/gt: Propagate change in error status to children on
+    unhold"
+  drm/i915/selftests: Add a cancel request selftest that triggers a
+    reset
+  drm/i915/guc: Kick tasklet after queuing a request
+  drm/i915/guc: Don't enable scheduling on a banned context, guc_id
+    invalid, not registered
+  drm/i915/selftests: Fix memory corruption in live_lrc_isolation
+  drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H
+  drm/i915/guc: Take context ref when cancelling request
+  drm/i915/guc: Don't touch guc_state.sched_state without a lock
+  drm/i915/guc: Reset LRC descriptor if register returns -ENODEV
+  drm/i915: Allocate error capture in nowait context
+  drm/i915/guc: Flush G2H work queue during reset
+  drm/i915/guc: Release submit fence from an irq_work
+  drm/i915/guc: Move guc_blocked fence to struct guc_state
+  drm/i915/guc: Rework and simplify locking
+  drm/i915/guc: Proper xarray usage for contexts_lookup
+  drm/i915/guc: Drop pin count check trick between sched_disable and
+    re-pin
+  drm/i915/guc: Move GuC priority fields in context under guc_active
+  drm/i915/guc: Move fields protected by guc->contexts_lock into sub
+    structure
+  drm/i915/guc: Drop guc_active move everything into guc_state
+  drm/i915/guc: Add GuC kernel doc
+  drm/i915/guc: Drop static inline functions intel_guc_submission.c
+
+ drivers/gpu/drm/i915/gt/intel_context.c       |  19 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  81 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |   4 -
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   6 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  29 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  19 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   6 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 955 +++++++++++-------
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c     | 126 +++
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  39 +-
+ drivers/gpu/drm/i915/i915_request.h           |  23 +-
+ drivers/gpu/drm/i915/i915_trace.h             |  12 +-
+ .../drm/i915/selftests/i915_live_selftests.h  |   1 +
+ drivers/gpu/drm/i915/selftests/i915_request.c | 100 ++
+ .../i915/selftests/intel_scheduler_helpers.c  |  12 +
+ .../i915/selftests/intel_scheduler_helpers.h  |   2 +
+ 16 files changed, 968 insertions(+), 466 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+
+-- 
+2.32.0
 
