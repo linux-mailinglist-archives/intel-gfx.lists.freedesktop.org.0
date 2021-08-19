@@ -2,35 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909413F220E
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 23:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8031F3F2245
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 23:36:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC8C76E8FE;
-	Thu, 19 Aug 2021 21:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EB046E9E1;
+	Thu, 19 Aug 2021 21:36:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC616E8FE
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Aug 2021 21:04:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="302238804"
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="302238804"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 14:04:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="532658241"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 14:04:04 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Thu, 19 Aug 2021 14:03:49 -0700
-Message-Id: <20210819210349.95103-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A26606E9DE;
+ Thu, 19 Aug 2021 21:36:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="203852009"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="203852009"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 14:36:08 -0700
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="451782576"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 14:36:08 -0700
+Date: Thu, 19 Aug 2021 14:30:56 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch
+Message-ID: <20210819213055.GA11622@jons-linux-dev-box>
+References: <20210819061639.21051-1-matthew.brost@intel.com>
+ <20210819061639.21051-3-matthew.brost@intel.com>
+ <4c984e90-081f-6707-c0ab-def83c7a0a98@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg1: remove __maybe_unused leftover
+In-Reply-To: <4c984e90-081f-6707-c0ab-def83c7a0a98@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 02/27] drm/i915/guc: Fix outstanding G2H
+ accounting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,30 +54,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This was added in commit 05e265841f7e ("drm/i915/dg1: add initial DG-1
-definitions") so we could continue to add support for DG1 without
-risk to expose a broken UAPI. Now that we added DG1 to the PCI ID list
-i915 may bind to, remove the leftover.
+On Thu, Aug 19, 2021 at 02:31:51PM -0700, Daniele Ceraolo Spurio wrote:
+> 
+> 
+> On 8/18/2021 11:16 PM, Matthew Brost wrote:
+> > A small race that could result in incorrect accounting of the number
+> > of outstanding G2H. Basically prior to this patch we did not increment
+> > the number of outstanding G2H if we encoutered a GT reset while sending
+> > a H2G. This was incorrect as the context state had already been updated
+> > to anticipate a G2H response thus the counter should be incremented.
+> > 
+> > Also always use helper when decrementing this value.
+> > 
+> > Fixes: f4eb1f3fe946 ("drm/i915/guc: Ensure G2H response has space in buffer")
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > Cc: <stable@vger.kernel.org>
+> > ---
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 24 ++++++++++---------
+> >   1 file changed, 13 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 69faa39da178..32c414aa9009 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -352,6 +352,12 @@ static inline void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
+> >   	xa_unlock_irqrestore(&guc->context_lookup, flags);
+> >   }
+> > +static void decr_outstanding_submission_g2h(struct intel_guc *guc)
+> > +{
+> > +	if (atomic_dec_and_test(&guc->outstanding_submission_g2h))
+> > +		wake_up_all(&guc->ct.wq);
+> > +}
+> > +
+> >   static int guc_submission_send_busy_loop(struct intel_guc *guc,
+> >   					 const u32 *action,
+> >   					 u32 len,
+> > @@ -360,11 +366,13 @@ static int guc_submission_send_busy_loop(struct intel_guc *guc,
+> >   {
+> >   	int err;
+> > -	err = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
+> > -
+> > -	if (!err && g2h_len_dw)
+> > +	if (g2h_len_dw)
+> >   		atomic_inc(&guc->outstanding_submission_g2h);
+> > +	err = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
+> > +	if (err == -EBUSY && g2h_len_dw)
+> > +		decr_outstanding_submission_g2h(guc);
+> > +
+> 
+> here you're special casing  -EBUSY, which kind of implies that the caller
+> needs to handle this differently, but most callers seem to ignore the return
+> code. Is the counter handled somewhere else in case of EBUSY? if so, please
+> add a comment about it.
+> 
 
-Fixes: d5ef86b38e4c ("drm/i915: Add pci ids and uapi for DG1")
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Good catch, this is a dead code path. Will delete.
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 93ccdc6bbd03..96cfd6427cec 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -894,7 +894,7 @@ static const struct intel_device_info rkl_info = {
- 	.has_snoop = 1, \
- 	.is_dgfx = 1
- 
--static const struct intel_device_info dg1_info __maybe_unused = {
-+static const struct intel_device_info dg1_info = {
- 	GEN12_FEATURES,
- 	DGFX_FEATURES,
- 	.graphics_rel = 10,
--- 
-2.31.1
+Matt
 
+> Daniele
+> 
+> >   	return err;
+> >   }
+> > @@ -616,7 +624,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+> >   		init_sched_state(ce);
+> >   		if (pending_enable || destroyed || deregister) {
+> > -			atomic_dec(&guc->outstanding_submission_g2h);
+> > +			decr_outstanding_submission_g2h(guc);
+> >   			if (deregister)
+> >   				guc_signal_context_fence(ce);
+> >   			if (destroyed) {
+> > @@ -635,7 +643,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+> >   				intel_engine_signal_breadcrumbs(ce->engine);
+> >   			}
+> >   			intel_context_sched_disable_unpin(ce);
+> > -			atomic_dec(&guc->outstanding_submission_g2h);
+> > +			decr_outstanding_submission_g2h(guc);
+> >   			spin_lock_irqsave(&ce->guc_state.lock, flags);
+> >   			guc_blocked_fence_complete(ce);
+> >   			spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> > @@ -2583,12 +2591,6 @@ g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
+> >   	return ce;
+> >   }
+> > -static void decr_outstanding_submission_g2h(struct intel_guc *guc)
+> > -{
+> > -	if (atomic_dec_and_test(&guc->outstanding_submission_g2h))
+> > -		wake_up_all(&guc->ct.wq);
+> > -}
+> > -
+> >   int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
+> >   					  const u32 *msg,
+> >   					  u32 len)
+> 
