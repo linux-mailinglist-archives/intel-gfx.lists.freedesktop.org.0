@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A0B3F1380
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 08:23:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C363F143A
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 09:15:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED276E942;
-	Thu, 19 Aug 2021 06:22:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 489AD6E7D1;
+	Thu, 19 Aug 2021 07:15:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9997D6E94D;
- Thu, 19 Aug 2021 06:21:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="216220773"
-X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="216220773"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 23:21:55 -0700
-X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="511675192"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2021 23:21:55 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Cc: <daniel.vetter@ffwll.ch>
-Date: Wed, 18 Aug 2021 23:16:39 -0700
-Message-Id: <20210819061639.21051-28-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210819061639.21051-1-matthew.brost@intel.com>
-References: <20210819061639.21051-1-matthew.brost@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 698A06E4B5;
+ Thu, 19 Aug 2021 07:15:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="280236763"
+X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="280236763"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 00:15:08 -0700
+X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="451288475"
+Received: from mdziuba-mobl.ger.corp.intel.com (HELO [10.249.254.196])
+ ([10.249.254.196])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 00:15:07 -0700
+Message-ID: <e409a691305229d7c4b1b08a568e809d669a3e5c.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Date: Thu, 19 Aug 2021 09:15:04 +0200
+In-Reply-To: <20210818145850.225387-1-matthew.auld@intel.com>
+References: <20210818145850.225387-1-matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 27/27] drm/i915/guc: Drop static inline
- functions intel_guc_submission.c
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/buddy: add some pretty printing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,434 +49,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-s/static inline/static/g + fix function argument alignment to make
-checkpatch happy.
+On Wed, 2021-08-18 at 15:58 +0100, Matthew Auld wrote:
+> Implement the debug hook for the buddy resource manager. For this we
+> want to print out the status of the memory manager, including how much
+> memory is still allocatable, what page sizes we have etc. This will be
+> triggered when TTM is unable to fulfil an allocation request for device
+> local-memory.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_buddy.c             | 45 +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_buddy.h             |  8 ++++
+>  drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 20 ++++++++-
+>  3 files changed, 72 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_buddy.c
+> b/drivers/gpu/drm/i915/i915_buddy.c
+> index 7b274c51cac0..240e881d9eb0 100644
+> --- a/drivers/gpu/drm/i915/i915_buddy.c
+> +++ b/drivers/gpu/drm/i915/i915_buddy.c
+> @@ -4,6 +4,7 @@
+>   */
+>  
+>  #include <linux/kmemleak.h>
+> +#include <linux/sizes.h>
+>  
+>  #include "i915_buddy.h"
+>  
+> @@ -82,6 +83,7 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64
+> size, u64 chunk_size)
+>         size = round_down(size, chunk_size);
+>  
+>         mm->size = size;
+> +       mm->avail = size;
+>         mm->chunk_size = chunk_size;
+>         mm->max_order = ilog2(size) - ilog2(chunk_size);
+>  
+> @@ -155,6 +157,8 @@ void i915_buddy_fini(struct i915_buddy_mm *mm)
+>                 i915_block_free(mm, mm->roots[i]);
+>         }
+>  
+> +       GEM_WARN_ON(mm->avail != mm->size);
+> +
+>         kfree(mm->roots);
+>         kfree(mm->free_list);
+>  }
+> @@ -230,6 +234,7 @@ void i915_buddy_free(struct i915_buddy_mm *mm,
+>                      struct i915_buddy_block *block)
+>  {
+>         GEM_BUG_ON(!i915_buddy_block_is_allocated(block));
+> +       mm->avail += i915_buddy_block_size(mm, block);
+>         __i915_buddy_free(mm, block);
+>  }
+>  
+> @@ -283,6 +288,7 @@ i915_buddy_alloc(struct i915_buddy_mm *mm, unsigned
+> int order)
+>         }
+>  
+>         mark_allocated(block);
+> +       mm->avail -= i915_buddy_block_size(mm, block);
+>         kmemleak_update_trace(block);
+>         return block;
+>  
+> @@ -368,6 +374,7 @@ int i915_buddy_alloc_range(struct i915_buddy_mm
+> *mm,
+>                         }
+>  
+>                         mark_allocated(block);
+> +                       mm->avail -= i915_buddy_block_size(mm, block);
+>                         list_add_tail(&block->link, &allocated);
+>                         continue;
+>                 }
+> @@ -402,6 +409,44 @@ int i915_buddy_alloc_range(struct i915_buddy_mm
+> *mm,
+>         return err;
+>  }
+>  
+> +void i915_buddy_block_print(struct i915_buddy_mm *mm,
+> +                           struct i915_buddy_block *block,
+> +                           struct drm_printer *p)
+> +{
+> +       u64 start = i915_buddy_block_offset(block);
+> +       u64 size = i915_buddy_block_size(mm, block);
+> +
+> +       drm_printf(p, "%#018llx-%#018llx: %llu\n", start, start + size,
+> size);
+> +}
+> +
+> +void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer *p)
+> +{
+> +       int order;
+> +
+> +       drm_printf(p, "chunk_size: %lluKB, total: %lluMB, free:
+> %lluMB\n",
+> +                  mm->chunk_size >> 10, mm->size >> 20, mm->avail >>
+> 20);
+> +
+> +       for (order = mm->max_order; order >= 0; order--) {
+> +               struct i915_buddy_block *block;
+> +               u64 count = 0, free;
+> +
+> +               list_for_each_entry(block, &mm->free_list[order], link)
+> {
+> +                       GEM_BUG_ON(!i915_buddy_block_is_free(block));
+> +                       count++;
+> +               }
+> +
+> +               drm_printf(p, "order-%d ", order);
+> +
+> +               free = count * (mm->chunk_size << order);
+> +               if (free < SZ_1M)
+> +                       drm_printf(p, "free: %lluKB", free >> 10);
+> +               else
+> +                       drm_printf(p, "free: %lluMB", free >> 20);
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 116 +++++++++---------
- 1 file changed, 57 insertions(+), 59 deletions(-)
+Use KiB and MiB instead of KB and MB? Also below.
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 7e0a32e729c2..ad4420100908 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -139,7 +139,7 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count);
- #define SCHED_STATE_BLOCKED_SHIFT			7
- #define SCHED_STATE_BLOCKED		BIT(SCHED_STATE_BLOCKED_SHIFT)
- #define SCHED_STATE_BLOCKED_MASK	(0xfff << SCHED_STATE_BLOCKED_SHIFT)
--static inline void init_sched_state(struct intel_context *ce)
-+static void init_sched_state(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state &= SCHED_STATE_BLOCKED_MASK;
-@@ -156,14 +156,14 @@ static bool sched_state_is_init(struct intel_context *ce)
- 		 ~(SCHED_STATE_BLOCKED_MASK | SCHED_STATE_REGISTERED));
- }
- 
--static inline bool
-+static bool
- context_wait_for_deregister_to_register(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state &
- 		SCHED_STATE_WAIT_FOR_DEREGISTER_TO_REGISTER;
- }
- 
--static inline void
-+static void
- set_context_wait_for_deregister_to_register(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
-@@ -171,7 +171,7 @@ set_context_wait_for_deregister_to_register(struct intel_context *ce)
- 		SCHED_STATE_WAIT_FOR_DEREGISTER_TO_REGISTER;
- }
- 
--static inline void
-+static void
- clr_context_wait_for_deregister_to_register(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
-@@ -179,111 +179,111 @@ clr_context_wait_for_deregister_to_register(struct intel_context *ce)
- 		~SCHED_STATE_WAIT_FOR_DEREGISTER_TO_REGISTER;
- }
- 
--static inline bool
-+static bool
- context_destroyed(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state & SCHED_STATE_DESTROYED;
- }
- 
--static inline void
-+static void
- set_context_destroyed(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state |= SCHED_STATE_DESTROYED;
- }
- 
--static inline bool context_pending_disable(struct intel_context *ce)
-+static bool context_pending_disable(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state & SCHED_STATE_PENDING_DISABLE;
- }
- 
--static inline void set_context_pending_disable(struct intel_context *ce)
-+static void set_context_pending_disable(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state |= SCHED_STATE_PENDING_DISABLE;
- }
- 
--static inline void clr_context_pending_disable(struct intel_context *ce)
-+static void clr_context_pending_disable(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state &= ~SCHED_STATE_PENDING_DISABLE;
- }
- 
--static inline bool context_banned(struct intel_context *ce)
-+static bool context_banned(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state & SCHED_STATE_BANNED;
- }
- 
--static inline void set_context_banned(struct intel_context *ce)
-+static void set_context_banned(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state |= SCHED_STATE_BANNED;
- }
- 
--static inline void clr_context_banned(struct intel_context *ce)
-+static void clr_context_banned(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state &= ~SCHED_STATE_BANNED;
- }
- 
--static inline bool context_enabled(struct intel_context *ce)
-+static bool context_enabled(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state & SCHED_STATE_ENABLED;
- }
- 
--static inline void set_context_enabled(struct intel_context *ce)
-+static void set_context_enabled(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state |= SCHED_STATE_ENABLED;
- }
- 
--static inline void clr_context_enabled(struct intel_context *ce)
-+static void clr_context_enabled(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state &= ~SCHED_STATE_ENABLED;
- }
- 
--static inline bool context_pending_enable(struct intel_context *ce)
-+static bool context_pending_enable(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state & SCHED_STATE_PENDING_ENABLE;
- }
- 
--static inline void set_context_pending_enable(struct intel_context *ce)
-+static void set_context_pending_enable(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state |= SCHED_STATE_PENDING_ENABLE;
- }
- 
--static inline void clr_context_pending_enable(struct intel_context *ce)
-+static void clr_context_pending_enable(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state &= ~SCHED_STATE_PENDING_ENABLE;
- }
- 
--static inline bool context_registered(struct intel_context *ce)
-+static bool context_registered(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state & SCHED_STATE_REGISTERED;
- }
- 
--static inline void set_context_registered(struct intel_context *ce)
-+static void set_context_registered(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state |= SCHED_STATE_REGISTERED;
- }
- 
--static inline void clr_context_registered(struct intel_context *ce)
-+static void clr_context_registered(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	ce->guc_state.sched_state &= ~SCHED_STATE_REGISTERED;
- }
- 
--static inline u32 context_blocked(struct intel_context *ce)
-+static u32 context_blocked(struct intel_context *ce)
- {
- 	return (ce->guc_state.sched_state & SCHED_STATE_BLOCKED_MASK) >>
- 		SCHED_STATE_BLOCKED_SHIFT;
- }
- 
--static inline void incr_context_blocked(struct intel_context *ce)
-+static void incr_context_blocked(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 
-@@ -292,7 +292,7 @@ static inline void incr_context_blocked(struct intel_context *ce)
- 	GEM_BUG_ON(!context_blocked(ce));	/* Overflow check */
- }
- 
--static inline void decr_context_blocked(struct intel_context *ce)
-+static void decr_context_blocked(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 
-@@ -301,41 +301,41 @@ static inline void decr_context_blocked(struct intel_context *ce)
- 	ce->guc_state.sched_state -= SCHED_STATE_BLOCKED;
- }
- 
--static inline bool context_has_committed_requests(struct intel_context *ce)
-+static bool context_has_committed_requests(struct intel_context *ce)
- {
- 	return !!ce->guc_state.number_committed_requests;
- }
- 
--static inline void incr_context_committed_requests(struct intel_context *ce)
-+static void incr_context_committed_requests(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	++ce->guc_state.number_committed_requests;
- 	GEM_BUG_ON(ce->guc_state.number_committed_requests < 0);
- }
- 
--static inline void decr_context_committed_requests(struct intel_context *ce)
-+static void decr_context_committed_requests(struct intel_context *ce)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	--ce->guc_state.number_committed_requests;
- 	GEM_BUG_ON(ce->guc_state.number_committed_requests < 0);
- }
- 
--static inline bool context_guc_id_invalid(struct intel_context *ce)
-+static bool context_guc_id_invalid(struct intel_context *ce)
- {
- 	return ce->guc_id.id == GUC_INVALID_LRC_ID;
- }
- 
--static inline void set_context_guc_id_invalid(struct intel_context *ce)
-+static void set_context_guc_id_invalid(struct intel_context *ce)
- {
- 	ce->guc_id.id = GUC_INVALID_LRC_ID;
- }
- 
--static inline struct intel_guc *ce_to_guc(struct intel_context *ce)
-+static struct intel_guc *ce_to_guc(struct intel_context *ce)
- {
- 	return &ce->engine->gt->uc.guc;
- }
- 
--static inline struct i915_priolist *to_priolist(struct rb_node *rb)
-+static struct i915_priolist *to_priolist(struct rb_node *rb)
- {
- 	return rb_entry(rb, struct i915_priolist, node);
- }
-@@ -349,7 +349,7 @@ static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
- 	return &base[index];
- }
- 
--static inline struct intel_context *__get_context(struct intel_guc *guc, u32 id)
-+static struct intel_context *__get_context(struct intel_guc *guc, u32 id)
- {
- 	struct intel_context *ce = xa_load(&guc->context_lookup, id);
- 
-@@ -379,12 +379,12 @@ static void guc_lrc_desc_pool_destroy(struct intel_guc *guc)
- 	i915_vma_unpin_and_release(&guc->lrc_desc_pool, I915_VMA_RELEASE_MAP);
- }
- 
--static inline bool guc_submission_initialized(struct intel_guc *guc)
-+static bool guc_submission_initialized(struct intel_guc *guc)
- {
- 	return !!guc->lrc_desc_pool_vaddr;
- }
- 
--static inline void reset_lrc_desc(struct intel_guc *guc, u32 id)
-+static void reset_lrc_desc(struct intel_guc *guc, u32 id)
- {
- 	if (likely(guc_submission_initialized(guc))) {
- 		struct guc_lrc_desc *desc = __get_lrc_desc(guc, id);
-@@ -402,13 +402,13 @@ static inline void reset_lrc_desc(struct intel_guc *guc, u32 id)
- 	}
- }
- 
--static inline bool lrc_desc_registered(struct intel_guc *guc, u32 id)
-+static bool lrc_desc_registered(struct intel_guc *guc, u32 id)
- {
- 	return __get_context(guc, id);
- }
- 
--static inline void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
--					   struct intel_context *ce)
-+static void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
-+				    struct intel_context *ce)
- {
- 	unsigned long flags;
- 
-@@ -572,13 +572,13 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
- 	return err;
- }
- 
--static inline void guc_set_lrc_tail(struct i915_request *rq)
-+static void guc_set_lrc_tail(struct i915_request *rq)
- {
- 	rq->context->lrc_reg_state[CTX_RING_TAIL] =
- 		intel_ring_set_tail(rq->ring, rq->tail);
- }
- 
--static inline int rq_prio(const struct i915_request *rq)
-+static int rq_prio(const struct i915_request *rq)
- {
- 	return rq->sched.attr.priority;
- }
-@@ -745,7 +745,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
- 	xa_unlock_irqrestore(&guc->context_lookup, flags);
- }
- 
--static inline bool
-+static bool
- submission_disabled(struct intel_guc *guc)
- {
- 	struct i915_sched_engine * const sched_engine = guc->sched_engine;
-@@ -826,7 +826,7 @@ guc_virtual_get_sibling(struct intel_engine_cs *ve, unsigned int sibling)
- 	return NULL;
- }
- 
--static inline struct intel_engine_cs *
-+static struct intel_engine_cs *
- __context_to_physical_engine(struct intel_context *ce)
- {
- 	struct intel_engine_cs *engine = ce->engine;
-@@ -1144,9 +1144,9 @@ void intel_guc_submission_fini(struct intel_guc *guc)
- 	i915_sched_engine_put(guc->sched_engine);
- }
- 
--static inline void queue_request(struct i915_sched_engine *sched_engine,
--				 struct i915_request *rq,
--				 int prio)
-+static void queue_request(struct i915_sched_engine *sched_engine,
-+			  struct i915_request *rq,
-+			  int prio)
- {
- 	GEM_BUG_ON(!list_empty(&rq->sched.link));
- 	list_add_tail(&rq->sched.link,
-@@ -1842,7 +1842,7 @@ static void guc_context_sched_disable(struct intel_context *ce)
- 	intel_context_sched_disable_unpin(ce);
- }
- 
--static inline void guc_lrc_desc_unpin(struct intel_context *ce)
-+static void guc_lrc_desc_unpin(struct intel_context *ce)
- {
- 	struct intel_guc *guc = ce_to_guc(ce);
- 
-@@ -1982,7 +1982,7 @@ static void guc_context_set_prio(struct intel_guc *guc,
- 	trace_intel_context_set_prio(ce);
- }
- 
--static inline u8 map_i915_prio_to_guc_prio(int prio)
-+static u8 map_i915_prio_to_guc_prio(int prio)
- {
- 	if (prio == I915_PRIORITY_NORMAL)
- 		return GUC_CLIENT_PRIORITY_KMD_NORMAL;
-@@ -1994,8 +1994,7 @@ static inline u8 map_i915_prio_to_guc_prio(int prio)
- 		return GUC_CLIENT_PRIORITY_KMD_HIGH;
- }
- 
--static inline void add_context_inflight_prio(struct intel_context *ce,
--					     u8 guc_prio)
-+static void add_context_inflight_prio(struct intel_context *ce, u8 guc_prio)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	GEM_BUG_ON(guc_prio >= ARRAY_SIZE(ce->guc_state.prio_count));
-@@ -2006,8 +2005,7 @@ static inline void add_context_inflight_prio(struct intel_context *ce,
- 	GEM_WARN_ON(!ce->guc_state.prio_count[guc_prio]);
- }
- 
--static inline void sub_context_inflight_prio(struct intel_context *ce,
--					     u8 guc_prio)
-+static void sub_context_inflight_prio(struct intel_context *ce, u8 guc_prio)
- {
- 	lockdep_assert_held(&ce->guc_state.lock);
- 	GEM_BUG_ON(guc_prio >= ARRAY_SIZE(ce->guc_state.prio_count));
-@@ -2018,7 +2016,7 @@ static inline void sub_context_inflight_prio(struct intel_context *ce,
- 	--ce->guc_state.prio_count[guc_prio];
- }
- 
--static inline void update_context_prio(struct intel_context *ce)
-+static void update_context_prio(struct intel_context *ce)
- {
- 	struct intel_guc *guc = &ce->engine->gt->uc.guc;
- 	int i;
-@@ -2036,7 +2034,7 @@ static inline void update_context_prio(struct intel_context *ce)
- 	}
- }
- 
--static inline bool new_guc_prio_higher(u8 old_guc_prio, u8 new_guc_prio)
-+static bool new_guc_prio_higher(u8 old_guc_prio, u8 new_guc_prio)
- {
- 	/* Lower value is higher priority */
- 	return new_guc_prio < old_guc_prio;
-@@ -2506,15 +2504,15 @@ static void guc_set_default_submission(struct intel_engine_cs *engine)
- 	engine->submit_request = guc_submit_request;
- }
- 
--static inline void guc_kernel_context_pin(struct intel_guc *guc,
--					  struct intel_context *ce)
-+static void guc_kernel_context_pin(struct intel_guc *guc,
-+				   struct intel_context *ce)
- {
- 	if (context_guc_id_invalid(ce))
- 		pin_guc_id(guc, ce);
- 	guc_lrc_desc_pin(ce, true);
- }
- 
--static inline void guc_init_lrc_mapping(struct intel_guc *guc)
-+static void guc_init_lrc_mapping(struct intel_guc *guc)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
- 	struct intel_engine_cs *engine;
-@@ -2617,7 +2615,7 @@ static void rcs_submission_override(struct intel_engine_cs *engine)
- 	}
- }
- 
--static inline void guc_default_irqs(struct intel_engine_cs *engine)
-+static void guc_default_irqs(struct intel_engine_cs *engine)
- {
- 	engine->irq_keep_mask = GT_RENDER_USER_INTERRUPT;
- 	intel_engine_set_irq_handler(engine, cs_irq_handler);
-@@ -2713,7 +2711,7 @@ void intel_guc_submission_init_early(struct intel_guc *guc)
- 	guc->submission_selected = __guc_submission_selected(guc);
- }
- 
--static inline struct intel_context *
-+static struct intel_context *
- g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
- {
- 	struct intel_context *ce;
-@@ -3086,8 +3084,8 @@ void intel_guc_submission_print_info(struct intel_guc *guc,
- 	drm_printf(p, "\n");
- }
- 
--static inline void guc_log_context_priority(struct drm_printer *p,
--					    struct intel_context *ce)
-+static void guc_log_context_priority(struct drm_printer *p,
-+				     struct intel_context *ce)
- {
- 	int i;
- 
--- 
-2.32.0
+
+> +
+> +               drm_printf(p, ", pages: %llu\n", count);
+> +       }
+> +}
+> +
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>  #include "selftests/i915_buddy.c"
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/i915_buddy.h
+> b/drivers/gpu/drm/i915/i915_buddy.h
+> index 3940d632f208..7077742112ac 100644
+> --- a/drivers/gpu/drm/i915/i915_buddy.h
+> +++ b/drivers/gpu/drm/i915/i915_buddy.h
+> @@ -10,6 +10,8 @@
+>  #include <linux/list.h>
+>  #include <linux/slab.h>
+>  
+> +#include <drm/drm_print.h>
+> +
+>  struct i915_buddy_block {
+>  #define I915_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+>  #define I915_BUDDY_HEADER_STATE  GENMASK_ULL(11, 10)
+> @@ -69,6 +71,7 @@ struct i915_buddy_mm {
+>         /* Must be at least PAGE_SIZE */
+>         u64 chunk_size;
+>         u64 size;
+> +       u64 avail;
+>  };
+>  
+>  static inline u64
+> @@ -129,6 +132,11 @@ void i915_buddy_free(struct i915_buddy_mm *mm,
+> struct i915_buddy_block *block);
+>  
+>  void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head
+> *objects);
+>  
+> +void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer
+> *p);
+> +void i915_buddy_block_print(struct i915_buddy_mm *mm,
+> +                           struct i915_buddy_block *block,
+> +                           struct drm_printer *p);
+> +
+>  void i915_buddy_module_exit(void);
+>  int i915_buddy_module_init(void);
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> index 6877362f6b85..95ab786a1fe4 100644
+> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> @@ -126,12 +126,30 @@ static void i915_ttm_buddy_man_free(struct
+> ttm_resource_manager *man,
+>         kfree(bman_res);
+>  }
+>  
+> +static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
+> +                                    struct drm_printer *printer)
+> +{
+> +       struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+> +       struct i915_buddy_block *block;
+> +
+> +       mutex_lock(&bman->lock);
+> +       drm_printf(printer, "default_page_size: %lluKB\n",
+> +                  bman->default_page_size >> 10);
+> +
+> +       i915_buddy_print(&bman->mm, printer);
+> +
+> +       drm_printf(printer, "reserved:\n");
+> +       list_for_each_entry(block, &bman->reserved, link)
+> +               i915_buddy_block_print(&bman->mm, block, printer);
+> +       mutex_unlock(&bman->lock);
+> +}
+> +
+>  static const struct ttm_resource_manager_func
+> i915_ttm_buddy_manager_func = {
+>         .alloc = i915_ttm_buddy_man_alloc,
+>         .free = i915_ttm_buddy_man_free,
+> +       .debug = i915_ttm_buddy_man_debug,
+>  };
+>  
+> -
+>  /**
+>   * i915_ttm_buddy_man_init - Setup buddy allocator based ttm manager
+>   * @bdev: The ttm device
+
+Otherwise LGTM,
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
 
