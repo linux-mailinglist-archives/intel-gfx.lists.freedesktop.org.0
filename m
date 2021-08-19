@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF15F3F1DC7
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 18:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4843F1E5C
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 18:51:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E8E6E9A6;
-	Thu, 19 Aug 2021 16:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 350B56E9AE;
+	Thu, 19 Aug 2021 16:51:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4DB86E9A6
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Aug 2021 16:25:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="280329209"
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="280329209"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 09:25:04 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2BA6E9A7;
+ Thu, 19 Aug 2021 16:51:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="213476815"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="213476815"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 09:51:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="532574157"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="506158658"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 19 Aug 2021 09:25:00 -0700
+ by orsmga001.jf.intel.com with SMTP; 19 Aug 2021 09:51:35 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 19 Aug 2021 19:25:00 +0300
-Date: Thu, 19 Aug 2021 19:25:00 +0300
+ Thu, 19 Aug 2021 19:51:35 +0300
+Date: Thu, 19 Aug 2021 19:51:35 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YR6F3EclDR6Yq+l0@intel.com>
-References: <cover.1629281426.git.jani.nikula@intel.com>
- <8c9bb23d92878deb1ecc75427ec6648bd3505816.1629281426.git.jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, manasi.d.navare@intel.com,
+ dri-devel@lists.freedesktop.org
+Message-ID: <YR6MF0H+crPQR82T@intel.com>
+References: <cover.1629310010.git.jani.nikula@intel.com>
+ <f51b67be0aa963ee2d4a2edeb7a070fd3254200b.1629310010.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <8c9bb23d92878deb1ecc75427ec6648bd3505816.1629281426.git.jani.nikula@intel.com>
+In-Reply-To: <f51b67be0aa963ee2d4a2edeb7a070fd3254200b.1629310010.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/fdi: move
- intel_fdi_link_freq() to intel_fdi.[ch]
+Subject: Re: [Intel-gfx] [PATCH 01/17] drm/dp: add DP 2.0 UHBR link rate and
+ bw code conversions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,84 +54,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 18, 2021 at 01:11:09PM +0300, Jani Nikula wrote:
-> There's no performance reason to have it as static inline; move it out
-> of intel_display_types.h to reduce clutter and dependency on i915_drv.h.
+On Wed, Aug 18, 2021 at 09:10:36PM +0300, Jani Nikula wrote:
+> The bw code equals link_rate / 0.27 Gbps only for 8b/10b link
+> rates. Handle DP 2.0 UHBR rates as special cases, though this is not
+> pretty.
+
+Ugh. So if I'm reading the spec right the behaviour of this
+register now changes dynamically depending on the state of
+some other bit in another register?
+
 > 
+> Cc: dri-devel@lists.freedesktop.org
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display_types.h | 9 ---------
->  drivers/gpu/drm/i915/display/intel_fdi.c           | 9 +++++++++
->  drivers/gpu/drm/i915/display/intel_fdi.h           | 4 ++++
->  3 files changed, 13 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/drm_dp_helper.c | 26 ++++++++++++++++++++++----
+>  1 file changed, 22 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 7b5d7b1ae501..c2725d07b930 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -2040,15 +2040,6 @@ static inline u32 i9xx_dpll_compute_fp(struct dpll *dpll)
->  	return dpll->n << 16 | dpll->m1 << 8 | dpll->m2;
->  }
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+> index 6d0f2c447f3b..9b2a2961fca8 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -207,15 +207,33 @@ EXPORT_SYMBOL(drm_dp_lttpr_link_train_channel_eq_delay);
 >  
-> -static inline u32 intel_fdi_link_freq(struct drm_i915_private *dev_priv,
-> -				      const struct intel_crtc_state *pipe_config)
-> -{
-> -	if (HAS_DDI(dev_priv))
-> -		return pipe_config->port_clock; /* SPLL */
-> -	else
-> -		return dev_priv->fdi_pll_freq;
-> -}
-> -
->  static inline bool is_ccs_modifier(u64 modifier)
+>  u8 drm_dp_link_rate_to_bw_code(int link_rate)
 >  {
->  	return modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-> index e10b9cd8e86e..970a57369b05 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> @@ -95,6 +95,15 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
->  	}
+> -	/* Spec says link_bw = link_rate / 0.27Gbps */
+> -	return link_rate / 27000;
+> +	switch (link_rate) {
+> +	case 1000000:
+> +		return DP_LINK_BW_10;
+> +	case 1350000:
+> +		return DP_LINK_BW_13_5;
+> +	case 2000000:
+> +		return DP_LINK_BW_20;
+> +	default:
+> +		/* Spec says link_bw = link_rate / 0.27Gbps */
+> +		return link_rate / 27000;
+> +	}
 >  }
+>  EXPORT_SYMBOL(drm_dp_link_rate_to_bw_code);
 >  
-> +u32 intel_fdi_link_freq(struct drm_i915_private *i915,
-
-Could just change it to 'int' while at it.
-
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> +			const struct intel_crtc_state *pipe_config)
-> +{
-> +	if (HAS_DDI(i915))
-> +		return pipe_config->port_clock; /* SPLL */
-> +	else
-> +		return i915->fdi_pll_freq;
-> +}
-> +
->  int ilk_fdi_compute_config(struct intel_crtc *crtc,
->  			   struct intel_crtc_state *pipe_config)
+>  int drm_dp_bw_code_to_link_rate(u8 link_bw)
 >  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
-> index af01d2c173a8..fd63a6a53fca 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
-> @@ -6,12 +6,16 @@
->  #ifndef _INTEL_FDI_H_
->  #define _INTEL_FDI_H_
+> -	/* Spec says link_rate = link_bw * 0.27Gbps */
+> -	return link_bw * 27000;
+> +	switch (link_bw) {
+> +	case DP_LINK_BW_10:
+> +		return 1000000;
+> +	case DP_LINK_BW_13_5:
+> +		return 1350000;
+> +	case DP_LINK_BW_20:
+> +		return 2000000;
+> +	default:
+> +		/* Spec says link_rate = link_bw * 0.27Gbps */
+> +		return link_bw * 27000;
+> +	}
+>  }
+>  EXPORT_SYMBOL(drm_dp_bw_code_to_link_rate);
 >  
-> +#include <linux/types.h>
-> +
->  struct drm_i915_private;
->  struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_encoder;
->  
->  #define I915_DISPLAY_CONFIG_RETRY 1
-> +u32 intel_fdi_link_freq(struct drm_i915_private *i915,
-> +			const struct intel_crtc_state *pipe_config);
->  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
->  			   struct intel_crtc_state *pipe_config);
->  void intel_fdi_normal_train(struct intel_crtc *crtc);
 > -- 
 > 2.20.1
 
