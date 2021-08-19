@@ -1,53 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B703F161F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 11:27:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE6EB3F1651
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 11:34:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76F8F6E7D1;
-	Thu, 19 Aug 2021 09:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABCAD6E7D3;
+	Thu, 19 Aug 2021 09:34:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 144556E7D1;
- Thu, 19 Aug 2021 09:27:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=o71atK1N/ttros2m0GUwiV587h5QYRfIAhyzKk18UQQ=; b=iFi3JwVYlsdso3W4Dc3dMUU70s
- XK19q5yE4rJdVY/Sl0nQRrQcs3HQU+QdWs7bY2S/Gr4Tj9PyTUGNzQYrz+Y/khCli0gdeUHxt8xv7
- e2pz+vw0+beWpW7vjuoPPoYDMfBC3OAdeIHdKTl1oeB0gGA7X0MgcsgRDSq2mnM5vYeIQHiVikFMR
- 0x51mSFLKcjeUESvZoZOgiRjbGX0bVOyLH5WuUF8c2Np42kh34ZGpOmT+fha6YQwrjP4LMFKFiua0
- qYPF547PsvMrvJF2HGkhmk4YL4o3fnbtOt8l77GP/jH9XCLv4Drdm01suCQ4bDnbNgamIu2S6SXlT
- wVHeRNTw==;
-Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
- Linux)) id 1mGeJG-004ruk-MC; Thu, 19 Aug 2021 09:26:09 +0000
-Date: Thu, 19 Aug 2021 10:26:02 +0100
-From: Christoph Hellwig <hch@infradead.org>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch,
- sumit.semwal@linaro.org, christian.koenig@amd.com, axboe@kernel.dk,
- oleg@redhat.com, tglx@linutronix.de, dvyukov@google.com,
- walter-zh.wu@mediatek.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- skhan@linuxfoundation.org, gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- kernel test robot <lkp@intel.com>
-Message-ID: <YR4jqvZtu0gbaVmx@infradead.org>
-References: <20210818073824.1560124-1-desmondcheongzx@gmail.com>
- <20210818073824.1560124-9-desmondcheongzx@gmail.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38EDE6E7D1;
+ Thu, 19 Aug 2021 09:34:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="216553855"
+X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="216553855"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 02:34:32 -0700
+X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="451328514"
+Received: from jmfrench-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.251.78])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 02:34:31 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 19 Aug 2021 10:34:18 +0100
+Message-Id: <20210819093419.295636-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210818073824.1560124-9-desmondcheongzx@gmail.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH v3 8/9] kernel: export task_work_add
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/buddy: add some pretty printing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,7 +48,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 18, 2021 at 03:38:23PM +0800, Desmond Cheong Zhi Xi wrote:
-> +EXPORT_SYMBOL(task_work_add);
+Implement the debug hook for the buddy resource manager. For this we
+want to print out the status of the memory manager, including how much
+memory is still allocatable, what page sizes we have etc. This will be
+triggered when TTM is unable to fulfil an allocation request for device
+local-memory.
 
-EXPORT_SYMBOL_GPL for this kinds of functionality, please.
+v2(Thomas):
+    - s/MB/MiB
+    - s/KB/KiB
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_buddy.c             | 45 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_buddy.h             |  8 ++++
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 20 ++++++++-
+ 3 files changed, 72 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_buddy.c b/drivers/gpu/drm/i915/i915_buddy.c
+index 7b274c51cac0..6e2ad68f8f3f 100644
+--- a/drivers/gpu/drm/i915/i915_buddy.c
++++ b/drivers/gpu/drm/i915/i915_buddy.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <linux/kmemleak.h>
++#include <linux/sizes.h>
+ 
+ #include "i915_buddy.h"
+ 
+@@ -82,6 +83,7 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 size, u64 chunk_size)
+ 	size = round_down(size, chunk_size);
+ 
+ 	mm->size = size;
++	mm->avail = size;
+ 	mm->chunk_size = chunk_size;
+ 	mm->max_order = ilog2(size) - ilog2(chunk_size);
+ 
+@@ -155,6 +157,8 @@ void i915_buddy_fini(struct i915_buddy_mm *mm)
+ 		i915_block_free(mm, mm->roots[i]);
+ 	}
+ 
++	GEM_WARN_ON(mm->avail != mm->size);
++
+ 	kfree(mm->roots);
+ 	kfree(mm->free_list);
+ }
+@@ -230,6 +234,7 @@ void i915_buddy_free(struct i915_buddy_mm *mm,
+ 		     struct i915_buddy_block *block)
+ {
+ 	GEM_BUG_ON(!i915_buddy_block_is_allocated(block));
++	mm->avail += i915_buddy_block_size(mm, block);
+ 	__i915_buddy_free(mm, block);
+ }
+ 
+@@ -283,6 +288,7 @@ i915_buddy_alloc(struct i915_buddy_mm *mm, unsigned int order)
+ 	}
+ 
+ 	mark_allocated(block);
++	mm->avail -= i915_buddy_block_size(mm, block);
+ 	kmemleak_update_trace(block);
+ 	return block;
+ 
+@@ -368,6 +374,7 @@ int i915_buddy_alloc_range(struct i915_buddy_mm *mm,
+ 			}
+ 
+ 			mark_allocated(block);
++			mm->avail -= i915_buddy_block_size(mm, block);
+ 			list_add_tail(&block->link, &allocated);
+ 			continue;
+ 		}
+@@ -402,6 +409,44 @@ int i915_buddy_alloc_range(struct i915_buddy_mm *mm,
+ 	return err;
+ }
+ 
++void i915_buddy_block_print(struct i915_buddy_mm *mm,
++			    struct i915_buddy_block *block,
++			    struct drm_printer *p)
++{
++	u64 start = i915_buddy_block_offset(block);
++	u64 size = i915_buddy_block_size(mm, block);
++
++	drm_printf(p, "%#018llx-%#018llx: %llu\n", start, start + size, size);
++}
++
++void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer *p)
++{
++	int order;
++
++	drm_printf(p, "chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB\n",
++		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20);
++
++	for (order = mm->max_order; order >= 0; order--) {
++		struct i915_buddy_block *block;
++		u64 count = 0, free;
++
++		list_for_each_entry(block, &mm->free_list[order], link) {
++			GEM_BUG_ON(!i915_buddy_block_is_free(block));
++			count++;
++		}
++
++		drm_printf(p, "order-%d ", order);
++
++		free = count * (mm->chunk_size << order);
++		if (free < SZ_1M)
++			drm_printf(p, "free: %lluKiB", free >> 10);
++		else
++			drm_printf(p, "free: %lluMiB", free >> 20);
++
++		drm_printf(p, ", pages: %llu\n", count);
++	}
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftests/i915_buddy.c"
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_buddy.h b/drivers/gpu/drm/i915/i915_buddy.h
+index 3940d632f208..7077742112ac 100644
+--- a/drivers/gpu/drm/i915/i915_buddy.h
++++ b/drivers/gpu/drm/i915/i915_buddy.h
+@@ -10,6 +10,8 @@
+ #include <linux/list.h>
+ #include <linux/slab.h>
+ 
++#include <drm/drm_print.h>
++
+ struct i915_buddy_block {
+ #define I915_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+ #define I915_BUDDY_HEADER_STATE  GENMASK_ULL(11, 10)
+@@ -69,6 +71,7 @@ struct i915_buddy_mm {
+ 	/* Must be at least PAGE_SIZE */
+ 	u64 chunk_size;
+ 	u64 size;
++	u64 avail;
+ };
+ 
+ static inline u64
+@@ -129,6 +132,11 @@ void i915_buddy_free(struct i915_buddy_mm *mm, struct i915_buddy_block *block);
+ 
+ void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head *objects);
+ 
++void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer *p);
++void i915_buddy_block_print(struct i915_buddy_mm *mm,
++			    struct i915_buddy_block *block,
++			    struct drm_printer *p);
++
+ void i915_buddy_module_exit(void);
+ int i915_buddy_module_init(void);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+index 6877362f6b85..d59fbb019032 100644
+--- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
++++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+@@ -126,12 +126,30 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
+ 	kfree(bman_res);
+ }
+ 
++static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
++				     struct drm_printer *printer)
++{
++	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
++	struct i915_buddy_block *block;
++
++	mutex_lock(&bman->lock);
++	drm_printf(printer, "default_page_size: %lluKiB\n",
++		   bman->default_page_size >> 10);
++
++	i915_buddy_print(&bman->mm, printer);
++
++	drm_printf(printer, "reserved:\n");
++	list_for_each_entry(block, &bman->reserved, link)
++		i915_buddy_block_print(&bman->mm, block, printer);
++	mutex_unlock(&bman->lock);
++}
++
+ static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
+ 	.alloc = i915_ttm_buddy_man_alloc,
+ 	.free = i915_ttm_buddy_man_free,
++	.debug = i915_ttm_buddy_man_debug,
+ };
+ 
+-
+ /**
+  * i915_ttm_buddy_man_init - Setup buddy allocator based ttm manager
+  * @bdev: The ttm device
+-- 
+2.26.3
+
