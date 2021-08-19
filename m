@@ -2,43 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2915B3F1ED3
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 19:16:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F973F1EEA
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 19:19:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 717DA6E9B8;
-	Thu, 19 Aug 2021 17:16:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 880CC89623;
+	Thu, 19 Aug 2021 17:19:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0BBB6E9B7;
- Thu, 19 Aug 2021 17:16:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="196862939"
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="196862939"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 10:16:29 -0700
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAD1289623
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Aug 2021 17:19:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="216337508"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="216337508"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 10:19:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="489780999"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 19 Aug 2021 10:16:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 19 Aug 2021 20:16:26 +0300
-Date: Thu, 19 Aug 2021 20:16:26 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <YR6R6oveiFbF8xmg@intel.com>
-References: <cover.1628851334.git.jani.nikula@intel.com>
- <ab2ca82226fd954a61a5674cf0531508bd18cef7.1628851334.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="424699782"
+Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141])
+ by orsmga003.jf.intel.com with ESMTP; 19 Aug 2021 10:19:53 -0700
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ kmsmsx601.gar.corp.intel.com (172.21.219.141) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Fri, 20 Aug 2021 01:19:53 +0800
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2242.010;
+ Fri, 20 Aug 2021 01:19:52 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>, Intel Graphics Development
+ <intel-gfx@lists.freedesktop.org>
+CC: =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>
+Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5?=
+ =?utf-8?B?MTU6IERpdGNoIHRoZSBpOTE1X2dlbV93d19jdHggbG9vcCBtZW1iZXIgKHJl?=
+ =?utf-8?Q?v2)?=
+Thread-Index: AQHXlP/Y1rHDdsVRhkWERoB3/YIAAKt7D1+A
+Date: Thu, 19 Aug 2021 17:19:52 +0000
+Message-ID: <688c69878a034af69a70b9030ce01c6f@intel.com>
+References: <20210816171444.105469-1-thomas.hellstrom@linux.intel.com>
+ <162922127945.22607.17222314422938085017@emeril.freedesktop.org>
+ <CAM0jSHPVop9CsydR-7SFYxinUz0-M21WKQ3Muj017RoQA49PKw@mail.gmail.com>
+In-Reply-To: <CAM0jSHPVop9CsydR-7SFYxinUz0-M21WKQ3Muj017RoQA49PKw@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ab2ca82226fd954a61a5674cf0531508bd18cef7.1628851334.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/dp: use more of the extended
- receiver cap
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Ditch_the_i915=5Fgem=5Fww=5Fctx_loop_member_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,36 +71,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 13, 2021 at 01:43:20PM +0300, Jani Nikula wrote:
-> Extend the use of extended receiver cap at 0x2200 to cover
-> MAIN_LINK_CHANNEL_CODING_CAP in 0x2206, in case an implementation hides
-> the DP 2.0 128b/132b channel encoding cap.
-> 
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_dp_helper.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 9b2a2961fca8..9389f92cb944 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -608,7 +608,7 @@ static u8 drm_dp_downstream_port_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  static int drm_dp_read_extended_dpcd_caps(struct drm_dp_aux *aux,
->  					  u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  {
-> -	u8 dpcd_ext[6];
-> +	u8 dpcd_ext[DP_MAIN_LINK_CHANNEL_CODING + 1];
-
-Why are we even reading less of this than the normal receiver caps?
-
->  	int ret;
->  
->  	/*
-> -- 
-> 2.20.1
-
--- 
-Ville Syrjälä
-Intel
+UmUtcmVwb3J0ZWQuDQpCdWcgZmlsZWQgZm9yIHRoZSByZWdyZXNzaW9uLg0KIzQwMDkgaWd0QGtt
+c19hdG9taWNfdHJhbnNpdGlvbkBwbGFuZS10b2dnbGUtbW9kZXNldC10cmFuc2l0aW9uIC0gaW5j
+b21wbGV0ZSAtIE5vIHdhcm5pbmdzL2Vycm9ycw0KDQpMYWtzaG1pLg0KLS0tLS1PcmlnaW5hbCBN
+ZXNzYWdlLS0tLS0NCkZyb206IE1hdHRoZXcgQXVsZCA8bWF0dGhldy53aWxsaWFtLmF1bGRAZ21h
+aWwuY29tPiANClNlbnQ6IFRodXJzZGF5LCBBdWd1c3QgMTksIDIwMjEgNjo0MCBBTQ0KVG86IElu
+dGVsIEdyYXBoaWNzIERldmVsb3BtZW50IDxpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Pg0KQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNv
+bT47IFZ1ZHVtLCBMYWtzaG1pbmFyYXlhbmEgPGxha3NobWluYXJheWFuYS52dWR1bUBpbnRlbC5j
+b20+DQpTdWJqZWN0OiBSZTogW0ludGVsLWdmeF0g4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Ig
+ZHJtL2k5MTU6IERpdGNoIHRoZSBpOTE1X2dlbV93d19jdHggbG9vcCBtZW1iZXIgKHJldjIpDQoN
+Ck9uIFR1ZSwgMTcgQXVnIDIwMjEgYXQgMTg6MjgsIFBhdGNod29yaw0KPHBhdGNod29ya0BlbWVy
+aWwuZnJlZWRlc2t0b3Aub3JnPiB3cm90ZToNCj4NCj4gUGF0Y2ggRGV0YWlscw0KPiBTZXJpZXM6
+ZHJtL2k5MTU6IERpdGNoIHRoZSBpOTE1X2dlbV93d19jdHggbG9vcCBtZW1iZXIgKHJldjIpIA0K
+PiBVUkw6aHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy85MzcxMS8NCj4g
+U3RhdGU6ZmFpbHVyZQ0KPiBEZXRhaWxzOmh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
+L2RybS10aXAvUGF0Y2h3b3JrXzIwODM0L2luZGV4DQo+IC5odG1sDQo+DQo+IENJIEJ1ZyBMb2cg
+LSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzEwNDkwX2Z1bGwgLT4gUGF0Y2h3b3JrXzIwODM0X2Z1bGwN
+Cj4NCj4gU3VtbWFyeQ0KPg0KPiBGQUlMVVJFDQo+DQo+IFNlcmlvdXMgdW5rbm93biBjaGFuZ2Vz
+IGNvbWluZyB3aXRoIFBhdGNod29ya18yMDgzNF9mdWxsIGFic29sdXRlbHkgDQo+IG5lZWQgdG8g
+YmUgdmVyaWZpZWQgbWFudWFsbHkuDQo+DQo+IElmIHlvdSB0aGluayB0aGUgcmVwb3J0ZWQgY2hh
+bmdlcyBoYXZlIG5vdGhpbmcgdG8gZG8gd2l0aCB0aGUgY2hhbmdlcyANCj4gaW50cm9kdWNlZCBp
+biBQYXRjaHdvcmtfMjA4MzRfZnVsbCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIA0K
+PiBhbGxvdyB0aGVtIHRvIGRvY3VtZW50IHRoaXMgbmV3IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2ls
+bCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVzIGluIENJLg0KPg0KPiBQb3NzaWJsZSBuZXcgaXNzdWVz
+DQo+DQo+IEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGlu
+dHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzIwODM0X2Z1bGw6DQo+DQo+IElHVCBjaGFuZ2VzDQo+DQo+
+IFBvc3NpYmxlIHJlZ3Jlc3Npb25zDQo+DQo+IGlndEBrbXNfYXRvbWljX3RyYW5zaXRpb25AcGxh
+bmUtdG9nZ2xlLW1vZGVzZXQtdHJhbnNpdGlvbjoNCj4NCj4gc2hhcmQtdGdsYjogUEFTUyAtPiBJ
+TkNPTVBMRVRFDQoNCkxha3NobWksIHRoaXMgZmFpbHVyZSBpcyB1bnJlbGF0ZWQuDQo=
