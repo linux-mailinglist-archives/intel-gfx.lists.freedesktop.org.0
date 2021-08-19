@@ -1,43 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48D4C3F1F69
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 19:54:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BDA23F1F8A
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 20:07:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C075F6E8E4;
-	Thu, 19 Aug 2021 17:54:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D33CC886F0;
+	Thu, 19 Aug 2021 18:07:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE7196E8E4
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Aug 2021 17:54:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="203761652"
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="203761652"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 10:54:03 -0700
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 675B288647;
+ Thu, 19 Aug 2021 18:07:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="216346739"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="216346739"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 11:07:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="506179685"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="424132370"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 19 Aug 2021 10:54:01 -0700
+ by orsmga006.jf.intel.com with SMTP; 19 Aug 2021 11:07:27 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 19 Aug 2021 20:54:00 +0300
-Date: Thu, 19 Aug 2021 20:54:00 +0300
+ Thu, 19 Aug 2021 21:07:26 +0300
+Date: Thu, 19 Aug 2021 21:07:26 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, manasi.d.navare@intel.com
-Message-ID: <YR6auH3eLZoZqbWj@intel.com>
-References: <cover.1629310010.git.jani.nikula@intel.com>
- <5e884a5108fe9897593b6d9a6e7011ddb795958e.1629310010.git.jani.nikula@intel.com>
+To: Heiko Carstens <hca@linux.ibm.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Message-ID: <YR6d3nU1R14Eqpic@intel.com>
+References: <YRe7I67h4gMVOWuu@osiris>
+ <YRztFhtGS9RkP2Bf@osiris>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5e884a5108fe9897593b6d9a6e7011ddb795958e.1629310010.git.jani.nikula@intel.com>
+In-Reply-To: <YRztFhtGS9RkP2Bf@osiris>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 15/17] drm/i915/dg2: use 128b/132b
- transcoder DDI mode
+Subject: Re: [Intel-gfx] [BUG - BISECTED] display not detected anymore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,92 +57,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 18, 2021 at 09:10:50PM +0300, Jani Nikula wrote:
-> 128b/132b has a separate transcoder DDI mode, which also requires the
-> MST transport select to be set. Note that we'll use DP MST also for
-> single-stream 128b/132b.
+On Wed, Aug 18, 2021 at 01:20:54PM +0200, Heiko Carstens wrote:
+> On Sat, Aug 14, 2021 at 02:46:27PM +0200, Heiko Carstens wrote:
+> > Hello,
+> > 
+> > I have Fedora 33 running, and with the Fedore kernel update from 5.11
+> > series to 5.12 my external monitor was not detected anymore. Same is
+> > true with the Fedora supplied 5.13 kernel version.
+> > 
+> > So I tried with vanilla kernel 5.11 and latest git head from Linus'
+> > tree. 5.11 works while latest git head does not. Bisecting the problem
+> > points to commit 32c3d9b0f51e ("Merge tag 'drm-intel-next-2021-01-27'
+> > of git://anongit.freedesktop.org/drm/drm-intel into drm-next").
+> > 
+> > Unfortunately it is a merge commit, so it looks like conflicting
+> > changes have been made in the parent branches.
+> > 
+> > Hardware in use:
+> > 
+> > - ThinkPad X1 Yoga 4th / Carbon 7th
+> > - Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz
+> > 
+> > The Thinkpad is connected to a ThinkPad Thunderbolt 3 Dock with a
+> > Thunderbolt cable and a monitor (Eizo EV3285) is connected via
+> > Displayport to the docking station.
+> > 
+> > The monitor is detected and works without any problems (4k@60HZ)
+> > before the above mentioned merge commit. With the commit and
+> > afterwards it is not detected anymore and only the Thinkpad builtin
+> > display can be used.
+> > 
+> > Any idea what went wrong? I can provide more information, or test
+> > debug patches if wanted. Just let me know.
 > 
-> Having the FDI and 128b/132b modes share the register mode value
-> complicates things a bit.
+> So looks like I made a mistake when bisecting (it literally took me
+> two days due to the low power machine, even with a minimized kernel
+> config). Anyway, looking into it again the first bad commit is
 > 
-> Bspec: 50493
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 27 ++++++++++++++++++------
->  1 file changed, 20 insertions(+), 7 deletions(-)
+> ef79d62b5ce5 ("drm/i915: Encapsulate dbuf state handling harder")
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 8b8f5d679b72..1ee817348bf5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -505,7 +505,10 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
->  		temp |= TRANS_DDI_MODE_SELECT_FDI_OR_128B132B;
->  		temp |= (crtc_state->fdi_lanes - 1) << 1;
->  	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-> -		temp |= TRANS_DDI_MODE_SELECT_DP_MST;
-> +		if (crtc_state->port_clock > 1000000)
-> +			temp |= TRANS_DDI_MODE_SELECT_FDI_OR_128B132B;
-> +		else
-> +			temp |= TRANS_DDI_MODE_SELECT_DP_MST;
->  		temp |= DDI_PORT_WIDTH(crtc_state->lane_count);
->  
->  		if (DISPLAY_VER(dev_priv) >= 12) {
-> @@ -693,7 +696,12 @@ bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector)
->  		break;
->  
->  	case TRANS_DDI_MODE_SELECT_FDI_OR_128B132B:
-> -		ret = type == DRM_MODE_CONNECTOR_VGA;
-> +		if (IS_DG2(dev_priv))
-> +			/* 128b/132b */
-> +			ret = false;
+> With that commit the display is not detected anymore, one commit
+> before that it still works. So this one seems to be broken.
+> 
+> Ville, Stanislav, any idea how to fix this?
+> 
+> commit ef79d62b5ce53851901d6c1d21b74cbb9e27219b
+> Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Date:   Fri Jan 22 22:56:32 2021 +0200
+> 
+>     drm/i915: Encapsulate dbuf state handling harder
 
-Maybe introduce HAS_FDI() or something to avoid these platform checks
-all over?
+That has nothing to do with display detection, so very mysterious.
 
-> +		else
-> +			/* FDI */
-> +			ret = type == DRM_MODE_CONNECTOR_VGA;
->  		break;
->  
->  	default:
-> @@ -780,8 +788,9 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  		if ((tmp & port_mask) != ddi_select)
->  			continue;
->  
-> -		if ((tmp & TRANS_DDI_MODE_SELECT_MASK) ==
-> -		    TRANS_DDI_MODE_SELECT_DP_MST)
-> +		if ((tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_DP_MST ||
-> +		    (IS_DG2(dev_priv) &&
-> +		     (tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B))
->  			mst_pipe_mask |= BIT(p);
->  
->  		*pipe_mask |= BIT(p);
-> @@ -3572,9 +3581,6 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
->  		pipe_config->output_types |= BIT(INTEL_OUTPUT_HDMI);
->  		pipe_config->lane_count = 4;
->  		break;
-> -	case TRANS_DDI_MODE_SELECT_FDI_OR_128B132B:
-> -		pipe_config->output_types |= BIT(INTEL_OUTPUT_ANALOG);
-> -		break;
->  	case TRANS_DDI_MODE_SELECT_DP_SST:
->  		if (encoder->type == INTEL_OUTPUT_EDP)
->  			pipe_config->output_types |= BIT(INTEL_OUTPUT_EDP);
-> @@ -3603,6 +3609,13 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
->  			pipe_config->infoframes.enable |=
->  				intel_hdmi_infoframes_enabled(encoder, pipe_config);
->  		break;
-> +	case TRANS_DDI_MODE_SELECT_FDI_OR_128B132B:
-> +		if (!IS_DG2(dev_priv)) {
-> +			/* FDI */
-> +			pipe_config->output_types |= BIT(INTEL_OUTPUT_ANALOG);
-> +			break;
-> +		}
-> +		fallthrough; /* 128b/132b */
->  	case TRANS_DDI_MODE_SELECT_DP_MST:
->  		pipe_config->output_types |= BIT(INTEL_OUTPUT_DP_MST);
->  		pipe_config->lane_count =
-> -- 
-> 2.20.1
+Please file a bug at https://gitlab.freedesktop.org/drm/intel/issues/new
+boot with drm.debug=0xe with both good and bad kernels and attach the
+dmesg from both to the bug.
 
 -- 
 Ville Syrjälä
