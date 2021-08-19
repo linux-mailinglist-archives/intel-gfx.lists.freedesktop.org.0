@@ -1,47 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDA23F1F8A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 20:07:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1DE63F2021
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 20:48:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D33CC886F0;
-	Thu, 19 Aug 2021 18:07:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCB6C6E8FD;
+	Thu, 19 Aug 2021 18:48:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 675B288647;
- Thu, 19 Aug 2021 18:07:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="216346739"
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="216346739"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 11:07:30 -0700
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA5266E8FB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Aug 2021 18:48:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="277645053"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="277645053"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 11:48:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="424132370"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 19 Aug 2021 11:07:27 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 19 Aug 2021 21:07:26 +0300
-Date: Thu, 19 Aug 2021 21:07:26 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Heiko Carstens <hca@linux.ibm.com>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- Dave Airlie <airlied@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <YR6d3nU1R14Eqpic@intel.com>
-References: <YRe7I67h4gMVOWuu@osiris>
- <YRztFhtGS9RkP2Bf@osiris>
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="506197244"
+Received: from jhli-desk1.jf.intel.com ([10.54.74.156])
+ by orsmga001.jf.intel.com with ESMTP; 19 Aug 2021 11:48:45 -0700
+From: Juston Li <juston.li@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: seanpaul@chromium.org, anshuman.gupta@intel.com, ramalingam.c@intel.com,
+ rodrigo.vivi@intel.com, Juston Li <juston.li@intel.com>
+Date: Thu, 19 Aug 2021 11:48:32 -0700
+Message-Id: <20210819184835.1181323-1-juston.li@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YRztFhtGS9RkP2Bf@osiris>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [BUG - BISECTED] display not detected anymore
+Subject: [Intel-gfx] [PATCH v6 0/3] drm/i915/hdcp: HDCP2.2 MST dock fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,62 +46,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 18, 2021 at 01:20:54PM +0200, Heiko Carstens wrote:
-> On Sat, Aug 14, 2021 at 02:46:27PM +0200, Heiko Carstens wrote:
-> > Hello,
-> > 
-> > I have Fedora 33 running, and with the Fedore kernel update from 5.11
-> > series to 5.12 my external monitor was not detected anymore. Same is
-> > true with the Fedora supplied 5.13 kernel version.
-> > 
-> > So I tried with vanilla kernel 5.11 and latest git head from Linus'
-> > tree. 5.11 works while latest git head does not. Bisecting the problem
-> > points to commit 32c3d9b0f51e ("Merge tag 'drm-intel-next-2021-01-27'
-> > of git://anongit.freedesktop.org/drm/drm-intel into drm-next").
-> > 
-> > Unfortunately it is a merge commit, so it looks like conflicting
-> > changes have been made in the parent branches.
-> > 
-> > Hardware in use:
-> > 
-> > - ThinkPad X1 Yoga 4th / Carbon 7th
-> > - Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz
-> > 
-> > The Thinkpad is connected to a ThinkPad Thunderbolt 3 Dock with a
-> > Thunderbolt cable and a monitor (Eizo EV3285) is connected via
-> > Displayport to the docking station.
-> > 
-> > The monitor is detected and works without any problems (4k@60HZ)
-> > before the above mentioned merge commit. With the commit and
-> > afterwards it is not detected anymore and only the Thinkpad builtin
-> > display can be used.
-> > 
-> > Any idea what went wrong? I can provide more information, or test
-> > debug patches if wanted. Just let me know.
-> 
-> So looks like I made a mistake when bisecting (it literally took me
-> two days due to the low power machine, even with a minimized kernel
-> config). Anyway, looking into it again the first bad commit is
-> 
-> ef79d62b5ce5 ("drm/i915: Encapsulate dbuf state handling harder")
-> 
-> With that commit the display is not detected anymore, one commit
-> before that it still works. So this one seems to be broken.
-> 
-> Ville, Stanislav, any idea how to fix this?
-> 
-> commit ef79d62b5ce53851901d6c1d21b74cbb9e27219b
-> Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Date:   Fri Jan 22 22:56:32 2021 +0200
-> 
->     drm/i915: Encapsulate dbuf state handling harder
+Fixes to get HDCP2.2 over MST working on MST docking stations with
+certain behaviors that cause the current flow to fail.
+Tested with Dell WD-19 and Lenovo ThinkPad USB Type-C Dock Gen 2.
 
-That has nothing to do with display detection, so very mysterious.
+These fixes should make the flow more robust to handle behaviors that as
+far as I can tell are unclear in the HDCP spec:
 
-Please file a bug at https://gitlab.freedesktop.org/drm/intel/issues/new
-boot with drm.debug=0xe with both good and bad kernels and attach the
-dmesg from both to the bug.
+RxInfo contains repeater topology information needed for MST. The
+behavior on these docks is that this can only be read during
+RepeaterAuth_Send_ReceiverID_List when the RxStatus READY bit is set
+otherwise the dock will return NACK. It seems these docks treat
+reading this range at any other time as invalid when the READY bit
+isn't set possibly because it could be stale. The HDCP spec also states
+the READY bit is cleared after RxInfo is read.
+
+These fixes address this behavior by only reading RxInfo once during the
+AKE flow and reusing that data.
+
+Changes since v5:
+ - rename intel_set_stream_types() to intel_hdcp_prepare_streams()
+   (Anshuman)
+
+Changes since v4:
+ - move topology_type1_capable to intel_digital_port and rename it as
+   hdcp_mst_type1_capable (Anshuman)
+ - make a helper function intel_set_stream_types() to set stream types
+   in hdcp2_authenticate_and_encrypt() (Anshuman)
+ - break on failure to set stream types and retry instead of returning
+ - remove no longer used declaration for streams_type1_capable()
+
+Changes since v3:
+ - Don't change the offset define for Send_ReceiverID_List
+   When reading, update message offset to account for RxInfo being read
+
+Changes since v2:
+ - Remove no longer used variables in _intel_hdcp2_enable()
+
+Changes since v1:
+ - Fix subject line for 3/3
+
+Juston Li (3):
+  drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()
+  drm/i915/hdcp: read RxInfo once when reading
+    RepeaterAuth_Send_ReceiverID_List
+  drm/i915/hdcp: reuse rx_info for mst stream type1 capability check
+
+ .../drm/i915/display/intel_display_types.h    |  6 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 78 +++++--------------
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 64 ++++++++-------
+ 3 files changed, 58 insertions(+), 90 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.31.1
+
