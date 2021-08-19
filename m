@@ -1,50 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 060763F1B3E
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 16:09:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376293F1BD2
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 16:44:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5439D6E98F;
-	Thu, 19 Aug 2021 14:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47416E992;
+	Thu, 19 Aug 2021 14:43:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97A776E98F
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Aug 2021 14:09:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="238678308"
-X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="238678308"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 07:09:29 -0700
-X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="532382669"
-Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.213.105.124])
- ([10.213.105.124])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 07:09:25 -0700
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Uma Shankar <uma.shankar@intel.com>,
- Ville Syrj_l_ <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>, Manasi Navare <manasi.d.navare@intel.com>,
- Jos_ Roberto de Souza <jose.souza@intel.com>,
- Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org
-References: <20210812125845.27787-1-swati2.sharma@intel.com>
- <871r6xn5wd.fsf@intel.com> <04e2728f-a5e3-a8ee-9fdc-9affe753b59e@intel.com>
- <87wnolio9x.fsf@intel.com> <27387edf-5b67-e361-325e-0a9600a28da2@intel.com>
- <87pmudinfd.fsf@intel.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <01f79c2c-b129-0914-ae2f-4396bf59f86c@intel.com>
-Date: Thu, 19 Aug 2021 19:39:22 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20B4B6E877;
+ Thu, 19 Aug 2021 14:43:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="216565780"
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="216565780"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 07:43:49 -0700
+X-IronPort-AV: E=Sophos;i="5.84,335,1620716400"; d="scan'208";a="522455413"
+Received: from pbhadrir-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.251.211.137])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2021 07:43:46 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <87pmudinfd.fsf@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Drop redundant debug print
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210819082929.GB13928@zhen-hp.sh.intel.com>
+References: <20210727121224.GA2145868@nvidia.com>
+ <20210728175925.GU1721383@nvidia.com> <20210729072022.GB31896@lst.de>
+ <20210803094315.GF13928@zhen-hp.sh.intel.com>
+ <20210803143058.GA1721383@nvidia.com>
+ <20210804052606.GG13928@zhen-hp.sh.intel.com> <20210816173458.GA9183@lst.de>
+ <20210817010851.GW13928@zhen-hp.sh.intel.com>
+ <20210817052203.GX13928@zhen-hp.sh.intel.com>
+ <20210819082929.GB13928@zhen-hp.sh.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Christoph Hellwig <hch@lst.de>, Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "Wang, Zhi A" <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <162938422376.18233.1867777087725408939@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Thu, 19 Aug 2021 17:43:43 +0300
+Subject: Re: [Intel-gfx] refactor the i915 GVT support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,103 +65,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Zhenyu Wang (2021-08-19 11:29:29)
+> On 2021.08.17 13:22:03 +0800, Zhenyu Wang wrote:
+> > > On 2021.08.16 19:34:58 +0200, Christoph Hellwig wrote:
+> > > > Any updates on this?  I'd really hate to miss this merge window.
+> > >=20
+> > > I'm still waiting for our validation team's report on this. I'm afraid
+> > > it might be missing for next version as i915 merge window is mostly
+> > > till rc5...and for any change outside of gvt, it still needs to be
+> > > acked by i915 maintainers.
+> >=20
+> > Looks our validation team did have problem against recent i915 change.
+> > If you like to try, we have a gvt-staging branch on
+> > https://github.com/intel/gvt-linux which is generated against drm-tip
+> > with gvt changes for testing, currently it's broken.
+> >=20
+> > One issue is with i915 export that intel_context_unpin has been
+> > changed into static inline function. Another is that intel_gvt.c
+> > should be part of i915 for gvt interface instead of depending on KVMGT
+> > config.
+>=20
+> I'm working on below patch to resolve this. But I met a weird issue in
+> case when building i915 as module and also kvmgt module, it caused
+> busy wait on request_module("kvmgt") when boot, it doesn't happen if
+> building i915 into kernel. I'm not sure what could be the reason?
+>=20
+> > But the problem I see is that after moving gvt device model (gvt/*.c
+> > except kvmgt.c) into kvmgt module, we'll have issue with initial mmio
+> > state which current gvt relies on, that is in design supposed to get
+> > initial HW state before i915 driver has taken any operation.
 
+As mentioned in some past discussions, I think it would be best rely on
+golden MMIO located in /lib/firmware or elsewhere. This way we will better
+isolate the guest system from host system updates/changes.
 
-On 16-Aug-21 5:58 PM, Jani Nikula wrote:
-> On Mon, 16 Aug 2021, "Sharma, Swati2" <swati2.sharma@intel.com> wrote:
->> On 16-Aug-21 5:40 PM, Jani Nikula wrote:
->>> On Mon, 16 Aug 2021, "Sharma, Swati2" <swati2.sharma@intel.com> wrote:
->>>> On 13-Aug-21 1:16 PM, Jani Nikula wrote:
->>>>> On Thu, 12 Aug 2021, Swati Sharma <swati2.sharma@intel.com> wrote:
->>>>>> drm_dp_dpcd_read/write already has debug error message.
->>>>>> Drop redundant error messages which gives false
->>>>>> status even if correct value is read in drm_dp_dpcd_read().
->>>>>
->>>>> I guess the only problem is it gets harder to associate the preceding
->>>>> low level error messages with intel_dp_check_link_service_irq(). *shrug*
->>>>>
->>>>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->>>>>
->>>>>
->>>> Thanks Jani for the review. Can you please merge?
->>>
->>> There was another version with open review?
->>
->> Yes. https://patchwork.freedesktop.org/series/93025/#rev3
->> Should I add debug prints how Imre suggested in other IRQ func
->> to make it generic or should it be dropped from here too?
->> Quoting imre
->> "Yes, that's why I suggested to return for the '0 value read' case
->> without any message printed, but still keep the message for the case
->> when the drm_dp_dpcd_readb() fails."
->> "Ok, it's good to keep them in sync at least, so I'm ok with removing
->> the debug messages from here too."
->>
->> Please let me know what is the better approach.
-> 
-> IMO just nuke them.
+This should also hopefully allow enabling kvmgt module after i915 has
+already loaded, as the initialization would not be conditional to
+capture the MMIO.
 
-Thanks Jani N. Imre agrees on same. Can we merge now?
-https://patchwork.freedesktop.org/series/93025/#rev3
+Regards, Joonas
 
-> 
-> BR,
-> Jani
-> 
-> 
-> 
->>>
->>> BR,
->>> Jani.
->>>
->>>
->>>>
->>>>>>
->>>>>> Fixes: 9488a030ac91 ("drm/i915: Add support for enabling link status and recovery")
->>>>>> Cc: Swati Sharma <swati2.sharma@intel.com>
->>>>>> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>>>>> Cc: Uma Shankar <uma.shankar@intel.com> (v2)
->>>>>> Cc: Jani Nikula <jani.nikula@intel.com>
->>>>>> Cc: "Ville Syrj_l_" <ville.syrjala@linux.intel.com>
->>>>>> Cc: Imre Deak <imre.deak@intel.com>
->>>>>> Cc: Manasi Navare <manasi.d.navare@intel.com>
->>>>>> Cc: Uma Shankar <uma.shankar@intel.com>
->>>>>> Cc: "Jos_ Roberto de Souza" <jose.souza@intel.com>
->>>>>> Cc: Sean Paul <seanpaul@chromium.org>
->>>>>> Cc: <stable@vger.kernel.org> # v5.12+
->>>>>>
->>>>>> Link: https://patchwork.freedesktop.org/patch/msgid/20201218103723.30844-12-ankit.k.nautiyal@intel.com
->>>>>> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
->>>>>> ---
->>>>>>     drivers/gpu/drm/i915/display/intel_dp.c | 8 ++------
->>>>>>     1 file changed, 2 insertions(+), 6 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->>>>>> index c386ef8eb200..5c84f51ad41d 100644
->>>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>>>>> @@ -3871,16 +3871,12 @@ static void intel_dp_check_link_service_irq(struct intel_dp *intel_dp)
->>>>>>     		return;
->>>>>>     
->>>>>>     	if (drm_dp_dpcd_readb(&intel_dp->aux,
->>>>>> -			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val) {
->>>>>> -		drm_dbg_kms(&i915->drm, "Error in reading link service irq vector\n");
->>>>>> +			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val)
->>>>>>     		return;
->>>>>> -	}
->>>>>>     
->>>>>>     	if (drm_dp_dpcd_writeb(&intel_dp->aux,
->>>>>> -			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1) {
->>>>>> -		drm_dbg_kms(&i915->drm, "Error in writing link service irq vector\n");
->>>>>> +			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1)
->>>>>>     		return;
->>>>>> -	}
->>>>>>     
->>>>>>     	if (val & HDMI_LINK_STATUS_CHANGED)
->>>>>>     		intel_dp_handle_hdmi_link_status_change(intel_dp);
->>>>>
->>>
-> 
-
--- 
-~Swati Sharma
+> > Before
+> > we can ensure that, I think we may only remove MPT part first but
+> > still keep gvt device model as part of i915 with config. I'll try to
+> > split that out.
+>=20
+> Sorry I misread the code that as we always request kvmgt module when
+> gvt init, so it should still apply original method that this isn't a
+> problem. Our current validation result has shown no regression as well.
+>=20
+> ---8<---
+> From 58ff84572f1a0f9d79ca1d7ec0cff5ecbe78d280 Mon Sep 17 00:00:00 2001
+> From: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Date: Thu, 19 Aug 2021 16:36:33 +0800
+> Subject: [PATCH] TESTONLY:drm/i915/gvt: potential fix for refactor against
+>  current tip
+>=20
+> ---
+>  drivers/gpu/drm/i915/Makefile           | 4 +++-
+>  drivers/gpu/drm/i915/gt/intel_context.c | 5 +++++
+>  drivers/gpu/drm/i915/gt/intel_context.h | 3 ++-
+>  drivers/gpu/drm/i915/i915_trace.h       | 1 +
+>  4 files changed, 11 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index c4f953837f72..2248574428a1 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -296,7 +296,9 @@ i915-$(CONFIG_DRM_I915_SELFTEST) +=3D \
+> =20
+>  # virtual gpu code
+>  i915-y +=3D i915_vgpu.o
+> -i915-$(CONFIG_DRM_I915_GVT_KVMGT) +=3D intel_gvt.o
+> +ifneq ($(CONFIG_DRM_I915_GVT_KVMGT),)
+> +i915-y +=3D intel_gvt.o
+> +endif
+> =20
+>  kvmgt-y +=3D gvt/kvmgt.o \
+>         gvt/gvt.o \
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i9=
+15/gt/intel_context.c
+> index 745e84c72c90..20e7522fed84 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -328,6 +328,11 @@ void __intel_context_do_unpin(struct intel_context *=
+ce, int sub)
+>         intel_context_put(ce);
+>  }
+> =20
+> +void intel_context_unpin(struct intel_context *ce)
+> +{
+> +       _intel_context_unpin(ce);
+> +}
+> +
+>  static void __intel_context_retire(struct i915_active *active)
+>  {
+>         struct intel_context *ce =3D container_of(active, typeof(*ce), ac=
+tive);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i9=
+15/gt/intel_context.h
+> index c41098950746..f942cbf6300a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -131,7 +131,7 @@ static inline void intel_context_sched_disable_unpin(=
+struct intel_context *ce)
+>         __intel_context_do_unpin(ce, 2);
+>  }
+> =20
+> -static inline void intel_context_unpin(struct intel_context *ce)
+> +static inline void _intel_context_unpin(struct intel_context *ce)
+>  {
+>         if (!ce->ops->sched_disable) {
+>                 __intel_context_do_unpin(ce, 1);
+> @@ -150,6 +150,7 @@ static inline void intel_context_unpin(struct intel_c=
+ontext *ce)
+>                 }
+>         }
+>  }
+> +void intel_context_unpin(struct intel_context *ce);
+> =20
+>  void intel_context_enter_engine(struct intel_context *ce);
+>  void intel_context_exit_engine(struct intel_context *ce);
+> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i91=
+5_trace.h
+> index 806ad688274b..2c6a8bcef7c1 100644
+> --- a/drivers/gpu/drm/i915/i915_trace.h
+> +++ b/drivers/gpu/drm/i915/i915_trace.h
+> @@ -17,6 +17,7 @@
+> =20
+>  #undef TRACE_SYSTEM
+>  #define TRACE_SYSTEM i915
+> +#undef TRACE_INCLUDE_FILE
+>  #define TRACE_INCLUDE_FILE i915_trace
+> =20
+>  /* watermark/fifo updates */
+> --=20
+> 2.32.0
+> ---8<---
+>=20
+>=20
