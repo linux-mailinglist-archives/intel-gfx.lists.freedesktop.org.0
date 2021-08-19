@@ -2,38 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C363F143A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 09:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA4673F1446
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Aug 2021 09:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 489AD6E7D1;
-	Thu, 19 Aug 2021 07:15:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D186E4B5;
+	Thu, 19 Aug 2021 07:18:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 698A06E4B5;
- Thu, 19 Aug 2021 07:15:09 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10080"; a="280236763"
-X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="280236763"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 00:15:08 -0700
-X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; d="scan'208";a="451288475"
-Received: from mdziuba-mobl.ger.corp.intel.com (HELO [10.249.254.196])
- ([10.249.254.196])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2021 00:15:07 -0700
-Message-ID: <e409a691305229d7c4b1b08a568e809d669a3e5c.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Date: Thu, 19 Aug 2021 09:15:04 +0200
-In-Reply-To: <20210818145850.225387-1-matthew.auld@intel.com>
-References: <20210818145850.225387-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BB1786E4B5;
+ Thu, 19 Aug 2021 07:18:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B4714AA915;
+ Thu, 19 Aug 2021 07:18:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/buddy: add some pretty printing
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 19 Aug 2021 07:18:50 -0000
+Message-ID: <162935753070.11705.2064548910473048455@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210819061639.21051-1-matthew.brost@intel.com>
+In-Reply-To: <20210819061639.21051-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Clean_up_GuC_CI_failures=2C_simplify_locking=2C_and_kernel_?=
+ =?utf-8?q?DOC_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,214 +42,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2021-08-18 at 15:58 +0100, Matthew Auld wrote:
-> Implement the debug hook for the buddy resource manager. For this we
-> want to print out the status of the memory manager, including how much
-> memory is still allocatable, what page sizes we have etc. This will be
-> triggered when TTM is unable to fulfil an allocation request for device
-> local-memory.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_buddy.c             | 45 +++++++++++++++++++
->  drivers/gpu/drm/i915/i915_buddy.h             |  8 ++++
->  drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 20 ++++++++-
->  3 files changed, 72 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_buddy.c
-> b/drivers/gpu/drm/i915/i915_buddy.c
-> index 7b274c51cac0..240e881d9eb0 100644
-> --- a/drivers/gpu/drm/i915/i915_buddy.c
-> +++ b/drivers/gpu/drm/i915/i915_buddy.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <linux/kmemleak.h>
-> +#include <linux/sizes.h>
->  
->  #include "i915_buddy.h"
->  
-> @@ -82,6 +83,7 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64
-> size, u64 chunk_size)
->         size = round_down(size, chunk_size);
->  
->         mm->size = size;
-> +       mm->avail = size;
->         mm->chunk_size = chunk_size;
->         mm->max_order = ilog2(size) - ilog2(chunk_size);
->  
-> @@ -155,6 +157,8 @@ void i915_buddy_fini(struct i915_buddy_mm *mm)
->                 i915_block_free(mm, mm->roots[i]);
->         }
->  
-> +       GEM_WARN_ON(mm->avail != mm->size);
-> +
->         kfree(mm->roots);
->         kfree(mm->free_list);
->  }
-> @@ -230,6 +234,7 @@ void i915_buddy_free(struct i915_buddy_mm *mm,
->                      struct i915_buddy_block *block)
->  {
->         GEM_BUG_ON(!i915_buddy_block_is_allocated(block));
-> +       mm->avail += i915_buddy_block_size(mm, block);
->         __i915_buddy_free(mm, block);
->  }
->  
-> @@ -283,6 +288,7 @@ i915_buddy_alloc(struct i915_buddy_mm *mm, unsigned
-> int order)
->         }
->  
->         mark_allocated(block);
-> +       mm->avail -= i915_buddy_block_size(mm, block);
->         kmemleak_update_trace(block);
->         return block;
->  
-> @@ -368,6 +374,7 @@ int i915_buddy_alloc_range(struct i915_buddy_mm
-> *mm,
->                         }
->  
->                         mark_allocated(block);
-> +                       mm->avail -= i915_buddy_block_size(mm, block);
->                         list_add_tail(&block->link, &allocated);
->                         continue;
->                 }
-> @@ -402,6 +409,44 @@ int i915_buddy_alloc_range(struct i915_buddy_mm
-> *mm,
->         return err;
->  }
->  
-> +void i915_buddy_block_print(struct i915_buddy_mm *mm,
-> +                           struct i915_buddy_block *block,
-> +                           struct drm_printer *p)
-> +{
-> +       u64 start = i915_buddy_block_offset(block);
-> +       u64 size = i915_buddy_block_size(mm, block);
-> +
-> +       drm_printf(p, "%#018llx-%#018llx: %llu\n", start, start + size,
-> size);
-> +}
-> +
-> +void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer *p)
-> +{
-> +       int order;
-> +
-> +       drm_printf(p, "chunk_size: %lluKB, total: %lluMB, free:
-> %lluMB\n",
-> +                  mm->chunk_size >> 10, mm->size >> 20, mm->avail >>
-> 20);
-> +
-> +       for (order = mm->max_order; order >= 0; order--) {
-> +               struct i915_buddy_block *block;
-> +               u64 count = 0, free;
-> +
-> +               list_for_each_entry(block, &mm->free_list[order], link)
-> {
-> +                       GEM_BUG_ON(!i915_buddy_block_is_free(block));
-> +                       count++;
-> +               }
-> +
-> +               drm_printf(p, "order-%d ", order);
-> +
-> +               free = count * (mm->chunk_size << order);
-> +               if (free < SZ_1M)
-> +                       drm_printf(p, "free: %lluKB", free >> 10);
-> +               else
-> +                       drm_printf(p, "free: %lluMB", free >> 20);
+== Series Details ==
 
-Use KiB and MiB instead of KB and MB? Also below.
+Series: Clean up GuC CI failures, simplify locking, and kernel DOC (rev3)
+URL   : https://patchwork.freedesktop.org/series/93704/
+State : warning
 
+== Summary ==
 
-> +
-> +               drm_printf(p, ", pages: %llu\n", count);
-> +       }
-> +}
-> +
->  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->  #include "selftests/i915_buddy.c"
->  #endif
-> diff --git a/drivers/gpu/drm/i915/i915_buddy.h
-> b/drivers/gpu/drm/i915/i915_buddy.h
-> index 3940d632f208..7077742112ac 100644
-> --- a/drivers/gpu/drm/i915/i915_buddy.h
-> +++ b/drivers/gpu/drm/i915/i915_buddy.h
-> @@ -10,6 +10,8 @@
->  #include <linux/list.h>
->  #include <linux/slab.h>
->  
-> +#include <drm/drm_print.h>
-> +
->  struct i915_buddy_block {
->  #define I915_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
->  #define I915_BUDDY_HEADER_STATE  GENMASK_ULL(11, 10)
-> @@ -69,6 +71,7 @@ struct i915_buddy_mm {
->         /* Must be at least PAGE_SIZE */
->         u64 chunk_size;
->         u64 size;
-> +       u64 avail;
->  };
->  
->  static inline u64
-> @@ -129,6 +132,11 @@ void i915_buddy_free(struct i915_buddy_mm *mm,
-> struct i915_buddy_block *block);
->  
->  void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head
-> *objects);
->  
-> +void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer
-> *p);
-> +void i915_buddy_block_print(struct i915_buddy_mm *mm,
-> +                           struct i915_buddy_block *block,
-> +                           struct drm_printer *p);
-> +
->  void i915_buddy_module_exit(void);
->  int i915_buddy_module_init(void);
->  
-> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> index 6877362f6b85..95ab786a1fe4 100644
-> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> @@ -126,12 +126,30 @@ static void i915_ttm_buddy_man_free(struct
-> ttm_resource_manager *man,
->         kfree(bman_res);
->  }
->  
-> +static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
-> +                                    struct drm_printer *printer)
-> +{
-> +       struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
-> +       struct i915_buddy_block *block;
-> +
-> +       mutex_lock(&bman->lock);
-> +       drm_printf(printer, "default_page_size: %lluKB\n",
-> +                  bman->default_page_size >> 10);
-> +
-> +       i915_buddy_print(&bman->mm, printer);
-> +
-> +       drm_printf(printer, "reserved:\n");
-> +       list_for_each_entry(block, &bman->reserved, link)
-> +               i915_buddy_block_print(&bman->mm, block, printer);
-> +       mutex_unlock(&bman->lock);
-> +}
-> +
->  static const struct ttm_resource_manager_func
-> i915_ttm_buddy_manager_func = {
->         .alloc = i915_ttm_buddy_man_alloc,
->         .free = i915_ttm_buddy_man_free,
-> +       .debug = i915_ttm_buddy_man_debug,
->  };
->  
-> -
->  /**
->   * i915_ttm_buddy_man_init - Setup buddy allocator based ttm manager
->   * @bdev: The ttm device
+$ dim checkpatch origin/drm-tip
+cdd86549dd1d drm/i915/guc: Fix blocked context accounting
+de712a42478e drm/i915/guc: Fix outstanding G2H accounting
+75fb55198651 drm/i915/guc: Unwind context requests in reverse order
+ef46dfb56828 drm/i915/guc: Don't drop ce->guc_active.lock when unwinding context
+c2e59d2d1528 drm/i915/guc: Process all G2H message at once in work queue
+54c8cf84e527 drm/i915/guc: Workaround reset G2H is received after schedule done G2H
+-:7: WARNING:TYPO_SPELLING: 'cancelation' may be misspelled - perhaps 'cancellation'?
+#7: 
+If the context is reset as a result of the request cancelation the
+                                                   ^^^^^^^^^^^
 
-Otherwise LGTM,
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+-:10: WARNING:TYPO_SPELLING: 'cancelation' may be misspelled - perhaps 'cancellation'?
+#10: 
+waiting request cancelation code which resubmits the context. This races
+                ^^^^^^^^^^^
 
+-:12: WARNING:TYPO_SPELLING: 'cancelation' may be misspelled - perhaps 'cancellation'?
+#12: 
+in this case it really should be a NOP as request cancelation code owns
+                                                  ^^^^^^^^^^^
+
+-:58: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#58: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:856:
++	if (likely(!context_pending_enable(ce))) {
+[...]
++	} else {
+[...]
+
+total: 0 errors, 4 warnings, 0 checks, 73 lines checked
+7cc5849adb41 Revert "drm/i915/gt: Propagate change in error status to children on unhold"
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+References: 3761baae908a (Revert "drm/i915: Propagate errors on awaiting already signaled fences")
+
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 3761baae908a ("Revert "drm/i915: Propagate errors on awaiting already signaled fences"")'
+#17: 
+References: 3761baae908a (Revert "drm/i915: Propagate errors on awaiting already signaled fences")
+
+total: 1 errors, 1 warnings, 0 checks, 10 lines checked
+b13cbbf2cc00 drm/i915/selftests: Add a cancel request selftest that triggers a reset
+72e6f5ea745f drm/i915/guc: Kick tasklet after queuing a request
+-:8: WARNING:TYPO_SPELLING: 'inteface' may be misspelled - perhaps 'interface'?
+#8: 
+Fixes: 3a4cdf1982f0 ("drm/i915/guc: Implement GuC context operations for new inteface")
+                                                                             ^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+be92b59039f4 drm/i915/guc: Don't enable scheduling on a banned context, guc_id invalid, not registered
+c328800aa348 drm/i915/selftests: Fix memory corruption in live_lrc_isolation
+24f6154536c7 drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H
+-:104: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#104: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 232 lines checked
+95c83c9a3e05 drm/i915/guc: Take context ref when cancelling request
+fe52b71dec8a drm/i915/guc: Don't touch guc_state.sched_state without a lock
+23d73efe3398 drm/i915/guc: Reset LRC descriptor if register returns -ENODEV
+f739dd54a7ee drm/i915: Allocate error capture in nowait context
+8081613c600f drm/i915/guc: Flush G2H work queue during reset
+f7a536406581 drm/i915/guc: Release submit fence from an irq_work
+1debca6b1bd8 drm/i915/guc: Move guc_blocked fence to struct guc_state
+c8b2f80e4529 drm/i915/guc: Rework and simplify locking
+3bf483be619f drm/i915/guc: Proper xarray usage for contexts_lookup
+2fd6d9d96159 drm/i915/guc: Drop pin count check trick between sched_disable and re-pin
+9b10873534b2 drm/i915/guc: Move GuC priority fields in context under guc_active
+0e84142a2b56 drm/i915/guc: Move fields protected by guc->contexts_lock into sub structure
+a0ff703dedb1 drm/i915/guc: Drop guc_active move everything into guc_state
+16fdda30af6b drm/i915/guc: Add GuC kernel doc
+516f3fcdd0dd drm/i915/guc: Drop static inline functions intel_guc_submission.c
 
 
