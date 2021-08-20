@@ -1,42 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8243F27CA
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Aug 2021 09:45:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E423F27EF
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Aug 2021 09:54:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 052766EA33;
-	Fri, 20 Aug 2021 07:45:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA2D6EA36;
+	Fri, 20 Aug 2021 07:54:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 844F86EA33
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 07:45:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="280461606"
-X-IronPort-AV: E=Sophos;i="5.84,336,1620716400"; d="scan'208";a="280461606"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2021 00:45:14 -0700
-X-IronPort-AV: E=Sophos;i="5.84,336,1620716400"; d="scan'208";a="523170078"
-Received: from schuenem-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.43.187])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2021 00:45:12 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-In-Reply-To: <YR6F3EclDR6Yq+l0@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1629281426.git.jani.nikula@intel.com>
- <8c9bb23d92878deb1ecc75427ec6648bd3505816.1629281426.git.jani.nikula@intel.com>
- <YR6F3EclDR6Yq+l0@intel.com>
-Date: Fri, 20 Aug 2021 10:45:10 +0300
-Message-ID: <87eeaoh855.fsf@intel.com>
+Received: from smtp-relay-canonical-0.canonical.com
+ (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 301FB6EA35;
+ Fri, 20 Aug 2021 07:54:12 +0000 (UTC)
+Received: from localhost.localdomain (1.general.khfeng.us.vpn [10.172.68.174])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 47A893F043; 
+ Fri, 20 Aug 2021 07:54:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1629446049;
+ bh=ywi09jLJioHV77jNrsti8DgLUfgW57ub1lXIO6DgnXE=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
+ b=uqV5aOG2xgqbTjj2P+I0fnBSCRlwHzf6pdJ9jmvbO2naQtjMxX5E+X8R3J96oKVOq
+ TM5WL3mkXHKfJZ12J4oR35UXfpN942KnL19Lt8Zh3LzLL5ErytLv1LxSwCkRUmloDj
+ 1fmYVmTHMQ+CGM6eU21V50hrnoirR0h4ZJLlXkCuknUig/rficalZ7tgE4jgDwfLAX
+ UV0+XlxxZznOT38DPK2phgMA00N99ASE9CEZ8GGiaXWADS2iqAxwjAuvnR5kAmG1b0
+ 1tu2AsgjaORkqJA/nc8HyBDzQBTQyuISBKENxnmQ927CUYfYqsiBuqve+5y2VLvPV4
+ x3IsY/qBJawHg==
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com
+Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Imre Deak <imre.deak@intel.com>, Uma Shankar <uma.shankar@intel.com>,
+ Manasi Navare <manasi.d.navare@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Fri, 20 Aug 2021 15:52:59 +0800
+Message-Id: <20210820075301.693099-1-kai.heng.feng@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/fdi: move
- intel_fdi_link_freq() to intel_fdi.[ch]
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/dp: Use max params for panels < eDP
+ 1.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,103 +64,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 Aug 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Aug 18, 2021 at 01:11:09PM +0300, Jani Nikula wrote:
->> There's no performance reason to have it as static inline; move it out
->> of intel_display_types.h to reduce clutter and dependency on i915_drv.h.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_types.h | 9 ---------
->>  drivers/gpu/drm/i915/display/intel_fdi.c           | 9 +++++++++
->>  drivers/gpu/drm/i915/display/intel_fdi.h           | 4 ++++
->>  3 files changed, 13 insertions(+), 9 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/driver=
-s/gpu/drm/i915/display/intel_display_types.h
->> index 7b5d7b1ae501..c2725d07b930 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -2040,15 +2040,6 @@ static inline u32 i9xx_dpll_compute_fp(struct dpl=
-l *dpll)
->>  	return dpll->n << 16 | dpll->m1 << 8 | dpll->m2;
->>  }
->>=20=20
->> -static inline u32 intel_fdi_link_freq(struct drm_i915_private *dev_priv,
->> -				      const struct intel_crtc_state *pipe_config)
->> -{
->> -	if (HAS_DDI(dev_priv))
->> -		return pipe_config->port_clock; /* SPLL */
->> -	else
->> -		return dev_priv->fdi_pll_freq;
->> -}
->> -
->>  static inline bool is_ccs_modifier(u64 modifier)
->>  {
->>  	return modifier =3D=3D I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
->> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/=
-i915/display/intel_fdi.c
->> index e10b9cd8e86e..970a57369b05 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
->> @@ -95,6 +95,15 @@ static int ilk_check_fdi_lanes(struct drm_device *dev=
-, enum pipe pipe,
->>  	}
->>  }
->>=20=20
->> +u32 intel_fdi_link_freq(struct drm_i915_private *i915,
->
-> Could just change it to 'int' while at it.
+Users reported that after commit 2bbd6dba84d4 ("drm/i915: Try to use
+fast+narrow link on eDP again and fall back to the old max strategy on
+failure"), the screen starts to have wobbly effect.
 
-Left this for a future change to avoid the CI run now.
+Commit a5c936add6a2 ("drm/i915/dp: Use slow and wide link training for
+everything") doesn't help either, that means the affected eDP 1.2 panels
+only work with max params.
 
->
-> Series is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+So use max params for panels < eDP 1.4 as Windows does to solve the
+issue.
 
-Thanks, pushed.
+v3:
+ - Do the eDP rev check in intel_edp_init_dpcd()
 
-BR,
-Jani.
+v2:
+ - Check eDP 1.4 instead of DPCD 1.1 to apply max params
 
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3714
+Fixes: 2bbd6dba84d4 ("drm/i915: Try to use fast+narrow link on eDP again and fall back to the old max strategy on failure")
+Fixes: a5c936add6a2 ("drm/i915/dp: Use slow and wide link training for everything")
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
->
->> +			const struct intel_crtc_state *pipe_config)
->> +{
->> +	if (HAS_DDI(i915))
->> +		return pipe_config->port_clock; /* SPLL */
->> +	else
->> +		return i915->fdi_pll_freq;
->> +}
->> +
->>  int ilk_fdi_compute_config(struct intel_crtc *crtc,
->>  			   struct intel_crtc_state *pipe_config)
->>  {
->> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/=
-i915/display/intel_fdi.h
->> index af01d2c173a8..fd63a6a53fca 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fdi.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
->> @@ -6,12 +6,16 @@
->>  #ifndef _INTEL_FDI_H_
->>  #define _INTEL_FDI_H_
->>=20=20
->> +#include <linux/types.h>
->> +
->>  struct drm_i915_private;
->>  struct intel_crtc;
->>  struct intel_crtc_state;
->>  struct intel_encoder;
->>=20=20
->>  #define I915_DISPLAY_CONFIG_RETRY 1
->> +u32 intel_fdi_link_freq(struct drm_i915_private *i915,
->> +			const struct intel_crtc_state *pipe_config);
->>  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
->>  			   struct intel_crtc_state *pipe_config);
->>  void intel_fdi_normal_train(struct intel_crtc *crtc);
->> --=20
->> 2.20.1
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 75d4ebc669411..e0dbd35ae7bc0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2445,11 +2445,14 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
+ 	 */
+ 	if (drm_dp_dpcd_read(&intel_dp->aux, DP_EDP_DPCD_REV,
+ 			     intel_dp->edp_dpcd, sizeof(intel_dp->edp_dpcd)) ==
+-			     sizeof(intel_dp->edp_dpcd))
++			     sizeof(intel_dp->edp_dpcd)) {
+ 		drm_dbg_kms(&dev_priv->drm, "eDP DPCD: %*ph\n",
+ 			    (int)sizeof(intel_dp->edp_dpcd),
+ 			    intel_dp->edp_dpcd);
+ 
++		intel_dp->use_max_params = intel_dp->edp_dpcd[0] < DP_EDP_14;
++	}
++
+ 	/*
+ 	 * This has to be called after intel_dp->edp_dpcd is filled, PSR checks
+ 	 * for SET_POWER_CAPABLE bit in intel_dp->edp_dpcd[1]
+-- 
+2.32.0
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
