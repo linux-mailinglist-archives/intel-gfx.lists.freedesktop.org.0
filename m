@@ -2,66 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A1D3F32A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Aug 2021 19:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D773F33DE
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Aug 2021 20:32:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B0006EAD9;
-	Fri, 20 Aug 2021 17:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 042DD6EAE3;
+	Fri, 20 Aug 2021 18:32:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
- [IPv6:2607:f8b0:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6C1A6EAD9
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 17:59:16 +0000 (UTC)
-Received: by mail-ot1-x329.google.com with SMTP id
- o16-20020a9d2210000000b0051b1e56c98fso830293ota.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 10:59:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=JDVBm6I3BGiyh1jRlkhoYh+FsqkkxaN1c28nTbNSDwg=;
- b=ZXHcKsIocdCSFEyh9sekUEKug+uqiIwWwWeR9s6fGn1ZbX00Pl89xZPJLBJwVONrqz
- /J3ihpQMkWymoUonjagJVXybD+5IFlFhtJA20GPYjx/p4OaQl1uWbK7QxjQBhMEgjf+J
- nXMoc7g3roT9LoXIjz7BD1ILlznMsg2lIrxYg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=JDVBm6I3BGiyh1jRlkhoYh+FsqkkxaN1c28nTbNSDwg=;
- b=h9PFZKV9FKD/MMWZ9n60yn+LNa5HqNa3wZigfs7bofrMQjO+Bx6UigfDjcyn8+fvAB
- ScoVPY4FxzaTXp6J+taVegbwdxjs2LV+q+r+/+8WUvTIEQMiFdMIOUW49kXqstXXlc5W
- 0N8vNQg3G0OFBoooMQ0onDHuJ6kIrwqjHgiJwCSy1gXnrA/Bf1ykmbS+Rr9errUMVH4k
- UWB61Ual5QF80zAO8Hr2LXJ1OL9on2Uanh3DxDcjYbvpTbKe+j+FrnW08VIvSEau6TXB
- Or+iSl9XRjeKBTu5PAxC7zcCoG5JfCSExmIAk+NOwjmnJasoMmlCWgw3w6vZGyjM6IfN
- deBw==
-X-Gm-Message-State: AOAM531plQUfn5HSlDBKn2zMM1pe6g6LUvy81KU1hN5jiGTXsaq0MGom
- Li5TQ0t8Gh87ZDkB3ClMCj+W8+a1FzAklGXFqFsq4A==
-X-Google-Smtp-Source: ABdhPJwA2TZYt+QOa28T9iKQO6RUwPa3j7wUiqLsNv4CQMBkyqfpBq7/9ymCAD8FQuQYE2/bvgCDZM7lDlM1iHhbCxs=
-X-Received: by 2002:a9d:4785:: with SMTP id b5mr18021176otf.188.1629482356066; 
- Fri, 20 Aug 2021 10:59:16 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2626EAE1;
+ Fri, 20 Aug 2021 18:32:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10082"; a="216826163"
+X-IronPort-AV: E=Sophos;i="5.84,338,1620716400"; d="scan'208";a="216826163"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2021 11:32:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,338,1620716400"; d="scan'208";a="424512109"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by orsmga006.jf.intel.com with ESMTP; 20 Aug 2021 11:32:02 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Fri, 20 Aug 2021 11:32:01 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Fri, 20 Aug 2021 11:32:01 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10 via Frontend Transport; Fri, 20 Aug 2021 11:32:01 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.10; Fri, 20 Aug 2021 11:32:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KO5AMDRW9NQJfkxv2HAVUauIEhxY3IacVXpcSMsHprfKLvKQsVrURK1UR1VrJ+etAqAXBfbCudeZhMRaI1AXWM3txFZK1e5uLaOwU65ODth2epulY7s0jxEcpI0epYRNCWcnj7tf7p7Nusj5NtUWRg0A4G99019w/2vpNxc4qPxxo4RPWzrwnAeYnvip8+ort67io24Y/yBLrCulNjlG6tzy3jcSV8b7U/uKwf+c4bFiS64GPI3lPmaV0iRqzv3YSldB6qJ1MAjT61TNXM1MyqMv5YVHU3m3SZiJrArDgTfB4kJcuV5Gjxf3glm7oqp8M7lLhFgdGL51hcka/w9jaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TFYpZ0Jj7cItC/AdwkmjoVHT2G6omvgYraXAk9uf/So=;
+ b=avB/q69BS4hHMN1e35jrYDN4UYZkShWtCWmStzzNbC9w1L7kk1kmy2kHlz4fZaAz4e0p2uI3RWATGYfnrMcVQZZBgPK2ciKTA9vxe+erxpggouM+cM9daC7zMvM7HqkRNfW54A6GnFLUgjqMx+N5d5MJCP4cE+DR1E0PYj5+kpEVGHPUsixnW5vBC6hdC7+ejURlf4FIFfwHXucZN7Us6xIGtOaR9HftHwBInsJD7lO5y7LteRBUMhjkaYaVMRtx3Uzz8BAEx/H4Nho/9h0XdFR71Lm8gKJeEn24Kw27XhdrZg6RQOdr4tlZXTIPiKtv50Y6X9CH9LGmTWn0Zp0mtg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TFYpZ0Jj7cItC/AdwkmjoVHT2G6omvgYraXAk9uf/So=;
+ b=xKOHGnsE1xMOPYUN9uRhEborMkxAm/Ga/r3B/fIHBAWANVTGLobL/srsRf/lp0V6jH0fiTwD547zAqbllwYktgAQhF3RRxLMnYu13HUEKiuCjBqsa09MnDVuNOa0PQtSPOEtvQZtmhTfQmWHbJW4DsI27qF1VJ5S5RIfSvvZ7sI=
+Authentication-Results: ffwll.ch; dkim=none (message not signed)
+ header.d=none;ffwll.ch; dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5475.namprd11.prod.outlook.com (2603:10b6:610:d6::21)
+ by CH2PR11MB4469.namprd11.prod.outlook.com (2603:10b6:610:43::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.19; Fri, 20 Aug
+ 2021 18:31:59 +0000
+Received: from CH0PR11MB5475.namprd11.prod.outlook.com
+ ([fe80::202c:3305:3dc6:3b3d]) by CH0PR11MB5475.namprd11.prod.outlook.com
+ ([fe80::202c:3305:3dc6:3b3d%3]) with mapi id 15.20.4436.019; Fri, 20 Aug 2021
+ 18:31:59 +0000
+To: Matthew Brost <matthew.brost@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+CC: <daniel.vetter@ffwll.ch>
+References: <20210819061639.21051-1-matthew.brost@intel.com>
+ <20210819061639.21051-10-matthew.brost@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <668d3590-04d6-277e-97b9-93784e6f7878@intel.com>
+Date: Fri, 20 Aug 2021 11:31:56 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
+In-Reply-To: <20210819061639.21051-10-matthew.brost@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-ClientProxiedBy: SJ0PR03CA0107.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::22) To CH0PR11MB5475.namprd11.prod.outlook.com
+ (2603:10b6:610:d6::21)
 MIME-Version: 1.0
-References: <20210820154932.296628-1-daniel.vetter@ffwll.ch>
- <YR/fjM7fDbMHZh5b@intel.com>
-In-Reply-To: <YR/fjM7fDbMHZh5b@intel.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 20 Aug 2021 19:59:04 +0200
-Message-ID: <CAKMK7uG_dU1kZa21JDWa4ZnCGc1A2bdUU1H-b2ZF8E0Hmob-eA@mail.gmail.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, 
- Jon Bloomfield <jon.bloomfield@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Matthew Auld <matthew.auld@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>, 
- Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Actually delete gpu reloc
- selftests
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.65] (99.72.232.53) by
+ SJ0PR03CA0107.namprd03.prod.outlook.com (2603:10b6:a03:333::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
+ Transport; Fri, 20 Aug 2021 18:31:58 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0ab6e7c5-8911-472f-9807-08d96408cbeb
+X-MS-TrafficTypeDiagnostic: CH2PR11MB4469:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH2PR11MB4469E44DF4E05C8FA235698FF4C19@CH2PR11MB4469.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HuKkTkw1vLbRlYw+L1X33BRljhffXuatgS8Kn4PkAGyC49B2VjVTvzLMgujW8jAfQVVYEtDtx9bpGDFQMib8CmcqIMd7VjVbDH6bonDewZXknpsUZ0Fksx0uNaS/5cbS7ucC5P0jUx7U0jf5QATx2+eUjDmGxWL35jB7xF73vbtLpcjQ4xS6r5WvOZl8vH2gk3rEJrPyS2Gx8NUiR/yoe5jj5dUUPAJYMLxchWiha1TVNicnezBa9RYioXWOV+N0nNGEHC1Rj6IYH5YziCyx6qyCFAGUGv2uRMnJ0I7pOCANCSCu5XXGxSjseOfus91g3Mlzcu2M1YJhzancs9APxzaDoC9/TKdMvxVkH12TbNgem3JEc3ywPq/WX3UzMRyDB8MPdExroERb+xSt2DXGDZGPMedeYaCfybgdp3u0tr5yiw8vN5xa/iSBPAQDl68VXMlKAVDKl7SCy+qVoM8JHCaaEoc9kEYyCStOteHc1Try2DW+TiUXpavegoo4D7Hhy3MIKOdhpvIVpph5itus0+zPVf5FrAxWC9Uf68f86NLS2RRdkj4uHNhAnpTa9H+BdWEC1BGFOh9AUfy1SwsZXLmBQU1N8kKjBAOgLvKLCY4v84gYJNgIr/YfvA+n9P0qQXE/j5azgDXJl2ojxqI2ALwUstPdZQKQcEff95uleTJc5s4jDZAp+LDLoTzDYvDvSQEjOHodEQPcF1DpJIlvnzEG0MTWqbFnZg1VK09iuA4qyEjcNuVaCO/RHShPwy0X
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5475.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(39860400002)(346002)(136003)(376002)(396003)(38100700002)(478600001)(36756003)(26005)(5660300002)(4326008)(2906002)(53546011)(8936002)(86362001)(2616005)(31696002)(16576012)(66476007)(316002)(66556008)(956004)(31686004)(6486002)(186003)(66946007)(83380400001)(8676002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TTUzbkxMQm54SVJSdkdEeU9iOUlHaldzN2Jabm9peHZiTzFNckdpWVBKaG51?=
+ =?utf-8?B?akh2VGYxbDJKZUVGTE9ubHNWTHgxdm1Vbk5icEl2eStoektlYkRNL2hONmc2?=
+ =?utf-8?B?OG44dHpzcndlMnAvM05rZWh1MUF0NGJCWS9rb1dhdWgxd09mallZY25INEJj?=
+ =?utf-8?B?dFdXeng3VUtIL1JKSnptVFFBandZLzg3ZzJXR3dJUU1HelNTMUFQRXVRMFA3?=
+ =?utf-8?B?WUxFdjhQMFo0RVU2TFJ3bTJPNW9qUThtSG9HUTRBaENwMExaekZWcmdGck85?=
+ =?utf-8?B?ZEFaOGNBOHAzZ3haSEF5V3IxNHlOK3Bub3dRQThhK2szRGR2ZjhUeUZNTnlw?=
+ =?utf-8?B?OEpCcjU0bkpvKzl4RUhoTnZGaFZaNExTNExIWDVvbXBVZmg3d3BqSFo5MWtu?=
+ =?utf-8?B?VDlZSE9RSGhnSGJyM0czRkhHbFpUMHNMOU5PYjErb01lZCtYRWN2RFBrOEZz?=
+ =?utf-8?B?Q2JlVnVyc1hkT1ZMSTBFNVQ3azd6bnVPV2YxQW9zaVF6Z01yUHJZbVkxMUU2?=
+ =?utf-8?B?cFdReHFSb2N2OGNzbkk0YVNwQ3FQalhPUEkwK3N2bHVkaW15ZkRaaTVjNFpU?=
+ =?utf-8?B?bXBaNzJtcURlY3FiYWN1YmJ3dzlJZXVCbUFiTmxxQ2I5dkVYMm9NTmNHWjBp?=
+ =?utf-8?B?T3FiSURPVTBWU3lGY1ZRK3EvMFRTZTFmZmFoWGJ2dWY5djNZM2hyRnlra1B4?=
+ =?utf-8?B?cExlbklkRGkvZGlBZVIrdjUyZi93Mk1IbXFpUmlKUjhMemxTTWs1eGdCY01h?=
+ =?utf-8?B?dzEvaERtQldqYTJMUGJQYS9BSGJpaWNiWS96L2l3WlBGalMwVDRPQmxEeXJj?=
+ =?utf-8?B?TUFtQ0ZMUG1QNlliWlQ0K01iWmMyMHgrSm1xcnl4dEsvQTVINFpUcE12bzk2?=
+ =?utf-8?B?ZzVoTXgrZ1Nja2hHckp5RlVRWmVaN2lvYmFzMjBHbkVRVWl5MnVidE1UdjR1?=
+ =?utf-8?B?OVd0bWZMZkYzdFJaYVBvN1hnRHI1MlJDdjgrTjAreFJsYnU4bmZ6SEllR0xr?=
+ =?utf-8?B?d3JJeC9QVEVuUjVVY0dpVFlzbitOSFR0KzFPMnNOQ3JpeE1OeFhGOGhuK1o5?=
+ =?utf-8?B?TGFic2g1dTZDdWRZeEJVV05ENVIyMTFCYUdhVkNONkRhdnpYd0M5eEROMG9i?=
+ =?utf-8?B?ZXNRUG04NDVTQjJ1MFhCdVowaUhPV1VhLzYra3g1Q3QyRENrcUFZYlkxQmxT?=
+ =?utf-8?B?UHZ0THR4WFhkWFZQQURwdjlQQVcxYlNHTGl6ekwwYTZPN01FVmZST2xPZEMy?=
+ =?utf-8?B?dXFsbnMzeFhhNE9yd1NCejhZRHVObWtybzA5dGZlUHByVy8vZFZ4N0NVOVdn?=
+ =?utf-8?B?emVxanJON2l0NXZRUUtUVXIrL2tzS2VMZkMwSE5NRmVxbGtZTEZ5K09IcUJV?=
+ =?utf-8?B?d1RkWDJxN2xnL0VYVFVaMXJWdk01MHNjaStkemhrdms2UnUxMCtUQk82ekE5?=
+ =?utf-8?B?QXBZT2VNdnVVZnQ0Mk1pUDU5NmpWQ015RXRwV0IxcHR3R2xmbXY2ZEM1dGNY?=
+ =?utf-8?B?MjU5Yndva3ZpZzFaUWNOaUxHc2UxNmJPazNKK282VlowN09TOWdUeERVemgv?=
+ =?utf-8?B?NURzaXlQV0xoa3g4c3ZNVUgxb2xwZzZhVFNuTDluT1VVaXpwMjhFZkM3YmJi?=
+ =?utf-8?B?U0t4ODcxZVZNM1d2WFExZmZpQTVBL3JTMFlDcnFsTWIrbTB4UEhQTHZ1Q1VB?=
+ =?utf-8?B?Njd3eW5ORFhWa0cvcmhMeVEyMDRjdXhqdG9zWU9LcVBDNElSQ0JZdnJMWTFJ?=
+ =?utf-8?Q?Y7qeuP8lFB/HI+owxvfQFYBn6qVL8W5AJmRHC7j?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ab6e7c5-8911-472f-9807-08d96408cbeb
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5475.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2021 18:31:59.5616 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hN2HUCGEK+kiGf0eRK+15ZsItSxTr/EriN1SpOKFF1ISa0Pptcxu4muVB1gyoWNevTblnknrShEgGUdBcHcE95t6Yknug+RXKXTUhJbnZZ4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB4469
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 09/27] drm/i915/guc: Kick tasklet after
+ queuing a request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,265 +160,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 20, 2021 at 7:00 PM Rodrigo Vivi <rodrigo.vivi@intel.com> wrote=
-:
+
+
+On 8/18/2021 11:16 PM, Matthew Brost wrote:
+> Kick tasklet after queuing a request so it submitted in a timely manner.
 >
-> On Fri, Aug 20, 2021 at 05:49:32PM +0200, Daniel Vetter wrote:
-> > In
-> >
-> > commit 8e02cceb1f1f4f254625e5338dd997ff61ab40d7
-> > Author: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Date:   Tue Aug 3 14:48:33 2021 +0200
-> >
-> >     drm/i915: delete gpu reloc code
+> Fixes: 3a4cdf1982f0 ("drm/i915/guc: Implement GuC context operations for new inteface")
+
+Is this actually a bug or just a performance issue? in the latter case I 
+don't think we need a fixes tag.
+
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 1 +
+>   1 file changed, 1 insertion(+)
 >
-> it would be better with dim cite format...
->
-> do we need the Fixes: tag?
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 8f7a11e65ef5..d61f906105ef 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1050,6 +1050,7 @@ static inline void queue_request(struct i915_sched_engine *sched_engine,
+>   	list_add_tail(&rq->sched.link,
+>   		      i915_sched_lookup_priolist(sched_engine, prio));
+>   	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> +	tasklet_hi_schedule(&sched_engine->tasklet);
 
-I did delete the selftest, I just forgot to delete the code. So no
-Fixes: imo. I'll bikeshed the commit citation.
+the caller of queue_request() already has a tasklet_hi_schedule in 
+another branch of the if/else statement. Maybe we can have the caller 
+own the kick to keep it in one place? Not a blocker.
 
-> anyway:
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Thanks for the review, will merge when CI approves too, one never knows.
--Daniel
+Daniele
 
->
->
-> >
-> > I deleted the gpu relocation code and the selftest include and
-> > enabling, but accidentally forgot about the selftest source code.
-> >
-> > Fix this oversight.
-> >
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> > Cc: Dave Airlie <airlied@redhat.com>
-> > Cc: Jason Ekstrand <jason@jlekstrand.net>
-> > ---
-> >  .../i915/gem/selftests/i915_gem_execbuffer.c  | 190 ------------------
-> >  1 file changed, 190 deletions(-)
-> >  delete mode 100644 drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuf=
-fer.c
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b=
-/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-> > deleted file mode 100644
-> > index 16162fc2782d..000000000000
-> > --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-> > +++ /dev/null
-> > @@ -1,190 +0,0 @@
-> > -// SPDX-License-Identifier: MIT
-> > -/*
-> > - * Copyright =C2=A9 2020 Intel Corporation
-> > - */
-> > -
-> > -#include "i915_selftest.h"
-> > -
-> > -#include "gt/intel_engine_pm.h"
-> > -#include "selftests/igt_flush_test.h"
-> > -
-> > -static u64 read_reloc(const u32 *map, int x, const u64 mask)
-> > -{
-> > -     u64 reloc;
-> > -
-> > -     memcpy(&reloc, &map[x], sizeof(reloc));
-> > -     return reloc & mask;
-> > -}
-> > -
-> > -static int __igt_gpu_reloc(struct i915_execbuffer *eb,
-> > -                        struct drm_i915_gem_object *obj)
-> > -{
-> > -     const unsigned int offsets[] =3D { 8, 3, 0 };
-> > -     const u64 mask =3D
-> > -             GENMASK_ULL(eb->reloc_cache.use_64bit_reloc ? 63 : 31, 0)=
-;
-> > -     const u32 *map =3D page_mask_bits(obj->mm.mapping);
-> > -     struct i915_request *rq;
-> > -     struct i915_vma *vma;
-> > -     int err;
-> > -     int i;
-> > -
-> > -     vma =3D i915_vma_instance(obj, eb->context->vm, NULL);
-> > -     if (IS_ERR(vma))
-> > -             return PTR_ERR(vma);
-> > -
-> > -     err =3D i915_gem_object_lock(obj, &eb->ww);
-> > -     if (err)
-> > -             return err;
-> > -
-> > -     err =3D i915_vma_pin_ww(vma, &eb->ww, 0, 0, PIN_USER | PIN_HIGH);
-> > -     if (err)
-> > -             return err;
-> > -
-> > -     /* 8-Byte aligned */
-> > -     err =3D __reloc_entry_gpu(eb, vma, offsets[0] * sizeof(u32), 0);
-> > -     if (err <=3D 0)
-> > -             goto reloc_err;
-> > -
-> > -     /* !8-Byte aligned */
-> > -     err =3D __reloc_entry_gpu(eb, vma, offsets[1] * sizeof(u32), 1);
-> > -     if (err <=3D 0)
-> > -             goto reloc_err;
-> > -
-> > -     /* Skip to the end of the cmd page */
-> > -     i =3D PAGE_SIZE / sizeof(u32) - 1;
-> > -     i -=3D eb->reloc_cache.rq_size;
-> > -     memset32(eb->reloc_cache.rq_cmd + eb->reloc_cache.rq_size,
-> > -              MI_NOOP, i);
-> > -     eb->reloc_cache.rq_size +=3D i;
-> > -
-> > -     /* Force next batch */
-> > -     err =3D __reloc_entry_gpu(eb, vma, offsets[2] * sizeof(u32), 2);
-> > -     if (err <=3D 0)
-> > -             goto reloc_err;
-> > -
-> > -     GEM_BUG_ON(!eb->reloc_cache.rq);
-> > -     rq =3D i915_request_get(eb->reloc_cache.rq);
-> > -     reloc_gpu_flush(eb, &eb->reloc_cache);
-> > -     GEM_BUG_ON(eb->reloc_cache.rq);
-> > -
-> > -     err =3D i915_gem_object_wait(obj, I915_WAIT_INTERRUPTIBLE, HZ / 2=
-);
-> > -     if (err) {
-> > -             intel_gt_set_wedged(eb->engine->gt);
-> > -             goto put_rq;
-> > -     }
-> > -
-> > -     if (!i915_request_completed(rq)) {
-> > -             pr_err("%s: did not wait for relocations!\n", eb->engine-=
->name);
-> > -             err =3D -EINVAL;
-> > -             goto put_rq;
-> > -     }
-> > -
-> > -     for (i =3D 0; i < ARRAY_SIZE(offsets); i++) {
-> > -             u64 reloc =3D read_reloc(map, offsets[i], mask);
-> > -
-> > -             if (reloc !=3D i) {
-> > -                     pr_err("%s[%d]: map[%d] %llx !=3D %x\n",
-> > -                            eb->engine->name, i, offsets[i], reloc, i)=
-;
-> > -                     err =3D -EINVAL;
-> > -             }
-> > -     }
-> > -     if (err)
-> > -             igt_hexdump(map, 4096);
-> > -
-> > -put_rq:
-> > -     i915_request_put(rq);
-> > -unpin_vma:
-> > -     i915_vma_unpin(vma);
-> > -     return err;
-> > -
-> > -reloc_err:
-> > -     if (!err)
-> > -             err =3D -EIO;
-> > -     goto unpin_vma;
-> > -}
-> > -
-> > -static int igt_gpu_reloc(void *arg)
-> > -{
-> > -     struct i915_execbuffer eb;
-> > -     struct drm_i915_gem_object *scratch;
-> > -     int err =3D 0;
-> > -     u32 *map;
-> > -
-> > -     eb.i915 =3D arg;
-> > -
-> > -     scratch =3D i915_gem_object_create_internal(eb.i915, 4096);
-> > -     if (IS_ERR(scratch))
-> > -             return PTR_ERR(scratch);
-> > -
-> > -     map =3D i915_gem_object_pin_map_unlocked(scratch, I915_MAP_WC);
-> > -     if (IS_ERR(map)) {
-> > -             err =3D PTR_ERR(map);
-> > -             goto err_scratch;
-> > -     }
-> > -
-> > -     intel_gt_pm_get(&eb.i915->gt);
-> > -
-> > -     for_each_uabi_engine(eb.engine, eb.i915) {
-> > -             if (intel_engine_requires_cmd_parser(eb.engine) ||
-> > -                 intel_engine_using_cmd_parser(eb.engine))
-> > -                     continue;
-> > -
-> > -             reloc_cache_init(&eb.reloc_cache, eb.i915);
-> > -             memset(map, POISON_INUSE, 4096);
-> > -
-> > -             intel_engine_pm_get(eb.engine);
-> > -             eb.context =3D intel_context_create(eb.engine);
-> > -             if (IS_ERR(eb.context)) {
-> > -                     err =3D PTR_ERR(eb.context);
-> > -                     goto err_pm;
-> > -             }
-> > -             eb.reloc_pool =3D NULL;
-> > -             eb.reloc_context =3D NULL;
-> > -
-> > -             i915_gem_ww_ctx_init(&eb.ww, false);
-> > -retry:
-> > -             err =3D intel_context_pin_ww(eb.context, &eb.ww);
-> > -             if (!err) {
-> > -                     err =3D __igt_gpu_reloc(&eb, scratch);
-> > -
-> > -                     intel_context_unpin(eb.context);
-> > -             }
-> > -             if (err =3D=3D -EDEADLK) {
-> > -                     err =3D i915_gem_ww_ctx_backoff(&eb.ww);
-> > -                     if (!err)
-> > -                             goto retry;
-> > -             }
-> > -             i915_gem_ww_ctx_fini(&eb.ww);
-> > -
-> > -             if (eb.reloc_pool)
-> > -                     intel_gt_buffer_pool_put(eb.reloc_pool);
-> > -             if (eb.reloc_context)
-> > -                     intel_context_put(eb.reloc_context);
-> > -
-> > -             intel_context_put(eb.context);
-> > -err_pm:
-> > -             intel_engine_pm_put(eb.engine);
-> > -             if (err)
-> > -                     break;
-> > -     }
-> > -
-> > -     if (igt_flush_test(eb.i915))
-> > -             err =3D -EIO;
-> > -
-> > -     intel_gt_pm_put(&eb.i915->gt);
-> > -err_scratch:
-> > -     i915_gem_object_put(scratch);
-> > -     return err;
-> > -}
-> > -
-> > -int i915_gem_execbuffer_live_selftests(struct drm_i915_private *i915)
-> > -{
-> > -     static const struct i915_subtest tests[] =3D {
-> > -             SUBTEST(igt_gpu_reloc),
-> > -     };
-> > -
-> > -     if (intel_gt_is_wedged(&i915->gt))
-> > -             return 0;
-> > -
-> > -     return i915_live_subtests(tests, i915);
-> > -}
-> > --
-> > 2.32.0
-> >
+>   }
+>   
+>   static int guc_bypass_tasklet_submit(struct intel_guc *guc,
 
-
-
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
