@@ -2,40 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD053F288E
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Aug 2021 10:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D8493F29C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Aug 2021 12:03:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D857A6EA54;
-	Fri, 20 Aug 2021 08:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9066088EE3;
+	Fri, 20 Aug 2021 10:03:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB476EA39
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 08:35:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10081"; a="196318727"
-X-IronPort-AV: E=Sophos;i="5.84,336,1620716400"; d="scan'208";a="196318727"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2021 01:35:52 -0700
-X-IronPort-AV: E=Sophos;i="5.84,336,1620716400"; d="scan'208";a="523182921"
-Received: from jphilipp-mobl2.ger.corp.intel.com (HELO [10.252.58.211])
- ([10.252.58.211])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2021 01:35:51 -0700
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20210819210349.95103-1-lucas.demarchi@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <23c01761-bfd3-ff98-b549-f0bf02953e15@linux.intel.com>
-Date: Fri, 20 Aug 2021 10:35:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.12.0
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
+ [IPv6:2607:f8b0:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5076888EE3;
+ Fri, 20 Aug 2021 10:03:29 +0000 (UTC)
+Received: by mail-pl1-x630.google.com with SMTP id j2so1253807pll.1;
+ Fri, 20 Aug 2021 03:03:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=bUKxomWQZ5QxIYFDsb+klHkUJT56TTMlo6NJBPgwDTw=;
+ b=XQIzz6ucLOTQp2DzVHYZkL6sgdA78JVrYg5osuKw9srS4VYeK+4UG5Ocu2rjdGl72K
+ hozy0pXafCIL3DzoAGv1/Ynts0t1R95UT4eRGw8efB1QbFsTMQZcZzNzVsRTrIG8Jjsx
+ T8XGwXtDc6W1lq8IAGR67sSlxVxx5EVaKUDjyTWi9PWFB78PE35CBfisPfwjL5ZGOqIz
+ I3jWnfUS86KLf9vU9Kc1KZ2TAw1LjhjPGp1branPwgmPnlTWP17YOW4FMxOb6Une8Jga
+ qPm9GimVgYFG94rKXQtAimPIneqpt2CG69j+fuCneS+OnoCnAwijNwLS1/8pxSTsjEtr
+ pP6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=bUKxomWQZ5QxIYFDsb+klHkUJT56TTMlo6NJBPgwDTw=;
+ b=MzmmU3ZfNYpiY41mSnbYY4yuAHZBTTADa1neVLzn3uycOuEku1rsSWTYavZ+kSct5D
+ WqJG0NHiics5q0jT7WHMITZmU8AmFyoe2wu1+JphCyKwqscQosw43GFLWb5XFlxiW2wS
+ GuaecNEYOKPYQ94/kabCQgUSQK2CL3sZDbUf/BvxM1aNjJks8IX2G3mWF6Vcxwdf44aj
+ JZ0Sb5a53krkNKK6k3yiVZVWMbexw3DVWStPoaqthlBoupzpzj5bd5GFF61IJ6FTjIOv
+ e8EpvT5Hddgk3LGwdOh5sNb6STSvvdV2e8lDG5hXV+v3MaBFcXKaciOBNn0OgT65cr/o
+ x58g==
+X-Gm-Message-State: AOAM5309HNIrKzztt+QZXc5W5RtMXRcqI3p1enCtKMpQnC4aMLtCqWQH
+ xLkeu2St44tvG7AprCkllRk=
+X-Google-Smtp-Source: ABdhPJyVUBpUuyiz1RaVzTh1c7byc8ylmZizw2oW+a4dWyMXQewAPos+qDRZ0N0on3UDesmH/00SKQ==
+X-Received: by 2002:a17:90a:d791:: with SMTP id
+ z17mr3743696pju.203.1629453808880; 
+ Fri, 20 Aug 2021 03:03:28 -0700 (PDT)
+Received: from localhost.localdomain ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id i8sm6503876pfo.117.2021.08.20.03.03.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Aug 2021 03:03:28 -0700 (PDT)
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
+ christian.koenig@amd.com
+Cc: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+Date: Fri, 20 Aug 2021 18:02:46 +0800
+Message-Id: <20210820100251.448346-1-desmondcheongzx@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210819210349.95103-1-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg1: remove __maybe_unused leftover
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/5] drm: update locking for modesetting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,31 +76,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 19-08-2021 om 23:03 schreef Lucas De Marchi:
-> This was added in commit 05e265841f7e ("drm/i915/dg1: add initial DG-1
-> definitions") so we could continue to add support for DG1 without
-> risk to expose a broken UAPI. Now that we added DG1 to the PCI ID list
-> i915 may bind to, remove the leftover.
->
-> Fixes: d5ef86b38e4c ("drm/i915: Add pci ids and uapi for DG1")
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_pci.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 93ccdc6bbd03..96cfd6427cec 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -894,7 +894,7 @@ static const struct intel_device_info rkl_info = {
->  	.has_snoop = 1, \
->  	.is_dgfx = 1
->  
-> -static const struct intel_device_info dg1_info __maybe_unused = {
-> +static const struct intel_device_info dg1_info = {
->  	GEN12_FEATURES,
->  	DGFX_FEATURES,
->  	.graphics_rel = 10,
+Hi,
 
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Thanks for all the helpful feedback on the previous version.
+
+Taking all the suggestions together, this series now converts
+drm_device.master_mutex into master_rwsem, and also attempts to remove
+drm_file.master_lookup_lock. There might still be lock inversions
+lurking, so the output from Intel-gfx CI should be interesting to see.
+
+Overall, this series makes the following changes:
+
+- Patch 1: Fix a potential null ptr dereference in drm_master_release
+
+- Patch 2: Convert master_mutex into rwsem (avoids creating a new lock)
+
+- Patch 3: Update global mutex locking in the ioctl handler (avoids
+deadlock when grabbing read lock on master_rwsem in drm_ioctl_kernel)
+
+- Patch 4: Plug races with drm modesetting rights
+
+- Patch 5: Replace master_lookup_lock with master_rwsem by untangling
+remaining lock hierarchy inversions
+
+v3 -> v4 (suggested by Daniel Vetter):
+- Drop a patch that added an unnecessary master_lookup_lock in
+drm_master_release (previously patch 2)
+- Drop a patch that addressed a non-existent race in
+drm_is_current_master_locked (previously patch 3)
+- Remove fixes for non-existent null ptr dereferences (previous patch 4)
+- Protect drm_master.magic_map,unique{_len} with master_rwsem instead of
+master_lookup_lock (dropped previous patch 5)
+- Drop the patch that moved master_lookup_lock into struct drm_device
+(previously patch 1)
+- Drop a patch to export task_work_add (previously patch 8)
+- Revert the check for the global mutex in the ioctl handler to use
+drm_core_check_feature instead of drm_dev_needs_global_mutex
+- Push down master_rwsem locking for selected ioctls to avoid lock
+hierarchy inversions, and to allow us to hold write locks on
+master_rwsem instead of flushing readers
+- Remove master_lookup_lock by replacing it with master_rwsem
+
+v2 -> v3:
+- Unexport drm_master_flush, as suggested by Daniel Vetter.
+- Merge master_mutex and master_rwsem, as suggested by Daniel Vetter.
+- Export task_work_add, reported by kernel test robot.
+- Make master_flush static, reported by kernel test robot.
+- Move master_lookup_lock into struct drm_device.
+- Add a missing lock on master_lookup_lock in drm_master_release.
+- Fix a potential race in drm_is_current_master_locked.
+- Fix potential null ptr dereferences in drm_{auth, ioctl}.
+- Protect magic_map,unique{_len} with  master_lookup_lock.
+- Convert master_mutex into a rwsem.
+- Update global mutex locking in the ioctl handler.
+
+v1 -> v2 (suggested by Daniel Vetter):
+- Address an additional race when drm_open runs.
+- Switch from SRCU to rwsem to synchronise readers and writers.
+- Implement drm_master_flush with task_work so that flushes can be
+queued to run before returning to userspace without creating a new
+DRM_MASTER_FLUSH ioctl flag.
+
+Best wishes,
+Desmond
+
+Desmond Cheong Zhi Xi (5):
+  drm: fix null ptr dereference in drm_master_release
+  drm: convert drm_device.master_mutex into a rwsem
+  drm: lock drm_global_mutex earlier in the ioctl handler
+  drm: avoid races with modesetting rights
+  drm: remove drm_file.master_lookup_lock
+
+ drivers/gpu/drm/drm_auth.c        | 54 ++++++++++++------------
+ drivers/gpu/drm/drm_debugfs.c     |  4 +-
+ drivers/gpu/drm/drm_drv.c         |  3 +-
+ drivers/gpu/drm/drm_file.c        |  7 ++--
+ drivers/gpu/drm/drm_internal.h    |  1 +
+ drivers/gpu/drm/drm_ioctl.c       | 48 ++++++++++++---------
+ drivers/gpu/drm/drm_lease.c       | 69 ++++++++++++++-----------------
+ drivers/gpu/drm/drm_mode_object.c | 14 +++++--
+ include/drm/drm_auth.h            |  6 +--
+ include/drm/drm_device.h          | 15 +++++--
+ include/drm/drm_file.h            | 17 +++-----
+ include/drm/drm_lease.h           |  2 +-
+ 12 files changed, 125 insertions(+), 115 deletions(-)
+
+-- 
+2.25.1
 
