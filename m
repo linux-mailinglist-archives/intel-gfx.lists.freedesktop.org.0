@@ -2,45 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC563F3ADF
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Aug 2021 16:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 630E83F3C34
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Aug 2021 21:02:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C15046EB7C;
-	Sat, 21 Aug 2021 14:05:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1906EB87;
+	Sat, 21 Aug 2021 19:02:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF4E6EB7C;
- Sat, 21 Aug 2021 14:05:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10082"; a="196478763"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F4136EB83;
+ Sat, 21 Aug 2021 19:02:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10083"; a="239051800"
 X-IronPort-AV: E=Sophos;i="5.84,340,1620716400"; 
- d="gz'50?scan'50,208,50";a="196478763"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2021 07:05:12 -0700
+ d="gz'50?scan'50,208,50";a="239051800"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2021 12:02:18 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.84,340,1620716400"; 
- d="gz'50?scan'50,208,50";a="453688349"
+ d="gz'50?scan'50,208,50";a="524850677"
 Received: from lkp-server01.sh.intel.com (HELO d053b881505b) ([10.239.97.150])
- by fmsmga007.fm.intel.com with ESMTP; 21 Aug 2021 07:05:09 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 21 Aug 2021 12:02:14 -0700
 Received: from kbuild by d053b881505b with local (Exim 4.92)
  (envelope-from <lkp@intel.com>)
- id 1mHRcS-000Vq6-8G; Sat, 21 Aug 2021 14:05:08 +0000
-Date: Sat, 21 Aug 2021 22:04:11 +0800
+ id 1mHWFx-000WAG-V1; Sat, 21 Aug 2021 19:02:13 +0000
+Date: Sun, 22 Aug 2021 03:01:36 +0800
 From: kernel test robot <lkp@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Cc: clang-built-linux@googlegroups.com, kbuild-all@lists.01.org,
  daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
-Message-ID: <202108212132.fYWbEn5Q-lkp@intel.com>
-References: <20210820224446.30620-16-matthew.brost@intel.com>
+Message-ID: <202108220215.HZFxmSb5-lkp@intel.com>
+References: <20210820224446.30620-25-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="Nq2Wo0NMKNjxTN9z"
+Content-Type: multipart/mixed; boundary="WIyZ46R2i8wDzkSu"
 Content-Disposition: inline
-In-Reply-To: <20210820224446.30620-16-matthew.brost@intel.com>
+In-Reply-To: <20210820224446.30620-25-matthew.brost@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 15/27] drm/i915/guc: Implement multi-lrc
- submission
+Subject: Re: [Intel-gfx] [PATCH 24/27] drm/i915: Multi-BB execbuf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,7 +56,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---Nq2Wo0NMKNjxTN9z
+--WIyZ46R2i8wDzkSu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
@@ -66,8 +65,8 @@ Hi Matthew,
 Thank you for the patch! Perhaps something to improve:
 
 [auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip next-20210820]
-[cannot apply to drm-exynos/exynos-drm-next tegra-drm/drm/tegra/for-next linus/master drm/drm-next v5.14-rc6]
+[also build test WARNING on drm-tip/drm-tip drm-exynos/exynos-drm-next next-20210820]
+[cannot apply to tegra-drm/drm/tegra/for-next linus/master drm/drm-next v5.14-rc6]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch]
@@ -79,10 +78,10 @@ compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 9e9d70591e7
 reproduce (this is a W=1 build):
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
         chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/55917f6ee7575ffb033e6b19a9eb38c3210e14db
+        # https://github.com/0day-ci/linux/commit/7e7ae2111b2855ac3d63aa5c806c6936daaa6bbc
         git remote add linux-review https://github.com/0day-ci/linux
         git fetch --no-tags linux-review Matthew-Brost/Parallel-submission-aka-multi-bb-execbuf/20210821-065348
-        git checkout 55917f6ee7575ffb033e6b19a9eb38c3210e14db
+        git checkout 7e7ae2111b2855ac3d63aa5c806c6936daaa6bbc
         # save the attached .config to linux build tree
         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=x86_64 
 
@@ -91,40 +90,99 @@ Reported-by: kernel test robot <lkp@intel.com>
 
 All warnings (new ones prefixed by >>):
 
->> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1467:6: warning: no previous prototype for function 'need_tasklet' [-Wmissing-prototypes]
-   bool need_tasklet(struct intel_guc *guc, struct i915_request *rq)
-        ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1467:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   bool need_tasklet(struct intel_guc *guc, struct i915_request *rq)
-   ^
-   static 
+>> drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:608:20: warning: comparison of array 'eb->batch_len' equal to a null pointer is always false [-Wtautological-pointer-compare]
+                   if (unlikely(eb->batch_len == 0)) { /* impossible! */
+                                ~~~~^~~~~~~~~    ~
+   include/linux/compiler.h:78:42: note: expanded from macro 'unlikely'
+   # define unlikely(x)    __builtin_expect(!!(x), 0)
+                                               ^
    1 warning generated.
 
 
-vim +/need_tasklet +1467 drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+vim +608 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 
-  1466	
-> 1467	bool need_tasklet(struct intel_guc *guc, struct i915_request *rq)
-  1468	{
-  1469		struct i915_sched_engine *sched_engine = rq->engine->sched_engine;
-  1470		struct intel_context *ce = request_to_scheduling_context(rq);
-  1471	
-  1472		return submission_disabled(guc) || guc->stalled_request ||
-  1473			!i915_sched_engine_is_empty(sched_engine) ||
-  1474			!lrc_desc_registered(guc, ce->guc_id.id);
-  1475	}
-  1476	
+   548	
+   549	static int
+   550	eb_add_vma(struct i915_execbuffer *eb,
+   551		   unsigned int *current_batch,
+   552		   unsigned int i,
+   553		   struct i915_vma *vma)
+   554	{
+   555		struct drm_i915_private *i915 = eb->i915;
+   556		struct drm_i915_gem_exec_object2 *entry = &eb->exec[i];
+   557		struct eb_vma *ev = &eb->vma[i];
+   558	
+   559		ev->vma = vma;
+   560		ev->exec = entry;
+   561		ev->flags = entry->flags;
+   562	
+   563		if (eb->lut_size > 0) {
+   564			ev->handle = entry->handle;
+   565			hlist_add_head(&ev->node,
+   566				       &eb->buckets[hash_32(entry->handle,
+   567							    eb->lut_size)]);
+   568		}
+   569	
+   570		if (entry->relocation_count)
+   571			list_add_tail(&ev->reloc_link, &eb->relocs);
+   572	
+   573		/*
+   574		 * SNA is doing fancy tricks with compressing batch buffers, which leads
+   575		 * to negative relocation deltas. Usually that works out ok since the
+   576		 * relocate address is still positive, except when the batch is placed
+   577		 * very low in the GTT. Ensure this doesn't happen.
+   578		 *
+   579		 * Note that actual hangs have only been observed on gen7, but for
+   580		 * paranoia do it everywhere.
+   581		 */
+   582		if (is_batch_buffer(eb, i)) {
+   583			if (entry->relocation_count &&
+   584			    !(ev->flags & EXEC_OBJECT_PINNED))
+   585				ev->flags |= __EXEC_OBJECT_NEEDS_BIAS;
+   586			if (eb->reloc_cache.has_fence)
+   587				ev->flags |= EXEC_OBJECT_NEEDS_FENCE;
+   588	
+   589			eb->batches[*current_batch] = ev;
+   590	
+   591			if (unlikely(ev->flags & EXEC_OBJECT_WRITE)) {
+   592				drm_dbg(&i915->drm,
+   593					"Attempting to use self-modifying batch buffer\n");
+   594				return -EINVAL;
+   595			}
+   596	
+   597			if (range_overflows_t(u64,
+   598					      eb->batch_start_offset,
+   599					      eb->args->batch_len,
+   600					      ev->vma->size)) {
+   601				drm_dbg(&i915->drm, "Attempting to use out-of-bounds batch\n");
+   602				return -EINVAL;
+   603			}
+   604	
+   605			if (eb->args->batch_len == 0)
+   606				eb->batch_len[*current_batch] = ev->vma->size -
+   607					eb->batch_start_offset;
+ > 608			if (unlikely(eb->batch_len == 0)) { /* impossible! */
+   609				drm_dbg(&i915->drm, "Invalid batch length\n");
+   610				return -EINVAL;
+   611			}
+   612	
+   613			++*current_batch;
+   614		}
+   615	
+   616		return 0;
+   617	}
+   618	
 
 ---
 0-DAY CI Kernel Test Service, Intel Corporation
 https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
---Nq2Wo0NMKNjxTN9z
+--WIyZ46R2i8wDzkSu
 Content-Type: application/gzip
 Content-Disposition: attachment; filename=".config.gz"
 Content-Transfer-Encoding: base64
 
-H4sICI3aIGEAAy5jb25maWcAlDxbd9s2k+/fr9BpX9qHtr7FSXaPHyASlBARBAOAsuwXHsWW
+H4sICEwfIWEAAy5jb25maWcAlDxbd9s2k+/fr9BpX9qHtr7FSXaPHyASlBARBAOAsuwXHsWW
 U28dOyvLbfLvdwYASQAE3WwfUnNmcJ87Bvr5Pz/PyMvh6cv2cH+zfXj4Pvu8e9ztt4fd7ezu
 /mH337NczCqhZzRn+ncgLu8fX7798e3deXt+Nnvz+/HZ70e/7W9OZ6vd/nH3MMueHu/uP79A
 B/dPj//5+T+ZqAq2aLOsXVOpmKhaTTf64qebh+3j59nfu/0z0M2wl9+PZr98vj/81x9/wL9f
@@ -861,4 +919,4 @@ qkB1oY1dAtu25l2pAO0dFxUBxOCGSzjcvOIr1KJC1kI5QNZLMgFKYuYVJC+h6aAJ6III/aCd
 H+xilkmVgbIRbE3r3M/KFUdbLeUS5lnEoHleg+UteageIWjagokujoCKwADIkPylEqHWpkKM
 fyaNoCsjVOCuZQUiT4FTLN9S3rKkrnFJx0UkmIfVUqneLRLJpWl7iuMU8H+XvP8ucHkCAA==
 
---Nq2Wo0NMKNjxTN9z--
+--WIyZ46R2i8wDzkSu--
