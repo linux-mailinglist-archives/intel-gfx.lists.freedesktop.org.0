@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7629B3F3A42
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Aug 2021 12:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9D93F3A45
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Aug 2021 12:43:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D65526EB66;
-	Sat, 21 Aug 2021 10:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 828196EB69;
+	Sat, 21 Aug 2021 10:42:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F30416EB66
- for <intel-gfx@lists.freedesktop.org>; Sat, 21 Aug 2021 10:42:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10082"; a="302477523"
-X-IronPort-AV: E=Sophos;i="5.84,340,1620716400"; d="scan'208";a="302477523"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2021 03:42:54 -0700
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A2626EB67
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Aug 2021 10:42:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10082"; a="196469810"
+X-IronPort-AV: E=Sophos;i="5.84,340,1620716400"; d="scan'208";a="196469810"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2021 03:42:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,340,1620716400"; d="scan'208";a="596001764"
+X-IronPort-AV: E=Sophos;i="5.84,340,1620716400"; d="scan'208";a="425274451"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga001.fm.intel.com with ESMTP; 21 Aug 2021 03:42:53 -0700
+ by orsmga003.jf.intel.com with ESMTP; 21 Aug 2021 03:42:55 -0700
 Received: from mwajdecz-MOBL.ger.corp.intel.com
  (mwajdecz-MOBL.ger.corp.intel.com [10.249.145.218])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 17LAgkZE007248; Sat, 21 Aug 2021 11:42:52 +0100
+ 17LAgkZF007248; Sat, 21 Aug 2021 11:42:54 +0100
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Dan Carpenter <dan.carpenter@oracle.com>,
  Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Sat, 21 Aug 2021 12:42:35 +0200
-Message-Id: <20210821104238.981-2-michal.wajdeczko@intel.com>
+Date: Sat, 21 Aug 2021 12:42:36 +0200
+Message-Id: <20210821104238.981-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210821104238.981-1-michal.wajdeczko@intel.com>
 References: <20210821104238.981-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 1/4] drm/i915/guc: Verify result from CTB
- (de)register action
+Subject: [Intel-gfx] [CI 2/4] drm/i915/guc: Print error name on CTB
+ (de)registration failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,61 +53,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In commit b839a869dfc9 ("drm/i915/guc: Add support for data
-reporting in GuC responses") we missed the hypothetical case
-that GuC might return positive non-zero value as success data.
+Instead of plain error value (%d) print more user friendly error
+name (%pe).
 
-While that would be lucky treated as error case, and at the
-end will result in reporting valid -EIO, in the meantime this
-value will be passed to ERR_PTR that could be misleading.
-
-v2: rebased
-
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Dan Carpenter <dan.carpenter@oracle.com>
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 22b4733b55e2..4e6bb2d6b058 100644
+index 4e6bb2d6b058..de5705fc3d22 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -168,12 +168,15 @@ static int guc_action_register_ct_buffer(struct intel_guc *guc, u32 type,
- 		FIELD_PREP(HOST2GUC_REGISTER_CTB_REQUEST_MSG_2_DESC_ADDR, desc_addr),
- 		FIELD_PREP(HOST2GUC_REGISTER_CTB_REQUEST_MSG_3_BUFF_ADDR, buff_addr),
- 	};
-+	int ret;
- 
- 	GEM_BUG_ON(type != GUC_CTB_TYPE_HOST2GUC && type != GUC_CTB_TYPE_GUC2HOST);
- 	GEM_BUG_ON(size % SZ_4K);
- 
- 	/* CT registration must go over MMIO */
--	return intel_guc_send_mmio(guc, request, ARRAY_SIZE(request), NULL, 0);
-+	ret = intel_guc_send_mmio(guc, request, ARRAY_SIZE(request), NULL, 0);
-+
-+	return ret > 0 ? -EPROTO : ret;
+@@ -191,8 +191,8 @@ static int ct_register_buffer(struct intel_guc_ct *ct, u32 type,
+ 	err = guc_action_register_ct_buffer(ct_to_guc(ct), type,
+ 					    desc_addr, buff_addr, size);
+ 	if (unlikely(err))
+-		CT_ERROR(ct, "Failed to register %s buffer (err=%d)\n",
+-			 guc_ct_buffer_type_to_str(type), err);
++		CT_ERROR(ct, "Failed to register %s buffer (%pe)\n",
++			 guc_ct_buffer_type_to_str(type), ERR_PTR(err));
+ 	return err;
  }
  
- static int ct_register_buffer(struct intel_guc_ct *ct, u32 type,
-@@ -201,11 +204,14 @@ static int guc_action_deregister_ct_buffer(struct intel_guc *guc, u32 type)
- 		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_ACTION_HOST2GUC_DEREGISTER_CTB),
- 		FIELD_PREP(HOST2GUC_DEREGISTER_CTB_REQUEST_MSG_1_TYPE, type),
- 	};
-+	int ret;
+@@ -219,8 +219,8 @@ static int ct_deregister_buffer(struct intel_guc_ct *ct, u32 type)
+ 	int err = guc_action_deregister_ct_buffer(ct_to_guc(ct), type);
  
- 	GEM_BUG_ON(type != GUC_CTB_TYPE_HOST2GUC && type != GUC_CTB_TYPE_GUC2HOST);
- 
- 	/* CT deregistration must go over MMIO */
--	return intel_guc_send_mmio(guc, request, ARRAY_SIZE(request), NULL, 0);
-+	ret = intel_guc_send_mmio(guc, request, ARRAY_SIZE(request), NULL, 0);
-+
-+	return ret > 0 ? -EPROTO : ret;
+ 	if (unlikely(err))
+-		CT_ERROR(ct, "Failed to deregister %s buffer (err=%d)\n",
+-			 guc_ct_buffer_type_to_str(type), err);
++		CT_ERROR(ct, "Failed to deregister %s buffer (%pe)\n",
++			 guc_ct_buffer_type_to_str(type), ERR_PTR(err));
+ 	return err;
  }
  
- static int ct_deregister_buffer(struct intel_guc_ct *ct, u32 type)
 -- 
 2.25.1
 
