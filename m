@@ -1,39 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F4B3F4079
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Aug 2021 18:30:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 004C73F407F
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Aug 2021 18:30:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF56589F89;
-	Sun, 22 Aug 2021 16:30:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38CBE89F92;
+	Sun, 22 Aug 2021 16:30:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAF4C89F71
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Aug 2021 16:30:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10084"; a="302567459"
-X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="302567459"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3449089F77
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Aug 2021 16:30:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10084"; a="302567462"
+X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="302567462"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2021 09:30:36 -0700
+ 22 Aug 2021 09:30:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="596395793"
+X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="596395800"
 Received: from ayazahma-nuc8i7beh.iind.intel.com ([10.145.162.59])
- by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2021 09:30:34 -0700
+ by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2021 09:30:36 -0700
 From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Matthew Auld <matthew.auld@intel.com>,
- Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-Date: Sun, 22 Aug 2021 21:57:02 +0530
-Message-Id: <20210822162706.819507-10-ayaz.siddiqui@intel.com>
+ Stuart Summers <stuart.summers@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Sun, 22 Aug 2021 21:57:03 +0530
+Message-Id: <20210822162706.819507-11-ayaz.siddiqui@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210822162706.819507-1-ayaz.siddiqui@intel.com>
 References: <20210822162706.819507-1-ayaz.siddiqui@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 09/13] drm/i915/selftests: account for
- min_alignment in GTT selftests
+Subject: [Intel-gfx] [RFC 10/13] drm/i915/xehpsdv: implement memory coloring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,341 +52,181 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Matthew Auld <matthew.auld@intel.com>
 
-We need to support vm->min_alignment > 4K, depending
-on the vm itself and the type of object we are inserting.
-With this in mind update the GTT selftests to take this
-into account.
+The basic idea is that each 2M block(page-table) has a color, depending
+on if the page-table is occupied by LMEM objects(64K) or SMEM
+objects(4K), where our goal is to prevent mixing 64K and 4K GTT pages in
+the page-table, which is not supported by the HW.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 96 ++++++++++++-------
- 1 file changed, 63 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c  | 16 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.h   |  6 ++++
+ drivers/gpu/drm/i915/i915_gem_evict.c | 17 ++++++++++
+ drivers/gpu/drm/i915/i915_vma.c       | 46 +++++++++++++++++++--------
+ 4 files changed, 71 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-index f843a5040706..bd0cd501e411 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-@@ -237,6 +237,8 @@ static int lowlevel_hole(struct i915_address_space *vm,
- 			 u64 hole_start, u64 hole_end,
- 			 unsigned long end_time)
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index 8bf7c81064e1..67ac85e6a0b3 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -464,6 +464,19 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
+ 	return idx;
+ }
+ 
++static void xehpsdv_ppgtt_color_adjust(const struct drm_mm_node *node,
++				       unsigned long color,
++				       u64 *start,
++				       u64 *end)
++{
++	if (i915_node_color_differs(node, color))
++		*start = round_up(*start, SZ_2M);
++
++	node = list_next_entry(node, node_list);
++	if (i915_node_color_differs(node, color))
++		*end = round_down(*end, SZ_2M);
++}
++
+ static void
+ xehpsdv_ppgtt_insert_huge(struct i915_vma *vma,
+ 			  struct sgt_dma *iter,
+@@ -898,6 +911,9 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
+ 		ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
+ 	}
+ 
++	if (HAS_64K_PAGES(gt->i915))
++		ppgtt->vm.mm.color_adjust = xehpsdv_ppgtt_color_adjust;
++
+ 	err = gen8_init_scratch(&ppgtt->vm);
+ 	if (err)
+ 		goto err_free;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index a4388dd06177..2dc79fade83b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -394,6 +394,12 @@ i915_vm_has_cache_coloring(struct i915_address_space *vm)
+ 	return i915_is_ggtt(vm) && vm->mm.color_adjust;
+ }
+ 
++static inline bool
++i915_vm_has_memory_coloring(struct i915_address_space *vm)
++{
++	return !i915_is_ggtt(vm) && vm->mm.color_adjust;
++}
++
+ static inline struct i915_ggtt *
+ i915_vm_to_ggtt(struct i915_address_space *vm)
  {
-+	const unsigned int min_alignment =
-+		i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
- 	I915_RND_STATE(seed_prng);
- 	struct i915_vma *mock_vma;
- 	unsigned int size;
-@@ -250,9 +252,10 @@ static int lowlevel_hole(struct i915_address_space *vm,
- 		I915_RND_SUBSTATE(prng, seed_prng);
- 		struct drm_i915_gem_object *obj;
- 		unsigned int *order, count, n;
--		u64 hole_size;
-+		u64 hole_size, aligned_size;
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+index 2b73ddb11c66..006bf4924c24 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -292,6 +292,13 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
  
--		hole_size = (hole_end - hole_start) >> size;
-+		aligned_size = max_t(u32, ilog2(min_alignment), size);
-+		hole_size = (hole_end - hole_start) >> aligned_size;
- 		if (hole_size > KMALLOC_MAX_SIZE / sizeof(u32))
- 			hole_size = KMALLOC_MAX_SIZE / sizeof(u32);
- 		count = hole_size >> 1;
-@@ -273,8 +276,8 @@ static int lowlevel_hole(struct i915_address_space *vm,
- 		}
- 		GEM_BUG_ON(!order);
+ 		/* Always look at the page afterwards to avoid the end-of-GTT */
+ 		end += I915_GTT_PAGE_SIZE;
++	} else if (i915_vm_has_memory_coloring(vm)) {
++		/*
++		 * Expand the search the cover the page-table boundries, in
++		 * case we need to flip the color of the page-table(s).
++		 */
++		start = round_down(start, SZ_2M);
++		end = round_up(end, SZ_2M);
+ 	}
+ 	GEM_BUG_ON(start >= end);
  
--		GEM_BUG_ON(count * BIT_ULL(size) > vm->total);
--		GEM_BUG_ON(hole_start + count * BIT_ULL(size) > hole_end);
-+		GEM_BUG_ON(count * BIT_ULL(aligned_size) > vm->total);
-+		GEM_BUG_ON(hole_start + count * BIT_ULL(aligned_size) > hole_end);
- 
- 		/* Ignore allocation failures (i.e. don't report them as
- 		 * a test failure) as we are purposefully allocating very
-@@ -297,10 +300,10 @@ static int lowlevel_hole(struct i915_address_space *vm,
- 		}
- 
- 		for (n = 0; n < count; n++) {
--			u64 addr = hole_start + order[n] * BIT_ULL(size);
-+			u64 addr = hole_start + order[n] * BIT_ULL(aligned_size);
- 			intel_wakeref_t wakeref;
- 
--			GEM_BUG_ON(addr + BIT_ULL(size) > vm->total);
-+			GEM_BUG_ON(addr + BIT_ULL(aligned_size) > vm->total);
- 
- 			if (igt_timeout(end_time,
- 					"%s timed out before %d/%d\n",
-@@ -343,7 +346,7 @@ static int lowlevel_hole(struct i915_address_space *vm,
+@@ -321,6 +328,16 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 				if (node->color == target->color)
+ 					continue;
  			}
- 
- 			mock_vma->pages = obj->mm.pages;
--			mock_vma->node.size = BIT_ULL(size);
-+			mock_vma->node.size = BIT_ULL(aligned_size);
- 			mock_vma->node.start = addr;
- 
- 			with_intel_runtime_pm(vm->gt->uncore->rpm, wakeref)
-@@ -354,7 +357,7 @@ static int lowlevel_hole(struct i915_address_space *vm,
- 
- 		i915_random_reorder(order, count, &prng);
- 		for (n = 0; n < count; n++) {
--			u64 addr = hole_start + order[n] * BIT_ULL(size);
-+			u64 addr = hole_start + order[n] * BIT_ULL(aligned_size);
- 			intel_wakeref_t wakeref;
- 
- 			GEM_BUG_ON(addr + BIT_ULL(size) > vm->total);
-@@ -398,8 +401,10 @@ static int fill_hole(struct i915_address_space *vm,
- {
- 	const u64 hole_size = hole_end - hole_start;
- 	struct drm_i915_gem_object *obj;
-+	const unsigned int min_alignment =
-+		i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
- 	const unsigned long max_pages =
--		min_t(u64, ULONG_MAX - 1, hole_size/2 >> PAGE_SHIFT);
-+		min_t(u64, ULONG_MAX - 1, (hole_size / 2) >> ilog2(min_alignment));
- 	const unsigned long max_step = max(int_sqrt(max_pages), 2UL);
- 	unsigned long npages, prime, flags;
- 	struct i915_vma *vma;
-@@ -440,14 +445,17 @@ static int fill_hole(struct i915_address_space *vm,
- 
- 				offset = p->offset;
- 				list_for_each_entry(obj, &objects, st_link) {
-+					u64 aligned_size = round_up(obj->base.size,
-+								    min_alignment);
++		} else if (i915_vm_has_memory_coloring(vm)) {
++			if (node->start + node->size <= target->start) {
++				if (node->color == target->color)
++					continue;
++			}
 +
- 					vma = i915_vma_instance(obj, vm, NULL);
- 					if (IS_ERR(vma))
- 						continue;
- 
- 					if (p->step < 0) {
--						if (offset < hole_start + obj->base.size)
-+						if (offset < hole_start + aligned_size)
- 							break;
--						offset -= obj->base.size;
-+						offset -= aligned_size;
- 					}
- 
- 					err = i915_vma_pin(vma, 0, 0, offset | flags);
-@@ -469,22 +477,25 @@ static int fill_hole(struct i915_address_space *vm,
- 					i915_vma_unpin(vma);
- 
- 					if (p->step > 0) {
--						if (offset + obj->base.size > hole_end)
-+						if (offset + aligned_size > hole_end)
- 							break;
--						offset += obj->base.size;
-+						offset += aligned_size;
- 					}
- 				}
- 
- 				offset = p->offset;
- 				list_for_each_entry(obj, &objects, st_link) {
-+					u64 aligned_size = round_up(obj->base.size,
-+								    min_alignment);
-+
- 					vma = i915_vma_instance(obj, vm, NULL);
- 					if (IS_ERR(vma))
- 						continue;
- 
- 					if (p->step < 0) {
--						if (offset < hole_start + obj->base.size)
-+						if (offset < hole_start + aligned_size)
- 							break;
--						offset -= obj->base.size;
-+						offset -= aligned_size;
- 					}
- 
- 					if (!drm_mm_node_allocated(&vma->node) ||
-@@ -505,22 +516,25 @@ static int fill_hole(struct i915_address_space *vm,
- 					}
- 
- 					if (p->step > 0) {
--						if (offset + obj->base.size > hole_end)
-+						if (offset + aligned_size > hole_end)
- 							break;
--						offset += obj->base.size;
-+						offset += aligned_size;
- 					}
- 				}
- 
- 				offset = p->offset;
- 				list_for_each_entry_reverse(obj, &objects, st_link) {
-+					u64 aligned_size = round_up(obj->base.size,
-+								    min_alignment);
-+
- 					vma = i915_vma_instance(obj, vm, NULL);
- 					if (IS_ERR(vma))
- 						continue;
- 
- 					if (p->step < 0) {
--						if (offset < hole_start + obj->base.size)
-+						if (offset < hole_start + aligned_size)
- 							break;
--						offset -= obj->base.size;
-+						offset -= aligned_size;
- 					}
- 
- 					err = i915_vma_pin(vma, 0, 0, offset | flags);
-@@ -542,22 +556,25 @@ static int fill_hole(struct i915_address_space *vm,
- 					i915_vma_unpin(vma);
- 
- 					if (p->step > 0) {
--						if (offset + obj->base.size > hole_end)
-+						if (offset + aligned_size > hole_end)
- 							break;
--						offset += obj->base.size;
-+						offset += aligned_size;
- 					}
- 				}
- 
- 				offset = p->offset;
- 				list_for_each_entry_reverse(obj, &objects, st_link) {
-+					u64 aligned_size = round_up(obj->base.size,
-+								    min_alignment);
-+
- 					vma = i915_vma_instance(obj, vm, NULL);
- 					if (IS_ERR(vma))
- 						continue;
- 
- 					if (p->step < 0) {
--						if (offset < hole_start + obj->base.size)
-+						if (offset < hole_start + aligned_size)
- 							break;
--						offset -= obj->base.size;
-+						offset -= aligned_size;
- 					}
- 
- 					if (!drm_mm_node_allocated(&vma->node) ||
-@@ -578,9 +595,9 @@ static int fill_hole(struct i915_address_space *vm,
- 					}
- 
- 					if (p->step > 0) {
--						if (offset + obj->base.size > hole_end)
-+						if (offset + aligned_size > hole_end)
- 							break;
--						offset += obj->base.size;
-+						offset += aligned_size;
- 					}
- 				}
- 			}
-@@ -610,6 +627,7 @@ static int walk_hole(struct i915_address_space *vm,
- 	const u64 hole_size = hole_end - hole_start;
- 	const unsigned long max_pages =
- 		min_t(u64, ULONG_MAX - 1, hole_size >> PAGE_SHIFT);
-+	unsigned long min_alignment;
- 	unsigned long flags;
- 	u64 size;
- 
-@@ -619,6 +637,8 @@ static int walk_hole(struct i915_address_space *vm,
- 	if (i915_is_ggtt(vm))
- 		flags |= PIN_GLOBAL;
- 
-+	min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
-+
- 	for_each_prime_number_from(size, 1, max_pages) {
- 		struct drm_i915_gem_object *obj;
- 		struct i915_vma *vma;
-@@ -637,7 +657,7 @@ static int walk_hole(struct i915_address_space *vm,
- 
- 		for (addr = hole_start;
- 		     addr + obj->base.size < hole_end;
--		     addr += obj->base.size) {
-+		     addr += round_up(obj->base.size, min_alignment)) {
- 			err = i915_vma_pin(vma, 0, 0, addr | flags);
- 			if (err) {
- 				pr_err("%s bind failed at %llx + %llx [hole %llx- %llx] with err=%d\n",
-@@ -689,6 +709,7 @@ static int pot_hole(struct i915_address_space *vm,
- {
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
-+	unsigned int min_alignment;
- 	unsigned long flags;
- 	unsigned int pot;
- 	int err = 0;
-@@ -697,6 +718,8 @@ static int pot_hole(struct i915_address_space *vm,
- 	if (i915_is_ggtt(vm))
- 		flags |= PIN_GLOBAL;
- 
-+	min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
-+
- 	obj = i915_gem_object_create_internal(vm->i915, 2 * I915_GTT_PAGE_SIZE);
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
-@@ -709,13 +732,13 @@ static int pot_hole(struct i915_address_space *vm,
- 
- 	/* Insert a pair of pages across every pot boundary within the hole */
- 	for (pot = fls64(hole_end - 1) - 1;
--	     pot > ilog2(2 * I915_GTT_PAGE_SIZE);
-+	     pot > ilog2(2 * min_alignment);
- 	     pot--) {
- 		u64 step = BIT_ULL(pot);
- 		u64 addr;
- 
--		for (addr = round_up(hole_start + I915_GTT_PAGE_SIZE, step) - I915_GTT_PAGE_SIZE;
--		     addr <= round_down(hole_end - 2*I915_GTT_PAGE_SIZE, step) - I915_GTT_PAGE_SIZE;
-+		for (addr = round_up(hole_start + min_alignment, step) - min_alignment;
-+		     addr <= round_down(hole_end - (2 * min_alignment), step) - min_alignment;
- 		     addr += step) {
- 			err = i915_vma_pin(vma, 0, 0, addr | flags);
- 			if (err) {
-@@ -760,6 +783,7 @@ static int drunk_hole(struct i915_address_space *vm,
- 		      unsigned long end_time)
- {
- 	I915_RND_STATE(prng);
-+	unsigned int min_alignment;
- 	unsigned int size;
- 	unsigned long flags;
- 
-@@ -767,15 +791,18 @@ static int drunk_hole(struct i915_address_space *vm,
- 	if (i915_is_ggtt(vm))
- 		flags |= PIN_GLOBAL;
- 
-+	min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
-+
- 	/* Keep creating larger objects until one cannot fit into the hole */
- 	for (size = 12; (hole_end - hole_start) >> size; size++) {
- 		struct drm_i915_gem_object *obj;
- 		unsigned int *order, count, n;
- 		struct i915_vma *vma;
--		u64 hole_size;
-+		u64 hole_size, aligned_size;
- 		int err = -ENODEV;
- 
--		hole_size = (hole_end - hole_start) >> size;
-+		aligned_size = max_t(u32, ilog2(min_alignment), size);
-+		hole_size = (hole_end - hole_start) >> aligned_size;
- 		if (hole_size > KMALLOC_MAX_SIZE / sizeof(u32))
- 			hole_size = KMALLOC_MAX_SIZE / sizeof(u32);
- 		count = hole_size >> 1;
-@@ -815,7 +842,7 @@ static int drunk_hole(struct i915_address_space *vm,
- 		GEM_BUG_ON(vma->size != BIT_ULL(size));
- 
- 		for (n = 0; n < count; n++) {
--			u64 addr = hole_start + order[n] * BIT_ULL(size);
-+			u64 addr = hole_start + order[n] * BIT_ULL(aligned_size);
- 
- 			err = i915_vma_pin(vma, 0, 0, addr | flags);
- 			if (err) {
-@@ -867,11 +894,14 @@ static int __shrink_hole(struct i915_address_space *vm,
- {
- 	struct drm_i915_gem_object *obj;
- 	unsigned long flags = PIN_OFFSET_FIXED | PIN_USER;
-+	unsigned int min_alignment;
- 	unsigned int order = 12;
- 	LIST_HEAD(objects);
- 	int err = 0;
- 	u64 addr;
- 
-+	min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
-+
- 	/* Keep creating larger objects until one cannot fit into the hole */
- 	for (addr = hole_start; addr < hole_end; ) {
- 		struct i915_vma *vma;
-@@ -912,7 +942,7 @@ static int __shrink_hole(struct i915_address_space *vm,
++			if (node->start >= target->start + target->size) {
++				if (node->color == target->color)
++					continue;
++			}
  		}
  
- 		i915_vma_unpin(vma);
--		addr += size;
-+		addr += round_up(size, min_alignment);
+ 		if (i915_vma_is_pinned(vma)) {
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 1ea1fa08efdf..2664d3ab49b9 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -585,6 +585,10 @@ bool i915_gem_valid_gtt_space(struct i915_vma *vma, unsigned long color)
+ 	struct drm_mm_node *node = &vma->node;
+ 	struct drm_mm_node *other;
  
- 		/*
- 		 * Since we are injecting allocation faults at random intervals,
++	/* Only valid to be called on an already inserted vma */
++	GEM_BUG_ON(!drm_mm_node_allocated(node));
++	GEM_BUG_ON(list_empty(&node->node_list));
++
+ 	/*
+ 	 * On some machines we have to be careful when putting differing types
+ 	 * of snoopable memory together to avoid the prefetcher crossing memory
+@@ -592,22 +596,34 @@ bool i915_gem_valid_gtt_space(struct i915_vma *vma, unsigned long color)
+ 	 * these constraints apply and set the drm_mm.color_adjust
+ 	 * appropriately.
+ 	 */
+-	if (!i915_vm_has_cache_coloring(vma->vm))
+-		return true;
+-
+-	/* Only valid to be called on an already inserted vma */
+-	GEM_BUG_ON(!drm_mm_node_allocated(node));
+-	GEM_BUG_ON(list_empty(&node->node_list));
++	if (i915_vm_has_cache_coloring(vma->vm)) {
++		other = list_prev_entry(node, node_list);
++		if (i915_node_color_differs(other, color) &&
++		    !drm_mm_hole_follows(other))
++			return false;
+ 
+-	other = list_prev_entry(node, node_list);
+-	if (i915_node_color_differs(other, color) &&
+-	    !drm_mm_hole_follows(other))
+-		return false;
++		other = list_next_entry(node, node_list);
++		if (i915_node_color_differs(other, color) &&
++		    !drm_mm_hole_follows(node))
++			return false;
++	/*
++	 * On XEHPSDV we need to make sure we are not mixing LMEM and SMEM objects
++	 * in the same page-table, i.e mixing 64K and 4K gtt pages in the same
++	 * page-table.
++	 */
++	} else if (i915_vm_has_memory_coloring(vma->vm)) {
++		other = list_prev_entry(node, node_list);
++		if (i915_node_color_differs(other, color) &&
++		    !drm_mm_hole_follows(other) &&
++		    !IS_ALIGNED(other->start + other->size, SZ_2M))
++			return false;
+ 
+-	other = list_next_entry(node, node_list);
+-	if (i915_node_color_differs(other, color) &&
+-	    !drm_mm_hole_follows(node))
+-		return false;
++		other = list_next_entry(node, node_list);
++		if (i915_node_color_differs(other, color) &&
++		    !drm_mm_hole_follows(node) &&
++		    !IS_ALIGNED(other->start, SZ_2M))
++			return false;
++	}
+ 
+ 	return true;
+ }
+@@ -676,6 +692,8 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+ 
+ 		if (i915_vm_has_cache_coloring(vma->vm))
+ 			color = vma->obj->cache_level;
++		else if (i915_vm_has_memory_coloring(vma->vm))
++			color = i915_gem_object_is_lmem(vma->obj);
+ 	}
+ 
+ 	if (flags & PIN_OFFSET_FIXED) {
 -- 
 2.26.2
 
