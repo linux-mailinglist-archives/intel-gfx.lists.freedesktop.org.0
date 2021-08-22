@@ -1,39 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5F93F407D
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Aug 2021 18:30:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDE0C3F4078
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Aug 2021 18:30:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E787B89F6F;
-	Sun, 22 Aug 2021 16:30:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA4089F6E;
+	Sun, 22 Aug 2021 16:30:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 700D489F5B
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Aug 2021 16:30:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10084"; a="302567450"
-X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="302567450"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBF9389F63
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Aug 2021 16:30:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10084"; a="302567456"
+X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="302567456"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2021 09:30:30 -0700
+ 22 Aug 2021 09:30:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="596395775"
+X-IronPort-AV: E=Sophos;i="5.84,342,1620716400"; d="scan'208";a="596395780"
 Received: from ayazahma-nuc8i7beh.iind.intel.com ([10.145.162.59])
- by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2021 09:30:28 -0700
+ by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2021 09:30:30 -0700
 From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Matthew Auld <matthew.auld@intel.com>,
- Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-Date: Sun, 22 Aug 2021 21:56:59 +0530
-Message-Id: <20210822162706.819507-7-ayaz.siddiqui@intel.com>
+ Stuart Summers <stuart.summers@intel.com>,
+ Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Sun, 22 Aug 2021 21:57:00 +0530
+Message-Id: <20210822162706.819507-8-ayaz.siddiqui@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210822162706.819507-1-ayaz.siddiqui@intel.com>
 References: <20210822162706.819507-1-ayaz.siddiqui@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 06/13] drm/i915/gtt/xehpsdv: move scratch page to
- system memory
+Subject: [Intel-gfx] [RFC 07/13] drm/i915/xehpsdv: support 64K GTT pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,149 +53,277 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Matthew Auld <matthew.auld@intel.com>
 
-On some platforms the hw has dropped support for 4K GTT pages when
-dealing with LMEM, and due to the design of 64K GTT pages in the hw, we
-can only mark the *entire* page-table as operating in 64K GTT mode,
-since the enable bit is still on the pde, and not the pte. And since we
-we still need to allow 4K GTT pages for SMEM objects, we can't have a
-"normal" 4K page-table with scratch pointing to LMEM, since that's
-undefined from the hw pov. The simplest solution is to just move the 64K
-scratch page to SMEM on such platforms and call it a day, since that
-should work for all configurations.
+XEHPSDV optimises 64K GTT pages for local-memory, since everything
+should be allocated at 64K granularity. We say goodbye to sparse
+entries, and instead get a compact 256B page-table for 64K pages,
+which should be more cache friendly. 4K pages for local-memory
+are no longer supported by the HW.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
----
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c      |  1 +
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c      | 23 +++++++++++++++++++++--
- drivers/gpu/drm/i915/gt/intel_ggtt.c      |  3 +++
- drivers/gpu/drm/i915/gt/intel_gtt.c       |  2 +-
- drivers/gpu/drm/i915/gt/intel_gtt.h       |  2 ++
- drivers/gpu/drm/i915/selftests/mock_gtt.c |  2 ++
- 6 files changed, 30 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-index 1aee5e6b1b23..74306a77a2be 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-@@ -440,6 +440,7 @@ struct i915_ppgtt *gen6_ppgtt_create(struct intel_gt *gt)
- 	ppgtt->base.vm.cleanup = gen6_ppgtt_cleanup;
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  61 ++++++++++
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 106 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   3 +
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |   1 +
+ 4 files changed, 168 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index a094f3ce1a90..6f1319d266d5 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1451,6 +1451,66 @@ static int igt_ppgtt_sanity_check(void *arg)
+ 	return err;
+ }
  
- 	ppgtt->base.vm.alloc_pt_dma = alloc_pt_dma;
-+	ppgtt->base.vm.alloc_scratch_dma = alloc_pt_dma;
- 	ppgtt->base.vm.pte_encode = ggtt->vm.pte_encode;
- 
- 	ppgtt->base.pd = __alloc_pd(I915_PDES);
++static int igt_ppgtt_compact(void *arg)
++{
++	struct i915_gem_context *ctx = arg;
++	struct drm_i915_private *i915 = ctx->i915;
++	struct drm_i915_gem_object *obj;
++	int err;
++
++	/*
++	 * Simple test to catch issues with compact 64K pages -- since the pt is
++	 * compacted to 256B that gives us 32 entries per pt, however since the
++	 * backing page for the pt is 4K, any extra entries we might incorrectly
++	 * write out should be ignored by the HW. If ever hit such a case this
++	 * test should catch it since some of our writes would land in scratch.
++	 */
++
++	if (!HAS_64K_PAGES(i915)) {
++		pr_info("device lacks compact 64K page support, skipping\n");
++		return 0;
++	}
++
++	if (!HAS_LMEM(i915)) {
++		pr_info("device lacks LMEM support, skipping\n");
++		return 0;
++	}
++
++	/* We want the range to cover multiple page-table boundaries. */
++	obj = i915_gem_object_create_lmem(i915, SZ_4M, 0);
++	if (IS_ERR(obj))
++		return err;
++
++	err = i915_gem_object_pin_pages_unlocked(obj);
++	if (err)
++		goto out_put;
++
++	if (obj->mm.page_sizes.phys < I915_GTT_PAGE_SIZE_64K) {
++		pr_info("LMEM compact unable to allocate huge-page(s)\n");
++		goto out_unpin;
++	}
++
++	/*
++	 * Disable 2M GTT pages by forcing the page-size to 64K for the GTT
++	 * insertion.
++	 */
++	obj->mm.page_sizes.sg = I915_GTT_PAGE_SIZE_64K;
++
++	err = igt_write_huge(ctx, obj);
++	if (err)
++		pr_err("LMEM compact write-huge failed\n");
++
++out_unpin:
++	i915_gem_object_unpin_pages(obj);
++out_put:
++	i915_gem_object_put(obj);
++
++	if (err == -ENOMEM)
++		err = 0;
++
++	return err;
++}
++
+ static int igt_tmpfs_fallback(void *arg)
+ {
+ 	struct i915_gem_context *ctx = arg;
+@@ -1664,6 +1724,7 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_tmpfs_fallback),
+ 		SUBTEST(igt_ppgtt_smoke_huge),
+ 		SUBTEST(igt_ppgtt_sanity_check),
++		SUBTEST(igt_ppgtt_compact),
+ 	};
+ 	struct i915_gem_context *ctx;
+ 	struct i915_address_space *vm;
 diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 6e0e52eeb87a..8c948f3b8cd8 100644
+index 8c948f3b8cd8..8bf7c81064e1 100644
 --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
 +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -774,10 +774,29 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
- 	 */
- 	ppgtt->vm.has_read_only = !IS_GRAPHICS_VER(gt->i915, 11, 12);
+@@ -233,6 +233,8 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
+ 						   start, end, lvl);
+ 		} else {
+ 			unsigned int count;
++			unsigned int pte = gen8_pd_index(start, 0);
++			unsigned int num_ptes;
+ 			u64 *vaddr;
  
--	if (HAS_LMEM(gt->i915))
-+	if (HAS_LMEM(gt->i915)) {
- 		ppgtt->vm.alloc_pt_dma = alloc_pt_lmem;
--	else
+ 			count = gen8_pt_count(start, end);
+@@ -242,10 +244,18 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
+ 			    atomic_read(&pt->used));
+ 			GEM_BUG_ON(!count || count >= atomic_read(&pt->used));
+ 
++			num_ptes = count;
++			if (pt->is_compact) {
++				GEM_BUG_ON(num_ptes % 16);
++				GEM_BUG_ON(pte % 16);
++				num_ptes /= 16;
++				pte /= 16;
++			}
 +
-+		/*
-+		 * On some platforms the hw has dropped support for 4K GTT pages
-+		 * when dealing with LMEM, and due to the design of 64K GTT
-+		 * pages in the hw, we can only mark the *entire* page-table as
-+		 * operating in 64K GTT mode, since the enable bit is still on
-+		 * the pde, and not the pte. And since we still need to allow
-+		 * 4K GTT pages for SMEM objects, we can't have a "normal" 4K
-+		 * page-table with scratch pointing to LMEM, since that's
-+		 * undefined from the hw pov. The simplest solution is to just
-+		 * move the 64K scratch page to SMEM on such platforms and call
-+		 * it a day, since that should work for all configurations.
-+		 */
-+		if (HAS_64K_PAGES(gt->i915))
-+			ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
+ 			vaddr = px_vaddr(pt);
+-			memset64(vaddr + gen8_pd_index(start, 0),
++			memset64(vaddr + pte,
+ 				 vm->scratch[0]->encode,
+-				 count);
++				 num_ptes);
+ 
+ 			atomic_sub(count, &pt->used);
+ 			start += count;
+@@ -454,6 +464,93 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
+ 	return idx;
+ }
+ 
++static void
++xehpsdv_ppgtt_insert_huge(struct i915_vma *vma,
++			  struct sgt_dma *iter,
++			  enum i915_cache_level cache_level,
++			  u32 flags)
++{
++	const gen8_pte_t pte_encode = vma->vm->pte_encode(0, cache_level, flags);
++	unsigned int rem = sg_dma_len(iter->sg);
++	u64 start = vma->node.start;
++
++	GEM_BUG_ON(!i915_vm_is_4lvl(vma->vm));
++
++	do {
++		struct i915_page_directory * const pdp =
++			gen8_pdp_for_page_address(vma->vm, start);
++		struct i915_page_directory * const pd =
++			i915_pd_entry(pdp, __gen8_pte_index(start, 2));
++		struct i915_page_table *pt =
++			i915_pt_entry(pd, __gen8_pte_index(start, 1));
++		gen8_pte_t encode = pte_encode;
++		unsigned int page_size;
++		gen8_pte_t *vaddr;
++		u16 index, max;
++
++		max = I915_PDES;
++
++		if (vma->page_sizes.sg & I915_GTT_PAGE_SIZE_2M &&
++		    IS_ALIGNED(iter->dma, I915_GTT_PAGE_SIZE_2M) &&
++		    rem >= I915_GTT_PAGE_SIZE_2M &&
++		    !__gen8_pte_index(start, 0)) {
++			index = __gen8_pte_index(start, 1);
++			encode |= GEN8_PDE_PS_2M;
++			page_size = I915_GTT_PAGE_SIZE_2M;
++
++			vaddr = px_vaddr(pd);
++		} else {
++			if (encode & GEN12_PPGTT_PTE_LM) {
++				GEM_BUG_ON(!i915_gem_object_is_lmem(vma->obj));
++				GEM_BUG_ON(__gen8_pte_index(start, 0) % 16);
++				GEM_BUG_ON(rem < I915_GTT_PAGE_SIZE_64K);
++				GEM_BUG_ON(!IS_ALIGNED(iter->dma,
++						       I915_GTT_PAGE_SIZE_64K));
++
++				index = __gen8_pte_index(start, 0) / 16;
++				page_size = I915_GTT_PAGE_SIZE_64K;
++
++				max /= 16;
++
++				vaddr = px_vaddr(pd);
++				vaddr[__gen8_pte_index(start, 1)] |= GEN12_PDE_64K;
++
++				pt->is_compact = true;
++			} else {
++				GEM_BUG_ON(i915_gem_object_is_lmem(vma->obj));
++				GEM_BUG_ON(pt->is_compact);
++				index =  __gen8_pte_index(start, 0);
++				page_size = I915_GTT_PAGE_SIZE;
++			}
++
++			vaddr = px_vaddr(pt);
++		}
++
++		do {
++			GEM_BUG_ON(rem < page_size);
++			vaddr[index++] = encode | iter->dma;
++
++			start += page_size;
++			iter->dma += page_size;
++			rem -= page_size;
++			if (iter->dma >= iter->max) {
++				iter->sg = __sg_next(iter->sg);
++				GEM_BUG_ON(!iter->sg);
++
++				rem = sg_dma_len(iter->sg);
++				GEM_BUG_ON(!rem);
++				iter->dma = sg_dma_address(iter->sg);
++				iter->max = iter->dma + rem;
++
++				if (unlikely(!IS_ALIGNED(iter->dma, page_size)))
++					break;
++			}
++		} while (rem >= page_size && index < max);
++
++		vma->page_sizes.gtt |= page_size;
++	} while (iter->sg && sg_dma_len(iter->sg));
++}
++
+ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 				   struct sgt_dma *iter,
+ 				   enum i915_cache_level cache_level,
+@@ -584,7 +681,10 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+ 	struct sgt_dma iter = sgt_dma(vma);
+ 
+ 	if (vma->page_sizes.sg > I915_GTT_PAGE_SIZE) {
+-		gen8_ppgtt_insert_huge(vma, &iter, cache_level, flags);
++		if (HAS_64K_PAGES(vm->i915))
++			xehpsdv_ppgtt_insert_huge(vma, &iter, cache_level, flags);
 +		else
-+			ppgtt->vm.alloc_scratch_dma = alloc_pt_lmem;
-+	} else {
- 		ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
-+		ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
-+	}
- 
- 	err = gen8_init_scratch(&ppgtt->vm);
- 	if (err)
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index de3ac58fceec..140439c8bdeb 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -910,6 +910,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 		size = gen8_get_total_gtt_size(snb_gmch_ctl);
- 
- 	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
-+	ggtt->vm.alloc_scratch_dma = alloc_pt_dma;
- 
- 	ggtt->vm.total = (size / sizeof(gen8_pte_t)) * I915_GTT_PAGE_SIZE;
- 	ggtt->vm.cleanup = gen6_gmch_remove;
-@@ -1062,6 +1063,7 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
- 	ggtt->vm.total = (size / sizeof(gen6_pte_t)) * I915_GTT_PAGE_SIZE;
- 
- 	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
-+	ggtt->vm.alloc_scratch_dma = alloc_pt_dma;
- 
- 	ggtt->vm.clear_range = nop_clear_range;
- 	if (!HAS_FULL_PPGTT(i915) || intel_scanout_needs_vtd_wa(i915))
-@@ -1114,6 +1116,7 @@ static int i915_gmch_probe(struct i915_ggtt *ggtt)
- 		(struct resource)DEFINE_RES_MEM(gmadr_base, ggtt->mappable_end);
- 
- 	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
-+	ggtt->vm.alloc_scratch_dma = alloc_pt_dma;
- 
- 	if (needs_idle_maps(i915)) {
- 		drm_notice(&i915->drm,
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index e9c01f72fc18..71b25cd67c9f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -297,7 +297,7 @@ int setup_scratch_page(struct i915_address_space *vm)
- 	do {
- 		struct drm_i915_gem_object *obj;
- 
--		obj = vm->alloc_pt_dma(vm, size);
-+		obj = vm->alloc_scratch_dma(vm, size);
- 		if (IS_ERR(obj))
- 			goto skip;
++			gen8_ppgtt_insert_huge(vma, &iter, cache_level, flags);
+ 	} else  {
+ 		u64 idx = vma->node.start >> GEN8_PTE_SHIFT;
  
 diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index bc7153018ebd..38a7445cafcf 100644
+index 38a7445cafcf..8348c360dc81 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
 +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -262,6 +262,8 @@ struct i915_address_space {
+@@ -89,6 +89,8 @@ typedef u64 gen8_pte_t;
  
- 	struct drm_i915_gem_object *
- 		(*alloc_pt_dma)(struct i915_address_space *vm, int sz);
-+	struct drm_i915_gem_object *
-+		(*alloc_scratch_dma)(struct i915_address_space *vm, int sz);
+ #define GEN12_GGTT_PTE_LM	BIT_ULL(1)
  
- 	u64 (*pte_encode)(dma_addr_t addr,
- 			  enum i915_cache_level level,
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-index cc047ec594f9..32ca8962d0ab 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-@@ -78,6 +78,7 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_private *i915, const char *name)
- 	i915_address_space_init(&ppgtt->vm, VM_CLASS_PPGTT);
++#define GEN12_PDE_64K BIT(6)
++
+ /*
+  * Cacheability Control is a 4-bit value. The low three bits are stored in bits
+  * 3:1 of the PTE, while the fourth bit is stored in bit 11 of the PTE.
+@@ -154,6 +156,7 @@ struct i915_page_table {
+ 		atomic_t used;
+ 		struct i915_page_table *stash;
+ 	};
++	bool is_compact;
+ };
  
- 	ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
-+	ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
+ struct i915_page_directory {
+diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+index 886060f7e6fc..f786350e2d80 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+@@ -26,6 +26,7 @@ struct i915_page_table *alloc_pt(struct i915_address_space *vm)
+ 		return ERR_PTR(-ENOMEM);
+ 	}
  
- 	ppgtt->vm.clear_range = mock_clear_range;
- 	ppgtt->vm.insert_page = mock_insert_page;
-@@ -118,6 +119,7 @@ void mock_init_ggtt(struct drm_i915_private *i915, struct i915_ggtt *ggtt)
- 	ggtt->vm.total = 4096 * PAGE_SIZE;
- 
- 	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
-+	ggtt->vm.alloc_scratch_dma = alloc_pt_dma;
- 
- 	ggtt->vm.clear_range = mock_clear_range;
- 	ggtt->vm.insert_page = mock_insert_page;
++	pt->is_compact = false;
+ 	atomic_set(&pt->used, 0);
+ 	return pt;
+ }
 -- 
 2.26.2
 
