@@ -1,45 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 962893F5B6E
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 11:52:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 587EA3F5D4F
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 13:49:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23A48898B7;
-	Tue, 24 Aug 2021 09:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 159FF89A0F;
+	Tue, 24 Aug 2021 11:49:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE94D898B7;
- Tue, 24 Aug 2021 09:52:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="302859410"
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="302859410"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 02:52:37 -0700
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="526567561"
-Received: from kmulhall-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.39.114])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 02:52:34 -0700
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YSPyNZ3I1LgvDYSw@Ryzen-9-3900X.localdomain>
-References: <20210813171158.2665823-1-nathan@kernel.org>
- <YSPyNZ3I1LgvDYSw@Ryzen-9-3900X.localdomain>
-Cc: John Harrison <John.C.Harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- clang-built-linux@googlegroups.com, kernel-janitors@vger.kernel.org,
- Dan Carpenter <dan.carpenter@oracle.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AAE989993;
+ Mon, 23 Aug 2021 19:08:42 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F3728613CF;
+ Mon, 23 Aug 2021 19:08:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1629745721;
+ bh=PLG7FBxLuX3/LDs1ORyJPnau1dlijqlSmrYO3kxYDQY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=UZBMhhNaNnCs4NE6zyqjsZZQxflcfOT+aeFIwthe59yd++NKXgNiiDUNewOphuTcl
+ FRpHqiSUWD3fCHobPQPxMuCt8YX5UyPw1HkOInJbUZ7jQwoWOMB1eEKdzo3LR3PqPU
+ 6Zi6xRwAO3tMbQAMGtJFo+wnAisYpNOtZbMkBcZNFCRD1eEpLwxGq71kYRvwRd/jAp
+ POWEVkB21/X2AqkjLwAdpJPNZ/6bJh9lrE6kowljzhbZfkN0GuSxv6VV3FY51zV7uc
+ 6e6nGlj10YjA06DZ8O4S360qjcLgVoReT8FKoUGwz9SSiTk1CgjHF2A6zVKZUGhXCi
+ pslslOiTjA18A==
+Date: Mon, 23 Aug 2021 12:08:37 -0700
+From: Nathan Chancellor <nathan@kernel.org>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
- Nathan Chancellor <nathan@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <162979875184.5663.3119766810404831323@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 24 Aug 2021 12:52:31 +0300
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: John Harrison <John.C.Harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
+ kernel-janitors@vger.kernel.org, Dan Carpenter <dan.carpenter@oracle.com>
+Message-ID: <YSPyNZ3I1LgvDYSw@Ryzen-9-3900X.localdomain>
+References: <20210813171158.2665823-1-nathan@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210813171158.2665823-1-nathan@kernel.org>
+X-Mailman-Approved-At: Tue, 24 Aug 2021 11:49:50 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftest: Fix use of err in
  igt_reset_{fail, nop}_engine()
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -57,70 +58,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Nathan Chancellor (2021-08-23 22:08:37)
-> Ping? This is a pretty clear bug and it is not fixed in -next or
-> drm-intel at this point.
+Ping? This is a pretty clear bug and it is not fixed in -next or
+drm-intel at this point.
 
-Pushed to drm-intel-gt-next with my R-b.
-
-Regards, Joonas
-
-> On Fri, Aug 13, 2021 at 10:11:58AM -0700, Nathan Chancellor wrote:
-> > Clang warns:
-> >=20
-> > In file included from drivers/gpu/drm/i915/gt/intel_reset.c:1514:
-> > drivers/gpu/drm/i915/gt/selftest_hangcheck.c:465:62: warning: variable
-> > 'err' is uninitialized when used here [-Wuninitialized]
-> >         pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-> >                                                                   ^~~
-> > ...
-> > drivers/gpu/drm/i915/gt/selftest_hangcheck.c:580:62: warning: variable
-> > 'err' is uninitialized when used here [-Wuninitialized]
-> >         pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-> >                                                                   ^~~
-> > ...
-> > 2 warnings generated.
-> >=20
-> > This appears to be a copy and paste issue. Use ce directly using the %pe
-> > specifier to pretty print the error code so that err is not used
-> > uninitialized in these functions.
-> >=20
-> > Fixes: 3a7b72665ea5 ("drm/i915/selftest: Bump selftest timeouts for han=
-gcheck")
-> > Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> > Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-> > ---
-> >  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu=
-/drm/i915/gt/selftest_hangcheck.c
-> > index 08f011f893b2..2c1ed32ca5ac 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > @@ -462,7 +462,7 @@ static int igt_reset_nop_engine(void *arg)
-> > =20
-> >               ce =3D intel_context_create(engine);
-> >               if (IS_ERR(ce)) {
-> > -                     pr_err("[%s] Create context failed: %d!\n", engin=
-e->name, err);
-> > +                     pr_err("[%s] Create context failed: %pe!\n", engi=
-ne->name, ce);
-> >                       return PTR_ERR(ce);
-> >               }
-> > =20
-> > @@ -577,7 +577,7 @@ static int igt_reset_fail_engine(void *arg)
-> > =20
-> >               ce =3D intel_context_create(engine);
-> >               if (IS_ERR(ce)) {
-> > -                     pr_err("[%s] Create context failed: %d!\n", engin=
-e->name, err);
-> > +                     pr_err("[%s] Create context failed: %pe!\n", engi=
-ne->name, ce);
-> >                       return PTR_ERR(ce);
-> >               }
-> > =20
-> >=20
-> > base-commit: 927dfdd09d8c03ba100ed0c8c3915f8e1d1f5556
-> > --=20
-> > 2.33.0.rc2
+On Fri, Aug 13, 2021 at 10:11:58AM -0700, Nathan Chancellor wrote:
+> Clang warns:
+> 
+> In file included from drivers/gpu/drm/i915/gt/intel_reset.c:1514:
+> drivers/gpu/drm/i915/gt/selftest_hangcheck.c:465:62: warning: variable
+> 'err' is uninitialized when used here [-Wuninitialized]
+>         pr_err("[%s] Create context failed: %d!\n", engine->name, err);
+>                                                                   ^~~
+> ...
+> drivers/gpu/drm/i915/gt/selftest_hangcheck.c:580:62: warning: variable
+> 'err' is uninitialized when used here [-Wuninitialized]
+>         pr_err("[%s] Create context failed: %d!\n", engine->name, err);
+>                                                                   ^~~
+> ...
+> 2 warnings generated.
+> 
+> This appears to be a copy and paste issue. Use ce directly using the %pe
+> specifier to pretty print the error code so that err is not used
+> uninitialized in these functions.
+> 
+> Fixes: 3a7b72665ea5 ("drm/i915/selftest: Bump selftest timeouts for hangcheck")
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> index 08f011f893b2..2c1ed32ca5ac 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> @@ -462,7 +462,7 @@ static int igt_reset_nop_engine(void *arg)
+>  
+>  		ce = intel_context_create(engine);
+>  		if (IS_ERR(ce)) {
+> -			pr_err("[%s] Create context failed: %d!\n", engine->name, err);
+> +			pr_err("[%s] Create context failed: %pe!\n", engine->name, ce);
+>  			return PTR_ERR(ce);
+>  		}
+>  
+> @@ -577,7 +577,7 @@ static int igt_reset_fail_engine(void *arg)
+>  
+>  		ce = intel_context_create(engine);
+>  		if (IS_ERR(ce)) {
+> -			pr_err("[%s] Create context failed: %d!\n", engine->name, err);
+> +			pr_err("[%s] Create context failed: %pe!\n", engine->name, ce);
+>  			return PTR_ERR(ce);
+>  		}
+>  
+> 
+> base-commit: 927dfdd09d8c03ba100ed0c8c3915f8e1d1f5556
+> -- 
+> 2.33.0.rc2
