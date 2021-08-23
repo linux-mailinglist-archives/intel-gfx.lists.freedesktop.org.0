@@ -1,39 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28AEE3F43D5
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 05:21:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB123F440A
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 05:58:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAE1489E9B;
-	Mon, 23 Aug 2021 03:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D76EE89DF9;
+	Mon, 23 Aug 2021 03:58:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FDFE89C97
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Aug 2021 03:21:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10084"; a="239159306"
-X-IronPort-AV: E=Sophos;i="5.84,343,1620716400"; d="scan'208";a="239159306"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2021 20:21:24 -0700
-X-IronPort-AV: E=Sophos;i="5.84,343,1620716400"; d="scan'208";a="514550809"
-Received: from unknown (HELO vandita-Z390-AORUS-ULTRA.iind.intel.com)
- ([10.190.238.8])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2021 20:21:22 -0700
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Vandita Kulkarni <vandita.kulkarni@intel.com>
-Date: Mon, 23 Aug 2021 08:51:36 +0530
-Message-Id: <20210823032136.2564-3-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210823032136.2564-1-vandita.kulkarni@intel.com>
-References: <20210823032136.2564-1-vandita.kulkarni@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0DB3A89DED;
+ Mon, 23 Aug 2021 03:58:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 054FCA77A5;
+ Mon, 23 Aug 2021 03:58:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dsi/xelpd: Enable mipi dsi support.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Aug 2021 03:58:36 -0000
+Message-ID: <162969111699.1909.2401237992872884801@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210823032136.2564-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20210823032136.2564-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBF?=
+ =?utf-8?q?nable_mipi_dsi_on_XELPD?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +41,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable MIPI DSI support on ADL-P platform.
-The esc clock changes, WA changes are taken care
-in the previous patches.
-As per the Bspec the seq remains to be same as TGL.
+== Series Details ==
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 1 +
- 1 file changed, 1 insertion(+)
+Series: Enable mipi dsi on XELPD
+URL   : https://patchwork.freedesktop.org/series/93917/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a257e5dc381c..55142b9ec976 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -11488,6 +11488,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		intel_ddi_init(dev_priv, PORT_TC2);
- 		intel_ddi_init(dev_priv, PORT_TC3);
- 		intel_ddi_init(dev_priv, PORT_TC4);
-+		icl_dsi_init(dev_priv);
- 	} else if (IS_ALDERLAKE_S(dev_priv)) {
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_TC1);
--- 
-2.32.0
+== Summary ==
+
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/display/icl_dsi.o
+In file included from drivers/gpu/drm/i915/display/intel_ddi.h:10,
+                 from drivers/gpu/drm/i915/display/icl_dsi.c:35:
+drivers/gpu/drm/i915/display/icl_dsi.c: In function ‘adlp_set_lp_hs_wakeup_gb’:
+./drivers/gpu/drm/i915/i915_reg.h:11623:11: error: ‘_TGL_DSI_CHKN_REG_0’ undeclared (first use in this function); did you mean ‘TGL_DSI_CHKN_REG_0’?
+           _TGL_DSI_CHKN_REG_0, \
+           ^~~~~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:185:47: note: in definition of macro ‘_MMIO’
+ #define _MMIO(r) ((const i915_reg_t){ .reg = (r) })
+                                               ^
+./drivers/gpu/drm/i915/i915_reg.h:231:28: note: in expansion of macro ‘_PICK_EVEN’
+ #define _PORT(port, a, b)  _PICK_EVEN(port, a, b)
+                            ^~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:238:39: note: in expansion of macro ‘_PORT’
+ #define _MMIO_PORT(port, a, b)  _MMIO(_PORT(port, a, b))
+                                       ^~~~~
+./drivers/gpu/drm/i915/i915_reg.h:11622:33: note: in expansion of macro ‘_MMIO_PORT’
+ #define TGL_DSI_CHKN_REG(port)  _MMIO_PORT(port, \
+                                 ^~~~~~~~~~
+drivers/gpu/drm/i915/display/icl_dsi.c:1290:27: note: in expansion of macro ‘TGL_DSI_CHKN_REG’
+    intel_de_rmw(dev_priv, TGL_DSI_CHKN_REG(port),
+                           ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:11623:11: note: each undeclared identifier is reported only once for each function it appears in
+           _TGL_DSI_CHKN_REG_0, \
+           ^~~~~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:185:47: note: in definition of macro ‘_MMIO’
+ #define _MMIO(r) ((const i915_reg_t){ .reg = (r) })
+                                               ^
+./drivers/gpu/drm/i915/i915_reg.h:231:28: note: in expansion of macro ‘_PICK_EVEN’
+ #define _PORT(port, a, b)  _PICK_EVEN(port, a, b)
+                            ^~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:238:39: note: in expansion of macro ‘_PORT’
+ #define _MMIO_PORT(port, a, b)  _MMIO(_PORT(port, a, b))
+                                       ^~~~~
+./drivers/gpu/drm/i915/i915_reg.h:11622:33: note: in expansion of macro ‘_MMIO_PORT’
+ #define TGL_DSI_CHKN_REG(port)  _MMIO_PORT(port, \
+                                 ^~~~~~~~~~
+drivers/gpu/drm/i915/display/icl_dsi.c:1290:27: note: in expansion of macro ‘TGL_DSI_CHKN_REG’
+    intel_de_rmw(dev_priv, TGL_DSI_CHKN_REG(port),
+                           ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:11624:11: error: ‘_TGL_DSI_CHKN_REG_1’ undeclared (first use in this function); did you mean ‘TGL_DSI_CHKN_REG_1’?
+           _TGL_DSI_CHKN_REG_1)
+           ^~~~~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:185:47: note: in definition of macro ‘_MMIO’
+ #define _MMIO(r) ((const i915_reg_t){ .reg = (r) })
+                                               ^
+./drivers/gpu/drm/i915/i915_reg.h:231:28: note: in expansion of macro ‘_PICK_EVEN’
+ #define _PORT(port, a, b)  _PICK_EVEN(port, a, b)
+                            ^~~~~~~~~~
+./drivers/gpu/drm/i915/i915_reg.h:238:39: note: in expansion of macro ‘_PORT’
+ #define _MMIO_PORT(port, a, b)  _MMIO(_PORT(port, a, b))
+                                       ^~~~~
+./drivers/gpu/drm/i915/i915_reg.h:11622:33: note: in expansion of macro ‘_MMIO_PORT’
+ #define TGL_DSI_CHKN_REG(port)  _MMIO_PORT(port, \
+                                 ^~~~~~~~~~
+drivers/gpu/drm/i915/display/icl_dsi.c:1290:27: note: in expansion of macro ‘TGL_DSI_CHKN_REG’
+    intel_de_rmw(dev_priv, TGL_DSI_CHKN_REG(port),
+                           ^~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/display/icl_dsi.c:1288:5: error: suggest explicit braces to avoid ambiguous ‘else’ [-Werror=dangling-else]
+  if (DISPLAY_VER(dev_priv) == 13)
+     ^
+cc1: all warnings being treated as errors
+scripts/Makefile.build:271: recipe for target 'drivers/gpu/drm/i915/display/icl_dsi.o' failed
+make[4]: *** [drivers/gpu/drm/i915/display/icl_dsi.o] Error 1
+scripts/Makefile.build:514: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:514: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:514: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1851: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
 
