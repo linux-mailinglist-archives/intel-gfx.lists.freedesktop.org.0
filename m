@@ -1,66 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0383F4FDA
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 19:51:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B1D3F4FED
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 19:52:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B11E89C08;
-	Mon, 23 Aug 2021 17:51:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9793389B01;
+	Mon, 23 Aug 2021 17:52:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
- [IPv6:2607:f8b0:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8851A89BF1;
- Mon, 23 Aug 2021 17:51:12 +0000 (UTC)
-Received: by mail-ot1-x32d.google.com with SMTP id
- x10-20020a056830408a00b004f26cead745so38511134ott.10; 
- Mon, 23 Aug 2021 10:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=3rREAyPOKdLF6NDEzn+rP2y6ycvNQqshJTP26LTwLYA=;
- b=AUOWTbDAsF2kSoMy1ltDzWDDka9y3jbqDIiddEymQ6xYDkzCjOrs3Arh+mUPc2ULzX
- pZ1Xyx4b0a6z4NiVFlfzzt+OYk/qf+uWcy4I1I9eym7owd7esqPvyqFI5M+P/6yZTn3F
- oiIaHKx3XYPXtNJo9ZfB2mFN0V/lhzcrJhGJuRMblyskmXqnN+f3MpAUsKjLhJZCYIaR
- Oekero8asdPtUvYhgt67HWgtdK9pzdNpd4nbp6Fad+KR19d//l5Zw2zgGylV3CZ6B4Fx
- 14lQ0Mao5BL3xPVWPNAIXrLsdhNVNySHY68tiW2WXSVA1+QBaEXinzXxCAQHy5mJnVl4
- nM1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=3rREAyPOKdLF6NDEzn+rP2y6ycvNQqshJTP26LTwLYA=;
- b=D21qS32enAlXG+ww8VEBTvVbeAmtSiUSVTF/lniLYmKkDskGEsvUoaIjEGNsQpe+0h
- op5UEXj1zMiyFkeydQOELf2UsGO+g29ounV4w+ZOb5oZxkvnx5WiOwIgZO40xAvGZfZt
- bQz2VmPH3DqvhmwwJuRCxShU4aHwalXzT6wGEsG1md2PxPnbJ+jH2/dCTguqsMwaobl4
- bXMqc5xoBW0Ih8O8GUWKiJQn7nH2p8FWj0UQYn8QuXtYRPGrnyq5oGZfjXs6IW3++ubV
- aLFmAWhWDQiBxMpKRs9WAJYAg1G0GigGb7HYcHqZi+UUfry1hBmsOSVbJPY+f8mkyTrB
- N7GQ==
-X-Gm-Message-State: AOAM532MiZ6CndfLFDaUcRri28dlPbdylemTxvpPAcZkN6ZA4gk0BR98
- xLCjnRsdIunzudz44h4i+6VXmORELm+yaAfhj9s=
-X-Google-Smtp-Source: ABdhPJyCzesKPtsp+veFGNMoo192/z38L5TnShuXRKh6DQbbg8b3d22M+M90/KZ4CSNKrPdy52aVEtHwkBUmmgc7BFc=
-X-Received: by 2002:a05:6808:483:: with SMTP id
- z3mr11942026oid.5.1629741071769; 
- Mon, 23 Aug 2021 10:51:11 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 467C289B01
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Aug 2021 17:52:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="204291956"
+X-IronPort-AV: E=Sophos;i="5.84,344,1620716400"; d="scan'208";a="204291956"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2021 10:52:52 -0700
+X-IronPort-AV: E=Sophos;i="5.84,344,1620716400"; d="scan'208";a="526159366"
+Received: from gspitz-mobl1.ger.corp.intel.com (HELO [10.252.37.198])
+ ([10.252.37.198])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2021 10:52:51 -0700
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20210702204603.596-1-ville.syrjala@linux.intel.com>
+ <20210702204603.596-9-ville.syrjala@linux.intel.com>
+From: =?UTF-8?Q?Juha-Pekka_Heikkil=c3=a4?= <juha-pekka.heikkila@intel.com>
+Message-ID: <ca9ef468-6fdb-bf07-ca72-d72061980963@intel.com>
+Date: Mon, 23 Aug 2021 20:52:48 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <d959876c2c61827a0607f5de29fdec10c47dcd86.1629667175.git.christophe.jaillet@wanadoo.fr>
- <4421bb63-3e77-0646-a647-c387a5df060c@amd.com>
-In-Reply-To: <4421bb63-3e77-0646-a647-c387a5df060c@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 23 Aug 2021 13:51:00 -0400
-Message-ID: <CADnq5_Mz1c68XToo4MKy-Xq70ZcLUiM95uqB9Wa_6buM6vkLgA@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- "Deucher, Alexander" <alexander.deucher@amd.com>,
- xinhui pan <Xinhui.Pan@amd.com>, 
- Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/amdgpu: switch from 'pci_' to 'dma_' API
+In-Reply-To: <20210702204603.596-9-ville.syrjala@linux.intel.com>
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915/fbc: Allow higher compression
+ limits on FBC1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,177 +53,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+TG9vayBvayB0byBtZS4KClJldmlld2VkLWJ5OiBKdWhhLVBla2thIEhlaWtraWxhIDxqdWhhcGVr
+a2EuaGVpa2tpbGFAZ21haWwuY29tPgoKT24gMi43LjIwMjEgMjMuNDYsIFZpbGxlIFN5cmphbGEg
+d3JvdGU6Cj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
+LmNvbT4KPiAKPiBPbiBGQkMxIHdlIGNhbiBzcGVjaWZ5IGFuIGFyYml0cmFyeSBjZmIgc3RyaWRl
+LiBUaGUgaHcgd2lsbAo+IHNpbXBseSB0aHJvdyBhd2F5IGFueSBjb21wcmVzc2VkIGxpbmUgdGhh
+dCB3b3VsZCBleGNlZWQgdGhlCj4gc3BlY2lmaWVkIGxpbWl0IGFuZCBrZWVwIHVzaW5nIHRoZSB1
+bmNvbXByZXNzZWQgZGF0YSBpbnN0ZWFkLgo+IFRodXMgd2UgY2FuIGFsbG93IGFyYml0cmFyeSBj
+b21wcmVzc2lvbiBsaW1pdHMuCj4gCj4gVGhlIG9uZSB0aGluZyB3ZSBoYXZlIHRvIGtlZXAgaW4g
+bWluZCB0aG91Z2ggaXMgdGhhdCB0aGUgY2ZiCj4gc3RyaWRlIGlzIHNwZWNpZmllZCBpbiB1bml0
+cyBvZiAzMkIgKGdlbjIpIG9yIDY0QiAoZ2VuMyspLgo+IEZvcnR1bmF0ZWx5IFgtdGlsZSBpcyBh
+bHJlYWR5IDEyOEIgKGdlbjIpIG9yIDUxMkIgKGdlbjMrKSB3aWRlCj4gc28gYXMgbG9uZyBhcyB3
+ZSBsaW1pdCBvdXRzZWx2ZXMgdG8gdGhlIHNhbWUgNHggY29tcHJlc3Npb24KPiBsaW1pdCB0aGF0
+IEZCQzIgaGFzIHdlIGFyZSBndWFyYW50ZWVkIHRvIGhhdmUgYSBzdWZmaWNpZW50bHkKPiBhbGln
+bmVkIGNmYiBzdHJpZGUuCj4gCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZmJjLmMgfCAyMCArKysrKysrLS0tLS0tLS0tLS0tLQo+ICAgMSBmaWxl
+IGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCj4gaW5kZXggZGFmMjE5MWRkM2Y2Li5kNDZl
+ZTdiNDlkNjggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9mYmMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMK
+PiBAQCAtMTQ0LDE1ICsxNDQsMTMgQEAgc3RhdGljIHZvaWQgaTh4eF9mYmNfZGVhY3RpdmF0ZShz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gICAKPiAgIHN0YXRpYyB2b2lkIGk4
+eHhfZmJjX2FjdGl2YXRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAgIHsK
+PiAtCXN0cnVjdCBpbnRlbF9mYmNfcmVnX3BhcmFtcyAqcGFyYW1zID0gJmRldl9wcml2LT5mYmMu
+cGFyYW1zOwo+ICsJc3RydWN0IGludGVsX2ZiYyAqZmJjID0gJmRldl9wcml2LT5mYmM7Cj4gKwlj
+b25zdCBzdHJ1Y3QgaW50ZWxfZmJjX3JlZ19wYXJhbXMgKnBhcmFtcyA9ICZmYmMtPnBhcmFtczsK
+PiAgIAlpbnQgY2ZiX3BpdGNoOwo+ICAgCWludCBpOwo+ICAgCXUzMiBmYmNfY3RsOwo+ICAgCj4g
+LQkvKiBOb3RlOiBmYmMubGltaXQgPT0gMSBmb3IgaTh4eCAqLwo+IC0JY2ZiX3BpdGNoID0gcGFy
+YW1zLT5jZmJfc2l6ZSAvIEZCQ19MTF9TSVpFOwo+IC0JaWYgKHBhcmFtcy0+ZmIuc3RyaWRlIDwg
+Y2ZiX3BpdGNoKQo+IC0JCWNmYl9waXRjaCA9IHBhcmFtcy0+ZmIuc3RyaWRlOwo+ICsJY2ZiX3Bp
+dGNoID0gcGFyYW1zLT5jZmJfc3RyaWRlIC8gZmJjLT5saW1pdDsKPiAgIAo+ICAgCS8qIEZCQ19D
+VEwgd2FudHMgMzJCIG9yIDY0QiB1bml0cyAqLwo+ICAgCWlmIChESVNQTEFZX1ZFUihkZXZfcHJp
+dikgPT0gMikKPiBAQCAtNDk4LDE4ICs0OTYsMTQgQEAgc3RhdGljIGludCBpbnRlbF9mYmNfbWlu
+X2xpbWl0KGludCBmYl9jcHApCj4gICAKPiAgIHN0YXRpYyBpbnQgaW50ZWxfZmJjX21heF9saW1p
+dChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gICB7Cj4gLQkvKgo+IC0JICog
+RklYTUU6IEZCQzEgY2FuIGhhdmUgYXJiaXRyYXJ5IGNmYiBzdHJpZGUsCj4gLQkgKiBzbyB3ZSBj
+b3VsZCBzdXBwb3J0IGRpZmZlcmVudCBjb21wcmVzc2lvbiByYXRpb3MuCj4gLQkgKi8KPiAtCWlm
+IChESVNQTEFZX1ZFUihkZXZfcHJpdikgPCA1ICYmICFJU19HNFgoZGV2X3ByaXYpKQo+IC0JCXJl
+dHVybiAxOwo+IC0KPiAgIAkvKiBXYUZiY09ubHkxdG8xUmF0aW86Y3RnICovCj4gICAJaWYgKElT
+X0c0WChkZXZfcHJpdikpCj4gICAJCXJldHVybiAxOwo+ICAgCj4gLQkvKiBGQkMyIGNhbiBvbmx5
+IGRvIDE6MSwgMToyLCAxOjQgKi8KPiArCS8qCj4gKwkgKiBGQkMyIGNhbiBvbmx5IGRvIDE6MSwg
+MToyLCAxOjQsIHdlIGxpbWl0Cj4gKwkgKiBGQkMxIHRvIHRoZSBzYW1lIG91dCBvZiBjb252ZW5p
+ZW5jZS4KPiArCSAqLwo+ICAgCXJldHVybiA0Owo+ICAgfQo+ICAgCj4gCi0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpJ
+bnRlbCBGaW5sYW5kIE95ClJlZ2lzdGVyZWQgQWRkcmVzczogUEwgMjgxLCAwMDE4MSBIZWxzaW5r
+aSAKQnVzaW5lc3MgSWRlbnRpdHkgQ29kZTogMDM1NzYwNiAtIDQgCkRvbWljaWxlZCBpbiBIZWxz
+aW5raSAKClRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgbWF5IGNvbnRhaW4gY29uZmlk
+ZW50aWFsIG1hdGVyaWFsIGZvcgp0aGUgc29sZSB1c2Ugb2YgdGhlIGludGVuZGVkIHJlY2lwaWVu
+dChzKS4gQW55IHJldmlldyBvciBkaXN0cmlidXRpb24KYnkgb3RoZXJzIGlzIHN0cmljdGx5IHBy
+b2hpYml0ZWQuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZApyZWNpcGllbnQsIHBsZWFzZSBj
+b250YWN0IHRoZSBzZW5kZXIgYW5kIGRlbGV0ZSBhbGwgY29waWVzLgo=
 
-Alex
-
-On Mon, Aug 23, 2021 at 2:16 AM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> Am 22.08.21 um 23:21 schrieb Christophe JAILLET:
-> > The wrappers in include/linux/pci-dma-compat.h should go away.
-> >
-> > The patch has been generated with the coccinelle script below.
-> >
-> > It has been compile tested.
-> >
-> > @@
-> > @@
-> > -    PCI_DMA_BIDIRECTIONAL
-> > +    DMA_BIDIRECTIONAL
-> >
-> > @@
-> > @@
-> > -    PCI_DMA_TODEVICE
-> > +    DMA_TO_DEVICE
-> >
-> > @@
-> > @@
-> > -    PCI_DMA_FROMDEVICE
-> > +    DMA_FROM_DEVICE
-> >
-> > @@
-> > @@
-> > -    PCI_DMA_NONE
-> > +    DMA_NONE
-> >
-> > @@
-> > expression e1, e2, e3;
-> > @@
-> > -    pci_alloc_consistent(e1, e2, e3)
-> > +    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
-> >
-> > @@
-> > expression e1, e2, e3;
-> > @@
-> > -    pci_zalloc_consistent(e1, e2, e3)
-> > +    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_free_consistent(e1, e2, e3, e4)
-> > +    dma_free_coherent(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_map_single(e1, e2, e3, e4)
-> > +    dma_map_single(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_unmap_single(e1, e2, e3, e4)
-> > +    dma_unmap_single(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4, e5;
-> > @@
-> > -    pci_map_page(e1, e2, e3, e4, e5)
-> > +    dma_map_page(&e1->dev, e2, e3, e4, e5)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_unmap_page(e1, e2, e3, e4)
-> > +    dma_unmap_page(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_map_sg(e1, e2, e3, e4)
-> > +    dma_map_sg(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_unmap_sg(e1, e2, e3, e4)
-> > +    dma_unmap_sg(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_dma_sync_single_for_cpu(e1, e2, e3, e4)
-> > +    dma_sync_single_for_cpu(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_dma_sync_single_for_device(e1, e2, e3, e4)
-> > +    dma_sync_single_for_device(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_dma_sync_sg_for_cpu(e1, e2, e3, e4)
-> > +    dma_sync_sg_for_cpu(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2, e3, e4;
-> > @@
-> > -    pci_dma_sync_sg_for_device(e1, e2, e3, e4)
-> > +    dma_sync_sg_for_device(&e1->dev, e2, e3, e4)
-> >
-> > @@
-> > expression e1, e2;
-> > @@
-> > -    pci_dma_mapping_error(e1, e2)
-> > +    dma_mapping_error(&e1->dev, e2)
-> >
-> > @@
-> > expression e1, e2;
-> > @@
-> > -    pci_set_dma_mask(e1, e2)
-> > +    dma_set_mask(&e1->dev, e2)
-> >
-> > @@
-> > expression e1, e2;
-> > @@
-> > -    pci_set_consistent_dma_mask(e1, e2)
-> > +    dma_set_coherent_mask(&e1->dev, e2)
-> >
-> > Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
->
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
->
-> > ---
-> > If needed, see post from Christoph Hellwig on the kernel-janitors ML:
-> >     https://marc.info/?l=3Dkernel-janitors&m=3D158745678307186&w=3D4
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c | 6 +++---
-> >   1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_gart.c
-> > index b36405170ff3..76efd5f8950f 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-> > @@ -76,7 +76,7 @@ static int amdgpu_gart_dummy_page_init(struct amdgpu_=
-device *adev)
-> >       if (adev->dummy_page_addr)
-> >               return 0;
-> >       adev->dummy_page_addr =3D dma_map_page(&adev->pdev->dev, dummy_pa=
-ge, 0,
-> > -                                          PAGE_SIZE, PCI_DMA_BIDIRECTI=
-ONAL);
-> > +                                          PAGE_SIZE, DMA_BIDIRECTIONAL=
-);
-> >       if (dma_mapping_error(&adev->pdev->dev, adev->dummy_page_addr)) {
-> >               dev_err(&adev->pdev->dev, "Failed to DMA MAP the dummy pa=
-ge\n");
-> >               adev->dummy_page_addr =3D 0;
-> > @@ -96,8 +96,8 @@ void amdgpu_gart_dummy_page_fini(struct amdgpu_device=
- *adev)
-> >   {
-> >       if (!adev->dummy_page_addr)
-> >               return;
-> > -     pci_unmap_page(adev->pdev, adev->dummy_page_addr,
-> > -                    PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
-> > +     dma_unmap_page(&adev->pdev->dev, adev->dummy_page_addr, PAGE_SIZE=
-,
-> > +                    DMA_BIDIRECTIONAL);
-> >       adev->dummy_page_addr =3D 0;
-> >   }
-> >
->
