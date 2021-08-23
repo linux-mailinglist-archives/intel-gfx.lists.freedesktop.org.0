@@ -1,63 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D59053F4DA4
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 17:38:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A553F4E1F
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 18:15:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 143DB89C03;
-	Mon, 23 Aug 2021 15:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA44989AF3;
+	Mon, 23 Aug 2021 16:15:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC47989C03
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Aug 2021 15:38:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="215284322"
-X-IronPort-AV: E=Sophos;i="5.84,344,1620716400"; 
- d="scan'208,217";a="215284322"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BAB989AF3;
+ Mon, 23 Aug 2021 16:15:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="214005036"
+X-IronPort-AV: E=Sophos;i="5.84,344,1620716400"; d="scan'208";a="214005036"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2021 08:38:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,344,1620716400"; 
- d="scan'208,217";a="526105411"
-Received: from pgsmsx603.gar.corp.intel.com ([10.108.199.138])
- by FMSMGA003.fm.intel.com with ESMTP; 23 Aug 2021 08:38:03 -0700
-Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
- pgsmsx603.gar.corp.intel.com (10.108.199.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Mon, 23 Aug 2021 23:38:02 +0800
-Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
- pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2242.010;
- Mon, 23 Aug 2021 23:38:02 +0800
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUsIGRybS90dG06?=
- =?utf-8?B?IFVwZGF0ZSB0aGUgdHRtX21vdmVfbWVtY3B5KCkgaW50ZXJmYWNlIChyZXYz?=
- =?utf-8?Q?)?=
-Thread-Index: AQHXl+2A7xM8bD2HhE2KJr/+8/hWzKuBObuQ
-Date: Mon, 23 Aug 2021 15:38:02 +0000
-Message-ID: <2d5eca25472148279ecbaadc58361e42@intel.com>
-References: <20210813144331.372957-1-thomas.hellstrom@linux.intel.com>
- <162888651810.17682.14943295616955640879@emeril.freedesktop.org>
- <6e25f450ff25363bbc6a722c6342dfe85a9bf384.camel@linux.intel.com>
-In-Reply-To: <6e25f450ff25363bbc6a722c6342dfe85a9bf384.camel@linux.intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-x-originating-ip: [10.22.254.132]
-Content-Type: multipart/alternative;
- boundary="_000_2d5eca25472148279ecbaadc58361e42intelcom_"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2021 09:15:48 -0700
+X-IronPort-AV: E=Sophos;i="5.84,344,1620716400"; d="scan'208";a="526121098"
+Received: from todonova-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.249.44.47])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2021 09:15:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Guenter Roeck <linux@roeck-us.net>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <20210823152223.GA1135259@roeck-us.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210727121037.2041102-1-daniel.vetter@ffwll.ch>
+ <20210727121037.2041102-11-daniel.vetter@ffwll.ch>
+ <20210823152223.GA1135259@roeck-us.net>
+Date: Mon, 23 Aug 2021 19:15:42 +0300
+Message-ID: <874kbggms1.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=2C_drm/ttm=3A_Update_the_ttm=5Fmove=5Fmemcpy=28=29_interf?=
- =?utf-8?q?ace_=28rev3=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 11/11] drm/i915: Extract i915_module.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,215 +53,353 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_2d5eca25472148279ecbaadc58361e42intelcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Mon, 23 Aug 2021, Guenter Roeck <linux@roeck-us.net> wrote:
+> On Tue, Jul 27, 2021 at 02:10:37PM +0200, Daniel Vetter wrote:
+>> The module init code is somewhat misplaced in i915_pci.c, since it
+>> needs to pull in init/exit functions from every part of the driver and
+>> pollutes the include list a lot.
+>>=20
+>> Extract an i915_module.c file which pulls all the bits together, and
+>> allows us to massively trim the include list of i915_pci.c.
+>>=20
+>> The downside is that have to drop the error path check Jason added to
+>> catch when we set up the pci driver too early. I think that risk is
+>> acceptable for this pretty nice include.
+>>=20
+>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+>> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+>
+> With gcc and CONFIG_GCC_PLUGIN_RANDSTRUCT=3Dy, this patch results
+> in:
+>
+> drivers/gpu/drm/i915/i915_module.c:50:11: error:
+> 	positional initialization of field in 'struct' declared with 'designated=
+_init' attribute
+>
+> This is seen for each of the initializers.
 
-UmUtcmVwb3J0ZWQuDQoNCkxha3NobWkuDQoNCkZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
-YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4NClNlbnQ6IE1vbmRheSwgQXVndXN0IDIzLCAy
-MDIxIDEyOjA3IEFNDQpUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgVnVkdW0s
-IExha3NobWluYXJheWFuYSA8bGFrc2htaW5hcmF5YW5hLnZ1ZHVtQGludGVsLmNvbT4NClN1Ympl
-Y3Q6IFJlOiDinJcgRmkuQ0kuSUdUOiBmYWlsdXJlIGZvciBkcm0vaTkxNSwgZHJtL3R0bTogVXBk
-YXRlIHRoZSB0dG1fbW92ZV9tZW1jcHkoKSBpbnRlcmZhY2UgKHJldjMpDQoNCk9uIEZyaSwgMjAy
-MS0wOC0xMyBhdCAyMDoyOCArMDAwMCwgUGF0Y2h3b3JrIHdyb3RlOg0KUGF0Y2ggRGV0YWlscw0K
-U2VyaWVzOg0KDQpkcm0vaTkxNSwgZHJtL3R0bTogVXBkYXRlIHRoZSB0dG1fbW92ZV9tZW1jcHko
-KSBpbnRlcmZhY2UgKHJldjMpDQoNClVSTDoNCg0KaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
-b3Aub3JnL3Nlcmllcy85MTg5My8NCg0KU3RhdGU6DQoNCmZhaWx1cmUNCg0KRGV0YWlsczoNCg0K
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA4MTkv
-aW5kZXguaHRtbA0KDQpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV8xMDQ4Ml9mdWxs
-IC0+IFBhdGNod29ya18yMDgxOV9mdWxsDQpTdW1tYXJ5DQoNCkZBSUxVUkUNCg0KU2VyaW91cyB1
-bmtub3duIGNoYW5nZXMgY29taW5nIHdpdGggUGF0Y2h3b3JrXzIwODE5X2Z1bGwgYWJzb2x1dGVs
-eSBuZWVkIHRvIGJlDQp2ZXJpZmllZCBtYW51YWxseS4NCg0KSWYgeW91IHRoaW5rIHRoZSByZXBv
-cnRlZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQppbnRyb2R1
-Y2VkIGluIFBhdGNod29ya18yMDgxOV9mdWxsLCBwbGVhc2Ugbm90aWZ5IHlvdXIgYnVnIHRlYW0g
-dG8gYWxsb3cgdGhlbQ0KdG8gZG9jdW1lbnQgdGhpcyBuZXcgZmFpbHVyZSBtb2RlLCB3aGljaCB3
-aWxsIHJlZHVjZSBmYWxzZSBwb3NpdGl2ZXMgaW4gQ0kuDQoNClBvc3NpYmxlIG5ldyBpc3N1ZXMN
-Cg0KSGVyZSBhcmUgdGhlIHVua25vd24gY2hhbmdlcyB0aGF0IG1heSBoYXZlIGJlZW4gaW50cm9k
-dWNlZCBpbiBQYXRjaHdvcmtfMjA4MTlfZnVsbDoNCg0KSUdUIGNoYW5nZXMNClBvc3NpYmxlIHJl
-Z3Jlc3Npb25zDQoNCiAgKiAgIGlndEBrbXNfY3Vyc29yX2xlZ2FjeUAyeC1sb25nLWN1cnNvci12
-cy1mbGlwLWF0b21pYzoNCg0KICAgICAqICAgc2hhcmQtZ2xrOiBQQVNTPGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzEwNDgyL3NoYXJkLWdsazgvaWd0QGtt
-c19jdXJzb3JfbGVnYWN5QDJ4LWxvbmctY3Vyc29yLXZzLWZsaXAtYXRvbWljLmh0bWw+IC0+IEZB
-SUw8aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA4
-MTkvc2hhcmQtZ2xrNS9pZ3RAa21zX2N1cnNvcl9sZWdhY3lAMngtbG9uZy1jdXJzb3ItdnMtZmxp
-cC1hdG9taWMuaHRtbD4NCg0KTGFrc2htaSwgdGhpcyBmYWlsdXJlIGlzIHVucmVsYXRlZC4NCg0K
-VGhhbmtzLA0KVGhvbWFzDQoNCg0K
+https://patchwork.freedesktop.org/patch/msgid/20210817233357.2379455-1-kees=
+cook@chromium.org
 
---_000_2d5eca25472148279ecbaadc58361e42intelcom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+BR,
+Jani.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHRpdGxl
-PlByb2plY3QgTGlzdCAtIFBhdGNod29yazwvdGl0bGU+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBE
-ZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFu
-b3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAgMDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJD
-YW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlNlZ29lIFVJIFN5bWJvbCI7DQoJcGFub3Nl
-LTE6MiAxMSA1IDIgNCAyIDQgMiAyIDM7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
-Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250
-LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmgxDQoJ
-e21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFkaW5nIDEgQ2hhciI7
-DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFy
-Z2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjI0LjBw
-dDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglmb250LXdlaWdodDpib2xk
-O30NCmgyDQoJe21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFkaW5n
-IDIgQ2hhciI7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsN
-Cgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1z
-aXplOjE4LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglmb250LXdl
-aWdodDpib2xkO30NCmgzDQoJe21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5r
-OiJIZWFkaW5nIDMgQ2hhciI7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJp
-Z2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47
-DQoJZm9udC1zaXplOjEzLjVwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsN
-Cglmb250LXdlaWdodDpib2xkO30NCmg0DQoJe21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1z
-dHlsZS1saW5rOiJIZWFkaW5nIDQgQ2hhciI7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJ
-bWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4t
-bGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fu
-cy1zZXJpZjsNCglmb250LXdlaWdodDpib2xkO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkhlYWRpbmcxQ2hhcg0KCXttc28tc3R5bGUtbmFtZToiSGVhZGlu
-ZyAxIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFk
-aW5nIDEiOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIExpZ2h0IixzYW5zLXNlcmlmOw0KCWNvbG9y
-OiMyRjU0OTY7fQ0Kc3Bhbi5IZWFkaW5nMkNoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhlYWRpbmcg
-MiBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTsNCgltc28tc3R5bGUtbGluazoiSGVhZGlu
-ZyAyIjsNCglmb250LWZhbWlseToiQ2FsaWJyaSBMaWdodCIsc2Fucy1zZXJpZjsNCgljb2xvcjoj
-MkY1NDk2O30NCnNwYW4uSGVhZGluZzNDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJIZWFkaW5nIDMg
-Q2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk7DQoJbXNvLXN0eWxlLWxpbms6IkhlYWRpbmcg
-MyI7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkgTGlnaHQiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFG
-Mzc2Mzt9DQpzcGFuLkhlYWRpbmc0Q2hhcg0KCXttc28tc3R5bGUtbmFtZToiSGVhZGluZyA0IENo
-YXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFkaW5nIDQi
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIExpZ2h0IixzYW5zLXNlcmlmOw0KCWNvbG9yOiMyRjU0
-OTY7DQoJZm9udC1zdHlsZTppdGFsaWM7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjQNCgl7bXNvLXN0eWxl
-LXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
-DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
-eHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
-aXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2
-LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25z
-ICovDQpAbGlzdCBsMA0KCXttc28tbGlzdC1pZDoyMjA3NTUzMjA7DQoJbXNvLWxpc3QtdGVtcGxh
-dGUtaWRzOi0yMDA0ODY2MDgyO30NCkBsaXN0IGwwOmxldmVsMQ0KCXttc28tbGV2ZWwtbnVtYmVy
-LWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3Rv
-cDouNWluOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDot
-LjI1aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7
-fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCglt
-c28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDoxLjBpbjsNCgltc28tbGV2ZWwt
-bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCW1zby1hbnNpLWZv
-bnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3IjsNCgltc28tYmlkaS1m
-b250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIjt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxl
-dmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2
-ZWwtdGFiLXN0b3A6MS41aW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRl
-eHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFt
-aWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1mb3Jt
-YXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6Mi4w
-aW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVp
-bjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9
-DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1z
-by1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6Mi41aW47DQoJbXNvLWxldmVs
-LW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1m
-b250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZl
-bDYNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+C
-pzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6My4waW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlv
-bjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0
-Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDcNCgl7bXNvLWxldmVs
-LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwt
-dGFiLXN0b3A6My41aW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
-aW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5
-OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6
-YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6NC4waW47
-DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsN
-Cgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpA
-bGlzdCBsMDpsZXZlbDkNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1s
-ZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6NC41aW47DQoJbXNvLWxldmVsLW51
-bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250
-LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpvbA0KCXttYXJnaW4tYm90
-dG9tOjBpbjt9DQp1bA0KCXttYXJnaW4tYm90dG9tOjBpbjt9DQotLT48L3N0eWxlPjwhLS1baWYg
-Z3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0i
-MTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86
-c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEi
-IC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBs
-YW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3JhcDpi
-cmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5SZS1yZXBvcnRlZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TGFrc2htaS48bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRp
-dj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBw
-dDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZy
-b206PC9iPiBUaG9tYXMgSGVsbHN0csO2bSAmbHQ7dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRl
-bC5jb20mZ3Q7DQo8YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBBdWd1c3QgMjMsIDIwMjEgMTI6
-MDcgQU08YnI+DQo8Yj5Ubzo8L2I+IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IFZ1
-ZHVtLCBMYWtzaG1pbmFyYXlhbmEgJmx0O2xha3NobWluYXJheWFuYS52dWR1bUBpbnRlbC5jb20m
-Z3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiA8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LHNhbnMtc2VyaWYiPuKclzwvc3Bhbj4gRmkuQ0kuSUdU
-OiBmYWlsdXJlIGZvciBkcm0vaTkxNSwgZHJtL3R0bTogVXBkYXRlIHRoZSB0dG1fbW92ZV9tZW1j
-cHkoKSBpbnRlcmZhY2UgKHJldjMpPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+T24gRnJpLCAyMDIxLTA4LTEzIGF0IDIwOjI4ICYjNDM7MDAwMCwgUGF0Y2h3
-b3JrIHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9y
-ZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgIzcyOUZDRiAxLjVwdDtwYWRkaW5nOjBpbiAwaW4g
-MGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxiPlBhdGNoIERldGFpbHM8L2I+PG86cD48L286cD48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjAiIGNl
-bGxwYWRkaW5nPSIwIj4NCjx0Ym9keT4NCjx0cj4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAy
-LjBwdCAyLjBwdCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5TZXJpZXM6PC9iPjxv
-OnA+PC9vOnA+PC9wPg0KPC90ZD4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBw
-dCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5kcm0vaTkxNSwgZHJtL3R0bTogVXBkYXRl
-IHRoZSB0dG1fbW92ZV9tZW1jcHkoKSBpbnRlcmZhY2UgKHJldjMpPG86cD48L286cD48L3A+DQo8
-L3RkPg0KPC90cj4NCjx0cj4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAy
-LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5VUkw6PC9iPjxvOnA+PC9vOnA+PC9wPg0K
-PC90ZD4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAyLjBwdCI+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5v
-cmcvc2VyaWVzLzkxODkzLyI+aHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmll
-cy85MTg5My88L2E+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0cj4NCjx0ZCBzdHls
-ZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48Yj5TdGF0ZTo8L2I+PG86cD48L286cD48L3A+DQo8L3RkPg0KPHRkIHN0eWxlPSJwYWRkaW5n
-OjIuMHB0IDIuMHB0IDIuMHB0IDIuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmZhaWx1cmU8
-bzpwPjwvbzpwPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyPg0KPHRkIHN0eWxlPSJwYWRkaW5nOjIu
-MHB0IDIuMHB0IDIuMHB0IDIuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkRldGFpbHM6
-PC9iPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBw
-dCAyLjBwdCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMDgxOS9pbmRleC5odG1s
-Ij5odHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMDgx
-OS9pbmRleC5odG1sPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0K
-PC90YWJsZT4NCjwvZGl2Pg0KPGgxPkNJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzEw
-NDgyX2Z1bGwgLSZndDsgUGF0Y2h3b3JrXzIwODE5X2Z1bGw8bzpwPjwvbzpwPjwvaDE+DQo8aDI+
-U3VtbWFyeTxvOnA+PC9vOnA+PC9oMj4NCjxwPjxzdHJvbmc+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RkFJTFVSRTwvc3Bhbj48L3N0cm9u
-Zz48bzpwPjwvbzpwPjwvcD4NCjxwPlNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3aXRo
-IFBhdGNod29ya18yMDgxOV9mdWxsIGFic29sdXRlbHkgbmVlZCB0byBiZTxicj4NCnZlcmlmaWVk
-IG1hbnVhbGx5LjxvOnA+PC9vOnA+PC9wPg0KPHA+SWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBj
-aGFuZ2VzIGhhdmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzPGJyPg0KaW50cm9kdWNl
-ZCBpbiBQYXRjaHdvcmtfMjA4MTlfZnVsbCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRv
-IGFsbG93IHRoZW08YnI+DQp0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNo
-IHdpbGwgcmVkdWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS48bzpwPjwvbzpwPjwvcD4NCjxoMj5Q
-b3NzaWJsZSBuZXcgaXNzdWVzPG86cD48L286cD48L2gyPg0KPHA+SGVyZSBhcmUgdGhlIHVua25v
-d24gY2hhbmdlcyB0aGF0IG1heSBoYXZlIGJlZW4gaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMjA4
-MTlfZnVsbDo8bzpwPjwvbzpwPjwvcD4NCjxoMz5JR1QgY2hhbmdlczxvOnA+PC9vOnA+PC9oMz4N
-CjxoND5Qb3NzaWJsZSByZWdyZXNzaW9uczxvOnA+PC9vOnA+PC9oND4NCjx1bCB0eXBlPSJkaXNj
-Ij4NCjxsaSBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
-bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPg0KaWd0
-QGttc19jdXJzb3JfbGVnYWN5QDJ4LWxvbmctY3Vyc29yLXZzLWZsaXAtYXRvbWljOjxvOnA+PC9v
-OnA+PC9saT48L3VsPg0KPHVsIHR5cGU9ImRpc2MiPg0KPHVsIHR5cGU9ImNpcmNsZSI+DQo8bGkg
-Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
-aW4tYm90dG9tLWFsdDphdXRvO21zby1saXN0OmwwIGxldmVsMiBsZm8xIj4NCnNoYXJkLWdsazog
-PGEgaHJlZj0iaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1f
-MTA0ODIvc2hhcmQtZ2xrOC9pZ3RAa21zX2N1cnNvcl9sZWdhY3lAMngtbG9uZy1jdXJzb3ItdnMt
-ZmxpcC1hdG9taWMuaHRtbCI+DQpQQVNTPC9hPiAtJmd0OyA8YSBocmVmPSJodHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMDgxOS9zaGFyZC1nbGs1L2ln
-dEBrbXNfY3Vyc29yX2xlZ2FjeUAyeC1sb25nLWN1cnNvci12cy1mbGlwLWF0b21pYy5odG1sIj4N
-CkZBSUw8L2E+PG86cD48L286cD48L2xpPjwvdWw+DQo8L3VsPg0KPC9ibG9ja3F1b3RlPg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TGFrc2htaSwgdGhpcyBmYWlsdXJlIGlzIHVucmVs
-YXRlZC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+VGhvbWFzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4N
-CjwvaHRtbD4NCg==
+>
+> Guenter
+>
+>> ---
+>>  drivers/gpu/drm/i915/Makefile      |   1 +
+>>  drivers/gpu/drm/i915/i915_module.c | 113 ++++++++++++++++++++++++++++
+>>  drivers/gpu/drm/i915/i915_pci.c    | 117 +----------------------------
+>>  drivers/gpu/drm/i915/i915_pci.h    |   8 ++
+>>  4 files changed, 125 insertions(+), 114 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/i915/i915_module.c
+>>  create mode 100644 drivers/gpu/drm/i915/i915_pci.h
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
+le
+>> index 9022dc638ed6..4ebd9f417ddb 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -38,6 +38,7 @@ i915-y +=3D i915_drv.o \
+>>  	  i915_irq.o \
+>>  	  i915_getparam.o \
+>>  	  i915_mitigations.o \
+>> +	  i915_module.o \
+>>  	  i915_params.o \
+>>  	  i915_pci.o \
+>>  	  i915_scatterlist.o \
+>> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i=
+915_module.c
+>> new file mode 100644
+>> index 000000000000..c578ea8f56a0
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/i915_module.c
+>> @@ -0,0 +1,113 @@
+>> +/*
+>> + * SPDX-License-Identifier: MIT
+>> + *
+>> + * Copyright =C2=A9 2021 Intel Corporation
+>> + */
+>> +
+>> +#include <linux/console.h>
+>> +
+>> +#include "gem/i915_gem_context.h"
+>> +#include "gem/i915_gem_object.h"
+>> +#include "i915_active.h"
+>> +#include "i915_buddy.h"
+>> +#include "i915_params.h"
+>> +#include "i915_pci.h"
+>> +#include "i915_perf.h"
+>> +#include "i915_request.h"
+>> +#include "i915_scheduler.h"
+>> +#include "i915_selftest.h"
+>> +#include "i915_vma.h"
+>> +
+>> +static int i915_check_nomodeset(void)
+>> +{
+>> +	bool use_kms =3D true;
+>> +
+>> +	/*
+>> +	 * Enable KMS by default, unless explicitly overriden by
+>> +	 * either the i915.modeset prarameter or by the
+>> +	 * vga_text_mode_force boot option.
+>> +	 */
+>> +
+>> +	if (i915_modparams.modeset =3D=3D 0)
+>> +		use_kms =3D false;
+>> +
+>> +	if (vgacon_text_force() && i915_modparams.modeset =3D=3D -1)
+>> +		use_kms =3D false;
+>> +
+>> +	if (!use_kms) {
+>> +		/* Silently fail loading to not upset userspace. */
+>> +		DRM_DEBUG_DRIVER("KMS disabled.\n");
+>> +		return 1;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct {
+>> +   int (*init)(void);
+>> +   void (*exit)(void);
+>> +} init_funcs[] =3D {
+>> +	{ i915_check_nomodeset, NULL },
+>> +	{ i915_active_module_init, i915_active_module_exit },
+>> +	{ i915_buddy_module_init, i915_buddy_module_exit },
+>> +	{ i915_context_module_init, i915_context_module_exit },
+>> +	{ i915_gem_context_module_init, i915_gem_context_module_exit },
+>> +	{ i915_objects_module_init, i915_objects_module_exit },
+>> +	{ i915_request_module_init, i915_request_module_exit },
+>> +	{ i915_scheduler_module_init, i915_scheduler_module_exit },
+>> +	{ i915_vma_module_init, i915_vma_module_exit },
+>> +	{ i915_mock_selftests, NULL },
+>> +	{ i915_pmu_init, i915_pmu_exit },
+>> +	{ i915_register_pci_driver, i915_unregister_pci_driver },
+>> +	{ i915_perf_sysctl_register, i915_perf_sysctl_unregister },
+>> +};
+>> +static int init_progress;
+>> +
+>> +static int __init i915_init(void)
+>> +{
+>> +	int err, i;
+>> +
+>> +	for (i =3D 0; i < ARRAY_SIZE(init_funcs); i++) {
+>> +		err =3D init_funcs[i].init();
+>> +		if (err < 0) {
+>> +			while (i--) {
+>> +				if (init_funcs[i].exit)
+>> +					init_funcs[i].exit();
+>> +			}
+>> +			return err;
+>> +		} else if (err > 0) {
+>> +			/*
+>> +			 * Early-exit success is reserved for things which
+>> +			 * don't have an exit() function because we have no
+>> +			 * idea how far they got or how to partially tear
+>> +			 * them down.
+>> +			 */
+>> +			WARN_ON(init_funcs[i].exit);
+>> +			break;
+>> +		}
+>> +	}
+>> +
+>> +	init_progress =3D i;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void __exit i915_exit(void)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i =3D init_progress - 1; i >=3D 0; i--) {
+>> +		GEM_BUG_ON(i >=3D ARRAY_SIZE(init_funcs));
+>> +		if (init_funcs[i].exit)
+>> +			init_funcs[i].exit();
+>> +	}
+>> +}
+>> +
+>> +module_init(i915_init);
+>> +module_exit(i915_exit);
+>> +
+>> +MODULE_AUTHOR("Tungsten Graphics, Inc.");
+>> +MODULE_AUTHOR("Intel Corporation");
+>> +
+>> +MODULE_DESCRIPTION(DRIVER_DESC);
+>> +MODULE_LICENSE("GPL and additional rights");
+>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915=
+_pci.c
+>> index b4f5e88aaae6..08651ca03478 100644
+>> --- a/drivers/gpu/drm/i915/i915_pci.c
+>> +++ b/drivers/gpu/drm/i915/i915_pci.c
+>> @@ -22,24 +22,13 @@
+>>   *
+>>   */
+>>=20=20
+>> -#include <linux/console.h>
+>>  #include <linux/vga_switcheroo.h>
+>>=20=20
+>>  #include <drm/drm_drv.h>
+>>  #include <drm/i915_pciids.h>
+>>=20=20
+>> -#include "display/intel_fbdev.h"
+>> -
+>> -#include "i915_active.h"
+>> -#include "i915_buddy.h"
+>>  #include "i915_drv.h"
+>> -#include "gem/i915_gem_context.h"
+>> -#include "gem/i915_gem_object.h"
+>> -#include "i915_request.h"
+>> -#include "i915_perf.h"
+>> -#include "i915_selftest.h"
+>> -#include "i915_scheduler.h"
+>> -#include "i915_vma.h"
+>> +#include "i915_pci.h"
+>>=20=20
+>>  #define PLATFORM(x) .platform =3D (x)
+>>  #define GEN(x) \
+>> @@ -1251,31 +1240,6 @@ static void i915_pci_shutdown(struct pci_dev *pde=
+v)
+>>  	i915_driver_shutdown(i915);
+>>  }
+>>=20=20
+>> -static int i915_check_nomodeset(void)
+>> -{
+>> -	bool use_kms =3D true;
+>> -
+>> -	/*
+>> -	 * Enable KMS by default, unless explicitly overriden by
+>> -	 * either the i915.modeset prarameter or by the
+>> -	 * vga_text_mode_force boot option.
+>> -	 */
+>> -
+>> -	if (i915_modparams.modeset =3D=3D 0)
+>> -		use_kms =3D false;
+>> -
+>> -	if (vgacon_text_force() && i915_modparams.modeset =3D=3D -1)
+>> -		use_kms =3D false;
+>> -
+>> -	if (!use_kms) {
+>> -		/* Silently fail loading to not upset userspace. */
+>> -		DRM_DEBUG_DRIVER("KMS disabled.\n");
+>> -		return 1;
+>> -	}
+>> -
+>> -	return 0;
+>> -}
+>> -
+>>  static struct pci_driver i915_pci_driver =3D {
+>>  	.name =3D DRIVER_NAME,
+>>  	.id_table =3D pciidlist,
+>> @@ -1285,87 +1249,12 @@ static struct pci_driver i915_pci_driver =3D {
+>>  	.driver.pm =3D &i915_pm_ops,
+>>  };
+>>=20=20
+>> -static int i915_register_pci_driver(void)
+>> +int i915_register_pci_driver(void)
+>>  {
+>>  	return pci_register_driver(&i915_pci_driver);
+>>  }
+>>=20=20
+>> -static void i915_unregister_pci_driver(void)
+>> +void i915_unregister_pci_driver(void)
+>>  {
+>>  	pci_unregister_driver(&i915_pci_driver);
+>>  }
+>> -
+>> -static const struct {
+>> -   int (*init)(void);
+>> -   void (*exit)(void);
+>> -} init_funcs[] =3D {
+>> -	{ i915_check_nomodeset, NULL },
+>> -	{ i915_active_module_init, i915_active_module_exit },
+>> -	{ i915_buddy_module_init, i915_buddy_module_exit },
+>> -	{ i915_context_module_init, i915_context_module_exit },
+>> -	{ i915_gem_context_module_init, i915_gem_context_module_exit },
+>> -	{ i915_objects_module_init, i915_objects_module_exit },
+>> -	{ i915_request_module_init, i915_request_module_exit },
+>> -	{ i915_scheduler_module_init, i915_scheduler_module_exit },
+>> -	{ i915_vma_module_init, i915_vma_module_exit },
+>> -	{ i915_mock_selftests, NULL },
+>> -	{ i915_pmu_init, i915_pmu_exit },
+>> -	{ i915_register_pci_driver, i915_unregister_pci_driver },
+>> -	{ i915_perf_sysctl_register, i915_perf_sysctl_unregister },
+>> -};
+>> -static int init_progress;
+>> -
+>> -static int __init i915_init(void)
+>> -{
+>> -	int err, i;
+>> -
+>> -	for (i =3D 0; i < ARRAY_SIZE(init_funcs); i++) {
+>> -		err =3D init_funcs[i].init();
+>> -		if (err < 0) {
+>> -			while (i--) {
+>> -				if (init_funcs[i].exit)
+>> -					init_funcs[i].exit();
+>> -			}
+>> -			return err;
+>> -		} else if (err > 0) {
+>> -			/*
+>> -			 * Early-exit success is reserved for things which
+>> -			 * don't have an exit() function because we have no
+>> -			 * idea how far they got or how to partially tear
+>> -			 * them down.
+>> -			 */
+>> -			WARN_ON(init_funcs[i].exit);
+>> -
+>> -			/*
+>> -			 * We don't want to advertise devices with an only
+>> -			 * partially initialized driver.
+>> -			 */
+>> -			WARN_ON(i915_pci_driver.driver.owner);
+>> -			break;
+>> -		}
+>> -	}
+>> -
+>> -	init_progress =3D i;
+>> -
+>> -	return 0;
+>> -}
+>> -
+>> -static void __exit i915_exit(void)
+>> -{
+>> -	int i;
+>> -
+>> -	for (i =3D init_progress - 1; i >=3D 0; i--) {
+>> -		GEM_BUG_ON(i >=3D ARRAY_SIZE(init_funcs));
+>> -		if (init_funcs[i].exit)
+>> -			init_funcs[i].exit();
+>> -	}
+>> -}
+>> -
+>> -module_init(i915_init);
+>> -module_exit(i915_exit);
+>> -
+>> -MODULE_AUTHOR("Tungsten Graphics, Inc.");
+>> -MODULE_AUTHOR("Intel Corporation");
+>> -
+>> -MODULE_DESCRIPTION(DRIVER_DESC);
+>> -MODULE_LICENSE("GPL and additional rights");
+>> diff --git a/drivers/gpu/drm/i915/i915_pci.h b/drivers/gpu/drm/i915/i915=
+_pci.h
+>> new file mode 100644
+>> index 000000000000..b386f319f52e
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/i915_pci.h
+>> @@ -0,0 +1,8 @@
+>> +/*
+>> + * SPDX-License-Identifier: MIT
+>> + *
+>> + * Copyright =C2=A9 2021 Intel Corporation
+>> + */
+>> +
+>> +int i915_register_pci_driver(void);
+>> +void i915_unregister_pci_driver(void);
 
---_000_2d5eca25472148279ecbaadc58361e42intelcom_--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
