@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F483F5020
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 20:10:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C68E3F5057
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Aug 2021 20:25:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2034E89ABA;
-	Mon, 23 Aug 2021 18:10:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ADBA89B3B;
+	Mon, 23 Aug 2021 18:25:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7BC7489ABA;
- Mon, 23 Aug 2021 18:10:30 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4C0DB899E9;
+ Mon, 23 Aug 2021 18:25:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 73A71A73C7;
- Mon, 23 Aug 2021 18:10:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37969A0118;
+ Mon, 23 Aug 2021 18:25:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9117928252837447976=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Desmond Cheong Zhi Xi" <desmondcheongzx@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Aug 2021 18:10:30 -0000
-Message-ID: <162974223045.1911.16858171803808183209@emeril.freedesktop.org>
+Date: Mon, 23 Aug 2021 18:25:06 -0000
+Message-ID: <162974310619.1910.15006536319951952860@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210823171437.829404-1-desmondcheongzx@gmail.com>
 In-Reply-To: <20210823171437.829404-1-desmondcheongzx@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm=3A_update_locking_for_modesetting_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?=3A_update_locking_for_modesetting_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,285 +45,578 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============9117928252837447976==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm: update locking for modesetting (rev2)
 URL   : https://patchwork.freedesktop.org/series/93864/
-State : warning
+State : failure
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:1365:16: warning: symbol 'configure_lttpr_mode_transparent' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:1376:16: warning: symbol 'configure_lttpr_mode_non_transparent' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:1627:16: warning: symbol 'dpcd_configure_channel_coding' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.c:1741:16: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:135:6: warning: symbol 'dcn10_log_hubbub_state' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1902:10: warning: symbol 'reduceSizeAndFraction' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1953:6: warning: symbol 'is_low_refresh_rate' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1962:9: warning: symbol 'get_clock_divider' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1982:5: warning: symbol 'dcn10_align_pixel_clocks' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:2274:6: warning: symbol 'dcn10_program_pte_vm' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:80:6: warning: symbol 'print_microsec' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dsc.c:49:24: warning: symbol 'dcn20_dsc_funcs' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_hwseq.c:1080:6: warning: symbol 'dcn20_enable_plane' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:1391:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:1391:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:678:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:678:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:679:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:679:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:680:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:680:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:681:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:681:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:682:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:682:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:683:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:683:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:687:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:687:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:692:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:692:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:776:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:776:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:777:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:777:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:778:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:778:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:779:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:779:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:780:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:780:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:781:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:781:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:785:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:785:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:790:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:790:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:859:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:859:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:860:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:860:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:861:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:861:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:862:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:862:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:863:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:863:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:864:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:864:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:868:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:868:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:872:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:872:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:890:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:890:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:894:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:894:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:942:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:942:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:94:30: warning: symbol 'dcn2_0_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:946:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:946:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:992:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:992:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:996:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:996:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1096:6: warning: symbol 'dcn21_calculate_wm' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1393:6: warning: symbol 'dcn21_validate_bandwidth' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1483:31: warning: symbol 'dcn21_opp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1499:25: warning: symbol 'dcn21_timing_generator_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1521:12: warning: symbol 'dcn21_mpc_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1548:34: warning: symbol 'dcn21_dsc_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:166:37: warning: symbol 'dcn2_1_soc' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1686:23: warning: symbol 'dcn21_stream_encoder_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1704:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1704:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1767:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1767:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1768:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1768:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1769:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1769:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1770:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1770:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1771:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1771:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1813:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1813:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1818:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1818:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1920:16: warning: symbol 'dcn21_patch_unknown_plane_state' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:487:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:487:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:488:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:488:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:489:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:489:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:490:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:490:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:494:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:494:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:498:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:498:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:538:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:538:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:542:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:542:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:605:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:605:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:609:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:609:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:661:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:661:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:662:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:662:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:663:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:663:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:664:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:664:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:668:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:668:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:673:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:673:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:691:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:691:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:695:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:695:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:787:19: warning: symbol 'dcn21_i2c_hw_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:95:30: warning: symbol 'dcn2_1_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1009:15: warning: symbol 'dcn301_hubbub_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1040:25: warning: symbol 'dcn301_timing_generator_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1074:21: warning: symbol 'dcn301_link_encoder_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1095:19: warning: symbol 'dcn301_panel_cntl_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1177:23: warning: symbol 'dcn301_stream_encoder_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1209:18: warning: symbol 'dcn301_hwseq_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1358:13: warning: symbol 'dcn301_hubp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1377:6: warning: symbol 'dcn301_dwbc_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1402:6: warning: symbol 'dcn301_mmhubbub_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:168:37: warning: symbol 'dcn3_01_soc' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:484:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:484:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:485:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:485:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:486:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:486:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:487:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:487:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:533:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:533:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:537:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:537:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:541:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:541:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:542:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:542:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:543:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:543:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:544:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:544:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:548:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:548:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:553:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:553:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:581:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:581:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:582:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:582:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:583:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:583:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:584:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:584:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:588:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:588:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:592:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:592:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:676:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:676:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:680:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:680:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:688:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:689:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:711:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:711:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:712:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:712:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:713:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:713:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:714:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:714:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:738:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:738:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:742:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:742:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:746:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:746:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:770:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:770:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:897:6: warning: symbol 'dcn301_dpp_destroy' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:903:12: warning: symbol 'dcn301_dpp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:921:31: warning: symbol 'dcn301_opp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:937:16: warning: symbol 'dcn301_aux_engine_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:94:30: warning: symbol 'dcn3_01_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:973:19: warning: symbol 'dcn301_i2c_hw_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:153:37: warning: symbol 'dcn3_02_soc' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:511:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:511:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:512:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:512:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:513:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:513:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:514:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:514:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:515:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:515:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:591:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:591:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:627:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:627:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:631:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:631:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:653:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:653:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:654:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:654:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:655:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:655:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:656:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:656:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:657:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:657:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:661:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:661:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:665:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:665:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:719:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:719:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:720:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:720:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:721:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:721:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:722:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:722:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:723:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:723:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:74:30: warning: symbol 'dcn3_02_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:759:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:760:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:803:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:803:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:807:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:807:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:910:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:910:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:914:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:914:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:981:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:981:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:982:17:   also defined here
-+d
+CI Bug Log - changes from CI_DRM_10508 -> Patchwork_20877
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20877 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20877, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20877:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_addfb_basic@invalid-set-prop:
+    - fi-hsw-4770:        [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-hsw-4770/igt@kms_addfb_basic@invalid-set-prop.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-hsw-4770/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-cfl-guc:         [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cfl-guc/igt@kms_addfb_basic@invalid-set-prop.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-guc/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-pnv-d510:        [PASS][5] -> [DMESG-WARN][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-pnv-d510/igt@kms_addfb_basic@invalid-set-prop.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-pnv-d510/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-ilk-650:         [PASS][7] -> [DMESG-WARN][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-ilk-650/igt@kms_addfb_basic@invalid-set-prop.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ilk-650/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-kbl-soraka:      [PASS][9] -> [DMESG-WARN][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-soraka/igt@kms_addfb_basic@invalid-set-prop.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-soraka/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-bsw-n3050:       [PASS][11] -> [DMESG-WARN][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bsw-n3050/igt@kms_addfb_basic@invalid-set-prop.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-n3050/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-skl-6700k2:      [PASS][13] -> [DMESG-WARN][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-skl-6700k2/igt@kms_addfb_basic@invalid-set-prop.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-6700k2/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-ivb-3770:        [PASS][15] -> [DMESG-WARN][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-ivb-3770/igt@kms_addfb_basic@invalid-set-prop.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ivb-3770/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-rkl-guc:         NOTRUN -> [DMESG-WARN][17]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-guc/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-elk-e7500:       [PASS][18] -> [DMESG-WARN][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-elk-e7500/igt@kms_addfb_basic@invalid-set-prop.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-elk-e7500/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-bsw-kefka:       [PASS][20] -> [DMESG-WARN][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bsw-kefka/igt@kms_addfb_basic@invalid-set-prop.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-kefka/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-glk-dsi:         [PASS][22] -> [DMESG-WARN][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-glk-dsi/igt@kms_addfb_basic@invalid-set-prop.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-glk-dsi/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-bwr-2160:        [PASS][24] -> [DMESG-WARN][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bwr-2160/igt@kms_addfb_basic@invalid-set-prop.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bwr-2160/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-skl-guc:         [PASS][26] -> [DMESG-WARN][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-skl-guc/igt@kms_addfb_basic@invalid-set-prop.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-guc/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-kbl-7567u:       [PASS][28] -> [DMESG-WARN][29]
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-kbl-guc:         [PASS][30] -> [DMESG-WARN][31]
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-guc/igt@kms_addfb_basic@invalid-set-prop.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-guc/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-kbl-7500u:       [PASS][32] -> [DMESG-WARN][33]
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-7500u/igt@kms_addfb_basic@invalid-set-prop.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7500u/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-icl-y:           [PASS][34] -> [DMESG-WARN][35]
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-icl-y/igt@kms_addfb_basic@invalid-set-prop.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-y/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-rkl-11600:       [PASS][36] -> [DMESG-WARN][37]
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-rkl-11600/igt@kms_addfb_basic@invalid-set-prop.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-11600/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-bsw-nick:        [PASS][38] -> [DMESG-WARN][39]
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bsw-nick/igt@kms_addfb_basic@invalid-set-prop.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-nick/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-cfl-8109u:       [PASS][40] -> [DMESG-WARN][41]
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cfl-8109u/igt@kms_addfb_basic@invalid-set-prop.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8109u/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-icl-u2:          [PASS][42] -> [DMESG-WARN][43]
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-icl-u2/igt@kms_addfb_basic@invalid-set-prop.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-u2/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-cfl-8700k:       [PASS][44] -> [DMESG-WARN][45]
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cfl-8700k/igt@kms_addfb_basic@invalid-set-prop.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8700k/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-kbl-8809g:       [PASS][46] -> [DMESG-WARN][47]
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-8809g/igt@kms_addfb_basic@invalid-set-prop.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-8809g/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-snb-2520m:       [PASS][48] -> [DMESG-WARN][49]
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-snb-2520m/igt@kms_addfb_basic@invalid-set-prop.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-snb-2520m/igt@kms_addfb_basic@invalid-set-prop.html
+    - fi-cml-u2:          [PASS][50] -> [DMESG-WARN][51]
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cml-u2/igt@kms_addfb_basic@invalid-set-prop.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cml-u2/igt@kms_addfb_basic@invalid-set-prop.html
+
+  * igt@runner@aborted:
+    - fi-rkl-11600:       NOTRUN -> [FAIL][52]
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-11600/igt@runner@aborted.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_addfb_basic@invalid-set-prop:
+    - {fi-hsw-gt1}:       [PASS][53] -> [DMESG-WARN][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-hsw-gt1/igt@kms_addfb_basic@invalid-set-prop.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-hsw-gt1/igt@kms_addfb_basic@invalid-set-prop.html
+    - {fi-ehl-2}:         [PASS][55] -> [DMESG-WARN][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-ehl-2/igt@kms_addfb_basic@invalid-set-prop.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ehl-2/igt@kms_addfb_basic@invalid-set-prop.html
+    - {fi-jsl-1}:         [PASS][57] -> [DMESG-WARN][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-jsl-1/igt@kms_addfb_basic@invalid-set-prop.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-jsl-1/igt@kms_addfb_basic@invalid-set-prop.html
+    - {fi-tgl-dsi}:       [PASS][59] -> [DMESG-WARN][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-tgl-dsi/igt@kms_addfb_basic@invalid-set-prop.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-dsi/igt@kms_addfb_basic@invalid-set-prop.html
+
+  * igt@runner@aborted:
+    - {fi-jsl-1}:         NOTRUN -> [FAIL][61]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-jsl-1/igt@runner@aborted.html
+    - {fi-ehl-2}:         NOTRUN -> [FAIL][62]
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ehl-2/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20877 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][63] ([i915#2190])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_addfb_basic@bad-pitch-128:
+    - fi-tgl-1115g4:      NOTRUN -> [DMESG-WARN][64] ([i915#4002]) +28 similar issues
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-1115g4/igt@kms_addfb_basic@bad-pitch-128.html
+
+  * igt@runner@aborted:
+    - fi-ilk-650:         NOTRUN -> [FAIL][65] ([i915#2426])
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ilk-650/igt@runner@aborted.html
+    - fi-pnv-d510:        NOTRUN -> [FAIL][66] ([i915#2403] / [i915#2505])
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-pnv-d510/igt@runner@aborted.html
+    - fi-bsw-kefka:       NOTRUN -> [FAIL][67] ([i915#3690])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-kefka/igt@runner@aborted.html
+    - fi-cfl-8700k:       NOTRUN -> [FAIL][68] ([i915#2426] / [i915#3363])
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8700k/igt@runner@aborted.html
+    - fi-cfl-8109u:       NOTRUN -> [FAIL][69] ([i915#2426] / [i915#3363])
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8109u/igt@runner@aborted.html
+    - fi-icl-u2:          NOTRUN -> [FAIL][70] ([i915#2426] / [i915#3363] / [i915#3690])
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-u2/igt@runner@aborted.html
+    - fi-glk-dsi:         NOTRUN -> [FAIL][71] ([i915#2426] / [i915#3363] / [k.org#202321])
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-glk-dsi/igt@runner@aborted.html
+    - fi-bsw-nick:        NOTRUN -> [FAIL][72] ([i915#3690])
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-nick/igt@runner@aborted.html
+    - fi-kbl-8809g:       NOTRUN -> [FAIL][73] ([i915#2426] / [i915#3363])
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-8809g/igt@runner@aborted.html
+    - fi-snb-2520m:       NOTRUN -> [FAIL][74] ([i915#2426])
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-snb-2520m/igt@runner@aborted.html
+    - fi-bwr-2160:        NOTRUN -> [FAIL][75] ([i915#2505])
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bwr-2160/igt@runner@aborted.html
+    - fi-kbl-soraka:      NOTRUN -> [FAIL][76] ([i915#2426] / [i915#3363])
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-soraka/igt@runner@aborted.html
+    - fi-hsw-4770:        NOTRUN -> [FAIL][77] ([i915#2505])
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-hsw-4770/igt@runner@aborted.html
+    - fi-kbl-7500u:       NOTRUN -> [FAIL][78] ([i915#2426] / [i915#3363])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7500u/igt@runner@aborted.html
+    - fi-kbl-guc:         NOTRUN -> [FAIL][79] ([i915#2426] / [i915#3363])
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-guc/igt@runner@aborted.html
+    - fi-cml-u2:          NOTRUN -> [FAIL][80] ([i915#2082] / [i915#2426] / [i915#3363])
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cml-u2/igt@runner@aborted.html
+    - fi-ivb-3770:        NOTRUN -> [FAIL][81] ([i915#2426])
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ivb-3770/igt@runner@aborted.html
+    - fi-bxt-dsi:         NOTRUN -> [FAIL][82] ([i915#2426] / [i915#3363])
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bxt-dsi/igt@runner@aborted.html
+    - fi-tgl-1115g4:      NOTRUN -> [FAIL][83] ([i915#3690])
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-1115g4/igt@runner@aborted.html
+    - fi-elk-e7500:       NOTRUN -> [FAIL][84] ([i915#2426])
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-elk-e7500/igt@runner@aborted.html
+    - fi-cfl-guc:         NOTRUN -> [FAIL][85] ([i915#2426] / [i915#3363])
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-guc/igt@runner@aborted.html
+    - fi-icl-y:           NOTRUN -> [FAIL][86] ([i915#3690])
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-y/igt@runner@aborted.html
+    - fi-kbl-7567u:       NOTRUN -> [FAIL][87] ([i915#2426] / [i915#3363])
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7567u/igt@runner@aborted.html
+    - fi-skl-guc:         NOTRUN -> [FAIL][88] ([i915#2426] / [i915#3363])
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-guc/igt@runner@aborted.html
+    - fi-skl-6700k2:      NOTRUN -> [FAIL][89] ([i915#2426] / [i915#3363])
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-6700k2/igt@runner@aborted.html
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][90] ([i915#3690])
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_wait@busy@all:
+    - fi-rkl-guc:         [INCOMPLETE][91] -> [PASS][92]
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-rkl-guc/igt@gem_wait@busy@all.html
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-guc/igt@gem_wait@busy@all.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
+  [i915#2932]: https://gitlab.freedesktop.org/drm/intel/issues/2932
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
+  [i915#3717]: https://gitlab.freedesktop.org/drm/intel/issues/3717
+  [i915#4002]: https://gitlab.freedesktop.org/drm/intel/issues/4002
+  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
 
 
+Participating hosts (39 -> 34)
+------------------------------
+
+  Additional (1): fi-tgl-1115g4 
+  Missing    (6): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10508 -> Patchwork_20877
+
+  CI-20190529: 20190529
+  CI_DRM_10508: 00400e0b1213556376e556de6561f117909dcab9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6183: c75ffa39b2f8b3b991deba834a3828e102c909e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20877: bcfcb5a1985a5ef1e357efee886d33391ba5f9e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bcfcb5a1985a drm: remove drm_file.master_lookup_lock
+f9b63eb41d70 drm: avoid circular locks with modeset_mutex and master_rwsem
+8f1a1005810f drm: avoid races with modesetting rights
+7f6fcee21124 drm: lock drm_global_mutex earlier in the ioctl handler
+e3b0e0e52731 drm: convert drm_device.master_mutex into a rwsem
+0be74e866c75 drm: fix null ptr dereference in drm_master_release
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/index.html
+
+--===============9117928252837447976==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: update locking for modesetting (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93864/">https://patchwork.freedesktop.org/series/93864/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10508 -&gt; Patchwork_20877</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20877 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20877, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20877:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@invalid-set-prop:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-hsw-4770/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-hsw-4770/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cfl-guc/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-guc/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-pnv-d510/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-pnv-d510/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-ilk-650/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ilk-650/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-soraka/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-soraka/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bsw-n3050/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-n3050/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-skl-6700k2/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-6700k2/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-ivb-3770/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ivb-3770/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-guc/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-elk-e7500/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-elk-e7500/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bsw-kefka/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-kefka/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-glk-dsi/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-glk-dsi/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bwr-2160/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bwr-2160/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-skl-guc/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-guc/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-guc/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-guc/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-7500u/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7500u/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-icl-y/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-y/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-rkl-11600/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-11600/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-bsw-nick/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-nick/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cfl-8109u/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8109u/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-icl-u2/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-u2/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cfl-8700k/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8700k/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-kbl-8809g/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-8809g/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-snb-2520m/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-snb-2520m/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-cml-u2/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cml-u2/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-11600/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@invalid-set-prop:</p>
+<ul>
+<li>
+<p>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-hsw-gt1/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-hsw-gt1/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-ehl-2/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ehl-2/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-jsl-1/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-jsl-1/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-tgl-dsi/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-dsi/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-jsl-1/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>{fi-ehl-2}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ehl-2/igt@runner@aborted.html">FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20877 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-128:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-1115g4/igt@kms_addfb_basic@bad-pitch-128.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) +28 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ilk-650/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</p>
+</li>
+<li>
+<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
+</li>
+<li>
+<p>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-snb-2520m/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</p>
+</li>
+<li>
+<p>fi-bwr-2160:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bwr-2160/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
+</li>
+<li>
+<p>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7500u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-ivb-3770/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</p>
+</li>
+<li>
+<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-elk-e7500/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</p>
+</li>
+<li>
+<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-icl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-kbl-7567u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_wait@busy@all:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10508/fi-rkl-guc/igt@gem_wait@busy@all.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20877/fi-rkl-guc/igt@gem_wait@busy@all.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 34)</h2>
+<p>Additional (1): fi-tgl-1115g4 <br />
+  Missing    (6): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10508 -&gt; Patchwork_20877</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10508: 00400e0b1213556376e556de6561f117909dcab9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6183: c75ffa39b2f8b3b991deba834a3828e102c909e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20877: bcfcb5a1985a5ef1e357efee886d33391ba5f9e0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bcfcb5a1985a drm: remove drm_file.master_lookup_lock<br />
+f9b63eb41d70 drm: avoid circular locks with modeset_mutex and master_rwsem<br />
+8f1a1005810f drm: avoid races with modesetting rights<br />
+7f6fcee21124 drm: lock drm_global_mutex earlier in the ioctl handler<br />
+e3b0e0e52731 drm: convert drm_device.master_mutex into a rwsem<br />
+0be74e866c75 drm: fix null ptr dereference in drm_master_release</p>
+
+</body>
+</html>
+
+--===============9117928252837447976==--
