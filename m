@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E333F5F0A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 15:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F7B3F5F41
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 15:34:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04D256E02D;
-	Tue, 24 Aug 2021 13:25:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8F489FFD;
+	Tue, 24 Aug 2021 13:34:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F07BD6E02D
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 13:25:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="215466152"
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="215466152"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51AA289FFD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 13:34:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="204444897"
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="204444897"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 06:25:33 -0700
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="526627446"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 06:34:31 -0700
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="526629860"
 Received: from romerosa-mobl.amr.corp.intel.com (HELO localhost)
  ([10.249.44.170])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 06:25:31 -0700
+ 24 Aug 2021 06:34:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- daniel@ffwll.ch
-In-Reply-To: <YSTfKKa1Zkr6o4l+@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1629721467.git.jani.nikula@intel.com>
- <YSTfKKa1Zkr6o4l+@intel.com>
-Date: Tue, 24 Aug 2021 16:25:28 +0300
-Message-ID: <87tujfezzr.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Date: Tue, 24 Aug 2021 16:34:12 +0300
+Message-Id: <cover.1629811722.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/6] drm/i915/display: split out some dpt
- and fb stuff from intel_display.c
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/7] drm/i915/bios: remove vbt ddi_port_info
+ caching
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,49 +50,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 Aug 2021, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Mon, Aug 23, 2021 at 03:25:30PM +0300, Jani Nikula wrote:
->> Make some forward progress on reducing intel_display.c size.
->> 
->> Jani Nikula (6):
->>   drm/i915/display: split out dpt out of intel_display.c
->>   drm/i915: add HAS_ASYNC_FLIPS feature macro
->>   drm/i915/fb: move intel_tile_width_bytes() to intel_fb.c
->>   drm/i915/fb: move intel_fb_align_height() to intel_fb.c
->>   drm/i915/fb: move intel_surf_alignment() to intel_fb.c
->>   drm/i915/fb: move user framebuffer stuff to intel_fb.c
->> 
->>  drivers/gpu/drm/i915/Makefile                |   1 +
->>  drivers/gpu/drm/i915/display/intel_display.c | 709 +------------------
->>  drivers/gpu/drm/i915/display/intel_display.h |   6 -
->>  drivers/gpu/drm/i915/display/intel_dpt.c     | 229 ++++++
->>  drivers/gpu/drm/i915/display/intel_dpt.h     |  19 +
->>  drivers/gpu/drm/i915/display/intel_fb.c      | 481 +++++++++++++
->>  drivers/gpu/drm/i915/display/intel_fb.h      |  20 +-
->>  drivers/gpu/drm/i915/display/intel_fbdev.c   |   1 +
->>  drivers/gpu/drm/i915/i915_drv.h              |   2 +
->>  9 files changed, 752 insertions(+), 716 deletions(-)
->>  create mode 100644 drivers/gpu/drm/i915/display/intel_dpt.c
->>  create mode 100644 drivers/gpu/drm/i915/display/intel_dpt.h
->
-> I believe it would be good to add a /** DOC: */ or at least
-> a simple comment block explaining a bit what DPT is.
+Simplify vbt child data access.
 
-I agree, but I'm not signing up for that!
+We still retain a port to struct intel_bios_encoder_data map, but going
+forward we should prefer accessing the encoder specific data via
+encoder->devdata, not the map nor the port.
 
-> But other than that the series looks good, so, up to you:
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> (for the series)
+That will still need some extra initialization, especially for older
+platforms. One step at a time.
 
-Thanks,
-Jani
+BR,
+Jani.
 
->
->> 
->> -- 
->> 2.20.1
->> 
+Cc: José Roberto de Souza <jose.souza@intel.com>
+
+Jani Nikula (7):
+  drm/i915/bios: use hdmi level shift directly from child data
+  drm/i915/bios: use max tmds clock directly from child data
+  drm/i915/bios: use dp max link rate directly from child data
+  drm/i915/bios: use alternate aux channel directly from child data
+  drm/i915/bios: move ddc pin mapping code next to ddc pin sanitize
+  drm/i915/bios: use ddc pin directly from child data
+  drm/i915/bios: get rid of vbt ddi_port_info
+
+ drivers/gpu/drm/i915/display/intel_bios.c | 372 +++++++++++-----------
+ drivers/gpu/drm/i915/i915_drv.h           |  18 +-
+ 2 files changed, 187 insertions(+), 203 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
