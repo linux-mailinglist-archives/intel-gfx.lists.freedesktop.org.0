@@ -2,42 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A45F3F6202
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 17:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56DD93F61EC
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 17:45:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2AA89A91;
-	Tue, 24 Aug 2021 15:49:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58755896EC;
+	Tue, 24 Aug 2021 15:45:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADFE189A83;
- Tue, 24 Aug 2021 15:49:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="204473399"
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="204473399"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 08:49:33 -0700
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="643226969"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 08:49:32 -0700
-Date: Tue, 24 Aug 2021 08:44:22 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch
-Message-ID: <20210824154422.GA9697@jons-linux-dev-box>
-References: <20210819061639.21051-1-matthew.brost@intel.com>
- <20210819061639.21051-18-matthew.brost@intel.com>
- <f57ccb87-c6d7-1510-d43d-090490fd902a@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33770896EC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 15:44:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="302922209"
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="302922209"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 08:44:58 -0700
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="526671006"
+Received: from rekhagax-mobl1.amr.corp.intel.com (HELO rdvivi-mobl4.intel.com)
+ ([10.255.33.223])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 08:44:58 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>,
+ Tilak Tangudu <tilak.tangudu@intel.com>
+Date: Tue, 24 Aug 2021 11:44:51 -0400
+Message-Id: <20210824154452.2066678-1-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f57ccb87-c6d7-1510-d43d-090490fd902a@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 17/27] drm/i915/guc: Flush G2H work queue
- during reset
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/runtime_pm: Consolidate runtime_pm
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,71 +48,362 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 20, 2021 at 05:25:41PM -0700, Daniele Ceraolo Spurio wrote:
-> 
-> 
-> On 8/18/2021 11:16 PM, Matthew Brost wrote:
-> > It isn't safe to scrub for missing G2H or continue with the reset until
-> > all G2H processing is complete. Flush the G2H work queue during reset to
-> > ensure it is done running.
-> 
-> Might be worth moving this patch closer to "drm/i915/guc: Process all G2H
-> message at once in work queue".
-> 
+No functional changes. Just revamping the functions with
+s/dev_priv/i915
+and consolidating along with other runtime_pm functions.
 
-Sure.
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Tilak Tangudu <tilak.tangudu@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.c         | 141 ++----------------------
+ drivers/gpu/drm/i915/intel_runtime_pm.c | 139 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_runtime_pm.h |   2 +
+ 3 files changed, 151 insertions(+), 131 deletions(-)
 
-> > Fixes: eb5e7da736f3 ("drm/i915/guc: Reset implementation for new GuC interface")
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c  | 18 ++----------------
-> >   1 file changed, 2 insertions(+), 16 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 4cf5a565f08e..9a53bae367b1 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -714,8 +714,6 @@ static void guc_flush_submissions(struct intel_guc *guc)
-> >   void intel_guc_submission_reset_prepare(struct intel_guc *guc)
-> >   {
-> > -	int i;
-> > -
-> >   	if (unlikely(!guc_submission_initialized(guc))) {
-> >   		/* Reset called during driver load? GuC not yet initialised! */
-> >   		return;
-> > @@ -731,20 +729,8 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
-> >   	guc_flush_submissions(guc);
-> > -	/*
-> > -	 * Handle any outstanding G2Hs before reset. Call IRQ handler directly
-> > -	 * each pass as interrupt have been disabled. We always scrub for
-> > -	 * outstanding G2H as it is possible for outstanding_submission_g2h to
-> > -	 * be incremented after the context state update.
-> > -	 */
-> > -	for (i = 0; i < 4 && atomic_read(&guc->outstanding_submission_g2h); ++i) {
-> > -		intel_guc_to_host_event_handler(guc);
-> > -#define wait_for_reset(guc, wait_var) \
-> > -		intel_guc_wait_for_pending_msg(guc, wait_var, false, (HZ / 20))
-> > -		do {
-> > -			wait_for_reset(guc, &guc->outstanding_submission_g2h);
-> > -		} while (!list_empty(&guc->ct.requests.incoming));
-> > -	}
-> > +	flush_work(&guc->ct.requests.worker);
-> > +
-> 
-> We're now not waiting in the requests anymore, just ensuring that the
-> processing of the ones we already received is done. Is this intended? We do
-> still handle the remaining oustanding submission in the scrub so it's
-> functionally correct, but the commit message doesn't state the change in
-> waiting behavior, so wanted to double check it was planned.
-> 
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 59fb4c710c8c..14770a404bbd 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -64,7 +64,6 @@
+ #include "gem/i915_gem_mman.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_gt.h"
+-#include "gt/intel_gt_pm.h"
+ #include "gt/intel_rc6.h"
+ 
+ #include "i915_debugfs.h"
+@@ -1517,144 +1516,24 @@ static int i915_pm_restore(struct device *kdev)
+ 	return i915_pm_resume(kdev);
+ }
+ 
+-static int intel_runtime_suspend(struct device *kdev)
++static int i915_runtime_suspend(struct device *kdev)
+ {
+-	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
+-	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
+-	int ret;
++	struct drm_i915_private *i915 = kdev_to_i915(kdev);
+ 
+-	if (drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_RUNTIME_PM(dev_priv)))
++	if (drm_WARN_ON_ONCE(&i915->drm, !HAS_RUNTIME_PM(i915)))
+ 		return -ENODEV;
+ 
+-	drm_dbg_kms(&dev_priv->drm, "Suspending device\n");
+-
+-	disable_rpm_wakeref_asserts(rpm);
+-
+-	/*
+-	 * We are safe here against re-faults, since the fault handler takes
+-	 * an RPM reference.
+-	 */
+-	i915_gem_runtime_suspend(dev_priv);
+-
+-	intel_gt_runtime_suspend(&dev_priv->gt);
+-
+-	intel_runtime_pm_disable_interrupts(dev_priv);
+-
+-	intel_uncore_suspend(&dev_priv->uncore);
+-
+-	intel_display_power_suspend(dev_priv);
+-
+-	ret = vlv_suspend_complete(dev_priv);
+-	if (ret) {
+-		drm_err(&dev_priv->drm,
+-			"Runtime suspend failed, disabling it (%d)\n", ret);
+-		intel_uncore_runtime_resume(&dev_priv->uncore);
+-
+-		intel_runtime_pm_enable_interrupts(dev_priv);
+-
+-		intel_gt_runtime_resume(&dev_priv->gt);
+-
+-		enable_rpm_wakeref_asserts(rpm);
+-
+-		return ret;
+-	}
+-
+-	enable_rpm_wakeref_asserts(rpm);
+-	intel_runtime_pm_driver_release(rpm);
+-
+-	if (intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore))
+-		drm_err(&dev_priv->drm,
+-			"Unclaimed access detected prior to suspending\n");
+-
+-	rpm->suspended = true;
+-
+-	/*
+-	 * FIXME: We really should find a document that references the arguments
+-	 * used below!
+-	 */
+-	if (IS_BROADWELL(dev_priv)) {
+-		/*
+-		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
+-		 * being detected, and the call we do at intel_runtime_resume()
+-		 * won't be able to restore them. Since PCI_D3hot matches the
+-		 * actual specification and appears to be working, use it.
+-		 */
+-		intel_opregion_notify_adapter(dev_priv, PCI_D3hot);
+-	} else {
+-		/*
+-		 * current versions of firmware which depend on this opregion
+-		 * notification have repurposed the D1 definition to mean
+-		 * "runtime suspended" vs. what you would normally expect (D3)
+-		 * to distinguish it from notifications that might be sent via
+-		 * the suspend path.
+-		 */
+-		intel_opregion_notify_adapter(dev_priv, PCI_D1);
+-	}
+-
+-	assert_forcewakes_inactive(&dev_priv->uncore);
+-
+-	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv))
+-		intel_hpd_poll_enable(dev_priv);
+-
+-	drm_dbg_kms(&dev_priv->drm, "Device suspended\n");
+-	return 0;
++	return intel_runtime_pm_suspend(&i915->runtime_pm);
+ }
+ 
+-static int intel_runtime_resume(struct device *kdev)
++static int i915_runtime_resume(struct device *kdev)
+ {
+-	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
+-	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
+-	int ret;
++	struct drm_i915_private *i915 = kdev_to_i915(kdev);
+ 
+-	if (drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_RUNTIME_PM(dev_priv)))
++	if (drm_WARN_ON_ONCE(&i915->drm, !HAS_RUNTIME_PM(i915)))
+ 		return -ENODEV;
+ 
+-	drm_dbg_kms(&dev_priv->drm, "Resuming device\n");
+-
+-	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count));
+-	disable_rpm_wakeref_asserts(rpm);
+-
+-	intel_opregion_notify_adapter(dev_priv, PCI_D0);
+-	rpm->suspended = false;
+-	if (intel_uncore_unclaimed_mmio(&dev_priv->uncore))
+-		drm_dbg(&dev_priv->drm,
+-			"Unclaimed access during suspend, bios?\n");
+-
+-	intel_display_power_resume(dev_priv);
+-
+-	ret = vlv_resume_prepare(dev_priv, true);
+-
+-	intel_uncore_runtime_resume(&dev_priv->uncore);
+-
+-	intel_runtime_pm_enable_interrupts(dev_priv);
+-
+-	/*
+-	 * No point of rolling back things in case of an error, as the best
+-	 * we can do is to hope that things will still work (and disable RPM).
+-	 */
+-	intel_gt_runtime_resume(&dev_priv->gt);
+-
+-	/*
+-	 * On VLV/CHV display interrupts are part of the display
+-	 * power well, so hpd is reinitialized from there. For
+-	 * everyone else do it here.
+-	 */
+-	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv)) {
+-		intel_hpd_init(dev_priv);
+-		intel_hpd_poll_disable(dev_priv);
+-	}
+-
+-	intel_enable_ipc(dev_priv);
+-
+-	enable_rpm_wakeref_asserts(rpm);
+-
+-	if (ret)
+-		drm_err(&dev_priv->drm,
+-			"Runtime resume failed, disabling it (%d)\n", ret);
+-	else
+-		drm_dbg_kms(&dev_priv->drm, "Device resumed\n");
+-
+-	return ret;
++	return intel_runtime_pm_resume(&i915->runtime_pm);
+ }
+ 
+ const struct dev_pm_ops i915_pm_ops = {
+@@ -1693,8 +1572,8 @@ const struct dev_pm_ops i915_pm_ops = {
+ 	.restore = i915_pm_restore,
+ 
+ 	/* S0ix (via runtime suspend) event handlers */
+-	.runtime_suspend = intel_runtime_suspend,
+-	.runtime_resume = intel_runtime_resume,
++	.runtime_suspend = i915_runtime_suspend,
++	.runtime_resume = i915_runtime_resume,
+ };
+ 
+ static const struct file_operations i915_driver_fops = {
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index eaf7688f517d..43cdc2f3ff9e 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -32,6 +32,11 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_trace.h"
++#include "gt/intel_gt.h"
++#include "gt/intel_gt_pm.h"
++#include "intel_pm.h"
++#include "vlv_suspend.h"
++#include "display/intel_hotplug.h"
+ 
+ /**
+  * DOC: runtime pm
+@@ -652,3 +657,137 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
+ 
+ 	init_intel_runtime_pm_wakeref(rpm);
+ }
++
++int intel_runtime_pm_suspend(struct intel_runtime_pm *rpm)
++{
++	struct drm_i915_private *i915 =
++		container_of(rpm, struct drm_i915_private, runtime_pm);
++	int ret;
++
++	drm_dbg_kms(&i915->drm, "Suspending device\n");
++
++	disable_rpm_wakeref_asserts(rpm);
++
++	/*
++	 * We are safe here against re-faults, since the fault handler takes
++	 * an RPM reference.
++	 */
++	i915_gem_runtime_suspend(i915);
++
++	intel_gt_runtime_suspend(&i915->gt);
++
++	intel_runtime_pm_disable_interrupts(i915);
++
++	intel_uncore_suspend(&i915->uncore);
++
++	intel_display_power_suspend(i915);
++
++	ret = vlv_suspend_complete(i915);
++	if (ret) {
++		drm_err(&i915->drm,
++			"Runtime suspend failed, disabling it (%d)\n", ret);
++		intel_uncore_runtime_resume(&i915->uncore);
++
++		intel_runtime_pm_enable_interrupts(i915);
++
++		intel_gt_runtime_resume(&i915->gt);
++
++		enable_rpm_wakeref_asserts(rpm);
++
++		return ret;
++	}
++
++	enable_rpm_wakeref_asserts(rpm);
++	intel_runtime_pm_driver_release(rpm);
++
++	if (intel_uncore_arm_unclaimed_mmio_detection(&i915->uncore))
++		drm_err(&i915->drm,
++			"Unclaimed access detected prior to suspending\n");
++
++	rpm->suspended = true;
++
++	/*
++	 * FIXME: We really should find a document that references the arguments
++	 * used below!
++	 */
++	if (IS_BROADWELL(i915)) {
++		/*
++		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
++		 * being detected, and the call we do at intel_runtime_resume()
++		 * won't be able to restore them. Since PCI_D3hot matches the
++		 * actual specification and appears to be working, use it.
++		 */
++		intel_opregion_notify_adapter(i915, PCI_D3hot);
++	} else {
++		/*
++		 * current versions of firmware which depend on this opregion
++		 * notification have repurposed the D1 definition to mean
++		 * "runtime suspended" vs. what you would normally expect (D3)
++		 * to distinguish it from notifications that might be sent via
++		 * the suspend path.
++		 */
++		intel_opregion_notify_adapter(i915, PCI_D1);
++	}
++
++	assert_forcewakes_inactive(&i915->uncore);
++
++	if (!IS_VALLEYVIEW(i915) && !IS_CHERRYVIEW(i915))
++		intel_hpd_poll_enable(i915);
++
++	drm_dbg_kms(&i915->drm, "Device suspended\n");
++	return 0;
++}
++
++int intel_runtime_pm_resume(struct intel_runtime_pm *rpm)
++{
++	struct drm_i915_private *i915 =
++		container_of(rpm, struct drm_i915_private, runtime_pm);
++	int ret;
++
++	drm_dbg_kms(&i915->drm, "Resuming device\n");
++
++	drm_WARN_ON_ONCE(&i915->drm, atomic_read(&rpm->wakeref_count));
++	disable_rpm_wakeref_asserts(rpm);
++
++	intel_opregion_notify_adapter(i915, PCI_D0);
++	rpm->suspended = false;
++	if (intel_uncore_unclaimed_mmio(&i915->uncore))
++		drm_dbg(&i915->drm,
++			"Unclaimed access during suspend, bios?\n");
++
++	intel_display_power_resume(i915);
++
++	ret = vlv_resume_prepare(i915, true);
++
++	intel_uncore_runtime_resume(&i915->uncore);
++
++	intel_runtime_pm_enable_interrupts(i915);
++
++	/*
++	 * No point of rolling back things in case of an error, as the best
++	 * we can do is to hope that things will still work (and disable RPM).
++	 */
++	intel_gt_runtime_resume(&i915->gt);
++
++	/*
++	 * On VLV/CHV display interrupts are part of the display
++	 * power well, so hpd is reinitialized from there. For
++	 * everyone else do it here.
++	 */
++	if (!IS_VALLEYVIEW(i915) && !IS_CHERRYVIEW(i915)) {
++		intel_hpd_init(i915);
++		intel_hpd_poll_disable(i915);
++	}
++
++	intel_enable_ipc(i915);
++
++	enable_rpm_wakeref_asserts(rpm);
++
++	if (ret)
++		drm_err(&i915->drm,
++			"Runtime resume failed, disabling it (%d)\n", ret);
++	else
++		drm_dbg_kms(&i915->drm, "Device resumed\n");
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
+index 47a85fab4130..bde26f497914 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.h
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+@@ -172,6 +172,8 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm);
+ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm);
+ void intel_runtime_pm_disable(struct intel_runtime_pm *rpm);
+ void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm);
++int intel_runtime_pm_suspend(struct intel_runtime_pm *rpm);
++int intel_runtime_pm_resume(struct intel_runtime_pm *rpm);
+ 
+ intel_wakeref_t intel_runtime_pm_get(struct intel_runtime_pm *rpm);
+ intel_wakeref_t intel_runtime_pm_get_if_in_use(struct intel_runtime_pm *rpm);
+-- 
+2.31.1
 
-Yes, it is planned as scrub code should be able to cope with any missing
-G2H. Will update the commit message to reflect that.
-
-Matt
-
-> Daniele
-> 
-> >   	scrub_guc_desc_for_outstanding_g2h(guc);
-> >   }
-> 
