@@ -1,52 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 693E53F7631
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 15:43:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C733F772D
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 16:24:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF6A46E215;
-	Wed, 25 Aug 2021 13:43:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11AB26E22B;
+	Wed, 25 Aug 2021 14:24:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB2FD6E215
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 13:43:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="204658003"
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="204658003"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 06:43:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="494269460"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 25 Aug 2021 06:43:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 25 Aug 2021 16:43:35 +0300
-Date: Wed, 25 Aug 2021 16:43:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Message-ID: <YSZJB9dNLpTD9ba1@intel.com>
-References: <20210818004216.220279-1-jose.souza@intel.com>
- <20210818004216.220279-8-jose.souza@intel.com>
- <YR0fWUHZk9/4o33s@intel.com>
- <d00bde0b13b498b6fa141f4353caf168c95c8b4e.camel@intel.com>
- <YR6Bz5m1hAxVeZjA@intel.com>
- <e1ac87ec1939ab763b924a3f70f79bdfef14b77d.camel@intel.com>
- <YSY70P8JCDsJotvl@intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C32A6E0E5;
+ Tue, 24 Aug 2021 22:54:41 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C2BF861139;
+ Tue, 24 Aug 2021 22:54:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1629845681;
+ bh=VRPyW1VeO7gfAN1WVH2HUQN9HNXvpNgT4uXN0dtpgSg=;
+ h=From:To:Cc:Subject:Date:From;
+ b=flB5TcWMNT76AKxh3XR22CrIVe8y0lorcQ+fmCHwlvsCWMEVcQfSoaPUhs+8NCd3s
+ w3n5+bOLR393xOnucjv1GYNkNNyLzyt0Tvn3ywytxpMLxGssKqF51mFz+pQwl6khSn
+ J/2ZWz5pS1Ny9jpFU/IS94ve1YYaJ3MW2ggL++ktqzgAl6F2s7Xkk1DFDm3ssrOcZ7
+ GAYAHHwG3Spard0hg/zFb3yOZuIJ3fhxZDHdulADHM7JXE5PsDXhxws+PTgpIFBQwz
+ pokFrA+TYRhrdFRHJWih4350aovGhGvJB65V3RUJIoSUzco2ZsoqslXX93lpvE3VKX
+ igBtg/5u03RCA==
+From: Nathan Chancellor <nathan@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jason Ekstrand <jason@jlekstrand.net>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
+ llvm@lists.linux.dev, Nathan Chancellor <nathan@kernel.org>
+Date: Tue, 24 Aug 2021 15:54:24 -0700
+Message-Id: <20210824225427.2065517-1-nathan@kernel.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YSY70P8JCDsJotvl@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/display/skl+: Drop frontbuffer
- rendering support
+X-Mailman-Approved-At: Wed, 25 Aug 2021 14:24:33 +0000
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915: Enable -Wsometimes-uninitialized
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,48 +59,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 25, 2021 at 03:47:12PM +0300, Ville Syrjälä wrote:
-> On Wed, Aug 25, 2021 at 12:49:25AM +0000, Souza, Jose wrote:
-> > On Thu, 2021-08-19 at 19:07 +0300, Ville Syrjälä wrote:
-> > > On Wed, Aug 18, 2021 at 07:48:03PM +0000, Souza, Jose wrote:
-> > > > On Wed, 2021-08-18 at 17:55 +0300, Ville Syrjälä wrote:
-> > > > > On Tue, Aug 17, 2021 at 05:42:15PM -0700, José Roberto de Souza wrote:
-> > > > > > By now all the userspace applications should have migrated to atomic
-> > > > > > or at least be calling DRM_IOCTL_MODE_DIRTYFB.
-> > > > > > 
-> > > > > > With that we can kill frontbuffer rendering support in i915 for
-> > > > > > modern platforms.
-> > > > > > 
-> > > > > > So here converting legacy APIs into atomic commits so it can be
-> > > > > > properly handled by driver i915.
-> > > > > > 
-> > > > > > Several IGT tests will fail with this changes, because some tests
-> > > > > > were stressing those frontbuffer rendering scenarios that no userspace
-> > > > > > should be using by now, fixes to IGT should be sent soon.
-> > > > > 
-> > > > > Blocking atomic commits instead of the current lightweight frontbuffer
-> > > > > interface sounds like a terrible plan. How unusable is X with this
-> > > > > approach?
-> > > > 
-> > > > 100% usable, had no issues when running X in TGL and ADL-P.
-> > > > Added a debug message in intel_user_framebuffer_dirty() and X is not even using frontbuffer rendering at all.
-> > > 
-> > > Turn off your compositor if you want to test front buffer rendering.
-> > 
-> > Worked fine on Plasma with a 4K panel, was not able to find how to do that in Gnome.
-> 
-> I didn't think you can turn off composition with either one of those.
-> You actually confirmed it's running with everytithing unredirected and
-> eg. there was no lag moving windows around and wiggling the mouse?
-> 
-> Avoiding that lag is pretty much the sole reason why the legacy
-> cursor unsynced update stuff even exists in the driver. Hard to
-> imagine you wouldn't hit the same issue with the server getting
-> blocked on dirtyfb all the time.
+Commit 46e2068081e9 ("drm/i915: Disable some extra clang warnings")
+disabled -Wsometimes-uninitialized as noisy but there have been a few
+fixes to clang that make the false positive rate fairly low so it should
+be enabled to help catch obvious mistakes. The first two patches fix
+revent instances of this warning then enables it for i915 like the rest
+of the tree.
 
-Oh and running x11perf/etc. to see the impact on the raw numbers would
-probably be good idea.
+Cheers,
+Nathan
 
+Nathan Chancellor (3):
+  drm/i915/selftests: Do not use import_obj uninitialized
+  drm/i915/selftests: Always initialize err in
+    igt_dmabuf_import_same_driver_lmem()
+  drm/i915: Enable -Wsometimes-uninitialized
+
+ drivers/gpu/drm/i915/Makefile                        | 1 -
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 7 ++++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+
+base-commit: fb43ebc83e069625cfeeb2490efc3ffa0013bfa4
 -- 
-Ville Syrjälä
-Intel
+2.33.0
+
