@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C503F5F48
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 15:35:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53AF3F5FA2
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 15:58:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF7A66E071;
-	Tue, 24 Aug 2021 13:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19AE98954A;
+	Tue, 24 Aug 2021 13:58:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 607D56E071
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 13:35:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="302892145"
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="302892145"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 06:35:09 -0700
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="597584351"
-Received: from romerosa-mobl.amr.corp.intel.com (HELO localhost)
- ([10.249.44.170])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 06:35:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E4488954A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 13:58:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="196888249"
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="196888249"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 06:58:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="526635721"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.12])
+ by FMSMGA003.fm.intel.com with ESMTP; 24 Aug 2021 06:58:30 -0700
+From: Lee Shawn C <shawn.c.lee@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Tue, 24 Aug 2021 16:34:19 +0300
-Message-Id: <af6fc6e5a3e8a54f8c9bd09f07e2a760efbfc6da.1629811722.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1629811722.git.jani.nikula@intel.com>
-References: <cover.1629811722.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/bios: get rid of vbt ddi_port_info
+Cc: Lee Shawn C <shawn.c.lee@intel.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ Cooper Chiou <cooper.chiou@intel.com>,
+ William Tseng <william.tseng@intel.com>
+Date: Tue, 24 Aug 2021 22:00:42 +0800
+Message-Id: <20210824140042.3083-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210812154237.13911-7-shawn.c.lee@intel.com>
+References: <20210812154237.13911-7-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Retrieve max brightness level
+ from VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,268 +51,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We can finally remove the extra caching in ddi_port_info. Good riddance.
+So far, DCS backlight driver hardcode (0xFF) for max brightness level.
+MIPI DCS spec allow max 0xFFFF for set_display_brightness (51h) command.
+And VBT brightness precision bits can support 8 ~ 16 bits.
 
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+We should set correct precision bits in VBT that meet panel's request.
+Driver can refer to this setting then configure max brightness level
+in DCS backlight driver properly.
+
+v2: modify variable name brightness_precision_bits instead of
+    max_brightness_level.
+
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Cc: William Tseng <william.tseng@intel.com>
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 63 +++++++++--------------
- drivers/gpu/drm/i915/i915_drv.h           |  7 +--
- 2 files changed, 25 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c              | 3 +++
+ drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c | 8 ++++++--
+ drivers/gpu/drm/i915/i915_drv.h                        | 1 +
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index d4596be29d7b..184cceb021ea 100644
+index e86e6ed2d3bf..ccaf0a3100f7 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1580,16 +1580,16 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
- 
- static enum port get_port_by_ddc_pin(struct drm_i915_private *i915, u8 ddc_pin)
+@@ -483,6 +483,9 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+ 			level = 255;
+ 		}
+ 		i915->vbt.backlight.min_brightness = min_level;
++
++		i915->vbt.backlight.brightness_precision_bits =
++			backlight_data->brightness_precision_bits[panel_type];
+ 	} else {
+ 		level = backlight_data->level[panel_type];
+ 		i915->vbt.backlight.min_brightness = entry->min_brightness;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+index 584c14c4cbd0..21ab9e1acb57 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+@@ -147,10 +147,14 @@ static void dcs_enable_backlight(const struct intel_crtc_state *crtc_state,
+ static int dcs_setup_backlight(struct intel_connector *connector,
+ 			       enum pipe unused)
  {
--	const struct ddi_vbt_port_info *info;
-+	const struct intel_bios_encoder_data *devdata;
- 	enum port port;
++	struct drm_device *dev = connector->base.dev;
++	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct intel_panel *panel = &connector->panel;
  
- 	if (!ddc_pin)
- 		return PORT_NONE;
+-	panel->backlight.max = PANEL_PWM_MAX_VALUE;
+-	panel->backlight.level = PANEL_PWM_MAX_VALUE;
++	panel->backlight.max = (dev_priv->vbt.backlight.brightness_precision_bits > 8) \
++			       ? (1 << dev_priv->vbt.backlight.brightness_precision_bits) - 1 \
++			       : PANEL_PWM_MAX_VALUE;
++	panel->backlight.level = panel->backlight.max;
  
- 	for_each_port(port) {
--		info = &i915->vbt.ddi_port_info[port];
-+		devdata = i915->vbt.ports[port];
- 
--		if (info->devdata && ddc_pin == info->devdata->child.ddc_pin)
-+		if (devdata && ddc_pin == devdata->child.ddc_pin)
- 			return port;
- 	}
- 
-@@ -1600,7 +1600,6 @@ static void sanitize_ddc_pin(struct intel_bios_encoder_data *devdata,
- 			     enum port port)
- {
- 	struct drm_i915_private *i915 = devdata->i915;
--	struct ddi_vbt_port_info *info;
- 	struct child_device_config *child;
- 	u8 mapped_ddc_pin;
- 	enum port p;
-@@ -1637,8 +1636,7 @@ static void sanitize_ddc_pin(struct intel_bios_encoder_data *devdata,
- 	 * there are real machines (eg. Asrock B250M-HDV) where VBT has both
- 	 * port A and port E with the same AUX ch and we must pick port E :(
- 	 */
--	info = &i915->vbt.ddi_port_info[p];
--	child = &info->devdata->child;
-+	child = &i915->vbt.ports[p]->child;
- 
- 	child->device_type &= ~DEVICE_TYPE_TMDS_DVI_SIGNALING;
- 	child->device_type |= DEVICE_TYPE_NOT_HDMI_OUTPUT;
-@@ -1648,16 +1646,16 @@ static void sanitize_ddc_pin(struct intel_bios_encoder_data *devdata,
- 
- static enum port get_port_by_aux_ch(struct drm_i915_private *i915, u8 aux_ch)
- {
--	const struct ddi_vbt_port_info *info;
-+	const struct intel_bios_encoder_data *devdata;
- 	enum port port;
- 
- 	if (!aux_ch)
- 		return PORT_NONE;
- 
- 	for_each_port(port) {
--		info = &i915->vbt.ddi_port_info[port];
-+		devdata = i915->vbt.ports[port];
- 
--		if (info->devdata && aux_ch == info->devdata->child.aux_channel)
-+		if (devdata && aux_ch == devdata->child.aux_channel)
- 			return port;
- 	}
- 
-@@ -1668,7 +1666,6 @@ static void sanitize_aux_ch(struct intel_bios_encoder_data *devdata,
- 			    enum port port)
- {
- 	struct drm_i915_private *i915 = devdata->i915;
--	struct ddi_vbt_port_info *info;
- 	struct child_device_config *child;
- 	enum port p;
- 
-@@ -1691,8 +1688,7 @@ static void sanitize_aux_ch(struct intel_bios_encoder_data *devdata,
- 	 * there are real machines (eg. Asrock B250M-HDV) where VBT has both
- 	 * port A and port E with the same AUX ch and we must pick port E :(
- 	 */
--	info = &i915->vbt.ddi_port_info[p];
--	child = &info->devdata->child;
-+	child = &i915->vbt.ports[p]->child;
- 
- 	child->device_type &= ~DEVICE_TYPE_DISPLAYPORT_OUTPUT;
- 	child->aux_channel = 0;
-@@ -1938,7 +1934,6 @@ static void parse_ddi_port(struct drm_i915_private *i915,
- 			   struct intel_bios_encoder_data *devdata)
- {
- 	const struct child_device_config *child = &devdata->child;
--	struct ddi_vbt_port_info *info;
- 	bool is_dvi, is_hdmi, is_dp, is_edp, is_crt, supports_typec_usb, supports_tbt;
- 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
- 	enum port port;
-@@ -1954,9 +1949,7 @@ static void parse_ddi_port(struct drm_i915_private *i915,
- 		return;
- 	}
- 
--	info = &i915->vbt.ddi_port_info[port];
--
--	if (info->devdata) {
-+	if (i915->vbt.ports[port]) {
- 		drm_dbg_kms(&i915->drm,
- 			    "More than one child device for port %c in VBT, using the first.\n",
- 			    port_name(port));
-@@ -2019,7 +2012,7 @@ static void parse_ddi_port(struct drm_i915_private *i915,
- 			    "Port %c VBT DP max link rate: %d\n",
- 			    port_name(port), dp_max_link_rate);
- 
--	info->devdata = devdata;
-+	i915->vbt.ports[port] = devdata;
- }
- 
- static void parse_ddi_ports(struct drm_i915_private *i915)
-@@ -2557,12 +2550,8 @@ bool intel_bios_is_port_present(struct drm_i915_private *i915, enum port port)
- 		[PORT_F] = { DVO_PORT_DPF, DVO_PORT_HDMIF, },
- 	};
- 
--	if (HAS_DDI(i915)) {
--		const struct ddi_vbt_port_info *port_info =
--			&i915->vbt.ddi_port_info[port];
--
--		return port_info->devdata;
--	}
-+	if (HAS_DDI(i915))
-+		return i915->vbt.ports[port];
- 
- 	/* FIXME maybe deal with port A as well? */
- 	if (drm_WARN_ON(&i915->drm,
-@@ -2813,8 +2802,7 @@ bool
- intel_bios_is_port_hpd_inverted(const struct drm_i915_private *i915,
- 				enum port port)
- {
--	const struct intel_bios_encoder_data *devdata =
--		i915->vbt.ddi_port_info[port].devdata;
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[port];
- 
- 	if (drm_WARN_ON_ONCE(&i915->drm,
- 			     !IS_GEMINILAKE(i915) && !IS_BROXTON(i915)))
-@@ -2834,8 +2822,7 @@ bool
- intel_bios_is_lspcon_present(const struct drm_i915_private *i915,
- 			     enum port port)
- {
--	const struct intel_bios_encoder_data *devdata =
--		i915->vbt.ddi_port_info[port].devdata;
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[port];
- 
- 	return HAS_LSPCON(i915) && devdata && devdata->child.lspcon;
- }
-@@ -2851,8 +2838,7 @@ bool
- intel_bios_is_lane_reversal_needed(const struct drm_i915_private *i915,
- 				   enum port port)
- {
--	const struct intel_bios_encoder_data *devdata =
--		i915->vbt.ddi_port_info[port].devdata;
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[port];
- 
- 	return devdata && devdata->child.lane_reversal;
- }
-@@ -2860,11 +2846,10 @@ intel_bios_is_lane_reversal_needed(const struct drm_i915_private *i915,
- enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
- 				   enum port port)
- {
--	const struct ddi_vbt_port_info *info =
--		&i915->vbt.ddi_port_info[port];
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[port];
- 	enum aux_ch aux_ch;
- 
--	if (!info->devdata->child.aux_channel) {
-+	if (!devdata->child.aux_channel) {
- 		aux_ch = (enum aux_ch)port;
- 
- 		drm_dbg_kms(&i915->drm,
-@@ -2880,7 +2865,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
- 	 * ADL-S VBT uses PHY based mapping. Combo PHYs A,B,C,D,E
- 	 * map to DDI A,TC1,TC2,TC3,TC4 respectively.
- 	 */
--	switch (info->devdata->child.aux_channel) {
-+	switch (devdata->child.aux_channel) {
- 	case DP_AUX_A:
- 		aux_ch = AUX_CH_A;
- 		break;
-@@ -2941,7 +2926,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
- 			aux_ch = AUX_CH_I;
- 		break;
- 	default:
--		MISSING_CASE(info->devdata->child.aux_channel);
-+		MISSING_CASE(devdata->child.aux_channel);
- 		aux_ch = AUX_CH_A;
- 		break;
- 	}
-@@ -2955,7 +2940,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
- int intel_bios_max_tmds_clock(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	const struct intel_bios_encoder_data *devdata = i915->vbt.ddi_port_info[encoder->port].devdata;
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
- 
- 	return _intel_bios_max_tmds_clock(devdata);
- }
-@@ -2964,7 +2949,7 @@ int intel_bios_max_tmds_clock(struct intel_encoder *encoder)
- int intel_bios_hdmi_level_shift(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	const struct intel_bios_encoder_data *devdata = i915->vbt.ddi_port_info[encoder->port].devdata;
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
- 
- 	return _intel_bios_hdmi_level_shift(devdata);
- }
-@@ -2988,7 +2973,7 @@ int intel_bios_encoder_hdmi_boost_level(const struct intel_bios_encoder_data *de
- int intel_bios_dp_max_link_rate(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	const struct intel_bios_encoder_data *devdata = i915->vbt.ddi_port_info[encoder->port].devdata;
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
- 
- 	return _intel_bios_dp_max_link_rate(devdata);
- }
-@@ -2996,7 +2981,7 @@ int intel_bios_dp_max_link_rate(struct intel_encoder *encoder)
- int intel_bios_alternate_ddc_pin(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	const struct intel_bios_encoder_data *devdata = i915->vbt.ddi_port_info[encoder->port].devdata;
-+	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
- 
- 	if (!devdata->child.ddc_pin)
- 		return 0;
-@@ -3017,5 +3002,5 @@ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devda
- const struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port)
- {
--	return i915->vbt.ddi_port_info[port].devdata;
-+	return i915->vbt.ports[port];
+ 	return 0;
  }
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 0ddae9db166b..12b7376ec7ff 100644
+index 005b1cec7007..1b42e39a7cd4 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -636,11 +636,6 @@ i915_fence_timeout(const struct drm_i915_private *i915)
- /* Amount of PSF GV points, BSpec precisely defines this */
- #define I915_NUM_PSF_GV_POINTS 3
+@@ -706,6 +706,7 @@ struct intel_vbt_data {
  
--struct ddi_vbt_port_info {
--	/* Non-NULL if port present. */
--	struct intel_bios_encoder_data *devdata;
--};
--
- enum psr_lines_to_wait {
- 	PSR_0_LINES_TO_WAIT = 0,
- 	PSR_1_LINE_TO_WAIT,
-@@ -721,7 +716,7 @@ struct intel_vbt_data {
- 
- 	struct list_head display_devices;
- 
--	struct ddi_vbt_port_info ddi_port_info[I915_MAX_PORTS];
-+	struct intel_bios_encoder_data *ports[I915_MAX_PORTS]; /* Non-NULL if port present. */
- 	struct sdvo_device_mapping sdvo_mappings[2];
- };
- 
+ 	struct {
+ 		u16 pwm_freq_hz;
++		u16 brightness_precision_bits;
+ 		bool present;
+ 		bool active_low_pwm;
+ 		u8 min_brightness;	/* min_brightness/255 of max */
 -- 
-2.20.1
+2.17.1
 
