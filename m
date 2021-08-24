@@ -2,87 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8673F6334
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 18:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 606893F64B5
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 19:06:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFE56E063;
-	Tue, 24 Aug 2021 16:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A8B8898C8;
+	Tue, 24 Aug 2021 17:06:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 015D86E063
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 16:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1629823774;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=kmI8hocKzE/m+bwvMVeJGFmHx34XKrmkWhq5ToJHaEI=;
- b=OZPmHm+2ZW9mm27NuCG5TopXMS/Asky9vlfDZtF+L25abxb3IqRS2ACyEFvMcLLNXJAXjO
- t7/GRfq8MWxPZaJm60uc1A1NEFJTR3C4uW//7pNFdebcGqJMgLYwWYtL3td0kDJdzniN02
- 100gOi4AZjXo9L+ypfWBhON5ILWFxFo=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-362-e64j_0fvMrCKt6YnK0tkBg-1; Tue, 24 Aug 2021 12:49:02 -0400
-X-MC-Unique: e64j_0fvMrCKt6YnK0tkBg-1
-Received: by mail-ed1-f69.google.com with SMTP id
- eg56-20020a05640228b8b02903be79801f9aso10779795edb.21
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 09:49:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=kmI8hocKzE/m+bwvMVeJGFmHx34XKrmkWhq5ToJHaEI=;
- b=dAC5VDanKv3xu/x3tCeva9U7Cyl8T7c1rAeBHN5tuqkC6xyPSwfGVzG76VvAAZl1pE
- +haNayrSCF24qPO2hS+u6/CkJgxzc38bnSZc7ZpxbUdmTanNBA+2H8+NYR/3zgUUa4Zr
- GMKCrM94Otins9JBaWS7nsCS1l8Y0t8L5uWyy1squX4MgmYyDWN+jRKgVeiJmjQIz0W1
- ix/1dkORLpCl+WQFm95py2B+6RpM+o53V6fEbAcnvxk94vy/D0mhEFwydmNzjEiGEVR9
- 8vOpUnxfMZYmmEvlm108CmgFk60A6WNHzYOuoZwBuDX9E/9v3/HyGUEEJHHzuXlYveqz
- uNRA==
-X-Gm-Message-State: AOAM5304TYxstBj2gZhuBMkC5hpSjiLyG+xTQ/E7O/J9kAonLoi7gsjs
- Abi53jEBDLtf6dsTdZ7sQJocwh5DBp4wk2JuY2NDD6njTd/k9t3183+gyV5VQ5CtcVj8gcLBHjZ
- fP4Tuy2Awv8d+vvkIF4b7D7EUJuA5
-X-Received: by 2002:a50:d587:: with SMTP id v7mr10156665edi.120.1629823741220; 
- Tue, 24 Aug 2021 09:49:01 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy8p9ZhB+YjhzpWWotEUbkffC5uCyVDihhEeekgXfX+ojksKruVky8vDsNitTFruPAJncVoXA==
-X-Received: by 2002:a50:d587:: with SMTP id v7mr10156650edi.120.1629823741044; 
- Tue, 24 Aug 2021 09:49:01 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id dh8sm11642769edb.14.2021.08.24.09.49.00
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 24 Aug 2021 09:49:00 -0700 (PDT)
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel@ffwll.ch>
-References: <34f13e21-9b1a-5f54-7e03-9705a6b51428@redhat.com>
- <871r6jgrin.fsf@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <15400f71-dfe6-3142-d191-596ef9af7e7a@redhat.com>
-Date: Tue, 24 Aug 2021 18:48:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A1F41898C7;
+ Tue, 24 Aug 2021 17:06:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99CACA0118;
+ Tue, 24 Aug 2021 17:06:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1937243744888395002=="
 MIME-Version: 1.0
-In-Reply-To: <871r6jgrin.fsf@intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [GIT PULL] drm-misc + drm-intel: Add support for
- out-of-band hotplug notification
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Aug 2021 17:06:37 -0000
+Message-ID: <162982479762.27154.18117672008289033002@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1629811722.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1629811722.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/bios=3A_remove_vbt_ddi=5Fport=5Finfo_caching?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,95 +41,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============1937243744888395002==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 8/24/21 10:45 AM, Jani Nikula wrote:
-> On Fri, 20 Aug 2021, Hans de Goede <hdegoede@redhat.com> wrote:
->> Hello drm-misc and drm-intel maintainers,
->>
->> My "Add support for out-of-band hotplug notification" patchset:
->> https://patchwork.freedesktop.org/series/93763/
->>
->> Is ready for merging now, as discussed on IRC I based this series
->> on top drm-tip and when trying to apply the i915 parts on top
->> of drm-misc this fails due to conflict.
->>
->> So as Jani suggested here is a pull-req for a topic-branch with the
->> entire set, minus the troublesome i915 bits. Once this has been merged
->> into both drm-misc-next and drm-intel-next I can push the 2 i915
->> patch do drm-intel-next on top of the merge.
->>
->> Note there are also 2 drivers/usb/typec patches in here these
->> have Greg KH's Reviewed-by for merging through the drm tree,
->> Since this USB code does not change all that much. I also checked
->> and the drm-misc-next-2021-08-12 base of this tree contains the
->> same last commit to the modified file as usb-next.
->>
->> Daniel Vetter mentioned on IRC that it might be better for you to simply
->> pick-up the series directly from patchwork, that is fine too in that
->> case don't forget to add:
->>
->> Reviewed-by: Lyude Paul <lyude@redhat.com>
->>
->> To the entire series (given in a reply to the cover-letter)
->>
->> And:
->>
->> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->>
->> To the usb/typec patches (patch 7/8), this was given in reply
->> to a previous posting of the series and I forgot to add this
->> in the resend.
-> 
-> Since this is mostly touching drm core, I think it should be merged to
-> drm-misc-next first, and drm-intel-next after. Please let us know.
+== Series Details ==
 
-I agree this should go to drm-misc-next first.
+Series: drm/i915/bios: remove vbt ddi_port_info caching
+URL   : https://patchwork.freedesktop.org/series/93957/
+State : failure
 
-(I was planning on pushing this to drm-misc-next myself,
-but then ended up going with the topic branch because of the
-conflict in the i915 bits.)
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_10514 -> Patchwork_20878
+====================================================
 
-Hans
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20878 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20878, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20878:
+
+### CI changes ###
+
+#### Possible regressions ####
+
+  * boot:
+    - fi-snb-2520m:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-snb-2520m/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-snb-2520m/boot.html
+    - fi-ilk-650:         [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-ilk-650/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-ilk-650/boot.html
+    - fi-elk-e7500:       [PASS][5] -> [FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-elk-e7500/boot.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-elk-e7500/boot.html
+    - fi-ivb-3770:        [PASS][7] -> [FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-ivb-3770/boot.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-ivb-3770/boot.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20878 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-1115g4:      [PASS][9] -> [DMESG-WARN][10] ([i915#1385] / [i915#4002])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-tgl-1115g4/igt@i915_module_load@reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-tgl-1115g4/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [PASS][11] -> [DMESG-FAIL][12] ([i915#3928])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@runner@aborted:
+    - fi-rkl-guc:         NOTRUN -> [FAIL][13] ([i915#3928])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-rkl-guc/igt@runner@aborted.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-tgl-1115g4:      [SKIP][14] ([i915#1072]) -> [SKIP][15] ([i915#1072] / [i915#1385])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html
+
+  
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1385]: https://gitlab.freedesktop.org/drm/intel/issues/1385
+  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
+  [i915#4002]: https://gitlab.freedesktop.org/drm/intel/issues/4002
 
 
+Participating hosts (40 -> 34)
+------------------------------
 
->> The following changes since commit c7782443a88926a4f938f0193041616328cf2db2:
->>
->>   drm/bridge: ti-sn65dsi86: Avoid creating multiple connectors (2021-08-12 09:56:09 -0700)
->>
->> are available in the Git repository at:
->>
->>   git://git.kernel.org/pub/scm/linux/kernel/git/hansg/linux.git drm-misc-intel-oob-hotplug-v1
->>
->> for you to fetch changes up to 7f811394878535ed9a6849717de8c2959ae38899:
->>
->>   usb: typec: altmodes/displayport: Notify drm subsys of hotplug events (2021-08-20 12:35:59 +0200)
->>
->> ----------------------------------------------------------------
->> Topic branch for drm-misc / drm-intel for OOB hotplug support for Type-C connectors
->>
->> ----------------------------------------------------------------
->> Hans de Goede (6):
->>       drm/connector: Give connector sysfs devices there own device_type
->>       drm/connector: Add a fwnode pointer to drm_connector and register with ACPI (v2)
->>       drm/connector: Add drm_connector_find_by_fwnode() function (v3)
->>       drm/connector: Add support for out-of-band hotplug notification (v3)
->>       usb: typec: altmodes/displayport: Make dp_altmode_notify() more generic
->>       usb: typec: altmodes/displayport: Notify drm subsys of hotplug events
->>
->>  drivers/gpu/drm/drm_connector.c          | 79 +++++++++++++++++++++++++++++
->>  drivers/gpu/drm/drm_crtc_internal.h      |  2 +
->>  drivers/gpu/drm/drm_sysfs.c              | 87 +++++++++++++++++++++++++++-----
->>  drivers/usb/typec/altmodes/Kconfig       |  1 +
->>  drivers/usb/typec/altmodes/displayport.c | 58 +++++++++++++--------
->>  include/drm/drm_connector.h              | 25 +++++++++
->>  6 files changed, 217 insertions(+), 35 deletions(-)
->>
-> 
+  Missing    (6): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus bat-jsl-1 
 
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10514 -> Patchwork_20878
+
+  CI-20190529: 20190529
+  CI_DRM_10514: cceaf272e7176ed1eeaaf548056efb1c25533cae @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6184: 84f9bbde1e6156c8b978613d9c85c9043fd3180c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20878: 9e4d240f4472e25eb77ebee1bd0dc65432c38489 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9e4d240f4472 drm/i915/bios: get rid of vbt ddi_port_info
+356bf413ae7b drm/i915/bios: use ddc pin directly from child data
+5724045c5163 drm/i915/bios: move ddc pin mapping code next to ddc pin sanitize
+d1d79de86edf drm/i915/bios: use alternate aux channel directly from child data
+c13124605d17 drm/i915/bios: use dp max link rate directly from child data
+d1719ebad2f9 drm/i915/bios: use max tmds clock directly from child data
+b95ad462eb0e drm/i915/bios: use hdmi level shift directly from child data
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/index.html
+
+--===============1937243744888395002==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: remove vbt ddi_port_info caching</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93957/">https://patchwork.freedesktop.org/series/93957/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10514 -&gt; Patchwork_20878</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20878 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20878, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20878:</p>
+<h3>CI changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>boot:</p>
+<ul>
+<li>
+<p>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-snb-2520m/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-snb-2520m/boot.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-ilk-650/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-ilk-650/boot.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-elk-e7500/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-elk-e7500/boot.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-ivb-3770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-ivb-3770/boot.html">FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20878 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-tgl-1115g4/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-tgl-1115g4/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@primary_page_flip:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10514/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20878/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 34)</h2>
+<p>Missing    (6): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10514 -&gt; Patchwork_20878</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10514: cceaf272e7176ed1eeaaf548056efb1c25533cae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6184: 84f9bbde1e6156c8b978613d9c85c9043fd3180c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20878: 9e4d240f4472e25eb77ebee1bd0dc65432c38489 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9e4d240f4472 drm/i915/bios: get rid of vbt ddi_port_info<br />
+356bf413ae7b drm/i915/bios: use ddc pin directly from child data<br />
+5724045c5163 drm/i915/bios: move ddc pin mapping code next to ddc pin sanitize<br />
+d1d79de86edf drm/i915/bios: use alternate aux channel directly from child data<br />
+c13124605d17 drm/i915/bios: use dp max link rate directly from child data<br />
+d1719ebad2f9 drm/i915/bios: use max tmds clock directly from child data<br />
+b95ad462eb0e drm/i915/bios: use hdmi level shift directly from child data</p>
+
+</body>
+</html>
+
+--===============1937243744888395002==--
