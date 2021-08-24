@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA45C3F5A08
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 10:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AB293F5AFB
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 11:26:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 892A089B60;
-	Tue, 24 Aug 2021 08:45:44 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B253789BE8;
- Tue, 24 Aug 2021 08:45:43 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="197514865"
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="197514865"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 01:45:42 -0700
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="526534192"
-Received: from romerosa-mobl.amr.corp.intel.com (HELO localhost)
- ([10.249.44.170])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 01:45:39 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: "dri-devel\@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <34f13e21-9b1a-5f54-7e03-9705a6b51428@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <34f13e21-9b1a-5f54-7e03-9705a6b51428@redhat.com>
-Date: Tue, 24 Aug 2021 11:45:36 +0300
-Message-ID: <871r6jgrin.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 041B389FA6;
+	Tue, 24 Aug 2021 09:26:06 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3314289FA5;
+ Tue, 24 Aug 2021 09:26:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="204409108"
+X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="204409108"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 02:26:03 -0700
+X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="535719471"
+Received: from smaji-mobl.ger.corp.intel.com (HELO [10.213.223.159])
+ ([10.213.223.159])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 02:26:01 -0700
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Tvrtko Ursulin
+ <tvrtko.ursulin@intel.com>, David M Nieto <David.Nieto@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Daniel Stone <daniel@fooishbar.org>
+References: <20210823112859.103561-1-tvrtko.ursulin@linux.intel.com>
+ <20210823112859.103561-7-tvrtko.ursulin@linux.intel.com>
+ <52ba613b-be4b-b9f4-5a9e-91c772b810cd@amd.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <337f3b5d-f903-1eb4-9597-d00191dc8788@linux.intel.com>
+Date: Tue, 24 Aug 2021 10:25:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [GIT PULL] drm-misc + drm-intel: Add support for
- out-of-band hotplug notification
+In-Reply-To: <52ba613b-be4b-b9f4-5a9e-91c772b810cd@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC 6/8] drm: Document fdinfo format specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,88 +57,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 20 Aug 2021, Hans de Goede <hdegoede@redhat.com> wrote:
-> Hello drm-misc and drm-intel maintainers,
->
-> My "Add support for out-of-band hotplug notification" patchset:
-> https://patchwork.freedesktop.org/series/93763/
->
-> Is ready for merging now, as discussed on IRC I based this series
-> on top drm-tip and when trying to apply the i915 parts on top
-> of drm-misc this fails due to conflict.
->
-> So as Jani suggested here is a pull-req for a topic-branch with the
-> entire set, minus the troublesome i915 bits. Once this has been merged
-> into both drm-misc-next and drm-intel-next I can push the 2 i915
-> patch do drm-intel-next on top of the merge.
->
-> Note there are also 2 drivers/usb/typec patches in here these
-> have Greg KH's Reviewed-by for merging through the drm tree,
-> Since this USB code does not change all that much. I also checked
-> and the drm-misc-next-2021-08-12 base of this tree contains the
-> same last commit to the modified file as usb-next.
->
-> Daniel Vetter mentioned on IRC that it might be better for you to simply
-> pick-up the series directly from patchwork, that is fine too in that
-> case don't forget to add:
->
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
->
-> To the entire series (given in a reply to the cover-letter)
->
-> And:
->
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->
-> To the usb/typec patches (patch 7/8), this was given in reply
-> to a previous posting of the series and I forgot to add this
-> in the resend.
 
-Since this is mostly touching drm core, I think it should be merged to
-drm-misc-next first, and drm-intel-next after. Please let us know.
+On 23/08/2021 14:32, Christian König wrote:
+> Am 23.08.21 um 13:28 schrieb Tvrtko Ursulin:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Proposal to standardise the fdinfo text format as optionally output by 
+>> DRM
+>> drivers.
+>>
+>> Idea is that a simple but, well defined, spec will enable generic
+>> userspace tools to be written while at the same time avoiding a more 
+>> heavy
+>> handed approach of adding a mid-layer to DRM.
+>>
+>> i915 implements a subset of the spec, everything apart from the memory
+>> stats currently, and a matching intel_gpu_top tool exists.
+>>
+>> Open is to see if AMD can migrate to using the proposed GPU utilisation
+>> key-value pairs, or if they are not workable to see whether to go
+>> vendor specific, or if a standardised  alternative can be found which is
+>> workable for both drivers.
+>>
+>> Same for the memory utilisation key-value pairs proposal.
+>>
+>> v2:
+>>   * Update for removal of name and pid.
+>>
+>> v3:
+>>   * 'Drm-driver' tag will be obtained from struct drm_driver.name. 
+>> (Daniel)
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: David M Nieto <David.Nieto@amd.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: Daniel Stone <daniel@fooishbar.org>
+> 
+> I'm not an expert on that stuff, but as far as I can see this totally 
+> makes sense to me.
 
-BR,
-Jani.
+Thanks!
 
+> Feel free to add an Acked-by: Christian König <christian.koenig@amd.com> 
+> to those three patches.
 
->
-> Regards,
->
-> Hans
->
->
-> The following changes since commit c7782443a88926a4f938f0193041616328cf2db2:
->
->   drm/bridge: ti-sn65dsi86: Avoid creating multiple connectors (2021-08-12 09:56:09 -0700)
->
-> are available in the Git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/hansg/linux.git drm-misc-intel-oob-hotplug-v1
->
-> for you to fetch changes up to 7f811394878535ed9a6849717de8c2959ae38899:
->
->   usb: typec: altmodes/displayport: Notify drm subsys of hotplug events (2021-08-20 12:35:59 +0200)
->
-> ----------------------------------------------------------------
-> Topic branch for drm-misc / drm-intel for OOB hotplug support for Type-C connectors
->
-> ----------------------------------------------------------------
-> Hans de Goede (6):
->       drm/connector: Give connector sysfs devices there own device_type
->       drm/connector: Add a fwnode pointer to drm_connector and register with ACPI (v2)
->       drm/connector: Add drm_connector_find_by_fwnode() function (v3)
->       drm/connector: Add support for out-of-band hotplug notification (v3)
->       usb: typec: altmodes/displayport: Make dp_altmode_notify() more generic
->       usb: typec: altmodes/displayport: Notify drm subsys of hotplug events
->
->  drivers/gpu/drm/drm_connector.c          | 79 +++++++++++++++++++++++++++++
->  drivers/gpu/drm/drm_crtc_internal.h      |  2 +
->  drivers/gpu/drm/drm_sysfs.c              | 87 +++++++++++++++++++++++++++-----
->  drivers/usb/typec/altmodes/Kconfig       |  1 +
->  drivers/usb/typec/altmodes/displayport.c | 58 +++++++++++++--------
->  include/drm/drm_connector.h              | 25 +++++++++
->  6 files changed, 217 insertions(+), 35 deletions(-)
->
+However note that the last one is full of TODO markers, including the 
+commit message, where I was hoping to nudge the feature owners of the 
+amdgpu side to fill in the blanks in my understanding of how things work 
+over there. At least the different semantics need to be documented so 
+random userspace can interpret the amdgpu values correctly.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Or alternatively I drop the last patch and if someone is interested they 
+can resurrect and complete it at their leisure.
+
+Just not sure how Daniel would accept this since his push was to gate 
+i915 addition behind a drive for common solution.
+
+Regards,
+
+Tvrtko
+
+>> ---
+>>   Documentation/gpu/drm-usage-stats.rst | 97 +++++++++++++++++++++++++++
+>>   Documentation/gpu/index.rst           |  1 +
+>>   2 files changed, 98 insertions(+)
+>>   create mode 100644 Documentation/gpu/drm-usage-stats.rst
+>>
+>> diff --git a/Documentation/gpu/drm-usage-stats.rst 
+>> b/Documentation/gpu/drm-usage-stats.rst
+>> new file mode 100644
+>> index 000000000000..c669026be244
+>> --- /dev/null
+>> +++ b/Documentation/gpu/drm-usage-stats.rst
+>> @@ -0,0 +1,97 @@
+>> +.. _drm-client-usage-stats:
+>> +
+>> +======================
+>> +DRM client usage stats
+>> +======================
+>> +
+>> +DRM drivers can choose to export partly standardised text output via the
+>> +`fops->show_fdinfo()` as part of the driver specific file operations 
+>> registered
+>> +in the `struct drm_driver` object registered with the DRM core.
+>> +
+>> +One purpose of this output is to enable writing as generic as practicaly
+>> +feasible `top(1)` like userspace monitoring tools.
+>> +
+>> +Given the differences between various DRM drivers the specification 
+>> of the
+>> +output is split between common and driver specific parts. Having said 
+>> that,
+>> +wherever possible effort should still be made to standardise as much as
+>> +possible.
+>> +
+>> +File format specification
+>> +=========================
+>> +
+>> +- File shall contain one key value pair per one line of text.
+>> +- Colon character (`:`) must be used to delimit keys and values.
+>> +- All keys shall be prefixed with `drm-`.
+>> +- Whitespace between the delimiter and first non-whitespace character 
+>> shall be
+>> +  ignored when parsing.
+>> +- Neither keys or values are allowed to contain whitespace characters.
+>> +- Numerical key value pairs can end with optional unit string.
+>> +- Data type of the value is fixed as defined in the specification.
+>> +
+>> +Key types
+>> +---------
+>> +
+>> +1. Mandatory, fully standardised.
+>> +2. Optional, fully standardised.
+>> +3. Driver specific.
+>> +
+>> +Data types
+>> +----------
+>> +
+>> +- <uint> - Unsigned integer without defining the maximum value.
+>> +- <str> - String excluding any above defined reserved characters or 
+>> whitespace.
+>> +
+>> +Mandatory fully standardised keys
+>> +---------------------------------
+>> +
+>> +- drm-driver: <str>
+>> +
+>> +String shall contain the name this driver registered as via the 
+>> respective
+>> +`struct drm_driver` data structure.
+>> +
+>> +Optional fully standardised keys
+>> +--------------------------------
+>> +
+>> +- drm-pdev: <aaaa:bb.cc.d>
+>> +
+>> +For PCI devices this should contain the PCI slot address of the 
+>> device in
+>> +question.
+>> +
+>> +- drm-client-id: <uint>
+>> +
+>> +Unique value relating to the open DRM file descriptor used to 
+>> distinguish
+>> +duplicated and shared file descriptors. Conceptually the value should 
+>> map 1:1
+>> +to the in kernel representation of `struct drm_file` instances.
+>> +
+>> +Uniqueness of the value shall be either globally unique, or unique 
+>> within the
+>> +scope of each device, in which case `drm-pdev` shall be present as well.
+>> +
+>> +Userspace should make sure to not double account any usage statistics 
+>> by using
+>> +the above described criteria in order to associate data to individual 
+>> clients.
+>> +
+>> +- drm-engine-<str>: <uint> ns
+>> +
+>> +GPUs usually contain multiple execution engines. Each shall be given 
+>> a stable
+>> +and unique name (str), with possible values documented in the driver 
+>> specific
+>> +documentation.
+>> +
+>> +Value shall be in specified time units which the respective GPU 
+>> engine spent
+>> +busy executing workloads belonging to this client.
+>> +
+>> +Values are not required to be constantly monotonic if it makes the 
+>> driver
+>> +implementation easier, but are required to catch up with the 
+>> previously reported
+>> +larger value within a reasonable period. Upon observing a value lower 
+>> than what
+>> +was previously read, userspace is expected to stay with that larger 
+>> previous
+>> +value until a monotonic update is seen.
+>> +
+>> +- drm-memory-<str>: <uint> [KiB|MiB]
+>> +
+>> +Each possible memory type which can be used to store buffer objects 
+>> by the
+>> +GPU in question shall be given a stable and unique name to be 
+>> returned as the
+>> +string here.
+>> +
+>> +Value shall reflect the amount of storage currently consumed by the 
+>> buffer
+>> +object belong to this client, in the respective memory region.
+>> +
+>> +Default unit shall be bytes with optional unit specifiers of 'KiB' or 
+>> 'MiB'
+>> +indicating kibi- or mebi-bytes.
+>> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+>> index b9c1214d8f23..b99dede9a5b1 100644
+>> --- a/Documentation/gpu/index.rst
+>> +++ b/Documentation/gpu/index.rst
+>> @@ -10,6 +10,7 @@ Linux GPU Driver Developer's Guide
+>>      drm-kms
+>>      drm-kms-helpers
+>>      drm-uapi
+>> +   drm-usage-stats
+>>      driver-uapi
+>>      drm-client
+>>      drivers
+> 
