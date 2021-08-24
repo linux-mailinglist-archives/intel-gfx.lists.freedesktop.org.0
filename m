@@ -2,40 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342983F56F4
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 06:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97EB03F58DE
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 09:21:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B63EC897D4;
-	Tue, 24 Aug 2021 04:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E2589B69;
+	Tue, 24 Aug 2021 07:21:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2AC6897C3
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 04:06:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="204367308"
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="204367308"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2021 21:06:23 -0700
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; d="scan'208";a="574870042"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2021 21:06:23 -0700
-Date: Mon, 23 Aug 2021 21:06:21 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, John Harrison <John.C.Harrison@intel.com>
-Message-ID: <20210824040621.GI461228@mdroper-desk1.amr.corp.intel.com>
-References: <20210805163647.801064-1-matthew.d.roper@intel.com>
- <20210805163647.801064-9-matthew.d.roper@intel.com>
- <5c838e5d-6311-0abb-4a5c-44c7e55b990c@linux.intel.com>
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
+ [IPv6:2607:f8b0:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E744789B69
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 07:21:46 +0000 (UTC)
+Received: by mail-ot1-x334.google.com with SMTP id
+ x10-20020a056830408a00b004f26cead745so43467104ott.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 00:21:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=t//xyFFqUAKYAO4PmiCW5X+vQuhQaffyQQS3rvsI1Ww=;
+ b=LQLAYjMebugxPQDNaW562ib3IsstnnfhSuIvPOZ7GlY3796R+vRRKX32Hwl51xM/Er
+ zBze4pvkzY+TpmXB9oE7d05xBvg7x9RLvMPFD91UsNTOvCy7kvzIsQSV3UQi9erEtHk7
+ fntTosUU6du72km9vRkdn3vvIzsLNoZqRKLlQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=t//xyFFqUAKYAO4PmiCW5X+vQuhQaffyQQS3rvsI1Ww=;
+ b=dZRvKwWpfIZubXvGH3VOr/bivO1J83PPDU39FwCVjZb2EPbw+bQJ4s3Ejp89fpeIwV
+ 5e0xbW5lFt2Y5xT3J3EC3gAFAyNIVK5SPxCJAVMyqGr2Pr5CSQ2F8n+DerNtQ6/vay4f
+ 7iXE5WxRi0vcFSrPCDwTO7fMmJTjoLMJlfvAbMwkWjlH2fpib3Zz0gQuK+JwFLp6DcUo
+ 1s8n9wQgLo8hUXvyy9NOdjSe66hpuZeK6qCcMZio5YLL8/EJq1ksPrqdEiTJXCmMtmSd
+ gjkLriKXLzc3woZM/ZGutYuRqRyKj4oa7XgadKbHjkd72ZpuP4fRgKxd0fGZHCEKgXMk
+ hykQ==
+X-Gm-Message-State: AOAM531fY8gyNSSa8k7dRJ1dvNw9RvvSkQf5Xep/dLj2+NwzqPzYN4ki
+ RivjT6hhQMPMCyaAZQNWDxcMmphtDF1xuZs9jBE1vg==
+X-Google-Smtp-Source: ABdhPJw/Gb3J586RgcAAHrYyVy1fqVsg5QylF7yWSEUGEfHtM1j9+cTy+OvmJXk1O90bmZIOfKpfS9Gq3Z7Kr8SR8KE=
+X-Received: by 2002:a05:6808:2116:: with SMTP id
+ r22mr1849565oiw.128.1629789706113; 
+ Tue, 24 Aug 2021 00:21:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5c838e5d-6311-0abb-4a5c-44c7e55b990c@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 8/9] drm/i915/dg2: Maintain
- backward-compatible nested batch behavior
+References: <20210818004216.220279-1-jose.souza@intel.com>
+ <20210818004216.220279-8-jose.souza@intel.com>
+In-Reply-To: <20210818004216.220279-8-jose.souza@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 24 Aug 2021 09:21:35 +0200
+Message-ID: <CAKMK7uF7Py_Mu-fUG+b-xXUFidEUncEgjCR+D8MJG9+deaurcw@mail.gmail.com>
+To: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, 
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, 
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/display/skl+: Drop frontbuffer
+ rendering support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,128 +71,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 23, 2021 at 10:26:06AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 05/08/2021 17:36, Matt Roper wrote:
-> > For tgl+, the per-context setting of MI_MODE[12] determines whether
-> > the bits of a nested MI_BATCH_BUFFER_START instruction should be
-> > interpreted in the traditional manner or whether they should
-> > instead use a new tgl+ meaning that breaks backward compatibility, but
-> > allows nesting into 3rd-level batchbuffers.  For previous platforms,
-> > the hardware default for this register bit is to maintain
-> > backward-compatible behavior unless a context intentionally opts into
-> > the new behavior; however Xe_HPG flips the hardware default behavior.
-> > 
-> > > From a SW perspective, we want to maintain the backward-compatible
-> > behavior for userspace, so we'll apply a fake workaround to set it back
-> > to the legacy behavior on platforms where the hardware default is to
-> > break compatibility.  At the moment there is no Linux userspace that
-> > utilizes third-level batchbuffers, so this will avoid userspace from
-> > needing to make any changes.  using the legacy meaning is the correct
-> > thing to do.  If/when we have userspace consumers that want to utilize
-> > third-level batch nesting, we can provide a context parameter to allow
-> > them to opt-in.
-> > 
-> > Bspec: 45974, 45718
-> > Cc: John Harrison <John.C.Harrison@Intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_workarounds.c | 39 +++++++++++++++++++--
-> >   drivers/gpu/drm/i915/i915_reg.h             |  1 +
-> >   2 files changed, 38 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index aae609d7d85d..97b3cd81b721 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -644,6 +644,37 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
-> >   		     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE);
-> >   }
-> > +static void fakewa_disable_nestedbb_mode(struct intel_engine_cs *engine,
-> > +					 struct i915_wa_list *wal)
-> > +{
-> > +	/*
-> > +	 * This is a "fake" workaround defined by software to ensure we
-> > +	 * maintain reliable, backward-compatible behavior for userspace with
-> > +	 * regards to how nested MI_BATCH_BUFFER_START commands are handled.
-> > +	 *
-> > +	 * The per-context setting of MI_MODE[12] determines whether the bits
-> > +	 * of a nested MI_BATCH_BUFFER_START instruction should be interpreted
-> > +	 * in the traditional manner or whether they should instead use a new
-> > +	 * tgl+ meaning that breaks backward compatibility, but allows nesting
-> > +	 * into 3rd-level batchbuffers.  When this new capability was first
-> > +	 * added in TGL, it remained off by default unless a context
-> > +	 * intentionally opted in to the new behavior.  However Xe_HPG now
-> > +	 * flips this on by default and requires that we explicitly opt out if
-> > +	 * we don't want the new behavior.
-> > +	 *
-> > +	 * From a SW perspective, we want to maintain the backward-compatible
-> > +	 * behavior for userspace, so we'll apply a fake workaround to set it
-> > +	 * back to the legacy behavior on platforms where the hardware default
-> > +	 * is to break compatibility.  At the moment there is no Linux
-> > +	 * userspace that utilizes third-level batchbuffers, so this will avoid
-> > +	 * userspace from needing to make any changes.  using the legacy
-> > +	 * meaning is the correct thing to do.  If/when we have userspace
-> > +	 * consumers that want to utilize third-level batch nesting, we can
-> > +	 * provide a context parameter to allow them to opt-in.
-> > +	 */
-> > +	wa_masked_dis(wal, RING_MI_MODE(engine->mmio_base), TGL_NESTED_BB_EN);
-> > +}
-> > +
-> >   static void
-> >   __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
-> >   			   struct i915_wa_list *wal,
-> > @@ -651,11 +682,15 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
-> >   {
-> >   	struct drm_i915_private *i915 = engine->i915;
-> > +	wa_init_start(wal, name, engine->name);
-> > +
-> > +	/* Applies to all engines */
-> > +	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55))
-> > +		fakewa_disable_nestedbb_mode(engine, wal);
-> > +
-> >   	if (engine->class != RENDER_CLASS)
-> >   		return;
-> 
-> Is it intentional to skip wa_init_finish on non-render engines? Would be a
-> bit odd although granted no significant functional difference apart from not
-> logging and maybe not trimming the list storage.
+On Wed, Aug 18, 2021 at 2:37 AM Jos=C3=A9 Roberto de Souza
+<jose.souza@intel.com> wrote:
+>
+> By now all the userspace applications should have migrated to atomic
+> or at least be calling DRM_IOCTL_MODE_DIRTYFB.
+>
+> With that we can kill frontbuffer rendering support in i915 for
+> modern platforms.
+>
+> So here converting legacy APIs into atomic commits so it can be
+> properly handled by driver i915.
+>
+> Several IGT tests will fail with this changes, because some tests
+> were stressing those frontbuffer rendering scenarios that no userspace
+> should be using by now, fixes to IGT should be sent soon.
+>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
 
-No, just an oversight.  Like you said, it doesn't look like it really
-matters too much, but I'll write up a fix for it tomorrow.
+Patch looks good in overall direction, but there's more
+intel_frontbuffer.c functions to disable, none of the tracking of the
+tracking bits should ever be set, maybe even throw some WARN_ON in the
+code.
+-Daniel
 
-Thanks.
+> ---
+>  drivers/gpu/drm/i915/display/intel_cursor.c      | 6 ++----
+>  drivers/gpu/drm/i915/display/intel_display.c     | 7 ++++++-
+>  drivers/gpu/drm/i915/display/intel_frontbuffer.c | 6 ++++++
+>  drivers/gpu/drm/i915/i915_drv.h                  | 2 ++
+>  4 files changed, 16 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/dr=
+m/i915/display/intel_cursor.c
+> index c7618fef01439..5aa996c3b7980 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -617,6 +617,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+>                            u32 src_w, u32 src_h,
+>                            struct drm_modeset_acquire_ctx *ctx)
+>  {
+> +       struct drm_i915_private *i915 =3D to_i915(_crtc->dev);
+>         struct intel_plane *plane =3D to_intel_plane(_plane);
+>         struct intel_crtc *crtc =3D to_intel_crtc(_crtc);
+>         struct intel_plane_state *old_plane_state =3D
+> @@ -633,12 +634,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+>          * PSR2 selective fetch also requires the slow path as
+>          * PSR2 plane and transcoder registers can only be updated during
+>          * vblank.
+> -        *
+> -        * FIXME bigjoiner fastpath would be good
+>          */
+>         if (!crtc_state->hw.active || intel_crtc_needs_modeset(crtc_state=
+) ||
+> -           crtc_state->update_pipe || crtc_state->bigjoiner ||
+> -           crtc_state->enable_psr2_sel_fetch)
+> +           crtc_state->update_pipe || !HAS_FRONTBUFFER_RENDERING(i915))
+>                 goto slow;
+>
+>         /*
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index e55c9e2cb254a..f700544454ad5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -11744,10 +11744,15 @@ static int intel_user_framebuffer_dirty(struct =
+drm_framebuffer *fb,
+>                                         unsigned num_clips)
+>  {
+>         struct drm_i915_gem_object *obj =3D intel_fb_obj(fb);
+> +       struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
+>
+>         i915_gem_object_flush_if_display(obj);
+> -       intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB)=
+;
+>
+> +       if (!HAS_FRONTBUFFER_RENDERING(i915))
+> +               return drm_atomic_helper_dirtyfb(fb, file, flags, color, =
+clips,
+> +                                                num_clips);
+> +
+> +       intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB)=
+;
+>         return 0;
+>  }
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/g=
+pu/drm/i915/display/intel_frontbuffer.c
+> index e4834d84ce5e3..6be2f767a203c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> @@ -91,6 +91,9 @@ static void frontbuffer_flush(struct drm_i915_private *=
+i915,
+>
+>         trace_intel_frontbuffer_flush(frontbuffer_bits, origin);
+>
+> +       if (!HAS_FRONTBUFFER_RENDERING(i915))
+> +               return;
+> +
+>         might_sleep();
+>         intel_edp_drrs_flush(i915, frontbuffer_bits);
+>         intel_psr_flush(i915, frontbuffer_bits, origin);
+> @@ -179,6 +182,9 @@ void __intel_fb_invalidate(struct intel_frontbuffer *=
+front,
+>
+>         trace_intel_frontbuffer_invalidate(frontbuffer_bits, origin);
+>
+> +       if (!HAS_FRONTBUFFER_RENDERING(i915))
+> +               return;
+> +
+>         might_sleep();
+>         intel_psr_invalidate(i915, frontbuffer_bits, origin);
+>         intel_edp_drrs_invalidate(i915, frontbuffer_bits);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 1ea27c4e94a6d..fe1dc8b7871a0 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1719,6 +1719,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>
+>  #define HAS_VRR(i915)  (GRAPHICS_VER(i915) >=3D 12)
+>
+> +#define HAS_FRONTBUFFER_RENDERING(i915)        (GRAPHICS_VER(i915) < 9)
+> +
+>  /* Only valid when HAS_DISPLAY() is true */
+>  #define INTEL_DISPLAY_ENABLED(dev_priv) \
+>         (drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !(dev_pri=
+v)->params.disable_display)
+> --
+> 2.32.0
+>
 
 
-Matt
-
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > -	wa_init_start(wal, name, engine->name);
-> > -
-> >   	if (IS_DG1(i915))
-> >   		dg1_ctx_workarounds_init(engine, wal);
-> >   	else if (GRAPHICS_VER(i915) == 12)
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index 77f6dcaba2b9..269685955fbd 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -2821,6 +2821,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
-> >   #define MI_MODE		_MMIO(0x209c)
-> >   # define VS_TIMER_DISPATCH				(1 << 6)
-> >   # define MI_FLUSH_ENABLE				(1 << 12)
-> > +# define TGL_NESTED_BB_EN				(1 << 12)
-> >   # define ASYNC_FLIP_PERF_DISABLE			(1 << 14)
-> >   # define MODE_IDLE					(1 << 9)
-> >   # define STOP_RING					(1 << 8)
-> > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
