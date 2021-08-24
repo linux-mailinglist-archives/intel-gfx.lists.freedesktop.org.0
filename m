@@ -2,42 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 434F93F5D4E
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 13:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D72D3F5D90
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 13:59:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A079A89872;
-	Tue, 24 Aug 2021 11:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B383B89BE8;
+	Tue, 24 Aug 2021 11:59:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7796889C93;
- Tue, 24 Aug 2021 10:04:34 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A5C0101E;
- Tue, 24 Aug 2021 03:04:33 -0700 (PDT)
-Received: from [10.57.15.112] (unknown [10.57.15.112])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 66B393F66F;
- Tue, 24 Aug 2021 03:04:31 -0700 (PDT)
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- zhenyuw@linux.intel.com, zhi.a.wang@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-References: <dbf1018fb773785e0b3b40e601246ed6438e645e.1629666258.git.christophe.jaillet@wanadoo.fr>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <0cd61d5b-ac88-31e8-99ad-143af480416f@arm.com>
-Date: Tue, 24 Aug 2021 11:04:25 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B0CB89BE8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 11:59:38 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="204430229"
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="204430229"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 04:59:38 -0700
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="526605917"
+Received: from sgillelx-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.255.37.123])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 04:59:37 -0700
+Date: Tue, 24 Aug 2021 07:59:36 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ daniel@ffwll.ch
+Message-ID: <YSTfKKa1Zkr6o4l+@intel.com>
+References: <cover.1629721467.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <dbf1018fb773785e0b3b40e601246ed6438e645e.1629666258.git.christophe.jaillet@wanadoo.fr>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 24 Aug 2021 11:49:50 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: switch from 'pci_' to 'dma_' API
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1629721467.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/6] drm/i915/display: split out some dpt
+ and fb stuff from intel_display.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,69 +50,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Mon, Aug 23, 2021 at 03:25:30PM +0300, Jani Nikula wrote:
+> Make some forward progress on reducing intel_display.c size.
+> 
+> Jani Nikula (6):
+>   drm/i915/display: split out dpt out of intel_display.c
+>   drm/i915: add HAS_ASYNC_FLIPS feature macro
+>   drm/i915/fb: move intel_tile_width_bytes() to intel_fb.c
+>   drm/i915/fb: move intel_fb_align_height() to intel_fb.c
+>   drm/i915/fb: move intel_surf_alignment() to intel_fb.c
+>   drm/i915/fb: move user framebuffer stuff to intel_fb.c
+> 
+>  drivers/gpu/drm/i915/Makefile                |   1 +
+>  drivers/gpu/drm/i915/display/intel_display.c | 709 +------------------
+>  drivers/gpu/drm/i915/display/intel_display.h |   6 -
+>  drivers/gpu/drm/i915/display/intel_dpt.c     | 229 ++++++
+>  drivers/gpu/drm/i915/display/intel_dpt.h     |  19 +
+>  drivers/gpu/drm/i915/display/intel_fb.c      | 481 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fb.h      |  20 +-
+>  drivers/gpu/drm/i915/display/intel_fbdev.c   |   1 +
+>  drivers/gpu/drm/i915/i915_drv.h              |   2 +
+>  9 files changed, 752 insertions(+), 716 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_dpt.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_dpt.h
 
-FWIW this patch itself looks fine, but it does highlight some things 
-which could be further cleaned up if anyone's interested...
+I believe it would be good to add a /** DOC: */ or at least
+a simple comment block explaining a bit what DPT is.
 
-On 2021-08-22 22:06, Christophe JAILLET wrote:
-[...]
-> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> index a74b72f50cc9..afb35d2e5c73 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> @@ -32,7 +32,7 @@ static int init_fake_lmem_bar(struct intel_memory_region *mem)
->   	mem->remap_addr = dma_map_resource(i915->drm.dev,
->   					   mem->region.start,
->   					   mem->fake_mappable.size,
-> -					   PCI_DMA_BIDIRECTIONAL,
-> +					   DMA_BIDIRECTIONAL,
->   					   DMA_ATTR_FORCE_CONTIGUOUS);
+But other than that the series looks good, so, up to you:
 
-DMA_ATTR_FORCE_CONTIGUOUS is nonsensical here (and below) as it is only 
-meaningful for coherent buffers allocated by dma_alloc_attrs().
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+(for the series)
 
->   	if (dma_mapping_error(i915->drm.dev, mem->remap_addr)) {
->   		drm_mm_remove_node(&mem->fake_mappable);
-> @@ -62,7 +62,7 @@ static void release_fake_lmem_bar(struct intel_memory_region *mem)
->   	dma_unmap_resource(mem->i915->drm.dev,
->   			   mem->remap_addr,
->   			   mem->fake_mappable.size,
-> -			   PCI_DMA_BIDIRECTIONAL,
-> +			   DMA_BIDIRECTIONAL,
->   			   DMA_ATTR_FORCE_CONTIGUOUS);
->   }
->   
-[...]
-> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> index 36489be4896b..cd5f2348a187 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> @@ -30,7 +30,7 @@ int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
->   	do {
->   		if (dma_map_sg_attrs(obj->base.dev->dev,
->   				     pages->sgl, pages->nents,
-> -				     PCI_DMA_BIDIRECTIONAL,
-> +				     DMA_BIDIRECTIONAL,
->   				     DMA_ATTR_SKIP_CPU_SYNC |
->   				     DMA_ATTR_NO_KERNEL_MAPPING |
->   				     DMA_ATTR_NO_WARN))
-
-Similarly DMA_ATTR_NO_KERNEL_MAPPING and DMA_ATTR_NO_WARN are also for 
-coherent allocations rather than streaming mappings.
-
-I'll see if I can whip up a patch to make the API documentation clearer...
-
-Thanks,
-Robin.
-
-> @@ -64,7 +64,7 @@ void i915_gem_gtt_finish_pages(struct drm_i915_gem_object *obj,
->   		usleep_range(100, 250);
->   
->   	dma_unmap_sg(i915->drm.dev, pages->sgl, pages->nents,
-> -		     PCI_DMA_BIDIRECTIONAL);
-> +		     DMA_BIDIRECTIONAL);
->   }
->   
->   /**
+> 
+> -- 
+> 2.20.1
 > 
