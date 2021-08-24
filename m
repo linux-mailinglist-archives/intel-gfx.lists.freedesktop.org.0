@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979853F607A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 16:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14EB63F61F7
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Aug 2021 17:47:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18DEC89AC2;
-	Tue, 24 Aug 2021 14:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27AD389A88;
+	Tue, 24 Aug 2021 15:47:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3759889AC2
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 14:34:11 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="239472236"
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="239472236"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 07:33:55 -0700
-X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="526646393"
-Received: from romerosa-mobl.amr.corp.intel.com (HELO localhost)
- ([10.249.44.170])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2021 07:33:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Lee Shawn C <shawn.c.lee@intel.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>,
- Vandita Kulkarni <vandita.kulkarni@intel.com>,
- Cooper Chiou <cooper.chiou@intel.com>, William Tseng <william.tseng@intel.com>
-In-Reply-To: <20210824140042.3083-1-shawn.c.lee@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210812154237.13911-7-shawn.c.lee@intel.com>
- <20210824140042.3083-1-shawn.c.lee@intel.com>
-Date: Tue, 24 Aug 2021 17:33:48 +0300
-Message-ID: <87o89mgbeb.fsf@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF9A89A88;
+ Tue, 24 Aug 2021 15:47:52 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="217343213"
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="217343213"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 08:47:52 -0700
+X-IronPort-AV: E=Sophos;i="5.84,347,1620716400"; d="scan'208";a="425509683"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 08:47:52 -0700
+Date: Tue, 24 Aug 2021 08:42:41 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch
+Message-ID: <20210824154241.GA9672@jons-linux-dev-box>
+References: <20210819061639.21051-1-matthew.brost@intel.com>
+ <20210819061639.21051-14-matthew.brost@intel.com>
+ <d25c1702-f529-8601-dd1c-ca0ac59d5f5b@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Retrieve max brightness level
- from VBT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d25c1702-f529-8601-dd1c-ca0ac59d5f5b@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 13/27] drm/i915/guc: Take context ref when
+ cancelling request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,84 +53,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 Aug 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> So far, DCS backlight driver hardcode (0xFF) for max brightness level.
-> MIPI DCS spec allow max 0xFFFF for set_display_brightness (51h) command.
-> And VBT brightness precision bits can support 8 ~ 16 bits.
->
-> We should set correct precision bits in VBT that meet panel's request.
-> Driver can refer to this setting then configure max brightness level
-> in DCS backlight driver properly.
->
-> v2: modify variable name brightness_precision_bits instead of
->     max_brightness_level.
->
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: William Tseng <william.tseng@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c              | 3 +++
->  drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c | 8 ++++++--
->  drivers/gpu/drm/i915/i915_drv.h                        | 1 +
->  3 files changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index e86e6ed2d3bf..ccaf0a3100f7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -483,6 +483,9 @@ parse_lfp_backlight(struct drm_i915_private *i915,
->  			level = 255;
->  		}
->  		i915->vbt.backlight.min_brightness = min_level;
-> +
-> +		i915->vbt.backlight.brightness_precision_bits =
-> +			backlight_data->brightness_precision_bits[panel_type];
->  	} else {
->  		level = backlight_data->level[panel_type];
->  		i915->vbt.backlight.min_brightness = entry->min_brightness;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> index 584c14c4cbd0..21ab9e1acb57 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> @@ -147,10 +147,14 @@ static void dcs_enable_backlight(const struct intel_crtc_state *crtc_state,
->  static int dcs_setup_backlight(struct intel_connector *connector,
->  			       enum pipe unused)
->  {
-> +	struct drm_device *dev = connector->base.dev;
-> +	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_panel *panel = &connector->panel;
->  
-> -	panel->backlight.max = PANEL_PWM_MAX_VALUE;
-> -	panel->backlight.level = PANEL_PWM_MAX_VALUE;
-> +	panel->backlight.max = (dev_priv->vbt.backlight.brightness_precision_bits > 8) \
-> +			       ? (1 << dev_priv->vbt.backlight.brightness_precision_bits) - 1 \
-> +			       : PANEL_PWM_MAX_VALUE;
-> +	panel->backlight.level = panel->backlight.max;
+On Fri, Aug 20, 2021 at 05:07:27PM -0700, Daniele Ceraolo Spurio wrote:
+> 
+> 
+> On 8/18/2021 11:16 PM, Matthew Brost wrote:
+> > A context can get destroyed after cancelling a request so take a
+> > reference to context when cancelling a request.
+> 
+> What's the exact race? AFAICS __i915_request_skip does not have a
+> context_put().
 
-If the precision is < 8, why would max be 0xff? Use GENMASK() perhaps?
+This commit message isn't quite right, it is really a context reset or a
+GT reset which could result in the context getting destroyed. I haven't
+actually seen this happen but this just being paranoid about ref
+counting. Can fix up the commit message.
 
-BR,
-Jani.
+Matt
 
-
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 005b1cec7007..1b42e39a7cd4 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -706,6 +706,7 @@ struct intel_vbt_data {
->  
->  	struct {
->  		u16 pwm_freq_hz;
-> +		u16 brightness_precision_bits;
->  		bool present;
->  		bool active_low_pwm;
->  		u8 min_brightness;	/* min_brightness/255 of max */
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> Daniele
+> 
+> > 
+> > Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 5 ++++-
+> >   1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index e0e85e4ad512..85f96d325048 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -1620,8 +1620,10 @@ static void guc_context_cancel_request(struct intel_context *ce,
+> >   				       struct i915_request *rq)
+> >   {
+> >   	if (i915_sw_fence_signaled(&rq->submit)) {
+> > -		struct i915_sw_fence *fence = guc_context_block(ce);
+> > +		struct i915_sw_fence *fence;
+> > +		intel_context_get(ce);
+> > +		fence = guc_context_block(ce);
+> >   		i915_sw_fence_wait(fence);
+> >   		if (!i915_request_completed(rq)) {
+> >   			__i915_request_skip(rq);
+> > @@ -1636,6 +1638,7 @@ static void guc_context_cancel_request(struct intel_context *ce,
+> >   		flush_work(&ce_to_guc(ce)->ct.requests.worker);
+> >   		guc_context_unblock(ce);
+> > +		intel_context_put(ce);
+> >   	}
+> >   }
+> 
