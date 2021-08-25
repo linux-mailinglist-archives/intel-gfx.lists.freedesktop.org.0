@@ -1,68 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 155873F79C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 18:04:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 924EB3F7AB1
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 18:35:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0285A6E3AC;
-	Wed, 25 Aug 2021 16:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC986E3CE;
+	Wed, 25 Aug 2021 16:35:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C36676E3A0;
- Wed, 25 Aug 2021 16:04:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="217272599"
-X-IronPort-AV: E=Sophos;i="5.84,351,1620716400"; d="scan'208";a="217272599"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 09:04:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,351,1620716400"; d="scan'208";a="473883660"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga008.jf.intel.com with ESMTP; 25 Aug 2021 09:04:05 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 25 Aug 2021 09:03:44 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 25 Aug 2021 09:03:43 -0700
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2242.010;
- Wed, 25 Aug 2021 09:03:43 -0700
-From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-To: "hdegoede@redhat.com" <hdegoede@redhat.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>, "jani.nikula@linux.intel.com"
- <jani.nikula@linux.intel.com>, "tzimmermann@suse.de" <tzimmermann@suse.de>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, "gregkh@linuxfoundation.org"
- <gregkh@linuxfoundation.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [GIT PULL] drm-misc + drm-intel: Add support for out-of-band
- hotplug notification
-Thread-Index: AQHXlevZ8/CGe2hsYE6qwz5msr+Zn6uC0lEAgACHDoCAAYWtgA==
-Date: Wed, 25 Aug 2021 16:03:43 +0000
-Message-ID: <b24d3733d0b0c79fa6fce4f4e696b0c3a338469a.camel@intel.com>
-References: <34f13e21-9b1a-5f54-7e03-9705a6b51428@redhat.com>
- <871r6jgrin.fsf@intel.com>
- <15400f71-dfe6-3142-d191-596ef9af7e7a@redhat.com>
-In-Reply-To: <15400f71-dfe6-3142-d191-596ef9af7e7a@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.40.3 (3.40.3-1.fc34) 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EE74AF63DA47A545A6182BDD26BB558C@intel.com>
-Content-Transfer-Encoding: base64
+Received: from smtp-relay-internal-1.canonical.com
+ (smtp-relay-internal-1.canonical.com [185.125.188.123])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 620046E3CE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 16:35:06 +0000 (UTC)
+Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com
+ [209.85.222.70])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BB75240763
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 16:35:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1629909304;
+ bh=rhkDjoFPy6FFzrEKjMnHnxKqLfuq7uDKA/aCpRZI6Co=;
+ h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+ To:Cc:Content-Type;
+ b=C5E7vvtJsU+tV4VWpC54F2+C+8O0Wes/KgaVi27sO4Y5AiXVdyGKvb6mLsFQwEbiG
+ h8CYpqPU50m2U8NQwzvR5Un+69LJLyPJEvpe7KTuKDnuc5c1J8X/tKb6YN9L6XJ714
+ Dvex6cdhXic6u+W5EbbBq3n9eNToQOtVIlhSklbYycitjjoX+QThFOWTi4WnIp8tFv
+ 7lv946ifZs7kDcj9hPzzBkJy/htC4KKLSW/K1VNtF3aCSs7jNzvRt8fRWSTEUu8y64
+ s1qPFVYMSyR+4q6D0xKuBF8L0W9dVCOVdO2D2wOfJtRsFLNXrd2tJkEamBSXMoP6Xw
+ rly7bU1lKyt9w==
+Received: by mail-ua1-f70.google.com with SMTP id
+ v14-20020ab0730e000000b002abb810c843so39195uao.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 09:35:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=rhkDjoFPy6FFzrEKjMnHnxKqLfuq7uDKA/aCpRZI6Co=;
+ b=nG3JWUMK0tiWjGyCHU1v9g8ecvd/tQeZWtCPN1TlEAu61su/7xQAm9qFPCCALEk96c
+ S11ByVenTrADbgZC1Ylvd3Oa6TTFFvWYCWMqRdviQD+WLMtz8YQKLs8Uue3cIe7kaNtz
+ lsfngP1Q5Qebn9MKemchudeN3BJ9He53ZG6bYG5IDfPNL4HSK6B4Smk3Y+HneoHgLXq3
+ mdYrY0iAakHkhSMnDVYcxtSkvb97HnhsEpQp9IJeacsg2pUfNi4ICzZ2GNQzP9DD+VZ0
+ 70sfQkzl254wfPQTqsEZDV8NlcVkInDazcz0FJFxR1nH96jCmeK9a0Mw6q83Zyvwcoz/
+ 6ciA==
+X-Gm-Message-State: AOAM530gMeVFyzUiT6aiC+y6BUU++p44sVibGbalrZxFR5kDs06186U1
+ p/Xoyeit7u7EUydFmudz2TZJg5bLDesA6oeHwlkplGol7i6+S+WMrwvwHcg2ySVTfKuJ/XtKg0f
+ 186nqZhiK9FjcRJKDb2/VCsKyrEIKnLTBlufqhlF7Kv4yKJ+t9ZUamkNOMEIUiw==
+X-Received: by 2002:a9f:35ca:: with SMTP id u10mr3080557uad.82.1629909303710; 
+ Wed, 25 Aug 2021 09:35:03 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy1qnchkaTZcBfmWyq/1yQYdyXp/+Z3M+FOK2Yf4cbXw9y0IEOC91NUl67v9mEPJ/sBm9dc4ezIMm6/HeKu2RY=
+X-Received: by 2002:a9f:35ca:: with SMTP id u10mr3080517uad.82.1629909303378; 
+ Wed, 25 Aug 2021 09:35:03 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [GIT PULL] drm-misc + drm-intel: Add support for
- out-of-band hotplug notification
+References: <20210825043522.346512-1-koba.ko@canonical.com>
+ <20210825043522.346512-2-koba.ko@canonical.com> <87y28pev59.fsf@intel.com>
+ <CAJB-X+X2Vbj9bAj98yxfAhi2-LMk0=_Hq=b1-1o5iOykQRj5fQ@mail.gmail.com>
+ <87sfyxes9b.fsf@intel.com>
+ <CAJB-X+WAS0-O436qbXAHO9Q0GDEoUW8bU7VvgX74fonUiBD1Ew@mail.gmail.com>
+ <b784af82-4876-6c76-db7a-d130c3991894@amd.com>
+ <CADnq5_MSeTeFcrceejjUHL_ftckAvYxMZ964nLFkj5r3k=gN0A@mail.gmail.com>
+In-Reply-To: <CADnq5_MSeTeFcrceejjUHL_ftckAvYxMZ964nLFkj5r3k=gN0A@mail.gmail.com>
+From: Koba Ko <koba.ko@canonical.com>
+Date: Thu, 26 Aug 2021 00:34:52 +0800
+Message-ID: <CAJB-X+VDQurMjGmD3PRXtX4w+LxrBpMYDtUMATsXihg3Lacpfw@mail.gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: "Lazar, Lijo" <lijo.lazar@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Feng,
+ Kenneth" <Kenneth.Feng@amd.com>, Alex Deucher <Alexander.Deucher@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/amdgpu: Disable PCIE_DPM on Intel
+ RKL Platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,84 +90,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTA4LTI0IGF0IDE4OjQ4ICswMjAwLCBIYW5zIGRlIEdvZWRlIHdyb3RlOg0K
-PiBIaSwNCj4gDQo+IE9uIDgvMjQvMjEgMTA6NDUgQU0sIEphbmkgTmlrdWxhIHdyb3RlOg0KPiA+
-IE9uIEZyaSwgMjAgQXVnIDIwMjEsIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+
-IHdyb3RlOg0KPiA+ID4gSGVsbG8gZHJtLW1pc2MgYW5kIGRybS1pbnRlbCBtYWludGFpbmVycywN
-Cj4gPiA+IA0KPiA+ID4gTXkgIkFkZCBzdXBwb3J0IGZvciBvdXQtb2YtYmFuZCBob3RwbHVnIG5v
-dGlmaWNhdGlvbiIgcGF0Y2hzZXQ6DQo+ID4gPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3Rv
-cC5vcmcvc2VyaWVzLzkzNzYzLw0KPiA+ID4gDQo+ID4gPiBJcyByZWFkeSBmb3IgbWVyZ2luZyBu
-b3csIGFzIGRpc2N1c3NlZCBvbiBJUkMgSSBiYXNlZCB0aGlzIHNlcmllcw0KPiA+ID4gb24gdG9w
-IGRybS10aXAgYW5kIHdoZW4gdHJ5aW5nIHRvIGFwcGx5IHRoZSBpOTE1IHBhcnRzIG9uIHRvcA0K
-PiA+ID4gb2YgZHJtLW1pc2MgdGhpcyBmYWlscyBkdWUgdG8gY29uZmxpY3QuDQo+ID4gPiANCj4g
-PiA+IFNvIGFzIEphbmkgc3VnZ2VzdGVkIGhlcmUgaXMgYSBwdWxsLXJlcSBmb3IgYSB0b3BpYy1i
-cmFuY2ggd2l0aA0KPiA+ID4gdGhlDQo+ID4gPiBlbnRpcmUgc2V0LCBtaW51cyB0aGUgdHJvdWJs
-ZXNvbWUgaTkxNSBiaXRzLiBPbmNlIHRoaXMgaGFzIGJlZW4NCj4gPiA+IG1lcmdlZA0KPiA+ID4g
-aW50byBib3RoIGRybS1taXNjLW5leHQgYW5kIGRybS1pbnRlbC1uZXh0IEkgY2FuIHB1c2ggdGhl
-IDIgaTkxNQ0KPiA+ID4gcGF0Y2ggZG8gZHJtLWludGVsLW5leHQgb24gdG9wIG9mIHRoZSBtZXJn
-ZS4NCj4gPiA+IA0KPiA+ID4gTm90ZSB0aGVyZSBhcmUgYWxzbyAyIGRyaXZlcnMvdXNiL3R5cGVj
-IHBhdGNoZXMgaW4gaGVyZSB0aGVzZQ0KPiA+ID4gaGF2ZSBHcmVnIEtIJ3MgUmV2aWV3ZWQtYnkg
-Zm9yIG1lcmdpbmcgdGhyb3VnaCB0aGUgZHJtIHRyZWUsDQo+ID4gPiBTaW5jZSB0aGlzIFVTQiBj
-b2RlIGRvZXMgbm90IGNoYW5nZSBhbGwgdGhhdCBtdWNoLiBJIGFsc28gY2hlY2tlZA0KPiA+ID4g
-YW5kIHRoZSBkcm0tbWlzYy1uZXh0LTIwMjEtMDgtMTIgYmFzZSBvZiB0aGlzIHRyZWUgY29udGFp
-bnMgdGhlDQo+ID4gPiBzYW1lIGxhc3QgY29tbWl0IHRvIHRoZSBtb2RpZmllZCBmaWxlIGFzIHVz
-Yi1uZXh0Lg0KPiA+ID4gDQo+ID4gPiBEYW5pZWwgVmV0dGVyIG1lbnRpb25lZCBvbiBJUkMgdGhh
-dCBpdCBtaWdodCBiZSBiZXR0ZXIgZm9yIHlvdSB0bw0KPiA+ID4gc2ltcGx5DQo+ID4gPiBwaWNr
-LXVwIHRoZSBzZXJpZXMgZGlyZWN0bHkgZnJvbSBwYXRjaHdvcmssIHRoYXQgaXMgZmluZSB0b28g
-aW4NCj4gPiA+IHRoYXQNCj4gPiA+IGNhc2UgZG9uJ3QgZm9yZ2V0IHRvIGFkZDoNCj4gPiA+IA0K
-PiA+ID4gUmV2aWV3ZWQtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+DQo+ID4gPiAN
-Cj4gPiA+IFRvIHRoZSBlbnRpcmUgc2VyaWVzIChnaXZlbiBpbiBhIHJlcGx5IHRvIHRoZSBjb3Zl
-ci1sZXR0ZXIpDQo+ID4gPiANCj4gPiA+IEFuZDoNCj4gPiA+IA0KPiA+ID4gUmV2aWV3ZWQtYnk6
-IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5vcmc+DQo+ID4gPiAN
-Cj4gPiA+IFRvIHRoZSB1c2IvdHlwZWMgcGF0Y2hlcyAocGF0Y2ggNy84KSwgdGhpcyB3YXMgZ2l2
-ZW4gaW4gcmVwbHkNCj4gPiA+IHRvIGEgcHJldmlvdXMgcG9zdGluZyBvZiB0aGUgc2VyaWVzIGFu
-ZCBJIGZvcmdvdCB0byBhZGQgdGhpcw0KPiA+ID4gaW4gdGhlIHJlc2VuZC4NCj4gPiANCj4gPiBT
-aW5jZSB0aGlzIGlzIG1vc3RseSB0b3VjaGluZyBkcm0gY29yZSwgSSB0aGluayBpdCBzaG91bGQg
-YmUgbWVyZ2VkDQo+ID4gdG8NCj4gPiBkcm0tbWlzYy1uZXh0IGZpcnN0LCBhbmQgZHJtLWludGVs
-LW5leHQgYWZ0ZXIuIFBsZWFzZSBsZXQgdXMga25vdy4NCj4gDQo+IEkgYWdyZWUgdGhpcyBzaG91
-bGQgZ28gdG8gZHJtLW1pc2MtbmV4dCBmaXJzdC4NCj4gDQo+IChJIHdhcyBwbGFubmluZyBvbiBw
-dXNoaW5nIHRoaXMgdG8gZHJtLW1pc2MtbmV4dCBteXNlbGYsDQo+IGJ1dCB0aGVuIGVuZGVkIHVw
-IGdvaW5nIHdpdGggdGhlIHRvcGljIGJyYW5jaCBiZWNhdXNlIG9mIHRoZQ0KPiBjb25mbGljdCBp
-biB0aGUgaTkxNSBiaXRzLikNCg0KSnVzdCB0byBiZSBjbGVhciBhbmQgYXZvaWQgY29uZnVzaW9u
-OiBUaGlzIHB1bGwgcmVxdWVzdCBkb2VzIGFwcGx5DQpjbGVhbmx5IG9uIGRybS1taXNjLW5leHQg
-bmQgZHJtLWludGVsLW5leHQgcmlnaHQgbm93Lg0KDQpJJ20ganVzdCB3YWl0aW5nIGZvciBkcm0t
-bWlzYy1uZXh0IG1haW50YWluZXJzIHRvIHB1bGwgdGhpcyB0byBkcm0tDQptaXNjLW5leHQgc28g
-SSBjYW4gcHVsbCBpdCB0byBkcm0taW50ZWwtbmV4dC4NCg0KTWF4aW1lLCBpcyB0aGF0IHlvdXIg
-cm91bmQgbm93Pw0Kb3IgVGhvbWFzPw0KDQpUaGFua3MsDQpSb2RyaWdvLg0KDQo+IA0KPiBSZWdh
-cmRzLA0KPiANCj4gSGFucw0KPiANCj4gDQo+IA0KPiA+ID4gVGhlIGZvbGxvd2luZyBjaGFuZ2Vz
-IHNpbmNlIGNvbW1pdA0KPiA+ID4gYzc3ODI0NDNhODg5MjZhNGY5MzhmMDE5MzA0MTYxNjMyOGNm
-MmRiMjoNCj4gPiA+IA0KPiA+ID4gwqAgZHJtL2JyaWRnZTogdGktc242NWRzaTg2OiBBdm9pZCBj
-cmVhdGluZyBtdWx0aXBsZSBjb25uZWN0b3JzDQo+ID4gPiAoMjAyMS0wOC0xMiAwOTo1NjowOSAt
-MDcwMCkNCj4gPiA+IA0KPiA+ID4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkg
-YXQ6DQo+ID4gPiANCj4gPiA+IMKgIGdpdDovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgv
-a2VybmVsL2dpdC9oYW5zZy9saW51eC5naXQNCj4gPiA+IGRybS1taXNjLWludGVsLW9vYi1ob3Rw
-bHVnLXYxDQo+ID4gPiANCj4gPiA+IGZvciB5b3UgdG8gZmV0Y2ggY2hhbmdlcyB1cCB0bw0KPiA+
-ID4gN2Y4MTEzOTQ4Nzg1MzVlZDlhNjg0OTcxN2RlOGMyOTU5YWUzODg5OToNCj4gPiA+IA0KPiA+
-ID4gwqAgdXNiOiB0eXBlYzogYWx0bW9kZXMvZGlzcGxheXBvcnQ6IE5vdGlmeSBkcm0gc3Vic3lz
-IG9mIGhvdHBsdWcNCj4gPiA+IGV2ZW50cyAoMjAyMS0wOC0yMCAxMjozNTo1OSArMDIwMCkNCj4g
-PiA+IA0KPiA+ID4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+ID4gVG9waWMgYnJhbmNoIGZvciBkcm0tbWlzYyAvIGRy
-bS1pbnRlbCBmb3IgT09CIGhvdHBsdWcgc3VwcG9ydCBmb3INCj4gPiA+IFR5cGUtQyBjb25uZWN0
-b3JzDQo+ID4gPiANCj4gPiA+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiA+IEhhbnMgZGUgR29lZGUgKDYpOg0KPiA+
-ID4gwqDCoMKgwqDCoCBkcm0vY29ubmVjdG9yOiBHaXZlIGNvbm5lY3RvciBzeXNmcyBkZXZpY2Vz
-IHRoZXJlIG93bg0KPiA+ID4gZGV2aWNlX3R5cGUNCj4gPiA+IMKgwqDCoMKgwqAgZHJtL2Nvbm5l
-Y3RvcjogQWRkIGEgZndub2RlIHBvaW50ZXIgdG8gZHJtX2Nvbm5lY3RvciBhbmQNCj4gPiA+IHJl
-Z2lzdGVyIHdpdGggQUNQSSAodjIpDQo+ID4gPiDCoMKgwqDCoMKgIGRybS9jb25uZWN0b3I6IEFk
-ZCBkcm1fY29ubmVjdG9yX2ZpbmRfYnlfZndub2RlKCkgZnVuY3Rpb24NCj4gPiA+ICh2MykNCj4g
-PiA+IMKgwqDCoMKgwqAgZHJtL2Nvbm5lY3RvcjogQWRkIHN1cHBvcnQgZm9yIG91dC1vZi1iYW5k
-IGhvdHBsdWcNCj4gPiA+IG5vdGlmaWNhdGlvbiAodjMpDQo+ID4gPiDCoMKgwqDCoMKgIHVzYjog
-dHlwZWM6IGFsdG1vZGVzL2Rpc3BsYXlwb3J0OiBNYWtlIGRwX2FsdG1vZGVfbm90aWZ5KCkNCj4g
-PiA+IG1vcmUgZ2VuZXJpYw0KPiA+ID4gwqDCoMKgwqDCoCB1c2I6IHR5cGVjOiBhbHRtb2Rlcy9k
-aXNwbGF5cG9ydDogTm90aWZ5IGRybSBzdWJzeXMgb2YNCj4gPiA+IGhvdHBsdWcgZXZlbnRzDQo+
-ID4gPiANCj4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuY8KgwqDCoMKgwqDC
-oMKgwqDCoCB8IDc5DQo+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ID4g
-wqBkcml2ZXJzL2dwdS9kcm0vZHJtX2NydGNfaW50ZXJuYWwuaMKgwqDCoMKgwqAgfMKgIDIgKw0K
-PiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0vZHJtX3N5c2ZzLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB8IDg3DQo+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLQ0KPiA+ID4g
-wqBkcml2ZXJzL3VzYi90eXBlYy9hbHRtb2Rlcy9LY29uZmlnwqDCoMKgwqDCoMKgIHzCoCAxICsN
-Cj4gPiA+IMKgZHJpdmVycy91c2IvdHlwZWMvYWx0bW9kZXMvZGlzcGxheXBvcnQuYyB8IDU4ICsr
-KysrKysrKysrKystLS0tLQ0KPiA+ID4gLS0tDQo+ID4gPiDCoGluY2x1ZGUvZHJtL2RybV9jb25u
-ZWN0b3IuaMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMjUgKysrKysrKysrDQo+ID4gPiDC
-oDYgZmlsZXMgY2hhbmdlZCwgMjE3IGluc2VydGlvbnMoKyksIDM1IGRlbGV0aW9ucygtKQ0KPiA+
-ID4gDQo+ID4gDQo+IA0KDQo=
+On Wed, Aug 25, 2021 at 10:33 PM Alex Deucher <alexdeucher@gmail.com> wrote=
+:
+>
+> On Wed, Aug 25, 2021 at 10:22 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
+> >
+> >
+> >
+> > On 8/25/2021 4:46 PM, Koba Ko wrote:
+> > > On Wed, Aug 25, 2021 at 6:24 PM Jani Nikula <jani.nikula@linux.intel.=
+com> wrote:
+> > >>
+> > >> On Wed, 25 Aug 2021, Koba Ko <koba.ko@canonical.com> wrote:
+> > >>> On Wed, Aug 25, 2021 at 5:22 PM Jani Nikula <jani.nikula@linux.inte=
+l.com> wrote:
+> > >>>>
+> > >>>> On Wed, 25 Aug 2021, Koba Ko <koba.ko@canonical.com> wrote:
+> > >>>>> AMD polaris GPUs have an issue about audio noise on RKL platform,
+> > >>>>> they provide a commit to fix but for SMU7-based GPU still
+> > >>>>> need another module parameter,
+> > >>>>>
+> > >>>>> For avoiding the module parameter, switch PCI_DPM by determining
+> > >>>>> intel platform in amd drm driver.
+> > >>>>
+> > >>>> I'll just note that you could have a Tiger Lake PCH combined with =
+a
+> > >>>> number of platforms other than Rocket Lake, including not just the
+> > >>>> obvious Tiger Lake but also Sky Lake, Kaby Lake, Coffee Lake, and =
+Comet
+> > >>>> Lake.
+> > >>>>
+> > >>>> Again, I don't know what the root cause or fix should be, the work=
+around
+> > >>>> presented here impacts a much larger number of platforms than wher=
+e
+> > >>>> you're claiming the issue is.
+> > >>>
+> > >>> Hi Jani, thanks for your feedback.
+> > >>> Is there any way to identify the RKL PCH?
+> > >>> I trace the intel_pch.c and can't find the only pch id for RKL.
+> > >>>
+> > >>> INTEL_PCH_TGP_DEVICE_ID_TYPE is used by both TGL and RKL.
+> > >>>
+> > >>> so it seems that using IS_ROCKETLAKE() is the only way.
+> > >>
+> > >> I don't think there is a Rocket Lake PCH. But is the problem related=
+ to
+> > >> the PCH or not?
+> > >
+> > > I thought its' not because the issue wouldn't be observed on the TGL =
+platform.
+> > > I only tried RKL platform and it use
+> > > INTEL_PCH_TGP_DEVICE_ID_TYPE/INTEL_PCH_TGP2_DEVICE_ID_TYPE,
+> > > As per AMD guys, they said the issue is only triggered in RKL platfor=
+m.
+> > >
+> > >>
+> > >> The GPU PCI IDs are in i915_pciids.h. See INTEL_RKL_IDS() for
+> > >> RKL. There's a lot of indirection, but that's what IS_ROCKETLAKE() b=
+oils
+> > >> down to. But again, I'm not sure if that's what you want or not.
+> > > Thanks for suggestions,
+> > >
+> > > Just want a way to check if it's a RKL platform,
+> > > After tracing the kernel, can check by CPU VENDOR(lacks type), check
+> > > igpu(but there're cpus without igpu)
+> > > and check pch type(it seems one pch has multiple combinations with CP=
+U).
+> > > for check igpu, as per my current understanding,  only found RKL CPU =
+with igpu.
+> > > Is there a RKL CPU without integrated gpu?
+> > >
+> >
+> > Just for RKL - you could do fetch the x86 info and check
+> >
+> > #ifdef CONFIG_X86_64
+> >          struct cpuinfo_x86 *c =3D &cpu_data(0);
+> >         // Family/Model check, find the model
+> >         (c->x86 =3D=3D 6 && c->x86_model =3D=3D INTEL_FAM6_ROCKETLAKE)
+> > #endif
+> >
+> > I think we don't use anything like this so far. So Alex should give a
+> > nod as well.
+>
+> I think that makes sense.  For some background the issue that was
+> observed with RKL was that the PCIE gen switching has a very high
+> latency which can lead to audio problems during playback if PCIE DPM
+> is enabled.
+>
+> Alex
+
+Thanks, use Lazar's suggestion and don't need any information from i915.
+I will send the next patch.
+
+Thanks
+Koba
+
+>
+> >
+> > Thanks,
+> > Lijo
+> >
+> > >>
+> > >> BR,
+> > >> Jani.
+> > >>
+> > >>
+> > >>>
+> > >>> Thanks
+> > >>>>
+> > >>>> BR,
+> > >>>> Jani.
+> > >>>>
+> > >>>>
+> > >>>>>
+> > >>>>> Fixes: 1a31474cdb48 ("drm/amd/pm: workaround for audio noise issu=
+e")
+> > >>>>> Ref: https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%=
+3A%2F%2Flists.freedesktop.org%2Farchives%2Famd-gfx%2F2021-August%2F067413.h=
+tml&amp;data=3D04%7C01%7Clijo.lazar%40amd.com%7C888ab428f2bb4f32e4d408d967c=
+4ae08%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637654916721463596%7CUnk=
+nown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJX=
+VCI6Mn0%3D%7C1000&amp;sdata=3DBgf14CmIx%2FTOD54LN6dccZL0U5gT9lv9yTw7MfKc2sQ=
+%3D&amp;reserved=3D0
+> > >>>>> Signed-off-by: Koba Ko <koba.ko@canonical.com>
+> > >>>>> ---
+> > >>>>>   .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 21 ++++++++++++=
+++++++-
+> > >>>>>   1 file changed, 20 insertions(+), 1 deletion(-)
+> > >>>>>
+> > >>>>> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c =
+b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> > >>>>> index 0541bfc81c1b..346110dd0f51 100644
+> > >>>>> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> > >>>>> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> > >>>>> @@ -1733,6 +1733,25 @@ static int smu7_disable_dpm_tasks(struct p=
+p_hwmgr *hwmgr)
+> > >>>>>        return result;
+> > >>>>>   }
+> > >>>>>
+> > >>>>> +#include <drm/intel_pch.h>
+> > >>>>> +
+> > >>>>> +static bool intel_tgp_chk(void)
+> > >>>>> +{
+> > >>>>> +     struct pci_dev *pch =3D NULL;
+> > >>>>> +     unsigned short id;
+> > >>>>> +
+> > >>>>> +     while ((pch =3D pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pc=
+h))) {
+> > >>>>> +             if (pch->vendor !=3D PCI_VENDOR_ID_INTEL)
+> > >>>>> +                     continue;
+> > >>>>> +
+> > >>>>> +             id =3D pch->device & INTEL_PCH_DEVICE_ID_MASK;
+> > >>>>> +             if (id =3D=3D INTEL_PCH_TGP_DEVICE_ID_TYPE || INTEL=
+_PCH_TGP2_DEVICE_ID_TYPE)
+> > >>>>
+> > >>>> PS. This is always true. ;)
+> > >>>
+> > >>> got, thanks
+> > >>>
+> > >>>>
+> > >>>>> +                     return true;
+> > >>>>> +     }
+> > >>>>> +
+> > >>>>> +     return false;
+> > >>>>> +}
+> > >>>>> +
+> > >>>>>   static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+> > >>>>>   {
+> > >>>>>        struct smu7_hwmgr *data =3D (struct smu7_hwmgr *)(hwmgr->b=
+ackend);
+> > >>>>> @@ -1758,7 +1777,7 @@ static void smu7_init_dpm_defaults(struct p=
+p_hwmgr *hwmgr)
+> > >>>>>
+> > >>>>>        data->mclk_dpm_key_disabled =3D hwmgr->feature_mask & PP_M=
+CLK_DPM_MASK ? false : true;
+> > >>>>>        data->sclk_dpm_key_disabled =3D hwmgr->feature_mask & PP_S=
+CLK_DPM_MASK ? false : true;
+> > >>>>> -     data->pcie_dpm_key_disabled =3D hwmgr->feature_mask & PP_PC=
+IE_DPM_MASK ? false : true;
+> > >>>>> +     data->pcie_dpm_key_disabled =3D intel_tgp_chk() || !(hwmgr-=
+>feature_mask & PP_PCIE_DPM_MASK);
+> > >>>>>        /* need to set voltage control types before EVV patching *=
+/
+> > >>>>>        data->voltage_control =3D SMU7_VOLTAGE_CONTROL_NONE;
+> > >>>>>        data->vddci_control =3D SMU7_VOLTAGE_CONTROL_NONE;
+> > >>>>
+> > >>>> --
+> > >>>> Jani Nikula, Intel Open Source Graphics Center
+> > >>
+> > >> --
+> > >> Jani Nikula, Intel Open Source Graphics Center
