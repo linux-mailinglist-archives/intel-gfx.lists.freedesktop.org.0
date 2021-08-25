@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD2C3F717B
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 11:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 402B23F71A0
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 11:22:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B4CE6E167;
-	Wed, 25 Aug 2021 09:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E40036E16F;
+	Wed, 25 Aug 2021 09:22:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC7DF6E16D;
- Wed, 25 Aug 2021 09:10:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="217518290"
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="217518290"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 02:10:54 -0700
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="527164446"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E1A3892A0;
+ Wed, 25 Aug 2021 09:22:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="204684927"
+X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="204684927"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2021 02:22:32 -0700
+X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="536214487"
 Received: from mburkard-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.251.213.64])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 02:10:52 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2021 02:22:29 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Koba Ko <koba.ko@canonical.com>, intel-gfx@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org
-In-Reply-To: <20210825043522.346512-1-koba.ko@canonical.com>
+In-Reply-To: <20210825043522.346512-2-koba.ko@canonical.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20210825043522.346512-1-koba.ko@canonical.com>
-Date: Wed, 25 Aug 2021 12:10:49 +0300
-Message-ID: <8735qxga92.fsf@intel.com>
+ <20210825043522.346512-2-koba.ko@canonical.com>
+Date: Wed, 25 Aug 2021 12:22:26 +0300
+Message-ID: <87y28pev59.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm: i915: move intel_pch.h to
- include/drm
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/amdgpu: Disable PCIE_DPM on Intel
+ RKL Platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,96 +51,76 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 25 Aug 2021, Koba Ko <koba.ko@canonical.com> wrote:
-> Because AMD GPU have a issue on RKL platform,
-> driver needs to determine which intel platfomr is and
-> if the platform is RKL, disable PCIE_DPM for AMD polaris-series GPUs.
+> AMD polaris GPUs have an issue about audio noise on RKL platform,
+> they provide a commit to fix but for SMU7-based GPU still
+> need another module parameter,
 >
-> Move intel_pch.h to includ/drm
+> For avoiding the module parameter, switch PCI_DPM by determining
+> intel platform in amd drm driver.
 
-I don't know what the root cause is, or whether this is the right course
-of action. However, if you do end up needing PCH ids outside of i915, I
-think it's too much to move the entire intel_pch.h under include/drm.
+I'll just note that you could have a Tiger Lake PCH combined with a
+number of platforms other than Rocket Lake, including not just the
+obvious Tiger Lake but also Sky Lake, Kaby Lake, Coffee Lake, and Comet
+Lake.
 
-Instead, I suggest adding include/drm/i915_pchids.h (or similar,
-analoguous to i915_pciids.h) which would only have the macros:
-
-#define INTEL_PCH_DEVICE_ID_MASK		0xff80
-#define INTEL_PCH_*_DEVICE_ID_TYPE		*
-
-and nothing more. intel_pch.h is too i915 specific to expose and does
-not have enough namespacing prefixes in the other macros and enums
-either. Then intel_pch.h would include i915_pchids.h.
+Again, I don't know what the root cause or fix should be, the workaround
+presented here impacts a much larger number of platforms than where
+you're claiming the issue is.
 
 BR,
 Jani.
 
 
 >
+> Fixes: 1a31474cdb48 ("drm/amd/pm: workaround for audio noise issue")
 > Ref: https://lists.freedesktop.org/archives/amd-gfx/2021-August/067413.html
 > Signed-off-by: Koba Ko <koba.ko@canonical.com>
 > ---
->  drivers/gpu/drm/i915/i915_drv.h                   | 4 +++-
->  drivers/gpu/drm/i915/intel_pch.c                  | 2 +-
->  {drivers/gpu/drm/i915 => include/drm}/intel_pch.h | 2 --
->  3 files changed, 4 insertions(+), 4 deletions(-)
->  rename {drivers/gpu/drm/i915 => include/drm}/intel_pch.h (98%)
+>  .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 21 ++++++++++++++++++-
+>  1 file changed, 20 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 106f218cec2b..7d091927d9b4 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -60,6 +60,7 @@
->  #include <drm/drm_connector.h>
->  #include <drm/i915_mei_hdcp_interface.h>
->  #include <drm/ttm/ttm_device.h>
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> index 0541bfc81c1b..346110dd0f51 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> @@ -1733,6 +1733,25 @@ static int smu7_disable_dpm_tasks(struct pp_hwmgr *hwmgr)
+>  	return result;
+>  }
+>  
 > +#include <drm/intel_pch.h>
->  
->  #include "i915_params.h"
->  #include "i915_reg.h"
-> @@ -89,7 +90,6 @@
->  
->  #include "intel_device_info.h"
->  #include "intel_memory_region.h"
-> -#include "intel_pch.h"
->  #include "intel_runtime_pm.h"
->  #include "intel_step.h"
->  #include "intel_uncore.h"
-> @@ -1336,6 +1336,8 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
->  	(drm_WARN_ON(&(__i915)->drm, INTEL_GT_STEP(__i915) == STEP_NONE), \
->  	 INTEL_GT_STEP(__i915) >= (since) && INTEL_GT_STEP(__i915) < (until))
->  
-> +void intel_detect_pch(struct drm_i915_private *dev_priv);
 > +
->  static __always_inline unsigned int
->  __platform_mask_index(const struct intel_runtime_info *info,
->  		      enum intel_platform p)
-> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-> index d1d4b97b86f5..43162d1338bc 100644
-> --- a/drivers/gpu/drm/i915/intel_pch.c
-> +++ b/drivers/gpu/drm/i915/intel_pch.c
-> @@ -4,7 +4,7 @@
->   */
+> +static bool intel_tgp_chk(void)
+> +{
+> +	struct pci_dev *pch = NULL;
+> +	unsigned short id;
+> +
+> +	while ((pch = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pch))) {
+> +		if (pch->vendor != PCI_VENDOR_ID_INTEL)
+> +			continue;
+> +
+> +		id = pch->device & INTEL_PCH_DEVICE_ID_MASK;
+> +		if (id == INTEL_PCH_TGP_DEVICE_ID_TYPE || INTEL_PCH_TGP2_DEVICE_ID_TYPE)
+
+PS. This is always true. ;)
+
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+>  {
+>  	struct smu7_hwmgr *data = (struct smu7_hwmgr *)(hwmgr->backend);
+> @@ -1758,7 +1777,7 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
 >  
->  #include "i915_drv.h"
-> -#include "intel_pch.h"
-> +#include <drm/intel_pch.h>
->  
->  /* Map PCH device id to PCH type, or PCH_NONE if unknown. */
->  static enum intel_pch
-> diff --git a/drivers/gpu/drm/i915/intel_pch.h b/include/drm/intel_pch.h
-> similarity index 98%
-> rename from drivers/gpu/drm/i915/intel_pch.h
-> rename to include/drm/intel_pch.h
-> index 7c0d83d292dc..168c83c836b4 100644
-> --- a/drivers/gpu/drm/i915/intel_pch.h
-> +++ b/include/drm/intel_pch.h
-> @@ -84,6 +84,4 @@ enum intel_pch {
->  #define HAS_PCH_NOP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_NOP)
->  #define HAS_PCH_SPLIT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
->  
-> -void intel_detect_pch(struct drm_i915_private *dev_priv);
-> -
->  #endif /* __INTEL_PCH__ */
+>  	data->mclk_dpm_key_disabled = hwmgr->feature_mask & PP_MCLK_DPM_MASK ? false : true;
+>  	data->sclk_dpm_key_disabled = hwmgr->feature_mask & PP_SCLK_DPM_MASK ? false : true;
+> -	data->pcie_dpm_key_disabled = hwmgr->feature_mask & PP_PCIE_DPM_MASK ? false : true;
+> +	data->pcie_dpm_key_disabled = intel_tgp_chk() || !(hwmgr->feature_mask & PP_PCIE_DPM_MASK);
+>  	/* need to set voltage control types before EVV patching */
+>  	data->voltage_control = SMU7_VOLTAGE_CONTROL_NONE;
+>  	data->vddci_control = SMU7_VOLTAGE_CONTROL_NONE;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
