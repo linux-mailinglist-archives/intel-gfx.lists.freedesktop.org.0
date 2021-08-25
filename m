@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92B43F7D03
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 22:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C509C3F7D37
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 22:36:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEC016E419;
-	Wed, 25 Aug 2021 20:08:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51FCD6E41D;
+	Wed, 25 Aug 2021 20:36:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 532A86E419;
- Wed, 25 Aug 2021 20:08:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="278616376"
-X-IronPort-AV: E=Sophos;i="5.84,351,1620716400"; d="scan'208";a="278616376"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 13:08:30 -0700
-X-IronPort-AV: E=Sophos;i="5.84,351,1620716400"; d="scan'208";a="684633803"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 13:08:30 -0700
-Date: Wed, 25 Aug 2021 13:03:21 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch
-Message-ID: <20210825200319.GA2751@jons-linux-dev-box>
-References: <20210819061639.21051-1-matthew.brost@intel.com>
- <20210819061639.21051-12-matthew.brost@intel.com>
- <1b23ca1d-7fc1-b812-8e1b-144ee2bc8b8a@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8E1986E41D;
+ Wed, 25 Aug 2021 20:36:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 722F2AAA91;
+ Wed, 25 Aug 2021 20:36:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2328405688294318624=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1b23ca1d-7fc1-b812-8e1b-144ee2bc8b8a@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 11/27] drm/i915/selftests: Fix memory
- corruption in live_lrc_isolation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Aug 2021 20:36:10 -0000
+Message-ID: <162992377044.17674.7609307921474754723@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210825150623.28980-1-jani.nikula@intel.com>
+In-Reply-To: <20210825150623.28980-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pci=3A_rename_functions_to_have_i915=5Fpci_prefix?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,154 +41,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 24, 2021 at 05:07:13PM -0700, Daniele Ceraolo Spurio wrote:
-> 
-> 
-> On 8/18/2021 11:16 PM, Matthew Brost wrote:
-> > GuC submission has exposed an existing memory corruption in
-> > live_lrc_isolation. We believe that some writes to the watchdog offsets
-> > in the LRC (0x178 & 0x17c) can result in trashing of portions of the
-> > address space. With GuC submission there are additional objects which
-> > can move the context redzone into the space that is trashed. To
-> > workaround this avoid poisoning the watchdog.
-> 
-> This is kind of a worrying explanation, as it implies an HW issue. AFAICS we
-> no longer increase the context size with GuC submission, so the redzone
-> should be in the same place relative to the base address of the context;
-> although it is true that we have more objects in memory due to support the
-> GuC, hitting the redzone consistently feels too much like a coincidence.
-> When we write the watchdog regs there is a risk we're triggering a watchdog
-> interrupt, which will cause the GuC to handle that; on a media reset, the
-> GuC overwrites the context with the golden context in the ADS, are we sure
-> that's not what is causing this problem?
-> Looking in the ADS we set the context memcpy size to:
-> 
-> real_size = intel_engine_context_size(gt, engine_class);
-> 
-> but then we only initialize real_size - SKIP_SIZE(gt->i915), which IMO could
-> be the real cause of the bug as the GuC memcpy starts at SKIP_SIZE().
-> 
+--===============2328405688294318624==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Good analysis Daniele. This definitely seems to be the issue as the
-below patch appears to have fixed the failing selftest:
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index 9f5f43a16182..c19ce71c9de9 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -358,6 +358,11 @@ static int guc_prep_golden_context(struct intel_guc *guc,
-        u8 engine_class, guc_class;
-        struct guc_gt_system_info *info, local_info;
+Series: drm/i915/pci: rename functions to have i915_pci prefix
+URL   : https://patchwork.freedesktop.org/series/94022/
+State : success
 
-+       /* Skip execlist and PPGTT registers + HWSP */
-+       const u32 lr_hw_context_size = 80 * sizeof(u32);
-+       const u32 skip_size = LRC_PPHWSP_SZ * PAGE_SIZE +
-+               lr_hw_context_size;
-+
-        /*
-         * Reserve the memory for the golden contexts and point GuC at it but
-         * leave it empty for now. The context data will be filled in later
-@@ -396,7 +401,7 @@ static int guc_prep_golden_context(struct intel_guc *guc,
-                if (!blob)
-                        continue;
+== Summary ==
 
--               blob->ads.eng_state_size[guc_class] = real_size;
-+               blob->ads.eng_state_size[guc_class] = real_size - skip_size;
-                blob->ads.golden_context_lrca[guc_class] = addr_ggtt;
-                addr_ggtt += alloc_size;
-        }
-@@ -476,7 +481,8 @@ static void guc_init_golden_context(struct intel_guc *guc)
-                        continue;
-                }
+CI Bug Log - changes from CI_DRM_10520 -> Patchwork_20892
+====================================================
 
--               GEM_BUG_ON(blob->ads.eng_state_size[guc_class] != real_size);
-+               GEM_BUG_ON(blob->ads.eng_state_size[guc_class] !=
-+                          real_size - skip_size);
-                GEM_BUG_ON(blob->ads.golden_context_lrca[guc_class] != addr_ggtt);
-                addr_ggtt += alloc_size;
+Summary
+-------
 
-This being said, IMO this actually a bug in the GuC firmware as it
-basically is doing:
+  **SUCCESS**
 
-memcpy(some_guc_dest, blob->ads.golden_context_lrca +
-       guc_calculated_skip_size,
-       blob->ads.eng_state_size);
+  No regressions found.
 
-IMO if the GuC is applying an internally calculated offset to
-blob->ads.golden_context_lrca it should substract that calculated size
-from blob->ads.eng_state_size.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/index.html
 
-e.g. the GuC should be doing:
+Known issues
+------------
 
-memcpy(some_guc_dest, blob->ads.golden_context_lrca +
-       guc_calculated_skip_size,
-       blob->ads.eng_state_size - guc_calculated_skip_size);
+  Here are the changes found in Patchwork_20892 that come from known issues:
 
-We can bring this up with the GuC firmware team today, but in the
-meantime I'll include the above patch in the respin of this series as a
-workaround.
+### IGT changes ###
 
-Matt 	
+#### Issues hit ####
 
-> Daniele
-> 
-> > 
-> > v2:
-> >   (Daniel Vetter)
-> >    - Add VLK ref in code to workaround
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/selftest_lrc.c | 29 +++++++++++++++++++++++++-
-> >   1 file changed, 28 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> > index b0977a3b699b..cdc6ae48a1e1 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> > @@ -1074,6 +1074,32 @@ record_registers(struct intel_context *ce,
-> >   	goto err_after;
-> >   }
-> > +static u32 safe_offset(u32 offset, u32 reg)
-> > +{
-> > +	/* XXX skip testing of watchdog - VLK-22772 */
-> > +	if (offset == 0x178 || offset == 0x17c)
-> > +		reg = 0;
-> > +
-> > +	return reg;
-> > +}
-> > +
-> > +static int get_offset_mask(struct intel_engine_cs *engine)
-> > +{
-> > +	if (GRAPHICS_VER(engine->i915) < 12)
-> > +		return 0xfff;
-> > +
-> > +	switch (engine->class) {
-> > +	default:
-> > +	case RENDER_CLASS:
-> > +		return 0x07ff;
-> > +	case COPY_ENGINE_CLASS:
-> > +		return 0x0fff;
-> > +	case VIDEO_DECODE_CLASS:
-> > +	case VIDEO_ENHANCEMENT_CLASS:
-> > +		return 0x3fff;
-> > +	}
-> > +}
-> > +
-> >   static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
-> >   {
-> >   	struct i915_vma *batch;
-> > @@ -1117,7 +1143,8 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
-> >   		len = (len + 1) / 2;
-> >   		*cs++ = MI_LOAD_REGISTER_IMM(len);
-> >   		while (len--) {
-> > -			*cs++ = hw[dw];
-> > +			*cs++ = safe_offset(hw[dw] & get_offset_mask(ce->engine),
-> > +					    hw[dw]);
-> >   			*cs++ = poison;
-> >   			dw += 2;
-> >   		}
-> 
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +8 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [PASS][2] -> [DMESG-FAIL][3] ([i915#3928])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10520/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@runner@aborted:
+    - fi-rkl-guc:         NOTRUN -> [FAIL][4] ([i915#3928])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/fi-rkl-guc/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
+
+
+Participating hosts (40 -> 33)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10520 -> Patchwork_20892
+
+  CI-20190529: 20190529
+  CI_DRM_10520: df6d856ea920279c17e875a80fca47a428fd7fcd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6185: 5dca04416f50576f464ebbd9aea96edccd7e4eab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20892: 1977b4b9d0f6c6ed6cc56164df221109255d4d1b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1977b4b9d0f6 drm/i915/pci: rename functions to have i915_pci prefix
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/index.html
+
+--===============2328405688294318624==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pci: rename functions to have i915_pci prefix</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94022/">https://patchwork.freedesktop.org/series/94022/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10520 -&gt; Patchwork_20892</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20892 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10520/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20892/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 33)</h2>
+<p>Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10520 -&gt; Patchwork_20892</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10520: df6d856ea920279c17e875a80fca47a428fd7fcd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6185: 5dca04416f50576f464ebbd9aea96edccd7e4eab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20892: 1977b4b9d0f6c6ed6cc56164df221109255d4d1b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>1977b4b9d0f6 drm/i915/pci: rename functions to have i915_pci prefix</p>
+
+</body>
+</html>
+
+--===============2328405688294318624==--
