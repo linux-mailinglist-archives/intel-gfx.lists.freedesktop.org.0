@@ -1,41 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082AE3F7411
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 13:07:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979AA3F7438
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 13:17:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E0F16E1D8;
-	Wed, 25 Aug 2021 11:07:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA38D6E1D3;
+	Wed, 25 Aug 2021 11:17:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E85486E1D6
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 11:07:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="217221583"
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="217221583"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 04:07:16 -0700
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="456017894"
-Received: from mburkard-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.213.64])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 04:07:14 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Lyude Paul <lyude@redhat.com>
-Date: Wed, 25 Aug 2021 14:06:52 +0300
-Message-Id: <9ff6e42e377bdb0c9349f50d9ea79671059633c7.1629888677.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1629888677.git.jani.nikula@intel.com>
-References: <cover.1629888677.git.jani.nikula@intel.com>
+Received: from smtp-relay-internal-0.canonical.com
+ (smtp-relay-internal-0.canonical.com [185.125.188.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54C976E1D6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 11:17:04 +0000 (UTC)
+Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com
+ [209.85.222.69])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 594DB406F6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 11:17:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1629890222;
+ bh=U9QQFl5Opzoo7vM4oOl3EDgsVMzT1JgHmeDCV1Rl+dE=;
+ h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+ To:Cc:Content-Type;
+ b=s1ohigfiJebWixlsgJC/cqk5oaGJyOHKho3NHEH8/F3n7BGSGUvfHJqnsRaFTXW4l
+ niS94qyjVHgxQk+WBGnfYdCZ3nOWrPvoAcy6/cvBPrEy7Sv1/TnwaPvZgebOTxD+Ef
+ qEcatrcPJ7jLAoyC04+rmxP8SqBkQ8yFTk8WWPgE8BjNnZ4yzVgRmHGzBedWImXvTV
+ UTG5Of49o0nybPkCvt4kdN+3kYpoqgw9NA+GlJeMiVTWBihsPxgkpoPPmQb0thxMN+
+ 7TYq/ZIE8kXIPEnp33TGaOcoyuJCogLfe9u7mfi79NF/PEzflV/JnBczzhpFZmdAIt
+ nOeOHBMcA+H3g==
+Received: by mail-ua1-f69.google.com with SMTP id
+ b24-20020ab02398000000b002abb9087041so6571095uan.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 04:17:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=U9QQFl5Opzoo7vM4oOl3EDgsVMzT1JgHmeDCV1Rl+dE=;
+ b=rORogdkayyPJE6/HucSP2M6SJJ4Jsx5eANh1CqK3rtvARcslFzzX5XDhG14uT6yLQj
+ V7X/bhqhh2I6mMPYQs8mBgLxrxvY4Cbb0UJsB+mVOUyR81mnJ+Ad2nM8OJfG4FG8MB/O
+ fQ+1oH7rMxAauZxFql/aWClu4UK/mR0EAwa0ZFbpKjmxTtEloSfvabBw9aLTEPriSyT4
+ RFiDY5DqI04uXytaDh4QXgcNF0tTrTs1zqlLuPLcnHhsIWz+vQTT8/yz9iB8Kh6PrsgL
+ kBlJcyDeMrVHTdIGULegxa7NQBYl0MEwELlBz7aDFTILtll7MYwcuyhCtkM73Va9ejYu
+ ux9g==
+X-Gm-Message-State: AOAM533fH3H9p0kd31vaaC3rgCBZXUCAwWmTaC8hylz2upylgkB5wX8T
+ LtYN8xIMgh6BlRK+zwXq8RFxxkHh2epdHw+uScQC6dIsBYjJ9KsVB3TKDsATRf9O3+YRFPSzIz2
+ IUQL+U6A1fIYznzteMO4kwM22gXDl9/LWr+Sbb3eYuD+1nIO/55ZRUNamd++Lpg==
+X-Received: by 2002:a1f:4603:: with SMTP id t3mr28784120vka.18.1629890221313; 
+ Wed, 25 Aug 2021 04:17:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzfQMmGZ+VAjItxBG9b2Zmz5F0+Y1F54Vj1E3z6ZjBS7IBcworuARNWFfikqOgWPUirjD3reZGUYoqB9y6IzRQ=
+X-Received: by 2002:a1f:4603:: with SMTP id t3mr28784105vka.18.1629890221023; 
+ Wed, 25 Aug 2021 04:17:01 -0700 (PDT)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/panel: mass rename functions to
- have intel_panel_ prefix
+References: <20210825043522.346512-1-koba.ko@canonical.com>
+ <20210825043522.346512-2-koba.ko@canonical.com> <87y28pev59.fsf@intel.com>
+ <CAJB-X+X2Vbj9bAj98yxfAhi2-LMk0=_Hq=b1-1o5iOykQRj5fQ@mail.gmail.com>
+ <87sfyxes9b.fsf@intel.com>
+In-Reply-To: <87sfyxes9b.fsf@intel.com>
+From: Koba Ko <koba.ko@canonical.com>
+Date: Wed, 25 Aug 2021 19:16:50 +0800
+Message-ID: <CAJB-X+WAS0-O436qbXAHO9Q0GDEoUW8bU7VvgX74fonUiBD1Ew@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, 
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Feng,
+ Kenneth" <Kenneth.Feng@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/amdgpu: Disable PCIE_DPM on Intel
+ RKL Platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,214 +84,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the usual naming conventions. Also pull HAS_GMCH() check to
-intel_panel_fitting(). No functional changes.
+On Wed, Aug 25, 2021 at 6:24 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Wed, 25 Aug 2021, Koba Ko <koba.ko@canonical.com> wrote:
+> > On Wed, Aug 25, 2021 at 5:22 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> >>
+> >> On Wed, 25 Aug 2021, Koba Ko <koba.ko@canonical.com> wrote:
+> >> > AMD polaris GPUs have an issue about audio noise on RKL platform,
+> >> > they provide a commit to fix but for SMU7-based GPU still
+> >> > need another module parameter,
+> >> >
+> >> > For avoiding the module parameter, switch PCI_DPM by determining
+> >> > intel platform in amd drm driver.
+> >>
+> >> I'll just note that you could have a Tiger Lake PCH combined with a
+> >> number of platforms other than Rocket Lake, including not just the
+> >> obvious Tiger Lake but also Sky Lake, Kaby Lake, Coffee Lake, and Comet
+> >> Lake.
+> >>
+> >> Again, I don't know what the root cause or fix should be, the workaround
+> >> presented here impacts a much larger number of platforms than where
+> >> you're claiming the issue is.
+> >
+> > Hi Jani, thanks for your feedback.
+> > Is there any way to identify the RKL PCH?
+> > I trace the intel_pch.c and can't find the only pch id for RKL.
+> >
+> > INTEL_PCH_TGP_DEVICE_ID_TYPE is used by both TGL and RKL.
+> >
+> > so it seems that using IS_ROCKETLAKE() is the only way.
+>
+> I don't think there is a Rocket Lake PCH. But is the problem related to
+> the PCH or not?
 
-Cc: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c     |  4 ++--
- drivers/gpu/drm/i915/display/intel_dp.c    |  9 +++-----
- drivers/gpu/drm/i915/display/intel_dvo.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_lvds.c  |  7 ++----
- drivers/gpu/drm/i915/display/intel_panel.c | 25 ++++++++++++++++------
- drivers/gpu/drm/i915/display/intel_panel.h |  8 +++----
- drivers/gpu/drm/i915/display/vlv_dsi.c     |  7 ++----
- 8 files changed, 32 insertions(+), 32 deletions(-)
+I thought its' not because the issue wouldn't be observed on the TGL platform.
+I only tried RKL platform and it use
+INTEL_PCH_TGP_DEVICE_ID_TYPE/INTEL_PCH_TGP2_DEVICE_ID_TYPE,
+As per AMD guys, they said the issue is only triggered in RKL platform.
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 6de268c98884..5a5e3689d027 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1652,9 +1652,9 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
- 	int ret;
- 
- 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
--	intel_fixed_panel_mode(fixed_mode, adjusted_mode);
-+	intel_panel_fixed_mode(fixed_mode, adjusted_mode);
- 
--	ret = intel_pch_panel_fitting(pipe_config, conn_state);
-+	ret = intel_panel_fitting(pipe_config, conn_state);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d43e2850233f..7f8e8865048f 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1738,7 +1738,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 							    adjusted_mode);
- 
- 	if (pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
--		ret = intel_pch_panel_fitting(pipe_config, conn_state);
-+		ret = intel_panel_fitting(pipe_config, conn_state);
- 		if (ret)
- 			return ret;
- 	}
-@@ -1751,13 +1751,10 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		pipe_config->has_audio = intel_conn_state->force_audio == HDMI_AUDIO_ON;
- 
- 	if (intel_dp_is_edp(intel_dp) && intel_connector->panel.fixed_mode) {
--		intel_fixed_panel_mode(intel_connector->panel.fixed_mode,
-+		intel_panel_fixed_mode(intel_connector->panel.fixed_mode,
- 				       adjusted_mode);
- 
--		if (HAS_GMCH(dev_priv))
--			ret = intel_gmch_panel_fitting(pipe_config, conn_state);
--		else
--			ret = intel_pch_panel_fitting(pipe_config, conn_state);
-+		ret = intel_panel_fitting(pipe_config, conn_state);
- 		if (ret)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index 77419f8c05e9..86c903e9df60 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -265,7 +265,7 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
- 	 * of the original mode.
- 	 */
- 	if (fixed_mode)
--		intel_fixed_panel_mode(fixed_mode, adjusted_mode);
-+		intel_panel_fixed_mode(fixed_mode, adjusted_mode);
- 
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index b04685bb6439..1bc33766ed39 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2210,7 +2210,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		return ret;
- 
- 	if (pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
--		ret = intel_pch_panel_fitting(pipe_config, conn_state);
-+		ret = intel_panel_fitting(pipe_config, conn_state);
- 		if (ret)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index df8238fefdd8..e9fb402708a7 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -442,7 +442,7 @@ static int intel_lvds_compute_config(struct intel_encoder *intel_encoder,
- 	 * with the panel scaling set up to source from the H/VDisplay
- 	 * of the original mode.
- 	 */
--	intel_fixed_panel_mode(intel_connector->panel.fixed_mode,
-+	intel_panel_fixed_mode(intel_connector->panel.fixed_mode,
- 			       adjusted_mode);
- 
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
-@@ -451,10 +451,7 @@ static int intel_lvds_compute_config(struct intel_encoder *intel_encoder,
- 	if (HAS_PCH_SPLIT(dev_priv))
- 		pipe_config->has_pch_encoder = true;
- 
--	if (HAS_GMCH(dev_priv))
--		ret = intel_gmch_panel_fitting(pipe_config, conn_state);
--	else
--		ret = intel_pch_panel_fitting(pipe_config, conn_state);
-+	ret = intel_panel_fitting(pipe_config, conn_state);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index fb5684ddbc19..4804b6b86798 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -45,9 +45,8 @@ bool intel_panel_use_ssc(struct drm_i915_private *i915)
- 		&& !(i915->quirks & QUIRK_LVDS_SSC_DISABLE);
- }
- 
--void
--intel_fixed_panel_mode(const struct drm_display_mode *fixed_mode,
--		       struct drm_display_mode *adjusted_mode)
-+void intel_panel_fixed_mode(const struct drm_display_mode *fixed_mode,
-+			    struct drm_display_mode *adjusted_mode)
- {
- 	drm_mode_copy(adjusted_mode, fixed_mode);
- 
-@@ -179,8 +178,8 @@ intel_panel_vbt_fixed_mode(struct intel_connector *connector)
- }
- 
- /* adjusted_mode has been preset to be the panel's fixed mode */
--int intel_pch_panel_fitting(struct intel_crtc_state *crtc_state,
--			    const struct drm_connector_state *conn_state)
-+static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
-+			     const struct drm_connector_state *conn_state)
- {
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
-@@ -385,8 +384,8 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 	}
- }
- 
--int intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
--			     const struct drm_connector_state *conn_state)
-+static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
-+			      const struct drm_connector_state *conn_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-@@ -460,6 +459,18 @@ int intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	return 0;
- }
- 
-+int intel_panel_fitting(struct intel_crtc_state *crtc_state,
-+			const struct drm_connector_state *conn_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+
-+	if (HAS_GMCH(i915))
-+		return gmch_panel_fitting(crtc_state, conn_state);
-+	else
-+		return pch_panel_fitting(crtc_state, conn_state);
-+}
-+
- enum drm_connector_status
- intel_panel_detect(struct drm_connector *connector, bool force)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-index 19ffa6175cab..f6af1a98290c 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.h
-+++ b/drivers/gpu/drm/i915/display/intel_panel.h
-@@ -24,12 +24,10 @@ void intel_panel_fini(struct intel_panel *panel);
- enum drm_connector_status
- intel_panel_detect(struct drm_connector *connector, bool force);
- bool intel_panel_use_ssc(struct drm_i915_private *i915);
--void intel_fixed_panel_mode(const struct drm_display_mode *fixed_mode,
-+void intel_panel_fixed_mode(const struct drm_display_mode *fixed_mode,
- 			    struct drm_display_mode *adjusted_mode);
--int intel_pch_panel_fitting(struct intel_crtc_state *crtc_state,
--			    const struct drm_connector_state *conn_state);
--int intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
--			     const struct drm_connector_state *conn_state);
-+int intel_panel_fitting(struct intel_crtc_state *crtc_state,
-+			const struct drm_connector_state *conn_state);
- struct drm_display_mode *
- intel_panel_edid_downclock_mode(struct intel_connector *connector,
- 				const struct drm_display_mode *fixed_mode);
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 76910c4b20e0..b0a2b6b96799 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -279,12 +279,9 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
- 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
- 
- 	if (fixed_mode) {
--		intel_fixed_panel_mode(fixed_mode, adjusted_mode);
-+		intel_panel_fixed_mode(fixed_mode, adjusted_mode);
- 
--		if (HAS_GMCH(dev_priv))
--			ret = intel_gmch_panel_fitting(pipe_config, conn_state);
--		else
--			ret = intel_pch_panel_fitting(pipe_config, conn_state);
-+		ret = intel_panel_fitting(pipe_config, conn_state);
- 		if (ret)
- 			return ret;
- 	}
--- 
-2.20.1
+>
+> The GPU PCI IDs are in i915_pciids.h. See INTEL_RKL_IDS() for
+> RKL. There's a lot of indirection, but that's what IS_ROCKETLAKE() boils
+> down to. But again, I'm not sure if that's what you want or not.
+Thanks for suggestions,
 
+Just want a way to check if it's a RKL platform,
+After tracing the kernel, can check by CPU VENDOR(lacks type), check
+igpu(but there're cpus without igpu)
+and check pch type(it seems one pch has multiple combinations with CPU).
+for check igpu, as per my current understanding,  only found RKL CPU with igpu.
+Is there a RKL CPU without integrated gpu?
+
+>
+> BR,
+> Jani.
+>
+>
+> >
+> > Thanks
+> >>
+> >> BR,
+> >> Jani.
+> >>
+> >>
+> >> >
+> >> > Fixes: 1a31474cdb48 ("drm/amd/pm: workaround for audio noise issue")
+> >> > Ref: https://lists.freedesktop.org/archives/amd-gfx/2021-August/067413.html
+> >> > Signed-off-by: Koba Ko <koba.ko@canonical.com>
+> >> > ---
+> >> >  .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 21 ++++++++++++++++++-
+> >> >  1 file changed, 20 insertions(+), 1 deletion(-)
+> >> >
+> >> > diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> >> > index 0541bfc81c1b..346110dd0f51 100644
+> >> > --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> >> > +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> >> > @@ -1733,6 +1733,25 @@ static int smu7_disable_dpm_tasks(struct pp_hwmgr *hwmgr)
+> >> >       return result;
+> >> >  }
+> >> >
+> >> > +#include <drm/intel_pch.h>
+> >> > +
+> >> > +static bool intel_tgp_chk(void)
+> >> > +{
+> >> > +     struct pci_dev *pch = NULL;
+> >> > +     unsigned short id;
+> >> > +
+> >> > +     while ((pch = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pch))) {
+> >> > +             if (pch->vendor != PCI_VENDOR_ID_INTEL)
+> >> > +                     continue;
+> >> > +
+> >> > +             id = pch->device & INTEL_PCH_DEVICE_ID_MASK;
+> >> > +             if (id == INTEL_PCH_TGP_DEVICE_ID_TYPE || INTEL_PCH_TGP2_DEVICE_ID_TYPE)
+> >>
+> >> PS. This is always true. ;)
+> >
+> > got, thanks
+> >
+> >>
+> >> > +                     return true;
+> >> > +     }
+> >> > +
+> >> > +     return false;
+> >> > +}
+> >> > +
+> >> >  static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+> >> >  {
+> >> >       struct smu7_hwmgr *data = (struct smu7_hwmgr *)(hwmgr->backend);
+> >> > @@ -1758,7 +1777,7 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+> >> >
+> >> >       data->mclk_dpm_key_disabled = hwmgr->feature_mask & PP_MCLK_DPM_MASK ? false : true;
+> >> >       data->sclk_dpm_key_disabled = hwmgr->feature_mask & PP_SCLK_DPM_MASK ? false : true;
+> >> > -     data->pcie_dpm_key_disabled = hwmgr->feature_mask & PP_PCIE_DPM_MASK ? false : true;
+> >> > +     data->pcie_dpm_key_disabled = intel_tgp_chk() || !(hwmgr->feature_mask & PP_PCIE_DPM_MASK);
+> >> >       /* need to set voltage control types before EVV patching */
+> >> >       data->voltage_control = SMU7_VOLTAGE_CONTROL_NONE;
+> >> >       data->vddci_control = SMU7_VOLTAGE_CONTROL_NONE;
+> >>
+> >> --
+> >> Jani Nikula, Intel Open Source Graphics Center
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
