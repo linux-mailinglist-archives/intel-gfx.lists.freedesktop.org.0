@@ -2,33 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662623F7B19
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 19:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACC163F7B40
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 19:10:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99E9A6E3DF;
-	Wed, 25 Aug 2021 17:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B5736E3E5;
+	Wed, 25 Aug 2021 17:10:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BFD7E6E3DF;
- Wed, 25 Aug 2021 17:02:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B7603A47EB;
- Wed, 25 Aug 2021 17:02:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Desmond Cheong Zhi Xi" <desmondcheongzx@gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6876E3E5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 17:10:24 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="217290052"
+X-IronPort-AV: E=Sophos;i="5.84,351,1620716400"; d="scan'208";a="217290052"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2021 10:09:56 -0700
+X-IronPort-AV: E=Sophos;i="5.84,351,1620716400"; d="scan'208";a="536445045"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2021 10:09:56 -0700
+Date: Wed, 25 Aug 2021 10:09:55 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Aug 2021 17:02:56 -0000
-Message-ID: <162991097671.17673.15899691146749095968@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210825142205.1376789-1-desmondcheongzx@gmail.com>
-In-Reply-To: <20210825142205.1376789-1-desmondcheongzx@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm=3A_update_locking_for_modesetting_=28rev4=29?=
+Message-ID: <20210825170955.GV461228@mdroper-desk1.amr.corp.intel.com>
+References: <20210825145811.4227-1-jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210825145811.4227-1-jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/snps: constify struct
+ intel_mpllb_state arrays harder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,289 +46,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Aug 25, 2021 at 05:58:11PM +0300, Jani Nikula wrote:
+> The tables should be const arrays of const pointers, not just arrays of
+> const pointers.
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm: update locking for modesetting (rev4)
-URL   : https://patchwork.freedesktop.org/series/93864/
-State : warning
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> index d81f71296297..58ec2467ad66 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> @@ -171,7 +171,7 @@ static const struct intel_mpllb_state dg2_dp_hbr3_100 = {
+>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+>  };
+>  
+> -static const struct intel_mpllb_state *dg2_dp_100_tables[] = {
+> +static const struct intel_mpllb_state * const dg2_dp_100_tables[] = {
+>  	&dg2_dp_rbr_100,
+>  	&dg2_dp_hbr1_100,
+>  	&dg2_dp_hbr2_100,
+> @@ -284,7 +284,7 @@ static const struct intel_mpllb_state dg2_dp_hbr3_38_4 = {
+>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 61440),
+>  };
+>  
+> -static const struct intel_mpllb_state *dg2_dp_38_4_tables[] = {
+> +static const struct intel_mpllb_state * const dg2_dp_38_4_tables[] = {
+>  	&dg2_dp_rbr_38_4,
+>  	&dg2_dp_hbr1_38_4,
+>  	&dg2_dp_hbr2_38_4,
+> @@ -421,7 +421,7 @@ static const struct intel_mpllb_state dg2_edp_r432 = {
+>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 65752),
+>  };
+>  
+> -static const struct intel_mpllb_state *dg2_edp_tables[] = {
+> +static const struct intel_mpllb_state * const dg2_edp_tables[] = {
+>  	&dg2_dp_rbr_100,
+>  	&dg2_edp_r216,
+>  	&dg2_edp_r243,
+> @@ -584,7 +584,7 @@ static const struct intel_mpllb_state dg2_hdmi_594 = {
+>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
+>  };
+>  
+> -static const struct intel_mpllb_state *dg2_hdmi_tables[] = {
+> +static const struct intel_mpllb_state * const dg2_hdmi_tables[] = {
+>  	&dg2_hdmi_25_175,
+>  	&dg2_hdmi_27_0,
+>  	&dg2_hdmi_74_25,
+> @@ -593,7 +593,7 @@ static const struct intel_mpllb_state *dg2_hdmi_tables[] = {
+>  	NULL,
+>  };
+>  
+> -static const struct intel_mpllb_state **
+> +static const struct intel_mpllb_state * const *
+>  intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
+>  		       struct intel_encoder *encoder)
+>  {
+> @@ -627,7 +627,7 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
+>  int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
+>  			   struct intel_encoder *encoder)
+>  {
+> -	const struct intel_mpllb_state **tables;
+> +	const struct intel_mpllb_state * const *tables;
+>  	int i;
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> @@ -823,7 +823,7 @@ void intel_mpllb_readout_hw_state(struct intel_encoder *encoder,
+>  
+>  int intel_snps_phy_check_hdmi_link_rate(int clock)
+>  {
+> -	const struct intel_mpllb_state **tables = dg2_hdmi_tables;
+> +	const struct intel_mpllb_state * const *tables = dg2_hdmi_tables;
+>  	int i;
+>  
+>  	for (i = 0; tables[i]; i++) {
+> -- 
+> 2.20.1
+> 
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:1365:16: warning: symbol 'configure_lttpr_mode_transparent' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:1376:16: warning: symbol 'configure_lttpr_mode_non_transparent' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:1627:16: warning: symbol 'dpcd_configure_channel_coding' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.c:1741:16: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:135:6: warning: symbol 'dcn10_log_hubbub_state' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1902:10: warning: symbol 'reduceSizeAndFraction' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1953:6: warning: symbol 'is_low_refresh_rate' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1962:9: warning: symbol 'get_clock_divider' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:1982:5: warning: symbol 'dcn10_align_pixel_clocks' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:2274:6: warning: symbol 'dcn10_program_pte_vm' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.c:80:6: warning: symbol 'print_microsec' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dsc.c:49:24: warning: symbol 'dcn20_dsc_funcs' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_hwseq.c:1080:6: warning: symbol 'dcn20_enable_plane' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:1391:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:1391:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:678:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:678:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:679:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:679:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:680:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:680:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:681:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:681:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:682:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:682:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:683:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:683:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:687:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:687:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:692:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:692:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:776:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:776:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:777:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:777:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:778:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:778:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:779:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:779:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:780:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:780:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:781:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:781:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:785:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:785:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:790:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:790:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:859:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:859:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:860:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:860:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:861:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:861:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:862:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:862:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:863:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:863:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:864:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:864:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:868:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:868:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:872:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:872:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:890:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:890:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:894:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:894:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:942:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:942:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:94:30: warning: symbol 'dcn2_0_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:946:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:946:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:992:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:992:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:996:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:996:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1096:6: warning: symbol 'dcn21_calculate_wm' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1393:6: warning: symbol 'dcn21_validate_bandwidth' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1483:31: warning: symbol 'dcn21_opp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1499:25: warning: symbol 'dcn21_timing_generator_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1521:12: warning: symbol 'dcn21_mpc_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1548:34: warning: symbol 'dcn21_dsc_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:166:37: warning: symbol 'dcn2_1_soc' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1686:23: warning: symbol 'dcn21_stream_encoder_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1704:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1704:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1767:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1767:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1768:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1768:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1769:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1769:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1770:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1770:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1771:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1771:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1813:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1813:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1818:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1818:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:1920:16: warning: symbol 'dcn21_patch_unknown_plane_state' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:487:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:487:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:488:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:488:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:489:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:489:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:490:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:490:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:494:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:494:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:498:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:498:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:538:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:538:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:542:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:542:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:605:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:605:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:609:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:609:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:661:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:661:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:662:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:662:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:663:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:663:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:664:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:664:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:668:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:668:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:673:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:673:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:691:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:691:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:695:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:695:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:787:19: warning: symbol 'dcn21_i2c_hw_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:95:30: warning: symbol 'dcn2_1_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1009:15: warning: symbol 'dcn301_hubbub_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1040:25: warning: symbol 'dcn301_timing_generator_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1074:21: warning: symbol 'dcn301_link_encoder_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1095:19: warning: symbol 'dcn301_panel_cntl_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1177:23: warning: symbol 'dcn301_stream_encoder_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1209:18: warning: symbol 'dcn301_hwseq_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1358:13: warning: symbol 'dcn301_hubp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1377:6: warning: symbol 'dcn301_dwbc_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:1402:6: warning: symbol 'dcn301_mmhubbub_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:168:37: warning: symbol 'dcn3_01_soc' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:484:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:484:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:485:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:485:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:486:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:486:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:487:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:487:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:533:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:533:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:537:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:537:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:541:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:541:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:542:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:542:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:543:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:543:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:544:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:544:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:548:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:548:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:553:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:553:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:581:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:581:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:582:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:582:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:583:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:583:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:584:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:584:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:588:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:588:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:592:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:592:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:676:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:676:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:680:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:680:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:688:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:689:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:711:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:711:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:712:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:712:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:713:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:713:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:714:9:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:714:9: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:738:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:738:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:742:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:742:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:746:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:746:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:770:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:770:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:897:6: warning: symbol 'dcn301_dpp_destroy' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:903:12: warning: symbol 'dcn301_dpp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:921:31: warning: symbol 'dcn301_opp_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:937:16: warning: symbol 'dcn301_aux_engine_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:94:30: warning: symbol 'dcn3_01_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.c:973:19: warning: symbol 'dcn301_i2c_hw_create' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:153:37: warning: symbol 'dcn3_02_soc' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:511:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:511:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:512:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:512:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:513:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:513:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:514:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:514:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:515:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:515:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:591:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:591:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:627:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:627:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:631:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:631:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:653:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:653:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:654:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:654:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:655:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:655:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:656:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:656:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:657:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:657:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:661:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:661:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:665:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:665:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:719:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:719:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:720:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:720:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:721:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:721:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:722:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:722:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:723:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:723:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:74:30: warning: symbol 'dcn3_02_ip' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:759:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:760:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:803:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:803:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:807:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:807:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:910:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:910:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:914:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:914:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:981:17:   also defined here
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:981:17: warning: Initializer entry defined twice
-+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:982:17:   also defined here
-+d
-
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
