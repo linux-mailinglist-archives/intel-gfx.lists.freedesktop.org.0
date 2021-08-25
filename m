@@ -1,73 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A7D3F72A8
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 12:08:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6714E3F72FF
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 12:26:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB6E56E174;
-	Wed, 25 Aug 2021 10:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBA489998;
+	Wed, 25 Aug 2021 10:25:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-relay-internal-1.canonical.com
- (smtp-relay-internal-1.canonical.com [185.125.188.123])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC6236E174
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 10:08:50 +0000 (UTC)
-Received: from mail-vk1-f199.google.com (mail-vk1-f199.google.com
- [209.85.221.199])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1C4C73F322
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 10:08:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1629886128;
- bh=p4WRDyPgyM0cpJuOad4k1lt81zvr80KEwBbO+rMLL8E=;
- h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
- To:Cc:Content-Type;
- b=NWTgRRGnins22xhWwL49LxmmAbtLIb91l6Dm0t8XqQGzqTo3DW6YeuC2/PAHeASm2
- IQv9tz3xWWfFn1G/YwQkl3utjmfVybb5C06UQxov+LR1LD2XkSO41UucUvLoIr8YuR
- +85VqyLIa0q8sWGiq02qFchuzsPBz+SmtsgU1Zh7+U+GKL9ArOE4dZcWDaEoxI+/3W
- CXWjC+pZKBya+K3/IGNrtRl7o0hO0qLCpsM0qhYoYWsEovr1LSZHifKlUP7odo0YGh
- soLaFJsrXgnwaBBkzhWVw2p6EVCbH7ej67+X11plTV9bYKYfKVNPVvvgbMHdMr67dN
- FuEnEnLW/4Zhg==
-Received: by mail-vk1-f199.google.com with SMTP id
- m23-20020ac5cfd70000b029028646306098so4379561vkf.15
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 03:08:48 -0700 (PDT)
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com
+ [IPv6:2607:f8b0:4864:20::102c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B84E8997E;
+ Wed, 25 Aug 2021 10:25:56 +0000 (UTC)
+Received: by mail-pj1-x102c.google.com with SMTP id
+ mw10-20020a17090b4d0a00b0017b59213831so3864609pjb.0; 
+ Wed, 25 Aug 2021 03:25:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ba/aDvD1tkluhQ4EKS9mJop10MbwBdBq8p8q4FF7hME=;
+ b=ERW9eAq0Yrphg27JkPRPoE9hi5ScahnBoNwNuz7HulCP62HFkrhXWI0nyJcIddIFn7
+ x9v/kxVidsNMcf+nTHom40evTH/p8ND8jqD3OS/vQtRzDdVvNsMuKCG9sUqIQL4To3EM
+ hyNb7khUoqPlL/5qNG61XXHvm2smKgPyXj9NR5qFeSi1SnMGy9MQRa1ZpfuctgFw9rIP
+ 1Jsx2sSz2YPUYO45juwlfJo3Q15Etj0c7enDb+styb1YpHQBOE2wQWJRUVQDwp4vNLDq
+ 6yfvMoboiwSdcOp4nBSoEYBiUtH5IxObynxBbd5Nc6qiWjduuECQxYvcb2PLgL7buvOL
+ BZ5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=p4WRDyPgyM0cpJuOad4k1lt81zvr80KEwBbO+rMLL8E=;
- b=pl/qUEHHgo08Ulj8wK1qz6Zb/4Qg/iUjubRT98zQbqvIkSMYqbsNUJ+PUIgV+yyulw
- 5GJ4dqwYgW5YG4XjZ1QQjaqHoTL6kQA83NGMxeRbbxrfcIKDu77449mZQMMD1/+wiJd5
- S7e7O9vuEev5zoQhlwIE5IK/D5rqDMkj6wBta9fP6hVdz2FFDUtRiP/0MIP34AFC/fAM
- gxxEUZbAPQ+zUXqEgqS8QkfBaV1ohH8XfdzidRW2ykH48v0O5yymwWApj67dKdQUWLUw
- Gsf7aa2PgENxzUATwGXQXubBMjAUrdAH1e+KXg7AftCE3aIYCU+yTjl4F6s0ZH1sa11R
- BtNQ==
-X-Gm-Message-State: AOAM530aRBOXHLuxxjRUI0kWeBtLCV8+lT9e4UmcSdpAcvho81N5A/p4
- 56ktA3yDTW6DYQAG5IEM3bJY2AMNyUW5ya1k02j5k4p+nJqiCLeoJ20Ch7f1Qd0dcToh4sT+6Bn
- MG+K+WVjd+Iuy+xF009g2vMhJmw+OmUhXwTgsKHdoiy0W/becVOP/KGVcyTbfHQ==
-X-Received: by 2002:a05:6102:2150:: with SMTP id
- h16mr14150365vsg.28.1629886127040; 
- Wed, 25 Aug 2021 03:08:47 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzy8Wqe9FklXqblDInmkUSt7WP/BWubQBg381Ns7QWeMa6HtYfXjnUgour+26+Mdjay/XbOErsZMqreHKZN6dg=
-X-Received: by 2002:a05:6102:2150:: with SMTP id
- h16mr14150360vsg.28.1629886126607; 
- Wed, 25 Aug 2021 03:08:46 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ba/aDvD1tkluhQ4EKS9mJop10MbwBdBq8p8q4FF7hME=;
+ b=eFk+mHFxyZy4k3cSt3ov7T8p/HwE1opSWGVeP6C+YjNbmWVo2RQWLtQ4teP8a1kYgU
+ ha+JOTdz8e/ewTvSa8rz2O12oLARq9KlLc2d+E7ls8h5uYEmfXKVjRwoNYkvGiQv5urA
+ JJyReV/qpjYHxp80v5XCCfQLARaMbQCDiZ0zPAT4n8/DWa3ba3xZD/skU338a9CvQze/
+ A2m1/0EVpDiIvLZcxE043TO18Ns6vb3prU2OOPD0yCLXDhK5F0NV9EdHY0X7C9dJP7UE
+ 4qZ2duY83FcvT4cD638QTLkAFrO0AvpfDozA1H/V8o1T6gsPaHfGL/mt90FIQdHCKIm0
+ nH9Q==
+X-Gm-Message-State: AOAM530hu+DzFlCYyMIWv8UL042ZTSyEmwJQH74aVmPI549tgEMdVFBb
+ 97B0EEBylT50ZT8yiDu1494=
+X-Google-Smtp-Source: ABdhPJxh+Vt9oDZRXNiLgQBph5qkOp3i9zD+1yOu+rnkCFbGG36RMeKJz2sTzFwpPEwsICDPT2HhbQ==
+X-Received: by 2002:a17:90a:f696:: with SMTP id
+ cl22mr4536225pjb.216.1629887156307; 
+ Wed, 25 Aug 2021 03:25:56 -0700 (PDT)
+Received: from localhost.localdomain ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id t42sm10228377pfg.30.2021.08.25.03.25.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 Aug 2021 03:25:55 -0700 (PDT)
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
+ christian.koenig@amd.com, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ chris@chris-wilson.co.uk, ville.syrjala@linux.intel.com,
+ matthew.auld@intel.com, dan.carpenter@oracle.com, tvrtko.ursulin@intel.com,
+ matthew.d.roper@intel.com, lucas.demarchi@intel.com, karthik.b.s@intel.com,
+ jose.souza@intel.com, manasi.d.navare@intel.com, airlied@redhat.com,
+ aditya.swarup@intel.com, andrescj@chromium.org,
+ linux-graphics-maintainer@vmware.com, zackr@vmware.com
+Cc: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+Date: Wed, 25 Aug 2021 18:24:04 +0800
+Message-Id: <20210825102411.1084220-1-desmondcheongzx@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210825043522.346512-1-koba.ko@canonical.com>
- <20210825043522.346512-2-koba.ko@canonical.com> <87y28pev59.fsf@intel.com>
-In-Reply-To: <87y28pev59.fsf@intel.com>
-From: Koba Ko <koba.ko@canonical.com>
-Date: Wed, 25 Aug 2021 18:08:35 +0800
-Message-ID: <CAJB-X+X2Vbj9bAj98yxfAhi2-LMk0=_Hq=b1-1o5iOykQRj5fQ@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, 
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/amdgpu: Disable PCIE_DPM on Intel
- RKL Platform
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v6 0/7] drm: update locking for modesetting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,92 +84,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 25, 2021 at 5:22 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Wed, 25 Aug 2021, Koba Ko <koba.ko@canonical.com> wrote:
-> > AMD polaris GPUs have an issue about audio noise on RKL platform,
-> > they provide a commit to fix but for SMU7-based GPU still
-> > need another module parameter,
-> >
-> > For avoiding the module parameter, switch PCI_DPM by determining
-> > intel platform in amd drm driver.
->
-> I'll just note that you could have a Tiger Lake PCH combined with a
-> number of platforms other than Rocket Lake, including not just the
-> obvious Tiger Lake but also Sky Lake, Kaby Lake, Coffee Lake, and Comet
-> Lake.
->
-> Again, I don't know what the root cause or fix should be, the workaround
-> presented here impacts a much larger number of platforms than where
-> you're claiming the issue is.
+Hi,
 
-Hi Jani, thanks for your feedback.
-Is there any way to identify the RKL PCH?
-I trace the intel_pch.c and can't find the only pch id for RKL.
+Updated the series again to avoid recursive locking caught by the
+Intel-gfx CI. Patch 5 touches a number of files, including the Intel and
+VMware drivers, but most changes are simply switching a function call to
+the appropriate locked/unlocked version.
 
-INTEL_PCH_TGP_DEVICE_ID_TYPE is used by both TGL and RKL.
+Overall, this series fixes races with modesetting rights, converts
+drm_device.master_mutex into master_rwsem, and removes
+drm_file.master_lookup_lock.
 
-so it seems that using IS_ROCKETLAKE() is the only way.
+- Patch 1: Fix a potential null ptr dereference in drm_master_release
 
-Thanks
->
-> BR,
-> Jani.
->
->
-> >
-> > Fixes: 1a31474cdb48 ("drm/amd/pm: workaround for audio noise issue")
-> > Ref: https://lists.freedesktop.org/archives/amd-gfx/2021-August/067413.html
-> > Signed-off-by: Koba Ko <koba.ko@canonical.com>
-> > ---
-> >  .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 21 ++++++++++++++++++-
-> >  1 file changed, 20 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-> > index 0541bfc81c1b..346110dd0f51 100644
-> > --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-> > +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-> > @@ -1733,6 +1733,25 @@ static int smu7_disable_dpm_tasks(struct pp_hwmgr *hwmgr)
-> >       return result;
-> >  }
-> >
-> > +#include <drm/intel_pch.h>
-> > +
-> > +static bool intel_tgp_chk(void)
-> > +{
-> > +     struct pci_dev *pch = NULL;
-> > +     unsigned short id;
-> > +
-> > +     while ((pch = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pch))) {
-> > +             if (pch->vendor != PCI_VENDOR_ID_INTEL)
-> > +                     continue;
-> > +
-> > +             id = pch->device & INTEL_PCH_DEVICE_ID_MASK;
-> > +             if (id == INTEL_PCH_TGP_DEVICE_ID_TYPE || INTEL_PCH_TGP2_DEVICE_ID_TYPE)
->
-> PS. This is always true. ;)
+- Patch 2: Convert master_mutex into rwsem (avoids creating a new lock)
 
-got, thanks
+- Patch 3: Update global mutex locking in the ioctl handler (avoids
+deadlock when grabbing read lock on master_rwsem in drm_ioctl_kernel)
 
->
-> > +                     return true;
-> > +     }
-> > +
-> > +     return false;
-> > +}
-> > +
-> >  static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
-> >  {
-> >       struct smu7_hwmgr *data = (struct smu7_hwmgr *)(hwmgr->backend);
-> > @@ -1758,7 +1777,7 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
-> >
-> >       data->mclk_dpm_key_disabled = hwmgr->feature_mask & PP_MCLK_DPM_MASK ? false : true;
-> >       data->sclk_dpm_key_disabled = hwmgr->feature_mask & PP_SCLK_DPM_MASK ? false : true;
-> > -     data->pcie_dpm_key_disabled = hwmgr->feature_mask & PP_PCIE_DPM_MASK ? false : true;
-> > +     data->pcie_dpm_key_disabled = intel_tgp_chk() || !(hwmgr->feature_mask & PP_PCIE_DPM_MASK);
-> >       /* need to set voltage control types before EVV patching */
-> >       data->voltage_control = SMU7_VOLTAGE_CONTROL_NONE;
-> >       data->vddci_control = SMU7_VOLTAGE_CONTROL_NONE;
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+- Patch 4: Plug races with drm modesetting rights
+
+- Patch 5: Modify drm_mode_object_find to fix potential recursive
+locking of master_rwsem and lock inversions between modeset_mutex and
+master_rwsem
+
+- Patch 6: Remove remaining potential lock inversions between
+modeset_mutex and master_rwsem
+
+- Patch 7: Replace master_lookup_lock with master_rwsem
+
+v5 -> v6:
+- Fix recursive locking on master_rwsem, caught by the Intel-gfx CI
+(only current patch 5 & 6 changed)
+
+v4 -> v5:
+- Avoid calling drm_file_get_master while holding on to the modeset
+mutex, caught by the Intel-gfx CI
+
+v3 -> v4 (suggested by Daniel Vetter):
+- Drop a patch that added an unnecessary master_lookup_lock in
+drm_master_release
+- Drop a patch that addressed a non-existent race in
+drm_is_current_master_locked
+- Remove fixes for non-existent null ptr dereferences
+- Protect drm_master.magic_map,unique{_len} with master_rwsem instead of
+master_lookup_lock
+- Drop the patch that moved master_lookup_lock into struct drm_device
+- Drop a patch to export task_work_add
+- Revert the check for the global mutex in the ioctl handler to use
+drm_core_check_feature instead of drm_dev_needs_global_mutex
+- Push down master_rwsem locking for selected ioctls to avoid lock
+hierarchy inversions, and to allow us to hold write locks on
+master_rwsem instead of flushing readers
+- Remove master_lookup_lock by replacing it with master_rwsem
+
+v2 -> v3:
+- Unexport drm_master_flush, as suggested by Daniel Vetter.
+- Merge master_mutex and master_rwsem, as suggested by Daniel Vetter.
+- Export task_work_add, reported by kernel test robot.
+- Make master_flush static, reported by kernel test robot.
+- Move master_lookup_lock into struct drm_device.
+- Add a missing lock on master_lookup_lock in drm_master_release.
+- Fix a potential race in drm_is_current_master_locked.
+- Fix potential null ptr dereferences in drm_{auth, ioctl}.
+- Protect magic_map,unique{_len} with  master_lookup_lock.
+- Convert master_mutex into a rwsem.
+- Update global mutex locking in the ioctl handler.
+
+v1 -> v2 (suggested by Daniel Vetter):
+- Address an additional race when drm_open runs.
+- Switch from SRCU to rwsem to synchronise readers and writers.
+- Implement drm_master_flush with task_work so that flushes can be
+queued to run before returning to userspace without creating a new
+DRM_MASTER_FLUSH ioctl flag.
+
+Best wishes,
+Desmond
+
+Desmond Cheong Zhi Xi (7):
+  drm: fix null ptr dereference in drm_master_release
+  drm: convert drm_device.master_mutex into a rwsem
+  drm: lock drm_global_mutex earlier in the ioctl handler
+  drm: avoid races with modesetting rights
+  drm: avoid circular locks in drm_mode_object_find
+  drm: avoid circular locks with modeset_mutex and master_rwsem
+  drm: remove drm_file.master_lookup_lock
+
+ drivers/gpu/drm/drm_atomic_uapi.c            |  7 +-
+ drivers/gpu/drm/drm_auth.c                   | 57 ++++++------
+ drivers/gpu/drm/drm_color_mgmt.c             |  2 +-
+ drivers/gpu/drm/drm_crtc.c                   |  5 +-
+ drivers/gpu/drm/drm_debugfs.c                |  4 +-
+ drivers/gpu/drm/drm_drv.c                    |  3 +-
+ drivers/gpu/drm/drm_encoder.c                |  7 +-
+ drivers/gpu/drm/drm_file.c                   |  7 +-
+ drivers/gpu/drm/drm_framebuffer.c            |  2 +-
+ drivers/gpu/drm/drm_internal.h               |  1 +
+ drivers/gpu/drm/drm_ioctl.c                  | 48 ++++++----
+ drivers/gpu/drm/drm_lease.c                  | 94 ++++++++++----------
+ drivers/gpu/drm/drm_mode_object.c            | 13 ++-
+ drivers/gpu/drm/drm_plane.c                  | 22 +++--
+ drivers/gpu/drm/drm_property.c               |  6 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c  |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c          |  2 +-
+ include/drm/drm_auth.h                       |  6 +-
+ include/drm/drm_connector.h                  | 23 +++++
+ include/drm/drm_crtc.h                       | 22 +++++
+ include/drm/drm_device.h                     | 15 +++-
+ include/drm/drm_file.h                       | 17 ++--
+ include/drm/drm_lease.h                      |  2 +
+ include/drm/drm_mode_object.h                |  3 +
+ include/drm/drm_plane.h                      | 20 +++++
+ 26 files changed, 249 insertions(+), 143 deletions(-)
+
+-- 
+2.25.1
+
