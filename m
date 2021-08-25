@@ -2,40 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E7563F74C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 14:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 603AD3F74DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 14:13:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD6F6E1D7;
-	Wed, 25 Aug 2021 12:07:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEB2D6E1D7;
+	Wed, 25 Aug 2021 12:13:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5626E1D7
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 12:07:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="303089008"
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="303089008"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 05:07:17 -0700
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; d="scan'208";a="527235650"
-Received: from mburkard-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.213.64])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 05:07:15 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-In-Reply-To: <20210823032136.2564-3-vandita.kulkarni@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210823032136.2564-1-vandita.kulkarni@intel.com>
- <20210823032136.2564-3-vandita.kulkarni@intel.com>
-Date: Wed, 25 Aug 2021 15:07:12 +0300
-Message-ID: <87pmu1enin.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D0C736E1D7;
+ Wed, 25 Aug 2021 12:13:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9831AA917;
+ Wed, 25 Aug 2021 12:13:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dsi/xelpd: Enable mipi dsi
- support.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Aug 2021 12:13:49 -0000
+Message-ID: <162989362980.17672.2263139169552738551@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1629888677.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1629888677.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_better_backlight_=26_panel_abstractions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,36 +41,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 23 Aug 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> Enable MIPI DSI support on ADL-P platform.
-> The esc clock changes, WA changes are taken care
-> in the previous patches.
-> As per the Bspec the seq remains to be same as TGL.
->
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm/i915: better backlight & panel abstractions
+URL   : https://patchwork.freedesktop.org/series/94004/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+46e4b18ff71c drm/i915/backlight: extract backlight code to a separate file
+-:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58: 
+new file mode 100644
+
+-:263: WARNING:LINE_SPACING: Missing a blank line after declarations
+#263: FILE: drivers/gpu/drm/i915/display/intel_backlight.c:201:
++	u32 val = intel_de_read(dev_priv, BLC_PWM_PCH_CTL2) & ~BACKLIGHT_DUTY_CYCLE_MASK;
++	intel_de_write(dev_priv, BLC_PWM_PCH_CTL2, val | level);
+
+-:1823: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#1823: FILE: drivers/gpu/drm/i915/display/intel_backlight.c:1761:
++		if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI) {
+[...]
++		} else {
+[...]
+
+-:1892: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#1892: FILE: drivers/gpu/drm/i915/display/intel_backlight.h:46:
++}
++static inline void intel_backlight_device_unregister(struct intel_connector *connector)
+
+total: 0 errors, 3 warnings, 1 checks, 3769 lines checked
+46ca4e1f64e6 drm/i915/backlight: mass rename functions to have intel_backlight_ prefix
+-:558: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#558: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:241:
++	panel->backlight.pwm_funcs->disable(conn_state, intel_backlight_invert_pwm_level(connector, 0));
+
+total: 0 errors, 1 warnings, 0 checks, 568 lines checked
+65bd1bc02fc9 drm/i915/panel: mass rename functions to have intel_panel_ prefix
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a257e5dc381c..55142b9ec976 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -11488,6 +11488,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->  		intel_ddi_init(dev_priv, PORT_TC2);
->  		intel_ddi_init(dev_priv, PORT_TC3);
->  		intel_ddi_init(dev_priv, PORT_TC4);
-> +		icl_dsi_init(dev_priv);
->  	} else if (IS_ALDERLAKE_S(dev_priv)) {
->  		intel_ddi_init(dev_priv, PORT_A);
->  		intel_ddi_init(dev_priv, PORT_TC1);
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
