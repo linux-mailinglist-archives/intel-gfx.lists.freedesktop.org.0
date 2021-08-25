@@ -2,34 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9CCE3F6D20
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 03:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE9253F6D36
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 03:49:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF2456E0F5;
-	Wed, 25 Aug 2021 01:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CFFD6E0FC;
+	Wed, 25 Aug 2021 01:49:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 909076E0F4;
- Wed, 25 Aug 2021 01:33:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 82CFEA47E2;
- Wed, 25 Aug 2021 01:33:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7492824080344131437=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D1B26E0F8;
+ Wed, 25 Aug 2021 01:49:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10086"; a="278444562"
+X-IronPort-AV: E=Sophos;i="5.84,349,1620716400"; d="scan'208";a="278444562"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 18:49:24 -0700
+X-IronPort-AV: E=Sophos;i="5.84,349,1620716400"; d="scan'208";a="536075279"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2021 18:49:24 -0700
+Date: Tue, 24 Aug 2021 18:44:14 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch
+Message-ID: <20210825014414.GA12621@jons-linux-dev-box>
+References: <20210819061639.21051-1-matthew.brost@intel.com>
+ <20210819061639.21051-15-matthew.brost@intel.com>
+ <c7a09b2d-b5f2-49ea-01b9-f9b9fbbe7824@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Aug 2021 01:33:21 -0000
-Message-ID: <162985520150.17673.5195154482936939006@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210825005840.170796-1-jose.souza@intel.com>
-In-Reply-To: <20210825005840.170796-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRHJv?=
- =?utf-8?q?p_frontbuffer_rendering_support_from_Skylake_and_newer_=28rev2?=
- =?utf-8?q?=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c7a09b2d-b5f2-49ea-01b9-f9b9fbbe7824@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 14/27] drm/i915/guc: Don't touch
+ guc_state.sched_state without a lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,488 +50,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7492824080344131437==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: Drop frontbuffer rendering support from Skylake and newer (rev2)
-URL   : https://patchwork.freedesktop.org/series/93769/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10517 -> Patchwork_20882
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20882 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20882, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20882:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-skl-guc:         [PASS][1] -> [FAIL][2] +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-rkl-11600:       [PASS][3] -> [FAIL][4] +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-cfl-guc:         [PASS][5] -> [FAIL][6] +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-icl-y:           [PASS][7] -> [FAIL][8] +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-rkl-guc:         [PASS][9] -> [FAIL][10] +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-skl-6700k2:      [PASS][11] -> [FAIL][12] +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][13] -> [FAIL][14] +3 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - fi-cfl-8700k:       [PASS][15] -> [FAIL][16] +3 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - fi-cfl-8109u:       [PASS][17] -> [FAIL][18] +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - fi-glk-dsi:         [PASS][19] -> [FAIL][20] +3 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - fi-kbl-7500u:       [PASS][21] -> [FAIL][22] +3 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-kbl-7500u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-kbl-7500u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-bxt-dsi:         [PASS][23] -> [FAIL][24] +3 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - fi-cml-u2:          [PASS][25] -> [FAIL][26] +3 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      [DMESG-WARN][27] ([i915#4002]) -> [DMESG-FAIL][28] +3 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-ehl-2}:         [PASS][29] -> [FAIL][30] +3 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - {fi-tgl-dsi}:       [PASS][31] -> [FAIL][32] +3 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - {fi-jsl-1}:         [PASS][33] -> [FAIL][34] +3 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20882 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cfl-8109u:       [PASS][35] -> [DMESG-WARN][36] ([i915#203] / [i915#262] / [i915#295]) +1 similar issue
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][37] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-bsw-n3050/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][38] ([fdo#109271]) +42 similar issues
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-bsw-n3050/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-
-  * igt@vgem_basic@unload:
-    - fi-tgl-1115g4:      [PASS][39] -> [DMESG-WARN][40] ([i915#4002])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@vgem_basic@unload.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@vgem_basic@unload.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-1115g4:      [DMESG-WARN][41] ([i915#4002]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-1115g4:      [DMESG-WARN][43] ([i915#1385] / [i915#4002]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@i915_module_load@reload.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [FAIL][45] ([i915#2203] / [i915#579]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [DMESG-WARN][47] ([i915#3958]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          [DMESG-WARN][49] ([i915#2203] / [i915#2868]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-rkl-11600:       [SKIP][51] -> [PASS][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-11600/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-11600/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [DMESG-FAIL][53] ([i915#1888]) -> [DMESG-WARN][54] ([i915#4002])
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-1115g4:      [INCOMPLETE][55] ([i915#4006]) -> [INCOMPLETE][56] ([i915#1385] / [i915#4006])
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1385]: https://gitlab.freedesktop.org/drm/intel/issues/1385
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
-  [i915#4002]: https://gitlab.freedesktop.org/drm/intel/issues/4002
-  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (39 -> 32)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (8): fi-kbl-soraka fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-dg1-1 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10517 -> Patchwork_20882
-
-  CI-20190529: 20190529
-  CI_DRM_10517: 844e662cf49196dc189309aa1692f6342e855325 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6185: 5dca04416f50576f464ebbd9aea96edccd7e4eab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20882: 4f324d4c88ddb3494765f5ebdcbe0d51cd07a16c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4f324d4c88dd drm/i915/display: Drop PSR frontbuffer rendering support
-8547f773f8a0 drm/i915/display/skl+: Drop frontbuffer rendering support
-ce03aa5335cd drm/i915/display: Prepare DRRS for frontbuffer rendering drop
-b274e5714903 drm/i915/display: Share code between intel_drrs_flush and intel_drrs_invalidate
-e920d82d8295 drm/i915/display: Some code improvements and code style fixes for DRRS
-08ba0f6456b9 drm/i915/display: Renaming DRRS functions to intel_drrs_*()
-63c0e2b638ba drm/i915/display: Move DRRS code its own file
-98e381aebd23 drm/i915/display: Drop PSR support from HSW and BDW
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/index.html
-
---===============7492824080344131437==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Drop frontbuffer rendering support from Skylake and newer (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93769/">https://patchwork.freedesktop.org/series/93769/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10517 -&gt; Patchwork_20882</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20882 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20882, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20882:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>
-<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-kbl-7500u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-kbl-7500u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-FAIL</a> +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20882 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-bsw-n3050/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-bsw-n3050/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +42 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@vgem_basic@unload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-rkl-11600/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-rkl-11600/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10517/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20882/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 32)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (8): fi-kbl-soraka fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-dg1-1 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10517 -&gt; Patchwork_20882</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10517: 844e662cf49196dc189309aa1692f6342e855325 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6185: 5dca04416f50576f464ebbd9aea96edccd7e4eab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20882: 4f324d4c88ddb3494765f5ebdcbe0d51cd07a16c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4f324d4c88dd drm/i915/display: Drop PSR frontbuffer rendering support<br />
-8547f773f8a0 drm/i915/display/skl+: Drop frontbuffer rendering support<br />
-ce03aa5335cd drm/i915/display: Prepare DRRS for frontbuffer rendering drop<br />
-b274e5714903 drm/i915/display: Share code between intel_drrs_flush and intel_drrs_invalidate<br />
-e920d82d8295 drm/i915/display: Some code improvements and code style fixes for DRRS<br />
-08ba0f6456b9 drm/i915/display: Renaming DRRS functions to intel_drrs_*()<br />
-63c0e2b638ba drm/i915/display: Move DRRS code its own file<br />
-98e381aebd23 drm/i915/display: Drop PSR support from HSW and BDW</p>
-
-</body>
-</html>
-
---===============7492824080344131437==--
+On Tue, Aug 24, 2021 at 06:20:49PM -0700, Daniele Ceraolo Spurio wrote:
+> 
+> 
+> On 8/18/2021 11:16 PM, Matthew Brost wrote:
+> > Before we did some clever tricks to not use the a lock when touching
+> > guc_state.sched_state in certain cases. Don't do that, enforce the use
+> > of the lock.
+> > 
+> > Part of this is removing a dead code path from guc_lrc_desc_pin where a
+> > context could be deregistered when the aforementioned function was
+> > called from the submission path. Remove this dead code and add a
+> > GEM_BUG_ON if this path is ever attempted to be used.
+> > 
+> > v2:
+> >   (kernel test robo )
+> >    - Add __maybe_unused to sched_state_is_init()
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > ---
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 58 ++++++++++---------
+> >   1 file changed, 32 insertions(+), 26 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 85f96d325048..fa87470ea576 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -150,11 +150,23 @@ static inline void clr_context_registered(struct intel_context *ce)
+> >   #define SCHED_STATE_BLOCKED_MASK	(0xfff << SCHED_STATE_BLOCKED_SHIFT)
+> >   static inline void init_sched_state(struct intel_context *ce)
+> >   {
+> > -	/* Only should be called from guc_lrc_desc_pin() */
+> > +	lockdep_assert_held(&ce->guc_state.lock);
+> >   	atomic_set(&ce->guc_sched_state_no_lock, 0);
+> >   	ce->guc_state.sched_state &= SCHED_STATE_BLOCKED_MASK;
+> >   }
+> > +__maybe_unused
+> > +static bool sched_state_is_init(struct intel_context *ce)
+> > +{
+> > +	/*
+> > +	 * XXX: Kernel contexts can have SCHED_STATE_NO_LOCK_REGISTERED after
+> > +	 * suspend.
+> > +	 */
+> 
+> This seems like something we want to fix. Not a blocker for this, but we can
+> add it to the list.
+>
+
+Right, hence the comment in the code.
+ 
+> > +	return !(atomic_read(&ce->guc_sched_state_no_lock) &
+> > +		 ~SCHED_STATE_NO_LOCK_REGISTERED) &&
+> > +		!(ce->guc_state.sched_state &= ~SCHED_STATE_BLOCKED_MASK);
+> > +}
+> > +
+> >   static inline bool
+> >   context_wait_for_deregister_to_register(struct intel_context *ce)
+> >   {
+> > @@ -165,7 +177,7 @@ context_wait_for_deregister_to_register(struct intel_context *ce)
+> >   static inline void
+> >   set_context_wait_for_deregister_to_register(struct intel_context *ce)
+> >   {
+> > -	/* Only should be called from guc_lrc_desc_pin() without lock */
+> > +	lockdep_assert_held(&ce->guc_state.lock);
+> >   	ce->guc_state.sched_state |=
+> >   		SCHED_STATE_WAIT_FOR_DEREGISTER_TO_REGISTER;
+> >   }
+> > @@ -605,9 +617,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+> >   	bool pending_disable, pending_enable, deregister, destroyed, banned;
+> >   	xa_for_each(&guc->context_lookup, index, ce) {
+> > -		/* Flush context */
+> >   		spin_lock_irqsave(&ce->guc_state.lock, flags);
+> > -		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> >   		/*
+> >   		 * Once we are at this point submission_disabled() is guaranteed
+> > @@ -623,6 +633,8 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+> >   		banned = context_banned(ce);
+> >   		init_sched_state(ce);
+> > +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> > +
+> >   		if (pending_enable || destroyed || deregister) {
+> >   			decr_outstanding_submission_g2h(guc);
+> >   			if (deregister)
+> > @@ -1325,6 +1337,7 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+> >   	int ret = 0;
+> >   	GEM_BUG_ON(!engine->mask);
+> > +	GEM_BUG_ON(!sched_state_is_init(ce));
+> >   	/*
+> >   	 * Ensure LRC + CT vmas are is same region as write barrier is done
+> > @@ -1353,7 +1366,6 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+> >   	desc->priority = ce->guc_prio;
+> >   	desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
+> >   	guc_context_policy_init(engine, desc);
+> > -	init_sched_state(ce);
+> >   	/*
+> >   	 * The context_lookup xarray is used to determine if the hardware
+> > @@ -1364,26 +1376,23 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+> >   	 * registering this context.
+> >   	 */
+> >   	if (context_registered) {
+> > +		bool disabled;
+> > +		unsigned long flags;
+> > +
+> >   		trace_intel_context_steal_guc_id(ce);
+> > -		if (!loop) {
+> > +		GEM_BUG_ON(!loop);
+> > +
+> > +		/* Seal race with Reset */
+> > +		spin_lock_irqsave(&ce->guc_state.lock, flags);
+> > +		disabled = submission_disabled(guc);
+> > +		if (likely(!disabled)) {
+> >   			set_context_wait_for_deregister_to_register(ce);
+> >   			intel_context_get(ce);
+> > -		} else {
+> > -			bool disabled;
+> > -			unsigned long flags;
+> > -
+> > -			/* Seal race with Reset */
+> > -			spin_lock_irqsave(&ce->guc_state.lock, flags);
+> > -			disabled = submission_disabled(guc);
+> > -			if (likely(!disabled)) {
+> > -				set_context_wait_for_deregister_to_register(ce);
+> > -				intel_context_get(ce);
+> > -			}
+> > -			spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> > -			if (unlikely(disabled)) {
+> > -				reset_lrc_desc(guc, desc_idx);
+> > -				return 0;	/* Will get registered later */
+> > -			}
+> > +		}
+> > +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> > +		if (unlikely(disabled)) {
+> > +			reset_lrc_desc(guc, desc_idx);
+> > +			return 0;	/* Will get registered later */
+> >   		}
+> >   		/*
+> > @@ -1392,10 +1401,7 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+> >   		 */
+> >   		with_intel_runtime_pm(runtime_pm, wakeref)
+> >   			ret = deregister_context(ce, ce->guc_id, loop);
+> > -		if (unlikely(ret == -EBUSY)) {
+> > -			clr_context_wait_for_deregister_to_register(ce);
+> > -			intel_context_put(ce);
+> 
+> Why is the EBUSY case not applicable anymore?
+> 
+
+Commmit message cover this - this is dead code that can't be reached
+in the current code nor can be it be reached in upcoming code. Or put
+another way loop is always true thus we can't get -EBUSY from
+deregister_context().
+
+Matt 
+
+> Daniele
+> 
+> > -		} else if (unlikely(ret == -ENODEV)) {
+> > +		if (unlikely(ret == -ENODEV)) {
+> >   			ret = 0;	/* Will get registered later */
+> >   		}
+> >   	} else {
+> 
