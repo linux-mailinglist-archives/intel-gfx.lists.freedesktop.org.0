@@ -1,87 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381723F7C44
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 20:35:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4BD3F7C22
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Aug 2021 20:21:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB99B6E417;
-	Wed, 25 Aug 2021 18:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2EF86E40C;
+	Wed, 25 Aug 2021 18:21:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 349 seconds by postgrey-1.36 at gabe;
- Wed, 25 Aug 2021 17:18:52 UTC
-Received: from mx0b-00190b01.pphosted.com (mx0b-00190b01.pphosted.com
- [IPv6:2620:100:9005:57f::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF3B6E3EE;
- Wed, 25 Aug 2021 17:18:51 +0000 (UTC)
-Received: from pps.filterd (m0122331.ppops.net [127.0.0.1])
- by mx0b-00190b01.pphosted.com (8.16.1.2/8.16.0.43) with SMTP id 17PG73hK003607;
- Wed, 25 Aug 2021 18:18:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
- h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=jan2016.eng;
- bh=4yn0oy8JsEetkmJH1qt8+NeoPl5RpCvCkxTeymmkeu8=;
- b=VlSK6+1hH5l2Yb77fXnQ6g4ksZO1d0TBYf1qvwgSU6kOcYivw5WUQpb1N4/JRm2EUt9G
- e3bJGL8LjDRfjN+sc1kVN7e+SJ9gnGiCCjByBjf0O61aMIJPcXtckb22/h0ysDYPbROW
- PrifL86bLPPSwczHgflnC5RQoElyVJFQHwbXP0qA7p8n6WyLapMMGk844M55b3tkq1KL
- 9CGSpZvt0ClRxJQRGgz6xLTVcuwuL51DPkTee47Ox3zyiSICIIyEY+z61FsdaDQfgTfE
- vjB29jUgnqHXmZzDPcLKTSGf+Ihs3KmVDRkzb0tJPT6NwnukpDy1Upoju77GiS2lK2mZ yg== 
-Received: from prod-mail-ppoint7
- (a72-247-45-33.deploy.static.akamaitechnologies.com [72.247.45.33] (may be
- forged)) by mx0b-00190b01.pphosted.com with ESMTP id 3anhh8mpsu-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 25 Aug 2021 18:18:48 +0100
-Received: from pps.filterd (prod-mail-ppoint7.akamai.com [127.0.0.1])
- by prod-mail-ppoint7.akamai.com (8.16.1.2/8.16.1.2) with SMTP id
- 17PHCpZk029748; Wed, 25 Aug 2021 13:18:48 -0400
-Received: from prod-mail-relay19.dfw02.corp.akamai.com ([172.27.165.173])
- by prod-mail-ppoint7.akamai.com with ESMTP id 3an3v2fbq9-1;
- Wed, 25 Aug 2021 13:18:48 -0400
-Received: from [0.0.0.0] (prod-ssh-gw01.bos01.corp.akamai.com [172.27.119.138])
- by prod-mail-relay19.dfw02.corp.akamai.com (Postfix) with ESMTP id C8B9A6007A; 
- Wed, 25 Aug 2021 17:18:44 +0000 (GMT)
-To: Jim Cromie <jim.cromie@gmail.com>, gregkh@linuxfoundation.org,
- seanpaul@chromium.org, jeyu@kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20210822222009.2035788-1-jim.cromie@gmail.com>
-From: Jason Baron <jbaron@akamai.com>
-Message-ID: <7017599d-8e11-7bda-90df-3cbf39ef8f3b@akamai.com>
-Date: Wed, 25 Aug 2021 13:18:44 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 838216E40C;
+ Wed, 25 Aug 2021 18:21:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79C8EA66C9;
+ Wed, 25 Aug 2021 18:21:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3923139541783961360=="
 MIME-Version: 1.0
-In-Reply-To: <20210822222009.2035788-1-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.790
- definitions=2021-08-25_06:2021-08-25,
- 2021-08-25 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
- adultscore=0 malwarescore=0
- spamscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2107140000
- definitions=main-2108250101
-X-Proofpoint-GUID: UoSSdnztWs5A6UFnB2lJ-dGQhhers6zK
-X-Proofpoint-ORIG-GUID: UoSSdnztWs5A6UFnB2lJ-dGQhhers6zK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-08-25_07,2021-08-25_02,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
- priorityscore=1501
- lowpriorityscore=0 phishscore=0 impostorscore=0 clxscore=1015 bulkscore=0
- malwarescore=0 suspectscore=0 mlxlogscore=999 adultscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2107140000
- definitions=main-2108250102
-X-Agari-Authentication-Results: mx.akamai.com;
- spf=${SPFResult} (sender IP is 72.247.45.33)
- smtp.mailfrom=jbaron@akamai.com smtp.helo=prod-mail-ppoint7
-X-Mailman-Approved-At: Wed, 25 Aug 2021 18:35:47 +0000
-Subject: Re: [Intel-gfx] [PATCH v6 00/11] use DYNAMIC_DEBUG to implement
- DRM.debug
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "CGEL" <cgel.zte@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Aug 2021 18:21:04 -0000
+Message-ID: <162991566449.17672.12973502244988088352@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210825091301.71544-1-deng.changcheng@zte.com.cn>
+In-Reply-To: <20210825091301.71544-1-deng.changcheng@zte.com.cn>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_remove_duplicate_include?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,71 +41,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3923139541783961360==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: remove duplicate include
+URL   : https://patchwork.freedesktop.org/series/94016/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10520 -> Patchwork_20889
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20889 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +3 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-kbl-8809g:       [PASS][2] -> [DMESG-WARN][3] ([i915#3848])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10520/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [PASS][4] -> [DMESG-WARN][5] ([i915#3958])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10520/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       NOTRUN -> [FAIL][6] ([i915#180] / [i915#3363])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3848]: https://gitlab.freedesktop.org/drm/intel/issues/3848
+  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
 
 
-On 8/22/21 6:19 PM, Jim Cromie wrote:
-> This patchset does 3 main things.
-> 
-> Adds DEFINE_DYNAMIC_DEBUG_CATEGORIES to define bitmap => category
-> control of pr_debugs, and to create their sysfs entries.
-> 
-> Uses it in amdgpu, i915 to control existing pr_debugs according to
-> their ad-hoc categorizations.
-> 
-> Plugs dyndbg into drm-debug framework, in a configurable manner.
-> 
-> v6: cleans up per v5 feedback, and adds RFC stuff:
-> 
-> - test_dynamic_debug.ko: uses tracer facility added in v5:8/9
-> - prototype print-once & rate-limiting
-> 
-> Hopefully adding RFC stuff doesnt distract too much.
+Participating hosts (40 -> 33)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 
 
 
-Hi Jim,
+Build changes
+-------------
 
-Yeah, I feel like the RFC patches should be in a separate series
-unless there is a drm dependency for them?
+  * Linux: CI_DRM_10520 -> Patchwork_20889
 
-Thanks,
+  CI-20190529: 20190529
+  CI_DRM_10520: df6d856ea920279c17e875a80fca47a428fd7fcd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6185: 5dca04416f50576f464ebbd9aea96edccd7e4eab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20889: 9daad9c7fa22d0e342261b77e9d078ca8fbe6457 @ git://anongit.freedesktop.org/gfx-ci/linux
 
--Jason
+
+== Linux commits ==
+
+9daad9c7fa22 drm/i915: remove duplicate include
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/index.html
+
+--===============3923139541783961360==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-> 
-> Jim Cromie (11):
->   moduleparam: add data member to struct kernel_param
->   dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and callbacks
->   i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
->   i915/gvt: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to create "gvt:core:"
->     etc categories
->   amdgpu: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to control categorized
->     pr_debugs
->   drm_print: add choice to use dynamic debug in drm-debug
->   drm_print: instrument drm_debug_enabled
->   amdgpu_ucode: reduce number of pr_debug calls
->   nouveau: fold multiple DRM_DEBUG_DRIVERs together
->   dyndbg: RFC add debug-trace callback, selftest with it. RFC
->   dyndbg: RFC add print-once and print-ratelimited features. RFC.
-> 
->  drivers/gpu/drm/Kconfig                       |  13 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c     | 293 ++++++++-------
->  .../gpu/drm/amd/display/dc/core/dc_debug.c    |  44 ++-
->  drivers/gpu/drm/drm_print.c                   |  49 ++-
->  drivers/gpu/drm/i915/gvt/Makefile             |   4 +
->  drivers/gpu/drm/i915/gvt/debug.h              |  18 +-
->  drivers/gpu/drm/i915/i915_params.c            |  35 ++
->  drivers/gpu/drm/nouveau/nouveau_drm.c         |  36 +-
->  include/drm/drm_print.h                       | 148 ++++++--
->  include/linux/dynamic_debug.h                 |  81 ++++-
->  include/linux/moduleparam.h                   |  11 +-
->  lib/Kconfig.debug                             |  11 +
->  lib/Makefile                                  |   1 +
->  lib/dynamic_debug.c                           | 336 ++++++++++++++++--
->  lib/test_dynamic_debug.c                      | 279 +++++++++++++++
->  15 files changed, 1117 insertions(+), 242 deletions(-)
->  create mode 100644 lib/test_dynamic_debug.c
-> 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: remove duplicate include</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94016/">https://patchwork.freedesktop.org/series/94016/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10520 -&gt; Patchwork_20889</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20889 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10520/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3848">i915#3848</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10520/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20889/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (40 -&gt; 33)</h2>
+<p>Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10520 -&gt; Patchwork_20889</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10520: df6d856ea920279c17e875a80fca47a428fd7fcd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6185: 5dca04416f50576f464ebbd9aea96edccd7e4eab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20889: 9daad9c7fa22d0e342261b77e9d078ca8fbe6457 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9daad9c7fa22 drm/i915: remove duplicate include</p>
+
+</body>
+</html>
+
+--===============3923139541783961360==--
