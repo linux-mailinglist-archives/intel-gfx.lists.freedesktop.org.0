@@ -2,95 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3333F8832
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 14:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 117CA3F8849
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 15:04:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 795996E845;
-	Thu, 26 Aug 2021 12:59:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FDA16E846;
+	Thu, 26 Aug 2021 13:04:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
- [IPv6:2a00:1450:4864:20::534])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EDD56E843
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 12:59:14 +0000 (UTC)
-Received: by mail-ed1-x534.google.com with SMTP id z10so4520470edb.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 05:59:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=9l2OOUE09XlxnnN5BrE9RmBj7/x5XGUJNjJth0rLH1M=;
- b=Ei9E2sHB5jiRqflPCY7aBs/1YnEabwomR6Lx9CIoy+4q4IJ1GWbgIGI5h8Z81lSRrM
- Ic3dn6L4Rlj84egP64hYiygM5/+rxOdekuY0h3uuuHXgbU0HqDQNha4dlPBNmZBBnu3X
- F4JZYhB0pUVWUDPuW2FcOY+aP1WVtuF+dXeMo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=9l2OOUE09XlxnnN5BrE9RmBj7/x5XGUJNjJth0rLH1M=;
- b=VJYEhC9oAn5KEfgJds5qAoFCBmimw3UklMlhXNNbjT1oYMtGbdPABBvZtGFC8W5LKW
- 3RKk9xPkA9/vASolC+aMrTrntwu4E7dKSB5gQQYT4joUVdHsa8McVT08QdEJiy7Nfgtl
- Ul8aXmUbr7h76+dfDOj3Jb+ZEgdGg0cQu9erwfM005JEG6ZrCw3K7F5MwT62Oh0B5Iyg
- 3acx/y/0QXGc/rWLWJNeTyBMmRsLJy3OAcNu1Q0f5EoHL2n4CeQZLHKmydKTMECf14WR
- 3VW2j6E7gfGrKyTVPbV9NrRZl60FTb6rTr2fZ00XfJsHtBoxEJNugKCbPVQXl1bpnyev
- 49HQ==
-X-Gm-Message-State: AOAM533BIzKAmCkNXyiNw3O3cPzRdloK+ESYhbSRFh62P840nD8ev8Di
- ZwIELUezWV/JSwYpFkXKJsvswQ==
-X-Google-Smtp-Source: ABdhPJxL8ltd/Qr/lqVn7DnqHxZsvtwRm1Gkw/gARKFkvBq13n0SPt510NYzOn3B5A87x9j8hTrQSw==
-X-Received: by 2002:a05:6402:40c9:: with SMTP id
- z9mr4155954edb.159.1629982753092; 
- Thu, 26 Aug 2021 05:59:13 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id bl16sm1362875ejb.37.2021.08.26.05.59.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Aug 2021 05:59:12 -0700 (PDT)
-Date: Thu, 26 Aug 2021 14:59:10 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch,
- sumit.semwal@linaro.org, christian.koenig@amd.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, chris@chris-wilson.co.uk,
- ville.syrjala@linux.intel.com, matthew.auld@intel.com,
- dan.carpenter@oracle.com, tvrtko.ursulin@intel.com,
- matthew.d.roper@intel.com, lucas.demarchi@intel.com,
- karthik.b.s@intel.com, jose.souza@intel.com,
- manasi.d.navare@intel.com, airlied@redhat.com,
- aditya.swarup@intel.com, andrescj@chromium.org,
- linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YSeQHvagpTjlifpX@phenom.ffwll.local>
-Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
- christian.koenig@amd.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- chris@chris-wilson.co.uk, ville.syrjala@linux.intel.com,
- matthew.auld@intel.com, dan.carpenter@oracle.com,
- tvrtko.ursulin@intel.com, matthew.d.roper@intel.com,
- lucas.demarchi@intel.com, karthik.b.s@intel.com,
- jose.souza@intel.com, manasi.d.navare@intel.com, airlied@redhat.com,
- aditya.swarup@intel.com, andrescj@chromium.org,
- linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org
-References: <20210826020122.1488002-1-desmondcheongzx@gmail.com>
- <20210826020122.1488002-5-desmondcheongzx@gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB2346E83E;
+ Thu, 26 Aug 2021 13:04:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="217455553"
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="217455553"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 06:04:32 -0700
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="527871133"
+Received: from garrydex-mobl1.ger.corp.intel.com (HELO [10.213.254.71])
+ ([10.213.254.71])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 06:04:30 -0700
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Brost Matthew <matthew.brost@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+References: <20210826104514.400352-1-thomas.hellstrom@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <2722f768-f73c-1501-996f-c009eab660a1@linux.intel.com>
+Date: Thu, 26 Aug 2021 14:04:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210826020122.1488002-5-desmondcheongzx@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v8 4/7] drm: avoid races with modesetting
- rights
+In-Reply-To: <20210826104514.400352-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Register the migrate
+ contexts with their engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,272 +57,224 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 26, 2021 at 10:01:19AM +0800, Desmond Cheong Zhi Xi wrote:
-> In drm_client_modeset.c and drm_fb_helper.c,
-> drm_master_internal_{acquire,release} are used to avoid races with DRM
-> userspace. These functions hold onto drm_device.master_rwsem while
-> committing, and bail if there's already a master.
+
+On 26/08/2021 11:45, Thomas Hellström wrote:
+> Pinned contexts, like the migrate contexts need reset after resume
+> since their context image may have been lost. Also the GuC needs to
+> register pinned contexts.
+
+So kernel context can get corrupt because we park the GPU with it 
+active. Blitter context for a different reason - which is that it is 
+used to copy itself over to smem, no?
+
+If that is correct, then why bother copying the blitter context in the 
+first place and not just always re-create it on resume?
+
+That would be along the lines of marking the backing store as "dontneed" 
+(however the exact mechanics of that look these days) so suspend can 
+skip them.
+
+> Add a list to struct intel_engine_cs where we add all pinned contexts on
+> creation, and traverse that list at resume time to reset the pinned
+> contexts.
 > 
-> However, there are other places where modesetting rights can race. A
-> time-of-check-to-time-of-use error can occur if an ioctl that changes
-> the modeset has its rights revoked after it validates its permissions,
-> but before it completes.
+> This fixes the kms_pipe_crc_basic@suspend-read-crc-pipe-a selftest for now,
+> but proper LMEM backup / restore is needed for full suspend functionality.
+> However, note that even with full LMEM backup / restore it may be
+> desirable to keep the reset since backing up the migrate context images
+> must happen using memcpy() after the migrate context has become inactive,
+> and for performance- and other reasons we want to avoid memcpy() from
+> LMEM.
+
+Hm I guess this talks about the issue - so are these images migrated at 
+all today or not?
+
+Regards,
+
+Tvrtko
+
 > 
-> There are four places where modesetting permissions can change:
+> Also traverse the list at guc_init_lrc_mapping() calling
+> guc_kernel_context_pin() for the pinned contexts, like is already done
+> for the kernel context.
 > 
-> - DROP_MASTER ioctl removes rights for a master and its leases
+> v2:
+> - Don't reset the contexts on each __engine_unpark() but rather at
+>    resume time (Chris Wilson).
 > 
-> - REVOKE_LEASE ioctl revokes rights for a specific lease
-> 
-> - SET_MASTER ioctl sets the device master if the master role hasn't
-> been acquired yet
-> 
-> - drm_open which can create a new master for a device if one does not
-> currently exist
-> 
-> These races can be avoided using drm_device.master_rwsem: users that
-> perform modesetting should hold a read lock on the new
-> drm_device.master_rwsem, and users that change these permissions
-> should hold a write lock.
-> 
-> To avoid deadlocks with master_rwsem, for ioctls that need to check
-> for modesetting permissions, but also need to hold a write lock on
-> master_rwsem to protect some other attribute (or recurses to some
-> function that holds a write lock, like drm_mode_create_lease_ioctl
-> which eventually calls drm_master_open), we remove the DRM_MASTER flag
-> and push the master_rwsem lock and permissions check into the ioctl.
-> 
-> Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Brost Matthew <matthew.brost@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
->  drivers/gpu/drm/drm_auth.c  |  4 ++++
->  drivers/gpu/drm/drm_ioctl.c | 20 +++++++++++++++-----
->  drivers/gpu/drm/drm_lease.c | 35 ++++++++++++++++++++++++-----------
->  include/drm/drm_device.h    |  5 +++++
->  4 files changed, 48 insertions(+), 16 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |  8 +++++++
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  4 ++++
+>   drivers/gpu/drm/i915/gt/intel_engine_pm.c     | 23 +++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_engine_pm.h     |  2 ++
+>   drivers/gpu/drm/i915/gt/intel_engine_types.h  |  7 ++++++
+>   drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  3 +++
+>   drivers/gpu/drm/i915/gt/mock_engine.c         |  1 +
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 10 +++++---
+>   8 files changed, 55 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-> index 73ade0513ccb..65065f7e1499 100644
-> --- a/drivers/gpu/drm/drm_auth.c
-> +++ b/drivers/gpu/drm/drm_auth.c
-> @@ -120,6 +120,10 @@ int drm_authmagic(struct drm_device *dev, void *data,
->  	DRM_DEBUG("%u\n", auth->magic);
->  
->  	down_write(&dev->master_rwsem);
-> +	if (unlikely(!drm_is_current_master(file_priv))) {
-> +		up_write(&dev->master_rwsem);
-> +		return -EACCES;
-> +	}
->  	file = idr_find(&file_priv->master->magic_map, auth->magic);
->  	if (file) {
->  		file->authenticated = 1;
-> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-> index 158629d88319..8bea39ffc5c0 100644
-> --- a/drivers/gpu/drm/drm_ioctl.c
-> +++ b/drivers/gpu/drm/drm_ioctl.c
-> @@ -386,6 +386,10 @@ static int drm_setversion(struct drm_device *dev, void *data, struct drm_file *f
->  	int if_version, retcode = 0;
->  
->  	down_write(&dev->master_rwsem);
-> +	if (unlikely(!drm_is_current_master(file_priv))) {
-> +		retcode = -EACCES;
-> +		goto unlock;
-> +	}
->  	if (sv->drm_di_major != -1) {
->  		if (sv->drm_di_major != DRM_IF_MAJOR ||
->  		    sv->drm_di_minor < 0 || sv->drm_di_minor > DRM_IF_MINOR) {
-> @@ -420,8 +424,9 @@ static int drm_setversion(struct drm_device *dev, void *data, struct drm_file *f
->  	sv->drm_di_minor = DRM_IF_MINOR;
->  	sv->drm_dd_major = dev->driver->major;
->  	sv->drm_dd_minor = dev->driver->minor;
-> -	up_write(&dev->master_rwsem);
->  
-> +unlock:
-> +	up_write(&dev->master_rwsem);
->  	return retcode;
->  }
->  
-> @@ -574,12 +579,12 @@ static const struct drm_ioctl_desc drm_ioctls[] = {
->  	DRM_IOCTL_DEF(DRM_IOCTL_GET_STATS, drm_getstats, 0),
->  	DRM_IOCTL_DEF(DRM_IOCTL_GET_CAP, drm_getcap, DRM_RENDER_ALLOW),
->  	DRM_IOCTL_DEF(DRM_IOCTL_SET_CLIENT_CAP, drm_setclientcap, 0),
-> -	DRM_IOCTL_DEF(DRM_IOCTL_SET_VERSION, drm_setversion, DRM_MASTER),
-> +	DRM_IOCTL_DEF(DRM_IOCTL_SET_VERSION, drm_setversion, 0),
-
-Random bikeshed, if you're bored: In newer code we've given ioctl
-callbacks an _ioctl suffix, so they'r easier to spot. Could do that in a
-follow-up if you want.
-
->  
->  	DRM_IOCTL_DEF(DRM_IOCTL_SET_UNIQUE, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
->  	DRM_IOCTL_DEF(DRM_IOCTL_BLOCK, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
->  	DRM_IOCTL_DEF(DRM_IOCTL_UNBLOCK, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
-> -	DRM_IOCTL_DEF(DRM_IOCTL_AUTH_MAGIC, drm_authmagic, DRM_MASTER),
-> +	DRM_IOCTL_DEF(DRM_IOCTL_AUTH_MAGIC, drm_authmagic, 0),
->  
->  	DRM_LEGACY_IOCTL_DEF(DRM_IOCTL_ADD_MAP, drm_legacy_addmap_ioctl, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
->  	DRM_LEGACY_IOCTL_DEF(DRM_IOCTL_RM_MAP, drm_legacy_rmmap_ioctl, DRM_AUTH),
-> @@ -706,10 +711,10 @@ static const struct drm_ioctl_desc drm_ioctls[] = {
->  		      DRM_RENDER_ALLOW),
->  	DRM_IOCTL_DEF(DRM_IOCTL_CRTC_GET_SEQUENCE, drm_crtc_get_sequence_ioctl, 0),
->  	DRM_IOCTL_DEF(DRM_IOCTL_CRTC_QUEUE_SEQUENCE, drm_crtc_queue_sequence_ioctl, 0),
-> -	DRM_IOCTL_DEF(DRM_IOCTL_MODE_CREATE_LEASE, drm_mode_create_lease_ioctl, DRM_MASTER),
-> +	DRM_IOCTL_DEF(DRM_IOCTL_MODE_CREATE_LEASE, drm_mode_create_lease_ioctl, 0),
->  	DRM_IOCTL_DEF(DRM_IOCTL_MODE_LIST_LESSEES, drm_mode_list_lessees_ioctl, DRM_MASTER),
->  	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GET_LEASE, drm_mode_get_lease_ioctl, DRM_MASTER),
-> -	DRM_IOCTL_DEF(DRM_IOCTL_MODE_REVOKE_LEASE, drm_mode_revoke_lease_ioctl, DRM_MASTER),
-> +	DRM_IOCTL_DEF(DRM_IOCTL_MODE_REVOKE_LEASE, drm_mode_revoke_lease_ioctl, 0),
->  };
->  
->  #define DRM_CORE_IOCTL_COUNT	ARRAY_SIZE( drm_ioctls )
-> @@ -776,6 +781,9 @@ long drm_ioctl_kernel(struct file *file, drm_ioctl_t *func, void *kdata,
->  	if (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)) && !(flags & DRM_UNLOCKED))
->  		mutex_lock(&drm_global_mutex);
->  
-> +	if (unlikely(flags & DRM_MASTER))
-> +		down_read(&dev->master_rwsem);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index e54351a170e2..a63631ea0ec4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -152,6 +152,14 @@ struct intel_context {
+>   	/** sseu: Control eu/slice partitioning */
+>   	struct intel_sseu sseu;
+>   
+> +	/**
+> +	 * pinned_contexts_link: List link for the engine's pinned contexts.
+> +	 * This is only used if this is a perma-pinned kernel context and
+> +	 * the list is assumed to only be manipulated during driver load
+> +	 * or unload time so no mutex protection currently.
+> +	 */
+> +	struct list_head pinned_contexts_link;
 > +
->  	retcode = drm_ioctl_permit(flags, file_priv);
->  	if (unlikely(retcode))
->  		goto out;
-> @@ -783,6 +791,8 @@ long drm_ioctl_kernel(struct file *file, drm_ioctl_t *func, void *kdata,
->  	retcode = func(dev, kdata, file_priv);
->  
->  out:
-> +	if (unlikely(flags & DRM_MASTER))
-> +		up_read(&dev->master_rwsem);
->  	if (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)) && !(flags & DRM_UNLOCKED))
->  		mutex_unlock(&drm_global_mutex);
->  	return retcode;
-> diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
-> index dee4f24a1808..bed6f7636cbe 100644
-> --- a/drivers/gpu/drm/drm_lease.c
-> +++ b/drivers/gpu/drm/drm_lease.c
-> @@ -500,6 +500,18 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  		return -EINVAL;
->  	}
->  
-> +	/* Clone the lessor file to create a new file for us */
-> +	DRM_DEBUG_LEASE("Allocating lease file\n");
-> +	lessee_file = file_clone_open(lessor_file);
-> +	if (IS_ERR(lessee_file))
-> +		return PTR_ERR(lessee_file);
+>   	u8 wa_bb_page; /* if set, page num reserved for context workarounds */
+>   
+>   	struct {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 332efea696a5..c606a4714904 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -320,6 +320,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+>   
+>   	BUILD_BUG_ON(BITS_PER_TYPE(engine->mask) < I915_NUM_ENGINES);
+>   
+> +	INIT_LIST_HEAD(&engine->pinned_contexts_list);
+>   	engine->id = id;
+>   	engine->legacy_idx = INVALID_ENGINE;
+>   	engine->mask = BIT(id);
+> @@ -875,6 +876,8 @@ intel_engine_create_pinned_context(struct intel_engine_cs *engine,
+>   		return ERR_PTR(err);
+>   	}
+>   
+> +	list_add_tail(&ce->pinned_contexts_link, &engine->pinned_contexts_list);
 > +
-> +	down_read(&dev->master_rwsem);
-> +	if (unlikely(!drm_is_current_master(lessor_priv))) {
-> +		ret = -EACCES;
-> +		goto out_file;
+>   	/*
+>   	 * Give our perma-pinned kernel timelines a separate lockdep class,
+>   	 * so that we can use them from within the normal user timelines
+> @@ -897,6 +900,7 @@ void intel_engine_destroy_pinned_context(struct intel_context *ce)
+>   	list_del(&ce->timeline->engine_link);
+>   	mutex_unlock(&hwsp->vm->mutex);
+>   
+> +	list_del(&ce->pinned_contexts_link);
+>   	intel_context_unpin(ce);
+>   	intel_context_put(ce);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index 1f07ac4e0672..dacd62773735 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -298,6 +298,29 @@ void intel_engine_init__pm(struct intel_engine_cs *engine)
+>   	intel_engine_init_heartbeat(engine);
+>   }
+>   
+> +/**
+> + * intel_engine_reset_pinned_contexts - Reset the pinned contexts of
+> + * an engine.
+> + * @engine: The engine whose pinned contexts we want to reset.
+> + *
+> + * Typically the pinned context LMEM images lose or get their content
+> + * corrupted on suspend. This function resets their images.
+> + */
+> +void intel_engine_reset_pinned_contexts(struct intel_engine_cs *engine)
+> +{
+> +	struct intel_context *ce;
+> +
+> +	list_for_each_entry(ce, &engine->pinned_contexts_list,
+> +			    pinned_contexts_link) {
+> +		/* kernel context gets reset at __engine_unpark() */
+> +		if (ce == engine->kernel_context)
+> +			continue;
+> +
+> +		dbg_poison_ce(ce);
+> +		ce->ops->reset(ce);
 > +	}
+> +}
 > +
->  	lessor = drm_file_get_master(lessor_priv);
->  	/* Do not allow sub-leases */
->  	if (lessor->lessor) {
-> @@ -547,14 +559,6 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  		goto out_leases;
->  	}
->  
-> -	/* Clone the lessor file to create a new file for us */
-> -	DRM_DEBUG_LEASE("Allocating lease file\n");
-> -	lessee_file = file_clone_open(lessor_file);
-> -	if (IS_ERR(lessee_file)) {
-> -		ret = PTR_ERR(lessee_file);
-> -		goto out_lessee;
-> -	}
-> -
->  	lessee_priv = lessee_file->private_data;
->  	/* Change the file to a master one */
->  	drm_master_put(&lessee_priv->master);
-> @@ -571,17 +575,19 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  	fd_install(fd, lessee_file);
->  
->  	drm_master_put(&lessor);
-
-Hm if we're unlucky this might be the last reference (against nasty
-userspace only), and that could then perhaps collide with us still holding
-the lock. It looks like we're fine, the only thing that drm_master_put
-might be locking is
-
-	mutex_lock(&dev->mode_config.idr_mutex);
-
-through drm_lease_destroy(). We don't care about legacy drivers and hence
-the dev->struct_mutex (plus that lock is a complete mess anyway).
-
-Maybe another patch to add a might_lock to drm_master_put, just to be
-safe?
-
-> +	up_read(&dev->master_rwsem);
->  	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl succeeded\n");
->  	return 0;
->  
-> -out_lessee:
-> -	drm_master_put(&lessee);
-> -
->  out_leases:
->  	put_unused_fd(fd);
->  
->  out_lessor:
->  	drm_master_put(&lessor);
+>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>   #include "selftest_engine_pm.c"
+>   #endif
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.h b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> index 70ea46d6cfb0..8520c595f5e1 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> @@ -69,4 +69,6 @@ intel_engine_create_kernel_request(struct intel_engine_cs *engine)
+>   
+>   void intel_engine_init__pm(struct intel_engine_cs *engine);
+>   
+> +void intel_engine_reset_pinned_contexts(struct intel_engine_cs *engine);
 > +
-> +out_file:
-> +	up_read(&dev->master_rwsem);
-> +	fput(lessee_file);
->  	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl failed: %d\n", ret);
->  	return ret;
->  }
-> @@ -705,6 +711,11 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> +	down_write(&dev->master_rwsem);
-> +	if (unlikely(!drm_is_current_master(lessor_priv))) {
-> +		ret = -EACCES;
-> +		goto unlock;
+>   #endif /* INTEL_ENGINE_PM_H */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index bfbfe53c23dd..5ae1207c363b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -307,6 +307,13 @@ struct intel_engine_cs {
+>   
+>   	struct intel_context *kernel_context; /* pinned */
+>   
+> +	/**
+> +	 * pinned_contexts_list: List of pinned contexts. This list is only
+> +	 * assumed to be manipulated during driver load- or unload time and
+> +	 * does therefore not have any additional protection.
+> +	 */
+> +	struct list_head pinned_contexts_list;
+> +
+>   	intel_engine_mask_t saturated; /* submitting semaphores too late? */
+>   
+>   	struct {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index dea8e2479897..c9bae2ef92df 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -192,6 +192,9 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+>   
+>   	intel_rps_sanitize(&gt->rps);
+>   
+> +	for_each_engine(engine, gt, id)
+> +		intel_engine_reset_pinned_contexts(engine);
+> +
+>   	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
+>   	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
+> index 2c1af030310c..8a14982a9691 100644
+> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
+> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+> @@ -376,6 +376,7 @@ int mock_engine_init(struct intel_engine_cs *engine)
+>   {
+>   	struct intel_context *ce;
+>   
+> +	INIT_LIST_HEAD(&engine->pinned_contexts_list);
+>   	engine->sched_engine = i915_sched_engine_create(ENGINE_MOCK);
+>   	if (!engine->sched_engine)
+>   		return -ENOMEM;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 87d8dc8f51b9..55709206b95e 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -2385,9 +2385,13 @@ static inline void guc_init_lrc_mapping(struct intel_guc *guc)
+>   	 * and even it did this code would be run again.
+>   	 */
+>   
+> -	for_each_engine(engine, gt, id)
+> -		if (engine->kernel_context)
+> -			guc_kernel_context_pin(guc, engine->kernel_context);
+> +	for_each_engine(engine, gt, id) {
+> +		struct intel_context *ce;
+> +
+> +		list_for_each_entry(ce, &engine->pinned_contexts_list,
+> +				    pinned_contexts_link)
+> +			guc_kernel_context_pin(guc, ce);
 > +	}
->  	lessor = drm_file_get_master(lessor_priv);
->  	mutex_lock(&dev->mode_config.idr_mutex);
->  
-> @@ -728,5 +739,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
->  	mutex_unlock(&dev->mode_config.idr_mutex);
->  	drm_master_put(&lessor);
->  
-> +unlock:
-> +	up_write(&dev->master_rwsem);
->  	return ret;
->  }
-> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> index 142fb2f6e74d..7d32bb69e6db 100644
-> --- a/include/drm/drm_device.h
-> +++ b/include/drm/drm_device.h
-> @@ -151,6 +151,11 @@ struct drm_device {
->  	 * Lock for &drm_device.master, &drm_file.was_master,
->  	 * &drm_file.is_master, &drm_file.master, &drm_master.unique,
->  	 * &drm_master.unique_len, and &drm_master.magic_map.
-> +	 *
-> +	 * Additionally, synchronizes modesetting rights between multiple users.
-
-Current modern drives only use this for modesetting rights, but this is
-about anything which is exclusively owned by the drm_master. So maybe
-reword to "synchronizes access rights to exclusive resources like
-modesetting access".
-
-With that clarified:
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-The other suggestions are for follow-up patches, if you feel like.
--Daniel
-
-> +	 * Users that can change the modeset or display state must hold a read
-> +	 * lock on @master_rwsem, and users that change modesetting rights
-> +	 * should hold a write lock.
->  	 */
->  	struct rw_semaphore master_rwsem;
->  
-> -- 
-> 2.25.1
+>   }
+>   
+>   static void guc_release(struct intel_engine_cs *engine)
 > 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
