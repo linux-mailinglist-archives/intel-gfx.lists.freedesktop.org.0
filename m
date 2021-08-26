@@ -2,93 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C283F88AD
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 15:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D2E13F8900
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 15:32:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BACB6E852;
-	Thu, 26 Aug 2021 13:21:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 021516E852;
+	Thu, 26 Aug 2021 13:31:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59EEB6E84E
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 13:21:35 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id g22so4602897edy.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 06:21:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=TxfiEIe6eIG99L/9AfDBHVmVBkfgPglsSXR5sODEUTM=;
- b=JeZOpMBPrMFqAhCIHrdE90EhgIdrglp/6vUOYgkpJ8dcO5EvdeP+JRsxzCiretUvYB
- 9fBKkWS6luEYYVwIAfMLJk2FuYqqCtPEr4K4/mlNXtxS5xRUTlU635eDOZUytQaE5Oic
- 0+bfMhgqgVtdFiXm2ee0mhYwLBANl23Z0k2Bk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=TxfiEIe6eIG99L/9AfDBHVmVBkfgPglsSXR5sODEUTM=;
- b=dzSKzzl+6ACXrrce/UTHQsekWVaCnlkpn6OXGJ8WUrTv85ckRMLxiJmxIkMC3wcJUV
- 3lewfBiGGvGuvkKhlzbqC/ES9HQWfGYfQ0e95XJySnm3BrejptH8TXtDkKeJ4uFjqTpo
- MHRok6u9Y9mxwLy7RKjYua1jdWo9HnX5St4DjZq7Uk20kxQJgq7dLr3z8MdUGWROlz/e
- DgaVTVw8IxibKtL6b4OIRkzqfl6PGj1X4WpyOA97ZH8H4CwOIDQa4agiWtWR8yU89rxm
- CRvGXr1vFia6V25/p1oa1gkd3OmQOnKgcu6LB7awjSNGTwkDv+8gPUKJ3YH5VB918BZg
- zHBQ==
-X-Gm-Message-State: AOAM532tlmh7eOkSUjl28nvl+xrtHaxyrNeuwkJElYMa080m6arRf4x0
- FxMo8oIoxL1UyX4yQhIc7WyQhg==
-X-Google-Smtp-Source: ABdhPJxuBt63i76/FDDuggib/5nLGVpCybrV6wO6DOs0AajcC01292l/57ybcAJi0zvvjurHX4GNLQ==
-X-Received: by 2002:aa7:d40b:: with SMTP id z11mr4171030edq.224.1629984093722; 
- Thu, 26 Aug 2021 06:21:33 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id m24sm1360160ejr.41.2021.08.26.06.21.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Aug 2021 06:21:32 -0700 (PDT)
-Date: Thu, 26 Aug 2021 15:21:30 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch,
- sumit.semwal@linaro.org, christian.koenig@amd.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, chris@chris-wilson.co.uk,
- ville.syrjala@linux.intel.com, matthew.auld@intel.com,
- dan.carpenter@oracle.com, tvrtko.ursulin@intel.com,
- matthew.d.roper@intel.com, lucas.demarchi@intel.com,
- karthik.b.s@intel.com, jose.souza@intel.com,
- manasi.d.navare@intel.com, airlied@redhat.com,
- aditya.swarup@intel.com, andrescj@chromium.org,
- linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
-Message-ID: <YSeVWivR6p9spRQn@phenom.ffwll.local>
-Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
- christian.koenig@amd.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- chris@chris-wilson.co.uk, ville.syrjala@linux.intel.com,
- matthew.auld@intel.com, dan.carpenter@oracle.com,
- tvrtko.ursulin@intel.com, matthew.d.roper@intel.com,
- lucas.demarchi@intel.com, karthik.b.s@intel.com,
- jose.souza@intel.com, manasi.d.navare@intel.com, airlied@redhat.com,
- aditya.swarup@intel.com, andrescj@chromium.org,
- linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org
-References: <20210826020122.1488002-1-desmondcheongzx@gmail.com>
- <20210826020122.1488002-8-desmondcheongzx@gmail.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD5066E852;
+ Thu, 26 Aug 2021 13:31:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="204875724"
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="204875724"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 06:31:57 -0700
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="686973823"
+Received: from lapeders-mobl.ger.corp.intel.com (HELO [10.249.254.132])
+ ([10.249.254.132])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 06:31:54 -0700
+Message-ID: <fe6ffb91c2f562f50c66bc02e993d993280d0456.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Brost Matthew
+ <matthew.brost@intel.com>,  Chris Wilson <chris@chris-wilson.co.uk>
+Date: Thu, 26 Aug 2021 15:31:52 +0200
+In-Reply-To: <2722f768-f73c-1501-996f-c009eab660a1@linux.intel.com>
+References: <20210826104514.400352-1-thomas.hellstrom@linux.intel.com>
+ <2722f768-f73c-1501-996f-c009eab660a1@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210826020122.1488002-8-desmondcheongzx@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v8 7/7] drm: remove
- drm_file.master_lookup_lock
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Register the migrate
+ contexts with their engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,294 +54,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 26, 2021 at 10:01:22AM +0800, Desmond Cheong Zhi Xi wrote:
-> Previously, master_lookup_lock was introduced in
-> commit 0b0860a3cf5e ("drm: serialize drm_file.master with a new
-> spinlock") to serialize accesses to drm_file.master. This then allowed
-> us to write drm_file_get_master in commit 56f0729a510f ("drm: protect
-> drm_master pointers in drm_lease.c").
+On Thu, 2021-08-26 at 14:04 +0100, Tvrtko Ursulin wrote:
 > 
-> The rationale behind introducing a new spinlock at the time was that
-> the other lock that could have been used (drm_device.master_mutex) was
-> the outermost lock, so embedding calls to drm_file_get_master and
-> drm_is_current_master in various functions easily caused us to invert
-> the lock hierarchy.
+> On 26/08/2021 11:45, Thomas Hellström wrote:
+> > Pinned contexts, like the migrate contexts need reset after resume
+> > since their context image may have been lost. Also the GuC needs to
+> > register pinned contexts.
 > 
-> Following the conversion of master_mutex into a rwsem, and its use to
-> plug races with modesetting rights, we've untangled some lock
-> hierarchies and removed the need for using drm_file_get_master and the
-> unlocked version of drm_is_current_master in multiple places.
+> So kernel context can get corrupt because we park the GPU with it 
+> active. Blitter context for a different reason - which is that it is 
+> used to copy itself over to smem, no?
 > 
-> Hence, we can take this opportunity to clean up the locking design by
-> replacing master_lookup_lock with drm_device.master_rwsem.
+> If that is correct, then why bother copying the blitter context in
+> the 
+> first place and not just always re-create it on resume?
 > 
-> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-> ---
->  drivers/gpu/drm/drm_auth.c     | 19 +++++++------------
->  drivers/gpu/drm/drm_file.c     |  1 -
->  drivers/gpu/drm/drm_internal.h |  1 +
->  drivers/gpu/drm/drm_ioctl.c    |  4 ++--
->  drivers/gpu/drm/drm_lease.c    | 18 ++++++++----------
->  include/drm/drm_file.h         |  9 +--------
->  6 files changed, 19 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-> index f2b2f197052a..232416119407 100644
-> --- a/drivers/gpu/drm/drm_auth.c
-> +++ b/drivers/gpu/drm/drm_auth.c
-> @@ -61,10 +61,9 @@
->   * trusted clients.
->   */
->  
-> -static bool drm_is_current_master_locked(struct drm_file *fpriv)
-> +bool drm_is_current_master_locked(struct drm_file *fpriv)
->  {
-> -	lockdep_assert_once(lockdep_is_held(&fpriv->master_lookup_lock) ||
-> -			    lockdep_is_held(&fpriv->minor->dev->master_rwsem));
-> +	lockdep_assert_held_once(&fpriv->minor->dev->master_rwsem);
->  
->  	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
->  }
-> @@ -83,9 +82,9 @@ bool drm_is_current_master(struct drm_file *fpriv)
->  {
->  	bool ret;
->  
-> -	spin_lock(&fpriv->master_lookup_lock);
-> +	down_read(&fpriv->minor->dev->master_rwsem);
+> That would be along the lines of marking the backing store as
+> "dontneed" 
+> (however the exact mechanics of that look these days) so suspend can 
+> skip them.
 
-Looking at the 3 patches and the need to have a locked version of pretty
-much everything I'm wondering: Can't we just drop the spinlock completely,
-and everywhere we've taking it thus far replace it with a
-lockdep_assert_held_once?
+I think that is marking the object with I915_BO_ALLOC_VOLATILE. However
+I assume this follows the rule of the internal backend objects:
+Contents are valid while pinned (or locked), and these images are
+indeed pinned on suspend so we need to come up with something else.
+Perhaps I915_BO_ALLOC_PM_NOSAVE for the context images (and engine
+status pages?) I915_BO_ALLOC_PM_MEMCPY for the migrate vm pagetables
+only. The latter will come in handy also for supporting small apertures
+where we need to pin these in the mappable area.
 
-The thing is, if there's any path left that doesn't hold the rwsem in at
-least read mode we have a bug. And the right way to fix such a bug is to
-grab the rwsem sufficiently high up in the callchain. That way I think we
-should be able to avoid all these tedious changes to everything, including
-touching i915 and vmwgfx drivers.
-
-Or am I missing something big time?
--Daniel
-
->  	ret = drm_is_current_master_locked(fpriv);
-> -	spin_unlock(&fpriv->master_lookup_lock);
-> +	up_read(&fpriv->minor->dev->master_rwsem);
->  
->  	return ret;
->  }
-> @@ -120,7 +119,7 @@ int drm_authmagic(struct drm_device *dev, void *data,
->  	DRM_DEBUG("%u\n", auth->magic);
->  
->  	down_write(&dev->master_rwsem);
-> -	if (unlikely(!drm_is_current_master(file_priv))) {
-> +	if (unlikely(!drm_is_current_master_locked(file_priv))) {
->  		up_write(&dev->master_rwsem);
->  		return -EACCES;
->  	}
-> @@ -178,9 +177,7 @@ static int drm_new_set_master(struct drm_device *dev, struct drm_file *fpriv)
->  	new_master = drm_master_create(dev);
->  	if (!new_master)
->  		return -ENOMEM;
-> -	spin_lock(&fpriv->master_lookup_lock);
->  	fpriv->master = new_master;
-> -	spin_unlock(&fpriv->master_lookup_lock);
->  
->  	fpriv->is_master = 1;
->  	fpriv->authenticated = 1;
-> @@ -343,9 +340,7 @@ int drm_master_open(struct drm_file *file_priv)
->  	if (!dev->master) {
->  		ret = drm_new_set_master(dev, file_priv);
->  	} else {
-> -		spin_lock(&file_priv->master_lookup_lock);
->  		file_priv->master = drm_master_get(dev->master);
-> -		spin_unlock(&file_priv->master_lookup_lock);
->  	}
->  	up_write(&dev->master_rwsem);
->  
-> @@ -413,13 +408,13 @@ struct drm_master *drm_file_get_master(struct drm_file *file_priv)
->  	if (!file_priv)
->  		return NULL;
->  
-> -	spin_lock(&file_priv->master_lookup_lock);
-> +	down_read(&file_priv->minor->dev->master_rwsem);
->  	if (!file_priv->master)
->  		goto unlock;
->  	master = drm_master_get(file_priv->master);
->  
->  unlock:
-> -	spin_unlock(&file_priv->master_lookup_lock);
-> +	up_read(&file_priv->minor->dev->master_rwsem);
->  	return master;
->  }
->  EXPORT_SYMBOL(drm_file_get_master);
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> index 90b62f360da1..8c846e0179d7 100644
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
-> @@ -176,7 +176,6 @@ struct drm_file *drm_file_alloc(struct drm_minor *minor)
->  	init_waitqueue_head(&file->event_wait);
->  	file->event_space = 4096; /* set aside 4k for event buffer */
->  
-> -	spin_lock_init(&file->master_lookup_lock);
->  	mutex_init(&file->event_read_lock);
->  
->  	if (drm_core_check_feature(dev, DRIVER_GEM))
-> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-> index 17f3548c8ed2..5d421f749a17 100644
-> --- a/drivers/gpu/drm/drm_internal.h
-> +++ b/drivers/gpu/drm/drm_internal.h
-> @@ -132,6 +132,7 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
->  				  struct drm_file *filp);
->  
->  /* drm_auth.c */
-> +bool drm_is_current_master_locked(struct drm_file *fpriv);
->  int drm_getmagic(struct drm_device *dev, void *data,
->  		 struct drm_file *file_priv);
->  int drm_authmagic(struct drm_device *dev, void *data,
-> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-> index 8bea39ffc5c0..c728437466c3 100644
-> --- a/drivers/gpu/drm/drm_ioctl.c
-> +++ b/drivers/gpu/drm/drm_ioctl.c
-> @@ -386,7 +386,7 @@ static int drm_setversion(struct drm_device *dev, void *data, struct drm_file *f
->  	int if_version, retcode = 0;
->  
->  	down_write(&dev->master_rwsem);
-> -	if (unlikely(!drm_is_current_master(file_priv))) {
-> +	if (unlikely(!drm_is_current_master_locked(file_priv))) {
->  		retcode = -EACCES;
->  		goto unlock;
->  	}
-> @@ -540,7 +540,7 @@ static int drm_ioctl_permit(u32 flags, struct drm_file *file_priv)
->  
->  	/* MASTER is only for master or control clients */
->  	if (unlikely((flags & DRM_MASTER) &&
-> -		     !drm_is_current_master(file_priv)))
-> +		     !drm_is_current_master_locked(file_priv)))
->  		return -EACCES;
->  
->  	/* Render clients must be explicitly allowed */
-> diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
-> index 15bf3a3c76d1..0eecf320b1ab 100644
-> --- a/drivers/gpu/drm/drm_lease.c
-> +++ b/drivers/gpu/drm/drm_lease.c
-> @@ -498,12 +498,12 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  		return PTR_ERR(lessee_file);
->  
->  	down_read(&dev->master_rwsem);
-> -	if (unlikely(!drm_is_current_master(lessor_priv))) {
-> +	if (unlikely(!drm_is_current_master_locked(lessor_priv))) {
->  		ret = -EACCES;
->  		goto out_file;
->  	}
->  
-> -	lessor = drm_file_get_master(lessor_priv);
-> +	lessor = lessor_priv->master;
->  	/* Do not allow sub-leases */
->  	if (lessor->lessor) {
->  		DRM_DEBUG_LEASE("recursive leasing not allowed\n");
-> @@ -565,7 +565,6 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  	/* Hook up the fd */
->  	fd_install(fd, lessee_file);
->  
-> -	drm_master_put(&lessor);
->  	up_read(&dev->master_rwsem);
->  	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl succeeded\n");
->  	return 0;
-> @@ -600,7 +599,8 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> -	lessor = drm_file_get_master(lessor_priv);
-> +	lockdep_assert_held_once(&dev->master_rwsem);
-> +	lessor = lessor_priv->master;
->  	DRM_DEBUG_LEASE("List lessees for %d\n", lessor->lessee_id);
->  
->  	mutex_lock(&dev->mode_config.idr_mutex);
-> @@ -624,7 +624,6 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
->  		arg->count_lessees = count;
->  
->  	mutex_unlock(&dev->mode_config.idr_mutex);
-> -	drm_master_put(&lessor);
->  
->  	return ret;
->  }
-> @@ -650,7 +649,8 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> -	lessee = drm_file_get_master(lessee_priv);
-> +	lockdep_assert_held_once(&dev->master_rwsem);
-> +	lessee = lessee_priv->master;
->  	DRM_DEBUG_LEASE("get lease for %d\n", lessee->lessee_id);
->  
->  	mutex_lock(&dev->mode_config.idr_mutex);
-> @@ -678,7 +678,6 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
->  		arg->count_objects = count;
->  
->  	mutex_unlock(&dev->mode_config.idr_mutex);
-> -	drm_master_put(&lessee);
->  
->  	return ret;
->  }
-> @@ -703,11 +702,11 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
->  		return -EOPNOTSUPP;
->  
->  	down_write(&dev->master_rwsem);
-> -	if (unlikely(!drm_is_current_master(lessor_priv))) {
-> +	if (unlikely(!drm_is_current_master_locked(lessor_priv))) {
->  		ret = -EACCES;
->  		goto unlock;
->  	}
-> -	lessor = drm_file_get_master(lessor_priv);
-> +	lessor = lessor_priv->master;
->  	mutex_lock(&dev->mode_config.idr_mutex);
->  
->  	lessee = _drm_find_lessee(lessor, arg->lessee_id);
-> @@ -728,7 +727,6 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
->  
->  fail:
->  	mutex_unlock(&dev->mode_config.idr_mutex);
-> -	drm_master_put(&lessor);
->  
->  unlock:
->  	up_write(&dev->master_rwsem);
-> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> index d12bb2ba7814..e2d49fe3e32d 100644
-> --- a/include/drm/drm_file.h
-> +++ b/include/drm/drm_file.h
-> @@ -227,16 +227,12 @@ struct drm_file {
->  	 * @master:
->  	 *
->  	 * Master this node is currently associated with. Protected by struct
-> -	 * &drm_device.master_rwsem, and serialized by @master_lookup_lock.
-> +	 * &drm_device.master_rwsem.
->  	 *
->  	 * Only relevant if drm_is_primary_client() returns true. Note that
->  	 * this only matches &drm_device.master if the master is the currently
->  	 * active one.
->  	 *
-> -	 * To update @master, both &drm_device.master_rwsem and
-> -	 * @master_lookup_lock need to be held, therefore holding either of
-> -	 * them is safe and enough for the read side.
-> -	 *
->  	 * When dereferencing this pointer, either hold struct
->  	 * &drm_device.master_rwsem for the duration of the pointer's use, or
->  	 * use drm_file_get_master() if struct &drm_device.master_rwsem is not
-> @@ -248,9 +244,6 @@ struct drm_file {
->  	 */
->  	struct drm_master *master;
->  
-> -	/** @master_lock: Serializes @master. */
-> -	spinlock_t master_lookup_lock;
-> -
->  	/** @pid: Process that opened this file. */
->  	struct pid *pid;
->  
-> -- 
-> 2.25.1
 > 
+> > Add a list to struct intel_engine_cs where we add all pinned
+> > contexts on
+> > creation, and traverse that list at resume time to reset the pinned
+> > contexts.
+> > 
+> > This fixes the kms_pipe_crc_basic@suspend-read-crc-pipe-a selftest
+> > for now,
+> > but proper LMEM backup / restore is needed for full suspend
+> > functionality.
+> > However, note that even with full LMEM backup / restore it may be
+> > desirable to keep the reset since backing up the migrate context
+> > images
+> > must happen using memcpy() after the migrate context has become
+> > inactive,
+> > and for performance- and other reasons we want to avoid memcpy()
+> > from
+> > LMEM.
+> 
+> Hm I guess this talks about the issue - so are these images migrated
+> at 
+> all today or not?
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+My current WIP backs them up. But with something like the above flags,
+that's easily changed. Suggestions welcome.
+
+/Thomas
+
+
