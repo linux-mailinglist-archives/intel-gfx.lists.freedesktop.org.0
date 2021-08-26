@@ -1,48 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EE13F822C
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 07:54:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1367F3F822E
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 07:59:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9EF889AC9;
-	Thu, 26 Aug 2021 05:54:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65D06E4F1;
+	Thu, 26 Aug 2021 05:59:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F59689AC9
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 05:54:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="239866380"
-X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="239866380"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEA3F6E4F1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 05:59:45 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="239867092"
+X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="239867092"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 22:54:49 -0700
+ 25 Aug 2021 22:59:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="684777187"
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
- by fmsmga006.fm.intel.com with ESMTP; 25 Aug 2021 22:54:48 -0700
+X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="598371283"
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
+ by fmsmga001.fm.intel.com with ESMTP; 25 Aug 2021 22:59:44 -0700
 Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 26 Aug 2021 06:54:46 +0100
+ 15.1.2242.10; Thu, 26 Aug 2021 06:59:43 +0100
 Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
  BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.010;
- Thu, 26 Aug 2021 11:24:45 +0530
+ Thu, 26 Aug 2021 11:29:42 +0530
 From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "intel-gfx@lists.freedesktop.org"
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "Chiou, Cooper" <cooper.chiou@intel.com>,
- "Tseng, William" <william.tseng@intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>
-Thread-Topic: [v4 3/7] drm/i915/dsi: wait for header and payload credit
- available
-Thread-Index: AQHXj5B3xhtZJuPJ0E+4ha7mgx4eLauFXcVQ
-Date: Thu, 26 Aug 2021 05:54:45 +0000
-Message-ID: <73675ce3e86b42c9ba70bd95354d17e3@intel.com>
-References: <20210812154237.13911-1-shawn.c.lee@intel.com>
- <20210812154237.13911-4-shawn.c.lee@intel.com>
-In-Reply-To: <20210812154237.13911-4-shawn.c.lee@intel.com>
+Thread-Topic: [v2] drm/i915/dsi/xelpd: Add WA to program LP to HS wakeup
+ guardband
+Thread-Index: AQHXl9i3dqRtpcRWPkicLvm9xUF+YauD6XMAgAFlwwA=
+Date: Thu, 26 Aug 2021 05:59:41 +0000
+Message-ID: <dc4ddc0899954b76852d7308f617fb2c@intel.com>
+References: <20210823032136.2564-2-vandita.kulkarni@intel.com>
+ <20210823043837.24517-1-vandita.kulkarni@intel.com>
+ <87ilztehwl.fsf@intel.com>
+In-Reply-To: <87ilztehwl.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -54,8 +51,8 @@ x-originating-ip: [10.223.10.1]
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v4 3/7] drm/i915/dsi: wait for header and payload
- credit available
+Subject: Re: [Intel-gfx] [v2] drm/i915/dsi/xelpd: Add WA to program LP to HS
+ wakeup guardband
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,149 +68,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Thanks for the review. Have fixed in the latest version, will merge once CI=
+ is green.
 > -----Original Message-----
-> From: Lee, Shawn C <shawn.c.lee@intel.com>
-> Sent: Thursday, August 12, 2021 9:13 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; ville.syrjala@linux.intel.com;
-> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Chiou, Cooper
-> <cooper.chiou@intel.com>; Tseng, William <william.tseng@intel.com>; Lee,
-> Shawn C <shawn.c.lee@intel.com>; Jani Nikula <jani.nikula@linux.intel.com=
->
-> Subject: [v4 3/7] drm/i915/dsi: wait for header and payload credit availa=
-ble
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Wednesday, August 25, 2021 7:38 PM
+> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
+> gfx@lists.freedesktop.org
+> Cc: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> Subject: Re: [v2] drm/i915/dsi/xelpd: Add WA to program LP to HS wakeup
+> guardband
 >=20
-> Driver should wait for free header or payload buffer in FIFO.
-> It would be good to wait a while for HW to release credit before give it =
-up to
-> write to HW. Without sending initailize command sets completely. It would
-> caused MIPI display can't light up properly.
+> On Mon, 23 Aug 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
+> > Wa_16012360555 SW will have to program the "LP to HS Wakeup
+> Guardband"
+> > field to account for the repeaters on the HS Request/Ready PPI
+> > signaling between the Display engine and the DPHY.
+> >
+> > v2: Fix build issue.
+> >
+> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/icl_dsi.c | 25
+> +++++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/i915_reg.h        |  8 ++++++++
+> >  2 files changed, 33 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > index 43ec7fcd3f5d..b075defb88bb 100644
+> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > @@ -1270,6 +1270,28 @@ static void icl_apply_kvmr_pipe_a_wa(struct
+> intel_encoder *encoder,
+> >  			     IGNORE_KVMR_PIPE_A,
+> >  			     enable ? IGNORE_KVMR_PIPE_A : 0);  }
+> > +
+> > +/*
+> > + * Wa_16012360555:ADLP
 >=20
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: William Tseng <william.tseng@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-
-Looks good to me.
-Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 40 ++++++++++++--------------
->  1 file changed, 19 insertions(+), 21 deletions(-)
+> It should be adl-p, i.e. lower case and with a hyphen.
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 43ec7fcd3f5d..1780830d9909 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -54,20 +54,28 @@ static int payload_credits_available(struct
-> drm_i915_private *dev_priv,
->  		>> FREE_PLOAD_CREDIT_SHIFT;
->  }
+> > + * SW will have to program the "LP to HS Wakeup Guardband"
+> > + * field (bits 15:12) of register offset 0x6B0C0 (DSI0)
+> > + * and 0x6B8C0 (DSI1) to a value of 4 to account for the repeaters
+> > + * on the HS Request/Ready PPI signaling between
+> > + * the Display engine and the DPHY.
+> > + */
 >=20
-> -static void wait_for_header_credits(struct drm_i915_private *dev_priv,
-> -				    enum transcoder dsi_trans)
-> +static bool wait_for_header_credits(struct drm_i915_private *dev_priv,
-> +				    enum transcoder dsi_trans, int hdr_credit)
->  {
->  	if (wait_for_us(header_credits_available(dev_priv, dsi_trans) >=3D
-> -			MAX_HEADER_CREDIT, 100))
-> +			hdr_credit, 100)) {
->  		drm_err(&dev_priv->drm, "DSI header credits not
-> released\n");
-> +		return false;
-> +	}
-> +
-> +	return true;
->  }
+> I think that's a bit verbose for the comment. In particular the register
+> addresses and bits and values are redundant with the code.
 >=20
-> -static void wait_for_payload_credits(struct drm_i915_private *dev_priv,
-> -				     enum transcoder dsi_trans)
-> +static bool wait_for_payload_credits(struct drm_i915_private *dev_priv,
-> +				     enum transcoder dsi_trans, int
-> payld_credit)
->  {
->  	if (wait_for_us(payload_credits_available(dev_priv, dsi_trans) >=3D
-> -			MAX_PLOAD_CREDIT, 100))
-> +			payld_credit, 100)) {
->  		drm_err(&dev_priv->drm, "DSI payload credits not
-> released\n");
-> +		return false;
-> +	}
-> +
-> +	return true;
->  }
+> > +static void adlp_set_lp_hs_wakeup_gb(struct intel_encoder *encoder) {
+> > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
 >=20
->  static enum transcoder dsi_port_to_transcoder(enum port port) @@ -90,8
-> +98,8 @@ static void wait_for_cmds_dispatched_to_panel(struct
-> intel_encoder *encoder)
->  	/* wait for header/payload credits to be released */
->  	for_each_dsi_port(port, intel_dsi->ports) {
->  		dsi_trans =3D dsi_port_to_transcoder(port);
-> -		wait_for_header_credits(dev_priv, dsi_trans);
-> -		wait_for_payload_credits(dev_priv, dsi_trans);
-> +		wait_for_header_credits(dev_priv, dsi_trans,
-> MAX_HEADER_CREDIT);
-> +		wait_for_payload_credits(dev_priv, dsi_trans,
-> MAX_PLOAD_CREDIT);
->  	}
+> i915 variable name is preferred for all new code.
 >=20
->  	/* send nop DCS command */
-> @@ -108,7 +116,7 @@ static void
-> wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
->  	/* wait for header credits to be released */
->  	for_each_dsi_port(port, intel_dsi->ports) {
->  		dsi_trans =3D dsi_port_to_transcoder(port);
-> -		wait_for_header_credits(dev_priv, dsi_trans);
-> +		wait_for_header_credits(dev_priv, dsi_trans,
-> MAX_HEADER_CREDIT);
->  	}
+> > +	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
+> > +	enum port port;
+> > +
+> > +	if (DISPLAY_VER(dev_priv) =3D=3D 13) {
+> > +		for_each_dsi_port(port, intel_dsi->ports)
+> > +			intel_de_rmw(dev_priv, TGL_DSI_CHKN_REG(port),
+> > +				     TGL_DSI_CHKN_LSHS_GB, 0x4);
+> > +	}
+> > +}
+> > +
+> >  static void gen11_dsi_enable(struct intel_atomic_state *state,
+> >  			     struct intel_encoder *encoder,
+> >  			     const struct intel_crtc_state *crtc_state, @@ -
+> 1283,6 +1305,9
+> > @@ static void gen11_dsi_enable(struct intel_atomic_state *state,
+> >  	/* Wa_1409054076:icl,jsl,ehl */
+> >  	icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, true);
+> >
+> > +	/* Wa_16012360555: adlp */
 >=20
->  	/* wait for LP TX in progress bit to be cleared */ @@ -126,18 +134,13
-> @@ static bool add_payld_to_queue(struct intel_dsi_host *host, const u8
-> *data,
->  	struct intel_dsi *intel_dsi =3D host->intel_dsi;
->  	struct drm_i915_private *dev_priv =3D to_i915(intel_dsi-
-> >base.base.dev);
->  	enum transcoder dsi_trans =3D dsi_port_to_transcoder(host->port);
-> -	int free_credits;
->  	int i, j;
+> No space after : and adl-p.
 >=20
->  	for (i =3D 0; i < len; i +=3D 4) {
->  		u32 tmp =3D 0;
+> > +	adlp_set_lp_hs_wakeup_gb(encoder);
+> > +
+> >  	/* step6d: enable dsi transcoder */
+> >  	gen11_dsi_enable_transcoder(encoder);
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > b/drivers/gpu/drm/i915/i915_reg.h index 72dd3a6d205d..4c90d45343d6
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -11614,6 +11614,14 @@ enum skl_power_gate {
+> >  						    _ICL_DSI_IO_MODECTL_1)
+> >  #define  COMBO_PHY_MODE_DSI				(1 << 0)
+> >
+> > +/* TGL DSI Chicken register */
+> > +#define _TGL_DSI_CHKN_REG_0			0x6B0C0
+> > +#define _TGL_DSI_CHKN_REG_1			0x6B8C0
+> > +#define TGL_DSI_CHKN_REG(port)		_MMIO_PORT(port,	\
+> > +						    _TGL_DSI_CHKN_REG_0, \
+> > +						    _TGL_DSI_CHKN_REG_1)
+> > +#define TGL_DSI_CHKN_LSHS_GB			(0xF << 12)
 >=20
-> -		free_credits =3D payload_credits_available(dev_priv,
-> dsi_trans);
-> -		if (free_credits < 1) {
-> -			drm_err(&dev_priv->drm,
-> -				"Payload credit not available\n");
-> +		if (!wait_for_payload_credits(dev_priv, dsi_trans, 1))
->  			return false;
-> -		}
+> Please use REG_GENMASK(15, 12)
 >=20
->  		for (j =3D 0; j < min_t(u32, len - i, 4); j++)
->  			tmp |=3D *data++ << 8 * j;
-> @@ -155,15 +158,10 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host
-> *host,
->  	struct drm_i915_private *dev_priv =3D to_i915(intel_dsi-
-> >base.base.dev);
->  	enum transcoder dsi_trans =3D dsi_port_to_transcoder(host->port);
->  	u32 tmp;
-> -	int free_credits;
+> With the issues fixed,
 >=20
->  	/* check if header credit available */
-> -	free_credits =3D header_credits_available(dev_priv, dsi_trans);
-> -	if (free_credits < 1) {
-> -		drm_err(&dev_priv->drm,
-> -			"send pkt header failed, not enough hdr credits\n");
-> +	if (!wait_for_header_credits(dev_priv, dsi_trans, 1))
->  		return -1;
-> -	}
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 >=20
->  	tmp =3D intel_de_read(dev_priv, DSI_CMD_TXHDR(dsi_trans));
+>=20
+> > +
+> >  /* Display Stream Splitter Control */
+> >  #define DSS_CTL1				_MMIO(0x67400)
+> >  #define  SPLITTER_ENABLE			(1 << 31)
 >=20
 > --
-> 2.17.1
-
+> Jani Nikula, Intel Open Source Graphics Center
