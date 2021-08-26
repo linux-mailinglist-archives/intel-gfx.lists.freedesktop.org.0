@@ -2,34 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD693F88A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 15:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C283F88AD
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 15:21:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD2F6E84B;
-	Thu, 26 Aug 2021 13:18:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BACB6E852;
+	Thu, 26 Aug 2021 13:21:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 897CB6E84B;
- Thu, 26 Aug 2021 13:17:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 810CAA66C8;
- Thu, 26 Aug 2021 13:17:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59EEB6E84E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 13:21:35 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id g22so4602897edy.12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 06:21:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=TxfiEIe6eIG99L/9AfDBHVmVBkfgPglsSXR5sODEUTM=;
+ b=JeZOpMBPrMFqAhCIHrdE90EhgIdrglp/6vUOYgkpJ8dcO5EvdeP+JRsxzCiretUvYB
+ 9fBKkWS6luEYYVwIAfMLJk2FuYqqCtPEr4K4/mlNXtxS5xRUTlU635eDOZUytQaE5Oic
+ 0+bfMhgqgVtdFiXm2ee0mhYwLBANl23Z0k2Bk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=TxfiEIe6eIG99L/9AfDBHVmVBkfgPglsSXR5sODEUTM=;
+ b=dzSKzzl+6ACXrrce/UTHQsekWVaCnlkpn6OXGJ8WUrTv85ckRMLxiJmxIkMC3wcJUV
+ 3lewfBiGGvGuvkKhlzbqC/ES9HQWfGYfQ0e95XJySnm3BrejptH8TXtDkKeJ4uFjqTpo
+ MHRok6u9Y9mxwLy7RKjYua1jdWo9HnX5St4DjZq7Uk20kxQJgq7dLr3z8MdUGWROlz/e
+ DgaVTVw8IxibKtL6b4OIRkzqfl6PGj1X4WpyOA97ZH8H4CwOIDQa4agiWtWR8yU89rxm
+ CRvGXr1vFia6V25/p1oa1gkd3OmQOnKgcu6LB7awjSNGTwkDv+8gPUKJ3YH5VB918BZg
+ zHBQ==
+X-Gm-Message-State: AOAM532tlmh7eOkSUjl28nvl+xrtHaxyrNeuwkJElYMa080m6arRf4x0
+ FxMo8oIoxL1UyX4yQhIc7WyQhg==
+X-Google-Smtp-Source: ABdhPJxuBt63i76/FDDuggib/5nLGVpCybrV6wO6DOs0AajcC01292l/57ybcAJi0zvvjurHX4GNLQ==
+X-Received: by 2002:aa7:d40b:: with SMTP id z11mr4171030edq.224.1629984093722; 
+ Thu, 26 Aug 2021 06:21:33 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id m24sm1360160ejr.41.2021.08.26.06.21.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Aug 2021 06:21:32 -0700 (PDT)
+Date: Thu, 26 Aug 2021 15:21:30 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch,
+ sumit.semwal@linaro.org, christian.koenig@amd.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, chris@chris-wilson.co.uk,
+ ville.syrjala@linux.intel.com, matthew.auld@intel.com,
+ dan.carpenter@oracle.com, tvrtko.ursulin@intel.com,
+ matthew.d.roper@intel.com, lucas.demarchi@intel.com,
+ karthik.b.s@intel.com, jose.souza@intel.com,
+ manasi.d.navare@intel.com, airlied@redhat.com,
+ aditya.swarup@intel.com, andrescj@chromium.org,
+ linux-graphics-maintainer@vmware.com, zackr@vmware.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+Message-ID: <YSeVWivR6p9spRQn@phenom.ffwll.local>
+Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
+ christian.koenig@amd.com, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ chris@chris-wilson.co.uk, ville.syrjala@linux.intel.com,
+ matthew.auld@intel.com, dan.carpenter@oracle.com,
+ tvrtko.ursulin@intel.com, matthew.d.roper@intel.com,
+ lucas.demarchi@intel.com, karthik.b.s@intel.com,
+ jose.souza@intel.com, manasi.d.navare@intel.com, airlied@redhat.com,
+ aditya.swarup@intel.com, andrescj@chromium.org,
+ linux-graphics-maintainer@vmware.com, zackr@vmware.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ gregkh@linuxfoundation.org,
+ linux-kernel-mentees@lists.linuxfoundation.org
+References: <20210826020122.1488002-1-desmondcheongzx@gmail.com>
+ <20210826020122.1488002-8-desmondcheongzx@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Aug 2021 13:17:59 -0000
-Message-ID: <162998387949.15047.14044621300439168619@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/sched_dependency_handling_and_implicit_sync_fixes_=28re?=
- =?utf-8?b?djUp?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210826020122.1488002-8-desmondcheongzx@gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH v8 7/7] drm: remove
+ drm_file.master_lookup_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,155 +101,297 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Aug 26, 2021 at 10:01:22AM +0800, Desmond Cheong Zhi Xi wrote:
+> Previously, master_lookup_lock was introduced in
+> commit 0b0860a3cf5e ("drm: serialize drm_file.master with a new
+> spinlock") to serialize accesses to drm_file.master. This then allowed
+> us to write drm_file_get_master in commit 56f0729a510f ("drm: protect
+> drm_master pointers in drm_lease.c").
+> 
+> The rationale behind introducing a new spinlock at the time was that
+> the other lock that could have been used (drm_device.master_mutex) was
+> the outermost lock, so embedding calls to drm_file_get_master and
+> drm_is_current_master in various functions easily caused us to invert
+> the lock hierarchy.
+> 
+> Following the conversion of master_mutex into a rwsem, and its use to
+> plug races with modesetting rights, we've untangled some lock
+> hierarchies and removed the need for using drm_file_get_master and the
+> unlocked version of drm_is_current_master in multiple places.
+> 
+> Hence, we can take this opportunity to clean up the locking design by
+> replacing master_lookup_lock with drm_device.master_rwsem.
+> 
+> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> ---
+>  drivers/gpu/drm/drm_auth.c     | 19 +++++++------------
+>  drivers/gpu/drm/drm_file.c     |  1 -
+>  drivers/gpu/drm/drm_internal.h |  1 +
+>  drivers/gpu/drm/drm_ioctl.c    |  4 ++--
+>  drivers/gpu/drm/drm_lease.c    | 18 ++++++++----------
+>  include/drm/drm_file.h         |  9 +--------
+>  6 files changed, 19 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+> index f2b2f197052a..232416119407 100644
+> --- a/drivers/gpu/drm/drm_auth.c
+> +++ b/drivers/gpu/drm/drm_auth.c
+> @@ -61,10 +61,9 @@
+>   * trusted clients.
+>   */
+>  
+> -static bool drm_is_current_master_locked(struct drm_file *fpriv)
+> +bool drm_is_current_master_locked(struct drm_file *fpriv)
+>  {
+> -	lockdep_assert_once(lockdep_is_held(&fpriv->master_lookup_lock) ||
+> -			    lockdep_is_held(&fpriv->minor->dev->master_rwsem));
+> +	lockdep_assert_held_once(&fpriv->minor->dev->master_rwsem);
+>  
+>  	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+>  }
+> @@ -83,9 +82,9 @@ bool drm_is_current_master(struct drm_file *fpriv)
+>  {
+>  	bool ret;
+>  
+> -	spin_lock(&fpriv->master_lookup_lock);
+> +	down_read(&fpriv->minor->dev->master_rwsem);
 
-Series: drm/sched dependency handling and implicit sync fixes (rev5)
-URL   : https://patchwork.freedesktop.org/series/93415/
-State : warning
+Looking at the 3 patches and the need to have a locked version of pretty
+much everything I'm wondering: Can't we just drop the spinlock completely,
+and everywhere we've taking it thus far replace it with a
+lockdep_assert_held_once?
 
-== Summary ==
+The thing is, if there's any path left that doesn't hold the rwsem in at
+least read mode we have a bug. And the right way to fix such a bug is to
+grab the rwsem sufficiently high up in the callchain. That way I think we
+should be able to avoid all these tedious changes to everything, including
+touching i915 and vmwgfx drivers.
 
-$ dim checkpatch origin/drm-tip
-5cdf79bc4298 drm/sched: Split drm_sched_job_init
--:240: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#240: FILE: drivers/gpu/drm/scheduler/sched_fence.c:173:
-+	unsigned seq;
+Or am I missing something big time?
+-Daniel
 
--:336: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#336: FILE: drivers/gpu/drm/scheduler/sched_main.c:623:
-+	BUG_ON(!entity);
+>  	ret = drm_is_current_master_locked(fpriv);
+> -	spin_unlock(&fpriv->master_lookup_lock);
+> +	up_read(&fpriv->minor->dev->master_rwsem);
+>  
+>  	return ret;
+>  }
+> @@ -120,7 +119,7 @@ int drm_authmagic(struct drm_device *dev, void *data,
+>  	DRM_DEBUG("%u\n", auth->magic);
+>  
+>  	down_write(&dev->master_rwsem);
+> -	if (unlikely(!drm_is_current_master(file_priv))) {
+> +	if (unlikely(!drm_is_current_master_locked(file_priv))) {
+>  		up_write(&dev->master_rwsem);
+>  		return -EACCES;
+>  	}
+> @@ -178,9 +177,7 @@ static int drm_new_set_master(struct drm_device *dev, struct drm_file *fpriv)
+>  	new_master = drm_master_create(dev);
+>  	if (!new_master)
+>  		return -ENOMEM;
+> -	spin_lock(&fpriv->master_lookup_lock);
+>  	fpriv->master = new_master;
+> -	spin_unlock(&fpriv->master_lookup_lock);
+>  
+>  	fpriv->is_master = 1;
+>  	fpriv->authenticated = 1;
+> @@ -343,9 +340,7 @@ int drm_master_open(struct drm_file *file_priv)
+>  	if (!dev->master) {
+>  		ret = drm_new_set_master(dev, file_priv);
+>  	} else {
+> -		spin_lock(&file_priv->master_lookup_lock);
+>  		file_priv->master = drm_master_get(dev->master);
+> -		spin_unlock(&file_priv->master_lookup_lock);
+>  	}
+>  	up_write(&dev->master_rwsem);
+>  
+> @@ -413,13 +408,13 @@ struct drm_master *drm_file_get_master(struct drm_file *file_priv)
+>  	if (!file_priv)
+>  		return NULL;
+>  
+> -	spin_lock(&file_priv->master_lookup_lock);
+> +	down_read(&file_priv->minor->dev->master_rwsem);
+>  	if (!file_priv->master)
+>  		goto unlock;
+>  	master = drm_master_get(file_priv->master);
+>  
+>  unlock:
+> -	spin_unlock(&file_priv->master_lookup_lock);
+> +	up_read(&file_priv->minor->dev->master_rwsem);
+>  	return master;
+>  }
+>  EXPORT_SYMBOL(drm_file_get_master);
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index 90b62f360da1..8c846e0179d7 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -176,7 +176,6 @@ struct drm_file *drm_file_alloc(struct drm_minor *minor)
+>  	init_waitqueue_head(&file->event_wait);
+>  	file->event_space = 4096; /* set aside 4k for event buffer */
+>  
+> -	spin_lock_init(&file->master_lookup_lock);
+>  	mutex_init(&file->event_read_lock);
+>  
+>  	if (drm_core_check_feature(dev, DRIVER_GEM))
+> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+> index 17f3548c8ed2..5d421f749a17 100644
+> --- a/drivers/gpu/drm/drm_internal.h
+> +++ b/drivers/gpu/drm/drm_internal.h
+> @@ -132,6 +132,7 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
+>  				  struct drm_file *filp);
+>  
+>  /* drm_auth.c */
+> +bool drm_is_current_master_locked(struct drm_file *fpriv);
+>  int drm_getmagic(struct drm_device *dev, void *data,
+>  		 struct drm_file *file_priv);
+>  int drm_authmagic(struct drm_device *dev, void *data,
+> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+> index 8bea39ffc5c0..c728437466c3 100644
+> --- a/drivers/gpu/drm/drm_ioctl.c
+> +++ b/drivers/gpu/drm/drm_ioctl.c
+> @@ -386,7 +386,7 @@ static int drm_setversion(struct drm_device *dev, void *data, struct drm_file *f
+>  	int if_version, retcode = 0;
+>  
+>  	down_write(&dev->master_rwsem);
+> -	if (unlikely(!drm_is_current_master(file_priv))) {
+> +	if (unlikely(!drm_is_current_master_locked(file_priv))) {
+>  		retcode = -EACCES;
+>  		goto unlock;
+>  	}
+> @@ -540,7 +540,7 @@ static int drm_ioctl_permit(u32 flags, struct drm_file *file_priv)
+>  
+>  	/* MASTER is only for master or control clients */
+>  	if (unlikely((flags & DRM_MASTER) &&
+> -		     !drm_is_current_master(file_priv)))
+> +		     !drm_is_current_master_locked(file_priv)))
+>  		return -EACCES;
+>  
+>  	/* Render clients must be explicitly allowed */
+> diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
+> index 15bf3a3c76d1..0eecf320b1ab 100644
+> --- a/drivers/gpu/drm/drm_lease.c
+> +++ b/drivers/gpu/drm/drm_lease.c
+> @@ -498,12 +498,12 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
+>  		return PTR_ERR(lessee_file);
+>  
+>  	down_read(&dev->master_rwsem);
+> -	if (unlikely(!drm_is_current_master(lessor_priv))) {
+> +	if (unlikely(!drm_is_current_master_locked(lessor_priv))) {
+>  		ret = -EACCES;
+>  		goto out_file;
+>  	}
+>  
+> -	lessor = drm_file_get_master(lessor_priv);
+> +	lessor = lessor_priv->master;
+>  	/* Do not allow sub-leases */
+>  	if (lessor->lessor) {
+>  		DRM_DEBUG_LEASE("recursive leasing not allowed\n");
+> @@ -565,7 +565,6 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
+>  	/* Hook up the fd */
+>  	fd_install(fd, lessee_file);
+>  
+> -	drm_master_put(&lessor);
+>  	up_read(&dev->master_rwsem);
+>  	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl succeeded\n");
+>  	return 0;
+> @@ -600,7 +599,8 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
+>  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+>  		return -EOPNOTSUPP;
+>  
+> -	lessor = drm_file_get_master(lessor_priv);
+> +	lockdep_assert_held_once(&dev->master_rwsem);
+> +	lessor = lessor_priv->master;
+>  	DRM_DEBUG_LEASE("List lessees for %d\n", lessor->lessee_id);
+>  
+>  	mutex_lock(&dev->mode_config.idr_mutex);
+> @@ -624,7 +624,6 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
+>  		arg->count_lessees = count;
+>  
+>  	mutex_unlock(&dev->mode_config.idr_mutex);
+> -	drm_master_put(&lessor);
+>  
+>  	return ret;
+>  }
+> @@ -650,7 +649,8 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
+>  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+>  		return -EOPNOTSUPP;
+>  
+> -	lessee = drm_file_get_master(lessee_priv);
+> +	lockdep_assert_held_once(&dev->master_rwsem);
+> +	lessee = lessee_priv->master;
+>  	DRM_DEBUG_LEASE("get lease for %d\n", lessee->lessee_id);
+>  
+>  	mutex_lock(&dev->mode_config.idr_mutex);
+> @@ -678,7 +678,6 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
+>  		arg->count_objects = count;
+>  
+>  	mutex_unlock(&dev->mode_config.idr_mutex);
+> -	drm_master_put(&lessee);
+>  
+>  	return ret;
+>  }
+> @@ -703,11 +702,11 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
+>  		return -EOPNOTSUPP;
+>  
+>  	down_write(&dev->master_rwsem);
+> -	if (unlikely(!drm_is_current_master(lessor_priv))) {
+> +	if (unlikely(!drm_is_current_master_locked(lessor_priv))) {
+>  		ret = -EACCES;
+>  		goto unlock;
+>  	}
+> -	lessor = drm_file_get_master(lessor_priv);
+> +	lessor = lessor_priv->master;
+>  	mutex_lock(&dev->mode_config.idr_mutex);
+>  
+>  	lessee = _drm_find_lessee(lessor, arg->lessee_id);
+> @@ -728,7 +727,6 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
+>  
+>  fail:
+>  	mutex_unlock(&dev->mode_config.idr_mutex);
+> -	drm_master_put(&lessor);
+>  
+>  unlock:
+>  	up_write(&dev->master_rwsem);
+> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> index d12bb2ba7814..e2d49fe3e32d 100644
+> --- a/include/drm/drm_file.h
+> +++ b/include/drm/drm_file.h
+> @@ -227,16 +227,12 @@ struct drm_file {
+>  	 * @master:
+>  	 *
+>  	 * Master this node is currently associated with. Protected by struct
+> -	 * &drm_device.master_rwsem, and serialized by @master_lookup_lock.
+> +	 * &drm_device.master_rwsem.
+>  	 *
+>  	 * Only relevant if drm_is_primary_client() returns true. Note that
+>  	 * this only matches &drm_device.master if the master is the currently
+>  	 * active one.
+>  	 *
+> -	 * To update @master, both &drm_device.master_rwsem and
+> -	 * @master_lookup_lock need to be held, therefore holding either of
+> -	 * them is safe and enough for the read side.
+> -	 *
+>  	 * When dereferencing this pointer, either hold struct
+>  	 * &drm_device.master_rwsem for the duration of the pointer's use, or
+>  	 * use drm_file_get_master() if struct &drm_device.master_rwsem is not
+> @@ -248,9 +244,6 @@ struct drm_file {
+>  	 */
+>  	struct drm_master *master;
+>  
+> -	/** @master_lock: Serializes @master. */
+> -	spinlock_t master_lookup_lock;
+> -
+>  	/** @pid: Process that opened this file. */
+>  	struct pid *pid;
+>  
+> -- 
+> 2.25.1
+> 
 
--:405: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#405: FILE: include/drm/gpu_scheduler.h:391:
-+struct drm_sched_fence *drm_sched_fence_alloc(
-
--:413: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 3 warnings, 1 checks, 248 lines checked
-b5c679582c27 drm/msm: Improve drm/sched point of no return rules
--:81: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 37 lines checked
-b4bf87348863 drm/sched: Barriers are needed for entity->last_scheduled
--:88: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 43 lines checked
-4bfa4c96b80c drm/sched: Add dependency tracking
--:195: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#195: FILE: drivers/gpu/drm/scheduler/sched_main.c:729:
-+
-+
-
--:271: WARNING:TYPO_SPELLING: 'ommitted' may be misspelled - perhaps 'omitted'?
-#271: FILE: include/drm/gpu_scheduler.h:244:
-+	 * drm_sched_job_add_implicit_dependencies() this can be ommitted and
- 	                                                         ^^^^^^^^
-
--:286: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#286: FILE: include/drm/gpu_scheduler.h:378:
-+
-+
-
--:289: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 2 checks, 230 lines checked
-fcd4fea4cae3 drm/sched: drop entity parameter from drm_sched_push_job
--:228: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 110 lines checked
-ea09670e5838 drm/sched: improve docs around drm_sched_entity
--:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 620e762f9a98 ("drm/scheduler: move entity handling into separate file")'
-#17: 
-  move here: 620e762f9a98 ("drm/scheduler: move entity handling into
-
--:413: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 346 lines checked
-e31bfc2e79ff drm/panfrost: use scheduler dependency tracking
--:215: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 158 lines checked
-c8f3842d2afd drm/lima: use scheduler dependency tracking
--:119: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 75 lines checked
-563fd199edf5 drm/v3d: Move drm_sched_job_init to v3d_job_init
--:344: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 288 lines checked
-79d00ee75ee5 drm/v3d: Use scheduler dependency handling
--:207: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 162 lines checked
-164bbe5be15b drm/etnaviv: Use scheduler dependency handling
--:13: WARNING:REPEATED_WORD: Possible repeated word: 'to'
-#13: 
-I wanted to to in the previous round (and did, for all other drivers).
-
--:122: WARNING:LINE_SPACING: Missing a blank line after declarations
-#122: FILE: drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c:552:
-+		struct dma_fence *in_fence = sync_file_get_fence(args->fence_fd);
-+		if (!in_fence) {
-
--:297: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 3 warnings, 0 checks, 243 lines checked
-2e8edd04f89c drm/msm: Use scheduler dependency handling
--:132: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 90 lines checked
-9de878031434 drm/gem: Delete gem array fencing helpers
--:141: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 14 lines checked
-3d4cc3335c0e drm/sched: Don't store self-dependencies
--:19: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
-#19: 
-drivers wont miss it.
-        ^^^^
-
--:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 13 lines checked
-89463913c4ad drm/sched: Check locking in drm_sched_job_await_implicit
--:33: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-9578a0679e6b drm/msm: Don't break exclusive fence ordering
--:43: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
-335ff7e05f44 drm/etnaviv: Don't break exclusive fence ordering
--:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#20: 
-https://lore.kernel.org/dri-devel/20210610210925.642582-7-jason@jlekstrand.net/
-
--:58: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 24 lines checked
-6f297c479190 drm/i915: delete exclude argument from i915_sw_fence_await_reservation
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit d07f0e59b2c7 ("drm/i915: Move GEM activity tracking into a common struct reservation_object")'
-#12: 
-commit d07f0e59b2c762584478920cd2d11fba2980a94a
-
--:100: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 55 lines checked
-4f9da5ea4882 drm/i915: Don't break exclusive fence ordering
--:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#23: 
-https://lore.kernel.org/dri-devel/20210610210925.642582-7-jason@jlekstrand.net/
-
--:56: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 18 lines checked
-d83acd41677b dma-resv: Give the docs a do-over
--:290: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 216 lines checked
-
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
