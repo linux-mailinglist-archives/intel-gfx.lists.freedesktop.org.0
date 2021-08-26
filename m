@@ -1,40 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46F73F8484
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 11:28:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 128B83F8492
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 11:33:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5B7F6E59B;
-	Thu, 26 Aug 2021 09:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEB988FFE;
+	Thu, 26 Aug 2021 09:32:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89E2E6E598
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 09:27:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="278720629"
-X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="278720629"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6F9588FFE;
+ Thu, 26 Aug 2021 09:32:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="204907838"
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="204907838"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2021 02:27:55 -0700
-X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="527772331"
-Received: from jwhogabo-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.249.45.163])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 02:32:57 -0700
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="527773570"
+Received: from garrydex-mobl1.ger.corp.intel.com (HELO [10.213.254.71])
+ ([10.213.254.71])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2021 02:27:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210825170955.GV461228@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210825145811.4227-1-jani.nikula@intel.com>
- <20210825170955.GV461228@mdroper-desk1.amr.corp.intel.com>
-Date: Thu, 26 Aug 2021 12:27:51 +0300
-Message-ID: <87o89kd088.fsf@intel.com>
+ 26 Aug 2021 02:32:56 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: daniele.ceraolospurio@intel.com
+References: <20210826032327.18078-1-matthew.brost@intel.com>
+ <20210826032327.18078-9-matthew.brost@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <2aa468eb-e7a8-1617-1b92-7a8f8b6ae015@linux.intel.com>
+Date: Thu, 26 Aug 2021 10:32:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/snps: constify struct
- intel_mpllb_state arrays harder
+In-Reply-To: <20210826032327.18078-9-matthew.brost@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 08/27] drm/i915/selftests: Add a cancel
+ request selftest that triggers a reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,96 +55,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 25 Aug 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Wed, Aug 25, 2021 at 05:58:11PM +0300, Jani Nikula wrote:
->> The tables should be const arrays of const pointers, not just arrays of
->> const pointers.
->> 
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Thanks, pushed.
+On 26/08/2021 04:23, Matthew Brost wrote:
+> Add a cancel request selftest that results in an engine reset to cancel
+> the request as it is non-preemptable. Also insert a NOP request after
+> the cancelled request and confirm that it completely successfully.
 
-BR,
-Jani.
+Which patch fixes a problem this exposes in the execlists implementation?
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_snps_phy.c | 14 +++++++-------
->>  1 file changed, 7 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
->> index d81f71296297..58ec2467ad66 100644
->> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
->> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
->> @@ -171,7 +171,7 @@ static const struct intel_mpllb_state dg2_dp_hbr3_100 = {
->>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
->>  };
->>  
->> -static const struct intel_mpllb_state *dg2_dp_100_tables[] = {
->> +static const struct intel_mpllb_state * const dg2_dp_100_tables[] = {
->>  	&dg2_dp_rbr_100,
->>  	&dg2_dp_hbr1_100,
->>  	&dg2_dp_hbr2_100,
->> @@ -284,7 +284,7 @@ static const struct intel_mpllb_state dg2_dp_hbr3_38_4 = {
->>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 61440),
->>  };
->>  
->> -static const struct intel_mpllb_state *dg2_dp_38_4_tables[] = {
->> +static const struct intel_mpllb_state * const dg2_dp_38_4_tables[] = {
->>  	&dg2_dp_rbr_38_4,
->>  	&dg2_dp_hbr1_38_4,
->>  	&dg2_dp_hbr2_38_4,
->> @@ -421,7 +421,7 @@ static const struct intel_mpllb_state dg2_edp_r432 = {
->>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 65752),
->>  };
->>  
->> -static const struct intel_mpllb_state *dg2_edp_tables[] = {
->> +static const struct intel_mpllb_state * const dg2_edp_tables[] = {
->>  	&dg2_dp_rbr_100,
->>  	&dg2_edp_r216,
->>  	&dg2_edp_r243,
->> @@ -584,7 +584,7 @@ static const struct intel_mpllb_state dg2_hdmi_594 = {
->>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
->>  };
->>  
->> -static const struct intel_mpllb_state *dg2_hdmi_tables[] = {
->> +static const struct intel_mpllb_state * const dg2_hdmi_tables[] = {
->>  	&dg2_hdmi_25_175,
->>  	&dg2_hdmi_27_0,
->>  	&dg2_hdmi_74_25,
->> @@ -593,7 +593,7 @@ static const struct intel_mpllb_state *dg2_hdmi_tables[] = {
->>  	NULL,
->>  };
->>  
->> -static const struct intel_mpllb_state **
->> +static const struct intel_mpllb_state * const *
->>  intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
->>  		       struct intel_encoder *encoder)
->>  {
->> @@ -627,7 +627,7 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
->>  int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
->>  			   struct intel_encoder *encoder)
->>  {
->> -	const struct intel_mpllb_state **tables;
->> +	const struct intel_mpllb_state * const *tables;
->>  	int i;
->>  
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
->> @@ -823,7 +823,7 @@ void intel_mpllb_readout_hw_state(struct intel_encoder *encoder,
->>  
->>  int intel_snps_phy_check_hdmi_link_rate(int clock)
->>  {
->> -	const struct intel_mpllb_state **tables = dg2_hdmi_tables;
->> +	const struct intel_mpllb_state * const *tables = dg2_hdmi_tables;
->>  	int i;
->>  
->>  	for (i = 0; tables[i]; i++) {
->> -- 
->> 2.20.1
->> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/i915/selftests/i915_request.c | 100 ++++++++++++++++++
+>   1 file changed, 100 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+> index d67710d10615..e2c5db77f087 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+> @@ -772,6 +772,98 @@ static int __cancel_completed(struct intel_engine_cs *engine)
+>   	return err;
+>   }
+>   
+> +static int __cancel_reset(struct intel_engine_cs *engine)
+> +{
+> +	struct intel_context *ce;
+> +	struct igt_spinner spin;
+> +	struct i915_request *rq, *nop;
+> +	unsigned long preempt_timeout_ms;
+> +	int err = 0;
+> +
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+You may need to skip the test if preempt timeout is compiled out or if 
+GPU reset is altogether disabled.
+
+> +	preempt_timeout_ms = engine->props.preempt_timeout_ms;
+> +	engine->props.preempt_timeout_ms = 100;
+> +
+> +	if (igt_spinner_init(&spin, engine->gt))
+> +		goto out_restore;
+> +
+> +	ce = intel_context_create(engine);
+> +	if (IS_ERR(ce)) {
+> +		err = PTR_ERR(ce);
+> +		goto out_spin;
+> +	}
+> +
+> +	rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
+> +	if (IS_ERR(rq)) {
+> +		err = PTR_ERR(rq);
+> +		goto out_ce;
+> +	}
+> +
+> +	pr_debug("%s: Cancelling active request\n", engine->name);
+
+"active non-preemptable" perhaps?
+
+> +	i915_request_get(rq);
+> +	i915_request_add(rq);
+> +	if (!igt_wait_for_spinner(&spin, rq)) {
+> +		struct drm_printer p = drm_info_printer(engine->i915->drm.dev);
+> +
+> +		pr_err("Failed to start spinner on %s\n", engine->name);
+> +		intel_engine_dump(engine, &p, "%s\n", engine->name);
+> +		err = -ETIME;
+> +		goto out_rq;
+> +	}
+> +
+> +	nop = intel_context_create_request(ce);
+> +	if (IS_ERR(nop))
+> +		goto out_nop;
+> +	i915_request_get(nop);
+> +	i915_request_add(nop);
+> +
+> +	i915_request_cancel(rq, -EINTR);
+> +
+> +	if (i915_request_wait(rq, 0, HZ) < 0) {
+> +		struct drm_printer p = drm_info_printer(engine->i915->drm.dev);
+> +
+> +		pr_err("%s: Failed to cancel hung request\n", engine->name);
+> +		intel_engine_dump(engine, &p, "%s\n", engine->name);
+> +		err = -ETIME;
+> +		goto out_nop;
+> +	}
+> +
+> +	if (rq->fence.error != -EINTR) {
+> +		pr_err("%s: fence not cancelled (%u)\n",
+> +		       engine->name, rq->fence.error);
+> +		err = -EINVAL;
+> +		goto out_nop;
+> +	}
+> +
+> +	if (i915_request_wait(nop, 0, HZ) < 0) {
+> +		struct drm_printer p = drm_info_printer(engine->i915->drm.dev);
+> +
+> +		pr_err("%s: Failed to complete nop request\n", engine->name);
+> +		intel_engine_dump(engine, &p, "%s\n", engine->name);
+> +		err = -ETIME;
+> +		goto out_nop;
+> +	}
+> +
+> +	if (nop->fence.error != 0) {
+> +		pr_err("%s: Nop request errored (%u)\n",
+
+Maybe s/nop/innocent/ in the respective log messages?
+
+> +		       engine->name, nop->fence.error);
+> +		err = -EINVAL;
+> +	}
+> +
+> +out_nop:
+> +	i915_request_put(nop);
+> +out_rq:
+> +	i915_request_put(rq);
+> +out_ce:
+> +	intel_context_put(ce);
+> +out_spin:
+> +	igt_spinner_fini(&spin);
+> +out_restore:
+> +	engine->props.preempt_timeout_ms = preempt_timeout_ms;
+> +	if (err)
+> +		pr_err("%s: %s error %d\n", __func__, engine->name, err);
+> +	return err;
+> +}
+> +
+>   static int live_cancel_request(void *arg)
+>   {
+>   	struct drm_i915_private *i915 = arg;
+> @@ -804,6 +896,14 @@ static int live_cancel_request(void *arg)
+>   			return err;
+>   		if (err2)
+>   			return err2;
+> +
+> +		/* Expects reset so call outside of igt_live_test_* */
+
+Hm there are live tests like live_preempt_cancel which seemingly manage 
+to do resets under the live test block.
+
+Regards,
+
+Tvrtko
+
+> +		err = __cancel_reset(engine);
+> +		if (err)
+> +			return err;
+> +
+> +		if (igt_flush_test(i915))
+> +			return -EIO;
+>   	}
+>   
+>   	return 0;
+> 
