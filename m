@@ -2,33 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02EA13F8958
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 15:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00ED73F8991
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 15:59:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2656E852;
-	Thu, 26 Aug 2021 13:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5939F6E85F;
+	Thu, 26 Aug 2021 13:59:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 443906E852;
- Thu, 26 Aug 2021 13:48:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 402C1AA915;
- Thu, 26 Aug 2021 13:48:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4586219153876154645=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407A46E85B;
+ Thu, 26 Aug 2021 13:59:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="204881587"
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="204881587"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 06:59:35 -0700
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="684943819"
+Received: from lapeders-mobl.ger.corp.intel.com (HELO [10.249.254.132])
+ ([10.249.254.132])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 06:59:33 -0700
+Message-ID: <69c91b3b524163d1683486d8ab0f9fe8f6893192.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Tvrtko
+ Ursulin <tvrtko.ursulin@linux.intel.com>, Matthew Auld
+ <matthew.auld@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Brost Matthew
+ <matthew.brost@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+Date: Thu, 26 Aug 2021 15:59:30 +0200
+In-Reply-To: <YSeMr9cBPLOMXhyL@phenom.ffwll.local>
+References: <20210826104514.400352-1-thomas.hellstrom@linux.intel.com>
+ <YSeMr9cBPLOMXhyL@phenom.ffwll.local>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Aug 2021 13:48:19 -0000
-Message-ID: <162998569925.15050.14983023035502133439@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/sched_dependency_handling_and_implicit_sync_fixes_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Register the migrate
+ contexts with their engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,198 +52,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4586219153876154645==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 2021-08-26 at 14:44 +0200, Daniel Vetter wrote:
+> On Thu, Aug 26, 2021 at 12:45:14PM +0200, Thomas Hellström wrote:
+> > Pinned contexts, like the migrate contexts need reset after resume
+> > since their context image may have been lost. Also the GuC needs to
+> > register pinned contexts.
+> > 
+> > Add a list to struct intel_engine_cs where we add all pinned
+> > contexts on
+> > creation, and traverse that list at resume time to reset the pinned
+> > contexts.
+> > 
+> > This fixes the kms_pipe_crc_basic@suspend-read-crc-pipe-a selftest
+> > for now,
+> > but proper LMEM backup / restore is needed for full suspend
+> > functionality.
+> > However, note that even with full LMEM backup / restore it may be
+> > desirable to keep the reset since backing up the migrate context
+> > images
+> > must happen using memcpy() after the migrate context has become
+> > inactive,
+> > and for performance- and other reasons we want to avoid memcpy()
+> > from
+> > LMEM.
+> > 
+> > Also traverse the list at guc_init_lrc_mapping() calling
+> > guc_kernel_context_pin() for the pinned contexts, like is already
+> > done
+> > for the kernel context.
+> > 
+> > v2:
+> > - Don't reset the contexts on each __engine_unpark() but rather at
+> >   resume time (Chris Wilson).
+> > 
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Brost Matthew <matthew.brost@intel.com>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> 
+> I guess it got lost, but I few weeks ago I stumbled over this and
+> wondered
+> why we're even setting up a separate context or at least why a
+> separate vm
+> compared to the gt->vm we have already?
+> 
+> Even on chips with bazillions of copy engines the plan is that we
+> only
+> reserve a single one for kernel migrations, so there's not really a
+> need
+> for quite this much generality I think. Maybe check with Jon
+> Bloomfield on
+> this.
 
-== Series Details ==
+Are you referring to the generality of the migration code itself or to
+the generality of using a list in this patch to register multiple
+pinned contexts to an engine? 
 
-Series: drm/sched dependency handling and implicit sync fixes (rev5)
-URL   : https://patchwork.freedesktop.org/series/93415/
-State : success
+For the migration code itself, I figured reserving one copy engine for
+migration was strictly needed for recoverable page-faults? In the
+current version we're not doing that, but just tying a pinned migration
+context to the first available copy engine on the gt, to be used when
+we don't have a ww context available to pin a separate context using a
+random copy engine. Note also the ring size of the migration contexts;
+since we're populating the page-tables for each blit, it's not hard to
+fill the ring and in the end multiple contexts I guess boils down to
+avoiding priority inversion on migration, including blocking high
+priority kernel context tasks.
 
-== Summary ==
+As for not using the gt->vm, I'm not completely sure if we can do our
+special page-table setup on that, Got to defer that question to Chris,
+but once Ram's work of supporting 64K LMEM PTEs on that has landed I
+guess we could easily reuse the gt->vm if possible and suitable.
 
-CI Bug Log - changes from CI_DRM_10525 -> Patchwork_20901
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20901 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-bsw-n3050:       [PASS][1] -> [DMESG-FAIL][2] ([i915#2373])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         [PASS][3] -> [DMESG-FAIL][4] ([i915#3928])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  * igt@runner@aborted:
-    - fi-rkl-guc:         NOTRUN -> [FAIL][5] ([i915#3928])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/fi-rkl-guc/igt@runner@aborted.html
-
-  
-  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
-
-
-Participating hosts (40 -> 33)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10525 -> Patchwork_20901
-
-  CI-20190529: 20190529
-  CI_DRM_10525: 059309d37ac2de5d93cf6d71fd7fe33c9c2c66ea @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6186: 250081b306c6fa8f95405fab6a7604f1968dd4ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20901: d83acd41677bc9968b313704bf42b3c12ea6d018 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d83acd41677b dma-resv: Give the docs a do-over
-4f9da5ea4882 drm/i915: Don't break exclusive fence ordering
-6f297c479190 drm/i915: delete exclude argument from i915_sw_fence_await_reservation
-335ff7e05f44 drm/etnaviv: Don't break exclusive fence ordering
-9578a0679e6b drm/msm: Don't break exclusive fence ordering
-89463913c4ad drm/sched: Check locking in drm_sched_job_await_implicit
-3d4cc3335c0e drm/sched: Don't store self-dependencies
-9de878031434 drm/gem: Delete gem array fencing helpers
-2e8edd04f89c drm/msm: Use scheduler dependency handling
-164bbe5be15b drm/etnaviv: Use scheduler dependency handling
-79d00ee75ee5 drm/v3d: Use scheduler dependency handling
-563fd199edf5 drm/v3d: Move drm_sched_job_init to v3d_job_init
-c8f3842d2afd drm/lima: use scheduler dependency tracking
-e31bfc2e79ff drm/panfrost: use scheduler dependency tracking
-ea09670e5838 drm/sched: improve docs around drm_sched_entity
-fcd4fea4cae3 drm/sched: drop entity parameter from drm_sched_push_job
-4bfa4c96b80c drm/sched: Add dependency tracking
-b4bf87348863 drm/sched: Barriers are needed for entity->last_scheduled
-b5c679582c27 drm/msm: Improve drm/sched point of no return rules
-5cdf79bc4298 drm/sched: Split drm_sched_job_init
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/index.html
-
---===============4586219153876154645==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks,
+/Thomas
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/sched dependency handling and implicit sync fixes (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93415/">https://patchwork.freedesktop.org/series/93415/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10525 -&gt; Patchwork_20901</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20901 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20901/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (40 -&gt; 33)</h2>
-<p>Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10525 -&gt; Patchwork_20901</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10525: 059309d37ac2de5d93cf6d71fd7fe33c9c2c66ea @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6186: 250081b306c6fa8f95405fab6a7604f1968dd4ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20901: d83acd41677bc9968b313704bf42b3c12ea6d018 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d83acd41677b dma-resv: Give the docs a do-over<br />
-4f9da5ea4882 drm/i915: Don't break exclusive fence ordering<br />
-6f297c479190 drm/i915: delete exclude argument from i915_sw_fence_await_reservation<br />
-335ff7e05f44 drm/etnaviv: Don't break exclusive fence ordering<br />
-9578a0679e6b drm/msm: Don't break exclusive fence ordering<br />
-89463913c4ad drm/sched: Check locking in drm_sched_job_await_implicit<br />
-3d4cc3335c0e drm/sched: Don't store self-dependencies<br />
-9de878031434 drm/gem: Delete gem array fencing helpers<br />
-2e8edd04f89c drm/msm: Use scheduler dependency handling<br />
-164bbe5be15b drm/etnaviv: Use scheduler dependency handling<br />
-79d00ee75ee5 drm/v3d: Use scheduler dependency handling<br />
-563fd199edf5 drm/v3d: Move drm_sched_job_init to v3d_job_init<br />
-c8f3842d2afd drm/lima: use scheduler dependency tracking<br />
-e31bfc2e79ff drm/panfrost: use scheduler dependency tracking<br />
-ea09670e5838 drm/sched: improve docs around drm_sched_entity<br />
-fcd4fea4cae3 drm/sched: drop entity parameter from drm_sched_push_job<br />
-4bfa4c96b80c drm/sched: Add dependency tracking<br />
-b4bf87348863 drm/sched: Barriers are needed for entity-&gt;last_scheduled<br />
-b5c679582c27 drm/msm: Improve drm/sched point of no return rules<br />
-5cdf79bc4298 drm/sched: Split drm_sched_job_init</p>
-
-</body>
-</html>
-
---===============4586219153876154645==--
