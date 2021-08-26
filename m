@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 729073F8A72
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 16:52:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC3F3F8A8A
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 16:57:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B71B6E86C;
-	Thu, 26 Aug 2021 14:51:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD3F06E86C;
+	Thu, 26 Aug 2021 14:57:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 785776E86C;
- Thu, 26 Aug 2021 14:51:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A4D06E86C;
+ Thu, 26 Aug 2021 14:57:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7056EA008A;
- Thu, 26 Aug 2021 14:51:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4681114331113512023=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 523FAA0003;
+ Thu, 26 Aug 2021 14:57:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Aug 2021 14:51:57 -0000
-Message-ID: <162998951743.15049.2770329031501900756@emeril.freedesktop.org>
+Date: Thu, 26 Aug 2021 14:57:15 -0000
+Message-ID: <162998983530.15048.12838280482129088690@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210826104514.400352-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210826104514.400352-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Register_the_migrate_contexts_with_their_engines_?=
- =?utf-8?b?KHJldjIp?=
+References: <20210826105214.152713-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210826105214.152713-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Be_more_gentle_when_exiting_non-persistent_cont?=
+ =?utf-8?q?exts_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,167 +46,20 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4681114331113512023==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/gt: Register the migrate contexts with their engines (rev2)
-URL   : https://patchwork.freedesktop.org/series/94058/
-State : success
+Series: drm/i915: Be more gentle when exiting non-persistent contexts (rev2)
+URL   : https://patchwork.freedesktop.org/series/93420/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10525 -> Patchwork_20902
-====================================================
+$ dim checkpatch origin/drm-tip
+660ff9cdf697 drm/i915: Be more gentle when exiting non-persistent contexts
+-:213: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#213: FILE: drivers/gpu/drm/i915/gt/intel_context_types.h:40:
++	void (*revoke)(struct intel_context *ce, struct i915_request *rq, unsigned int preempt_timeout_ms);
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20902 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-compute0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +4 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-compute0.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [PASS][2] -> [DMESG-WARN][3] ([i915#3958])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - {fi-dg1-1}:         [INCOMPLETE][4] ([i915#3717]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-dg1-1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/fi-dg1-1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3717]: https://gitlab.freedesktop.org/drm/intel/issues/3717
-  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
+total: 0 errors, 1 warnings, 0 checks, 247 lines checked
 
 
-Participating hosts (40 -> 33)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10525 -> Patchwork_20902
-
-  CI-20190529: 20190529
-  CI_DRM_10525: 059309d37ac2de5d93cf6d71fd7fe33c9c2c66ea @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6186: 250081b306c6fa8f95405fab6a7604f1968dd4ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20902: c3a760daf2a2b36d07c1ce110c988fda0bd1d16a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c3a760daf2a2 drm/i915/gt: Register the migrate contexts with their engines
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/index.html
-
---===============4681114331113512023==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Register the migrate contexts with their engines (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94058/">https://patchwork.freedesktop.org/series/94058/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10525 -&gt; Patchwork_20902</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20902 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-compute0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:<ul>
-<li>{fi-dg1-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10525/fi-dg1-1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3717">i915#3717</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20902/fi-dg1-1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (40 -&gt; 33)</h2>
-<p>Missing    (7): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10525 -&gt; Patchwork_20902</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10525: 059309d37ac2de5d93cf6d71fd7fe33c9c2c66ea @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6186: 250081b306c6fa8f95405fab6a7604f1968dd4ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20902: c3a760daf2a2b36d07c1ce110c988fda0bd1d16a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c3a760daf2a2 drm/i915/gt: Register the migrate contexts with their engines</p>
-
-</body>
-</html>
-
---===============4681114331113512023==--
