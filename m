@@ -2,34 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 896913F8B14
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 17:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F123F8B19
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 17:34:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D373C6E029;
-	Thu, 26 Aug 2021 15:33:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D67136E046;
+	Thu, 26 Aug 2021 15:34:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C29CA6E029;
- Thu, 26 Aug 2021 15:33:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BEEAEA66C9;
- Thu, 26 Aug 2021 15:33:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B07866E038;
+ Thu, 26 Aug 2021 15:34:31 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id q14so5758468wrp.3;
+ Thu, 26 Aug 2021 08:34:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=6ledkqU9D7FzcL/5ouJNmCXuXtKins7U1aoW3QxLbVU=;
+ b=jiDI7yC/eT7HEe9sQm38w7hIxFvvo4EfE4Scx9xXHFUrWsbewLm3vkOb+B1QtiBPTc
+ 1pmwSmFQzxPGrrJh4AP8FppBdNDpQ2Aw65Bmro1bbZGcOxe8tesKl0HXb50Mgvz4xCdn
+ zfJbhzNxfFIKD4BXgyUJYuYsUBicVPm6ngREnHXMFqiDAszRpcG/5dGTTmStoAmv8062
+ QbQQeQPk33VzCUkcG6AfCSOKMbq4nNhib3wDooslcoiyQKIHCIZOCDiGwW6OQ7pAwkBA
+ SJscnToOzErB9p3dp2gCvGHJRpL0oFfpEZ6qLihP0aot4co1SCXahgLNAzO1OjBuaRM8
+ bGJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=6ledkqU9D7FzcL/5ouJNmCXuXtKins7U1aoW3QxLbVU=;
+ b=TecZJdSHeWySsrS/9MZTAwu18Je1Nkv+cm7dSu60P1ZXF7imIcaT1nd0HlyeLyfqNS
+ YC+WvqDHgiz98vOiJaqljGeHXGQGbQXEide8w66xJYA73OMfExURhdIhptFnD9cEOV16
+ F6On3BnNNUZtueQY3vhS4vd5wpTR/z9gupIDQVstRHFGz7gLfYZeSE87C1YFxnnDJkfq
+ GmaPuqkkB9ZMqN18KFeThsrLVfQB1ZiIgbB80XArwx2HvmYCLdrXZCtLOA/QtupS5PeS
+ 2mCDFXJlDTAkzsXUJe/2vof2UOdoNMSpDKNrz8fKwpUKvHMWxlgfBHW5cQfZJHEbaSqF
+ 5pnw==
+X-Gm-Message-State: AOAM5319j4NZNxJzanc+xiL63L6E3xUNVR5aIYdqcUFHZx+y4yNM6jiJ
+ d7Q6T7Sy7LcXSd2pIUirbO++lU7H/n5+xBcEMA0=
+X-Google-Smtp-Source: ABdhPJxNi7BD0F9Nk2M8iBXkon89Q02BBjrW2NrVCNpKlZ5X5qHkwp/W2LBzZ7ppSDqjH2XlmT9Atndgc3cblhH236o=
+X-Received: by 2002:adf:9021:: with SMTP id h30mr4549091wrh.327.1629992070122; 
+ Thu, 26 Aug 2021 08:34:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Aug 2021 15:33:33 -0000
-Message-ID: <162999201377.15049.2238673420763103907@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210826032327.18078-1-matthew.brost@intel.com>
-In-Reply-To: <20210826032327.18078-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Clean_up_GuC_CI_failures=2C_simplify_locking=2C_and_kernel_DOC_?=
- =?utf-8?b?KHJldjYp?=
+References: <20210817085308.3557257-1-daniel.vetter@ffwll.ch>
+ <20210826093334.1117944-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210826093334.1117944-1-daniel.vetter@ffwll.ch>
+From: Rob Clark <robdclark@gmail.com>
+Date: Thu, 26 Aug 2021 08:38:50 -0700
+Message-ID: <CAF6AEGvVjrii3-22ocsuej8Hw-2OLG8Zok-LsUceh4Aqu=45-g@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rob Clark <robdclark@chromium.org>, 
+ Sean Paul <sean@poorly.run>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ freedreno <freedreno@lists.freedesktop.org>, 
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>, 
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/msm: Improve drm/sched point of no
+ return rules
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,114 +75,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Aug 26, 2021 at 2:33 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrot=
+e:
+>
+> Originally drm_sched_job_init was the point of no return, after which
+> drivers really should submit a job. I've split that up, which allows
+> us to fix this issue pretty easily.
+>
+> Only thing we have to take care of is to not skip to error paths after
+> that. Other drivers do this the same for out-fence and similar things.
+>
+> v2: It's not really a bugfix, just an improvement, since all
+> drm_sched_job_arm does is reserve the fence number. And gaps should be
+> fine, as long as the drm_sched_job doesn't escape anywhere at all.
+>
+> For robustness it's still better to align with other drivers here and
+> not bail out after job_arm().
+>
+> v3: I misplaced drm_sched_job_arm by _one_ line! Thanks to Rob for
+> testing and debug help.
+>
+> Cc: Rob Clark <robdclark@chromium.org>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linaro-mm-sig@lists.linaro.org
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 
-Series: Clean up GuC CI failures, simplify locking, and kernel DOC (rev6)
-URL   : https://patchwork.freedesktop.org/series/93704/
-State : warning
+t-b && r-b
 
-== Summary ==
+BR,
+-R
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1374:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1374:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1374:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    expected struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    got struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+./include/linux/stddef.h:17:9: this was the original definition
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
-
-
+> ---
+>  drivers/gpu/drm/msm/msm_gem_submit.c | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/m=
+sm_gem_submit.c
+> index 4d1c4d5f6a2a..71b8c8f752a3 100644
+> --- a/drivers/gpu/drm/msm/msm_gem_submit.c
+> +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
+> @@ -52,8 +52,6 @@ static struct msm_gem_submit *submit_create(struct drm_=
+device *dev,
+>                 return ERR_PTR(ret);
+>         }
+>
+> -       drm_sched_job_arm(&job->base);
+> -
+>         xa_init_flags(&submit->deps, XA_FLAGS_ALLOC);
+>
+>         kref_init(&submit->ref);
+> @@ -880,6 +878,8 @@ int msm_ioctl_gem_submit(struct drm_device *dev, void=
+ *data,
+>
+>         submit->nr_cmds =3D i;
+>
+> +       drm_sched_job_arm(&submit->base);
+> +
+>         submit->user_fence =3D dma_fence_get(&submit->base.s_fence->finis=
+hed);
+>
+>         /*
+> @@ -891,17 +891,16 @@ int msm_ioctl_gem_submit(struct drm_device *dev, vo=
+id *data,
+>         if (submit->fence_id < 0) {
+>                 ret =3D submit->fence_id =3D 0;
+>                 submit->fence_id =3D 0;
+> -               goto out;
+>         }
+>
+> -       if (args->flags & MSM_SUBMIT_FENCE_FD_OUT) {
+> +       if (ret =3D=3D 0 && args->flags & MSM_SUBMIT_FENCE_FD_OUT) {
+>                 struct sync_file *sync_file =3D sync_file_create(submit->=
+user_fence);
+>                 if (!sync_file) {
+>                         ret =3D -ENOMEM;
+> -                       goto out;
+> +               } else {
+> +                       fd_install(out_fence_fd, sync_file->file);
+> +                       args->fence_fd =3D out_fence_fd;
+>                 }
+> -               fd_install(out_fence_fd, sync_file->file);
+> -               args->fence_fd =3D out_fence_fd;
+>         }
+>
+>         submit_attach_object_fences(submit);
+> --
+> 2.32.0
+>
