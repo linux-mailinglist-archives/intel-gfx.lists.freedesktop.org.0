@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CFBB3F83BB
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 10:26:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B583F83DF
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 10:41:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C39516E544;
-	Thu, 26 Aug 2021 08:26:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 031656E55C;
+	Thu, 26 Aug 2021 08:41:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B4AF6E544
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 08:26:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="197933992"
-X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="197933992"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9190C6E544
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 08:41:48 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="217735025"
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="217735025"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2021 01:26:34 -0700
-X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="527752253"
-Received: from garrydex-mobl1.ger.corp.intel.com (HELO [10.213.254.71])
- ([10.213.254.71])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2021 01:41:48 -0700
+X-IronPort-AV: E=Sophos;i="5.84,353,1620716400"; d="scan'208";a="527757007"
+Received: from jwhogabo-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.249.45.163])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2021 01:26:33 -0700
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210826033559.1209020-1-matthew.d.roper@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <c824c665-0a49-e112-9134-97edeab3b8a4@linux.intel.com>
-Date: Thu, 26 Aug 2021 09:26:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ 26 Aug 2021 01:41:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+In-Reply-To: <YSZhFypIGty4XvPO@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210825150623.28980-1-jani.nikula@intel.com>
+ <YSZhFypIGty4XvPO@intel.com>
+Date: Thu, 26 Aug 2021 11:41:43 +0300
+Message-ID: <87zgt4d2d4.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210826033559.1209020-1-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Ensure wa_init_finish() is called
- for ctx workaround list
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pci: rename functions to have
+ i915_pci prefix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,50 +51,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 25 Aug 2021, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Wed, Aug 25, 2021 at 06:06:23PM +0300, Jani Nikula wrote:
+>> Follow the usual naming conventions. While at it, fix i915_pci.h SPDX
+>> license comment format and add header include guards.
+>>=20
+>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-On 26/08/2021 04:35, Matt Roper wrote:
-> A recent restructuring of our context workaround list initialization
-> added an early return for non-render engines; this caused us to
-> potentially miss the wa_init_finish() call at the end of the function.
-> The mistake is pretty harmless --- the only impact is that non-render
-> engines on graphics version 12.50+ platforms we don't trim down the
-> workaround list to reclaim some memory, and we don't print the usual
-> "Initialized 1 context workaround" message in dmesg.  Let's change the
-> early return to a jump down to the wa_init_finish() call at the bottom
-> of the function.
-> 
-> Reported-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Fixes: 9e9dfd080201 ("drm/i915/dg2: Maintain backward-compatible nested batch behavior")
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 688ed04edbf6..94e1937f8d29 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -689,7 +689,7 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
->   		fakewa_disable_nestedbb_mode(engine, wal);
->   
->   	if (engine->class != RENDER_CLASS)
-> -		return;
-> +		goto done;
->   
->   	if (IS_DG1(i915))
->   		dg1_ctx_workarounds_init(engine, wal);
-> @@ -720,6 +720,7 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
->   	else
->   		MISSING_CASE(GRAPHICS_VER(i915));
->   
-> +done:
->   	wa_init_finish(wal);
->   }
->   
-> 
+Thanks, pushed to drm-intel-gt-next.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+BR,
+Jani.
 
-Regards,
 
-Tvrtko
+>
+>> ---
+>>  drivers/gpu/drm/i915/i915_module.c |  4 ++--
+>>  drivers/gpu/drm/i915/i915_pci.c    |  4 ++--
+>>  drivers/gpu/drm/i915/i915_pci.h    | 12 ++++++++----
+>>  3 files changed, 12 insertions(+), 8 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i=
+915_module.c
+>> index d8b4482c69d0..ab2295dd4500 100644
+>> --- a/drivers/gpu/drm/i915/i915_module.c
+>> +++ b/drivers/gpu/drm/i915/i915_module.c
+>> @@ -67,8 +67,8 @@ static const struct {
+>>  	{ .init =3D i915_mock_selftests },
+>>  	{ .init =3D i915_pmu_init,
+>>  	  .exit =3D i915_pmu_exit },
+>> -	{ .init =3D i915_register_pci_driver,
+>> -	  .exit =3D i915_unregister_pci_driver },
+>> +	{ .init =3D i915_pci_register_driver,
+>> +	  .exit =3D i915_pci_unregister_driver },
+>>  	{ .init =3D i915_perf_sysctl_register,
+>>  	  .exit =3D i915_perf_sysctl_unregister },
+>>  };
+>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915=
+_pci.c
+>> index 96cfd6427cec..146f7e39182a 100644
+>> --- a/drivers/gpu/drm/i915/i915_pci.c
+>> +++ b/drivers/gpu/drm/i915/i915_pci.c
+>> @@ -1235,12 +1235,12 @@ static struct pci_driver i915_pci_driver =3D {
+>>  	.driver.pm =3D &i915_pm_ops,
+>>  };
+>>=20=20
+>> -int i915_register_pci_driver(void)
+>> +int i915_pci_register_driver(void)
+>>  {
+>>  	return pci_register_driver(&i915_pci_driver);
+>>  }
+>>=20=20
+>> -void i915_unregister_pci_driver(void)
+>> +void i915_pci_unregister_driver(void)
+>>  {
+>>  	pci_unregister_driver(&i915_pci_driver);
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/i915_pci.h b/drivers/gpu/drm/i915/i915=
+_pci.h
+>> index b386f319f52e..ee048c238174 100644
+>> --- a/drivers/gpu/drm/i915/i915_pci.h
+>> +++ b/drivers/gpu/drm/i915/i915_pci.h
+>> @@ -1,8 +1,12 @@
+>> +/* SPDX-License-Identifier: MIT */
+>>  /*
+>> - * SPDX-License-Identifier: MIT
+>> - *
+>>   * Copyright =C2=A9 2021 Intel Corporation
+>>   */
+>>=20=20
+>> -int i915_register_pci_driver(void);
+>> -void i915_unregister_pci_driver(void);
+>> +#ifndef __I915_PCI_H__
+>> +#define __I915_PCI_H__
+>> +
+>> +int i915_pci_register_driver(void);
+>> +void i915_pci_unregister_driver(void);
+>> +
+>> +#endif /* __I915_PCI_H__ */
+>> --=20
+>> 2.20.1
+>>=20
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
