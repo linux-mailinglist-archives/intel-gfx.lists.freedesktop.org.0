@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CFEB3F82B3
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 08:48:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 888453F82C3
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Aug 2021 08:53:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22D276E513;
-	Thu, 26 Aug 2021 06:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B36CD6E51C;
+	Thu, 26 Aug 2021 06:53:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5EC6E513;
- Thu, 26 Aug 2021 06:48:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10087"; a="204816334"
-X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="204816334"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 23:48:01 -0700
-X-IronPort-AV: E=Sophos;i="5.84,352,1620716400"; d="scan'208";a="516381278"
-Received: from lapeders-mobl.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.132])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2021 23:47:58 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Brost Matthew <matthew.brost@intel.com>
-Date: Thu, 26 Aug 2021 08:47:50 +0200
-Message-Id: <20210826064750.372557-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3B49B6E513;
+ Thu, 26 Aug 2021 06:53:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 34AE2A882E;
+ Thu, 26 Aug 2021 06:53:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5986049998235089329=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Register the migrate contexts with
- their engines
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 Aug 2021 06:53:45 -0000
+Message-ID: <162996082519.15050.8204725400691461844@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210826054811.10572-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20210826054811.10572-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
+ =?utf-8?q?ble_mipi_dsi_on_XELPD_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,162 +41,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pinned contexts, like the migrate contexts need reset after resume
-since their context image may have been lost. Also the GuC needs to
-register pinned contexts.
+--===============5986049998235089329==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Add a list to struct intel_engine_cs where we add all pinned contexts on
-creation, and traverse that list at __engine_unpark() time to reset the
-pinned contexts.
+== Series Details ==
 
-This fixes the kms_pipe_crc_basic@suspend-read-crc-pipe-a selftest for now,
-but proper LMEM backup / restore is needed for full suspend functionality.
-However, note that even with full LMEM backup / restore it may be
-desirable to keep the reset since backing up the migrate context images
-must happen using memcpy() after the migrate context has become inactive,
-and for performance- and other reasons we want to avoid memcpy() from
-LMEM.
+Series: Enable mipi dsi on XELPD (rev3)
+URL   : https://patchwork.freedesktop.org/series/93917/
+State : success
 
-Also traverse the list at guc_init_lrc_mapping() calling
-guc_kernel_context_pin() for the pinned contexts, like is already done
-for the kernel context.
+== Summary ==
 
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Brost Matthew <matthew.brost@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_context_types.h     |  8 ++++++++
- drivers/gpu/drm/i915/gt/intel_engine_cs.c         |  4 ++++
- drivers/gpu/drm/i915/gt/intel_engine_pm.c         |  9 +++++++++
- drivers/gpu/drm/i915/gt/intel_engine_types.h      |  7 +++++++
- drivers/gpu/drm/i915/gt/mock_engine.c             |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 10 +++++++---
- 6 files changed, 36 insertions(+), 3 deletions(-)
+CI Bug Log - changes from CI_DRM_10522 -> Patchwork_20898
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index e54351a170e2..a63631ea0ec4 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -152,6 +152,14 @@ struct intel_context {
- 	/** sseu: Control eu/slice partitioning */
- 	struct intel_sseu sseu;
- 
-+	/**
-+	 * pinned_contexts_link: List link for the engine's pinned contexts.
-+	 * This is only used if this is a perma-pinned kernel context and
-+	 * the list is assumed to only be manipulated during driver load
-+	 * or unload time so no mutex protection currently.
-+	 */
-+	struct list_head pinned_contexts_link;
-+
- 	u8 wa_bb_page; /* if set, page num reserved for context workarounds */
- 
- 	struct {
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 332efea696a5..c606a4714904 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -320,6 +320,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 
- 	BUILD_BUG_ON(BITS_PER_TYPE(engine->mask) < I915_NUM_ENGINES);
- 
-+	INIT_LIST_HEAD(&engine->pinned_contexts_list);
- 	engine->id = id;
- 	engine->legacy_idx = INVALID_ENGINE;
- 	engine->mask = BIT(id);
-@@ -875,6 +876,8 @@ intel_engine_create_pinned_context(struct intel_engine_cs *engine,
- 		return ERR_PTR(err);
- 	}
- 
-+	list_add_tail(&ce->pinned_contexts_link, &engine->pinned_contexts_list);
-+
- 	/*
- 	 * Give our perma-pinned kernel timelines a separate lockdep class,
- 	 * so that we can use them from within the normal user timelines
-@@ -897,6 +900,7 @@ void intel_engine_destroy_pinned_context(struct intel_context *ce)
- 	list_del(&ce->timeline->engine_link);
- 	mutex_unlock(&hwsp->vm->mutex);
- 
-+	list_del(&ce->pinned_contexts_link);
- 	intel_context_unpin(ce);
- 	intel_context_put(ce);
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index 1f07ac4e0672..3a5cbbf3e3fe 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -72,6 +72,15 @@ static int __engine_unpark(struct intel_wakeref *wf)
- 			   READ_ONCE(*ce->timeline->hwsp_seqno));
- 	}
- 
-+	list_for_each_entry(ce, &engine->pinned_contexts_list,
-+			    pinned_contexts_link) {
-+		if (ce == engine->kernel_context)
-+			continue;
-+
-+		dbg_poison_ce(ce);
-+		ce->ops->reset(ce);
-+	}
-+
- 	if (engine->unpark)
- 		engine->unpark(engine);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index bfbfe53c23dd..5ae1207c363b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -307,6 +307,13 @@ struct intel_engine_cs {
- 
- 	struct intel_context *kernel_context; /* pinned */
- 
-+	/**
-+	 * pinned_contexts_list: List of pinned contexts. This list is only
-+	 * assumed to be manipulated during driver load- or unload time and
-+	 * does therefore not have any additional protection.
-+	 */
-+	struct list_head pinned_contexts_list;
-+
- 	intel_engine_mask_t saturated; /* submitting semaphores too late? */
- 
- 	struct {
-diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index 2c1af030310c..8a14982a9691 100644
---- a/drivers/gpu/drm/i915/gt/mock_engine.c
-+++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -376,6 +376,7 @@ int mock_engine_init(struct intel_engine_cs *engine)
- {
- 	struct intel_context *ce;
- 
-+	INIT_LIST_HEAD(&engine->pinned_contexts_list);
- 	engine->sched_engine = i915_sched_engine_create(ENGINE_MOCK);
- 	if (!engine->sched_engine)
- 		return -ENOMEM;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 87d8dc8f51b9..55709206b95e 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -2385,9 +2385,13 @@ static inline void guc_init_lrc_mapping(struct intel_guc *guc)
- 	 * and even it did this code would be run again.
- 	 */
- 
--	for_each_engine(engine, gt, id)
--		if (engine->kernel_context)
--			guc_kernel_context_pin(guc, engine->kernel_context);
-+	for_each_engine(engine, gt, id) {
-+		struct intel_context *ce;
-+
-+		list_for_each_entry(ce, &engine->pinned_contexts_list,
-+				    pinned_contexts_link)
-+			guc_kernel_context_pin(guc, ce);
-+	}
- }
- 
- static void guc_release(struct intel_engine_cs *engine)
--- 
-2.31.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20898 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271]) +14 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-1115g4:      [DMESG-WARN][5] ([i915#4002]) -> [PASS][6] +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-tgl-1115g4/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-tgl-1115g4/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [INCOMPLETE][7] ([i915#3920]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-tgl-1115g4:      [SKIP][9] ([i915#1072]) -> [SKIP][10] ([i915#1072] / [i915#1385])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1385]: https://gitlab.freedesktop.org/drm/intel/issues/1385
+  [i915#3920]: https://gitlab.freedesktop.org/drm/intel/issues/3920
+  [i915#4002]: https://gitlab.freedesktop.org/drm/intel/issues/4002
+
+
+Participating hosts (40 -> 34)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10522 -> Patchwork_20898
+
+  CI-20190529: 20190529
+  CI_DRM_10522: b9b50258869989a477e7c04ac6d21a6e3660048e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6186: 250081b306c6fa8f95405fab6a7604f1968dd4ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20898: b68c166da558fa7fb56f92588e7ffde8d0d851ff @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b68c166da558 drm/i915/dsi/xelpd: Enable mipi dsi support.
+e060d617f06f drm/i915/dsi/xelpd: Add WA to program LP to HS wakeup guardband
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/index.html
+
+--===============5986049998235089329==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable mipi dsi on XELPD (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93917/">https://patchwork.freedesktop.org/series/93917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10522 -&gt; Patchwork_20898</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20898 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-tgl-1115g4/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-tgl-1115g4/igt@i915_module_load@reload.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3920">i915#3920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@primary_page_flip:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10522/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20898/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 34)</h2>
+<p>Missing    (6): fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10522 -&gt; Patchwork_20898</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10522: b9b50258869989a477e7c04ac6d21a6e3660048e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6186: 250081b306c6fa8f95405fab6a7604f1968dd4ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20898: b68c166da558fa7fb56f92588e7ffde8d0d851ff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>b68c166da558 drm/i915/dsi/xelpd: Enable mipi dsi support.<br />
+e060d617f06f drm/i915/dsi/xelpd: Add WA to program LP to HS wakeup guardband</p>
+
+</body>
+</html>
+
+--===============5986049998235089329==--
