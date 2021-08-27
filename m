@@ -1,41 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E683F96B1
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 11:13:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 038D13F9833
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 12:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC1F76E908;
-	Fri, 27 Aug 2021 09:13:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5E526E91B;
+	Fri, 27 Aug 2021 10:38:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E98BF6E908
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 09:13:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10088"; a="303503504"
-X-IronPort-AV: E=Sophos;i="5.84,356,1620716400"; d="scan'208";a="303503504"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98C966E91B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 10:38:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10088"; a="303513453"
+X-IronPort-AV: E=Sophos;i="5.84,356,1620716400"; d="scan'208";a="303513453"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2021 02:13:26 -0700
-X-IronPort-AV: E=Sophos;i="5.84,356,1620716400"; d="scan'208";a="528246819"
+ 27 Aug 2021 03:38:50 -0700
+X-IronPort-AV: E=Sophos;i="5.84,356,1620716400"; d="scan'208";a="528270445"
 Received: from gali-mobl2.gar.corp.intel.com (HELO localhost)
  ([10.251.212.203])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2021 02:13:25 -0700
+ 27 Aug 2021 03:38:48 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-In-Reply-To: <YSftSWNn1xGo2zPW@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1629906431.git.jani.nikula@intel.com>
- <da1609dfce4623f8ec86254aea6c2c8679b6a37f.1629906431.git.jani.nikula@intel.com>
- <YSftSWNn1xGo2zPW@intel.com>
-Date: Fri, 27 Aug 2021 12:13:22 +0300
-Message-ID: <87fsuvckst.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	Animesh Manna <animesh.manna@intel.com>
+Date: Fri, 27 Aug 2021 13:38:43 +0300
+Message-Id: <20210827103843.527-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/fdi: move
- intel_update_fdi_pll_freq to intel_fdi.c
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dg2: UHBR tables added for pll
+ programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,104 +49,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 26 Aug 2021, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Aug 25, 2021 at 06:47:48PM +0300, Jani Nikula wrote:
->> Move FDI related functions to intel_fdi.c. Rename to have intel_fdi
->> prefix while at it.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+From: Animesh Manna <animesh.manna@intel.com>
 
-Thanks, pushed the series.
+UHBR modes has higher link rate and added new values for programming
+mpll of SNPS phy. No change in sequence, only the pll parameters
+are different for UHBR modes.
 
-BR,
-Jani.
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_snps_phy.c | 147 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ 2 files changed, 151 insertions(+)
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 18 +-----------------
->>  drivers/gpu/drm/i915/display/intel_fdi.c     | 16 ++++++++++++++++
->>  drivers/gpu/drm/i915/display/intel_fdi.h     |  1 +
->>  3 files changed, 18 insertions(+), 17 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 794690c0dba5..3a9afe04ce0a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -11564,22 +11564,6 @@ static void sanitize_watermarks(struct drm_i915_private *dev_priv)
->>  	drm_modeset_acquire_fini(&ctx);
->>  }
->>  
->> -static void intel_update_fdi_pll_freq(struct drm_i915_private *dev_priv)
->> -{
->> -	if (IS_IRONLAKE(dev_priv)) {
->> -		u32 fdi_pll_clk =
->> -			intel_de_read(dev_priv, FDI_PLL_BIOS_0) & FDI_PLL_FB_CLOCK_MASK;
->> -
->> -		dev_priv->fdi_pll_freq = (fdi_pll_clk + 2) * 10000;
->> -	} else if (IS_SANDYBRIDGE(dev_priv) || IS_IVYBRIDGE(dev_priv)) {
->> -		dev_priv->fdi_pll_freq = 270000;
->> -	} else {
->> -		return;
->> -	}
->> -
->> -	drm_dbg(&dev_priv->drm, "FDI PLL freq=%d\n", dev_priv->fdi_pll_freq);
->> -}
->> -
->>  static int intel_initial_commit(struct drm_device *dev)
->>  {
->>  	struct drm_atomic_state *state = NULL;
->> @@ -11833,7 +11817,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
->>  
->>  	intel_plane_possible_crtcs_init(i915);
->>  	intel_shared_dpll_init(dev);
->> -	intel_update_fdi_pll_freq(i915);
->> +	intel_fdi_pll_freq_update(i915);
->>  
->>  	intel_update_czclk(i915);
->>  	intel_modeset_init_hw(i915);
->> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
->> index 13f8ba4c9188..88a78dafd54d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
->> @@ -95,6 +95,22 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
->>  	}
->>  }
->>  
->> +void intel_fdi_pll_freq_update(struct drm_i915_private *i915)
->> +{
->> +	if (IS_IRONLAKE(i915)) {
->> +		u32 fdi_pll_clk =
->> +			intel_de_read(i915, FDI_PLL_BIOS_0) & FDI_PLL_FB_CLOCK_MASK;
->> +
->> +		i915->fdi_pll_freq = (fdi_pll_clk + 2) * 10000;
->> +	} else if (IS_SANDYBRIDGE(i915) || IS_IVYBRIDGE(i915)) {
->> +		i915->fdi_pll_freq = 270000;
->> +	} else {
->> +		return;
->> +	}
->> +
->> +	drm_dbg(&i915->drm, "FDI PLL freq=%d\n", i915->fdi_pll_freq);
->> +}
->> +
->>  int intel_fdi_link_freq(struct drm_i915_private *i915,
->>  			const struct intel_crtc_state *pipe_config)
->>  {
->> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
->> index 2c8ffd9ceaed..cda9a32c25ba 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fdi.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
->> @@ -23,5 +23,6 @@ void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state);
->>  void intel_fdi_init_hook(struct drm_i915_private *dev_priv);
->>  void hsw_fdi_link_train(struct intel_encoder *encoder,
->>  			const struct intel_crtc_state *crtc_state);
->> +void intel_fdi_pll_freq_update(struct drm_i915_private *i915);
->>  
->>  #endif
->> -- 
->> 2.20.1
->> 
-
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+index 58ec2467ad66..2405f70d82de 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+@@ -171,11 +171,81 @@ static const struct intel_mpllb_state dg2_dp_hbr3_100 = {
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+ };
+ 
++static const struct intel_mpllb_state dg2_dp_uhbr10_100 = {
++	.clock = 1000000,
++	.ref_control =
++		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
++	.mpllb_cp =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 4) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 21) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
++	.mpllb_div =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
++	.mpllb_div2 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 2) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 368),
++	.mpllb_fracn1 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
++
++	/*
++	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
++	 */
++	.mpllb_sscen =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 58982),
++	.mpllb_sscstep =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 76101),
++};
++
++static const struct intel_mpllb_state dg2_dp_uhbr13_100 = {
++	.clock = 1350000,
++	.ref_control =
++		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
++	.mpllb_cp =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 45) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
++	.mpllb_div =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 3),
++	.mpllb_div2 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 2) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 508),
++	.mpllb_fracn1 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
++
++	/*
++	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
++	 */
++	.mpllb_sscen =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 79626),
++	.mpllb_sscstep =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 102737),
++};
++
+ static const struct intel_mpllb_state * const dg2_dp_100_tables[] = {
+ 	&dg2_dp_rbr_100,
+ 	&dg2_dp_hbr1_100,
+ 	&dg2_dp_hbr2_100,
+ 	&dg2_dp_hbr3_100,
++	&dg2_dp_uhbr10_100,
++	&dg2_dp_uhbr13_100,
+ 	NULL,
+ };
+ 
+@@ -284,11 +354,88 @@ static const struct intel_mpllb_state dg2_dp_hbr3_38_4 = {
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 61440),
+ };
+ 
++static const struct intel_mpllb_state dg2_dp_uhbr10_38_4 = {
++	.clock = 1000000,
++	.ref_control =
++		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
++	.mpllb_cp =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 26) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
++	.mpllb_div =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
++	.mpllb_div2 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 488),
++	.mpllb_fracn1 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 3),
++	.mpllb_fracn2 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 2) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 27306),
++
++	/*
++	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
++	 */
++	.mpllb_sscen =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 76800),
++	.mpllb_sscstep =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 129024),
++};
++
++static const struct intel_mpllb_state dg2_dp_uhbr13_38_4 = {
++	.clock = 1350000,
++	.ref_control =
++		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
++	.mpllb_cp =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 56) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
++	.mpllb_div =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 3),
++	.mpllb_div2 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 670),
++	.mpllb_fracn1 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
++	.mpllb_fracn2 =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 36864),
++
++	/*
++	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
++	 */
++	.mpllb_sscen =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 103680),
++	.mpllb_sscstep =
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 174182),
++};
++
+ static const struct intel_mpllb_state * const dg2_dp_38_4_tables[] = {
+ 	&dg2_dp_rbr_38_4,
+ 	&dg2_dp_hbr1_38_4,
+ 	&dg2_dp_hbr2_38_4,
+ 	&dg2_dp_hbr3_38_4,
++	&dg2_dp_uhbr10_38_4,
++	&dg2_dp_uhbr13_38_4,
+ 	NULL,
+ };
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 8d4cf1e203ab..40943dd5e0db 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2237,10 +2237,14 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ 
+ #define SNPS_PHY_MPLLB_DIV(phy)			_MMIO_SNPS(phy, 0x168004)
+ #define   SNPS_PHY_MPLLB_FORCE_EN		REG_BIT(31)
++#define   SNPS_PHY_MPLLB_DIV_CLK_EN		REG_BIT(30)
+ #define   SNPS_PHY_MPLLB_DIV5_CLK_EN		REG_BIT(29)
+ #define   SNPS_PHY_MPLLB_V2I			REG_GENMASK(27, 26)
+ #define   SNPS_PHY_MPLLB_FREQ_VCO		REG_GENMASK(25, 24)
++#define   SNPS_PHY_MPLLB_DIV_MULTIPLIER		REG_GENMASK(23, 16)
+ #define   SNPS_PHY_MPLLB_PMIX_EN		REG_BIT(10)
++#define   SNPS_PHY_MPLLB_DP2_MODE		REG_BIT(9)
++#define   SNPS_PHY_MPLLB_WORD_DIV2_EN		REG_BIT(8)
+ #define   SNPS_PHY_MPLLB_TX_CLK_DIV		REG_GENMASK(7, 5)
+ 
+ #define SNPS_PHY_MPLLB_FRACN1(phy)		_MMIO_SNPS(phy, 0x168008)
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
