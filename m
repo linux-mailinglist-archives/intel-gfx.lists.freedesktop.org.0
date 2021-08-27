@@ -2,90 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C1B3F94B4
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 08:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32E4D3F95D0
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 10:13:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACDB16E8E6;
-	Fri, 27 Aug 2021 06:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A28CE6E8F0;
+	Fri, 27 Aug 2021 08:13:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com
- [IPv6:2607:f8b0:4864:20::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1C2B6E8E5;
- Fri, 27 Aug 2021 06:59:08 +0000 (UTC)
-Received: by mail-pl1-x62e.google.com with SMTP id e1so3340072plt.11;
- Thu, 26 Aug 2021 23:59:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Rqn+GrCddwb17438Eb7/acjTBeKWly1ebyK4GCadnFc=;
- b=Ahob/aCaoxGGmBX3uT/2Oo+coR/T1tys8xgPUYlJZHQ+79x1W7tMhNYHihEb3g00Pw
- m+dgL0BLb9DG6XuqQrGIlpqK11vUr+Y2ytYHZ7LdTBFa1tFBJE3STgSjF41FypNGQroh
- EB33JFOQSvpQcvOA/KVG6FqtXl7O0+BT+q4qQg5vtIojCX29E2kJoRY1MRvb3ovAgDbp
- aFXAm0ssP0g7n3TLr2XOHHUaLQbsPjFKeMCjJaff6OnyliY0dDUUm9ACwqxN5BizOny5
- 6o6R1k1p3THp4VGKPD1gPgbF9N5SJmHFccehHvyHptaqGZoYeq1bOsTJYfzYeYbXFcTi
- n8+w==
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76B386E8F0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 08:13:40 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id d26so9201251wrc.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 01:13:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=2s59FfRG78bE8LxIeg1Zj8OdCh3zZnI3gg7/dazHWA4=;
+ b=Kdeb1fAG7//r6DeGePhfvKFBXK0qvLA5s2kT1G9xMjshC5lbuti0zxpCZLjQ2B3gx6
+ Ur0e4z09eQenuGU9OQZxNV3LH7wV25UtCEWI1RDIaU+RF7z1nFkrZNsQS08xcBms0QOY
+ YRbvAEG0SOGfCOPfMNp3r8pBX7v+hR7G17ugg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Rqn+GrCddwb17438Eb7/acjTBeKWly1ebyK4GCadnFc=;
- b=Wd3/Hkm1eXJtEn8Kx9vdzAudtryFZpOafpAkKmyyZluh0MeV89pMacuZJA8A4IW3Gg
- VQBMeGzjd6j+EPGqh+jONrTbm5+6A/EW9a7zZeSEP1BxU3dzFsQH79P9X6XjJzCZo48d
- f9W4p9ECeEK4dlfnXYXPs62SDCNi10XyIk8sh5ZstyboJ6l0XlnwrhCVXlsm9Egqle0Q
- x5afBxD1BjdMvN7znmn67HlPhuEvj2HOfCUIXZk9WVuHRa+Ylc2HnyRQMhHZKc9UK53x
- Ipe5BhkkSnLjhM7xPVaJHVaenNC4k58bvl1z6vMXye03e/VmBApsYKGtOymO8R5jeiJA
- E/PQ==
-X-Gm-Message-State: AOAM533YofVZvENYxuBB3ekdW37PAZGmCOpwL2UsnLe3zsVNHi9uhQgS
- UTRPNzcFujFwVOuJ1flPW0ALAKyz/nXJcT5O3kk=
-X-Google-Smtp-Source: ABdhPJzbMPfKsiNwRsmJ6wf35o+bM3Vsllxj/xaKs1Zg3gEKi2+LtrBilr6TwQqyx2Jk+YbMtx83ULLwDM5rxvcqh8o=
-X-Received: by 2002:a17:902:bb81:b0:12d:a7ec:3d85 with SMTP id
- m1-20020a170902bb8100b0012da7ec3d85mr7349833pls.17.1630047548297; Thu, 26 Aug
- 2021 23:59:08 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=2s59FfRG78bE8LxIeg1Zj8OdCh3zZnI3gg7/dazHWA4=;
+ b=MXgH6HoJBlAA2ZILIlMt4lx+oh7kHw8U9RC4UkjpsAM+o0PdqO7MVIFZ28o0E1sl0F
+ f10Q1csK6rh7suxBhwpdbSreRQ1xJL2Js3KJrXs+YVUaV7rgcS3zQYOUGQO4v3HZOXkH
+ ScEKAi++4teqJTuKb0TqAc+RTEfFGnWNEIZs2MLWl4OSk2Kr+226LpyOOpbv4n5UXsW6
+ GXE4ly+EEizMVEHzbFiEEnKtlISI4iGSfg1QAI9r29DMI7s5D8tF7lNXCGMI3CkGnTQr
+ u66kteUTQ3jIF0cwIAFYyGXu5igyrlHBZnEheDwONtxIeZrTD1b2DHw5GUssabyYwyRq
+ vNVg==
+X-Gm-Message-State: AOAM533xUyB8iyhxPl2yv1v2M1F7TzTbVQo69U4I3Me71/4fQvwyJ05O
+ sNw0wIi5ULzG3LbrcmCxjWRbfw==
+X-Google-Smtp-Source: ABdhPJxyr85yRqeMose6PPIDndQ8Z3GywH1iVXOk6X6WTLRuAPDm6BMdOKs0q/JSmV4qlZWreefNhg==
+X-Received: by 2002:adf:c10c:: with SMTP id r12mr1113052wre.142.1630052018990; 
+ Fri, 27 Aug 2021 01:13:38 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id l1sm3718664wrb.15.2021.08.27.01.13.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 27 Aug 2021 01:13:38 -0700 (PDT)
+Date: Fri, 27 Aug 2021 10:13:36 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Jon Bloomfield <jon.bloomfield@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YSiesBxB0Grrcdya@phenom.ffwll.local>
+References: <20210820154932.296628-1-daniel.vetter@ffwll.ch>
+ <YR/fjM7fDbMHZh5b@intel.com>
+ <CAKMK7uG_dU1kZa21JDWa4ZnCGc1A2bdUU1H-b2ZF8E0Hmob-eA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210624155526.2775863-1-tientzu@chromium.org>
- <20210624155526.2775863-11-tientzu@chromium.org>
-In-Reply-To: <20210624155526.2775863-11-tientzu@chromium.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 27 Aug 2021 09:58:32 +0300
-Message-ID: <CAHp75VfVhVGFEQGeUKajrUKmkx_et_KakDDgroC2BrMMhd62yg@mail.gmail.com>
-To: Claire Chang <tientzu@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, 
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, 
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, 
- Juergen Gross <jgross@suse.com>, Christoph Hellwig <hch@lst.de>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, benh@kernel.crashing.org,
- paulus@samba.org, 
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- sstabellini@kernel.org, 
- Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com, xypron.glpk@gmx.de, 
- Thierry Reding <treding@nvidia.com>, mingo@kernel.org, bauerman@linux.ibm.com, 
- peterz@infradead.org, Greg KH <gregkh@linuxfoundation.org>, 
- Saravana Kannan <saravanak@google.com>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, 
- heikki.krogerus@linux.intel.com, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Randy Dunlap <rdunlap@infradead.org>, 
- Dan Williams <dan.j.williams@intel.com>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, 
- linux-devicetree <devicetree@vger.kernel.org>,
- lkml <linux-kernel@vger.kernel.org>, 
- linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org, 
- Nicolas Boichat <drinkcat@chromium.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org, 
- bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk, 
- daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com, 
- jxgao@google.com, joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org, 
- maarten.lankhorst@linux.intel.com, matthew.auld@intel.com, 
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, 
- thomas.lendacky@amd.com, quic_qiancai@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v15 10/12] swiotlb: Add restricted DMA pool
- initialization
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKMK7uG_dU1kZa21JDWa4ZnCGc1A2bdUU1H-b2ZF8E0Hmob-eA@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Actually delete gpu reloc
+ selftests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,119 +84,269 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 24, 2021 at 6:59 PM Claire Chang <tientzu@chromium.org> wrote:
->
-> Add the initialization function to create restricted DMA pools from
-> matching reserved-memory nodes.
->
-> Regardless of swiotlb setting, the restricted DMA pool is preferred if
-> available.
->
-> The restricted DMA pools provide a basic level of protection against the
-> DMA overwriting buffer contents at unexpected times. However, to protect
-> against general data leakage and system memory corruption, the system
-> needs to provide a way to lock down the memory access, e.g., MPU.
+On Fri, Aug 20, 2021 at 07:59:04PM +0200, Daniel Vetter wrote:
+> On Fri, Aug 20, 2021 at 7:00 PM Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> >
+> > On Fri, Aug 20, 2021 at 05:49:32PM +0200, Daniel Vetter wrote:
+> > > In
+> > >
+> > > commit 8e02cceb1f1f4f254625e5338dd997ff61ab40d7
+> > > Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > Date:   Tue Aug 3 14:48:33 2021 +0200
+> > >
+> > >     drm/i915: delete gpu reloc code
+> >
+> > it would be better with dim cite format...
+> >
+> > do we need the Fixes: tag?
+> 
+> I did delete the selftest, I just forgot to delete the code. So no
+> Fixes: imo. I'll bikeshed the commit citation.
+> 
+> > anyway:
+> >
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> Thanks for the review, will merge when CI approves too, one never knows.
 
+Well CI fell over in noise, but it builds still, so good enough for this
+one :-)
+-Daniel
 
+> -Daniel
+> 
+> >
+> >
+> > >
+> > > I deleted the gpu relocation code and the selftest include and
+> > > enabling, but accidentally forgot about the selftest source code.
+> > >
+> > > Fix this oversight.
+> > >
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> > > Cc: Dave Airlie <airlied@redhat.com>
+> > > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > > ---
+> > >  .../i915/gem/selftests/i915_gem_execbuffer.c  | 190 ------------------
+> > >  1 file changed, 190 deletions(-)
+> > >  delete mode 100644 drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> > > deleted file mode 100644
+> > > index 16162fc2782d..000000000000
+> > > --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> > > +++ /dev/null
+> > > @@ -1,190 +0,0 @@
+> > > -// SPDX-License-Identifier: MIT
+> > > -/*
+> > > - * Copyright © 2020 Intel Corporation
+> > > - */
+> > > -
+> > > -#include "i915_selftest.h"
+> > > -
+> > > -#include "gt/intel_engine_pm.h"
+> > > -#include "selftests/igt_flush_test.h"
+> > > -
+> > > -static u64 read_reloc(const u32 *map, int x, const u64 mask)
+> > > -{
+> > > -     u64 reloc;
+> > > -
+> > > -     memcpy(&reloc, &map[x], sizeof(reloc));
+> > > -     return reloc & mask;
+> > > -}
+> > > -
+> > > -static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+> > > -                        struct drm_i915_gem_object *obj)
+> > > -{
+> > > -     const unsigned int offsets[] = { 8, 3, 0 };
+> > > -     const u64 mask =
+> > > -             GENMASK_ULL(eb->reloc_cache.use_64bit_reloc ? 63 : 31, 0);
+> > > -     const u32 *map = page_mask_bits(obj->mm.mapping);
+> > > -     struct i915_request *rq;
+> > > -     struct i915_vma *vma;
+> > > -     int err;
+> > > -     int i;
+> > > -
+> > > -     vma = i915_vma_instance(obj, eb->context->vm, NULL);
+> > > -     if (IS_ERR(vma))
+> > > -             return PTR_ERR(vma);
+> > > -
+> > > -     err = i915_gem_object_lock(obj, &eb->ww);
+> > > -     if (err)
+> > > -             return err;
+> > > -
+> > > -     err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, PIN_USER | PIN_HIGH);
+> > > -     if (err)
+> > > -             return err;
+> > > -
+> > > -     /* 8-Byte aligned */
+> > > -     err = __reloc_entry_gpu(eb, vma, offsets[0] * sizeof(u32), 0);
+> > > -     if (err <= 0)
+> > > -             goto reloc_err;
+> > > -
+> > > -     /* !8-Byte aligned */
+> > > -     err = __reloc_entry_gpu(eb, vma, offsets[1] * sizeof(u32), 1);
+> > > -     if (err <= 0)
+> > > -             goto reloc_err;
+> > > -
+> > > -     /* Skip to the end of the cmd page */
+> > > -     i = PAGE_SIZE / sizeof(u32) - 1;
+> > > -     i -= eb->reloc_cache.rq_size;
+> > > -     memset32(eb->reloc_cache.rq_cmd + eb->reloc_cache.rq_size,
+> > > -              MI_NOOP, i);
+> > > -     eb->reloc_cache.rq_size += i;
+> > > -
+> > > -     /* Force next batch */
+> > > -     err = __reloc_entry_gpu(eb, vma, offsets[2] * sizeof(u32), 2);
+> > > -     if (err <= 0)
+> > > -             goto reloc_err;
+> > > -
+> > > -     GEM_BUG_ON(!eb->reloc_cache.rq);
+> > > -     rq = i915_request_get(eb->reloc_cache.rq);
+> > > -     reloc_gpu_flush(eb, &eb->reloc_cache);
+> > > -     GEM_BUG_ON(eb->reloc_cache.rq);
+> > > -
+> > > -     err = i915_gem_object_wait(obj, I915_WAIT_INTERRUPTIBLE, HZ / 2);
+> > > -     if (err) {
+> > > -             intel_gt_set_wedged(eb->engine->gt);
+> > > -             goto put_rq;
+> > > -     }
+> > > -
+> > > -     if (!i915_request_completed(rq)) {
+> > > -             pr_err("%s: did not wait for relocations!\n", eb->engine->name);
+> > > -             err = -EINVAL;
+> > > -             goto put_rq;
+> > > -     }
+> > > -
+> > > -     for (i = 0; i < ARRAY_SIZE(offsets); i++) {
+> > > -             u64 reloc = read_reloc(map, offsets[i], mask);
+> > > -
+> > > -             if (reloc != i) {
+> > > -                     pr_err("%s[%d]: map[%d] %llx != %x\n",
+> > > -                            eb->engine->name, i, offsets[i], reloc, i);
+> > > -                     err = -EINVAL;
+> > > -             }
+> > > -     }
+> > > -     if (err)
+> > > -             igt_hexdump(map, 4096);
+> > > -
+> > > -put_rq:
+> > > -     i915_request_put(rq);
+> > > -unpin_vma:
+> > > -     i915_vma_unpin(vma);
+> > > -     return err;
+> > > -
+> > > -reloc_err:
+> > > -     if (!err)
+> > > -             err = -EIO;
+> > > -     goto unpin_vma;
+> > > -}
+> > > -
+> > > -static int igt_gpu_reloc(void *arg)
+> > > -{
+> > > -     struct i915_execbuffer eb;
+> > > -     struct drm_i915_gem_object *scratch;
+> > > -     int err = 0;
+> > > -     u32 *map;
+> > > -
+> > > -     eb.i915 = arg;
+> > > -
+> > > -     scratch = i915_gem_object_create_internal(eb.i915, 4096);
+> > > -     if (IS_ERR(scratch))
+> > > -             return PTR_ERR(scratch);
+> > > -
+> > > -     map = i915_gem_object_pin_map_unlocked(scratch, I915_MAP_WC);
+> > > -     if (IS_ERR(map)) {
+> > > -             err = PTR_ERR(map);
+> > > -             goto err_scratch;
+> > > -     }
+> > > -
+> > > -     intel_gt_pm_get(&eb.i915->gt);
+> > > -
+> > > -     for_each_uabi_engine(eb.engine, eb.i915) {
+> > > -             if (intel_engine_requires_cmd_parser(eb.engine) ||
+> > > -                 intel_engine_using_cmd_parser(eb.engine))
+> > > -                     continue;
+> > > -
+> > > -             reloc_cache_init(&eb.reloc_cache, eb.i915);
+> > > -             memset(map, POISON_INUSE, 4096);
+> > > -
+> > > -             intel_engine_pm_get(eb.engine);
+> > > -             eb.context = intel_context_create(eb.engine);
+> > > -             if (IS_ERR(eb.context)) {
+> > > -                     err = PTR_ERR(eb.context);
+> > > -                     goto err_pm;
+> > > -             }
+> > > -             eb.reloc_pool = NULL;
+> > > -             eb.reloc_context = NULL;
+> > > -
+> > > -             i915_gem_ww_ctx_init(&eb.ww, false);
+> > > -retry:
+> > > -             err = intel_context_pin_ww(eb.context, &eb.ww);
+> > > -             if (!err) {
+> > > -                     err = __igt_gpu_reloc(&eb, scratch);
+> > > -
+> > > -                     intel_context_unpin(eb.context);
+> > > -             }
+> > > -             if (err == -EDEADLK) {
+> > > -                     err = i915_gem_ww_ctx_backoff(&eb.ww);
+> > > -                     if (!err)
+> > > -                             goto retry;
+> > > -             }
+> > > -             i915_gem_ww_ctx_fini(&eb.ww);
+> > > -
+> > > -             if (eb.reloc_pool)
+> > > -                     intel_gt_buffer_pool_put(eb.reloc_pool);
+> > > -             if (eb.reloc_context)
+> > > -                     intel_context_put(eb.reloc_context);
+> > > -
+> > > -             intel_context_put(eb.context);
+> > > -err_pm:
+> > > -             intel_engine_pm_put(eb.engine);
+> > > -             if (err)
+> > > -                     break;
+> > > -     }
+> > > -
+> > > -     if (igt_flush_test(eb.i915))
+> > > -             err = -EIO;
+> > > -
+> > > -     intel_gt_pm_put(&eb.i915->gt);
+> > > -err_scratch:
+> > > -     i915_gem_object_put(scratch);
+> > > -     return err;
+> > > -}
+> > > -
+> > > -int i915_gem_execbuffer_live_selftests(struct drm_i915_private *i915)
+> > > -{
+> > > -     static const struct i915_subtest tests[] = {
+> > > -             SUBTEST(igt_gpu_reloc),
+> > > -     };
+> > > -
+> > > -     if (intel_gt_is_wedged(&i915->gt))
+> > > -             return 0;
+> > > -
+> > > -     return i915_live_subtests(tests, i915);
+> > > -}
+> > > --
+> > > 2.32.0
+> > >
+> 
+> 
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 
-
-
-> +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-> +                                   struct device *dev)
-> +{
-> +       struct io_tlb_mem *mem =3D rmem->priv;
-> +       unsigned long nslabs =3D rmem->size >> IO_TLB_SHIFT;
-> +
-> +       /*
-> +        * Since multiple devices can share the same pool, the private da=
-ta,
-> +        * io_tlb_mem struct, will be initialized by the first device att=
-ached
-> +        * to it.
-> +        */
-
-> +       if (!mem) {
-
-Can it be rather
-
-if (mem)
-  goto out_assign;
-
-or so?
-
-> +               mem =3D kzalloc(struct_size(mem, slots, nslabs), GFP_KERN=
-EL);
-> +               if (!mem)
-> +                       return -ENOMEM;
-> +
-> +               set_memory_decrypted((unsigned long)phys_to_virt(rmem->ba=
-se),
-> +                                    rmem->size >> PAGE_SHIFT);
-
-Below you are using a macro from pfn.h, but not here, I think it's PFN_DOWN=
-().
-
-> +               swiotlb_init_io_tlb_mem(mem, rmem->base, nslabs, false);
-> +               mem->force_bounce =3D true;
-> +               mem->for_alloc =3D true;
-> +
-> +               rmem->priv =3D mem;
-> +
-> +               if (IS_ENABLED(CONFIG_DEBUG_FS)) {
-> +                       mem->debugfs =3D
-> +                               debugfs_create_dir(rmem->name, debugfs_di=
-r);
-> +                       swiotlb_create_debugfs_files(mem);
-> +               }
-> +       }
-> +
-> +       dev->dma_io_tlb_mem =3D mem;
-> +
-> +       return 0;
-> +}
-> +
-> +static void rmem_swiotlb_device_release(struct reserved_mem *rmem,
-> +                                       struct device *dev)
-> +{
-> +       dev->dma_io_tlb_mem =3D io_tlb_default_mem;
-> +}
-> +
-> +static const struct reserved_mem_ops rmem_swiotlb_ops =3D {
-> +       .device_init =3D rmem_swiotlb_device_init,
-> +       .device_release =3D rmem_swiotlb_device_release,
-> +};
-> +
-> +static int __init rmem_swiotlb_setup(struct reserved_mem *rmem)
-> +{
-> +       unsigned long node =3D rmem->fdt_node;
-> +
-> +       if (of_get_flat_dt_prop(node, "reusable", NULL) ||
-> +           of_get_flat_dt_prop(node, "linux,cma-default", NULL) ||
-> +           of_get_flat_dt_prop(node, "linux,dma-default", NULL) ||
-> +           of_get_flat_dt_prop(node, "no-map", NULL))
-> +               return -EINVAL;
-> +
-> +       if (PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
-> +               pr_err("Restricted DMA pool must be accessible within the=
- linear mapping.");
-> +               return -EINVAL;
-> +       }
-> +
-> +       rmem->ops =3D &rmem_swiotlb_ops;
-> +       pr_info("Reserved memory: created restricted DMA pool at %pa, siz=
-e %ld MiB\n",
-> +               &rmem->base, (unsigned long)rmem->size / SZ_1M);
-
-Oh l=C3=A0 l=C3=A0, besides explicit casting that I believe can be avoided,=
- %ld
-!=3D unsigned long. Can you check the printk-formats.rst document?
-
-> +       return 0;
-> +}
-> +
-> +RESERVEDMEM_OF_DECLARE(dma, "restricted-dma-pool", rmem_swiotlb_setup);
->  #endif /* CONFIG_DMA_RESTRICTED_POOL */
-
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
