@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A931F3F9B65
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 17:03:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC4153F9B77
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 17:10:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E385D6E98E;
-	Fri, 27 Aug 2021 15:03:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7DBB6E990;
+	Fri, 27 Aug 2021 15:10:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2074C6E98E;
- Fri, 27 Aug 2021 15:03:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1CEB1A008A;
- Fri, 27 Aug 2021 15:03:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3EFD6E98F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 15:09:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10089"; a="281690763"
+X-IronPort-AV: E=Sophos;i="5.84,357,1620716400"; d="scan'208";a="281690763"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2021 08:09:58 -0700
+X-IronPort-AV: E=Sophos;i="5.84,357,1620716400"; d="scan'208";a="528340095"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2021 08:09:57 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Aug 2021 18:09:50 +0300
+Message-Id: <20210827150955.3343520-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Aug 2021 15:03:31 -0000
-Message-ID: <163007661111.12588.11454377201640017391@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210827133039.287075-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210827133039.287075-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Handle_Intel_igfx_+_Intel_dgfx_hybrid_graphics_?=
- =?utf-8?q?setup_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915/adlp: Add support for remapping
+ CCS FBs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,25 +42,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add support for remapping CCS FBs on ADL-P, so that the restriction on
+the power-of-two sized stride and the 2 MB surface offset alignment can
+be removed.
 
-Series: drm/i915: Handle Intel igfx + Intel dgfx hybrid graphics setup (rev2)
-URL   : https://patchwork.freedesktop.org/series/94105/
-State : warning
+The corresponding IGT changes are at:
+https://patchwork.freedesktop.org/series/94107/
 
-== Summary ==
+Tested on SKL, TGL, ADL-P.
 
-$ dim checkpatch origin/drm-tip
-a8e23cbe36b7 drm/i915: Handle Intel igfx + Intel dgfx hybrid graphics setup
--:25: WARNING:TYPO_SPELLING: 'ambigous' may be misspelled - perhaps 'ambiguous'?
-#25: 
-We have a somewhat ambigous comment there saying only status of native
-                   ^^^^^^^^
+Test-with: 20210827145756.3342904-1-imre.deak@intel.com
 
-total: 0 errors, 1 warnings, 0 checks, 111 lines checked
+Imre Deak (5):
+  drm/i915: Use tile block based dimensions for CCS origin x,y check
+  drm/i915/adlp: Require always a power-of-two sized CCS surface stride
+  drm/i915/adlp: Assert that VMAs in DPT start at 0
+  drm/i915: Follow a new->old platform check order in
+    intel_fb_stride_alignment
+  drm/i915/adlp: Add support for remapping CCS FBs
 
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ .../drm/i915/display/intel_display_types.h    |   2 -
+ drivers/gpu/drm/i915/display/intel_fb.c       | 155 ++++++++++++------
+ .../drm/i915/display/skl_universal_plane.c    |   5 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  28 +++-
+ drivers/gpu/drm/i915/i915_vma_types.h         |   7 +-
+ 6 files changed, 145 insertions(+), 57 deletions(-)
+
+-- 
+2.27.0
 
