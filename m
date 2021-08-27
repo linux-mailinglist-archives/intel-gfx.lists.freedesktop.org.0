@@ -1,43 +1,99 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08193F9214
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 03:42:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E283F934F
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Aug 2021 05:58:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8806E8DD;
-	Fri, 27 Aug 2021 01:42:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A6DF6E8D5;
+	Fri, 27 Aug 2021 03:58:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 386286E047;
- Fri, 27 Aug 2021 01:42:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10088"; a="303453400"
-X-IronPort-AV: E=Sophos;i="5.84,355,1620716400"; d="scan'208";a="303453400"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2021 18:41:59 -0700
-X-IronPort-AV: E=Sophos;i="5.84,355,1620716400"; d="scan'208";a="426978158"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2021 18:41:59 -0700
-Date: Thu, 26 Aug 2021 18:36:50 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <20210827013650.GA9019@jons-linux-dev-box>
-References: <20210826032327.18078-1-matthew.brost@intel.com>
- <20210826032327.18078-3-matthew.brost@intel.com>
- <3fde98f9-b408-63cf-ea31-779bf477b68e@intel.com>
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com
+ [IPv6:2607:f8b0:4864:20::d33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43C2B6E8D5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 03:58:20 +0000 (UTC)
+Received: by mail-io1-xd33.google.com with SMTP id z1so6831466ioh.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 20:58:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aO31d1ja5MAKunYUAZZRLdfg9N4l+qmRykC9m1jC/pQ=;
+ b=LHO3ECTKxrFvHrNircCd8rdZ+1fd28Cmb0yeGOAFZz7tvi23JfdsoKQlBQ/osBU2PS
+ uSjlHhkxT55kRAddmfXWJAAOEApdxidxxDW04W+WXtBEpgeVUzkf4uqWPWAg7OHZiZJx
+ 7DqmkAUptTsy2yC8hMD6ce5SkESGfwW9yU/Tw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aO31d1ja5MAKunYUAZZRLdfg9N4l+qmRykC9m1jC/pQ=;
+ b=Gzy3abkE1C8dAiH3JKfloq1+rKbB9I3jauYSys1I5TIS6qAfzrYF61mZ7M5Koni49g
+ 4G+G5vHMhB7/9XjFQG84/g27CdFoJF3bCogClcbyzwTsqumQcBOJgnlBhq63nTyGuUTo
+ bMQ7GWHimf1sJoMCu7dHnOch7cG3AWNIOTINmA888mm1pYNleC9uViS5Pui/A6Xu2/Iu
+ DX8VS78WrZ/F5Pd+SS3as2yV8prrxYLZ6BTX6ybzfGN+NjKoKB1z2sQU/55O378NHKBz
+ oc18kehkZDVHyJsmiJqOF6Vnw9B5pBF5YjdSY6SYpbNkR4z0zZk6NaICBWwmsUAvKJEz
+ O5cg==
+X-Gm-Message-State: AOAM533aDDUhPXheQ4ecAWSlW4SB+cnZYiTLg3ke4Nn1CdHQOZ3s8g2K
+ BdPGsdbKhyGC6JacNYcqzpARyO2U7M8cEw==
+X-Google-Smtp-Source: ABdhPJwIfSyVrFEG0SAWG9NsqMfKjipz0QNXh1qhQSJffG/WdY47skU/EvPSOs2IPyWWn3YKDMgYhw==
+X-Received: by 2002:a02:93aa:: with SMTP id z39mr2547981jah.29.1630036699314; 
+ Thu, 26 Aug 2021 20:58:19 -0700 (PDT)
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com.
+ [209.85.166.179])
+ by smtp.gmail.com with ESMTPSA id s7sm2393969ioc.42.2021.08.26.20.58.18
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 26 Aug 2021 20:58:19 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id j15so5775778ila.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 20:58:18 -0700 (PDT)
+X-Received: by 2002:a5d:9ada:: with SMTP id x26mr5606315ion.50.1630036221774; 
+ Thu, 26 Aug 2021 20:50:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3fde98f9-b408-63cf-ea31-779bf477b68e@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 02/27] drm/i915/guc: Fix outstanding G2H
- accounting
+References: <20210624155526.2775863-1-tientzu@chromium.org>
+ <20210624155526.2775863-11-tientzu@chromium.org>
+ <20210824142601.GA3393158@roeck-us.net>
+In-Reply-To: <20210824142601.GA3393158@roeck-us.net>
+From: Claire Chang <tientzu@chromium.org>
+Date: Fri, 27 Aug 2021 11:50:10 +0800
+X-Gmail-Original-Message-ID: <CALiNf2_NoJwU7UUT4mNkbKWRKsTP9R9E=9qBZzjdjOduO5WZDQ@mail.gmail.com>
+Message-ID: <CALiNf2_NoJwU7UUT4mNkbKWRKsTP9R9E=9qBZzjdjOduO5WZDQ@mail.gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>, 
+ Will Deacon <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
+ jgross@suse.com, 
+ Christoph Hellwig <hch@lst.de>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ benh@kernel.crashing.org, paulus@samba.org, 
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>, 
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com, 
+ xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>, mingo@kernel.org, 
+ bauerman@linux.ibm.com, peterz@infradead.org, 
+ Greg KH <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ heikki.krogerus@linux.intel.com, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Randy Dunlap <rdunlap@infradead.org>, 
+ Dan Williams <dan.j.williams@intel.com>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, 
+ linux-devicetree <devicetree@vger.kernel.org>,
+ lkml <linux-kernel@vger.kernel.org>, 
+ linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org, 
+ Nicolas Boichat <drinkcat@chromium.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, 
+ Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com, 
+ Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk, 
+ Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com, 
+ Jianxiong Gao <jxgao@google.com>, joonas.lahtinen@linux.intel.com, 
+ linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com, 
+ matthew.auld@intel.com, rodrigo.vivi@intel.com, 
+ thomas.hellstrom@linux.intel.com, Tom Lendacky <thomas.lendacky@amd.com>, 
+ Qian Cai <quic_qiancai@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v15 10/12] swiotlb: Add restricted DMA pool
+ initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,96 +109,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 26, 2021 at 04:09:59PM -0700, Daniele Ceraolo Spurio wrote:
-> 
-> 
-> On 8/25/2021 8:23 PM, Matthew Brost wrote:
-> > A small race that could result in incorrect accounting of the number
-> > of outstanding G2H. Basically prior to this patch we did not increment
-> > the number of outstanding G2H if we encoutered a GT reset while sending
-> > a H2G. This was incorrect as the context state had already been updated
-> > to anticipate a G2H response thus the counter should be incremented.
-> > 
-> > Also always use helper when decrementing this value.
-> > 
-> > Fixes: f4eb1f3fe946 ("drm/i915/guc: Ensure G2H response has space in buffer")
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org>
+On Tue, Aug 24, 2021 at 10:26 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> Hi Claire,
+>
+> On Thu, Jun 24, 2021 at 11:55:24PM +0800, Claire Chang wrote:
+> > Add the initialization function to create restricted DMA pools from
+> > matching reserved-memory nodes.
+> >
+> > Regardless of swiotlb setting, the restricted DMA pool is preferred if
+> > available.
+> >
+> > The restricted DMA pools provide a basic level of protection against the
+> > DMA overwriting buffer contents at unexpected times. However, to protect
+> > against general data leakage and system memory corruption, the system
+> > needs to provide a way to lock down the memory access, e.g., MPU.
+> >
+> > Signed-off-by: Claire Chang <tientzu@chromium.org>
+> > Reviewed-by: Christoph Hellwig <hch@lst.de>
+> > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+> > Tested-by: Will Deacon <will@kernel.org>
 > > ---
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 23 ++++++++++---------
-> >   1 file changed, 12 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 69faa39da178..03a86da6011e 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -352,6 +352,12 @@ static inline void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
-> >   	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> >   }
-> > +static void decr_outstanding_submission_g2h(struct intel_guc *guc)
-> > +{
-> > +	if (atomic_dec_and_test(&guc->outstanding_submission_g2h))
-> > +		wake_up_all(&guc->ct.wq);
-> > +}
-> > +
-> >   static int guc_submission_send_busy_loop(struct intel_guc *guc,
-> >   					 const u32 *action,
-> >   					 u32 len,
-> > @@ -360,11 +366,12 @@ static int guc_submission_send_busy_loop(struct intel_guc *guc,
-> >   {
-> >   	int err;
-> > -	err = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
-> > -
-> > -	if (!err && g2h_len_dw)
-> > +	if (g2h_len_dw)
-> >   		atomic_inc(&guc->outstanding_submission_g2h);
-> > +	err = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
-> > +	GEM_BUG_ON(g2h_len_dw && err == -EBUSY);
-> 
-> AFAICS having a return g2h is not tied to not returning EBUSY, the only way
-> to avoid  EBUSY seems to be for loop to be true. maybe have instead:
-> 
-> GEM_BUG_ON(g2h_len_dw && !loop);
-> 
-> earlier on?
-> 
+> >  include/linux/swiotlb.h |  3 +-
+> >  kernel/dma/Kconfig      | 14 ++++++++
+> >  kernel/dma/swiotlb.c    | 76 +++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 92 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+> > index 3b9454d1e498..39284ff2a6cd 100644
+> > --- a/include/linux/swiotlb.h
+> > +++ b/include/linux/swiotlb.h
+> > @@ -73,7 +73,8 @@ extern enum swiotlb_force swiotlb_force;
+> >   *           range check to see if the memory was in fact allocated by this
+> >   *           API.
+> >   * @nslabs:  The number of IO TLB blocks (in groups of 64) between @start and
+> > - *           @end. This is command line adjustable via setup_io_tlb_npages.
+> > + *           @end. For default swiotlb, this is command line adjustable via
+> > + *           setup_io_tlb_npages.
+> >   * @used:    The number of used IO TLB block.
+> >   * @list:    The free list describing the number of free entries available
+> >   *           from each index.
+> > diff --git a/kernel/dma/Kconfig b/kernel/dma/Kconfig
+> > index 77b405508743..3e961dc39634 100644
+> > --- a/kernel/dma/Kconfig
+> > +++ b/kernel/dma/Kconfig
+> > @@ -80,6 +80,20 @@ config SWIOTLB
+> >       bool
+> >       select NEED_DMA_MAP_STATE
+> >
+> > +config DMA_RESTRICTED_POOL
+> > +     bool "DMA Restricted Pool"
+> > +     depends on OF && OF_RESERVED_MEM
+> > +     select SWIOTLB
+>
+> This makes SWIOTLB user configurable, which in turn results in
+>
+> mips64-linux-ld: arch/mips/kernel/setup.o: in function `arch_mem_init':
+> setup.c:(.init.text+0x19c8): undefined reference to `plat_swiotlb_setup'
+> make[1]: *** [Makefile:1280: vmlinux] Error 1
+>
+> when building mips:allmodconfig.
+>
+> Should this possibly be "depends on SWIOTLB" ?
 
-Yep, that is better. Can you respin this for me while I'm out?
+Patch is sent here: https://lkml.org/lkml/2021/8/26/932
 
-Matt
+>
+> Thanks,
+> Guenter
 
-> Daniele
-> 
-> > +
-> >   	return err;
-> >   }
-> > @@ -616,7 +623,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
-> >   		init_sched_state(ce);
-> >   		if (pending_enable || destroyed || deregister) {
-> > -			atomic_dec(&guc->outstanding_submission_g2h);
-> > +			decr_outstanding_submission_g2h(guc);
-> >   			if (deregister)
-> >   				guc_signal_context_fence(ce);
-> >   			if (destroyed) {
-> > @@ -635,7 +642,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
-> >   				intel_engine_signal_breadcrumbs(ce->engine);
-> >   			}
-> >   			intel_context_sched_disable_unpin(ce);
-> > -			atomic_dec(&guc->outstanding_submission_g2h);
-> > +			decr_outstanding_submission_g2h(guc);
-> >   			spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >   			guc_blocked_fence_complete(ce);
-> >   			spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> > @@ -2583,12 +2590,6 @@ g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
-> >   	return ce;
-> >   }
-> > -static void decr_outstanding_submission_g2h(struct intel_guc *guc)
-> > -{
-> > -	if (atomic_dec_and_test(&guc->outstanding_submission_g2h))
-> > -		wake_up_all(&guc->ct.wq);
-> > -}
-> > -
-> >   int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
-> >   					  const u32 *msg,
-> >   					  u32 len)
-> 
+Thanks,
+Claire
