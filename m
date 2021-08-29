@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 994033FA87B
-	for <lists+intel-gfx@lfdr.de>; Sun, 29 Aug 2021 06:01:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 777073FAE4F
+	for <lists+intel-gfx@lfdr.de>; Sun, 29 Aug 2021 22:00:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6326E8AB;
-	Sun, 29 Aug 2021 04:00:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBA5389A1A;
+	Sun, 29 Aug 2021 20:00:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBB6E6E095;
- Sun, 29 Aug 2021 04:00:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10090"; a="281850508"
-X-IronPort-AV: E=Sophos;i="5.84,360,1620716400"; 
- d="gz'50?scan'50,208,50";a="281850508"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E63A289A1A;
+ Sun, 29 Aug 2021 20:00:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10091"; a="218217026"
+X-IronPort-AV: E=Sophos;i="5.84,362,1620716400"; 
+ d="gz'50?scan'50,208,50";a="218217026"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2021 21:00:54 -0700
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2021 13:00:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,360,1620716400"; 
- d="gz'50?scan'50,208,50";a="518167887"
+X-IronPort-AV: E=Sophos;i="5.84,362,1620716400"; 
+ d="gz'50?scan'50,208,50";a="518513082"
 Received: from lkp-server01.sh.intel.com (HELO 4fbc2b3ce5aa) ([10.239.97.150])
- by fmsmga004.fm.intel.com with ESMTP; 28 Aug 2021 21:00:51 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 29 Aug 2021 13:00:04 -0700
 Received: from kbuild by 4fbc2b3ce5aa with local (Exim 4.92)
  (envelope-from <lkp@intel.com>)
- id 1mKC03-00040b-3r; Sun, 29 Aug 2021 04:00:51 +0000
-Date: Sun, 29 Aug 2021 12:00:23 +0800
+ id 1mKQyK-0004XX-7c; Sun, 29 Aug 2021 20:00:04 +0000
+Date: Mon, 30 Aug 2021 03:59:24 +0800
 From: kernel test robot <lkp@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Cc: kbuild-all@lists.01.org, daniel.vetter@ffwll.ch, tony.ye@intel.com,
  zhengguo.xu@intel.com
-Message-ID: <202108291101.8pKmHdiV-lkp@intel.com>
+Message-ID: <202108300333.WTBKbqda-lkp@intel.com>
 References: <20210820224446.30620-21-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="zYM0uCDKw75PZbzx"
+Content-Type: multipart/mixed; boundary="k+w/mQv8wyuph6w0"
 Content-Disposition: inline
 In-Reply-To: <20210820224446.30620-21-matthew.brost@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
@@ -57,7 +57,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---zYM0uCDKw75PZbzx
+--k+w/mQv8wyuph6w0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
@@ -155,12 +155,12 @@ vim +1411 drivers/gpu/drm/i915/gem/i915_gem_context.c
 0-DAY CI Kernel Test Service, Intel Corporation
 https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
---zYM0uCDKw75PZbzx
+--k+w/mQv8wyuph6w0
 Content-Type: application/gzip
 Content-Disposition: attachment; filename=".config.gz"
 Content-Transfer-Encoding: base64
 
-H4sICJzSKmEAAy5jb25maWcAlDzJdty2svt8RR9nkyziq8k6znlHCzQJknCTBAOArW5teBS5
+H4sICNy3K2EAAy5jb25maWcAlDzJdty2svt8RR9nkyziq8k6znlHCzQJknCTBAOArW5teBS5
 7eg8DX4a7rX//lYBHAogqORlEaurCnOhZvDnn35esdeXx/vrl9ub67u7H6uvh4fD0/XL4fPq
 y+3d4X9WqVzV0qx4Ksx7IC5vH16//+v7x/Pu/Gz14f3x2fuj355uTlebw9PD4W6VPD58uf36
 Ch3cPj789PNPiawzkXdJ0m250kLWneE7c/Hu683Nb7+vfkkPf95eP6x+f38K3Zyc/Or+ekea
@@ -942,4 +942,4 @@ xd2GE1o+hbg3y4qC0oZJPzu7eIwg5m/61i8YER51kNSXbI0oGrSqO5fH1ggGLS/HEBakZF/n
 a1Kcc8xcKRRolF4FmQ1dFVXszDBG/QJtnruVEIOoREnnSzJfZKXHC04VbhMYM1sUTqkUMY0i
 rPqL9Z2AhCTrmEz8/JpEiNottNHe3RLEaz83sE3Xiv2y59/sYeeEdRNep/8HeO30lzWyAgA=
 
---zYM0uCDKw75PZbzx--
+--k+w/mQv8wyuph6w0--
