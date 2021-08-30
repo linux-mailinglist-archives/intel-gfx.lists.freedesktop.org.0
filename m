@@ -1,71 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD443FB2D2
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 11:02:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6893FB2D7
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 11:02:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4D1189A4A;
-	Mon, 30 Aug 2021 09:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5498E89A5E;
+	Mon, 30 Aug 2021 09:02:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B52689A5C
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 09:01:52 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id x11so29726465ejv.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:01:52 -0700 (PDT)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 004CE899F3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 09:02:45 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id n11so20475946edv.11
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:02:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=6TxX20RG9vZKNb6s13O3Zgz2CFeRVUtXKUgw8R7voIM=;
- b=DE0IIXDcdI727XPGVqrtky2yQdWuMlMmMgSWIrTGscmSI542IIZjQr6ow8aeAoJp2C
- 2NTnYz2F03dI4OkBH+l2grUnqH4P58F5LPe2sdT79g0apRPMM8rtYgIexPiCfVxr/SUx
- oyTIzK4y0HsjaMyKMrEpgKc+7oP19WAme9/WU=
+ :content-disposition:in-reply-to;
+ bh=P0VwUkxlwiDNF5zXlJbfV8JNAaRiNE6CCyXYomEyvrI=;
+ b=hfS6z/FKy4eXTdRumbtkBdRZxKmkoRQer3FHqIbFXcWZ8JldQkNBXy8cS5R8V8X199
+ wa30n7EaQ1FNoXda2wlwE6FFaoG7Lbp4KuGTyk3b0A1fZJXCCDIgia+z+nDtH21B4z3I
+ tlK6+VPFd52FGv9TuLI6/1g7hm/2h15D1abSA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=6TxX20RG9vZKNb6s13O3Zgz2CFeRVUtXKUgw8R7voIM=;
- b=eCiQiwSfunyfUqZoTiWDbe/vAFMI4cXPnXThJSKnWCRnjyCpNsSfxLSxf7cfA9W+G/
- 1sPv0zI4WxW8gqrZ7NhGXMipnvIV65rI4/r7CPqo9uSckcupDSAjtT549ZQphRRAeKdg
- S5/aqydqfGjsuyQqvObZuFPXHz2TBjmcbiy5RAJjjjw3wIF0pEffsNYlJe5pEIXCsda8
- 3meefp+v05/TLVzCt65uul0NtmeIe2phZuq1vVrvyHgUL/kMVeNYleAbVTLIfJQy+7uA
- qwuy1T78nQRhc0BM2zixAUWfr19FxZm2A+UN6SnC+bHf1BX/0OnkbgwO/YVVvC7MHvBL
- pSaA==
-X-Gm-Message-State: AOAM531QHxnQygrn1qtSRMmGriTBXjOYPyHLv6X5qLNFsddmfGZE2Ayc
- KdUcW3bimDgF4nSqdRxt4aVOgw==
-X-Google-Smtp-Source: ABdhPJxB08ojJo6OGjtdEhKjXGnu9dMQoQyBwlcdnF+4nIzqbNcU7sKY3XjYnrjFGe6CGtKcNnl9hg==
-X-Received: by 2002:a17:906:1806:: with SMTP id
- v6mr23825047eje.420.1630314111091; 
- Mon, 30 Aug 2021 02:01:51 -0700 (PDT)
+ :mime-version:content-disposition:in-reply-to;
+ bh=P0VwUkxlwiDNF5zXlJbfV8JNAaRiNE6CCyXYomEyvrI=;
+ b=P1wzsjYUQrPL/nEMxK/jZBnDo3R+DtjDCEAaQE+uH9xWdyzK8B87VjMiNulViikUEx
+ ZqlmGMPoG/51QmGEEI/laujlXkma5Lj0RVU7I1mVTYIMuNUCNUkinyvoHjIOMccOK1LZ
+ k3h/uoEclyK42PC/AwrgbgoEYHNYjhbuVLE5/OYjHYbx8TNV3QIJ6D4aCMcJ/ex2W3q9
+ B9gDsrNZhOZEJdWTI1e28MNRUYTB0IbOpgL0SErHORpr/88QDY4xjtPu2Qwwb1vVF7kI
+ W1T9/eC1IdoRafUvcqJX8nq4guw1AbXBKz1c4wWupnSItV4fl1vEcSQ2yvPzyM6pSrqF
+ tc8w==
+X-Gm-Message-State: AOAM533JRxDz2vi+EfCqR2qAo8CmHonFWknat1AiMm1eE1Adh0mcHH2J
+ eUbcDnoDkgXaKkhslkgTIJk1TQ==
+X-Google-Smtp-Source: ABdhPJxYyxhCjR7uuGM8J7R+lgAExXey1usensekyctDskpS84BLeSBbFiTNH3XD6qyITSLiAHrxkQ==
+X-Received: by 2002:aa7:cc02:: with SMTP id q2mr22493221edt.154.1630314164602; 
+ Mon, 30 Aug 2021 02:02:44 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id v10sm7269829edt.25.2021.08.30.02.01.50
+ by smtp.gmail.com with ESMTPSA id cb22sm3862182edb.5.2021.08.30.02.02.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Aug 2021 02:01:50 -0700 (PDT)
-Date: Mon, 30 Aug 2021 11:01:48 +0200
+ Mon, 30 Aug 2021 02:02:44 -0700 (PDT)
+Date: Mon, 30 Aug 2021 11:02:42 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Message-ID: <YSyefFUvvoeNJVTe@phenom.ffwll.local>
+To: Rob Clark <robdclark@gmail.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sean Paul <sean@poorly.run>,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ freedreno <freedreno@lists.freedesktop.org>
+Message-ID: <YSyesupzftTAuWqI@phenom.ffwll.local>
 References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
- <20210805104705.862416-13-daniel.vetter@ffwll.ch>
+ <20210805104705.862416-17-daniel.vetter@ffwll.ch>
+ <CAF6AEGtSM_TfCKvHh48WFX4DvhdrWLLi3oCMPz1x2_pCZwbPCQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210805104705.862416-13-daniel.vetter@ffwll.ch>
+In-Reply-To: <CAF6AEGtSM_TfCKvHh48WFX4DvhdrWLLi3oCMPz1x2_pCZwbPCQ@mail.gmail.com>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH v5 12/20] drm/msm: Use scheduler dependency
- handling
+Subject: Re: [Intel-gfx] [PATCH v5 16/20] drm/msm: Don't break exclusive
+ fence ordering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,143 +78,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 05, 2021 at 12:46:57PM +0200, Daniel Vetter wrote:
-> drm_sched_job_init is already at the right place, so this boils down
-> to deleting code.
+On Thu, Aug 26, 2021 at 09:16:25AM -0700, Rob Clark wrote:
+> On Thu, Aug 5, 2021 at 3:47 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >
+> > There's only one exclusive slot, and we must not break the ordering.
+> >
+> > Adding a new exclusive fence drops all previous fences from the
+> > dma_resv. To avoid violating the signalling order we err on the side of
+> > over-synchronizing by waiting for the existing fences, even if
+> > userspace asked us to ignore them.
+> >
+> > A better fix would be to us a dma_fence_chain or _array like e.g.
+> > amdgpu now uses, but
+> > - msm has a synchronous dma_fence_wait for anything from another
+> >   context, so doesn't seem to care much,
+> > - and it probably makes sense to lift this into dma-resv.c code as a
+> >   proper concept, so that drivers don't have to hack up their own
+> >   solution each on their own.
+> >
+> > v2: Improve commit message per Lucas' suggestion.
+> >
+> > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Rob Clark <robdclark@gmail.com>
+> > Cc: Sean Paul <sean@poorly.run>
+> > Cc: linux-arm-msm@vger.kernel.org
+> > Cc: freedreno@lists.freedesktop.org
 > 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: freedreno@lists.freedesktop.org
-> Cc: linux-media@vger.kernel.org
-> Cc: linaro-mm-sig@lists.linaro.org
+> a-b
 
-Merged up to this patch, except for etnaviv.
+Also pushed to drm-misc-next, thanks for review&testing.
 -Daniel
 
-> ---
->  drivers/gpu/drm/msm/msm_gem.h        |  5 -----
->  drivers/gpu/drm/msm/msm_gem_submit.c | 19 +++++--------------
->  drivers/gpu/drm/msm/msm_ringbuffer.c | 12 ------------
->  3 files changed, 5 insertions(+), 31 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/msm/msm_gem.h b/drivers/gpu/drm/msm/msm_gem.h
-> index f9e3ffb2309a..8bf0ac707fd7 100644
-> --- a/drivers/gpu/drm/msm/msm_gem.h
-> +++ b/drivers/gpu/drm/msm/msm_gem.h
-> @@ -312,11 +312,6 @@ struct msm_gem_submit {
->  	struct ww_acquire_ctx ticket;
->  	uint32_t seqno;		/* Sequence number of the submit on the ring */
->  
-> -	/* Array of struct dma_fence * to block on before submitting this job.
-> -	 */
-> -	struct xarray deps;
-> -	unsigned long last_dep;
-> -
->  	/* Hw fence, which is created when the scheduler executes the job, and
->  	 * is signaled when the hw finishes (via seqno write from cmdstream)
->  	 */
-> diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
-> index 96cea0ba4cfd..fb5a2eab27a2 100644
-> --- a/drivers/gpu/drm/msm/msm_gem_submit.c
-> +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-> @@ -52,8 +52,6 @@ static struct msm_gem_submit *submit_create(struct drm_device *dev,
->  		return ERR_PTR(ret);
->  	}
->  
-> -	xa_init_flags(&submit->deps, XA_FLAGS_ALLOC);
-> -
->  	kref_init(&submit->ref);
->  	submit->dev = dev;
->  	submit->aspace = queue->ctx->aspace;
-> @@ -72,8 +70,6 @@ void __msm_gem_submit_destroy(struct kref *kref)
->  {
->  	struct msm_gem_submit *submit =
->  			container_of(kref, struct msm_gem_submit, ref);
-> -	unsigned long index;
-> -	struct dma_fence *fence;
->  	unsigned i;
->  
->  	if (submit->fence_id) {
-> @@ -82,12 +78,6 @@ void __msm_gem_submit_destroy(struct kref *kref)
->  		mutex_unlock(&submit->queue->lock);
->  	}
->  
-> -	xa_for_each (&submit->deps, index, fence) {
-> -		dma_fence_put(fence);
-> -	}
-> -
-> -	xa_destroy(&submit->deps);
-> -
->  	dma_fence_put(submit->user_fence);
->  	dma_fence_put(submit->hw_fence);
->  
-> @@ -343,8 +333,9 @@ static int submit_fence_sync(struct msm_gem_submit *submit, bool no_implicit)
->  		if (no_implicit)
->  			continue;
->  
-> -		ret = drm_gem_fence_array_add_implicit(&submit->deps, obj,
-> -			write);
-> +		ret = drm_sched_job_add_implicit_dependencies(&submit->base,
-> +							      obj,
-> +							      write);
->  		if (ret)
->  			break;
->  	}
-> @@ -588,7 +579,7 @@ static struct drm_syncobj **msm_parse_deps(struct msm_gem_submit *submit,
->  		if (ret)
->  			break;
->  
-> -		ret = drm_gem_fence_array_add(&submit->deps, fence);
-> +		ret = drm_sched_job_add_dependency(&submit->base, fence);
->  		if (ret)
->  			break;
->  
-> @@ -798,7 +789,7 @@ int msm_ioctl_gem_submit(struct drm_device *dev, void *data,
->  			goto out_unlock;
->  		}
->  
-> -		ret = drm_gem_fence_array_add(&submit->deps, in_fence);
-> +		ret = drm_sched_job_add_dependency(&submit->base, in_fence);
->  		if (ret)
->  			goto out_unlock;
->  	}
-> diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> index bd54c1412649..652b1dedd7c1 100644
-> --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
-> +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> @@ -11,17 +11,6 @@ static uint num_hw_submissions = 8;
->  MODULE_PARM_DESC(num_hw_submissions, "The max # of jobs to write into ringbuffer (default 8)");
->  module_param(num_hw_submissions, uint, 0600);
->  
-> -static struct dma_fence *msm_job_dependency(struct drm_sched_job *job,
-> -		struct drm_sched_entity *s_entity)
-> -{
-> -	struct msm_gem_submit *submit = to_msm_submit(job);
-> -
-> -	if (!xa_empty(&submit->deps))
-> -		return xa_erase(&submit->deps, submit->last_dep++);
-> -
-> -	return NULL;
-> -}
-> -
->  static struct dma_fence *msm_job_run(struct drm_sched_job *job)
->  {
->  	struct msm_gem_submit *submit = to_msm_submit(job);
-> @@ -52,7 +41,6 @@ static void msm_job_free(struct drm_sched_job *job)
->  }
->  
->  const struct drm_sched_backend_ops msm_sched_ops = {
-> -	.dependency = msm_job_dependency,
->  	.run_job = msm_job_run,
->  	.free_job = msm_job_free
->  };
-> -- 
-> 2.32.0
-> 
+> > ---
+> >  drivers/gpu/drm/msm/msm_gem_submit.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
+> > index fb5a2eab27a2..66633dfd58a2 100644
+> > --- a/drivers/gpu/drm/msm/msm_gem_submit.c
+> > +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
+> > @@ -330,7 +330,8 @@ static int submit_fence_sync(struct msm_gem_submit *submit, bool no_implicit)
+> >                                 return ret;
+> >                 }
+> >
+> > -               if (no_implicit)
+> > +               /* exclusive fences must be ordered */
+> > +               if (no_implicit && !write)
+> >                         continue;
+> >
+> >                 ret = drm_sched_job_add_implicit_dependencies(&submit->base,
+> > --
+> > 2.32.0
+> >
 
 -- 
 Daniel Vetter
