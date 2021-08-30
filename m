@@ -1,39 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B08633FBA1B
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 18:26:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 658E33FBA18
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 18:26:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7955C89B3C;
-	Mon, 30 Aug 2021 16:26:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7787A89CB5;
+	Mon, 30 Aug 2021 16:26:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD94B89CAC
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 16:26:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="279318042"
-X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="279318042"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F0BA89CAD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 16:26:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="279318048"
+X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="279318048"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2021 09:26:05 -0700
+ 30 Aug 2021 09:26:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="497802548"
+X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="497802557"
 Received: from ayazahma-nuc8i7beh.iind.intel.com ([10.145.162.59])
- by fmsmga008.fm.intel.com with ESMTP; 30 Aug 2021 09:26:03 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 30 Aug 2021 09:26:05 -0700
 From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Apoorva Singh <apoorva1.singh@intel.com>,
- Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-Date: Mon, 30 Aug 2021 21:52:36 +0530
-Message-Id: <20210830162240.3891502-5-ayaz.siddiqui@intel.com>
+Cc: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+Date: Mon, 30 Aug 2021 21:52:37 +0530
+Message-Id: <20210830162240.3891502-6-ayaz.siddiqui@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210830162240.3891502-1-ayaz.siddiqui@intel.com>
 References: <20210830162240.3891502-1-ayaz.siddiqui@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH V3 4/8] drm/i915/gt: Set BLIT_CCTL reg to
- un-cached
+Subject: [Intel-gfx] [PATCH V3 5/8] drm/i915/gt: Initialize unused MOCS
+ entries with device specific values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,73 +48,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Apoorva Singh <apoorva1.singh@intel.com>
+Historically we've initialized all undefined/reserved entries in
+a platform's MOCS table to the contents of table entry #1 (i.e.,
+I915_MOCS_PTE).
+Going forward, we can't assume that table entry #1 will always
+contain suitable values to use for undefined/reserved table
+indices. We'll allow a platform-specific table index to be
+selected at table initialization time in these cases.
 
-Blitter commands which do not have MOCS fields rely on
-cacheability of BlitterCacheControlRegister which was mapped
-to index 0 by default.Once we changed the MOCS value of
-index 0 to L3 WB, tests like gem_linear_blits started failing
-due to a change in cacheability from UC to WB.
+This new mechanism to select L3 WB entry will be applicable for
+all the Gen12+ platforms except TGL and RKL.
 
-Program and place the BlitterCacheControlRegister in
-build_aux_regs().
+Since TGL and RLK are already in production so their mocs settings
+are intact to avoid ABI break.
 
-Signed-off-by: Apoorva Singh <apoorva1.singh@intel.com>
 Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_mocs.c | 13 +++++++++++++
- drivers/gpu/drm/i915/i915_reg.h      |  7 +++++++
- 2 files changed, 20 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_mocs.c | 41 +++++++++++++++-------------
+ 1 file changed, 22 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-index 403bd48362b19..82eafa8d22453 100644
+index 82eafa8d22453..a97cc08e5a395 100644
 --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
 +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-@@ -386,6 +386,17 @@ add_aux_reg(struct drm_i915_aux_table *aux,
- 	return x;
+@@ -25,6 +25,7 @@ struct drm_i915_mocs_table {
+ 	unsigned int n_entries;
+ 	const struct drm_i915_mocs_entry *table;
+ 	u8 uc_index;
++	u8 unused_entries_index;
+ };
+ 
+ enum register_type {
+@@ -113,18 +114,25 @@ struct drm_i915_aux_table {
+  *
+  * Entries not part of the following tables are undefined as far as
+  * userspace is concerned and shouldn't be relied upon.  For Gen < 12
+- * they will be initialized to PTE. Gen >= 12 onwards don't have a setting for
+- * PTE and will be initialized to an invalid value.
++ * they will be initialized to PTE. Gen >= 12 don't have a setting for
++ * PTE and those platforms except TGL/RKL will be initialized L3 WB to
++ * catch accidental use of reserved and unused mocs indexes.
+  *
+  * The last few entries are reserved by the hardware. For ICL+ they
+  * should be initialized according to bspec and never used, for older
+  * platforms they should never be written to.
+  *
+- * NOTE: These tables are part of bspec and defined as part of hardware
++ * NOTE1: These tables are part of bspec and defined as part of hardware
+  *       interface for ICL+. For older platforms, they are part of kernel
+  *       ABI. It is expected that, for specific hardware platform, existing
+  *       entries will remain constant and the table will only be updated by
+  *       adding new entries, filling unused positions.
++ *
++ * NOTE2: For GEN >= 12 except TGL and RKL, reserved and unspecified MOCS
++ *       indices have been set to L3 WB. These reserved entries should never
++ *       be used, they may be changed to low performant variants with better
++ *       coherency in the future if more entries are needed.
++ *       For TGL/RKL, all the unspecified MOCS indexes are mapped to L3 UC.
+  */
+ #define GEN9_MOCS_ENTRIES \
+ 	MOCS_ENTRY(I915_MOCS_UNCACHED, \
+@@ -307,17 +315,9 @@ static const struct drm_i915_mocs_entry icl_mocs_table[] = {
+ };
+ 
+ static const struct drm_i915_mocs_entry dg1_mocs_table[] = {
+-	/* Error */
+-	MOCS_ENTRY(0, 0, L3_0_DIRECT),
+ 
+ 	/* UC */
+ 	MOCS_ENTRY(1, 0, L3_1_UC),
+-
+-	/* Reserved */
+-	MOCS_ENTRY(2, 0, L3_0_DIRECT),
+-	MOCS_ENTRY(3, 0, L3_0_DIRECT),
+-	MOCS_ENTRY(4, 0, L3_0_DIRECT),
+-
+ 	/* WB - L3 */
+ 	MOCS_ENTRY(5, 0, L3_3_WB),
+ 	/* WB - L3 50% */
+@@ -469,6 +469,7 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
+ 		table->table = dg1_mocs_table;
+ 		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
+ 		table->uc_index = 1;
++		table->unused_entries_index = 5;
+ 	} else if (GRAPHICS_VER(i915) >= 12) {
+ 		table->size  = ARRAY_SIZE(tgl_mocs_table);
+ 		table->table = tgl_mocs_table;
+@@ -600,16 +601,17 @@ int apply_mocs_aux_regs_ctx(struct i915_request *rq)
  }
  
-+static struct drm_i915_aux_table *
-+add_blit_cctl_override(struct drm_i915_aux_table *aux, u8 idx)
-+{
-+	return add_aux_reg(aux,
-+			   REG_ENGINE_CONTEXT,
-+			   "BLIT_CCTL",
-+			   BLIT_CCTL(0),
-+			   BLIT_CCTL_MOCS(idx, idx),
-+			   0);
-+}
-+
- static struct drm_i915_aux_table *
- add_cmd_cctl_override(struct drm_i915_aux_table *aux, u8 idx)
+ /*
+- * Get control_value from MOCS entry taking into account when it's not used:
+- * I915_MOCS_PTE's value is returned in this case.
++ * Get control_value from MOCS entry taking into account when it's not used
++ * then if unused_entries_index is non-zero then its value will be returned
++ * otherwise I915_MOCS_PTE's value is returned in this case.
+  */
+ static u32 get_entry_control(const struct drm_i915_mocs_table *table,
+ 			     unsigned int index)
  {
-@@ -412,6 +423,8 @@ build_aux_regs(const struct intel_engine_cs *engine,
- 		 * a entry in drm_i915_aux_table link list.
- 		 */
- 		aux = add_cmd_cctl_override(aux, mocs->uc_index);
-+		if (engine->class == COPY_ENGINE_CLASS)
-+			aux = add_blit_cctl_override(aux, mocs->uc_index);
- 	}
- 	return aux;
+ 	if (index < table->size && table->table[index].used)
+ 		return table->table[index].control_value;
+-
+-	return table->table[I915_MOCS_PTE].control_value;
++	index = table->unused_entries_index ? : I915_MOCS_PTE;
++	return table->table[index].control_value;
  }
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index df7a4550fb50f..207e0ada179b2 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2567,6 +2567,13 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- 		      REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, (write) << 1) | \
- 		      REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, (read) << 1))
  
-+#define BLIT_CCTL(base)	_MMIO((base) + 0x204)
-+#define   BLIT_CCTL_DST_MOCS_MASK	REG_GENMASK(14, 8)
-+#define   BLIT_CCTL_SRC_MOCS_MASK	REG_GENMASK(6, 0)
-+#define   BLIT_CCTL_DST_MOCS_SHIFT	8
-+#define   BLIT_CCTL_MOCS(dst, src)							\
-+	((((dst) << 1) << BLIT_CCTL_DST_MOCS_SHIFT) | ((src) << 1))
-+
- #define RING_RESET_CTL(base)	_MMIO((base) + 0xd0)
- #define   RESET_CTL_CAT_ERROR	   REG_BIT(2)
- #define   RESET_CTL_READY_TO_RESET REG_BIT(1)
+ #define for_each_mocs(mocs, t, i) \
+@@ -650,16 +652,17 @@ static void init_mocs_table(struct intel_engine_cs *engine,
+ }
+ 
+ /*
+- * Get l3cc_value from MOCS entry taking into account when it's not used:
+- * I915_MOCS_PTE's value is returned in this case.
++ * Get l3cc_value from MOCS entry taking into account when it's not used
++ * then if unused_entries_index is not zero then its value will be returned
++ * otherwise I915_MOCS_PTE's value is returned in this case.
+  */
+ static u16 get_entry_l3cc(const struct drm_i915_mocs_table *table,
+ 			  unsigned int index)
+ {
+ 	if (index < table->size && table->table[index].used)
+ 		return table->table[index].l3cc_value;
+-
+-	return table->table[I915_MOCS_PTE].l3cc_value;
++	index = table->unused_entries_index ? : I915_MOCS_PTE;
++	return table->table[index].l3cc_value;
+ }
+ 
+ static u32 l3cc_combine(u16 low, u16 high)
 -- 
 2.26.2
 
