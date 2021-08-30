@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA9AF3FB69D
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 14:59:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E476E3FB6AD
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 15:03:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8801989C51;
-	Mon, 30 Aug 2021 12:59:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7F0689C6B;
+	Mon, 30 Aug 2021 13:03:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F224C89A1F;
- Mon, 30 Aug 2021 12:59:43 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E033189C6B;
+ Mon, 30 Aug 2021 13:03:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EA487AA0EA;
- Mon, 30 Aug 2021 12:59:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5992689209274053439=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8DA9A7E03;
+ Mon, 30 Aug 2021 13:03:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Aug 2021 12:59:43 -0000
-Message-ID: <163032838393.14977.7395690449359627191@emeril.freedesktop.org>
+Date: Mon, 30 Aug 2021 13:03:44 -0000
+Message-ID: <163032862486.14977.7512361749906099128@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <cover.1630319138.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1630319138.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/displayid=3A_VESA_vendor_block_and_drm/i915_MSO_use_of_it?=
+References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Short-term_pinning_and_async_eviction=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,213 +45,84 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5992689209274053439==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/displayid: VESA vendor block and drm/i915 MSO use of it
-URL   : https://patchwork.freedesktop.org/series/94161/
-State : success
+Series: drm/i915: Short-term pinning and async eviction.
+URL   : https://patchwork.freedesktop.org/series/94162/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10536 -> Patchwork_20916
-====================================================
+$ dim checkpatch origin/drm-tip
+fa0ce1cd930e drm/i915: Move __i915_gem_free_object to ttm_bo_destroy
+667b39786fe3 drm/i915: Remove unused bits of i915_vma/active api
+98c59acb1911 drm/i915: Slightly rework EXEC_OBJECT_CAPTURE handling
+ce526eaaf6dc drm/i915: Remove gen6_ppgtt_unpin_all
+7f62692b5277 drm/i915: Create a dummy object for gen6 ppgtt
+-:178: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#178: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.c:376:
++static void pd_dummy_obj_put_pages(struct drm_i915_gem_object *obj,
++				     struct sg_table *pages)
 
-Summary
--------
+-:200: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#200: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.c:398:
++	pd->pt.base = __i915_gem_object_create_internal(ppgtt->base.vm.gt->i915, &pd_dummy_obj_ops, I915_PDES * SZ_4K);
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 1 checks, 256 lines checked
+faee95e0ebdf drm/i915: Create a full object for mock_ring
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+This allows us to finally get rid of all the assumptions that vma->obj is NULL.
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 58 lines checked
+c13839878262 drm/i915: vma is always backed by an object.
+2885005de36d drm/i915: Fix runtime pm handling in i915_gem_shrink
+92874150b4e7 drm/i915: Change shrink ordering to use locking around unbinding.
+-:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#27: FILE: drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:41:
++static int drop_pages(struct drm_i915_gem_object *obj,
++		       unsigned long shrink, bool trylock_vm)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/index.html
+total: 0 errors, 0 warnings, 1 checks, 56 lines checked
+c7b50af89f7a Move CONTEXT_VALID_BIT check
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-Known issues
-------------
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+9a8f87820ed4 drm/i915: Remove resv from i915_vma
+81200f4aea0f drm/i915: Remove pages_mutex and intel_gtt->vma_ops.set/clear_pages members
+-:520: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#520: FILE: drivers/gpu/drm/i915/i915_vma.c:791:
+ 
++
 
-  Here are the changes found in Patchwork_20916 that come from known issues:
+total: 0 errors, 0 warnings, 1 checks, 633 lines checked
+d0e5dee58521 drm/i915: Take object lock in i915_ggtt_pin if ww is not set
+eea081368486 drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
+We want to remove more members of i915_vma, which requires the locking to be
 
-### IGT changes ###
+-:337: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#337: FILE: drivers/gpu/drm/i915/i915_gem_evict.c:258:
+ 
++
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 1 checks, 513 lines checked
+741722532bf6 drm/i915: Remove support for unlocked i915_vma unbind
+66f02650e597 drm/i915: Remove short-term pins from execbuf
+49d5bf5ffe41 drm/i915: Add functions to set/get moving fence
+c29934165e29 drm/i915: Add support for asynchronous moving fence waiting
+992d547f7e4d drm/i915: Add accelerated migration to ttm
+-:145: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#145: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:501:
++		ttm_kmap_iter_iomap_init(&_dst_iter.io, &dst_reg->iomap,
++					  dst_st, dst_reg->region.start);
 
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
+-:150: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#150: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:506:
++		ttm_kmap_iter_iomap_init(&_src_iter.io, &src_reg->iomap,
++					  obj->ttm.cached_io_st,
 
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#2868])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-7500u:       [PASS][6] -> [FAIL][7] ([i915#3449])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][8] ([i915#3921]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         [DMESG-FAIL][10] ([i915#3928]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
-  [i915#3449]: https://gitlab.freedesktop.org/drm/intel/issues/3449
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
-
-
-Participating hosts (44 -> 35)
-------------------------------
-
-  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10536 -> Patchwork_20916
-
-  CI-20190529: 20190529
-  CI_DRM_10536: b6d834a72c14ca22b2df32a607c1ee36e8629f1a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6191: e9292b533691784f46eeb9bae522ca7a8710c920 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20916: 533fe7f4d344374c1bc87c5862a3c484974327ad @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 0 errors, 0 warnings, 2 checks, 167 lines checked
 
 
-== Linux commits ==
-
-533fe7f4d344 drm/i915/edp: use MSO pixel overlap from DisplayID data
-8d04ff6612d7 drm/i915/edp: postpone MSO init until after EDID read
-5b93f3332ae5 drm/edid: parse the DisplayID v2.0 VESA vendor block for MSO
-015c7a3f599e drm/displayid: add DisplayID v2.0 data blocks and primary use cases
-9460c37da4ef drm/displayid: re-align data block macros
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/index.html
-
---===============5992689209274053439==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/displayid: VESA vendor block and drm/i915 MSO use of it</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94161/">https://patchwork.freedesktop.org/series/94161/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10536 -&gt; Patchwork_20916</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20916 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>
-<p>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3449">i915#3449</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20916/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 35)</h2>
-<p>Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10536 -&gt; Patchwork_20916</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10536: b6d834a72c14ca22b2df32a607c1ee36e8629f1a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6191: e9292b533691784f46eeb9bae522ca7a8710c920 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20916: 533fe7f4d344374c1bc87c5862a3c484974327ad @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>533fe7f4d344 drm/i915/edp: use MSO pixel overlap from DisplayID data<br />
-8d04ff6612d7 drm/i915/edp: postpone MSO init until after EDID read<br />
-5b93f3332ae5 drm/edid: parse the DisplayID v2.0 VESA vendor block for MSO<br />
-015c7a3f599e drm/displayid: add DisplayID v2.0 data blocks and primary use cases<br />
-9460c37da4ef drm/displayid: re-align data block macros</p>
-
-</body>
-</html>
-
---===============5992689209274053439==--
