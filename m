@@ -1,34 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD853FB86E
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 16:44:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9773FB8D0
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 17:11:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F404588007;
-	Mon, 30 Aug 2021 14:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E14A289309;
+	Mon, 30 Aug 2021 15:11:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D1F5988007;
- Mon, 30 Aug 2021 14:43:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CA634A47EB;
- Mon, 30 Aug 2021 14:43:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6231968811109530917=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400E889138;
+ Mon, 30 Aug 2021 15:11:02 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="240528934"
+X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="240528934"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2021 08:11:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="445756975"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 30 Aug 2021 08:10:59 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 30 Aug 2021 18:10:58 +0300
+Date: Mon, 30 Aug 2021 18:10:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <YSz1AhsVUc7m3Ng7@intel.com>
+References: <cover.1630319138.git.jani.nikula@intel.com>
+ <09f57d55813f916578d1dd1e28bee3a621068bdd.1630319138.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Aug 2021 14:43:56 -0000
-Message-ID: <163033463680.14977.14236800956730660909@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1630327990.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1630327990.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_debugfs_cleanups_=28rev2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <09f57d55813f916578d1dd1e28bee3a621068bdd.1630319138.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/edid: parse the DisplayID v2.0 VESA
+ vendor block for MSO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,210 +50,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6231968811109530917==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Aug 30, 2021 at 01:29:01PM +0300, Jani Nikula wrote:
+> The VESA Organization Vendor-Specific Data Block, defined in VESA
+> DisplayID Standard v2.0, specifies the eDP Multi-SST Operation (MSO)
+> stream count and segment pixel overlap.
+> 
+> DisplayID v1.3 has Appendix B: DisplayID as an EDID Extension,
+> describing how DisplayID sections may be embedded in EDID extension
+> blocks. DisplayID v2.0 does not have such a section, perhaps implying
+> that DisplayID v2.0 data should not be included in EDID extensions, but
+> rather in a "pure" DisplayID structure at its own DDC address pair
+> A4h/A5h, as described in VESA E-DDC Standard v1.3 chapter 3.
+> 
+> However, in practice, displays out in the field have embedded DisplayID
+> v2.0 data blocks in EDID extensions, including, in particular, some eDP
+> MSO displays, where a pure DisplayID structure is not available at all.
+> 
+> Parse the MSO data from the DisplayID data block. Do it as part of
+> drm_add_display_info(), extending it to parse also DisplayID data to
+> avoid requiring extra calls to update the information.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_edid.c  | 63 +++++++++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h | 12 +++++++
+>  include/drm/drm_displayid.h | 11 +++++++
+>  3 files changed, 86 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 6325877c5fd6..7e8083068f3f 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -28,6 +28,7 @@
+>   * DEALINGS IN THE SOFTWARE.
+>   */
+>  
+> +#include <linux/bitfield.h>
+>  #include <linux/hdmi.h>
+>  #include <linux/i2c.h>
+>  #include <linux/kernel.h>
+> @@ -5148,6 +5149,62 @@ void drm_get_monitor_range(struct drm_connector *connector,
+>  		      info->monitor_range.max_vfreq);
+>  }
+>  
+> +static void drm_parse_vesa_mso_data(struct drm_connector *connector,
+> +				    const struct displayid_block *block)
+> +{
+> +	struct displayid_vesa_vendor_specific_block *vesa =
+> +		(struct displayid_vesa_vendor_specific_block *)block;
+> +	struct drm_display_info *info = &connector->display_info;
+> +
+> +	if (sizeof(*vesa) != sizeof(*block) + block->num_bytes) {
+> +		drm_dbg_kms(connector->dev, "Unexpected VESA vendor block size\n");
+> +		return;
+> +	}
+> +
+> +	switch (FIELD_GET(DISPLAYID_VESA_MSO_MODE, vesa->mso)) {
+> +	default:
+> +		drm_dbg_kms(connector->dev, "Reserved MSO mode value\n");
+> +		fallthrough;
+> +	case 0:
+> +		info->mso_stream_count = 0;
+> +		break;
+> +	case 1:
+> +		info->mso_stream_count = 2; /* 2 or 4 links */
+> +		break;
+> +	case 2:
+> +		info->mso_stream_count = 4; /* 4 links */
+> +		break;
+> +	}
+> +
+> +	if (!info->mso_stream_count) {
+> +		info->mso_pixel_overlap = 0;
+> +		return;
+> +	}
+> +
+> +	info->mso_pixel_overlap = FIELD_GET(DISPLAYID_VESA_MSO_OVERLAP, vesa->mso);
+> +	if (info->mso_pixel_overlap > 8) {
+> +		drm_dbg_kms(connector->dev, "Reserved MSO pixel overlap value %u\n",
+> +			    info->mso_pixel_overlap);
+> +		info->mso_pixel_overlap = 8;
+> +	}
+> +
+> +	drm_dbg_kms(connector->dev, "MSO stream count %u, pixel overlap %u\n",
+> +		    info->mso_stream_count, info->mso_pixel_overlap);
+> +}
+> +
+> +static void drm_update_mso(struct drm_connector *connector, const struct edid *edid)
+> +{
+> +	const struct displayid_block *block;
+> +	struct displayid_iter iter;
+> +
+> +	displayid_iter_edid_begin(edid, &iter);
+> +	displayid_iter_for_each(block, &iter) {
+> +		if (block->tag == DATA_BLOCK_2_VENDOR_SPECIFIC)
 
-== Series Details ==
+Don't we need to check the OUI to make sure the block is the right
+type? I don't have the v2 spec at hand atm, but I presume a vendor
+specific block could contain all kinds of different things?
 
-Series: drm/i915/display: debugfs cleanups (rev2)
-URL   : https://patchwork.freedesktop.org/series/94164/
-State : success
+> +			drm_parse_vesa_mso_data(connector, block);
+> +	}
+> +	displayid_iter_end(&iter);
+> +}
+> +
+>  /* A connector has no EDID information, so we've got no EDID to compute quirks from. Reset
+>   * all of the values which would have been set from EDID
+>   */
+> @@ -5171,6 +5228,9 @@ drm_reset_display_info(struct drm_connector *connector)
+>  
+>  	info->non_desktop = 0;
+>  	memset(&info->monitor_range, 0, sizeof(info->monitor_range));
+> +
+> +	info->mso_stream_count = 0;
+> +	info->mso_pixel_overlap = 0;
+>  }
+>  
+>  u32 drm_add_display_info(struct drm_connector *connector, const struct edid *edid)
+> @@ -5249,6 +5309,9 @@ u32 drm_add_display_info(struct drm_connector *connector, const struct edid *edi
+>  		info->color_formats |= DRM_COLOR_FORMAT_YCRCB444;
+>  	if (edid->features & DRM_EDID_FEATURE_RGB_YCRCB422)
+>  		info->color_formats |= DRM_COLOR_FORMAT_YCRCB422;
+> +
+> +	drm_update_mso(connector, edid);
+> +
+>  	return quirks;
+>  }
+>  
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 79fa34e5ccdb..379746d3266f 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -590,6 +590,18 @@ struct drm_display_info {
+>  	 * @monitor_range: Frequency range supported by monitor range descriptor
+>  	 */
+>  	struct drm_monitor_range_info monitor_range;
+> +
+> +	/**
+> +	 * @mso_stream_count: eDP Multi-SST Operation (MSO) stream count from
+> +	 * the DisplayID VESA vendor block. 0 for conventional Single-Stream
+> +	 * Transport (SST), or 2 or 4 MSO streams.
+> +	 */
+> +	u8 mso_stream_count;
+> +
+> +	/**
+> +	 * @mso_pixel_overlap: eDP MSO segment pixel overlap, 0-8 pixels.
+> +	 */
+> +	u8 mso_pixel_overlap;
+>  };
+>  
+>  int drm_display_info_set_bus_formats(struct drm_display_info *info,
+> diff --git a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h
+> index 79771091771a..b18611e016a2 100644
+> --- a/include/drm/drm_displayid.h
+> +++ b/include/drm/drm_displayid.h
+> @@ -23,6 +23,7 @@
+>  #define DRM_DISPLAYID_H
+>  
+>  #include <linux/types.h>
+> +#include <linux/bits.h>
+>  
+>  struct edid;
+>  
+> @@ -126,6 +127,16 @@ struct displayid_detailed_timing_block {
+>  	struct displayid_detailed_timings_1 timings[];
+>  };
+>  
+> +#define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
+> +#define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
+> +
+> +struct displayid_vesa_vendor_specific_block {
+> +	struct displayid_block base;
+> +	u8 oui[3];
+> +	u8 data_structure_type;
+> +	u8 mso;
+> +} __packed;
+> +
+>  /* DisplayID iteration */
+>  struct displayid_iter {
+>  	const struct edid *edid;
+> -- 
+> 2.20.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10536 -> Patchwork_20919
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20919 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +9 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         NOTRUN -> [DMESG-WARN][4] ([i915#3958])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][5] ([i915#3921]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         [DMESG-FAIL][7] ([i915#3928]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
-  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
-
-
-Participating hosts (44 -> 36)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10536 -> Patchwork_20919
-
-  CI-20190529: 20190529
-  CI_DRM_10536: b6d834a72c14ca22b2df32a607c1ee36e8629f1a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6191: e9292b533691784f46eeb9bae522ca7a8710c920 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20919: 07f4526dd116b9f87902d39dd4f5a6797885d950 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-07f4526dd116 drm/i915/debugfs: pass intel_connector to intel_connector_debugfs_add()
-28356e64a985 drm/i915/display: stop returning errors from debugfs registration
-aa74e0a60a5b drm/i915/debugfs: register LPSP capability on all platforms
-113b0433f5ad drm/i915/debugfs: clean up LPSP capable
-aca5f9973a86 drm/i915/debugfs: clean up LPSP status
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/index.html
-
---===============6231968811109530917==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: debugfs cleanups (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94164/">https://patchwork.freedesktop.org/series/94164/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10536 -&gt; Patchwork_20919</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20919 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>
-<p>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10536/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20919/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 36)</h2>
-<p>Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10536 -&gt; Patchwork_20919</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10536: b6d834a72c14ca22b2df32a607c1ee36e8629f1a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6191: e9292b533691784f46eeb9bae522ca7a8710c920 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20919: 07f4526dd116b9f87902d39dd4f5a6797885d950 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>07f4526dd116 drm/i915/debugfs: pass intel_connector to intel_connector_debugfs_add()<br />
-28356e64a985 drm/i915/display: stop returning errors from debugfs registration<br />
-aa74e0a60a5b drm/i915/debugfs: register LPSP capability on all platforms<br />
-113b0433f5ad drm/i915/debugfs: clean up LPSP capable<br />
-aca5f9973a86 drm/i915/debugfs: clean up LPSP status</p>
-
-</body>
-</html>
-
---===============6231968811109530917==--
+-- 
+Ville Syrjälä
+Intel
