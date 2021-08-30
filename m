@@ -1,60 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F1D3FB73C
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 15:49:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76FD43FB779
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 16:02:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44D1489CB5;
-	Mon, 30 Aug 2021 13:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A95589E01;
+	Mon, 30 Aug 2021 14:02:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com
- [IPv6:2607:f8b0:4864:20::d35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9AF689CB5
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 13:49:22 +0000 (UTC)
-Received: by mail-io1-xd35.google.com with SMTP id n24so19905116ion.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 06:49:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=astier-eu.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=hDLkNcl3kpNuKXzYl4GK/0vNmHcEDi/wO1WbFyuTnp4=;
- b=ABRzwlJRaHBViMvocIXvTc9GX0mM/8Blk9K8IkGyMSJ7wfHHuZcq0usKO7JFVnD5kI
- 7KTHLhfvQjqfN/Sja0E2ffvrrEnGkN1y/I051XbZpKEuU0ADHGVFRfkALdZSHHF7xWhx
- HPsV0m5j7FIfkhfRiS0E0M8bksq5gvq0ZR56jcak0IYLXIMzYp/xawZs2/5EICmReVzK
- DkGwDytjOBrtBSqorTcwYhpMnfcJhOM1tzQHELYpprrfmszpjTrqp8p8pdKaCT1WRvSn
- ZTOqtUeDOeZgF1DaHN4EkUNbMBIyl8r7wyX+cKfGez6YiBQtsdXIdCxYbbycmYraQhLB
- lnJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=hDLkNcl3kpNuKXzYl4GK/0vNmHcEDi/wO1WbFyuTnp4=;
- b=LuBzcrvy/LMZGis9gaOiRCobQaj6m970XaiHvK1UC+/HF9u/u4XR//5ngds0NUrFGr
- SYSZYBBVaAkoNPf+fO2CPuf8p2Na42Q8J+5eh6VGyi3YL7M308jBSQiC6mkgwjmaEHuo
- nnjhi4V8UOSVKwhBcv4f4s9B8xbx6+Ica0hdIdpII9Ty+cpMm9B+wdPt3ljOzaIlCrYW
- dSXZzE2O6jseEE2BjsAwM/h0mRwHafSGTLQF0qfcERdrp3M1vsiZTnzKvp8xpX4TXexa
- bqDxY1xHT/y5dNtCUIDfs3ozmM82dvObp4oDiss7uLj7XOJDlQHp5oi+UHY9y7gaVs1e
- qRgw==
-X-Gm-Message-State: AOAM533pziCX9Hqv/T/f/XMNGAz7c5gOTTAiWv1P/zMXfDCMrT3qKab2
- 2L3VuKiG+I9/FnGpyCnp3OaICUz7iwcdqQ6P/YpzUFaHlec=
-X-Google-Smtp-Source: ABdhPJyltWMMh9vlGuvi7AgbAmDyM9zljm0vPuHVCKduK0eHjx8KygFpP4UFC5f2vVaW2pXmcT+zySzcGXKg41WnbYM=
-X-Received: by 2002:a5d:824e:: with SMTP id n14mr18223161ioo.134.1630331361799; 
- Mon, 30 Aug 2021 06:49:21 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F54189E01
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 14:02:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="205492178"
+X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="205492178"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2021 07:02:29 -0700
+X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="497756700"
+Received: from anikolae-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.249.47.21])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2021 07:02:27 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Aug 2021 17:02:22 +0300
+Message-Id: <20210830140222.12228-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <a557a46d452b20c186f4735e9f15bf37e2845c99.1630327990.git.jani.nikula@intel.com>
+References: <a557a46d452b20c186f4735e9f15bf37e2845c99.1630327990.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-References: <20210817204329.5457-1-anisse@astier.eu>
-In-Reply-To: <20210817204329.5457-1-anisse@astier.eu>
-From: Anisse Astier <anisse@astier.eu>
-Date: Mon, 30 Aug 2021 15:49:10 +0200
-Message-ID: <CALUN=qLzwmP1sz1wr=yrFHUGEHm=n+uEre_ApfP6MgtYCZbRWQ@mail.gmail.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- Hans de Goede <hdegoede@redhat.com>, Uma Shankar <uma.shankar@intel.com>, 
- Jani Nikula <jani.nikula@intel.com>, Daniel Dadap <ddadap@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3 0/2] GPD Win Max display fixes
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/debugfs: pass intel_connector to
+ intel_connector_debugfs_add()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,58 +50,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Prefer the intel_ types. No functional changes.
 
-On Tue, Aug 17, 2021 at 10:43 PM Anisse Astier <anisse@astier.eu> wrote:
->
-> This patch series is for making the GPD Win Max display usable with
-> Linux.
->
-> The GPD Win Max is a small laptop, and its eDP panel does not send an
-> EDID over DPCD; the EDID is instead available in the intel opregion, in
-> mailbox #5 [1]
->
-> The first patch is based on Jani's patch series [2] adding support for
-> the opregion, with changes. I've changed authorship, but I'd be glad to
-> revert it
->
-> The second patch is just to fix the orientation of the panel.
->
-> Changes since v1:
->  - rebased on drm-tip
->  - squashed patch 1 & 2
->  - picked up Reviewed-by from Hans de Goede (thanks for the review)
->
-> Changes since v2:
->  - rebased on drm-tip
->  - updated commit message
->
-> When v2 was initially sent [3] Ville Syrj=C3=A4l=C3=A4 suggested that it =
-might be
-> a good idea to use the ACPI _DDC method instead to get the EDID, to
-> cover a wider range of hardware. Unfortunately, it doesn't seem
-> available on GPD Win Max, so I think this work should be done
-> independently, and this patch series considered separately.
->
-> [1]: https://gitlab.freedesktop.org/drm/intel/-/issues/3454
-> [2]: https://patchwork.kernel.org/project/intel-gfx/patch/20200828061941.=
-17051-1-jani.nikula@intel.com/
-> [3]: https://patchwork.kernel.org/project/intel-gfx/patch/20210531204642.=
-4907-2-anisse@astier.eu/
->
->
-> Anisse Astier (2):
->   drm/i915/opregion: add support for mailbox #5 EDID
->   drm: Add orientation quirk for GPD Win Max
->
->  .../gpu/drm/drm_panel_orientation_quirks.c    |  6 ++
->  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +
->  drivers/gpu/drm/i915/display/intel_opregion.c | 69 ++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_opregion.h |  8 +++
->  4 files changed, 85 insertions(+), 1 deletion(-)
+v2: Fix build.
 
-Would it be possible to have this series reviewed ?
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_connector.c       | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_display_debugfs.h | 6 +++---
+ 3 files changed, 6 insertions(+), 5 deletions(-)
 
-Kind regards,
+diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
+index 4f49d782eca2..c65f95a9a1ec 100644
+--- a/drivers/gpu/drm/i915/display/intel_connector.c
++++ b/drivers/gpu/drm/i915/display/intel_connector.c
+@@ -124,7 +124,7 @@ int intel_connector_register(struct drm_connector *connector)
+ 		goto err_backlight;
+ 	}
+ 
+-	intel_connector_debugfs_add(connector);
++	intel_connector_debugfs_add(intel_connector);
+ 
+ 	return 0;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 845e2dc76f87..82043a71e91f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -2444,8 +2444,9 @@ static const struct file_operations i915_dsc_bpp_fops = {
+  * Cleanup will be done by drm_connector_unregister() through a call to
+  * drm_debugfs_connector_remove().
+  */
+-void intel_connector_debugfs_add(struct drm_connector *connector)
++void intel_connector_debugfs_add(struct intel_connector *intel_connector)
+ {
++	struct drm_connector *connector = &intel_connector->base;
+ 	struct dentry *root = connector->debugfs_entry;
+ 	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
+index c72e35ecba1f..d3a79c07c384 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
+@@ -6,17 +6,17 @@
+ #ifndef __INTEL_DISPLAY_DEBUGFS_H__
+ #define __INTEL_DISPLAY_DEBUGFS_H__
+ 
+-struct drm_connector;
+ struct drm_crtc;
+ struct drm_i915_private;
++struct intel_connector;
+ 
+ #ifdef CONFIG_DEBUG_FS
+ void intel_display_debugfs_register(struct drm_i915_private *i915);
+-void intel_connector_debugfs_add(struct drm_connector *connector);
++void intel_connector_debugfs_add(struct intel_connector *connector);
+ void intel_crtc_debugfs_add(struct drm_crtc *crtc);
+ #else
+ static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
+-static inline void intel_connector_debugfs_add(struct drm_connector *connector) {}
++static inline void intel_connector_debugfs_add(struct intel_connector *connector) {}
+ static inline void intel_crtc_debugfs_add(struct drm_crtc *crtc) {}
+ #endif
+ 
+-- 
+2.20.1
 
-Anisse
