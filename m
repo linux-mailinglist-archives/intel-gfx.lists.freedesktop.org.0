@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF40B3FB5AB
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 14:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BF133FB5B5
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 14:10:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF78389CF5;
-	Mon, 30 Aug 2021 12:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C181289D7C;
+	Mon, 30 Aug 2021 12:09:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl
  [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFA4089CF5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF54C89CE2
  for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 12:09:55 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date: Mon, 30 Aug 2021 14:10:04 +0200
-Message-Id: <20210830121006.2978297-18-maarten.lankhorst@linux.intel.com>
+Date: Mon, 30 Aug 2021 14:10:05 +0200
+Message-Id: <20210830121006.2978297-19-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
 References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 17/19] drm/i915: Add functions to set/get moving
- fence
+Subject: [Intel-gfx] [PATCH 18/19] drm/i915: Add support for asynchronous
+ moving fence waiting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,66 +40,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to get rid of i915_vma tracking to simplify the code and
-lifetimes. Add a way to set/put the moving fence, in preparation for
-removing the tracking.
+For now, we will only allow async migration when TTM is used,
+so the paths we care about are related to TTM.
+
+The mmap path is handled by having the fence in ttm_bo->moving,
+when pinning, the binding only becomes available after the moving
+fence is signaled, and pinning a cpu map will only work after
+the moving fence signals.
+
+This should close all holes where userspace can read a buffer
+before it's fully migrated.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.c | 15 +++++++++++++++
- drivers/gpu/drm/i915/gem/i915_gem_object.h |  6 ++++++
- 2 files changed, 21 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 10 ++++++++++
+ drivers/gpu/drm/i915/i915_vma.c           | 10 ++++++++--
+ 2 files changed, 18 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 6fb9afb65034..dc0d2da297a0 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -32,6 +32,7 @@
- #include "i915_gem_object.h"
- #include "i915_memcpy.h"
- #include "i915_trace.h"
-+#include "i915_gem_ttm.h"
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 8eb1c3a6fc9c..a044d1829729 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -345,6 +345,7 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
+ 			      enum i915_map_type type)
+ {
+ 	enum i915_map_type has_type;
++	struct dma_fence *moving;
+ 	bool pinned;
+ 	void *ptr;
+ 	int err;
+@@ -355,6 +356,15 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
  
- static struct kmem_cache *slab_objects;
+ 	assert_object_held(obj);
  
-@@ -674,6 +675,20 @@ static const struct drm_gem_object_funcs i915_gem_object_funcs = {
- 	.export = i915_gem_prime_export,
- };
++	moving = i915_gem_object_get_moving_fence(obj);
++	if (moving) {
++		err = dma_fence_wait(moving, true);
++		dma_fence_put(moving);
++
++		if (err)
++			return ERR_PTR(err);
++	}
++
+ 	pinned = !(type & I915_MAP_OVERRIDE);
+ 	type &= ~I915_MAP_OVERRIDE;
  
-+struct dma_fence *
-+i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
-+{
-+	return dma_fence_get(i915_gem_to_ttm(obj)->moving);
-+}
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index bfba299d905c..320678e9b4e1 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -398,7 +398,7 @@ int i915_vma_bind(struct i915_vma *vma,
+ 	GEM_BUG_ON(!vma->pages);
+ 
+ 	trace_i915_vma_bind(vma, bind_flags);
+-	if (work && bind_flags & vma->vm->bind_async_flags) {
++	if (work) {
+ 		struct dma_fence *prev;
+ 
+ 		work->vma = vma;
+@@ -1145,6 +1145,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ 		    u64 size, u64 alignment, u64 flags)
+ {
+ 	struct i915_vma_work *work = NULL;
++	struct dma_fence *moving = NULL;
+ 	intel_wakeref_t wakeref = 0;
+ 	unsigned int bound;
+ 	int err;
+@@ -1168,7 +1169,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ 	if (flags & PIN_GLOBAL)
+ 		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
+ 
+-	if (flags & vma->vm->bind_async_flags) {
++	moving = i915_gem_object_get_moving_fence(vma->obj);
++	if (flags & vma->vm->bind_async_flags || moving) {
+ 		/* lock VM */
+ 		err = i915_vm_lock_objects(vma->vm, ww);
+ 		if (err)
+@@ -1182,6 +1184,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ 
+ 		work->vm = i915_vm_get(vma->vm);
+ 
++		dma_fence_work_chain(&work->base, moving);
 +
-+void  i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
-+				       struct dma_fence *fence)
-+{
-+	dma_fence_put(i915_gem_to_ttm(obj)->moving);
-+
-+	i915_gem_to_ttm(obj)->moving = dma_fence_get(fence);
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftests/huge_gem_object.c"
- #include "selftests/huge_pages.c"
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 48112b9d76df..a23acfa98e21 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -520,6 +520,12 @@ i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
- 	return engine;
+ 		/* Allocate enough page directories to used PTE */
+ 		if (vma->vm->allocate_va_range) {
+ 			err = i915_vm_alloc_pt_stash(vma->vm,
+@@ -1289,6 +1293,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ err_rpm:
+ 	if (wakeref)
+ 		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
++	if (moving)
++		dma_fence_put(moving);
+ 	i915_vma_put_pages(vma);
+ 	return err;
  }
- 
-+struct dma_fence *
-+i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj);
-+
-+void  i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
-+				       struct dma_fence *fence);
-+
- void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
- 					 unsigned int cache_level);
- void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
 -- 
 2.32.0
 
