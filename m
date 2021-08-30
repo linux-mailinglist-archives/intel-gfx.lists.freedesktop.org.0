@@ -2,38 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C223FB3FD
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 12:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C204E3FB5A6
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Aug 2021 14:09:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0A7589BF5;
-	Mon, 30 Aug 2021 10:43:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30BF489CBA;
+	Mon, 30 Aug 2021 12:09:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0172189B01;
- Mon, 30 Aug 2021 10:43:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10091"; a="217968946"
-X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="217968946"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2021 03:43:13 -0700
-X-IronPort-AV: E=Sophos;i="5.84,363,1620716400"; d="scan'208";a="530161321"
-Received: from anikolae-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.249.47.21])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2021 03:43:11 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <09f57d55813f916578d1dd1e28bee3a621068bdd.1630319138.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1630319138.git.jani.nikula@intel.com>
- <09f57d55813f916578d1dd1e28bee3a621068bdd.1630319138.git.jani.nikula@intel.com>
-Date: Mon, 30 Aug 2021 13:43:07 +0300
-Message-ID: <8735qrcix0.fsf@intel.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4531D89CDD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 12:09:53 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date: Mon, 30 Aug 2021 14:09:47 +0200
+Message-Id: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/edid: parse the DisplayID v2.0 VESA
- vendor block for MSO
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/19] drm/i915: Short-term pinning and async
+ eviction.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,102 +38,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Aug 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> The VESA Organization Vendor-Specific Data Block, defined in VESA
-> DisplayID Standard v2.0, specifies the eDP Multi-SST Operation (MSO)
-> stream count and segment pixel overlap.
->
-> DisplayID v1.3 has Appendix B: DisplayID as an EDID Extension,
-> describing how DisplayID sections may be embedded in EDID extension
-> blocks. DisplayID v2.0 does not have such a section, perhaps implying
-> that DisplayID v2.0 data should not be included in EDID extensions, but
-> rather in a "pure" DisplayID structure at its own DDC address pair
-> A4h/A5h, as described in VESA E-DDC Standard v1.3 chapter 3.
->
-> However, in practice, displays out in the field have embedded DisplayID
-> v2.0 data blocks in EDID extensions, including, in particular, some eDP
-> MSO displays, where a pure DisplayID structure is not available at all.
->
-> Parse the MSO data from the DisplayID data block. Do it as part of
-> drm_add_display_info(), extending it to parse also DisplayID data to
-> avoid requiring extra calls to update the information.
+Remove some parts of the i915_vma api, ensure obj->vma always exists,
+and finally force the object lock to be taken when calling i915_vma_unbind
+is called.
 
-For reference, this is the EDID from a Lenovo ThinkPad X1 with eDP MSO
-display. AFAICT, the display does not respond on A4h/A5h at all, it only
-has the usual EDID at the usual DDC address.
+With this, locking is a lot cleaner, and we no longer need all the if (!obj->vma) checks.
+We kill off the locking around i915_vma->set/get pages, and kill off the short-term
+pinning/unpinning in execbuf.
 
+After this, we go 1 step further, populate obj->moving where required, and add support
+for async eviction/clearing.
 
-BR,
-Jani.
+Maarten Lankhorst (19):
+  drm/i915: Move __i915_gem_free_object to ttm_bo_destroy
+  drm/i915: Remove unused bits of i915_vma/active api
+  drm/i915: Slightly rework EXEC_OBJECT_CAPTURE handling
+  drm/i915: Remove gen6_ppgtt_unpin_all
+  drm/i915: Create a dummy object for gen6 ppgtt
+  drm/i915: Create a full object for mock_ring
+  drm/i915: vma is always backed by an object.
+  drm/i915: Fix runtime pm handling in i915_gem_shrink
+  drm/i915: Change shrink ordering to use locking around unbinding.
+  Move CONTEXT_VALID_BIT check
+  drm/i915: Remove resv from i915_vma
+  drm/i915: Remove pages_mutex and intel_gtt->vma_ops.set/clear_pages
+    members
+  drm/i915: Take object lock in i915_ggtt_pin if ww is not set
+  drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for
+    i915_vma_unbind
+  drm/i915: Remove support for unlocked i915_vma unbind
+  drm/i915: Remove short-term pins from execbuf
+  drm/i915: Add functions to set/get moving fence
+  drm/i915: Add support for asynchronous moving fence waiting
+  drm/i915: Add accelerated migration to ttm
 
-
-edid-decode (hex):
-
-00 ff ff ff ff ff ff 00 06 af 13 10 00 00 00 00
-00 1c 01 04 a5 1c 13 78 02 ee 95 a3 54 4c 99 26
-0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-01 01 01 01 01 01 d5 2b 68 50 40 e0 2c 50 18 10
-3a 00 1c bd 10 00 00 18 00 00 00 0f 00 00 00 00
-00 00 00 00 00 00 00 00 00 20 00 00 00 fe 00 41
-55 4f 0a 20 20 20 20 20 20 20 20 20 00 00 00 fe
-00 42 31 33 35 51 41 4e 30 31 2e 30 20 0a 01 e1
-
-70 20 08 06 00 7e 00 05 3a 02 92 00 20 61 00 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 90
-
-----------------
-
-Block 0, Base EDID:
-  EDID Structure Version & Revision: 1.4
-  Vendor & Product Identification:
-    Manufacturer: AUO
-    Model: 4115
-    Made in: 2018
-  Basic Display Parameters & Features:
-    Digital display
-    Bits per primary color channel: 8
-    DisplayPort interface
-    Maximum image size: 28 cm x 19 cm
-    Gamma: 2.20
-    Supported color formats: RGB 4:4:4
-    First detailed timing includes the native pixel format and preferred refresh rate
-  Color Characteristics:
-    Red  : 0.6396, 0.3300
-    Green: 0.2998, 0.5996
-    Blue : 0.1503, 0.0595
-    White: 0.3134, 0.3291
-  Established Timings I & II: none
-  Standard Timings: none
-  Detailed Timing Descriptors:
-    DTD 1:  1128x1504   60.006 Hz   3:4    92.889 kHz 112.210 MHz (284 mm x 189 mm)
-                 Hfront   24 Hsync  16 Hback  40 Hpol N
-                 Vfront    3 Vsync  10 Vback  31 Vpol N
-    Manufacturer-Specified Display Descriptor (0x0f): 00 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 20 '............... '
-    Alphanumeric Data String: 'AUO'
-    Alphanumeric Data String: 'B135QAN01.0 '
-  Extension blocks: 1
-Checksum: 0xe1
-
-----------------
-
-Block 1, DisplayID Extension Block:
-  Version: 2.0
-  Extension Count: 0
-  Display Product Primary Use Case: Presentation display
-  Vendor-Specific Data Block (VESA):
-    Data Structure Type: eDP
-    Default Colorspace and EOTF Handling: sRGB
-    Number of Pixels in Hor Pix Cnt Overlapping an Adjacent Panel: 0
-    Multi-SST Operation: Two Streams (number of links shall be 2 or 4)
-  Checksum: 0x61
-Checksum: 0x90
-
+ drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+ drivers/gpu/drm/i915/display/intel_dpt.c      |   2 -
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  94 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |  44 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  15 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   6 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  10 +
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  63 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 111 ++--
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |   4 +-
+ .../i915/gem/selftests/i915_gem_client_blt.c  |   2 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   6 +
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 148 +++--
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   2 -
+ drivers/gpu/drm/i915/gt/intel_context.c       |   2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |   5 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 366 ++----------
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  13 -
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   7 -
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  12 -
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |   2 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c         |  35 +-
+ drivers/gpu/drm/i915/i915_active.c            |  28 +-
+ drivers/gpu/drm/i915/i915_active.h            |  17 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  11 +-
+ drivers/gpu/drm/i915/i915_gem.c               |  29 +-
+ drivers/gpu/drm/i915/i915_gem_evict.c         |  74 ++-
+ drivers/gpu/drm/i915/i915_gem_gtt.h           |   1 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   9 +-
+ drivers/gpu/drm/i915/i915_request.c           |   9 +-
+ drivers/gpu/drm/i915/i915_request.h           |   7 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 522 ++++++++++++++----
+ drivers/gpu/drm/i915/i915_vma.h               |  15 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |   2 -
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  34 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c     |   2 +-
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |   4 -
+ 37 files changed, 899 insertions(+), 816 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.32.0
+
