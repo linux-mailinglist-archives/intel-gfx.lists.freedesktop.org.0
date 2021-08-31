@@ -1,70 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 954DA3FC377
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 09:26:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B963FC397
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 10:11:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B23B89E65;
-	Tue, 31 Aug 2021 07:25:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C21B889E2A;
+	Tue, 31 Aug 2021 08:10:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com
- [IPv6:2607:f8b0:4864:20::102a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59E7089E5F;
- Tue, 31 Aug 2021 07:25:56 +0000 (UTC)
-Received: by mail-pj1-x102a.google.com with SMTP id
- g13-20020a17090a3c8d00b00196286963b9so1305157pjc.3; 
- Tue, 31 Aug 2021 00:25:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=SrrV3clumIwMrnsDunPCSljyK6+I7diizgnIMV5VDGM=;
- b=D4Uczj5ScpNKrJc2Y6vF1YPgkC+QRmy1Lv0ltH1JckfUAHsuIJWIxJpkh2L8SsiJ64
- hjMuPVqUafy/ebyVLdcsvRAp5Qnreo8eWUBy5IDRrnG1/3+UTrVMheVSoWbi+roIQVj8
- yq2JpQPV/EEiCfdoyR5o3Oqe/ylclUPgep/W1bl2+fm9F3dkmfgRhmyUtmFTkhFFg+OC
- r+OWKESZFBqJPMGKZMAIb5N0Z5mpiZgZpv9r2vPUzT6r6dxeh11uDgksd8CtFLfjsBPA
- Egn31ZHbxhSnWGwI9JsDGWFMO2glYjsHi/m5JcIuTd6GdhRoUADTbsHv5QZaTrVXWZf7
- TeNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=SrrV3clumIwMrnsDunPCSljyK6+I7diizgnIMV5VDGM=;
- b=GBgPsn6ukdcH6/LNITWExt7j9z8pto/vWdI2hKPKmFyHoQvOFUsr/ZK19Xf6p/6aJb
- kZ7ohGPQiQnLPIzHWHOdk1nDDe6lKDcQQ/zvfaQ3YcelJgy1MuR3ifDOzCpWzbDC4AGJ
- qXh3nkFA44guZdY4vZYzT2gwiMxJv66nu8WQFmmy4G3773PkJNYphLz7OseE60eeQ4Jv
- xo3LMP6MFh2XisFNc/68Y7EHZG2agy3z+h704y0yrw4t8qm7o7egirx0J1JII/MSYf2O
- NS0DwnK3qf5msMYukVrdREvkOSR4nyap4MqozbtT9au4HSmBwLQZ4sAfHTd5Uu/OYg/Q
- gpQA==
-X-Gm-Message-State: AOAM530tLFxH2HlwKi8aTCuj2daV714MkeoocnUEFQgfqcyBDKpw3EN7
- OvTZ86SpO+AMsaP2eJNHcmo=
-X-Google-Smtp-Source: ABdhPJx6BRnSMBYnfZwO2vU0ugdP71fbA/c8IXcsv4fhMgZvTRVKDTzBrOOTXreNdkilLdMY8+POLw==
-X-Received: by 2002:a17:90a:cf81:: with SMTP id
- i1mr3731701pju.76.1630394755924; 
- Tue, 31 Aug 2021 00:25:55 -0700 (PDT)
-Received: from sanitydock.wifi-cloud.jp ([210.160.217.69])
- by smtp.gmail.com with ESMTPSA id m11sm1720724pjn.2.2021.08.31.00.25.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Aug 2021 00:25:55 -0700 (PDT)
-From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
- christian.koenig@amd.com
-Cc: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 31 Aug 2021 15:25:01 +0800
-Message-Id: <20210831072501.184211-5-desmondcheongzx@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210831072501.184211-1-desmondcheongzx@gmail.com>
-References: <20210831072501.184211-1-desmondcheongzx@gmail.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1F7689C51;
+ Tue, 31 Aug 2021 08:10:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="218434690"
+X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="218434690"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2021 01:10:57 -0700
+X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="498182662"
+Received: from anicol1x-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.211.207])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2021 01:10:55 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <YSz1AhsVUc7m3Ng7@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1630319138.git.jani.nikula@intel.com>
+ <09f57d55813f916578d1dd1e28bee3a621068bdd.1630319138.git.jani.nikula@intel.com>
+ <YSz1AhsVUc7m3Ng7@intel.com>
+Date: Tue, 31 Aug 2021 11:10:53 +0300
+Message-ID: <87wno2avaq.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 4/4] drm: avoid races with modesetting rights
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/edid: parse the DisplayID v2.0 VESA
+ vendor block for MSO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,236 +52,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In drm_client_modeset.c and drm_fb_helper.c,
-drm_master_internal_{acquire,release} are used to avoid races with DRM
-userspace. These functions hold onto drm_device.master_rwsem while
-committing, and bail if there's already a master.
+On Mon, 30 Aug 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Mon, Aug 30, 2021 at 01:29:01PM +0300, Jani Nikula wrote:
+>> The VESA Organization Vendor-Specific Data Block, defined in VESA
+>> DisplayID Standard v2.0, specifies the eDP Multi-SST Operation (MSO)
+>> stream count and segment pixel overlap.
+>>=20
+>> DisplayID v1.3 has Appendix B: DisplayID as an EDID Extension,
+>> describing how DisplayID sections may be embedded in EDID extension
+>> blocks. DisplayID v2.0 does not have such a section, perhaps implying
+>> that DisplayID v2.0 data should not be included in EDID extensions, but
+>> rather in a "pure" DisplayID structure at its own DDC address pair
+>> A4h/A5h, as described in VESA E-DDC Standard v1.3 chapter 3.
+>>=20
+>> However, in practice, displays out in the field have embedded DisplayID
+>> v2.0 data blocks in EDID extensions, including, in particular, some eDP
+>> MSO displays, where a pure DisplayID structure is not available at all.
+>>=20
+>> Parse the MSO data from the DisplayID data block. Do it as part of
+>> drm_add_display_info(), extending it to parse also DisplayID data to
+>> avoid requiring extra calls to update the information.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/drm_edid.c  | 63 +++++++++++++++++++++++++++++++++++++
+>>  include/drm/drm_connector.h | 12 +++++++
+>>  include/drm/drm_displayid.h | 11 +++++++
+>>  3 files changed, 86 insertions(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>> index 6325877c5fd6..7e8083068f3f 100644
+>> --- a/drivers/gpu/drm/drm_edid.c
+>> +++ b/drivers/gpu/drm/drm_edid.c
+>> @@ -28,6 +28,7 @@
+>>   * DEALINGS IN THE SOFTWARE.
+>>   */
+>>=20=20
+>> +#include <linux/bitfield.h>
+>>  #include <linux/hdmi.h>
+>>  #include <linux/i2c.h>
+>>  #include <linux/kernel.h>
+>> @@ -5148,6 +5149,62 @@ void drm_get_monitor_range(struct drm_connector *=
+connector,
+>>  		      info->monitor_range.max_vfreq);
+>>  }
+>>=20=20
+>> +static void drm_parse_vesa_mso_data(struct drm_connector *connector,
+>> +				    const struct displayid_block *block)
+>> +{
+>> +	struct displayid_vesa_vendor_specific_block *vesa =3D
+>> +		(struct displayid_vesa_vendor_specific_block *)block;
+>> +	struct drm_display_info *info =3D &connector->display_info;
+>> +
+>> +	if (sizeof(*vesa) !=3D sizeof(*block) + block->num_bytes) {
+>> +		drm_dbg_kms(connector->dev, "Unexpected VESA vendor block size\n");
+>> +		return;
+>> +	}
+>> +
+>> +	switch (FIELD_GET(DISPLAYID_VESA_MSO_MODE, vesa->mso)) {
+>> +	default:
+>> +		drm_dbg_kms(connector->dev, "Reserved MSO mode value\n");
+>> +		fallthrough;
+>> +	case 0:
+>> +		info->mso_stream_count =3D 0;
+>> +		break;
+>> +	case 1:
+>> +		info->mso_stream_count =3D 2; /* 2 or 4 links */
+>> +		break;
+>> +	case 2:
+>> +		info->mso_stream_count =3D 4; /* 4 links */
+>> +		break;
+>> +	}
+>> +
+>> +	if (!info->mso_stream_count) {
+>> +		info->mso_pixel_overlap =3D 0;
+>> +		return;
+>> +	}
+>> +
+>> +	info->mso_pixel_overlap =3D FIELD_GET(DISPLAYID_VESA_MSO_OVERLAP, vesa=
+->mso);
+>> +	if (info->mso_pixel_overlap > 8) {
+>> +		drm_dbg_kms(connector->dev, "Reserved MSO pixel overlap value %u\n",
+>> +			    info->mso_pixel_overlap);
+>> +		info->mso_pixel_overlap =3D 8;
+>> +	}
+>> +
+>> +	drm_dbg_kms(connector->dev, "MSO stream count %u, pixel overlap %u\n",
+>> +		    info->mso_stream_count, info->mso_pixel_overlap);
+>> +}
+>> +
+>> +static void drm_update_mso(struct drm_connector *connector, const struc=
+t edid *edid)
+>> +{
+>> +	const struct displayid_block *block;
+>> +	struct displayid_iter iter;
+>> +
+>> +	displayid_iter_edid_begin(edid, &iter);
+>> +	displayid_iter_for_each(block, &iter) {
+>> +		if (block->tag =3D=3D DATA_BLOCK_2_VENDOR_SPECIFIC)
+>
+> Don't we need to check the OUI to make sure the block is the right
+> type? I don't have the v2 spec at hand atm, but I presume a vendor
+> specific block could contain all kinds of different things?
 
-However, there are other places where modesetting rights can race. A
-time-of-check-to-time-of-use error can occur if an ioctl that changes
-the modeset has its rights revoked after it validates its permissions,
-but before it completes.
+You're right.
 
-There are four places where modesetting permissions can change:
+BR,
+Jani.
 
-- DROP_MASTER ioctl removes rights for a master and its leases
+>
+>> +			drm_parse_vesa_mso_data(connector, block);
+>> +	}
+>> +	displayid_iter_end(&iter);
+>> +}
+>> +
+>>  /* A connector has no EDID information, so we've got no EDID to compute=
+ quirks from. Reset
+>>   * all of the values which would have been set from EDID
+>>   */
+>> @@ -5171,6 +5228,9 @@ drm_reset_display_info(struct drm_connector *conne=
+ctor)
+>>=20=20
+>>  	info->non_desktop =3D 0;
+>>  	memset(&info->monitor_range, 0, sizeof(info->monitor_range));
+>> +
+>> +	info->mso_stream_count =3D 0;
+>> +	info->mso_pixel_overlap =3D 0;
+>>  }
+>>=20=20
+>>  u32 drm_add_display_info(struct drm_connector *connector, const struct =
+edid *edid)
+>> @@ -5249,6 +5309,9 @@ u32 drm_add_display_info(struct drm_connector *con=
+nector, const struct edid *edi
+>>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB444;
+>>  	if (edid->features & DRM_EDID_FEATURE_RGB_YCRCB422)
+>>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB422;
+>> +
+>> +	drm_update_mso(connector, edid);
+>> +
+>>  	return quirks;
+>>  }
+>>=20=20
+>> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+>> index 79fa34e5ccdb..379746d3266f 100644
+>> --- a/include/drm/drm_connector.h
+>> +++ b/include/drm/drm_connector.h
+>> @@ -590,6 +590,18 @@ struct drm_display_info {
+>>  	 * @monitor_range: Frequency range supported by monitor range descript=
+or
+>>  	 */
+>>  	struct drm_monitor_range_info monitor_range;
+>> +
+>> +	/**
+>> +	 * @mso_stream_count: eDP Multi-SST Operation (MSO) stream count from
+>> +	 * the DisplayID VESA vendor block. 0 for conventional Single-Stream
+>> +	 * Transport (SST), or 2 or 4 MSO streams.
+>> +	 */
+>> +	u8 mso_stream_count;
+>> +
+>> +	/**
+>> +	 * @mso_pixel_overlap: eDP MSO segment pixel overlap, 0-8 pixels.
+>> +	 */
+>> +	u8 mso_pixel_overlap;
+>>  };
+>>=20=20
+>>  int drm_display_info_set_bus_formats(struct drm_display_info *info,
+>> diff --git a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h
+>> index 79771091771a..b18611e016a2 100644
+>> --- a/include/drm/drm_displayid.h
+>> +++ b/include/drm/drm_displayid.h
+>> @@ -23,6 +23,7 @@
+>>  #define DRM_DISPLAYID_H
+>>=20=20
+>>  #include <linux/types.h>
+>> +#include <linux/bits.h>
+>>=20=20
+>>  struct edid;
+>>=20=20
+>> @@ -126,6 +127,16 @@ struct displayid_detailed_timing_block {
+>>  	struct displayid_detailed_timings_1 timings[];
+>>  };
+>>=20=20
+>> +#define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
+>> +#define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
+>> +
+>> +struct displayid_vesa_vendor_specific_block {
+>> +	struct displayid_block base;
+>> +	u8 oui[3];
+>> +	u8 data_structure_type;
+>> +	u8 mso;
+>> +} __packed;
+>> +
+>>  /* DisplayID iteration */
+>>  struct displayid_iter {
+>>  	const struct edid *edid;
+>> --=20
+>> 2.20.1
 
-- REVOKE_LEASE ioctl revokes rights for a specific lease
-
-- SET_MASTER ioctl sets the device master if the master role hasn't
-been acquired yet
-
-- drm_open which can create a new master for a device if one does not
-currently exist
-
-These races can be avoided using drm_device.master_rwsem: users that
-perform modesetting should hold a read lock on the new
-drm_device.master_rwsem, and users that change these permissions
-should hold a write lock.
-
-To avoid deadlocks with master_rwsem, for ioctls that need to check
-for modesetting permissions, but also need to hold a write lock on
-master_rwsem to protect some other attribute (or recurses to some
-function that holds a write lock, like drm_mode_create_lease_ioctl
-which eventually calls drm_master_open), we remove the DRM_MASTER flag
-and push the master_rwsem lock and permissions check into the ioctl.
-
-Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- drivers/gpu/drm/drm_auth.c  |  4 ++++
- drivers/gpu/drm/drm_ioctl.c | 20 +++++++++++++++-----
- drivers/gpu/drm/drm_lease.c | 35 ++++++++++++++++++++++++-----------
- include/drm/drm_device.h    |  6 ++++++
- 4 files changed, 49 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-index 73ade0513ccb..65065f7e1499 100644
---- a/drivers/gpu/drm/drm_auth.c
-+++ b/drivers/gpu/drm/drm_auth.c
-@@ -120,6 +120,10 @@ int drm_authmagic(struct drm_device *dev, void *data,
- 	DRM_DEBUG("%u\n", auth->magic);
- 
- 	down_write(&dev->master_rwsem);
-+	if (unlikely(!drm_is_current_master(file_priv))) {
-+		up_write(&dev->master_rwsem);
-+		return -EACCES;
-+	}
- 	file = idr_find(&file_priv->master->magic_map, auth->magic);
- 	if (file) {
- 		file->authenticated = 1;
-diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-index fe9c4c0264a9..f6a8aa6c53b3 100644
---- a/drivers/gpu/drm/drm_ioctl.c
-+++ b/drivers/gpu/drm/drm_ioctl.c
-@@ -386,6 +386,10 @@ static int drm_setversion(struct drm_device *dev, void *data, struct drm_file *f
- 	int if_version, retcode = 0;
- 
- 	down_write(&dev->master_rwsem);
-+	if (unlikely(!drm_is_current_master(file_priv))) {
-+		retcode = -EACCES;
-+		goto unlock;
-+	}
- 	if (sv->drm_di_major != -1) {
- 		if (sv->drm_di_major != DRM_IF_MAJOR ||
- 		    sv->drm_di_minor < 0 || sv->drm_di_minor > DRM_IF_MINOR) {
-@@ -420,8 +424,9 @@ static int drm_setversion(struct drm_device *dev, void *data, struct drm_file *f
- 	sv->drm_di_minor = DRM_IF_MINOR;
- 	sv->drm_dd_major = dev->driver->major;
- 	sv->drm_dd_minor = dev->driver->minor;
--	up_write(&dev->master_rwsem);
- 
-+unlock:
-+	up_write(&dev->master_rwsem);
- 	return retcode;
- }
- 
-@@ -574,12 +579,12 @@ static const struct drm_ioctl_desc drm_ioctls[] = {
- 	DRM_IOCTL_DEF(DRM_IOCTL_GET_STATS, drm_getstats, 0),
- 	DRM_IOCTL_DEF(DRM_IOCTL_GET_CAP, drm_getcap, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF(DRM_IOCTL_SET_CLIENT_CAP, drm_setclientcap, 0),
--	DRM_IOCTL_DEF(DRM_IOCTL_SET_VERSION, drm_setversion, DRM_MASTER),
-+	DRM_IOCTL_DEF(DRM_IOCTL_SET_VERSION, drm_setversion, 0),
- 
- 	DRM_IOCTL_DEF(DRM_IOCTL_SET_UNIQUE, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
- 	DRM_IOCTL_DEF(DRM_IOCTL_BLOCK, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
- 	DRM_IOCTL_DEF(DRM_IOCTL_UNBLOCK, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF(DRM_IOCTL_AUTH_MAGIC, drm_authmagic, DRM_MASTER),
-+	DRM_IOCTL_DEF(DRM_IOCTL_AUTH_MAGIC, drm_authmagic, 0),
- 
- 	DRM_LEGACY_IOCTL_DEF(DRM_IOCTL_ADD_MAP, drm_legacy_addmap_ioctl, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
- 	DRM_LEGACY_IOCTL_DEF(DRM_IOCTL_RM_MAP, drm_legacy_rmmap_ioctl, DRM_AUTH),
-@@ -706,10 +711,10 @@ static const struct drm_ioctl_desc drm_ioctls[] = {
- 		      DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF(DRM_IOCTL_CRTC_GET_SEQUENCE, drm_crtc_get_sequence_ioctl, 0),
- 	DRM_IOCTL_DEF(DRM_IOCTL_CRTC_QUEUE_SEQUENCE, drm_crtc_queue_sequence_ioctl, 0),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_CREATE_LEASE, drm_mode_create_lease_ioctl, DRM_MASTER),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_CREATE_LEASE, drm_mode_create_lease_ioctl, 0),
- 	DRM_IOCTL_DEF(DRM_IOCTL_MODE_LIST_LESSEES, drm_mode_list_lessees_ioctl, DRM_MASTER),
- 	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GET_LEASE, drm_mode_get_lease_ioctl, DRM_MASTER),
--	DRM_IOCTL_DEF(DRM_IOCTL_MODE_REVOKE_LEASE, drm_mode_revoke_lease_ioctl, DRM_MASTER),
-+	DRM_IOCTL_DEF(DRM_IOCTL_MODE_REVOKE_LEASE, drm_mode_revoke_lease_ioctl, 0),
- };
- 
- #define DRM_CORE_IOCTL_COUNT	ARRAY_SIZE(drm_ioctls)
-@@ -779,6 +784,9 @@ long drm_ioctl_kernel(struct file *file, drm_ioctl_t *func, void *kdata,
- 	if (locked_ioctl)
- 		mutex_lock(&drm_global_mutex);
- 
-+	if (unlikely(flags & DRM_MASTER))
-+		down_read(&dev->master_rwsem);
-+
- 	retcode = drm_ioctl_permit(flags, file_priv);
- 	if (unlikely(retcode))
- 		goto out;
-@@ -786,6 +794,8 @@ long drm_ioctl_kernel(struct file *file, drm_ioctl_t *func, void *kdata,
- 	retcode = func(dev, kdata, file_priv);
- 
- out:
-+	if (unlikely(flags & DRM_MASTER))
-+		up_read(&dev->master_rwsem);
- 	if (locked_ioctl)
- 		mutex_unlock(&drm_global_mutex);
- 	return retcode;
-diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
-index dee4f24a1808..bed6f7636cbe 100644
---- a/drivers/gpu/drm/drm_lease.c
-+++ b/drivers/gpu/drm/drm_lease.c
-@@ -500,6 +500,18 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
- 		return -EINVAL;
- 	}
- 
-+	/* Clone the lessor file to create a new file for us */
-+	DRM_DEBUG_LEASE("Allocating lease file\n");
-+	lessee_file = file_clone_open(lessor_file);
-+	if (IS_ERR(lessee_file))
-+		return PTR_ERR(lessee_file);
-+
-+	down_read(&dev->master_rwsem);
-+	if (unlikely(!drm_is_current_master(lessor_priv))) {
-+		ret = -EACCES;
-+		goto out_file;
-+	}
-+
- 	lessor = drm_file_get_master(lessor_priv);
- 	/* Do not allow sub-leases */
- 	if (lessor->lessor) {
-@@ -547,14 +559,6 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
- 		goto out_leases;
- 	}
- 
--	/* Clone the lessor file to create a new file for us */
--	DRM_DEBUG_LEASE("Allocating lease file\n");
--	lessee_file = file_clone_open(lessor_file);
--	if (IS_ERR(lessee_file)) {
--		ret = PTR_ERR(lessee_file);
--		goto out_lessee;
--	}
--
- 	lessee_priv = lessee_file->private_data;
- 	/* Change the file to a master one */
- 	drm_master_put(&lessee_priv->master);
-@@ -571,17 +575,19 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
- 	fd_install(fd, lessee_file);
- 
- 	drm_master_put(&lessor);
-+	up_read(&dev->master_rwsem);
- 	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl succeeded\n");
- 	return 0;
- 
--out_lessee:
--	drm_master_put(&lessee);
--
- out_leases:
- 	put_unused_fd(fd);
- 
- out_lessor:
- 	drm_master_put(&lessor);
-+
-+out_file:
-+	up_read(&dev->master_rwsem);
-+	fput(lessee_file);
- 	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl failed: %d\n", ret);
- 	return ret;
- }
-@@ -705,6 +711,11 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
- 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
- 		return -EOPNOTSUPP;
- 
-+	down_write(&dev->master_rwsem);
-+	if (unlikely(!drm_is_current_master(lessor_priv))) {
-+		ret = -EACCES;
-+		goto unlock;
-+	}
- 	lessor = drm_file_get_master(lessor_priv);
- 	mutex_lock(&dev->mode_config.idr_mutex);
- 
-@@ -728,5 +739,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
- 	mutex_unlock(&dev->mode_config.idr_mutex);
- 	drm_master_put(&lessor);
- 
-+unlock:
-+	up_write(&dev->master_rwsem);
- 	return ret;
- }
-diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-index 142fb2f6e74d..5504f9192408 100644
---- a/include/drm/drm_device.h
-+++ b/include/drm/drm_device.h
-@@ -151,6 +151,12 @@ struct drm_device {
- 	 * Lock for &drm_device.master, &drm_file.was_master,
- 	 * &drm_file.is_master, &drm_file.master, &drm_master.unique,
- 	 * &drm_master.unique_len, and &drm_master.magic_map.
-+	 *
-+	 * Additionally, synchronizes access rights to exclusive resources like
-+	 * modesetting access between multiple users. For example, users that
-+	 * can change the modeset or display state must hold a read lock on
-+	 * @master_rwsem, and users that change modesetting rights should hold
-+	 * a write lock.
- 	 */
- 	struct rw_semaphore master_rwsem;
- 
--- 
-2.25.1
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
