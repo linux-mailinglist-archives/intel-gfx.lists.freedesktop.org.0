@@ -2,48 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED3EF3FC809
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 15:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 252233FC810
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 15:19:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 453C68991C;
-	Tue, 31 Aug 2021 13:18:23 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0274F8991C;
- Tue, 31 Aug 2021 13:18:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="198028835"
-X-IronPort-AV: E=Sophos;i="5.84,366,1620716400"; d="scan'208";a="198028835"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 06:18:18 -0700
-X-IronPort-AV: E=Sophos;i="5.84,366,1620716400"; d="scan'208";a="541006350"
-Received: from cfitzp2-mobl2.ger.corp.intel.com (HELO [10.213.255.231])
- ([10.213.255.231])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 06:18:17 -0700
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-References: <20210827133039.287075-1-tvrtko.ursulin@linux.intel.com>
- <20210827143941.287958-1-tvrtko.ursulin@linux.intel.com>
- <9c042851-9a27-6bc7-0749-ed0c573e9c80@linux.intel.com>
- <YSyWMxUyxgTYZCYw@phenom.ffwll.local>
- <a382488e-cf1e-e61e-f132-d0868f4f23cf@linux.intel.com>
- <YS4j+PbS8ImB/p9v@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a177847d-7953-bd08-5c58-48f9975a1d3a@linux.intel.com>
-Date: Tue, 31 Aug 2021 14:18:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ECD689B46;
+	Tue, 31 Aug 2021 13:19:18 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 580DB89B46;
+ Tue, 31 Aug 2021 13:19:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4D69CA363C;
+ Tue, 31 Aug 2021 13:19:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0164442424086514981=="
 MIME-Version: 1.0
-In-Reply-To: <YS4j+PbS8ImB/p9v@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Handle Intel igfx + Intel dgfx
- hybrid graphics setup
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Aug 2021 13:19:17 -0000
+Message-ID: <163041595730.10657.17383745822852397722@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210831122931.157536-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210831122931.157536-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Fix_the_mman_selftest_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,264 +41,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0164442424086514981==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 31/08/2021 13:43, Daniel Vetter wrote:
-> On Tue, Aug 31, 2021 at 10:15:03AM +0100, Tvrtko Ursulin wrote:
->>
->> On 30/08/2021 09:26, Daniel Vetter wrote:
->>> On Fri, Aug 27, 2021 at 03:44:42PM +0100, Tvrtko Ursulin wrote:
->>>>
->>>> On 27/08/2021 15:39, Tvrtko Ursulin wrote:
->>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>
->>>>> In short this makes i915 work for hybrid setups (DRI_PRIME=1 with Mesa)
->>>>> when rendering is done on Intel dgfx and scanout/composition on Intel
->>>>> igfx.
->>>>>
->>>>> Before this patch the driver was not quite ready for that setup, mainly
->>>>> because it was able to emit a semaphore wait between the two GPUs, which
->>>>> results in deadlocks because semaphore target location in HWSP is neither
->>>>> shared between the two, nor mapped in both GGTT spaces.
->>>>>
->>>>> To fix it the patch adds an additional check to a couple of relevant code
->>>>> paths in order to prevent using semaphores for inter-engine
->>>>> synchronisation between different driver instances.
->>>>>
->>>>> Patch also moves singly used i915_gem_object_last_write_engine to be
->>>>> private in its only calling unit (debugfs), while modifying it to only
->>>>> show activity belonging to the respective driver instance.
->>>>>
->>>>> What remains in this problem space is the question of the GEM busy ioctl.
->>>>> We have a somewhat ambigous comment there saying only status of native
->>>>> fences will be reported, which could be interpreted as either i915, or
->>>>> native to the drm fd. For now I have decided to leave that as is, meaning
->>>>> any i915 instance activity continues to be reported.
->>>>>
->>>>> v2:
->>>>>     * Avoid adding rq->i915. (Chris)
->>>>>
->>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> Can't we just delete semaphore code and done?
->>> - GuC won't have it
->>> - media team benchmarked on top of softpin media driver, found no
->>>     difference
->>
->> You have S-curve for saturated workloads or something else? How thorough and
->> which media team I guess.
->>
->>  From memory it was a nice win for some benchmarks (non-saturated ones), but
->> as I have told you previously, we haven't been putting numbers in commit
->> messages since it wasn't allowed. I may be able to dig out some more details
->> if I went trawling through GEM channel IRC logs, although probably not the
->> actual numbers since those were usually on pastebin. Or you go an talk with
->> Chris since he probably remembers more details. Or you just decide you don't
->> care and remove it. I wouldn't do that without putting the complete story in
->> writing, but it's your call after all.
-> 
-> Media has also changed, they're not using relocations anymore.
+== Series Details ==
 
-Meaning you think it changes the benchmarking story? When coupled with 
-removal of GPU relocations then possibly yes.
+Series: drm/i915/gem: Fix the mman selftest (rev2)
+URL   : https://patchwork.freedesktop.org/series/94062/
+State : failure
 
-> Unless there's solid data performance tuning of any kind that gets in the
-> way simply needs to be removed. Yes this is radical, but the codebase is
-> in a state to require this.
-> 
-> So either way we'd need to rebenchmark this if it's really required. Also
+== Summary ==
 
-Therefore can you share what benchmarks have been done or is it secret? 
-  As said, I think the non-saturated case was the more interesting one here.
+CI Bug Log - changes from CI_DRM_10539 -> Patchwork_20928
+====================================================
 
-> if we really need this code still someone needs to fix the design, the
-> current code is making layering violations an art form.
- >
->> Anyway, without the debugfs churn it is more or less two line patch to fix
->> igfx + dgfx hybrid setup. So while mulling it over this could go in. I'd
->> just refine it to use a GGTT check instead of GT. And unless DG1 ends up
->> being GuC only.
-> 
-> The minimal robust fix here is imo to stop us from upcasting dma_fence to
-> i915_request if it's not for our device. Not sprinkle code here into the
-> semaphore code. We shouldn't even get this far with foreign fences.
+Summary
+-------
 
-Device check does not work for multi-tile. It was one of my earlier 
-attempts before I realized the problem. You'll see v3 which I think 
-handles all the cases.
+  **FAILURE**
 
-You also forgot to comment on the question lower in the email. I'll just 
-send a patch which removes that anyway so you can comment there.
+  Serious unknown changes coming with Patchwork_20928 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20928, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Regards,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html
 
-Tvrtko
+Possible new issues
+-------------------
 
-> -Daniel
-> 
->>
->>> - pre-gen8 semaphore code was also silently ditched and no one cared
->>>
->>> Plus removing semaphore code would greatly simplify conversion to
->>> drm/sched.
->>>
->>>>> ---
->>>>>     drivers/gpu/drm/i915/gem/i915_gem_object.h | 17 ----------
->>>>>     drivers/gpu/drm/i915/i915_debugfs.c        | 39 ++++++++++++++++++++--
->>>>>     drivers/gpu/drm/i915/i915_request.c        | 12 ++++++-
->>>>>     3 files changed, 47 insertions(+), 21 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>>> index 48112b9d76df..3043fcbd31bd 100644
->>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>>> @@ -503,23 +503,6 @@ i915_gem_object_finish_access(struct drm_i915_gem_object *obj)
->>>>>     	i915_gem_object_unpin_pages(obj);
->>>>>     }
->>>>> -static inline struct intel_engine_cs *
->>>>> -i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
->>>>> -{
->>>>> -	struct intel_engine_cs *engine = NULL;
->>>>> -	struct dma_fence *fence;
->>>>> -
->>>>> -	rcu_read_lock();
->>>>> -	fence = dma_resv_get_excl_unlocked(obj->base.resv);
->>>>> -	rcu_read_unlock();
->>>>> -
->>>>> -	if (fence && dma_fence_is_i915(fence) && !dma_fence_is_signaled(fence))
->>>>> -		engine = to_request(fence)->engine;
->>>>> -	dma_fence_put(fence);
->>>>> -
->>>>> -	return engine;
->>>>> -}
->>>>> -
->>>>>     void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
->>>>>     					 unsigned int cache_level);
->>>>>     void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
->>>>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
->>>>> index 04351a851586..55fd6191eb32 100644
->>>>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->>>>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->>>>> @@ -135,13 +135,46 @@ static const char *stringify_vma_type(const struct i915_vma *vma)
->>>>>     	return "ppgtt";
->>>>>     }
->>>>> +static char *
->>>>> +last_write_engine(struct drm_i915_private *i915,
->>>>> +		  struct drm_i915_gem_object *obj)
->>>>> +{
->>>>> +	struct intel_engine_cs *engine;
->>>>> +	struct dma_fence *fence;
->>>>> +	char *res = NULL;
->>>>> +
->>>>> +	rcu_read_lock();
->>>>> +	fence = dma_resv_get_excl_unlocked(obj->base.resv);
->>>>> +	rcu_read_unlock();
->>>>> +
->>>>> +	if (!fence || dma_fence_is_signaled(fence))
->>>>> +		goto out;
->>>>> +
->>>>> +	if (!dma_fence_is_i915(fence)) {
->>>>> +		res = "<external-fence>";
->>>>> +		goto out;
->>>>> +	}
->>>>> +
->>>>> +	engine = to_request(fence)->engine;
->>>>> +	if (engine->gt->i915 != i915) {
->>>>> +		res = "<external-i915>";
->>>>> +		goto out;
->>>>> +	}
->>>>> +
->>>>> +	res = engine->name;
->>>>> +
->>>>> +out:
->>>>> +	dma_fence_put(fence);
->>>>> +	return res;
->>>>> +}
->>>>> +
->>>>>     void
->>>>>     i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
->>>>>     {
->>>>>     	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
->>>>> -	struct intel_engine_cs *engine;
->>>>>     	struct i915_vma *vma;
->>>>>     	int pin_count = 0;
->>>>> +	char *engine;
->>>>>     	seq_printf(m, "%pK: %c%c%c %8zdKiB %02x %02x %s%s%s",
->>>>>     		   &obj->base,
->>>>> @@ -230,9 +263,9 @@ i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
->>>>>     	if (i915_gem_object_is_framebuffer(obj))
->>>>>     		seq_printf(m, " (fb)");
->>>>> -	engine = i915_gem_object_last_write_engine(obj);
->>>>> +	engine = last_write_engine(dev_priv, obj);
->>>>>     	if (engine)
->>>>> -		seq_printf(m, " (%s)", engine->name);
->>>>> +		seq_printf(m, " (%s)", engine);
->>>>
->>>> Or I zap this from the code altogether. Not sure it is very useful since the
->>>> only caller is i915_gem_framebuffer debugfs file and how much it can care
->>>> about maybe hitting the timing window when exclusive fence will contain
->>>> something.
->>>
->>> Ideally we'd just look at the fence timeline name. But i915 has this very
->>> convoluted typesafe-by-rcu reuse which means we actually can't do that,
->>> and our fence timeline name is very useless.
->>
->> Why do we even care to output any of this here? I'd just remove it since it
->> is a very transient state with an extremely short window of opportunity to
->> make it show anything. Which I think makes it pretty useless in debugfs.
->>
->> Regards,
->>
->> Tvrtko
->>
->>>
->>> Would be good to fix that, Matt Auld has started an attempt but didn't get
->>> very far.
->>> -Daniel
->>>
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>>
->>>>>     }
->>>>>     static int i915_gem_object_info(struct seq_file *m, void *data)
->>>>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
->>>>> index ce446716d092..64adf619fe82 100644
->>>>> --- a/drivers/gpu/drm/i915/i915_request.c
->>>>> +++ b/drivers/gpu/drm/i915/i915_request.c
->>>>> @@ -1152,6 +1152,12 @@ __emit_semaphore_wait(struct i915_request *to,
->>>>>     	return 0;
->>>>>     }
->>>>> +static bool
->>>>> +can_use_semaphore_wait(struct i915_request *to, struct i915_request *from)
->>>>> +{
->>>>> +	return to->engine->gt == from->engine->gt;
->>>>> +}
->>>>> +
->>>>>     static int
->>>>>     emit_semaphore_wait(struct i915_request *to,
->>>>>     		    struct i915_request *from,
->>>>> @@ -1160,6 +1166,9 @@ emit_semaphore_wait(struct i915_request *to,
->>>>>     	const intel_engine_mask_t mask = READ_ONCE(from->engine)->mask;
->>>>>     	struct i915_sw_fence *wait = &to->submit;
->>>>> +	if (!can_use_semaphore_wait(to, from))
->>>>> +		goto await_fence;
->>>>> +
->>>>>     	if (!intel_context_use_semaphores(to->context))
->>>>>     		goto await_fence;
->>>>> @@ -1263,7 +1272,8 @@ __i915_request_await_execution(struct i915_request *to,
->>>>>     	 * immediate execution, and so we must wait until it reaches the
->>>>>     	 * active slot.
->>>>>     	 */
->>>>> -	if (intel_engine_has_semaphores(to->engine) &&
->>>>> +	if (can_use_semaphore_wait(to, from) &&
->>>>> +	    intel_engine_has_semaphores(to->engine) &&
->>>>>     	    !i915_request_has_initial_breadcrumb(to)) {
->>>>>     		err = __emit_semaphore_wait(to, from, from->fence.seqno - 1);
->>>>>     		if (err < 0)
->>>>>
->>>
-> 
+  Here are the unknown changes that may have been introduced in Patchwork_20928:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-rkl-guc:         [PASS][1] -> [SKIP][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20928 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_cs_nop@nop-gfx0:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([fdo#109315] / [i915#2575]) +16 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+
+  * igt@amdgpu/amd_cs_nop@sync-compute0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271]) +4 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-compute0.html
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][6] ([fdo#109271]) +17 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([i915#2190])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#1155])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([fdo#111827]) +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-7500u:       [PASS][10] -> [FAIL][11] ([i915#3449])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([fdo#109285])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([i915#1072]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][14] ([i915#3301])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][15] ([i915#3921]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3449]: https://gitlab.freedesktop.org/drm/intel/issues/3449
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+
+
+Participating hosts (43 -> 36)
+------------------------------
+
+  Additional (1): fi-tgl-1115g4 
+  Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10539 -> Patchwork_20928
+
+  CI-20190529: 20190529
+  CI_DRM_10539: 9b8b4f7fc4d04c114e4cc7ae17ad2ed1406a321f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6192: b7de28791dd197d01de1512ab5960c6162564815 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20928: 39f11e052bd26c973d380fbf66b1ab2babf7f0c1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+39f11e052bd2 drm/i915/gem: Fix the mman selftest
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html
+
+--===============0164442424086514981==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gem: Fix the mman selftest (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94062/">https://patchwork.freedesktop.org/series/94062/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10539 -&gt; Patchwork_20928</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20928 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20928, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20928:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20928 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-compute0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3449">i915#3449</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 36)</h2>
+<p>Additional (1): fi-tgl-1115g4 <br />
+  Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10539 -&gt; Patchwork_20928</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10539: 9b8b4f7fc4d04c114e4cc7ae17ad2ed1406a321f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6192: b7de28791dd197d01de1512ab5960c6162564815 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20928: 39f11e052bd26c973d380fbf66b1ab2babf7f0c1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>39f11e052bd2 drm/i915/gem: Fix the mman selftest</p>
+
+</body>
+</html>
+
+--===============0164442424086514981==--
