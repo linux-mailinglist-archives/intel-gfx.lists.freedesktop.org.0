@@ -1,47 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 721553FC4AA
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 11:15:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2BF3FC4AE
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 11:18:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4A2989BAE;
-	Tue, 31 Aug 2021 09:15:11 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA54C89503;
- Tue, 31 Aug 2021 09:15:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="205566594"
-X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="205566594"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6962189B38;
+	Tue, 31 Aug 2021 09:18:37 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD4389B38
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Aug 2021 09:18:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="240687671"
+X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="240687671"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 02:15:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="540936944"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2021 02:18:35 -0700
+X-IronPort-AV: E=Sophos;i="5.84,366,1620716400"; d="scan'208";a="540937724"
 Received: from cfitzp2-mobl2.ger.corp.intel.com (HELO [10.213.255.231])
  ([10.213.255.231])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 02:15:05 -0700
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-References: <20210827133039.287075-1-tvrtko.ursulin@linux.intel.com>
- <20210827143941.287958-1-tvrtko.ursulin@linux.intel.com>
- <9c042851-9a27-6bc7-0749-ed0c573e9c80@linux.intel.com>
- <YSyWMxUyxgTYZCYw@phenom.ffwll.local>
+ 31 Aug 2021 02:18:35 -0700
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
+ <20210830121006.2978297-8-maarten.lankhorst@linux.intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <a382488e-cf1e-e61e-f132-d0868f4f23cf@linux.intel.com>
-Date: Tue, 31 Aug 2021 10:15:03 +0100
+Message-ID: <80c12456-e409-2455-2f47-bb999468d271@linux.intel.com>
+Date: Tue, 31 Aug 2021 10:18:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <YSyWMxUyxgTYZCYw@phenom.ffwll.local>
+In-Reply-To: <20210830121006.2978297-8-maarten.lankhorst@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Handle Intel igfx + Intel dgfx
- hybrid graphics setup
+Subject: Re: [Intel-gfx] [PATCH 07/19] drm/i915: vma is always backed by an
+ object.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,222 +55,191 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 30/08/2021 09:26, Daniel Vetter wrote:
-> On Fri, Aug 27, 2021 at 03:44:42PM +0100, Tvrtko Ursulin wrote:
->>
->> On 27/08/2021 15:39, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> In short this makes i915 work for hybrid setups (DRI_PRIME=1 with Mesa)
->>> when rendering is done on Intel dgfx and scanout/composition on Intel
->>> igfx.
->>>
->>> Before this patch the driver was not quite ready for that setup, mainly
->>> because it was able to emit a semaphore wait between the two GPUs, which
->>> results in deadlocks because semaphore target location in HWSP is neither
->>> shared between the two, nor mapped in both GGTT spaces.
->>>
->>> To fix it the patch adds an additional check to a couple of relevant code
->>> paths in order to prevent using semaphores for inter-engine
->>> synchronisation between different driver instances.
->>>
->>> Patch also moves singly used i915_gem_object_last_write_engine to be
->>> private in its only calling unit (debugfs), while modifying it to only
->>> show activity belonging to the respective driver instance.
->>>
->>> What remains in this problem space is the question of the GEM busy ioctl.
->>> We have a somewhat ambigous comment there saying only status of native
->>> fences will be reported, which could be interpreted as either i915, or
->>> native to the drm fd. For now I have decided to leave that as is, meaning
->>> any i915 instance activity continues to be reported.
->>>
->>> v2:
->>>    * Avoid adding rq->i915. (Chris)
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Can't we just delete semaphore code and done?
-> - GuC won't have it
-> - media team benchmarked on top of softpin media driver, found no
->    difference
+On 30/08/2021 13:09, Maarten Lankhorst wrote:
+> vma->obj and vma->resv are now never NULL, and some checks can be removed.
 
-You have S-curve for saturated workloads or something else? How thorough 
-and which media team I guess.
-
- From memory it was a nice win for some benchmarks (non-saturated ones), 
-but as I have told you previously, we haven't been putting numbers in 
-commit messages since it wasn't allowed. I may be able to dig out some 
-more details if I went trawling through GEM channel IRC logs, although 
-probably not the actual numbers since those were usually on pastebin. Or 
-you go an talk with Chris since he probably remembers more details. Or 
-you just decide you don't care and remove it. I wouldn't do that without 
-putting the complete story in writing, but it's your call after all.
-
-Anyway, without the debugfs churn it is more or less two line patch to 
-fix igfx + dgfx hybrid setup. So while mulling it over this could go in. 
-I'd just refine it to use a GGTT check instead of GT. And unless DG1 
-ends up being GuC only.
-
-> - pre-gen8 semaphore code was also silently ditched and no one cared
-> 
-> Plus removing semaphore code would greatly simplify conversion to
-> drm/sched.
-> 
->>> ---
->>>    drivers/gpu/drm/i915/gem/i915_gem_object.h | 17 ----------
->>>    drivers/gpu/drm/i915/i915_debugfs.c        | 39 ++++++++++++++++++++--
->>>    drivers/gpu/drm/i915/i915_request.c        | 12 ++++++-
->>>    3 files changed, 47 insertions(+), 21 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>> index 48112b9d76df..3043fcbd31bd 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>> @@ -503,23 +503,6 @@ i915_gem_object_finish_access(struct drm_i915_gem_object *obj)
->>>    	i915_gem_object_unpin_pages(obj);
->>>    }
->>> -static inline struct intel_engine_cs *
->>> -i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
->>> -{
->>> -	struct intel_engine_cs *engine = NULL;
->>> -	struct dma_fence *fence;
->>> -
->>> -	rcu_read_lock();
->>> -	fence = dma_resv_get_excl_unlocked(obj->base.resv);
->>> -	rcu_read_unlock();
->>> -
->>> -	if (fence && dma_fence_is_i915(fence) && !dma_fence_is_signaled(fence))
->>> -		engine = to_request(fence)->engine;
->>> -	dma_fence_put(fence);
->>> -
->>> -	return engine;
->>> -}
->>> -
->>>    void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
->>>    					 unsigned int cache_level);
->>>    void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
->>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
->>> index 04351a851586..55fd6191eb32 100644
->>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->>> @@ -135,13 +135,46 @@ static const char *stringify_vma_type(const struct i915_vma *vma)
->>>    	return "ppgtt";
->>>    }
->>> +static char *
->>> +last_write_engine(struct drm_i915_private *i915,
->>> +		  struct drm_i915_gem_object *obj)
->>> +{
->>> +	struct intel_engine_cs *engine;
->>> +	struct dma_fence *fence;
->>> +	char *res = NULL;
->>> +
->>> +	rcu_read_lock();
->>> +	fence = dma_resv_get_excl_unlocked(obj->base.resv);
->>> +	rcu_read_unlock();
->>> +
->>> +	if (!fence || dma_fence_is_signaled(fence))
->>> +		goto out;
->>> +
->>> +	if (!dma_fence_is_i915(fence)) {
->>> +		res = "<external-fence>";
->>> +		goto out;
->>> +	}
->>> +
->>> +	engine = to_request(fence)->engine;
->>> +	if (engine->gt->i915 != i915) {
->>> +		res = "<external-i915>";
->>> +		goto out;
->>> +	}
->>> +
->>> +	res = engine->name;
->>> +
->>> +out:
->>> +	dma_fence_put(fence);
->>> +	return res;
->>> +}
->>> +
->>>    void
->>>    i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
->>>    {
->>>    	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
->>> -	struct intel_engine_cs *engine;
->>>    	struct i915_vma *vma;
->>>    	int pin_count = 0;
->>> +	char *engine;
->>>    	seq_printf(m, "%pK: %c%c%c %8zdKiB %02x %02x %s%s%s",
->>>    		   &obj->base,
->>> @@ -230,9 +263,9 @@ i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
->>>    	if (i915_gem_object_is_framebuffer(obj))
->>>    		seq_printf(m, " (fb)");
->>> -	engine = i915_gem_object_last_write_engine(obj);
->>> +	engine = last_write_engine(dev_priv, obj);
->>>    	if (engine)
->>> -		seq_printf(m, " (%s)", engine->name);
->>> +		seq_printf(m, " (%s)", engine);
->>
->> Or I zap this from the code altogether. Not sure it is very useful since the
->> only caller is i915_gem_framebuffer debugfs file and how much it can care
->> about maybe hitting the timing window when exclusive fence will contain
->> something.
-> 
-> Ideally we'd just look at the fence timeline name. But i915 has this very
-> convoluted typesafe-by-rcu reuse which means we actually can't do that,
-> and our fence timeline name is very useless.
-
-Why do we even care to output any of this here? I'd just remove it since 
-it is a very transient state with an extremely short window of 
-opportunity to make it show anything. Which I think makes it pretty 
-useless in debugfs.
+Is the direction here compatible with SVM / VM_BIND?
 
 Regards,
 
 Tvrtko
 
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_context.c       |  2 +-
+>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
+>   drivers/gpu/drm/i915/i915_vma.c               | 48 ++++++++-----------
+>   drivers/gpu/drm/i915/i915_vma.h               |  3 --
+>   4 files changed, 22 insertions(+), 33 deletions(-)
 > 
-> Would be good to fix that, Matt Auld has started an attempt but didn't get
-> very far.
-> -Daniel
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>    }
->>>    static int i915_gem_object_info(struct seq_file *m, void *data)
->>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
->>> index ce446716d092..64adf619fe82 100644
->>> --- a/drivers/gpu/drm/i915/i915_request.c
->>> +++ b/drivers/gpu/drm/i915/i915_request.c
->>> @@ -1152,6 +1152,12 @@ __emit_semaphore_wait(struct i915_request *to,
->>>    	return 0;
->>>    }
->>> +static bool
->>> +can_use_semaphore_wait(struct i915_request *to, struct i915_request *from)
->>> +{
->>> +	return to->engine->gt == from->engine->gt;
->>> +}
->>> +
->>>    static int
->>>    emit_semaphore_wait(struct i915_request *to,
->>>    		    struct i915_request *from,
->>> @@ -1160,6 +1166,9 @@ emit_semaphore_wait(struct i915_request *to,
->>>    	const intel_engine_mask_t mask = READ_ONCE(from->engine)->mask;
->>>    	struct i915_sw_fence *wait = &to->submit;
->>> +	if (!can_use_semaphore_wait(to, from))
->>> +		goto await_fence;
->>> +
->>>    	if (!intel_context_use_semaphores(to->context))
->>>    		goto await_fence;
->>> @@ -1263,7 +1272,8 @@ __i915_request_await_execution(struct i915_request *to,
->>>    	 * immediate execution, and so we must wait until it reaches the
->>>    	 * active slot.
->>>    	 */
->>> -	if (intel_engine_has_semaphores(to->engine) &&
->>> +	if (can_use_semaphore_wait(to, from) &&
->>> +	    intel_engine_has_semaphores(to->engine) &&
->>>    	    !i915_request_has_initial_breadcrumb(to)) {
->>>    		err = __emit_semaphore_wait(to, from, from->fence.seqno - 1);
->>>    		if (err < 0)
->>>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 745e84c72c90..d3ad16df3ca2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -219,7 +219,7 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+>   	 */
+>   
+>   	err = i915_gem_object_lock(ce->timeline->hwsp_ggtt->obj, ww);
+> -	if (!err && ce->ring->vma->obj)
+> +	if (!err)
+>   		err = i915_gem_object_lock(ce->ring->vma->obj, ww);
+>   	if (!err && ce->state)
+>   		err = i915_gem_object_lock(ce->state->obj, ww);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 3c65efcb7bed..cc31ccc13bfb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -1354,7 +1354,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+>   	err = i915_gem_object_lock(timeline->hwsp_ggtt->obj, &ww);
+>   	if (!err && gen7_wa_vma)
+>   		err = i915_gem_object_lock(gen7_wa_vma->obj, &ww);
+> -	if (!err && engine->legacy.ring->vma->obj)
+> +	if (!err)
+>   		err = i915_gem_object_lock(engine->legacy.ring->vma->obj, &ww);
+>   	if (!err)
+>   		err = intel_timeline_pin(timeline, &ww);
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index f9ac33e0bac9..ad5d52b33eb6 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -40,12 +40,12 @@
+>   
+>   static struct kmem_cache *slab_vmas;
+>   
+> -struct i915_vma *i915_vma_alloc(void)
+> +static struct i915_vma *i915_vma_alloc(void)
+>   {
+>   	return kmem_cache_zalloc(slab_vmas, GFP_KERNEL);
+>   }
+>   
+> -void i915_vma_free(struct i915_vma *vma)
+> +static void i915_vma_free(struct i915_vma *vma)
+>   {
+>   	return kmem_cache_free(slab_vmas, vma);
+>   }
+> @@ -426,10 +426,8 @@ int i915_vma_bind(struct i915_vma *vma,
+>   
+>   		work->base.dma.error = 0; /* enable the queue_work() */
+>   
+> -		if (vma->obj) {
+> -			__i915_gem_object_pin_pages(vma->obj);
+> -			work->pinned = i915_gem_object_get(vma->obj);
+> -		}
+> +		__i915_gem_object_pin_pages(vma->obj);
+> +		work->pinned = i915_gem_object_get(vma->obj);
+>   	} else {
+>   		vma->ops->bind_vma(vma->vm, NULL, vma, cache_level, bind_flags);
+>   	}
+> @@ -670,7 +668,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+>   	}
+>   
+>   	color = 0;
+> -	if (vma->obj && i915_vm_has_cache_coloring(vma->vm))
+> +	if (i915_vm_has_cache_coloring(vma->vm))
+>   		color = vma->obj->cache_level;
+>   
+>   	if (flags & PIN_OFFSET_FIXED) {
+> @@ -795,17 +793,14 @@ static bool try_qad_pin(struct i915_vma *vma, unsigned int flags)
+>   static int vma_get_pages(struct i915_vma *vma)
+>   {
+>   	int err = 0;
+> -	bool pinned_pages = false;
+> +	bool pinned_pages = true;
+>   
+>   	if (atomic_add_unless(&vma->pages_count, 1, 0))
+>   		return 0;
+>   
+> -	if (vma->obj) {
+> -		err = i915_gem_object_pin_pages(vma->obj);
+> -		if (err)
+> -			return err;
+> -		pinned_pages = true;
+> -	}
+> +	err = i915_gem_object_pin_pages(vma->obj);
+> +	if (err)
+> +		return err;
+>   
+>   	/* Allocations ahoy! */
+>   	if (mutex_lock_interruptible(&vma->pages_mutex)) {
+> @@ -838,8 +833,8 @@ static void __vma_put_pages(struct i915_vma *vma, unsigned int count)
+>   	if (atomic_sub_return(count, &vma->pages_count) == 0) {
+>   		vma->ops->clear_pages(vma);
+>   		GEM_BUG_ON(vma->pages);
+> -		if (vma->obj)
+> -			i915_gem_object_unpin_pages(vma->obj);
+> +
+> +		i915_gem_object_unpin_pages(vma->obj);
+>   	}
+>   	mutex_unlock(&vma->pages_mutex);
+>   }
+> @@ -875,7 +870,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	int err;
+>   
+>   #ifdef CONFIG_PROVE_LOCKING
+> -	if (debug_locks && !WARN_ON(!ww) && vma->resv)
+> +	if (debug_locks && !WARN_ON(!ww))
+>   		assert_vma_held(vma);
+>   #endif
+>   
+> @@ -983,7 +978,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   
+>   	GEM_BUG_ON(!vma->pages);
+>   	err = i915_vma_bind(vma,
+> -			    vma->obj ? vma->obj->cache_level : 0,
+> +			    vma->obj->cache_level,
+>   			    flags, work);
+>   	if (err)
+>   		goto err_remove;
+> @@ -1037,7 +1032,7 @@ int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
+>   
+>   #ifdef CONFIG_LOCKDEP
+> -	WARN_ON(!ww && vma->resv && dma_resv_held(vma->resv));
+> +	WARN_ON(!ww && dma_resv_held(vma->resv));
+>   #endif
+>   
+>   	do {
+> @@ -1116,6 +1111,7 @@ void i915_vma_reopen(struct i915_vma *vma)
+>   void i915_vma_release(struct kref *ref)
+>   {
+>   	struct i915_vma *vma = container_of(ref, typeof(*vma), ref);
+> +	struct drm_i915_gem_object *obj = vma->obj;
+>   
+>   	if (drm_mm_node_allocated(&vma->node)) {
+>   		mutex_lock(&vma->vm->mutex);
+> @@ -1126,15 +1122,11 @@ void i915_vma_release(struct kref *ref)
+>   	}
+>   	GEM_BUG_ON(i915_vma_is_active(vma));
+>   
+> -	if (vma->obj) {
+> -		struct drm_i915_gem_object *obj = vma->obj;
+> -
+> -		spin_lock(&obj->vma.lock);
+> -		list_del(&vma->obj_link);
+> -		if (!RB_EMPTY_NODE(&vma->obj_node))
+> -			rb_erase(&vma->obj_node, &obj->vma.tree);
+> -		spin_unlock(&obj->vma.lock);
+> -	}
+> +	spin_lock(&obj->vma.lock);
+> +	list_del(&vma->obj_link);
+> +	if (!RB_EMPTY_NODE(&vma->obj_node))
+> +		rb_erase(&vma->obj_node, &obj->vma.tree);
+> +	spin_unlock(&obj->vma.lock);
+>   
+>   	__i915_vma_remove_closed(vma);
+>   	i915_vm_put(vma->vm);
+> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+> index 1c930515ec3d..1ba82bf863a5 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.h
+> +++ b/drivers/gpu/drm/i915/i915_vma.h
+> @@ -409,9 +409,6 @@ static inline void i915_vma_clear_scanout(struct i915_vma *vma)
+>   	list_for_each_entry(V, &(OBJ)->vma.list, obj_link)		\
+>   		for_each_until(!i915_vma_is_ggtt(V))
+>   
+> -struct i915_vma *i915_vma_alloc(void);
+> -void i915_vma_free(struct i915_vma *vma);
+> -
+>   struct i915_vma *i915_vma_make_unshrinkable(struct i915_vma *vma);
+>   void i915_vma_make_shrinkable(struct i915_vma *vma);
+>   void i915_vma_make_purgeable(struct i915_vma *vma);
 > 
