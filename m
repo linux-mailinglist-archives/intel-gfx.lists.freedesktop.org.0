@@ -2,43 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2BF3FC4AE
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 11:18:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D11FD3FC4B8
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 11:29:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6962189B38;
-	Tue, 31 Aug 2021 09:18:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA318975F;
+	Tue, 31 Aug 2021 09:29:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD4389B38
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Aug 2021 09:18:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="240687671"
-X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="240687671"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 02:18:35 -0700
-X-IronPort-AV: E=Sophos;i="5.84,366,1620716400"; d="scan'208";a="540937724"
-Received: from cfitzp2-mobl2.ger.corp.intel.com (HELO [10.213.255.231])
- ([10.213.255.231])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 02:18:35 -0700
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
- <20210830121006.2978297-8-maarten.lankhorst@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <80c12456-e409-2455-2f47-bb999468d271@linux.intel.com>
-Date: Tue, 31 Aug 2021 10:18:33 +0100
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0610D8975F;
+ Tue, 31 Aug 2021 09:29:45 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="198673876"
+X-IronPort-AV: E=Sophos;i="5.84,366,1620716400"; d="scan'208";a="198673876"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2021 02:29:45 -0700
+X-IronPort-AV: E=Sophos;i="5.84,366,1620716400"; d="scan'208";a="531025500"
+Received: from wenqitan-mobl1.ger.corp.intel.com (HELO [10.252.59.180])
+ ([10.252.59.180])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2021 02:29:41 -0700
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Jon Bloomfield <jon.bloomfield@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
+References: <20210813203033.3179400-1-daniel.vetter@ffwll.ch>
+ <20210813203033.3179400-10-daniel.vetter@ffwll.ch>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <cfd5c846-fbc5-4d7d-230a-0a1afe3e88de@linux.intel.com>
+Date: Tue, 31 Aug 2021 11:29:55 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Firefox/78.0 Thunderbird/78.12.0
 MIME-Version: 1.0
-In-Reply-To: <20210830121006.2978297-8-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210813203033.3179400-10-daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 07/19] drm/i915: vma is always backed by an
- object.
+Subject: Re: [Intel-gfx] [PATCH 10/11] drm/i915: use xa_lock/unlock for
+ fpriv->vm_xa lookups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,192 +62,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 30/08/2021 13:09, Maarten Lankhorst wrote:
-> vma->obj and vma->resv are now never NULL, and some checks can be removed.
-
-Is the direction here compatible with SVM / VM_BIND?
-
-Regards,
-
-Tvrtko
-
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Op 13-08-2021 om 22:30 schreef Daniel Vetter:
+> We don't need the absolute speed of rcu for this. And
+> i915_address_space in general dont need rcu protection anywhere else,
+> after we've made gem contexts and engines a lot more immutable.
+>
+> Note that this semantically reverts
+>
+> commit aabbe344dc3ca5f7d8263a02608ba6179e8a4499
+> Author: Chris Wilson <chris@chris-wilson.co.uk>
+> Date:   Fri Aug 30 19:03:25 2019 +0100
+>
+>     drm/i915: Use RCU for unlocked vm_idr lookup
+>
+> except we have the conversion from idr to xarray in between.
+>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
 > ---
->   drivers/gpu/drm/i915/gt/intel_context.c       |  2 +-
->   .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
->   drivers/gpu/drm/i915/i915_vma.c               | 48 ++++++++-----------
->   drivers/gpu/drm/i915/i915_vma.h               |  3 --
->   4 files changed, 22 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> index 745e84c72c90..d3ad16df3ca2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> @@ -219,7 +219,7 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
->   	 */
->   
->   	err = i915_gem_object_lock(ce->timeline->hwsp_ggtt->obj, ww);
-> -	if (!err && ce->ring->vma->obj)
-> +	if (!err)
->   		err = i915_gem_object_lock(ce->ring->vma->obj, ww);
->   	if (!err && ce->state)
->   		err = i915_gem_object_lock(ce->state->obj, ww);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> index 3c65efcb7bed..cc31ccc13bfb 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> @@ -1354,7 +1354,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
->   	err = i915_gem_object_lock(timeline->hwsp_ggtt->obj, &ww);
->   	if (!err && gen7_wa_vma)
->   		err = i915_gem_object_lock(gen7_wa_vma->obj, &ww);
-> -	if (!err && engine->legacy.ring->vma->obj)
-> +	if (!err)
->   		err = i915_gem_object_lock(engine->legacy.ring->vma->obj, &ww);
->   	if (!err)
->   		err = intel_timeline_pin(timeline, &ww);
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index f9ac33e0bac9..ad5d52b33eb6 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -40,12 +40,12 @@
->   
->   static struct kmem_cache *slab_vmas;
->   
-> -struct i915_vma *i915_vma_alloc(void)
-> +static struct i915_vma *i915_vma_alloc(void)
->   {
->   	return kmem_cache_zalloc(slab_vmas, GFP_KERNEL);
->   }
->   
-> -void i915_vma_free(struct i915_vma *vma)
-> +static void i915_vma_free(struct i915_vma *vma)
->   {
->   	return kmem_cache_free(slab_vmas, vma);
->   }
-> @@ -426,10 +426,8 @@ int i915_vma_bind(struct i915_vma *vma,
->   
->   		work->base.dma.error = 0; /* enable the queue_work() */
->   
-> -		if (vma->obj) {
-> -			__i915_gem_object_pin_pages(vma->obj);
-> -			work->pinned = i915_gem_object_get(vma->obj);
-> -		}
-> +		__i915_gem_object_pin_pages(vma->obj);
-> +		work->pinned = i915_gem_object_get(vma->obj);
->   	} else {
->   		vma->ops->bind_vma(vma->vm, NULL, vma, cache_level, bind_flags);
->   	}
-> @@ -670,7 +668,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
->   	}
->   
->   	color = 0;
-> -	if (vma->obj && i915_vm_has_cache_coloring(vma->vm))
-> +	if (i915_vm_has_cache_coloring(vma->vm))
->   		color = vma->obj->cache_level;
->   
->   	if (flags & PIN_OFFSET_FIXED) {
-> @@ -795,17 +793,14 @@ static bool try_qad_pin(struct i915_vma *vma, unsigned int flags)
->   static int vma_get_pages(struct i915_vma *vma)
->   {
->   	int err = 0;
-> -	bool pinned_pages = false;
-> +	bool pinned_pages = true;
->   
->   	if (atomic_add_unless(&vma->pages_count, 1, 0))
->   		return 0;
->   
-> -	if (vma->obj) {
-> -		err = i915_gem_object_pin_pages(vma->obj);
-> -		if (err)
-> -			return err;
-> -		pinned_pages = true;
-> -	}
-> +	err = i915_gem_object_pin_pages(vma->obj);
-> +	if (err)
-> +		return err;
->   
->   	/* Allocations ahoy! */
->   	if (mutex_lock_interruptible(&vma->pages_mutex)) {
-> @@ -838,8 +833,8 @@ static void __vma_put_pages(struct i915_vma *vma, unsigned int count)
->   	if (atomic_sub_return(count, &vma->pages_count) == 0) {
->   		vma->ops->clear_pages(vma);
->   		GEM_BUG_ON(vma->pages);
-> -		if (vma->obj)
-> -			i915_gem_object_unpin_pages(vma->obj);
-> +
-> +		i915_gem_object_unpin_pages(vma->obj);
->   	}
->   	mutex_unlock(&vma->pages_mutex);
->   }
-> @@ -875,7 +870,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->   	int err;
->   
->   #ifdef CONFIG_PROVE_LOCKING
-> -	if (debug_locks && !WARN_ON(!ww) && vma->resv)
-> +	if (debug_locks && !WARN_ON(!ww))
->   		assert_vma_held(vma);
->   #endif
->   
-> @@ -983,7 +978,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->   
->   	GEM_BUG_ON(!vma->pages);
->   	err = i915_vma_bind(vma,
-> -			    vma->obj ? vma->obj->cache_level : 0,
-> +			    vma->obj->cache_level,
->   			    flags, work);
->   	if (err)
->   		goto err_remove;
-> @@ -1037,7 +1032,7 @@ int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->   	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
->   
->   #ifdef CONFIG_LOCKDEP
-> -	WARN_ON(!ww && vma->resv && dma_resv_held(vma->resv));
-> +	WARN_ON(!ww && dma_resv_held(vma->resv));
->   #endif
->   
->   	do {
-> @@ -1116,6 +1111,7 @@ void i915_vma_reopen(struct i915_vma *vma)
->   void i915_vma_release(struct kref *ref)
->   {
->   	struct i915_vma *vma = container_of(ref, typeof(*vma), ref);
-> +	struct drm_i915_gem_object *obj = vma->obj;
->   
->   	if (drm_mm_node_allocated(&vma->node)) {
->   		mutex_lock(&vma->vm->mutex);
-> @@ -1126,15 +1122,11 @@ void i915_vma_release(struct kref *ref)
->   	}
->   	GEM_BUG_ON(i915_vma_is_active(vma));
->   
-> -	if (vma->obj) {
-> -		struct drm_i915_gem_object *obj = vma->obj;
-> -
-> -		spin_lock(&obj->vma.lock);
-> -		list_del(&vma->obj_link);
-> -		if (!RB_EMPTY_NODE(&vma->obj_node))
-> -			rb_erase(&vma->obj_node, &obj->vma.tree);
-> -		spin_unlock(&obj->vma.lock);
-> -	}
-> +	spin_lock(&obj->vma.lock);
-> +	list_del(&vma->obj_link);
-> +	if (!RB_EMPTY_NODE(&vma->obj_node))
-> +		rb_erase(&vma->obj_node, &obj->vma.tree);
-> +	spin_unlock(&obj->vma.lock);
->   
->   	__i915_vma_remove_closed(vma);
->   	i915_vm_put(vma->vm);
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index 1c930515ec3d..1ba82bf863a5 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -409,9 +409,6 @@ static inline void i915_vma_clear_scanout(struct i915_vma *vma)
->   	list_for_each_entry(V, &(OBJ)->vma.list, obj_link)		\
->   		for_each_until(!i915_vma_is_ggtt(V))
->   
-> -struct i915_vma *i915_vma_alloc(void);
-> -void i915_vma_free(struct i915_vma *vma);
-> -
->   struct i915_vma *i915_vma_make_unshrinkable(struct i915_vma *vma);
->   void i915_vma_make_shrinkable(struct i915_vma *vma);
->   void i915_vma_make_purgeable(struct i915_vma *vma);
-> 
+>  drivers/gpu/drm/i915/i915_drv.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 005b1cec7007..e37fac8fac0c 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1881,11 +1881,11 @@ i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
+>  {
+>  	struct i915_address_space *vm;
+>  
+> -	rcu_read_lock();
+> +	xa_lock(&file_priv->vm_xa);
+>  	vm = xa_load(&file_priv->vm_xa, id);
+>  	if (vm && !kref_get_unless_zero(&vm->ref))
+>  		vm = NULL;
+I think this could be a plain i915_vm_get now, kref_get_unless_zero is not guarded by RCU any more.
+> -	rcu_read_unlock();
+> +	xa_unlock(&file_priv->vm_xa);
+>  
+>  	return vm;
+>  }
+
+Apart from that, all looks good.
+
+With this fix, for patch 2-11:
+
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+
