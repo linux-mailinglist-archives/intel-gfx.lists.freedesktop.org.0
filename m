@@ -1,42 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67B963FC397
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 10:11:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8441F3FC39D
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Aug 2021 10:21:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C21B889E2A;
-	Tue, 31 Aug 2021 08:10:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6278C89798;
+	Tue, 31 Aug 2021 08:21:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1F7689C51;
- Tue, 31 Aug 2021 08:10:57 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10092"; a="218434690"
-X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="218434690"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 01:10:57 -0700
-X-IronPort-AV: E=Sophos;i="5.84,365,1620716400"; d="scan'208";a="498182662"
-Received: from anicol1x-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.211.207])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2021 01:10:55 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <YSz1AhsVUc7m3Ng7@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1630319138.git.jani.nikula@intel.com>
- <09f57d55813f916578d1dd1e28bee3a621068bdd.1630319138.git.jani.nikula@intel.com>
- <YSz1AhsVUc7m3Ng7@intel.com>
-Date: Tue, 31 Aug 2021 11:10:53 +0300
-Message-ID: <87wno2avaq.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82F57897CD;
+ Tue, 31 Aug 2021 08:21:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7BE98A0003;
+ Tue, 31 Aug 2021 08:21:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4143934511747400106=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/edid: parse the DisplayID v2.0 VESA
- vendor block for MSO
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Desmond Cheong Zhi Xi" <desmondcheongzx@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Aug 2021 08:21:42 -0000
+Message-ID: <163039810247.10657.2408132016128610543@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210831072501.184211-1-desmondcheongzx@gmail.com>
+In-Reply-To: <20210831072501.184211-1-desmondcheongzx@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_update_locking_for_modesetting_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,206 +41,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Aug 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Mon, Aug 30, 2021 at 01:29:01PM +0300, Jani Nikula wrote:
->> The VESA Organization Vendor-Specific Data Block, defined in VESA
->> DisplayID Standard v2.0, specifies the eDP Multi-SST Operation (MSO)
->> stream count and segment pixel overlap.
->>=20
->> DisplayID v1.3 has Appendix B: DisplayID as an EDID Extension,
->> describing how DisplayID sections may be embedded in EDID extension
->> blocks. DisplayID v2.0 does not have such a section, perhaps implying
->> that DisplayID v2.0 data should not be included in EDID extensions, but
->> rather in a "pure" DisplayID structure at its own DDC address pair
->> A4h/A5h, as described in VESA E-DDC Standard v1.3 chapter 3.
->>=20
->> However, in practice, displays out in the field have embedded DisplayID
->> v2.0 data blocks in EDID extensions, including, in particular, some eDP
->> MSO displays, where a pure DisplayID structure is not available at all.
->>=20
->> Parse the MSO data from the DisplayID data block. Do it as part of
->> drm_add_display_info(), extending it to parse also DisplayID data to
->> avoid requiring extra calls to update the information.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/drm_edid.c  | 63 +++++++++++++++++++++++++++++++++++++
->>  include/drm/drm_connector.h | 12 +++++++
->>  include/drm/drm_displayid.h | 11 +++++++
->>  3 files changed, 86 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
->> index 6325877c5fd6..7e8083068f3f 100644
->> --- a/drivers/gpu/drm/drm_edid.c
->> +++ b/drivers/gpu/drm/drm_edid.c
->> @@ -28,6 +28,7 @@
->>   * DEALINGS IN THE SOFTWARE.
->>   */
->>=20=20
->> +#include <linux/bitfield.h>
->>  #include <linux/hdmi.h>
->>  #include <linux/i2c.h>
->>  #include <linux/kernel.h>
->> @@ -5148,6 +5149,62 @@ void drm_get_monitor_range(struct drm_connector *=
-connector,
->>  		      info->monitor_range.max_vfreq);
->>  }
->>=20=20
->> +static void drm_parse_vesa_mso_data(struct drm_connector *connector,
->> +				    const struct displayid_block *block)
->> +{
->> +	struct displayid_vesa_vendor_specific_block *vesa =3D
->> +		(struct displayid_vesa_vendor_specific_block *)block;
->> +	struct drm_display_info *info =3D &connector->display_info;
->> +
->> +	if (sizeof(*vesa) !=3D sizeof(*block) + block->num_bytes) {
->> +		drm_dbg_kms(connector->dev, "Unexpected VESA vendor block size\n");
->> +		return;
->> +	}
->> +
->> +	switch (FIELD_GET(DISPLAYID_VESA_MSO_MODE, vesa->mso)) {
->> +	default:
->> +		drm_dbg_kms(connector->dev, "Reserved MSO mode value\n");
->> +		fallthrough;
->> +	case 0:
->> +		info->mso_stream_count =3D 0;
->> +		break;
->> +	case 1:
->> +		info->mso_stream_count =3D 2; /* 2 or 4 links */
->> +		break;
->> +	case 2:
->> +		info->mso_stream_count =3D 4; /* 4 links */
->> +		break;
->> +	}
->> +
->> +	if (!info->mso_stream_count) {
->> +		info->mso_pixel_overlap =3D 0;
->> +		return;
->> +	}
->> +
->> +	info->mso_pixel_overlap =3D FIELD_GET(DISPLAYID_VESA_MSO_OVERLAP, vesa=
-->mso);
->> +	if (info->mso_pixel_overlap > 8) {
->> +		drm_dbg_kms(connector->dev, "Reserved MSO pixel overlap value %u\n",
->> +			    info->mso_pixel_overlap);
->> +		info->mso_pixel_overlap =3D 8;
->> +	}
->> +
->> +	drm_dbg_kms(connector->dev, "MSO stream count %u, pixel overlap %u\n",
->> +		    info->mso_stream_count, info->mso_pixel_overlap);
->> +}
->> +
->> +static void drm_update_mso(struct drm_connector *connector, const struc=
-t edid *edid)
->> +{
->> +	const struct displayid_block *block;
->> +	struct displayid_iter iter;
->> +
->> +	displayid_iter_edid_begin(edid, &iter);
->> +	displayid_iter_for_each(block, &iter) {
->> +		if (block->tag =3D=3D DATA_BLOCK_2_VENDOR_SPECIFIC)
->
-> Don't we need to check the OUI to make sure the block is the right
-> type? I don't have the v2 spec at hand atm, but I presume a vendor
-> specific block could contain all kinds of different things?
+--===============4143934511747400106==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-You're right.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm: update locking for modesetting (rev7)
+URL   : https://patchwork.freedesktop.org/series/93864/
+State : success
 
->
->> +			drm_parse_vesa_mso_data(connector, block);
->> +	}
->> +	displayid_iter_end(&iter);
->> +}
->> +
->>  /* A connector has no EDID information, so we've got no EDID to compute=
- quirks from. Reset
->>   * all of the values which would have been set from EDID
->>   */
->> @@ -5171,6 +5228,9 @@ drm_reset_display_info(struct drm_connector *conne=
-ctor)
->>=20=20
->>  	info->non_desktop =3D 0;
->>  	memset(&info->monitor_range, 0, sizeof(info->monitor_range));
->> +
->> +	info->mso_stream_count =3D 0;
->> +	info->mso_pixel_overlap =3D 0;
->>  }
->>=20=20
->>  u32 drm_add_display_info(struct drm_connector *connector, const struct =
-edid *edid)
->> @@ -5249,6 +5309,9 @@ u32 drm_add_display_info(struct drm_connector *con=
-nector, const struct edid *edi
->>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB444;
->>  	if (edid->features & DRM_EDID_FEATURE_RGB_YCRCB422)
->>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB422;
->> +
->> +	drm_update_mso(connector, edid);
->> +
->>  	return quirks;
->>  }
->>=20=20
->> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
->> index 79fa34e5ccdb..379746d3266f 100644
->> --- a/include/drm/drm_connector.h
->> +++ b/include/drm/drm_connector.h
->> @@ -590,6 +590,18 @@ struct drm_display_info {
->>  	 * @monitor_range: Frequency range supported by monitor range descript=
-or
->>  	 */
->>  	struct drm_monitor_range_info monitor_range;
->> +
->> +	/**
->> +	 * @mso_stream_count: eDP Multi-SST Operation (MSO) stream count from
->> +	 * the DisplayID VESA vendor block. 0 for conventional Single-Stream
->> +	 * Transport (SST), or 2 or 4 MSO streams.
->> +	 */
->> +	u8 mso_stream_count;
->> +
->> +	/**
->> +	 * @mso_pixel_overlap: eDP MSO segment pixel overlap, 0-8 pixels.
->> +	 */
->> +	u8 mso_pixel_overlap;
->>  };
->>=20=20
->>  int drm_display_info_set_bus_formats(struct drm_display_info *info,
->> diff --git a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h
->> index 79771091771a..b18611e016a2 100644
->> --- a/include/drm/drm_displayid.h
->> +++ b/include/drm/drm_displayid.h
->> @@ -23,6 +23,7 @@
->>  #define DRM_DISPLAYID_H
->>=20=20
->>  #include <linux/types.h>
->> +#include <linux/bits.h>
->>=20=20
->>  struct edid;
->>=20=20
->> @@ -126,6 +127,16 @@ struct displayid_detailed_timing_block {
->>  	struct displayid_detailed_timings_1 timings[];
->>  };
->>=20=20
->> +#define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
->> +#define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
->> +
->> +struct displayid_vesa_vendor_specific_block {
->> +	struct displayid_block base;
->> +	u8 oui[3];
->> +	u8 data_structure_type;
->> +	u8 mso;
->> +} __packed;
->> +
->>  /* DisplayID iteration */
->>  struct displayid_iter {
->>  	const struct edid *edid;
->> --=20
->> 2.20.1
+== Summary ==
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+CI Bug Log - changes from CI_DRM_10538 -> Patchwork_20925
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20925 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-rkl-guc:         [DMESG-WARN][2] ([i915#3925]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10538/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [FAIL][4] ([i915#1888]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10538/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
+
+
+Participating hosts (44 -> 36)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10538 -> Patchwork_20925
+
+  CI-20190529: 20190529
+  CI_DRM_10538: 031f5dcf3ec226bcd0d5f700347780d51cddd2eb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6191: e9292b533691784f46eeb9bae522ca7a8710c920 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20925: aa1dc5ecd4c1fe7724951e573e95f8d5c76c9719 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+aa1dc5ecd4c1 drm: avoid races with modesetting rights
+561f815dc062 drm: lock drm_global_mutex earlier in the ioctl handler
+488e5f613522 drm: convert drm_device.master_mutex into a rwsem
+3fccaf2012dc drm: fix null ptr dereference in drm_master_release
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/index.html
+
+--===============4143934511747400106==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: update locking for modesetting (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93864/">https://patchwork.freedesktop.org/series/93864/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10538 -&gt; Patchwork_20925</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20925 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_basic@cs-gfx:<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10538/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10538/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20925/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 36)</h2>
+<p>Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10538 -&gt; Patchwork_20925</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10538: 031f5dcf3ec226bcd0d5f700347780d51cddd2eb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6191: e9292b533691784f46eeb9bae522ca7a8710c920 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20925: aa1dc5ecd4c1fe7724951e573e95f8d5c76c9719 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>aa1dc5ecd4c1 drm: avoid races with modesetting rights<br />
+561f815dc062 drm: lock drm_global_mutex earlier in the ioctl handler<br />
+488e5f613522 drm: convert drm_device.master_mutex into a rwsem<br />
+3fccaf2012dc drm: fix null ptr dereference in drm_master_release</p>
+
+</body>
+</html>
+
+--===============4143934511747400106==--
