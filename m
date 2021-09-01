@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B533FD5F2
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 10:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FBBD3FD5F3
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 10:52:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E68E6E073;
-	Wed,  1 Sep 2021 08:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1FC76E072;
+	Wed,  1 Sep 2021 08:52:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA006E072
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Sep 2021 08:52:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10093"; a="218695104"
-X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; d="scan'208";a="218695104"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC126E072
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Sep 2021 08:52:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10093"; a="218695110"
+X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; d="scan'208";a="218695110"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2021 01:52:05 -0700
+ 01 Sep 2021 01:52:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; d="scan'208";a="510275971"
+X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; d="scan'208";a="510275995"
 Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.12])
- by orsmga001.jf.intel.com with ESMTP; 01 Sep 2021 01:52:03 -0700
+ by orsmga001.jf.intel.com with ESMTP; 01 Sep 2021 01:52:05 -0700
 From: Lee Shawn C <shawn.c.lee@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Lee Shawn C <shawn.c.lee@intel.com>,
@@ -29,13 +29,13 @@ Cc: Lee Shawn C <shawn.c.lee@intel.com>,
  Vandita Kulkarni <vandita.kulkarni@intel.com>,
  Cooper Chiou <cooper.chiou@intel.com>,
  William Tseng <william.tseng@intel.com>
-Date: Wed,  1 Sep 2021 16:54:44 +0800
-Message-Id: <20210901085445.427-5-shawn.c.lee@intel.com>
+Date: Wed,  1 Sep 2021 16:54:45 +0800
+Message-Id: <20210901085445.427-6-shawn.c.lee@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210901085445.427-1-shawn.c.lee@intel.com>
 References: <20210901085445.427-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/dsi: Retrieve max brightness level
- from VBT
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/dsi: Read/write proper brightness
+ value via MIPI DCS command
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,17 +51,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-So far, DCS backlight driver hardcode (0xFF) for max brightness level.
-MIPI DCS spec allow max 0xFFFF for set_display_brightness (51h) command.
-And VBT brightness precision bits can support 8 ~ 16 bits.
+Driver has to swap the endian before send brightness level value
+to tcon.
 
-We should set correct precision bits in VBT that meet panel's request.
-Driver can refer to this setting then configure max brightness level
-in DCS backlight driver properly.
+v2: Use __be16 instead of u16 to fix sparse warning.
+v3: Send one or two bytes brightness value depend on the precision.
 
-v2: modify variable name brightness_precision_bits instead of
-    max_brightness_level.
-
+Reported-by: kernel test robot <lkp@intel.com>
 Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
@@ -69,58 +65,56 @@ Cc: Cooper Chiou <cooper.chiou@intel.com>
 Cc: William Tseng <william.tseng@intel.com>
 Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c              | 3 +++
- drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c | 8 ++++++--
- drivers/gpu/drm/i915/i915_drv.h                        | 1 +
- 3 files changed, 10 insertions(+), 2 deletions(-)
+ .../drm/i915/display/intel_dsi_dcs_backlight.c    | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index e86e6ed2d3bf..ccaf0a3100f7 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -483,6 +483,9 @@ parse_lfp_backlight(struct drm_i915_private *i915,
- 			level = 255;
- 		}
- 		i915->vbt.backlight.min_brightness = min_level;
-+
-+		i915->vbt.backlight.brightness_precision_bits =
-+			backlight_data->brightness_precision_bits[panel_type];
- 	} else {
- 		level = backlight_data->level[panel_type];
- 		i915->vbt.backlight.min_brightness = entry->min_brightness;
 diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-index 584c14c4cbd0..21ab9e1acb57 100644
+index 21ab9e1acb57..722411b5cb21 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-@@ -147,10 +147,14 @@ static void dcs_enable_backlight(const struct intel_crtc_state *crtc_state,
- static int dcs_setup_backlight(struct intel_connector *connector,
- 			       enum pipe unused)
+@@ -47,33 +47,36 @@ static u32 dcs_get_backlight(struct intel_connector *connector, enum pipe unused
  {
-+	struct drm_device *dev = connector->base.dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_panel *panel = &connector->panel;
+ 	struct intel_encoder *encoder = intel_attached_encoder(connector);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
++	struct intel_panel *panel = &connector->panel;
+ 	struct mipi_dsi_device *dsi_device;
+-	u8 data = 0;
++	u8 data[2] = {0, 0};
+ 	enum port port;
  
--	panel->backlight.max = PANEL_PWM_MAX_VALUE;
--	panel->backlight.level = PANEL_PWM_MAX_VALUE;
-+	panel->backlight.max = (dev_priv->vbt.backlight.brightness_precision_bits > 8) \
-+			       ? (1 << dev_priv->vbt.backlight.brightness_precision_bits) - 1 \
-+			       : PANEL_PWM_MAX_VALUE;
-+	panel->backlight.level = panel->backlight.max;
+ 	/* FIXME: Need to take care of 16 bit brightness level */
+ 	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
+ 		dsi_device = intel_dsi->dsi_hosts[port]->device;
+ 		mipi_dsi_dcs_read(dsi_device, MIPI_DCS_GET_DISPLAY_BRIGHTNESS,
+-				  &data, sizeof(data));
++				  &data,
++				  (panel->backlight.max >> 8) ? sizeof(data) : 1);
+ 		break;
+ 	}
  
- 	return 0;
+-	return data;
++	return ((data[1] << 8) | data[0]);
  }
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 005b1cec7007..1b42e39a7cd4 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -706,6 +706,7 @@ struct intel_vbt_data {
  
- 	struct {
- 		u16 pwm_freq_hz;
-+		u16 brightness_precision_bits;
- 		bool present;
- 		bool active_low_pwm;
- 		u8 min_brightness;	/* min_brightness/255 of max */
+ static void dcs_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+ {
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(conn_state->best_encoder));
++	struct intel_panel *panel = &to_intel_connector(conn_state->connector)->panel;
+ 	struct mipi_dsi_device *dsi_device;
+-	u8 data = level;
++	__be16 data = cpu_to_be16(level);
+ 	enum port port;
+ 
+-	/* FIXME: Need to take care of 16 bit brightness level */
+ 	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
+ 		dsi_device = intel_dsi->dsi_hosts[port]->device;
+ 		mipi_dsi_dcs_write(dsi_device, MIPI_DCS_SET_DISPLAY_BRIGHTNESS,
+-				   &data, sizeof(data));
++				   &data,
++				   (panel->backlight.max >> 8) ? sizeof(data) : 1);
+ 	}
+ }
+ 
 -- 
 2.17.1
 
