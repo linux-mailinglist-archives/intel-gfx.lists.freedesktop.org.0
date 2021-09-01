@@ -2,39 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D6F3FDF79
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 18:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A743FDF7F
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 18:13:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19EF36E1F8;
-	Wed,  1 Sep 2021 16:11:07 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC8536E1F8
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Sep 2021 16:11:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10094"; a="198352684"
-X-IronPort-AV: E=Sophos;i="5.84,369,1620716400"; d="scan'208";a="198352684"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2021 09:11:05 -0700
-X-IronPort-AV: E=Sophos;i="5.84,369,1620716400"; d="scan'208";a="541881924"
-Received: from frodasgo-mobl3.amr.corp.intel.com (HELO intel.com)
- ([10.255.39.35])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2021 09:11:04 -0700
-Date: Wed, 1 Sep 2021 12:11:03 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YS+mFzpV3H+EC5pT@intel.com>
-References: <cover.1630327990.git.jani.nikula@intel.com>
- <a557a46d452b20c186f4735e9f15bf37e2845c99.1630327990.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8926E1F3;
+	Wed,  1 Sep 2021 16:13:08 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
+ [IPv6:2607:f8b0:4864:20::735])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E61676E197;
+ Wed,  1 Sep 2021 16:13:06 +0000 (UTC)
+Received: by mail-qk1-x735.google.com with SMTP id t4so3594010qkb.9;
+ Wed, 01 Sep 2021 09:13:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=NxNrpbaiB53Il8GQAIXHwFRBLuZJ0ghflN/6zGkiixo=;
+ b=lcc+tzMolmeWAag0BHncpW8TnGuFOFA3N3t/KrFueqMgOCJyZgww26EzOz4XPfIrXU
+ MUbKzUvGGYW0FwOT/PmPN54dD22ugmbNaonrdDn6euT9BdCrTN2QJV2wGCdr1h7P+BMe
+ ECEbQjFDHV4qrRh4agPRZN0DMr5OrSmv8gXbvtouM7tWeO9A1Il7lMW80dmXoDddmd5l
+ dBMFXvuVt830LU2QCOjcztbR3Q+K/Dzyr9nJHjYsEftJqa4HVUgR6mf5D3RtiQPspEXv
+ PxuIBkNh+Le92q9dE+3CZtHWYL70CqibYB1Nw48GKR3lvwuZOsUKrxntS2SHxle3Av0l
+ DMvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=NxNrpbaiB53Il8GQAIXHwFRBLuZJ0ghflN/6zGkiixo=;
+ b=rZRJOfny/xX2ZkiJhwRT9OTltzL7Rcz35ov6j0862veNIJU9XNsVStRbnYfFV5UVsx
+ uvyuuOmFwHv+zJoLzgnd/OysQOoSxeqMiUM4e7RMbAvmHwK6vBNDK0YnP6CMHSGDcJ79
+ lDN4M1fWGsHIIE1uuBWyjx8piajdKVlMHQt7LILZff7+eINNoJAl0itp9u3ElYNn7v0t
+ lo17sxj7ztgfa7ZxuJmFdl+BauhNxhy7ZPVZuruE7momo97YkSR6v6ymbx1mk7/NkYhg
+ 90jKTXFSb5pOTprAuS5Kl9bKsVaRXej0sBf7MBGTAS/JmMf/feMRbq6FD1Icv2LqDfCz
+ JE/w==
+X-Gm-Message-State: AOAM532NWN0jrnQ95HF9rIEZqomPGUckDEmiyibBqSzsPuPuOrsY6BJn
+ aVv1ZTl7gQAvl0ojlokqNv2c3OZOwddYCgQVJ7g=
+X-Google-Smtp-Source: ABdhPJxeRePKZOH6A6JJs6HRPVgZ0ZJLe/mH6ls+KBJXo+/kFACTU5MUFTJVS73xhau0DnQz9qV0WP87RuacgBQ37eU=
+X-Received: by 2002:a05:620a:16c7:: with SMTP id
+ a7mr362776qkn.327.1630512785944; 
+ Wed, 01 Sep 2021 09:13:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a557a46d452b20c186f4735e9f15bf37e2845c99.1630327990.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/debugfs: pass intel_connector
- to intel_connector_debugfs_add()
+References: <20210901022043.2395135-1-John.C.Harrison@Intel.com>
+ <20210901022043.2395135-3-John.C.Harrison@Intel.com>
+In-Reply-To: <20210901022043.2395135-3-John.C.Harrison@Intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 1 Sep 2021 17:12:38 +0100
+Message-ID: <CAM0jSHO7xXFZBwqzw1gnkY47G+DMZUsZEF1_QYWVNa8LLn1cPA@mail.gmail.com>
+To: John.C.Harrison@intel.com
+Cc: Intel Graphics Development <Intel-GFX@lists.freedesktop.org>, 
+ ML dri-devel <DRI-Devel@lists.freedesktop.org>, 
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, 
+ Abdiel Janulgue <abdiel.janulgue@linux.intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>, 
+ Radoslaw Szwichtenberg <radoslaw.szwichtenberg@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/guc: put all guc objects in
+ lmem when available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,74 +76,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 30, 2021 at 03:53:44PM +0300, Jani Nikula wrote:
-> Prefer the intel_ types. No functional changes.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Wed, 1 Sept 2021 at 03:21, <John.C.Harrison@intel.com> wrote:
+>
+> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>
+> The firmware binary has to be loaded from lmem and the recommendation is
+> to put all other objects in there as well. Note that we don't fall back
+> to system memory if the allocation in lmem fails because all objects are
+> allocated during driver load and if we have issues with lmem at that point
+> something is seriously wrong with the system, so no point in trying to
+> handle it.
+>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Cc: Radoslaw Szwichtenberg <radoslaw.szwichtenberg@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_connector.c       | 2 +-
->  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 3 ++-
->  drivers/gpu/drm/i915/display/intel_display_debugfs.h | 4 ++--
->  3 files changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-> index 4f49d782eca2..c65f95a9a1ec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> @@ -124,7 +124,7 @@ int intel_connector_register(struct drm_connector *connector)
+>  drivers/gpu/drm/i915/gem/i915_gem_lmem.c  | 26 ++++++++
+>  drivers/gpu/drm/i915/gem/i915_gem_lmem.h  |  4 ++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  9 ++-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 13 ++--
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.c    | 14 ++++-
+>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  | 75 +++++++++++++++++++++--
+>  6 files changed, 128 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+> index eb345305dc52..034226c5d4d0 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+> @@ -103,6 +103,32 @@ __i915_gem_object_create_lmem_with_ps(struct drm_i915_private *i915,
+>                                              size, page_size, flags);
+>  }
+>
+> +struct drm_i915_gem_object *
+> +i915_gem_object_create_lmem_from_data(struct drm_i915_private *i915,
+> +                                     const void *data, size_t size)
+> +{
+> +       struct drm_i915_gem_object *obj;
+> +       void *map;
+> +
+> +       obj = i915_gem_object_create_lmem(i915,
+> +                                         round_up(size, PAGE_SIZE),
+> +                                         I915_BO_ALLOC_CONTIGUOUS);
 
-oh, actually this is drm_connector
-
->  		goto err_backlight;
->  	}
->  
-> -	intel_connector_debugfs_add(connector);
-> +	intel_connector_debugfs_add(intel_connector);
-
-so this fails...
-
->  
->  	return 0;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 845e2dc76f87..82043a71e91f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -2444,8 +2444,9 @@ static const struct file_operations i915_dsc_bpp_fops = {
->   * Cleanup will be done by drm_connector_unregister() through a call to
->   * drm_debugfs_connector_remove().
->   */
-> -void intel_connector_debugfs_add(struct drm_connector *connector)
-> +void intel_connector_debugfs_add(struct intel_connector *intel_connector)
->  {
-> +	struct drm_connector *connector = &intel_connector->base;
->  	struct dentry *root = connector->debugfs_entry;
->  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> index c72e35ecba1f..9b89b707ffe6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> @@ -6,9 +6,9 @@
->  #ifndef __INTEL_DISPLAY_DEBUGFS_H__
->  #define __INTEL_DISPLAY_DEBUGFS_H__
->  
-> -struct drm_connector;
->  struct drm_crtc;
->  struct drm_i915_private;
-> +struct intel_connector;
->  
->  #ifdef CONFIG_DEBUG_FS
->  void intel_display_debugfs_register(struct drm_i915_private *i915);
-> @@ -16,7 +16,7 @@ void intel_connector_debugfs_add(struct drm_connector *connector);
->  void intel_crtc_debugfs_add(struct drm_crtc *crtc);
->  #else
->  static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
-> -static inline void intel_connector_debugfs_add(struct drm_connector *connector) {}
-> +static inline void intel_connector_debugfs_add(struct intel_connector *connector) {}
->  static inline void intel_crtc_debugfs_add(struct drm_crtc *crtc) {}
->  #endif
->  
-> -- 
-> 2.20.1
-> 
+Maybe push the ALLOC_CONTIG into the caller and expose the flags
+instead, assuming it's still needed for something GuC related?
+pin_map() at least no longer has that constraint.
