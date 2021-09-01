@@ -2,40 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483843FE0E0
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 19:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C879D3FE117
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 19:22:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FCA76E21C;
-	Wed,  1 Sep 2021 17:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D88E2899BE;
+	Wed,  1 Sep 2021 17:22:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E51C6E21C
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Sep 2021 17:04:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10094"; a="218864746"
-X-IronPort-AV: E=Sophos;i="5.84,369,1620716400"; d="scan'208";a="218864746"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2021 10:03:35 -0700
-X-IronPort-AV: E=Sophos;i="5.84,369,1620716400"; d="scan'208";a="541914487"
-Received: from josearun-mobl1.gar.corp.intel.com (HELO localhost)
- ([10.251.212.211])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2021 10:03:32 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-In-Reply-To: <YS+mFzpV3H+EC5pT@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1630327990.git.jani.nikula@intel.com>
- <a557a46d452b20c186f4735e9f15bf37e2845c99.1630327990.git.jani.nikula@intel.com>
- <YS+mFzpV3H+EC5pT@intel.com>
-Date: Wed, 01 Sep 2021 20:03:29 +0300
-Message-ID: <87tuj49qji.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 640E18997E;
+ Wed,  1 Sep 2021 17:22:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3E104AA0EA;
+ Wed,  1 Sep 2021 17:22:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6894545522305181538=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/debugfs: pass intel_connector
- to intel_connector_debugfs_add()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 01 Sep 2021 17:22:28 -0000
+Message-ID: <163051694822.2833.2849970999086877844@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210901151415.177556-1-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20210901151415.177556-1-janusz.krzysztofik@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Mark_GPU_wedging_on_driver_unregister_unrecoverable?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,84 +41,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 01 Sep 2021, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Mon, Aug 30, 2021 at 03:53:44PM +0300, Jani Nikula wrote:
->> Prefer the intel_ types. No functional changes.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_connector.c       | 2 +-
->>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 3 ++-
->>  drivers/gpu/drm/i915/display/intel_display_debugfs.h | 4 ++--
->>  3 files changed, 5 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
->> index 4f49d782eca2..c65f95a9a1ec 100644
->> --- a/drivers/gpu/drm/i915/display/intel_connector.c
->> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
->> @@ -124,7 +124,7 @@ int intel_connector_register(struct drm_connector *connector)
->
-> oh, actually this is drm_connector
->
->>  		goto err_backlight;
->>  	}
->>  
->> -	intel_connector_debugfs_add(connector);
->> +	intel_connector_debugfs_add(intel_connector);
->
-> so this fails...
+--===============6894545522305181538==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hence the v2 :)
+== Series Details ==
 
->
->>  
->>  	return 0;
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 845e2dc76f87..82043a71e91f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -2444,8 +2444,9 @@ static const struct file_operations i915_dsc_bpp_fops = {
->>   * Cleanup will be done by drm_connector_unregister() through a call to
->>   * drm_debugfs_connector_remove().
->>   */
->> -void intel_connector_debugfs_add(struct drm_connector *connector)
->> +void intel_connector_debugfs_add(struct intel_connector *intel_connector)
->>  {
->> +	struct drm_connector *connector = &intel_connector->base;
->>  	struct dentry *root = connector->debugfs_entry;
->>  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
->> index c72e35ecba1f..9b89b707ffe6 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
->> @@ -6,9 +6,9 @@
->>  #ifndef __INTEL_DISPLAY_DEBUGFS_H__
->>  #define __INTEL_DISPLAY_DEBUGFS_H__
->>  
->> -struct drm_connector;
->>  struct drm_crtc;
->>  struct drm_i915_private;
->> +struct intel_connector;
->>  
->>  #ifdef CONFIG_DEBUG_FS
->>  void intel_display_debugfs_register(struct drm_i915_private *i915);
->> @@ -16,7 +16,7 @@ void intel_connector_debugfs_add(struct drm_connector *connector);
->>  void intel_crtc_debugfs_add(struct drm_crtc *crtc);
->>  #else
->>  static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
->> -static inline void intel_connector_debugfs_add(struct drm_connector *connector) {}
->> +static inline void intel_connector_debugfs_add(struct intel_connector *connector) {}
->>  static inline void intel_crtc_debugfs_add(struct drm_crtc *crtc) {}
->>  #endif
->>  
->> -- 
->> 2.20.1
->> 
+Series: drm/i915: Mark GPU wedging on driver unregister unrecoverable
+URL   : https://patchwork.freedesktop.org/series/94247/
+State : success
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10544 -> Patchwork_20936
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20936 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [PASS][4] -> [DMESG-WARN][5] ([i915#3958])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        NOTRUN -> [INCOMPLETE][6] ([i915#3921])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-snb-2600:        NOTRUN -> [SKIP][7] ([fdo#109271]) +19 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-snb-2600:        NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [FAIL][9] ([i915#4054]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8109u:       [DMESG-WARN][11] ([i915#203]) -> [PASS][12] +4 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][13] ([i915#3303]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
+  [i915#4054]: https://gitlab.freedesktop.org/drm/intel/issues/4054
+
+
+Participating hosts (42 -> 34)
+------------------------------
+
+  Additional (1): fi-snb-2600 
+  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10544 -> Patchwork_20936
+
+  CI-20190529: 20190529
+  CI_DRM_10544: 078e7300cf0130241e5d472d8e2f7eef4ef11b65 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6193: 080869f804cb86b25a38889e5ce9a870571cd8c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20936: c999ceb5aa6ddd5fe1f8b393bbf6b4041c894351 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c999ceb5aa6d drm/i915: Mark GPU wedging on driver unregister unrecoverable
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/index.html
+
+--===============6894545522305181538==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Mark GPU wedging on driver unregister unrecoverable</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94247/">https://patchwork.freedesktop.org/series/94247/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10544 -&gt; Patchwork_20936</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20936 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +19 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4054">i915#4054</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10544/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20936/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (42 -&gt; 34)</h2>
+<p>Additional (1): fi-snb-2600 <br />
+  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 fi-kbl-r </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10544 -&gt; Patchwork_20936</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10544: 078e7300cf0130241e5d472d8e2f7eef4ef11b65 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6193: 080869f804cb86b25a38889e5ce9a870571cd8c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20936: c999ceb5aa6ddd5fe1f8b393bbf6b4041c894351 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c999ceb5aa6d drm/i915: Mark GPU wedging on driver unregister unrecoverable</p>
+
+</body>
+</html>
+
+--===============6894545522305181538==--
