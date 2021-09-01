@@ -1,41 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBBD3FD5F3
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 10:52:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2FB3FD6D8
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 11:34:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1FC76E072;
-	Wed,  1 Sep 2021 08:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 289D76E165;
+	Wed,  1 Sep 2021 09:33:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC126E072
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Sep 2021 08:52:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10093"; a="218695110"
-X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; d="scan'208";a="218695110"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71FD76E165
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Sep 2021 09:33:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10093"; a="218706131"
+X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; 
+ d="scan'208,217";a="218706131"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2021 01:52:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; d="scan'208";a="510275995"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.12])
- by orsmga001.jf.intel.com with ESMTP; 01 Sep 2021 01:52:05 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Lee Shawn C <shawn.c.lee@intel.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Vandita Kulkarni <vandita.kulkarni@intel.com>,
- Cooper Chiou <cooper.chiou@intel.com>,
- William Tseng <william.tseng@intel.com>
-Date: Wed,  1 Sep 2021 16:54:45 +0800
-Message-Id: <20210901085445.427-6-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210901085445.427-1-shawn.c.lee@intel.com>
-References: <20210901085445.427-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/dsi: Read/write proper brightness
- value via MIPI DCS command
+ 01 Sep 2021 02:33:56 -0700
+X-IronPort-AV: E=Sophos;i="5.84,368,1620716400"; 
+ d="scan'208,217";a="645660916"
+Received: from ntaiyeby-mobl1.ger.corp.intel.com (HELO [10.249.254.114])
+ ([10.249.254.114])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2021 02:33:55 -0700
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Lakshminarayana Vudum <lakshminarayana.vudum@intel.com>,
+ jaswanthx.kattamanchi@intel.com
+References: <20210831122931.157536-1-thomas.hellstrom@linux.intel.com>
+ <163043588758.10660.354234617896530827@emeril.freedesktop.org>
+ <a1c0b106-3ba4-1859-f5be-27d29cf2cc0f@linux.intel.com>
+Message-ID: <66685f52-1adb-0966-774e-4bc6bec8cc74@linux.intel.com>
+Date: Wed, 1 Sep 2021 11:33:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <a1c0b106-3ba4-1859-f5be-27d29cf2cc0f@linux.intel.com>
+Content-Type: multipart/alternative;
+ boundary="------------2091CEB6E15A2D51AF4A26F5"
+Content-Language: en-US
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Fix_the_mman_selftest_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,70 +58,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Driver has to swap the endian before send brightness level value
-to tcon.
+This is a multi-part message in MIME format.
+--------------2091CEB6E15A2D51AF4A26F5
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-v2: Use __be16 instead of u16 to fix sparse warning.
-v3: Send one or two bytes brightness value depend on the precision.
++ jaswanthx.kattamanchi@intel.com
 
-Reported-by: kernel test robot <lkp@intel.com>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Cc: William Tseng <william.tseng@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- .../drm/i915/display/intel_dsi_dcs_backlight.c    | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+On 9/1/21 10:33 AM, Thomas Hellström wrote:
+>
+>
+> On 8/31/21 8:51 PM, Patchwork wrote:
+>> Project List - Patchwork *Patch Details*
+>> *Series:* 	drm/i915/gem: Fix the mman selftest (rev2)
+>> *URL:* 	https://patchwork.freedesktop.org/series/94062/ 
+>> <https://patchwork.freedesktop.org/series/94062/>
+>> *State:* 	failure
+>> *Details:* 
+>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html 
+>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html>
+>>
+>>
+>>   CI Bug Log - changes from CI_DRM_10539_full -> Patchwork_20928_full
+>>
+>>
+>>     Summary
+>>
+>> *FAILURE*
+>>
+>> Serious unknown changes coming with Patchwork_20928_full absolutely 
+>> need to be
+>> verified manually.
+>>
+>> If you think the reported changes have nothing to do with the changes
+>> introduced in Patchwork_20928_full, please notify your bug team to 
+>> allow them
+>> to document this new failure mode, which will reduce false positives 
+>> in CI.
+>>
+>>
+>>     Possible new issues
+>>
+>> Here are the unknown changes that may have been introduced in 
+>> Patchwork_20928_full:
+>>
+>>
+>>       IGT changes
+>>
+>>
+>>         Possible regressions
+>>
+>>   * igt@sysfs_heartbeat_interval@mixed@vcs0:
+>>       o shard-skl: PASS
+>>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/shard-skl9/igt@sysfs_heartbeat_interval@mixed@vcs0.html>
+>>         -> WARN
+>>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/shard-skl6/igt@sysfs_heartbeat_interval@mixed@vcs0.html>
+>>
+>>
+> Lakshmi, this failure is unrelated.
+>
+> Thanks,
+>
+> Thomas
+>
+>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-index 21ab9e1acb57..722411b5cb21 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-@@ -47,33 +47,36 @@ static u32 dcs_get_backlight(struct intel_connector *connector, enum pipe unused
- {
- 	struct intel_encoder *encoder = intel_attached_encoder(connector);
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-+	struct intel_panel *panel = &connector->panel;
- 	struct mipi_dsi_device *dsi_device;
--	u8 data = 0;
-+	u8 data[2] = {0, 0};
- 	enum port port;
- 
- 	/* FIXME: Need to take care of 16 bit brightness level */
- 	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
- 		dsi_device = intel_dsi->dsi_hosts[port]->device;
- 		mipi_dsi_dcs_read(dsi_device, MIPI_DCS_GET_DISPLAY_BRIGHTNESS,
--				  &data, sizeof(data));
-+				  &data,
-+				  (panel->backlight.max >> 8) ? sizeof(data) : 1);
- 		break;
- 	}
- 
--	return data;
-+	return ((data[1] << 8) | data[0]);
- }
- 
- static void dcs_set_backlight(const struct drm_connector_state *conn_state, u32 level)
- {
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(conn_state->best_encoder));
-+	struct intel_panel *panel = &to_intel_connector(conn_state->connector)->panel;
- 	struct mipi_dsi_device *dsi_device;
--	u8 data = level;
-+	__be16 data = cpu_to_be16(level);
- 	enum port port;
- 
--	/* FIXME: Need to take care of 16 bit brightness level */
- 	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
- 		dsi_device = intel_dsi->dsi_hosts[port]->device;
- 		mipi_dsi_dcs_write(dsi_device, MIPI_DCS_SET_DISPLAY_BRIGHTNESS,
--				   &data, sizeof(data));
-+				   &data,
-+				   (panel->backlight.max >> 8) ? sizeof(data) : 1);
- 	}
- }
- 
--- 
-2.17.1
+--------------2091CEB6E15A2D51AF4A26F5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>+ <span style="font-family:&quot;Segoe UI&quot;,sans-serif"><a class="moz-txt-link-abbreviated" href="mailto:jaswanthx.kattamanchi@intel.com">jaswanthx.kattamanchi@intel.com</a></span></p>
+    <div class="moz-cite-prefix">On 9/1/21 10:33 AM, Thomas Hellström
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:a1c0b106-3ba4-1859-f5be-27d29cf2cc0f@linux.intel.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <p><br>
+      </p>
+      <div class="moz-cite-prefix">On 8/31/21 8:51 PM, Patchwork wrote:<br>
+      </div>
+      <blockquote type="cite"
+        cite="mid:163043588758.10660.354234617896530827@emeril.freedesktop.org">
+        <meta http-equiv="Content-Type" content="text/html;
+          charset=UTF-8">
+        <title>Project List - Patchwork</title>
+        <style id="css-table-select" type="text/css">td { padding: 2pt; }</style>
+        <b>Patch Details</b>
+        <table>
+          <tbody>
+            <tr>
+              <td><b>Series:</b></td>
+              <td>drm/i915/gem: Fix the mman selftest (rev2)</td>
+            </tr>
+            <tr>
+              <td><b>URL:</b></td>
+              <td><a
+                  href="https://patchwork.freedesktop.org/series/94062/"
+                  moz-do-not-send="true">https://patchwork.freedesktop.org/series/94062/</a></td>
+            </tr>
+            <tr>
+              <td><b>State:</b></td>
+              <td>failure</td>
+            </tr>
+            <tr>
+              <td><b>Details:</b></td>
+              <td><a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html"
+                  moz-do-not-send="true">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/index.html</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <h1>CI Bug Log - changes from CI_DRM_10539_full -&gt;
+          Patchwork_20928_full</h1>
+        <h2>Summary</h2>
+        <p><strong>FAILURE</strong></p>
+        <p>Serious unknown changes coming with Patchwork_20928_full
+          absolutely need to be<br>
+          verified manually.</p>
+        <p>If you think the reported changes have nothing to do with the
+          changes<br>
+          introduced in Patchwork_20928_full, please notify your bug
+          team to allow them<br>
+          to document this new failure mode, which will reduce false
+          positives in CI.</p>
+        <h2>Possible new issues</h2>
+        <p>Here are the unknown changes that may have been introduced in
+          Patchwork_20928_full:</p>
+        <h3>IGT changes</h3>
+        <h4>Possible regressions</h4>
+        <ul>
+          <li>igt@sysfs_heartbeat_interval@mixed@vcs0:
+            <ul>
+              <li>shard-skl: <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10539/shard-skl9/igt@sysfs_heartbeat_interval@mixed@vcs0.html"
+                  moz-do-not-send="true">PASS</a> -&gt; <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20928/shard-skl6/igt@sysfs_heartbeat_interval@mixed@vcs0.html"
+                  moz-do-not-send="true">WARN</a></li>
+            </ul>
+          </li>
+        </ul>
+        <br>
+      </blockquote>
+      <p>Lakshmi, this failure is unrelated.</p>
+      <p>Thanks,</p>
+      <p>Thomas</p>
+      <p><br>
+      </p>
+    </blockquote>
+  </body>
+</html>
+
+--------------2091CEB6E15A2D51AF4A26F5--
