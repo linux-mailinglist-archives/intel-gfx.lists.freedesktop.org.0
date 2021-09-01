@@ -1,62 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA3F3FD77D
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 12:18:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C013FD894
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Sep 2021 13:20:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3E16E171;
-	Wed,  1 Sep 2021 10:18:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6B26897FB;
+	Wed,  1 Sep 2021 11:20:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF4BB6E171;
- Wed,  1 Sep 2021 10:18:31 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id 238573F3BA;
- Wed,  1 Sep 2021 12:18:29 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.679
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.679 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.58,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa3.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id dkRNpVQicIcb; Wed,  1 Sep 2021 12:18:28 +0200 (CEST)
-Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 7FAC83F3AD;
- Wed,  1 Sep 2021 12:18:26 +0200 (CEST)
-Received: from [192.168.0.209] (unknown [192.198.151.52])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 7FFA53600BA;
- Wed,  1 Sep 2021 12:18:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1630491506; bh=ReO8qzvBhoEvdlzC1dSe6hXDRvAMR8muGSWBYNe+0w8=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=afyZg0pDI8al5a9C/AaN5880LYKyML06ZgD+S6wxs0wGnqxc235cM+Ms3BMBw/MV6
- XE8mIjVYHaQR5WSvrIiQd79g4J5G33RrLZxwqCncw2XArSq1aW1rpzJZHRDb9Nc3IY
- fyVcIvql6ylEtxluqObDuVhdJc7EVVntcx4qvOQE=
-To: Jason Ekstrand <jason@jlekstrand.net>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20210723172142.3273510-1-jason@jlekstrand.net>
- <20210723172142.3273510-8-jason@jlekstrand.net>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <f9f7c266-978a-8b93-ab6d-5544f08c7b99@shipmail.org>
-Date: Wed, 1 Sep 2021 12:18:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8769D897FB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Sep 2021 11:20:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10093"; a="279726534"
+X-IronPort-AV: E=Sophos;i="5.84,369,1620716400"; d="scan'208";a="279726534"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2021 04:20:10 -0700
+X-IronPort-AV: E=Sophos;i="5.84,369,1620716400"; d="scan'208";a="532111476"
+Received: from josearun-mobl1.gar.corp.intel.com (HELO localhost)
+ ([10.251.212.211])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2021 04:20:08 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Animesh Manna <animesh.manna@intel.com>
+In-Reply-To: <20210812054806.22745-1-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210812054806.22745-1-animesh.manna@intel.com>
+Date: Wed, 01 Sep 2021 14:20:05 +0300
+Message-ID: <87czpsbl0a.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210723172142.3273510-8-jason@jlekstrand.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/gem: Correct the locking and
- pin pattern for dma-buf (v8)
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/5] Fix in max source calculation for dp/edp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,48 +48,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Jason,
+On Thu, 12 Aug 2021, Animesh Manna <animesh.manna@intel.com> wrote:
+> HBR3 support for display gen11+ platform is depends upon some
+> conditions which are mentioned below.
 
-A quick question below:
+The series no longer applies, please rebase and resend.
 
-On 7/23/21 7:21 PM, Jason Ekstrand wrote:
-> From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->
-> If our exported dma-bufs are imported by another instance of our driver,
-> that instance will typically have the imported dma-bufs locked during
-> dma_buf_map_attachment(). But the exporter also locks the same reservation
-> object in the map_dma_buf() callback, which leads to recursive locking.
->
-> So taking the lock inside _pin_pages_unlocked() is incorrect.
->
-> Additionally, the current pinning code path is contrary to the defined
-> way that pinning should occur.
->
-> Remove the explicit pin/unpin from the map/umap functions and move them
-> to the attach/detach allowing correct locking to occur, and to match
-> the static dma-buf drm_prime pattern.
->
-> Add a live selftest to exercise both dynamic and non-dynamic
-> exports.
->
-> v2:
-> - Extend the selftest with a fake dynamic importer.
-> - Provide real pin and unpin callbacks to not abuse the interface.
-> v3: (ruhl)
-> - Remove the dynamic export support and move the pinning into the
->    attach/detach path.
-> v4: (ruhl)
-> - Put pages does not need to assert on the dma-resv
-> v5: (jason)
-> - Lock around dma_buf_unmap_attachment() when emulating a dynamic
->    importer in the subtests.
-> - Use pin_pages_unlocked
-> v6: (jason)
-> - Use dma_buf_attach instead of dma_buf_attach_dynamic in the selftests
+BR,
+Jani.
 
-Why did we drop the dynamic importer from the selftests? Shouldn't we 
-try to ensure compatibility with dynamic importers?
-
-/Thomas
-
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
