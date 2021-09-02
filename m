@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768C83FEF4C
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 16:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D930C3FEF4E
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 16:21:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E926E570;
-	Thu,  2 Sep 2021 14:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 775AD6E56A;
+	Thu,  2 Sep 2021 14:21:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE576E584
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 14:21:10 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id
- u15-20020a05600c19cf00b002f6445b8f55so1514332wmq.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Sep 2021 07:21:10 -0700 (PDT)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 737226E566
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 14:21:11 +0000 (UTC)
+Received: by mail-wm1-x32d.google.com with SMTP id i3so1401066wmq.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Sep 2021 07:21:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=kHxySUBarwyq+uIoraBDAn2647tAv51/ZjGNoHPr4nw=;
- b=M42Yiuoksq0nnwVBIVl2+j+fs62frRSpcc+KsFvNaWF6P6yzhrSa236Ni5LNQQZC6h
- n7ocLx5paBNaLrEp3gi/ho2Mr7QVakblKZhiBNdXaiuR9R443mz5ntP36ijfQV6Zgdf0
- 5Ma3M94B84cMItaTPazY0s5pmyfo8DYha4rYk=
+ bh=oRVf9sbWz+z/GcsknHSTFYjsqPuEDYgjvOz54sSSPjg=;
+ b=JwD5QvsT8ZjD3I6QXYH2bB9jVdSgPdiDXtezHCI74BIfVKSFiZYFbDV5MzC6cVcEcL
+ kZCsrccx8dKAx9vwVpM5zGNMDMri86vUToJ9KCZRfyJszTjYFLVA6i1woZ0vnL6EeUbf
+ hxc60KRFvzd4V5wB9KJda/bajbw+qQOgn7+vM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=kHxySUBarwyq+uIoraBDAn2647tAv51/ZjGNoHPr4nw=;
- b=aFg01/jTnCDWoxJjDnqDdWc4bSVruEyrq+qqlObGai2NtrFMmcWbeV2yXlq/PSJ3jx
- +b2YfNg0x+yb48ewn5PLaLo5VEdazsRwhquKydf6BLsJwGWbR+D/m7+XF07xDMZDVd0g
- gq+1kmtWunmhoAfZQBXQOSjIUwF6i5kJPzJY3ND5k4aIEng/8tLVWNJTXK0whMoKhGVT
- bcLUejOgNDPlVANRu9gsH/V570MzyXG2WF0JJJi4IpudLIaclnZlzphlYIRcTgKShubj
- EYNcmB6iboUb5xxRCctG7azh5w24p4A6h35fy+hUAHD0N6sRNTe8Dkoey7xuhkICNvg4
- jh6Q==
-X-Gm-Message-State: AOAM532V0QsaEwW5KiR4fT7dxHEE4i6zPc+icPrwtE2ZKIHJs4kzJ1nr
- Q2n5XCd5H5ixYeRdFdNG4y6gD8/+CmcRmw==
-X-Google-Smtp-Source: ABdhPJylHoit35om1yQP1kEQKTl1YJ1rCZ1Q3cSeQDCgdEXVHYW4IG43dm+xw2rZ8CBWUMGZIFOHDQ==
-X-Received: by 2002:a05:600c:206:: with SMTP id
- 6mr3468587wmi.178.1630592468733; 
- Thu, 02 Sep 2021 07:21:08 -0700 (PDT)
+ bh=oRVf9sbWz+z/GcsknHSTFYjsqPuEDYgjvOz54sSSPjg=;
+ b=gh9kbzbiV+PrQPn2B/WuSJYhCUMKU7TPC3d6Q679d5UKEVysQbiRlatyQF3rE17TVL
+ b6Ccm7nOZXTIOwXpT9oNwl2YiLCGTpPwW26HYxdkAIya476AMxxIrBkKscR7qglMxUxm
+ /jGMEK5VwbVQsOKOZnmH6rnTDjdbp7VpoVdDjma+trx4lGsB47JYx1Ugv7A+9tjC5VIQ
+ W+liSScIXew3Bfh/H4imqFtWCFqj1O27ksYD026ztxnxcFIohZWhi638J1jC3pmC3zgI
+ vkCjwNzqi5zdF5YlaUR0Jcc1harqeddaaK2Jvl8EuSbHr3E2NXvWZI3oiVRhRzW2yd6C
+ aiMA==
+X-Gm-Message-State: AOAM530sDc/5lPYf8DXXnX9XE2V34F0SjNGXsSnSeQxylgFZBi4KD5uW
+ vYyIigs0rm7DtPHIRPmt3ZtU9w==
+X-Google-Smtp-Source: ABdhPJxL0hZrc6Rly1WFLMVZBfxn3WkJWmR+yGRlhJMIuIyJRX+wOXB4BaYLkNyB+U0BHroOitECMw==
+X-Received: by 2002:a05:600c:4b88:: with SMTP id
+ e8mr3444010wmp.164.1630592470077; 
+ Thu, 02 Sep 2021 07:21:10 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l2sm1841811wmi.1.2021.09.02.07.21.07
+ by smtp.gmail.com with ESMTPSA id l2sm1841811wmi.1.2021.09.02.07.21.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Sep 2021 07:21:08 -0700 (PDT)
+ Thu, 02 Sep 2021 07:21:09 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
 Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
  Jason Ekstrand <jason@jlekstrand.net>,
  Chris Wilson <chris@chris-wilson.co.uk>,
  Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
@@ -58,17 +56,17 @@ Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  Matthew Auld <matthew.auld@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
  Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Dave Airlie <airlied@redhat.com>
-Date: Thu,  2 Sep 2021 16:20:48 +0200
-Message-Id: <20210902142057.929669-2-daniel.vetter@ffwll.ch>
+ Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
+Date: Thu,  2 Sep 2021 16:20:49 +0200
+Message-Id: <20210902142057.929669-3-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
 References: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 02/11] drm/i915: Release ctx->syncobj on final
- put, not on ctx close
+Subject: [Intel-gfx] [PATCH 03/11] drm/i915: Keep gem ctx->vm alive until
+ the final put
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,30 +82,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-gem context refcounting is another exercise in least locking design it
-seems, where most things get destroyed upon context closure (which can
-race with anything really). Only the actual memory allocation and the
-locks survive while holding a reference.
+The comment added in
 
-This tripped up Jason when reimplementing the single timeline feature
-in
+    commit b81dde719439c8f09bb61e742ed95bfc4b33946b
+    Author: Chris Wilson <chris@chris-wilson.co.uk>
+    Date:   Tue May 21 22:11:29 2019 +0100
 
-commit 00dae4d3d35d4f526929633b76e00b0ab4d3970d
-Author: Jason Ekstrand <jason@jlekstrand.net>
-Date:   Thu Jul 8 10:48:12 2021 -0500
+        drm/i915: Allow userspace to clone contexts on creation
 
-    drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)
+and moved in
 
-We could fix the bug by holding ctx->mutex in execbuf and clear the
-pointer (again while holding the mutex) context_close, but it's
-cleaner to just make the context object actually invariant over its
-_entire_ lifetime. This way any other ioctl that's potentially racing,
-but holding a full reference, can still rely on ctx->syncobj being
-an immutable pointer. Which without this change, is not the case.
+    commit 27dbae8f36c1c25008b7885fc07c57054b7dfba3
+    Author: Chris Wilson <chris@chris-wilson.co.uk>
+    Date:   Wed Nov 6 09:13:12 2019 +0000
+
+        drm/i915/gem: Safely acquire the ctx->vm when copying
+
+suggested that i915_address_space were at least intended to be managed
+through SLAB_TYPESAFE_BY_RCU:
+
+                * This ppgtt may have be reallocated between
+                * the read and the kref, and reassigned to a third
+                * context. In order to avoid inadvertent sharing
+                * of this ppgtt with that third context (and not
+                * src), we have to confirm that we have the same
+                * ppgtt after passing through the strong memory
+                * barrier implied by a successful
+                * kref_get_unless_zero().
+
+But extensive git history search has not brough any such reuse to
+light.
+
+What has come to light though is that ever since
+
+commit 2850748ef8763ab46958e43a4d1c445f29eeb37d
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Fri Oct 4 14:39:58 2019 +0100
+
+    drm/i915: Pull i915_vma_pin under the vm->mutex
+
+(yes this commit is earlier) the final i915_vma_put call has been
+moved from i915_gem_context_free (now called _release) to
+context_close, which means it's not actually safe anymore to access
+the ctx->vm pointer without lock helds, because it might disappear at
+any moment. Note that superficially things all still work, because the
+i915_address_space is RCU protected since
+
+    commit b32fa811156328aea5a3c2ff05cc096490382456
+    Author: Chris Wilson <chris@chris-wilson.co.uk>
+    Date:   Thu Jun 20 19:37:05 2019 +0100
+
+        drm/i915/gtt: Defer address space cleanup to an RCU worker
+
+except the very clever macro above (which is designed to protected
+against object reuse due to SLAB_TYPESAFE_BY_RCU or similar tricks)
+results in an endless loop if the refcount of the ctx->vm ever
+permanently drops to 0. Which it totally now can.
+
+Fix that by moving the final i915_vm_put to where it should be.
+
+Note that i915_gem_context is rcu protected, but _only_ the final
+kfree. This means anyone who chases a pointer to a gem ctx solely
+under the protection can pretty only call kref_get_unless_zero(). This
+seems to be pretty much the case, aside from a bunch of cases that
+consult the scheduling information without any further protection.
 
 Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Fixes: 00dae4d3d35d ("drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)")
 Cc: Jason Ekstrand <jason@jlekstrand.net>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
@@ -118,34 +158,52 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: "Thomas Hellström" <thomas.hellstrom@intel.com>
 Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Cc: Dave Airlie <airlied@redhat.com>
+Fixes: 2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm->mutex")
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 051bc357ff65..5a053cf14948 100644
+index 5a053cf14948..12e2de1db1a2 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -994,6 +994,9 @@ static void i915_gem_context_release_work(struct work_struct *work)
+@@ -990,6 +990,7 @@ static void i915_gem_context_release_work(struct work_struct *work)
+ {
+ 	struct i915_gem_context *ctx = container_of(work, typeof(*ctx),
+ 						    release_work);
++	struct i915_address_space *vm;
+ 
  	trace_i915_context_free(ctx);
  	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+@@ -997,6 +998,10 @@ static void i915_gem_context_release_work(struct work_struct *work)
+ 	if (ctx->syncobj)
+ 		drm_syncobj_put(ctx->syncobj);
  
-+	if (ctx->syncobj)
-+		drm_syncobj_put(ctx->syncobj);
++	vm = i915_gem_context_vm(ctx);
++	if (vm)
++		i915_vm_put(vm);
 +
  	mutex_destroy(&ctx->engines_mutex);
  	mutex_destroy(&ctx->lut_mutex);
  
-@@ -1220,9 +1223,6 @@ static void context_close(struct i915_gem_context *ctx)
- 	if (vm)
- 		i915_vm_close(vm);
+@@ -1220,8 +1225,15 @@ static void context_close(struct i915_gem_context *ctx)
+ 	set_closed_name(ctx);
  
--	if (ctx->syncobj)
--		drm_syncobj_put(ctx->syncobj);
--
+ 	vm = i915_gem_context_vm(ctx);
+-	if (vm)
++	if (vm) {
++		/* i915_vm_close drops the final reference, which is a bit too
++		 * early and could result in surprises with concurrent
++		 * operations racing with thist ctx close. Keep a full reference
++		 * until the end.
++		 */
++		i915_vm_get(vm);
+ 		i915_vm_close(vm);
++	}
+ 
  	ctx->file_priv = ERR_PTR(-EBADF);
  
- 	/*
 -- 
 2.33.0
 
