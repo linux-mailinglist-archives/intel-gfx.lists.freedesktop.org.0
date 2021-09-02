@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D40273FF4C7
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 22:19:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 766693FF500
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 22:35:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 934F56E80B;
-	Thu,  2 Sep 2021 20:19:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 972296E80B;
+	Thu,  2 Sep 2021 20:35:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E674F6E80B
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 20:19:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="216096107"
-X-IronPort-AV: E=Sophos;i="5.85,263,1624345200"; d="scan'208";a="216096107"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2021 13:19:25 -0700
-X-IronPort-AV: E=Sophos;i="5.85,263,1624345200"; d="scan'208";a="447286797"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26DCD6E80B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 20:35:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="206363239"
+X-IronPort-AV: E=Sophos;i="5.85,263,1624345200"; d="scan'208";a="206363239"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2021 13:35:17 -0700
+X-IronPort-AV: E=Sophos;i="5.85,263,1624345200"; d="scan'208";a="533468510"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2021 13:19:25 -0700
-Date: Thu, 2 Sep 2021 13:19:23 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2021 13:35:16 -0700
+Date: Thu, 2 Sep 2021 13:35:15 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, CQ Tang <cq.tang@intel.com>
-Message-ID: <20210902201923.GM461228@mdroper-desk1.amr.corp.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <20210902203515.GN461228@mdroper-desk1.amr.corp.intel.com>
 References: <20210902185635.290538-1-ayaz.siddiqui@intel.com>
- <20210902185635.290538-2-ayaz.siddiqui@intel.com>
+ <20210902185635.290538-3-ayaz.siddiqui@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210902185635.290538-2-ayaz.siddiqui@intel.com>
-Subject: Re: [Intel-gfx] [PATCH V4 1/6] drm/i915/gt: Add support of mocs
- propagation
+In-Reply-To: <20210902185635.290538-3-ayaz.siddiqui@intel.com>
+Subject: Re: [Intel-gfx] [PATCH V4 2/6] drm/i915/gt: Set CMD_CCTL to UC for
+ Gen12 Onward
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,117 +50,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 03, 2021 at 12:26:30AM +0530, Ayaz A Siddiqui wrote:
-> Now there are lots of Command and registers that require mocs index
-> programming.
-> So propagating mocs_index from mocs to gt so that it can be
-> used directly without having platform-specific checks.
+On Fri, Sep 03, 2021 at 12:26:31AM +0530, Ayaz A Siddiqui wrote:
+> Cache-control registers for Command Stream(CMD_CCTL) are used
+> to set catchability for memory writes and reads outputted by
+> Command Streamers on Gen12 onward platforms.
 > 
-> Cc: CQ Tang<cq.tang@intel.com>
+> These registers need to point un-cached(UC) MOCS index.
+> 
 > Cc: Matt Roper <matthew.d.roper@intel.com>
 > Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_gt.c       |  2 ++
->  drivers/gpu/drm/i915/gt/intel_gt_types.h |  4 ++++
->  drivers/gpu/drm/i915/gt/intel_mocs.c     | 13 +++++++++++++
->  drivers/gpu/drm/i915/gt/intel_mocs.h     |  1 +
->  4 files changed, 20 insertions(+)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 26 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h             | 17 ++++++++++++++
+>  2 files changed, 43 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 62d40c9866427..2aeaae036a6f8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -682,6 +682,8 @@ int intel_gt_init(struct intel_gt *gt)
->  		goto err_pm;
->  	}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 94e1937f8d296..38c66765ff94c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1640,6 +1640,30 @@ void intel_engine_apply_whitelist(struct intel_engine_cs *engine)
+>  				   i915_mmio_reg_offset(RING_NOPID(base)));
+>  }
 >  
-> +	set_mocs_index(gt);
-> +
->  	err = intel_engines_init(gt);
->  	if (err)
->  		goto err_engines;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index a81e21bf1bd1a..88601a2d2c229 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -192,6 +192,10 @@ struct intel_gt {
->  
->  		unsigned long mslice_mask;
->  	} info;
-> +
-> +	struct i915_mocs_index_gt {
+> +/*
+> + * engine_fake_wa_init(), a place holder to program the registers
+> + * which are not part of a workaround.
 
-I think I mentioned it on the v3 review too, but you can drop the
-'i915_mocs_index_gt' name here since we don't reference it anywhere else
-in the code that I can see.  Just using an anonymous structure would be
-fine.
+I'd say "...are not part of an official workaround defined by the
+hardware team."
 
-Aside from that,
+> + * Adding programming of those register inside workaround will
+> + * allow utilizing wa framework to proper application and verification.
+> + */
+> +static void
+> +engine_fake_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> +{
+> +	u8 mocs;
+> +
+> +	if (GRAPHICS_VER(engine->i915) >= 12) {
+> +	/*
+> +	 * RING_CMD_CCTL are need to be programed to un-cached
+> +	 * for memory writes and reads outputted by Command
+> +	 * Streamers on Gen12 onward platforms.
+> +	 */
+> +		mocs = engine->gt->mocs.uc_index;
+
+The comment's indentation here looks a bit strange.  It should either be
+indented the same amount as the line below it, or it should be moved
+above the 'if.'
+
+I think we do have a few other fake workarounds that we can move over to
+here eventually (e.g., FtrPerCtxtPreemptionGranularityControl), but we
+can track those down and move them over in followup patches.
+
+Aside from the two minor comment tweaks,
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> +		u8 uc_index;
-> +	} mocs;
->  };
->  
->  enum intel_gt_scratch_field {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> index 582c4423b95d6..7ccac15d9a331 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> @@ -22,6 +22,7 @@ struct drm_i915_mocs_table {
->  	unsigned int size;
->  	unsigned int n_entries;
->  	const struct drm_i915_mocs_entry *table;
-> +	u8 uc_index;
->  };
->  
->  /* Defines for the tables (XXX_MOCS_0 - XXX_MOCS_63) */
-> @@ -340,14 +341,18 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
->  {
->  	unsigned int flags;
->  
-> +	memset(table, 0, sizeof(struct drm_i915_mocs_table));
-> +
->  	if (IS_DG1(i915)) {
->  		table->size = ARRAY_SIZE(dg1_mocs_table);
->  		table->table = dg1_mocs_table;
-> +		table->uc_index = 1;
->  		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
->  	} else if (GRAPHICS_VER(i915) >= 12) {
->  		table->size  = ARRAY_SIZE(tgl_mocs_table);
->  		table->table = tgl_mocs_table;
->  		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
-> +		table->uc_index = 3;
->  	} else if (GRAPHICS_VER(i915) == 11) {
->  		table->size  = ARRAY_SIZE(icl_mocs_table);
->  		table->table = icl_mocs_table;
-> @@ -504,6 +509,14 @@ static u32 global_mocs_offset(void)
->  	return i915_mmio_reg_offset(GEN12_GLOBAL_MOCS(0));
->  }
->  
-> +void set_mocs_index(struct intel_gt *gt)
-> +{
-> +	struct drm_i915_mocs_table table;
-> +
-> +	get_mocs_settings(gt->i915, &table);
-> +	gt->mocs.uc_index = table.uc_index;
+> +		wa_masked_field_set(wal,
+> +				    RING_CMD_CCTL(engine->mmio_base),
+> +				    CMD_CCTL_MOCS_MASK,
+> +				    CMD_CCTL_MOCS_OVERRIDE(mocs, mocs));
+> +	}
 > +}
-> +
->  void intel_mocs_init(struct intel_gt *gt)
+>  static void
+>  rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
 >  {
->  	struct drm_i915_mocs_table table;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.h b/drivers/gpu/drm/i915/gt/intel_mocs.h
-> index d83274f5163bd..8a09d64b115f7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_mocs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.h
-> @@ -36,5 +36,6 @@ struct intel_gt;
+> @@ -2080,6 +2104,8 @@ engine_init_workarounds(struct intel_engine_cs *engine, struct i915_wa_list *wal
+>  	if (I915_SELFTEST_ONLY(GRAPHICS_VER(engine->i915) < 4))
+>  		return;
 >  
->  void intel_mocs_init(struct intel_gt *gt);
->  void intel_mocs_init_engine(struct intel_engine_cs *engine);
-> +void set_mocs_index(struct intel_gt *gt);
->  
->  #endif
+> +	engine_fake_wa_init(engine, wal);
+> +
+>  	if (engine->class == RENDER_CLASS)
+>  		rcs_engine_wa_init(engine, wal);
+>  	else
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 8d4cf1e203ab7..92fda75751eef 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2551,6 +2551,23 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  #define RING_HWS_PGA(base)	_MMIO((base) + 0x80)
+>  #define RING_ID(base)		_MMIO((base) + 0x8c)
+>  #define RING_HWS_PGA_GEN6(base)	_MMIO((base) + 0x2080)
+> +
+> +#define RING_CMD_CCTL(base)	_MMIO((base) + 0xc4)
+> +/*
+> + * CMD_CCTL read/write fields take a MOCS value and _not_ a table index.
+> + * The lsb of each can be considered a separate enabling bit for encryption.
+> + * 6:0 == default MOCS value for reads  =>  6:1 == table index for reads.
+> + * 13:7 == default MOCS value for writes => 13:8 == table index for writes.
+> + * 15:14 == Reserved => 31:30 are set to 0.
+> + */
+> +#define CMD_CCTL_WRITE_OVERRIDE_MASK REG_GENMASK(13, 7)
+> +#define CMD_CCTL_READ_OVERRIDE_MASK REG_GENMASK(6, 0)
+> +#define CMD_CCTL_MOCS_MASK (CMD_CCTL_WRITE_OVERRIDE_MASK | \
+> +			    CMD_CCTL_READ_OVERRIDE_MASK)
+> +#define CMD_CCTL_MOCS_OVERRIDE(write, read)				      \
+> +		(REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, (write) << 1) | \
+> +		 REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, (read) << 1))
+> +
+>  #define RING_RESET_CTL(base)	_MMIO((base) + 0xd0)
+>  #define   RESET_CTL_CAT_ERROR	   REG_BIT(2)
+>  #define   RESET_CTL_READY_TO_RESET REG_BIT(1)
 > -- 
 > 2.26.2
 > 
