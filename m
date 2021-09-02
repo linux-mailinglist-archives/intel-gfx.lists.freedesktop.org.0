@@ -1,146 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C3013FF35E
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 20:42:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED953FF371
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 20:49:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC4D6E060;
-	Thu,  2 Sep 2021 18:42:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD7256E7EC;
+	Thu,  2 Sep 2021 18:49:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44DD76E060
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 18:42:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="280226502"
-X-IronPort-AV: E=Sophos;i="5.85,262,1624345200"; d="scan'208";a="280226502"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2021 11:42:28 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0209D6E7EC
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 18:49:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="206435450"
+X-IronPort-AV: E=Sophos;i="5.85,262,1624345200"; d="scan'208";a="206435450"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2021 11:49:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,262,1624345200"; d="scan'208";a="476874865"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 02 Sep 2021 11:42:28 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.85,262,1624345200"; d="scan'208";a="499941213"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by fmsmga008.fm.intel.com with ESMTP; 02 Sep 2021 11:49:07 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 2 Sep 2021 11:42:28 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ 15.1.2242.12; Thu, 2 Sep 2021 11:49:06 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Thu, 2 Sep 2021 11:42:28 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2242.12 via Frontend Transport; Thu, 2 Sep 2021 11:49:06 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Thu, 2 Sep 2021 11:42:27 -0700
+ 15.1.2242.10; Thu, 2 Sep 2021 11:49:06 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J1uQbyLelOJCvfALrzI9uKO1cPx2rQbnCkYgkcxZ9N8r9ZhsMt2zXEQ1EseeFRCJlpqgV+7nRClbNLMhF5fp1fJQ9j2TpdT1901kfJA87VHU/KGMPUUUzV1e1Nl6bGqpvp2zDrYF7+l8abopfaJ2yse4E5nLn62W5sUmxKexmsXID5kgDuObXII/+HYir5wmqNJGyNxBtiLbWkjjbl4mz5atBWcOY4gqhyKy/aKjrySmtRxNm206+D0uxf/vfaso4mvYczuuTpfR7Td+x1i3wopjd4T4cIJlR4FrAYQzayGCX++EHzeYpnyAqxzXuQEOzLLcJOA37Pmp7clAZdCNfg==
+ b=NO3/M/oCdq4UhWxSx6ENEhwSLU1fj8JKlmLKgCsgQWt1KLo/3CUbuh1oZq+0c1sGmX4U+GnsOQZHilwryasewfE/qsoDzOFvQr5L1T0kVHu+Tezy/rOoIZortY3xuzFlGmq5G+wyZ5pZgVPLs5uflucGeYNGzcx0c+D/3VYhNlZkD09s/pUJz+EJTZLgZBEOBY4T+WsLn4JcLAww0yTZrSterebJa0301kL7UTUgS1N1xoBB9KKM2EcZ83ghN6GFpe0w419j4OFVuUXi/Ok2XuDNnXxhP/FcWb+fjG5u0xoqnGo8rYfuurc4cGNZ2Gwc61hvmKBff0vB/PcitT44jw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SBryia7/ciYmutmV+nnVYu9+fcksgdRhehVjqqR7vXs=;
- b=mpaNa13hfIgB2bS7Y54ba/C0NP+SGyVJCUB8FGp3JYRGX5//CyN8po4dOeV6UpDkq+V59wXYJu1JulJKj4bv0Qd8W00EMmoYPLANMhh6ATErj4Oe+IxuOBQHuG3YFZWmzcIVbUzJGYBakIsvEj4+92jkNIxm3jqWsTF793kSSJEQnSI2YEBTZZr/FhIMPp2uEvXm8uD7Xgutk1Uzjo5kL9AzLR3GqiK+8SH1L0qY5hlezYs7mVLMWMY2vzW6fQS4tbyJWSuFQ8FbuRwKhPHuE5mhpet4JOLH1HWilGAJhSpl8QRmJYPG/jBJ1oTI2HoVHMwmenoIRSD/l9E5RrkSmA==
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=plb8wZZUqonUyvpQ/tbS56MI77bdFepMyOxWFYMiw3I=;
+ b=Bsgb0YXBtjr2nm+Zg8Ya9PxZp15QM8sZVQVDjyDH2sl1XyLS6AybogJx7kW1IKB2+aCdBEHdJYX3EGpJ4YKVGJv0JVNhaFQ8KMvwxE383WpgkFtSJtqSEPnXhIPzC93a0QTM3yTS7f8pU6T0CtA/2+6q0fbW7QSicmRf+F3WSUR7SnVATjfy6scQJRR79pYjseTDzQD5DpMqRz6fu3yj5yTIRBOdS8WZzhNOF5Z7lji7yY1jYr2fAmEhj+zPnKWEyV5/K0iOwZRCsPV1h4Ip3Z8pZ8wUnBFgJx8zkKOCGcSarw2Gdf38wlt1XpVEJ9YUlEOw7iAmSJE2pd9nh/YVXA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
  s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SBryia7/ciYmutmV+nnVYu9+fcksgdRhehVjqqR7vXs=;
- b=pPjlh+ih3u+SilO4scH+CTdrN/DksPYyFzuZZH1dmFRXHiu/O1t0NoiZj9JSI6LyK0SO76ymSv0yl8aiXfyWG4kTigoMT5Lw0cOL52KgZa9E0ZjvRpN5Z/VH2P+6K2ruMAbpTliWkHGUkQ2aavUKOaRRimd/viK+BPCIuOtI/Kk=
-Authentication-Results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
- by CH2PR11MB4200.namprd11.prod.outlook.com (2603:10b6:610:3d::33) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.23; Thu, 2 Sep
- 2021 18:42:19 +0000
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::a4f1:2e1e:ff82:5f4c]) by CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::a4f1:2e1e:ff82:5f4c%7]) with mapi id 15.20.4478.022; Thu, 2 Sep 2021
- 18:42:19 +0000
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-References: <20210825005840.170796-1-jose.souza@intel.com>
- <20210825005840.170796-8-jose.souza@intel.com>
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <eac0bca4-4b41-5a54-4b36-b439e4efd9fb@intel.com>
-Date: Thu, 2 Sep 2021 21:42:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-In-Reply-To: <20210825005840.170796-8-jose.souza@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+ bh=plb8wZZUqonUyvpQ/tbS56MI77bdFepMyOxWFYMiw3I=;
+ b=YqRMnfJDht+wlvFjGeQv3OCIwowaKYDptKEdEA7b5oHIro2kehhZv6gxu8u7uWLNBR8w2ZiK9QJKTA8Y4lgz3k8o97Uk2r8KTRI+elJtsmQOMsUi4RyaFoWqFWTH8anZuYwnlj7XmnJ3of1O8avDv8aWrY4BedWoC8i7i11maT4=
+Received: from BL3PR11MB5746.namprd11.prod.outlook.com (2603:10b6:208:353::21)
+ by MN2PR11MB3647.namprd11.prod.outlook.com (2603:10b6:208:ec::26)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.20; Thu, 2 Sep
+ 2021 18:49:02 +0000
+Received: from BL3PR11MB5746.namprd11.prod.outlook.com
+ ([fe80::955e:e7a7:f183:f558]) by BL3PR11MB5746.namprd11.prod.outlook.com
+ ([fe80::955e:e7a7:f183:f558%7]) with mapi id 15.20.4478.022; Thu, 2 Sep 2021
+ 18:49:02 +0000
+From: "Siddiqui, Ayaz A" <ayaz.siddiqui@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "S,
+ Srinivasan" <srinivasan.s@intel.com>, "Wilson, Chris P"
+ <chris.p.wilson@intel.com>
+Thread-Topic: [PATCH V3 2/8] drm/i915/gt: Add support of mocs auxiliary
+ registers programming
+Thread-Index: AQHXnbvCi3zSCk0JLE2Qy4oxeayk+auPtAoAgACjPlCAAJYZgIAAK2rg
+Date: Thu, 2 Sep 2021 18:49:01 +0000
+Message-ID: <BL3PR11MB57460D33DCEF3D3D86D793D0FCCE9@BL3PR11MB5746.namprd11.prod.outlook.com>
+References: <20210830162240.3891502-1-ayaz.siddiqui@intel.com>
+ <20210830162240.3891502-3-ayaz.siddiqui@intel.com>
+ <20210901212432.GC461228@mdroper-desk1.amr.corp.intel.com>
+ <BL3PR11MB5746236A4243D4B2CD2C9958FCCE9@BL3PR11MB5746.namprd11.prod.outlook.com>
+ <20210902160601.GJ461228@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20210902160601.GJ461228@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DB6PR0201CA0020.eurprd02.prod.outlook.com
- (2603:10a6:4:3f::30) To CH0PR11MB5409.namprd11.prod.outlook.com
- (2603:10b6:610:d0::7)
-MIME-Version: 1.0
-Received: from [10.237.72.198] (134.134.139.80) by
- DB6PR0201CA0020.eurprd02.prod.outlook.com (2603:10a6:4:3f::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4478.19 via Frontend Transport; Thu, 2 Sep 2021 18:42:15 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5764455c-e8a6-419e-9063-08d96e4164a0
-X-MS-TrafficTypeDiagnostic: CH2PR11MB4200:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR11MB42002C43A5F1D5D7FF6E84D7B8CE9@CH2PR11MB4200.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /uaNe9YwCE3EFtkr4nGMlgek2ddr5GP7B08oieYT8Vw3Pdi2ZUqY6luCz2sv+7dMKreNx9dNaqW4XZW1ZBZ6SQcYrduQvASiCfIYotjT4KbZ2BK3n64XO6ZpHT7UQ6N1n8CfUcR+DHUZeOzkMfSd+7DBnd7//3QsRvvsbX6QZYEmnLCA1Ipl1w638dKsp6QChDjhD3XdhAV2atvqEXfx0yr8Tq873gpAJA5QG44KjKVCsPXwwdHj2NyuwI09AAzKIJkF0r/SLiWpLCv1uzKSUsZAHAynEIABnXxEMaWQCK9km64L7e3WNm9mfWA3sGrdE+HAEPUz9je3vUon3ZWoeeJk1YowpaPBuKnkvPCAVGHsrbhlLIHGHPlnQWGmFAx+P/1YjfSPnF+eeEDpS1J2EoqY/O7soV/KQ8utTwgArp21JZsB6ItHZxRo9jiubWBX4rwfDQXdOOFXSqXnbSwHYTHq7hmkGNNPLIroUvO/j0paHgU+ubcL2DegspAThCAofJKAIh8VqysNw5eAYLxOgV6rvMg4ykLGP7VygrFG/3zc+Wtt7BDcSO+hmN1dTJayyym4zO7B4C0tpq1AKq/pJLx9lLo9dVkvOlXmzZk8PxyGwcSsFcO2B3Il9iecLEOc1zfbNLXeoAVPbf8dHVq4XH3Cww9tVBQjRxJSJ1uuZnuggwxqugzpzwViAomzWOsIDQkb8F5EBcRu7Wgt4DmrDqWD/f6ypIiBSJ5Jjfz1gKs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(8676002)(508600001)(31686004)(8936002)(4326008)(83380400001)(66556008)(2906002)(38100700002)(6486002)(66946007)(5660300002)(66574015)(2616005)(86362001)(316002)(36756003)(53546011)(54906003)(31696002)(956004)(6666004)(26005)(16576012)(186003)(66476007)(45980500001)(43740500002);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+authentication-results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 54e25298-d0aa-4526-62f1-08d96e4254f1
+x-ms-traffictypediagnostic: MN2PR11MB3647:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR11MB36475854CB3F9E8128B6318BFCCE9@MN2PR11MB3647.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: /yGIZOGlt3QtaqY4xQceiwfFsyMPTSFugIp4E0tVSm0N15Pa6Iu476CpG3ctf17cKIkNlnpaVBnlBE//+Lxsj2AyYIzsOta/xJxfGiEhx4GPItrZsJEb8kKmeiw0hGfA2aHYa414BLSKoYZ9Hwcrv/1lIplpCTzPVIgxTT6e+7ZXFSpPRNc89DXSIZH5pRULp1XJCDmlNb8H0hjNsIzakxtX17MgKl14mnw3AV45rmiy/Yz5O4bklkQf91BuxPAyqKBiue1ZzH9B6b2F+RIQmES7DeIyeFPRbRp5zrdjtUW5TGpRJe5jY4atfSKXWtdfyNDKOqk845xxI0lYJqcc7RgghK4/dUfOuSStyaEpiMDzPIpFJiVg+3C8g3rUnUGF498LqE6P9LjzXLVLbqrTuQeGcHhHP1QEERKRERaGy70S9StARSUTzNSWCxvdFY5cfK8azMdt6VA/npnS4S/NJw/H+j8NM3oEVn/WpGDJ4ACKTbOkCKN7B47V+S1J90J2eFHB1GU+mQzB+teeojgVti8i7qysxuhKqeMwWKHvZ9HxbSeQzzqbcmIVSSg7nnhYMPZR4X2IuOTJUOpzzpVWWaoBhsVnfvT4EEcPhQk+kBrOGZ+a3so78USNn3MT5hEA4/mY7wC8hBDDuIJG5Lq36tf9vY56ANbK68hDRDUBakCqppKkSYjgjbcUDWs8gGDoNTv25i/vJMyNpi37xXkbgw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB5746.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(346002)(136003)(396003)(39860400002)(366004)(186003)(33656002)(83380400001)(7696005)(38100700002)(86362001)(38070700005)(9686003)(122000001)(8936002)(107886003)(54906003)(53546011)(66446008)(6636002)(6506007)(66556008)(66476007)(4326008)(64756008)(55016002)(26005)(478600001)(316002)(8676002)(71200400001)(52536014)(66946007)(2906002)(76116006)(5660300002)(6862004);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WERJZUh0S3h5T2tjRFprQWRJOGF2NHIzRkZWdVJvcFphRUNSL25QZkZPb3RH?=
- =?utf-8?B?VnFiVi9tdmlQZFo5Y0RPVnBaaFJBOTlkZkhOZU1EUDBheUNSZWY2WCtySHpF?=
- =?utf-8?B?aXRxN1BOVS9rNlo5VjBrVW1Yb0IxTWdMeFFXVFNwQnBFTmFqQkx0a29NWHZT?=
- =?utf-8?B?cng4RHFoSzk3U0xzZUhRakx2NFVDMkh3aEJsd1o2U0UzcTJtVTN2MldwUmtV?=
- =?utf-8?B?TnkvZnBYaDVEVGdoaHRieC91OU1Rc1JkbktjTHNZYjVRQ1VsQmtVWXF0RVkv?=
- =?utf-8?B?Q1Q2dXpwelVhTitDRFZhbVpVNHE4WEZjLzJmM0FWSFpHRXIvVUlmSU16Wmh1?=
- =?utf-8?B?a1ZFUlY1ZlN2anBVSjlxMjhqRnN2L0xWUG9teENFUWJGSjNwSk5XYk03R01M?=
- =?utf-8?B?RVVYck5CQnUvQ1lRMWJFRnZxZ3FPRTdpcmxEUW5DbS94R1V0TGRZeWNqTHVV?=
- =?utf-8?B?d1lHNlhzaW1FUHhlbmhpbk1UbUZJUE4zOXUvVExPb1g3eUFOZDVrbjAyMXor?=
- =?utf-8?B?NFk5UE5XaXBsVzN1WUV2NEpid2xPL2FrNm9pN2JTUFZjN2xaSmtJZUdXUU1K?=
- =?utf-8?B?MUVDdlNkbXdLVzI4dDVKWkFQUG41ellRU1QyKzI0VnVUejNGdGJrZy9iUWEv?=
- =?utf-8?B?RkJHUjhWOFE3dkFNWittUTdldlNSMlZHOHluSVpiMGdYSjh4OEhodnA2VFk2?=
- =?utf-8?B?VjVWRjY0SHQxdzJxUXgzUmo4WUtyZWIzRitNNkNLREIxQjRUU0JVRmJMUGRR?=
- =?utf-8?B?VWx1TVo0V1ppdmZXMVNINkViUXFUbnViOWxTYXJHZEZKNCsxQ2NhdHZ2RnZ2?=
- =?utf-8?B?T29DRWh3d0Q0TmNkNSt3T0t4M2ZVb1ZCT2RCUjcxQ3BtdjVwN1h3azVYdHBj?=
- =?utf-8?B?cnNONDJEWUgvb2c5ZmRCV2svalZtUUd5KzBaaU83cGx3YzV3QzFkR1pQWWtW?=
- =?utf-8?B?aGQxZGFvSFc1VUlJblprcEtWaFVRVjNncE80bFlDbFV3dDE2c2VES01kcG1x?=
- =?utf-8?B?RFVPWG93OU9leS9hT0VMdmxySnJVT0FtS21aam1PY3N1a2dZTWs5dGplTWhw?=
- =?utf-8?B?YXhxRmY1OGtXUlRNYkEzYVp4bGt4c2tRZyszOFVwUmNkUW5QdDhIYUtveFJO?=
- =?utf-8?B?R1lqUmtRZGhWZkx0UDJ2Z3dFUCtCdlF0WlVoMzZ0eXpEeDlKKzBtQjhGQVJh?=
- =?utf-8?B?M1NvVzdnTzZWdDFBNHcrQ0hRUDBBaThGTEN4R1NEMTBYY09rOUNBVWtEUEc4?=
- =?utf-8?B?NnlvVVYxWEgvdlZLU0xkR3o0ZzRsOGUzSjdBWlM3cjdHRGM3Y3I4dHI2R0s0?=
- =?utf-8?B?R2N2VEFlUEZaUGxTdStndXp0dXp1V3hkVlNXUUVobmJ4VEQwZHNrT1cvT0JU?=
- =?utf-8?B?OWovNU9WRkxUeWpPR1FMMXRoKzRYTFE3ZCtNUFB6cisxOEpSdWNsSDcwVGNE?=
- =?utf-8?B?eU1ERVVoQkZtRjJGejBENGRaenloMVV2MTNnd09MM0lYYzlYclMzcC9PenVR?=
- =?utf-8?B?VEZWRmNUNGRGUnp2SzE0UytkYWsyVzd1Q25TVS9KZFlnQmcyRStHK0hleHps?=
- =?utf-8?B?Rnp4ZkNFMTNXWkpBY3VWVlFtTkFDendsb2JjWUZBZzczaUFreHFNczBFUEFV?=
- =?utf-8?B?d0NqMEVYdS9meHBrcjd4NU91eHo2WmMxRkxCWHFNSU5DOVk3WGlmZHlBOU1N?=
- =?utf-8?B?ZXVZTXROWjQxUVVic1VCZ09kbGE5ZElyczJ6cjVEbFdVc1d0VTNYRnB5S2pZ?=
- =?utf-8?Q?t1o6EC+ECgmdlv5tFUlrPKKze2Nvx9YeBmFh/a1?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5764455c-e8a6-419e-9063-08d96e4164a0
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fHLloAFEH+p/118dyL2OPXBjc6CFh7KH3WBsrJHSEgICcg3NyBgKLMybJ1je?=
+ =?us-ascii?Q?wwmN0UaL0IpsMHWWXuGrqh09cDtLVWpWBT5ogpj+cFa8f7v8ixvn0CRdfGZH?=
+ =?us-ascii?Q?mh5QcGMWiLV0Y97gXYLKJ2OW7GlAt0+ac4VlvWVtgem3ly4D2TlUtSb7mscL?=
+ =?us-ascii?Q?hbGLLQmhise637eSd8lX8DteW1rRAS2dQ5RuteJEOVI/ZIaEyPzfEM9lZIiD?=
+ =?us-ascii?Q?kBpMbmUcDsvlubSh196CNFpGp/OzsOHCqWQ7FeKIRuo+rBw1JY4Bv7RdqGn9?=
+ =?us-ascii?Q?vuNxBz73QXbaPAt+ZliKdkby4RfpnF9cUhO5n3b7bQ8/sdO5nIKlya9iTe64?=
+ =?us-ascii?Q?CN+IwQUtiT/ziUH3jg6EiPWTonOraOJo3/1+DIjX/Eshg60Y6V6b4wJGjq3L?=
+ =?us-ascii?Q?1rUGAg41H/7k4Ko90gDmyNvAWXXTcm/CjIYPtYJK+38Zf89aBv/rPmdTTDNH?=
+ =?us-ascii?Q?WTfxuZ/M2unycq3GxFA3MmUW1Z7H8qTMHL5aBzuoK/Dmg9XISgBL8LWPQw8f?=
+ =?us-ascii?Q?f4HtulFlaZhjYf4hsabDxqPe028DpnoSVITZ2VOu+8aFelWQuvn8Ds/HsEkd?=
+ =?us-ascii?Q?lsCa14NwGlS8bnMHIb8kdkJus2hh/9X8dSQlifAEbYKcnL3dQbjTwz1SnpdY?=
+ =?us-ascii?Q?psArJwYmfdFOmh0FB9kUpDFfmwf7njNNGEFHFghGMdKpCcPKKk986Dor/XU6?=
+ =?us-ascii?Q?9RV+jbryMlLfWhJv8AsiFw2CQvItL0BCpilm2kC/3wAZ/l15XmuH1wHsL+AO?=
+ =?us-ascii?Q?kQs7eOHf3YvZdUd00Y7H548ZXqkerXHRREhn9QdvR0EEsY4zilTh/odQAEHj?=
+ =?us-ascii?Q?tzbJt6xR/9qoINzOX8Gx2CUlAh622dSWlrjmdFxPsIy5DdIRUaOmGL76UU1q?=
+ =?us-ascii?Q?drczkIIZ1RIR67A5TsjriFLKFu+dCNXzGPaH92Bv7HE9ipgh0vDlQkYxnN4W?=
+ =?us-ascii?Q?wkAzp8UNPVUuGsH5ID1y3H7ssC3IBFQqKGiTCraXbh4r8PYTPw5E/cEXTkFv?=
+ =?us-ascii?Q?e5cWhfO8Dqbw0kz6QF9bkvFI9sbnMGzVC16wbNtyCpyVs1lwfYjuqoaEP7il?=
+ =?us-ascii?Q?xYPLn4BooKjTOYD/rk467/fda9DgmyLKxIMZkmAfsdC5pllX5S0F8Vr9K9jg?=
+ =?us-ascii?Q?ebT7aTc71iUBy3WIZt2p9p47cF9g9DWOjyl7PZk0AH1Fkf+iYc8cGme/lNg7?=
+ =?us-ascii?Q?FZHd8yyN5Ha2FAmLJz9ClyOur7WC2AEm0YY6YIQC0KXjNn8FJG2zuUUt6APV?=
+ =?us-ascii?Q?YU7YAqz8G8bmiUxxLLUYIkE7GX2smOQxMxoUU2Qpo+EVsVrUPZ2MYm6caXNH?=
+ =?us-ascii?Q?hjWxr5T8v9P6b3n3re51RLZ7?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2021 18:42:19.3453 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9V0O7GAOsKo0fNBoRb9+nzciQrTMpCYCJAJ4I2bq2pSobBtWzobB1axauKV6D9Ec1kzYiOgEUjuwDXCeglCPOrFOtbwH4z8mzQzbPJGV1fM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB4200
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB5746.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54e25298-d0aa-4526-62f1-08d96e4254f1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2021 18:49:01.9896 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lh1MS2vZGv7dt0T+mnkYNWCuuAJfdigaSBs54Jb3K+j39qnHaq547V/QdWpliMR9pRU4Q5MFyX0x+kZrml2W4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3647
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 7/8] drm/i915/display/skl+: Drop
- frontbuffer rendering support
+Subject: Re: [Intel-gfx] [PATCH V3 2/8] drm/i915/gt: Add support of mocs
+ auxiliary registers programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,183 +153,114 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 8/25/21 3:58 AM, José Roberto de Souza wrote:
-> By now all the userspace applications should have migrated to atomic
-> or at least be calling DRM_IOCTL_MODE_DIRTYFB.
-> 
-> With that we can kill frontbuffer rendering support in i915 for
-> modern platforms.
-> 
-> So here converting legacy APIs into atomic commits so it can be
-> properly handled by driver i915.
-> 
-> Several IGT tests will fail with this changes, because some tests
-> were stressing those frontbuffer rendering scenarios that no userspace
-> should be using by now, fixes to IGT should be sent soon.
-> 
-> v2:
-> - return earlier to not set fb_tracking.busy/flip_bits
-> - added a warn on to make sure we are not setting the busy/flip_bits
-> 
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_cursor.c    |  6 ++----
->   drivers/gpu/drm/i915/display/intel_fb.c        |  8 +++++++-
->   .../gpu/drm/i915/display/intel_frontbuffer.c   | 18 ++++++++++++++++++
->   drivers/gpu/drm/i915/i915_drv.h                |  2 ++
->   4 files changed, 29 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index c7618fef01439..5aa996c3b7980 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -617,6 +617,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
->   			   u32 src_w, u32 src_h,
->   			   struct drm_modeset_acquire_ctx *ctx)
->   {
-> +	struct drm_i915_private *i915 = to_i915(_crtc->dev);
->   	struct intel_plane *plane = to_intel_plane(_plane);
->   	struct intel_crtc *crtc = to_intel_crtc(_crtc);
->   	struct intel_plane_state *old_plane_state =
-> @@ -633,12 +634,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
->   	 * PSR2 selective fetch also requires the slow path as
->   	 * PSR2 plane and transcoder registers can only be updated during
->   	 * vblank.
-> -	 *
-> -	 * FIXME bigjoiner fastpath would be good
->   	 */
->   	if (!crtc_state->hw.active || intel_crtc_needs_modeset(crtc_state) ||
-> -	    crtc_state->update_pipe || crtc_state->bigjoiner ||
-> -	    crtc_state->enable_psr2_sel_fetch)
-> +	    crtc_state->update_pipe || !HAS_FRONTBUFFER_RENDERING(i915))
->   		goto slow;
->   
->   	/*
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index e4b8602ec0cd2..3eb60785c9f29 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -3,6 +3,7 @@
->    * Copyright © 2021 Intel Corporation
->    */
->   
-> +#include <drm/drm_damage_helper.h>
->   #include <drm/drm_framebuffer.h>
->   #include <drm/drm_modeset_helper.h>
->   
-> @@ -1235,10 +1236,15 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
->   					unsigned int num_clips)
->   {
->   	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   
->   	i915_gem_object_flush_if_display(obj);
-> -	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
->   
-> +	if (!HAS_FRONTBUFFER_RENDERING(i915))
-> +		return drm_atomic_helper_dirtyfb(fb, file, flags, color, clips,
-> +						 num_clips);
-Hi,
-Even if the userspace informs us of the dirty (damage) region of the 
-front buffer being used, GEN9 to GEN12 still uses the HW Tracking 
-function for PSR and FBC.
-And if you look at the description of the intel_psr_flush() function, 
-you can see that there are the following restrictions.
+> -----Original Message-----
+> From: Roper, Matthew D <matthew.d.roper@intel.com>
+> Sent: Thursday, September 2, 2021 9:36 PM
+> To: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; S, Srinivasan <srinivasan.s@intel.co=
+m>;
+> Wilson, Chris P <chris.p.wilson@intel.com>
+> Subject: Re: [PATCH V3 2/8] drm/i915/gt: Add support of mocs auxiliary
+> registers programming
+>=20
+> On Thu, Sep 02, 2021 at 04:56:18AM -0700, Siddiqui, Ayaz A wrote:
+> ...
+> > > > +static int check_aux_regs(struct intel_engine_cs *engine,
+> > > > +                     const struct drm_i915_aux_table *r,
+> > > > +                     u32 **vaddr)
+> > >
+> > > One other concern (which is part of why I didn't really want to see
+> > > this framework handled separately from workarounds) is that the aux
+> > > table might tell us to program a register with a specific value, but
+> > > we may also have a hardware workaround for a platform/stepping that
+> > > overrides that with an alternate value.  Our workaround framework is
+> > > smart enough to combine multiple entries for the same register into
+> > > a single operation (if the set of bits being updated are different),
+> > > or will warn if there's two conflicting sets of programming
+> > > requested for certain bits. Right now it's not clear who wins if the
+> > > aux table wants to program a register to value 'X' but the
+> > > workaround lists want to program the same register to value 'Y.'  In
+> > > theory the workaround should overrule the regular programming, but
+> > > at the moment these selftests aren't checking to see if that's the
+> > > case.  We may not have any such conflicts today (especially since we =
+have
+> so few registers that are going to be on the aux table initially), but it=
+ may
+> come up eventually.
+> > Yes its valid point, I did not thought about it. Do you think that
+> > moving to workaround will be better option here?
+>=20
+> I think there's a short-term and a long-term aspect here.  My opinion is =
+that
+> in the immediate short term we should add these two MOCS-related
+> registers (one of which is a context register, one of which is an engine
+> register) as additional fake workarounds.  Despite calling them
+> "workarounds" that part of the code is already more of a generic "GT regi=
+ster
+> override" framework, and we already have a number of things programmed
+> there that aren't actually workarounds.  Trying to spin up a completely n=
+ew
+> framework ("aux table") for GT register overrides is going to take a bit =
+more
+> time to get right, and I'm not sure we want to hold up the proper MOCS
+> programming while that happens (especially since ADL is about to leave
+> "force probe required" state and we really don't want to miss the boat on
+> getting MOCS programmed correctly before that happens).
+>=20
+> Longer term I do think we want to rework how we handle both formal
+> workarounds and non-workaround register overrides in the driver.  That's
+> been something I've been meaning to work on for quite a while now, but it
+> just keeps getting preempted by higher priority tasks that show up;
+> hopefully I can get back to it soon.  But such rework is going to take a =
+bit of
+> time, both to get widespread agreement on the redesign, and to do some
+> extensive testing to make sure we don't mishandle any corner cases around
+> reset handling, execlist vs GuC, etc.  It will also probably happen in mu=
+ltiple
+> steps rather than jumping from our current design straight to the final f=
+orm; I
+> don't think it makes sense to make the MOCS programming dependent on
+> completion of that long, multi-step process.
+>=20
+> I think one of Chris' concerns about re-using the workaround framework fo=
+r
+> setting these two MOCS-related registers is that the programming would
+> wind up getting verified by the workarounds selftest rather than the mocs
+> selftest (and thus failures on these specific registers may not get the
+> attention they need).  That's true, but if the concern is great enough, I=
+ think
+> we could make the gt_mocs selftest:
+>  - scan the workaround lists and ensure that the two MOCS-related
+>    registers truly are present on the appropriate list (if not, error)
+>  - check that the register programming still matches the value defined
+>    in the workaround (if not, error); this would duplicate the check
+>    also done in the workaround selftest, but that's probably fine to
+>    have both tests fail if there's a programming problem
+>  - lookup the programmed MOCS values in the platform's MOCS table and
+>    make sure that they really have the expected characteristics (L3 on
+>    platforms going forward, UC on the older platforms that we can't
+>    change now for abi compat reasons)
+>=20
+>=20
+> Matt
+Thanks Matt, I have modified that register programming using workaround fra=
+mework.
+I'll share the new series soon.
+Since we have already planned to rework on framework so let add category sp=
+ecific
+verification in scope of that planned activity instead of adding a temporar=
+y
+verification in mocs selftest.
+Meanwhile programming of values are already verified in workaround.
 
-"Since the hardware frontbuffer tracking has gaps we need to integrate 
-with the software frontbuffer tracking."
+Regards
+-Ayaz
 
-If this restriction is still valid from GEN9 to GEN12, even if the 
-existing frontbuffer tracking function is not used, when 
-intel_user_framebuffer_dirty() is called, in the case of PSR, 
-psr_force_hw_tracking_exit() is called or intel_psr_exit() and 
-schedule_work(psr.work) seems to be required.
 
-In the case of FBC, it seems that calls to FBC deactive / FBC activate 
-should be added.
-
-If GEN9 to GEN12 do not have the above restrictions, please ignore this 
-comment.
-
-G.G.
-> +
-> +	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> index 0492446cd04ad..3860f87dac31c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> @@ -112,6 +112,9 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
->   void intel_frontbuffer_flip_prepare(struct drm_i915_private *i915,
->   				    unsigned frontbuffer_bits)
->   {
-> +	if (!HAS_FRONTBUFFER_RENDERING(i915))
-> +		return;
-> +
->   	spin_lock(&i915->fb_tracking.lock);
->   	i915->fb_tracking.flip_bits |= frontbuffer_bits;
->   	/* Remove stale busy bits due to the old buffer. */
-> @@ -132,6 +135,12 @@ void intel_frontbuffer_flip_prepare(struct drm_i915_private *i915,
->   void intel_frontbuffer_flip_complete(struct drm_i915_private *i915,
->   				     unsigned frontbuffer_bits)
->   {
-> +	if (!HAS_FRONTBUFFER_RENDERING(i915)) {
-> +		drm_WARN_ON_ONCE(&i915->drm, i915->fb_tracking.flip_bits |
-> +					     i915->fb_tracking.busy_bits);
-> +		return;
-> +	}
-> +
->   	spin_lock(&i915->fb_tracking.lock);
->   	/* Mask any cancelled flips. */
->   	frontbuffer_bits &= i915->fb_tracking.flip_bits;
-> @@ -156,6 +165,9 @@ void intel_frontbuffer_flip_complete(struct drm_i915_private *i915,
->   void intel_frontbuffer_flip(struct drm_i915_private *i915,
->   			    unsigned frontbuffer_bits)
->   {
-> +	if (!HAS_FRONTBUFFER_RENDERING(i915))
-> +		return;
-> +
->   	spin_lock(&i915->fb_tracking.lock);
->   	/* Remove stale busy bits due to the old buffer. */
->   	i915->fb_tracking.busy_bits &= ~frontbuffer_bits;
-> @@ -170,6 +182,9 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
->   {
->   	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
->   
-> +	if (!HAS_FRONTBUFFER_RENDERING(i915))
-> +		return;
-> +
->   	if (origin == ORIGIN_CS) {
->   		spin_lock(&i915->fb_tracking.lock);
->   		i915->fb_tracking.busy_bits |= frontbuffer_bits;
-> @@ -191,6 +206,9 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
->   {
->   	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
->   
-> +	if (!HAS_FRONTBUFFER_RENDERING(i915))
-> +		return;
-> +
->   	if (origin == ORIGIN_CS) {
->   		spin_lock(&i915->fb_tracking.lock);
->   		/* Filter out new bits since rendering started. */
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 91453f7dbd656..20c135a2bba33 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1721,6 +1721,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   
->   #define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
->   
-> +#define HAS_FRONTBUFFER_RENDERING(i915)	(DISPLAY_VER(i915) < 9)
-> +
->   /* Only valid when HAS_DISPLAY() is true */
->   #define INTEL_DISPLAY_ENABLED(dev_priv) \
->   	(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !(dev_priv)->params.disable_display)
-> 
+>=20
+> --
+> Matt Roper
+> Graphics Software Engineer
+> VTT-OSGC Platform Enablement
+> Intel Corporation
+> (916) 356-2795
