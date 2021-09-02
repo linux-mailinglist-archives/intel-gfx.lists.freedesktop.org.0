@@ -2,41 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE9253FECE7
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 13:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DF13FECEC
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 13:28:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA696E4E8;
-	Thu,  2 Sep 2021 11:27:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ECC36E4E8;
+	Thu,  2 Sep 2021 11:28:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 722D26E4E8
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 11:27:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10094"; a="282788447"
-X-IronPort-AV: E=Sophos;i="5.84,372,1620716400"; d="scan'208";a="282788447"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2021 04:27:33 -0700
-X-IronPort-AV: E=Sophos;i="5.84,372,1620716400"; d="scan'208";a="533038469"
-Received: from jcalzada-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.249.47.103])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2021 04:27:30 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, vandita.kulkarni@intel.com,
- cooper.chiou@intel.com, william.tseng@intel.com,
- Lee Shawn C <shawn.c.lee@intel.com>
-In-Reply-To: <20210902100851.21719-6-shawn.c.lee@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210902100851.21719-1-shawn.c.lee@intel.com>
- <20210902100851.21719-6-shawn.c.lee@intel.com>
-Date: Thu, 02 Sep 2021 14:27:27 +0300
-Message-ID: <87czpr9q00.fsf@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 226196E4E8;
+ Thu,  2 Sep 2021 11:28:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10094"; a="219088318"
+X-IronPort-AV: E=Sophos;i="5.84,372,1620716400"; d="scan'208";a="219088318"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2021 04:28:45 -0700
+X-IronPort-AV: E=Sophos;i="5.84,372,1620716400"; d="scan'208";a="542604191"
+Received: from smirnov2-mobl.ccr.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.24])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2021 04:28:43 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu,  2 Sep 2021 13:28:18 +0200
+Message-Id: <20210902112824.118524-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [v2 5/5] drm/i915/dsi: Read/write proper brightness
- value via MIPI DCS command
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/6] drm/i915: Suspend / resume backup- and
+ restore of LMEM.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,81 +50,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 02 Sep 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> Driver has to swap the endian before send brightness level value
-> to tcon.
->
-> v2: Use __be16 instead of u16 to fix sparse warning.
-> v3: Send one or two bytes brightness value depend on the precision.
-> v4: get data length of brightness value more easily.
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: William Tseng <william.tseng@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+Implement backup and restore of LMEM during suspend / resume.
+What complicates things a bit is handling of pinned LMEM memory during
+suspend and the fact that we might be dealing with unmappable LMEM in
+the future, which makes us want to restrict the number of pinned objects that
+need memcpy resume.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+The first two patches are prereq patches implementing object content copy
+and a generic means of iterating through all objects in a region.
+The third patch adds the backup / recover / restore functions and the
+two last patches deal with restricting the number of objects we need to
+use memcpy for.
 
-> ---
->  .../i915/display/intel_dsi_dcs_backlight.c    | 23 +++++++++++++------
->  1 file changed, 16 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> index 21ab9e1acb57..d2bf2bc9ae46 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> @@ -47,33 +47,42 @@ static u32 dcs_get_backlight(struct intel_connector *connector, enum pipe unused
->  {
->  	struct intel_encoder *encoder = intel_attached_encoder(connector);
->  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-> +	struct intel_panel *panel = &connector->panel;
->  	struct mipi_dsi_device *dsi_device;
-> -	u8 data = 0;
-> +	u8 data[2] = {};
->  	enum port port;
-> +	size_t len = panel->backlight.max > U8_MAX ? 2 : 1;
->  
-> -	/* FIXME: Need to take care of 16 bit brightness level */
->  	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
->  		dsi_device = intel_dsi->dsi_hosts[port]->device;
->  		mipi_dsi_dcs_read(dsi_device, MIPI_DCS_GET_DISPLAY_BRIGHTNESS,
-> -				  &data, sizeof(data));
-> +				  &data, len);
->  		break;
->  	}
->  
-> -	return data;
-> +	return (data[1] << 8) | data[0];
->  }
->  
->  static void dcs_set_backlight(const struct drm_connector_state *conn_state, u32 level)
->  {
->  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(conn_state->best_encoder));
-> +	struct intel_panel *panel = &to_intel_connector(conn_state->connector)->panel;
->  	struct mipi_dsi_device *dsi_device;
-> -	u8 data = level;
-> +	u8 data[2] = {};
->  	enum port port;
-> +	size_t len = panel->backlight.max > U8_MAX ? 2 : 1;
-> +
-> +	if (len == 1) {
-> +		data[0] = level;
-> +	} else {
-> +		data[0] = level >> 8;
-> +		data[1] = level;
-> +	}
->  
-> -	/* FIXME: Need to take care of 16 bit brightness level */
->  	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
->  		dsi_device = intel_dsi->dsi_hosts[port]->device;
->  		mipi_dsi_dcs_write(dsi_device, MIPI_DCS_SET_DISPLAY_BRIGHTNESS,
-> -				   &data, sizeof(data));
-> +				   &data, len);
->  	}
->  }
+Thomas Hellström (6):
+  drm/i915/ttm: Implement a function to copy the contents of two
+    TTM-base objects
+  drm/i915/gem: Implement a function to process all gem objects of a
+    region
+  drm/i915 Implement LMEM backup and restore for suspend / resume
+  drm/i915/gt: Register the migrate contexts with their engines
+  drm/i915: Don't back up pinned LMEM context images and rings during
+    suspend
+  drm/i915: Reduce the number of objects subject to memcpy recover
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |   4 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c        |  46 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_pm.h        |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_region.c    |  70 ++++++
+ drivers/gpu/drm/i915/gem/i915_gem_region.h    |  33 +++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  87 +++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h       |   8 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c    | 199 ++++++++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.h    |  23 ++
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   2 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |   5 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |   4 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   8 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   4 +
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  23 ++
+ drivers/gpu/drm/i915/gt/intel_engine_pm.h     |   2 +
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |   7 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   3 +
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   3 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   9 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |   3 +-
+ drivers/gpu/drm/i915/gt/intel_migrate.c       |   2 +-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  13 +-
+ drivers/gpu/drm/i915/gt/intel_ring.c          |   3 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c         |   1 +
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   2 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c          |   2 +-
+ drivers/gpu/drm/i915/i915_drv.c               |   4 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |   4 +-
+ 35 files changed, 566 insertions(+), 47 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.h
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.31.1
+
