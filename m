@@ -2,140 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED953FF371
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 20:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B7D3FF39D
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 20:55:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD7256E7EC;
-	Thu,  2 Sep 2021 18:49:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C198E6E7EC;
+	Thu,  2 Sep 2021 18:55:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0209D6E7EC
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 18:49:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="206435450"
-X-IronPort-AV: E=Sophos;i="5.85,262,1624345200"; d="scan'208";a="206435450"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2021 11:49:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,262,1624345200"; d="scan'208";a="499941213"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga008.fm.intel.com with ESMTP; 02 Sep 2021 11:49:07 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 2 Sep 2021 11:49:06 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Thu, 2 Sep 2021 11:49:06 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Thu, 2 Sep 2021 11:49:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NO3/M/oCdq4UhWxSx6ENEhwSLU1fj8JKlmLKgCsgQWt1KLo/3CUbuh1oZq+0c1sGmX4U+GnsOQZHilwryasewfE/qsoDzOFvQr5L1T0kVHu+Tezy/rOoIZortY3xuzFlGmq5G+wyZ5pZgVPLs5uflucGeYNGzcx0c+D/3VYhNlZkD09s/pUJz+EJTZLgZBEOBY4T+WsLn4JcLAww0yTZrSterebJa0301kL7UTUgS1N1xoBB9KKM2EcZ83ghN6GFpe0w419j4OFVuUXi/Ok2XuDNnXxhP/FcWb+fjG5u0xoqnGo8rYfuurc4cGNZ2Gwc61hvmKBff0vB/PcitT44jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=plb8wZZUqonUyvpQ/tbS56MI77bdFepMyOxWFYMiw3I=;
- b=Bsgb0YXBtjr2nm+Zg8Ya9PxZp15QM8sZVQVDjyDH2sl1XyLS6AybogJx7kW1IKB2+aCdBEHdJYX3EGpJ4YKVGJv0JVNhaFQ8KMvwxE383WpgkFtSJtqSEPnXhIPzC93a0QTM3yTS7f8pU6T0CtA/2+6q0fbW7QSicmRf+F3WSUR7SnVATjfy6scQJRR79pYjseTDzQD5DpMqRz6fu3yj5yTIRBOdS8WZzhNOF5Z7lji7yY1jYr2fAmEhj+zPnKWEyV5/K0iOwZRCsPV1h4Ip3Z8pZ8wUnBFgJx8zkKOCGcSarw2Gdf38wlt1XpVEJ9YUlEOw7iAmSJE2pd9nh/YVXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=plb8wZZUqonUyvpQ/tbS56MI77bdFepMyOxWFYMiw3I=;
- b=YqRMnfJDht+wlvFjGeQv3OCIwowaKYDptKEdEA7b5oHIro2kehhZv6gxu8u7uWLNBR8w2ZiK9QJKTA8Y4lgz3k8o97Uk2r8KTRI+elJtsmQOMsUi4RyaFoWqFWTH8anZuYwnlj7XmnJ3of1O8avDv8aWrY4BedWoC8i7i11maT4=
-Received: from BL3PR11MB5746.namprd11.prod.outlook.com (2603:10b6:208:353::21)
- by MN2PR11MB3647.namprd11.prod.outlook.com (2603:10b6:208:ec::26)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.20; Thu, 2 Sep
- 2021 18:49:02 +0000
-Received: from BL3PR11MB5746.namprd11.prod.outlook.com
- ([fe80::955e:e7a7:f183:f558]) by BL3PR11MB5746.namprd11.prod.outlook.com
- ([fe80::955e:e7a7:f183:f558%7]) with mapi id 15.20.4478.022; Thu, 2 Sep 2021
- 18:49:02 +0000
-From: "Siddiqui, Ayaz A" <ayaz.siddiqui@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "S,
- Srinivasan" <srinivasan.s@intel.com>, "Wilson, Chris P"
- <chris.p.wilson@intel.com>
-Thread-Topic: [PATCH V3 2/8] drm/i915/gt: Add support of mocs auxiliary
- registers programming
-Thread-Index: AQHXnbvCi3zSCk0JLE2Qy4oxeayk+auPtAoAgACjPlCAAJYZgIAAK2rg
-Date: Thu, 2 Sep 2021 18:49:01 +0000
-Message-ID: <BL3PR11MB57460D33DCEF3D3D86D793D0FCCE9@BL3PR11MB5746.namprd11.prod.outlook.com>
-References: <20210830162240.3891502-1-ayaz.siddiqui@intel.com>
- <20210830162240.3891502-3-ayaz.siddiqui@intel.com>
- <20210901212432.GC461228@mdroper-desk1.amr.corp.intel.com>
- <BL3PR11MB5746236A4243D4B2CD2C9958FCCE9@BL3PR11MB5746.namprd11.prod.outlook.com>
- <20210902160601.GJ461228@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20210902160601.GJ461228@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 54e25298-d0aa-4526-62f1-08d96e4254f1
-x-ms-traffictypediagnostic: MN2PR11MB3647:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR11MB36475854CB3F9E8128B6318BFCCE9@MN2PR11MB3647.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /yGIZOGlt3QtaqY4xQceiwfFsyMPTSFugIp4E0tVSm0N15Pa6Iu476CpG3ctf17cKIkNlnpaVBnlBE//+Lxsj2AyYIzsOta/xJxfGiEhx4GPItrZsJEb8kKmeiw0hGfA2aHYa414BLSKoYZ9Hwcrv/1lIplpCTzPVIgxTT6e+7ZXFSpPRNc89DXSIZH5pRULp1XJCDmlNb8H0hjNsIzakxtX17MgKl14mnw3AV45rmiy/Yz5O4bklkQf91BuxPAyqKBiue1ZzH9B6b2F+RIQmES7DeIyeFPRbRp5zrdjtUW5TGpRJe5jY4atfSKXWtdfyNDKOqk845xxI0lYJqcc7RgghK4/dUfOuSStyaEpiMDzPIpFJiVg+3C8g3rUnUGF498LqE6P9LjzXLVLbqrTuQeGcHhHP1QEERKRERaGy70S9StARSUTzNSWCxvdFY5cfK8azMdt6VA/npnS4S/NJw/H+j8NM3oEVn/WpGDJ4ACKTbOkCKN7B47V+S1J90J2eFHB1GU+mQzB+teeojgVti8i7qysxuhKqeMwWKHvZ9HxbSeQzzqbcmIVSSg7nnhYMPZR4X2IuOTJUOpzzpVWWaoBhsVnfvT4EEcPhQk+kBrOGZ+a3so78USNn3MT5hEA4/mY7wC8hBDDuIJG5Lq36tf9vY56ANbK68hDRDUBakCqppKkSYjgjbcUDWs8gGDoNTv25i/vJMyNpi37xXkbgw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB5746.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(346002)(136003)(396003)(39860400002)(366004)(186003)(33656002)(83380400001)(7696005)(38100700002)(86362001)(38070700005)(9686003)(122000001)(8936002)(107886003)(54906003)(53546011)(66446008)(6636002)(6506007)(66556008)(66476007)(4326008)(64756008)(55016002)(26005)(478600001)(316002)(8676002)(71200400001)(52536014)(66946007)(2906002)(76116006)(5660300002)(6862004);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fHLloAFEH+p/118dyL2OPXBjc6CFh7KH3WBsrJHSEgICcg3NyBgKLMybJ1je?=
- =?us-ascii?Q?wwmN0UaL0IpsMHWWXuGrqh09cDtLVWpWBT5ogpj+cFa8f7v8ixvn0CRdfGZH?=
- =?us-ascii?Q?mh5QcGMWiLV0Y97gXYLKJ2OW7GlAt0+ac4VlvWVtgem3ly4D2TlUtSb7mscL?=
- =?us-ascii?Q?hbGLLQmhise637eSd8lX8DteW1rRAS2dQ5RuteJEOVI/ZIaEyPzfEM9lZIiD?=
- =?us-ascii?Q?kBpMbmUcDsvlubSh196CNFpGp/OzsOHCqWQ7FeKIRuo+rBw1JY4Bv7RdqGn9?=
- =?us-ascii?Q?vuNxBz73QXbaPAt+ZliKdkby4RfpnF9cUhO5n3b7bQ8/sdO5nIKlya9iTe64?=
- =?us-ascii?Q?CN+IwQUtiT/ziUH3jg6EiPWTonOraOJo3/1+DIjX/Eshg60Y6V6b4wJGjq3L?=
- =?us-ascii?Q?1rUGAg41H/7k4Ko90gDmyNvAWXXTcm/CjIYPtYJK+38Zf89aBv/rPmdTTDNH?=
- =?us-ascii?Q?WTfxuZ/M2unycq3GxFA3MmUW1Z7H8qTMHL5aBzuoK/Dmg9XISgBL8LWPQw8f?=
- =?us-ascii?Q?f4HtulFlaZhjYf4hsabDxqPe028DpnoSVITZ2VOu+8aFelWQuvn8Ds/HsEkd?=
- =?us-ascii?Q?lsCa14NwGlS8bnMHIb8kdkJus2hh/9X8dSQlifAEbYKcnL3dQbjTwz1SnpdY?=
- =?us-ascii?Q?psArJwYmfdFOmh0FB9kUpDFfmwf7njNNGEFHFghGMdKpCcPKKk986Dor/XU6?=
- =?us-ascii?Q?9RV+jbryMlLfWhJv8AsiFw2CQvItL0BCpilm2kC/3wAZ/l15XmuH1wHsL+AO?=
- =?us-ascii?Q?kQs7eOHf3YvZdUd00Y7H548ZXqkerXHRREhn9QdvR0EEsY4zilTh/odQAEHj?=
- =?us-ascii?Q?tzbJt6xR/9qoINzOX8Gx2CUlAh622dSWlrjmdFxPsIy5DdIRUaOmGL76UU1q?=
- =?us-ascii?Q?drczkIIZ1RIR67A5TsjriFLKFu+dCNXzGPaH92Bv7HE9ipgh0vDlQkYxnN4W?=
- =?us-ascii?Q?wkAzp8UNPVUuGsH5ID1y3H7ssC3IBFQqKGiTCraXbh4r8PYTPw5E/cEXTkFv?=
- =?us-ascii?Q?e5cWhfO8Dqbw0kz6QF9bkvFI9sbnMGzVC16wbNtyCpyVs1lwfYjuqoaEP7il?=
- =?us-ascii?Q?xYPLn4BooKjTOYD/rk467/fda9DgmyLKxIMZkmAfsdC5pllX5S0F8Vr9K9jg?=
- =?us-ascii?Q?ebT7aTc71iUBy3WIZt2p9p47cF9g9DWOjyl7PZk0AH1Fkf+iYc8cGme/lNg7?=
- =?us-ascii?Q?FZHd8yyN5Ha2FAmLJz9ClyOur7WC2AEm0YY6YIQC0KXjNn8FJG2zuUUt6APV?=
- =?us-ascii?Q?YU7YAqz8G8bmiUxxLLUYIkE7GX2smOQxMxoUU2Qpo+EVsVrUPZ2MYm6caXNH?=
- =?us-ascii?Q?hjWxr5T8v9P6b3n3re51RLZ7?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 468BC6E7EC;
+ Thu,  2 Sep 2021 18:55:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30BBFA7E03;
+ Thu,  2 Sep 2021 18:55:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6483852823983309786=="
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB5746.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54e25298-d0aa-4526-62f1-08d96e4254f1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2021 18:49:01.9896 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lh1MS2vZGv7dt0T+mnkYNWCuuAJfdigaSBs54Jb3K+j39qnHaq547V/QdWpliMR9pRU4Q5MFyX0x+kZrml2W4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3647
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH V3 2/8] drm/i915/gt: Add support of mocs
- auxiliary registers programming
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 02 Sep 2021 18:55:33 -0000
+Message-ID: <163060893316.29439.537699592148218513@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/11=5D_drm/i915=3A_Release_i915=5Fgem=5F?=
+ =?utf-8?q?context_from_a_worker_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,119 +42,250 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6483852823983309786==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [01/11] drm/i915: Release i915_gem_context from a worker (rev2)
+URL   : https://patchwork.freedesktop.org/series/94285/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10548 -> Patchwork_20945
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20945 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20945, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20945:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-11600/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20945 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [PASS][4] -> [DMESG-WARN][5] ([i915#3958])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][6] -> [INCOMPLETE][7] ([i915#3921])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-rkl-11600:       [PASS][8] -> [SKIP][9] ([fdo#111825])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][10] ([i915#3669])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-11600/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][11] ([i915#1602] / [i915#2029])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#3669]: https://gitlab.freedesktop.org/drm/intel/issues/3669
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
 
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Thursday, September 2, 2021 9:36 PM
-> To: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; S, Srinivasan <srinivasan.s@intel.co=
-m>;
-> Wilson, Chris P <chris.p.wilson@intel.com>
-> Subject: Re: [PATCH V3 2/8] drm/i915/gt: Add support of mocs auxiliary
-> registers programming
->=20
-> On Thu, Sep 02, 2021 at 04:56:18AM -0700, Siddiqui, Ayaz A wrote:
-> ...
-> > > > +static int check_aux_regs(struct intel_engine_cs *engine,
-> > > > +                     const struct drm_i915_aux_table *r,
-> > > > +                     u32 **vaddr)
-> > >
-> > > One other concern (which is part of why I didn't really want to see
-> > > this framework handled separately from workarounds) is that the aux
-> > > table might tell us to program a register with a specific value, but
-> > > we may also have a hardware workaround for a platform/stepping that
-> > > overrides that with an alternate value.  Our workaround framework is
-> > > smart enough to combine multiple entries for the same register into
-> > > a single operation (if the set of bits being updated are different),
-> > > or will warn if there's two conflicting sets of programming
-> > > requested for certain bits. Right now it's not clear who wins if the
-> > > aux table wants to program a register to value 'X' but the
-> > > workaround lists want to program the same register to value 'Y.'  In
-> > > theory the workaround should overrule the regular programming, but
-> > > at the moment these selftests aren't checking to see if that's the
-> > > case.  We may not have any such conflicts today (especially since we =
-have
-> so few registers that are going to be on the aux table initially), but it=
- may
-> come up eventually.
-> > Yes its valid point, I did not thought about it. Do you think that
-> > moving to workaround will be better option here?
->=20
-> I think there's a short-term and a long-term aspect here.  My opinion is =
-that
-> in the immediate short term we should add these two MOCS-related
-> registers (one of which is a context register, one of which is an engine
-> register) as additional fake workarounds.  Despite calling them
-> "workarounds" that part of the code is already more of a generic "GT regi=
-ster
-> override" framework, and we already have a number of things programmed
-> there that aren't actually workarounds.  Trying to spin up a completely n=
-ew
-> framework ("aux table") for GT register overrides is going to take a bit =
-more
-> time to get right, and I'm not sure we want to hold up the proper MOCS
-> programming while that happens (especially since ADL is about to leave
-> "force probe required" state and we really don't want to miss the boat on
-> getting MOCS programmed correctly before that happens).
->=20
-> Longer term I do think we want to rework how we handle both formal
-> workarounds and non-workaround register overrides in the driver.  That's
-> been something I've been meaning to work on for quite a while now, but it
-> just keeps getting preempted by higher priority tasks that show up;
-> hopefully I can get back to it soon.  But such rework is going to take a =
-bit of
-> time, both to get widespread agreement on the redesign, and to do some
-> extensive testing to make sure we don't mishandle any corner cases around
-> reset handling, execlist vs GuC, etc.  It will also probably happen in mu=
-ltiple
-> steps rather than jumping from our current design straight to the final f=
-orm; I
-> don't think it makes sense to make the MOCS programming dependent on
-> completion of that long, multi-step process.
->=20
-> I think one of Chris' concerns about re-using the workaround framework fo=
-r
-> setting these two MOCS-related registers is that the programming would
-> wind up getting verified by the workarounds selftest rather than the mocs
-> selftest (and thus failures on these specific registers may not get the
-> attention they need).  That's true, but if the concern is great enough, I=
- think
-> we could make the gt_mocs selftest:
->  - scan the workaround lists and ensure that the two MOCS-related
->    registers truly are present on the appropriate list (if not, error)
->  - check that the register programming still matches the value defined
->    in the workaround (if not, error); this would duplicate the check
->    also done in the workaround selftest, but that's probably fine to
->    have both tests fail if there's a programming problem
->  - lookup the programmed MOCS values in the platform's MOCS table and
->    make sure that they really have the expected characteristics (L3 on
->    platforms going forward, UC on the older platforms that we can't
->    change now for abi compat reasons)
->=20
->=20
-> Matt
-Thanks Matt, I have modified that register programming using workaround fra=
-mework.
-I'll share the new series soon.
-Since we have already planned to rework on framework so let add category sp=
-ecific
-verification in scope of that planned activity instead of adding a temporar=
-y
-verification in mocs selftest.
-Meanwhile programming of values are already verified in workaround.
+Participating hosts (48 -> 40)
+------------------------------
 
-Regards
--Ayaz
+  Missing    (8): fi-ilk-m540 bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 
 
 
->=20
-> --
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+Build changes
+-------------
+
+  * Linux: CI_DRM_10548 -> Patchwork_20945
+
+  CI-20190529: 20190529
+  CI_DRM_10548: 50be9d6f82904be755ea5b04efbd6c5e19e2d945 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20945: 6dc5fca7a0a04d024a130b497a278fb5a1925ecb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6dc5fca7a0a0 drm/i915: Stop rcu support for i915_address_space
+6d5eef0fbd0f drm/i915: use xa_lock/unlock for fpriv->vm_xa lookups
+7f80bb33cd1e drm/i915: Drop __rcu from gem_context->vm
+1d14230abadc drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem
+2da493a5ca5a drm/i915: Add i915_gem_context_is_full_ppgtt
+5a071ebff40f drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam
+3084a349e937 drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
+29e6c891c5c4 drm/i915: Drop code to handle set-vm races from execbuf
+b9dd2188735b drm/i915: Keep gem ctx->vm alive until the final put
+0bc3da3c498c drm/i915: Release ctx->syncobj on final put, not on ctx close
+64372bd0168a drm/i915: Release i915_gem_context from a worker
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/index.html
+
+--===============6483852823983309786==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [01/11] drm/i915: Release i915_gem_context from a worker (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94285/">https://patchwork.freedesktop.org/series/94285/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10548 -&gt; Patchwork_20945</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20945 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20945, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20945:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms:<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-11600/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20945 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10548/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-rkl-11600/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3669">i915#3669</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20945/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (48 -&gt; 40)</h2>
+<p>Missing    (8): fi-ilk-m540 bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10548 -&gt; Patchwork_20945</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10548: 50be9d6f82904be755ea5b04efbd6c5e19e2d945 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20945: 6dc5fca7a0a04d024a130b497a278fb5a1925ecb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>6dc5fca7a0a0 drm/i915: Stop rcu support for i915_address_space<br />
+6d5eef0fbd0f drm/i915: use xa_lock/unlock for fpriv-&gt;vm_xa lookups<br />
+7f80bb33cd1e drm/i915: Drop __rcu from gem_context-&gt;vm<br />
+1d14230abadc drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem<br />
+2da493a5ca5a drm/i915: Add i915_gem_context_is_full_ppgtt<br />
+5a071ebff40f drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam<br />
+3084a349e937 drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm<br />
+29e6c891c5c4 drm/i915: Drop code to handle set-vm races from execbuf<br />
+b9dd2188735b drm/i915: Keep gem ctx-&gt;vm alive until the final put<br />
+0bc3da3c498c drm/i915: Release ctx-&gt;syncobj on final put, not on ctx close<br />
+64372bd0168a drm/i915: Release i915_gem_context from a worker</p>
+
+</body>
+</html>
+
+--===============6483852823983309786==--
