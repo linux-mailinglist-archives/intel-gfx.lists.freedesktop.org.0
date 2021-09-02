@@ -2,33 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D9863FEDC3
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 14:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 079243FEDE9
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 14:43:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9F76E51D;
-	Thu,  2 Sep 2021 12:28:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19A486E525;
+	Thu,  2 Sep 2021 12:42:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6F66C6E51D;
- Thu,  2 Sep 2021 12:28:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5C249A8836;
- Thu,  2 Sep 2021 12:28:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E4096E51C;
+ Thu,  2 Sep 2021 12:42:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10094"; a="215961113"
+X-IronPort-AV: E=Sophos;i="5.84,372,1620716400"; d="scan'208";a="215961113"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2021 05:42:55 -0700
+X-IronPort-AV: E=Sophos;i="5.84,372,1620716400"; d="scan'208";a="461639444"
+Received: from rlsmith2-mobl1.amr.corp.intel.com (HELO [10.213.229.210])
+ ([10.213.229.210])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2021 05:42:52 -0700
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Jon Bloomfield <jon.bloomfield@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
+References: <20210813203033.3179400-1-daniel.vetter@ffwll.ch>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9d8cba62-e1e1-a62c-1482-89d2db49d5af@linux.intel.com>
+Date: Thu, 2 Sep 2021 13:42:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 02 Sep 2021 12:28:12 -0000
-Message-ID: <163058569235.29442.12962257806575678279@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210902112824.118524-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210902112824.118524-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Suspend_/_resume_backup-_and_restore_of_LMEM=2E?=
+In-Reply-To: <20210813203033.3179400-1-daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915: Release i915_gem_context
+ from a worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,29 +60,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Suspend / resume backup- and restore of LMEM.
-URL   : https://patchwork.freedesktop.org/series/94278/
-State : warning
+On 13/08/2021 21:30, Daniel Vetter wrote:
+> The only reason for this really is the i915_gem_engines->fence
+> callback engines_notify(), which exists purely as a fairly funky
+> reference counting scheme for that. Otherwise all other callers are
+> from process context, and generally fairly benign locking context.
 
-== Summary ==
+There is reset which definitely isn't process context.
 
-$ dim checkpatch origin/drm-tip
-e3f2d82e684e drm/i915/ttm: Implement a function to copy the contents of two TTM-base objects
-0f7a5eac69f8 drm/i915/gem: Implement a function to process all gem objects of a region
-bfe27cf0e3f6 drm/i915 Implement LMEM backup and restore for suspend / resume
--:192: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#192: 
-new file mode 100644
+Otherwise I did not really get from the commit message is this patch 
+fixing an existing problem or preparing something for the future. If the 
+former then as I wrote above - I am pretty sure there are call sites 
+from the tasklet already.
 
-total: 0 errors, 1 warnings, 0 checks, 366 lines checked
-85fa40dabcd4 drm/i915/gt: Register the migrate contexts with their engines
-9f642ae6fad1 drm/i915: Don't back up pinned LMEM context images and rings during suspend
-6e5be25f0eab drm/i915: Reduce the number of objects subject to memcpy recover
+Regards,
 
+Tvrtko
 
+> Unfortunately untangling that requires some major surgery, and we have
+> a few i915_gem_context reference counting bugs that need fixing, and
+> they blow in the current hardirq calling context, so we need a
+> stop-gap measure.
+> 
+> Put a FIXME comment in when this should be removable again.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c       | 13 +++++++++++--
+>   drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 12 ++++++++++++
+>   2 files changed, 23 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index fd169cf2f75a..051bc357ff65 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -986,9 +986,10 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+>   	return err;
+>   }
+>   
+> -void i915_gem_context_release(struct kref *ref)
+> +static void i915_gem_context_release_work(struct work_struct *work)
+>   {
+> -	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+> +	struct i915_gem_context *ctx = container_of(work, typeof(*ctx),
+> +						    release_work);
+>   
+>   	trace_i915_context_free(ctx);
+>   	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+> @@ -1002,6 +1003,13 @@ void i915_gem_context_release(struct kref *ref)
+>   	kfree_rcu(ctx, rcu);
+>   }
+>   
+> +void i915_gem_context_release(struct kref *ref)
+> +{
+> +	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+> +
+> +	queue_work(ctx->i915->wq, &ctx->release_work);
+> +}
+> +
+>   static inline struct i915_gem_engines *
+>   __context_engines_static(const struct i915_gem_context *ctx)
+>   {
+> @@ -1303,6 +1311,7 @@ i915_gem_create_context(struct drm_i915_private *i915,
+>   	ctx->sched = pc->sched;
+>   	mutex_init(&ctx->mutex);
+>   	INIT_LIST_HEAD(&ctx->link);
+> +	INIT_WORK(&ctx->release_work, i915_gem_context_release_work);
+>   
+>   	spin_lock_init(&ctx->stale.lock);
+>   	INIT_LIST_HEAD(&ctx->stale.engines);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> index 94c03a97cb77..0c38789bd4a8 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> @@ -288,6 +288,18 @@ struct i915_gem_context {
+>   	 */
+>   	struct kref ref;
+>   
+> +	/**
+> +	 * @release_work:
+> +	 *
+> +	 * Work item for deferred cleanup, since i915_gem_context_put() tends to
+> +	 * be called from hardirq context.
+> +	 *
+> +	 * FIXME: The only real reason for this is &i915_gem_engines.fence, all
+> +	 * other callers are from process context and need at most some mild
+> +	 * shuffling to pull the i915_gem_context_put() call out of a spinlock.
+> +	 */
+> +	struct work_struct release_work;
+> +
+>   	/**
+>   	 * @rcu: rcu_head for deferred freeing.
+>   	 */
+> 
