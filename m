@@ -2,69 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 395FF3FEF5F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 16:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5D23FEF7A
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Sep 2021 16:33:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0F566E5A2;
-	Thu,  2 Sep 2021 14:21:22 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA96B6E5A9
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 14:21:19 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id u16so3229165wrn.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Sep 2021 07:21:19 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF2196E580;
+	Thu,  2 Sep 2021 14:33:17 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A660F6E570
+ for <Intel-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 14:33:15 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id z4so3276796wrr.6
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 02 Sep 2021 07:33:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=g0XBtYrEBgPfE/HHWOAGOHufsoeb5EQp2AAWGd3hiXs=;
- b=YVCblO2U3LnsRlrLvgNH0zW3Fp7U/FtcitmAiYQgy5DA6D7/Fp2hb8dUA8f2yXWYrv
- 1qrAXYEQIE/mUrI058FDPmkmZIj+m0SWu3ZID54rL8I5pQcf8omQbNLMRAXZT7qRmUx8
- 30UDrE4N7YBimU9ONGgUJtCl2mvFn/KEjLVUc=
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=4Ii9iGx6IOvfmCh2p9w2Lmb2ofLr5VRvIacQ4r8JG5E=;
+ b=kC952ifB6Al0+xUxWejPcYHuB/yXBxcRe2E4ZBXc/MzG1Ud21Nelenk8qnYmQFoYZn
+ qaIdeHqZjFIoc4OQ1KE8+lYxWSesoayH0ongBNYTfURzmqfhGfQNezS5IMsW1RA0Nu/m
+ Drg3k+U/799jxbNthoBmWWOAnV15rbOT+JOfc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=g0XBtYrEBgPfE/HHWOAGOHufsoeb5EQp2AAWGd3hiXs=;
- b=t4s75xLxiV8Bm1CND1cJyMHmgRnDepmuZCYGXcJzp2bUwX2Fv3NLkuNDit95sH9Joc
- Op6x3NWwCoAPJnB6ZbFcJA4vKWSJDO4MEfBg54IHEy5DSxQx/3f3sTFYnozLXP2vxXtk
- neJT3NYmKFn3pd8kyylKk3ccqVSE81z6Itr1KWC2Y62J94EotMzBjCKC80zmXL8hH0Ph
- 1lLWCDhGThFJdRlrjsAKZ9QBaizAbCEBtQK4maTU38Rpya9IjjdPPA57t9yTtj3ZkaWI
- K9ZETHeO9Y2cUWpoAreLYWUJ1pNnoulJRSkQo6h11x8PC9y50n8cKlqnVZ33gdFjq/9N
- C1tA==
-X-Gm-Message-State: AOAM530BleHS0tfTSJ5ObjgGOJBD2b9nuqfvY1C82VdRAxDvVIi+yokh
- ierP3zRaUO2Tpx9pXD/FZy/D8w==
-X-Google-Smtp-Source: ABdhPJz1/7eHvmdzjlTKiNIyEzWyS8Ta5ULbn8Ie3v16MJ/CCjLO83eJOHZssXRHyeHMdsVGTk8k8w==
-X-Received: by 2002:adf:e0cd:: with SMTP id m13mr4122575wri.137.1630592478398; 
- Thu, 02 Sep 2021 07:21:18 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=4Ii9iGx6IOvfmCh2p9w2Lmb2ofLr5VRvIacQ4r8JG5E=;
+ b=Pkx7hIvZzGXbeuC8G07Q/awoDrftq6Tnat52w2zIDQ/5NDfq2SJyRNZjJNBAiCCPSW
+ e45f06FSbkwR6/sZl2oJoFI03YjfsYw1dHwbR4VT3lU3iPlYSatw2qZZhN+iCwnV2M1h
+ OVwI1p8lN7c/khJWWyR6CWw3ZzKLwn4V+y3uQ49jDM/GxGj8oA4Civ0qPfb0DKmOf+dI
+ tPQhwkk+67BvxVN6pYAwWXomidERA0g5vv7J1gV0xiSAZe5mJZArmwEvp0DhxBzUtobQ
+ PFWsn0QQJYqC+o1TiKKBq4D7Yd382KJriqz/YPvCV6PMMcsyuoE4xD5JMqjyqoZoQ09C
+ MoGA==
+X-Gm-Message-State: AOAM530yLyCvmqxvWbk15LNDl7RKrSizALX3i07uCV7ZU1Auo4pb7gMd
+ tfskBrnwk8LJq5WYTE2EdFvqOvvgTE+/8g==
+X-Google-Smtp-Source: ABdhPJzvKtUYfxdLSPbr4DSF/K+toHEIraqGwHv/mgbwEPGtw7OY6+x5tFkgeJRLx5KuEMhxIoyuow==
+X-Received: by 2002:a05:6000:1627:: with SMTP id
+ v7mr4083174wrb.347.1630593194006; 
+ Thu, 02 Sep 2021 07:33:14 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l2sm1841811wmi.1.2021.09.02.07.21.17
+ by smtp.gmail.com with ESMTPSA id y6sm2331923wrm.54.2021.09.02.07.33.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Sep 2021 07:21:17 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jon Bloomfield <jon.bloomfield@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu,  2 Sep 2021 16:20:57 +0200
-Message-Id: <20210902142057.929669-11-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
-References: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
+ Thu, 02 Sep 2021 07:33:13 -0700 (PDT)
+Date: Thu, 2 Sep 2021 16:33:11 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Message-ID: <YTDgp6DATyh/aBtz@phenom.ffwll.local>
+References: <20210827133039.287075-1-tvrtko.ursulin@linux.intel.com>
+ <20210827143941.287958-1-tvrtko.ursulin@linux.intel.com>
+ <9c042851-9a27-6bc7-0749-ed0c573e9c80@linux.intel.com>
+ <YSyWMxUyxgTYZCYw@phenom.ffwll.local>
+ <a382488e-cf1e-e61e-f132-d0868f4f23cf@linux.intel.com>
+ <YS4j+PbS8ImB/p9v@phenom.ffwll.local>
+ <a177847d-7953-bd08-5c58-48f9975a1d3a@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915: Stop rcu support for
- i915_address_space
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a177847d-7953-bd08-5c58-48f9975a1d3a@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Handle Intel igfx + Intel dgfx
+ hybrid graphics setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,283 +78,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The full audit is quite a bit of work:
+On Tue, Aug 31, 2021 at 02:18:15PM +0100, Tvrtko Ursulin wrote:
+> 
+> On 31/08/2021 13:43, Daniel Vetter wrote:
+> > On Tue, Aug 31, 2021 at 10:15:03AM +0100, Tvrtko Ursulin wrote:
+> > > 
+> > > On 30/08/2021 09:26, Daniel Vetter wrote:
+> > > > On Fri, Aug 27, 2021 at 03:44:42PM +0100, Tvrtko Ursulin wrote:
+> > > > > 
+> > > > > On 27/08/2021 15:39, Tvrtko Ursulin wrote:
+> > > > > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > > > 
+> > > > > > In short this makes i915 work for hybrid setups (DRI_PRIME=1 with Mesa)
+> > > > > > when rendering is done on Intel dgfx and scanout/composition on Intel
+> > > > > > igfx.
+> > > > > > 
+> > > > > > Before this patch the driver was not quite ready for that setup, mainly
+> > > > > > because it was able to emit a semaphore wait between the two GPUs, which
+> > > > > > results in deadlocks because semaphore target location in HWSP is neither
+> > > > > > shared between the two, nor mapped in both GGTT spaces.
+> > > > > > 
+> > > > > > To fix it the patch adds an additional check to a couple of relevant code
+> > > > > > paths in order to prevent using semaphores for inter-engine
+> > > > > > synchronisation between different driver instances.
+> > > > > > 
+> > > > > > Patch also moves singly used i915_gem_object_last_write_engine to be
+> > > > > > private in its only calling unit (debugfs), while modifying it to only
+> > > > > > show activity belonging to the respective driver instance.
+> > > > > > 
+> > > > > > What remains in this problem space is the question of the GEM busy ioctl.
+> > > > > > We have a somewhat ambigous comment there saying only status of native
+> > > > > > fences will be reported, which could be interpreted as either i915, or
+> > > > > > native to the drm fd. For now I have decided to leave that as is, meaning
+> > > > > > any i915 instance activity continues to be reported.
+> > > > > > 
+> > > > > > v2:
+> > > > > >     * Avoid adding rq->i915. (Chris)
+> > > > > > 
+> > > > > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > 
+> > > > Can't we just delete semaphore code and done?
+> > > > - GuC won't have it
+> > > > - media team benchmarked on top of softpin media driver, found no
+> > > >     difference
+> > > 
+> > > You have S-curve for saturated workloads or something else? How thorough and
+> > > which media team I guess.
+> > > 
+> > >  From memory it was a nice win for some benchmarks (non-saturated ones), but
+> > > as I have told you previously, we haven't been putting numbers in commit
+> > > messages since it wasn't allowed. I may be able to dig out some more details
+> > > if I went trawling through GEM channel IRC logs, although probably not the
+> > > actual numbers since those were usually on pastebin. Or you go an talk with
+> > > Chris since he probably remembers more details. Or you just decide you don't
+> > > care and remove it. I wouldn't do that without putting the complete story in
+> > > writing, but it's your call after all.
+> > 
+> > Media has also changed, they're not using relocations anymore.
+> 
+> Meaning you think it changes the benchmarking story? When coupled with
+> removal of GPU relocations then possibly yes.
+> 
+> > Unless there's solid data performance tuning of any kind that gets in the
+> > way simply needs to be removed. Yes this is radical, but the codebase is
+> > in a state to require this.
+> > 
+> > So either way we'd need to rebenchmark this if it's really required. Also
+> 
+> Therefore can you share what benchmarks have been done or is it secret?  As
+> said, I think the non-saturated case was the more interesting one here.
+> 
+> > if we really need this code still someone needs to fix the design, the
+> > current code is making layering violations an art form.
+> >
+> > > Anyway, without the debugfs churn it is more or less two line patch to fix
+> > > igfx + dgfx hybrid setup. So while mulling it over this could go in. I'd
+> > > just refine it to use a GGTT check instead of GT. And unless DG1 ends up
+> > > being GuC only.
+> > 
+> > The minimal robust fix here is imo to stop us from upcasting dma_fence to
+> > i915_request if it's not for our device. Not sprinkle code here into the
+> > semaphore code. We shouldn't even get this far with foreign fences.
+> 
+> Device check does not work for multi-tile. It was one of my earlier attempts
+> before I realized the problem. You'll see v3 which I think handles all the
+> cases.
 
-- i915_dpt has very simple lifetime (somehow we create a display pagetable vm
-  per object, so its _very_ simple, there's only ever a single vma in there),
-  and uses i915_vm_close(), which internally does a i915_vm_put(). No rcu.
+There is no hw semaphores on multi-tile.
 
-  Aside: wtf is i915_dpt doing in the intel_display.c garbage collector as a new
-  feature, instead of added as a separate file with some clean-ish interface.
+But there _is_ a lot more going on than just hw semaphores that spawn
+driver instances. Like priority boosting, clock boosting, and all kinds of
+other things. I really dont' think it's very robust if we play
+whack-a-mole here with things leaking.
+-Daniel
 
-  Also, i915_dpt unfortunately re-introduces some coding patterns from
-  pre-dma_resv_lock conversion times.
+> You also forgot to comment on the question lower in the email. I'll just
+> send a patch which removes that anyway so you can comment there.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > -Daniel
+> > 
+> > > 
+> > > > - pre-gen8 semaphore code was also silently ditched and no one cared
+> > > > 
+> > > > Plus removing semaphore code would greatly simplify conversion to
+> > > > drm/sched.
+> > > > 
+> > > > > > ---
+> > > > > >     drivers/gpu/drm/i915/gem/i915_gem_object.h | 17 ----------
+> > > > > >     drivers/gpu/drm/i915/i915_debugfs.c        | 39 ++++++++++++++++++++--
+> > > > > >     drivers/gpu/drm/i915/i915_request.c        | 12 ++++++-
+> > > > > >     3 files changed, 47 insertions(+), 21 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> > > > > > index 48112b9d76df..3043fcbd31bd 100644
+> > > > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> > > > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> > > > > > @@ -503,23 +503,6 @@ i915_gem_object_finish_access(struct drm_i915_gem_object *obj)
+> > > > > >     	i915_gem_object_unpin_pages(obj);
+> > > > > >     }
+> > > > > > -static inline struct intel_engine_cs *
+> > > > > > -i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
+> > > > > > -{
+> > > > > > -	struct intel_engine_cs *engine = NULL;
+> > > > > > -	struct dma_fence *fence;
+> > > > > > -
+> > > > > > -	rcu_read_lock();
+> > > > > > -	fence = dma_resv_get_excl_unlocked(obj->base.resv);
+> > > > > > -	rcu_read_unlock();
+> > > > > > -
+> > > > > > -	if (fence && dma_fence_is_i915(fence) && !dma_fence_is_signaled(fence))
+> > > > > > -		engine = to_request(fence)->engine;
+> > > > > > -	dma_fence_put(fence);
+> > > > > > -
+> > > > > > -	return engine;
+> > > > > > -}
+> > > > > > -
+> > > > > >     void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
+> > > > > >     					 unsigned int cache_level);
+> > > > > >     void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
+> > > > > > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> > > > > > index 04351a851586..55fd6191eb32 100644
+> > > > > > --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> > > > > > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> > > > > > @@ -135,13 +135,46 @@ static const char *stringify_vma_type(const struct i915_vma *vma)
+> > > > > >     	return "ppgtt";
+> > > > > >     }
+> > > > > > +static char *
+> > > > > > +last_write_engine(struct drm_i915_private *i915,
+> > > > > > +		  struct drm_i915_gem_object *obj)
+> > > > > > +{
+> > > > > > +	struct intel_engine_cs *engine;
+> > > > > > +	struct dma_fence *fence;
+> > > > > > +	char *res = NULL;
+> > > > > > +
+> > > > > > +	rcu_read_lock();
+> > > > > > +	fence = dma_resv_get_excl_unlocked(obj->base.resv);
+> > > > > > +	rcu_read_unlock();
+> > > > > > +
+> > > > > > +	if (!fence || dma_fence_is_signaled(fence))
+> > > > > > +		goto out;
+> > > > > > +
+> > > > > > +	if (!dma_fence_is_i915(fence)) {
+> > > > > > +		res = "<external-fence>";
+> > > > > > +		goto out;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	engine = to_request(fence)->engine;
+> > > > > > +	if (engine->gt->i915 != i915) {
+> > > > > > +		res = "<external-i915>";
+> > > > > > +		goto out;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	res = engine->name;
+> > > > > > +
+> > > > > > +out:
+> > > > > > +	dma_fence_put(fence);
+> > > > > > +	return res;
+> > > > > > +}
+> > > > > > +
+> > > > > >     void
+> > > > > >     i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
+> > > > > >     {
+> > > > > >     	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
+> > > > > > -	struct intel_engine_cs *engine;
+> > > > > >     	struct i915_vma *vma;
+> > > > > >     	int pin_count = 0;
+> > > > > > +	char *engine;
+> > > > > >     	seq_printf(m, "%pK: %c%c%c %8zdKiB %02x %02x %s%s%s",
+> > > > > >     		   &obj->base,
+> > > > > > @@ -230,9 +263,9 @@ i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
+> > > > > >     	if (i915_gem_object_is_framebuffer(obj))
+> > > > > >     		seq_printf(m, " (fb)");
+> > > > > > -	engine = i915_gem_object_last_write_engine(obj);
+> > > > > > +	engine = last_write_engine(dev_priv, obj);
+> > > > > >     	if (engine)
+> > > > > > -		seq_printf(m, " (%s)", engine->name);
+> > > > > > +		seq_printf(m, " (%s)", engine);
+> > > > > 
+> > > > > Or I zap this from the code altogether. Not sure it is very useful since the
+> > > > > only caller is i915_gem_framebuffer debugfs file and how much it can care
+> > > > > about maybe hitting the timing window when exclusive fence will contain
+> > > > > something.
+> > > > 
+> > > > Ideally we'd just look at the fence timeline name. But i915 has this very
+> > > > convoluted typesafe-by-rcu reuse which means we actually can't do that,
+> > > > and our fence timeline name is very useless.
+> > > 
+> > > Why do we even care to output any of this here? I'd just remove it since it
+> > > is a very transient state with an extremely short window of opportunity to
+> > > make it show anything. Which I think makes it pretty useless in debugfs.
+> > > 
+> > > Regards,
+> > > 
+> > > Tvrtko
+> > > 
+> > > > 
+> > > > Would be good to fix that, Matt Auld has started an attempt but didn't get
+> > > > very far.
+> > > > -Daniel
+> > > > 
+> > > > > 
+> > > > > Regards,
+> > > > > 
+> > > > > Tvrtko
+> > > > > 
+> > > > > >     }
+> > > > > >     static int i915_gem_object_info(struct seq_file *m, void *data)
+> > > > > > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> > > > > > index ce446716d092..64adf619fe82 100644
+> > > > > > --- a/drivers/gpu/drm/i915/i915_request.c
+> > > > > > +++ b/drivers/gpu/drm/i915/i915_request.c
+> > > > > > @@ -1152,6 +1152,12 @@ __emit_semaphore_wait(struct i915_request *to,
+> > > > > >     	return 0;
+> > > > > >     }
+> > > > > > +static bool
+> > > > > > +can_use_semaphore_wait(struct i915_request *to, struct i915_request *from)
+> > > > > > +{
+> > > > > > +	return to->engine->gt == from->engine->gt;
+> > > > > > +}
+> > > > > > +
+> > > > > >     static int
+> > > > > >     emit_semaphore_wait(struct i915_request *to,
+> > > > > >     		    struct i915_request *from,
+> > > > > > @@ -1160,6 +1166,9 @@ emit_semaphore_wait(struct i915_request *to,
+> > > > > >     	const intel_engine_mask_t mask = READ_ONCE(from->engine)->mask;
+> > > > > >     	struct i915_sw_fence *wait = &to->submit;
+> > > > > > +	if (!can_use_semaphore_wait(to, from))
+> > > > > > +		goto await_fence;
+> > > > > > +
+> > > > > >     	if (!intel_context_use_semaphores(to->context))
+> > > > > >     		goto await_fence;
+> > > > > > @@ -1263,7 +1272,8 @@ __i915_request_await_execution(struct i915_request *to,
+> > > > > >     	 * immediate execution, and so we must wait until it reaches the
+> > > > > >     	 * active slot.
+> > > > > >     	 */
+> > > > > > -	if (intel_engine_has_semaphores(to->engine) &&
+> > > > > > +	if (can_use_semaphore_wait(to, from) &&
+> > > > > > +	    intel_engine_has_semaphores(to->engine) &&
+> > > > > >     	    !i915_request_has_initial_breadcrumb(to)) {
+> > > > > >     		err = __emit_semaphore_wait(to, from, from->fence.seqno - 1);
+> > > > > >     		if (err < 0)
+> > > > > > 
+> > > > 
+> > 
 
-- i915_gem_proto_ctx is fully refcounted and no rcu, all protected by
-  fpriv->proto_context_lock.
-
-- i915_gem_context is itself rcu protected, and that might leak to anything it
-  points at. Before
-
-	commit cf977e18610e66e48c31619e7e0cfa871be9eada
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Wed Dec 2 11:21:40 2020 +0000
-
-	    drm/i915/gem: Spring clean debugfs
-
-  and
-
-	commit db80a1294c231b6ac725085f046bb2931e00c9db
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Mon Jan 18 11:08:54 2021 +0000
-
-	    drm/i915/gem: Remove per-client stats from debugfs/i915_gem_objects
-
-  we had a bunch of debugfs files that relied on rcu protecting everything, but
-  those are gone now. The main one was removed even earlier with
-
-  There doesn't seem to be anything left that's actually protecting
-  stuff now that the ctx->vm itself is invariant. See
-
-	commit ccbc1b97948ab671335e950271e39766729736c3
-	Author: Jason Ekstrand <jason@jlekstrand.net>
-	Date:   Thu Jul 8 10:48:30 2021 -0500
-
-	    drm/i915/gem: Don't allow changing the VM on running contexts (v4)
-
-  Note that we drop the vm refcount before the final release of the gem context
-  refcount, so this is all very dangerous even without rcu. Note that aside from
-  later on creating new engines (a defunct feature) and debug output we're never
-  looked at gem_ctx->vm for anything functional, hence why this is ok.
-  Fingers crossed.
-
-  Preceeding patches removed all vestiges of rcu use from gem_ctx->vm
-  derferencing to make it clear it's really not used.
-
-  The gem_ctx->rcu protection was introduced in
-
-	commit a4e7ccdac38ec8335d9e4e2656c1a041c77feae1
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Fri Oct 4 14:40:09 2019 +0100
-
-	    drm/i915: Move context management under GEM
-
-  The commit message is somewhat entertaining because it fails to
-  mention this fact completely, and compensates that by an in-commit
-  changelog entry that claims that ctx->vm is protected by ctx->mutex.
-  Which was the case _before_ this commit, but no longer after it.
-
-- intel_context holds a full reference. Unfortunately intel_context is also rcu
-  protected and the reference to the ->vm is dropped before the
-  rcu barrier - only the kfree is delayed. So again we need to check
-  whether that leaks anywhere on the intel_context->vm. RCU is only
-  used to protect intel_context sitting on the breadcrumb lists, which
-  don't look at the vm anywhere, so we are fine.
-
-  Nothing else relies on rcu protection of intel_context and hence is
-  fully protected by the kref refcount alone, which protects
-  intel_context->vm in turn.
-
-  The breadcrumbs rcu usage was added in
-
-	commit c744d50363b714783bbc88d986cc16def13710f7
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Thu Nov 26 14:04:06 2020 +0000
-
-	    drm/i915/gt: Split the breadcrumb spinlock between global and contexts
-
-  its parent commit added the intel_context rcu protection:
-
-	commit 14d1eaf08845c534963c83f754afe0cb14cb2512
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Thu Nov 26 14:04:05 2020 +0000
-
-	    drm/i915/gt: Protect context lifetime with RCU
-
-  given some credence to my claim that I've actually caught them all.
-
-- drm_i915_gem_object's shares_resv_from pointer has a full refcount to the
-  dma_resv, which is a sub-refcount that's released after the final
-  i915_vm_put() has been called. Safe.
-
-  Aside: Maybe we should have a struct dma_resv_shared which is just dma_resv +
-  kref as a stand-alone thing. It's a pretty useful pattern which other drivers
-  might want to copy.
-
-  For a bit more context see
-
-	commit 4d8151ae5329cf50781a02fd2298a909589a5bab
-	Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-	Date:   Tue Jun 1 09:46:41 2021 +0200
-
-	    drm/i915: Don't free shared locks while shared
-
-- the fpriv->vm_xa was relying on rcu_read_lock for lookup, but that
-  was updated in a prep patch too to just be a spinlock-protected
-  lookup.
-
-- intel_gt->vm is set at driver load in intel_gt_init() and released
-  in intel_gt_driver_release(). There seems to be some issue that
-  in some error paths this is called twice, but otherwise no rcu to be
-  found anywhere. This was added in the below commit, which
-  unfortunately doesn't explain why this complication exists.
-
-	commit e6ba76480299a0d77c51d846f7467b1673aad25b
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Sat Dec 21 16:03:24 2019 +0000
-
-	    drm/i915: Remove i915->kernel_context
-
-  The proper fix most likely for this is to start using drmm_ at large
-  scale, but that's also huge amounts of work.
-
-- i915_vma->vm is some real pain, because rcu is rcu protected, at
-  least in the vma lookup in the context lookup cache in
-  eb_lookup_vma(). This was added in
-
-	commit 4ff4b44cbb70c269259958cbcc48d7b8a2cb9ec8
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Fri Jun 16 15:05:16 2017 +0100
-
-	    drm/i915: Store a direct lookup from object handle to vma
-
-  This was changed to a radix tree from the hashtable in, but with the
-  locking unchanged, in
-
-	commit d1b48c1e7184d9bc4ae6d7f9fe2eed9efed11ffc
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Wed Aug 16 09:52:08 2017 +0100
-
-	    drm/i915: Replace execbuf vma ht with an idr
-
-  In
-
-	commit 93159e12353c2a47e5576d642845a91fa00530bf
-	Author: Chris Wilson <chris@chris-wilson.co.uk>
-	Date:   Mon Mar 23 09:28:41 2020 +0000
-
-	    drm/i915/gem: Avoid gem_context->mutex for simple vma lookup
-
-  the locking was changed from dev->struct_mutex to rcu, which added
-  the requirement to rcu protect i915_vma. Somehow this was missed in
-  review (or I'm completely blind).
-
-  Irrespective of all that the vma lookup cache rcu_read_lock grabs a
-  full reference of the vma and the rcu doesn't leak further. So no
-  impact on i915_address_space from that.
-
-  I have not found any other rcu use for i915_vma, but given that it
-  seems broken I also didn't bother to do a careful in-depth audit.
-
-Alltogether there's nothing left in-tree anymore which requires that a
-pointer deref to an i915_address_space is safe undre rcu_read_lock
-only.
-
-rcu protection of i915_address_space was introduced in
-
-commit b32fa811156328aea5a3c2ff05cc096490382456
-Author: Chris Wilson <chris@chris-wilson.co.uk>
-Date:   Thu Jun 20 19:37:05 2019 +0100
-
-    drm/i915/gtt: Defer address space cleanup to an RCU worker
-
-by mixing up a bugfixing (i915_address_space needs to be released from
-a worker) with enabling rcu support. The commit message also seems
-somewhat confused, because it talks about cleanup of WC pages
-requiring sleep, while the code and linked bugzilla are about a
-requirement to take dev->struct_mutex (which yes sleeps but it's a
-much more specific problem). Since final kref_put can be called from
-pretty much anywhere (including hardirq context through the
-scheduler's i915_active cleanup) we need a worker here. Hence that
-part must be kept.
-
-Ideally all these reclaim workers should have some kind of integration
-with our shrinkers, but for some of these it's rather tricky. Anyway,
-that's a preexisting condition in the codeebase that we wont fix in
-this patch here.
-
-We also remove the rcu_barrier in ggtt_cleanup_hw added in
-
-commit 60a4233a4952729089e4df152e730f8f4d0e82ce
-Author: Chris Wilson <chris@chris-wilson.co.uk>
-Date:   Mon Jul 29 14:24:12 2019 +0100
-
-    drm/i915: Flush the i915_vm_release before ggtt shutdown
-
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 1 -
- drivers/gpu/drm/i915/gt/intel_gtt.c  | 6 +++---
- drivers/gpu/drm/i915/gt/intel_gtt.h  | 2 +-
- 3 files changed, 4 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index de3ac58fceec..8d71f67926f1 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -727,7 +727,6 @@ static void ggtt_cleanup_hw(struct i915_ggtt *ggtt)
- 
- 	atomic_set(&ggtt->vm.open, 0);
- 
--	rcu_barrier(); /* flush the RCU'ed__i915_vm_release */
- 	flush_workqueue(ggtt->vm.i915->wq);
- 
- 	mutex_lock(&ggtt->vm.mutex);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index e137dd32b5b8..a0c2b952aa57 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -155,7 +155,7 @@ void i915_vm_resv_release(struct kref *kref)
- static void __i915_vm_release(struct work_struct *work)
- {
- 	struct i915_address_space *vm =
--		container_of(work, struct i915_address_space, rcu.work);
-+		container_of(work, struct i915_address_space, release_work);
- 
- 	vm->cleanup(vm);
- 	i915_address_space_fini(vm);
-@@ -171,7 +171,7 @@ void i915_vm_release(struct kref *kref)
- 	GEM_BUG_ON(i915_is_ggtt(vm));
- 	trace_i915_ppgtt_release(vm);
- 
--	queue_rcu_work(vm->i915->wq, &vm->rcu);
-+	queue_work(vm->i915->wq, &vm->release_work);
- }
- 
- void i915_address_space_init(struct i915_address_space *vm, int subclass)
-@@ -185,7 +185,7 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
- 	if (!kref_read(&vm->resv_ref))
- 		kref_init(&vm->resv_ref);
- 
--	INIT_RCU_WORK(&vm->rcu, __i915_vm_release);
-+	INIT_WORK(&vm->release_work, __i915_vm_release);
- 	atomic_set(&vm->open, 1);
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index bc7153018ebd..5b539bd7645d 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -213,7 +213,7 @@ struct i915_vma_ops {
- 
- struct i915_address_space {
- 	struct kref ref;
--	struct rcu_work rcu;
-+	struct work_struct release_work;
- 
- 	struct drm_mm mm;
- 	struct intel_gt *gt;
 -- 
-2.33.0
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
