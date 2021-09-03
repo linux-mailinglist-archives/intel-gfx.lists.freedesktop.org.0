@@ -2,42 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D595F400275
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 17:39:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D124002AA
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 17:53:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86CEA6E8A9;
-	Fri,  3 Sep 2021 15:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40CE46E8AD;
+	Fri,  3 Sep 2021 15:53:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 685336E8A9
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 15:39:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10096"; a="217591903"
-X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="217591903"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2021 08:39:19 -0700
-X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="543778463"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2021 08:39:18 -0700
-Date: Fri, 3 Sep 2021 18:39:14 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <20210903153914.GA3650436@ideak-desk.fi.intel.com>
-References: <20210319175720.5901-1-ville.syrjala@linux.intel.com>
- <161618092043.8631.320174419404607353@emeril.freedesktop.org>
- <YFi7kQldiwmEcc2Y@intel.com> <87r1e59ap2.fsf@intel.com>
- <YTI5QkVDRtddt8by@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 621A46E8AB;
+ Fri,  3 Sep 2021 15:53:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10096"; a="219155150"
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="219155150"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 08:53:33 -0700
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="500498186"
+Received: from nheffern-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.25.221])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 08:53:32 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Date: Fri,  3 Sep 2021 16:53:17 +0100
+Message-Id: <20210903155317.1854012-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YTI5QkVDRtddt8by@intel.com>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Enable_TPS3/4_on_all_platforms_that_support_them?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gtt: add some flushing for the 64K GTT
+ path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,94 +48,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 03, 2021 at 06:03:30PM +0300, Ville Syrjälä wrote:
-> On Fri, Sep 03, 2021 at 02:10:17PM +0300, Jani Nikula wrote:
-> > On Mon, 22 Mar 2021, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > > On Fri, Mar 19, 2021 at 07:08:40PM -0000, Patchwork wrote:
-> > >> == Series Details ==
-> > >> 
-> > >> Series: drm/i915: Enable TPS3/4 on all platforms that support them
-> > >> URL   : https://patchwork.freedesktop.org/series/88186/
-> > >> State : success
-> > >> 
-> > >> == Summary ==
-> > >> 
-> > >> CI Bug Log - changes from CI_DRM_9877 -> Patchwork_19815
-> > >> ====================================================
-> > >> 
-> > >> Summary
-> > >> -------
-> > >> 
-> > >>   **SUCCESS**
-> > >
-> > > That's a bit odd considering the link training still fails with this.
-> > > Did we convert some erorrs to debugs perhaps, or maybe this never
-> > > got flagged as an error?
-> > >
-> > > <7>[    8.235008] i915 0000:00:02.0: [drm:intel_dp_start_link_train [i915]] Using LINK_RATE_SET value 03
-> > > <7>[    8.236203] i915 0000:00:02.0: [drm:intel_dp_set_signal_levels [i915]] Using vswing level 0, pre-emphasis level 0, at DPRX
-> > > <7>[    8.236341] i915 0000:00:02.0: [drm:intel_dp_program_link_training_pattern [i915]] [ENCODER:307:DDI A/PHY A] Using DP training pattern TPS1
-> > > <7>[    8.237373] i915 0000:00:02.0: [drm:intel_dp_link_train_phy [i915]] clock recovery OK
-> > > <7>[    8.237460] i915 0000:00:02.0: [drm:intel_dp_program_link_training_pattern [i915]] [ENCODER:307:DDI A/PHY A] Using DP training pattern TPS4
-> > > <7>[    8.239054] i915 0000:00:02.0: [drm:intel_dp_dump_link_status.isra.4 [i915]] ln0_1:0x0 ln2_3:0x0 align:0x80 sink:0x0 adj_req0_1:0x0 adj_req2_3:0x0
-> > > <7>[    8.239135] i915 0000:00:02.0: [drm:intel_dp_link_train_phy [i915]] Clock recovery check failed, cannot continue channel equalization
-> > > <7>[    8.239218] i915 0000:00:02.0: [drm:intel_dp_link_train_phy [i915]] [CONNECTOR:308:eDP-1] Link Training failed at link rate = 270000, lane count = 2, at DPRX
-> > >
-> > > So CR lock is lost as soon as we switch to TPS4. I really wonder if the sink
-> > > actually even implements TPS4, and maybe when we write TPS4 to the DPCD reg
-> > > it starts to expect some other pattern? Should be semi-easy to confirm
-> > > I guess...
-> > >
-> > > One thing I was pondering is whether we're detecting TPS4 vs. TPS3 differently
-> > > that eg. Windows. Based on some trawling it looks to me that for some reason
-> > > Windows uses the EDP_DPCD_REV>=0x4 check rather than DPCD_REV>=0x14 on eDP
-> > > panels when checking for TPS4 suppport. Unfortunately following that
-> > > convention here wouldn't help us:
-> > >
-> > > <7>[    6.835706] i915 0000:00:02.0: [drm:intel_dp_init_connector [i915]] eDP DPCD: 04 fb ff
-> > > <7>[    8.234921] [drm:drm_dp_read_dpcd_caps] AUX A/DDI A/PHY A: Base DPCD: 14 0a 82 41 00 00 01 c0 02 00 00 00 0f 09 80
-> > > <7>[    8.234943] [drm:drm_dp_read_dpcd_caps] AUX A/DDI A/PHY A: DPCD: 14 0a 82 c1 00 00 01 c0 02 00 00 00 0f 09 80
-> > 
-> > Should try this in combination with [1]?
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > [1] https://patchwork.freedesktop.org/patch/msgid/20210719235927.283173-1-khaled.almahallawy@intel.com
-> 
-> Couldn't hurt I suppose. Although those bits should default to 0, unless
-> the BIOS/something mucks them up for whatever reason.
+If we need to mark the PDE as operating in 64K GTT mode, we should be
+paranoid and flush the extra writes, like we already do for the PTEs. On
+some platforms the clflush can apparently add the just the right amount
+of magical delay to force the GPU to see the updated entry.
 
-I tried the two patches (I assume the above failure was on shards-iclb2)
-and it still fails. The panel reports that it supports TPS4 while it
-doesn't support TPS3, which is a bit odd. I also tried if LT works with
-TPS3, but that also fails.
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Still checking if this panel works on other hosts.
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index 6e0e52eeb87a..6a5af995f5b1 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -548,6 +548,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 					      I915_GTT_PAGE_SIZE_2M)))) {
+ 			vaddr = px_vaddr(pd);
+ 			vaddr[maybe_64K] |= GEN8_PDE_IPS_64K;
++			clflush_cache_range(vaddr, PAGE_SIZE);
+ 			page_size = I915_GTT_PAGE_SIZE_64K;
+ 
+ 			/*
+@@ -568,6 +569,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 				for (i = 1; i < index; i += 16)
+ 					memset64(vaddr + i, encode, 15);
+ 
++				clflush_cache_range(vaddr, PAGE_SIZE);
+ 			}
+ 		}
+ 
+-- 
+2.26.3
 
-This panel could be simply buggy (wrong FW on it?). I found two other panels in
-CI with TPS4:
-CI_DRM_10549/fi-icl-u2/0/boot.log:<7> i915 0000:00:02.0: [drm:drm_dp_read_dpcd_caps] AUX A/DDI A/PHY A: DPCD: 14 00 c4 c1 00 00 01 c0 02 00 00 00 00 0b 00
-CI_DRM_10549/fi-tgl-y/0/boot.log:<7> i915 0000:00:02.0: [drm:drm_dp_read_dpcd_caps] AUX A/DDI A/PHY A: DPCD: 14 00 c4 c1 00 00 01 c0 02 00 00 00 00 0b 00
-
-On fi-icl-u2 LT passes with TPS4, on fi-tgl-y only TPS3 is used (no HBR3
-support there).
-
-We could either quirk this panel, or fall back to TPS2/3 if LT failed
-with TPS4.
-
-The EDP_DPCD_REV>=0x4 check as a dependency for TPS4, seems to match the
-eDP spec:
-
-"""
-Use of DPCD Rev. 1.4 extends the new DP v1.3 capabilities to eDP v1.4a
-(and higher) devices, including features as HBR3 and TPS4.
-Identification of an eDP v1.4a (and higher) Sink device is indicated by
-a value of 04h (and higher) in the EDP_DPCD_REV register (DPCD Address
-00700h).
-"""
-
-> -- 
-> Ville Syrjälä
-> Intel
