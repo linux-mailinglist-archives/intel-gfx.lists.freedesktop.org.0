@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ABF93FFF96
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 14:11:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 550CD3FFFE3
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 14:38:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFF866E880;
-	Fri,  3 Sep 2021 12:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 351A36E88A;
+	Fri,  3 Sep 2021 12:38:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E2E476E87E;
- Fri,  3 Sep 2021 12:11:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DBAB9A47EB;
- Fri,  3 Sep 2021 12:11:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8361889484609986640=="
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
+ [IPv6:2a00:1450:4864:20::229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C28016E88A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 12:37:59 +0000 (UTC)
+Received: by mail-lj1-x229.google.com with SMTP id g14so9395319ljk.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Sep 2021 05:37:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=technolu-st.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=pOhj5B9dNlEjnfrMpdMgK/cfU2vZwWCPCO72r+6ESYU=;
+ b=i4ztKOHGhtHJhBJ9LvRh/ailczZUVpge05gQaH57cXibICfmYkHh0iZKvv7Uoa7CYK
+ qj7xeLjHBPlOXPpFyeTBfJ6+5AY8v4+01sJFMtWNP4acc/Qll6mT86B2x8cMDr1KCbmL
+ Efxma9jFSB0giggSn1dlIrpUUyYpnf6vCxirM3Cx7extzlRMI8y1FbcM2xmIaxKtIZPk
+ RQ0Rdyl49391GDy/g9uEx2SuMM16P/JxqIaOALs1NRMjL0CaOXFzQuzt8T/47999DPEF
+ cymv43LmHUIbI3RfzbMXwxYjT3xhPxBHdp1kig5lAn6C5OEfQI1u5MH+6F67uElEv4N/
+ KINA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=pOhj5B9dNlEjnfrMpdMgK/cfU2vZwWCPCO72r+6ESYU=;
+ b=RpZtCJUGSAjGgBNspVmqNXBCM29DOpKeQETwIqdzDCYfTY7FyyhOE9neUagg45ZGAJ
+ Ht8DyNOkT+Hs9Fzzetqeh3W+u7+qrlzGRdptKpBOvmq30Zb0ShHOmYDmL/Myiqi31475
+ PASPnADmh8ct832NQMgRXOa05O0aVVO4Atas95Sdl706eF/OetCtdiFrPbkZQzNErJIw
+ 45ViPcw+8jymULoQoq5/dO7jdMA9AkZk2lDqdGMkzxeZ82UjHTo+ITtvmU4PiYYQTxZq
+ 3JPbH9g5UUNdBoq9Ed8mX6T37sX24If/pA4jeawKEpvQ/xb0BmNwKI2RyyrSwX6D7mYq
+ Xrrg==
+X-Gm-Message-State: AOAM532jkN6kZtmIoMLnRse3+sHx6vp5xmYkL/bZO1TbKghlKy49ypWq
+ iGpHuESgVx838QGDVLeqAipJj5Ulv4YkqU6tU+mZJ1WIfjHop7FuaT8=
+X-Google-Smtp-Source: ABdhPJyZK9yqyiQMBl7vB5mGwWk0OmeWL9Hjf7jscSo8X6pUUOmDvlRfLGE15/SH3Qe4nl+0IawrT+Z3wkm9KjojDHI=
+X-Received: by 2002:a2e:730b:: with SMTP id o11mr2698911ljc.176.1630672677843; 
+ Fri, 03 Sep 2021 05:37:57 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 03 Sep 2021 12:11:28 -0000
-Message-ID: <163067108887.21416.11434008479829177246@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210903112405.1794793-1-matthew.auld@intel.com>
-In-Reply-To: <20210903112405.1794793-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/request=3A_fix_early_tracepoints?=
+From: wi nk <wink@technolu.st>
+Date: Fri, 3 Sep 2021 14:37:47 +0200
+Message-ID: <CAHUdJJUuzSNQv4R4grM7ezwV3rn844CNM=-keYsKz9_0wYXCvQ@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Subject: [Intel-gfx] i915 with Dell XPS 9310
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,178 +59,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8361889484609986640==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello all,
 
-== Series Details ==
+   I've been following recent kernels on this dell laptop for almost a
+year now to work through some issues with the ath11k module.  I've
+been experiencing random occasional video artifacts for most of that
+time.  These artifacts would cause the i915 module to report some kind
+of underrun (sorry I don't have those logs any longer).  At some point
+around 5.10 the artifacts turned into full panics that needed a reboot
+instead of some waiting and jiggling.  Kalle reported here:
+http://lists.infradead.org/pipermail/ath11k/2021-August/001451.html
+that there was a commit he could revert to fix it.  I was unable to
+reproduce that fix by reverting it.
 
-Series: drm/i915/request: fix early tracepoints
-URL   : https://patchwork.freedesktop.org/series/94317/
-State : success
+I'm now running 5.14.0 and it seems to have changed behavior again.
+Instead of the machine hard locking (ie: no caps lock even), it seems
+to recover after a bit and then I can see this in dmesg:
 
-== Summary ==
+[226387.152234] DMAR: DRHD: handling fault status reg 3
+[226387.152244] DMAR: [DMA Write NO_PASID] Request device
+[0x00:0x02.0] fault addr 0xf0afc000 [fault reason 0x07] Next page
+table ptr is invalid
+[226402.058857] i915 0000:00:02.0: [drm] GPU HANG: ecode 12:0:00000000
+[226402.058876] i915 0000:00:02.0: [drm] Resetting rcs0 for stopped
+heartbeat on rcs0
+[276353.590922] clocksource: timekeeping watchdog on CPU4: hpet
+retried 2 times before success
 
-CI Bug Log - changes from CI_DRM_10549 -> Patchwork_20951
-====================================================
+<snip, later>
 
-Summary
--------
+[345312.963065] DMAR: DRHD: handling fault status reg 3
+[345312.963077] DMAR: [DMA Write NO_PASID] Request device
+[0x00:0x02.0] fault addr 0xf21ec000 [fault reason 0x07] Next page
+table ptr is invalid
+[345323.814583] Asynchronous wait on fence
+0000:00:02.0:gnome-shell[2707]:1a15a6 timed out
+(hint:intel_atomic_commit_ready [i915])
+[345327.672581] i915 0000:00:02.0: [drm] GPU HANG: ecode
+12:1:85dffffb, in signal-desktop [26051]
+[345327.672606] i915 0000:00:02.0: [drm] Resetting rcs0 for stopped
+heartbeat on rcs0
+[345327.672656] i915 0000:00:02.0: [drm] signal-desktop[26051] context
+reset due to GPU hang
 
-  **SUCCESS**
+I'm not sure what the DMAR messages are about, I included them in case
+they're relevant.  How can I debug this further?  I'll gladly enable
+whatever is needed :)
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20951 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-rkl-guc:         [DMESG-WARN][3] ([i915#3925]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][5] ([i915#3921]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
-
-
-Participating hosts (46 -> 38)
-------------------------------
-
-  Missing    (8): fi-kbl-soraka bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10549 -> Patchwork_20951
-
-  CI-20190529: 20190529
-  CI_DRM_10549: cd8e346a0b56ce66f94a9908c7a068bbee8f1829 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20951: c82cbcd35cf9beef272fa314c267c0ced70adbc5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c82cbcd35cf9 drm/i915/request: fix early tracepoints
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/index.html
-
---===============8361889484609986640==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/request: fix early tracepoints</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94317/">https://patchwork.freedesktop.org/series/94317/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10549 -&gt; Patchwork_20951</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20951 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20951/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 38)</h2>
-<p>Missing    (8): fi-kbl-soraka bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10549 -&gt; Patchwork_20951</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10549: cd8e346a0b56ce66f94a9908c7a068bbee8f1829 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20951: c82cbcd35cf9beef272fa314c267c0ced70adbc5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c82cbcd35cf9 drm/i915/request: fix early tracepoints</p>
-
-</body>
-</html>
-
---===============8361889484609986640==--
+Thanks!
