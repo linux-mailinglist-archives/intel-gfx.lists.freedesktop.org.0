@@ -2,33 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94DBC4001CD
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 17:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE72F4001E0
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 17:18:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E424D6E8A2;
-	Fri,  3 Sep 2021 15:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F086E8A2;
+	Fri,  3 Sep 2021 15:18:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A30276E8A2;
- Fri,  3 Sep 2021 15:13:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9C25FA8836;
- Fri,  3 Sep 2021 15:13:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4909526624707040856=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 673F86E8A2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 15:18:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10096"; a="206670005"
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="206670005"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 08:18:00 -0700
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="534177948"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.205])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 08:17:57 -0700
+Date: Fri, 3 Sep 2021 20:50:13 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: "Kattamanchi, JaswanthX" <jaswanthx.kattamanchi@intel.com>
+Cc: "Siddiqui, Ayaz A" <ayaz.siddiqui@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>,
+ "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>,
+ "Meena, Mahesh" <mahesh.meena@intel.com>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "Illipilli, TejasreeX" <tejasreex.illipilli@intel.com>,
+ "Naramasetti, LaxminarayanaX" <laxminarayanax.naramasetti@intel.com>
+Message-ID: <20210903152011.GA32355@intel.com>
+References: <20210903092153.535736-1-ayaz.siddiqui@intel.com>
+ <BL3PR11MB57467282C70B5CC39AB75DA2FCCF9@BL3PR11MB5746.namprd11.prod.outlook.com>
+ <DM6PR11MB3355DB44CD246075282CCBCAEECF9@DM6PR11MB3355.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 03 Sep 2021 15:13:12 -0000
-Message-ID: <163068199261.21414.17740759708845788515@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210903142320.216705-1-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20210903142320.216705-1-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Flush_buffer_pools_on_driver_remove_=28rev3=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB3355DB44CD246075282CCBCAEECF9@DM6PR11MB3355.namprd11.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH V5 0/5] drm/i915/gt: Initialize unused MOCS
+ entries to L3_WB
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,190 +56,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4909526624707040856==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks Ayaz for the patches and all the review efforts. Merged the patches.
 
-== Series Details ==
+-Ram
 
-Series: drm/i915: Flush buffer pools on driver remove (rev3)
-URL   : https://patchwork.freedesktop.org/series/91177/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10549 -> Patchwork_20952
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20952 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@runner@aborted:
-    - fi-bxt-dsi:         NOTRUN -> [FAIL][3] ([i915#2426] / [i915#3363])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-bxt-dsi/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-rkl-guc:         [DMESG-WARN][4] ([i915#3925]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][6] ([i915#3921]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
-
-
-Participating hosts (46 -> 38)
-------------------------------
-
-  Missing    (8): fi-kbl-soraka bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10549 -> Patchwork_20952
-
-  CI-20190529: 20190529
-  CI_DRM_10549: cd8e346a0b56ce66f94a9908c7a068bbee8f1829 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20952: 45ef64e45e0c12ffb4cd6e201ea8e357b498e31d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-45ef64e45e0c drm/i915: Flush buffer pools on driver remove
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/index.html
-
---===============4909526624707040856==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Flush buffer pools on driver remove (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91177/">https://patchwork.freedesktop.org/series/91177/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10549 -&gt; Patchwork_20952</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20952 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20952/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 38)</h2>
-<p>Missing    (8): fi-kbl-soraka bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10549 -&gt; Patchwork_20952</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10549: cd8e346a0b56ce66f94a9908c7a068bbee8f1829 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20952: 45ef64e45e0c12ffb4cd6e201ea8e357b498e31d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>45ef64e45e0c drm/i915: Flush buffer pools on driver remove</p>
-
-</body>
-</html>
-
---===============4909526624707040856==--
+On 2021-09-03 at 19:11:24 +0530, Kattamanchi, JaswanthX wrote:
+> Hi Ayaz,
+> 
+> Re-reported
+> 
+> Patch : https://patchwork.freedesktop.org/series/94315/
+> 
+> Regards,
+> Jaswanth Kattamanchi
+> 
+> -----Original Message-----
+> From: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
+> Sent: Friday, September 3, 2021 6:29 PM
+> To: intel-gfx@lists.freedesktop.org; Vudum, Lakshminarayana <lakshminarayana.vudum@intel.com>; Illipilli, TejasreeX <tejasreex.illipilli@intel.com>; Kattamanchi, JaswanthX <jaswanthx.kattamanchi@intel.com>
+> Cc: Szwichtenberg, Radoslaw <radoslaw.szwichtenberg@intel.com>; Meena, Mahesh <mahesh.meena@intel.com>; C, Ramalingam <ramalingam.c@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>
+> Subject: RE: [PATCH V5 0/5] drm/i915/gt: Initialize unused MOCS entries to L3_WB
+> 
+> Hi,
+>  I see a failure reported on IGT-CI for this series for SKL,
+> 
+>  igt@gem_ctx_isolation@preservation-s3@rcs0:
+> shard-skl: PASS -> DMESG-WARN
+> 
+> Changes set in this series are applicable for gen12 onward platforms except TGL/RKL.
+> 
+> So above failure look like a false alarm to me.
+> 
+> Regards
+> -Ayaz
+> 
+> > -----Original Message-----
+> > From: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
+> > Sent: Friday, September 3, 2021 2:52 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
+> > Subject: [PATCH V5 0/5] drm/i915/gt: Initialize unused MOCS entries to
+> > L3_WB
+> >
+> > Gen >= 12 onwards MOCS table doesn't have a setting for PTE so
+> > I915_MOCS_PTE is not a valid index and it will have different MOCS
+> > values are based on the platform.
+> >
+> > To detect these kinds of misprogramming, all the unspecified and
+> > reserved MOCS indexes are set to WB_L3. TGL/RKL unspecified MOCS
+> > indexes are pointing to L3 UC are kept intact to avoid API break.
+> >
+> > This series also contains patches to program BLIT_CCTL and CMD_CCTL
+> > registers to UC.
+> > Since we are quite late to update MOCS table for TGL so added a new
+> > MOCS table for ADL family.
+> >
+> > V2:
+> >  1. Added CMD_CCTL to GUC regset list so that it can be restored
+> >     after engine reset.
+> >  2. Checkpatch warning removal.
+> >
+> > V3:
+> >  1. Changed implementation to have a framework only.
+> >  2. Added register type for proper application.
+> >  3. moved CMD_CCTL programming to a separate patch.
+> >  4. Added L3CC initialization during gt reset so that MOCS indexes are
+> >     set before GuC initialization.
+> >  5. Removed Renderer check for L3CC verification in selftest.
+> >
+> > V4:
+> >  1. Moved register programming in Workaorund section as fake workaround.
+> >  2. Removed seperate ADL mocs table, new logic is to set unused index as
+> >     L3_WB for gen12 platform except TGL/RKL.
+> >
+> > V5:
+> >  1. Final version reviewed by Matt Roper  2. Removed "drm/i915/selftest:
+> > Remove Renderer class check for l3cc table read" form series,
+> >     this patch will be taken care of in different series.
+> >
+> > Ayaz A Siddiqui (4):
+> >   drm/i915/gt: Add support of mocs propagation
+> >   drm/i915/gt: Set CMD_CCTL to UC for Gen12 Onward
+> >   drm/i915/gt: Set BLIT_CCTL reg to un-cached
+> >   drm/i915/gt: Initialize unused MOCS entries with device specific
+> >     values
+> >
+> > Sreedhar Telukuntla (1):
+> >   drm/i915/gt: Initialize L3CC table in mocs init
+> >
+> >  drivers/gpu/drm/i915/gt/intel_gt.c          |  2 +
+> >  drivers/gpu/drm/i915/gt/intel_gt_types.h    |  4 ++
+> >  drivers/gpu/drm/i915/gt/intel_mocs.c        | 72 ++++++++++++++-------
+> >  drivers/gpu/drm/i915/gt/intel_mocs.h        |  1 +
+> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 70
+> > +++++++++++++++++++-
+> >  drivers/gpu/drm/i915/i915_reg.h             | 26 ++++++++
+> >  6 files changed, 151 insertions(+), 24 deletions(-)
+> >
+> > --
+> > 2.26.2
+> 
