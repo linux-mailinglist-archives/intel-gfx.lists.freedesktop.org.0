@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 550CD3FFFE3
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 14:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 835B73FFFF6
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 14:48:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351A36E88A;
-	Fri,  3 Sep 2021 12:38:01 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
- [IPv6:2a00:1450:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C28016E88A
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 12:37:59 +0000 (UTC)
-Received: by mail-lj1-x229.google.com with SMTP id g14so9395319ljk.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Sep 2021 05:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=technolu-st.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=pOhj5B9dNlEjnfrMpdMgK/cfU2vZwWCPCO72r+6ESYU=;
- b=i4ztKOHGhtHJhBJ9LvRh/ailczZUVpge05gQaH57cXibICfmYkHh0iZKvv7Uoa7CYK
- qj7xeLjHBPlOXPpFyeTBfJ6+5AY8v4+01sJFMtWNP4acc/Qll6mT86B2x8cMDr1KCbmL
- Efxma9jFSB0giggSn1dlIrpUUyYpnf6vCxirM3Cx7extzlRMI8y1FbcM2xmIaxKtIZPk
- RQ0Rdyl49391GDy/g9uEx2SuMM16P/JxqIaOALs1NRMjL0CaOXFzQuzt8T/47999DPEF
- cymv43LmHUIbI3RfzbMXwxYjT3xhPxBHdp1kig5lAn6C5OEfQI1u5MH+6F67uElEv4N/
- KINA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=pOhj5B9dNlEjnfrMpdMgK/cfU2vZwWCPCO72r+6ESYU=;
- b=RpZtCJUGSAjGgBNspVmqNXBCM29DOpKeQETwIqdzDCYfTY7FyyhOE9neUagg45ZGAJ
- Ht8DyNOkT+Hs9Fzzetqeh3W+u7+qrlzGRdptKpBOvmq30Zb0ShHOmYDmL/Myiqi31475
- PASPnADmh8ct832NQMgRXOa05O0aVVO4Atas95Sdl706eF/OetCtdiFrPbkZQzNErJIw
- 45ViPcw+8jymULoQoq5/dO7jdMA9AkZk2lDqdGMkzxeZ82UjHTo+ITtvmU4PiYYQTxZq
- 3JPbH9g5UUNdBoq9Ed8mX6T37sX24If/pA4jeawKEpvQ/xb0BmNwKI2RyyrSwX6D7mYq
- Xrrg==
-X-Gm-Message-State: AOAM532jkN6kZtmIoMLnRse3+sHx6vp5xmYkL/bZO1TbKghlKy49ypWq
- iGpHuESgVx838QGDVLeqAipJj5Ulv4YkqU6tU+mZJ1WIfjHop7FuaT8=
-X-Google-Smtp-Source: ABdhPJyZK9yqyiQMBl7vB5mGwWk0OmeWL9Hjf7jscSo8X6pUUOmDvlRfLGE15/SH3Qe4nl+0IawrT+Z3wkm9KjojDHI=
-X-Received: by 2002:a2e:730b:: with SMTP id o11mr2698911ljc.176.1630672677843; 
- Fri, 03 Sep 2021 05:37:57 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D00C6E88B;
+	Fri,  3 Sep 2021 12:48:00 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A59426E88A;
+ Fri,  3 Sep 2021 12:47:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="206532541"
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="206532541"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 05:47:58 -0700
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="500348132"
+Received: from ojcasey-mobl.ger.corp.intel.com (HELO [10.213.195.251])
+ ([10.213.195.251])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 05:47:54 -0700
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx <Intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Eero Tamminen <eero.t.tamminen@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20210729133420.770672-1-tvrtko.ursulin@linux.intel.com>
+ <20210729133420.770672-2-tvrtko.ursulin@linux.intel.com>
+ <CAKMK7uE412nf5RisGBR2GrNsvgPH+omHv4K+m5McJv1t55DQMQ@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <c8aecd1e-f6d6-cec2-3352-e01c9427248b@linux.intel.com>
+Date: Fri, 3 Sep 2021 13:47:52 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: wi nk <wink@technolu.st>
-Date: Fri, 3 Sep 2021 14:37:47 +0200
-Message-ID: <CAHUdJJUuzSNQv4R4grM7ezwV3rn844CNM=-keYsKz9_0wYXCvQ@mail.gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Subject: [Intel-gfx] i915 with Dell XPS 9310
+In-Reply-To: <CAKMK7uE412nf5RisGBR2GrNsvgPH+omHv4K+m5McJv1t55DQMQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Use Transparent Hugepages
+ when IOMMU is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +62,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello all,
 
-   I've been following recent kernels on this dell laptop for almost a
-year now to work through some issues with the ath11k module.  I've
-been experiencing random occasional video artifacts for most of that
-time.  These artifacts would cause the i915 module to report some kind
-of underrun (sorry I don't have those logs any longer).  At some point
-around 5.10 the artifacts turned into full panics that needed a reboot
-instead of some waiting and jiggling.  Kalle reported here:
-http://lists.infradead.org/pipermail/ath11k/2021-August/001451.html
-that there was a commit he could revert to fix it.  I was unable to
-reproduce that fix by reverting it.
+On 29/07/2021 15:06, Daniel Vetter wrote:
+> On Thu, Jul 29, 2021 at 3:34 PM Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>>
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Usage of Transparent Hugepages was disabled in 9987da4b5dcf
+>> ("drm/i915: Disable THP until we have a GPU read BW W/A"), but since it
+>> appears majority of performance regressions reported with an enabled IOMMU
+>> can be almost eliminated by turning them on, lets just do that.
+>>
+>> To err on the side of safety we keep the current default in cases where
+>> IOMMU is not active, and only when it is default to the "huge=within_size"
+>> mode. Although there probably would be wins to enable them throughout,
+>> more extensive testing across benchmarks and platforms would need to be
+>> done.
+>>
+>> With the patch and IOMMU enabled my local testing on a small Skylake part
+>> shows OglVSTangent regression being reduced from ~14% (IOMMU on versus
+>> IOMMU off) to ~2% (same comparison but with THP on).
+>>
+>> v2:
+>>   * Add Kconfig dependency to transparent hugepages and some help text.
+>>   * Move to helper for easier handling of kernel build options.
+>>
+>> v3:
+>>   * Drop Kconfig. (Daniel)
+>>
+>> References: b901bb89324a ("drm/i915/gemfs: enable THP")
+>> References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
+>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/430
+>> Co-developed-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Eero Tamminen <eero.t.tamminen@intel.com>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v1
+> 
+> On both patches: Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-I'm now running 5.14.0 and it seems to have changed behavior again.
-Instead of the machine hard locking (ie: no caps lock even), it seems
-to recover after a bit and then I can see this in dmesg:
+Eero's testing results at 
+https://gitlab.freedesktop.org/drm/intel/-/issues/430 are looking good - 
+seem to show this to be a net win for at least Gen9 and Gen12 platforms.
 
-[226387.152234] DMAR: DRHD: handling fault status reg 3
-[226387.152244] DMAR: [DMA Write NO_PASID] Request device
-[0x00:0x02.0] fault addr 0xf0afc000 [fault reason 0x07] Next page
-table ptr is invalid
-[226402.058857] i915 0000:00:02.0: [drm] GPU HANG: ecode 12:0:00000000
-[226402.058876] i915 0000:00:02.0: [drm] Resetting rcs0 for stopped
-heartbeat on rcs0
-[276353.590922] clocksource: timekeeping watchdog on CPU4: hpet
-retried 2 times before success
+Is the ack enough to merge in this case or I should look for an r-b as well?
 
-<snip, later>
+Regards,
 
-[345312.963065] DMAR: DRHD: handling fault status reg 3
-[345312.963077] DMAR: [DMA Write NO_PASID] Request device
-[0x00:0x02.0] fault addr 0xf21ec000 [fault reason 0x07] Next page
-table ptr is invalid
-[345323.814583] Asynchronous wait on fence
-0000:00:02.0:gnome-shell[2707]:1a15a6 timed out
-(hint:intel_atomic_commit_ready [i915])
-[345327.672581] i915 0000:00:02.0: [drm] GPU HANG: ecode
-12:1:85dffffb, in signal-desktop [26051]
-[345327.672606] i915 0000:00:02.0: [drm] Resetting rcs0 for stopped
-heartbeat on rcs0
-[345327.672656] i915 0000:00:02.0: [drm] signal-desktop[26051] context
-reset due to GPU hang
+Tvrtko
 
-I'm not sure what the DMAR messages are about, I included them in case
-they're relevant.  How can I debug this further?  I'll gladly enable
-whatever is needed :)
-
-Thanks!
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gemfs.c | 22 +++++++++++++++++++---
+>>   1 file changed, 19 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+>> index 5e6e8c91ab38..dbdbdc344d87 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+>> @@ -6,7 +6,6 @@
+>>
+>>   #include <linux/fs.h>
+>>   #include <linux/mount.h>
+>> -#include <linux/pagemap.h>
+>>
+>>   #include "i915_drv.h"
+>>   #include "i915_gemfs.h"
+>> @@ -15,6 +14,7 @@ int i915_gemfs_init(struct drm_i915_private *i915)
+>>   {
+>>          struct file_system_type *type;
+>>          struct vfsmount *gemfs;
+>> +       char *opts;
+>>
+>>          type = get_fs_type("tmpfs");
+>>          if (!type)
+>> @@ -26,10 +26,26 @@ int i915_gemfs_init(struct drm_i915_private *i915)
+>>           *
+>>           * One example, although it is probably better with a per-file
+>>           * control, is selecting huge page allocations ("huge=within_size").
+>> -        * Currently unused due to bandwidth issues (slow reads) on Broadwell+.
+>> +        * However, we only do so to offset the overhead of iommu lookups
+>> +        * due to bandwidth issues (slow reads) on Broadwell+.
+>>           */
+>>
+>> -       gemfs = kern_mount(type);
+>> +       opts = NULL;
+>> +       if (intel_vtd_active()) {
+>> +               if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
+>> +                       static char huge_opt[] = "huge=within_size"; /* r/w */
+>> +
+>> +                       opts = huge_opt;
+>> +                       drm_info(&i915->drm,
+>> +                                "Transparent Hugepage mode '%s'\n",
+>> +                                opts);
+>> +               } else {
+>> +                       drm_notice(&i915->drm,
+>> +                                  "Transparent Hugepage support is recommended for optimal performance when IOMMU is enabled!\n");
+>> +               }
+>> +       }
+>> +
+>> +       gemfs = vfs_kern_mount(type, SB_KERNMOUNT, type->name, opts);
+>>          if (IS_ERR(gemfs))
+>>                  return PTR_ERR(gemfs);
+>>
+>> --
+>> 2.30.2
+>>
+> 
+> 
