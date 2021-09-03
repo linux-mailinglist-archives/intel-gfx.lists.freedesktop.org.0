@@ -1,146 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68BA8400016
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 14:58:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A969400013
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 14:58:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2296E88D;
-	Fri,  3 Sep 2021 12:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4158F6E88B;
+	Fri,  3 Sep 2021 12:58:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 987926E88D
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 12:58:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="217554848"
-X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="217554848"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2021 05:58:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="578672976"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga004.jf.intel.com with ESMTP; 03 Sep 2021 05:58:40 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 3 Sep 2021 05:58:40 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 3 Sep 2021 05:58:39 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Fri, 3 Sep 2021 05:58:39 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Fri, 3 Sep 2021 05:58:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bIMkY6+dSk/uIulZJbkfp0PKuoPxBtnTOJqbjCJe3VcPxONoSUL5f/8dcRbJ5t1gtyBjYtpdgK1Ndsc0zc7Mdc4xgeh+fYJt3viq0AhUnuV5pnUj2rRbeLS94d8XDdWPfQxT7y+xdfzNEU1EO2A2nhSYjRXsMV5lxV1bc/bWARIgU5LDeePLOe2KmtlbM61P6zdTkm7TWLr5awoqaWstlSWOD4v1xVIEIU5FzhagsxpR0LPUQXc5vshezDrLyKKp1x0ODn6fCb7Tq8L6L9GprM+oVpjfVAx0hjugBIfW1ITOzl/W3IgljUSYV777SRA2WO6fvje8TD581oUApDawhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=xuwCSnc6w+MOyr59iS2mS9sOAo5fAZDaYF+Eai2CJy0=;
- b=WyDenmf+ypaT0Agw3DWRDowQWtKZUYpNiW6d6VAisS3fCRDkdB7fHt/bAK31ucxnbMiZBGBPGc2Do7HcRkGniBafhlEOPh7jFQ/ve919FSkj+dSw+9yNIVU3X0QHgAcXiPD7KFJCQNWzJbHGcpzcQMEXkmxSQlE8yRoQ8M4aOhoKk4SFRyqdOVmIUWx9mtFP136JEAq8XoswLtL2BcNPkqerJOB56jlLLe+jcNZhm8wM2c83bz4jKub/GQ7tcONnqaZ+PW33gRL4EstHyp/XBQwu41rTI2+n1THkiMzMq75Eqyk4ruVXB2JVMr/LDQpICwTK3wyyDmd1dCzcsSVlAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xuwCSnc6w+MOyr59iS2mS9sOAo5fAZDaYF+Eai2CJy0=;
- b=w07cN6tMnZjhCFV+2GGzDGaGKT4/bIQCt8oFDE5pgcsrvRfhqbX8FtrTds68g9nIRpmx8nSRuOf5YJ05oLU32codcc9+li88GKTrlFKhXbZoP2MdwMS9LyM0ih1glO5Qq9Euj0ljh5Cdj4g+aQYP035T5dC77am0MgQ9No+L8Ew=
-Received: from BL3PR11MB5746.namprd11.prod.outlook.com (2603:10b6:208:353::21)
- by MN2PR11MB3901.namprd11.prod.outlook.com (2603:10b6:208:138::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.20; Fri, 3 Sep
- 2021 12:58:37 +0000
-Received: from BL3PR11MB5746.namprd11.prod.outlook.com
- ([fe80::955e:e7a7:f183:f558]) by BL3PR11MB5746.namprd11.prod.outlook.com
- ([fe80::955e:e7a7:f183:f558%7]) with mapi id 15.20.4478.022; Fri, 3 Sep 2021
- 12:58:37 +0000
-From: "Siddiqui, Ayaz A" <ayaz.siddiqui@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>, "Illipilli,
- TejasreeX" <tejasreex.illipilli@intel.com>, "Kattamanchi, JaswanthX"
- <jaswanthx.kattamanchi@intel.com>
-CC: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>, "Meena,
- Mahesh" <mahesh.meena@intel.com>, "C, Ramalingam" <ramalingam.c@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH V5 0/5] drm/i915/gt: Initialize unused MOCS entries to
- L3_WB
-Thread-Index: AQHXoKWYLsHzymt/NUCsA9R4x4h8E6uSQ5Tw
-Date: Fri, 3 Sep 2021 12:58:36 +0000
-Message-ID: <BL3PR11MB57467282C70B5CC39AB75DA2FCCF9@BL3PR11MB5746.namprd11.prod.outlook.com>
-References: <20210903092153.535736-1-ayaz.siddiqui@intel.com>
-In-Reply-To: <20210903092153.535736-1-ayaz.siddiqui@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: eed45ec1-62fc-4d9f-6220-08d96eda8b76
-x-ms-traffictypediagnostic: MN2PR11MB3901:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR11MB3901298472055940EAE767FAFCCF9@MN2PR11MB3901.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EFgCJbn3p1w3wi06YuVdHv7VTkzFb/gtYFZLtd9eGQREe0osBZaDOMKUl2mwK33ZLdpJGKPoY798qDoVtb+qCdb52B0J+6Ow27vfR9gJ5gS50zCbFh9qlS3vs8Vs287X88J6wKGJWbpRyv98x03F5oxpIAceB2vdknCGE/ZZfs758W1ORMHoe/3fR+xOeKHr2TIcLm01s7hkK/blC7tf8V7MdUF3hiz1ylLa5ZtZga/etHbCWpB2ap9r8DMlOJvY60uKcvGhiTRgoWB9RBZN2euhLqX0PqWy+eS2BK3/xzDp13TD2zYE00aO6SfBKYrBch+bQNNMHjh1LCYQpIWw1QO4oKV5Ymjrqbfh6fodcBDy+vYmT7DqQ7l4YF1VFYs2taGTuA0YGgGY4B1FvtktOU6Jf+b+Y9FyoauEJtA6AHn2nw4NdgRgdLgFk+yyr5s06yQSmvI2TlPZKn4RfuoXBfoEq1w4SN5xFbBU6o6zyh2svjZi978BQfuQTAt+p/OWqNuJLIweBAch8YuFc63dboq48LumR2cZb5NrYyBpIKqz4dj1gnCQoVlupAihsayvLt09c1J+RCzWirbmZHzb+pFmY2RQmxNFuFsSgAEUKrnbg+OH6ADf2tj8PQwBkkgf0um5m3H8wIYNWMIx8JLC2bVym5P5JaI2YCb3mWQLoOmb1Nwb0t9jDOGkRVt5qx2H+1c6MGmNQXes9MG5SxZ2dw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB5746.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(396003)(136003)(366004)(39860400002)(376002)(110136005)(54906003)(55016002)(52536014)(86362001)(53546011)(122000001)(71200400001)(6506007)(8676002)(38100700002)(316002)(7696005)(2906002)(38070700005)(6636002)(66556008)(8936002)(5660300002)(83380400001)(66446008)(64756008)(186003)(66946007)(478600001)(66476007)(33656002)(9686003)(76116006)(26005)(107886003)(4326008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4hzhyQKyR8t6rhjyWOjZqb1AAtomUAvx0NvI7uMQm8X4CemuCPXAMYM4Sk3q?=
- =?us-ascii?Q?KyPmD29o75w8V6cbRgnRGo3J0VKOQqYR5vj4yQYj04Av711pvzAob4Ais9Ia?=
- =?us-ascii?Q?fJazTt2ZaZqDQxjDW0e0wbhnXLqeI4fSxRbbOA/3tUz7VP3k9UXe6WrPshnt?=
- =?us-ascii?Q?ehWu2n+40ZN1FkNjvGFX340DgM/Ywa96hqWZDuTH/bE5Ebe/Kzevd4lnt6Sy?=
- =?us-ascii?Q?rf60lP/9Qo0gCDtpySSKEpqSVvVW7lDGf7ciEGrKPEq+q621aNokkOW+Ih1Q?=
- =?us-ascii?Q?DXznE/qjCQmJbovxEx/IVimcboLLkrifzrnG+MRdypPZl/1sYYwxalbHHbSK?=
- =?us-ascii?Q?STMgolDbsSSm/bnV2fb9lwyfXz8/xLy4ftp/fE6SfipBA0ild1BCiwGHdpkX?=
- =?us-ascii?Q?rjX3AkJsx90sqopsmAqu68gXxH/J9wGJCwf4tZo2zL+MFQ5t50MCf2BK7Kxy?=
- =?us-ascii?Q?w3LePGsVzpHSX+wf0yvDS4LJ1D72pH02o2SSbjSVTdu338colKbMJTH8Or+k?=
- =?us-ascii?Q?ybBH2lkzzJQZpqVHTgRMM1HU2d3fhJlOLWkHvaYma50YDF7RM8JVT6WW9wwB?=
- =?us-ascii?Q?c6DsZHAaJrNbb+t/EQ48/sgl6huahQ/Nsodt6EB0KdlzPEYfUGxw50NNIYFu?=
- =?us-ascii?Q?UP5lMZ3CngkTrT7hNkAVy6GUyy/hcGDX45BXMoXqjcNom3iskCECai9mP70Z?=
- =?us-ascii?Q?RXDQwUp/h9I74MVA8uO98MsB4li3ybeHdAJUsKAi0gwbnzkzWMw4FphSLtmq?=
- =?us-ascii?Q?b9Gj/SYSolYOOLJICB185W+hfYilY0FBNUPH3ct7C4WdSG0cSW1ricwiobqT?=
- =?us-ascii?Q?XhI98XFFLuQoh/N+MGeQkCvoqpI3+1ZAMkv/pcPdJpWv+E3Nw0EGqstins27?=
- =?us-ascii?Q?CY3PqpsZ6NAnyC+Q37iwyXRJAiCR2PLpzxAewAAA4+LMcCXysZXteVRAeDWb?=
- =?us-ascii?Q?FEkVOUqJqnXc7xAnnCzhp+onFcyvQ1sKH5ekxu38Jt6cxB4oIEBNcq2ZrTDz?=
- =?us-ascii?Q?FMrWjHcXOw0jev1xN5hO2YN3O5wVI6wpO7rs/ej/7gWrFaOGoSAXYfpyiMRf?=
- =?us-ascii?Q?gqGK88EhoE/r1hGtPSue9MtsPAGi5im016tkFne6PWyyUVfQZmuA5SoFJc0f?=
- =?us-ascii?Q?O3ocvm4JuGz0AzPysnD6ZoAA4xxWfsaerHJlo+hb+YRykNl2buowmIq5j6Nq?=
- =?us-ascii?Q?Ssugrj9c9rNZBoY3v0nHYTrnMXQjAqM8UiWlCdxxvjd8Icc+35D1rthxIXhL?=
- =?us-ascii?Q?ZhlFh50Waf/iY+8DJ6CeAhWnrIHtEPbshmJaKID6T35UcXUVMUQ85DhABpTa?=
- =?us-ascii?Q?mC2AI/fk88VzIMoAQwwiqEE8?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2253C6E88B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 12:58:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="219474722"
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="219474722"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 05:58:11 -0700
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="692224434"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 05:58:08 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1mM8oh-0005do-LB; Fri, 03 Sep 2021 16:01:11 +0300
+Date: Fri, 3 Sep 2021 16:01:11 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: jim.cromie@gmail.com,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Jigar Bhatt <jigar.bhatt@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <YTIcl3pp+ut4z6Ct@platvala-desk.ger.corp.intel.com>
+References: <20210831202133.2165222-1-jim.cromie@gmail.com>
+ <163045309469.10657.6449873390681387525@emeril.freedesktop.org>
+ <CAJfuBxyNmoFJJ5Auh4DW0cQy13o17i8c=uDYcmfJYF+jVsrhqA@mail.gmail.com>
+ <1f670a6b-af77-0e07-880e-57b1e28bfc7b@linux.intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB5746.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eed45ec1-62fc-4d9f-6220-08d96eda8b76
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2021 12:58:36.8903 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mOlMDIc+hd65jzmhdTadG4yIUui5sgkDLwf03dkc/q8aW4Ox1PQpnUwYjT2wwuU44cEUF6atrQz4/NCYfsseHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3901
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH V5 0/5] drm/i915/gt: Initialize unused MOCS
- entries to L3_WB
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1f670a6b-af77-0e07-880e-57b1e28bfc7b@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgdXNl?=
+ =?utf-8?q?_DYNAMIC=5FDEBUG_to_implement_DRM=2Edebug_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,83 +60,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
- I see a failure reported on IGT-CI for this series for SKL,
+On Fri, Sep 03, 2021 at 12:29:51PM +0100, Tvrtko Ursulin wrote:
+> 
+> On 03/09/2021 01:31, jim.cromie@gmail.com wrote:
+> > 
+> > 
+> > On Tue, Aug 31, 2021 at 5:38 PM Patchwork
+> > <patchwork@emeril.freedesktop.org
+> > <mailto:patchwork@emeril.freedesktop.org>> wrote:
+> > 
+> >     __
+> >     *Patch Details*
+> >     *Series:*	use DYNAMIC_DEBUG to implement DRM.debug (rev2)
+> >     *URL:*	https://patchwork.freedesktop.org/series/93914/
+> >     <https://patchwork.freedesktop.org/series/93914/>
+> >     *State:*	failure
+> >     *Details:*
+> >     https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20931/index.html
+> >     <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20931/index.html>
+> > 
+> > 
+> >       CI Bug Log - changes from CI_DRM_10541_full -> Patchwork_20931_full
+> > 
+> > 
+> >         Summary
+> > 
+> >     *FAILURE*
+> > 
+> >     Serious unknown changes coming with Patchwork_20931_full absolutely
+> >     need to be
+> >     verified manually.
+> > 
+> >     If you think the reported changes have nothing to do with the changes
+> >     introduced in Patchwork_20931_full, please notify your bug team to
+> >     allow them
+> >     to document this new failure mode, which will reduce false positives
+> >     in CI.
+> > 
+> > 
+> > hi Team !
+> > 
+> > I think I need a bit of orientation.
+> > 
+> > 
+> >         Possible new issues
+> > 
+> >     Here are the unknown changes that may have been introduced in
+> >     Patchwork_20931_full:
+> > 
+> > 
+> >           IGT changes
+> > 
+> > 
+> >             Possible regressions
+> > 
+> >       * igt@gem_exec_schedule@u-submit-golden-slice@vcs0:
+> >           o shard-skl: NOTRUN -> INCOMPLETE
+> >             <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20931/shard-skl10/igt@gem_exec_schedule@u-submit-golden-slice@vcs0.html>
+> > 
+> > 
+> >             Warnings
+> > 
+> >       * igt@i915_pm_dc@dc9-dpms:
+> >           o shard-skl: SKIP
+> >             <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10541/shard-skl6/igt@i915_pm_dc@dc9-dpms.html>
+> >             ([fdo#109271]) -> FAIL
+> >             <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20931/shard-skl8/igt@i915_pm_dc@dc9-dpms.html>
+> > 
+> > 
+> > 
+> > Im assuming the FAIL is the sticking point,
+> 
+> Both INCOMPLETE and FAIL will cause a failure to be declared, but in this case it looks to me this series is not at fault.
+> 
+> 1)
+> 
+> The gem_exec_schedule failure looks like a test runner timeout issue (and apparently test does not handle well running the the fence timeout enabled).
+> 
+> @Petri - does the below look like IGT runner running our of time budget for the test run? Would it log
+> 
+> [1051.943629] [114/138] ( 11s left) gem_exec_schedule (u-submit-golden-slice)
+> Starting subtest: u-submit-golden-slice
+> Starting dynamic subtest: rcs0
+> Dynamic subtest rcs0: SUCCESS (80.175s)
+> Starting dynamic subtest: bcs0
+> Dynamic subtest bcs0: SUCCESS (80.195s)
+> Starting dynamic subtest: vcs0
+> Dynamic subtest vcs0: SUCCESS (80.243s)
+> Starting dynamic subtest: vecs0
+> 
+> Interesting part is that according to dmesg it never got to the vecs0 dynamic subtest - any idea what happened there?
 
- igt@gem_ctx_isolation@preservation-s3@rcs0:
-shard-skl: PASS -> DMESG-WARN
+Yep, we ran out of time. We still had 11 seconds left to execute
+something but then that test took centuries.
 
-Changes set in this series are applicable for gen12 onward platforms except=
- TGL/RKL.
 
-So above failure look like a false alarm to me.
+> 
+> 2)
+> 
+> I915_pm_dc I'd say you just gotten unlucky that test went from always skipping on SKL to trying to run it and then it failed. But I don't know enough about the test to tell you why. Adding Jigar and Anshuman as test author and reviewer who might be able to shed some light here.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > I found code that seemed to be relevant
+> > 
+> > [jimc@frodo igt-ci-tags.git]$ git remote -v
+> > origin https://gitlab.freedesktop.org/gfx-ci/igt-ci-tags.git
+> > <https://gitlab.freedesktop.org/gfx-ci/igt-ci-tags.git> (fetch)
+> > origin https://gitlab.freedesktop.org/gfx-ci/igt-ci-tags.git
+> > <https://gitlab.freedesktop.org/gfx-ci/igt-ci-tags.git> (push)
+> > 
+> > I built it, got an error, threw that to google,
+> > found a patch on i-g-t from
+> > commit 1ff3e5ae99ceb66d2926d58635d0379ce971065a (HEAD -> master)
+> > Author: Lyude Paul <lyude@redhat.com <mailto:lyude@redhat.com>>
+> > Date:   Mon Apr 15 14:57:23 2019 -0400
+> > 
+> > and applied it
+> > it fixed the one problem
+> > 
+> > then I looked at previous head
+> > 
+> > commit f052e49a43cc9704ea5f240df15dd9d3dfed68ab (origin/master, origin/HEAD)
+> > Author: Simon Ser <simon.ser@intel.com <mailto:simon.ser@intel.com>>
+> > Date:   Wed Apr 24 19:15:26 2019 +0300
+> > 
+> > It sure seems that tree is stale.
 
-Regards
--Ayaz
+That tree's master ref does not get updated. It's only for storing tags.
 
-> -----Original Message-----
-> From: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
-> Sent: Friday, September 3, 2021 2:52 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
-> Subject: [PATCH V5 0/5] drm/i915/gt: Initialize unused MOCS entries to
-> L3_WB
->=20
-> Gen >=3D 12 onwards MOCS table doesn't have a setting for PTE so
-> I915_MOCS_PTE is not a valid index and it will have different MOCS values
-> are based on the platform.
->=20
-> To detect these kinds of misprogramming, all the unspecified and reserved
-> MOCS indexes are set to WB_L3. TGL/RKL unspecified MOCS indexes are
-> pointing to L3 UC are kept intact to avoid API break.
->=20
-> This series also contains patches to program BLIT_CCTL and CMD_CCTL
-> registers to UC.
-> Since we are quite late to update MOCS table for TGL so added a new MOCS
-> table for ADL family.
->=20
-> V2:
->  1. Added CMD_CCTL to GUC regset list so that it can be restored
->     after engine reset.
->  2. Checkpatch warning removal.
->=20
-> V3:
->  1. Changed implementation to have a framework only.
->  2. Added register type for proper application.
->  3. moved CMD_CCTL programming to a separate patch.
->  4. Added L3CC initialization during gt reset so that MOCS indexes are
->     set before GuC initialization.
->  5. Removed Renderer check for L3CC verification in selftest.
->=20
-> V4:
->  1. Moved register programming in Workaorund section as fake workaround.
->  2. Removed seperate ADL mocs table, new logic is to set unused index as
->     L3_WB for gen12 platform except TGL/RKL.
->=20
-> V5:
->  1. Final version reviewed by Matt Roper  2. Removed "drm/i915/selftest:
-> Remove Renderer class check for l3cc table read" form series,
->     this patch will be taken care of in different series.
->=20
-> Ayaz A Siddiqui (4):
->   drm/i915/gt: Add support of mocs propagation
->   drm/i915/gt: Set CMD_CCTL to UC for Gen12 Onward
->   drm/i915/gt: Set BLIT_CCTL reg to un-cached
->   drm/i915/gt: Initialize unused MOCS entries with device specific
->     values
->=20
-> Sreedhar Telukuntla (1):
->   drm/i915/gt: Initialize L3CC table in mocs init
->=20
->  drivers/gpu/drm/i915/gt/intel_gt.c          |  2 +
->  drivers/gpu/drm/i915/gt/intel_gt_types.h    |  4 ++
->  drivers/gpu/drm/i915/gt/intel_mocs.c        | 72 ++++++++++++++-------
->  drivers/gpu/drm/i915/gt/intel_mocs.h        |  1 +
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 70
-> +++++++++++++++++++-
->  drivers/gpu/drm/i915/i915_reg.h             | 26 ++++++++
->  6 files changed, 151 insertions(+), 24 deletions(-)
->=20
-> --
-> 2.26.2
+That test result comparison was too long to fit into patchwork so the
+build information at the bottom is missing, but the BAT results have
+it:
 
+IGT_6193: 080869f804cb86b25a38889e5ce9a870571cd8c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+
+
+
+-- 
+Petri Latvala
