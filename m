@@ -2,53 +2,144 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 322C23FFB86
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 10:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F3A3FFC22
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 10:37:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 239816E851;
-	Fri,  3 Sep 2021 08:05:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC5826E85E;
+	Fri,  3 Sep 2021 08:37:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0A366E851;
- Fri,  3 Sep 2021 08:05:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="219371172"
-X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; d="scan'208";a="219371172"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2021 01:05:04 -0700
-X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; d="scan'208";a="500220436"
-Received: from ojcasey-mobl.ger.corp.intel.com (HELO [10.213.195.251])
- ([10.213.195.251])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2021 01:05:01 -0700
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jon Bloomfield <jon.bloomfield@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
-References: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
- <20210902142057.929669-5-daniel.vetter@ffwll.ch>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <2a1f1395-2fe3-3c3d-48a6-bf741f910023@linux.intel.com>
-Date: Fri, 3 Sep 2021 09:05:00 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210902142057.929669-5-daniel.vetter@ffwll.ch>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05B386E85E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 08:37:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="219426850"
+X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; d="scan'208";a="219426850"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 01:37:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; d="scan'208";a="521599261"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by fmsmga004.fm.intel.com with ESMTP; 03 Sep 2021 01:37:20 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 3 Sep 2021 01:37:19 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Fri, 3 Sep 2021 01:37:19 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.10; Fri, 3 Sep 2021 01:37:19 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eKsX+8gvx9neRQ92gkQXJWBD+xQ61+RaS1gEmr/SlCwU9i5IJVYAz2VxHSr9x67YRmSXTHtQQJSBQbUp2IiqopivNstvcp8rBmSNGR5SzeZMMZNikIFG6wesrbPR49ZaKkPXwyaAldGRdxKr3ikisUPBB+Q5SQOol7urX1Tde48Jl43iPTW+SasiRv0aIgArj1IQIa+8eJteJ5eTwt5B2xIoewGXm79VkxY7cdRzxGrXxjgxjWejm7/JgPQNTbi7eBDvfT4Z8T4YmdTXQcAS+iUK0raZfilrBNeBzjqJ1kfrFOqRm2Ah8qEiSGicQAG4yQ7HBF/o6evBS4REBOWbEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=gfPUs+V+t1/FXDxMwiIQwXgFNlc5Z1Lu2Oo+yUsxmFI=;
+ b=LUtXpbZ2gSp9rhDqavyKBQwdPKEes6yhNq8HsGHfDm7AMafcj1mD5h0isCTcsiAXSIw0qmmthWyrwMy0prtG9Yyn2NDreG+MaZiseZ3g96ci1RDT6+m+tqJ0ignAy0ij6+qLTcI1C8A5Ae73OOHWaDbepNb9iJ0NB2Lx0wp1d7BUgn+sAk8gnoZEsOjcEOANOU4t2rlVfRlgwkZbQqjeoBGqCJQMYiWXkWUFLhI7jnS8Dtthvxu+6gl0Sw2t0c8bEnY6m7+Q3FUBX6Kz8Zq3J1t4vZ1IAKcFBfz1CWDz43mAserrTDSu4kcUwNhSvcOLdG+UGeUnVJabW5ruLEKIRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gfPUs+V+t1/FXDxMwiIQwXgFNlc5Z1Lu2Oo+yUsxmFI=;
+ b=WhuLCQMo/YeCyUWCVRdcAANPSR1bX6uorDjSLAC3TsdW4Hn7OEB1UbE+5h2eKjS3MntD/EBLFyoBjm0xWm+m05jux5qkJnLC0bksykKd9jBLHBRs3fL4Xz2NFHCuabWMoPTXvmxhE8oIhv3B4JoMYhzLWampsZbM5FNq0+x10r0=
+Authentication-Results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5501.namprd11.prod.outlook.com (2603:10b6:5:39d::23)
+ by DM5PR1101MB2363.namprd11.prod.outlook.com (2603:10b6:3:a7::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.22; Fri, 3 Sep
+ 2021 08:37:17 +0000
+Received: from DM4PR11MB5501.namprd11.prod.outlook.com
+ ([fe80::389d:c727:c71d:d869]) by DM4PR11MB5501.namprd11.prod.outlook.com
+ ([fe80::389d:c727:c71d:d869%3]) with mapi id 15.20.4457.024; Fri, 3 Sep 2021
+ 08:37:17 +0000
+To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>
+CC: <jose.souza@intel.com>
+References: <cover.1630512523.git.jani.nikula@intel.com>
+ <ef22e40b01eab571ff0dc2bfffabb906d0151fb4.1630512523.git.jani.nikula@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <7002fa19-4846-672a-4790-a7368980efb6@intel.com>
+Date: Fri, 3 Sep 2021 14:07:08 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
+In-Reply-To: <ef22e40b01eab571ff0dc2bfffabb906d0151fb4.1630512523.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915: Rename
- i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
+Content-Language: en-US
+X-ClientProxiedBy: BM1PR0101CA0064.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:19::26) To DM4PR11MB5501.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::23)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.0.113] (49.207.223.26) by
+ BM1PR0101CA0064.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:19::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.19 via Frontend
+ Transport; Fri, 3 Sep 2021 08:37:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d06d6fc0-1d49-42ac-7c32-08d96eb609a9
+X-MS-TrafficTypeDiagnostic: DM5PR1101MB2363:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR1101MB2363720DF338B82DB472FF0ECECF9@DM5PR1101MB2363.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +5bGaCxHVVCXfK6hKmeOSlwicXGG4FhOi3Giu28XEsUgrxalVh8WKuc86M47FzxC09gxrOw2FUZJcpIWFD0e5+Encq1HS7lRDm9Cpjl8JLZP8NEPrXvNvU4TdYrcRz6gbbUJhw5Gn3yEAV3oqXmQ+elQFDPydgCdWz4SbNITAAVc8cy8pCNn0Y15c+ixYT+NY6Maortd5eD9kIANicNgOWWjGcxCen0ySDKlDgrn+p6GxpgzqSKnHYKAyZ1jAp7FVGi3iWYOz3qeJ1g7f5yZG/dby25BBkVthY91zprBf6dkDhhAMvWYe57yDYkHxscYvV2/jGMPQj9WxICnN0O1BGuD9dKf6WgxLHv0NtzslTYfCBdPAWX3layqeiXnSWz0RfvIWiSlaS5ldGYzVBW2+cYuU3ypebl1wIReBE5JTq29lF+qptRMWZtqhSvoppC/1aebsIc+/kI+1aGp0s7pvpeylkqMsxz7fPIxylmQUcp1m9xKPc7k0bmmWitK5e9LhZ7ahUMXNR6NGL3UAL0EfRtd2JrlXygbKLUiUt/jUKYVOccPGTx4w5t8+vqKAiJjLfrTBtPZEWMSOhRtn1/B0/wlCq7Lgg/GXKYVz1E+s/zki15Fhl0xsCAxxx6uek3r1p/0xA1521J5YtcCv9onBxhyKD+lvhEJnRRKbHwxaL0Vk5sErRrqBcvGDOGec6GK6eDGZzw57wpFHUHIjyKNSaagMct6hHXubdj0NweGJ7c=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5501.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(376002)(366004)(396003)(39860400002)(2616005)(26005)(66476007)(478600001)(5660300002)(956004)(31686004)(66556008)(38100700002)(8676002)(8936002)(66946007)(55236004)(107886003)(6486002)(4326008)(6666004)(53546011)(1006002)(2906002)(186003)(36756003)(31696002)(86362001)(316002)(83380400001)(16576012)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VG9ublpUMHZBZnAxczlZem9tT2dndHU1VlVONnN6VE9kSmdoTXAxaFVRUE1M?=
+ =?utf-8?B?ZnJDV3A4RVVQeWlGS1RQNkpEN1hxM1lycDYwZnByZkg1MTlmV0pzVGI2dHc3?=
+ =?utf-8?B?dnRVeHl6VGpPTWpCazhwb1N5cGJGanNwNFo0cTlVTXQySVZTLzRFU0h2aUFs?=
+ =?utf-8?B?dy9VSjNwSms1WlVSUm9LZjk3eWxyUDlhYVRoaUsrQy8zR3NDSmwwQ1V0M3U0?=
+ =?utf-8?B?L2hDRDhFSWVEZW1BYm5zb1J1MEd1OXJueWJ2RitrRkhBVXR0MlJEM3hmclNk?=
+ =?utf-8?B?dkVLNUxKR0xPQkNBNFRZZzBVU0U3bHptM1c1TlQ5T1grdUxLdndOa1FVbFZk?=
+ =?utf-8?B?Ui80NmRNbGVxTEpZdUVTeW1VNDZFcUREUUZRSktXYjY4cVRPakxJRUdsVEUw?=
+ =?utf-8?B?RUxHMWZNOWRlNG1lVWVHbWtSQjNaMCtjSVpJVXZKUmVRcU9kVVh2bWZ3Z0lU?=
+ =?utf-8?B?T05zcE50M2dleUtXZ2Z6WHZ5UlFOYzFQWGJxb25BczdMMXdFNnZwcXpmUWJX?=
+ =?utf-8?B?MmE1eVEyREtmWGJjYURFKzhLZ0VPOWJUQks1UXR2MWxlQjRZTDhjRmlCcFBL?=
+ =?utf-8?B?Z2tiT1hLVjhQcUxEQUQwSWVBVW5wWDgydzlwZVkzdXpFZExqcEJneWptczAr?=
+ =?utf-8?B?NEg5RlJRQ2lRWGh2amc5b0JLMU1mNGhINXpHRjk1SnE5N014c3BwYU9CNUg5?=
+ =?utf-8?B?ZGp6Uk9ONStBV1cxVnFjd3BQUVk1clZBUE1Bc0M3ZGc2N1NPK3luR0ZHdTRs?=
+ =?utf-8?B?MWlDQVRqZjIxenl4eU9xZU5ad0FzWWJNYWNKSmhEMVI2T2o3bTc0ZXUrRm0r?=
+ =?utf-8?B?Q3lhRkdCK3FCcFhIMExrTWtsVTJ6ek5rUG1NUGlmL01YRHcwcW1ZQ0xWc3po?=
+ =?utf-8?B?MSs1dFVkbzNXNmVsbkRJQmp5ei9ZL2RsdUtzNyttSWVQZFY5V0had3BSa1Ew?=
+ =?utf-8?B?cVVTN2JJMEdzMCtpS2tVbm00cE9SbHUyS3k5cU12SEVPbkI3eG1CY21heTBD?=
+ =?utf-8?B?RzNnZXRxQjJqWkhGUTZVOVVGcHVmQ20zTkRpWTlqWU9JMnJaYTRSa1g0cTBK?=
+ =?utf-8?B?c1BQcEFxUGw1VjZXL040SkYrOGhkSnFmOTZvMU5IRVJUWXMxV2NFNDFrUm5Q?=
+ =?utf-8?B?azB1c3hPcTN4MVpDTG9kY05nQlpQNnl4a1RyU0hqbVZCY09SMElMK3NSazFM?=
+ =?utf-8?B?SVF5cWRJa0FGM21BbDRNY1dzaFhveXlFc2hpME9Cb3Vib1ZCbG9makprVXlu?=
+ =?utf-8?B?UStreDdhRnRxZ3NNWDcyNlcyVmcxeVcwTy9zYXpubDJBSWN4MCtNQS9QMmZJ?=
+ =?utf-8?B?Si8vUzAyQUVQeUlZNksxanhiNWVCTXBKV1VHK1JJUEpzN045UGVqSDlUTUs5?=
+ =?utf-8?B?NFVmM2k1bkxOR2tDZDlKUnlpajE2K0E5WVR6YnU2MzFsYlU3SllyczFIT0R3?=
+ =?utf-8?B?VWpaZFdPU0NPWWpOblgvcmxLM09RR0Uvcnh1T2ZXeGdGbFc1UjdpSmJla1FQ?=
+ =?utf-8?B?Y3pVbGxvY2ROblJRWFdGSG96bk9laHQ5d3dlOGthWlZ2RXpzNFh6ZlQ3R0Y3?=
+ =?utf-8?B?ajlFRjNueHJKVDRCTmpvK1NKUW4wdFNYelNOYm4xd0FqOVRsanR0MTBCNTh2?=
+ =?utf-8?B?N3FoNEdDNlcwMmZwMzBLOTdpUldHNm5BNWNMWGVpdmF3REEzM0pZYVJ6RmFX?=
+ =?utf-8?B?alJzakQ1VWQxMmVMM3NFWEgyV25jd1E1UVlkRkJaaHBmT2doUkUxblFMdWU2?=
+ =?utf-8?Q?QUIXamuKhAOhhEBW7HuoduGJBiu1tmWytlNl1mK?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d06d6fc0-1d49-42ac-7c32-08d96eb609a9
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5501.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2021 08:37:17.5657 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b2aHgwIwiRHO6vJzAE2qzdthAEfcbSSx6O+KTCeRcd6ZuLu79CQsYSfqf1INWwdUk5NIBaDBUGcMz41FekO4F9DKWIx+lz6EGAGEXdilfSI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2363
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 1/7] drm/i915/bios: use hdmi level shift
+ directly from child data
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,169 +155,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+LGTM.
 
-On 02/09/2021 15:20, Daniel Vetter wrote:
-> The important part isn't so much that this does an rcu lookup - that's
-> more an implementation detail, which will also be removed.
-> 
-> The thing that makes this different from other functions is that it's
-> gettting you the vm that batchbuffers will run in for that gem
-> context, which is either a full ppgtt stored in gem->ctx, or the ggtt.
-> 
-> We'll make more use of this function later on.
-> 
-> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+On 9/1/2021 9:39 PM, Jani Nikula wrote:
+> Avoid extra caching of the data.
+>
+> Cc: José Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_context.h           | 2 +-
->   drivers/gpu/drm/i915/gem/selftests/huge_pages.c       | 4 ++--
->   drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 4 ++--
->   drivers/gpu/drm/i915/gt/selftest_execlists.c          | 2 +-
->   drivers/gpu/drm/i915/gt/selftest_hangcheck.c          | 2 +-
->   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c         | 4 ++--
->   drivers/gpu/drm/i915/selftests/i915_vma.c             | 2 +-
->   7 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> index 18060536b0c2..da6e8b506d96 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> @@ -155,7 +155,7 @@ i915_gem_context_vm(struct i915_gem_context *ctx)
+>   drivers/gpu/drm/i915/display/intel_bios.c | 26 +++++++++++++----------
+>   drivers/gpu/drm/i915/i915_drv.h           |  4 ----
+>   2 files changed, 15 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index e86e6ed2d3bf..afb5fcd9dd0c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -1868,6 +1868,14 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
+>   		devdata->child.device_type & DEVICE_TYPE_INTERNAL_CONNECTOR;
 >   }
 >   
->   static inline struct i915_address_space *
-> -i915_gem_context_get_vm_rcu(struct i915_gem_context *ctx)
-> +i915_gem_context_get_eb_vm(struct i915_gem_context *ctx)
+> +static int _intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *devdata)
+> +{
+> +	if (!devdata || devdata->i915->vbt.version < 158)
+> +		return -1;
+> +
+> +	return devdata->child.hdmi_level_shifter_value;
+> +}
+> +
+>   static bool is_port_valid(struct drm_i915_private *i915, enum port port)
 >   {
->   	struct i915_address_space *vm;
+>   	/*
+> @@ -1887,7 +1895,7 @@ static void parse_ddi_port(struct drm_i915_private *i915,
+>   	const struct child_device_config *child = &devdata->child;
+>   	struct ddi_vbt_port_info *info;
+>   	bool is_dvi, is_hdmi, is_dp, is_edp, is_crt, supports_typec_usb, supports_tbt;
+> -	int dp_boost_level, hdmi_boost_level;
+> +	int dp_boost_level, hdmi_boost_level, hdmi_level_shift;
+>   	enum port port;
 >   
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> index a094f3ce1a90..6c68fe26bb32 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> @@ -1456,7 +1456,7 @@ static int igt_tmpfs_fallback(void *arg)
->   	struct i915_gem_context *ctx = arg;
->   	struct drm_i915_private *i915 = ctx->i915;
->   	struct vfsmount *gemfs = i915->mm.gemfs;
-> -	struct i915_address_space *vm = i915_gem_context_get_vm_rcu(ctx);
-> +	struct i915_address_space *vm = i915_gem_context_get_eb_vm(ctx);
->   	struct drm_i915_gem_object *obj;
->   	struct i915_vma *vma;
->   	u32 *vaddr;
-> @@ -1512,7 +1512,7 @@ static int igt_shrink_thp(void *arg)
->   {
->   	struct i915_gem_context *ctx = arg;
->   	struct drm_i915_private *i915 = ctx->i915;
-> -	struct i915_address_space *vm = i915_gem_context_get_vm_rcu(ctx);
-> +	struct i915_address_space *vm = i915_gem_context_get_eb_vm(ctx);
-
-Problem here (and probably elsewhere) is that this test does no "eb", 
-nor even submits any requests for execution.
-
-More so, execbuf path does currently rely on intel_context->vm which is 
-always set. So I really wonder how it would look, what I touched on 
-elsewhere in the thread, if we instead made ctx->vm always point to 
-something. It would align the rules between intel_context and GEM 
-context and may end up with a more consistent situation.
-
-Regards,
-
-Tvrtko
-
->   	struct drm_i915_gem_object *obj;
->   	struct i915_gem_engines_iter it;
->   	struct intel_context *ce;
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> index 4d2758718d21..fc7fb33a3a52 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> @@ -1528,7 +1528,7 @@ static int write_to_scratch(struct i915_gem_context *ctx,
->   
->   	intel_gt_chipset_flush(engine->gt);
->   
-> -	vm = i915_gem_context_get_vm_rcu(ctx);
-> +	vm = i915_gem_context_get_eb_vm(ctx);
->   	vma = i915_vma_instance(obj, vm, NULL);
->   	if (IS_ERR(vma)) {
->   		err = PTR_ERR(vma);
-> @@ -1607,7 +1607,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
->   	if (GRAPHICS_VER(i915) >= 8) {
->   		const u32 GPR0 = engine->mmio_base + 0x600;
->   
-> -		vm = i915_gem_context_get_vm_rcu(ctx);
-> +		vm = i915_gem_context_get_eb_vm(ctx);
->   		vma = i915_vma_instance(obj, vm, NULL);
->   		if (IS_ERR(vma)) {
->   			err = PTR_ERR(vma);
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> index f12ffe797639..b3863abc51f5 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> @@ -3493,7 +3493,7 @@ static int smoke_submit(struct preempt_smoke *smoke,
->   	if (batch) {
->   		struct i915_address_space *vm;
->   
-> -		vm = i915_gem_context_get_vm_rcu(ctx);
-> +		vm = i915_gem_context_get_eb_vm(ctx);
->   		vma = i915_vma_instance(batch, vm, NULL);
->   		i915_vm_put(vm);
->   		if (IS_ERR(vma))
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index 2c1ed32ca5ac..8be23e0f9306 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -117,7 +117,7 @@ static struct i915_request *
->   hang_create_request(struct hang *h, struct intel_engine_cs *engine)
->   {
->   	struct intel_gt *gt = h->gt;
-> -	struct i915_address_space *vm = i915_gem_context_get_vm_rcu(h->ctx);
-> +	struct i915_address_space *vm = i915_gem_context_get_eb_vm(h->ctx);
->   	struct drm_i915_gem_object *obj;
->   	struct i915_request *rq = NULL;
->   	struct i915_vma *hws, *vma;
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> index f843a5040706..2d60a5a5b065 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> @@ -1300,7 +1300,7 @@ static int exercise_mock(struct drm_i915_private *i915,
->   	if (!ctx)
->   		return -ENOMEM;
->   
-> -	vm = i915_gem_context_get_vm_rcu(ctx);
-> +	vm = i915_gem_context_get_eb_vm(ctx);
->   	err = func(vm, 0, min(vm->total, limit), end_time);
->   	i915_vm_put(vm);
->   
-> @@ -1848,7 +1848,7 @@ static int igt_cs_tlb(void *arg)
->   		goto out_unlock;
+>   	port = dvo_port_to_port(i915, child->dvo_port);
+> @@ -1949,15 +1957,11 @@ static void parse_ddi_port(struct drm_i915_private *i915,
+>   		sanitize_aux_ch(i915, port);
 >   	}
 >   
-> -	vm = i915_gem_context_get_vm_rcu(ctx);
-> +	vm = i915_gem_context_get_eb_vm(ctx);
->   	if (i915_is_ggtt(vm))
->   		goto out_vm;
+> -	if (i915->vbt.version >= 158) {
+> -		/* The VBT HDMI level shift values match the table we have. */
+> -		u8 hdmi_level_shift = child->hdmi_level_shifter_value;
+> +	hdmi_level_shift = _intel_bios_hdmi_level_shift(devdata);
+> +	if (hdmi_level_shift >= 0) {
+>   		drm_dbg_kms(&i915->drm,
+>   			    "Port %c VBT HDMI level shift: %d\n",
+> -			    port_name(port),
+> -			    hdmi_level_shift);
+> -		info->hdmi_level_shift = hdmi_level_shift;
+> -		info->hdmi_level_shift_set = true;
+> +			    port_name(port), hdmi_level_shift);
+>   	}
 >   
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> index dd0607254a95..79ba72da0813 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> @@ -118,7 +118,7 @@ static int create_vmas(struct drm_i915_private *i915,
->   				struct i915_vma *vma;
->   				int err;
+>   	if (i915->vbt.version >= 204) {
+> @@ -2950,13 +2954,13 @@ int intel_bios_max_tmds_clock(struct intel_encoder *encoder)
+>   	return i915->vbt.ddi_port_info[encoder->port].max_tmds_clock;
+>   }
 >   
-> -				vm = i915_gem_context_get_vm_rcu(ctx);
-> +				vm = i915_gem_context_get_eb_vm(ctx);
->   				vma = checked_vma_instance(obj, vm, NULL);
->   				i915_vm_put(vm);
->   				if (IS_ERR(vma))
-> 
+> +/* This is an index in the HDMI/DVI DDI buffer translation table, or -1 */
+>   int intel_bios_hdmi_level_shift(struct intel_encoder *encoder)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> -	const struct ddi_vbt_port_info *info =
+> -		&i915->vbt.ddi_port_info[encoder->port];
+> +	const struct intel_bios_encoder_data *devdata = i915->vbt.ddi_port_info[encoder->port].devdata;
+>   
+> -	return info->hdmi_level_shift_set ? info->hdmi_level_shift : -1;
+> +	return _intel_bios_hdmi_level_shift(devdata);
+>   }
+>   
+>   int intel_bios_encoder_dp_boost_level(const struct intel_bios_encoder_data *devdata)
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index be2392bbcecc..67a9f07550d4 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -641,10 +641,6 @@ struct ddi_vbt_port_info {
+>   
+>   	int max_tmds_clock;
+>   
+> -	/* This is an index in the HDMI/DVI DDI buffer translation table. */
+> -	u8 hdmi_level_shift;
+> -	u8 hdmi_level_shift_set:1;
+> -
+>   	u8 alternate_aux_channel;
+>   	u8 alternate_ddc_pin;
+>   
