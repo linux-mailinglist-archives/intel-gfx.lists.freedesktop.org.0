@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF4D3FFD2A
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 11:33:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 489923FFD49
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 11:38:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94E7E6E098;
-	Fri,  3 Sep 2021 09:33:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FEC36E865;
+	Fri,  3 Sep 2021 09:38:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D3AD6E098
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Sep 2021 09:33:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="217518894"
-X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; d="scan'208";a="217518894"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBDDE6E098;
+ Fri,  3 Sep 2021 09:38:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="219436500"
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="219436500"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2021 02:33:05 -0700
-X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; d="scan'208";a="543432619"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 02:37:45 -0700
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="543433538"
 Received: from schuethe-mobl1.ger.corp.intel.com (HELO [10.252.60.46])
  ([10.252.60.46])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2021 02:33:05 -0700
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
- <20210830121006.2978297-15-maarten.lankhorst@linux.intel.com>
+ 03 Sep 2021 02:37:42 -0700
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <7a912166-487f-101e-61f5-c0eecb43d7fc@linux.intel.com>
-Date: Fri, 3 Sep 2021 11:33:25 +0200
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Message-ID: <41ff5e54-0837-2226-a182-97ffd11ef01e@linux.intel.com>
+Date: Fri, 3 Sep 2021 11:38:03 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210830121006.2978297-15-maarten.lankhorst@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 14/19] drm/i915: Add
- i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,35 +54,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 30-08-2021 om 14:10 schreef Maarten Lankhorst:
-> We want to remove more members of i915_vma, which requires the locking to be
-> held more often.
->
-> Start requiring gem object lock for i915_vma_unbind, as it's one of the
-> callers that may unpin pages.
->
-> Some special care is needed when evicting, because the last reference to the
-> object may be held by the VMA, so after __i915_vma_unbind, vma may be garbage,
-> and we need to cache vma->obj before unlocking.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  | 14 +++-
->  .../gpu/drm/i915/gem/selftests/huge_pages.c   |  4 +-
->  .../i915/gem/selftests/i915_gem_client_blt.c  |  2 +-
->  .../drm/i915/gem/selftests/i915_gem_mman.c    |  6 ++
->  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 46 ++++++++++--
->  drivers/gpu/drm/i915/i915_drv.h               |  7 +-
->  drivers/gpu/drm/i915/i915_gem.c               | 29 +++++++-
->  drivers/gpu/drm/i915/i915_gem_evict.c         | 74 +++++++++++++++++--
->  drivers/gpu/drm/i915/i915_vma.c               | 27 ++++++-
->  drivers/gpu/drm/i915/i915_vma.h               |  1 +
->  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 22 +++---
->  drivers/gpu/drm/i915/selftests/i915_vma.c     |  2 +-
->  13 files changed, 195 insertions(+), 41 deletions(-)
+drm-misc-next-fixes-2021-09-03:
+drm-misc-next-fixes for v5.15:
+- Fix ttm_bo_move_memcpy() when ttm_resource is subclassed.
+- Small fixes to panfrost, mgag200, vc4.
+- Small ttm compilation fixes.
+The following changes since commit 2819cf0e7dbe45a2bccf2f6c60fe6a27b299cc3e:
 
-This patch breaks the selftests because lockdep doesn't like nested trylocks, and eviction needed some love.
+  Merge tag 'drm-misc-next-2021-08-12' of git://anongit.freedesktop.org/drm/drm-misc into drm-next (2021-08-16 12:57:33 +1000)
 
-I've split it out, and will resubmit this part, rest can still be reviewed as it doesn't affect that.
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-09-03
+
+for you to fetch changes up to efcefc7127290e7e9fa98dea029163ad8eda8fb3:
+
+  drm/ttm: Fix ttm_bo_move_memcpy() for subclassed struct ttm_resource (2021-08-31 10:48:26 +0200)
+
+----------------------------------------------------------------
+drm-misc-next-fixes for v5.15:
+- Fix ttm_bo_move_memcpy() when ttm_resource is subclassed.
+- Small fixes to panfrost, mgag200, vc4.
+- Small ttm compilation fixes.
+
+----------------------------------------------------------------
+Alyssa Rosenzweig (3):
+      drm/panfrost: Simplify lock_region calculation
+      drm/panfrost: Use u64 for size in lock_region
+      drm/panfrost: Clamp lock region to Bifrost minimum
+
+Colin Ian King (1):
+      drm/mgag200: Fix uninitialized variable delta
+
+Jason Ekstrand (2):
+      drm/ttm: ttm_bo_device is now ttm_device
+      drm/ttm: Include pagemap.h from ttm_tt.h
+
+Jiapeng Chong (1):
+      drm/vc4: hdmi: make vc4_hdmi_codec_pdata static
+
+Thomas Hellström (1):
+      drm/ttm: Fix ttm_bo_move_memcpy() for subclassed struct ttm_resource
+
+ Documentation/gpu/drm-mm.rst             |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_pll.c    |  1 +
+ drivers/gpu/drm/panfrost/panfrost_mmu.c  | 31 +++++++++++--------------------
+ drivers/gpu/drm/panfrost/panfrost_regs.h |  2 ++
+ drivers/gpu/drm/ttm/ttm_bo_util.c        |  7 +++----
+ drivers/gpu/drm/ttm/ttm_tt.c             |  1 -
+ drivers/gpu/drm/vc4/vc4_hdmi.c           |  2 +-
+ include/drm/ttm/ttm_tt.h                 |  3 ++-
+ 8 files changed, 21 insertions(+), 28 deletions(-)
