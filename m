@@ -1,34 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2823FFE29
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 12:24:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76D933FFE51
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Sep 2021 12:40:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 615C16E0AB;
-	Fri,  3 Sep 2021 10:24:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5336E86C;
+	Fri,  3 Sep 2021 10:40:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EA2FB6E0AB;
- Fri,  3 Sep 2021 10:24:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E22A0A00CC;
- Fri,  3 Sep 2021 10:24:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0839808474938806556=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A11716E0AB;
+ Fri,  3 Sep 2021 10:40:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="219398352"
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="219398352"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 03:40:24 -0700
+X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; d="scan'208";a="500292294"
+Received: from ojcasey-mobl.ger.corp.intel.com (HELO [10.213.195.251])
+ ([10.213.195.251])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2021 03:40:21 -0700
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Jon Bloomfield <jon.bloomfield@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
+References: <20210813203033.3179400-1-daniel.vetter@ffwll.ch>
+ <9d8cba62-e1e1-a62c-1482-89d2db49d5af@linux.intel.com>
+ <CAKMK7uG4F9ooosoovjUP3XFVPjpU_wV2Me2hxjyit3b1FGbSWQ@mail.gmail.com>
+ <fb541075-622c-331c-d055-62f656f88acb@linux.intel.com>
+ <CAKMK7uFY-DBBATyG9UkZNwMJaN8y8kCSfYWfbbBkggMV0p6hUA@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <20f41329-d1b1-3452-c189-cb18abc13b39@linux.intel.com>
+Date: Fri, 3 Sep 2021 11:40:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ayaz A Siddiqui" <ayaz.siddiqui@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 03 Sep 2021 10:24:15 -0000
-Message-ID: <163066465588.21413.3905727866525642010@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210903092153.535736-1-ayaz.siddiqui@intel.com>
-In-Reply-To: <20210903092153.535736-1-ayaz.siddiqui@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Initialize_unused_MOCS_entries_to_L3=5FWB?=
+In-Reply-To: <CAKMK7uFY-DBBATyG9UkZNwMJaN8y8kCSfYWfbbBkggMV0p6hUA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915: Release i915_gem_context
+ from a worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,198 +64,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0839808474938806556==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 02/09/2021 21:02, Daniel Vetter wrote:
+> On Thu, Sep 2, 2021 at 6:20 PM Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>> On 02/09/2021 16:05, Daniel Vetter wrote:
+>>> On Thu, Sep 2, 2021 at 2:42 PM Tvrtko Ursulin
+>>> <tvrtko.ursulin@linux.intel.com> wrote:
+>>>>
+>>>>
+>>>> On 13/08/2021 21:30, Daniel Vetter wrote:
+>>>>> The only reason for this really is the i915_gem_engines->fence
+>>>>> callback engines_notify(), which exists purely as a fairly funky
+>>>>> reference counting scheme for that. Otherwise all other callers are
+>>>>> from process context, and generally fairly benign locking context.
+>>>>
+>>>> There is reset which definitely isn't process context.
+>>>
+>>> gpu reset runs in process context. The tasklet context is the
+>>> engines_notify I'm talking about above.
+>>
+>> I haven't looked very deeply but please double check the path from
+>> execlists_submission_tasklet -> execlists_reset -> intel_engine_reset ->
+>> __intel_engine_reset -> execlists_reset_rewind -> execlists_reset_csb ->
+>> execlists_reset_active -> __i915_request_reset -> mark_guilty ->
+>> i915_gem_context_put.
+> 
+> Thanks for pointing this out, I'll add it to the commit message.
+> 
+> More stuff to fix, yay.
+> 
+>>>> Otherwise I did not really get from the commit message is this patch
+>>>> fixing an existing problem or preparing something for the future. If the
+>>>> former then as I wrote above - I am pretty sure there are call sites
+>>>> from the tasklet already.
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>> Unfortunately untangling that requires some major surgery, and we have
+>>>>> a few i915_gem_context reference counting bugs that need fixing, and
+>>>>> they blow in the current hardirq calling context, so we need a
+>>>>> stop-gap measure.
+>>>
+>>> I guess this para wasn't clear, but subsequent patches fix the
+>>> refcount bugs and need this prep patch here.
+>>
+>> So up to where in the series are those fixes and where other stuff
+>> follows? Worth spliting and having cover letters perhaps? Is the fixing
+>> part applicable to the existing code or only comes to play with the
+>> syncobj single timeline changes?
+> 
+> There's Fixes: lines. One is timeline syncobj, the other is 2 years old.
 
-Series: drm/i915/gt: Initialize unused MOCS entries to L3_WB
-URL   : https://patchwork.freedesktop.org/series/94315/
-State : success
+So first two patches are standalone and fix the immediate bug? Could you 
+describe the composition and doings of the series in a cover letter so 
+it's possible to have an overview of chunk of work tackled?
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from CI_DRM_10549 -> Patchwork_20950
-====================================================
+Tvrtko
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20950 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [PASS][2] -> [INCOMPLETE][3] ([i915#2940])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         NOTRUN -> [DMESG-WARN][4] ([i915#3958])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#3428])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-bsw-kefka/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-rkl-guc:         [DMESG-WARN][6] ([i915#3925]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
-  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
-
-
-Participating hosts (46 -> 38)
-------------------------------
-
-  Missing    (8): bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus fi-bsw-nick bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10549 -> Patchwork_20950
-
-  CI-20190529: 20190529
-  CI_DRM_10549: cd8e346a0b56ce66f94a9908c7a068bbee8f1829 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20950: e01543cc506e1d2393043b1a9d8816c343bd53c2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e01543cc506e drm/i915/gt: Initialize L3CC table in mocs init
-effcee0badb7 drm/i915/gt: Initialize unused MOCS entries with device specific values
-7e4b1d648a16 drm/i915/gt: Set BLIT_CCTL reg to un-cached
-32be00b75838 drm/i915/gt: Set CMD_CCTL to UC for Gen12 Onward
-a878ef44120d drm/i915/gt: Add support of mocs propagation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/index.html
-
---===============0839808474938806556==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Initialize unused MOCS entries to L3_WB</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94315/">https://patchwork.freedesktop.org/series/94315/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10549 -&gt; Patchwork_20950</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20950 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10549/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20950/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 38)</h2>
-<p>Missing    (8): bat-adls-5 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus fi-bsw-nick bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10549 -&gt; Patchwork_20950</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10549: cd8e346a0b56ce66f94a9908c7a068bbee8f1829 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20950: e01543cc506e1d2393043b1a9d8816c343bd53c2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e01543cc506e drm/i915/gt: Initialize L3CC table in mocs init<br />
-effcee0badb7 drm/i915/gt: Initialize unused MOCS entries with device specific values<br />
-7e4b1d648a16 drm/i915/gt: Set BLIT_CCTL reg to un-cached<br />
-32be00b75838 drm/i915/gt: Set CMD_CCTL to UC for Gen12 Onward<br />
-a878ef44120d drm/i915/gt: Add support of mocs propagation</p>
-
-</body>
-</html>
-
---===============0839808474938806556==--
+> -Daniel
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>> -Daniel
+>>>
+>>>>>
+>>>>> Put a FIXME comment in when this should be removable again.
+>>>>>
+>>>>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+>>>>> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+>>>>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>>>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>>>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>>> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>>>>> Cc: Dave Airlie <airlied@redhat.com>
+>>>>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+>>>>> ---
+>>>>>     drivers/gpu/drm/i915/gem/i915_gem_context.c       | 13 +++++++++++--
+>>>>>     drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 12 ++++++++++++
+>>>>>     2 files changed, 23 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>>>> index fd169cf2f75a..051bc357ff65 100644
+>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>>>> @@ -986,9 +986,10 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+>>>>>         return err;
+>>>>>     }
+>>>>>
+>>>>> -void i915_gem_context_release(struct kref *ref)
+>>>>> +static void i915_gem_context_release_work(struct work_struct *work)
+>>>>>     {
+>>>>> -     struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+>>>>> +     struct i915_gem_context *ctx = container_of(work, typeof(*ctx),
+>>>>> +                                                 release_work);
+>>>>>
+>>>>>         trace_i915_context_free(ctx);
+>>>>>         GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+>>>>> @@ -1002,6 +1003,13 @@ void i915_gem_context_release(struct kref *ref)
+>>>>>         kfree_rcu(ctx, rcu);
+>>>>>     }
+>>>>>
+>>>>> +void i915_gem_context_release(struct kref *ref)
+>>>>> +{
+>>>>> +     struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+>>>>> +
+>>>>> +     queue_work(ctx->i915->wq, &ctx->release_work);
+>>>>> +}
+>>>>> +
+>>>>>     static inline struct i915_gem_engines *
+>>>>>     __context_engines_static(const struct i915_gem_context *ctx)
+>>>>>     {
+>>>>> @@ -1303,6 +1311,7 @@ i915_gem_create_context(struct drm_i915_private *i915,
+>>>>>         ctx->sched = pc->sched;
+>>>>>         mutex_init(&ctx->mutex);
+>>>>>         INIT_LIST_HEAD(&ctx->link);
+>>>>> +     INIT_WORK(&ctx->release_work, i915_gem_context_release_work);
+>>>>>
+>>>>>         spin_lock_init(&ctx->stale.lock);
+>>>>>         INIT_LIST_HEAD(&ctx->stale.engines);
+>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>>>>> index 94c03a97cb77..0c38789bd4a8 100644
+>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>>>>> @@ -288,6 +288,18 @@ struct i915_gem_context {
+>>>>>          */
+>>>>>         struct kref ref;
+>>>>>
+>>>>> +     /**
+>>>>> +      * @release_work:
+>>>>> +      *
+>>>>> +      * Work item for deferred cleanup, since i915_gem_context_put() tends to
+>>>>> +      * be called from hardirq context.
+>>>>> +      *
+>>>>> +      * FIXME: The only real reason for this is &i915_gem_engines.fence, all
+>>>>> +      * other callers are from process context and need at most some mild
+>>>>> +      * shuffling to pull the i915_gem_context_put() call out of a spinlock.
+>>>>> +      */
+>>>>> +     struct work_struct release_work;
+>>>>> +
+>>>>>         /**
+>>>>>          * @rcu: rcu_head for deferred freeing.
+>>>>>          */
+>>>>>
+>>>
+>>>
+>>>
+> 
+> 
+> 
