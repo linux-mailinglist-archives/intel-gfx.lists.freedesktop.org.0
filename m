@@ -1,35 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0CE4027F0
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 13:40:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465C94028DE
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 14:35:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D26BC89F4A;
-	Tue,  7 Sep 2021 11:40:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5894189F19;
+	Tue,  7 Sep 2021 12:35:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9158189F4A;
- Tue,  7 Sep 2021 11:40:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 811B7A01BB;
- Tue,  7 Sep 2021 11:40:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+X-Greylist: delayed 1006 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Sep 2021 03:52:39 UTC
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABC8899E8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 03:52:39 +0000 (UTC)
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.53])
+ by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4H2vDV6C3cz8sqH;
+ Mon,  6 Sep 2021 11:35:22 +0800 (CST)
+Received: from dggema764-chm.china.huawei.com (10.1.198.206) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.2308.8; Mon, 6 Sep 2021 11:35:50 +0800
+Received: from DESKTOP-8RFUVS3.china.huawei.com (10.174.185.179) by
+ dggema764-chm.china.huawei.com (10.1.198.206) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.8; Mon, 6 Sep 2021 11:35:49 +0800
+From: Zenghui Yu <yuzenghui@huawei.com>
+To: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>
+CC: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <ville.syrjala@linux.intel.com>, <tiwai@suse.de>,
+ <wanghaibin.wang@huawei.com>, Zenghui Yu <yuzenghui@huawei.com>, "Kai-Heng
+ Feng" <kai.heng.feng@canonical.com>
+Date: Mon, 6 Sep 2021 11:35:41 +0800
+Message-ID: <20210906033541.862-1-yuzenghui@huawei.com>
+X-Mailer: git-send-email 2.23.0.windows.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 07 Sep 2021 11:40:49 -0000
-Message-ID: <163101484950.24492.4378811280367991928@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210907103407.432646-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210907103407.432646-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Use_Transparent_Hugepages_when_IOMMU_is_enabled?=
- =?utf-8?q?_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.174.185.179]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggema764-chm.china.huawei.com (10.1.198.206)
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Tue, 07 Sep 2021 12:35:49 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: Free the returned object of
+ acpi_evaluate_dsm()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,40 +58,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As per the comment on top of acpi_evaluate_dsm():
 
-Series: drm/i915: Use Transparent Hugepages when IOMMU is enabled (rev2)
-URL   : https://patchwork.freedesktop.org/series/93122/
-State : warning
+| * Evaluate device's _DSM method with specified GUID, revision id and
+| * function number. Caller needs to free the returned object.
 
-== Summary ==
+We should free the returned object of acpi_evaluate_dsm() to avoid memory
+leakage. Otherwise the kmemleak splat will be triggered at boot time (if we
+compile kernel with CONFIG_DEBUG_TEST_DRIVER_REMOVE=y).
 
-$ dim checkpatch origin/drm-tip
-2f994050d821 drm/i915: Use Transparent Hugepages when IOMMU is enabled
--:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")'
-#6: 
-Usage of Transparent Hugepages was disabled in 9987da4b5dcf
+Fixes: 8e55f99c510f ("drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops")
+Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Signed-off-by: Zenghui Yu <yuzenghui@huawei.com>
+---
+ drivers/gpu/drm/i915/display/intel_acpi.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
--:130: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b901bb89324a ("drm/i915/gemfs: enable THP")'
-#130: 
-References: b901bb89324a ("drm/i915/gemfs: enable THP")
-
--:131: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#131: 
-References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
-
--:131: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")'
-#131: 
-References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
-
--:177: WARNING:STATIC_CONST_CHAR_ARRAY: static char array declaration should probably be static const char
-#177: FILE: drivers/gpu/drm/i915/gem/i915_gemfs.c:36:
-+			static char huge_opt[] = "huge=within_size"; /* r/w */
-
-total: 3 errors, 2 warnings, 0 checks, 42 lines checked
-
+diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
+index 7cfe91fc05f2..68abeaf2d7d4 100644
+--- a/drivers/gpu/drm/i915/display/intel_acpi.c
++++ b/drivers/gpu/drm/i915/display/intel_acpi.c
+@@ -186,13 +186,16 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+ 	acpi_handle dhandle;
++	union acpi_object *obj;
+ 
+ 	dhandle = ACPI_HANDLE(&pdev->dev);
+ 	if (!dhandle)
+ 		return;
+ 
+-	acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
+-			  INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
++	obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
++				INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
++	if (obj)
++		ACPI_FREE(obj);
+ }
+ 
+ /*
+-- 
+2.19.1
 
