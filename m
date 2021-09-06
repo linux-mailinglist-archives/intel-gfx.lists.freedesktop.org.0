@@ -2,74 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E451C401843
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 10:51:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 477494018A3
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 11:12:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCF58957B;
-	Mon,  6 Sep 2021 08:51:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35C958967F;
+	Mon,  6 Sep 2021 09:12:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D27A88957B
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 08:51:47 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id u9so8660277wrg.8
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 Sep 2021 01:51:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=/zC7T9LOb8BbJOsEWrdsQXxCqTMUe0H5oBlU/CmwugE=;
- b=FJSbAjHnuhb1o3BpYnsW/1rjuq32ufOuVqsjkSQcpIPHXT9uDvnyi04p/i0nbTp2Ze
- weQ8V/9aQHk98vF6vr8ul/1bIO1xKKL7b2ETjgDWO7LtYUAN/nBFurwKkse9nKi4z1rL
- E/xpb6glnkldTYInoRjH7CgbMwTcmJDgBwMLM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=/zC7T9LOb8BbJOsEWrdsQXxCqTMUe0H5oBlU/CmwugE=;
- b=WKbwa2lsC2+GiTAARVSTqGQeWMHLyu6BgVjDWqkAKow9k/EnvONXvWbPcnfcnmp7W7
- edX7vVCujdlnDq1TGQZW/IYgzTWvR+ohgvcYB/UssXev8rggcDMI1aT2TCH4LURNznC6
- ayTP9imvDh4xTp6gYarRHhNmhGY8GKfbO7ycCAce0Hm/BV4q8p22UjCMeTujl2EhMuJz
- wWVgStZurm5FCN52oZDGAqbmSTgRtikIDRj17Aw3FE48qyOgfvbMqsmW+Ba6dYERMGXv
- rdCA5dknZB5ZZ5IVe/CRYAxSOV9kE7A9W0IfXW5jfILczxpeyWhiLG1mG+21JKMgLlVb
- KH1w==
-X-Gm-Message-State: AOAM533SR5WOpOODneEFvqWj/lxQBW6lSjdp+Pzbhwh+xntgfBKNHkLW
- n/xblr+G3uOumdgr++ob30vk3w==
-X-Google-Smtp-Source: ABdhPJwnBEY6DLLS9Wvzg+oiuRSAKl3WXT0h8oQ9hXTc/l1OOH/OOe9FmaUkOTEMhwDUrRYqMukDmA==
-X-Received: by 2002:adf:b743:: with SMTP id n3mr11925813wre.243.1630918306359; 
- Mon, 06 Sep 2021 01:51:46 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id d9sm7014641wrm.21.2021.09.06.01.51.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Sep 2021 01:51:45 -0700 (PDT)
-Date: Mon, 6 Sep 2021 10:51:39 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jon Bloomfield <jon.bloomfield@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Dave Airlie <airlied@redhat.com>, Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YTXWmy0DRBmDtQVK@phenom.ffwll.local>
-References: <20210902142057.929669-1-daniel.vetter@ffwll.ch>
- <20210902142057.929669-5-daniel.vetter@ffwll.ch>
- <2a1f1395-2fe3-3c3d-48a6-bf741f910023@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 526C08967F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 09:12:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10098"; a="207149153"
+X-IronPort-AV: E=Sophos;i="5.85,271,1624345200"; d="scan'208";a="207149153"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2021 02:12:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,271,1624345200"; d="scan'208";a="448532856"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP; 06 Sep 2021 02:12:16 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 6 Sep 2021 02:12:16 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Mon, 6 Sep 2021 02:12:16 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.10; Mon, 6 Sep 2021 02:12:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dHPQVcZsfWTKRgxKnK+lxEk7Jmotzm1oXonC042cI7zIWIhoAhq/rpkr5iRu75yqWRmJksgaWkELkq+4tTMd6Q9ZDhd9rFPanUfdTvYQLRRHWpsoLF+9X3AugjwQEXiPvQJvFxdvgUZaHkFNIRPOhKDDyGGMnVSxObm4H2OCLJdw42qpEgYThAG0TQYvzZoiuxCt+qqlIcc9YXWC/NG8cDnCKTrP1lv/WGdNFkHaSqblqRuvpk7raM8YDJncs28jmZECSVRpfDRS18GXUP8lin6CQmydVKEGw2NMlFUkzM4BNMo6hLBJPUKgBjBk4B56lyXXnYB4AZ78QSYqGECg9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=pWwTq5ypyN/fNWhdL5HrmfB5RKw9l818gDMLCgEYVkI=;
+ b=ABOMyfCoqjKrPOoH5oSBP1XXo9io42EsESkh5wgb6eQCHxuyeXsMBcBnQQj8FlxQ+m7ciYtD3qoyRHyDtX1LgmYjor130ean1loJCKfN8R7cQPn8fLwtvEk8fvnptHY5yaxBL9n9SU84VtOc0CRmF5T4t2UzCz1mXmtx9MkTyvT8okp9MiKQG7QsLr2JN+ynfpNX8h4JcquWpRwi5cPTogsxMl/Mr5sRuKlVdctHUYLuPEZDNd6Z97wBs28aZ7ekq+SeqGxYahIO6vuCxQg5v28nkSJKf+SUTlBFaiZVqWNh9aiSre0i0qrVWsSuySSEGUpKyhUhWU3sDOXzLn0Phg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pWwTq5ypyN/fNWhdL5HrmfB5RKw9l818gDMLCgEYVkI=;
+ b=fgX4qKdraRAaPXvUAICvUH9o5zcbUyfSSqujxjfDotgjfK+uABHb5zeJPqxBTy8RiuNq6worJ++R9ZLRmK5n2ksSqOsdYfQeDt0y43FpnVVZYwOm7Th9tgqlLZwAdYZtV/x4ulk+mn/ulTWRmuZtdKSWyDpKepFVntFSaKSUXNA=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
+ by CH0PR11MB5521.namprd11.prod.outlook.com (2603:10b6:610:d4::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.24; Mon, 6 Sep
+ 2021 09:12:12 +0000
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::a4f1:2e1e:ff82:5f4c]) by CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::a4f1:2e1e:ff82:5f4c%5]) with mapi id 15.20.4478.025; Mon, 6 Sep 2021
+ 09:12:12 +0000
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20210903221036.34770-1-jose.souza@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Message-ID: <ed85a19d-388a-022b-0179-d7d36d93bfa6@intel.com>
+Date: Mon, 6 Sep 2021 12:12:03 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
+In-Reply-To: <20210903221036.34770-1-jose.souza@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a1f1395-2fe3-3c3d-48a6-bf741f910023@linux.intel.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915: Rename
- i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
+X-ClientProxiedBy: DB8PR06CA0066.eurprd06.prod.outlook.com
+ (2603:10a6:10:120::40) To CH0PR11MB5409.namprd11.prod.outlook.com
+ (2603:10b6:610:d0::7)
+MIME-Version: 1.0
+Received: from [10.237.72.185] (134.134.137.82) by
+ DB8PR06CA0066.eurprd06.prod.outlook.com (2603:10a6:10:120::40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4478.17 via Frontend Transport; Mon, 6 Sep 2021 09:12:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a28a9144-de41-42ff-f1d4-08d9711669a6
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5521:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH0PR11MB55217CE825B2125396753705B8D29@CH0PR11MB5521.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: IbFamy/i4YynfKCsf7QN1/IsJG9xhOkbJovjYnUC6ro/V/rbVTzRwxcF4pILvKlx4SGNCD7asr0FIMUmuD+1UVc9GhuR3L1SCK0Fq9HwkqHzDaAmJX7AxobLzf3eoqwHOZs4ebFSH+eeWHadkopkdvUZpyPxe3kWkcoat4e90C5wotYbHvaumOwMqtfj5a7V3iNLrAzS80DPBP6KXQrhZu2+HQKVPmfZyUMYIQW4Pt4xN/ld2asJSA4CNfgNTa44UGmKgi8G1ThnVRVrgYaV6PzA6+RaOMTWNwBkO3RxGmk6Ntq1R8aEjAe6dZgUVUp2mts29usrTNKiOqKP9iHutqx39wfJrHyDklQgfkKgGZbpq7rSqgloI+EAKktejqvWicUkI3YtIr1jdVmDcaQRaJab0rakeH57gU1j6BLylfZVGkIW3622/WqY51CJeqZaNgnOVn7ROdjZ8OyeTynnNenY5g/8zKRGktJQAIgK4kj61gkIhW/W/TLr/CLXeQqIX9A7RlGGnRwMeZO4eLE1sbdEb8V0SOCbldNatAgp5nu8SdlR4JLucxGa1UdIu20dsjDS7kHaFKMG1kJ8cGmC4f2IPJQW4OTZYinsPmxNBfuasgZgCfk3JW8bsLrTCdx3xjZL6Q1DRXs3J/QBgnPKIzGAho8m5fkLj+IuQmu+muxKDRQMh1mPhhJERIGCkNQRT+MppJnQ1B08dTTBHThsJI3C+Tx0+gl+RluUGzLTxoc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(366004)(376002)(39860400002)(396003)(136003)(66476007)(36756003)(956004)(186003)(66946007)(2906002)(16576012)(6486002)(66556008)(83380400001)(31696002)(5660300002)(316002)(31686004)(86362001)(53546011)(478600001)(2616005)(38100700002)(6666004)(8936002)(8676002)(26005)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SVJVcGQwU1ZaTW5wU0pkeHZKTGFCUEpHZ2hiSFZCc0FQekZ5eVpvQzNodnJ3?=
+ =?utf-8?B?Z3hxNkszdWlHYStqUHdYVDM2QkFvZjFmSWx2UTA2U0YvZ1ZQL3AvOHllSVpX?=
+ =?utf-8?B?ZGZ6Y2hqY0N1QldFMTY3Rjh0SWJXeTYrMnU2WTlKa053SEFEVjBldnpMUzlU?=
+ =?utf-8?B?MmNpUW0vaVplcjJlRzVIenI4QmFwTmQ2anE4c3RMMkMxcVN1NWZtUlZsQ3Yw?=
+ =?utf-8?B?UHlIL0lPRCttT0FvSWpKZWlxTFY4eW5Yb1pQNXF4T2lwazVUUlJtaEdKY3Z4?=
+ =?utf-8?B?Q1Y5cHF4WWpqL0orOHRZSTFBMXFlY0I0cjBEUlJ3Z0U3bnZMWmNKVnl1V296?=
+ =?utf-8?B?cEJMZFFudEhheUN6dDIrMVNwVnI3dmY5MFBDc2MvczV1d3pwUS9CRmJzQ0JD?=
+ =?utf-8?B?eWRJUUxNc0srcDRCMVROYmVCUTFjd1dZVTVwaW1iQVdVdGZmSlRkTktTN1hR?=
+ =?utf-8?B?amJlZ1B4K2pnNFlFNE14Sjd2S1c4a2J4MWl6M0JneXVVZE44b2FRMDY1MUk5?=
+ =?utf-8?B?N2FySGduVkp1eDdvT0t3c1lTN1QrQjBSbmJMK0hHR3pwSTVUV0VRNDdCdk5P?=
+ =?utf-8?B?S3VvSXMrR1cyTC85SUtkZjl6bmxrOVlWZVI5NU1Fd3NnRGhQTFZneWd4a2Ew?=
+ =?utf-8?B?Z2Mwa2loZEQydnc0ZHIyRHpvZ3BiVGx3SWtUNm5nYXpNb3FBQ1BpOVRkMElz?=
+ =?utf-8?B?QjY5clBmQkxRUitvNGFBbWVzS0NMTGZwMTMxZjdiVGd5VTRxaFVRbjlMeXNp?=
+ =?utf-8?B?MmZuQkJ6dmlUb3NLWklOb3JpcUV5bGc0QWkzMmhmRy9mdi9WN2RieW9vcUp3?=
+ =?utf-8?B?WjZTcXFFdU1lWHhJeXNYbGpCcXU4eFYxWnY4R2w4TVZGcXFCL0k2bTl1ZGxG?=
+ =?utf-8?B?TlE3b1UrdmtwV29ya0Fkc21zempHSjcwUUMrMFIxS3BJcHd1QXJVUTR0T0VH?=
+ =?utf-8?B?RkhiNzdpWWwzMy9TU0wyTkZhdDBvSE5VSVJCVmY5M2xncWpGR3QxNE1qcWt6?=
+ =?utf-8?B?TWc1SFZpa0Fya1NjZEgxM05Dc01GRnRRT3lQb2Foem5ldG5DNStxam1teDQ3?=
+ =?utf-8?B?S1BGL1FxdVN1NFRKczkvc3RZamhIQ0VsNnNBZEg5WXZ3UkcwUis1M2N3N3pq?=
+ =?utf-8?B?S3B3aXU1Z2dqa3dISUVIZ2g4SWJ3bHU3WGFtVDFyV1dCWFFYSUU4MXBaWG5N?=
+ =?utf-8?B?dXZhOE5lemlrN1U0MkpmZkFHblROZ2wyTFFWWkVFNEU5NXB5Ulc1Y2RUblBr?=
+ =?utf-8?B?dlZldVFjM0VzN1BNOThtbzZvMG1vWDNpcHRQZXhpSEtvVUNOM2NDU1pHaS81?=
+ =?utf-8?B?bDB6bjJHcTdBdGJ4WU5uZEd5d0NqVFY3T0w2cHY3Y0RTblRnZExrMXc2Mk1D?=
+ =?utf-8?B?UXBFaGpCek5jaHBJOC9JM3FFczVtYzNCaFhKT1N2c3k2cmR5NGFRV3BBcFRy?=
+ =?utf-8?B?R2JXQW9LYjUyZ0t4SjNXN0Q2MHh0UCtRNGxES0UrTzJWYmpwdk5qSzU3Z2ZB?=
+ =?utf-8?B?UE1BUWUrNFUvYThxT2x5dlR4b0x6Yy9MVWN6a1l2Q01LcTNyMmhzV1pYMjR1?=
+ =?utf-8?B?WVY1eC9SR2daWE85Y3VyUTRVaVVCUWs3YXM0T1Y3UUFHeVBjWHhBN2xmcEJY?=
+ =?utf-8?B?OEp0TWorRnlpRzA0TDRjRmJkdWNEZGNYM3Q2ckE4ZTN3ODlhZXlSSjR3ejU2?=
+ =?utf-8?B?MFFhRU05VDFieGd0czNrMFljYk8wV09BVGozZ2JmbzE4c1N5ZERnWElOWkhW?=
+ =?utf-8?Q?QO97vkAqxYJ22qPABgKIzU3TPDdiNLQF/jBSWX8?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a28a9144-de41-42ff-f1d4-08d9711669a6
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2021 09:12:12.7623 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0KcaX6rafv4aAR3jL4Oc/nzNLwSEBgNV8vxttkurPuV2Ze8MoS6TmD7GN2XNceMHHBUr6T8QnrF/zcMIORCM0Z/w3EWoq+EJHR71SZwym4M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5521
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm/i915/display: Some code
+ improvements and code style fixes for DRRS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,188 +153,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 03, 2021 at 09:05:00AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 02/09/2021 15:20, Daniel Vetter wrote:
-> > The important part isn't so much that this does an rcu lookup - that's
-> > more an implementation detail, which will also be removed.
-> > 
-> > The thing that makes this different from other functions is that it's
-> > gettting you the vm that batchbuffers will run in for that gem
-> > context, which is either a full ppgtt stored in gem->ctx, or the ggtt.
-> > 
-> > We'll make more use of this function later on.
-> > 
-> > Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: "Thomas Hellstr�m" <thomas.hellstrom@linux.intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> > Cc: Dave Airlie <airlied@redhat.com>
-> > Cc: Jason Ekstrand <jason@jlekstrand.net>
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.h           | 2 +-
-> >   drivers/gpu/drm/i915/gem/selftests/huge_pages.c       | 4 ++--
-> >   drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 4 ++--
-> >   drivers/gpu/drm/i915/gt/selftest_execlists.c          | 2 +-
-> >   drivers/gpu/drm/i915/gt/selftest_hangcheck.c          | 2 +-
-> >   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c         | 4 ++--
-> >   drivers/gpu/drm/i915/selftests/i915_vma.c             | 2 +-
-> >   7 files changed, 10 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> > index 18060536b0c2..da6e8b506d96 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> > @@ -155,7 +155,7 @@ i915_gem_context_vm(struct i915_gem_context *ctx)
-> >   }
-> >   static inline struct i915_address_space *
-> > -i915_gem_context_get_vm_rcu(struct i915_gem_context *ctx)
-> > +i915_gem_context_get_eb_vm(struct i915_gem_context *ctx)
-> >   {
-> >   	struct i915_address_space *vm;
-> > diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> > index a094f3ce1a90..6c68fe26bb32 100644
-> > --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> > +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> > @@ -1456,7 +1456,7 @@ static int igt_tmpfs_fallback(void *arg)
-> >   	struct i915_gem_context *ctx = arg;
-> >   	struct drm_i915_private *i915 = ctx->i915;
-> >   	struct vfsmount *gemfs = i915->mm.gemfs;
-> > -	struct i915_address_space *vm = i915_gem_context_get_vm_rcu(ctx);
-> > +	struct i915_address_space *vm = i915_gem_context_get_eb_vm(ctx);
-> >   	struct drm_i915_gem_object *obj;
-> >   	struct i915_vma *vma;
-> >   	u32 *vaddr;
-> > @@ -1512,7 +1512,7 @@ static int igt_shrink_thp(void *arg)
-> >   {
-> >   	struct i915_gem_context *ctx = arg;
-> >   	struct drm_i915_private *i915 = ctx->i915;
-> > -	struct i915_address_space *vm = i915_gem_context_get_vm_rcu(ctx);
-> > +	struct i915_address_space *vm = i915_gem_context_get_eb_vm(ctx);
-> 
-> Problem here (and probably elsewhere) is that this test does no "eb", nor
-> even submits any requests for execution.
-> 
-> More so, execbuf path does currently rely on intel_context->vm which is
-> always set. So I really wonder how it would look, what I touched on
-> elsewhere in the thread, if we instead made ctx->vm always point to
-> something. It would align the rules between intel_context and GEM context
-> and may end up with a more consistent situation.
+Looks good to me.
+Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 
-The entire thing is substantially more messy, and my few quick attempts at
-fixing this went flat.
-
-The thing is, this _is_ the vm we use for execbuf, patch 8 changes intel
-context initialization to also use this function. I do think it would make
-sense to always set the right vm in gem_ctx->vm, but when I tried to do
-that I've also tried to implement a bit stricter rules for
-intel_context->vm. Currently that's initialized to the single gt vm deep
-down in the per-type (virtual vs engine ctx) code, and then later on we'd
-overwrite that. My idea was that we'd no longer set the intel_context->vm
-in low-level code at all, but instead the variuos callers that create the
-ctx either pass the right vm down, or set it after initial setup is done.
-
-This way we'd be guaranteed that we never accidentally run a userspace
-context on the kernel's gt vm, which would be bad.
-
-The problem was that the entire refactor became really messy, and it was
-conflicting against the GuC stuff and the changed engines there, so I
-figured I'll drop it. There's more locking cleanup tbd, so I'll keep that
-on the list of things. Maybe once intel_context creation is a bit more
-untangled.
--Daniel
-
+On 9/4/21 1:10 AM, José Roberto de Souza wrote:
+> It started as a code style fix for the lines above 100 col but it
+> turned out to simplifications to intel_drrs_set_state().
+> Now it receives the desired refresh rate type, high or low.
 > 
-> Regards,
+> v3:
+> - Fixed the mode refesh rate debug message
 > 
-> Tvrtko
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_drrs.c | 58 ++++++++---------------
+>   1 file changed, 20 insertions(+), 38 deletions(-)
 > 
-> >   	struct drm_i915_gem_object *obj;
-> >   	struct i915_gem_engines_iter it;
-> >   	struct intel_context *ce;
-> > diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > index 4d2758718d21..fc7fb33a3a52 100644
-> > --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > @@ -1528,7 +1528,7 @@ static int write_to_scratch(struct i915_gem_context *ctx,
-> >   	intel_gt_chipset_flush(engine->gt);
-> > -	vm = i915_gem_context_get_vm_rcu(ctx);
-> > +	vm = i915_gem_context_get_eb_vm(ctx);
-> >   	vma = i915_vma_instance(obj, vm, NULL);
-> >   	if (IS_ERR(vma)) {
-> >   		err = PTR_ERR(vma);
-> > @@ -1607,7 +1607,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
-> >   	if (GRAPHICS_VER(i915) >= 8) {
-> >   		const u32 GPR0 = engine->mmio_base + 0x600;
-> > -		vm = i915_gem_context_get_vm_rcu(ctx);
-> > +		vm = i915_gem_context_get_eb_vm(ctx);
-> >   		vma = i915_vma_instance(obj, vm, NULL);
-> >   		if (IS_ERR(vma)) {
-> >   			err = PTR_ERR(vma);
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > index f12ffe797639..b3863abc51f5 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > @@ -3493,7 +3493,7 @@ static int smoke_submit(struct preempt_smoke *smoke,
-> >   	if (batch) {
-> >   		struct i915_address_space *vm;
-> > -		vm = i915_gem_context_get_vm_rcu(ctx);
-> > +		vm = i915_gem_context_get_eb_vm(ctx);
-> >   		vma = i915_vma_instance(batch, vm, NULL);
-> >   		i915_vm_put(vm);
-> >   		if (IS_ERR(vma))
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > index 2c1ed32ca5ac..8be23e0f9306 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > @@ -117,7 +117,7 @@ static struct i915_request *
-> >   hang_create_request(struct hang *h, struct intel_engine_cs *engine)
-> >   {
-> >   	struct intel_gt *gt = h->gt;
-> > -	struct i915_address_space *vm = i915_gem_context_get_vm_rcu(h->ctx);
-> > +	struct i915_address_space *vm = i915_gem_context_get_eb_vm(h->ctx);
-> >   	struct drm_i915_gem_object *obj;
-> >   	struct i915_request *rq = NULL;
-> >   	struct i915_vma *hws, *vma;
-> > diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> > index f843a5040706..2d60a5a5b065 100644
-> > --- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> > +++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> > @@ -1300,7 +1300,7 @@ static int exercise_mock(struct drm_i915_private *i915,
-> >   	if (!ctx)
-> >   		return -ENOMEM;
-> > -	vm = i915_gem_context_get_vm_rcu(ctx);
-> > +	vm = i915_gem_context_get_eb_vm(ctx);
-> >   	err = func(vm, 0, min(vm->total, limit), end_time);
-> >   	i915_vm_put(vm);
-> > @@ -1848,7 +1848,7 @@ static int igt_cs_tlb(void *arg)
-> >   		goto out_unlock;
-> >   	}
-> > -	vm = i915_gem_context_get_vm_rcu(ctx);
-> > +	vm = i915_gem_context_get_eb_vm(ctx);
-> >   	if (i915_is_ggtt(vm))
-> >   		goto out_vm;
-> > diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> > index dd0607254a95..79ba72da0813 100644
-> > --- a/drivers/gpu/drm/i915/selftests/i915_vma.c
-> > +++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> > @@ -118,7 +118,7 @@ static int create_vmas(struct drm_i915_private *i915,
-> >   				struct i915_vma *vma;
-> >   				int err;
-> > -				vm = i915_gem_context_get_vm_rcu(ctx);
-> > +				vm = i915_gem_context_get_eb_vm(ctx);
-> >   				vma = checked_vma_instance(obj, vm, NULL);
-> >   				i915_vm_put(vm);
-> >   				if (IS_ERR(vma))
-> > 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+> index a2b65eca14418..fa0411341a0da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+> @@ -89,19 +89,13 @@ intel_drrs_compute_config(struct intel_dp *intel_dp,
+>   
+>   static void intel_drrs_set_state(struct drm_i915_private *dev_priv,
+>   				 const struct intel_crtc_state *crtc_state,
+> -				 int refresh_rate)
+> +				 enum drrs_refresh_rate_type refresh_type)
+>   {
+>   	struct intel_dp *intel_dp = dev_priv->drrs.dp;
+>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	enum drrs_refresh_rate_type index = DRRS_HIGH_RR;
+> +	struct drm_display_mode *mode;
+>   
+> -	if (refresh_rate <= 0) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "Refresh rate should be positive non-zero.\n");
+> -		return;
+> -	}
+> -
+> -	if (intel_dp == NULL) {
+> +	if (!intel_dp) {
+>   		drm_dbg_kms(&dev_priv->drm, "DRRS not supported.\n");
+>   		return;
+>   	}
+> @@ -117,15 +111,8 @@ static void intel_drrs_set_state(struct drm_i915_private *dev_priv,
+>   		return;
+>   	}
+>   
+> -	if (drm_mode_vrefresh(intel_dp->attached_connector->panel.downclock_mode) ==
+> -			refresh_rate)
+> -		index = DRRS_LOW_RR;
+> -
+> -	if (index == dev_priv->drrs.refresh_rate_type) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "DRRS requested for previously set RR...ignoring\n");
+> +	if (refresh_type == dev_priv->drrs.refresh_rate_type)
+>   		return;
+> -	}
+>   
+>   	if (!crtc_state->hw.active) {
+>   		drm_dbg_kms(&dev_priv->drm,
+> @@ -134,7 +121,7 @@ static void intel_drrs_set_state(struct drm_i915_private *dev_priv,
+>   	}
+>   
+>   	if (DISPLAY_VER(dev_priv) >= 8 && !IS_CHERRYVIEW(dev_priv)) {
+> -		switch (index) {
+> +		switch (refresh_type) {
+>   		case DRRS_HIGH_RR:
+>   			intel_dp_set_m_n(crtc_state, M1_N1);
+>   			break;
+> @@ -151,7 +138,7 @@ static void intel_drrs_set_state(struct drm_i915_private *dev_priv,
+>   		u32 val;
+>   
+>   		val = intel_de_read(dev_priv, reg);
+> -		if (index > DRRS_HIGH_RR) {
+> +		if (refresh_type == DRRS_LOW_RR) {
+>   			if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>   				val |= PIPECONF_EDP_RR_MODE_SWITCH_VLV;
+>   			else
+> @@ -165,10 +152,14 @@ static void intel_drrs_set_state(struct drm_i915_private *dev_priv,
+>   		intel_de_write(dev_priv, reg, val);
+>   	}
+>   
+> -	dev_priv->drrs.refresh_rate_type = index;
+> +	dev_priv->drrs.refresh_rate_type = refresh_type;
+>   
+> +	if (refresh_type == DRRS_LOW_RR)
+> +		mode = intel_dp->attached_connector->panel.downclock_mode;
+> +	else
+> +		mode = intel_dp->attached_connector->panel.fixed_mode;
+>   	drm_dbg_kms(&dev_priv->drm, "eDP Refresh Rate set to : %dHz\n",
+> -		    refresh_rate);
+> +		    drm_mode_vrefresh(mode));
+>   }
+>   
+>   static void
+> @@ -216,13 +207,7 @@ intel_drrs_disable_locked(struct intel_dp *intel_dp,
+>   {
+>   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>   
+> -	if (dev_priv->drrs.refresh_rate_type == DRRS_LOW_RR) {
+> -		int refresh;
+> -
+> -		refresh = drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode);
+> -		intel_drrs_set_state(dev_priv, crtc_state, refresh);
+> -	}
+> -
+> +	intel_drrs_set_state(dev_priv, crtc_state, DRRS_HIGH_RR);
+>   	dev_priv->drrs.dp = NULL;
+>   }
+>   
+> @@ -290,6 +275,7 @@ static void intel_drrs_downclock_work(struct work_struct *work)
+>   	struct drm_i915_private *dev_priv =
+>   		container_of(work, typeof(*dev_priv), drrs.work.work);
+>   	struct intel_dp *intel_dp;
+> +	struct drm_crtc *crtc;
+>   
+>   	mutex_lock(&dev_priv->drrs.mutex);
+>   
+> @@ -306,12 +292,8 @@ static void intel_drrs_downclock_work(struct work_struct *work)
+>   	if (dev_priv->drrs.busy_frontbuffer_bits)
+>   		goto unlock;
+>   
+> -	if (dev_priv->drrs.refresh_rate_type != DRRS_LOW_RR) {
+> -		struct drm_crtc *crtc = dp_to_dig_port(intel_dp)->base.base.crtc;
+> -
+> -		intel_drrs_set_state(dev_priv, to_intel_crtc(crtc)->config,
+> -				     drm_mode_vrefresh(intel_dp->attached_connector->panel.downclock_mode));
+> -	}
+> +	crtc = dp_to_dig_port(intel_dp)->base.base.crtc;
+> +	intel_drrs_set_state(dev_priv, to_intel_crtc(crtc)->config, DRRS_LOW_RR);
+>   
+>   unlock:
+>   	mutex_unlock(&dev_priv->drrs.mutex);
+> @@ -354,9 +336,9 @@ void intel_drrs_invalidate(struct drm_i915_private *dev_priv,
+>   	dev_priv->drrs.busy_frontbuffer_bits |= frontbuffer_bits;
+>   
+>   	/* invalidate means busy screen hence upclock */
+> -	if (frontbuffer_bits && dev_priv->drrs.refresh_rate_type == DRRS_LOW_RR)
+> +	if (frontbuffer_bits)
+>   		intel_drrs_set_state(dev_priv, to_intel_crtc(crtc)->config,
+> -				     drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
+> +				     DRRS_HIGH_RR);
+>   
+>   	mutex_unlock(&dev_priv->drrs.mutex);
+>   }
+> @@ -400,9 +382,9 @@ void intel_drrs_flush(struct drm_i915_private *dev_priv,
+>   	dev_priv->drrs.busy_frontbuffer_bits &= ~frontbuffer_bits;
+>   
+>   	/* flush means busy screen hence upclock */
+> -	if (frontbuffer_bits && dev_priv->drrs.refresh_rate_type == DRRS_LOW_RR)
+> +	if (frontbuffer_bits)
+>   		intel_drrs_set_state(dev_priv, to_intel_crtc(crtc)->config,
+> -				     drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
+> +				     DRRS_HIGH_RR);
+>   
+>   	/*
+>   	 * flush also means no more activity hence schedule downclock, if all
+> 
