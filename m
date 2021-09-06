@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1CBA401551
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 05:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4500A401550
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 05:50:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E157F89A59;
-	Mon,  6 Sep 2021 03:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7763899EA;
+	Mon,  6 Sep 2021 03:50:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1E3899E8
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 03:51:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 264E0899E8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 03:50:23 +0000 (UTC)
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-559-x-KakoHiPx-BEwaixfcUsQ-1; Sun, 05 Sep 2021 23:44:13 -0400
-X-MC-Unique: x-KakoHiPx-BEwaixfcUsQ-1
+ us-mta-351-p_xItSYOONmGupOFu9-yOw-1; Sun, 05 Sep 2021 23:44:15 -0400
+X-MC-Unique: p_xItSYOONmGupOFu9-yOw-1
 Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
  [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5B61D80196C;
- Mon,  6 Sep 2021 03:44:12 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 26307512B;
+ Mon,  6 Sep 2021 03:44:14 +0000 (UTC)
 Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 157E65D9DE;
- Mon,  6 Sep 2021 03:44:10 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D43D55D9DE;
+ Mon,  6 Sep 2021 03:44:12 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com,
 	Dave Airlie <airlied@redhat.com>
-Date: Mon,  6 Sep 2021 13:43:49 +1000
-Message-Id: <20210906034356.2946530-4-airlied@gmail.com>
+Date: Mon,  6 Sep 2021 13:43:50 +1000
+Message-Id: <20210906034356.2946530-5-airlied@gmail.com>
 In-Reply-To: <20210906034356.2946530-1-airlied@gmail.com>
 References: <20210906034356.2946530-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -40,8 +40,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 03/10] drm/i915: move more pll/clocks into
- display struct.
+Subject: [Intel-gfx] [PATCH 04/10] drm/i915/display: move gmbus into display
+ struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,492 +61,390 @@ From: Dave Airlie <airlied@redhat.com>
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c   | 24 ++++++++++----------
- drivers/gpu/drm/i915/display/intel_crt.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++------
- drivers/gpu/drm/i915/display/intel_dp.c      |  4 ++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_dsi.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_dvo.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_fdi.c     |  8 +++----
- drivers/gpu/drm/i915/display/intel_hdmi.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_lvds.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_tv.c      |  2 +-
- drivers/gpu/drm/i915/gt/debugfs_gt_pm.c      |  2 +-
- drivers/gpu/drm/i915/gt/intel_rc6.c          |  2 +-
- drivers/gpu/drm/i915/gt/intel_rps.c          |  4 ++--
- drivers/gpu/drm/i915/i915_debugfs.c          |  2 +-
- drivers/gpu/drm/i915/i915_drv.h              | 13 ++++++-----
- 17 files changed, 45 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c  |  6 +--
+ drivers/gpu/drm/i915/display/intel_dp_aux.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c  | 42 ++++++++++-----------
+ drivers/gpu/drm/i915/i915_drv.h             | 27 +++++++------
+ drivers/gpu/drm/i915/i915_irq.c             |  4 +-
+ drivers/gpu/drm/i915/i915_reg.h             | 14 +++----
+ 6 files changed, 47 insertions(+), 48 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i=
 915/display/intel_cdclk.c
-index cb54a0c8b4e0..e52f97c3ecab 100644
+index e52f97c3ecab..f42e07824f01 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -434,7 +434,7 @@ static void hsw_get_cdclk(struct drm_i915_private *dev_=
-priv,
+@@ -1948,12 +1948,12 @@ static void intel_set_cdclk(struct drm_i915_private=
+ *dev_priv,
+ =09 * functions use cdclk. Not all platforms/ports do,
+ =09 * but we'll lock them all for simplicity.
+ =09 */
+-=09mutex_lock(&dev_priv->gmbus_mutex);
++=09mutex_lock(&dev_priv->display.gmbus_mutex);
+ =09for_each_intel_dp(&dev_priv->drm, encoder) {
+ =09=09struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
 =20
- static int vlv_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk=
+ =09=09mutex_lock_nest_lock(&intel_dp->aux.hw_mutex,
+-=09=09=09=09     &dev_priv->gmbus_mutex);
++=09=09=09=09     &dev_priv->display.gmbus_mutex);
+ =09}
+=20
+ =09dev_priv->display.funcs.set_cdclk(dev_priv, cdclk_config, pipe);
+@@ -1963,7 +1963,7 @@ static void intel_set_cdclk(struct drm_i915_private *=
+dev_priv,
+=20
+ =09=09mutex_unlock(&intel_dp->aux.hw_mutex);
+ =09}
+-=09mutex_unlock(&dev_priv->gmbus_mutex);
++=09mutex_unlock(&dev_priv->display.gmbus_mutex);
+=20
+ =09for_each_intel_encoder_with_psr(&dev_priv->drm, encoder) {
+ =09=09struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/=
+i915/display/intel_dp_aux.c
+index b0025dd3cb4a..8695da511e63 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -42,7 +42,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+ =09bool done;
+=20
+ #define C (((status =3D intel_uncore_read_notrace(&i915->uncore, ch_ctl)) =
+& DP_AUX_CH_CTL_SEND_BUSY) =3D=3D 0)
+-=09done =3D wait_event_timeout(i915->gmbus_wait_queue, C,
++=09done =3D wait_event_timeout(i915->display.gmbus_wait_queue, C,
+ =09=09=09=09  msecs_to_jiffies_timeout(timeout_ms));
+=20
+ =09/* just trace the final value */
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i=
+915/display/intel_gmbus.c
+index ceb1bf8a8c3c..9d31f5322f2a 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -347,7 +347,7 @@ static int gmbus_wait(struct drm_i915_private *dev_priv=
+, u32 status, u32 irq_en)
+ =09if (!HAS_GMBUS_IRQ(dev_priv))
+ =09=09irq_en =3D 0;
+=20
+-=09add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
++=09add_wait_queue(&dev_priv->display.gmbus_wait_queue, &wait);
+ =09intel_de_write_fw(dev_priv, GMBUS4, irq_en);
+=20
+ =09status |=3D GMBUS_SATOER;
+@@ -358,7 +358,7 @@ static int gmbus_wait(struct drm_i915_private *dev_priv=
+, u32 status, u32 irq_en)
+ =09=09=09       50);
+=20
+ =09intel_de_write_fw(dev_priv, GMBUS4, 0);
+-=09remove_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
++=09remove_wait_queue(&dev_priv->display.gmbus_wait_queue, &wait);
+=20
+ =09if (gmbus2 & GMBUS_SATOER)
+ =09=09return -ENXIO;
+@@ -378,7 +378,7 @@ gmbus_wait_idle(struct drm_i915_private *dev_priv)
+ =09if (HAS_GMBUS_IRQ(dev_priv))
+ =09=09irq_enable =3D GMBUS_IDLE_EN;
+=20
+-=09add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
++=09add_wait_queue(&dev_priv->display.gmbus_wait_queue, &wait);
+ =09intel_de_write_fw(dev_priv, GMBUS4, irq_enable);
+=20
+ =09ret =3D intel_wait_for_register_fw(&dev_priv->uncore,
+@@ -386,7 +386,7 @@ gmbus_wait_idle(struct drm_i915_private *dev_priv)
+ =09=09=09=09=09 10);
+=20
+ =09intel_de_write_fw(dev_priv, GMBUS4, 0);
+-=09remove_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
++=09remove_wait_queue(&dev_priv->display.gmbus_wait_queue, &wait);
+=20
+ =09return ret;
+ }
+@@ -773,7 +773,7 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter=
 )
- {
--=09int freq_320 =3D (dev_priv->hpll_freq <<  1) % 320000 !=3D 0 ?
-+=09int freq_320 =3D (dev_priv->display.hpll_freq <<  1) % 320000 !=3D 0 ?
- =09=09333333 : 320000;
-=20
- =09/*
-@@ -467,7 +467,7 @@ static u8 vlv_calc_voltage_level(struct drm_i915_privat=
-e *dev_priv, int cdclk)
- =09=09 * hardware has shown that we just need to write the desired
- =09=09 * CCK divider into the Punit register.
- =09=09 */
--=09=09return DIV_ROUND_CLOSEST(dev_priv->hpll_freq << 1, cdclk) - 1;
-+=09=09return DIV_ROUND_CLOSEST(dev_priv->display.hpll_freq << 1, cdclk) - =
-1;
- =09}
- }
-=20
-@@ -506,7 +506,7 @@ static void vlv_program_pfi_credits(struct drm_i915_pri=
-vate *dev_priv)
- =09else
- =09=09default_credits =3D PFI_CREDIT(8);
-=20
--=09if (dev_priv->display.cdclk.hw.cdclk >=3D dev_priv->czclk_freq) {
-+=09if (dev_priv->display.cdclk.hw.cdclk >=3D dev_priv->display.czclk_freq)=
- {
- =09=09/* CHV suggested value is 31 or 63 */
- =09=09if (IS_CHERRYVIEW(dev_priv))
- =09=09=09credits =3D PFI_CREDIT_63;
-@@ -581,7 +581,7 @@ static void vlv_set_cdclk(struct drm_i915_private *dev_=
-priv,
- =09if (cdclk =3D=3D 400000) {
- =09=09u32 divider;
-=20
--=09=09divider =3D DIV_ROUND_CLOSEST(dev_priv->hpll_freq << 1,
-+=09=09divider =3D DIV_ROUND_CLOSEST(dev_priv->display.hpll_freq << 1,
- =09=09=09=09=09    cdclk) - 1;
-=20
- =09=09/* adjust cdclk divider */
-@@ -942,9 +942,9 @@ static int skl_cdclk_decimal(int cdclk)
- static void skl_set_preferred_cdclk_vco(struct drm_i915_private *dev_priv,
- =09=09=09=09=09int vco)
- {
--=09bool changed =3D dev_priv->skl_preferred_vco_freq !=3D vco;
-+=09bool changed =3D dev_priv->display.skl_preferred_vco_freq !=3D vco;
-=20
--=09dev_priv->skl_preferred_vco_freq =3D vco;
-+=09dev_priv->display.skl_preferred_vco_freq =3D vco;
-=20
- =09if (changed)
- =09=09intel_update_max_cdclk(dev_priv);
-@@ -1151,7 +1151,7 @@ static void skl_cdclk_init_hw(struct drm_i915_private=
- *dev_priv)
- =09=09 * Use the current vco as our initial
- =09=09 * guess as to what the preferred vco is.
- =09=09 */
--=09=09if (dev_priv->skl_preferred_vco_freq =3D=3D 0)
-+=09=09if (dev_priv->display.skl_preferred_vco_freq =3D=3D 0)
- =09=09=09skl_set_preferred_cdclk_vco(dev_priv,
- =09=09=09=09=09=09    dev_priv->display.cdclk.hw.vco);
- =09=09return;
-@@ -1159,7 +1159,7 @@ static void skl_cdclk_init_hw(struct drm_i915_private=
- *dev_priv)
-=20
- =09cdclk_config =3D dev_priv->display.cdclk.hw;
-=20
--=09cdclk_config.vco =3D dev_priv->skl_preferred_vco_freq;
-+=09cdclk_config.vco =3D dev_priv->display.skl_preferred_vco_freq;
- =09if (cdclk_config.vco =3D=3D 0)
- =09=09cdclk_config.vco =3D 8100000;
- =09cdclk_config.cdclk =3D skl_calc_cdclk(0, cdclk_config.vco);
-@@ -2331,7 +2331,7 @@ static int skl_dpll0_vco(struct intel_cdclk_state *cd=
-clk_state)
-=20
- =09vco =3D cdclk_state->logical.vco;
- =09if (!vco)
--=09=09vco =3D dev_priv->skl_preferred_vco_freq;
-+=09=09vco =3D dev_priv->display.skl_preferred_vco_freq;
-=20
- =09for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
- =09=09if (!crtc_state->hw.enable)
-@@ -2636,7 +2636,7 @@ void intel_update_max_cdclk(struct drm_i915_private *=
-dev_priv)
- =09=09u32 limit =3D intel_de_read(dev_priv, SKL_DFSM) & SKL_DFSM_CDCLK_LIM=
-IT_MASK;
- =09=09int max_cdclk, vco;
-=20
--=09=09vco =3D dev_priv->skl_preferred_vco_freq;
-+=09=09vco =3D dev_priv->display.skl_preferred_vco_freq;
- =09=09drm_WARN_ON(&dev_priv->drm, vco !=3D 8100000 && vco !=3D 8640000);
-=20
- =09=09/*
-@@ -2678,13 +2678,13 @@ void intel_update_max_cdclk(struct drm_i915_private=
- *dev_priv)
- =09=09dev_priv->display.max_cdclk_freq =3D dev_priv->display.cdclk.hw.cdcl=
-k;
- =09}
-=20
--=09dev_priv->max_dotclk_freq =3D intel_compute_max_dotclk(dev_priv);
-+=09dev_priv->display.max_dotclk_freq =3D intel_compute_max_dotclk(dev_priv=
-);
-=20
- =09drm_dbg(&dev_priv->drm, "Max CD clock rate: %d kHz\n",
- =09=09dev_priv->display.max_cdclk_freq);
-=20
- =09drm_dbg(&dev_priv->drm, "Max dotclock rate: %d kHz\n",
--=09=09dev_priv->max_dotclk_freq);
-+=09=09dev_priv->display.max_dotclk_freq);
- }
-=20
- /**
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i91=
-5/display/intel_crt.c
-index 408f82b0dc7d..466ce68ae5e0 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -342,7 +342,7 @@ intel_crt_mode_valid(struct drm_connector *connector,
- {
- =09struct drm_device *dev =3D connector->dev;
- =09struct drm_i915_private *dev_priv =3D to_i915(dev);
--=09int max_dotclk =3D dev_priv->max_dotclk_freq;
-+=09int max_dotclk =3D dev_priv->display.max_dotclk_freq;
- =09int max_clock;
-=20
- =09if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm=
-/i915/display/intel_display.c
-index 035a55c8abec..f421bc69e197 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -160,10 +160,10 @@ int vlv_get_cck_clock_hpll(struct drm_i915_private *d=
-ev_priv,
-=20
- =09vlv_cck_get(dev_priv);
-=20
--=09if (dev_priv->hpll_freq =3D=3D 0)
--=09=09dev_priv->hpll_freq =3D vlv_get_hpll_vco(dev_priv);
-+=09if (dev_priv->display.hpll_freq =3D=3D 0)
-+=09=09dev_priv->display.hpll_freq =3D vlv_get_hpll_vco(dev_priv);
-=20
--=09hpll =3D vlv_get_cck_clock(dev_priv, name, reg, dev_priv->hpll_freq);
-+=09hpll =3D vlv_get_cck_clock(dev_priv, name, reg, dev_priv->display.hpll_=
-freq);
-=20
- =09vlv_cck_put(dev_priv);
-=20
-@@ -175,11 +175,11 @@ static void intel_update_czclk(struct drm_i915_privat=
-e *dev_priv)
- =09if (!(IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)))
- =09=09return;
-=20
--=09dev_priv->czclk_freq =3D vlv_get_cck_clock_hpll(dev_priv, "czclk",
-+=09dev_priv->display.czclk_freq =3D vlv_get_cck_clock_hpll(dev_priv, "czcl=
-k",
- =09=09=09=09=09=09      CCK_CZ_CLOCK_CONTROL);
-=20
- =09drm_dbg(&dev_priv->drm, "CZ clock rate: %d kHz\n",
--=09=09dev_priv->czclk_freq);
-+=09=09dev_priv->display.czclk_freq);
- }
-=20
- /* WA Display #0827: Gen9:all */
-@@ -4006,7 +4006,7 @@ static int intel_crtc_compute_config(struct intel_crt=
-c *crtc,
- {
- =09struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
- =09struct drm_display_mode *pipe_mode =3D &pipe_config->hw.pipe_mode;
--=09int clock_limit =3D dev_priv->max_dotclk_freq;
-+=09int clock_limit =3D dev_priv->display.max_dotclk_freq;
-=20
- =09drm_mode_copy(pipe_mode, &pipe_config->hw.adjusted_mode);
-=20
-@@ -4046,7 +4046,7 @@ static int intel_crtc_compute_config(struct intel_crt=
-c *crtc,
- =09=09 */
- =09=09if (intel_crtc_supports_double_wide(crtc) &&
- =09=09    pipe_mode->crtc_clock > clock_limit) {
--=09=09=09clock_limit =3D dev_priv->max_dotclk_freq;
-+=09=09=09clock_limit =3D dev_priv->display.max_dotclk_freq;
- =09=09=09pipe_config->double_wide =3D true;
- =09=09}
- =09}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915=
-/display/intel_dp.c
-index 40a8e7cef42a..18f221d7f252 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -785,7 +785,7 @@ intel_dp_mode_valid(struct drm_connector *connector,
- =09struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
- =09int target_clock =3D mode->clock;
- =09int max_rate, mode_rate, max_lanes, max_link_clock;
--=09int max_dotclk =3D dev_priv->max_dotclk_freq;
-+=09int max_dotclk =3D dev_priv->display.max_dotclk_freq;
- =09u16 dsc_max_output_bpp =3D 0;
- =09u8 dsc_slice_count =3D 0;
- =09enum drm_mode_status status;
-@@ -1427,7 +1427,7 @@ intel_dp_compute_link_config(struct intel_encoder *en=
-coder,
- =09=09    limits.max_lane_count, limits.max_rate,
- =09=09    limits.max_bpp, adjusted_mode->crtc_clock);
-=20
--=09if ((adjusted_mode->crtc_clock > i915->max_dotclk_freq ||
-+=09if ((adjusted_mode->crtc_clock > i915->display.max_dotclk_freq ||
- =09     adjusted_mode->crtc_hdisplay > 5120) &&
- =09    intel_dp_can_bigjoiner(intel_dp))
- =09=09pipe_config->bigjoiner =3D true;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/=
-i915/display/intel_dp_mst.c
-index d104441344c0..99a127e8704a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -683,7 +683,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *conne=
-ctor,
- =09struct drm_dp_mst_topology_mgr *mgr =3D &intel_dp->mst_mgr;
- =09struct drm_dp_mst_port *port =3D intel_connector->port;
- =09const int min_bpp =3D 18;
--=09int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
-+=09int max_dotclk =3D to_i915(connector->dev)->display.max_dotclk_freq;
- =09int max_rate, mode_rate, max_lanes, max_link_clock;
  =09int ret;
 =20
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c b/drivers/gpu/drm/i91=
-5/display/intel_dsi.c
-index f453ceb8d149..1b96d2aa0730 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.c
-@@ -59,7 +59,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct drm_conn=
-ector *connector,
- =09struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
- =09struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
- =09const struct drm_display_mode *fixed_mode =3D intel_connector->panel.fi=
-xed_mode;
--=09int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
-+=09int max_dotclk =3D to_i915(connector->dev)->display.max_dotclk_freq;
+ =09wakeref =3D intel_display_power_get(dev_priv, POWER_DOMAIN_GMBUS);
+-=09mutex_lock(&dev_priv->gmbus_mutex);
++=09mutex_lock(&dev_priv->display.gmbus_mutex);
 =20
- =09drm_dbg_kms(&dev_priv->drm, "\n");
+ =09/*
+ =09 * In order to output Aksv to the receiver, use an indexed write to
+@@ -782,7 +782,7 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter=
+)
+ =09 */
+ =09ret =3D do_gmbus_xfer(adapter, msgs, ARRAY_SIZE(msgs), GMBUS_AKSV_SELEC=
+T);
 =20
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i91=
-5/display/intel_dvo.c
-index 86c903e9df60..e06de60f4970 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -226,7 +226,7 @@ intel_dvo_mode_valid(struct drm_connector *connector,
- =09struct intel_dvo *intel_dvo =3D intel_attached_dvo(to_intel_connector(c=
-onnector));
- =09const struct drm_display_mode *fixed_mode =3D
- =09=09to_intel_connector(connector)->panel.fixed_mode;
--=09int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
-+=09int max_dotclk =3D to_i915(connector->dev)->display.max_dotclk_freq;
- =09int target_clock =3D mode->clock;
+-=09mutex_unlock(&dev_priv->gmbus_mutex);
++=09mutex_unlock(&dev_priv->display.gmbus_mutex);
+ =09intel_display_power_put(dev_priv, POWER_DOMAIN_GMBUS, wakeref);
 =20
- =09if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i91=
-5/display/intel_fdi.c
-index aaa0207f483e..58dfa97304c4 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -104,14 +104,14 @@ void intel_fdi_pll_freq_update(struct drm_i915_privat=
-e *i915)
- =09=09u32 fdi_pll_clk =3D
- =09=09=09intel_de_read(i915, FDI_PLL_BIOS_0) & FDI_PLL_FB_CLOCK_MASK;
+ =09return ret;
+@@ -808,7 +808,7 @@ static void gmbus_lock_bus(struct i2c_adapter *adapter,
+ =09struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+ =09struct drm_i915_private *dev_priv =3D bus->dev_priv;
 =20
--=09=09i915->fdi_pll_freq =3D (fdi_pll_clk + 2) * 10000;
-+=09=09i915->display.fdi_pll_freq =3D (fdi_pll_clk + 2) * 10000;
- =09} else if (IS_SANDYBRIDGE(i915) || IS_IVYBRIDGE(i915)) {
--=09=09i915->fdi_pll_freq =3D 270000;
-+=09=09i915->display.fdi_pll_freq =3D 270000;
- =09} else {
- =09=09return;
+-=09mutex_lock(&dev_priv->gmbus_mutex);
++=09mutex_lock(&dev_priv->display.gmbus_mutex);
+ }
+=20
+ static int gmbus_trylock_bus(struct i2c_adapter *adapter,
+@@ -817,7 +817,7 @@ static int gmbus_trylock_bus(struct i2c_adapter *adapte=
+r,
+ =09struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+ =09struct drm_i915_private *dev_priv =3D bus->dev_priv;
+=20
+-=09return mutex_trylock(&dev_priv->gmbus_mutex);
++=09return mutex_trylock(&dev_priv->display.gmbus_mutex);
+ }
+=20
+ static void gmbus_unlock_bus(struct i2c_adapter *adapter,
+@@ -826,7 +826,7 @@ static void gmbus_unlock_bus(struct i2c_adapter *adapte=
+r,
+ =09struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+ =09struct drm_i915_private *dev_priv =3D bus->dev_priv;
+=20
+-=09mutex_unlock(&dev_priv->gmbus_mutex);
++=09mutex_unlock(&dev_priv->display.gmbus_mutex);
+ }
+=20
+ static const struct i2c_lock_operations gmbus_lock_ops =3D {
+@@ -847,22 +847,22 @@ int intel_gmbus_setup(struct drm_i915_private *dev_pr=
+iv)
+ =09int ret;
+=20
+ =09if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-=09=09dev_priv->gpio_mmio_base =3D VLV_DISPLAY_BASE;
++=09=09dev_priv->display.gpio_mmio_base =3D VLV_DISPLAY_BASE;
+ =09else if (!HAS_GMCH(dev_priv))
+ =09=09/*
+ =09=09 * Broxton uses the same PCH offsets for South Display Engine,
+ =09=09 * even though it doesn't have a PCH.
+ =09=09 */
+-=09=09dev_priv->gpio_mmio_base =3D PCH_DISPLAY_BASE;
++=09=09dev_priv->display.gpio_mmio_base =3D PCH_DISPLAY_BASE;
+=20
+-=09mutex_init(&dev_priv->gmbus_mutex);
+-=09init_waitqueue_head(&dev_priv->gmbus_wait_queue);
++=09mutex_init(&dev_priv->display.gmbus_mutex);
++=09init_waitqueue_head(&dev_priv->display.gmbus_wait_queue);
+=20
+-=09for (pin =3D 0; pin < ARRAY_SIZE(dev_priv->gmbus); pin++) {
++=09for (pin =3D 0; pin < ARRAY_SIZE(dev_priv->display.gmbus); pin++) {
+ =09=09if (!intel_gmbus_is_valid_pin(dev_priv, pin))
+ =09=09=09continue;
+=20
+-=09=09bus =3D &dev_priv->gmbus[pin];
++=09=09bus =3D &dev_priv->display.gmbus[pin];
+=20
+ =09=09bus->adapter.owner =3D THIS_MODULE;
+ =09=09bus->adapter.class =3D I2C_CLASS_DDC;
+@@ -906,7 +906,7 @@ int intel_gmbus_setup(struct drm_i915_private *dev_priv=
+)
+ =09=09if (!intel_gmbus_is_valid_pin(dev_priv, pin))
+ =09=09=09continue;
+=20
+-=09=09bus =3D &dev_priv->gmbus[pin];
++=09=09bus =3D &dev_priv->display.gmbus[pin];
+ =09=09i2c_del_adapter(&bus->adapter);
  =09}
+ =09return ret;
+@@ -919,7 +919,7 @@ struct i2c_adapter *intel_gmbus_get_adapter(struct drm_=
+i915_private *dev_priv,
+ =09=09=09!intel_gmbus_is_valid_pin(dev_priv, pin)))
+ =09=09return NULL;
 =20
--=09drm_dbg(&i915->drm, "FDI PLL freq=3D%d\n", i915->fdi_pll_freq);
-+=09drm_dbg(&i915->drm, "FDI PLL freq=3D%d\n", i915->display.fdi_pll_freq);
+-=09return &dev_priv->gmbus[pin].adapter;
++=09return &dev_priv->display.gmbus[pin].adapter;
  }
 =20
- int intel_fdi_link_freq(struct drm_i915_private *i915,
-@@ -120,7 +120,7 @@ int intel_fdi_link_freq(struct drm_i915_private *i915,
- =09if (HAS_DDI(i915))
- =09=09return pipe_config->port_clock; /* SPLL */
- =09else
--=09=09return i915->fdi_pll_freq;
-+=09=09return i915->display.fdi_pll_freq;
+ void intel_gmbus_set_speed(struct i2c_adapter *adapter, int speed)
+@@ -934,7 +934,7 @@ void intel_gmbus_force_bit(struct i2c_adapter *adapter,=
+ bool force_bit)
+ =09struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+ =09struct drm_i915_private *dev_priv =3D bus->dev_priv;
+=20
+-=09mutex_lock(&dev_priv->gmbus_mutex);
++=09mutex_lock(&dev_priv->display.gmbus_mutex);
+=20
+ =09bus->force_bit +=3D force_bit ? 1 : -1;
+ =09drm_dbg_kms(&dev_priv->drm,
+@@ -942,7 +942,7 @@ void intel_gmbus_force_bit(struct i2c_adapter *adapter,=
+ bool force_bit)
+ =09=09    force_bit ? "en" : "dis", adapter->name,
+ =09=09    bus->force_bit);
+=20
+-=09mutex_unlock(&dev_priv->gmbus_mutex);
++=09mutex_unlock(&dev_priv->display.gmbus_mutex);
  }
 =20
- int ilk_fdi_compute_config(struct intel_crtc *crtc,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i9=
-15/display/intel_hdmi.c
-index 1bc33766ed39..f536da3d05d8 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1950,7 +1950,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector=
-,
- =09struct drm_i915_private *dev_priv =3D to_i915(dev);
- =09enum drm_mode_status status;
- =09int clock =3D mode->clock;
--=09int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
-+=09int max_dotclk =3D to_i915(connector->dev)->display.max_dotclk_freq;
- =09bool has_hdmi_sink =3D intel_has_hdmi_sink(hdmi, connector->state);
- =09bool ycbcr_420_only;
+ bool intel_gmbus_is_forced_bit(struct i2c_adapter *adapter)
+@@ -957,11 +957,11 @@ void intel_gmbus_teardown(struct drm_i915_private *de=
+v_priv)
+ =09struct intel_gmbus *bus;
+ =09unsigned int pin;
 =20
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i9=
-15/display/intel_lvds.c
-index e9fb402708a7..137e11cc40b5 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -388,7 +388,7 @@ intel_lvds_mode_valid(struct drm_connector *connector,
- {
- =09struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
- =09struct drm_display_mode *fixed_mode =3D intel_connector->panel.fixed_mo=
-de;
--=09int max_pixclk =3D to_i915(connector->dev)->max_dotclk_freq;
-+=09int max_pixclk =3D to_i915(connector->dev)->display.max_dotclk_freq;
+-=09for (pin =3D 0; pin < ARRAY_SIZE(dev_priv->gmbus); pin++) {
++=09for (pin =3D 0; pin < ARRAY_SIZE(dev_priv->display.gmbus); pin++) {
+ =09=09if (!intel_gmbus_is_valid_pin(dev_priv, pin))
+ =09=09=09continue;
 =20
- =09if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
- =09=09return MODE_NO_DBLESCAN;
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i9=
-15/display/intel_sdvo.c
-index 6cb27599ea03..7691468571dc 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -1866,7 +1866,7 @@ intel_sdvo_mode_valid(struct drm_connector *connector=
-,
- =09struct intel_sdvo *intel_sdvo =3D intel_attached_sdvo(to_intel_connecto=
-r(connector));
- =09struct intel_sdvo_connector *intel_sdvo_connector =3D
- =09=09to_intel_sdvo_connector(connector);
--=09int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
-+=09int max_dotclk =3D to_i915(connector->dev)->display.max_dotclk_freq;
- =09bool has_hdmi_sink =3D intel_has_hdmi_sink(intel_sdvo, connector->state=
-);
- =09int clock =3D mode->clock;
-=20
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915=
-/display/intel_tv.c
-index d02f09f7e750..c2f317aa5840 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -956,7 +956,7 @@ intel_tv_mode_valid(struct drm_connector *connector,
- =09=09    struct drm_display_mode *mode)
- {
- =09const struct tv_mode *tv_mode =3D intel_tv_mode_find(connector->state);
--=09int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
-+=09int max_dotclk =3D to_i915(connector->dev)->display.max_dotclk_freq;
-=20
- =09if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
- =09=09return MODE_NO_DBLESCAN;
-diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915=
-/gt/debugfs_gt_pm.c
-index 352989fefe60..c95754aed784 100644
---- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-@@ -476,7 +476,7 @@ static int frequency_show(struct seq_file *m, void *unu=
-sed)
-=20
- =09seq_printf(m, "Current CD clock frequency: %d kHz\n", i915->display.cdc=
-lk.hw.cdclk);
- =09seq_printf(m, "Max CD clock frequency: %d kHz\n", i915->display.max_cdc=
-lk_freq);
--=09seq_printf(m, "Max pixel clock frequency: %d kHz\n", i915->max_dotclk_f=
-req);
-+=09seq_printf(m, "Max pixel clock frequency: %d kHz\n", i915->display.max_=
-dotclk_freq);
-=20
- =09intel_runtime_pm_put(uncore->rpm, wakeref);
-=20
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/=
-intel_rc6.c
-index 799d382eea79..7fedff85e495 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -757,7 +757,7 @@ u64 intel_rc6_residency_ns(struct intel_rc6 *rc6, const=
- i915_reg_t reg)
- =09/* On VLV and CHV, residency time is in CZ units rather than 1.28us */
- =09if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
- =09=09mul =3D 1000000;
--=09=09div =3D i915->czclk_freq;
-+=09=09div =3D i915->display.czclk_freq;
- =09=09overflow_hw =3D BIT_ULL(40);
- =09=09time_hw =3D vlv_residency_raw(uncore, reg);
- =09} else {
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/=
-intel_rps.c
-index d812b27835f8..25f2767f582b 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1514,7 +1514,7 @@ static void vlv_init_gpll_ref_freq(struct intel_rps *=
-rps)
- =09rps->gpll_ref_freq =3D
- =09=09vlv_get_cck_clock(i915, "GPLL ref",
- =09=09=09=09  CCK_GPLL_CLOCK_CONTROL,
--=09=09=09=09  i915->czclk_freq);
-+=09=09=09=09  i915->display.czclk_freq);
-=20
- =09drm_dbg(&i915->drm, "GPLL reference freq: %d kHz\n",
- =09=09rps->gpll_ref_freq);
-@@ -1646,7 +1646,7 @@ static u32 vlv_wa_c0_ei(struct intel_rps *rps, u32 pm=
-_iir)
-=20
- =09=09time =3D ktime_us_delta(now.ktime, prev->ktime);
-=20
--=09=09time *=3D rps_to_i915(rps)->czclk_freq;
-+=09=09time *=3D rps_to_i915(rps)->display.czclk_freq;
-=20
- =09=09/* Workload can be split between render + media,
- =09=09 * e.g. SwapBuffers being blitted in X after being rendered in
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i91=
-5_debugfs.c
-index 7610defe855b..37f5ab15a8d4 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -577,7 +577,7 @@ static int i915_frequency_info(struct seq_file *m, void=
- *unused)
-=20
- =09seq_printf(m, "Current CD clock frequency: %d kHz\n", dev_priv->display=
-.cdclk.hw.cdclk);
- =09seq_printf(m, "Max CD clock frequency: %d kHz\n", dev_priv->display.max=
-_cdclk_freq);
--=09seq_printf(m, "Max pixel clock frequency: %d kHz\n", dev_priv->max_dotc=
-lk_freq);
-+=09seq_printf(m, "Max pixel clock frequency: %d kHz\n", dev_priv->display.=
-max_dotclk_freq);
-=20
- =09intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
- =09return 0;
+-=09=09bus =3D &dev_priv->gmbus[pin];
++=09=09bus =3D &dev_priv->display.gmbus[pin];
+ =09=09i2c_del_adapter(&bus->adapter);
+ =09}
+ }
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_dr=
 v.h
-index b99a8edd1ca2..424d06cdc4d6 100644
+index 424d06cdc4d6..20520402c246 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -840,6 +840,13 @@ struct drm_i915_display {
- =09=09struct intel_global_obj obj;
- =09} cdclk;
- =09unsigned int max_cdclk_freq;
+@@ -847,6 +847,19 @@ struct drm_i915_display {
+ =09unsigned int hpll_freq;
+ =09unsigned int fdi_pll_freq;
+ =09unsigned int czclk_freq;
 +
-+=09unsigned int skl_preferred_vco_freq;
++=09/**
++=09 * Base address of where the gmbus and gpio blocks are located (either
++=09 * on PCH or on SoC for platforms without PCH).
++=09 */
++=09u32 gpio_mmio_base;
 +
-+=09unsigned int max_dotclk_freq;
-+=09unsigned int hpll_freq;
-+=09unsigned int fdi_pll_freq;
-+=09unsigned int czclk_freq;
++=09struct intel_gmbus gmbus[GMBUS_NUM_PINS];
++
++=09/** gmbus_mutex protects against concurrent usage of the single hw gmbu=
+s
++=09 * controller on different i2c buses. */
++=09struct mutex gmbus_mutex;
++=09wait_queue_head_t gmbus_wait_queue;
  };
 =20
  struct drm_i915_private {
-@@ -951,12 +958,6 @@ struct drm_i915_private {
- =09struct mutex pps_mutex;
+@@ -899,25 +912,11 @@ struct drm_i915_private {
 =20
- =09unsigned int fsb_freq, mem_freq, is_ddr3;
--=09unsigned int skl_preferred_vco_freq;
+ =09struct intel_dmc dmc;
+=20
+-=09struct intel_gmbus gmbus[GMBUS_NUM_PINS];
 -
--=09unsigned int max_dotclk_freq;
--=09unsigned int hpll_freq;
--=09unsigned int fdi_pll_freq;
--=09unsigned int czclk_freq;
+-=09/** gmbus_mutex protects against concurrent usage of the single hw gmbu=
+s
+-=09 * controller on different i2c buses. */
+-=09struct mutex gmbus_mutex;
+-
+-=09/**
+-=09 * Base address of where the gmbus and gpio blocks are located (either
+-=09 * on PCH or on SoC for platforms without PCH).
+-=09 */
+-=09u32 gpio_mmio_base;
+-
+ =09/* MMIO base address for MIPI regs */
+ =09u32 mipi_mmio_base;
 =20
- =09struct {
- =09=09/* The current hardware dbuf configuration */
+ =09u32 pps_mmio_base;
+=20
+-=09wait_queue_head_t gmbus_wait_queue;
+-
+ =09struct pci_dev *bridge_dev;
+=20
+ =09struct rb_root uabi_engines;
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_ir=
+q.c
+index b1e3f51dc593..4ef644aeaf6c 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -1303,12 +1303,12 @@ static u32 intel_hpd_hotplug_enables(struct drm_i91=
+5_private *i915,
+=20
+ static void gmbus_irq_handler(struct drm_i915_private *dev_priv)
+ {
+-=09wake_up_all(&dev_priv->gmbus_wait_queue);
++=09wake_up_all(&dev_priv->display.gmbus_wait_queue);
+ }
+=20
+ static void dp_aux_irq_handler(struct drm_i915_private *dev_priv)
+ {
+-=09wake_up_all(&dev_priv->gmbus_wait_queue);
++=09wake_up_all(&dev_priv->display.gmbus_wait_queue);
+ }
+=20
+ #if defined(CONFIG_DEBUG_FS)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_re=
+g.h
+index bd63760207b0..2e74c5c4699a 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3403,7 +3403,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg=
+)
+ /*
+  * GPIO regs
+  */
+-#define GPIO(gpio)=09=09_MMIO(dev_priv->gpio_mmio_base + 0x5010 + \
++#define GPIO(gpio)=09=09_MMIO(dev_priv->display.gpio_mmio_base + 0x5010 + =
+\
+ =09=09=09=09      4 * (gpio))
+=20
+ # define GPIO_CLOCK_DIR_MASK=09=09(1 << 0)
+@@ -3421,7 +3421,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg=
+)
+ # define GPIO_DATA_VAL_IN=09=09(1 << 12)
+ # define GPIO_DATA_PULLUP_DISABLE=09(1 << 13)
+=20
+-#define GMBUS0=09=09=09_MMIO(dev_priv->gpio_mmio_base + 0x5100) /* clock/p=
+ort select */
++#define GMBUS0=09=09=09_MMIO(dev_priv->display.gpio_mmio_base + 0x5100) /*=
+ clock/port select */
+ #define   GMBUS_AKSV_SELECT=09(1 << 11)
+ #define   GMBUS_RATE_100KHZ=09(0 << 8)
+ #define   GMBUS_RATE_50KHZ=09(1 << 8)
+@@ -3430,7 +3430,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg=
+)
+ #define   GMBUS_HOLD_EXT=09(1 << 7) /* 300ns hold time, rsvd on Pineview *=
+/
+ #define   GMBUS_BYTE_CNT_OVERRIDE (1 << 6)
+=20
+-#define GMBUS1=09=09=09_MMIO(dev_priv->gpio_mmio_base + 0x5104) /* command=
+/status */
++#define GMBUS1=09=09=09_MMIO(dev_priv->display.gpio_mmio_base + 0x5104) /*=
+ command/status */
+ #define   GMBUS_SW_CLR_INT=09(1 << 31)
+ #define   GMBUS_SW_RDY=09=09(1 << 30)
+ #define   GMBUS_ENT=09=09(1 << 29) /* enable timeout */
+@@ -3445,7 +3445,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg=
+)
+ #define   GMBUS_SLAVE_ADDR_SHIFT 1
+ #define   GMBUS_SLAVE_READ=09(1 << 0)
+ #define   GMBUS_SLAVE_WRITE=09(0 << 0)
+-#define GMBUS2=09=09=09_MMIO(dev_priv->gpio_mmio_base + 0x5108) /* status =
+*/
++#define GMBUS2=09=09=09_MMIO(dev_priv->display.gpio_mmio_base + 0x5108) /*=
+ status */
+ #define   GMBUS_INUSE=09=09(1 << 15)
+ #define   GMBUS_HW_WAIT_PHASE=09(1 << 14)
+ #define   GMBUS_STALL_TIMEOUT=09(1 << 13)
+@@ -3453,14 +3453,14 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
+eg)
+ #define   GMBUS_HW_RDY=09=09(1 << 11)
+ #define   GMBUS_SATOER=09=09(1 << 10)
+ #define   GMBUS_ACTIVE=09=09(1 << 9)
+-#define GMBUS3=09=09=09_MMIO(dev_priv->gpio_mmio_base + 0x510c) /* data bu=
+ffer bytes 3-0 */
+-#define GMBUS4=09=09=09_MMIO(dev_priv->gpio_mmio_base + 0x5110) /* interru=
+pt mask (Pineview+) */
++#define GMBUS3=09=09=09_MMIO(dev_priv->display.gpio_mmio_base + 0x510c) /*=
+ data buffer bytes 3-0 */
++#define GMBUS4=09=09=09_MMIO(dev_priv->display.gpio_mmio_base + 0x5110) /*=
+ interrupt mask (Pineview+) */
+ #define   GMBUS_SLAVE_TIMEOUT_EN (1 << 4)
+ #define   GMBUS_NAK_EN=09=09(1 << 3)
+ #define   GMBUS_IDLE_EN=09=09(1 << 2)
+ #define   GMBUS_HW_WAIT_EN=09(1 << 1)
+ #define   GMBUS_HW_RDY_EN=09(1 << 0)
+-#define GMBUS5=09=09=09_MMIO(dev_priv->gpio_mmio_base + 0x5120) /* byte in=
+dex */
++#define GMBUS5=09=09=09_MMIO(dev_priv->display.gpio_mmio_base + 0x5120) /*=
+ byte index */
+ #define   GMBUS_2BYTE_INDEX_EN=09(1 << 31)
+=20
+ /*
 --=20
 2.31.1
 
