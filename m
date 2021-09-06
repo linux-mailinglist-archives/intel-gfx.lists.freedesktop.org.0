@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD99F401F8F
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 20:27:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94D11401F90
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 20:27:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E445B89A86;
-	Mon,  6 Sep 2021 18:27:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD0D89BFB;
+	Mon,  6 Sep 2021 18:27:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2E1899F2
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 18:27:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="219713096"
-X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; d="scan'208";a="219713096"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 422A2899F2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 18:27:21 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="219713098"
+X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; d="scan'208";a="219713098"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2021 11:27:19 -0700
-X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; d="scan'208";a="464124850"
+ 06 Sep 2021 11:27:21 -0700
+X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; d="scan'208";a="464124853"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2021 11:27:19 -0700
+ 06 Sep 2021 11:27:20 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Date: Mon,  6 Sep 2021 21:27:10 +0300
-Message-Id: <20210906182715.3915100-2-imre.deak@intel.com>
+Date: Mon,  6 Sep 2021 21:27:11 +0300
+Message-Id: <20210906182715.3915100-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210906182715.3915100-1-imre.deak@intel.com>
 References: <20210906182715.3915100-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/6] drm/i915: Use tile block based
- dimensions for CCS origin x, y check
+Subject: [Intel-gfx] [PATCH v2 2/6] drm/i915/adlp: Require always a
+ power-of-two sized CCS surface stride
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,85 +48,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The tile size for all surface types is 4 kbyte (or 2 kbyte on old
-platforms), with the exception of the TGL/ADL CCS surface where the tile
-size is 64 bytes. To be able to remap CCS FBs the CCS surface tile needs
-to be defined as 4 kbyte as well (the granularity of GTT pages in a
-remapped view).
-
-The only place using the dimension of the 64 byte CCS area is the initial
-check for the main vs. CCS plane origin coordinate match. To prepare for
-adding support for remapping CCS FBs let's call the 64 byte CCS area a
-'tile block' and add a helper to retrieve the dimensions for it.
+At the moment CCS FB strides must be power-of-two sized, but a follow-up
+change will add support remapping these FBs, allowing the FB passed in
+by userspace to have a non-POT sized stride. For these remapped FBs we
+can only remap the main surface, not the CCS surface. This means that
+userspace has to always generate the CCS surface aligning to the POT
+stride padded main surface (by setting up the CCS AUX pagetables
+accordingly). Adjust the CCS surface stride check to enforce this.
 
 No functional change.
+
+v2:
+- Fix the gen12_ccs_aux_stride() is not static sparse warning.
 
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 30 ++++++++++++++++++++-----
- 1 file changed, 25 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 34 ++++++++++++++++++++++---
+ 1 file changed, 30 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index e4b8602ec0cd2..0cf568a9cb1c6 100644
+index 0cf568a9cb1c6..a0db67e85c717 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -143,14 +143,14 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+@@ -63,10 +63,36 @@ int skl_ccs_to_main_plane(const struct drm_framebuffer *fb, int ccs_plane)
+ 	return ccs_plane - fb->format->num_planes / 2;
+ }
  
- unsigned int intel_tile_height(const struct drm_framebuffer *fb, int color_plane)
+-static int gen12_ccs_aux_stride(struct drm_framebuffer *fb, int ccs_plane)
++static unsigned int gen12_aligned_scanout_stride(const struct intel_framebuffer *fb,
++						 int color_plane)
  {
--	if (is_gen12_ccs_plane(fb, color_plane))
--		return 1;
--
- 	return intel_tile_size(to_i915(fb->dev)) /
- 		intel_tile_width_bytes(fb, color_plane);
- }
- 
--/* Return the tile dimensions in pixel units */
-+/*
-+ * Return the tile dimensions in pixel units, based on the (2 or 4 kbyte) GTT
-+ * page tile size.
-+ */
- static void intel_tile_dims(const struct drm_framebuffer *fb, int color_plane,
- 			    unsigned int *tile_width,
- 			    unsigned int *tile_height)
-@@ -162,6 +162,21 @@ static void intel_tile_dims(const struct drm_framebuffer *fb, int color_plane,
- 	*tile_height = intel_tile_height(fb, color_plane);
- }
- 
-+/*
-+ * Return the tile dimensions in pixel units, based on the tile block size.
-+ * The block covers the full GTT page sized tile on all tiled surfaces and
-+ * it's a 64 byte portion of the tile on TGL+ CCS surfaces.
-+ */
-+static void intel_tile_block_dims(const struct drm_framebuffer *fb, int color_plane,
-+				  unsigned int *tile_width,
-+				  unsigned int *tile_height)
-+{
-+	intel_tile_dims(fb, color_plane, tile_width, tile_height);
+-	return DIV_ROUND_UP(fb->pitches[skl_ccs_to_main_plane(fb, ccs_plane)],
+-			    512) * 64;
++	struct drm_i915_private *i915 = to_i915(fb->base.dev);
++	unsigned int stride = fb->base.pitches[color_plane];
 +
-+	if (is_gen12_ccs_plane(fb, color_plane))
-+		*tile_height = 1;
++	if (IS_ALDERLAKE_P(i915))
++		return roundup_pow_of_two(max(stride,
++					      8u * intel_tile_width_bytes(&fb->base, color_plane)));
++
++	return stride;
 +}
 +
- unsigned int intel_tile_row_size(const struct drm_framebuffer *fb, int color_plane)
- {
- 	unsigned int tile_width, tile_height;
-@@ -567,7 +582,12 @@ static int intel_fb_check_ccs_xy(const struct drm_framebuffer *fb, int ccs_plane
- 	if (!is_ccs_plane(fb, ccs_plane) || is_gen12_ccs_cc_plane(fb, ccs_plane))
- 		return 0;
- 
--	intel_tile_dims(fb, ccs_plane, &tile_width, &tile_height);
++static unsigned int gen12_ccs_aux_stride(struct intel_framebuffer *fb, int ccs_plane)
++{
++	struct drm_i915_private *i915 = to_i915(fb->base.dev);
++	int main_plane = skl_ccs_to_main_plane(&fb->base, ccs_plane);
++	unsigned int main_stride = fb->base.pitches[main_plane];
++	unsigned int main_tile_width = intel_tile_width_bytes(&fb->base, main_plane);
++
 +	/*
-+	 * While all the tile dimensions are based on a 2k or 4k GTT page size
-+	 * here the main and CCS coordinates must match only within a (64 byte
-+	 * on TGL+) block inside the tile.
++	 * On ADL-P the AUX stride must align with a power-of-two aligned main
++	 * surface stride. The stride of the allocated main surface object can
++	 * be less than this POT stride, which is then autopadded to the POT
++	 * size.
 +	 */
-+	intel_tile_block_dims(fb, ccs_plane, &tile_width, &tile_height);
- 	intel_fb_plane_get_subsampling(&hsub, &vsub, fb, ccs_plane);
++	if (IS_ALDERLAKE_P(i915))
++		main_stride = gen12_aligned_scanout_stride(fb, main_plane);
++
++	return DIV_ROUND_UP(main_stride, 4 * main_tile_width) * 64;
+ }
  
- 	tile_width *= hsub;
+ int skl_main_to_aux_plane(const struct drm_framebuffer *fb, int main_plane)
+@@ -1379,7 +1405,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 		}
+ 
+ 		if (is_gen12_ccs_plane(fb, i) && !is_gen12_ccs_cc_plane(fb, i)) {
+-			int ccs_aux_stride = gen12_ccs_aux_stride(fb, i);
++			int ccs_aux_stride = gen12_ccs_aux_stride(intel_fb, i);
+ 
+ 			if (fb->pitches[i] != ccs_aux_stride) {
+ 				drm_dbg_kms(&dev_priv->drm,
 -- 
 2.27.0
 
