@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C2A401574
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 06:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFF1F4015C7
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 06:51:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3396289A75;
-	Mon,  6 Sep 2021 04:21:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6652D895B5;
+	Mon,  6 Sep 2021 04:51:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1DCED89A75;
- Mon,  6 Sep 2021 04:21:17 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBB72895B5;
+ Mon,  6 Sep 2021 04:51:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 09683A7525;
- Mon,  6 Sep 2021 04:21:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC584A9932;
+ Mon,  6 Sep 2021 04:51:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7354421975688000345=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dave Airlie" <airlied@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 06 Sep 2021 04:21:17 -0000
-Message-ID: <163090207700.30431.15816287767946723322@emeril.freedesktop.org>
+Date: Mon, 06 Sep 2021 04:51:45 -0000
+Message-ID: <163090390580.30428.12970387479916865258@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210906034356.2946530-1-airlied@gmail.com>
 In-Reply-To: <20210906034356.2946530-1-airlied@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_refactor_display_structs_a_little_bit?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgcmVm?=
+ =?utf-8?q?actor_display_structs_a_little_bit?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,89 +45,166 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============7354421975688000345==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: refactor display structs a little bit
 URL   : https://patchwork.freedesktop.org/series/94367/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-f4fbd6000df1 drm/i915: move display funcs into a display struct.
-76dc91485857 drm/i915/display: move cdclk info into display
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+CI Bug Log - changes from CI_DRM_10551 -> Patchwork_20963
+====================================================
 
--:662: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#662: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:77:
-+	to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->display.cdclk.obj))
+Summary
+-------
 
--:665: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#665: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:79:
-+	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.cdclk.obj))
+  **SUCCESS**
 
--:711: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#711: FILE: drivers/gpu/drm/i915/display/intel_display.c:11273:
-+	cdclk_state->logical = cdclk_state->actual = i915->display.cdclk.hw;
+  No regressions found.
 
-total: 0 errors, 3 warnings, 1 checks, 782 lines checked
-7b219ea05311 drm/i915: move more pll/clocks into display struct.
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/index.html
 
--:149: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#149: FILE: drivers/gpu/drm/i915/display/intel_display.c:179:
-+	dev_priv->display.czclk_freq = vlv_get_cck_clock_hpll(dev_priv, "czclk",
- 						      CCK_CZ_CLOCK_CONTROL);
+Known issues
+------------
 
-total: 0 errors, 1 warnings, 1 checks, 302 lines checked
-38bff6053be9 drm/i915/display: move gmbus into display struct
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+  Here are the changes found in Patchwork_20963 that come from known issues:
 
--:231: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#231: FILE: drivers/gpu/drm/i915/i915_drv.h:860:
-+	 * controller on different i2c buses. */
+### IGT changes ###
 
--:300: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
-#300: FILE: drivers/gpu/drm/i915/i915_reg.h:3453:
-+#define GMBUS0			_MMIO(dev_priv->display.gpio_mmio_base + 0x5100) /* clock/port select */
+#### Issues hit ####
 
--:309: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
-#309: FILE: drivers/gpu/drm/i915/i915_reg.h:3462:
-+#define GMBUS1			_MMIO(dev_priv->display.gpio_mmio_base + 0x5104) /* command/status */
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][1] ([i915#1602] / [i915#2029])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/fi-bdw-5557u/igt@runner@aborted.html
 
--:328: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
-#328: FILE: drivers/gpu/drm/i915/i915_reg.h:3485:
-+#define GMBUS3			_MMIO(dev_priv->display.gpio_mmio_base + 0x510c) /* data buffer bytes 3-0 */
+  
+#### Possible fixes ####
 
--:329: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
-#329: FILE: drivers/gpu/drm/i915/i915_reg.h:3486:
-+#define GMBUS4			_MMIO(dev_priv->display.gpio_mmio_base + 0x5110) /* interrupt mask (Pineview+) */
+  * igt@i915_module_load@reload:
+    - fi-kbl-soraka:      [DMESG-WARN][2] ([i915#1982]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10551/fi-kbl-soraka/igt@i915_module_load@reload.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/fi-kbl-soraka/igt@i915_module_load@reload.html
 
-total: 0 errors, 6 warnings, 0 checks, 282 lines checked
-bb277479cb80 drm/i915/display: move intel_dmc into display struct
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+  
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
 
--:81: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
-#81: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:968:
-+				     DMC_PROGRAM(dev_priv->display.dmc.dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)),
 
-total: 0 errors, 2 warnings, 0 checks, 322 lines checked
-6ce1abe08452 drm/i915/display: move mipi_mmio_base to display struct
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+Participating hosts (46 -> 39)
+------------------------------
 
-total: 0 errors, 1 warnings, 0 checks, 401 lines checked
-f924c533b785 drm/i915/display: move pps_mmio_base to display struct
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+  Missing    (7): bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 
 
-total: 0 errors, 1 warnings, 0 checks, 36 lines checked
-00d5669bd6e9 drm/i915/drrs: just use some local vars to simplify drrs code
-abfd2f3e84da drm/i915/display: move drrs into display struct
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+Build changes
+-------------
+
+  * Linux: CI_DRM_10551 -> Patchwork_20963
+
+  CI-20190529: 20190529
+  CI_DRM_10551: 2b58e5151c7043a45a02238d63f7e17cf5cad46a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20963: bc448a9d147ac1f59962f69c2e22ccc012f93256 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 bc448a9d147a drm/i915/display: move fbc into display struct
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+abfd2f3e84da drm/i915/display: move drrs into display struct
+00d5669bd6e9 drm/i915/drrs: just use some local vars to simplify drrs code
+f924c533b785 drm/i915/display: move pps_mmio_base to display struct
+6ce1abe08452 drm/i915/display: move mipi_mmio_base to display struct
+bb277479cb80 drm/i915/display: move intel_dmc into display struct
+38bff6053be9 drm/i915/display: move gmbus into display struct
+7b219ea05311 drm/i915: move more pll/clocks into display struct.
+76dc91485857 drm/i915/display: move cdclk info into display
+f4fbd6000df1 drm/i915: move display funcs into a display struct.
 
-total: 0 errors, 1 warnings, 0 checks, 420 lines checked
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/index.html
+
+--===============7354421975688000345==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>refactor display structs a little bit</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94367/">https://patchwork.freedesktop.org/series/94367/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10551 -&gt; Patchwork_20963</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20963 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10551/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20963/fi-kbl-soraka/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (46 -&gt; 39)</h2>
+<p>Missing    (7): bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10551 -&gt; Patchwork_20963</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10551: 2b58e5151c7043a45a02238d63f7e17cf5cad46a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6197: 40888f97a6ad219f4ed48a1830d0ef3c9617d006 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20963: bc448a9d147ac1f59962f69c2e22ccc012f93256 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bc448a9d147a drm/i915/display: move fbc into display struct<br />
+abfd2f3e84da drm/i915/display: move drrs into display struct<br />
+00d5669bd6e9 drm/i915/drrs: just use some local vars to simplify drrs code<br />
+f924c533b785 drm/i915/display: move pps_mmio_base to display struct<br />
+6ce1abe08452 drm/i915/display: move mipi_mmio_base to display struct<br />
+bb277479cb80 drm/i915/display: move intel_dmc into display struct<br />
+38bff6053be9 drm/i915/display: move gmbus into display struct<br />
+7b219ea05311 drm/i915: move more pll/clocks into display struct.<br />
+76dc91485857 drm/i915/display: move cdclk info into display<br />
+f4fbd6000df1 drm/i915: move display funcs into a display struct.</p>
+
+</body>
+</html>
+
+--===============7354421975688000345==--
