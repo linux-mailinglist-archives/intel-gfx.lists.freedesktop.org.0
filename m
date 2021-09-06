@@ -1,66 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134DA401F82
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 20:25:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87380401F8E
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Sep 2021 20:27:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C342D89A86;
-	Mon,  6 Sep 2021 18:25:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B5EA899F2;
+	Mon,  6 Sep 2021 18:27:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com
- [IPv6:2607:f8b0:4864:20::e2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F2758996F;
- Mon,  6 Sep 2021 18:25:13 +0000 (UTC)
-Received: by mail-vs1-xe2f.google.com with SMTP id f6so6261548vsr.3;
- Mon, 06 Sep 2021 11:25:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=i6BKrN7X5suyNsmFH5r3sUKXBVHf29sG6WVeH2BVyjM=;
- b=clAkQy9mohMLPnVHW5cIgwm5UEQQ5nDlPiwgp0cwJEYS0ycJTwv/DWUsRr0B8bbniX
- 5/nkndYJJQt+jFffYyrtHZE10RuffIy6IiG+DYcDqlWqy8v1aJQBv/22QpJfJH5sAPEp
- lFzSMj0ku9aH22fxeXosDlemQyfBnrg21y/mGp51LbpdTK2SbNrLJNY55iFB8CjdVghV
- cCQba6HKcoqGwISK6MvywQ7Ew8wNqzUPIVUUw2uSew4EA9ZcK7Tn69EDc0rfdmfmLWbZ
- QQBHqFLn51nzUM6pTyUzm7OOUvLdQYde41jakHoVKOSwyJNU9iVB7OSZZDf1tmA+23aw
- oPsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=i6BKrN7X5suyNsmFH5r3sUKXBVHf29sG6WVeH2BVyjM=;
- b=lfRY+X+5SJm+hwkjvTX0zzChbvnLp2sa1/bPxKSaXSwwSeQh84Q8mbngp8WUvYRYQ8
- esVJN3YgOEi7FG9EIvivh444EAaWlTOXHQ/nwHVcmeBHGbt9PW6NhHESOrU1lyZf95Fo
- GVnqUvEetVdxfvJgRJXSqdyAoFMNBRECN2atA4oob904FwmgSmdntem+85FeoqB6dxJI
- lZIz07BSFbv6Nf/o4NUNNK+dPFpiu5feEE03LoqH4ZXPYxLOn8rA+NzgkcLMYNo7IQfm
- qUfLMYLL/4Cwq2ZRqbPP+9zt2pHHMyC5QOMpoc49dsE6K0pgH4ppgZvVPT2thE+rwg/t
- YFBw==
-X-Gm-Message-State: AOAM530DwrL5jDugw80BlzVzxsNXh9SJrKMTq/RxXQxy4aea68BE3GMs
- 8S5V/kzJNx1aDiUstqv15Kl/8J8NsMoc8v1yuRw=
-X-Google-Smtp-Source: ABdhPJyg4VWsnkepgpvWdmz4JefgU8pNg5h7OlRD3wfkop9WYoZH2bRCi5vo8Qu00MZRxt35BDmA2bUFrpbKx4ektFA=
-X-Received: by 2002:a05:6102:188:: with SMTP id
- r8mr6850374vsq.11.1630952712249; 
- Mon, 06 Sep 2021 11:25:12 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA43F899F2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 18:27:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="219713089"
+X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; d="scan'208";a="219713089"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2021 11:27:18 -0700
+X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; d="scan'208";a="464124849"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2021 11:27:17 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ Nanley G Chery <nanley.g.chery@intel.com>
+Date: Mon,  6 Sep 2021 21:27:09 +0300
+Message-Id: <20210906182715.3915100-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210831202133.2165222-1-jim.cromie@gmail.com>
- <20210831202133.2165222-6-jim.cromie@gmail.com>
- <b3c4b3aa-b873-a2aa-c1ad-5fed80038c6e@linux.intel.com>
- <CAJfuBxw-i-7YUenvBGHA0unBQ8BqmOGRF3nRYNwNPLVaxWpSvQ@mail.gmail.com>
- <1aabb5c0-eef9-a483-2631-25726c9dc268@linux.intel.com>
-In-Reply-To: <1aabb5c0-eef9-a483-2631-25726c9dc268@linux.intel.com>
-From: jim.cromie@gmail.com
-Date: Mon, 6 Sep 2021 12:24:46 -0600
-Message-ID: <CAJfuBxxQ-dNWHv1VGu7Hh705wZbxmsStDa_-cc=63fDtNZiyjg@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Jason Baron <jbaron@akamai.com>, Greg KH <gregkh@linuxfoundation.org>, 
- LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, 
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- intel-gvt-dev@lists.freedesktop.org, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v7 5/8] drm_print: add choice to use dynamic
- debug in drm-debug
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/6] drm/i915/adlp: Add support for remapping
+ CCS FBs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,31 +47,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> I'll try to extract the "executive summary" from this, you tell me if I
-> got it right.
->
-> So using or not using dynamic debug for DRM debug ends up being about
-> shifting the cost between kernel binary size (data section grows by each
-> pr_debug call site) and runtime conditionals?
+This is v2 of [1] fixing the initialization of plane_alignment in patch
+5 and issues reported by checkpatch, sparse. Also the last patch in this
+series adds a description to drm_fourcc.h about the main and CCS surface
+stride requirements for all CCS modifiers on ADL-P.
 
-Yes.
+The corresponding IGT changes are at:
+https://patchwork.freedesktop.org/series/94107/
 
-> Since the table sizes you mention seem significant enough, I think that
-> justifies existence of DRM_USE_DYNAMIC_DEBUG. It would probably be a
-> good idea to put some commentary on that there. Ideally including some
-> rough estimates both including space cost per call site and space cost
-> for a typical distro kernel build?
+[1] https://patchwork.freedesktop.org/series/94108/
 
-yeah, agreed.  I presume you mean in Kconfig entry,
-since commits have some size info now - I have i915, amdgpu, nouveau;
-I can see some prose improvements for 5/8
+Test-with: 20210906181736.3914421-1-imre.deak@intel.com
 
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Nanley G Chery <nanley.g.chery@intel.com>
 
+Imre Deak (6):
+  drm/i915: Use tile block based dimensions for CCS origin x, y check
+  drm/i915/adlp: Require always a power-of-two sized CCS surface stride
+  drm/i915/adlp: Assert that VMAs in DPT start at 0
+  drm/i915: Follow a new->old platform check order in
+    intel_fb_stride_alignment
+  drm/i915/adlp: Add support for remapping CCS FBs
+  drm/fourcc: Add the ADL-P specific pitch requirements of CCS modifiers
 
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ .../drm/i915/display/intel_display_types.h    |   2 -
+ drivers/gpu/drm/i915/display/intel_fb.c       | 171 ++++++++++++------
+ .../drm/i915/display/skl_universal_plane.c    |   5 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  29 ++-
+ drivers/gpu/drm/i915/i915_vma_types.h         |   7 +-
+ include/uapi/drm/drm_fourcc.h                 |  24 ++-
+ 7 files changed, 174 insertions(+), 69 deletions(-)
 
-> Regards,
->
-> Tvrtko
+-- 
+2.27.0
 
-thanks
-Jim
