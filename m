@@ -2,42 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82194024E9
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 10:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D354024ED
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 10:15:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE93489D5F;
-	Tue,  7 Sep 2021 08:11:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12B8D89DA7;
+	Tue,  7 Sep 2021 08:15:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 604B789D5F
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 08:11:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="200338702"
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="200338702"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 01:11:50 -0700
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="546625630"
-Received: from hoermank-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.214.32])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 01:11:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Nautiyal\, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>
-In-Reply-To: <4f363a2a-484f-c896-3647-cfc72ac59428@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1629811722.git.jani.nikula@intel.com>
- <17ff3112bb2bc3f7fb759306f9f24c4a84147e01.1629811722.git.jani.nikula@intel.com>
- <4f363a2a-484f-c896-3647-cfc72ac59428@intel.com>
-Date: Tue, 07 Sep 2021 11:11:43 +0300
-Message-ID: <877dfs954w.fsf@intel.com>
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com
+ [IPv6:2607:f8b0:4864:20::22c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ABAB89DA7
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 08:15:03 +0000 (UTC)
+Received: by mail-oi1-x22c.google.com with SMTP id r26so11823978oij.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Sep 2021 01:15:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=iyaLNySbhh45lJT//R/2ibyQzwlerV4MwYqvcybxoiI=;
+ b=erSvtHL6a+XPvcGTK79Y7SHAx69EBrL5eIEz5SERc5yLwY5grat8RTOHDZqsQcAyjM
+ COvtcuR3KKw8Pe7vkRdt15i8cQWm6lMrdEnemLPZb0MFd3GmNTaTixxqcsPLzeJWzNBU
+ +tLc1Z76wdaUomY0Ha2F9xyF5rODzuXV1GdzE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=iyaLNySbhh45lJT//R/2ibyQzwlerV4MwYqvcybxoiI=;
+ b=mO687QrfTYbMmcrq72VmwSR/WfIWvSwXgiz6k6ctpt73Qon+KAqThGhMgeWw3HUCdn
+ clmNFxs4DuHz4YK/Ftmkau3uVWAG9o7Ermew5jKIsm5RcHd1dk/qOaKCTYbZ10l7F+ix
+ du57YT3P1BmpKaXCw6iiMKx9wnOAmPJwZO0GLDoPoA3sZ7YK3FepTU7Wam7KfyvJJ5aB
+ xNQ4K6TBVBduKJlHFfoCICyBTtIjWkVv8t3z/CQUD5kuucPOgA/gdeZlxaVTQC7g630c
+ AIy9Api5ATIcbavl1JzJCKOvILwEFr+Ezojvp8Klb5A/j0Nsv4QgGTUv2Es9cC9M6IMu
+ Bhwg==
+X-Gm-Message-State: AOAM533UcnbdDsyoi2hRa2/sNsZZnNRm3wnnbrziGcRZ7s/155D/v8Mq
+ pTtyNIr/jUqIGn5k9jWTHRl9mx86f/KPOBnJBkqXBw==
+X-Google-Smtp-Source: ABdhPJzwB/hhM1dA/SWJwRK2U7IbtZuhJ/CpG50AL1jAzS+fPGUVitC5wzS3w2xRAbVQSigik2fAG3O9hzuGoiRTY5U=
+X-Received: by 2002:aca:3954:: with SMTP id g81mr2057351oia.101.1631002502266; 
+ Tue, 07 Sep 2021 01:15:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/bios: use alternate aux
- channel directly from child data
+References: <20210906034356.2946530-1-airlied@gmail.com>
+ <20210906034356.2946530-2-airlied@gmail.com>
+ <87mtoq86ct.fsf@intel.com>
+ <CAPM=9ty4y9new=adp+cmKCP0fuGrMgJOCWGSV-nmzorN3nACKw@mail.gmail.com>
+In-Reply-To: <CAPM=9ty4y9new=adp+cmKCP0fuGrMgJOCWGSV-nmzorN3nACKw@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 7 Sep 2021 10:14:51 +0200
+Message-ID: <CAKMK7uHeujMMWoo-AJuuksg7HBpQu0oqMEbgDHUx8_rDv2GDng@mail.gmail.com>
+To: Dave Airlie <airlied@gmail.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ "Syrjala, Ville" <ville.syrjala@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915: move display funcs into a
+ display struct.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,162 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 26 Aug 2021, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 8/24/2021 7:04 PM, Jani Nikula wrote:
->> Avoid extra caching of the data.
->>
->> Cc: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_bios.c | 26 +++++++++++------------
->>   drivers/gpu/drm/i915/i915_drv.h           |  1 -
->>   2 files changed, 12 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm=
-/i915/display/intel_bios.c
->> index 10b2beddc121..674f1424fcc2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -1565,28 +1565,29 @@ static enum port get_port_by_aux_ch(struct drm_i=
-915_private *i915, u8 aux_ch)
->>   	for_each_port(port) {
->>   		info =3D &i915->vbt.ddi_port_info[port];
->>=20=20=20
->> -		if (info->devdata && aux_ch =3D=3D info->alternate_aux_channel)
->> +		if (info->devdata && aux_ch =3D=3D info->devdata->child.aux_channel)
->>   			return port;
->>   	}
->>=20=20=20
->>   	return PORT_NONE;
->>   }
->>=20=20=20
->> -static void sanitize_aux_ch(struct drm_i915_private *i915,
->> +static void sanitize_aux_ch(struct intel_bios_encoder_data *devdata,
->>   			    enum port port)
->>   {
->> -	struct ddi_vbt_port_info *info =3D &i915->vbt.ddi_port_info[port];
->> +	struct drm_i915_private *i915 =3D devdata->i915;
->> +	struct ddi_vbt_port_info *info;
->>   	struct child_device_config *child;
->>   	enum port p;
->>=20=20=20
->> -	p =3D get_port_by_aux_ch(i915, info->alternate_aux_channel);
->> +	p =3D get_port_by_aux_ch(i915, devdata->child.aux_channel);
->>   	if (p =3D=3D PORT_NONE)
->>   		return;
->>=20=20=20
->>   	drm_dbg_kms(&i915->drm,
->>   		    "port %c trying to use the same AUX CH (0x%x) as port %c, "
->>   		    "disabling port %c DP support\n",
->> -		    port_name(port), info->alternate_aux_channel,
->> +		    port_name(port), devdata->child.aux_channel,
->>   		    port_name(p), port_name(p));
->>=20=20=20
->>   	/*
->> @@ -1602,7 +1603,7 @@ static void sanitize_aux_ch(struct drm_i915_privat=
-e *i915,
->>   	child =3D &info->devdata->child;
->>=20=20=20
->>   	child->device_type &=3D ~DEVICE_TYPE_DISPLAYPORT_OUTPUT;
->> -	info->alternate_aux_channel =3D 0;
->> +	child->aux_channel =3D 0;
->>   }
->>=20=20=20
->>   static const u8 cnp_ddc_pin_map[] =3D {
->> @@ -1980,11 +1981,8 @@ static void parse_ddi_port(struct drm_i915_privat=
-e *i915,
->>   		}
->>   	}
->>=20=20=20
->> -	if (is_dp) {
->> -		info->alternate_aux_channel =3D child->aux_channel;
->> -
->> -		sanitize_aux_ch(i915, port);
->> -	}
->> +	if (is_dp)
->> +		sanitize_aux_ch(devdata, port);
->>=20=20=20
->>   	hdmi_level_shift =3D _intel_bios_hdmi_level_shift(devdata);
->>   	if (hdmi_level_shift >=3D 0) {
->> @@ -2863,7 +2861,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915=
-_private *i915,
->>   		&i915->vbt.ddi_port_info[port];
->>   	enum aux_ch aux_ch;
->>=20=20=20
->> -	if (!info->alternate_aux_channel) {
->> +	if (!info->devdata->child.aux_channel) {
+On Mon, Sep 6, 2021 at 9:45 PM Dave Airlie <airlied@gmail.com> wrote:
+> On Mon, 6 Sept 2021 at 18:18, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> > On Mon, 06 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
+> > > From: Dave Airlie <airlied@redhat.com>
+> > >
+> > > This is the first step in an idea to refactor the display code
+> > > into a bit more of a corner.
+> >
+> > So, do we want to make i915->display a pointer?
+> >
+> > If we do, and we're about to touch every place accessing the display
+> > struct, we might just as well have:
+> >
+> > struct drm_i915_private {
+> >         struct drm_i915_display _display;
+> >         struct drm_i915_display *display;
+> > };
+> >
+> > and initialize i915->display = &i915->_display, and make all access
+> > happen via the pointer. If we want to allocate it dynamically at some
+> > point, it'll be a *much* easier task.
+> >
+> > But the first question to figure out is whether we want to do that or
+> > not.
 >
-> Hi Jani,
->
-> The series and the change make sense to me.
->
->  From the CI results it seems that cases with LVDS panel connected are=20
-> getting issues here.
->
-> Apparently info->devdata is not set in this case. I guess that,=20
-> parse_ddi_port() returns early before info->devdata gets set.
->
-> I think without the patch, this situation is not encountered due to the=20
-> fact that 'info->alternate_aux_channel, is initialized to 0.
->
-> With this change, perhaps we should check for 'info->devdata' before=20
-> checking for info->devdata->child.aux_channel.
->
-> (This will translate to checking for 'devdata' in the final patch as it=20
-> removes ddi_port_info).
->
-> Hope it helps.
+> I think the advantage is that we can hide a lot more structs from the
+> main struct,
+> the disadvantage is additional pointer chasing, esp for the drm_device and other
+> i915_priv members.
 
-Yes, indeed, thanks for figuring this out!
+For display pointer chasing doesn't matter at all. Imo the case is
+more what make sense as object hierarchy, and embedding vs pointer has
+quite different meaning. We've discussed in the past that the split
+into display/gem with branches seems to work ok-ish, but could
+probably be improved a lot in code org. If we make display a lot more
+a free-standing thing (i.e. pointer, not embedding) with a much more
+clearer/cleaner api contract to other pieces, then maybe there's some
+case to be made for all this churn.
 
-And thanks for the reviews.
+The problem with all that is that we'd then essentially need to
+backpointers everywhere in all display structures: One to the
+drm_device provided by base structs, and the other to the i915_display
+struct, which is what our code uses. This way display would stay
+display. In a way this would then look similarly-ish to amdgpu's DC.
 
-BR,
-Jani.
+But I'm honestly not sure how much that would improve anything, and
+whether it's worth all the churn to make drm/i915/display more
+self-contained.
+-Daniel
+
+> Has anyone any non-anecdotal knowledge of how bad the latter problem
+> actually is?
+> Other drivers seem to do a lot of it and nobody has complained about it.
+>
+> I'm happy to move to a pointer for it all to be honest,
+> Dave.
 
 
->
-> Regards,
->
-> Ankit
->
->
->>   		aux_ch =3D (enum aux_ch)port;
->>=20=20=20
->>   		drm_dbg_kms(&i915->drm,
->> @@ -2879,7 +2877,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915=
-_private *i915,
->>   	 * ADL-S VBT uses PHY based mapping. Combo PHYs A,B,C,D,E
->>   	 * map to DDI A,TC1,TC2,TC3,TC4 respectively.
->>   	 */
->> -	switch (info->alternate_aux_channel) {
->> +	switch (info->devdata->child.aux_channel) {
->>   	case DP_AUX_A:
->>   		aux_ch =3D AUX_CH_A;
->>   		break;
->> @@ -2940,7 +2938,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915=
-_private *i915,
->>   			aux_ch =3D AUX_CH_I;
->>   		break;
->>   	default:
->> -		MISSING_CASE(info->alternate_aux_channel);
->> +		MISSING_CASE(info->devdata->child.aux_channel);
->>   		aux_ch =3D AUX_CH_A;
->>   		break;
->>   	}
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
-_drv.h
->> index a0dead9f9222..91097526cd96 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -640,7 +640,6 @@ struct ddi_vbt_port_info {
->>   	/* Non-NULL if port present. */
->>   	struct intel_bios_encoder_data *devdata;
->>=20=20=20
->> -	u8 alternate_aux_channel;
->>   	u8 alternate_ddc_pin;
->>   };
->>=20=20=20
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
