@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE99402448
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 09:27:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED150402440
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 09:26:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B74D89DA7;
-	Tue,  7 Sep 2021 07:27:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65D3389850;
+	Tue,  7 Sep 2021 07:26:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47F4B89DA7
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 07:27:01 +0000 (UTC)
+ (us-smtp-delivery-44.mimecast.com [205.139.111.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E086789850
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 07:26:38 +0000 (UTC)
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-525-reNallsMOe2vRbZvuIVo3Q-1; Tue, 07 Sep 2021 03:26:32 -0400
-X-MC-Unique: reNallsMOe2vRbZvuIVo3Q-1
+ us-mta-396-qop_MkyPPSGda3i2aNAnjQ-1; Tue, 07 Sep 2021 03:26:34 -0400
+X-MC-Unique: qop_MkyPPSGda3i2aNAnjQ-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E38F5107ACE3;
- Tue,  7 Sep 2021 07:26:31 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id ACB72107ACC7;
+ Tue,  7 Sep 2021 07:26:33 +0000 (UTC)
 Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 9EAAE77C16;
- Tue,  7 Sep 2021 07:26:30 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 67F7B60936;
+ Tue,  7 Sep 2021 07:26:32 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com,
 	Dave Airlie <airlied@redhat.com>
-Date: Tue,  7 Sep 2021 17:25:43 +1000
-Message-Id: <20210907072549.2962226-20-airlied@gmail.com>
+Date: Tue,  7 Sep 2021 17:25:44 +1000
+Message-Id: <20210907072549.2962226-21-airlied@gmail.com>
 In-Reply-To: <20210907072549.2962226-1-airlied@gmail.com>
 References: <20210907072549.2962226-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -40,8 +40,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 19/25] drm/i915/display: move delay and pch
- values to display struct
+Subject: [Intel-gfx] [PATCH 20/25] drm/intel/display: move atomic related
+ things to display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,265 +61,180 @@ From: Dave Airlie <airlied@redhat.com>
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 34 +++++++++----------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  4 +--
- drivers/gpu/drm/i915/display/intel_vrr.c      |  6 ++--
- drivers/gpu/drm/i915/i915_drv.h               | 14 ++++----
- 4 files changed, 29 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 28 ++++++++++----------
+ drivers/gpu/drm/i915/i915_drv.h              | 16 +++++------
+ 2 files changed, 22 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm=
 /i915/display/intel_display.c
-index 60ef938aed0e..7a4100a58b48 100644
+index 7a4100a58b48..117c2ad9d266 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -632,7 +632,7 @@ static void ilk_enable_pch_transcoder(const struct inte=
-l_crtc_state *crtc_state)
- =09=09val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
- =09=09/* Configure frame start delay to match the CPU */
- =09=09val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
--=09=09val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_delay=
- - 1);
-+=09=09val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->display->framest=
-art_delay - 1);
- =09=09intel_de_write(dev_priv, reg, val);
+@@ -1661,7 +1661,7 @@ static bool gpu_reset_clobbers_display(struct drm_i91=
+5_private *dev_priv)
+ void intel_display_prepare_reset(struct drm_i915_private *dev_priv)
+ {
+ =09struct drm_device *dev =3D &dev_priv->drm;
+-=09struct drm_modeset_acquire_ctx *ctx =3D &dev_priv->reset_ctx;
++=09struct drm_modeset_acquire_ctx *ctx =3D &dev_priv->display->reset_ctx;
+ =09struct drm_atomic_state *state;
+ =09int ret;
+=20
+@@ -1717,14 +1717,14 @@ void intel_display_prepare_reset(struct drm_i915_pr=
+ivate *dev_priv)
+ =09=09return;
  =09}
 =20
-@@ -643,7 +643,7 @@ static void ilk_enable_pch_transcoder(const struct inte=
-l_crtc_state *crtc_state)
- =09if (HAS_PCH_IBX(dev_priv)) {
- =09=09/* Configure frame start delay to match the CPU */
- =09=09val &=3D ~TRANS_FRAME_START_DELAY_MASK;
--=09=09val |=3D TRANS_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
-+=09=09val |=3D TRANS_FRAME_START_DELAY(dev_priv->display->framestart_delay=
- - 1);
-=20
- =09=09/*
- =09=09 * Make the BPC in transcoder be consistent with
-@@ -688,7 +688,7 @@ static void lpt_enable_pch_transcoder(struct drm_i915_p=
-rivate *dev_priv,
- =09val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
- =09/* Configure frame start delay to match the CPU */
- =09val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
--=09val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_delay - =
-1);
-+=09val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->display->framestart=
-_delay - 1);
- =09intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
-=20
- =09val =3D TRANS_ENABLE;
-@@ -2991,7 +2991,7 @@ static void hsw_set_frame_start_delay(const struct in=
-tel_crtc_state *crtc_state)
-=20
- =09val =3D intel_de_read(dev_priv, reg);
- =09val &=3D ~HSW_FRAME_START_DELAY_MASK;
--=09val |=3D HSW_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
-+=09val |=3D HSW_FRAME_START_DELAY(dev_priv->display->framestart_delay - 1)=
-;
- =09intel_de_write(dev_priv, reg, val);
+-=09dev_priv->modeset_restore_state =3D state;
++=09dev_priv->display->modeset_restore_state =3D state;
+ =09state->acquire_ctx =3D ctx;
  }
 =20
-@@ -4463,7 +4463,7 @@ static void i9xx_set_pipeconf(const struct intel_crtc=
-_state *crtc_state)
+ void intel_display_finish_reset(struct drm_i915_private *dev_priv)
+ {
+ =09struct drm_device *dev =3D &dev_priv->drm;
+-=09struct drm_modeset_acquire_ctx *ctx =3D &dev_priv->reset_ctx;
++=09struct drm_modeset_acquire_ctx *ctx =3D &dev_priv->display->reset_ctx;
+ =09struct drm_atomic_state *state;
+ =09int ret;
 =20
- =09pipeconf |=3D PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
-=20
--=09pipeconf |=3D PIPECONF_FRAME_START_DELAY(dev_priv->framestart_delay - 1=
-);
-+=09pipeconf |=3D PIPECONF_FRAME_START_DELAY(dev_priv->display->framestart_=
-delay - 1);
-=20
- =09intel_de_write(dev_priv, PIPECONF(crtc->pipe), pipeconf);
- =09intel_de_posting_read(dev_priv, PIPECONF(crtc->pipe));
-@@ -5096,24 +5096,24 @@ static void lpt_init_pch_refclk(struct drm_i915_pri=
-vate *dev_priv)
- =09 * clock hierarchy. That would also allow us to do
- =09 * clock bending finally.
- =09 */
--=09dev_priv->pch_ssc_use =3D 0;
-+=09dev_priv->display->pch_ssc_use =3D 0;
-=20
- =09if (spll_uses_pch_ssc(dev_priv)) {
- =09=09drm_dbg_kms(&dev_priv->drm, "SPLL using PCH SSC\n");
--=09=09dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_SPLL);
-+=09=09dev_priv->display->pch_ssc_use |=3D BIT(DPLL_ID_SPLL);
- =09}
-=20
- =09if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL1)) {
- =09=09drm_dbg_kms(&dev_priv->drm, "WRPLL1 using PCH SSC\n");
--=09=09dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL1);
-+=09=09dev_priv->display->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL1);
- =09}
-=20
- =09if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL2)) {
- =09=09drm_dbg_kms(&dev_priv->drm, "WRPLL2 using PCH SSC\n");
--=09=09dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL2);
-+=09=09dev_priv->display->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL2);
- =09}
-=20
--=09if (dev_priv->pch_ssc_use)
-+=09if (dev_priv->display->pch_ssc_use)
+@@ -1735,7 +1735,7 @@ void intel_display_finish_reset(struct drm_i915_priva=
+te *dev_priv)
+ =09if (!test_bit(I915_RESET_MODESET, &dev_priv->gt.reset.flags))
  =09=09return;
 =20
- =09if (has_fdi) {
-@@ -5186,7 +5186,7 @@ static void ilk_set_pipeconf(const struct intel_crtc_=
-state *crtc_state)
+-=09state =3D fetch_and_zero(&dev_priv->modeset_restore_state);
++=09state =3D fetch_and_zero(&dev_priv->display->modeset_restore_state);
+ =09if (!state)
+ =09=09goto unlock;
 =20
- =09val |=3D PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
+@@ -3753,7 +3753,7 @@ int intel_display_suspend(struct drm_device *dev)
+ =09=09drm_err(&dev_priv->drm, "Suspending crtc's failed with %i\n",
+ =09=09=09ret);
+ =09else
+-=09=09dev_priv->modeset_restore_state =3D state;
++=09=09dev_priv->display->modeset_restore_state =3D state;
+ =09return ret;
+ }
 =20
--=09val |=3D PIPECONF_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
-+=09val |=3D PIPECONF_FRAME_START_DELAY(dev_priv->display->framestart_delay=
- - 1);
+@@ -10033,7 +10033,7 @@ static void intel_atomic_helper_free_state(struct d=
+rm_i915_private *dev_priv)
+ =09struct intel_atomic_state *state, *next;
+ =09struct llist_node *freed;
 =20
- =09intel_de_write(dev_priv, PIPECONF(pipe), val);
- =09intel_de_posting_read(dev_priv, PIPECONF(pipe));
-@@ -11573,9 +11573,9 @@ int intel_modeset_init_noirq(struct drm_i915_privat=
+-=09freed =3D llist_del_all(&dev_priv->atomic_helper.free_list);
++=09freed =3D llist_del_all(&dev_priv->display->atomic_helper.free_list);
+ =09llist_for_each_entry_safe(state, next, freed, freed)
+ =09=09drm_atomic_state_put(&state->base);
+ }
+@@ -10041,7 +10041,7 @@ static void intel_atomic_helper_free_state(struct d=
+rm_i915_private *dev_priv)
+ static void intel_atomic_helper_free_state_worker(struct work_struct *work=
+)
+ {
+ =09struct drm_i915_private *dev_priv =3D
+-=09=09container_of(work, typeof(*dev_priv), atomic_helper.free_work);
++=09=09container_of(work, typeof(*dev_priv), _display.atomic_helper.free_wo=
+rk);
+=20
+ =09intel_atomic_helper_free_state(dev_priv);
+ }
+@@ -10335,7 +10335,7 @@ intel_atomic_commit_ready(struct i915_sw_fence *fen=
+ce,
+ =09case FENCE_FREE:
+ =09=09{
+ =09=09=09struct intel_atomic_helper *helper =3D
+-=09=09=09=09&to_i915(state->base.dev)->atomic_helper;
++=09=09=09=09&to_i915(state->base.dev)->display->atomic_helper;
+=20
+ =09=09=09if (llist_add(&state->freed, &helper->free_list))
+ =09=09=09=09schedule_work(&helper->free_work);
+@@ -11591,8 +11591,8 @@ int intel_modeset_init_noirq(struct drm_i915_privat=
 e *i915)
- =09i915->flip_wq =3D alloc_workqueue("i915_flip", WQ_HIGHPRI |
- =09=09=09=09=09WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
+ =09if (ret)
+ =09=09goto cleanup_vga_client_pw_domain_dmc;
 =20
--=09i915->framestart_delay =3D 1; /* 1-4 */
-+=09i915->display->framestart_delay =3D 1; /* 1-4 */
+-=09init_llist_head(&i915->atomic_helper.free_list);
+-=09INIT_WORK(&i915->atomic_helper.free_work,
++=09init_llist_head(&i915->display->atomic_helper.free_list);
++=09INIT_WORK(&i915->display->atomic_helper.free_work,
+ =09=09  intel_atomic_helper_free_state_worker);
 =20
--=09i915->window2_delay =3D 0; /* No DSB so no window2 delay */
-+=09i915->display->window2_delay =3D 0; /* No DSB so no window2 delay */
+ =09intel_init_quirks(i915);
+@@ -12568,14 +12568,14 @@ intel_modeset_setup_hw_state(struct drm_device *d=
+ev,
+ void intel_display_resume(struct drm_device *dev)
+ {
+ =09struct drm_i915_private *dev_priv =3D to_i915(dev);
+-=09struct drm_atomic_state *state =3D dev_priv->modeset_restore_state;
++=09struct drm_atomic_state *state =3D dev_priv->display->modeset_restore_s=
+tate;
+ =09struct drm_modeset_acquire_ctx ctx;
+ =09int ret;
 =20
- =09intel_mode_config_init(i915);
+ =09if (!HAS_DISPLAY(dev_priv))
+ =09=09return;
 =20
-@@ -11915,7 +11915,7 @@ static void intel_sanitize_frame_start_delay(const =
-struct intel_crtc_state *crtc
+-=09dev_priv->modeset_restore_state =3D NULL;
++=09dev_priv->display->modeset_restore_state =3D NULL;
+ =09if (state)
+ =09=09state->acquire_ctx =3D &ctx;
 =20
- =09=09val =3D intel_de_read(dev_priv, reg);
- =09=09val &=3D ~HSW_FRAME_START_DELAY_MASK;
--=09=09val |=3D HSW_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
-+=09=09val |=3D HSW_FRAME_START_DELAY(dev_priv->display->framestart_delay -=
- 1);
- =09=09intel_de_write(dev_priv, reg, val);
- =09} else {
- =09=09i915_reg_t reg =3D PIPECONF(cpu_transcoder);
-@@ -11923,7 +11923,7 @@ static void intel_sanitize_frame_start_delay(const =
-struct intel_crtc_state *crtc
+@@ -12630,8 +12630,8 @@ void intel_modeset_driver_remove(struct drm_i915_pr=
+ivate *i915)
+ =09flush_workqueue(i915->flip_wq);
+ =09flush_workqueue(i915->modeset_wq);
 =20
- =09=09val =3D intel_de_read(dev_priv, reg);
- =09=09val &=3D ~PIPECONF_FRAME_START_DELAY_MASK;
--=09=09val |=3D PIPECONF_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
-+=09=09val |=3D PIPECONF_FRAME_START_DELAY(dev_priv->display->framestart_de=
-lay - 1);
- =09=09intel_de_write(dev_priv, reg, val);
- =09}
-=20
-@@ -11936,7 +11936,7 @@ static void intel_sanitize_frame_start_delay(const =
-struct intel_crtc_state *crtc
-=20
- =09=09val =3D intel_de_read(dev_priv, reg);
- =09=09val &=3D ~TRANS_FRAME_START_DELAY_MASK;
--=09=09val |=3D TRANS_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
-+=09=09val |=3D TRANS_FRAME_START_DELAY(dev_priv->display->framestart_delay=
- - 1);
- =09=09intel_de_write(dev_priv, reg, val);
- =09} else {
- =09=09enum pipe pch_transcoder =3D intel_crtc_pch_transcoder(crtc);
-@@ -11945,7 +11945,7 @@ static void intel_sanitize_frame_start_delay(const =
-struct intel_crtc_state *crtc
-=20
- =09=09val =3D intel_de_read(dev_priv, reg);
- =09=09val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
--=09=09val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_delay=
- - 1);
-+=09=09val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->display->framest=
-art_delay - 1);
- =09=09intel_de_write(dev_priv, reg, val);
- =09}
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/dr=
-m/i915/display/intel_dpll_mgr.c
-index 11fefa6de27e..47036316fbf9 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -574,7 +574,7 @@ static void hsw_ddi_wrpll_disable(struct drm_i915_priva=
-te *dev_priv,
- =09 * Try to set up the PCH reference clock once all DPLLs
- =09 * that depend on it have been shut down.
- =09 */
--=09if (dev_priv->pch_ssc_use & BIT(id))
-+=09if (dev_priv->display->pch_ssc_use & BIT(id))
- =09=09intel_init_pch_refclk(dev_priv);
+-=09flush_work(&i915->atomic_helper.free_work);
+-=09drm_WARN_ON(&i915->drm, !llist_empty(&i915->atomic_helper.free_list));
++=09flush_work(&i915->display->atomic_helper.free_work);
++=09drm_WARN_ON(&i915->drm, !llist_empty(&i915->display->atomic_helper.free=
+_list));
  }
 =20
-@@ -592,7 +592,7 @@ static void hsw_ddi_spll_disable(struct drm_i915_privat=
-e *dev_priv,
- =09 * Try to set up the PCH reference clock once all DPLLs
- =09 * that depend on it have been shut down.
- =09 */
--=09if (dev_priv->pch_ssc_use & BIT(id))
-+=09if (dev_priv->display->pch_ssc_use & BIT(id))
- =09=09intel_init_pch_refclk(dev_priv);
- }
-=20
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i91=
-5/display/intel_vrr.c
-index c335b1dbafcf..ce4419ee11f2 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -69,9 +69,9 @@ static int intel_vrr_vblank_exit_length(const struct inte=
-l_crtc_state *crtc_stat
-=20
- =09/* The hw imposes the extra scanline before frame start */
- =09if (DISPLAY_VER(i915) >=3D 13)
--=09=09return crtc_state->vrr.guardband + i915->framestart_delay + 1;
-+=09=09return crtc_state->vrr.guardband + i915->display->framestart_delay +=
- 1;
- =09else
--=09=09return crtc_state->vrr.pipeline_full + i915->framestart_delay + 1;
-+=09=09return crtc_state->vrr.pipeline_full + i915->display->framestart_del=
-ay + 1;
- }
-=20
- int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
-@@ -135,7 +135,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_=
-state,
- =09if (DISPLAY_VER(i915) >=3D 13)
- =09=09crtc_state->vrr.guardband =3D
- =09=09=09crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay -
--=09=09=09i915->window2_delay;
-+=09=09=09i915->display->window2_delay;
- =09else
- =09=09/*
- =09=09 * FIXME: s/4/framestart_delay+1/ to get consistent
+ /* part #2: call after irq uninstall */
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_dr=
 v.h
-index a487686b1b71..6eba551396fc 100644
+index 6eba551396fc..550efc29b54f 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -848,6 +848,13 @@ struct drm_i915_display {
- =09unsigned int fdi_pll_freq;
- =09unsigned int czclk_freq;
+@@ -917,6 +917,14 @@ struct drm_i915_display {
+ =09struct work_struct fbdev_suspend_work;
 =20
-+=09u8 framestart_delay;
+ =09struct i915_frontbuffer_tracking fb_tracking;
 +
-+=09/* Window2 specifies time required to program DSB (Window2) in number o=
-f scan lines */
-+=09u8 window2_delay;
++=09struct drm_atomic_state *modeset_restore_state;
++=09struct drm_modeset_acquire_ctx reset_ctx;
 +
-+=09u8 pch_ssc_use;
-+
- =09/**
- =09 * Base address of where the gmbus and gpio blocks are located (either
- =09 * on PCH or on SoC for platforms without PCH).
-@@ -1199,13 +1206,6 @@ struct drm_i915_private {
- =09=09struct file *mmap_singleton;
- =09} gem;
++=09struct intel_atomic_helper {
++=09=09struct llist_head free_list;
++=09=09struct work_struct free_work;
++=09} atomic_helper;
+ };
 =20
--=09u8 framestart_delay;
--
--=09/* Window2 specifies time required to program DSB (Window2) in number o=
-f scan lines */
--=09u8 window2_delay;
--
--=09u8 pch_ssc_use;
--
- =09/* For i915gm/i945gm vblank irq workaround */
- =09u8 vblank_enabled;
+ struct drm_i915_private {
+@@ -1030,9 +1038,6 @@ struct drm_i915_private {
 =20
+ =09unsigned long quirks;
+=20
+-=09struct drm_atomic_state *modeset_restore_state;
+-=09struct drm_modeset_acquire_ctx reset_ctx;
+-
+ =09struct i915_ggtt ggtt; /* VM representing the global address space */
+=20
+ =09struct i915_gem_mm mm;
+@@ -1062,11 +1067,6 @@ struct drm_i915_private {
+=20
+ =09struct i915_wa_list gt_wa_list;
+=20
+-=09struct intel_atomic_helper {
+-=09=09struct llist_head free_list;
+-=09=09struct work_struct free_work;
+-=09} atomic_helper;
+-
+ =09bool mchbar_need_disable;
+=20
+ =09struct intel_l3_parity l3_parity;
 --=20
 2.31.1
 
