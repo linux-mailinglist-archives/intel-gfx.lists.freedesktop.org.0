@@ -1,44 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D1A402DC7
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 19:38:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC87402DCE
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 19:41:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C96D56E037;
-	Tue,  7 Sep 2021 17:38:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B81F6E037;
+	Tue,  7 Sep 2021 17:41:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3006E091;
- Tue,  7 Sep 2021 17:38:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="217115343"
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="217115343"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 10:38:03 -0700
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="524295384"
-Received: from tcarvalx-mobl.ger.corp.intel.com (HELO [10.252.28.225])
- ([10.252.28.225])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 10:38:01 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com
-References: <20210906165515.450541-1-thomas.hellstrom@linux.intel.com>
- <20210906165515.450541-4-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <51111df6-bf0c-ba09-4a9a-5bd59bec5fa9@intel.com>
-Date: Tue, 7 Sep 2021 18:37:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C185F6E037
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 17:41:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="305834300"
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="305834300"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2021 10:41:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="449099652"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 07 Sep 2021 10:41:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 07 Sep 2021 20:41:06 +0300
+Date: Tue, 7 Sep 2021 20:41:06 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <YTekMq0Kfb3Xkeid@intel.com>
+References: <20210907171639.1221287-1-ayaz.siddiqui@intel.com>
+ <20210907172728.GF461228@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210906165515.450541-4-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915 Implement LMEM backup and
- restore for suspend / resume
+In-Reply-To: <20210907172728.GF461228@mdroper-desk1.amr.corp.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Add separate MOCS table for
+ Gen12 devices other than TGL/RKL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,180 +53,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06/09/2021 17:55, Thomas Hellstr√∂m wrote:
-> Just evict unpinned objects to system. For pinned LMEM objects,
-> make a backup system object and blit the contents to that.
+On Tue, Sep 07, 2021 at 10:27:28AM -0700, Matt Roper wrote:
+> On Tue, Sep 07, 2021 at 10:46:39PM +0530, Ayaz A Siddiqui wrote:
+> > MOCS table of TGL/RKL has MOCS[1] set to L3_UC.
+> > While for other gen12 devices we need to set MOCS[1] as L3_WB,
+> > So adding a new MOCS table for other gen 12 devices eg. ADL.
+> > 
+> > Fixes: cfbe5291a189 ("drm/i915/gt: Initialize unused MOCS entries with device specific values")
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
 > 
-> Backup is performed in three steps,
-> 1: Opportunistically evict evictable objects using the gpu blitter.
-> 2: After gt idle, evict evictable objects using the gpu blitter. This will
-> be modified in an upcoming patch to backup pinned objects that are not used
-> by the blitter itself.
-> 3: Backup remaining pinned objects using memcpy.
+> Yep, we overlooked that the TGL table still had an explicit entry for
+> I915_MOCS_PTE and wasn't just using an implicit 'unused_entries' lookup
+> for MOCS[1].  The new table is the same as the TGL table, just with
+> I915_MOCS_PTE (1) removed.
+
+And just how are people planning on handling display cacheability
+control without a PTE MOCS entry? Is Mesa/etc. already making all
+external bos uncached on these platforms just in case we might
+scan out said bo?
+
 > 
-> Also move uC suspend to after 2) to make sure we have a functional GuC
-> during 2) if using GuC submission.
+> Looks good to me,
 > 
-> v2:
-> - Major refactor to make sure gem_exec_suspend@hang-SX subtests work, and
->    suspend / resume works with a slightly modified GuC submission enabling
->    patch series.
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 > 
-> Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+> 
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_mocs.c | 41 +++++++++++++++++++++++++---
+> >  1 file changed, 37 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> > index e96afd7beb49..c8d289b00de4 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> > @@ -315,6 +315,35 @@ static const struct drm_i915_mocs_entry dg1_mocs_table[] = {
+> >  	MOCS_ENTRY(63, 0, L3_1_UC),
+> >  };
+> >  
+> > +static const struct drm_i915_mocs_entry gen12_mocs_table[] = {
+> > +
+> > +	GEN11_MOCS_ENTRIES,
+> > +	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */
+> > +	MOCS_ENTRY(48,
+> > +		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+> > +		   L3_3_WB),
+> > +	/* Implicitly enable L1 - HDC:L1 + L3 */
+> > +	MOCS_ENTRY(49,
+> > +		   LE_1_UC | LE_TC_1_LLC,
+> > +		   L3_3_WB),
+> > +	/* Implicitly enable L1 - HDC:L1 + LLC */
+> > +	MOCS_ENTRY(50,
+> > +		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+> > +		   L3_1_UC),
+> > +	/* Implicitly enable L1 - HDC:L1 */
+> > +	MOCS_ENTRY(51,
+> > +		   LE_1_UC | LE_TC_1_LLC,
+> > +		   L3_1_UC),
+> > +	/* HW Special Case (CCS) */
+> > +	MOCS_ENTRY(60,
+> > +		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+> > +		   L3_1_UC),
+> > +	/* HW Special Case (Displayable) */
+> > +	MOCS_ENTRY(61,
+> > +		   LE_1_UC | LE_TC_1_LLC,
+> > +		   L3_3_WB),
+> > +};
+> > +
+> >  enum {
+> >  	HAS_GLOBAL_MOCS = BIT(0),
+> >  	HAS_ENGINE_MOCS = BIT(1),
+> > @@ -351,14 +380,18 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
+> >  		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
+> >  		table->uc_index = 1;
+> >  		table->unused_entries_index = 5;
+> > -	} else if (GRAPHICS_VER(i915) >= 12) {
+> > +	} else if (IS_TIGERLAKE(i915) || IS_ROCKETLAKE(i915)) {
+> > +		/* For TGL/RKL, Can't be changed now for ABI reasons */
+> >  		table->size  = ARRAY_SIZE(tgl_mocs_table);
+> >  		table->table = tgl_mocs_table;
+> >  		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
+> >  		table->uc_index = 3;
+> > -		/* For TGL/RKL, Can't be changed now for ABI reasons */
+> > -		if (!IS_TIGERLAKE(i915) && !IS_ROCKETLAKE(i915))
+> > -			table->unused_entries_index = 2;
+> > +	} else if (GRAPHICS_VER(i915) >= 12) {
+> > +		table->size  = ARRAY_SIZE(gen12_mocs_table);
+> > +		table->table = gen12_mocs_table;
+> > +		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
+> > +		table->uc_index = 3;
+> > +		table->unused_entries_index = 2;
+> >  	} else if (GRAPHICS_VER(i915) == 11) {
+> >  		table->size  = ARRAY_SIZE(icl_mocs_table);
+> >  		table->table = icl_mocs_table;
+> > -- 
+> > 2.26.2
+> > 
+> 
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> VTT-OSGC Platform Enablement
+> Intel Corporation
+> (916) 356-2795
 
-<snip>
-
-> +
-> +static int i915_ttm_backup(struct i915_gem_apply_to_region *apply,
-> +			   struct drm_i915_gem_object *obj)
-> +{
-> +	struct i915_gem_ttm_pm_apply *pm_apply =
-> +		container_of(apply, typeof(*pm_apply), base);
-> +	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-> +	struct ttm_buffer_object *backup_bo;
-> +	struct drm_i915_private *i915 =
-> +		container_of(bo->bdev, typeof(*i915), bdev);
-> +	struct intel_memory_region *sys_region;
-> +	struct drm_i915_gem_object *backup;
-> +	struct ttm_operation_ctx ctx = {};
-> +	int err = 0;
-> +
-> +	if (bo->resource->mem_type == I915_PL_SYSTEM || obj->ttm.backup)
-> +		return 0;
-> +
-> +	if (pm_apply->allow_gpu && i915_gem_object_evictable(obj))
-> +		return ttm_bo_validate(bo, i915_ttm_sys_placement(), &ctx);
-> +
-> +	if (!pm_apply->backup_pinned)
-> +		return 0;
-> +
-> +	sys_region = i915->mm.regions[INTEL_REGION_SMEM];
-> +	backup = i915_gem_object_create_region(sys_region,
-> +					       obj->base.size,
-> +					       0, 0);
-
-create_shmem()?
-
-> +	if (IS_ERR(backup))
-> +		return PTR_ERR(backup);
-> +
-> +	err = i915_gem_object_lock(backup, apply->ww);
-> +	if (err)
-> +		goto out_no_lock;
-> +
-> +	backup_bo = i915_gem_to_ttm(backup);
-> +	err = ttm_tt_populate(backup_bo->bdev, backup_bo->ttm, &ctx);
-> +	if (err)
-> +		goto out_no_populate;
-> +
-> +	err = i915_gem_obj_copy_ttm(backup, obj, pm_apply->allow_gpu, false);
-> +	GEM_WARN_ON(err);
-> +
-> +	obj->ttm.backup = backup;
-> +	return 0;
-> +
-> +out_no_populate:
-> +	i915_gem_ww_unlock_single(backup);
-> +out_no_lock:
-> +	i915_gem_object_put(backup);
-> +
-> +	return err;
-> +}
-> +
-> +static int i915_ttm_recover(struct i915_gem_apply_to_region *apply,
-> +			    struct drm_i915_gem_object *obj)
-> +{
-> +	i915_ttm_backup_free(obj);
-> +	return 0;
-> +}
-> +
-> +/**
-> + * i915_ttm_recover_region - Free the backup of all objects of a region
-> + * @mr: The memory region
-> + *
-> + * Checks all objects of a region if there is backup attached and if so
-> + * frees that backup. Typically this is called to recover after a partially
-> + * performed backup.
-> + */
-> +void i915_ttm_recover_region(struct intel_memory_region *mr)
-> +{
-> +	static const struct i915_gem_apply_to_region_ops recover_ops = {
-> +		.process_obj = i915_ttm_recover,
-> +	};
-> +	struct i915_gem_apply_to_region apply = {.ops = &recover_ops};
-> +	int ret;
-> +
-> +	ret = i915_gem_process_region(mr, &apply);
-> +	GEM_WARN_ON(ret);
-> +}
-> +
-> +/**
-> + * i915_ttm_backup_region - Back up all objects of a region to smem.
-> + * @mr: The memory region
-> + * @allow_gpu: Whether to allow the gpu blitter for this backup.
-> + * @backup_pinned: Backup also pinned objects.
-> + *
-> + * Loops over all objects of a region and either evicts them if they are
-> + * evictable or backs them up using a backup object if they are pinned.
-> + *
-> + * Return: Zero on success. Negative error code on error.
-> + */
-> +int i915_ttm_backup_region(struct intel_memory_region *mr, bool allow_gpu,
-> +			   bool backup_pinned)
-> +{
-> +	static const struct i915_gem_apply_to_region_ops backup_ops = {
-> +		.process_obj = i915_ttm_backup,
-> +	};
-> +	struct i915_gem_ttm_pm_apply pm_apply = {
-> +		.base = {.ops = &backup_ops},
-> +		.allow_gpu = allow_gpu,
-> +		.backup_pinned = backup_pinned,
-> +	};
-> +
-> +	return i915_gem_process_region(mr, &pm_apply.base);
-> +}
-> +
-> +static int i915_ttm_restore(struct i915_gem_apply_to_region *apply,
-> +			    struct drm_i915_gem_object *obj)
-> +{
-> +	struct i915_gem_ttm_pm_apply *pm_apply =
-> +		container_of(apply, typeof(*pm_apply), base);
-> +	struct drm_i915_gem_object *backup = obj->ttm.backup;
-> +	struct ttm_buffer_object *backup_bo = i915_gem_to_ttm(backup);
-> +	struct ttm_operation_ctx ctx = {};
-> +	int err;
-> +
-> +	if (!obj->ttm.backup)
-
-if (!backup)
-
-> +		return 0;
-> +
-> +	if (!pm_apply->allow_gpu && (obj->flags & I915_BO_ALLOC_USER))
-> +		return 0;
-> +
-> +	err = i915_gem_object_lock(backup, apply->ww);
-> +	if (err)
-> +		return err;
-> +
-> +	/* Content may have been swapped. */
-> +	err = ttm_tt_populate(backup_bo->bdev, backup_bo->ttm, &ctx);
-> +	if (!err) {
-> +		err = i915_gem_obj_copy_ttm(obj, backup, pm_apply->allow_gpu,
-> +					    false);
-> +		GEM_WARN_ON(err);
-> +
-> +		obj->ttm.backup = NULL;
-> +		err = 0;
-> +	}
-> +
-> +	i915_gem_ww_unlock_single(backup);
-> +	i915_gem_object_put(backup);
-
-I assume we need to set ttm.backup = NULL somewhere here on the failure 
-path, or don't drop the ref? Or at least it looks like potential uaf later?
-
-> +
-> +	return err;
-> +}
-> +
+-- 
+Ville Syrj‰l‰
+Intel
