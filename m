@@ -1,43 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC87402DCE
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 19:41:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CFE9402E3D
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 20:14:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B81F6E037;
-	Tue,  7 Sep 2021 17:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B5EF6E082;
+	Tue,  7 Sep 2021 18:14:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C185F6E037
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 17:41:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="305834300"
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="305834300"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 10:41:10 -0700
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 146DB6E082
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 18:14:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="199814319"
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="199814319"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2021 11:14:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="449099652"
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="503181869"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 07 Sep 2021 10:41:07 -0700
+ by fmsmga008.fm.intel.com with SMTP; 07 Sep 2021 11:14:41 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Sep 2021 20:41:06 +0300
-Date: Tue, 7 Sep 2021 20:41:06 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <YTekMq0Kfb3Xkeid@intel.com>
-References: <20210907171639.1221287-1-ayaz.siddiqui@intel.com>
- <20210907172728.GF461228@mdroper-desk1.amr.corp.intel.com>
+ Tue, 07 Sep 2021 21:14:40 +0300
+Date: Tue, 7 Sep 2021 21:14:40 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
+To: Dave Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <YTesEIggFQ+5TULb@intel.com>
+References: <20210906034356.2946530-1-airlied@gmail.com>
+ <20210906034356.2946530-2-airlied@gmail.com>
+ <87mtoq86ct.fsf@intel.com>
+ <CAPM=9ty4y9new=adp+cmKCP0fuGrMgJOCWGSV-nmzorN3nACKw@mail.gmail.com>
+ <CAKMK7uHeujMMWoo-AJuuksg7HBpQu0oqMEbgDHUx8_rDv2GDng@mail.gmail.com>
+ <CAPM=9tysQAgk5Buum5r4y1wYqt4JutmMP+1tn_tnD6ukFcT+NQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210907172728.GF461228@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <CAPM=9tysQAgk5Buum5r4y1wYqt4JutmMP+1tn_tnD6ukFcT+NQ@mail.gmail.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Add separate MOCS table for
- Gen12 devices other than TGL/RKL
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915: move display funcs into a
+ display struct.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,110 +61,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 07, 2021 at 10:27:28AM -0700, Matt Roper wrote:
-> On Tue, Sep 07, 2021 at 10:46:39PM +0530, Ayaz A Siddiqui wrote:
-> > MOCS table of TGL/RKL has MOCS[1] set to L3_UC.
-> > While for other gen12 devices we need to set MOCS[1] as L3_WB,
-> > So adding a new MOCS table for other gen 12 devices eg. ADL.
-> > 
-> > Fixes: cfbe5291a189 ("drm/i915/gt: Initialize unused MOCS entries with device specific values")
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-> 
-> Yep, we overlooked that the TGL table still had an explicit entry for
-> I915_MOCS_PTE and wasn't just using an implicit 'unused_entries' lookup
-> for MOCS[1].  The new table is the same as the TGL table, just with
-> I915_MOCS_PTE (1) removed.
+On Tue, Sep 07, 2021 at 07:52:17PM +1000, Dave Airlie wrote:
+> On Tue, 7 Sept 2021 at 18:15, Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Mon, Sep 6, 2021 at 9:45 PM Dave Airlie <airlied@gmail.com> wrote:
+> > > On Mon, 6 Sept 2021 at 18:18, Jani Nikula <jani.nikula@linux.intel.co=
+m> wrote:
+> > > > On Mon, 06 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
+> > > > > From: Dave Airlie <airlied@redhat.com>
+> > > > >
+> > > > > This is the first step in an idea to refactor the display code
+> > > > > into a bit more of a corner.
+> > > >
+> > > > So, do we want to make i915->display a pointer?
+> > > >
+> > > > If we do, and we're about to touch every place accessing the display
+> > > > struct, we might just as well have:
+> > > >
+> > > > struct drm_i915_private {
+> > > >         struct drm_i915_display _display;
+> > > >         struct drm_i915_display *display;
+> > > > };
+> > > >
+> > > > and initialize i915->display =3D &i915->_display, and make all acce=
+ss
+> > > > happen via the pointer. If we want to allocate it dynamically at so=
+me
+> > > > point, it'll be a *much* easier task.
+> > > >
+> > > > But the first question to figure out is whether we want to do that =
+or
+> > > > not.
+> > >
+> > > I think the advantage is that we can hide a lot more structs from the
+> > > main struct,
+> > > the disadvantage is additional pointer chasing, esp for the drm_devic=
+e and other
+> > > i915_priv members.
+> >
+> > For display pointer chasing doesn't matter at all. Imo the case is
+> > more what make sense as object hierarchy, and embedding vs pointer has
+> > quite different meaning. We've discussed in the past that the split
+> > into display/gem with branches seems to work ok-ish, but could
+> > probably be improved a lot in code org. If we make display a lot more
+> > a free-standing thing (i.e. pointer, not embedding) with a much more
+> > clearer/cleaner api contract to other pieces, then maybe there's some
+> > case to be made for all this churn.
+> =
 
-And just how are people planning on handling display cacheability
-control without a PTE MOCS entry? Is Mesa/etc. already making all
-external bos uncached on these platforms just in case we might
-scan out said bo?
+> I'd like to make it at least have some form of API between display and co=
+re/gt.
+> =
 
-> 
-> Looks good to me,
-> 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> 
-> 
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_mocs.c | 41 +++++++++++++++++++++++++---
-> >  1 file changed, 37 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> > index e96afd7beb49..c8d289b00de4 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> > @@ -315,6 +315,35 @@ static const struct drm_i915_mocs_entry dg1_mocs_table[] = {
-> >  	MOCS_ENTRY(63, 0, L3_1_UC),
-> >  };
-> >  
-> > +static const struct drm_i915_mocs_entry gen12_mocs_table[] = {
-> > +
-> > +	GEN11_MOCS_ENTRIES,
-> > +	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */
-> > +	MOCS_ENTRY(48,
-> > +		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> > +		   L3_3_WB),
-> > +	/* Implicitly enable L1 - HDC:L1 + L3 */
-> > +	MOCS_ENTRY(49,
-> > +		   LE_1_UC | LE_TC_1_LLC,
-> > +		   L3_3_WB),
-> > +	/* Implicitly enable L1 - HDC:L1 + LLC */
-> > +	MOCS_ENTRY(50,
-> > +		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> > +		   L3_1_UC),
-> > +	/* Implicitly enable L1 - HDC:L1 */
-> > +	MOCS_ENTRY(51,
-> > +		   LE_1_UC | LE_TC_1_LLC,
-> > +		   L3_1_UC),
-> > +	/* HW Special Case (CCS) */
-> > +	MOCS_ENTRY(60,
-> > +		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> > +		   L3_1_UC),
-> > +	/* HW Special Case (Displayable) */
-> > +	MOCS_ENTRY(61,
-> > +		   LE_1_UC | LE_TC_1_LLC,
-> > +		   L3_3_WB),
-> > +};
-> > +
-> >  enum {
-> >  	HAS_GLOBAL_MOCS = BIT(0),
-> >  	HAS_ENGINE_MOCS = BIT(1),
-> > @@ -351,14 +380,18 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
-> >  		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
-> >  		table->uc_index = 1;
-> >  		table->unused_entries_index = 5;
-> > -	} else if (GRAPHICS_VER(i915) >= 12) {
-> > +	} else if (IS_TIGERLAKE(i915) || IS_ROCKETLAKE(i915)) {
-> > +		/* For TGL/RKL, Can't be changed now for ABI reasons */
-> >  		table->size  = ARRAY_SIZE(tgl_mocs_table);
-> >  		table->table = tgl_mocs_table;
-> >  		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
-> >  		table->uc_index = 3;
-> > -		/* For TGL/RKL, Can't be changed now for ABI reasons */
-> > -		if (!IS_TIGERLAKE(i915) && !IS_ROCKETLAKE(i915))
-> > -			table->unused_entries_index = 2;
-> > +	} else if (GRAPHICS_VER(i915) >= 12) {
-> > +		table->size  = ARRAY_SIZE(gen12_mocs_table);
-> > +		table->table = gen12_mocs_table;
-> > +		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
-> > +		table->uc_index = 3;
-> > +		table->unused_entries_index = 2;
-> >  	} else if (GRAPHICS_VER(i915) == 11) {
-> >  		table->size  = ARRAY_SIZE(icl_mocs_table);
-> >  		table->table = icl_mocs_table;
-> > -- 
-> > 2.26.2
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+> I think the main things I've noticed where it's kinda free for all at
+> the moment are:
+> - display funcs has pm internal funcs, display<->pm funcs, display
+> only audio funcs,
+> display only color funcs, other display internal funcs all mixed into
+> one super struct.
 
--- 
-Ville Syrjälä
+I think the solution for these is mostly just more localized function
+pointer structs/etc. Never been a fan of the old catch-all display
+funcs thing. Pretty sure I even have eg. a cdclk_funcs struct sitting
+in some branch somewhere.
+
+> There's no split between things that provide service to display and vice-=
+versa.
+> I've started looking at splitting this.
+> - tracepoints - i915_trace.h pulls in display and gt stuff, no idea if
+> we can split that,
+> but lots of things include i915_trace.h which means everyone sees
+> everyone elses guts.
+
+Yeah, I've been thinking of splitting this but haven't actually looked
+into how feasible it is. The convoluted macro stuff makes it hard to
+see how any of it really works, and in the past I did have some real
+include order problems with it.
+
+-- =
+
+Ville Syrj=E4l=E4
 Intel
+---------------------------------------------------------------------
+Intel Finland Oy
+Registered Address: PL 281, 00181 Helsinki =
+
+Business Identity Code: 0357606 - 4 =
+
+Domiciled in Helsinki =
+
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
