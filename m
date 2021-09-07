@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082B54027F9
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 13:44:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0CE4027F0
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 13:40:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67C1289F4A;
-	Tue,  7 Sep 2021 11:44:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D26BC89F4A;
+	Tue,  7 Sep 2021 11:40:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBD4489F4A
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 11:44:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="220201615"
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="220201615"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 04:44:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="464794077"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by fmsmga007.fm.intel.com with ESMTP; 07 Sep 2021 04:44:19 -0700
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Sep 2021 17:06:58 +0530
-Message-Id: <20210907113658.1351456-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9158189F4A;
+ Tue,  7 Sep 2021 11:40:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 811B7A01BB;
+ Tue,  7 Sep 2021 11:40:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Add HDR mode helper function
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 07 Sep 2021 11:40:49 -0000
+Message-ID: <163101484950.24492.4378811280367991928@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210907103407.432646-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210907103407.432646-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Use_Transparent_Hugepages_when_IOMMU_is_enabled?=
+ =?utf-8?q?_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,43 +42,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add helper function with returns if HDR mode in on
+== Series Details ==
 
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+Series: drm/i915: Use Transparent Hugepages when IOMMU is enabled (rev2)
+URL   : https://patchwork.freedesktop.org/series/93122/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1f447ba776c7..51008600a180 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -182,6 +182,12 @@ static void intel_update_czclk(struct drm_i915_private *dev_priv)
- 		dev_priv->czclk_freq);
- }
- 
-+static bool is_hdr_mode(const struct intel_crtc_state *crtc_state)
-+{
-+	return (crtc_state->active_planes & ~(icl_hdr_plane_mask() |
-+		BIT(PLANE_CURSOR))) == 0;
-+}
-+
- /* WA Display #0827: Gen9:all */
- static void
- skl_wa_827(struct drm_i915_private *dev_priv, enum pipe pipe, bool enable)
-@@ -5257,8 +5263,7 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
- 			PIPEMISC_YUV420_MODE_FULL_BLEND;
- 
- 	if (DISPLAY_VER(dev_priv) >= 11 &&
--	    (crtc_state->active_planes & ~(icl_hdr_plane_mask() |
--					   BIT(PLANE_CURSOR))) == 0)
-+	    is_hdr_mode(crtc_state))
- 		val |= PIPEMISC_HDR_MODE_PRECISION;
- 
- 	if (DISPLAY_VER(dev_priv) >= 12)
--- 
-2.31.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+2f994050d821 drm/i915: Use Transparent Hugepages when IOMMU is enabled
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")'
+#6: 
+Usage of Transparent Hugepages was disabled in 9987da4b5dcf
+
+-:130: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b901bb89324a ("drm/i915/gemfs: enable THP")'
+#130: 
+References: b901bb89324a ("drm/i915/gemfs: enable THP")
+
+-:131: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#131: 
+References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
+
+-:131: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")'
+#131: 
+References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
+
+-:177: WARNING:STATIC_CONST_CHAR_ARRAY: static char array declaration should probably be static const char
+#177: FILE: drivers/gpu/drm/i915/gem/i915_gemfs.c:36:
++			static char huge_opt[] = "huge=within_size"; /* r/w */
+
+total: 3 errors, 2 warnings, 0 checks, 42 lines checked
+
 
