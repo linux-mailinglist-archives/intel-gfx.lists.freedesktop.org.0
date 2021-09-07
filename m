@@ -1,37 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C32402DAB
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 19:20:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3AE402D9A
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 19:19:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E87516E0B7;
-	Tue,  7 Sep 2021 17:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66A656E090;
+	Tue,  7 Sep 2021 17:19:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 611EB6E0B7
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 17:20:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="281280093"
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="281280093"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 10:20:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="469282080"
-Received: from ayazahma-nuc8i7beh.iind.intel.com ([10.145.162.59])
- by orsmga007.jf.intel.com with ESMTP; 07 Sep 2021 10:20:05 -0700
-From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E553E6E087;
+ Tue,  7 Sep 2021 17:19:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="220322730"
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="220322730"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2021 10:19:26 -0700
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="605352242"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2021 10:19:26 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Date: Tue,  7 Sep 2021 22:46:39 +0530
-Message-Id: <20210907171639.1221287-1-ayaz.siddiqui@intel.com>
-X-Mailer: git-send-email 2.26.2
+Cc: dri-devel@lists.freedesktop.org,
+	Matt Roper <matthew.d.roper@intel.com>
+Date: Tue,  7 Sep 2021 10:19:08 -0700
+Message-Id: <20210907171916.2548047-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Add separate MOCS table for Gen12
- devices other than TGL/RKL
+Subject: [Intel-gfx] [PATCH 0/8] i915: Introduce Xe_HP compute engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,80 +46,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MOCS table of TGL/RKL has MOCS[1] set to L3_UC.
-While for other gen12 devices we need to set MOCS[1] as L3_WB,
-So adding a new MOCS table for other gen 12 devices eg. ADL.
+The Xe_HP architecture introduces compute engines as a new engine class.
+These compute command streamers (CCS) are similar to the render engine,
+except that they're intended for GPGPU usage and lack support for the 3D
+pipeline.
 
-Fixes: cfbe5291a189 ("drm/i915/gt: Initialize unused MOCS entries with device specific values")
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_mocs.c | 41 +++++++++++++++++++++++++---
- 1 file changed, 37 insertions(+), 4 deletions(-)
+The definition of I915_ENGINE_CLASS_COMPUTE is new ABI; see below for a
+link to a UMD (compute) merge request that utilizes the new ABI.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-index e96afd7beb49..c8d289b00de4 100644
---- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-@@ -315,6 +315,35 @@ static const struct drm_i915_mocs_entry dg1_mocs_table[] = {
- 	MOCS_ENTRY(63, 0, L3_1_UC),
- };
- 
-+static const struct drm_i915_mocs_entry gen12_mocs_table[] = {
-+
-+	GEN11_MOCS_ENTRIES,
-+	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */
-+	MOCS_ENTRY(48,
-+		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	/* Implicitly enable L1 - HDC:L1 + L3 */
-+	MOCS_ENTRY(49,
-+		   LE_1_UC | LE_TC_1_LLC,
-+		   L3_3_WB),
-+	/* Implicitly enable L1 - HDC:L1 + LLC */
-+	MOCS_ENTRY(50,
-+		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_1_UC),
-+	/* Implicitly enable L1 - HDC:L1 */
-+	MOCS_ENTRY(51,
-+		   LE_1_UC | LE_TC_1_LLC,
-+		   L3_1_UC),
-+	/* HW Special Case (CCS) */
-+	MOCS_ENTRY(60,
-+		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_1_UC),
-+	/* HW Special Case (Displayable) */
-+	MOCS_ENTRY(61,
-+		   LE_1_UC | LE_TC_1_LLC,
-+		   L3_3_WB),
-+};
-+
- enum {
- 	HAS_GLOBAL_MOCS = BIT(0),
- 	HAS_ENGINE_MOCS = BIT(1),
-@@ -351,14 +380,18 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
- 		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
- 		table->uc_index = 1;
- 		table->unused_entries_index = 5;
--	} else if (GRAPHICS_VER(i915) >= 12) {
-+	} else if (IS_TIGERLAKE(i915) || IS_ROCKETLAKE(i915)) {
-+		/* For TGL/RKL, Can't be changed now for ABI reasons */
- 		table->size  = ARRAY_SIZE(tgl_mocs_table);
- 		table->table = tgl_mocs_table;
- 		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
- 		table->uc_index = 3;
--		/* For TGL/RKL, Can't be changed now for ABI reasons */
--		if (!IS_TIGERLAKE(i915) && !IS_ROCKETLAKE(i915))
--			table->unused_entries_index = 2;
-+	} else if (GRAPHICS_VER(i915) >= 12) {
-+		table->size  = ARRAY_SIZE(gen12_mocs_table);
-+		table->table = gen12_mocs_table;
-+		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
-+		table->uc_index = 3;
-+		table->unused_entries_index = 2;
- 	} else if (GRAPHICS_VER(i915) == 11) {
- 		table->size  = ARRAY_SIZE(icl_mocs_table);
- 		table->table = icl_mocs_table;
+This series adds some of the basic enablement for the CCS engines, but
+does not yet add them to the engine list for the relevant platforms
+(XeHP SDV and DG2); that will be handled in future series.
+
+UMD (compute): https://github.com/intel/compute-runtime/pull/451
+
+Daniele Ceraolo Spurio (1):
+  drm/i915/xehp: compute engine pipe_control
+
+John Harrison (1):
+  drm/i915/xehp: Extend uninterruptible OpenCL workloads to CCS
+
+Matt Roper (6):
+  drm/i915/xehp: Define compute class and engine
+  drm/i915/xehp: CCS shares the render reset domain
+  drm/i915/xehp: Add Compute CS IRQ handlers
+  drm/i915/xehp: CCS should use RCS setup functions
+  drm/i915/xehp: Define context scheduling attributes in lrc descriptor
+  drm/i915/xehp: Enable ccs/dual-ctx in RCU_MODE
+
+ .../drm/i915/gem/selftests/i915_gem_context.c |  8 ++--
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 31 ++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 39 ++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  | 11 +++++-
+ drivers/gpu/drm/i915/gt/intel_engine_user.c   |  5 ++-
+ .../drm/i915/gt/intel_execlists_submission.c  | 34 +++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  | 15 +++++++
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        | 15 ++++++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.h           | 10 +++++
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  4 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   | 13 ++++---
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 28 ++++++++++++-
+ drivers/gpu/drm/i915/i915_drv.h               |  2 +
+ drivers/gpu/drm/i915/i915_perf.c              |  4 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 20 +++++++++-
+ include/uapi/drm/i915_drm.h                   |  1 +
+ 17 files changed, 215 insertions(+), 29 deletions(-)
+
 -- 
-2.26.2
+2.25.4
 
