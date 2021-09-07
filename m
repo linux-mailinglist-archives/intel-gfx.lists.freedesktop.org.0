@@ -2,34 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71DF402848
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 14:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE585402929
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 14:47:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2070897B5;
-	Tue,  7 Sep 2021 12:12:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 014C589F69;
+	Tue,  7 Sep 2021 12:47:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2939C897B5;
- Tue,  7 Sep 2021 12:12:28 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D44AD89F77;
+ Tue,  7 Sep 2021 12:47:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22351AA0EA;
- Tue,  7 Sep 2021 12:12:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CA87DA363D;
+ Tue,  7 Sep 2021 12:47:52 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0769120071897384781=="
+ boundary="===============5855981673386720369=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 07 Sep 2021 12:12:28 -0000
-Message-ID: <163101674810.24493.4378076798483525080@emeril.freedesktop.org>
+Date: Tue, 07 Sep 2021 12:47:52 -0000
+Message-ID: <163101887279.24492.654148877935683487@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210907103407.432646-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210907103407.432646-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Use_Transparent_Hugepages_when_IOMMU_is_enabled_=28rev?=
- =?utf-8?q?2=29?=
+References: <20210907113658.1351456-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20210907113658.1351456-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Add_HDR_mode_helper_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,131 +45,109 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0769120071897384781==
+--===============5855981673386720369==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915: Use Transparent Hugepages when IOMMU is enabled (rev2)
-URL   : https://patchwork.freedesktop.org/series/93122/
-State : failure
+Series: drm/i915/display: Add HDR mode helper function
+URL   : https://patchwork.freedesktop.org/series/94428/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10557 -> Patchwork_20973
+CI Bug Log - changes from CI_DRM_10557 -> Patchwork_20974
 ====================================================
 
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_20973 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20973, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/index.html
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20973:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-rkl-11600:       [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-rkl-11600/igt@i915_selftest@live@hugepages.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-rkl-11600/igt@i915_selftest@live@hugepages.html
-    - fi-icl-u2:          [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-icl-u2/igt@i915_selftest@live@hugepages.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-icl-u2/igt@i915_selftest@live@hugepages.html
-    - fi-ivb-3770:        [PASS][5] -> [DMESG-FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-ivb-3770/igt@i915_selftest@live@hugepages.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-ivb-3770/igt@i915_selftest@live@hugepages.html
-    - fi-tgl-1115g4:      [PASS][7] -> [DMESG-FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-tgl-1115g4/igt@i915_selftest@live@hugepages.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-tgl-1115g4/igt@i915_selftest@live@hugepages.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hugepages:
-    - {fi-ehl-2}:         [PASS][9] -> [DMESG-FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-ehl-2/igt@i915_selftest@live@hugepages.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-ehl-2/igt@i915_selftest@live@hugepages.html
-
-  
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_20973 that come from known issues:
+  Here are the changes found in Patchwork_20974 that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-rkl-guc:         [PASS][11] -> [DMESG-WARN][12] ([i915#3925])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][2] ([fdo#109271]) +26 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#533])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
 
   * igt@runner@aborted:
-    - fi-kbl-r:           NOTRUN -> [FAIL][13] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-kbl-r/igt@runner@aborted.html
-    - fi-rkl-guc:         NOTRUN -> [FAIL][14] ([i915#1602])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-rkl-guc/igt@runner@aborted.html
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][6] ([i915#1602] / [i915#2029])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-bdw-5557u/igt@runner@aborted.html
 
   
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+#### Possible fixes ####
 
-  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][7] ([i915#3921]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
   [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
-Participating hosts (47 -> 39)
+Participating hosts (47 -> 40)
 ------------------------------
 
+  Additional (1): fi-kbl-x1275 
   Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus 
 
 
 Build changes
 -------------
 
-  * Linux: CI_DRM_10557 -> Patchwork_20973
+  * Linux: CI_DRM_10557 -> Patchwork_20974
 
   CI-20190529: 20190529
   CI_DRM_10557: e8f764006582e44658833c07aef79c8c4b1a0758 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_6198: 0f17f38c3e5e2139e59f1458c149bb7a93c88bbf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20973: 2f994050d821336a21e5ad1bc8d2663e66ea90a1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_20974: 70841e06597cf5f3199e553c03b5d25114791be6 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-2f994050d821 drm/i915: Use Transparent Hugepages when IOMMU is enabled
+70841e06597c drm/i915/display: Add HDR mode helper function
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/index.html
 
---===============0769120071897384781==
+--===============5855981673386720369==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,95 +167,84 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915: Use Transparent Hugepages when IOMMU is enabled (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93122/">https://patchwork.freedesktop.org/series/93122/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add HDR mode helper function</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94428/">https://patchwork.freedesktop.org/series/94428/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_10557 -&gt; Patchwork_20973</h1>
+    <h1>CI Bug Log - changes from CI_DRM_10557 -&gt; Patchwork_20974</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20973 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20973, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20973:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-rkl-11600/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-rkl-11600/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-icl-u2/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-icl-u2/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-ivb-3770/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-ivb-3770/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-tgl-1115g4/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-tgl-1115g4/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@hugepages:<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-ehl-2/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-ehl-2/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/index.html</p>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20973 that come from known issues:</p>
+<p>Here are the changes found in Patchwork_20974 that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
 <li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
 <ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>)</li>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@runner@aborted:</p>
 <ul>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20973/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</p>
-</li>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
 </ul>
 </li>
 </ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 39)</h2>
-<p>Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus </p>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10557/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20974/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (47 -&gt; 40)</h2>
+<p>Additional (1): fi-kbl-x1275 <br />
+  Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus </p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_10557 -&gt; Patchwork_20973</li>
+<li>Linux: CI_DRM_10557 -&gt; Patchwork_20974</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_10557: e8f764006582e44658833c07aef79c8c4b1a0758 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_6198: 0f17f38c3e5e2139e59f1458c149bb7a93c88bbf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20973: 2f994050d821336a21e5ad1bc8d2663e66ea90a1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_20974: 70841e06597cf5f3199e553c03b5d25114791be6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 <p>== Linux commits ==</p>
-<p>2f994050d821 drm/i915: Use Transparent Hugepages when IOMMU is enabled</p>
+<p>70841e06597c drm/i915/display: Add HDR mode helper function</p>
 
 </body>
 </html>
 
---===============0769120071897384781==--
+--===============5855981673386720369==--
