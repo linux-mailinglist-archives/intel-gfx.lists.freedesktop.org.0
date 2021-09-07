@@ -2,53 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F224F40263B
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 11:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F79B402686
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Sep 2021 11:52:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC61489F03;
-	Tue,  7 Sep 2021 09:34:22 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8E0889ED6;
- Tue,  7 Sep 2021 09:34:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="199679004"
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="199679004"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 02:34:21 -0700
-X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; d="scan'208";a="502905529"
-Received: from ikcrook-mobl.amr.corp.intel.com (HELO [10.213.197.103])
- ([10.213.197.103])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2021 02:34:19 -0700
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx <Intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Eero Tamminen <eero.t.tamminen@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20210729133420.770672-1-tvrtko.ursulin@linux.intel.com>
- <20210729133420.770672-2-tvrtko.ursulin@linux.intel.com>
- <CAKMK7uE412nf5RisGBR2GrNsvgPH+omHv4K+m5McJv1t55DQMQ@mail.gmail.com>
- <c8aecd1e-f6d6-cec2-3352-e01c9427248b@linux.intel.com>
- <YTcmCSr5HJZDeRNH@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <c58dd95e-3db0-9095-8f4e-bf3b9b6fda9c@linux.intel.com>
-Date: Tue, 7 Sep 2021 10:34:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB0689216;
+	Tue,  7 Sep 2021 09:52:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A71C89216
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Sep 2021 09:52:30 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id r7so13067491edd.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Sep 2021 02:52:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zkK8fMPrVI3V0M8Y2sNr1j0loXfw8eqsDb5rLmxeMzQ=;
+ b=jtoWi6SZzEMkrkCUIrnbCSa9hvSQlR+hx5d9AghQ0DmvO0JLv9BOLwfCRN10ZVAU6F
+ Va/6M1RBlbvc2qOxt0MmurbhzbV6v4c2PyU9t/HqeJRtVJrR320md5y+JGqMc8xXRbcJ
+ pEgAjaNe/vjnfCL6dXpfRKhKah+BpGo0avfg3A8HYbWTluCnAyTiuD89nKNlvY64SB39
+ vEJls002HpNnaiWqEnH8fGpQcMRpGUE3tAwEAJ0gV1g2c16jL/ZfOgT060knEulls6Hn
+ chuu6Q8oPpnGmfdAx8PdZteDgjdE2BBsXMLLjS8Vl3CY8lGtg3KAQFFyITz0MerCTbiJ
+ YaHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zkK8fMPrVI3V0M8Y2sNr1j0loXfw8eqsDb5rLmxeMzQ=;
+ b=WQO/eaIN+xWoKG4/DyPpE7E24b8ReLUcJDfdAiMvpY5kZ+3Zb3Ovk06EOxKhf+hYKv
+ fFOHMPnGdtYGydaXEVb3XqwAgCrkxS+OxKgucU4xAuu+OznxBcpxMPB2P9dzsmx8sLX1
+ 9yyHV8kyXHYuAu+G5r9FVTCPXMhtnVFdG4JihklJ4p8vXStEB3MOb+Tjso5Dd+ROrfJC
+ QHypCEmsRhfLIrjPWTnnaun5NsCaP/9Rd01mKpRgYNdv4YpVdan1QfJidJteey4NZIgs
+ WfIpvzje3g1AkMJxRiQBwII9W0XuiVkSQP7ylIcvjuhw3jSwFZ87c/IoU1zeXUcGPnp8
+ 9d8A==
+X-Gm-Message-State: AOAM5328tWnQD3sgYyW6o8wJ8Nc4NnSsgejNKkTVvlQZO0/KMjtG4xDr
+ MJgpw0f4q8tbgesMBhnqulOld821zm9ArSxth+K1RGdG
+X-Google-Smtp-Source: ABdhPJyVDCa0ut18DKUMu2XhT+b0uV2ZRalXoOZoGnfbTtuy8kteWMveRBVhs0MyhoXY0VJTziEnyB4+3KrrGXtJV+k=
+X-Received: by 2002:a05:6402:b0e:: with SMTP id
+ bm14mr17618235edb.371.1631008348530; 
+ Tue, 07 Sep 2021 02:52:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YTcmCSr5HJZDeRNH@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Use Transparent Hugepages
- when IOMMU is enabled
+References: <20210906034356.2946530-1-airlied@gmail.com>
+ <20210906034356.2946530-2-airlied@gmail.com>
+ <87mtoq86ct.fsf@intel.com>
+ <CAPM=9ty4y9new=adp+cmKCP0fuGrMgJOCWGSV-nmzorN3nACKw@mail.gmail.com>
+ <CAKMK7uHeujMMWoo-AJuuksg7HBpQu0oqMEbgDHUx8_rDv2GDng@mail.gmail.com>
+In-Reply-To: <CAKMK7uHeujMMWoo-AJuuksg7HBpQu0oqMEbgDHUx8_rDv2GDng@mail.gmail.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 7 Sep 2021 19:52:17 +1000
+Message-ID: <CAPM=9tysQAgk5Buum5r4y1wYqt4JutmMP+1tn_tnD6ukFcT+NQ@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ "Syrjala, Ville" <ville.syrjala@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915: move display funcs into a
+ display struct.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +76,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 7 Sept 2021 at 18:15, Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Mon, Sep 6, 2021 at 9:45 PM Dave Airlie <airlied@gmail.com> wrote:
+> > On Mon, 6 Sept 2021 at 18:18, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> > > On Mon, 06 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
+> > > > From: Dave Airlie <airlied@redhat.com>
+> > > >
+> > > > This is the first step in an idea to refactor the display code
+> > > > into a bit more of a corner.
+> > >
+> > > So, do we want to make i915->display a pointer?
+> > >
+> > > If we do, and we're about to touch every place accessing the display
+> > > struct, we might just as well have:
+> > >
+> > > struct drm_i915_private {
+> > >         struct drm_i915_display _display;
+> > >         struct drm_i915_display *display;
+> > > };
+> > >
+> > > and initialize i915->display = &i915->_display, and make all access
+> > > happen via the pointer. If we want to allocate it dynamically at some
+> > > point, it'll be a *much* easier task.
+> > >
+> > > But the first question to figure out is whether we want to do that or
+> > > not.
+> >
+> > I think the advantage is that we can hide a lot more structs from the
+> > main struct,
+> > the disadvantage is additional pointer chasing, esp for the drm_device and other
+> > i915_priv members.
+>
+> For display pointer chasing doesn't matter at all. Imo the case is
+> more what make sense as object hierarchy, and embedding vs pointer has
+> quite different meaning. We've discussed in the past that the split
+> into display/gem with branches seems to work ok-ish, but could
+> probably be improved a lot in code org. If we make display a lot more
+> a free-standing thing (i.e. pointer, not embedding) with a much more
+> clearer/cleaner api contract to other pieces, then maybe there's some
+> case to be made for all this churn.
 
-On 07/09/2021 09:42, Daniel Vetter wrote:
-> On Fri, Sep 03, 2021 at 01:47:52PM +0100, Tvrtko Ursulin wrote:
->>
->> On 29/07/2021 15:06, Daniel Vetter wrote:
->>> On Thu, Jul 29, 2021 at 3:34 PM Tvrtko Ursulin
->>> <tvrtko.ursulin@linux.intel.com> wrote:
->>>>
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>
->>>> Usage of Transparent Hugepages was disabled in 9987da4b5dcf
->>>> ("drm/i915: Disable THP until we have a GPU read BW W/A"), but since it
->>>> appears majority of performance regressions reported with an enabled IOMMU
->>>> can be almost eliminated by turning them on, lets just do that.
->>>>
->>>> To err on the side of safety we keep the current default in cases where
->>>> IOMMU is not active, and only when it is default to the "huge=within_size"
->>>> mode. Although there probably would be wins to enable them throughout,
->>>> more extensive testing across benchmarks and platforms would need to be
->>>> done.
->>>>
->>>> With the patch and IOMMU enabled my local testing on a small Skylake part
->>>> shows OglVSTangent regression being reduced from ~14% (IOMMU on versus
->>>> IOMMU off) to ~2% (same comparison but with THP on).
->>>>
->>>> v2:
->>>>    * Add Kconfig dependency to transparent hugepages and some help text.
->>>>    * Move to helper for easier handling of kernel build options.
->>>>
->>>> v3:
->>>>    * Drop Kconfig. (Daniel)
->>>>
->>>> References: b901bb89324a ("drm/i915/gemfs: enable THP")
->>>> References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
->>>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/430
->>>> Co-developed-by: Chris Wilson <chris@chris-wilson.co.uk>
->>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Eero Tamminen <eero.t.tamminen@intel.com>
->>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>> Cc: Daniel Vetter <daniel@ffwll.ch>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v1
->>>
->>> On both patches: Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>
->> Eero's testing results at
->> https://gitlab.freedesktop.org/drm/intel/-/issues/430 are looking good -
->> seem to show this to be a net win for at least Gen9 and Gen12 platforms.
->>
->> Is the ack enough to merge in this case or I should look for an r-b as well?
-> 
-> Since your back to defacto v1 with the 2nd patch I think you have full r-b
-> already. So more than enough I think.
+I'd like to make it at least have some form of API between display and core/gt.
 
-Just in case you missed it, v1 had Kconfig. But it's the same spirit so 
-probably indeed fine as you say.
+I think the main things I've noticed where it's kinda free for all at
+the moment are:
+- display funcs has pm internal funcs, display<->pm funcs, display
+only audio funcs,
+display only color funcs, other display internal funcs all mixed into
+one super struct.
+There's no split between things that provide service to display and vice-versa.
+I've started looking at splitting this.
+- tracepoints - i915_trace.h pulls in display and gt stuff, no idea if
+we can split that,
+but lots of things include i915_trace.h which means everyone sees
+everyone elses guts.
 
-> Please do record the relative perf numbers from Eero in that issue in the
-> commit message so that we have that on the git log record too. It's easier
-> to find there than following the link and finding the right comment in the
-> issue.
+One problem area I've noticed after hacking on making display more
+contained, was for
+lots of things dev_priv can go away, however you'd have to duplicate
+all the GRAPHICS_
+and IS_* macros which might get messy quick, having access to core
+stuff like device_info
+and params might need more thought.
 
-Will do.
 
-Regards,
+> The problem with all that is that we'd then essentially need to
+> backpointers everywhere in all display structures: One to the
+> drm_device provided by base structs, and the other to the i915_display
+> struct, which is what our code uses. This way display would stay
+> display. In a way this would then look similarly-ish to amdgpu's DC.
+>
+> But I'm honestly not sure how much that would improve anything, and
+> whether it's worth all the churn to make drm/i915/display more
+> self-contained.
 
-Tvrtko
+It might make display more manageable or future proof if we have
+distinct interfaces into it, instead of the free for all we have now.
+
+Dave.
