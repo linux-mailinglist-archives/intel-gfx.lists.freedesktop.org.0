@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64DCF403796
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 12:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D315240379D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 12:12:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F0CE6E17E;
-	Wed,  8 Sep 2021 10:10:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5BD96E17A;
+	Wed,  8 Sep 2021 10:12:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA8856E17E
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 10:10:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="218577011"
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="218577011"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:10:40 -0700
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="547626596"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F09C6E17A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 10:12:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="220124880"
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="220124880"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 03:12:22 -0700
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="538483908"
 Received: from mdoerbec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.33.106])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:10:38 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 03:12:21 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
 Cc: Dave Airlie <airlied@redhat.com>
-In-Reply-To: <20210908003944.2972024-13-airlied@gmail.com>
+In-Reply-To: <20210908003944.2972024-14-airlied@gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20210908003944.2972024-1-airlied@gmail.com>
- <20210908003944.2972024-13-airlied@gmail.com>
-Date: Wed, 08 Sep 2021 13:10:35 +0300
-Message-ID: <874kav74ys.fsf@intel.com>
+ <20210908003944.2972024-14-airlied@gmail.com>
+Date: Wed, 08 Sep 2021 13:12:17 +0300
+Message-ID: <871r5z74vy.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 12/21] drm/i915: constify fdi link training
- vtable
+Subject: Re: [Intel-gfx] [PATCH 13/21] drm/i915: constify irq function
+ vtable.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,80 +53,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 08 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
 > From: Dave Airlie <airlied@redhat.com>
 >
-> Avoid having writeable function pointers.
+> Use a macro to avoid mistakes, this type of macro is only used
+> in a couple of places.
+> ---
+>  drivers/gpu/drm/i915/display/intel_hotplug.c |  4 +--
+>  drivers/gpu/drm/i915/i915_drv.h              |  2 +-
+>  drivers/gpu/drm/i915/i915_irq.c              | 27 +++++++++++++++-----
+>  3 files changed, 23 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> index a06e1e1b33e1..97df40107213 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -215,8 +215,8 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
+>  
+>  static void intel_hpd_irq_setup(struct drm_i915_private *i915)
+>  {
+> -	if (i915->display_irqs_enabled && i915->irq_funcs.hpd_irq_setup)
+> -		i915->irq_funcs.hpd_irq_setup(i915);
+> +	if (i915->display_irqs_enabled && i915->irq_funcs)
+> +		i915->irq_funcs->hpd_irq_setup(i915);
+>  }
+>  
+>  static void intel_hpd_irq_storm_reenable_work(struct work_struct *work)
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index b3765222e717..6050bb519b18 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1003,7 +1003,7 @@ struct drm_i915_private {
+>  	struct drm_i915_wm_disp_funcs wm_disp;
+>  
+>  	/* irq display functions */
+> -	struct drm_i915_irq_funcs irq_funcs;
+> +	const struct drm_i915_irq_funcs *irq_funcs;
+>  
+>  	/* fdi display functions */
+>  	const struct drm_i915_fdi_link_train_funcs *fdi_funcs;
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index f515a3a76a8e..29231daf6057 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -4345,6 +4345,19 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+>  	return ret;
+>  }
+>  
+> +#define HPD_FUNCS(platform)					\
+> +static const struct drm_i915_irq_funcs platform##_hpd_funcs = { \
+> +	.hpd_irq_setup = platform##_hpd_irq_setup		\
+> +}
+> +
+> +HPD_FUNCS(i915);
+> +HPD_FUNCS(dg1);
+> +HPD_FUNCS(gen11);
+> +HPD_FUNCS(bxt);
+> +HPD_FUNCS(icp);
+> +HPD_FUNCS(spt);
+> +HPD_FUNCS(ilk);
+> +
 
-Would benefit from the call wrapper and naming.
+#undef HPD_FUNCS
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_fdi.c     | 18 +++++++++++++++---
->  drivers/gpu/drm/i915/i915_drv.h              |  2 +-
->  3 files changed, 17 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 87950202f4ce..0ad577aceb9d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2100,7 +2100,7 @@ static void ilk_pch_enable(const struct intel_atomic_state *state,
->  	assert_pch_transcoder_disabled(dev_priv, pipe);
+>  /**
+>   * intel_irq_init - initializes irq support
+>   * @dev_priv: i915 device instance
+> @@ -4395,20 +4408,20 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
 >  
->  	/* For PCH output, training FDI link */
-> -	dev_priv->fdi_funcs.fdi_link_train(crtc, crtc_state);
-> +	dev_priv->fdi_funcs->fdi_link_train(crtc, crtc_state);
->  
->  	/* We need to program the right clock selection before writing the pixel
->  	 * mutliplier into the DPLL. */
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-> index d9f952e0c67f..68aa9c7b18ec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> @@ -1005,15 +1005,27 @@ void lpt_fdi_program_mphy(struct drm_i915_private *dev_priv)
->  	intel_sbi_write(dev_priv, 0x21EC, tmp, SBI_MPHY);
->  }
->  
-> +static const struct drm_i915_fdi_link_train_funcs ilk_funcs = {
-> +	.fdi_link_train = ilk_fdi_link_train
-> +};
-> +
-> +static const struct drm_i915_fdi_link_train_funcs gen6_funcs = {
-> +	.fdi_link_train = gen6_fdi_link_train
-> +};
-> +
-> +static const struct drm_i915_fdi_link_train_funcs ivb_funcs = {
-> +	.fdi_link_train = ivb_manual_fdi_link_train
-> +};
-> +
->  void
->  intel_fdi_init_hook(struct drm_i915_private *dev_priv)
->  {
->  	if (IS_IRONLAKE(dev_priv)) {
-> -		dev_priv->fdi_funcs.fdi_link_train = ilk_fdi_link_train;
-> +		dev_priv->fdi_funcs = &ilk_funcs;
->  	} else if (IS_SANDYBRIDGE(dev_priv)) {
-> -		dev_priv->fdi_funcs.fdi_link_train = gen6_fdi_link_train;
-> +		dev_priv->fdi_funcs = &gen6_funcs;
->  	} else if (IS_IVYBRIDGE(dev_priv)) {
->  		/* FIXME: detect B0+ stepping and use auto training */
-> -		dev_priv->fdi_funcs.fdi_link_train = ivb_manual_fdi_link_train;
-> +		dev_priv->fdi_funcs = &ivb_funcs;
+>  	if (HAS_GMCH(dev_priv)) {
+>  		if (I915_HAS_HOTPLUG(dev_priv))
+> -			dev_priv->irq_funcs.hpd_irq_setup = i915_hpd_irq_setup;
+> +			dev_priv->irq_funcs = &i915_hpd_funcs;
+>  	} else {
+>  		if (HAS_PCH_DG1(dev_priv))
+> -			dev_priv->irq_funcs.hpd_irq_setup = dg1_hpd_irq_setup;
+> +			dev_priv->irq_funcs = &dg1_hpd_funcs;
+>  		else if (DISPLAY_VER(dev_priv) >= 11)
+> -			dev_priv->irq_funcs.hpd_irq_setup = gen11_hpd_irq_setup;
+> +			dev_priv->irq_funcs = &gen11_hpd_funcs;
+>  		else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+> -			dev_priv->irq_funcs.hpd_irq_setup = bxt_hpd_irq_setup;
+> +			dev_priv->irq_funcs = &bxt_hpd_funcs;
+>  		else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+> -			dev_priv->irq_funcs.hpd_irq_setup = icp_hpd_irq_setup;
+> +			dev_priv->irq_funcs = &icp_hpd_funcs;
+>  		else if (INTEL_PCH_TYPE(dev_priv) >= PCH_SPT)
+> -			dev_priv->irq_funcs.hpd_irq_setup = spt_hpd_irq_setup;
+> +			dev_priv->irq_funcs = &spt_hpd_funcs;
+>  		else
+> -			dev_priv->irq_funcs.hpd_irq_setup = ilk_hpd_irq_setup;
+> +			dev_priv->irq_funcs = &ilk_hpd_funcs;
 >  	}
 >  }
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 461ab0a0f088..b3765222e717 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1006,7 +1006,7 @@ struct drm_i915_private {
->  	struct drm_i915_irq_funcs irq_funcs;
->  
->  	/* fdi display functions */
-> -	struct drm_i915_fdi_link_train_funcs fdi_funcs;
-> +	const struct drm_i915_fdi_link_train_funcs *fdi_funcs;
->  
->  	/* display pll funcs */
->  	struct drm_i915_dpll_funcs dpll_funcs;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
