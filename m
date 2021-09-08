@@ -1,34 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D429403883
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 13:04:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02361403889
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 13:07:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A32136E18F;
-	Wed,  8 Sep 2021 11:04:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A33D6E190;
+	Wed,  8 Sep 2021 11:07:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C24D46E18E;
- Wed,  8 Sep 2021 11:04:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B920EA8169;
- Wed,  8 Sep 2021 11:04:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5854886814580297827=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 545726E18E;
+ Wed,  8 Sep 2021 11:07:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="281469100"
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="281469100"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 04:07:19 -0700
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="538503413"
+Received: from cofaolai-mobl1.ger.corp.intel.com (HELO [10.213.198.69])
+ ([10.213.198.69])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 04:07:18 -0700
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com
+References: <20210906165515.450541-1-thomas.hellstrom@linux.intel.com>
+ <20210906165515.450541-6-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <160c96ac-3cf2-5542-9ad0-bbc0b5ebec55@intel.com>
+Date: Wed, 8 Sep 2021 12:07:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 08 Sep 2021 11:04:14 -0000
-Message-ID: <163109905473.22227.8011965249920570687@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210908091544.13772-1-animesh.manna@intel.com>
-In-Reply-To: <20210908091544.13772-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUGFu?=
- =?utf-8?q?el_replay_phase1_implementation?=
+In-Reply-To: <20210906165515.450541-6-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915: Don't back up pinned LMEM
+ context images and rings during suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,208 +51,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5854886814580297827==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 06/09/2021 17:55, Thomas Hellström wrote:
+> Pinned context images are now reset during resume. Don't back them up,
+> and assuming that rings can be assumed empty at suspend, don't back them
+> up either.
+> 
+> Introduce a new object flag, I915_BO_ALLOC_PM_VOLATILE meaning that an
+> object is allowed to lose its content on suspend.
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   .../gpu/drm/i915/gem/i915_gem_object_types.h    | 17 ++++++++++-------
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c      |  3 +++
+>   drivers/gpu/drm/i915/gt/intel_lrc.c             |  3 ++-
+>   drivers/gpu/drm/i915/gt/intel_ring.c            |  3 ++-
+>   4 files changed, 17 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> index 734cc8e16481..66123ba46247 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> @@ -288,16 +288,19 @@ struct drm_i915_gem_object {
+>   	I915_SELFTEST_DECLARE(struct list_head st_link);
+>   
+>   	unsigned long flags;
+> -#define I915_BO_ALLOC_CONTIGUOUS BIT(0)
+> -#define I915_BO_ALLOC_VOLATILE   BIT(1)
+> -#define I915_BO_ALLOC_CPU_CLEAR  BIT(2)
+> -#define I915_BO_ALLOC_USER       BIT(3)
+> +#define I915_BO_ALLOC_CONTIGUOUS  BIT(0)
+> +#define I915_BO_ALLOC_VOLATILE    BIT(1)
+> +#define I915_BO_ALLOC_CPU_CLEAR   BIT(2)
+> +#define I915_BO_ALLOC_USER        BIT(3)
+> +/* Object may lose its contents on suspend / resume */
+> +#define I915_BO_ALLOC_PM_VOLATILE BIT(4)
 
-== Series Details ==
-
-Series: Panel replay phase1 implementation
-URL   : https://patchwork.freedesktop.org/series/94470/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10562 -> Patchwork_20989
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20989 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-rkl-guc:         [PASS][6] -> [INCOMPLETE][7] ([i915#4034])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-rkl-guc/igt@i915_selftest@live@gt_timelines.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-rkl-guc/igt@i915_selftest@live@gt_timelines.html
-
-  * igt@runner@aborted:
-    - fi-rkl-guc:         NOTRUN -> [FAIL][8] ([i915#3928])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-rkl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][9] ([i915#3921]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
-  [i915#4034]: https://gitlab.freedesktop.org/drm/intel/issues/4034
+PM_SKIP_PINNED? Not sure if that is better.
 
 
-Participating hosts (47 -> 39)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10562 -> Patchwork_20989
-
-  CI-20190529: 20190529
-  CI_DRM_10562: d38c3e456e48f3cc74f454615dedc5a82e258402 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6200: 3a6585c472dff11ece952b745244f05e4c93ede5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20989: 959cdcb164d3097c83def2762b1c4e25f7faf66d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-959cdcb164d3 drm/i915/panelreplay: Added state checker for panel replay state
-9432d1630bf8 drm/i915/panelreplay: enable/disable panel replay
-7d7858afd7c3 drm/i915/panelreplay: Initializaton and compute config for panel replay
-03948896e7b6 drm/i915/panelreplay: Feature flag added for panel replay
-c7704eae2ab0 drm/i915/panelreplay: update plane selective fetch register definition
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/index.html
-
---===============5854886814580297827==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Panel replay phase1 implementation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94470/">https://patchwork.freedesktop.org/series/94470/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10562 -&gt; Patchwork_20989</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20989 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_timelines:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-rkl-guc/igt@i915_selftest@live@gt_timelines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-rkl-guc/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4034">i915#4034</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10562/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20989/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (47 -&gt; 39)</h2>
-<p>Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10562 -&gt; Patchwork_20989</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10562: d38c3e456e48f3cc74f454615dedc5a82e258402 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6200: 3a6585c472dff11ece952b745244f05e4c93ede5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20989: 959cdcb164d3097c83def2762b1c4e25f7faf66d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>959cdcb164d3 drm/i915/panelreplay: Added state checker for panel replay state<br />
-9432d1630bf8 drm/i915/panelreplay: enable/disable panel replay<br />
-7d7858afd7c3 drm/i915/panelreplay: Initializaton and compute config for panel replay<br />
-03948896e7b6 drm/i915/panelreplay: Feature flag added for panel replay<br />
-c7704eae2ab0 drm/i915/panelreplay: update plane selective fetch register definition</p>
-
-</body>
-</html>
-
---===============5854886814580297827==--
+>   #define I915_BO_ALLOC_FLAGS (I915_BO_ALLOC_CONTIGUOUS | \
+>   			     I915_BO_ALLOC_VOLATILE | \
+>   			     I915_BO_ALLOC_CPU_CLEAR | \
+> -			     I915_BO_ALLOC_USER)
+> -#define I915_BO_READONLY         BIT(4)
+> -#define I915_TILING_QUIRK_BIT    5 /* unknown swizzling; do not release! */
+> +			     I915_BO_ALLOC_USER | \
+> +			     I915_BO_ALLOC_PM_VOLATILE)
+> +#define I915_BO_READONLY          BIT(5)
+> +#define I915_TILING_QUIRK_BIT     6 /* unknown swizzling; do not release! */
+>   
+>   	/**
+>   	 * @mem_flags - Mutable placement-related flags
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> index 3884bf45dab8..eaceecfc3f19 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> @@ -61,6 +61,9 @@ static int i915_ttm_backup(struct i915_gem_apply_to_region *apply,
+>   	if (!pm_apply->backup_pinned)
+>   		return 0;
+>   
+> +	if (obj->flags & I915_BO_ALLOC_PM_VOLATILE)
+> +		return 0;
+> +
+>   	sys_region = i915->mm.regions[INTEL_REGION_SMEM];
+>   	backup = i915_gem_object_create_region(sys_region,
+>   					       obj->base.size,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 6ba8daea2f56..3ef9eaf8c50e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -942,7 +942,8 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
+>   		context_size += PAGE_SIZE;
+>   	}
+>   
+> -	obj = i915_gem_object_create_lmem(engine->i915, context_size, 0);
+> +	obj = i915_gem_object_create_lmem(engine->i915, context_size,
+> +					  I915_BO_ALLOC_PM_VOLATILE);
+>   	if (IS_ERR(obj))
+>   		obj = i915_gem_object_create_shmem(engine->i915, context_size);
+>   	if (IS_ERR(obj))
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+> index 7c4d5158e03b..2fdd52b62092 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+> @@ -112,7 +112,8 @@ static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
+>   	struct drm_i915_gem_object *obj;
+>   	struct i915_vma *vma;
+>   
+> -	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE);
+> +	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE |
+> +					  I915_BO_ALLOC_PM_VOLATILE);
+>   	if (IS_ERR(obj) && i915_ggtt_has_aperture(ggtt))
+>   		obj = i915_gem_object_create_stolen(i915, size);
+>   	if (IS_ERR(obj))
+> 
