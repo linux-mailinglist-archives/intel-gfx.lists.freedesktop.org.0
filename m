@@ -1,44 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CCCE403BFB
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 16:57:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5A40403C70
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 17:24:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57D806E192;
-	Wed,  8 Sep 2021 14:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A7F66E1F1;
+	Wed,  8 Sep 2021 15:24:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 324FB6E192
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 14:57:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="200705950"
-X-IronPort-AV: E=Sophos;i="5.85,278,1624345200"; d="scan'208";a="200705950"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 07:57:52 -0700
-X-IronPort-AV: E=Sophos;i="5.85,278,1624345200"; d="scan'208";a="580405747"
-Received: from mytung-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.252.129.206])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 07:57:52 -0700
-Date: Wed, 8 Sep 2021 07:57:52 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20210908145752.knkva43j4phlfuyh@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210907213941.69295-1-lucas.demarchi@intel.com>
- <871r5z8n1r.fsf@intel.com>
- <20210908141400.3oehrz4mv7cxxle7@ldmartin-desk2>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 340F26E1F1;
+ Wed,  8 Sep 2021 15:24:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2C20AA363C;
+ Wed,  8 Sep 2021 15:24:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20210908141400.3oehrz4mv7cxxle7@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: deduplicate frequency dump on
- debugfs
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 08 Sep 2021 15:24:08 -0000
+Message-ID: <163111464815.22226.2005711054348773752@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210906165515.450541-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210906165515.450541-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Suspend_/_resume_backup-_and_restore_of_LMEM=2E?=
+ =?utf-8?q?_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,74 +42,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 08, 2021 at 07:14:00AM -0700, Lucas De Marchi wrote:
->On Wed, Sep 08, 2021 at 11:54:40AM +0300, Jani Nikula wrote:
->>On Tue, 07 Sep 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>Although commit 9dd4b065446a ("drm/i915/gt: Move pm debug files into a
->>>gt aware debugfs") says it was moving debug files to gt/, the
->>>i915_frequency_info file was left behind and its implementation copied
->>>into drivers/gpu/drm/i915/gt/debugfs_gt_pm.c. Over time we had several
->>>patches having to change both places to keep them in sync (and some
->>>patches failing to do so). The initial idea was to remove i915_frequency_info,
->>>but there are user space tools using it. From a quick code search there
->>>are other scripts and test tools besides igt, so it's not simply
->>>updating igt to get rid of the older file.
->>>
->>>Here we export a function using drm_printer as parameter and make
->>>both show() implementations to call this same function. Aside from a few
->>>variable name differences, for i915_frequency_info this brings a few
->>>lines that were not previously printed: RP UP EI, RP UP THRESHOLD, RP
->>>DOWN THRESHOLD and RP DOWN EI.  These came in as part of
->>>commit 9c878557b1eb ("drm/i915/gt: Use the RPM config register to
->>>determine clk frequencies"), which didn't change both places.
->>>
->>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>>---
->>> drivers/gpu/drm/i915/gt/debugfs_gt_pm.c | 127 ++++++-------
->>> drivers/gpu/drm/i915/gt/debugfs_gt_pm.h |   2 +
->>> drivers/gpu/drm/i915/i915_debugfs.c     | 227 +-----------------------
->>> 3 files changed, 74 insertions(+), 282 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
->>>index f6733f279890..6a27c011d0ff 100644
->>>--- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
->>>+++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
->>>@@ -240,9 +240,8 @@ static int drpc_show(struct seq_file *m, void *unused)
->>> }
->>> DEFINE_GT_DEBUGFS_ATTRIBUTE(drpc);
->>>
->>>-static int frequency_show(struct seq_file *m, void *unused)
->>>+void debugfs_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
->>
->>The debugfs prefix belongs to debugfs, and I don't think we should have
->>non-static functions with that prefix.
->>
->>I know it's in line with what's currently in the file, and I've
->>complained about it before, but apparently that hasn't been enough.
->
->I was surprised by the prefix too.
->
->intel_gt_pm_debugfs.[hc] - would that be better or do you have another
->suggestion?
+== Series Details ==
 
-Something like the below:
+Series: drm/i915: Suspend / resume backup- and restore of LMEM. (rev3)
+URL   : https://patchwork.freedesktop.org/series/94278/
+State : warning
 
-renamed:    drivers/gpu/drm/i915/gt/debugfs_gt.c -> drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-renamed:    drivers/gpu/drm/i915/gt/debugfs_gt.h -> drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-renamed:    drivers/gpu/drm/i915/gt/debugfs_engines.c -> drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.c
-renamed:    drivers/gpu/drm/i915/gt/debugfs_engines.h -> drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.h
-renamed:    drivers/gpu/drm/i915/gt/debugfs_gt_pm.c -> drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-renamed:    drivers/gpu/drm/i915/gt/debugfs_gt_pm.h -> drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+6374ded0c677 drm/i915/ttm: Implement a function to copy the contents of two TTM-base objects
+9f81cf996425 drm/i915/gem: Implement a function to process all gem objects of a region
+6b06e53cb3c8 drm/i915 Implement LMEM backup and restore for suspend / resume
+-:291: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#291: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 498 lines checked
+9fa23d69f7ed drm/i915/gt: Register the migrate contexts with their engines
+e829df93558f drm/i915: Don't back up pinned LMEM context images and rings during suspend
+b3a1b351a5bf drm/i915: Reduce the number of objects subject to memcpy recover
 
 
-and then rename the functions/macros in these files to follow th
-filename
-
-Lucas De Marchi
-
->
->thanks
->Lucas De Marchi
