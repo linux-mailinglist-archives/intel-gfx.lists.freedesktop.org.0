@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD97403375
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 06:45:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF5F403376
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 06:45:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DD0C6E10C;
-	Wed,  8 Sep 2021 04:45:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAA886E10B;
+	Wed,  8 Sep 2021 04:45:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07A216E10B
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 04:45:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 150846E10B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 04:45:42 +0000 (UTC)
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-196-T3oAqp9gOwip4D_ZIeRrxw-1; Wed, 08 Sep 2021 00:45:35 -0400
-X-MC-Unique: T3oAqp9gOwip4D_ZIeRrxw-1
+ us-mta-350-Jppf4SLnNzG47TXyddr6Jg-1; Wed, 08 Sep 2021 00:45:37 -0400
+X-MC-Unique: Jppf4SLnNzG47TXyddr6Jg-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 0F9541006AA3;
- Wed,  8 Sep 2021 04:45:35 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id CD240107ACC7;
+ Wed,  8 Sep 2021 04:45:36 +0000 (UTC)
 Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id BC55660938;
- Wed,  8 Sep 2021 04:45:33 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 888D377F30;
+ Wed,  8 Sep 2021 04:45:35 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com,
 	Dave Airlie <airlied@redhat.com>
-Date: Wed,  8 Sep 2021 14:45:27 +1000
-Message-Id: <20210908044528.2976010-2-airlied@gmail.com>
+Date: Wed,  8 Sep 2021 14:45:28 +1000
+Message-Id: <20210908044528.2976010-3-airlied@gmail.com>
 In-Reply-To: <20210908044528.2976010-1-airlied@gmail.com>
 References: <20210908044528.2976010-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -40,8 +40,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/uncore: split the fw get function
- into separate vfunc
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/uncore: constify the register
+ vtables.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,282 +59,269 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-constify it while here. drop the put function since it was never
-overloaded and always has done the same thing, no point in
-indirecting it for show.
+This reworks the uncore function vtable so that it's constant.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/i915/intel_uncore.c | 62 +++++++++++++++--------------
- drivers/gpu/drm/i915/intel_uncore.h |  7 ++--
- 2 files changed, 36 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/intel_uncore.c | 139 +++++++++++++++++-----------
+ drivers/gpu/drm/i915/intel_uncore.h |   8 +-
+ 2 files changed, 89 insertions(+), 58 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/int=
 el_uncore.c
-index 6b38bc2811c1..d0bbfc320604 100644
+index d0bbfc320604..0bc6e16fc4e3 100644
 --- a/drivers/gpu/drm/i915/intel_uncore.c
 +++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -396,7 +396,7 @@ intel_uncore_fw_release_timer(struct hrtimer *timer)
+@@ -1756,32 +1756,24 @@ __vgpu_write(8)
+ __vgpu_write(16)
+ __vgpu_write(32)
 =20
- =09GEM_BUG_ON(!domain->wake_count);
- =09if (--domain->wake_count =3D=3D 0)
--=09=09uncore->funcs.force_wake_put(uncore, domain->mask);
-+=09=09fw_domains_put(uncore, domain->mask);
+-#define ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, x) \
+-do { \
+-=09(uncore)->funcs.mmio_writeb =3D x##_write8; \
+-=09(uncore)->funcs.mmio_writew =3D x##_write16; \
+-=09(uncore)->funcs.mmio_writel =3D x##_write32; \
+-} while (0)
+-
+-#define ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, x) \
+-do { \
+-=09(uncore)->funcs.mmio_readb =3D x##_read8; \
+-=09(uncore)->funcs.mmio_readw =3D x##_read16; \
+-=09(uncore)->funcs.mmio_readl =3D x##_read32; \
+-=09(uncore)->funcs.mmio_readq =3D x##_read64; \
+-} while (0)
+-
+-#define ASSIGN_WRITE_MMIO_VFUNCS(uncore, x) \
+-do { \
+-=09ASSIGN_RAW_WRITE_MMIO_VFUNCS((uncore), x); \
+-=09(uncore)->funcs.write_fw_domains =3D x##_reg_write_fw_domains; \
+-} while (0)
+-
+-#define ASSIGN_READ_MMIO_VFUNCS(uncore, x) \
+-do { \
+-=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, x); \
+-=09(uncore)->funcs.read_fw_domains =3D x##_reg_read_fw_domains; \
+-} while (0)
++#define MMIO_RAW_WRITE_VFUNCS(x)     \
++=09.mmio_writeb =3D x##_write8,   \
++=09.mmio_writew =3D x##_write16,  \
++=09.mmio_writel =3D x##_write32
++
++#define MMIO_RAW_READ_VFUNCS(x)=09  \
++=09.mmio_readb =3D x##_read8,  \
++=09.mmio_readw =3D x##_read16, \
++=09.mmio_readl =3D x##_read32, \
++=09.mmio_readq =3D x##_read64
++
++#define MMIO_WRITE_FW_VFUNCS(x)=09=09=09=09\
++=09MMIO_RAW_WRITE_VFUNCS(x),=09=09=09\
++=09.write_fw_domains =3D x##_reg_write_fw_domains
++
++#define MMIO_READ_FW_VFUNCS(x)=09=09=09=09\
++=09MMIO_RAW_READ_VFUNCS(x),=09=09=09\
++=09.read_fw_domains =3D x##_reg_read_fw_domains
 =20
- =09spin_unlock_irqrestore(&uncore->lock, irqflags);
+ static int __fw_domain_init(struct intel_uncore *uncore,
+ =09=09=09    enum forcewake_domain_id domain_id,
+@@ -2086,22 +2078,70 @@ void intel_uncore_init_early(struct intel_uncore *u=
+ncore,
+ =09uncore->debug =3D &i915->mmio_debug;
+ }
 =20
-@@ -454,7 +454,7 @@ intel_uncore_forcewake_reset(struct intel_uncore *uncor=
-e)
++static const struct intel_uncore_funcs vgpu_funcs =3D {
++=09MMIO_RAW_WRITE_VFUNCS(vgpu),
++=09MMIO_RAW_READ_VFUNCS(vgpu),
++};
++
++static const struct intel_uncore_funcs gen5_funcs =3D {
++=09MMIO_RAW_WRITE_VFUNCS(gen5),
++=09MMIO_RAW_READ_VFUNCS(gen5),
++};
++
++static const struct intel_uncore_funcs gen2_funcs =3D {
++=09MMIO_RAW_WRITE_VFUNCS(gen2),
++=09MMIO_RAW_READ_VFUNCS(gen2),
++};
++
++
+ static void uncore_raw_init(struct intel_uncore *uncore)
+ {
+ =09GEM_BUG_ON(intel_uncore_has_forcewake(uncore));
 =20
- =09fw =3D uncore->fw_domains_active;
- =09if (fw)
--=09=09uncore->funcs.force_wake_put(uncore, fw);
-+=09=09fw_domains_put(uncore, fw);
-=20
- =09fw_domains_reset(uncore, uncore->fw_domains);
- =09assert_forcewakes_inactive(uncore);
-@@ -562,7 +562,7 @@ static void forcewake_early_sanitize(struct intel_uncor=
-e *uncore,
- =09intel_uncore_forcewake_reset(uncore);
- =09if (restore_forcewake) {
- =09=09spin_lock_irq(&uncore->lock);
--=09=09uncore->funcs.force_wake_get(uncore, restore_forcewake);
-+=09=09uncore->fw_get_funcs->force_wake_get(uncore, restore_forcewake);
-=20
- =09=09if (intel_uncore_has_fifo(uncore))
- =09=09=09uncore->fifo_count =3D fifo_free_entries(uncore);
-@@ -623,7 +623,7 @@ static void __intel_uncore_forcewake_get(struct intel_u=
-ncore *uncore,
+ =09if (intel_vgpu_active(uncore->i915)) {
+-=09=09ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, vgpu);
+-=09=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, vgpu);
++=09=09uncore->funcs =3D &vgpu_funcs;
+ =09} else if (GRAPHICS_VER(uncore->i915) =3D=3D 5) {
+-=09=09ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, gen5);
+-=09=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, gen5);
++=09=09uncore->funcs =3D &gen5_funcs;
+ =09} else {
+-=09=09ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, gen2);
+-=09=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, gen2);
++=09=09uncore->funcs =3D &gen2_funcs;
  =09}
-=20
- =09if (fw_domains)
--=09=09uncore->funcs.force_wake_get(uncore, fw_domains);
-+=09=09uncore->fw_get_funcs->force_wake_get(uncore, fw_domains);
  }
 =20
- /**
-@@ -644,7 +644,7 @@ void intel_uncore_forcewake_get(struct intel_uncore *un=
-core,
- {
- =09unsigned long irqflags;
-=20
--=09if (!uncore->funcs.force_wake_get)
-+=09if (!uncore->fw_get_funcs)
- =09=09return;
-=20
- =09assert_rpm_wakelock_held(uncore->rpm);
-@@ -711,7 +711,7 @@ void intel_uncore_forcewake_get__locked(struct intel_un=
-core *uncore,
- {
- =09lockdep_assert_held(&uncore->lock);
-=20
--=09if (!uncore->funcs.force_wake_get)
-+=09if (!uncore->fw_get_funcs)
- =09=09return;
-=20
- =09__intel_uncore_forcewake_get(uncore, fw_domains);
-@@ -733,7 +733,7 @@ static void __intel_uncore_forcewake_put(struct intel_u=
-ncore *uncore,
- =09=09=09continue;
- =09=09}
-=20
--=09=09uncore->funcs.force_wake_put(uncore, domain->mask);
-+=09=09fw_domains_put(uncore, domain->mask);
- =09}
- }
-=20
-@@ -750,7 +750,7 @@ void intel_uncore_forcewake_put(struct intel_uncore *un=
-core,
- {
- =09unsigned long irqflags;
-=20
--=09if (!uncore->funcs.force_wake_put)
-+=09if (!uncore->fw_get_funcs)
- =09=09return;
-=20
- =09spin_lock_irqsave(&uncore->lock, irqflags);
-@@ -769,7 +769,7 @@ void intel_uncore_forcewake_flush(struct intel_uncore *=
-uncore,
- =09struct intel_uncore_forcewake_domain *domain;
- =09unsigned int tmp;
-=20
--=09if (!uncore->funcs.force_wake_put)
-+=09if (!uncore->fw_get_funcs)
- =09=09return;
-=20
- =09fw_domains &=3D uncore->fw_domains;
-@@ -793,7 +793,7 @@ void intel_uncore_forcewake_put__locked(struct intel_un=
-core *uncore,
- {
- =09lockdep_assert_held(&uncore->lock);
-=20
--=09if (!uncore->funcs.force_wake_put)
-+=09if (!uncore->fw_get_funcs)
- =09=09return;
-=20
- =09__intel_uncore_forcewake_put(uncore, fw_domains);
-@@ -801,7 +801,7 @@ void intel_uncore_forcewake_put__locked(struct intel_un=
-core *uncore,
-=20
- void assert_forcewakes_inactive(struct intel_uncore *uncore)
- {
--=09if (!uncore->funcs.force_wake_get)
-+=09if (!uncore->fw_get_funcs)
- =09=09return;
-=20
- =09drm_WARN(&uncore->i915->drm, uncore->fw_domains_active,
-@@ -818,7 +818,7 @@ void assert_forcewakes_active(struct intel_uncore *unco=
-re,
- =09if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM))
- =09=09return;
-=20
--=09if (!uncore->funcs.force_wake_get)
-+=09if (!uncore->fw_get_funcs)
- =09=09return;
-=20
- =09spin_lock_irq(&uncore->lock);
-@@ -1605,7 +1605,7 @@ static noinline void ___force_wake_auto(struct intel_=
-uncore *uncore,
- =09for_each_fw_domain_masked(domain, fw_domains, uncore, tmp)
- =09=09fw_domain_arm_timer(domain);
-=20
--=09uncore->funcs.force_wake_get(uncore, fw_domains);
-+=09uncore->fw_get_funcs->force_wake_get(uncore, fw_domains);
- }
-=20
- static inline void __force_wake_auto(struct intel_uncore *uncore,
-@@ -1866,6 +1866,18 @@ static void intel_uncore_fw_domains_fini(struct inte=
-l_uncore *uncore)
- =09=09fw_domain_fini(uncore, d->id);
- }
-=20
-+static const struct intel_uncore_fw_get uncore_get_fallback =3D {
-+=09.force_wake_get =3D fw_domains_get_with_fallback
++static const struct intel_uncore_funcs xehp_funcs =3D {
++=09MMIO_WRITE_FW_VFUNCS(xehp_fwtable),
++=09MMIO_READ_FW_VFUNCS(gen11_fwtable)
 +};
 +
-+static const struct intel_uncore_fw_get uncore_get_normal =3D {
-+=09.force_wake_get =3D fw_domains_get
++static const struct intel_uncore_funcs gen12_funcs =3D {
++=09MMIO_WRITE_FW_VFUNCS(gen12_fwtable),
++=09MMIO_READ_FW_VFUNCS(gen12_fwtable)
 +};
 +
-+static const struct intel_uncore_fw_get uncore_get_thread_status =3D {
-+=09.force_wake_get =3D fw_domains_get_with_thread_status
++static const struct intel_uncore_funcs gen11_funcs =3D {
++=09MMIO_WRITE_FW_VFUNCS(gen11_fwtable),
++=09MMIO_READ_FW_VFUNCS(gen11_fwtable)
 +};
 +
- static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
++static const struct intel_uncore_funcs gen9_funcs =3D {
++=09MMIO_WRITE_FW_VFUNCS(fwtable),
++=09MMIO_READ_FW_VFUNCS(fwtable)
++};
++
++static const struct intel_uncore_funcs gen8_funcs =3D {
++=09MMIO_WRITE_FW_VFUNCS(gen8),
++=09MMIO_READ_FW_VFUNCS(gen6)
++};
++
++static const struct intel_uncore_funcs vlv_funcs =3D {
++=09MMIO_WRITE_FW_VFUNCS(gen8),
++=09MMIO_READ_FW_VFUNCS(fwtable)
++};
++
++static const struct intel_uncore_funcs gen6_funcs =3D {
++=09MMIO_WRITE_FW_VFUNCS(gen6),
++=09MMIO_READ_FW_VFUNCS(gen6)
++};
++
+ static int uncore_forcewake_init(struct intel_uncore *uncore)
  {
  =09struct drm_i915_private *i915 =3D uncore->i915;
-@@ -1881,8 +1893,7 @@ static int intel_uncore_fw_domains_init(struct intel_=
-uncore *uncore)
- =09=09intel_engine_mask_t emask =3D INTEL_INFO(i915)->platform_engine_mask=
-;
- =09=09int i;
+@@ -2116,38 +2156,29 @@ static int uncore_forcewake_init(struct intel_uncor=
+e *uncore)
 =20
--=09=09uncore->funcs.force_wake_get =3D fw_domains_get_with_fallback;
--=09=09uncore->funcs.force_wake_put =3D fw_domains_put;
-+=09=09uncore->fw_get_funcs =3D &uncore_get_fallback;
- =09=09fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
- =09=09=09       FORCEWAKE_RENDER_GEN9,
- =09=09=09       FORCEWAKE_ACK_RENDER_GEN9);
-@@ -1907,8 +1918,7 @@ static int intel_uncore_fw_domains_init(struct intel_=
-uncore *uncore)
- =09=09=09=09       FORCEWAKE_ACK_MEDIA_VEBOX_GEN11(i));
- =09=09}
+ =09if (GRAPHICS_VER_FULL(i915) >=3D IP_VER(12, 55)) {
+ =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __dg2_fw_ranges);
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, xehp_fwtable);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
++=09=09uncore->funcs =3D &xehp_funcs;
+ =09} else if (GRAPHICS_VER_FULL(i915) >=3D IP_VER(12, 50)) {
+ =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __xehp_fw_ranges);
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, xehp_fwtable);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
++=09=09uncore->funcs =3D &xehp_funcs;
+ =09} else if (GRAPHICS_VER(i915) >=3D 12) {
+ =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __gen12_fw_ranges);
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen12_fwtable);
++=09=09uncore->funcs =3D &gen12_funcs;
+ =09} else if (GRAPHICS_VER(i915) =3D=3D 11) {
+ =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __gen11_fw_ranges);
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen11_fwtable);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
++=09=09uncore->funcs =3D &gen11_funcs;
  =09} else if (IS_GRAPHICS_VER(i915, 9, 10)) {
--=09=09uncore->funcs.force_wake_get =3D fw_domains_get_with_fallback;
--=09=09uncore->funcs.force_wake_put =3D fw_domains_put;
-+=09=09uncore->fw_get_funcs =3D &uncore_get_fallback;
- =09=09fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
- =09=09=09       FORCEWAKE_RENDER_GEN9,
- =09=09=09       FORCEWAKE_ACK_RENDER_GEN9);
-@@ -1918,16 +1928,13 @@ static int intel_uncore_fw_domains_init(struct inte=
-l_uncore *uncore)
- =09=09fw_domain_init(uncore, FW_DOMAIN_ID_MEDIA,
- =09=09=09       FORCEWAKE_MEDIA_GEN9, FORCEWAKE_ACK_MEDIA_GEN9);
- =09} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
--=09=09uncore->funcs.force_wake_get =3D fw_domains_get;
--=09=09uncore->funcs.force_wake_put =3D fw_domains_put;
-+=09=09uncore->fw_get_funcs =3D &uncore_get_normal;
- =09=09fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
- =09=09=09       FORCEWAKE_VLV, FORCEWAKE_ACK_VLV);
- =09=09fw_domain_init(uncore, FW_DOMAIN_ID_MEDIA,
- =09=09=09       FORCEWAKE_MEDIA_VLV, FORCEWAKE_ACK_MEDIA_VLV);
- =09} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
--=09=09uncore->funcs.force_wake_get =3D
--=09=09=09fw_domains_get_with_thread_status;
--=09=09uncore->funcs.force_wake_put =3D fw_domains_put;
-+=09=09uncore->fw_get_funcs =3D &uncore_get_thread_status;
- =09=09fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
- =09=09=09       FORCEWAKE_MT, FORCEWAKE_ACK_HSW);
- =09} else if (IS_IVYBRIDGE(i915)) {
-@@ -1942,9 +1949,7 @@ static int intel_uncore_fw_domains_init(struct intel_=
-uncore *uncore)
- =09=09 * (correctly) interpreted by the test below as MT
- =09=09 * forcewake being disabled.
- =09=09 */
--=09=09uncore->funcs.force_wake_get =3D
--=09=09=09fw_domains_get_with_thread_status;
--=09=09uncore->funcs.force_wake_put =3D fw_domains_put;
-+=09=09uncore->fw_get_funcs =3D &uncore_get_thread_status;
+ =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __gen9_fw_ranges);
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
++=09=09uncore->funcs =3D &gen9_funcs;
+ =09} else if (IS_CHERRYVIEW(i915)) {
+ =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __chv_fw_ranges);
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
++=09=09uncore->funcs =3D &gen9_funcs;
+ =09} else if (GRAPHICS_VER(i915) =3D=3D 8) {
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen8);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen6);
++=09=09uncore->funcs =3D &gen8_funcs;
+ =09} else if (IS_VALLEYVIEW(i915)) {
+ =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __vlv_fw_ranges);
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen6);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
++=09=09uncore->funcs =3D &vlv_funcs;
+ =09} else if (IS_GRAPHICS_VER(i915, 6, 7)) {
+-=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen6);
+-=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen6);
++=09=09uncore->funcs =3D &gen6_funcs;
+ =09}
 =20
- =09=09/* We need to init first for ECOBUS access and then
- =09=09 * determine later if we want to reinit, in case of MT access is
-@@ -1975,9 +1980,7 @@ static int intel_uncore_fw_domains_init(struct intel_=
-uncore *uncore)
- =09=09=09=09       FORCEWAKE, FORCEWAKE_ACK);
- =09=09}
- =09} else if (GRAPHICS_VER(i915) =3D=3D 6) {
--=09=09uncore->funcs.force_wake_get =3D
--=09=09=09fw_domains_get_with_thread_status;
--=09=09uncore->funcs.force_wake_put =3D fw_domains_put;
-+=09=09uncore->fw_get_funcs =3D &uncore_get_thread_status;
- =09=09fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
- =09=09=09       FORCEWAKE, FORCEWAKE_ACK);
- =09}
-@@ -2186,8 +2189,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncor=
+ =09uncore->pmic_bus_access_nb.notifier_call =3D i915_pmic_bus_access_notif=
+ier;
+@@ -2190,8 +2221,8 @@ int intel_uncore_init_mmio(struct intel_uncore *uncor=
 e)
- =09}
 =20
  =09/* make sure fw funcs are set if and only if we have fw*/
--=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.forc=
-e_wake_get);
--=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.forc=
-e_wake_put);
-+=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->fw_get_fun=
+ =09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->fw_get_fun=
 cs);
- =09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.read=
+-=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.read=
 _fw_domains);
- =09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.writ=
+-=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.writ=
 e_fw_domains);
++=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs->rea=
+d_fw_domains);
++=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs->wri=
+te_fw_domains);
+=20
+ =09if (HAS_FPGA_DBG_UNCLAIMED(i915))
+ =09=09uncore->flags |=3D UNCORE_HAS_FPGA_DBG_UNCLAIMED;
+@@ -2530,10 +2561,10 @@ intel_uncore_forcewake_for_reg(struct intel_uncore =
+*uncore,
+ =09=09return 0;
+=20
+ =09if (op & FW_REG_READ)
+-=09=09fw_domains =3D uncore->funcs.read_fw_domains(uncore, reg);
++=09=09fw_domains =3D uncore->funcs->read_fw_domains(uncore, reg);
+=20
+ =09if (op & FW_REG_WRITE)
+-=09=09fw_domains |=3D uncore->funcs.write_fw_domains(uncore, reg);
++=09=09fw_domains |=3D uncore->funcs->write_fw_domains(uncore, reg);
+=20
+ =09drm_WARN_ON(&uncore->i915->drm, fw_domains & ~uncore->fw_domains);
 =20
 diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/int=
 el_uncore.h
-index 3c0b0a8b5250..1a7448f5f16f 100644
+index 1a7448f5f16f..52d4baf07656 100644
 --- a/drivers/gpu/drm/i915/intel_uncore.h
 +++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -84,12 +84,12 @@ enum forcewake_domains {
- =09FORCEWAKE_ALL =3D BIT(FW_DOMAIN_ID_COUNT) - 1,
- };
-=20
--struct intel_uncore_funcs {
-+struct intel_uncore_fw_get {
- =09void (*force_wake_get)(struct intel_uncore *uncore,
- =09=09=09       enum forcewake_domains domains);
--=09void (*force_wake_put)(struct intel_uncore *uncore,
--=09=09=09       enum forcewake_domains domains);
-+};
-=20
-+struct intel_uncore_funcs {
- =09enum forcewake_domains (*read_fw_domains)(struct intel_uncore *uncore,
- =09=09=09=09=09=09  i915_reg_t r);
- =09enum forcewake_domains (*write_fw_domains)(struct intel_uncore *uncore,
-@@ -137,6 +137,7 @@ struct intel_uncore {
- =09unsigned int fw_domains_table_entries;
+@@ -138,7 +138,7 @@ struct intel_uncore {
 =20
  =09struct notifier_block pmic_bus_access_nb;
-+=09const struct intel_uncore_fw_get *fw_get_funcs;
- =09struct intel_uncore_funcs funcs;
+ =09const struct intel_uncore_fw_get *fw_get_funcs;
+-=09struct intel_uncore_funcs funcs;
++=09const struct intel_uncore_funcs *funcs;
 =20
  =09unsigned int fifo_count;
+=20
+@@ -312,14 +312,14 @@ __raw_write(64, q)
+ static inline u##x__ intel_uncore_##name__(struct intel_uncore *uncore, \
+ =09=09=09=09=09   i915_reg_t reg) \
+ { \
+-=09return uncore->funcs.mmio_read##s__(uncore, reg, (trace__)); \
++=09return uncore->funcs->mmio_read##s__(uncore, reg, (trace__)); \
+ }
+=20
+ #define __uncore_write(name__, x__, s__, trace__) \
+ static inline void intel_uncore_##name__(struct intel_uncore *uncore, \
+ =09=09=09=09=09 i915_reg_t reg, u##x__ val) \
+ { \
+-=09uncore->funcs.mmio_write##s__(uncore, reg, val, (trace__)); \
++=09uncore->funcs->mmio_write##s__(uncore, reg, val, (trace__)); \
+ }
+=20
+ __uncore_read(read8, 8, b, true)
+@@ -338,7 +338,7 @@ __uncore_write(write_notrace, 32, l, false)
+  * an arbitrary delay between them. This can cause the hardware to
+  * act upon the intermediate value, possibly leading to corruption and
+  * machine death. For this reason we do not support intel_uncore_write64,
+- * or uncore->funcs.mmio_writeq.
++ * or uncore->funcs->mmio_writeq.
+  *
+  * When reading a 64-bit value as two 32-bit values, the delay may cause
+  * the two reads to mismatch, e.g. a timestamp overflowing. Also note that
 --=20
 2.31.1
 
