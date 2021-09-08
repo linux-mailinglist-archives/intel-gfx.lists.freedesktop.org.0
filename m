@@ -1,40 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC1F40376E
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 12:03:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB468403784
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 12:07:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9036E6E17E;
-	Wed,  8 Sep 2021 10:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C5CC6E098;
+	Wed,  8 Sep 2021 10:07:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C00BE6E17E
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 10:02:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="220123350"
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="220123350"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:02:59 -0700
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="538480492"
-Received: from mdoerbec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.33.106])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:02:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>
-In-Reply-To: <20210908003944.2972024-11-airlied@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210908003944.2972024-1-airlied@gmail.com>
- <20210908003944.2972024-11-airlied@gmail.com>
-Date: Wed, 08 Sep 2021 13:02:54 +0300
-Message-ID: <87a6kn75bl.fsf@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3266C6E098;
+ Wed,  8 Sep 2021 10:07:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="200643568"
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="200643568"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 03:07:11 -0700
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="465462712"
+Received: from eoinwals-mobl.ger.corp.intel.com (HELO [10.213.233.175])
+ ([10.213.233.175])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 03:07:09 -0700
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+References: <20210907171916.2548047-1-matthew.d.roper@intel.com>
+ <20210907171916.2548047-3-matthew.d.roper@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <4ce6bdc9-82c6-e281-400d-ce658d6ba80b@linux.intel.com>
+Date: Wed, 8 Sep 2021 11:07:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 10/21] drm/i915: split fdi link training
- from display vtable.
+In-Reply-To: <20210907171916.2548047-3-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915/xehp: CCS shares the render
+ reset domain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,93 +57,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
-> From: Dave Airlie <airlied@redhat.com>
->
-> It may make sense to merge this with display again later,
-> however the fdi use of the vtable is limited to only a
-> few generations.
+
+On 07/09/2021 18:19, Matt Roper wrote:
+> The reset domain is shared between render and all compute engines,
+> so resetting one will affect the others.
+> 
+> Note:  Before performing a reset on an RCS or CCS engine, the GuC will
+> attempt to preempt-to-idle the other non-hung RCS/CCS engines to avoid
+> impacting other clients (since some shared modules will be reset).  If
+> other engines are executing non-preemptable workloads, the impact is
+> unavoidable and some work may be lost.
+
+Since here it talks about engine reset, should this patch add warning if 
+  same is attempted by i915 on a GuC platform - to document it is not 
+implemented/supported? Or perhaps later in the series, or future series 
+works better.
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+
+> Bspec: 52549
+> Original-patch-by: Michel Thierry
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_fdi.c     |  6 +++---
->  drivers/gpu/drm/i915/i915_drv.h              | 11 ++++++++---
->  3 files changed, 12 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ccd0332e7945..b981a923cc2f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2100,7 +2100,7 @@ static void ilk_pch_enable(const struct intel_atomic_state *state,
->  	assert_pch_transcoder_disabled(dev_priv, pipe);
->  
->  	/* For PCH output, training FDI link */
-> -	dev_priv->display.fdi_link_train(crtc, crtc_state);
-> +	dev_priv->fdi_funcs.fdi_link_train(crtc, crtc_state);
-
-Nitpick, I'd add a wrapper intel_fdi_link_train to call this.
-
->  
->  	/* We need to program the right clock selection before writing the pixel
->  	 * mutliplier into the DPLL. */
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-> index fc09b781f15f..d9f952e0c67f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> @@ -1009,11 +1009,11 @@ void
->  intel_fdi_init_hook(struct drm_i915_private *dev_priv)
->  {
->  	if (IS_IRONLAKE(dev_priv)) {
-> -		dev_priv->display.fdi_link_train = ilk_fdi_link_train;
-> +		dev_priv->fdi_funcs.fdi_link_train = ilk_fdi_link_train;
->  	} else if (IS_SANDYBRIDGE(dev_priv)) {
-> -		dev_priv->display.fdi_link_train = gen6_fdi_link_train;
-> +		dev_priv->fdi_funcs.fdi_link_train = gen6_fdi_link_train;
->  	} else if (IS_IVYBRIDGE(dev_priv)) {
->  		/* FIXME: detect B0+ stepping and use auto training */
-> -		dev_priv->display.fdi_link_train = ivb_manual_fdi_link_train;
-> +		dev_priv->fdi_funcs.fdi_link_train = ivb_manual_fdi_link_train;
->  	}
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index ece23401cb46..49b23ea46475 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -388,6 +388,11 @@ struct drm_i915_irq_funcs {
->  	void (*hpd_irq_setup)(struct drm_i915_private *dev_priv);
->  };
->  
-> +struct drm_i915_fdi_link_train_funcs {
-
-Nitpick, intel_fdi_funcs.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> +	void (*fdi_link_train)(struct intel_crtc *crtc,
-> +			       const struct intel_crtc_state *crtc_state);
-> +};
-> +
->  struct drm_i915_display_funcs {
->  	/* Returns the active state of the crtc, and if the crtc is active,
->  	 * fills out the pipe-config with the hw state. */
-> @@ -403,9 +408,6 @@ struct drm_i915_display_funcs {
->  	void (*commit_modeset_enables)(struct intel_atomic_state *state);
->  	void (*commit_modeset_disables)(struct intel_atomic_state *state);
->  
-> -	void (*fdi_link_train)(struct intel_crtc *crtc,
-> -			       const struct intel_crtc_state *crtc_state);
-> -
->  	/* clock updates for mode set */
->  	/* cursor updates */
->  	/* render clock increase/decrease */
-> @@ -1000,6 +1002,9 @@ struct drm_i915_private {
->  	/* irq display functions */
->  	struct drm_i915_irq_funcs irq_funcs;
->  
-> +	/* fdi display functions */
-> +	struct drm_i915_fdi_link_train_funcs fdi_funcs;
-> +
->  	/* Display functions */
->  	struct drm_i915_display_funcs display;
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>   drivers/gpu/drm/i915/gt/intel_reset.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index 91200c43951f..30598c1d070c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -507,6 +507,10 @@ static int gen11_reset_engines(struct intel_gt *gt,
+>   		[VECS1] = GEN11_GRDOM_VECS2,
+>   		[VECS2] = GEN11_GRDOM_VECS3,
+>   		[VECS3] = GEN11_GRDOM_VECS4,
+> +		[CCS0] = GEN11_GRDOM_RENDER,
+> +		[CCS1] = GEN11_GRDOM_RENDER,
+> +		[CCS2] = GEN11_GRDOM_RENDER,
+> +		[CCS3] = GEN11_GRDOM_RENDER,
+>   	};
+>   	struct intel_engine_cs *engine;
+>   	intel_engine_mask_t tmp;
+> 
