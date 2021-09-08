@@ -2,43 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4633940402A
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 22:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6EE40403C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 22:41:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC266E2C7;
-	Wed,  8 Sep 2021 20:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E406E2E3;
+	Wed,  8 Sep 2021 20:41:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 176756E2C7;
- Wed,  8 Sep 2021 20:23:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10101"; a="306153573"
-X-IronPort-AV: E=Sophos;i="5.85,279,1624345200"; d="scan'208";a="306153573"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 13:23:21 -0700
-X-IronPort-AV: E=Sophos;i="5.85,279,1624345200"; d="scan'208";a="469756323"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 13:23:20 -0700
-Date: Wed, 8 Sep 2021 13:23:19 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Message-ID: <20210908202319.GQ461228@mdroper-desk1.amr.corp.intel.com>
-References: <20210907171916.2548047-1-matthew.d.roper@intel.com>
- <20210907171916.2548047-3-matthew.d.roper@intel.com>
- <4ce6bdc9-82c6-e281-400d-ce658d6ba80b@linux.intel.com>
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3ED6E2E3
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 20:41:12 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id n27so6732104eja.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Sep 2021 13:41:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=AyNuuTGX8YgJ8ye1HvGva5xKs/arJg5EZYPHVPZfmUI=;
+ b=IBesmOV0fnUXjLeFnKSPYMZgIG3U9nHJG7wcb96dNsPGjCGQXqFMtdc5qVGssKXeuy
+ aFQCoXiOE1rDInNeRRgvQEiKJNNXLyzjOQ+5WFGypbjTwA1K7pFtP6CJeGMKJXKqXOA8
+ DNGbGuIeKNTowHJsQ8DZoI3HsJj490iQiTwkv0s0k75YuyKzQjcHakFg+YC23lNZ+WMt
+ i/gkYgIG43H66p0m2KSx/z20LzUCM3z4yHrlBoRSUz5qgRinuQhiaCujVxhhqor0+UPQ
+ waTVqv9XUbI7GUPiQzoWuq8k1yAdDofn6Kga2JduQ0FsCyxk7LtRD1f3v9+doelNQ2C+
+ 9rhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=AyNuuTGX8YgJ8ye1HvGva5xKs/arJg5EZYPHVPZfmUI=;
+ b=XXY9kar9Pfyeo5bMw6YRdfm+WRnL0gXkOHGHz581rks8Y8MGMwfyrf7qQ0zAk3BrVF
+ k4/1sgmB/eA/r4jE1KoJqqYd362q6oRvLLjr/CQXt1XpH/sg0upBJLii5JmcvruEIz0Q
+ kY8+oqX0lNEGYWLOv7YGyLMCLwb7wJcx1SqY9SP4OzMZVuSZ39AK6m4W3fKWSeApmJhm
+ oTMvMyasNvd2vrDHxiEdSKk8XKFAPB3Kj5s3glKrclw3emv1f5kZz0Dter6UjqxjCbaN
+ WZyf0ucuHRglIrP6vO7RBZOho0AFqtPt/3hUdUQNvV9v5Dd5xZ591bcMe7LdWJzi+zg+
+ WTew==
+X-Gm-Message-State: AOAM533frRj0jUDYUnHO5Ld5TsaxSt+3Z9z3WdrOrzrd1N56fvE21VfE
+ lDky3XH6y6yo1H+y9ZUH1T83wMa7Tl5DnnghdrTgraIH
+X-Google-Smtp-Source: ABdhPJyUOBmYcm9qWKpTWjTQq/R7R+3RCrcyN74npFHMAkmI6IQyE6ZErHfM/aB2xvc7bwTsAdoZc4YXI2KbuzsWPqM=
+X-Received: by 2002:a17:907:266f:: with SMTP id
+ ci15mr1771189ejc.509.1631133670551; 
+ Wed, 08 Sep 2021 13:41:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4ce6bdc9-82c6-e281-400d-ce658d6ba80b@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915/xehp: CCS shares the render
- reset domain
+References: <20210908003944.2972024-1-airlied@gmail.com>
+ <20210908003944.2972024-4-airlied@gmail.com>
+ <87r1dz76os.fsf@intel.com>
+In-Reply-To: <87r1dz76os.fsf@intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Thu, 9 Sep 2021 06:40:59 +1000
+Message-ID: <CAPM=9txoo9D7oorULWtPXWCDivNALXEk4ptohWKrCbEFhwdu8Q@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Dave Airlie <airlied@redhat.com>, 
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 03/21] drm/i915/wm: move the update
+ watermark wrapper to display side.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,75 +71,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 08, 2021 at 11:07:07AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 07/09/2021 18:19, Matt Roper wrote:
-> > The reset domain is shared between render and all compute engines,
-> > so resetting one will affect the others.
-> > 
-> > Note:  Before performing a reset on an RCS or CCS engine, the GuC will
-> > attempt to preempt-to-idle the other non-hung RCS/CCS engines to avoid
-> > impacting other clients (since some shared modules will be reset).  If
-> > other engines are executing non-preemptable workloads, the impact is
-> > unavoidable and some work may be lost.
-> 
-> Since here it talks about engine reset, should this patch add warning if
-> same is attempted by i915 on a GuC platform - to document it is not
-
-Did you mean "on a *non* GuC platform" here?  We aren't going to have
-compute engine support on any platforms where GuC submission isn't the
-default operating model, so the only way to get compute engines +
-execlist submission is to force an override via module parameters (e.g.,
-enable_guc=0).  Doing so will taint the kernel, so I think the current
-consensus from offline discussion is that the user has already put
-themselves into a configuration where it's easier than usual to shoot
-themselves in the foot; it's not too much different than the kind of
-trouble a user could get themselves into if they loaded the driver with
-hangcheck disabled or something.
-
-
-Matt
-
-> implemented/supported? Or perhaps later in the series, or future series
-> works better.
-> 
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > Bspec: 52549
-> > Original-patch-by: Michel Thierry
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+On Wed, 8 Sept 2021 at 19:33, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Wed, 08 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
+> > From: Dave Airlie <airlied@redhat.com>
+> >
+> > A vague goal is to have the vfunc table be the api between
+> > wm and display, not having direction function calls cross
+> > the boundary.
+> >
+> > This aligns the legacy update_wm with the newer vfuncs.
+> >
+> > The comment probably needs to live somewhere else, it seems
+> > like it should live in the pm side though not the display side,
+> > but I brought it along for the ride.
 > > ---
-> >   drivers/gpu/drm/i915/gt/intel_reset.c | 4 ++++
-> >   1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> > index 91200c43951f..30598c1d070c 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> > @@ -507,6 +507,10 @@ static int gen11_reset_engines(struct intel_gt *gt,
-> >   		[VECS1] = GEN11_GRDOM_VECS2,
-> >   		[VECS2] = GEN11_GRDOM_VECS3,
-> >   		[VECS3] = GEN11_GRDOM_VECS4,
-> > +		[CCS0] = GEN11_GRDOM_RENDER,
-> > +		[CCS1] = GEN11_GRDOM_RENDER,
-> > +		[CCS2] = GEN11_GRDOM_RENDER,
-> > +		[CCS3] = GEN11_GRDOM_RENDER,
-> >   	};
-> >   	struct intel_engine_cs *engine;
-> >   	intel_engine_mask_t tmp;
-> > 
+> >  drivers/gpu/drm/i915/display/intel_display.c | 40 ++++++++++++++++++++
+> >  drivers/gpu/drm/i915/intel_pm.c              | 39 -------------------
+> >  drivers/gpu/drm/i915/intel_pm.h              |  1 -
+> >  3 files changed, 40 insertions(+), 40 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index d95283bf2631..b495371c1889 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>
+> We haven't been axing stuff out of intel_display.c so we could add
+> somethign else back! ;)
+>
+> A new file for watermarks or display pm? Ville?
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+The main reason I landed it there, was because all the other calls to
+the wm funcs are in intel_display, and this wrapper is very small and
+ends up being a static, the comment on the other hand, I've no idea
+where it should have landed.
+
+Dave.
