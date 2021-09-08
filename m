@@ -2,46 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D05F403B70
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 16:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCCE403BFB
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 16:57:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9312D6E103;
-	Wed,  8 Sep 2021 14:23:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57D806E192;
+	Wed,  8 Sep 2021 14:57:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB2E46E103
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 14:23:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="242792823"
-X-IronPort-AV: E=Sophos;i="5.85,278,1624345200"; d="scan'208";a="242792823"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 324FB6E192
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 14:57:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="200705950"
+X-IronPort-AV: E=Sophos;i="5.85,278,1624345200"; d="scan'208";a="200705950"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 07:23:16 -0700
-X-IronPort-AV: E=Sophos;i="5.85,278,1624345200"; d="scan'208";a="580394131"
-Received: from efuntiko-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.249.254.170])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 07:57:52 -0700
+X-IronPort-AV: E=Sophos;i="5.85,278,1624345200"; d="scan'208";a="580405747"
+Received: from mytung-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.252.129.206])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 07:23:11 -0700
-Content-Type: text/plain; charset="utf-8"
+ 08 Sep 2021 07:57:52 -0700
+Date: Wed, 8 Sep 2021 07:57:52 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20210908145752.knkva43j4phlfuyh@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210907213941.69295-1-lucas.demarchi@intel.com>
+ <871r5z8n1r.fsf@intel.com>
+ <20210908141400.3oehrz4mv7cxxle7@ldmartin-desk2>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CH0PR11MB5755559816096FECA929754FFCD39@CH0PR11MB5755.namprd11.prod.outlook.com>
-References: <20210903182034.668467-1-ravitejax.gpud.talla@intel.com>
- <CH0PR11MB5755559816096FECA929754FFCD39@CH0PR11MB5755.namprd11.prod.outlook.com>
-To: "Meena, Mahesh" <mahesh.meena@intel.com>, "Pandey,
- Hariom" <hariom.pandey@intel.com>, "Siddiqui,
- Ayaz A" <ayaz.siddiqui@intel.com>, "Surendrakumar Upadhyay,
- TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Talla Raviteja Goud <ravitejax.gpud.talla@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: "Talla, RavitejaX Goud" <ravitejax.goud.talla@intel.com>, "De Marchi, Lucas" <lucas.demarchi@intel.com>, Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <163111098651.11123.10711730510547602750@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 08 Sep 2021 17:23:06 +0300
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_s: Remove require_force_probe
- protection
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20210908141400.3oehrz4mv7cxxle7@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: deduplicate frequency dump on
+ debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,28 +54,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Siddiqui, Ayaz A (2021-09-07 08:43:52)
->=20
->=20
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of =
-Talla
-> > Raviteja Goud
-> > Sent: Friday, September 3, 2021 11:51 PM
-> > To: intel-gfx@lists.freedesktop.org; Surendrakumar Upadhyay, TejaskumarX
-> > <tejaskumarx.surendrakumar.upadhyay@intel.com>; Meena, Mahesh
-> > <mahesh.meena@intel.com>; Pandey, Hariom <hariom.pandey@intel.com>
-> > Cc: Talla, RavitejaX Goud <ravitejax.goud.talla@intel.com>; De Marchi, =
-Lucas
-> > <lucas.demarchi@intel.com>
-> > Subject: [Intel-gfx] [PATCH] drm/i915/adl_s: Remove require_force_probe
-> > protection
-> >=20
-> > From: ravitejax <ravitejax.goud.talla@intel.com>
+On Wed, Sep 08, 2021 at 07:14:00AM -0700, Lucas De Marchi wrote:
+>On Wed, Sep 08, 2021 at 11:54:40AM +0300, Jani Nikula wrote:
+>>On Tue, 07 Sep 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>>Although commit 9dd4b065446a ("drm/i915/gt: Move pm debug files into a
+>>>gt aware debugfs") says it was moving debug files to gt/, the
+>>>i915_frequency_info file was left behind and its implementation copied
+>>>into drivers/gpu/drm/i915/gt/debugfs_gt_pm.c. Over time we had several
+>>>patches having to change both places to keep them in sync (and some
+>>>patches failing to do so). The initial idea was to remove i915_frequency_info,
+>>>but there are user space tools using it. From a quick code search there
+>>>are other scripts and test tools besides igt, so it's not simply
+>>>updating igt to get rid of the older file.
+>>>
+>>>Here we export a function using drm_printer as parameter and make
+>>>both show() implementations to call this same function. Aside from a few
+>>>variable name differences, for i915_frequency_info this brings a few
+>>>lines that were not previously printed: RP UP EI, RP UP THRESHOLD, RP
+>>>DOWN THRESHOLD and RP DOWN EI.  These came in as part of
+>>>commit 9c878557b1eb ("drm/i915/gt: Use the RPM config register to
+>>>determine clk frequencies"), which didn't change both places.
+>>>
+>>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>---
+>>> drivers/gpu/drm/i915/gt/debugfs_gt_pm.c | 127 ++++++-------
+>>> drivers/gpu/drm/i915/gt/debugfs_gt_pm.h |   2 +
+>>> drivers/gpu/drm/i915/i915_debugfs.c     | 227 +-----------------------
+>>> 3 files changed, 74 insertions(+), 282 deletions(-)
+>>>
+>>>diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+>>>index f6733f279890..6a27c011d0ff 100644
+>>>--- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+>>>+++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+>>>@@ -240,9 +240,8 @@ static int drpc_show(struct seq_file *m, void *unused)
+>>> }
+>>> DEFINE_GT_DEBUGFS_ATTRIBUTE(drpc);
+>>>
+>>>-static int frequency_show(struct seq_file *m, void *unused)
+>>>+void debugfs_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+>>
+>>The debugfs prefix belongs to debugfs, and I don't think we should have
+>>non-static functions with that prefix.
+>>
+>>I know it's in line with what's currently in the file, and I've
+>>complained about it before, but apparently that hasn't been enough.
+>
+>I was surprised by the prefix too.
+>
+>intel_gt_pm_debugfs.[hc] - would that be better or do you have another
+>suggestion?
 
-Raviteja, please check your git settings and fill in full name there.
+Something like the below:
 
-Ayaz, Thomas, when reviewing and merging patches, please pay attention
-to the From: and Signed-off-by: tags to make sure they are correct.
+renamed:    drivers/gpu/drm/i915/gt/debugfs_gt.c -> drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+renamed:    drivers/gpu/drm/i915/gt/debugfs_gt.h -> drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
+renamed:    drivers/gpu/drm/i915/gt/debugfs_engines.c -> drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.c
+renamed:    drivers/gpu/drm/i915/gt/debugfs_engines.h -> drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.h
+renamed:    drivers/gpu/drm/i915/gt/debugfs_gt_pm.c -> drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+renamed:    drivers/gpu/drm/i915/gt/debugfs_gt_pm.h -> drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
 
-Regards, Joonas
+
+and then rename the functions/macros in these files to follow th
+filename
+
+Lucas De Marchi
+
+>
+>thanks
+>Lucas De Marchi
