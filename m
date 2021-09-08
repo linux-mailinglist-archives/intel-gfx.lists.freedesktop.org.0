@@ -2,39 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 264674037FC
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 12:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E4F40387E
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 13:01:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 462426E18E;
-	Wed,  8 Sep 2021 10:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 579826E190;
+	Wed,  8 Sep 2021 11:01:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A00716E18E
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 10:38:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="306008177"
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="306008177"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:38:38 -0700
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="547659527"
-Received: from mdoerbec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.33.106])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:38:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>
-In-Reply-To: <20210908003944.2972024-17-airlied@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210908003944.2972024-1-airlied@gmail.com>
- <20210908003944.2972024-17-airlied@gmail.com>
-Date: Wed, 08 Sep 2021 13:38:34 +0300
-Message-ID: <87sfyf5p3p.fsf@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD486E0AB;
+ Wed,  8 Sep 2021 11:01:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="284158155"
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="284158155"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 04:01:18 -0700
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="538501807"
+Received: from cofaolai-mobl1.ger.corp.intel.com (HELO [10.213.198.69])
+ ([10.213.198.69])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2021 04:01:17 -0700
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com
+References: <20210906165515.450541-1-thomas.hellstrom@linux.intel.com>
+ <20210906165515.450541-6-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <3c841396-0720-8374-eea6-155cf85edbd4@intel.com>
+Date: Wed, 8 Sep 2021 12:01:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915: constify the dpll clock
- vtable
+In-Reply-To: <20210906165515.450541-6-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915: Don't back up pinned LMEM
+ context images and rings during suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,129 +54,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
-> From: Dave Airlie <airlied@redhat.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
->
+On 06/09/2021 17:55, Thomas Hellström wrote:
+> Pinned context images are now reset during resume. Don't back them up,
+> and assuming that rings can be assumed empty at suspend, don't back them
+> up either.
+> 
+> Introduce a new object flag, I915_BO_ALLOC_PM_VOLATILE meaning that an
+> object is allowed to lose its content on suspend.
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c |  6 +--
->  drivers/gpu/drm/i915/display/intel_dpll.c    | 49 ++++++++++++++++----
->  drivers/gpu/drm/i915/i915_drv.h              |  2 +-
->  3 files changed, 45 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 0ad577aceb9d..d8a576d1435e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6768,10 +6768,10 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
->  		crtc_state->update_wm_post = true;
->  
->  	if (mode_changed && crtc_state->hw.enable &&
-> -	    dev_priv->dpll_funcs.crtc_compute_clock &&
-> +	    dev_priv->dpll_funcs &&
->  	    !crtc_state->bigjoiner_slave &&
->  	    !drm_WARN_ON(&dev_priv->drm, crtc_state->shared_dpll)) {
-> -		ret = dev_priv->dpll_funcs.crtc_compute_clock(crtc_state);
-> +		ret = dev_priv->dpll_funcs->crtc_compute_clock(crtc_state);
->  		if (ret)
->  			return ret;
->  	}
-> @@ -8807,7 +8807,7 @@ static void intel_modeset_clear_plls(struct intel_atomic_state *state)
->  	struct intel_crtc *crtc;
->  	int i;
->  
-> -	if (!dev_priv->dpll_funcs.crtc_compute_clock)
-> +	if (!dev_priv->dpll_funcs)
->  		return;
->  
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-> index 9326c7cbb05c..3df10b88e69f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> @@ -1363,25 +1363,58 @@ static int i8xx_crtc_compute_clock(struct intel_crtc_state *crtc_state)
->  	return 0;
->  }
->  
-> +static const struct drm_i915_dpll_funcs hsw_dpll_funcs = {
-> +	.crtc_compute_clock = hsw_crtc_compute_clock
-> +};
-> +
-> +static const struct drm_i915_dpll_funcs ilk_dpll_funcs = {
-> +	.crtc_compute_clock = ilk_crtc_compute_clock
-> +};
-> +
-> +static const struct drm_i915_dpll_funcs chv_dpll_funcs = {
-> +	.crtc_compute_clock = chv_crtc_compute_clock
-> +};
-> +
-> +static const struct drm_i915_dpll_funcs vlv_dpll_funcs = {
-> +	.crtc_compute_clock = vlv_crtc_compute_clock
-> +};
-> +
-> +static const struct drm_i915_dpll_funcs g4x_dpll_funcs = {
-> +	.crtc_compute_clock = g4x_crtc_compute_clock
-> +};
-> +
-> +static const struct drm_i915_dpll_funcs pnv_dpll_funcs = {
-> +	.crtc_compute_clock = pnv_crtc_compute_clock
-> +};
-> +
-> +static const struct drm_i915_dpll_funcs i9xx_dpll_funcs = {
-> +	.crtc_compute_clock = i9xx_crtc_compute_clock
-> +};
-> +
-> +static const struct drm_i915_dpll_funcs i8xx_dpll_funcs = {
-> +	.crtc_compute_clock = i8xx_crtc_compute_clock
-> +};
-> +
-> +
->  void
->  intel_dpll_init_clock_hook(struct drm_i915_private *dev_priv)
->  {
->  	if (DISPLAY_VER(dev_priv) >= 9 || HAS_DDI(dev_priv))
-> -		dev_priv->dpll_funcs.crtc_compute_clock = hsw_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &hsw_dpll_funcs;
->  	else if (HAS_PCH_SPLIT(dev_priv))
-> -		dev_priv->dpll_funcs.crtc_compute_clock = ilk_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &ilk_dpll_funcs;
->  	else if (IS_CHERRYVIEW(dev_priv))
-> -		dev_priv->dpll_funcs.crtc_compute_clock = chv_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &chv_dpll_funcs;
->  	else if (IS_VALLEYVIEW(dev_priv))
-> -		dev_priv->dpll_funcs.crtc_compute_clock = vlv_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &vlv_dpll_funcs;
->  	else if (IS_G4X(dev_priv))
-> -		dev_priv->dpll_funcs.crtc_compute_clock = g4x_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &g4x_dpll_funcs;
->  	else if (IS_PINEVIEW(dev_priv))
-> -		dev_priv->dpll_funcs.crtc_compute_clock = pnv_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &pnv_dpll_funcs;
->  	else if (DISPLAY_VER(dev_priv) != 2)
-> -		dev_priv->dpll_funcs.crtc_compute_clock = i9xx_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &i9xx_dpll_funcs;
->  	else
-> -		dev_priv->dpll_funcs.crtc_compute_clock = i8xx_crtc_compute_clock;
-> +		dev_priv->dpll_funcs = &i8xx_dpll_funcs;
->  }
->  
->  static bool i9xx_has_pps(struct drm_i915_private *dev_priv)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 8d14318c5708..a9563730aad5 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1009,7 +1009,7 @@ struct drm_i915_private {
->  	const struct drm_i915_fdi_link_train_funcs *fdi_funcs;
->  
->  	/* display pll funcs */
-> -	struct drm_i915_dpll_funcs dpll_funcs;
-> +	const struct drm_i915_dpll_funcs *dpll_funcs;
->  
->  	/* Display functions */
->  	struct drm_i915_display_funcs display;
+>   .../gpu/drm/i915/gem/i915_gem_object_types.h    | 17 ++++++++++-------
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c      |  3 +++
+>   drivers/gpu/drm/i915/gt/intel_lrc.c             |  3 ++-
+>   drivers/gpu/drm/i915/gt/intel_ring.c            |  3 ++-
+>   4 files changed, 17 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> index 734cc8e16481..66123ba46247 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> @@ -288,16 +288,19 @@ struct drm_i915_gem_object {
+>   	I915_SELFTEST_DECLARE(struct list_head st_link);
+>   
+>   	unsigned long flags;
+> -#define I915_BO_ALLOC_CONTIGUOUS BIT(0)
+> -#define I915_BO_ALLOC_VOLATILE   BIT(1)
+> -#define I915_BO_ALLOC_CPU_CLEAR  BIT(2)
+> -#define I915_BO_ALLOC_USER       BIT(3)
+> +#define I915_BO_ALLOC_CONTIGUOUS  BIT(0)
+> +#define I915_BO_ALLOC_VOLATILE    BIT(1)
+> +#define I915_BO_ALLOC_CPU_CLEAR   BIT(2)
+> +#define I915_BO_ALLOC_USER        BIT(3)
+> +/* Object may lose its contents on suspend / resume */
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
++ if we can't evict it?
+
+> +#define I915_BO_ALLOC_PM_VOLATILE BIT(4)
+>   #define I915_BO_ALLOC_FLAGS (I915_BO_ALLOC_CONTIGUOUS | \
+>   			     I915_BO_ALLOC_VOLATILE | \
+>   			     I915_BO_ALLOC_CPU_CLEAR | \
+> -			     I915_BO_ALLOC_USER)
+> -#define I915_BO_READONLY         BIT(4)
+> -#define I915_TILING_QUIRK_BIT    5 /* unknown swizzling; do not release! */
+> +			     I915_BO_ALLOC_USER | \
+> +			     I915_BO_ALLOC_PM_VOLATILE)
+> +#define I915_BO_READONLY          BIT(5)
+> +#define I915_TILING_QUIRK_BIT     6 /* unknown swizzling; do not release! */
+>   
+>   	/**
+>   	 * @mem_flags - Mutable placement-related flags
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> index 3884bf45dab8..eaceecfc3f19 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> @@ -61,6 +61,9 @@ static int i915_ttm_backup(struct i915_gem_apply_to_region *apply,
+>   	if (!pm_apply->backup_pinned)
+>   		return 0;
+>   
+> +	if (obj->flags & I915_BO_ALLOC_PM_VOLATILE)
+> +		return 0;
+> +
+>   	sys_region = i915->mm.regions[INTEL_REGION_SMEM];
+>   	backup = i915_gem_object_create_region(sys_region,
+>   					       obj->base.size,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 6ba8daea2f56..3ef9eaf8c50e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -942,7 +942,8 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
+>   		context_size += PAGE_SIZE;
+>   	}
+>   
+> -	obj = i915_gem_object_create_lmem(engine->i915, context_size, 0);
+> +	obj = i915_gem_object_create_lmem(engine->i915, context_size,
+> +					  I915_BO_ALLOC_PM_VOLATILE);
+>   	if (IS_ERR(obj))
+>   		obj = i915_gem_object_create_shmem(engine->i915, context_size);
+>   	if (IS_ERR(obj))
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+> index 7c4d5158e03b..2fdd52b62092 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+> @@ -112,7 +112,8 @@ static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
+>   	struct drm_i915_gem_object *obj;
+>   	struct i915_vma *vma;
+>   
+> -	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE);
+> +	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE |
+> +					  I915_BO_ALLOC_PM_VOLATILE);
+>   	if (IS_ERR(obj) && i915_ggtt_has_aperture(ggtt))
+>   		obj = i915_gem_object_create_stolen(i915, size);
+>   	if (IS_ERR(obj))
+> 
