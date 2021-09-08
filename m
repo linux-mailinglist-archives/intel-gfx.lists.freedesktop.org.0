@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0FDD4031EE
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 02:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BCFE4031F0
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 02:40:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9498A6E102;
-	Wed,  8 Sep 2021 00:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2667B6E103;
+	Wed,  8 Sep 2021 00:40:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 731E06E0FE
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 00:40:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C5156E0FE
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 00:40:35 +0000 (UTC)
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-172-IrVkHnRMMyebY_LsWws10A-1; Tue, 07 Sep 2021 20:40:31 -0400
-X-MC-Unique: IrVkHnRMMyebY_LsWws10A-1
+ us-mta-438-ZyJ_cowfN5WMw3T0zsfAWQ-1; Tue, 07 Sep 2021 20:40:33 -0400
+X-MC-Unique: ZyJ_cowfN5WMw3T0zsfAWQ-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
  [10.5.11.12])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8BCBE800FF3;
- Wed,  8 Sep 2021 00:40:30 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 56764519B;
+ Wed,  8 Sep 2021 00:40:32 +0000 (UTC)
 Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 461DB60C7F;
- Wed,  8 Sep 2021 00:40:29 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 1003660C7F;
+ Wed,  8 Sep 2021 00:40:30 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com,
 	Dave Airlie <airlied@redhat.com>
-Date: Wed,  8 Sep 2021 10:39:41 +1000
-Message-Id: <20210908003944.2972024-19-airlied@gmail.com>
+Date: Wed,  8 Sep 2021 10:39:42 +1000
+Message-Id: <20210908003944.2972024-20-airlied@gmail.com>
 In-Reply-To: <20210908003944.2972024-1-airlied@gmail.com>
 References: <20210908003944.2972024-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -40,8 +40,7 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 18/21] drm/i915: drop unused function ptr and
- comments.
+Subject: [Intel-gfx] [PATCH 19/21] drm/i915: constify display function vtable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,30 +58,188 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-There was some excess comments and an unused vtbl ptr.
 ---
- drivers/gpu/drm/i915/i915_drv.h | 7 -------
- 1 file changed, 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 81 ++++++++++++--------
+ drivers/gpu/drm/i915/i915_drv.h              |  2 +-
+ 2 files changed, 52 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_dr=
-v.h
-index 085012727549..2231b93c2111 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -409,13 +409,6 @@ struct drm_i915_display_funcs {
- =09void (*crtc_disable)(struct intel_atomic_state *state,
- =09=09=09     struct intel_crtc *crtc);
- =09void (*commit_modeset_enables)(struct intel_atomic_state *state);
--=09void (*commit_modeset_disables)(struct intel_atomic_state *state);
--
--=09/* clock updates for mode set */
--=09/* cursor updates */
--=09/* render clock increase/decrease */
--=09/* display clock increase/decrease */
--=09/* pll clock increase/decrease */
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm=
+/i915/display/intel_display.c
+index 09c9dc741026..20fd35c6858c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3736,7 +3736,7 @@ static void intel_crtc_disable_noatomic(struct intel_=
+crtc *crtc,
+=20
+ =09drm_WARN_ON(&dev_priv->drm, IS_ERR(temp_crtc_state) || ret);
+=20
+-=09dev_priv->display.crtc_disable(to_intel_atomic_state(state), crtc);
++=09dev_priv->display->crtc_disable(to_intel_atomic_state(state), crtc);
+=20
+ =09drm_atomic_state_put(state);
+=20
+@@ -5941,7 +5941,7 @@ static bool intel_crtc_get_pipe_config(struct intel_c=
+rtc_state *crtc_state)
+ =09struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+ =09struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+=20
+-=09if (!i915->display.get_pipe_config(crtc, crtc_state))
++=09if (!i915->display->get_pipe_config(crtc, crtc_state))
+ =09=09return false;
+=20
+ =09crtc_state->hw.active =3D true;
+@@ -9778,7 +9778,7 @@ static void intel_enable_crtc(struct intel_atomic_sta=
+te *state,
+=20
+ =09intel_crtc_update_active_timings(new_crtc_state);
+=20
+-=09dev_priv->display.crtc_enable(state, crtc);
++=09dev_priv->display->crtc_enable(state, crtc);
+=20
+ =09if (new_crtc_state->bigjoiner_slave)
+ =09=09return;
+@@ -9866,7 +9866,7 @@ static void intel_old_crtc_state_disables(struct inte=
+l_atomic_state *state,
+ =09 */
+ =09intel_crtc_disable_pipe_crc(crtc);
+=20
+-=09dev_priv->display.crtc_disable(state, crtc);
++=09dev_priv->display->crtc_disable(state, crtc);
+ =09crtc->active =3D false;
+ =09intel_fbc_disable(crtc);
+ =09intel_disable_shared_dpll(old_crtc_state);
+@@ -10246,7 +10246,7 @@ static void intel_atomic_commit_tail(struct intel_a=
+tomic_state *state)
+ =09}
+=20
+ =09/* Now enable the clocks, plane, pipe, and connectors that we set up. *=
+/
+-=09dev_priv->display.commit_modeset_enables(state);
++=09dev_priv->display->commit_modeset_enables(state);
+=20
+ =09if (state->modeset) {
+ =09=09intel_encoders_update_complete(state);
+@@ -11250,6 +11250,46 @@ static const struct drm_mode_config_funcs intel_mo=
+de_funcs =3D {
+ =09.atomic_state_free =3D intel_atomic_state_free,
  };
 =20
++static const struct drm_i915_display_funcs skl_display_funcs =3D {
++=09.get_pipe_config =3D hsw_get_pipe_config,
++=09.crtc_enable =3D hsw_crtc_enable,
++=09.crtc_disable =3D hsw_crtc_disable,
++=09.commit_modeset_enables =3D skl_commit_modeset_enables,
++=09.get_initial_plane_config =3D skl_get_initial_plane_config,
++};
++
++static const struct drm_i915_display_funcs ddi_display_funcs =3D {
++=09.get_pipe_config =3D hsw_get_pipe_config,
++=09.crtc_enable =3D hsw_crtc_enable,
++=09.crtc_disable =3D hsw_crtc_disable,
++=09.commit_modeset_enables =3D intel_commit_modeset_enables,
++=09.get_initial_plane_config =3D i9xx_get_initial_plane_config,
++};
++
++static const struct drm_i915_display_funcs pch_split_display_funcs =3D {
++=09.get_pipe_config =3D ilk_get_pipe_config,
++=09.crtc_enable =3D ilk_crtc_enable,
++=09.crtc_disable =3D ilk_crtc_disable,
++=09.commit_modeset_enables =3D intel_commit_modeset_enables,
++=09.get_initial_plane_config =3D i9xx_get_initial_plane_config,
++};
++
++static const struct drm_i915_display_funcs vlv_display_funcs =3D {
++=09.get_pipe_config =3D i9xx_get_pipe_config,
++=09.crtc_enable =3D valleyview_crtc_enable,
++=09.crtc_disable =3D i9xx_crtc_disable,
++=09.commit_modeset_enables =3D intel_commit_modeset_enables,
++=09.get_initial_plane_config =3D i9xx_get_initial_plane_config,
++};
++
++static const struct drm_i915_display_funcs i9xx_display_funcs =3D {
++=09.get_pipe_config =3D i9xx_get_pipe_config,
++=09.crtc_enable =3D i9xx_crtc_enable,
++=09.crtc_disable =3D i9xx_crtc_disable,
++=09.commit_modeset_enables =3D intel_commit_modeset_enables,
++=09.get_initial_plane_config =3D i9xx_get_initial_plane_config,
++};
++
+ /**
+  * intel_init_display_hooks - initialize the display modesetting hooks
+  * @dev_priv: device private
+@@ -11265,38 +11305,19 @@ void intel_init_display_hooks(struct drm_i915_pri=
+vate *dev_priv)
+ =09intel_dpll_init_clock_hook(dev_priv);
 =20
+ =09if (DISPLAY_VER(dev_priv) >=3D 9) {
+-=09=09dev_priv->display.get_pipe_config =3D hsw_get_pipe_config;
+-=09=09dev_priv->display.crtc_enable =3D hsw_crtc_enable;
+-=09=09dev_priv->display.crtc_disable =3D hsw_crtc_disable;
++=09=09dev_priv->display =3D &skl_display_funcs;
+ =09} else if (HAS_DDI(dev_priv)) {
+-=09=09dev_priv->display.get_pipe_config =3D hsw_get_pipe_config;
+-=09=09dev_priv->display.crtc_enable =3D hsw_crtc_enable;
+-=09=09dev_priv->display.crtc_disable =3D hsw_crtc_disable;
++=09=09dev_priv->display =3D &ddi_display_funcs;
+ =09} else if (HAS_PCH_SPLIT(dev_priv)) {
+-=09=09dev_priv->display.get_pipe_config =3D ilk_get_pipe_config;
+-=09=09dev_priv->display.crtc_enable =3D ilk_crtc_enable;
+-=09=09dev_priv->display.crtc_disable =3D ilk_crtc_disable;
++=09=09dev_priv->display =3D &pch_split_display_funcs;
+ =09} else if (IS_CHERRYVIEW(dev_priv) ||
+ =09=09   IS_VALLEYVIEW(dev_priv)) {
+-=09=09dev_priv->display.get_pipe_config =3D i9xx_get_pipe_config;
+-=09=09dev_priv->display.crtc_enable =3D valleyview_crtc_enable;
+-=09=09dev_priv->display.crtc_disable =3D i9xx_crtc_disable;
++=09=09dev_priv->display =3D &vlv_display_funcs;
+ =09} else {
+-=09=09dev_priv->display.get_pipe_config =3D i9xx_get_pipe_config;
+-=09=09dev_priv->display.crtc_enable =3D i9xx_crtc_enable;
+-=09=09dev_priv->display.crtc_disable =3D i9xx_crtc_disable;
++=09=09dev_priv->display =3D &i9xx_display_funcs;
+ =09}
+=20
+ =09intel_fdi_init_hook(dev_priv);
+-
+-=09if (DISPLAY_VER(dev_priv) >=3D 9) {
+-=09=09dev_priv->display.commit_modeset_enables =3D skl_commit_modeset_enab=
+les;
+-=09=09dev_priv->display.get_initial_plane_config =3D skl_get_initial_plane=
+_config;
+-=09} else {
+-=09=09dev_priv->display.commit_modeset_enables =3D intel_commit_modeset_en=
+ables;
+-=09=09dev_priv->display.get_initial_plane_config =3D i9xx_get_initial_plan=
+e_config;
+-=09}
+-
+ }
+=20
+ void intel_modeset_init_hw(struct drm_i915_private *i915)
+@@ -11723,7 +11744,7 @@ int intel_modeset_init_nogem(struct drm_i915_privat=
+e *i915)
+ =09=09 * can even allow for smooth boot transitions if the BIOS
+ =09=09 * fb is large enough for the active pipe configuration.
+ =09=09 */
+-=09=09i915->display.get_initial_plane_config(crtc, &plane_config);
++=09=09i915->display->get_initial_plane_config(crtc, &plane_config);
+=20
+ =09=09/*
+ =09=09 * If the fb is shared between multiple heads, we'll
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_dr=
+v.h
+index 2231b93c2111..fbcafc7cc075 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1005,7 +1005,7 @@ struct drm_i915_private {
+ =09const struct drm_i915_dpll_funcs *dpll_funcs;
+=20
+ =09/* Display functions */
+-=09struct drm_i915_display_funcs display;
++=09const struct drm_i915_display_funcs *display;
+=20
+ =09/* Display internal color functions */
+ =09const struct drm_i915_display_color_funcs *color_funcs;
 --=20
 2.31.1
 
