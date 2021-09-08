@@ -2,39 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F1640376D
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 12:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67763403951
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 13:59:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09FFB6E17A;
-	Wed,  8 Sep 2021 10:01:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A00066E194;
+	Wed,  8 Sep 2021 11:59:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D38A6E17A
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 10:01:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="220123085"
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="220123085"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:01:02 -0700
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="538479856"
-Received: from mdoerbec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.33.106])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 03:01:00 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>
-In-Reply-To: <20210908003944.2972024-10-airlied@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210908003944.2972024-1-airlied@gmail.com>
- <20210908003944.2972024-10-airlied@gmail.com>
-Date: Wed, 08 Sep 2021 13:00:56 +0300
-Message-ID: <87czpj75ev.fsf@intel.com>
+X-Greylist: delayed 355 seconds by postgrey-1.36 at gabe;
+ Wed, 08 Sep 2021 03:23:01 UTC
+Received: from condef-05.nifty.com (condef-05.nifty.com [202.248.20.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7E776E0F7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 03:23:01 +0000 (UTC)
+Received: from conssluserg-05.nifty.com ([10.126.8.84])by condef-05.nifty.com
+ with ESMTP id 1883EZ58020190; Wed, 8 Sep 2021 12:14:36 +0900
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
+ [209.85.215.173]) (authenticated)
+ by conssluserg-05.nifty.com with ESMTP id 1883Dv7r024261;
+ Wed, 8 Sep 2021 12:13:58 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com 1883Dv7r024261
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+ s=dec2015msa; t=1631070838;
+ bh=DiTP/AS3T3vq4JaeKSJu2Ri/qt3KnM6Fx/+72YJ6xGU=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=uq24T7VOY9DzMY2Ttse8IMfSKSJ3nAzJEww51VcTiGop5IKF9mXMZoEJE8g+oB25J
+ H8FXrW273mevkmofLJZdPfyWYc7pVppc52cATl3m3HQR+Gbp2A46519A8xON0MtMat
+ WCZdIstesFb5Hc212QXqESmLXSp6bZ7HLWJy3VCA3v952l+bZD02aJFWB2W9en3ZVY
+ EGhJzWA9IbCxNqGyycrcBGMJs6uKzPeKuM5EZ9KjI3hYnltsimRBj7f5uwhX2jTHbi
+ tEJIOmIrTqFFHa5TDe+OF8CU7Ty9FDvzDKanrRSMdxfajodpXa150TF0+tG+22ez/a
+ DPe2n7cd1ZXRQ==
+X-Nifty-SrcIP: [209.85.215.173]
+Received: by mail-pg1-f173.google.com with SMTP id w7so1021036pgk.13;
+ Tue, 07 Sep 2021 20:13:58 -0700 (PDT)
+X-Gm-Message-State: AOAM532yhB3hzh26rhPaZtX7vUeAJEm2OjA8J3K1vBvXKHGSSKROIXte
+ J+iXo16dsSOV9C8S/BwhUP6/Es7IMoebIJlZ1k0=
+X-Google-Smtp-Source: ABdhPJyPU4uh1o2NcT/aR4ZPGLpv6t2vzuzFEOmM8q5aihG3cwIUJLm6ZYqb445avfVEnp26Ym0k8VmPnUWDt0gqMjM=
+X-Received: by 2002:aa7:949d:0:b0:416:4555:3021 with SMTP id
+ z29-20020aa7949d000000b0041645553021mr1560140pfk.36.1631070837441; Tue, 07
+ Sep 2021 20:13:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 09/21] drm/i915: split irq hotplug function
- from display vtable
+References: <20210820123348.6535a87e@canb.auug.org.au>
+ <CAK7LNASv-F1Y7kpaDF+_=TW0Jzvpo1uuNL1B5jUmCCRqv-45bA@mail.gmail.com>
+ <20210902075038.7461d3c8@canb.auug.org.au>
+ <20210906084947.4f65761d@canb.auug.org.au>
+ <CAKMK7uF6K+gdWVT09wL0sPBQs8RRixggk01e291veE0VecD=TQ@mail.gmail.com>
+In-Reply-To: <CAKMK7uF6K+gdWVT09wL0sPBQs8RRixggk01e291veE0VecD=TQ@mail.gmail.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Wed, 8 Sep 2021 12:13:20 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQdgr7pn0j9mdAGfB_0fGOVMn+uq=Kv7buRaCOcoF+p7A@mail.gmail.com>
+Message-ID: <CAK7LNAQdgr7pn0j9mdAGfB_0fGOVMn+uq=Kv7buRaCOcoF+p7A@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Nikula, Jani" <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@linux.ie>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ John Harrison <John.C.Harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Alexey Dobriyan <adobriyan@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Wed, 08 Sep 2021 11:59:56 +0000
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the drm
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,103 +82,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Sep 2021, Dave Airlie <airlied@gmail.com> wrote:
-> From: Dave Airlie <airlied@redhat.com>
+On Mon, Sep 6, 2021 at 4:34 PM Daniel Vetter <daniel@ffwll.ch> wrote:
 >
-> This provide a service from irq to display, so make it separate
-> ---
->  drivers/gpu/drm/i915/display/intel_hotplug.c |  4 ++--
->  drivers/gpu/drm/i915/i915_drv.h              |  9 ++++++++-
->  drivers/gpu/drm/i915/i915_irq.c              | 14 +++++++-------
->  3 files changed, 17 insertions(+), 10 deletions(-)
+> On Mon, Sep 6, 2021 at 12:49 AM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> > Hi all,
+> >
+> > On Thu, 2 Sep 2021 07:50:38 +1000 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> > >
+> > > On Fri, 20 Aug 2021 15:23:34 +0900 Masahiro Yamada <masahiroy@kernel.org> wrote:
+> > > >
+> > > > On Fri, Aug 20, 2021 at 11:33 AM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> > > > >
+> >  > > After merging the drm tree, today's linux-next build (x86_64 allmodconfig)
+> > > > > failed like this:
+> > > > >
+> > > > > In file included from drivers/gpu/drm/i915/i915_debugfs.c:39:
+> > > > > drivers/gpu/drm/i915/gt/intel_gt_requests.h:9:10: fatal error: stddef.h: No such file or directory
+> > > > >     9 | #include <stddef.h>
+> > > > >       |          ^~~~~~~~~~
+> > > > >
+> > > > > Caused by commit
+> > > > >
+> > > > >   564f963eabd1 ("isystem: delete global -isystem compile option")
+> > > > >
+> > > > > from the kbuild tree interacting with commit
+> > > > >
+> > > > >   b97060a99b01 ("drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC")
+> > > > >
+> > > > > I have applied the following patch for today.
+> > > >
+> > > >
+> > > > Thanks.
+> > > >
+> > > > This fix-up does not depend on my kbuild tree in any way.
+> > > >
+> > > > So, the drm maintainer can apply it to his tree.
+> > > >
+> > > > Perhaps with
+> > > >
+> > > > Fixes: b97060a99b01 ("drm/i915/guc: Update intel_gt_wait_for_idle to
+> > > > work with GuC")
+> > >
+> > > OK, so that didn't happen so I will now apply the merge fix up to the
+> > > merge of the kbuild tree.
+> > >
+> > > > > From: Stephen Rothwell <sfr@canb.auug.org.au>
+> > > > > Date: Fri, 20 Aug 2021 12:24:19 +1000
+> > > > > Subject: [PATCH] drm/i915: use linux/stddef.h due to "isystem: trim/fixup stdarg.h and other headers"
+> > > > >
+> > > > > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/gt/intel_gt_requests.h | 2 +-
+> > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.h b/drivers/gpu/drm/i915/gt/intel_gt_requests.h
+> > > > > index 51dbe0e3294e..d2969f68dd64 100644
+> > > > > --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.h
+> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.h
+> > > > > @@ -6,7 +6,7 @@
+> > > > >  #ifndef INTEL_GT_REQUESTS_H
+> > > > >  #define INTEL_GT_REQUESTS_H
+> > > > >
+> > > > > -#include <stddef.h>
+> > > > > +#include <linux/stddef.h>
+> > > > >
+> > > > >  struct intel_engine_cs;
+> > > > >  struct intel_gt;
+> > > > > --
+> > > > > 2.32.0
+> >
+> > Ping?  I am still applying this ...
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> index 47c85ac97c87..a06e1e1b33e1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> @@ -215,8 +215,8 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
->  
->  static void intel_hpd_irq_setup(struct drm_i915_private *i915)
->  {
-> -	if (i915->display_irqs_enabled && i915->display.hpd_irq_setup)
-> -		i915->display.hpd_irq_setup(i915);
-> +	if (i915->display_irqs_enabled && i915->irq_funcs.hpd_irq_setup)
-> +		i915->irq_funcs.hpd_irq_setup(i915);
->  }
->  
->  static void intel_hpd_irq_storm_reenable_work(struct work_struct *work)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index fbe92f248d05..ece23401cb46 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -384,6 +384,10 @@ struct drm_i915_display_cdclk_funcs {
->  	u8 (*calc_voltage_level)(int cdclk);
->  };
->  
-> +struct drm_i915_irq_funcs {
-
-Here, I'm a bit divided with the naming, irqs being more of i915 core,
-even if serving display. I could go with intel_hotplug_funcs. *shrug*.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Apologies, this fell through a lot of cracks. I applied this to drm-next now.
 
 
-> +	void (*hpd_irq_setup)(struct drm_i915_private *dev_priv);
-> +};
-> +
->  struct drm_i915_display_funcs {
->  	/* Returns the active state of the crtc, and if the crtc is active,
->  	 * fills out the pipe-config with the hw state. */
-> @@ -401,7 +405,7 @@ struct drm_i915_display_funcs {
->  
->  	void (*fdi_link_train)(struct intel_crtc *crtc,
->  			       const struct intel_crtc_state *crtc_state);
-> -	void (*hpd_irq_setup)(struct drm_i915_private *dev_priv);
-> +
->  	/* clock updates for mode set */
->  	/* cursor updates */
->  	/* render clock increase/decrease */
-> @@ -993,6 +997,9 @@ struct drm_i915_private {
->  	/* pm display functions */
->  	struct drm_i915_wm_disp_funcs wm_disp;
->  
-> +	/* irq display functions */
-> +	struct drm_i915_irq_funcs irq_funcs;
-> +
->  	/* Display functions */
->  	struct drm_i915_display_funcs display;
->  
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index 0a1681384c84..f515a3a76a8e 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -4395,20 +4395,20 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
->  
->  	if (HAS_GMCH(dev_priv)) {
->  		if (I915_HAS_HOTPLUG(dev_priv))
-> -			dev_priv->display.hpd_irq_setup = i915_hpd_irq_setup;
-> +			dev_priv->irq_funcs.hpd_irq_setup = i915_hpd_irq_setup;
->  	} else {
->  		if (HAS_PCH_DG1(dev_priv))
-> -			dev_priv->display.hpd_irq_setup = dg1_hpd_irq_setup;
-> +			dev_priv->irq_funcs.hpd_irq_setup = dg1_hpd_irq_setup;
->  		else if (DISPLAY_VER(dev_priv) >= 11)
-> -			dev_priv->display.hpd_irq_setup = gen11_hpd_irq_setup;
-> +			dev_priv->irq_funcs.hpd_irq_setup = gen11_hpd_irq_setup;
->  		else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> -			dev_priv->display.hpd_irq_setup = bxt_hpd_irq_setup;
-> +			dev_priv->irq_funcs.hpd_irq_setup = bxt_hpd_irq_setup;
->  		else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-> -			dev_priv->display.hpd_irq_setup = icp_hpd_irq_setup;
-> +			dev_priv->irq_funcs.hpd_irq_setup = icp_hpd_irq_setup;
->  		else if (INTEL_PCH_TYPE(dev_priv) >= PCH_SPT)
-> -			dev_priv->display.hpd_irq_setup = spt_hpd_irq_setup;
-> +			dev_priv->irq_funcs.hpd_irq_setup = spt_hpd_irq_setup;
->  		else
-> -			dev_priv->display.hpd_irq_setup = ilk_hpd_irq_setup;
-> +			dev_priv->irq_funcs.hpd_irq_setup = ilk_hpd_irq_setup;
->  	}
->  }
+
+Rather, I was planning to apply this fix to my kbuild tree.
+
+Since you guys did not fix the issue in time,
+I ended up with dropping [1] from my pull request.
+
+I want to get [1] merged in this MW.
+
+If I postponed it, somebody would add new
+<stddef.h> or <stdint.h> inclusion in the next development
+cycle, I will never make it in the mainline.
+
+[1] https://lore.kernel.org/linux-kernel/YQhY40teUJcTc5H4@localhost.localdomain/
+
+
+
+
+
+> Matt/John, as author/committer it's your job to make sure issues and
+> fixes for the stuff you're pushing don't get lost. I'd have expected
+> John to apply this to at least drm-intel-gt-next (it's not even
+> there).
+>
+> Joonas, I think this is the 2nd or 3rd or so issue this release cycle
+> where some compile fix got stuck a bit because drm-intel-gt-next isn't
+> in linux-next. Can we please fix that? It probably needs some changes
+> to the dim script.
+>
+> Cheers, Daniel
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+
+
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Best Regards
+Masahiro Yamada
