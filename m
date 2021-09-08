@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FADA403709
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 11:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E9740370A
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Sep 2021 11:38:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D42F6E170;
-	Wed,  8 Sep 2021 09:38:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4CA96E171;
+	Wed,  8 Sep 2021 09:38:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2720B6E16D
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 09:38:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="220492799"
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="220492799"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F52E6E170
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 09:38:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10100"; a="220492803"
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="220492803"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2021 02:38:19 -0700
+ 08 Sep 2021 02:38:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="693170159"
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; d="scan'208";a="693170174"
 Received: from amanna.iind.intel.com ([10.223.74.76])
- by fmsmga006.fm.intel.com with ESMTP; 08 Sep 2021 02:38:17 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 08 Sep 2021 02:38:20 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: gwan-gyeong.mun@intel.com, mika.kahola@intel.com, jani.nikula@intel.com,
  manasi.d.navare@intel.com, Animesh Manna <animesh.manna@intel.com>
-Date: Wed,  8 Sep 2021 14:45:40 +0530
-Message-Id: <20210908091544.13772-2-animesh.manna@intel.com>
+Date: Wed,  8 Sep 2021 14:45:41 +0530
+Message-Id: <20210908091544.13772-3-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20210908091544.13772-1-animesh.manna@intel.com>
 References: <20210908091544.13772-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 1/5] drm/i915/panelreplay: update plane selective
- fetch register definition
+Subject: [Intel-gfx] [RFC 2/5] drm/i915/panelreplay: Feature flag added for
+ panel replay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,112 +49,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Panel replay can be enabled for all pipes driving DP 2.0 monitor,
-so updated the plane selective fetch register difinition accordingly.
+Platforms having Display 13 and above will support panel
+replay feature of DP 2.0 monitor. Added a feature flag
+for panel replay.
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c |  8 +++---
- drivers/gpu/drm/i915/i915_reg.h          | 32 +++++++++++++-----------
- 2 files changed, 22 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h          | 1 +
+ drivers/gpu/drm/i915/i915_pci.c          | 1 +
+ drivers/gpu/drm/i915/intel_device_info.h | 1 +
+ 3 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 3f6fb7d67f84..5fa76b148f6d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1445,7 +1445,7 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 
- 	val = plane_state ? plane_state->ctl : 0;
- 	val &= plane->id == PLANE_CURSOR ? val : PLANE_SEL_FETCH_CTL_ENABLE;
--	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), val);
-+	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(dev_priv, pipe, plane->id), val);
- 	if (!val || plane->id == PLANE_CURSOR)
- 		return;
- 
-@@ -1453,19 +1453,19 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 
- 	val = (clip->y1 + plane_state->uapi.dst.y1) << 16;
- 	val |= plane_state->uapi.dst.x1;
--	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_POS(pipe, plane->id), val);
-+	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_POS(dev_priv, pipe, plane->id), val);
- 
- 	/* TODO: consider auxiliary surfaces */
- 	x = plane_state->uapi.src.x1 >> 16;
- 	y = (plane_state->uapi.src.y1 >> 16) + clip->y1;
- 	val = y << 16 | x;
--	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_OFFSET(pipe, plane->id),
-+	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_OFFSET(dev_priv, pipe, plane->id),
- 			  val);
- 
- 	/* Sizes are 0 based */
- 	val = (drm_rect_height(clip) - 1) << 16;
- 	val |= (drm_rect_width(&plane_state->uapi.src) >> 16) - 1;
--	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_SIZE(pipe, plane->id), val);
-+	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_SIZE(dev_priv, pipe, plane->id), val);
- }
- 
- void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c2853cc005ee..5bc8f22fa9a8 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7471,6 +7471,7 @@ enum {
- #define _SEL_FETCH_PLANE_BASE_7_A		0x70960
- #define _SEL_FETCH_PLANE_BASE_CUR_A		0x70880
- #define _SEL_FETCH_PLANE_BASE_1_B		0x70990
-+#define _DG2_SEL_FETCH_PLANE_BASE_1_B		0x71890
- 
- #define _SEL_FETCH_PLANE_BASE_A(plane) _PICK(plane, \
- 					     _SEL_FETCH_PLANE_BASE_1_A, \
-@@ -7481,31 +7482,34 @@ enum {
- 					     _SEL_FETCH_PLANE_BASE_6_A, \
- 					     _SEL_FETCH_PLANE_BASE_7_A, \
- 					     _SEL_FETCH_PLANE_BASE_CUR_A)
--#define _SEL_FETCH_PLANE_BASE_1(pipe) _PIPE(pipe, _SEL_FETCH_PLANE_BASE_1_A, _SEL_FETCH_PLANE_BASE_1_B)
--#define _SEL_FETCH_PLANE_BASE(pipe, plane) (_SEL_FETCH_PLANE_BASE_1(pipe) - \
--					    _SEL_FETCH_PLANE_BASE_1_A + \
--					    _SEL_FETCH_PLANE_BASE_A(plane))
-+#define _SEL_FETCH_PLANE_BASE_1(dev_priv, pipe) _PIPE(pipe, _SEL_FETCH_PLANE_BASE_1_A, \
-+						      DISPLAY_VER(dev_priv) > 12 ? \
-+						      _DG2_SEL_FETCH_PLANE_BASE_1_B : \
-+						      _SEL_FETCH_PLANE_BASE_1_B)
-+#define _SEL_FETCH_PLANE_BASE(dev_priv, pipe, plane) (_SEL_FETCH_PLANE_BASE_1(dev_priv, pipe) - \
-+						      _SEL_FETCH_PLANE_BASE_1_A + \
-+						      _SEL_FETCH_PLANE_BASE_A(plane))
- 
- #define _SEL_FETCH_PLANE_CTL_1_A		0x70890
--#define PLANE_SEL_FETCH_CTL(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(pipe, plane) + \
-+#define PLANE_SEL_FETCH_CTL(dev_priv, pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(dev_priv, pipe, plane) + \
- 					       _SEL_FETCH_PLANE_CTL_1_A - \
- 					       _SEL_FETCH_PLANE_BASE_1_A)
- #define PLANE_SEL_FETCH_CTL_ENABLE		REG_BIT(31)
- 
- #define _SEL_FETCH_PLANE_POS_1_A		0x70894
--#define PLANE_SEL_FETCH_POS(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(pipe, plane) + \
--					       _SEL_FETCH_PLANE_POS_1_A - \
--					       _SEL_FETCH_PLANE_BASE_1_A)
-+#define PLANE_SEL_FETCH_POS(dev_priv, pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(dev_priv, pipe, plane) + \
-+							 _SEL_FETCH_PLANE_POS_1_A - \
-+							 _SEL_FETCH_PLANE_BASE_1_A)
- 
- #define _SEL_FETCH_PLANE_SIZE_1_A		0x70898
--#define PLANE_SEL_FETCH_SIZE(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(pipe, plane) + \
--						_SEL_FETCH_PLANE_SIZE_1_A - \
--						_SEL_FETCH_PLANE_BASE_1_A)
-+#define PLANE_SEL_FETCH_SIZE(dev_priv, pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(dev_priv, pipe, plane) + \
-+							  _SEL_FETCH_PLANE_SIZE_1_A - \
-+							  _SEL_FETCH_PLANE_BASE_1_A)
- 
- #define _SEL_FETCH_PLANE_OFFSET_1_A		0x7089C
--#define PLANE_SEL_FETCH_OFFSET(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(pipe, plane) + \
--						  _SEL_FETCH_PLANE_OFFSET_1_A - \
--						  _SEL_FETCH_PLANE_BASE_1_A)
-+#define PLANE_SEL_FETCH_OFFSET(dev_priv, pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(dev_priv, pipe, plane) + \
-+							    _SEL_FETCH_PLANE_OFFSET_1_A - \
-+							    _SEL_FETCH_PLANE_BASE_1_A)
- 
- /* SKL new cursor registers */
- #define _CUR_BUF_CFG_A				0x7017c
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 1fd3040b6771..5b26d7c09b2d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1645,6 +1645,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
+ #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
+ #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
++#define HAS_PR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_pr)
+ #define HAS_PSR_HW_TRACKING(dev_priv) \
+ 	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
+ #define HAS_PSR2_SEL_FETCH(dev_priv)	 (GRAPHICS_VER(dev_priv) >= 12)
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index d4a6a9dcf182..c58bd19b5bdf 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -946,6 +946,7 @@ static const struct intel_device_info adl_s_info = {
+ 	.display.has_hotplug = 1,						\
+ 	.display.has_ipc = 1,							\
+ 	.display.has_psr = 1,							\
++	.display.has_pr = 1,						\
+ 	.display.ver = 13,							\
+ 	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),	\
+ 	.pipe_offsets = {							\
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index d328bb95c49b..4552a1f88568 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -161,6 +161,7 @@ enum intel_ppgtt_type {
+ 	func(has_modular_fia); \
+ 	func(has_overlay); \
+ 	func(has_psr); \
++	func(has_pr); \
+ 	func(has_psr_hw_tracking); \
+ 	func(overlay_needs_physical); \
+ 	func(supports_tv);
 -- 
 2.29.0
 
