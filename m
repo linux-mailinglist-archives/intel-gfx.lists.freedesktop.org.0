@@ -1,42 +1,99 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02DC1404A37
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 13:45:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 153BB404E45
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 14:17:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE796E563;
-	Thu,  9 Sep 2021 11:45:01 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF6096E563;
- Thu,  9 Sep 2021 11:44:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10101"; a="218908370"
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="218908370"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 04:44:59 -0700
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="548513678"
-Received: from ccoakley-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.232.129])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 04:44:57 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
+	by gabe.freedesktop.org (Postfix) with ESMTP id 264B56E863;
+	Thu,  9 Sep 2021 12:17:20 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A259F6E488;
+ Thu,  9 Sep 2021 08:12:47 +0000 (UTC)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 189852Mw069685; Thu, 9 Sep 2021 04:12:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=date : from : to : cc :
+ subject : message-id : references : content-type : in-reply-to :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=1QBC0gO9jX+j/GMDkp+6FzlHfqejN+eqZ3u8oR8pMBg=;
+ b=U8gAi7CP+q8RETXzouDkNcyKv5feeYDKkRgKpZYzRrnHqneKCQDO47OcDfHIQ6g4U42c
+ fpSu+1ozhX6IoD7Q/I7o4aQDz5mlbtOb538dA5uBuMf12l/Fk6IhMNI5iI+CCKFXfz8o
+ 40sHTe866MYf7mE0ptOlOLvkhkX1jnXao4ACtl8QG8JkGDid55RBmdCh/+LgCNfXkRb6
+ ZwO4OKyd1uk4XzUvA+4p7f0ZFWHSDORqvJpVYtPGqaWV6TB8YCKaeC8AhzvdA3X56jRv
+ OjudKqOADYRK2dbYYpLOD/6RNHxVEFWC0Y1ymkUJymKrOx4oSPw4tuMCb4HxG+Jt2YsG Gw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com with ESMTP id 3ayebwraeh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 09 Sep 2021 04:12:43 -0400
+Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
+ by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 18985a2w071993;
+ Thu, 9 Sep 2021 04:12:42 -0400
+Received: from ppma06ams.nl.ibm.com (66.31.33a9.ip4.static.sl-reverse.com
+ [169.51.49.102])
+ by mx0b-001b2d01.pphosted.com with ESMTP id 3ayebwradw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 09 Sep 2021 04:12:42 -0400
+Received: from pps.filterd (ppma06ams.nl.ibm.com [127.0.0.1])
+ by ppma06ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18987KUD031154;
+ Thu, 9 Sep 2021 08:12:41 GMT
+Received: from b06cxnps4076.portsmouth.uk.ibm.com
+ (d06relay13.portsmouth.uk.ibm.com [9.149.109.198])
+ by ppma06ams.nl.ibm.com with ESMTP id 3axcnnsw9u-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 09 Sep 2021 08:12:40 +0000
+Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com
+ [9.149.105.58])
+ by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 1898CcmA45220220
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 9 Sep 2021 08:12:38 GMT
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 6CCF44C066;
+ Thu,  9 Sep 2021 08:12:38 +0000 (GMT)
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 0A4154C04E;
+ Thu,  9 Sep 2021 08:12:38 +0000 (GMT)
+Received: from osiris (unknown [9.145.66.211])
+ by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
+ Thu,  9 Sep 2021 08:12:37 +0000 (GMT)
+Date: Thu, 9 Sep 2021 10:12:36 +0200
+From: Heiko Carstens <hca@linux.ibm.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Eero Tamminen <eero.t.tamminen@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>
-Date: Thu,  9 Sep 2021 12:44:48 +0100
-Message-Id: <20210909114448.508493-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Message-ID: <YTnB9BxCjq8Ihek7@osiris>
+References: <YRe7I67h4gMVOWuu@osiris> <YRztFhtGS9RkP2Bf@osiris>
+ <YR6d3nU1R14Eqpic@intel.com> <YR/SvvDxQjp52h6A@osiris>
+ <YSfhWN/PDvXbY/z8@osiris>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+In-Reply-To: <YSfhWN/PDvXbY/z8@osiris>
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: 6CRkUUYFYLIw6xE6cDQ1lTYvH3yVaE3W
+X-Proofpoint-GUID: CRST49t0LiBeGCQaDMBwTrDxYhSgyFX1
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5] drm/i915: Use Transparent Hugepages when
- IOMMU is enabled
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.790
+ definitions=2021-09-09_02:2021-09-07,
+ 2021-09-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0
+ priorityscore=1501 mlxscore=0 mlxlogscore=999 phishscore=0 spamscore=0
+ lowpriorityscore=0 suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109030001 definitions=main-2109090048
+X-Mailman-Approved-At: Thu, 09 Sep 2021 12:17:18 +0000
+Subject: Re: [Intel-gfx] [BUG - BISECTED] display not detected anymore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,217 +109,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Hi Ville,
 
-Usage of Transparent Hugepages was disabled in 9987da4b5dcf
-("drm/i915: Disable THP until we have a GPU read BW W/A"), but since it
-appears majority of performance regressions reported with an enabled IOMMU
-can be almost eliminated by turning them on, lets just do that.
+> > > > ef79d62b5ce5 ("drm/i915: Encapsulate dbuf state handling harder")
+> > > > 
+> > > > With that commit the display is not detected anymore, one commit
+> > > > before that it still works. So this one seems to be broken.
+> > > > 
+> > > > Ville, Stanislav, any idea how to fix this?
+> > > > 
+> > > > commit ef79d62b5ce53851901d6c1d21b74cbb9e27219b
+> > > > Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > Date:   Fri Jan 22 22:56:32 2021 +0200
+> > > > 
+> > > >     drm/i915: Encapsulate dbuf state handling harder
+> > > 
+> > > That has nothing to do with display detection, so very mysterious.
+> > > 
+> > > Please file a bug at https://gitlab.freedesktop.org/drm/intel/issues/new
+> > > boot with drm.debug=0xe with both good and bad kernels and attach the
+> > > dmesg from both to the bug.
+> > 
+> > Everything (hopefully) provided here:
+> > https://gitlab.freedesktop.org/drm/intel/-/issues/4013
+> > 
+> > Please let me know if you need more, or if I can help otherwise to
+> > resolve this.
+> 
+> Did you have any time to look into this already?
 
-To err on the side of safety we keep the current default in cases where
-IOMMU is not active, and only when it is default to the "huge=within_size"
-mode. Although there probably would be wins to enable them throughout,
-more extensive testing across benchmarks and platforms would need to be
-done.
+How do we proceed with this? Saying that this is either "very
+mysterious" or "very strange" won't fix the regression. :)
 
-With the patch and IOMMU enabled my local testing on a small Skylake part
-shows OglVSTangent regression being reduced from ~14% (IOMMU on versus
-IOMMU off) to ~2% (same comparison but with THP on).
-
-More detailed testing done in the below referenced Gitlab issue by Eero:
-
-Skylake GT4e:
-
-Performance drops from enabling IOMMU:
-
-    30-35% SynMark CSDof
-    20-25% Unigine Heaven, MemBW GPU write, SynMark VSTangent
-    ~20% GLB Egypt  (1/2 screen window)
-    10-15% GLB T-Rex (1/2 screen window)
-    8-10% GfxBench T-Rex, MemBW GPU blit
-    7-8% SynMark DeferredAA + TerrainFly* + ZBuffer
-    6-7% GfxBench Manhattan 3.0 + 3.1, SynMark TexMem128 & CSCloth
-    5-6% GfxBench CarChase, Unigine Valley
-    3-5% GfxBench Vulkan & GL AztecRuins + ALU2, MemBW GPU texture,
-         SynMark Fill*, Deferred, TerrainPan*
-    1-2% Most of the other tests
-
-With the patch drops become:
-
-    20-25% SynMark TexMem*
-    15-20% GLB Egypt (1/2 screen window)
-    10-15% GLB T-Rex (1/2 screen window)
-    4-7% GfxBench T-Rex, GpuTest Triangle
-    1-8% GfxBench ALU2 (offscreen 1%, onscreen 8%)
-    3% GfxBench Manhattan 3.0, SynMark CSDof
-    2-3% Unigine Heaven + Valley, MemBW GPU texture
-    1-3 GfxBench Manhattan 3.1 + CarChase + Vulkan & GL AztecRuins
-
-Broxton:
-
-Performance drops from IOMMU, without patch:
-
-    30% MemBW GPU write
-    25% SynMark ZBuffer + Fill*
-    20% MemBW GPU blit
-    15% MemBW GPU blend, GpuTest Triangle
-    10-15% MemBW GPU texture
-    10% GLB Egypt, Unigine Heaven (had hangs), SynMark TerrainFly*
-    7-9% GLB T-Rex, GfxBench Manhattan 3.0 + T-Rex,
-         SynMark Deferred* + TexMem*
-    6-8% GfxBench CarChase, Unigine Valley,
-         SynMark CSCloth + ShMapVsm + TerrainPan*
-    5-6% GfxBench Manhattan 3.1 + GL AztecRuins,
-         SynMark CSDof + TexFilterTri
-    2-4% GfxBench ALU2, SynMark DrvRes + GSCloth + ShMapPcf + Batch[0-5] +
-         TexFilterAniso, GpuTest GiMark + 32-bit Julia
-
-And with patch:
-
-    15-20% MemBW GPU texture
-    10% SynMark TexMem*
-    8-9% GLB Egypt (1/2 screen window)
-    4-5% GLB T-Rex (1/2 screen window)
-    3-6% GfxBench Manhattan 3.0, GpuTest FurMark,
-         SynMark Deferred + TexFilterTri
-    3-4% GfxBench Manhattan 3.1 + T-Rex, SynMark VSInstancing
-    2-4% GpuTest Triangle, SynMark DeferredAA
-    2-3% Unigine Heaven + Valley
-    1-3% SynMark Terrain*
-    1-2% GfxBench CarChase, SynMark TexFilterAniso + ZBuffer
-
-Tigerlake-H:
-
-    20-25% MemBW GPU texture
-    15-20% GpuTest Triangle
-    13-15% SynMark TerrainFly* + DeferredAA + HdrBloom
-    8-10% GfxBench Manhattan 3.1, SynMark TerrainPan* + DrvRes
-    6-7% GfxBench Manhattan 3.0, SynMark TexMem*
-    4-8% GLB onscreen Fill + T-Rex + Egypt (more in onscreen than
-         offscreen versions of T-Rex/Egypt)
-    4-6% GfxBench CarChase + GLES AztecRuins + ALU2, GpuTest 32-bit Julia,
-         SynMark CSDof + DrvState
-    3-5% GfxBench T-Rex + Egypt, Unigine Heaven + Valley, GpuTest Plot3D
-    1-7% Media tests
-    2-3% MemBW GPU blit
-    1-3% Most of the rest of 3D tests
-
-With the patch:
-
-    6-8% MemBW GPU blend => the only regression in these tests (compared
-         to IOMMU without THP)
-    4-6% SynMark DrvState (not impacted) + HdrBloom (improved)
-    3-4% GLB T-Rex
-    ~3% GLB Egypt, SynMark DrvRes
-    1-3% GfxBench T-Rex + Egypt, SynMark TexFilterTri
-    1-2% GfxBench CarChase + GLES AztecRuins, Unigine Valley,
-        GpuTest Triangle
-    ~1% GfxBench Manhattan 3.0/3.1, Unigine Heaven
-
-Perf of several tests actually improved with IOMMU + THP, compared to no
-IOMMU / no THP:
-
-    10-15% SynMark Batch[0-3]
-    5-10% MemBW GPU texture, SynMark ShMapVsm
-    3-4% SynMark Fill* + Geom*
-    2-3% SynMark TexMem512 + CSCloth
-    1-2% SynMark TexMem128 + DeferredAA
-
-As a summary across all platforms, these are the benchmarks where enabling
-THP on top of IOMMU enabled brings regressions:
-
- * Skylake GT4e:
-   20-25% SynMark TexMem*
-   (whereas all MemBW GPU tests either improve or are not affected)
-
- * Broxton J4205:
-   7% MemBW GPU texture
-   2-3% SynMark TexMem*
-
- * Tigerlake-H:
-   7% MemBW GPU blend
-
-Other benchmarks show either lowering of regressions or improvements.
-
-v2:
- * Add Kconfig dependency to transparent hugepages and some help text.
- * Move to helper for easier handling of kernel build options.
-
-v3:
- * Drop Kconfig. (Daniel)
-
-v4:
- * Add some benchmark results to commit message.
-
-v5:
- * Add explicit regression summary to commit message. (Eero)
-
-References: b901bb89324a ("drm/i915/gemfs: enable THP")
-References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/430
-Co-developed-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Eero Tamminen <eero.t.tamminen@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v1
----
- drivers/gpu/drm/i915/gem/i915_gemfs.c | 22 +++++++++++++++++++---
- 1 file changed, 19 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-index 5e6e8c91ab38..dbdbdc344d87 100644
---- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-@@ -6,7 +6,6 @@
- 
- #include <linux/fs.h>
- #include <linux/mount.h>
--#include <linux/pagemap.h>
- 
- #include "i915_drv.h"
- #include "i915_gemfs.h"
-@@ -15,6 +14,7 @@ int i915_gemfs_init(struct drm_i915_private *i915)
- {
- 	struct file_system_type *type;
- 	struct vfsmount *gemfs;
-+	char *opts;
- 
- 	type = get_fs_type("tmpfs");
- 	if (!type)
-@@ -26,10 +26,26 @@ int i915_gemfs_init(struct drm_i915_private *i915)
- 	 *
- 	 * One example, although it is probably better with a per-file
- 	 * control, is selecting huge page allocations ("huge=within_size").
--	 * Currently unused due to bandwidth issues (slow reads) on Broadwell+.
-+	 * However, we only do so to offset the overhead of iommu lookups
-+	 * due to bandwidth issues (slow reads) on Broadwell+.
- 	 */
- 
--	gemfs = kern_mount(type);
-+	opts = NULL;
-+	if (intel_vtd_active()) {
-+		if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
-+			static char huge_opt[] = "huge=within_size"; /* r/w */
-+
-+			opts = huge_opt;
-+			drm_info(&i915->drm,
-+				 "Transparent Hugepage mode '%s'\n",
-+				 opts);
-+		} else {
-+			drm_notice(&i915->drm,
-+				   "Transparent Hugepage support is recommended for optimal performance when IOMMU is enabled!\n");
-+		}
-+	}
-+
-+	gemfs = vfs_kern_mount(type, SB_KERNMOUNT, type->name, opts);
- 	if (IS_ERR(gemfs))
- 		return PTR_ERR(gemfs);
- 
--- 
-2.30.2
-
+Thanks,
+Heiko
