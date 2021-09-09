@@ -2,58 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBAFB4046F2
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 10:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5751C4046F9
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 10:25:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2786E49A;
-	Thu,  9 Sep 2021 08:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2559C6E4A1;
+	Thu,  9 Sep 2021 08:25:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from desiato.infradead.org (desiato.infradead.org
- [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7926E492;
- Thu,  9 Sep 2021 08:22:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=zXGn+KAsLSdghJDwAp3kCZ0yqN34x/izanZqsWV0Tjo=; b=lrdSDGIFyzKoKUkfK/+sinkOOL
- mLRB2xLXGBEFPHOt9tjdPdZGnlyPXfIVQFsavsBfesnVJYnDEcGOZt9tr6mZ8KZh5RgT5y3RvLL3S
- an54tLPcpBQK8VWgshAarcRYTajI79A9dyTqpHs96cf9u+0x/Y/6qAIbgWlf/2q1DE/eY7Kv+lsD5
- Dcx9QzjKnfe9pl2Xbl/iSBFJyXP6GMKH9IU+hCPXJZvkaLGvF+/Vb7k3DbbHRrnsWyip/eOAtzzL+
- CN7UnW9FvcJI7C/IIivsrR4rxdz3vkjJRQpiTbE2abnNOyTpc5gPX4V7cOkU34thb9ciIr8UrRQA1
- nXvymRog==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
- by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mOFKQ-001pRn-7n; Thu, 09 Sep 2021 08:22:38 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 32D42300038;
- Thu,  9 Sep 2021 10:22:37 +0200 (CEST)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id 1A37B2C83E2E7; Thu,  9 Sep 2021 10:22:37 +0200 (CEST)
-Date: Thu, 9 Sep 2021 10:22:37 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org
-Message-ID: <YTnETRSy9H0CRdpc@hirez.programming.kicks-ass.net>
-References: <20210907132044.157225-1-maarten.lankhorst@linux.intel.com>
- <YTiM/zf8BuNw7wes@hirez.programming.kicks-ass.net>
- <96ab9cf1-250a-8f34-51ec-4a7f66a87b39@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7087A6E49D;
+ Thu,  9 Sep 2021 08:25:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10101"; a="220754518"
+X-IronPort-AV: E=Sophos;i="5.85,279,1624345200"; d="scan'208";a="220754518"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 01:25:33 -0700
+X-IronPort-AV: E=Sophos;i="5.85,279,1624345200"; d="scan'208";a="548424295"
+Received: from shishpan-mobl2.ccr.corp.intel.com (HELO [10.252.43.251])
+ ([10.252.43.251])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 01:25:30 -0700
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Message-ID: <37c5fe2e-5be8-45c3-286b-d8d536a5cef2@linux.intel.com>
+Date: Thu, 9 Sep 2021 10:25:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <96ab9cf1-250a-8f34-51ec-4a7f66a87b39@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] kernel/locking: Add context to
- ww_mutex_trylock.
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,12 +54,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 09, 2021 at 07:38:06AM +0200, Maarten Lankhorst wrote:
+drm-misc-next-fixes-2021-09-09:
+drm-misc-next-fixes for v5.15:
+- Make some dma-buf config options depend on DMA_SHARED_BUFFER.
+- Handle multiplication overflow of fbdev xres/yres in the core.
+The following changes since commit efcefc7127290e7e9fa98dea029163ad8eda8fb3:
 
-> > You'll need a similar hunk in ww_rt_mutex.c
-> 
-> What tree has that file?
+  drm/ttm: Fix ttm_bo_move_memcpy() for subclassed struct ttm_resource (2021-08-31 10:48:26 +0200)
 
-Linus' tree should have it. Per commit:
+are available in the Git repository at:
 
-  f8635d509d80 ("locking/ww_mutex: Implement rtmutex based ww_mutex API functions")
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-09-09
+
+for you to fetch changes up to 8c28051cdcbe9dfcec6bd0a4709d67a09df6edae:
+
+  fbmem: don't allow too huge resolutions (2021-09-08 18:52:04 +0200)
+
+----------------------------------------------------------------
+drm-misc-next-fixes for v5.15:
+- Make some dma-buf config options depend on DMA_SHARED_BUFFER.
+- Handle multiplication overflow of fbdev xres/yres in the core.
+
+----------------------------------------------------------------
+Geert Uytterhoeven (3):
+      dma-buf: DMABUF_MOVE_NOTIFY should depend on DMA_SHARED_BUFFER
+      dma-buf: DMABUF_DEBUG should depend on DMA_SHARED_BUFFER
+      dma-buf: DMABUF_SYSFS_STATS should depend on DMA_SHARED_BUFFER
+
+Tetsuo Handa (1):
+      fbmem: don't allow too huge resolutions
+
+ drivers/dma-buf/Kconfig          | 4 +++-
+ drivers/video/fbdev/core/fbmem.c | 6 ++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
