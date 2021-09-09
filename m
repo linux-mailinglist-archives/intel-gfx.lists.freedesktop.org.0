@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748AF4053A6
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 14:52:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92DF54053A8
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 14:53:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A2096E86B;
-	Thu,  9 Sep 2021 12:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1376E86C;
+	Thu,  9 Sep 2021 12:52:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEBF16E864;
- Thu,  9 Sep 2021 12:52:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10101"; a="200979592"
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="200979592"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B6746E86C;
+ Thu,  9 Sep 2021 12:52:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10101"; a="220831449"
+X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="220831449"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 05:52:51 -0700
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="548547796"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 05:52:57 -0700
+X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="548547800"
 Received: from okozlyk-mobl.ger.corp.intel.com (HELO localhost)
  ([10.251.214.52])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 05:52:48 -0700
+ 09 Sep 2021 05:52:54 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@intel.com,
  ville.syrjala@linux.intel.com, manasi.d.navare@intel.com
-Date: Thu,  9 Sep 2021 15:51:58 +0300
-Message-Id: <fe9a222ad900da797c989de9f7fa13928d2c9861.1631191763.git.jani.nikula@intel.com>
+Date: Thu,  9 Sep 2021 15:51:59 +0300
+Message-Id: <723b29223dc570c8b63c3c6fe5fb772d9db06c0d.1631191763.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1631191763.git.jani.nikula@intel.com>
 References: <cover.1631191763.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 06/13] drm/i915/dp: add helper for checking
- for UHBR link rate
+Subject: [Intel-gfx] [PATCH v3 07/13] drm/i915/dp: use 128b/132b TPS2 for
+ UHBR+ link rates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,43 +51,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Helpful abstraction to avoid duplication.
+128b/132b channel encoding has separate TPS1 and TPS2, although the DPCD
+register values coincide with 8b/10b TPS1 and TPS2 values. Use 128b/132b
+TPS2 for channel equalization.
 
+v2: Use intel_dp_is_uhbr
+
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com> # v1
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 6 ++++++
- drivers/gpu/drm/i915/display/intel_dp.h | 1 +
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d28bd8c4a8a5..d189d95e4450 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -115,6 +115,12 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
- static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 508a514c5e37..36b35239da83 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -602,9 +602,9 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ }
  
-+/* Is link rate UHBR and thus 128b/132b? */
-+bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
-+{
-+	return crtc_state->port_clock >= 1000000;
-+}
-+
- /* update sink rates from dpcd */
- static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
+ /*
+- * Pick training pattern for channel equalization. Training pattern 4 for HBR3
+- * or for 1.4 devices that support it, training Pattern 3 for HBR2
+- * or 1.2 devices that support it, Training Pattern 2 otherwise.
++ * Pick Training Pattern Sequence (TPS) for channel equalization. 128b/132b TPS2
++ * for UHBR+, TPS4 for HBR3 or for 1.4 devices that support it, TPS3 for HBR2 or
++ * 1.2 devices that support it, TPS2 otherwise.
+  */
+ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
+ 				     const struct intel_crtc_state *crtc_state,
+@@ -612,6 +612,10 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
  {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index a28fff286c21..94b568704b22 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -58,6 +58,7 @@ int intel_dp_compute_config(struct intel_encoder *encoder,
- 			    struct intel_crtc_state *pipe_config,
- 			    struct drm_connector_state *conn_state);
- bool intel_dp_is_edp(struct intel_dp *intel_dp);
-+bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
- bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
- enum irqreturn intel_dp_hpd_pulse(struct intel_digital_port *dig_port,
- 				  bool long_hpd);
+ 	bool source_tps3, sink_tps3, source_tps4, sink_tps4;
+ 
++	/* UHBR+ use separate 128b/132b TPS2 */
++	if (intel_dp_is_uhbr(crtc_state))
++		return DP_TRAINING_PATTERN_2;
++
+ 	/*
+ 	 * Intel platforms that support HBR3 also support TPS4. It is mandatory
+ 	 * for all downstream devices that support HBR3. There are no known eDP
 -- 
 2.30.2
 
