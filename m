@@ -1,35 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797E54042BC
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 03:36:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F74B4042F7
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 03:42:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4A686E3F2;
-	Thu,  9 Sep 2021 01:36:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85B2B6E40A;
+	Thu,  9 Sep 2021 01:42:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CB60C6E3F2;
- Thu,  9 Sep 2021 01:36:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DA4F46E40A;
+ Thu,  9 Sep 2021 01:42:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B6CB5A363D;
- Thu,  9 Sep 2021 01:36:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6718769093237326996=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D31E5A66C9;
+ Thu,  9 Sep 2021 01:42:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Dave Airlie" <airlied@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 09 Sep 2021 01:36:13 -0000
-Message-ID: <163115137371.16811.3974957315783670280@emeril.freedesktop.org>
+Date: Thu, 09 Sep 2021 01:42:00 -0000
+Message-ID: <163115172083.16810.248197512209643492@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210909004941.379035-1-lucas.demarchi@intel.com>
-In-Reply-To: <20210909004941.379035-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_rename_debugfs=5Fgt_fil?=
- =?utf-8?q?es?=
+References: <20210909011100.2987971-1-airlied@gmail.com>
+In-Reply-To: <20210909011100.2987971-1-airlied@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_i915/display=3A_split_and_constify_vtable_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,219 +45,103 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6718769093237326996==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/4] drm/i915: rename debugfs_gt files
-URL   : https://patchwork.freedesktop.org/series/94489/
-State : success
+Series: i915/display: split and constify vtable (rev2)
+URL   : https://patchwork.freedesktop.org/series/94459/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10565 -> Patchwork_20993
-====================================================
+$ dim checkpatch origin/drm-tip
+861185f462cb drm/i915/pm: drop get_fifo_size vfunc.
+0128f0dd02e7 drm/i915: make update_wm take a dev_priv.
+6736ec4f3d7c drm/i915/wm: provide wrappers around watermark vfuncs calls
+-:9: WARNING:TYPO_SPELLING: 'existance' may be misspelled - perhaps 'existence'?
+#9: 
+One thing to note is that the code checks the existance of some
+                                              ^^^^^^^^^
 
-Summary
--------
+-:24: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#24: FILE: drivers/gpu/drm/i915/display/intel_display.c:129:
+ 
++
 
-  **SUCCESS**
+-:68: WARNING:LINE_SPACING: Missing a blank line after declarations
+#68: FILE: drivers/gpu/drm/i915/display/intel_display.c:173:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.compute_pipe_wm)
 
-  No regressions found.
+-:77: WARNING:LINE_SPACING: Missing a blank line after declarations
+#77: FILE: drivers/gpu/drm/i915/display/intel_display.c:182:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (drm_WARN_ON(&dev_priv->drm,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html
+-:89: WARNING:LINE_SPACING: Missing a blank line after declarations
+#89: FILE: drivers/gpu/drm/i915/display/intel_display.c:194:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.initial_watermarks) {
 
-Known issues
-------------
+-:100: WARNING:LINE_SPACING: Missing a blank line after declarations
+#100: FILE: drivers/gpu/drm/i915/display/intel_display.c:205:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.atomic_update_watermarks)
 
-  Here are the changes found in Patchwork_20993 that come from known issues:
+-:108: WARNING:LINE_SPACING: Missing a blank line after declarations
+#108: FILE: drivers/gpu/drm/i915/display/intel_display.c:213:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.optimize_watermarks)
 
-### IGT changes ###
+-:115: WARNING:LINE_SPACING: Missing a blank line after declarations
+#115: FILE: drivers/gpu/drm/i915/display/intel_display.c:220:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.compute_global_watermarks)
 
-#### Issues hit ####
+-:129: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 20)
+#129: FILE: drivers/gpu/drm/i915/display/intel_display.c:2626:
++		if (!intel_initial_watermarks(state, crtc))
++		    if (new_crtc_state->update_wm_pre)
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+-:130: WARNING:TABSTOP: Statements should start on a tabstop
+#130: FILE: drivers/gpu/drm/i915/display/intel_display.c:2627:
++		    if (new_crtc_state->update_wm_pre)
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+-:171: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#171: FILE: drivers/gpu/drm/i915/display/intel_display.c:3670:
++	if (!intel_initial_watermarks(state, crtc))
++	    intel_update_watermarks(dev_priv);
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][3] -> [INCOMPLETE][4] ([i915#2940])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+total: 0 errors, 10 warnings, 1 checks, 319 lines checked
+d4355a1ab8b5 drm/i915: add wrappers around cdclk vtable funcs.
+-:30: WARNING:LINE_SPACING: Missing a blank line after declarations
+#30: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:71:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	return dev_priv->display.bw_calc_min_cdclk(state);
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-FAIL][6] ([i915#541])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+total: 0 errors, 1 warnings, 0 checks, 127 lines checked
+50c640da1629 drm/i915/display: add intel_fdi_link_train wrapper.
+8f69042761b2 drm/i915: split clock gating init from display vtable
+c398feb04b80 drm/i915: split watermark vfuncs from display vtable.
+15521fe74480 drm/i915: split color functions from display vtable
+e7e7cb2df965 drm/i915: split audio functions from display vtable
+293f7a3cd1ee drm/i915: split cdclk functions from display vtable.
+833a11509155 drm/i915: split irq hotplug function from display vtable
+e47bebd1891f drm/i915: split fdi link training from display vtable.
+db3b4508c591 drm/i915: split the dpll clock compute out from display vtable.
+34025d57fe46 drm/i915: constify fdi link training vtable
+344a6d43dbcf drm/i915: constify hotplug function vtable.
+31b6e09af8a9 drm/i915: constify color function vtable.
+-:196: CHECK:BRACES: Unbalanced braces around else statement
+#196: FILE: drivers/gpu/drm/i915/display/intel_color.c:2194:
++		} else
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@runner@aborted:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#3428])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - {fi-jsl-1}:         [DMESG-FAIL][9] ([i915#1886]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (47 -> 38)
-------------------------------
-
-  Missing    (9): fi-kbl-soraka fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10565 -> Patchwork_20993
-
-  CI-20190529: 20190529
-  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20993: 9c1930918f14247079ef11b7af3fbf06488fbb57 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9c1930918f14 drm/i915: deduplicate frequency dump on debugfs
-139ac6e275d3 drm/i915: rename debugfs_gt_pm files
-bdf1cc706705 drm/i915: rename debugfs_engines files
-dc1cedc411a9 drm/i915: rename debugfs_gt files
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html
-
---===============6718769093237326996==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 187 lines checked
+75a66a44f968 drm/i915: constify the audio function vtable
+15b1d958a0f9 drm/i915: constify the dpll clock vtable
+d9a59612ea5b drm/i915: constify the cdclk vtable
+847e28dad4f3 drm/i915: drop unused function ptr and comments.
+49a26c76173c drm/i915: constify display function vtable
+fecaefd7d43d drm/i915: constify clock gating init vtable.
+95a2f0fcea26 drm/i915: constify display wm vtable
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915: rename debugfs_gt files</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94489/">https://patchwork.freedesktop.org/series/94489/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10565 -&gt; Patchwork_20993</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20993 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_pm:<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 38)</h2>
-<p>Missing    (9): fi-kbl-soraka fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10565 -&gt; Patchwork_20993</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20993: 9c1930918f14247079ef11b7af3fbf06488fbb57 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9c1930918f14 drm/i915: deduplicate frequency dump on debugfs<br />
-139ac6e275d3 drm/i915: rename debugfs_gt_pm files<br />
-bdf1cc706705 drm/i915: rename debugfs_engines files<br />
-dc1cedc411a9 drm/i915: rename debugfs_gt files</p>
-
-</body>
-</html>
-
---===============6718769093237326996==--
