@@ -1,44 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2354404294
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 03:11:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC86404295
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 03:11:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE77B6E3F0;
-	Thu,  9 Sep 2021 01:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29A516E3F2;
+	Thu,  9 Sep 2021 01:11:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 805746E3F0
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 01:11:12 +0000 (UTC)
+ (us-smtp-delivery-44.mimecast.com [205.139.111.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49A9E6E3F0
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 01:11:13 +0000 (UTC)
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-447-dByrS163PH2io-wdZ46APw-1; Wed, 08 Sep 2021 21:11:06 -0400
-X-MC-Unique: dByrS163PH2io-wdZ46APw-1
+ us-mta-32-Xrek_smhOJuVhIwBA3_sWA-1; Wed, 08 Sep 2021 21:11:08 -0400
+X-MC-Unique: Xrek_smhOJuVhIwBA3_sWA-1
 Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
  [10.5.11.23])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4FF84362F8;
- Thu,  9 Sep 2021 01:11:05 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 61C0C824FA7;
+ Thu,  9 Sep 2021 01:11:07 +0000 (UTC)
 Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E33CA19736;
- Thu,  9 Sep 2021 01:11:03 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id A0C4519736;
+ Thu,  9 Sep 2021 01:11:05 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com
-Date: Thu,  9 Sep 2021 11:10:37 +1000
-Message-Id: <20210909011100.2987971-1-airlied@gmail.com>
+Cc: jani.nikula@linux.intel.com, Dave Airlie <airlied@redhat.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Date: Thu,  9 Sep 2021 11:10:38 +1000
+Message-Id: <20210909011100.2987971-2-airlied@gmail.com>
+In-Reply-To: <20210909011100.2987971-1-airlied@gmail.com>
+References: <20210909011100.2987971-1-airlied@gmail.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=airlied@gmail.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=WINDOWS-1252
-Subject: [Intel-gfx] [PATCH 00/23] i915/display: split and constify vtable
- (v2)
+Content-Type: text/plain; charset="US-ASCII"
+Subject: [Intel-gfx] [PATCH 01/23] drm/i915/pm: drop get_fifo_size vfunc.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,40 +58,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Details below, I've taken all the review feedback (thanks Jani).
-I added 3 patches moving to wrappers before refactoring, and
-one other patch is unreviewed (07) but the main comment was wanting
-the wrappers.
+From: Dave Airlie <airlied@redhat.com>
 
-Jani if you are happy with the final 4 patches can you land this
-series, I don't think I have drm-intel commit rights.
+The i845_update_wm code was always calling the i845 variant,
+and the i9xx_update_wm had only a choice between i830 and i9xx
+paths, hardly worth the vfunc overhead.
 
-v1:
-This is orthogonal to my display ptr refactoring and should probably
-be applied first.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Dave Airlie <airlied@redhat.com>
+---
+ drivers/gpu/drm/i915/i915_drv.h |  2 --
+ drivers/gpu/drm/i915/intel_pm.c | 20 +++++++++++---------
+ 2 files changed, 11 insertions(+), 11 deletions(-)
 
-The display funcs vtable was a bit of mess, lots of intermixing of
-internal display functionality and interfaces to watermarks/irqs.
-
-It's also considered not great security practice to leave writeable
-function pointers around for exploits to get into.
-
-This series attempts to address both problems, first there are a
-few cleanups, then it splits the function table into multiple pieces.
-Some of the splits might be bikesheds but I think we should apply first
-and merge things later if there is good reason.
-
-The second half converts all the vtables to static const structs,
-I've used macros in some of them to make it less messy, the cdclk
-one is probably the worst one.
-
-v2:
-Added some patches adding wrappers around things before refactoring
-them as suggested by Jani.
-Fixed up all struct names as suggested by Jani.
-Added s-o-b lines
-Added commit msgs.
-
-Dave.
-
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_dr=
+v.h
+index a8129153d1db..fc546d2ff0fc 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -330,8 +330,6 @@ struct drm_i915_display_funcs {
+ =09=09=09  const struct intel_cdclk_config *cdclk_config,
+ =09=09=09  enum pipe pipe);
+ =09int (*bw_calc_min_cdclk)(struct intel_atomic_state *state);
+-=09int (*get_fifo_size)(struct drm_i915_private *dev_priv,
+-=09=09=09     enum i9xx_plane_id i9xx_plane);
+ =09int (*compute_pipe_wm)(struct intel_atomic_state *state,
+ =09=09=09       struct intel_crtc *crtc);
+ =09int (*compute_intermediate_wm)(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_p=
+m.c
+index cfc41f8fa74a..d9993eb3730d 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -2347,7 +2347,10 @@ static void i9xx_update_wm(struct intel_crtc *unused=
+_crtc)
+ =09else
+ =09=09wm_info =3D &i830_a_wm_info;
+=20
+-=09fifo_size =3D dev_priv->display.get_fifo_size(dev_priv, PLANE_A);
++=09if (DISPLAY_VER(dev_priv) =3D=3D 2)
++=09=09fifo_size =3D i830_get_fifo_size(dev_priv, PLANE_A);
++=09else
++=09=09fifo_size =3D i9xx_get_fifo_size(dev_priv, PLANE_A);
+ =09crtc =3D intel_get_crtc_for_plane(dev_priv, PLANE_A);
+ =09if (intel_crtc_active(crtc)) {
+ =09=09const struct drm_display_mode *pipe_mode =3D
+@@ -2374,7 +2377,10 @@ static void i9xx_update_wm(struct intel_crtc *unused=
+_crtc)
+ =09if (DISPLAY_VER(dev_priv) =3D=3D 2)
+ =09=09wm_info =3D &i830_bc_wm_info;
+=20
+-=09fifo_size =3D dev_priv->display.get_fifo_size(dev_priv, PLANE_B);
++=09if (DISPLAY_VER(dev_priv) =3D=3D 2)
++=09=09fifo_size =3D i830_get_fifo_size(dev_priv, PLANE_B);
++=09else
++=09=09fifo_size =3D i9xx_get_fifo_size(dev_priv, PLANE_B);
+ =09crtc =3D intel_get_crtc_for_plane(dev_priv, PLANE_B);
+ =09if (intel_crtc_active(crtc)) {
+ =09=09const struct drm_display_mode *pipe_mode =3D
+@@ -2490,7 +2496,7 @@ static void i845_update_wm(struct intel_crtc *unused_=
+crtc)
+ =09pipe_mode =3D &crtc->config->hw.pipe_mode;
+ =09planea_wm =3D intel_calculate_wm(pipe_mode->crtc_clock,
+ =09=09=09=09       &i845_wm_info,
+-=09=09=09=09       dev_priv->display.get_fifo_size(dev_priv, PLANE_A),
++=09=09=09=09       i845_get_fifo_size(dev_priv, PLANE_A),
+ =09=09=09=09       4, pessimal_latency_ns);
+ =09fwater_lo =3D intel_uncore_read(&dev_priv->uncore, FW_BLC) & ~0xfff;
+ =09fwater_lo |=3D (3<<8) | planea_wm;
+@@ -8054,15 +8060,11 @@ void intel_init_pm(struct drm_i915_private *dev_pri=
+v)
+ =09=09dev_priv->display.update_wm =3D i965_update_wm;
+ =09} else if (DISPLAY_VER(dev_priv) =3D=3D 3) {
+ =09=09dev_priv->display.update_wm =3D i9xx_update_wm;
+-=09=09dev_priv->display.get_fifo_size =3D i9xx_get_fifo_size;
+ =09} else if (DISPLAY_VER(dev_priv) =3D=3D 2) {
+-=09=09if (INTEL_NUM_PIPES(dev_priv) =3D=3D 1) {
++=09=09if (INTEL_NUM_PIPES(dev_priv) =3D=3D 1)
+ =09=09=09dev_priv->display.update_wm =3D i845_update_wm;
+-=09=09=09dev_priv->display.get_fifo_size =3D i845_get_fifo_size;
+-=09=09} else {
++=09=09else
+ =09=09=09dev_priv->display.update_wm =3D i9xx_update_wm;
+-=09=09=09dev_priv->display.get_fifo_size =3D i830_get_fifo_size;
+-=09=09}
+ =09} else {
+ =09=09drm_err(&dev_priv->drm,
+ =09=09=09"unexpected fall-through in %s\n", __func__);
+--=20
+2.31.1
 
