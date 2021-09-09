@@ -2,45 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210024042AC
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 03:12:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 797E54042BC
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 03:36:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10ED26E425;
-	Thu,  9 Sep 2021 01:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4A686E3F2;
+	Thu,  9 Sep 2021 01:36:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6096C6E426
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 01:11:55 +0000 (UTC)
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-489-BI0GFjnTN_-g8spQrcsz1Q-1; Wed, 08 Sep 2021 21:11:53 -0400
-X-MC-Unique: BI0GFjnTN_-g8spQrcsz1Q-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 320F11030C20;
- Thu,  9 Sep 2021 01:11:52 +0000 (UTC)
-Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id A26CC1972E;
- Thu,  9 Sep 2021 01:11:50 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, Dave Airlie <airlied@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>
-Date: Thu,  9 Sep 2021 11:11:00 +1000
-Message-Id: <20210909011100.2987971-24-airlied@gmail.com>
-In-Reply-To: <20210909011100.2987971-1-airlied@gmail.com>
-References: <20210909011100.2987971-1-airlied@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CB60C6E3F2;
+ Thu,  9 Sep 2021 01:36:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B6CB5A363D;
+ Thu,  9 Sep 2021 01:36:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6718769093237326996=="
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 23/23] drm/i915: constify display wm vtable
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 09 Sep 2021 01:36:13 -0000
+Message-ID: <163115137371.16811.3974957315783670280@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210909004941.379035-1-lucas.demarchi@intel.com>
+In-Reply-To: <20210909004941.379035-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_rename_debugfs=5Fgt_fil?=
+ =?utf-8?q?es?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,280 +42,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+--===============6718769093237326996==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Use a nop table for the cases where CxSR doesn't init properly.
+== Series Details ==
 
-v2: use a nop table (Jani)
+Series: series starting with [1/4] drm/i915: rename debugfs_gt files
+URL   : https://patchwork.freedesktop.org/series/94489/
+State : success
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 34 ++++-----
- drivers/gpu/drm/i915/i915_drv.h              |  2 +-
- drivers/gpu/drm/i915/intel_pm.c              | 80 ++++++++++++++------
- 3 files changed, 75 insertions(+), 41 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm=
-/i915/display/intel_display.c
-index 8b9727d84435..502e9ac70de1 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -162,16 +162,16 @@ static void intel_modeset_setup_hw_state(struct drm_d=
-evice *dev,
-  */
- static void intel_update_watermarks(struct drm_i915_private *dev_priv)
- {
--=09if (dev_priv->wm_disp.update_wm)
--=09=09dev_priv->wm_disp.update_wm(dev_priv);
-+=09if (dev_priv->wm_disp->update_wm)
-+=09=09dev_priv->wm_disp->update_wm(dev_priv);
- }
-=20
- static int intel_compute_pipe_wm(struct intel_atomic_state *state,
- =09=09=09=09 struct intel_crtc *crtc)
- {
- =09struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
--=09if (dev_priv->wm_disp.compute_pipe_wm)
--=09=09return dev_priv->wm_disp.compute_pipe_wm(state, crtc);
-+=09if (dev_priv->wm_disp->compute_pipe_wm)
-+=09=09return dev_priv->wm_disp->compute_pipe_wm(state, crtc);
- =09return 0;
- }
-=20
-@@ -180,10 +180,10 @@ static int intel_compute_intermediate_wm(struct intel=
-_atomic_state *state,
- {
- =09struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
- =09if (drm_WARN_ON(&dev_priv->drm,
--=09=09=09!dev_priv->wm_disp.compute_pipe_wm))
-+=09=09=09!dev_priv->wm_disp->compute_pipe_wm))
- =09=09return 0;
--=09if (dev_priv->wm_disp.compute_pipe_wm)
--=09=09return dev_priv->wm_disp.compute_intermediate_wm(state, crtc);
-+=09if (dev_priv->wm_disp->compute_pipe_wm)
-+=09=09return dev_priv->wm_disp->compute_intermediate_wm(state, crtc);
- =09return 0;
- }
-=20
-@@ -191,8 +191,8 @@ static bool intel_initial_watermarks(struct intel_atomi=
-c_state *state,
- =09=09=09=09     struct intel_crtc *crtc)
- {
- =09struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
--=09if (dev_priv->wm_disp.initial_watermarks) {
--=09=09dev_priv->wm_disp.initial_watermarks(state, crtc);
-+=09if (dev_priv->wm_disp->initial_watermarks) {
-+=09=09dev_priv->wm_disp->initial_watermarks(state, crtc);
- =09=09return true;
- =09}
- =09return false;
-@@ -202,23 +202,23 @@ static void intel_atomic_update_watermarks(struct int=
-el_atomic_state *state,
- =09=09=09=09=09   struct intel_crtc *crtc)
- {
- =09struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
--=09if (dev_priv->wm_disp.atomic_update_watermarks)
--=09=09dev_priv->wm_disp.atomic_update_watermarks(state, crtc);
-+=09if (dev_priv->wm_disp->atomic_update_watermarks)
-+=09=09dev_priv->wm_disp->atomic_update_watermarks(state, crtc);
- }
-=20
- static void intel_optimize_watermarks(struct intel_atomic_state *state,
- =09=09=09=09      struct intel_crtc *crtc)
- {
- =09struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
--=09if (dev_priv->wm_disp.optimize_watermarks)
--=09=09dev_priv->wm_disp.optimize_watermarks(state, crtc);
-+=09if (dev_priv->wm_disp->optimize_watermarks)
-+=09=09dev_priv->wm_disp->optimize_watermarks(state, crtc);
- }
-=20
- static void intel_compute_global_watermarks(struct intel_atomic_state *sta=
-te)
- {
- =09struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
--=09if (dev_priv->wm_disp.compute_global_watermarks)
--=09=09dev_priv->wm_disp.compute_global_watermarks(state);
-+=09if (dev_priv->wm_disp->compute_global_watermarks)
-+=09=09dev_priv->wm_disp->compute_global_watermarks(state);
- }
-=20
- /* returns HPLL frequency in kHz */
-@@ -3735,7 +3735,7 @@ static void i9xx_crtc_disable(struct intel_atomic_sta=
-te *state,
- =09if (DISPLAY_VER(dev_priv) !=3D 2)
- =09=09intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
-=20
--=09if (!dev_priv->wm_disp.initial_watermarks)
-+=09if (!dev_priv->wm_disp->initial_watermarks)
- =09=09intel_update_watermarks(dev_priv);
-=20
- =09/* clock the pipe down to 640x480@60 to potentially save power */
-@@ -11409,7 +11409,7 @@ static void sanitize_watermarks(struct drm_i915_pri=
-vate *dev_priv)
- =09int i;
-=20
- =09/* Only supported on platforms that use atomic watermark design */
--=09if (!dev_priv->wm_disp.optimize_watermarks)
-+=09if (!dev_priv->wm_disp->optimize_watermarks)
- =09=09return;
-=20
- =09state =3D drm_atomic_state_alloc(&dev_priv->drm);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_dr=
-v.h
-index fc7466bbc445..b9fa6bf4835d 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -978,7 +978,7 @@ struct drm_i915_private {
- =09const struct drm_i915_clock_gating_funcs *clock_gating_funcs;
-=20
- =09/* pm display functions */
--=09struct drm_i915_wm_disp_funcs wm_disp;
-+=09const struct drm_i915_wm_disp_funcs *wm_disp;
-=20
- =09/* irq display functions */
- =09const struct intel_hotplug_funcs *hotplug_funcs;
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_p=
-m.c
-index 7466f2fca416..f1841f7b44ad 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -7977,6 +7977,51 @@ void intel_init_clock_gating_hooks(struct drm_i915_p=
-rivate *dev_priv)
- =09}
- }
-=20
-+static const struct drm_i915_wm_disp_funcs skl_wm_funcs =3D {
-+=09.compute_global_watermarks =3D skl_compute_wm
-+};
-+
-+static const struct drm_i915_wm_disp_funcs ilk_wm_funcs =3D {
-+=09.compute_pipe_wm =3D ilk_compute_pipe_wm,
-+=09.compute_intermediate_wm =3D ilk_compute_intermediate_wm,
-+=09.initial_watermarks =3D ilk_initial_watermarks,
-+=09.optimize_watermarks =3D ilk_optimize_watermarks
-+};
-+
-+static const struct drm_i915_wm_disp_funcs vlv_wm_funcs =3D {
-+=09.compute_pipe_wm =3D vlv_compute_pipe_wm,
-+=09.compute_intermediate_wm =3D vlv_compute_intermediate_wm,
-+=09.initial_watermarks =3D vlv_initial_watermarks,
-+=09.optimize_watermarks =3D vlv_optimize_watermarks,
-+=09.atomic_update_watermarks =3D vlv_atomic_update_fifo
-+};
-+
-+static const struct drm_i915_wm_disp_funcs g4x_wm_funcs =3D {
-+=09.compute_pipe_wm =3D g4x_compute_pipe_wm,
-+=09.compute_intermediate_wm =3D g4x_compute_intermediate_wm,
-+=09.initial_watermarks =3D g4x_initial_watermarks,
-+=09.optimize_watermarks =3D g4x_optimize_watermarks
-+};
-+
-+static const struct drm_i915_wm_disp_funcs pnv_wm_funcs =3D {
-+=09.update_wm =3D pnv_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i965_wm_funcs =3D {
-+=09.update_wm =3D i965_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i9xx_wm_funcs =3D {
-+=09.update_wm =3D i9xx_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i845_wm_funcs =3D {
-+=09.update_wm =3D i845_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs nop_funcs =3D {
-+};
-+
- /* Set up chip specific power management-related functions */
- void intel_init_pm(struct drm_i915_private *dev_priv)
- {
-@@ -7992,7 +8037,7 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- =09/* For FIFO watermark updates */
- =09if (DISPLAY_VER(dev_priv) >=3D 9) {
- =09=09skl_setup_wm_latency(dev_priv);
--=09=09dev_priv->wm_disp.compute_global_watermarks =3D skl_compute_wm;
-+=09=09dev_priv->wm_disp =3D &skl_wm_funcs;
- =09} else if (HAS_PCH_SPLIT(dev_priv)) {
- =09=09ilk_setup_wm_latency(dev_priv);
-=20
-@@ -8000,31 +8045,19 @@ void intel_init_pm(struct drm_i915_private *dev_pri=
-v)
- =09=09     dev_priv->wm.spr_latency[1] && dev_priv->wm.cur_latency[1]) ||
- =09=09    (DISPLAY_VER(dev_priv) !=3D 5 && dev_priv->wm.pri_latency[0] &&
- =09=09     dev_priv->wm.spr_latency[0] && dev_priv->wm.cur_latency[0])) {
--=09=09=09dev_priv->wm_disp.compute_pipe_wm =3D ilk_compute_pipe_wm;
--=09=09=09dev_priv->wm_disp.compute_intermediate_wm =3D
--=09=09=09=09ilk_compute_intermediate_wm;
--=09=09=09dev_priv->wm_disp.initial_watermarks =3D
--=09=09=09=09ilk_initial_watermarks;
--=09=09=09dev_priv->wm_disp.optimize_watermarks =3D
--=09=09=09=09ilk_optimize_watermarks;
-+=09=09=09dev_priv->wm_disp =3D &ilk_wm_funcs;
- =09=09} else {
- =09=09=09drm_dbg_kms(&dev_priv->drm,
- =09=09=09=09    "Failed to read display plane latency. "
- =09=09=09=09    "Disable CxSR\n");
-+=09=09=09dev_priv->wm_disp =3D &nop_funcs;
- =09=09}
- =09} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
- =09=09vlv_setup_wm_latency(dev_priv);
--=09=09dev_priv->wm_disp.compute_pipe_wm =3D vlv_compute_pipe_wm;
--=09=09dev_priv->wm_disp.compute_intermediate_wm =3D vlv_compute_intermedia=
-te_wm;
--=09=09dev_priv->wm_disp.initial_watermarks =3D vlv_initial_watermarks;
--=09=09dev_priv->wm_disp.optimize_watermarks =3D vlv_optimize_watermarks;
--=09=09dev_priv->wm_disp.atomic_update_watermarks =3D vlv_atomic_update_fif=
-o;
-+=09=09dev_priv->wm_disp =3D &vlv_wm_funcs;
- =09} else if (IS_G4X(dev_priv)) {
- =09=09g4x_setup_wm_latency(dev_priv);
--=09=09dev_priv->wm_disp.compute_pipe_wm =3D g4x_compute_pipe_wm;
--=09=09dev_priv->wm_disp.compute_intermediate_wm =3D g4x_compute_intermedia=
-te_wm;
--=09=09dev_priv->wm_disp.initial_watermarks =3D g4x_initial_watermarks;
--=09=09dev_priv->wm_disp.optimize_watermarks =3D g4x_optimize_watermarks;
-+=09=09dev_priv->wm_disp =3D &g4x_wm_funcs;
- =09} else if (IS_PINEVIEW(dev_priv)) {
- =09=09if (!intel_get_cxsr_latency(!IS_MOBILE(dev_priv),
- =09=09=09=09=09    dev_priv->is_ddr3,
-@@ -8038,21 +8071,22 @@ void intel_init_pm(struct drm_i915_private *dev_pri=
-v)
- =09=09=09=09 dev_priv->fsb_freq, dev_priv->mem_freq);
- =09=09=09/* Disable CxSR and never update its watermark again */
- =09=09=09intel_set_memory_cxsr(dev_priv, false);
--=09=09=09dev_priv->wm_disp.update_wm =3D NULL;
-+=09=09=09dev_priv->wm_disp =3D &nop_funcs;
- =09=09} else
--=09=09=09dev_priv->wm_disp.update_wm =3D pnv_update_wm;
-+=09=09=09dev_priv->wm_disp =3D &pnv_wm_funcs;
- =09} else if (DISPLAY_VER(dev_priv) =3D=3D 4) {
--=09=09dev_priv->wm_disp.update_wm =3D i965_update_wm;
-+=09=09dev_priv->wm_disp =3D &i965_wm_funcs;
- =09} else if (DISPLAY_VER(dev_priv) =3D=3D 3) {
--=09=09dev_priv->wm_disp.update_wm =3D i9xx_update_wm;
-+=09=09dev_priv->wm_disp =3D &i9xx_wm_funcs;
- =09} else if (DISPLAY_VER(dev_priv) =3D=3D 2) {
- =09=09if (INTEL_NUM_PIPES(dev_priv) =3D=3D 1)
--=09=09=09dev_priv->wm_disp.update_wm =3D i845_update_wm;
-+=09=09=09dev_priv->wm_disp =3D &i845_wm_funcs;
- =09=09else
--=09=09=09dev_priv->wm_disp.update_wm =3D i9xx_update_wm;
-+=09=09=09dev_priv->wm_disp =3D &i9xx_wm_funcs;
- =09} else {
- =09=09drm_err(&dev_priv->drm,
- =09=09=09"unexpected fall-through in %s\n", __func__);
-+=09=09dev_priv->wm_disp =3D &nop_funcs;
- =09}
- }
-=20
---=20
-2.31.1
+CI Bug Log - changes from CI_DRM_10565 -> Patchwork_20993
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20993 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][3] -> [INCOMPLETE][4] ([i915#2940])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-FAIL][6] ([i915#541])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@runner@aborted:
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#3428])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - {fi-jsl-1}:         [DMESG-FAIL][9] ([i915#1886]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (47 -> 38)
+------------------------------
+
+  Missing    (9): fi-kbl-soraka fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10565 -> Patchwork_20993
+
+  CI-20190529: 20190529
+  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20993: 9c1930918f14247079ef11b7af3fbf06488fbb57 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9c1930918f14 drm/i915: deduplicate frequency dump on debugfs
+139ac6e275d3 drm/i915: rename debugfs_gt_pm files
+bdf1cc706705 drm/i915: rename debugfs_engines files
+dc1cedc411a9 drm/i915: rename debugfs_gt files
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html
+
+--===============6718769093237326996==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915: rename debugfs_gt files</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94489/">https://patchwork.freedesktop.org/series/94489/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10565 -&gt; Patchwork_20993</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20993 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_pm:<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20993/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (47 -&gt; 38)</h2>
+<p>Missing    (9): fi-kbl-soraka fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10565 -&gt; Patchwork_20993</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20993: 9c1930918f14247079ef11b7af3fbf06488fbb57 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9c1930918f14 drm/i915: deduplicate frequency dump on debugfs<br />
+139ac6e275d3 drm/i915: rename debugfs_gt_pm files<br />
+bdf1cc706705 drm/i915: rename debugfs_engines files<br />
+dc1cedc411a9 drm/i915: rename debugfs_gt files</p>
+
+</body>
+</html>
+
+--===============6718769093237326996==--
