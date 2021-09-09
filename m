@@ -2,34 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2557D405C61
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 19:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 813AA405CBC
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 20:14:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 790646E8E3;
-	Thu,  9 Sep 2021 17:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60A4B6E8F5;
+	Thu,  9 Sep 2021 18:14:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EE2C46E8E3;
- Thu,  9 Sep 2021 17:52:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6CB6A00C9;
- Thu,  9 Sep 2021 17:52:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1143523807564076547=="
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A671B6E8F1;
+ Thu,  9 Sep 2021 18:14:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="220542856"
+X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="220542856"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 11:14:17 -0700
+X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="606945374"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 11:14:17 -0700
+Date: Thu, 9 Sep 2021 11:14:15 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ mesa-dev@lists.freedesktop.org
+Message-ID: <20210909181415.GE461228@mdroper-desk1.amr.corp.intel.com>
+References: <20210907172728.GF461228@mdroper-desk1.amr.corp.intel.com>
+ <YTekMq0Kfb3Xkeid@intel.com>
+ <20210907181929.GG461228@mdroper-desk1.amr.corp.intel.com>
+ <YToTGr2kSQjGtpan@intel.com>
+ <20210909142933.GZ461228@mdroper-desk1.amr.corp.intel.com>
+ <YTocngFdY1dynYrc@intel.com>
+ <20210909150002.GA461228@mdroper-desk1.amr.corp.intel.com>
+ <YTojw4z1JkfBoI+q@intel.com>
+ <20210909171556.GC461228@mdroper-desk1.amr.corp.intel.com>
+ <YTpHdx84rEkdB6FK@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 09 Sep 2021 17:52:11 -0000
-Message-ID: <163120993190.16810.289397156242543587@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210909164744.31249-1-matthew.brost@intel.com>
-In-Reply-To: <20210909164744.31249-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ2xl?=
- =?utf-8?q?an_up_GuC_CI_failures=2C_simplify_locking=2C_and_kernel_DOC_=28?=
- =?utf-8?q?rev11=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YTpHdx84rEkdB6FK@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Add separate MOCS table for
+ Gen12 devices other than TGL/RKL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,247 +58,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1143523807564076547==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 09, 2021 at 08:42:15PM +0300, Ville Syrjälä wrote:
+> On Thu, Sep 09, 2021 at 10:15:56AM -0700, Matt Roper wrote:
+> > On Thu, Sep 09, 2021 at 06:09:55PM +0300, Ville Syrjälä wrote:
+> > > On Thu, Sep 09, 2021 at 08:00:02AM -0700, Matt Roper wrote:
+> > > > On Thu, Sep 09, 2021 at 05:39:26PM +0300, Ville Syrjälä wrote:
+> > > > > On Thu, Sep 09, 2021 at 07:29:33AM -0700, Matt Roper wrote:
+> > > > > > On Thu, Sep 09, 2021 at 04:58:50PM +0300, Ville Syrjälä wrote:
+> > > > > > > On Tue, Sep 07, 2021 at 11:19:29AM -0700, Matt Roper wrote:
+> > > > > > > > On Tue, Sep 07, 2021 at 08:41:06PM +0300, Ville Syrjälä wrote:
+> > > > > > > > > On Tue, Sep 07, 2021 at 10:27:28AM -0700, Matt Roper wrote:
+> > > > > > > > > > On Tue, Sep 07, 2021 at 10:46:39PM +0530, Ayaz A Siddiqui wrote:
+> > > > > > > > > > > MOCS table of TGL/RKL has MOCS[1] set to L3_UC.
+> > > > > > > > > > > While for other gen12 devices we need to set MOCS[1] as L3_WB,
+> > > > > > > > > > > So adding a new MOCS table for other gen 12 devices eg. ADL.
+> > > > > > > > > > > 
+> > > > > > > > > > > Fixes: cfbe5291a189 ("drm/i915/gt: Initialize unused MOCS entries with device specific values")
+> > > > > > > > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > > > > > > > > > Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+> > > > > > > > > > 
+> > > > > > > > > > Yep, we overlooked that the TGL table still had an explicit entry for
+> > > > > > > > > > I915_MOCS_PTE and wasn't just using an implicit 'unused_entries' lookup
+> > > > > > > > > > for MOCS[1].  The new table is the same as the TGL table, just with
+> > > > > > > > > > I915_MOCS_PTE (1) removed.
+> > > > > > > > > 
+> > > > > > > > > And just how are people planning on handling display cacheability
+> > > > > > > > > control without a PTE MOCS entry? Is Mesa/etc. already making all
+> > > > > > > > > external bos uncached on these platforms just in case we might
+> > > > > > > > > scan out said bo?
+> > > > > > > > 
+> > > > > > > > MOCS entry 1 has never been considered a valid MOCS table entry on gen12
+> > > > > > > > platforms (despite the old #define, it's not actually related to PTE,
+> > > > > > > > display, etc. anymore).
+> > > > > > > 
+> > > > > > > So can someone finally explain to me how we're supposed to cache
+> > > > > > > anything that might become a scanout buffer later (eg. window system
+> > > > > > > buffers)? Or are we just making everything like that UC now, and is
+> > > > > > > everyone happy with that? Is userspace actually following that?
+> > > > > > 
+> > > > > > Table entry #1 has never had anything to do with scanout on gen12+.  I
+> > > > > > would assume that UMDs are either using the display entry in the MOCS
+> > > > > > table (which is 61 on gen12+) or some other UC entry.
+> > > > > 
+> > > > > If 61 is meant to to be the new PTE entry wy hasn't it been defines as
+> > > > > such in the code? And I know for a fact that userspace (Mesa) is not
+> > > > 
+> > > > There is no "PTE" entry anymore.  But 61 is already documented as
+> > > > "displayable" in both the spec and the code:
+> > > > 
+> > > >         /* HW Special Case (Displayable) */                                      
+> > > >         MOCS_ENTRY(61,                             
+> > > 
+> > > Why is it called a "HW special case"? I don't think there's any hw
+> > > magic in there?
+> > > 
+> > > And why aren't we setting it to PTE to get some cacheability for
+> > > window back buffers and such?
+> > 
+> > Who is "we" here?
+> 
+> We who care about the performance of the system.
+> 
+> > The MOCS table is a pre-defined set of per-platform
+> > magic numbers.  The software teams don't get to decide what the values
+> > are, we just program the hardware with the per-platform numbers that
+> > have been agreed upon as part of a platform-wide stack (everything from
+> > low-level firmware to high level userspace should be working from the
+> > same table, defined in the bspec).
+> 
+> The magic numbers must be based on something. If that something is
+> purely Windows behaviour/performance then we might be shooting
+> ourselves in the foot here.
 
-== Series Details ==
+That's not how MOCS works.  The MOCS tables define every meaningful
+combination of settings somewhere in the table.  The *types* of settings
+that can be expressed change from platform to platform (e.g.,
+"PAGETABLE" setting simply doesn't exist anymore hardware-wise) so the
+tables themselves differ between platforms and you may need to use
+different indices to get the same behavior between platforms.  But if
+you're actually paying attention to the tables and choosing the right
+entries, you're not going to leave any performance on the table.
 
-Series: Clean up GuC CI failures, simplify locking, and kernel DOC (rev11)
-URL   : https://patchwork.freedesktop.org/series/93704/
-State : success
+> 
+> > 
+> > Once we know what the per-platform magic numbers are, we're supposed to
+> > pick the table entry that matches the behavior we're trying to
+> > accomplish.  If you want some specific level of cacheability, then you
+> > select a table row that gives you that.  Maybe 61 isn't the best
+> > setting, I don't know; userspace can pick whichever defined setting is
+> > actually best, using the data from the table.  But table row #1 is
+> > already well-documented as reserved/dontuse across the full stack; the
+> > fact that row #1 had values similar to PTE on Icelake hardware doesn't
+> > carry forward to any post-gen11 platform.
+> 
+> The only way you can get LLC cacheability for an external BO (window
+> back buffers and such) is by using a MOCS entry that directs the hardware
+> to consult the PTEs. Otherwise the client doing the rendering would have
+> to know ahead of time whether the buffer is going to be directly scanned
+> out by the compositor or not, for which there is no protocol in
+> X or wayland.
 
-== Summary ==
+It sounds like you're complaining about gen12 hardware design rather
+than anything actually software or ABI related.  'Consult the PTEs'
+hasn't been something the hardware has supported since gen11.  We still
+have macros with PTE or PAGETABLE in their names, but those aren't
+accurate descriptions of what they do on current platforms.  We note
+this in the code:
 
-CI Bug Log - changes from CI_DRM_10565 -> Patchwork_21004
-====================================================
+   /*
+    * Note: LE_0_PAGETABLE works only up to Gen11; for newer gens it means
+    * the same as LE_UC
+    */
 
-Summary
--------
+Even on gen11 the PAT entry was documented as being deprecated, so we
+knew it was going away.  I don't know why the hardware design changed,
+but it did.
 
-  **SUCCESS**
+> 
+> Historically I believe LLC cacheability has been on average a win.
+> Some workloads can do better with UC though. So if we are giving up
+> on LLC cacheability we should have some numbers to back up that
+> decision so that we're not dropping tons of performance on the floor.
 
-  No regressions found.
+It's not our decision to make.  The hardware design has already made
+this decision for us.  No matter what we program into the MOCS tables;
+we're simply not getting back the behavior you're asking for and blindly
+using the "LE_0_PAGETABLE" flags or whatever is just giving you
+uncached.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/index.html
+> 
+> > > > > using entry 61. I think there is a massive communication gap here
+> > > > > where everyone just seems to assume the other side is doing something.
+> > > > > 
+> > > > > Could someone actually come up with a clear abi definition for this
+> > > > > and get all the stakeholders to sign off on it?
+> > > > 
+> > > > The agreement between the i915 team, various userspace teams, Windows
+> > > > driver team, hardware architects, software architects, and bspec writers
+> > > > was just completed; that's what triggered the kernel updates here (and
+> > > > I'm guessing is triggering similar work on the UMD side).  It's also why
+> > > > we held off on removing the force_probe flag on ADL until now since we
+> > > > couldn't consider enablement of the platform complete until the
+> > > > agreement and definitions here was finalized.
+> > > 
+> > > Can we get that agreement visible on the mailing list? Since MOCS is
+> > > abi I don't see why we shouldn't follow the normal abi rules for these,
+> > > ie. post to dri-devel, get acks from relevant people, links to agreed
+> > > userspace changes, etc.
+> > 
+> > The ABI design here was designed and agreed upon years ago, during early
+> > gen11 development.  The ABI design is that the kernel driver will
+> > faithfully initialize the hardware with the pre-determined set of magic
+> > numbers documented by the hardware team.  Since these are
+> > well-documented and unchanging numbers per-platform, there's no
+> > ambiguity for userspace, firmware, etc. about what a specific mocs index
+> > means, and no need to provide additional ABI for userspace to query what
+> > the kernel used in each row or anything like that.  The specific magic
+> > numbers are also ABI in the sense that we can't change the set of
+> > defined values once they're set for a platform (and it's been a long
+> > road to get the hardware and other OS software teams to understand and
+> > agree to this requirement), but we don't get to define or overrule what
+> > the initial values and order of those magic numbers are.
+> 
+> And this apporach has clearly not worked considering userspace and
+> kernel have not agreed on what the abi is. We need to do better.
 
-New tests
----------
+Userspace and kernel *do* agree on what the ABI is.  There may be a
+delay in userspace enabling the MOCS properly on a new platform.  But
+the changes here (which make everything fully cached by default) will
+help catch those cases where a bit of enablement was forgotten on the
+UMD side.  They won't "accidentally work" on initial bringup on the new
+platform, and the lack of proper MOCS programming will be quickly
+identified.
 
-  New tests have been introduced between CI_DRM_10565 and Patchwork_21004:
+> 
+> > 
+> > What is a bit vague in the formal documentation is what should be done
+> > about the reserved/dontuse table entries.  In theory it wouldn't matter
+> > since they'd never be used anyway, but in reality userspace can still
+> > use them by accident, such as by forgetting to update their MOCS
+> > selection logic from past platforms (e.g., still trying to use row #1 on
+> > platforms where it isn't defined).  Given that it's legal for entries to
+> > be added to MOCS tables, but never removed/modified, it follows that we
+> > should always initialize the undefined entries to fully cached; if a
+> > MOCS table update happens in the future and new rows show up, they can
+> > only become more coherent, and any userspace software that was
+> > incorrectly trying to use them previously will remain functionally
+> > correct.
+> > 
+> > What you're proposing would be a change to existing ABI --- instead of
+> > following the agreed upon contract, i915 would start defining its own
+> > set of magic numbers that potentially contradict the documentation that
+> > every other team is depending on.  We already made this mistake on
+> > TGL/RKL, so due to an i915 bug we're outside the spec; if entry #1 ever
+> > becomes a formally defined setting in the future, the rest of the
+> > software stack will need to explicitly work around i915's bug since we
+> > can't fix it now without breaking ABI.
+> > 
+> > If you really want to redefine how the MOCS ABI works and have i915 no
+> > longer follow the current contract, I think you need to do the
+> > following:
+> 
+> I want the abi to be actually defined properly, and some assurance that
+> all the stakeholders implement it correctly. Following the proper abi
+> rules for kernel development would guarantee that.
 
-### New IGT tests (1) ###
+This is what we have today.  As I said, if you want to propose a change
+to the ABI, then you need to take the proper steps to do so.  But as far
+as I can tell, most of your concern here boils down to not realizing
+that the hardware capabilities you want to use were taken away from us
+in gen12.
 
-  * igt@i915_selftest@live@guc:
-    - Statuses : 34 pass(s)
-    - Exec time: [0.43, 5.04] s
+> 
+> I would also like if the abi can give us the best performance rather
+> than potentially crippling it. Ie. I would expect to have a PTE MOCS
+> setting for potential scanout buffers, or some proof that pure UC
+> will in fact be a better choice.
 
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21004 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - {fi-jsl-1}:         [DMESG-FAIL][4] ([i915#1886]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-
-
-Participating hosts (47 -> 38)
-------------------------------
-
-  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10565 -> Patchwork_21004
-
-  CI-20190529: 20190529
-  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21004: e4747b33f311a3ec2567422f23945daef7a6588d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e4747b33f311 drm/i915/guc: Add GuC kernel doc
-93b6576f14c0 drm/i915/guc: Drop guc_active move everything into guc_state
-f51ccdbc1d50 drm/i915/guc: Move fields protected by guc->contexts_lock into sub structure
-eded4f6781e4 drm/i915/guc: Move GuC priority fields in context under guc_active
-a75af0fb3825 drm/i915/guc: Drop pin count check trick between sched_disable and re-pin
-e9666ec08fe7 drm/i915/guc: Proper xarray usage for contexts_lookup
-86fe44af0f11 drm/i915/guc: Rework and simplify locking
-a469ee468f89 drm/i915/guc: Move guc_blocked fence to struct guc_state
-5db9a3bcd282 drm/i915/guc: Release submit fence from an irq_work
-dbef2fc197c8 drm/i915/guc: Reset LRC descriptor if register returns -ENODEV
-1e192098087d drm/i915/guc: Don't touch guc_state.sched_state without a lock
-8a8cf43913a0 drm/i915/guc: Take context ref when cancelling request
-e56171c3dd6b drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H
-69005a00e8aa drm/i915/guc: Copy whole golden context, set engine state size of subset
-501532c37b64 drm/i915/guc: Don't enable scheduling on a banned context, guc_id invalid, not registered
-f9567c78788e drm/i915/guc: Kick tasklet after queuing a request
-0a9d7cef0e5a Revert "drm/i915/gt: Propagate change in error status to children on unhold"
-5f8dae15114c drm/i915/guc: Workaround reset G2H is received after schedule done G2H
-31c0bfa6a01d drm/i915/guc: Process all G2H message at once in work queue
-a6990f6f2a54 drm/i915/guc: Don't drop ce->guc_active.lock when unwinding context
-ea81f9db116d drm/i915/guc: Unwind context requests in reverse order
-7b4cd4d6bb36 drm/i915/guc: Fix outstanding G2H accounting
-deb17f151cef drm/i915/guc: Fix blocked context accounting
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/index.html
-
---===============1143523807564076547==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Clean up GuC CI failures, simplify locking, and kernel DOC (rev11)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93704/">https://patchwork.freedesktop.org/series/93704/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/index.html</a></td></tr>
-
-</table>
+Again, this isn't a choice.  This is a fact of how the hardware works on
+gen12.  Maybe you'll regain PTE flags on a future platform, but that's
+simply not something software can ask for on today's platforms.
 
 
-    <h1>CI Bug Log - changes from CI_DRM_10565 -&gt; Patchwork_21004</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_10565 and Patchwork_21004:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@i915_selftest@live@guc:<ul>
-<li>Statuses : 34 pass(s)</li>
-<li>Exec time: [0.43, 5.04] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21004 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_pm:<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21004/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 38)</h2>
-<p>Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10565 -&gt; Patchwork_21004</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21004: e4747b33f311a3ec2567422f23945daef7a6588d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e4747b33f311 drm/i915/guc: Add GuC kernel doc<br />
-93b6576f14c0 drm/i915/guc: Drop guc_active move everything into guc_state<br />
-f51ccdbc1d50 drm/i915/guc: Move fields protected by guc-&gt;contexts_lock into sub structure<br />
-eded4f6781e4 drm/i915/guc: Move GuC priority fields in context under guc_active<br />
-a75af0fb3825 drm/i915/guc: Drop pin count check trick between sched_disable and re-pin<br />
-e9666ec08fe7 drm/i915/guc: Proper xarray usage for contexts_lookup<br />
-86fe44af0f11 drm/i915/guc: Rework and simplify locking<br />
-a469ee468f89 drm/i915/guc: Move guc_blocked fence to struct guc_state<br />
-5db9a3bcd282 drm/i915/guc: Release submit fence from an irq_work<br />
-dbef2fc197c8 drm/i915/guc: Reset LRC descriptor if register returns -ENODEV<br />
-1e192098087d drm/i915/guc: Don't touch guc_state.sched_state without a lock<br />
-8a8cf43913a0 drm/i915/guc: Take context ref when cancelling request<br />
-e56171c3dd6b drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H<br />
-69005a00e8aa drm/i915/guc: Copy whole golden context, set engine state size of subset<br />
-501532c37b64 drm/i915/guc: Don't enable scheduling on a banned context, guc_id invalid, not registered<br />
-f9567c78788e drm/i915/guc: Kick tasklet after queuing a request<br />
-0a9d7cef0e5a Revert "drm/i915/gt: Propagate change in error status to children on unhold"<br />
-5f8dae15114c drm/i915/guc: Workaround reset G2H is received after schedule done G2H<br />
-31c0bfa6a01d drm/i915/guc: Process all G2H message at once in work queue<br />
-a6990f6f2a54 drm/i915/guc: Don't drop ce-&gt;guc_active.lock when unwinding context<br />
-ea81f9db116d drm/i915/guc: Unwind context requests in reverse order<br />
-7b4cd4d6bb36 drm/i915/guc: Fix outstanding G2H accounting<br />
-deb17f151cef drm/i915/guc: Fix blocked context accounting</p>
+Matt
 
-</body>
-</html>
+> 
+> > 
+> >  * Re-add force_probe requirement to ADL and add appropriate Fixes: so
+> >    that the platform isn't enabled yet.
+> >  * Document clearly how you want i915 to select the MOCS settings it
+> >    uses for each table row if we're no longer going to follow the
+> >    documented values in the bspec.
+> >  * Provide a way for userspace to determine how i915 has defined the
+> >    MOCS settings (since they can no longer rely on us following the
+> >    previously agreed upon contract).
+> >  * Get acks from all the userspace teams on the new direction you're
+> >    proposing.
+> >  * Get an ack from the GuC team to make sure that programming
+> >    MOCS values differently than documented in the bspec won't have any
+> >    kind of impact on their operation.
+> > 
+> > Alternatively, you could lobby for a new table row #1 to be added to the
+> > formal MOCS table for gen12. It's legal for new MOCS entries to show up
+> > in the future, so if that happens, we can follow up with the
+> > corresponding change in i915; since we'll be moving to a more coherent
+> > value (from today's fully cached entry), we'll be becoming more
+> > permissive from a correctness point of view.  But we absolutely should
+> > not try to add entries unilaterally in i915 that haven't been formally
+> > agreed upon because they may clash with a different definition of the
+> > row that shows up in the future through formal channels.
+> 
+> -- 
+> Ville Syrjälä
+> Intel
 
---===============1143523807564076547==--
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
