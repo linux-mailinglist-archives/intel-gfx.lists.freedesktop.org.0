@@ -2,50 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE1A405E0E
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 22:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F55405E0F
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 22:33:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38EAE6E907;
-	Thu,  9 Sep 2021 20:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF206E90E;
+	Thu,  9 Sep 2021 20:33:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687606E905;
- Thu,  9 Sep 2021 20:33:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="219042890"
-X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="219042890"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 13:33:25 -0700
-X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="431963107"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 13:33:25 -0700
-Date: Thu, 9 Sep 2021 13:33:23 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org
-Message-ID: <20210909203323.GF461228@mdroper-desk1.amr.corp.intel.com>
-References: <20210907181929.GG461228@mdroper-desk1.amr.corp.intel.com>
- <YToTGr2kSQjGtpan@intel.com>
- <20210909142933.GZ461228@mdroper-desk1.amr.corp.intel.com>
- <YTocngFdY1dynYrc@intel.com>
- <20210909150002.GA461228@mdroper-desk1.amr.corp.intel.com>
- <YTojw4z1JkfBoI+q@intel.com>
- <20210909171556.GC461228@mdroper-desk1.amr.corp.intel.com>
- <YTpHdx84rEkdB6FK@intel.com>
- <20210909181415.GE461228@mdroper-desk1.amr.corp.intel.com>
- <YTpnqFh3Nn6iTNd9@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0D77D6E90D;
+ Thu,  9 Sep 2021 20:33:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 047E1A7DFC;
+ Thu,  9 Sep 2021 20:33:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0346916377678384315=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YTpnqFh3Nn6iTNd9@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Add separate MOCS table for
- Gen12 devices other than TGL/RKL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 09 Sep 2021 20:33:40 -0000
+Message-ID: <163121962001.16811.14784007887865337293@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210909194917.66433-1-jose.souza@intel.com>
+In-Reply-To: <20210909194917.66433-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/display/skl+=3A_Drop_?=
+ =?utf-8?q?frontbuffer_rendering_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,351 +42,418 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 09, 2021 at 10:59:36PM +0300, Ville Syrjälä wrote:
-> On Thu, Sep 09, 2021 at 11:14:15AM -0700, Matt Roper wrote:
-> > On Thu, Sep 09, 2021 at 08:42:15PM +0300, Ville Syrjälä wrote:
-> > > On Thu, Sep 09, 2021 at 10:15:56AM -0700, Matt Roper wrote:
-> > > > On Thu, Sep 09, 2021 at 06:09:55PM +0300, Ville Syrjälä wrote:
-> > > > > On Thu, Sep 09, 2021 at 08:00:02AM -0700, Matt Roper wrote:
-> > > > > > On Thu, Sep 09, 2021 at 05:39:26PM +0300, Ville Syrjälä wrote:
-> > > > > > > On Thu, Sep 09, 2021 at 07:29:33AM -0700, Matt Roper wrote:
-> > > > > > > > On Thu, Sep 09, 2021 at 04:58:50PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > On Tue, Sep 07, 2021 at 11:19:29AM -0700, Matt Roper wrote:
-> > > > > > > > > > On Tue, Sep 07, 2021 at 08:41:06PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > > > On Tue, Sep 07, 2021 at 10:27:28AM -0700, Matt Roper wrote:
-> > > > > > > > > > > > On Tue, Sep 07, 2021 at 10:46:39PM +0530, Ayaz A Siddiqui wrote:
-> > > > > > > > > > > > > MOCS table of TGL/RKL has MOCS[1] set to L3_UC.
-> > > > > > > > > > > > > While for other gen12 devices we need to set MOCS[1] as L3_WB,
-> > > > > > > > > > > > > So adding a new MOCS table for other gen 12 devices eg. ADL.
-> > > > > > > > > > > > > 
-> > > > > > > > > > > > > Fixes: cfbe5291a189 ("drm/i915/gt: Initialize unused MOCS entries with device specific values")
-> > > > > > > > > > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > > > > > > > > > > > Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-> > > > > > > > > > > > 
-> > > > > > > > > > > > Yep, we overlooked that the TGL table still had an explicit entry for
-> > > > > > > > > > > > I915_MOCS_PTE and wasn't just using an implicit 'unused_entries' lookup
-> > > > > > > > > > > > for MOCS[1].  The new table is the same as the TGL table, just with
-> > > > > > > > > > > > I915_MOCS_PTE (1) removed.
-> > > > > > > > > > > 
-> > > > > > > > > > > And just how are people planning on handling display cacheability
-> > > > > > > > > > > control without a PTE MOCS entry? Is Mesa/etc. already making all
-> > > > > > > > > > > external bos uncached on these platforms just in case we might
-> > > > > > > > > > > scan out said bo?
-> > > > > > > > > > 
-> > > > > > > > > > MOCS entry 1 has never been considered a valid MOCS table entry on gen12
-> > > > > > > > > > platforms (despite the old #define, it's not actually related to PTE,
-> > > > > > > > > > display, etc. anymore).
-> > > > > > > > > 
-> > > > > > > > > So can someone finally explain to me how we're supposed to cache
-> > > > > > > > > anything that might become a scanout buffer later (eg. window system
-> > > > > > > > > buffers)? Or are we just making everything like that UC now, and is
-> > > > > > > > > everyone happy with that? Is userspace actually following that?
-> > > > > > > > 
-> > > > > > > > Table entry #1 has never had anything to do with scanout on gen12+.  I
-> > > > > > > > would assume that UMDs are either using the display entry in the MOCS
-> > > > > > > > table (which is 61 on gen12+) or some other UC entry.
-> > > > > > > 
-> > > > > > > If 61 is meant to to be the new PTE entry wy hasn't it been defines as
-> > > > > > > such in the code? And I know for a fact that userspace (Mesa) is not
-> > > > > > 
-> > > > > > There is no "PTE" entry anymore.  But 61 is already documented as
-> > > > > > "displayable" in both the spec and the code:
-> > > > > > 
-> > > > > >         /* HW Special Case (Displayable) */                                      
-> > > > > >         MOCS_ENTRY(61,                             
-> > > > > 
-> > > > > Why is it called a "HW special case"? I don't think there's any hw
-> > > > > magic in there?
-> > > > > 
-> > > > > And why aren't we setting it to PTE to get some cacheability for
-> > > > > window back buffers and such?
-> > > > 
-> > > > Who is "we" here?
-> > > 
-> > > We who care about the performance of the system.
-> > > 
-> > > > The MOCS table is a pre-defined set of per-platform
-> > > > magic numbers.  The software teams don't get to decide what the values
-> > > > are, we just program the hardware with the per-platform numbers that
-> > > > have been agreed upon as part of a platform-wide stack (everything from
-> > > > low-level firmware to high level userspace should be working from the
-> > > > same table, defined in the bspec).
-> > > 
-> > > The magic numbers must be based on something. If that something is
-> > > purely Windows behaviour/performance then we might be shooting
-> > > ourselves in the foot here.
-> > 
-> > That's not how MOCS works.  The MOCS tables define every meaningful
-> > combination of settings somewhere in the table.  The *types* of settings
-> > that can be expressed change from platform to platform (e.g.,
-> > "PAGETABLE" setting simply doesn't exist anymore hardware-wise) so the
-> > tables themselves differ between platforms and you may need to use
-> > different indices to get the same behavior between platforms.  But if
-> > you're actually paying attention to the tables and choosing the right
-> > entries, you're not going to leave any performance on the table.
-> > 
-> > > 
-> > > > 
-> > > > Once we know what the per-platform magic numbers are, we're supposed to
-> > > > pick the table entry that matches the behavior we're trying to
-> > > > accomplish.  If you want some specific level of cacheability, then you
-> > > > select a table row that gives you that.  Maybe 61 isn't the best
-> > > > setting, I don't know; userspace can pick whichever defined setting is
-> > > > actually best, using the data from the table.  But table row #1 is
-> > > > already well-documented as reserved/dontuse across the full stack; the
-> > > > fact that row #1 had values similar to PTE on Icelake hardware doesn't
-> > > > carry forward to any post-gen11 platform.
-> > > 
-> > > The only way you can get LLC cacheability for an external BO (window
-> > > back buffers and such) is by using a MOCS entry that directs the hardware
-> > > to consult the PTEs. Otherwise the client doing the rendering would have
-> > > to know ahead of time whether the buffer is going to be directly scanned
-> > > out by the compositor or not, for which there is no protocol in
-> > > X or wayland.
-> > 
-> > It sounds like you're complaining about gen12 hardware design rather
-> > than anything actually software or ABI related.  'Consult the PTEs'
-> > hasn't been something the hardware has supported since gen11. We still
-> > have macros with PTE or PAGETABLE in their names, but those aren't
-> > accurate descriptions of what they do on current platforms.
-> 
-> I've heard this a few times, but so far I've not been able to find
-> any evidence for it in bspec. I suppose to find out for sure I'm
-> going to have to test it on actual hardware.
+--===============0346916377678384315==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-For gen11, bspec page 560 describes the layout of the GFX_MOCS_x
-registers (which at the time were per-engine).  Specifically:
+== Series Details ==
 
-        Memory type information used in LLC/eDRAM.
+Series: series starting with [CI,1/2] drm/i915/display/skl+: Drop frontbuffer rendering support
+URL   : https://patchwork.freedesktop.org/series/94522/
+State : failure
 
-        00b: Use Cacheability Controls from page table / UC with Fence
-             (if coherent cycle).
-        01b: Uncacheable (UC) – non-cacheable.
-        10b: Writethrough (WT).
-        11b: Writeback (WB).
-        
-So on that platform you can get the PTE behavior you're after by
-programming a value of 00 into the relevant bits (1:0).
+== Summary ==
 
-For gen12+, bspec page 44053 describes the layout of GLOB_MOCS_LECC_x
-(which is now a global value, not per-engine):
+CI Bug Log - changes from CI_DRM_10565 -> Patchwork_21007
+====================================================
 
-	Memory type information used in LLC/eDRAM.
+Summary
+-------
 
-	00: Uncacheable (UC)
-	01: Uncacheable (WC)
-	10: Writethrough (WT)
-	11: Writeback (WB)
+  **FAILURE**
 
-So the value of '00' as expressed in a MOCS table no longer means what
-it did on older platforms.  There's also a "Description" field on this
-page that shows that the old meaning of 00 is explicitly removed by
-gen12 design.
+  Serious unknown changes coming with Patchwork_21007 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21007, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> 
-> I did stumble on some future platform stuff that shuffles around the
-> MOCS stuff once again, and looks like it adds in a specific PTE vs.
-> MOCS bit. So if it was removed, it's almost immediately coming back.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/index.html
 
-Yes, bspec page 65553 makes it look like there is a new bit to handle
-this eventually on a future platform.  But we have multiple new
-platforms between now and then that we still need to support properly,
-starting with ADL, and that bit (and the rest of the various MOCS
-changes) aren't something we can use yet.
+Possible new issues
+-------------------
 
-> 
-> > We note
-> > this in the code:
-> > 
-> >    /*
-> >     * Note: LE_0_PAGETABLE works only up to Gen11; for newer gens it means
-> >     * the same as LE_UC
-> >     */
-> > 
-> > Even on gen11 the PAT entry was documented as being deprecated, so we
-> > knew it was going away.  I don't know why the hardware design changed,
-> > but it did.
-> 
-> Yeah, I've seen it, but could never figure out on what it was based.
-> 
-> > 
-> > > 
-> > > Historically I believe LLC cacheability has been on average a win.
-> > > Some workloads can do better with UC though. So if we are giving up
-> > > on LLC cacheability we should have some numbers to back up that
-> > > decision so that we're not dropping tons of performance on the floor.
-> > 
-> > It's not our decision to make.  The hardware design has already made
-> > this decision for us.  No matter what we program into the MOCS tables;
-> > we're simply not getting back the behavior you're asking for and blindly
-> > using the "LE_0_PAGETABLE" flags or whatever is just giving you
-> > uncached.
-> 
-> As said it looks to be coming back soon, if it ever went away.
-> 
-> > 
-> > > 
-> > > > > > > using entry 61. I think there is a massive communication gap here
-> > > > > > > where everyone just seems to assume the other side is doing something.
-> > > > > > > 
-> > > > > > > Could someone actually come up with a clear abi definition for this
-> > > > > > > and get all the stakeholders to sign off on it?
-> > > > > > 
-> > > > > > The agreement between the i915 team, various userspace teams, Windows
-> > > > > > driver team, hardware architects, software architects, and bspec writers
-> > > > > > was just completed; that's what triggered the kernel updates here (and
-> > > > > > I'm guessing is triggering similar work on the UMD side).  It's also why
-> > > > > > we held off on removing the force_probe flag on ADL until now since we
-> > > > > > couldn't consider enablement of the platform complete until the
-> > > > > > agreement and definitions here was finalized.
-> > > > > 
-> > > > > Can we get that agreement visible on the mailing list? Since MOCS is
-> > > > > abi I don't see why we shouldn't follow the normal abi rules for these,
-> > > > > ie. post to dri-devel, get acks from relevant people, links to agreed
-> > > > > userspace changes, etc.
-> > > > 
-> > > > The ABI design here was designed and agreed upon years ago, during early
-> > > > gen11 development.  The ABI design is that the kernel driver will
-> > > > faithfully initialize the hardware with the pre-determined set of magic
-> > > > numbers documented by the hardware team.  Since these are
-> > > > well-documented and unchanging numbers per-platform, there's no
-> > > > ambiguity for userspace, firmware, etc. about what a specific mocs index
-> > > > means, and no need to provide additional ABI for userspace to query what
-> > > > the kernel used in each row or anything like that.  The specific magic
-> > > > numbers are also ABI in the sense that we can't change the set of
-> > > > defined values once they're set for a platform (and it's been a long
-> > > > road to get the hardware and other OS software teams to understand and
-> > > > agree to this requirement), but we don't get to define or overrule what
-> > > > the initial values and order of those magic numbers are.
-> > > 
-> > > And this apporach has clearly not worked considering userspace and
-> > > kernel have not agreed on what the abi is. We need to do better.
-> > 
-> > Userspace and kernel *do* agree on what the ABI is.  There may be a
-> > delay in userspace enabling the MOCS properly on a new platform.
-> 
-> The fact that Mesa never started to use the MOCS entry supposedly
-> meant for display stuff is evidence to the contrary.
+  Here are the unknown changes that may have been introduced in Patchwork_21007:
 
-I think this is just an oversight by the Mesa team where they didn't
-notice the gen12 table was different from gen11.  I don't think it's
-because they don't agree that the table described in the bspec provides
-the right settings.
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-skl-guc:         [PASS][1] -> [FAIL][2] +3 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-rkl-11600:       [PASS][3] -> [FAIL][4] +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-tgl-y:           [PASS][5] -> [FAIL][6] +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-cfl-guc:         [PASS][7] -> [FAIL][8] +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-icl-y:           [PASS][9] -> [FAIL][10] +3 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-rkl-guc:         [PASS][11] -> [FAIL][12] +3 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-skl-6700k2:      [PASS][13] -> [FAIL][14] +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          [PASS][15] -> [FAIL][16] +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+    - fi-cfl-8700k:       [PASS][17] -> [FAIL][18] +3 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+    - fi-cfl-8109u:       [PASS][19] -> [FAIL][20] +3 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+    - fi-glk-dsi:         [PASS][21] -> [FAIL][22] +3 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+    - fi-kbl-soraka:      [PASS][23] -> [FAIL][24] +3 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+    - fi-kbl-r:           [PASS][25] -> [FAIL][26] +3 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-bxt-dsi:         [PASS][27] -> [FAIL][28] +3 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+    - fi-tgl-1115g4:      [PASS][29] -> [FAIL][30] +3 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - fi-skl-6600u:       [PASS][31] -> [FAIL][32] +3 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+    - fi-cml-u2:          [PASS][33] -> [FAIL][34] +3 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - {fi-ehl-2}:         [PASS][35] -> [FAIL][36] +3 similar issues
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - {fi-tgl-dsi}:       [PASS][37] -> [FAIL][38] +3 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - {fi-jsl-1}:         [PASS][39] -> [FAIL][40] +3 similar issues
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21007 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][41] ([fdo#109271]) +27 similar issues
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][42] ([i915#3718])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-rkl-guc:         [PASS][43] -> [SKIP][44] ([fdo#109308])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - fi-tgl-1115g4:      [PASS][45] -> [DMESG-WARN][46] ([i915#2867]) +14 similar issues
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-1115g4/igt@i915_selftest@live@gt_mocs.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-1115g4/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][47] -> [INCOMPLETE][48] ([i915#3921])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][49] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - {fi-jsl-1}:         [DMESG-FAIL][50] ([i915#1886]) -> [PASS][51]
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
 
 
-> 
-> > But
-> > the changes here (which make everything fully cached by default) will
-> > help catch those cases where a bit of enablement was forgotten on the
-> > UMD side.  They won't "accidentally work" on initial bringup on the new
-> > platform, and the lack of proper MOCS programming will be quickly
-> > identified.
-> 
-> I'm looking at the history and not really convinced.
+Participating hosts (47 -> 39)
+------------------------------
 
-We don't have history to compare to yet because we screwed up on TGL/RKL
-and the use of an outdated MOCS entry by Mesa went unnoticed.  If we
-actually do things right on ADL from day 1, then this will be our chance
-to catch the mistakes like this.
-
-> 
-> > 
-> > > 
-> > > > 
-> > > > What is a bit vague in the formal documentation is what should be done
-> > > > about the reserved/dontuse table entries.  In theory it wouldn't matter
-> > > > since they'd never be used anyway, but in reality userspace can still
-> > > > use them by accident, such as by forgetting to update their MOCS
-> > > > selection logic from past platforms (e.g., still trying to use row #1 on
-> > > > platforms where it isn't defined).  Given that it's legal for entries to
-> > > > be added to MOCS tables, but never removed/modified, it follows that we
-> > > > should always initialize the undefined entries to fully cached; if a
-> > > > MOCS table update happens in the future and new rows show up, they can
-> > > > only become more coherent, and any userspace software that was
-> > > > incorrectly trying to use them previously will remain functionally
-> > > > correct.
-> > > > 
-> > > > What you're proposing would be a change to existing ABI --- instead of
-> > > > following the agreed upon contract, i915 would start defining its own
-> > > > set of magic numbers that potentially contradict the documentation that
-> > > > every other team is depending on.  We already made this mistake on
-> > > > TGL/RKL, so due to an i915 bug we're outside the spec; if entry #1 ever
-> > > > becomes a formally defined setting in the future, the rest of the
-> > > > software stack will need to explicitly work around i915's bug since we
-> > > > can't fix it now without breaking ABI.
-> > > > 
-> > > > If you really want to redefine how the MOCS ABI works and have i915 no
-> > > > longer follow the current contract, I think you need to do the
-> > > > following:
-> > > 
-> > > I want the abi to be actually defined properly, and some assurance that
-> > > all the stakeholders implement it correctly. Following the proper abi
-> > > rules for kernel development would guarantee that.
-> > 
-> > This is what we have today.  As I said, if you want to propose a change
-> > to the ABI, then you need to take the proper steps to do so.  But as far
-> > as I can tell, most of your concern here boils down to not realizing
-> > that the hardware capabilities you want to use were taken away from us
-> > in gen12.
-> 
-> The fact that it's not actually properly documented anywhere certainly
-> doesn't help in figuring out what is going on.
-
-There's a pretty lengthy comment explaining everything right before the
-tables start in intel_mocs.c already.  And the table values themselves
-are well-documented in the bspec (although justification for why things
-like PTE capability have disappeared in gen12 hardware design is
-something only the hardware teams know).  We can extend the code comment
-if you think something is still lacking from the description.
-
-> 
-> > 
-> > > 
-> > > I would also like if the abi can give us the best performance rather
-> > > than potentially crippling it. Ie. I would expect to have a PTE MOCS
-> > > setting for potential scanout buffers, or some proof that pure UC
-> > > will in fact be a better choice.
-> > 
-> > Again, this isn't a choice.  This is a fact of how the hardware works on
-> > gen12.  Maybe you'll regain PTE flags on a future platform, but that's
-> > simply not something software can ask for on today's platforms.
-> 
-> There should be clear guidelines what MOCS index userspace is
-> supposed to use in each case. That more or less used to be the
-> case with the handful of MOCS entries we had defined (always
-> uncached vs. always cached vs. potential scanout buffers which
-> could be either depending on the situation). But that nice simple
-> approach wasn't good enough for whatever reason.
-
-I think the reality is that the real world doesn't fit into those small
-handful of nice categories.  Userspace works with lots of different
-buffers, many of which are only ever used by a single process and in
-relation to a single IP block, and the userspace teams are really the
-experts on the precise cache behavior they need.  Having the full table
-of combinations available lets them choose exactly what's necessary
-instead of being artificially limited to the small number i915 bothered
-to implement; that would be a case where we'd potentially be leaving
-performance on the table.  I suspect that you're right that there's a
-relatively small subset of the MOCS table that's useful for the subset
-of buffers that may be shared between processes and/or between
-high-level graphics/media/display IP blocks, but again the userspace
-teams are really the experts in this area and shouldn't have trouble
-identifying which combinations of settings are suitable and optimal.
+  Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
 
 
-Matt
+Build changes
+-------------
 
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+  * Linux: CI_DRM_10565 -> Patchwork_21007
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+  CI-20190529: 20190529
+  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21007: d1a6a5a3ecab2736feb7528f8ba7b32089c5a418 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d1a6a5a3ecab drm/i915/display: Drop PSR frontbuffer rendering support
+8ed17fa41e37 drm/i915/display/skl+: Drop frontbuffer rendering support
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/index.html
+
+--===============0346916377678384315==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] drm/i915/display/skl+: Drop frontbuffer rendering support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94522/">https://patchwork.freedesktop.org/series/94522/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10565 -&gt; Patchwork_21007</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21007 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21007, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21007:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>
+<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-icl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-skl-6700k2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cfl-8700k/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-glk-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>
+<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bxt-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-cml-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-ehl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">FAIL</a> +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
+<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21007 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109308">fdo#109308</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_mocs:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-tgl-1115g4/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-tgl-1115g4/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) +14 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_pm:<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10565/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21007/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (47 -&gt; 39)</h2>
+<p>Missing    (8): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10565 -&gt; Patchwork_21007</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10565: 8c3cd60dcfa81a649b14f0705eb5e5c9336f1881 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6201: be0d02ff0775235ead63ccb1e3a1e8c10f0209cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21007: d1a6a5a3ecab2736feb7528f8ba7b32089c5a418 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d1a6a5a3ecab drm/i915/display: Drop PSR frontbuffer rendering support<br />
+8ed17fa41e37 drm/i915/display/skl+: Drop frontbuffer rendering support</p>
+
+</body>
+</html>
+
+--===============0346916377678384315==--
