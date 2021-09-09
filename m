@@ -1,49 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A6D04043D9
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 05:07:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A05D404401
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 05:36:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4616E435;
-	Thu,  9 Sep 2021 03:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8481A6E433;
+	Thu,  9 Sep 2021 03:36:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C30ED6E435
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 03:07:39 +0000 (UTC)
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-161-vkt3Rt10MoWl8EDPp02bog-1; Wed, 08 Sep 2021 23:07:35 -0400
-X-MC-Unique: vkt3Rt10MoWl8EDPp02bog-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 65CB3824FA7;
- Thu,  9 Sep 2021 03:07:34 +0000 (UTC)
-Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id D46E126DC1;
- Thu,  9 Sep 2021 03:07:32 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, Dave Airlie <airlied@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>
-Date: Thu,  9 Sep 2021 13:07:26 +1000
-Message-Id: <20210909030726.3047104-3-airlied@gmail.com>
-In-Reply-To: <20210909030726.3047104-1-airlied@gmail.com>
-References: <20210909030726.3047104-1-airlied@gmail.com>
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C32236E433;
+ Thu,  9 Sep 2021 03:36:00 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id t19so648754ejr.8;
+ Wed, 08 Sep 2021 20:36:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Hpg40jsnlZx9RJsns1lWxt5GXbxG7WvlaTlyex72jpQ=;
+ b=ReSkdrAOYOD7PLc7Tzr1WIUWjSr5yTPAc8J0j+SyAnzlTucknRCnuRZYHHo4xvhZ/e
+ RxTlvpDLlsSFqSRrc0uMeA76+Wi7KLOHvJ1eDYGl2GlXcPXwlcKVzAwzUQQHycdX1hdd
+ 8+NCPpOxm53XFFm3RbdrXyVOS1O+RZnkX8PojXgCfgmm9F87CpaI+Qet6SQ5jddERiD7
+ CSRSA6nYi/ND5hbhJl+gDzMJACw99k4dGexmw4M1hGmh1L2/M2BdFjUosj9N0/TGOeCH
+ /DT79YFOPPQZNiHqlpUoUI58lKjJ+IZf2hiLqR+EeJ0ucUzY549Ms3wxnm10qjvLcVDp
+ Y6WQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Hpg40jsnlZx9RJsns1lWxt5GXbxG7WvlaTlyex72jpQ=;
+ b=GrCQN03elxCXjk3+QHXvdKWjwZt62DDNdOjJfPHi69dGJHdG1x/Mz5VWp0rn+h7SeO
+ a40RgIQsrkStCtUrsld2vQRDSDP+4RHnPF2TBTw5oAcUpbiKZjA0rFgh39T8tbE0pmnt
+ EPrmdzJfN8rpZe3k2RuTJ2myY0obD1vnlr8mco/0ocqquJDR3nQr2IZGn9XKAbFtHNEO
+ KuajeppjWMjDMT3blWhtQeFFFgFBIi21yilBRZwn2shW0kkj3kFmHEgmyQGKfhfLgdEM
+ m9RAJVcW/j9d8/kQjf+HMYVNn18hpoLSnV7UjZFcx5I3d9RC/o3Bw6UJPipLHG5D2S7d
+ T/8A==
+X-Gm-Message-State: AOAM531dq3n0oesMtZQPEliLrNe0DBPu52NoZpGd3Ktkw3qnyVRB9nU9
+ iLdr6MN6M4YOLcdfxnvCBI6bY0cBk0xmTaLtJZs=
+X-Google-Smtp-Source: ABdhPJwqdbP1em7+rKNezTBkNmtEpqsIk4XXYmzIOL3JRthHhvxYTsa5tUyX0Q6yPMfvk1CKGlrIx2BTb6RvDTtbQgc=
+X-Received: by 2002:a17:907:384:: with SMTP id
+ ss4mr1067789ejb.478.1631158559323; 
+ Wed, 08 Sep 2021 20:35:59 -0700 (PDT)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=airlied@gmail.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/uncore: constify the register
- vtables. (v2)
+References: <YTj2Y0MKu51CZdbW@linux-uq9g.fritz.box>
+In-Reply-To: <YTj2Y0MKu51CZdbW@linux-uq9g.fritz.box>
+From: Dave Airlie <airlied@gmail.com>
+Date: Thu, 9 Sep 2021 13:35:48 +1000
+Message-ID: <CAPM=9twpHCGLh3nYeTF69woSFWpuWUT+Zk48YyOX3zzNLFLw+g@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,292 +74,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Thu, 9 Sept 2021 at 03:44, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>
+> Hi Dave and Daniel,
+>
+> here's this week's PR for drm-misc-fixes. One patch is a potential deadlock
+> in TTM, the other enables an additional plane in kmb. I'm slightly unhappy
+> that the latter one ended up in -fixes as it's not a bugfix AFAICT.
 
-This reworks the uncore function vtable so that it's constant.
+To avoid messy merge window, I'm not pulling this until after rc1
+unless there is some major reason?
 
-v2: fixup selftest mocking.
+the current drm-next doesn't have v5.14 in it, and the merge is rather
+ugly right now.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/i915/intel_uncore.c          | 133 +++++++++++--------
- drivers/gpu/drm/i915/intel_uncore.h          |   8 +-
- drivers/gpu/drm/i915/selftests/mock_uncore.c |   9 +-
- 3 files changed, 89 insertions(+), 61 deletions(-)
+(maybe I should always pull it in before sending to Linus to avoid
+this in future).
 
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/int=
-el_uncore.c
-index 8652e4221404..e0e7f133f2b9 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -1737,32 +1737,24 @@ __vgpu_write(8)
- __vgpu_write(16)
- __vgpu_write(32)
-=20
--#define ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, x) \
--do { \
--=09(uncore)->funcs.mmio_writeb =3D x##_write8; \
--=09(uncore)->funcs.mmio_writew =3D x##_write16; \
--=09(uncore)->funcs.mmio_writel =3D x##_write32; \
--} while (0)
--
--#define ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, x) \
--do { \
--=09(uncore)->funcs.mmio_readb =3D x##_read8; \
--=09(uncore)->funcs.mmio_readw =3D x##_read16; \
--=09(uncore)->funcs.mmio_readl =3D x##_read32; \
--=09(uncore)->funcs.mmio_readq =3D x##_read64; \
--} while (0)
--
--#define ASSIGN_WRITE_MMIO_VFUNCS(uncore, x) \
--do { \
--=09ASSIGN_RAW_WRITE_MMIO_VFUNCS((uncore), x); \
--=09(uncore)->funcs.write_fw_domains =3D x##_reg_write_fw_domains; \
--} while (0)
--
--#define ASSIGN_READ_MMIO_VFUNCS(uncore, x) \
--do { \
--=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, x); \
--=09(uncore)->funcs.read_fw_domains =3D x##_reg_read_fw_domains; \
--} while (0)
-+#define MMIO_RAW_WRITE_VFUNCS(x)     \
-+=09.mmio_writeb =3D x##_write8,   \
-+=09.mmio_writew =3D x##_write16,  \
-+=09.mmio_writel =3D x##_write32
-+
-+#define MMIO_RAW_READ_VFUNCS(x)=09  \
-+=09.mmio_readb =3D x##_read8,  \
-+=09.mmio_readw =3D x##_read16, \
-+=09.mmio_readl =3D x##_read32, \
-+=09.mmio_readq =3D x##_read64
-+
-+#define MMIO_WRITE_FW_VFUNCS(x)=09=09=09=09\
-+=09MMIO_RAW_WRITE_VFUNCS(x),=09=09=09\
-+=09.write_fw_domains =3D x##_reg_write_fw_domains
-+
-+#define MMIO_READ_FW_VFUNCS(x)=09=09=09=09\
-+=09MMIO_RAW_READ_VFUNCS(x),=09=09=09\
-+=09.read_fw_domains =3D x##_reg_read_fw_domains
-=20
- static int __fw_domain_init(struct intel_uncore *uncore,
- =09=09=09    enum forcewake_domain_id domain_id,
-@@ -2067,22 +2059,64 @@ void intel_uncore_init_early(struct intel_uncore *u=
-ncore,
- =09uncore->debug =3D &i915->mmio_debug;
- }
-=20
-+static const struct intel_uncore_funcs vgpu_funcs =3D {
-+=09MMIO_RAW_WRITE_VFUNCS(vgpu),
-+=09MMIO_RAW_READ_VFUNCS(vgpu),
-+};
-+
-+static const struct intel_uncore_funcs gen5_funcs =3D {
-+=09MMIO_RAW_WRITE_VFUNCS(gen5),
-+=09MMIO_RAW_READ_VFUNCS(gen5),
-+};
-+
-+static const struct intel_uncore_funcs gen2_funcs =3D {
-+=09MMIO_RAW_WRITE_VFUNCS(gen2),
-+=09MMIO_RAW_READ_VFUNCS(gen2),
-+};
-+
- static void uncore_raw_init(struct intel_uncore *uncore)
- {
- =09GEM_BUG_ON(intel_uncore_has_forcewake(uncore));
-=20
- =09if (intel_vgpu_active(uncore->i915)) {
--=09=09ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, vgpu);
--=09=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, vgpu);
-+=09=09uncore->funcs =3D &vgpu_funcs;
- =09} else if (GRAPHICS_VER(uncore->i915) =3D=3D 5) {
--=09=09ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, gen5);
--=09=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, gen5);
-+=09=09uncore->funcs =3D &gen5_funcs;
- =09} else {
--=09=09ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, gen2);
--=09=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, gen2);
-+=09=09uncore->funcs =3D &gen2_funcs;
- =09}
- }
-=20
-+static const struct intel_uncore_funcs gen12_funcs =3D {
-+=09MMIO_WRITE_FW_VFUNCS(gen12_fwtable),
-+=09MMIO_READ_FW_VFUNCS(gen11_fwtable)
-+};
-+
-+static const struct intel_uncore_funcs gen11_funcs =3D {
-+=09MMIO_WRITE_FW_VFUNCS(gen11_fwtable),
-+=09MMIO_READ_FW_VFUNCS(gen11_fwtable)
-+};
-+
-+static const struct intel_uncore_funcs fwtable_funcs =3D {
-+=09MMIO_WRITE_FW_VFUNCS(fwtable),
-+=09MMIO_READ_FW_VFUNCS(fwtable)
-+};
-+
-+static const struct intel_uncore_funcs gen8_funcs =3D {
-+=09MMIO_WRITE_FW_VFUNCS(gen8),
-+=09MMIO_READ_FW_VFUNCS(gen6)
-+};
-+
-+static const struct intel_uncore_funcs vlv_funcs =3D {
-+=09MMIO_WRITE_FW_VFUNCS(gen6),
-+=09MMIO_READ_FW_VFUNCS(fwtable)
-+};
-+
-+static const struct intel_uncore_funcs gen6_funcs =3D {
-+=09MMIO_WRITE_FW_VFUNCS(gen6),
-+=09MMIO_READ_FW_VFUNCS(gen6)
-+};
-+
- static int uncore_forcewake_init(struct intel_uncore *uncore)
- {
- =09struct drm_i915_private *i915 =3D uncore->i915;
-@@ -2097,38 +2131,29 @@ static int uncore_forcewake_init(struct intel_uncor=
-e *uncore)
-=20
- =09if (GRAPHICS_VER_FULL(i915) >=3D IP_VER(12, 55)) {
- =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __dg2_fw_ranges);
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
-+=09=09uncore->funcs =3D &gen12_funcs;
- =09} else if (GRAPHICS_VER_FULL(i915) >=3D IP_VER(12, 50)) {
- =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __xehp_fw_ranges);
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
-+=09=09uncore->funcs =3D &gen12_funcs;
- =09} else if (GRAPHICS_VER(i915) >=3D 12) {
- =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __gen12_fw_ranges);
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
-+=09=09uncore->funcs =3D &gen12_funcs;
- =09} else if (GRAPHICS_VER(i915) =3D=3D 11) {
- =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __gen11_fw_ranges);
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen11_fwtable);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
-+=09=09uncore->funcs =3D &gen11_funcs;
- =09} else if (IS_GRAPHICS_VER(i915, 9, 10)) {
- =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __gen9_fw_ranges);
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
-+=09=09uncore->funcs =3D &fwtable_funcs;
- =09} else if (IS_CHERRYVIEW(i915)) {
- =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __chv_fw_ranges);
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
-+=09=09uncore->funcs =3D &fwtable_funcs;
- =09} else if (GRAPHICS_VER(i915) =3D=3D 8) {
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen8);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen6);
-+=09=09uncore->funcs =3D &gen8_funcs;
- =09} else if (IS_VALLEYVIEW(i915)) {
- =09=09ASSIGN_FW_DOMAINS_TABLE(uncore, __vlv_fw_ranges);
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen6);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
-+=09=09uncore->funcs =3D &vlv_funcs;
- =09} else if (IS_GRAPHICS_VER(i915, 6, 7)) {
--=09=09ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen6);
--=09=09ASSIGN_READ_MMIO_VFUNCS(uncore, gen6);
-+=09=09uncore->funcs =3D &gen6_funcs;
- =09}
-=20
- =09uncore->pmic_bus_access_nb.notifier_call =3D i915_pmic_bus_access_notif=
-ier;
-@@ -2171,8 +2196,8 @@ int intel_uncore_init_mmio(struct intel_uncore *uncor=
-e)
-=20
- =09/* make sure fw funcs are set if and only if we have fw*/
- =09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->fw_get_fun=
-cs);
--=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.read=
-_fw_domains);
--=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs.writ=
-e_fw_domains);
-+=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs->rea=
-d_fw_domains);
-+=09GEM_BUG_ON(intel_uncore_has_forcewake(uncore) !=3D !!uncore->funcs->wri=
-te_fw_domains);
-=20
- =09if (HAS_FPGA_DBG_UNCLAIMED(i915))
- =09=09uncore->flags |=3D UNCORE_HAS_FPGA_DBG_UNCLAIMED;
-@@ -2511,10 +2536,10 @@ intel_uncore_forcewake_for_reg(struct intel_uncore =
-*uncore,
- =09=09return 0;
-=20
- =09if (op & FW_REG_READ)
--=09=09fw_domains =3D uncore->funcs.read_fw_domains(uncore, reg);
-+=09=09fw_domains =3D uncore->funcs->read_fw_domains(uncore, reg);
-=20
- =09if (op & FW_REG_WRITE)
--=09=09fw_domains |=3D uncore->funcs.write_fw_domains(uncore, reg);
-+=09=09fw_domains |=3D uncore->funcs->write_fw_domains(uncore, reg);
-=20
- =09drm_WARN_ON(&uncore->i915->drm, fw_domains & ~uncore->fw_domains);
-=20
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/int=
-el_uncore.h
-index 1950380c0d79..92b4279119d2 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -144,7 +144,7 @@ struct intel_uncore {
-=20
- =09struct notifier_block pmic_bus_access_nb;
- =09const struct intel_uncore_fw_get *fw_get_funcs;
--=09struct intel_uncore_funcs funcs;
-+=09const struct intel_uncore_funcs *funcs;
-=20
- =09unsigned int fifo_count;
-=20
-@@ -318,14 +318,14 @@ __raw_write(64, q)
- static inline u##x__ intel_uncore_##name__(struct intel_uncore *uncore, \
- =09=09=09=09=09   i915_reg_t reg) \
- { \
--=09return uncore->funcs.mmio_read##s__(uncore, reg, (trace__)); \
-+=09return uncore->funcs->mmio_read##s__(uncore, reg, (trace__)); \
- }
-=20
- #define __uncore_write(name__, x__, s__, trace__) \
- static inline void intel_uncore_##name__(struct intel_uncore *uncore, \
- =09=09=09=09=09 i915_reg_t reg, u##x__ val) \
- { \
--=09uncore->funcs.mmio_write##s__(uncore, reg, val, (trace__)); \
-+=09uncore->funcs->mmio_write##s__(uncore, reg, val, (trace__)); \
- }
-=20
- __uncore_read(read8, 8, b, true)
-@@ -344,7 +344,7 @@ __uncore_write(write_notrace, 32, l, false)
-  * an arbitrary delay between them. This can cause the hardware to
-  * act upon the intermediate value, possibly leading to corruption and
-  * machine death. For this reason we do not support intel_uncore_write64,
-- * or uncore->funcs.mmio_writeq.
-+ * or uncore->funcs->mmio_writeq.
-  *
-  * When reading a 64-bit value as two 32-bit values, the delay may cause
-  * the two reads to mismatch, e.g. a timestamp overflowing. Also note that
-diff --git a/drivers/gpu/drm/i915/selftests/mock_uncore.c b/drivers/gpu/drm=
-/i915/selftests/mock_uncore.c
-index ca57e4008701..9b0d56dc98d4 100644
---- a/drivers/gpu/drm/i915/selftests/mock_uncore.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_uncore.c
-@@ -39,11 +39,14 @@ __nop_read(16)
- __nop_read(32)
- __nop_read(64)
-=20
-+static const struct intel_uncore_funcs nop_funcs =3D {
-+=09MMIO_RAW_WRITE_VFUNCS(nop),
-+=09MMIO_RAW_READ_VFUNCS(nop)
-+};
-+
- void mock_uncore_init(struct intel_uncore *uncore,
- =09=09      struct drm_i915_private *i915)
- {
- =09intel_uncore_init_early(uncore, i915);
--
--=09ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, nop);
--=09ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, nop);
-+=09uncore->funcs =3D &nop_funcs;
- }
---=20
-2.31.1
-
+Dave.
