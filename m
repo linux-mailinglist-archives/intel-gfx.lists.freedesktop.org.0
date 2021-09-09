@@ -2,45 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004D1405B3A
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 18:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C11A405B5B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Sep 2021 18:53:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07AEB6E8C2;
-	Thu,  9 Sep 2021 16:48:18 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA7F16E8C2;
- Thu,  9 Sep 2021 16:48:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="217682221"
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="217682221"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 09:48:16 -0700
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="548653426"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 09:48:15 -0700
-Date: Thu, 9 Sep 2021 09:43:14 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5E86E8CE;
+	Thu,  9 Sep 2021 16:52:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 318886E8C6;
+ Thu,  9 Sep 2021 16:52:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="218988839"
+X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="218988839"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 09:52:50 -0700
+X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; d="scan'208";a="649003785"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 09:52:50 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: John.C.Harrison@Intel.com
-Cc: Intel-GFX@Lists.FreeDesktop.Org, DRI-Devel@Lists.FreeDesktop.Org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Kenneth Graunke <kenneth.w.graunke@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Slawomir Milczarek <slawomir.milczarek@intel.com>
-Message-ID: <20210909164313.GA30405@jons-linux-dev-box>
-References: <20210903005333.3627255-1-John.C.Harrison@Intel.com>
- <20210903005333.3627255-3-John.C.Harrison@Intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Cc: <john.c.harrison@intel.com>,
+	<daniele.ceraolospurio@intel.com>
+Date: Thu,  9 Sep 2021 09:47:21 -0700
+Message-Id: <20210909164744.31249-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210903005333.3627255-3-John.C.Harrison@Intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/uapi: Add query for hwconfig
- table
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/23] Clean up GuC CI failures, simplify locking,
+ and kernel DOC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,123 +48,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 02, 2021 at 05:53:33PM -0700, John.C.Harrison@Intel.com wrote:
-> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> GuC contains a consolidated table with a bunch of information about the
-> current device.
-> 
-> Previously, this information was spread and hardcoded to all the components
-> including GuC, i915 and various UMDs. The goal here is to consolidate
-> the data into GuC in a way that all interested components can grab the
-> very latest and synchronized information using a simple query.
-> 
-> As per most of the other queries, this one can be called twice.
-> Once with item.length=0 to determine the exact buffer size, then
-> allocate the user memory and call it again for to retrieve the
-> table data. For example:
->   struct drm_i915_query_item item = {
->     .query_id = DRM_I915_QUERY_HWCONCFIG_TABLE;
->   };
->   query.items_ptr = (int64_t) &item;
->   query.num_items = 1;
-> 
->   ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
-> 
->   if (item.length <= 0)
->     return -ENOENT;
-> 
->   data = malloc(item.length);
->   item.data_ptr = (int64_t) &data;
->   ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
-> 
->   // Parse the data as appropriate...
-> 
-> The returned array is a simple and flexible KLV (Key/Length/Value)
-> formatted table. For example, it could be just:
->   enum device_attr {
->      ATTR_SOME_VALUE = 0,
->      ATTR_SOME_MASK  = 1,
->   };
-> 
->   static const u32 hwconfig[] = {
->       ATTR_SOME_VALUE,
->       1,             // Value Length in DWords
->       8,             // Value
-> 
->       ATTR_SOME_MASK,
->       3,
->       0x00FFFFFFFF, 0xFFFFFFFF, 0xFF000000,
->   };
-> 
-> The attribute ids are defined in a hardware spec.
-> 
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Daniel Vetter pointed out that locking in the GuC submission code was
+overly complicated, let's clean this up a bit before introducing more
+features in the GuC submission backend.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Also fix some CI failures, port fixes from our internal tree, and add a
+few more selftests for coverage.
 
-> ---
->  drivers/gpu/drm/i915/i915_query.c | 23 +++++++++++++++++++++++
->  include/uapi/drm/i915_drm.h       |  1 +
->  2 files changed, 24 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index 5e2b909827f4..96989a37453c 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -477,12 +477,35 @@ static int query_memregion_info(struct drm_i915_private *i915,
->  	return total_length;
->  }
->  
-> +static int query_hwconfig_table(struct drm_i915_private *i915,
-> +				struct drm_i915_query_item *query_item)
-> +{
-> +	struct intel_gt *gt = &i915->gt;
-> +	struct intel_guc_hwconfig *hwconfig = &gt->uc.guc.hwconfig;
-> +
-> +	if (!hwconfig->size || !hwconfig->ptr)
-> +		return -ENODEV;
-> +
-> +	if (query_item->length == 0)
-> +		return hwconfig->size;
-> +
-> +	if (query_item->length < hwconfig->size)
-> +		return -EINVAL;
-> +
-> +	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
-> +			 hwconfig->ptr, hwconfig->size))
-> +		return -EFAULT;
-> +
-> +	return hwconfig->size;
-> +}
-> +
->  static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->  					struct drm_i915_query_item *query_item) = {
->  	query_topology_info,
->  	query_engine_info,
->  	query_perf_config,
->  	query_memregion_info,
-> +	query_hwconfig_table,
->  };
->  
->  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index bde5860b3686..a1281f35b190 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2499,6 +2499,7 @@ struct drm_i915_query_item {
->  #define DRM_I915_QUERY_ENGINE_INFO	2
->  #define DRM_I915_QUERY_PERF_CONFIG      3
->  #define DRM_I915_QUERY_MEMORY_REGIONS   4
-> +#define DRM_I915_QUERY_HWCONFIG_TABLE   5
->  /* Must be kept compact -- no holes and well documented */
->  
->  	/**
-> -- 
-> 2.25.1
-> 
+Lastly, add some kernel DOC explaining how the GuC submission backend
+works.
+
+v2: Fix logic error in 'Workaround reset G2H is received after schedule
+done G2H', don't propagate errors to dependent fences in execlists
+submissiom, resolve checkpatch issues, resend to correct lists
+v3: Fix issue kicking tasklet, drop guc_active, fix ref counting in
+xarray, add guc_id sub structure, drop inline fuctions, and various
+other cleanup suggested by Daniel
+v4: Address Daniele's feedback, rebase to tip, resend for CI
+v5 [Daniele taking over while Matt is out]: drop patches 8 and 27 for
+now (not critical, Matt will update and resend when he's back), address
+review comments, improve kerneldoc. Also move all code related to busy
+loop to patch 2 so we have a standalone fix.
+v6: Drop allocate of error capture in nowait context, drop flushing of
+work queue (will get respun individually).
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> #v5
+
+Matthew Brost (23):
+  drm/i915/guc: Fix blocked context accounting
+  drm/i915/guc: Fix outstanding G2H accounting
+  drm/i915/guc: Unwind context requests in reverse order
+  drm/i915/guc: Don't drop ce->guc_active.lock when unwinding context
+  drm/i915/guc: Process all G2H message at once in work queue
+  drm/i915/guc: Workaround reset G2H is received after schedule done G2H
+  Revert "drm/i915/gt: Propagate change in error status to children on
+    unhold"
+  drm/i915/guc: Kick tasklet after queuing a request
+  drm/i915/guc: Don't enable scheduling on a banned context, guc_id
+    invalid, not registered
+  drm/i915/guc: Copy whole golden context, set engine state size of
+    subset
+  drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H
+  drm/i915/guc: Take context ref when cancelling request
+  drm/i915/guc: Don't touch guc_state.sched_state without a lock
+  drm/i915/guc: Reset LRC descriptor if register returns -ENODEV
+  drm/i915/guc: Release submit fence from an irq_work
+  drm/i915/guc: Move guc_blocked fence to struct guc_state
+  drm/i915/guc: Rework and simplify locking
+  drm/i915/guc: Proper xarray usage for contexts_lookup
+  drm/i915/guc: Drop pin count check trick between sched_disable and
+    re-pin
+  drm/i915/guc: Move GuC priority fields in context under guc_active
+  drm/i915/guc: Move fields protected by guc->contexts_lock into sub
+    structure
+  drm/i915/guc: Drop guc_active move everything into guc_state
+  drm/i915/guc: Add GuC kernel doc
+
+ Documentation/gpu/i915.rst                    |   2 +
+ drivers/gpu/drm/i915/gt/intel_context.c       |  19 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  80 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |   4 -
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   6 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  75 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  26 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   6 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 904 +++++++++++-------
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c     | 127 +++
+ drivers/gpu/drm/i915/i915_request.h           |  26 +-
+ drivers/gpu/drm/i915/i915_trace.h             |  12 +-
+ .../drm/i915/selftests/i915_live_selftests.h  |   1 +
+ .../i915/selftests/intel_scheduler_helpers.c  |  12 +
+ .../i915/selftests/intel_scheduler_helpers.h  |   2 +
+ 15 files changed, 872 insertions(+), 430 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+
+-- 
+2.32.0
+
