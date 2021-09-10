@@ -2,47 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B4040731B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 23:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE47A40733A
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Sep 2021 00:06:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B73816EAC2;
-	Fri, 10 Sep 2021 21:52:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F27A06EAC5;
+	Fri, 10 Sep 2021 22:06:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0360D6EAC2;
- Fri, 10 Sep 2021 21:52:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10103"; a="306748700"
-X-IronPort-AV: E=Sophos;i="5.85,284,1624345200"; d="scan'208";a="306748700"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 14:52:15 -0700
-X-IronPort-AV: E=Sophos;i="5.85,284,1624345200"; d="scan'208";a="695169449"
-Received: from saitejra-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.128.112])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 14:52:14 -0700
-Date: Fri, 10 Sep 2021 14:52:14 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Yokoyama, Caz" <caz.yokoyama@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Shyti, Andi" <andi.shyti@intel.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
-Message-ID: <20210910215214.rl5zccqxkj4id7bh@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210909004941.379035-1-lucas.demarchi@intel.com>
- <20210909004941.379035-3-lucas.demarchi@intel.com>
- <20210910175257.oo3wbqnwx2inbcr3@ldmartin-desk2>
- <43256f639e37c2a4a862d42add314fcda48b99fb.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 301E96EAC5;
+ Fri, 10 Sep 2021 22:06:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1A804A9932;
+ Fri, 10 Sep 2021 22:06:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <43256f639e37c2a4a862d42add314fcda48b99fb.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: rename debugfs_gt_pm files
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Sep 2021 22:06:33 -0000
+Message-ID: <163131159307.14826.6008836455532527545@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210910174447.289750-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20210910174447.289750-1-rodrigo.vivi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/runtime=5Fpm=3A_Consoli?=
+ =?utf-8?q?date_runtime=5Fpm_functions_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,118 +42,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 10, 2021 at 09:14:37PM +0000, Yokoyama, Caz wrote:
->On Fri, 2021-09-10 at 10:52 -0700, Lucas De Marchi wrote:
->> On Wed, Sep 08, 2021 at 05:49:40PM -0700, Lucas De Marchi wrote:
->> > We shouldn't be using debugfs_ namespace for this functionality.
->> > Rename
->> > debugfs_gt_pm.[ch] to intel_gt_pm_debugfs.[ch] and then make
->> > functions, defines and structs follow suit.
->> >
->> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> > ---
->> > drivers/gpu/drm/i915/Makefile                      |  2 +-
->> > drivers/gpu/drm/i915/gt/debugfs_gt_pm.h            | 14 ---------
->> > -----
->> > drivers/gpu/drm/i915/gt/intel_gt_debugfs.c         |  4 ++--
->> > .../gt/{debugfs_gt_pm.c => intel_gt_pm_debugfs.c}  |  4 ++--
->> > drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h      | 14
->> > ++++++++++++++
->> > 5 files changed, 19 insertions(+), 19 deletions(-)
->> > delete mode 100644 drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
->> > rename drivers/gpu/drm/i915/gt/{debugfs_gt_pm.c =>
->> > intel_gt_pm_debugfs.c} (99%)
->> > create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
->> >
->> > diff --git a/drivers/gpu/drm/i915/Makefile
->> > b/drivers/gpu/drm/i915/Makefile
->> > index 232c9673a2e5..dd656f2d7721 100644
->> > --- a/drivers/gpu/drm/i915/Makefile
->> > +++ b/drivers/gpu/drm/i915/Makefile
->> > @@ -79,7 +79,6 @@ i915-$(CONFIG_PERF_EVENTS) += i915_pmu.o
->> >
->> > # "Graphics Technology" (aka we talk to the gpu)
->> > gt-y += \
->> > -	gt/debugfs_gt_pm.o \
->> > 	gt/gen2_engine_cs.o \
->> > 	gt/gen6_engine_cs.o \
->> > 	gt/gen6_ppgtt.o \
->> > @@ -103,6 +102,7 @@ gt-y += \
->> > 	gt/intel_gt_engines_debugfs.o \
->> > 	gt/intel_gt_irq.o \
->> > 	gt/intel_gt_pm.o \
->> > +	gt/intel_gt_pm_debugfs.o \
->> > 	gt/intel_gt_pm_irq.o \
->> > 	gt/intel_gt_requests.o \
->> > 	gt/intel_gtt.o \
->> > diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
->> > b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
->> > deleted file mode 100644
->> > index 4cf5f5c9da7d..000000000000
->> > --- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
->> > +++ /dev/null
->> > @@ -1,14 +0,0 @@
->> > -/* SPDX-License-Identifier: MIT */
->> > -/*
->> > - * Copyright © 2019 Intel Corporation
->> > - */
->> > -
->> > -#ifndef DEBUGFS_GT_PM_H
->> > -#define DEBUGFS_GT_PM_H
->> > -
->> > -struct intel_gt;
->> > -struct dentry;
->> > -
->> > -void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry
->> > *root);
->> > -
->> > -#endif /* DEBUGFS_GT_PM_H */
->> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
->> > b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
->> > index e5d173c235a3..4096ee893b69 100644
->> > --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
->> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
->> > @@ -5,10 +5,10 @@
->> >
->> > #include <linux/debugfs.h>
->> >
->> > -#include "debugfs_gt_pm.h"
->> > #include "i915_drv.h"
->> > #include "intel_gt_debugfs.h"
->> > #include "intel_gt_engines_debugfs.h"
->> > +#include "intel_gt_pm_debugfs.h"
->Why locate here? Why not just replace debugfs_gt_pm.h? Compile error?
+== Series Details ==
 
-are you asking why I moved the include? Because sorting them
-alphabetically avoid big messes in these includes
+Series: series starting with [1/3] drm/i915/runtime_pm: Consolidate runtime_pm functions (rev2)
+URL   : https://patchwork.freedesktop.org/series/94563/
+State : warning
 
-Lucas De Marchi
+== Summary ==
 
->-caz
->
->> > #include "intel_sseu_debugfs.h"
->> > #include "uc/intel_uc_debugfs.h"
->> >
->> > @@ -24,7 +24,7 @@ void intel_gt_register_debugfs(struct intel_gt
->> > *gt)
->> > 		return;
->> >
->> > 	intel_gt_engines_register_debugfs(gt, root);
->> > -	debugfs_gt_pm_register(gt, root);
->> > +	intel_gt_pm_register_debugfs(gt, root);
->>
->> This is one case I usually don't know what convention to follow since
->> it
->> changes in different places.
->>
->> I did it like xxxx_register_debugfs because of calls like
->> intel_gt_init_scratch(), xxx_init_hw, etc. However here I see that
->> just
->> below we have intel_sseu_debugfs_register(), so maybe I should
->> consider
->> debugfs as part of the namespace?
->>
->> Lucas De Marchi
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
+
