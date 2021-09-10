@@ -1,35 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA7B406055
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 02:11:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD84C4060CA
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 02:19:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B8FA6E947;
-	Fri, 10 Sep 2021 00:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA9F6E946;
+	Fri, 10 Sep 2021 00:19:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DEF7C6E946;
- Fri, 10 Sep 2021 00:11:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D56A6A73C9;
- Fri, 10 Sep 2021 00:11:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16F506E946;
+ Fri, 10 Sep 2021 00:19:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="243266400"
+X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="243266400"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 17:19:31 -0700
+X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="649158065"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 17:19:31 -0700
+Date: Thu, 9 Sep 2021 17:14:29 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
+Message-ID: <20210910001429.GA12420@jons-linux-dev-box>
+References: <20210820224446.30620-1-matthew.brost@intel.com>
+ <20210820224446.30620-3-matthew.brost@intel.com>
+ <29e4e25f-0296-c096-b483-de63f01daf69@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Sep 2021 00:11:39 -0000
-Message-ID: <163123269985.14827.6054551417274926451@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210909230725.33735-1-jose.souza@intel.com>
-In-Reply-To: <20210909230725.33735-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/5=5D_drm/i915/display/adlp=3A_Fix_PSR?=
- =?utf-8?q?2=5FMAN=5FTRK=5FCTL=5FSU=5FREGION=5FEND=5FADDR_calculation?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <29e4e25f-0296-c096-b483-de63f01daf69@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 02/27] drm/i915/guc: Allow flexible number
+ of context ids
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,63 +50,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Sep 09, 2021 at 03:13:29PM -0700, John Harrison wrote:
+> On 8/20/2021 15:44, Matthew Brost wrote:
+> > Number of available GuC contexts ids might be limited.
+> > Stop referring in code to macro and use variable instead.
+> > 
+> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc.h            |  4 ++++
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 15 +++++++++------
+> >   2 files changed, 13 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > index 112dd29a63fe..6fd2719d1b75 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > @@ -60,6 +60,10 @@ struct intel_guc {
+> >   	spinlock_t contexts_lock;
+> >   	/** @guc_ids: used to allocate new guc_ids */
+> >   	struct ida guc_ids;
+> > +	/** @num_guc_ids: number of guc_ids that can be used */
+> > +	u32 num_guc_ids;
+> > +	/** @max_guc_ids: max number of guc_ids that can be used */
+> > +	u32 max_guc_ids;
+> How do these differ? The description needs to say how or why 'num' might be
+> less than 'max'. And surely 'max' is not the count 'that can be used'? Num
+> is how many can be used, but max is how many are physically possible or
+> something?
+>
 
-Series: series starting with [1/5] drm/i915/display/adlp: Fix PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR calculation
-URL   : https://patchwork.freedesktop.org/series/94526/
-State : warning
+Max is the possible per OS / PF / VF instance, while num is the current
+setting. Makes more sense once SRIOV lands / if this is connected to
+debugfs (e.g. only num can be set via debugfs).
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-
+Matt
+ 
+> John.
+> 
+> >   	/**
+> >   	 * @guc_id_list: list of intel_context with valid guc_ids but no refs
+> >   	 */
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 46158d996bf6..8235e49bb347 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -344,7 +344,7 @@ static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
+> >   {
+> >   	struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
+> > -	GEM_BUG_ON(index >= GUC_MAX_LRC_DESCRIPTORS);
+> > +	GEM_BUG_ON(index >= guc->max_guc_ids);
+> >   	return &base[index];
+> >   }
+> > @@ -353,7 +353,7 @@ static struct intel_context *__get_context(struct intel_guc *guc, u32 id)
+> >   {
+> >   	struct intel_context *ce = xa_load(&guc->context_lookup, id);
+> > -	GEM_BUG_ON(id >= GUC_MAX_LRC_DESCRIPTORS);
+> > +	GEM_BUG_ON(id >= guc->max_guc_ids);
+> >   	return ce;
+> >   }
+> > @@ -363,8 +363,7 @@ static int guc_lrc_desc_pool_create(struct intel_guc *guc)
+> >   	u32 size;
+> >   	int ret;
+> > -	size = PAGE_ALIGN(sizeof(struct guc_lrc_desc) *
+> > -			  GUC_MAX_LRC_DESCRIPTORS);
+> > +	size = PAGE_ALIGN(sizeof(struct guc_lrc_desc) * guc->max_guc_ids);
+> >   	ret = intel_guc_allocate_and_map_vma(guc, size, &guc->lrc_desc_pool,
+> >   					     (void **)&guc->lrc_desc_pool_vaddr);
+> >   	if (ret)
+> > @@ -1193,7 +1192,7 @@ static void guc_submit_request(struct i915_request *rq)
+> >   static int new_guc_id(struct intel_guc *guc)
+> >   {
+> >   	return ida_simple_get(&guc->guc_ids, 0,
+> > -			      GUC_MAX_LRC_DESCRIPTORS, GFP_KERNEL |
+> > +			      guc->num_guc_ids, GFP_KERNEL |
+> >   			      __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
+> >   }
+> > @@ -2704,6 +2703,8 @@ static bool __guc_submission_selected(struct intel_guc *guc)
+> >   void intel_guc_submission_init_early(struct intel_guc *guc)
+> >   {
+> > +	guc->max_guc_ids = GUC_MAX_LRC_DESCRIPTORS;
+> > +	guc->num_guc_ids = GUC_MAX_LRC_DESCRIPTORS;
+> >   	guc->submission_supported = __guc_submission_supported(guc);
+> >   	guc->submission_selected = __guc_submission_selected(guc);
+> >   }
+> > @@ -2713,7 +2714,7 @@ g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
+> >   {
+> >   	struct intel_context *ce;
+> > -	if (unlikely(desc_idx >= GUC_MAX_LRC_DESCRIPTORS)) {
+> > +	if (unlikely(desc_idx >= guc->max_guc_ids)) {
+> >   		drm_err(&guc_to_gt(guc)->i915->drm,
+> >   			"Invalid desc_idx %u", desc_idx);
+> >   		return NULL;
+> > @@ -3063,6 +3064,8 @@ void intel_guc_submission_print_info(struct intel_guc *guc,
+> >   	drm_printf(p, "GuC Number Outstanding Submission G2H: %u\n",
+> >   		   atomic_read(&guc->outstanding_submission_g2h));
+> > +	drm_printf(p, "GuC Number GuC IDs: %u\n", guc->num_guc_ids);
+> > +	drm_printf(p, "GuC Max GuC IDs: %u\n", guc->max_guc_ids);
+> >   	drm_printf(p, "GuC tasklet count: %u\n\n",
+> >   		   atomic_read(&sched_engine->tasklet.count));
+> 
