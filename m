@@ -1,60 +1,160 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5DB408A0A
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 13:21:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18542408B44
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 14:45:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF2906E175;
-	Mon, 13 Sep 2021 11:21:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D54E6E183;
+	Mon, 13 Sep 2021 12:45:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25C926E174;
- Mon, 13 Sep 2021 11:21:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="307193506"
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="307193506"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2021 04:21:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="528003173"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by fmsmga004.fm.intel.com with ESMTP; 13 Sep 2021 04:21:14 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 13 Sep 2021 12:21:13 +0100
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Mon, 13 Sep 2021 16:51:12 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH v2 4/6] drm/edid: parse the DisplayID v2.0 VESA vendor
- block for MSO
-Thread-Index: AQHXnnMP3ZkKGG/hO0qHTdOFN1KAfKuhjZ7Q///dN4CAAHTBUA==
-Date: Mon, 13 Sep 2021 11:21:11 +0000
-Message-ID: <5bea734572a341f3bc8ca721718a18a3@intel.com>
-References: <cover.1630419362.git.jani.nikula@intel.com>
- <73ca2887e7b37880690f5c9ba4594c9cd1170669.1630419362.git.jani.nikula@intel.com>
- <264db723a9c34755bd8c2a052e3e5bf6@intel.com> <87wnnk3jro.fsf@intel.com>
-In-Reply-To: <87wnnk3jro.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA3D56EA05;
+ Fri, 10 Sep 2021 14:11:36 +0000 (UTC)
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18ADtSgZ013678; 
+ Fri, 10 Sep 2021 14:10:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=from : to : cc :
+ subject : date : message-id : in-reply-to : references :
+ content-transfer-encoding : content-type : mime-version;
+ s=corp-2021-07-09; bh=hZNsNqnSdzDoRrs9n34z5zvOt/SaZiw+wnihnux4hcg=;
+ b=rXv6QiKOA9QO9KxvkVfHsvQbGHlKSm5ClSMxFoMA2uHNq2iEaOg0227akIVlmrtsat/h
+ GaT7NOqS4TyNQbLdYL7CdTd3oqRRwquYnVjljvKuuKyM9mulx035Dm7CapnDlUPiwxEY
+ Z9dUG2a1DHZbX7h8+nDLy/L5o3fBuYjBG2gygRi983TtLLu+qgjsaC5WvRYYewV1rlHZ
+ mV3UDKJI1FauLVA5LOELtg2zpvtrflsY1+extPitDdcgqLHDg35oS8TUU+fhEZxpmtr2
+ 1QpMpgN4KL4veNMMUlMHgXG6anCW8ccDq/0sIoUNR+PajDrh3eX0eUnYeURkn31EH8OA 9Q== 
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=from : to : cc :
+ subject : date : message-id : in-reply-to : references :
+ content-transfer-encoding : content-type : mime-version;
+ s=corp-2020-01-29; bh=hZNsNqnSdzDoRrs9n34z5zvOt/SaZiw+wnihnux4hcg=;
+ b=WcK7DeMU8OxukcfeMPTuCceZQ0+2a9+L5vm76ukIXdawHPnUzG1u9YCIwcMBCEjfM6mb
+ 0RkYlyxXHZfu4Enb1g6KO/D9dzRlMOVNbpZMuMJD7+5+oV2Hoyhw6rhMPXzz5esy84si
+ GF1nuL7Hld6fjCYYwo6nrIIuaTU6LvsGesBYpIne2SP2+TzyXvVdqpHk1Zo+ZOpafi4Q
+ XCd7hOVKgkCAGucVeh1JrRshzyEZLdxlC7ll5d3PmRzPWNcJPyR3AV2qpt9QHLZUYEwU
+ xhOq1QWfzbmdhA9GMBcd4RKPRM+g1MVxVP6RJSk/RXznkPUQn198mQXSaXwIY250fJtU uQ== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by mx0b-00069f02.pphosted.com with ESMTP id 3ayty4a0wh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 10 Sep 2021 14:10:27 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 18AE6Joh115900;
+ Fri, 10 Sep 2021 14:10:26 GMT
+Received: from nam10-bn7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10lp2106.outbound.protection.outlook.com [104.47.70.106])
+ by aserp3030.oracle.com with ESMTP id 3aytgemu08-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 10 Sep 2021 14:10:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dE/XeJ1u2xNBh5A4z0/pnouufRZmTFVJnbqieloqLtdd60HqYZk6dsdIeQ2oJ4Lr8zmEm+iJAM786t6G2xaBTAhrsZTaNccflAzq0Lfeim6ihSrBUN9dY6A+n9fQu0VPIxfxllt4LYOZHztKbiGD6iaaFHMPbPw37qcVpznNZJOpH8ChqmQyDN7Yicb0wa2vEQLqP2xS0ztpB5S05IT5CoINpmaC5TcRk5hBeXumPVyubWHCRJVlPr4iSGKRs79jj8L1zhz8nqb6+MRwIgLVjK37Y8ed6xsuuWBKCkm+W1QR9Tm7mYkK4TGo7aqtfnL1Keolsf/kzBGZJ0aYu+wJUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=hZNsNqnSdzDoRrs9n34z5zvOt/SaZiw+wnihnux4hcg=;
+ b=KPVlBERe+zJ2nzvV0dtnT7fpbzerZuLXY14sz2GQPkZn7IMIx9BobKXgIqmMGNqAI6UB2orIMOpVLnstdQLkyk2zj8Ttks/kwRKMb79NLcPsqTriGepq6RHiMfNTmL7L7r/UJYKYrbffJD+Eza+9A2fFRxurvEjcqREIui2IMcVx1+6bYXLVo9haVmWvBVQ6md5q3H203I2kHbx0rlUszvuyYsGP26Vlhgb+AxpEVSQq1rxNHtbUCFXyO4RF4X9syOLprdGxodOeFyoHoAtDfvv3AlFuUhab9lX+q+l7DLFHlluunEBGYskWcjpGWY4nC+2R/WEdq1ARfhYreIat9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hZNsNqnSdzDoRrs9n34z5zvOt/SaZiw+wnihnux4hcg=;
+ b=YhLiVCT9xLiXGWMkz0+fODM8v8tXby4x0vEqpuEHyqC0gJb2JIswZCnFVeAAA/nm6ZnX8hrcaarUnMsjXis2AtsMkh07GsOLZFiQQ+oMPjk177HPdnh01IXwlKmfC1JtyOm91Y+cw2zcOQagqkBNGOXqp31uhDqPUiEyUcPlFy4=
+Authentication-Results: suse.cz; dkim=none (message not signed)
+ header.d=none;suse.cz; dmarc=none action=none header.from=oracle.com;
+Received: from CO1PR10MB4468.namprd10.prod.outlook.com (2603:10b6:303:6c::24)
+ by MWHPR10MB1488.namprd10.prod.outlook.com (2603:10b6:300:23::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.17; Fri, 10 Sep
+ 2021 14:10:24 +0000
+Received: from CO1PR10MB4468.namprd10.prod.outlook.com
+ ([fe80::e1f7:a0f4:46c5:3df]) by CO1PR10MB4468.namprd10.prod.outlook.com
+ ([fe80::e1f7:a0f4:46c5:3df%6]) with mapi id 15.20.4478.025; Fri, 10 Sep 2021
+ 14:10:24 +0000
+From: Imran Khan <imran.f.khan@oracle.com>
+To: vbabka@suse.cz, geert@linux-m68k.org, akpm@linux-foundation.org,
+ ryabinin.a.a@gmail.com, glider@google.com, andreyknvl@gmail.com,
+ dvyukov@google.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org
+Date: Sat, 11 Sep 2021 00:10:01 +1000
+Message-Id: <20210910141001.1622130-2-imran.f.khan@oracle.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210910141001.1622130-1-imran.f.khan@oracle.com>
+References: <20210910141001.1622130-1-imran.f.khan@oracle.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ME2PR01CA0181.ausprd01.prod.outlook.com
+ (2603:10c6:220:20::25) To CO1PR10MB4468.namprd10.prod.outlook.com
+ (2603:10b6:303:6c::24)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/edid: parse the DisplayID v2.0
- VESA vendor block for MSO
+Received: from localhost.localdomain (110.33.47.182) by
+ ME2PR01CA0181.ausprd01.prod.outlook.com (2603:10c6:220:20::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4500.14 via Frontend Transport; Fri, 10 Sep 2021 14:10:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 02aeeb9c-e2e5-4851-1e26-08d97464baf7
+X-MS-TrafficTypeDiagnostic: MWHPR10MB1488:
+X-Microsoft-Antispam-PRVS: <MWHPR10MB14883F7830BA7E9A9AB71C21B0D69@MWHPR10MB1488.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6qFpNXsmY6v3uyQweGLFoYSsZGY349CvLiqb/bIhIV0KGL01VFOnnLKtEZ+PAeL2Zc6crZlF/qKtlo0mByFFKEFUb+xnppZTIpG95ELFrRCFZWEQwFcjTg3dnXMl3NPQY+f+whD5bbYSOt0Mvl1w81imwqW8RYJJylre7uXjx50zbbu9Yg50887BZ1pV7Sig8WnWUCi3y7MkNXjjNnOneauUvnhPk5UQeEoEhqjsXJy/zVCdGJ5J8et8YZl27Oy5bsLr6vg47Ig4yqczbbN0ufl+HQ+cnZGNziQTLhGqpfEmjEfEEDqi8Y1I8UUxo1lz3PiqS7fFuGuA2YcZYe2ZYue4L5WfXr/B+j0q6Hg7dMHyoWcLBsaz4gcp6MpG8xklDm9VeKpqLHS3xJhLlp5+Qk67mtj8eotVbNg3JLHeGBo9ZHrYKB06MQ4WmzXS5Gk3oELMMF/xumMTRqbeWA7OZHfaflY2b460Vx3YW7zx4EEXSImGMWGZ+dErC46ShFU3xu+g0GYmsPaTzJN3v269MIfYseoYWq1xHq73IvoJWo/vFaliHH7MnAPQCJas5eK/RQqihorEtfsmHAYsBdpazkw6dxHyU9rJy3LL4r1afIX5oU4eypncuEG4hzBPyF2iJYR4dr3nqxNnZX4tCEgSno1/LUpZobji7AaX2K3qdsJ+3oqB8Xgu4tPzAi8mZFZgLz9u95i5tQI/2CHr0tofzBWFgFlwWrkIeQmh3UVtE30=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR10MB4468.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(346002)(366004)(136003)(39860400002)(376002)(396003)(956004)(38350700002)(66556008)(2616005)(66476007)(7416002)(316002)(2906002)(8676002)(478600001)(6486002)(103116003)(186003)(6666004)(5660300002)(38100700002)(66946007)(6512007)(26005)(8936002)(4326008)(83380400001)(6506007)(921005)(52116002)(1076003)(86362001)(36756003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AlPZDsIwwxSJjFpy6HUj/DTSkraGvXHO8xTwBxEgwpV3c/sSmaLCEnXbQUwC?=
+ =?us-ascii?Q?ihyJF9rib6gEF4wDnYLAMIgcKE5TzOprh75riqTaQkd6K2VwecTrAubB1+qX?=
+ =?us-ascii?Q?6kP120FLQWYCmKK+9QU3g9vFG4YACZn9DG+tOehcNGZTVCs9uo6WvSULD7zV?=
+ =?us-ascii?Q?B6z45AIILr9QxMqfGvvlUk/6ZdEya7a+pqNj0Wsqai0/PLlTJOsMTQ1cSVIy?=
+ =?us-ascii?Q?FOpC79AD7FSd52VSCoYJ3m+1HUEEy9NkahMZypCuUnKA0Q62lJ3XuO7Ij7qM?=
+ =?us-ascii?Q?5M8s6xKIQ7mVbwFrsAqKYTZWr+hppdjSTttyS1s38dwoP+yWCK5olUsqrEy6?=
+ =?us-ascii?Q?Wxvt5adVJJw9d80wOC+jM86+k/q4KQ0eg3WWw7b2v9eluUg1WK757osSEKz5?=
+ =?us-ascii?Q?AVaqwozyTEB0c0IBqBbqIxqJL8geF7mfEYkLuCmwelKf4MBGlJ95n1SvBuuf?=
+ =?us-ascii?Q?SfsXciReVKeq5m+OE2IKlOS7pEsfVxs2CYmv87fNTwRyg3vewfgXZnIF+hIy?=
+ =?us-ascii?Q?D/YElAnu3n0Ow4t3A1r9E26XWpjKPmgFUYDjDxId+hFaGZYtmIekiiOo8O+/?=
+ =?us-ascii?Q?jqjYKD1wiemdD74PuQKC0No/U1dRS9iBl0srnXKlYyGTqaX+oZ0GGlXU33MA?=
+ =?us-ascii?Q?+OhNlsXgFlyO/1XPw+9s0u37EAsV4paX/98HDn4GuGGgns+VQfSwNAMbmBl2?=
+ =?us-ascii?Q?botRCKvy9/8y+t78xECWvI4WEknAbZxV4kDTjUCefruUeusGskDq1kkVjN/C?=
+ =?us-ascii?Q?Jl7O4ytL6mQt0vbzldegxmbbV9H/FGxs0monYqDM0448WS8LQnes75d2ZuOP?=
+ =?us-ascii?Q?/aZkKEXZ76Nn8QS08GlOdv51wRk2EVRWTou2nPudRJQOM0s9dVt9/R+LJRKk?=
+ =?us-ascii?Q?9oFN4wUjB6cK143nuKtuGwQy/bmDiQUVpdwNn88eizu3rj8Sg4Cs+mZW3vC7?=
+ =?us-ascii?Q?Icq7dhg7y1MyweQRbYfhmfeFkdEYjNBSeeoVNfS6fkUQTQPQMxz5//UmZpiI?=
+ =?us-ascii?Q?xnkUAe1DMfKUO8oUh37xnzI6fT7N9R+Ixbr00TPdrzVFMmlSRIpdiaotyyzp?=
+ =?us-ascii?Q?fa8+r/hlAOtm6tOZTab4dI44+oxtSWaPora2F4qK7ebrSApQl2bfsO3Ay+mo?=
+ =?us-ascii?Q?ERVY8iX826qo4fgodgOPIK1h7B3Erz4V57QounJdyKvK+HxrBMnHQgZKIM9T?=
+ =?us-ascii?Q?c5Bdj13Ip0tUHHw52BiPVxL91xCFRZ97pXh1LfdwzcloVzLWdOHQNCgcR838?=
+ =?us-ascii?Q?b5m1KxDlW19EkF2NLscyRodkPS050XTJdqwmQKBqeN7eXXP3q0P//eek6eLk?=
+ =?us-ascii?Q?jxJNhsX+V/pa3vJECUuQg6sF?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02aeeb9c-e2e5-4851-1e26-08d97464baf7
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR10MB4468.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2021 14:10:23.9869 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: a8AhzCybq2Y3PcgfG15gcOtVkwY0VjXioYocg97qML5qX9e7IdriUr3CO5j0+pUsl2FvM/Fw4pTyOqhOlgvCwQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR10MB1488
+X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10102
+ signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ suspectscore=0
+ mlxlogscore=999 bulkscore=0 adultscore=0 malwarescore=0 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109030001 definitions=main-2109100081
+X-Proofpoint-ORIG-GUID: _uHMzcZHLUa-Fx1E0_DkNcB4qN0T27rk
+X-Proofpoint-GUID: _uHMzcZHLUa-Fx1E0_DkNcB4qN0T27rk
+X-Mailman-Approved-At: Mon, 13 Sep 2021 12:45:34 +0000
+Subject: [Intel-gfx] [PATCH 1/1] lib,
+ stackdepot: Add helper to print stack entries into buffer.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,269 +170,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+To print stack entries into a buffer, users of stackdepot,
+first get a list of stack entries using stack_depot_fetch
+and then print this list into a buffer using stack_trace_snprint.
+Provide a helper in stackdepot for this purpose.
+Also change above mentioned users to use this helper.
 
+Signed-off-by: Imran Khan <imran.f.khan@oracle.com>
+Suggested-by: Vlastimil Babka <vbabka@suse.cz>
+---
+ drivers/gpu/drm/drm_dp_mst_topology.c   |  5 +----
+ drivers/gpu/drm/drm_mm.c                |  5 +----
+ drivers/gpu/drm/i915/i915_vma.c         |  5 +----
+ drivers/gpu/drm/i915/intel_runtime_pm.c | 20 +++++---------------
+ include/linux/stackdepot.h              |  3 +++
+ lib/stackdepot.c                        | 23 +++++++++++++++++++++++
+ mm/page_owner.c                         |  5 +----
+ 7 files changed, 35 insertions(+), 31 deletions(-)
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Monday, September 13, 2021 3:00 PM
-> To: Shankar, Uma <uma.shankar@intel.com>; intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org; ville.syrjala@linux.intel.com
-> Subject: RE: [PATCH v2 4/6] drm/edid: parse the DisplayID v2.0 VESA vendo=
-r block
-> for MSO
->=20
-> On Mon, 13 Sep 2021, "Shankar, Uma" <uma.shankar@intel.com> wrote:
-> >> -----Original Message-----
-> >> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf
-> >> Of Jani Nikula
-> >> Sent: Tuesday, August 31, 2021 7:48 PM
-> >> To: intel-gfx@lists.freedesktop.org
-> >> Cc: dri-devel@lists.freedesktop.org; ville.syrjala@linux.intel.com;
-> >> Nikula, Jani <jani.nikula@intel.com>
-> >> Subject: [PATCH v2 4/6] drm/edid: parse the DisplayID v2.0 VESA
-> >> vendor block for MSO
-> >>
-> >> The VESA Organization Vendor-Specific Data Block, defined in VESA
-> >> DisplayID Standard v2.0, specifies the eDP Multi-SST Operation (MSO)
-> >> stream count and segment pixel overlap.
-> >>
-> >> DisplayID v1.3 has Appendix B: DisplayID as an EDID Extension,
-> >> describing how DisplayID sections may be embedded in EDID extension
-> >> blocks. DisplayID v2.0 does not have such a section, perhaps implying
-> >> that DisplayID v2.0 data should not be included in EDID extensions,
-> >> but rather in a "pure" DisplayID structure at its own DDC address pair=
- A4h/A5h, as
-> described in VESA E-DDC Standard v1.3 chapter 3.
-> >>
-> >> However, in practice, displays out in the field have embedded
-> >> DisplayID
-> >> v2.0 data blocks in EDID extensions, including, in particular, some
-> >> eDP MSO displays, where a pure DisplayID structure is not available at=
- all.
-> >>
-> >> Parse the MSO data from the DisplayID data block. Do it as part of
-> >> drm_add_display_info(), extending it to parse also DisplayID data to
-> >> avoid requiring extra calls to update the information.
-> >>
-> >> v2: Check for VESA OUI (Ville)
-> >>
-> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/drm_edid.c  | 72
-> >> +++++++++++++++++++++++++++++++++++++
-> >>  include/drm/drm_connector.h | 12 +++++++
-> >> include/drm/drm_displayid.h | 13
-> >> +++++++
-> >>  3 files changed, 97 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> >> index 92974b1478bc..c45c225267ca 100644
-> >> --- a/drivers/gpu/drm/drm_edid.c
-> >> +++ b/drivers/gpu/drm/drm_edid.c
-> >> @@ -28,6 +28,7 @@
-> >>   * DEALINGS IN THE SOFTWARE.
-> >>   */
-> >>
-> >> +#include <linux/bitfield.h>
-> >>  #include <linux/hdmi.h>
-> >>  #include <linux/i2c.h>
-> >>  #include <linux/kernel.h>
-> >> @@ -5145,6 +5146,71 @@ void drm_get_monitor_range(struct
-> >> drm_connector *connector,
-> >>  		      info->monitor_range.max_vfreq);  }
-> >>
-> >> +static void drm_parse_vesa_mso_data(struct drm_connector *connector,
-> >> +				    const struct displayid_block *block) {
-> >> +	struct displayid_vesa_vendor_specific_block *vesa =3D
-> >> +		(struct displayid_vesa_vendor_specific_block *)block;
-> >> +	struct drm_display_info *info =3D &connector->display_info;
-> >> +
-> >> +	if (block->num_bytes < 3) {
-> >> +		drm_dbg_kms(connector->dev, "Unexpected vendor block size
-> >> %u\n",
-> >> +			    block->num_bytes);
-> >> +		return;
-> >> +	}
-> >> +
-> >> +	if (oui(vesa->oui[0], vesa->oui[1], vesa->oui[2]) !=3D VESA_IEEE_OUI=
-)
-> >> +		return;
-> >> +
-> >> +	if (sizeof(*vesa) !=3D sizeof(*block) + block->num_bytes) {
-> >> +		drm_dbg_kms(connector->dev, "Unexpected VESA vendor block
-> >> size\n");
-> >> +		return;
-> >> +	}
-> >> +
-> >> +	switch (FIELD_GET(DISPLAYID_VESA_MSO_MODE, vesa->mso)) {
-> >> +	default:
-> >> +		drm_dbg_kms(connector->dev, "Reserved MSO mode value\n");
-> >> +		fallthrough;
-> >> +	case 0:
-> >> +		info->mso_stream_count =3D 0;
-> >> +		break;
-> >> +	case 1:
-> >> +		info->mso_stream_count =3D 2; /* 2 or 4 links */
-> >> +		break;
-> >> +	case 2:
-> >> +		info->mso_stream_count =3D 4; /* 4 links */
-> >> +		break;
-> >> +	}
-> >> +
-> >> +	if (!info->mso_stream_count) {
-> >> +		info->mso_pixel_overlap =3D 0;
-> >> +		return;
-> >> +	}
-> >> +
-> >> +	info->mso_pixel_overlap =3D FIELD_GET(DISPLAYID_VESA_MSO_OVERLAP,
-> >> vesa->mso);
-> >> +	if (info->mso_pixel_overlap > 8) {
-> >> +		drm_dbg_kms(connector->dev, "Reserved MSO pixel overlap value
-> >> %u\n",
-> >> +			    info->mso_pixel_overlap);
-> >> +		info->mso_pixel_overlap =3D 8;
-> >
-> > Going beyond 8 is not right from a vendor perspective as it goes into r=
-eserved
-> region.
-> > Should we not just set to 0 or how we decide that we fixed overlap at
-> > 8. It seems an undefined operation and it may vary from sink to sink.
->=20
-> I don't know if there's a right choice here. I don't mind setting it to
-> 0 if you prefer that.
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index 86d13d6bc463..2d1adab9e360 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -1668,13 +1668,10 @@ __dump_topology_ref_history(struct drm_dp_mst_topology_ref_history *history,
+ 	for (i = 0; i < history->len; i++) {
+ 		const struct drm_dp_mst_topology_ref_entry *entry =
+ 			&history->entries[i];
+-		ulong *entries;
+-		uint nr_entries;
+ 		u64 ts_nsec = entry->ts_nsec;
+ 		u32 rem_nsec = do_div(ts_nsec, 1000000000);
+ 
+-		nr_entries = stack_depot_fetch(entry->backtrace, &entries);
+-		stack_trace_snprint(buf, PAGE_SIZE, entries, nr_entries, 4);
++		stack_depot_snprint(entry->backtrace, buf, PAGE_SIZE, 4);
+ 
+ 		drm_printf(&p, "  %d %ss (last at %5llu.%06u):\n%s",
+ 			   entry->count,
+diff --git a/drivers/gpu/drm/drm_mm.c b/drivers/gpu/drm/drm_mm.c
+index 93d48a6f04ab..ca04d7f6f7b5 100644
+--- a/drivers/gpu/drm/drm_mm.c
++++ b/drivers/gpu/drm/drm_mm.c
+@@ -118,8 +118,6 @@ static noinline void save_stack(struct drm_mm_node *node)
+ static void show_leaks(struct drm_mm *mm)
+ {
+ 	struct drm_mm_node *node;
+-	unsigned long *entries;
+-	unsigned int nr_entries;
+ 	char *buf;
+ 
+ 	buf = kmalloc(BUFSZ, GFP_KERNEL);
+@@ -133,8 +131,7 @@ static void show_leaks(struct drm_mm *mm)
+ 			continue;
+ 		}
+ 
+-		nr_entries = stack_depot_fetch(node->stack, &entries);
+-		stack_trace_snprint(buf, BUFSZ, entries, nr_entries, 0);
++		stack_depot_snprint(node->stack, buf, BUFSZ);
+ 		DRM_ERROR("node [%08llx + %08llx]: inserted at\n%s",
+ 			  node->start, node->size, buf);
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 4b7fc4647e46..f2d9ed375109 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -56,8 +56,6 @@ void i915_vma_free(struct i915_vma *vma)
+ 
+ static void vma_print_allocator(struct i915_vma *vma, const char *reason)
+ {
+-	unsigned long *entries;
+-	unsigned int nr_entries;
+ 	char buf[512];
+ 
+ 	if (!vma->node.stack) {
+@@ -66,8 +64,7 @@ static void vma_print_allocator(struct i915_vma *vma, const char *reason)
+ 		return;
+ 	}
+ 
+-	nr_entries = stack_depot_fetch(vma->node.stack, &entries);
+-	stack_trace_snprint(buf, sizeof(buf), entries, nr_entries, 0);
++	stack_depot_snprint(vma->node.stack, buf, sizeof(buf), 0);
+ 	DRM_DEBUG_DRIVER("vma.node [%08llx + %08llx] %s: inserted at %s\n",
+ 			 vma->node.start, vma->node.size, reason, buf);
+ }
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index eaf7688f517d..cc312f0a05eb 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -65,16 +65,6 @@ static noinline depot_stack_handle_t __save_depot_stack(void)
+ 	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
+ }
+ 
+-static void __print_depot_stack(depot_stack_handle_t stack,
+-				char *buf, int sz, int indent)
+-{
+-	unsigned long *entries;
+-	unsigned int nr_entries;
+-
+-	nr_entries = stack_depot_fetch(stack, &entries);
+-	stack_trace_snprint(buf, sz, entries, nr_entries, indent);
+-}
+-
+ static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
+ {
+ 	spin_lock_init(&rpm->debug.lock);
+@@ -146,12 +136,12 @@ static void untrack_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
+ 		if (!buf)
+ 			return;
+ 
+-		__print_depot_stack(stack, buf, PAGE_SIZE, 2);
++		stack_depot_snprint(stack, buf, PAGE_SIZE, 2);
+ 		DRM_DEBUG_DRIVER("wakeref %x from\n%s", stack, buf);
+ 
+ 		stack = READ_ONCE(rpm->debug.last_release);
+ 		if (stack) {
+-			__print_depot_stack(stack, buf, PAGE_SIZE, 2);
++			stack_depot_snprint(stack, buf, PAGE_SIZE, 2);
+ 			DRM_DEBUG_DRIVER("wakeref last released at\n%s", buf);
+ 		}
+ 
+@@ -183,12 +173,12 @@ __print_intel_runtime_pm_wakeref(struct drm_printer *p,
+ 		return;
+ 
+ 	if (dbg->last_acquire) {
+-		__print_depot_stack(dbg->last_acquire, buf, PAGE_SIZE, 2);
++		stack_depot_snprint(dbg->last_acquire, buf, PAGE_SIZE, 2);
+ 		drm_printf(p, "Wakeref last acquired:\n%s", buf);
+ 	}
+ 
+ 	if (dbg->last_release) {
+-		__print_depot_stack(dbg->last_release, buf, PAGE_SIZE, 2);
++		stack_depot_snprint(dbg->last_release, buf, PAGE_SIZE, 2);
+ 		drm_printf(p, "Wakeref last released:\n%s", buf);
+ 	}
+ 
+@@ -203,7 +193,7 @@ __print_intel_runtime_pm_wakeref(struct drm_printer *p,
+ 		rep = 1;
+ 		while (i + 1 < dbg->count && dbg->owners[i + 1] == stack)
+ 			rep++, i++;
+-		__print_depot_stack(stack, buf, PAGE_SIZE, 2);
++		stack_depot_print(stack, buf, PAGE_SIZE, 2);
+ 		drm_printf(p, "Wakeref x%lu taken at:\n%s", rep, buf);
+ 	}
+ 
+diff --git a/include/linux/stackdepot.h b/include/linux/stackdepot.h
+index d77a30543dd4..88b0b4cc9906 100644
+--- a/include/linux/stackdepot.h
++++ b/include/linux/stackdepot.h
+@@ -19,6 +19,9 @@ depot_stack_handle_t stack_depot_save(unsigned long *entries,
+ unsigned int stack_depot_fetch(depot_stack_handle_t handle,
+ 			       unsigned long **entries);
+ 
++int stack_depot_snprint(depot_stack_handle_t handle, char *buf, size_t size,
++		       int spaces);
++
+ void stack_depot_print(depot_stack_handle_t stack);
+ 
+ unsigned int filter_irq_stacks(unsigned long *entries, unsigned int nr_entries);
+diff --git a/lib/stackdepot.c b/lib/stackdepot.c
+index 873aeb152f52..e1c1d7683f6b 100644
+--- a/lib/stackdepot.c
++++ b/lib/stackdepot.c
+@@ -214,6 +214,29 @@ static inline struct stack_record *find_stack(struct stack_record *bucket,
+ 	return NULL;
+ }
+ 
++/**
++ * stack_depot_snprint - print stack entries from a depot into a buffer
++ *
++ * @handle:	Stack depot handle which was returned from
++ *		stack_depot_save().
++ * @buf:	Pointer to the print buffer
++ *
++ * @size:	Size of the print buffer
++ *
++ * @spaces:	Number of leading spaces to print
++ *
++ * Return:	Number of bytes printed.
++ */
++int stack_depot_snprint(depot_stack_handle_t handle, char *buf, size_t size,
++		       int spaces)
++{
++	unsigned long *entries;
++	unsigned int nr_entries;
++
++	nr_entries = stack_depot_fetch(handle, &entries);
++	return stack_trace_snprint(buf, size, entries, nr_entries, 0);
++}
++
+ /**
+  * stack_depot_print - print stack entries from a depot
+  *
+diff --git a/mm/page_owner.c b/mm/page_owner.c
+index 7918770c2b2b..a83f546c06b5 100644
+--- a/mm/page_owner.c
++++ b/mm/page_owner.c
+@@ -329,8 +329,6 @@ print_page_owner(char __user *buf, size_t count, unsigned long pfn,
+ 		depot_stack_handle_t handle)
+ {
+ 	int ret, pageblock_mt, page_mt;
+-	unsigned long *entries;
+-	unsigned int nr_entries;
+ 	char *kbuf;
+ 
+ 	count = min_t(size_t, count, PAGE_SIZE);
+@@ -361,8 +359,7 @@ print_page_owner(char __user *buf, size_t count, unsigned long pfn,
+ 	if (ret >= count)
+ 		goto err;
+ 
+-	nr_entries = stack_depot_fetch(handle, &entries);
+-	ret += stack_trace_snprint(kbuf + ret, count - ret, entries, nr_entries, 0);
++	ret += stack_depot_snprint(handle, kbuf + ret, count - ret, 0);
+ 	if (ret >= count)
+ 		goto err;
+ 
+-- 
+2.30.2
 
-I feel it will be wrong on a vendor's behalf if he programs anything above =
-8. But not sure what
-should driver do in such case, it's an undefined behavior. If he intentiona=
-lly programs it as say 20,
-fixing at 8 will still lead to some artifacts. 0 only helps in case where t=
-his field is corrupted and has
-garbage data.
-
-No strong objection, I will leave to your discretion Jani.
-
-With this, all else looks good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-
-Regards,
-Uma Shankar
-
-> BR,
-> Jani.
->=20
->=20
-> >
-> > Regards,
-> > Uma Shankar
-> >
-> >> +	}
-> >> +
-> >> +	drm_dbg_kms(connector->dev, "MSO stream count %u, pixel overlap %u\n=
-",
-> >> +		    info->mso_stream_count, info->mso_pixel_overlap); }
-> >> +
-> >> +static void drm_update_mso(struct drm_connector *connector, const
-> >> +struct edid *edid) {
-> >> +	const struct displayid_block *block;
-> >> +	struct displayid_iter iter;
-> >> +
-> >> +	displayid_iter_edid_begin(edid, &iter);
-> >> +	displayid_iter_for_each(block, &iter) {
-> >> +		if (block->tag =3D=3D DATA_BLOCK_2_VENDOR_SPECIFIC)
-> >> +			drm_parse_vesa_mso_data(connector, block);
-> >> +	}
-> >> +	displayid_iter_end(&iter);
-> >> +}
-> >> +
-> >>  /* A connector has no EDID information, so we've got no EDID to
-> >> compute quirks from. Reset
-> >>   * all of the values which would have been set from EDID
-> >>   */
-> >> @@ -5168,6 +5234,9 @@ drm_reset_display_info(struct drm_connector
-> >> *connector)
-> >>
-> >>  	info->non_desktop =3D 0;
-> >>  	memset(&info->monitor_range, 0, sizeof(info->monitor_range));
-> >> +
-> >> +	info->mso_stream_count =3D 0;
-> >> +	info->mso_pixel_overlap =3D 0;
-> >>  }
-> >>
-> >>  u32 drm_add_display_info(struct drm_connector *connector, const
-> >> struct edid
-> >> *edid) @@ -5246,6 +5315,9 @@ u32 drm_add_display_info(struct
-> >> drm_connector *connector, const struct edid *edi
-> >>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB444;
-> >>  	if (edid->features & DRM_EDID_FEATURE_RGB_YCRCB422)
-> >>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB422;
-> >> +
-> >> +	drm_update_mso(connector, edid);
-> >> +
-> >>  	return quirks;
-> >>  }
-> >>
-> >> diff --git a/include/drm/drm_connector.h
-> >> b/include/drm/drm_connector.h index 79fa34e5ccdb..379746d3266f 100644
-> >> --- a/include/drm/drm_connector.h
-> >> +++ b/include/drm/drm_connector.h
-> >> @@ -590,6 +590,18 @@ struct drm_display_info {
-> >>  	 * @monitor_range: Frequency range supported by monitor range descri=
-ptor
-> >>  	 */
-> >>  	struct drm_monitor_range_info monitor_range;
-> >> +
-> >> +	/**
-> >> +	 * @mso_stream_count: eDP Multi-SST Operation (MSO) stream count fro=
-m
-> >> +	 * the DisplayID VESA vendor block. 0 for conventional Single-Stream
-> >> +	 * Transport (SST), or 2 or 4 MSO streams.
-> >> +	 */
-> >> +	u8 mso_stream_count;
-> >> +
-> >> +	/**
-> >> +	 * @mso_pixel_overlap: eDP MSO segment pixel overlap, 0-8 pixels.
-> >> +	 */
-> >> +	u8 mso_pixel_overlap;
-> >>  };
-> >>
-> >>  int drm_display_info_set_bus_formats(struct drm_display_info *info,
-> >> diff --git a/include/drm/drm_displayid.h
-> >> b/include/drm/drm_displayid.h index
-> >> 79771091771a..7ffbd9f7bfc7 100644
-> >> --- a/include/drm/drm_displayid.h
-> >> +++ b/include/drm/drm_displayid.h
-> >> @@ -23,9 +23,12 @@
-> >>  #define DRM_DISPLAYID_H
-> >>
-> >>  #include <linux/types.h>
-> >> +#include <linux/bits.h>
-> >>
-> >>  struct edid;
-> >>
-> >> +#define VESA_IEEE_OUI				0x3a0292
-> >> +
-> >>  /* DisplayID Structure versions */
-> >>  #define DISPLAY_ID_STRUCTURE_VER_12		0x12
-> >>  #define DISPLAY_ID_STRUCTURE_VER_20		0x20
-> >> @@ -126,6 +129,16 @@ struct displayid_detailed_timing_block {
-> >>  	struct displayid_detailed_timings_1 timings[];  };
-> >>
-> >> +#define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
-> >> +#define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
-> >> +
-> >> +struct displayid_vesa_vendor_specific_block {
-> >> +	struct displayid_block base;
-> >> +	u8 oui[3];
-> >> +	u8 data_structure_type;
-> >> +	u8 mso;
-> >> +} __packed;
-> >> +
-> >>  /* DisplayID iteration */
-> >>  struct displayid_iter {
-> >>  	const struct edid *edid;
-> >> --
-> >> 2.30.2
-> >
->=20
-> --
-> Jani Nikula, Intel Open Source Graphics Center
