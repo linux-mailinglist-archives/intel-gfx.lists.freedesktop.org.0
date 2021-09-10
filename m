@@ -2,41 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A29B406CC0
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 15:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA0D6406CDF
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 15:25:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 446EF6E9F8;
-	Fri, 10 Sep 2021 13:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F0B16E9FB;
+	Fri, 10 Sep 2021 13:25:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27F0D6E9F7;
- Fri, 10 Sep 2021 13:15:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="284777475"
-X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="284777475"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 06:15:44 -0700
-X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="467107526"
-Received: from gjanssen-mobl5.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.69])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 06:15:42 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.william.auld@gmail.com>,
- =?UTF-8?q?K=C3=B6nig=20Christian?= <Christian.Koenig@amd.com>
-Date: Fri, 10 Sep 2021 15:15:12 +0200
-Message-Id: <20210910131512.161655-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19F656E9FF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Sep 2021 13:25:48 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="208183959"
+X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="208183959"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2021 06:25:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,283,1624345200"; d="scan'208";a="540600801"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by FMSMGA003.fm.intel.com with ESMTP; 10 Sep 2021 06:25:45 -0700
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com, ville.syrjala@linux.intel.com,
+ jani.nikula@intel.com, Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Date: Fri, 10 Sep 2021 16:19:16 +0300
+Message-Id: <20210910131916.3782933-1-kai.vehmanen@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH] drm/ttm: Add a private member to the struct
- ttm_resource
+Subject: [Intel-gfx] [PATCH] drm/i915/display: program audio CDCLK-TS for
+ keepalives
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,109 +47,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Both the provider (resource manager) and the consumer (the TTM driver)
-want to subclass struct ttm_resource. Since this is left for the resource
-manager, we need to provide a private pointer for the TTM driver.
+XE_LPD display adds support for display audio codec keepalive feature.
+This feature works also when display codec is in D3 state and the audio
+link is off (BCLK off). To enable this functionality, display driver
+must update the AUD_TS_CDCLK_M/N registers whenever CDCLK is changed.
+Actual timestamps are generated only when the audio codec driver
+specifically enables the KeepAlive (KAE) feature.
 
-Provide a struct ttm_resource_private for the driver to subclass for
-data with the same lifetime as the struct ttm_resource: In the i915 case
-it will, for example, be an sg-table and radix tree into the LMEM
-/VRAM pages that currently are awkwardly attached to the GEM object.
+This patch adds new hooks to intel_set_cdclk() in order to inform
+display audio driver when CDCLK change is started and when it is
+complete.
 
-Provide an ops structure for associated ops (Which is only destroy() ATM)
-It might seem pointless to provide a separate ops structure, but Linus
-has previously made it clear that that's the norm.
-
-After careful audit one could perhaps also on a per-driver basis
-replace the delete_mem_notify() TTM driver callback with the above
-destroy function.
-
-Cc: Matthew Auld <matthew.william.auld@gmail.com>
-Cc: König Christian <Christian.Koenig@amd.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Bspec: 53679
+Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_resource.c | 10 +++++++---
- include/drm/ttm/ttm_resource.h     | 28 ++++++++++++++++++++++++++++
- 2 files changed, 35 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c | 54 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_audio.h |  2 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c |  5 ++
+ drivers/gpu/drm/i915/i915_reg.h            |  4 ++
+ 4 files changed, 65 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 2431717376e7..973e7c50bfed 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -57,13 +57,17 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
- void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
- {
- 	struct ttm_resource_manager *man;
-+	struct ttm_resource *resource = *res;
- 
--	if (!*res)
-+	if (!resource)
- 		return;
- 
--	man = ttm_manager_type(bo->bdev, (*res)->mem_type);
--	man->func->free(man, *res);
- 	*res = NULL;
-+	if (resource->priv)
-+		resource->priv->ops.destroy(resource->priv);
-+
-+	man = ttm_manager_type(bo->bdev, resource->mem_type);
-+	man->func->free(man, resource);
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 532237588511..48cced7f56f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -936,6 +936,60 @@ void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
+ 	}
  }
- EXPORT_SYMBOL(ttm_resource_free);
  
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index 140b6b9a8bbe..5a22c9a29c05 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -44,6 +44,7 @@ struct dma_buf_map;
- struct io_mapping;
- struct sg_table;
- struct scatterlist;
-+struct ttm_resource_private;
- 
- struct ttm_resource_manager_func {
- 	/**
-@@ -153,6 +154,32 @@ struct ttm_bus_placement {
- 	enum ttm_caching	caching;
- };
- 
-+/**
-+ * struct ttm_resource_private_ops - Operations for a struct
-+ * ttm_resource_private
-+ *
-+ * Not much benefit to keep this as a separate struct with only a single member,
-+ * but keeping a separate ops struct is the norm.
-+ */
-+struct ttm_resource_private_ops {
-+	/**
-+	 * destroy() - Callback to destroy the private data
-+	 * @priv - The private data to destroy
-+	 */
-+	void (*destroy) (struct ttm_resource_private *priv);
++struct aud_ts_cdclk_m_n {
++	u8 m;
++	u16 n;
 +};
 +
-+/**
-+ * struct ttm_resource_private - TTM driver private data
-+ * @ops: Pointer to struct ttm_resource_private_ops with associated operations
-+ *
-+ * Intended to be subclassed to hold, for example cached data sharing the
-+ * lifetime with a struct ttm_resource.
-+ */
-+struct ttm_resource_private {
-+	const struct ttm_resource_private_ops ops;
-+};
++void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv)
++{
++	u32 tmp;
 +
- /**
-  * struct ttm_resource
-  *
-@@ -171,6 +198,7 @@ struct ttm_resource {
- 	uint32_t mem_type;
- 	uint32_t placement;
- 	struct ttm_bus_placement bus;
-+	struct ttm_resource_private *priv;
- };
++	if (DISPLAY_VER(dev_priv) >= 13) {
++		tmp = intel_de_read(dev_priv, AUD_TS_CDCLK_M);
++		tmp &= ~AUD_TS_CDCLK_M_EN;
++		intel_de_write(dev_priv, AUD_TS_CDCLK_M, tmp);
++	}
++}
++
++static int get_aud_ts_cdclk_m_n(int refclk, int cdclk, struct aud_ts_cdclk_m_n *aud_ts)
++{
++	if (!aud_ts)
++		return -EINVAL;
++
++	if (refclk == 24000)
++		aud_ts->m = 12;
++	else
++		aud_ts->m = 15;
++
++	aud_ts->n = cdclk * aud_ts->m / 24000;
++
++	return 0;
++}
++
++void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv)
++{
++	struct aud_ts_cdclk_m_n aud_ts;
++	int res;
++
++	if (DISPLAY_VER(dev_priv) >= 13) {
++		res = get_aud_ts_cdclk_m_n(dev_priv->cdclk.hw.ref,
++					   dev_priv->cdclk.hw.cdclk,
++					   &aud_ts);
++
++		if (!res) {
++			intel_de_write(dev_priv, AUD_TS_CDCLK_N, aud_ts.n);
++			intel_de_write(dev_priv, AUD_TS_CDCLK_M, aud_ts.m | AUD_TS_CDCLK_M_EN);
++			drm_dbg(&dev_priv->drm, "aud_ts_cdclk set to M=%u, N=%u\n",
++				aud_ts.m, aud_ts.n);
++		} else {
++			drm_err(&dev_priv->drm,
++				"failed to find aud_ts_cdclk values for refclk %u cdclk %u\n",
++				dev_priv->cdclk.hw.ref, dev_priv->cdclk.hw.cdclk);
++		}
++	}
++}
++
+ static int glk_force_audio_cdclk_commit(struct intel_atomic_state *state,
+ 					struct intel_crtc *crtc,
+ 					bool enable)
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
+index a3657c7a7ba2..dcb259dd2da7 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.h
++++ b/drivers/gpu/drm/i915/display/intel_audio.h
+@@ -18,6 +18,8 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ void intel_audio_codec_disable(struct intel_encoder *encoder,
+ 			       const struct intel_crtc_state *old_crtc_state,
+ 			       const struct drm_connector_state *old_conn_state);
++void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv);
++void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv);
+ void intel_audio_init(struct drm_i915_private *dev_priv);
+ void intel_audio_deinit(struct drm_i915_private *dev_priv);
  
- /**
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 9aec17b33819..a1365f31142d 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -24,6 +24,7 @@
+ #include <linux/time.h>
+ 
+ #include "intel_atomic.h"
++#include "intel_audio.h"
+ #include "intel_bw.h"
+ #include "intel_cdclk.h"
+ #include "intel_de.h"
+@@ -1943,6 +1944,8 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+ 		intel_psr_pause(intel_dp);
+ 	}
+ 
++	intel_audio_cdclk_change_pre(dev_priv);
++
+ 	/*
+ 	 * Lock aux/gmbus while we change cdclk in case those
+ 	 * functions use cdclk. Not all platforms/ports do,
+@@ -1971,6 +1974,8 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+ 		intel_psr_resume(intel_dp);
+ 	}
+ 
++	intel_audio_cdclk_change_post(dev_priv);
++
+ 	if (drm_WARN(&dev_priv->drm,
+ 		     intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config),
+ 		     "cdclk state doesn't match!\n")) {
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index bd63760207b0..795775c9e2eb 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9734,6 +9734,10 @@ enum {
+ #define AUD_PIN_BUF_CTL		_MMIO(0x48414)
+ #define   AUD_PIN_BUF_ENABLE		REG_BIT(31)
+ 
++#define AUD_TS_CDCLK_M			_MMIO(0x65ea0)
++#define   AUD_TS_CDCLK_M_EN		REG_BIT(31)
++#define AUD_TS_CDCLK_N			_MMIO(0x65ea4)
++
+ /* Display Audio Config Reg */
+ #define AUD_CONFIG_BE			_MMIO(0x65ef0)
+ #define HBLANK_EARLY_ENABLE_ICL(pipe)		(0x1 << (20 - (pipe)))
 -- 
-2.31.1
+2.32.0
 
