@@ -1,34 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D56A4066ED
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 07:55:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3142406728
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 08:21:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A59F6E96D;
-	Fri, 10 Sep 2021 05:55:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC936E976;
+	Fri, 10 Sep 2021 06:21:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9B1DC6E96D;
- Fri, 10 Sep 2021 05:55:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8A456A363D;
- Fri, 10 Sep 2021 05:55:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 381686E975;
+ Fri, 10 Sep 2021 06:21:06 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id lc21so2025443ejc.7;
+ Thu, 09 Sep 2021 23:21:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Rc47DAFBHht81L63lYlo/o42HpBggaS7zV+MLv8YHOU=;
+ b=mt+XVROdEcBet94DgbIDqgXpvSW1V0vYNer0g/o2djYKlUVVgVR7XUd+28W8meqtYG
+ 2d41LNkyOo7a9UMT+AJmsvjUdexV9OQZsqfDuvVjBta+rN+Iybo0ZGsVTvdt3BK6/Kc8
+ qv+xT9hy1ie23o+iywxrztHG3mNNQqEQ1jtA0haVm5Opm6XFB1oDLfGRCGWRbnf3uIc1
+ y67mFcTCqsBV2suY97RvRgrlOUO/0Vq+ePlB7oRzPcTeFEQgLYdrtvF1iozlmdsLKeH+
+ bDR9rdBsdyNSqGRYxdmZq6f6WliTxJCFvULutddEi9xncCQttwmd6Tg6Pd5JhRJkNUtu
+ VWMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Rc47DAFBHht81L63lYlo/o42HpBggaS7zV+MLv8YHOU=;
+ b=E+G4gnfd31OkHmGQXtlWaWlX6UG48o/5Mceo4Oqukss0KIIkSq96FKL3ApbZmyUwQB
+ eHFuEAEr5AT32CnpLjLmugXVKgx5hYtFFkEIAk6q4Sb/HcVnC6qCoHs1+ciKhtJ2+A9S
+ 2diViFRwjpzhvmz92mpVDaQOspa5DgKoJsth+BxQ4EtIiBUQB1Ctf+lhjNMw4loc+8z0
+ 3fEHRglCSknCsWERccinj6d9Jk+Xcs+aCK/M/G5lC8e7tBH9YfnaI1Acy4qv9DmP2LjN
+ O5rIhmDJ+D6r9eQ43AMq9f6S/XvR3xsrBWDGiHfaWA9iWluVk8JWWbKUqHxASJd03vH0
+ JLAg==
+X-Gm-Message-State: AOAM533meNEcMpH59R4cCts3d3t2rapdY1lSCOMagpSPUjLHU51I3Qf5
+ 1NdjoiOoc7xlNwhh9W8CD9XyMcXl5A/5FSQzJyE=
+X-Google-Smtp-Source: ABdhPJyuRbn3A5Hb/G7cmLmBaHLa+KxE5+F2SfZrwQ5Y6q6scNv90JW7ppqNtPbGgTNw168BUXOI2PSR6696qpKvoQ8=
+X-Received: by 2002:a17:906:8608:: with SMTP id
+ o8mr7391165ejx.470.1631254864545; 
+ Thu, 09 Sep 2021 23:21:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Sep 2021 05:55:18 -0000
-Message-ID: <163125331856.14829.12321829704927686987@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210910053317.3379249-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210910053317.3379249-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?i915=3A_Simplify_mmio_handling_=26_add_new_DG2_shadow_table?=
+References: <YTj2Y0MKu51CZdbW@linux-uq9g.fritz.box>
+ <CAPM=9twpHCGLh3nYeTF69woSFWpuWUT+Zk48YyOX3zzNLFLw+g@mail.gmail.com>
+ <CAKMK7uEZv_YztMn5j0TWsakrRNdXk_ST3SUJRc_SVy08-THHSQ@mail.gmail.com>
+In-Reply-To: <CAKMK7uEZv_YztMn5j0TWsakrRNdXk_ST3SUJRc_SVy08-THHSQ@mail.gmail.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 10 Sep 2021 16:20:53 +1000
+Message-ID: <CAPM=9tz3-xgzN78RDrOKmsWPkQwN1=whatJxU+mFBpOoX7GMQQ@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,50 +73,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 9 Sept 2021 at 19:30, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> On Thu, Sep 9, 2021 at 5:35 AM Dave Airlie <airlied@gmail.com> wrote:
+> >
+> > On Thu, 9 Sept 2021 at 03:44, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> > >
+> > > Hi Dave and Daniel,
+> > >
+> > > here's this week's PR for drm-misc-fixes. One patch is a potential deadlock
+> > > in TTM, the other enables an additional plane in kmb. I'm slightly unhappy
+> > > that the latter one ended up in -fixes as it's not a bugfix AFAICT.
+> >
+> > To avoid messy merge window, I'm not pulling this until after rc1
+> > unless there is some major reason?
+>
+> Christian misplaced a ttm fix, so we really want this. Maybe
+> cherry-pick to drm-next and then drm-misc-fixes gets rebased instead.
+>
+> And yeah I dunno what do with our conflicts around merge window, maybe
+> we're letting trees diverge a bit too much.
 
-Series: i915: Simplify mmio handling & add new DG2 shadow table
-URL   : https://patchwork.freedesktop.org/series/94534/
-State : warning
+I've cherry-pick the ttm fix, the kmb fix should be somewhere else,
+I'm not going to pull it in from there.
 
-== Summary ==
+Maybe once rc1 gets out it can be rebased. Please nobody push to
+drm-misc-fixes until post rc1 + a day or two.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
--./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-
+Dave.
