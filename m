@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 792E3406F3E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 18:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 787A8406F53
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 18:14:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CECC6EA2B;
-	Fri, 10 Sep 2021 16:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B856EA3C;
+	Fri, 10 Sep 2021 16:14:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0270A6EA28;
- Fri, 10 Sep 2021 16:12:47 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0054A6EA2B;
+ Fri, 10 Sep 2021 16:14:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F05D4A01BB;
- Fri, 10 Sep 2021 16:12:46 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id F0362A01BB;
+ Fri, 10 Sep 2021 16:14:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Sep 2021 16:12:46 -0000
-Message-ID: <163129036696.14829.12572318607213434384@emeril.freedesktop.org>
+Date: Fri, 10 Sep 2021 16:14:19 -0000
+Message-ID: <163129045998.14827.1618941036573571759@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210910153627.1060858-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20210910153627.1060858-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Introduce_Intel_PXP_=28rev7=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Introduce_Intel_PXP_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,154 +53,51 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-78a14c39c962 drm/i915/pxp: Define PXP component interface
--:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#31: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 49 lines checked
-d05b3a701fa5 mei: pxp: export pavp client to me client bus
--:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#36: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 276 lines checked
-51a1e3c6309a drm/i915/pxp: define PXP device flag and kconfig
--:46: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#46: FILE: drivers/gpu/drm/i915/i915_drv.h:1681:
-+#define HAS_PXP(dev_priv) (IS_ENABLED(CONFIG_DRM_I915_PXP) && \
-+			   INTEL_INFO(dev_priv)->has_pxp) && \
-+			   VDBOX_MASK(&dev_priv->gt)
-
--:46: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#46: FILE: drivers/gpu/drm/i915/i915_drv.h:1681:
-+#define HAS_PXP(dev_priv) (IS_ENABLED(CONFIG_DRM_I915_PXP) && \
-+			   INTEL_INFO(dev_priv)->has_pxp) && \
-+			   VDBOX_MASK(&dev_priv->gt)
-
-total: 1 errors, 0 warnings, 1 checks, 33 lines checked
-982500708e1e drm/i915/pxp: allocate a vcs context for pxp usage
--:98: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#98: 
-new file mode 100644
-
--:122: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
-#122: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:20:
-+	for (engine = gt->engine_class[VIDEO_DECODE_CLASS][0]; !engine; engine++);
-
-total: 1 errors, 1 warnings, 0 checks, 168 lines checked
-509975d900b9 drm/i915/pxp: Implement funcs to create the TEE channel
--:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#78: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 148 lines checked
-47a04376fa10 drm/i915/pxp: set KCR reg init
-70ecc48a203b drm/i915/pxp: Create the arbitrary session after boot
--:98: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#98: 
-new file mode 100644
-
--:383: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#383: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h:36:
-+
-+
-
-total: 0 errors, 1 warnings, 1 checks, 337 lines checked
-6cf87904fe49 drm/i915/pxp: Implement arb session teardown
--:63: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#63: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:153:
-+#define   MI_FLUSH_DW_PROTECTED_MEM_EN	(1<<22)
-                                       	  ^
-
--:117: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#117: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 1 checks, 283 lines checked
-700c9843a244 drm/i915/pxp: Implement PXP irq handler
--:211: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#211: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 423 lines checked
-608300cbc8c8 drm/i915/pxp: interfaces for using protected objects
-6e6968e1d8e4 drm/i915/pxp: start the arb session on demand
-364ebbf31c66 drm/i915/pxp: Enable PXP power management
--:121: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#121: 
-new file mode 100644
-
--:195: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#195: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_pm.h:18:
-+}
-+static inline void intel_pxp_resume(struct intel_pxp *pxp)
-
-total: 0 errors, 1 warnings, 1 checks, 238 lines checked
-b484522dff15 drm/i915/pxp: Add plane decryption support
--:36: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#36: 
-v10 (Daniele): update PXP check again to match rework in earlier patches and
-
-total: 0 errors, 1 warnings, 0 checks, 155 lines checked
-412b34271bc4 drm/i915/pxp: black pixels on pxp disabled
--:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#169: FILE: drivers/gpu/drm/i915/i915_reg.h:11411:
-+#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
-+							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
-+							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
-
--:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
-#169: FILE: drivers/gpu/drm/i915/i915_reg.h:11411:
-+#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
-+							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
-+							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
-
--:170: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#170: FILE: drivers/gpu/drm/i915/i915_reg.h:11412:
-+							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
-
--:183: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#183: FILE: drivers/gpu/drm/i915/i915_reg.h:11425:
-+#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:183: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
-#183: FILE: drivers/gpu/drm/i915/i915_reg.h:11425:
-+#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:184: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#184: FILE: drivers/gpu/drm/i915/i915_reg.h:11426:
-+							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
-
--:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#197: FILE: drivers/gpu/drm/i915/i915_reg.h:11439:
-+#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
-#197: FILE: drivers/gpu/drm/i915/i915_reg.h:11439:
-+#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:198: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#198: FILE: drivers/gpu/drm/i915/i915_reg.h:11440:
-+							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
-
-total: 0 errors, 3 warnings, 6 checks, 148 lines checked
-532984887729 drm/i915/pxp: add pxp debugfs
--:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#47: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 120 lines checked
-ea3db8b84f54 drm/i915/pxp: add PXP documentation
-50cec025ee1e drm/i915/pxp: enable PXP for integrated Gen12
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 
