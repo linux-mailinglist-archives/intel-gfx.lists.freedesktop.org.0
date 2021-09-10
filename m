@@ -2,43 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD74406890
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 10:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A04640690B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 11:24:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA6BA6E9A1;
-	Fri, 10 Sep 2021 08:36:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8EF96E9AD;
+	Fri, 10 Sep 2021 09:24:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBF436E99D;
- Fri, 10 Sep 2021 08:36:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="282046896"
-X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="282046896"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 01:36:23 -0700
-X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="540348630"
-Received: from cmmooney-mobl3.ger.corp.intel.com (HELO [10.213.215.191])
- ([10.213.215.191])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 01:36:19 -0700
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
-References: <20210820224446.30620-1-matthew.brost@intel.com>
- <20210820224446.30620-6-matthew.brost@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <7073241c-2520-d8e2-2afe-cdc9faefda55@linux.intel.com>
-Date: Fri, 10 Sep 2021 09:36:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 504C86E9AD;
+ Fri, 10 Sep 2021 09:24:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 46AB7A9932;
+ Fri, 10 Sep 2021 09:24:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5577527777185599813=="
 MIME-Version: 1.0
-In-Reply-To: <20210820224446.30620-6-matthew.brost@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 05/27] drm/i915: Add GT PM unpark worker
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Sep 2021 09:24:17 -0000
+Message-ID: <163126585725.14826.10025849258517531098@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210910081942.1075038-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20210910081942.1075038-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_ww_context_to_intel=5Fdpt=5Fpin?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,341 +41,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5577527777185599813==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 20/08/2021 23:44, Matthew Brost wrote:
-> Sometimes it is desirable to queue work up for later if the GT PM isn't
-> held and run that work on next GT PM unpark.
+== Series Details ==
 
-Sounds maybe plausible, but it depends how much work can happen on 
-unpark and whether it can have too much of a negative impact on latency 
-for interactive loads? Or from a reverse angle, why the work wouldn't be 
-done on parking?
+Series: drm/i915: Add ww context to intel_dpt_pin
+URL   : https://patchwork.freedesktop.org/series/94537/
+State : success
 
-Also what kind of mechanism for dealing with too much stuff being put on 
-this list you have? Can there be pressure which triggers (or would need 
-to trigger) these deregistrations to happen at runtime (no park/unpark 
-transitions)?
+== Summary ==
 
-> Implemented with a list in the GT of all pending work, workqueues in
-> the list, a callback to add a workqueue to the list, and finally a
-> wakeref post_get callback that iterates / drains the list + queues the
-> workqueues.
-> 
-> First user of this is deregistration of GuC contexts.
+CI Bug Log - changes from CI_DRM_10569 -> Patchwork_21011
+====================================================
 
-Does first imply there are more incoming?
+Summary
+-------
 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/i915/Makefile                 |  1 +
->   drivers/gpu/drm/i915/gt/intel_gt.c            |  3 ++
->   drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  8 ++++
->   .../gpu/drm/i915/gt/intel_gt_pm_unpark_work.c | 35 ++++++++++++++++
->   .../gpu/drm/i915/gt/intel_gt_pm_unpark_work.h | 40 +++++++++++++++++++
->   drivers/gpu/drm/i915/gt/intel_gt_types.h      | 10 +++++
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  8 ++--
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 15 +++++--
->   drivers/gpu/drm/i915/intel_wakeref.c          |  5 +++
->   drivers/gpu/drm/i915/intel_wakeref.h          |  1 +
->   10 files changed, 119 insertions(+), 7 deletions(-)
->   create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.c
->   create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.h
-> 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 642a5b5a1b81..579bdc069f25 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -103,6 +103,7 @@ gt-y += \
->   	gt/intel_gt_clock_utils.o \
->   	gt/intel_gt_irq.o \
->   	gt/intel_gt_pm.o \
-> +	gt/intel_gt_pm_unpark_work.o \
->   	gt/intel_gt_pm_irq.o \
->   	gt/intel_gt_requests.o \
->   	gt/intel_gtt.o \
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 62d40c986642..7e690e74baa2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -29,6 +29,9 @@ void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
->   
->   	spin_lock_init(&gt->irq_lock);
->   
-> +	spin_lock_init(&gt->pm_unpark_work_lock);
-> +	INIT_LIST_HEAD(&gt->pm_unpark_work_list);
-> +
->   	INIT_LIST_HEAD(&gt->closed_vma);
->   	spin_lock_init(&gt->closed_lock);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index dea8e2479897..564c11a3748b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -90,6 +90,13 @@ static int __gt_unpark(struct intel_wakeref *wf)
->   	return 0;
->   }
->   
-> +static void __gt_unpark_work_queue(struct intel_wakeref *wf)
-> +{
-> +	struct intel_gt *gt = container_of(wf, typeof(*gt), wakeref);
-> +
-> +	intel_gt_pm_unpark_work_queue(gt);
-> +}
-> +
->   static int __gt_park(struct intel_wakeref *wf)
->   {
->   	struct intel_gt *gt = container_of(wf, typeof(*gt), wakeref);
-> @@ -118,6 +125,7 @@ static int __gt_park(struct intel_wakeref *wf)
->   
->   static const struct intel_wakeref_ops wf_ops = {
->   	.get = __gt_unpark,
-> +	.post_get = __gt_unpark_work_queue,
->   	.put = __gt_park,
->   };
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.c
-> new file mode 100644
-> index 000000000000..23162dbd0c35
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.c
-> @@ -0,0 +1,35 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2021 Intel Corporation
-> + */
-> +
-> +#include "i915_drv.h"
-> +#include "intel_runtime_pm.h"
-> +#include "intel_gt_pm.h"
-> +
-> +void intel_gt_pm_unpark_work_queue(struct intel_gt *gt)
-> +{
-> +	struct intel_gt_pm_unpark_work *work, *next;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&gt->pm_unpark_work_lock, flags);
-> +	list_for_each_entry_safe(work, next,
-> +				 &gt->pm_unpark_work_list, link) {
-> +		list_del_init(&work->link);
-> +		queue_work(system_unbound_wq, &work->worker);
-> +	}
-> +	spin_unlock_irqrestore(&gt->pm_unpark_work_lock, flags);
-> +}
-> +
-> +void intel_gt_pm_unpark_work_add(struct intel_gt *gt,
-> +				 struct intel_gt_pm_unpark_work *work)
-> +{
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&gt->pm_unpark_work_lock, flags);
-> +	if (intel_gt_pm_is_awake(gt))
-> +		queue_work(system_unbound_wq, &work->worker);
-> +	else if (list_empty(&work->link))
+  **SUCCESS**
 
-What's the list_empty check for, something can race by design?
+  No regressions found.
 
-> +		list_add_tail(&work->link, &gt->pm_unpark_work_list);
-> +	spin_unlock_irqrestore(&gt->pm_unpark_work_lock, flags);
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.h b/drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.h
-> new file mode 100644
-> index 000000000000..eaf1dc313aa2
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_unpark_work.h
-> @@ -0,0 +1,40 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2021 Intel Corporation
-> + */
-> +
-> +#ifndef INTEL_GT_PM_UNPARK_WORK_H
-> +#define INTEL_GT_PM_UNPARK_WORK_H
-> +
-> +#include <linux/list.h>
-> +#include <linux/workqueue.h>
-> +
-> +struct intel_gt;
-> +
-> +/**
-> + * struct intel_gt_pm_unpark_work - work to be scheduled when GT unparked
-> + */
-> +struct intel_gt_pm_unpark_work {
-> +	/**
-> +	 * @link: link into gt->pm_unpark_work_list of workers that need to be
-> +	 * scheduled when GT is unpark, protected by gt->pm_unpark_work_lock
-> +	 */
-> +	struct list_head link;
-> +	/** @worker: will be scheduled when GT unparked */
-> +	struct work_struct worker;
-> +};
-> +
-> +void intel_gt_pm_unpark_work_queue(struct intel_gt *gt);
-> +
-> +void intel_gt_pm_unpark_work_add(struct intel_gt *gt,
-> +				 struct intel_gt_pm_unpark_work *work);
-> +
-> +static inline void
-> +intel_gt_pm_unpark_work_init(struct intel_gt_pm_unpark_work *work,
-> +			     work_func_t fn)
-> +{
-> +	INIT_LIST_HEAD(&work->link);
-> +	INIT_WORK(&work->worker, fn);
-> +}
-> +
-> +#endif /* INTEL_GT_PM_UNPARK_WORK_H */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index a81e21bf1bd1..4480312f0add 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -96,6 +96,16 @@ struct intel_gt {
->   	struct intel_wakeref wakeref;
->   	atomic_t user_wakeref;
->   
-> +	/**
-> +	 * @pm_unpark_work_list: list of delayed work to scheduled which GT is
-> +	 * unparked, protected by pm_unpark_work_lock
-> +	 */
-> +	struct list_head pm_unpark_work_list;
-> +	/**
-> +	 * @pm_unpark_work_lock: protects pm_unpark_work_list
-> +	 */
-> +	spinlock_t pm_unpark_work_lock;
-> +
->   	struct list_head closed_vma;
->   	spinlock_t closed_lock; /* guards the list of closed_vma */
->   
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 7358883f1540..023953e77553 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -19,6 +19,7 @@
->   #include "intel_uc_fw.h"
->   #include "i915_utils.h"
->   #include "i915_vma.h"
-> +#include "gt/intel_gt_pm_unpark_work.h"
->   
->   struct __guc_ads_blob;
->   
-> @@ -78,11 +79,12 @@ struct intel_guc {
->   		 */
->   		struct list_head destroyed_contexts;
->   		/**
-> -		 * @destroyed_worker: worker to deregister contexts, need as we
-> +		 * @destroyed_worker: Worker to deregister contexts, need as we
->   		 * need to take a GT PM reference and can't from destroy
-> -		 * function as it might be in an atomic context (no sleeping)
-> +		 * function as it might be in an atomic context (no sleeping).
-> +		 * Worker only issues deregister when GT is unparked.
->   		 */
-> -		struct work_struct destroyed_worker;
-> +		struct intel_gt_pm_unpark_work destroyed_worker;
->   	} submission_state;
->   
->   	bool submission_supported;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index f835e06e5f9f..dbf919801de2 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1135,7 +1135,8 @@ int intel_guc_submission_init(struct intel_guc *guc)
->   	INIT_LIST_HEAD(&guc->submission_state.guc_id_list);
->   	ida_init(&guc->submission_state.guc_ids);
->   	INIT_LIST_HEAD(&guc->submission_state.destroyed_contexts);
-> -	INIT_WORK(&guc->submission_state.destroyed_worker, destroyed_worker_func);
-> +	intel_gt_pm_unpark_work_init(&guc->submission_state.destroyed_worker,
-> +				     destroyed_worker_func);
->   
->   	return 0;
->   }
-> @@ -1942,13 +1943,18 @@ static void deregister_destroyed_contexts(struct intel_guc *guc)
->   
->   static void destroyed_worker_func(struct work_struct *w)
->   {
-> -	struct intel_guc *guc = container_of(w, struct intel_guc,
-> +	struct intel_gt_pm_unpark_work *destroyed_worker =
-> +		container_of(w, struct intel_gt_pm_unpark_work, worker);
-> +	struct intel_guc *guc = container_of(destroyed_worker, struct intel_guc,
->   					     submission_state.destroyed_worker);
->   	struct intel_gt *gt = guc_to_gt(guc);
->   	int tmp;
->   
-> -	with_intel_gt_pm(gt, tmp)
-> +	with_intel_gt_pm_if_awake(gt, tmp)
->   		deregister_destroyed_contexts(guc);
-> +
-> +	if (!list_empty(&guc->submission_state.destroyed_contexts))
-> +		intel_gt_pm_unpark_work_add(gt, destroyed_worker);
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/index.html
 
-This is the worker itself, right?
+Known issues
+------------
 
-There's a "if awake" here followed by another "if awake" inside 
-intel_gt_pm_unpark_work_add which raises questions.
+  Here are the changes found in Patchwork_21011 that come from known issues:
 
-Second question is what's the list_empty for - why is the state of the 
-list itself relevant to a single worker deciding whether to re-add 
-itself to it or not? And is there a lock protecting this list?
+### IGT changes ###
 
-On the overall it feels questionable to have unpark work which 
-apparently can race with subsequent parking. Presumably you cannot have 
-it run sync on unpark due execution context issues?
+#### Issues hit ####
 
->   }
->   
->   static void guc_context_destroy(struct kref *kref)
-> @@ -1985,7 +1991,8 @@ static void guc_context_destroy(struct kref *kref)
->   	 * take the GT PM for the first time which isn't allowed from an atomic
->   	 * context.
->   	 */
-> -	queue_work(system_unbound_wq, &guc->submission_state.destroyed_worker);
-> +	intel_gt_pm_unpark_work_add(guc_to_gt(guc),
-> +				    &guc->submission_state.destroyed_worker);
->   }
->   
->   static int guc_context_alloc(struct intel_context *ce)
-> diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-> index dfd87d082218..282fc4f312e3 100644
-> --- a/drivers/gpu/drm/i915/intel_wakeref.c
-> +++ b/drivers/gpu/drm/i915/intel_wakeref.c
-> @@ -24,6 +24,8 @@ static void rpm_put(struct intel_wakeref *wf)
->   
->   int __intel_wakeref_get_first(struct intel_wakeref *wf)
->   {
-> +	bool do_post = false;
-> +
->   	/*
->   	 * Treat get/put as different subclasses, as we may need to run
->   	 * the put callback from under the shrinker and do not want to
-> @@ -44,8 +46,11 @@ int __intel_wakeref_get_first(struct intel_wakeref *wf)
->   		}
->   
->   		smp_mb__before_atomic(); /* release wf->count */
-> +		do_post = true;
->   	}
->   	atomic_inc(&wf->count);
-> +	if (do_post && wf->ops->post_get)
-> +		wf->ops->post_get(wf);
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
 
-You want this hook under the wf->mutex and why?
+  
+#### Possible fixes ####
 
-Regards,
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][2] ([i915#3921]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10569/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
 
-Tvrtko
+  * igt@i915_selftest@live@perf:
+    - {fi-tgl-dsi}:       [DMESG-WARN][4] ([i915#2867]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10569/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-tgl-dsi/igt@i915_selftest@live@perf.html
 
->   	mutex_unlock(&wf->mutex);
->   
->   	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
-> diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-> index 545c8f277c46..ef7e6a698e8a 100644
-> --- a/drivers/gpu/drm/i915/intel_wakeref.h
-> +++ b/drivers/gpu/drm/i915/intel_wakeref.h
-> @@ -30,6 +30,7 @@ typedef depot_stack_handle_t intel_wakeref_t;
->   
->   struct intel_wakeref_ops {
->   	int (*get)(struct intel_wakeref *wf);
-> +	void (*post_get)(struct intel_wakeref *wf);
->   	int (*put)(struct intel_wakeref *wf);
->   };
->   
-> 
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - fi-rkl-11600:       [SKIP][6] ([fdo#111825]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10569/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+
+
+Participating hosts (43 -> 37)
+------------------------------
+
+  Missing    (6): bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-apl-guc bat-adlp-4 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10569 -> Patchwork_21011
+
+  CI-20190529: 20190529
+  CI_DRM_10569: 5ffefab3f90a812fc6ee169f4c8aa1d8b2ceaa34 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6203: 64452a46b57ca4ef35eb65a547df8ed1b131e8f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21011: 4ba09c77db1a768c9b42a2a78bbd65598c2e4065 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4ba09c77db1a drm/i915: Add ww context to intel_dpt_pin
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/index.html
+
+--===============5577527777185599813==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add ww context to intel_dpt_pin</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94537/">https://patchwork.freedesktop.org/series/94537/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10569 -&gt; Patchwork_21011</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21011 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_cs_nop@sync-fork-compute0:<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10569/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@perf:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10569/fi-tgl-dsi/igt@i915_selftest@live@perf.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-tgl-dsi/igt@i915_selftest@live@perf.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10569/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21011/fi-rkl-11600/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 37)</h2>
+<p>Missing    (6): bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-apl-guc bat-adlp-4 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10569 -&gt; Patchwork_21011</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10569: 5ffefab3f90a812fc6ee169f4c8aa1d8b2ceaa34 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6203: 64452a46b57ca4ef35eb65a547df8ed1b131e8f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21011: 4ba09c77db1a768c9b42a2a78bbd65598c2e4065 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>4ba09c77db1a drm/i915: Add ww context to intel_dpt_pin</p>
+
+</body>
+</html>
+
+--===============5577527777185599813==--
