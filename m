@@ -1,41 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11EC3405FD4
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 01:02:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA7B406055
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 02:11:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F68E6E948;
-	Thu,  9 Sep 2021 23:02:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B8FA6E947;
+	Fri, 10 Sep 2021 00:11:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0FC6E943
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 23:02:09 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="243251444"
-X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="243251444"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 16:02:08 -0700
-X-IronPort-AV: E=Sophos;i="5.85,281,1624345200"; d="scan'208";a="466798526"
-Received: from rsalmerx-mobl.amr.corp.intel.com (HELO josouza-mobl2.intel.com)
- ([10.209.166.193])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2021 16:02:08 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Thu,  9 Sep 2021 16:07:25 -0700
-Message-Id: <20210909230725.33735-5-jose.souza@intel.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210909230725.33735-1-jose.souza@intel.com>
-References: <20210909230725.33735-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DEF7C6E946;
+ Fri, 10 Sep 2021 00:11:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D56A6A73C9;
+ Fri, 10 Sep 2021 00:11:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/display: Workaround cursor left
- overs with PSR2 selective fetch enabled
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Sep 2021 00:11:39 -0000
+Message-ID: <163123269985.14827.6054551417274926451@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210909230725.33735-1-jose.souza@intel.com>
+In-Reply-To: <20210909230725.33735-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/5=5D_drm/i915/display/adlp=3A_Fix_PSR?=
+ =?utf-8?q?2=5FMAN=5FTRK=5FCTL=5FSU=5FREGION=5FEND=5FADDR_calculation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,65 +42,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Not sure why but when moving the cursor fast it causes some artifacts
-of the cursor to be left in the cursor path, adding some pixels above
-the cursor to the damaged area fixes the issue, so leaving this as a
-workaround until proper fix is found.
+== Series Details ==
 
-This is reproducile on TGL and ADL-P.
+Series: series starting with [1/5] drm/i915/display/adlp: Fix PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR calculation
+URL   : https://patchwork.freedesktop.org/series/94526/
+State : warning
 
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 25 ++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 670b0ceba110f..18e721dde22e2 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1565,6 +1565,28 @@ static void intel_psr2_sel_fetch_pipe_alignment(const struct intel_crtc_state *c
- 		drm_warn(&dev_priv->drm, "Missing PSR2 sel fetch alignment with DSC\n");
- }
- 
-+/*
-+ * FIXME: Not sure why but when moving the cursor fast it causes some artifacts
-+ * of the cursor to be left in the cursor path, adding some pixels above the
-+ * cursor to the damaged area fixes the issue.
-+ */
-+static void cursor_area_workaround(const struct intel_plane_state *new_plane_state,
-+				   struct drm_rect *damaged_area,
-+				   struct drm_rect *pipe_clip)
-+{
-+	const struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
-+	int height;
-+
-+	if (plane->id != PLANE_CURSOR)
-+		return;
-+
-+	height = drm_rect_height(&new_plane_state->uapi.dst) / 2;
-+	damaged_area->y1 -=  height;
-+	damaged_area->y1 = max(damaged_area->y1, 0);
-+
-+	clip_area_update(pipe_clip, damaged_area);
-+}
-+
- int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc)
- {
-@@ -1627,6 +1649,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				damaged_area.y2 = new_plane_state->uapi.dst.y2;
- 				clip_area_update(&pipe_clip, &damaged_area);
- 			}
-+
-+			cursor_area_workaround(new_plane_state, &damaged_area,
-+					       &pipe_clip);
- 			continue;
- 		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha) {
- 			/* If alpha changed mark the whole plane area as damaged */
--- 
-2.33.0
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
 
