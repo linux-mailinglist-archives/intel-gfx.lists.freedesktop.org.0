@@ -2,62 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33080406B5B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 14:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5137E406C85
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 14:54:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E16B86E9E8;
-	Fri, 10 Sep 2021 12:26:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 795346E9EF;
+	Fri, 10 Sep 2021 12:54:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E01DE6E9E8;
- Fri, 10 Sep 2021 12:26:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=RDyvMseb2Bkzro22vkhqZsceh+xbxJTDG5PRR8Lbxx0=; b=Rl+Sy+UebBP9yP14VD/gPw9OAR
- 1u/6oalgYhfbmXdc8yHe2trMFiwCxPJNcmZFkJ/ugbVmWp8KIB2AdUlDrrWv6VLmlUgh5Jr7+MHnL
- vdCzTgjysCr4HC0eocLCv9Hn8bJPogbqQlWB0y4S/aqT8dG0ZQFz7zjgpfppcmunFHEnSg8PP3C3Y
- l6fStyVIwrGHSxExYvgzxSWgsbl2quBuf8NfjXfJZpYV+X2Ngc9Z52QCjR43Dchq8OkQ01CmP54Eb
- xoNqkmPFkQSDnylgrEzA2HWk47M1E4Q+/jz7amEoKOsD9midbgUk411L6Rpxi5ze1G3mIohBUSOYb
- AUKFUF8w==;
-Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
- Linux)) id 1mOfae-00AzYg-HZ; Fri, 10 Sep 2021 12:25:16 +0000
-Date: Fri, 10 Sep 2021 13:25:08 +0100
-From: Christoph Hellwig <hch@infradead.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Eric Farman <farman@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Jason Herne <jjherne@linux.ibm.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- kvm@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, Christoph Hellwig <hch@lst.de>
-Message-ID: <YTtOpDTGHEplvRrB@infradead.org>
-References: <0-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
- <6-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D62146E9EE;
+ Fri, 10 Sep 2021 12:54:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="208178517"
+X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="208178517"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2021 05:54:11 -0700
+X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="540591627"
+Received: from cmmooney-mobl3.ger.corp.intel.com (HELO [10.213.215.191])
+ ([10.213.215.191])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2021 05:54:10 -0700
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+References: <20210910053317.3379249-1-matthew.d.roper@intel.com>
+ <20210910053317.3379249-6-matthew.d.roper@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <dea9503f-cca0-5811-9140-c93ae908ebbd@linux.intel.com>
+Date: Fri, 10 Sep 2021 13:54:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH v2 6/9] vfio/mdev: Add mdev available
- instance checking to the core
+In-Reply-To: <20210910053317.3379249-6-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/uncore: Drop gen11 mmio read
+ handlers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,15 +54,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 09, 2021 at 04:38:46PM -0300, Jason Gunthorpe wrote:
-> Many of the mdev drivers use a simple counter for keeping track of the
-> available instances. Move this code to the core code and store the counter
-> in the mdev_type. Implement it using correct locking, fixing mdpy.
+
+On 10/09/2021 06:33, Matt Roper wrote:
+> Consolidate down to just a single 'fwtable' implementation.  For reads
+> we don't need to worry about shadow tables.  Also, the
+> NEEDS_FORCE_WAKE() check we previously had in the fwtable implementation
+> can be dropped --- if a register is outside that range on one of the old
+> platforms, then it won't belong to any forcewake range and 0 will be
+> returned anyway.
 > 
-> Drivers provide a get_available() callback to set the number of available
-> instances for their mtypes which is fixed at registration time. The core
-> provides a standard sysfs attribute to return the available_instances.
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>   drivers/gpu/drm/i915/intel_uncore.c | 45 +++++++++++------------------
+>   1 file changed, 17 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index c181e74fbf43..95398cb69722 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -935,14 +935,6 @@ static const struct intel_forcewake_range __vlv_fw_ranges[] = {
+>   };
+>   
+>   #define __fwtable_reg_read_fw_domains(uncore, offset) \
+> -({ \
+> -	enum forcewake_domains __fwd = 0; \
+> -	if (NEEDS_FORCE_WAKE((offset))) \
+> -		__fwd = find_fw_domain(uncore, offset); \
+> -	__fwd; \
+> -})
+> -
+> -#define __gen11_fwtable_reg_read_fw_domains(uncore, offset) \
+>   	find_fw_domain(uncore, offset)
 
-Looks good,
+Looks like you can drop this macro and just call find_fw_domain or you 
+think there is value to keep it?
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+Regards,
+
+Tvrtko
+
+>   
+>   /* *Must* be sorted by offset! See intel_shadow_table_check(). */
+> @@ -1577,33 +1569,30 @@ static inline void __force_wake_auto(struct intel_uncore *uncore,
+>   		___force_wake_auto(uncore, fw_domains);
+>   }
+>   
+> -#define __gen_read(func, x) \
+> +#define __gen_fwtable_read(x) \
+>   static u##x \
+> -func##_read##x(struct intel_uncore *uncore, i915_reg_t reg, bool trace) { \
+> +fwtable_read##x(struct intel_uncore *uncore, i915_reg_t reg, bool trace) \
+> +{ \
+>   	enum forcewake_domains fw_engine; \
+>   	GEN6_READ_HEADER(x); \
+> -	fw_engine = __##func##_reg_read_fw_domains(uncore, offset); \
+> +	fw_engine = __fwtable_reg_read_fw_domains(uncore, offset); \
+>   	if (fw_engine) \
+>   		__force_wake_auto(uncore, fw_engine); \
+>   	val = __raw_uncore_read##x(uncore, reg); \
+>   	GEN6_READ_FOOTER; \
+>   }
+>   
+> -#define __gen_reg_read_funcs(func) \
+> -static enum forcewake_domains \
+> -func##_reg_read_fw_domains(struct intel_uncore *uncore, i915_reg_t reg) { \
+> -	return __##func##_reg_read_fw_domains(uncore, i915_mmio_reg_offset(reg)); \
+> -} \
+> -\
+> -__gen_read(func, 8) \
+> -__gen_read(func, 16) \
+> -__gen_read(func, 32) \
+> -__gen_read(func, 64)
+> +static enum forcewake_domains
+> +fwtable_reg_read_fw_domains(struct intel_uncore *uncore, i915_reg_t reg) {
+> +	return __fwtable_reg_read_fw_domains(uncore, i915_mmio_reg_offset(reg));
+> +}
+>   
+> -__gen_reg_read_funcs(gen11_fwtable);
+> -__gen_reg_read_funcs(fwtable);
+> +__gen_fwtable_read(8)
+> +__gen_fwtable_read(16)
+> +__gen_fwtable_read(32)
+> +__gen_fwtable_read(64)
+>   
+> -#undef __gen_reg_read_funcs
+> +#undef __gen_fwtable_read
+>   #undef GEN6_READ_FOOTER
+>   #undef GEN6_READ_HEADER
+>   
+> @@ -2069,22 +2058,22 @@ static int uncore_forcewake_init(struct intel_uncore *uncore)
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __dg2_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen12_shadowed_regs);
+>   		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+> -		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+> +		ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
+>   	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __xehp_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen12_shadowed_regs);
+>   		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+> -		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+> +		ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
+>   	} else if (GRAPHICS_VER(i915) >= 12) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __gen12_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen12_shadowed_regs);
+>   		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+> -		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+> +		ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
+>   	} else if (GRAPHICS_VER(i915) == 11) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __gen11_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen11_shadowed_regs);
+>   		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+> -		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+> +		ASSIGN_READ_MMIO_VFUNCS(uncore, fwtable);
+>   	} else if (IS_GRAPHICS_VER(i915, 9, 10)) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __gen9_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen8_shadowed_regs);
+> 
