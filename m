@@ -1,35 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6452240611E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 02:39:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB2F406380
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Sep 2021 02:46:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 622E16E951;
-	Fri, 10 Sep 2021 00:39:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 718EA6E951;
+	Fri, 10 Sep 2021 00:46:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6443F6E950;
- Fri, 10 Sep 2021 00:39:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5CC80A01BB;
- Fri, 10 Sep 2021 00:39:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0634984060940332350=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C37C76E94C;
+ Fri, 10 Sep 2021 00:46:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="217789019"
+X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="217789019"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 17:46:44 -0700
+X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; d="scan'208";a="504726850"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2021 17:46:43 -0700
+Date: Thu, 9 Sep 2021 17:41:42 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
+Message-ID: <20210910004142.GA36638@jons-linux-dev-box>
+References: <20210820224446.30620-1-matthew.brost@intel.com>
+ <20210820224446.30620-7-matthew.brost@intel.com>
+ <a741a93f-7a23-6188-1455-beff457d6189@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Sep 2021 00:39:31 -0000
-Message-ID: <163123437137.14829.18258251334431633587@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210909230725.33735-1-jose.souza@intel.com>
-In-Reply-To: <20210909230725.33735-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915/display/adlp=3A_Fix_PSR2?=
- =?utf-8?q?=5FMAN=5FTRK=5FCTL=5FSU=5FREGION=5FEND=5FADDR_calculation?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a741a93f-7a23-6188-1455-beff457d6189@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 06/27] drm/i915/guc: Take engine PM when a
+ context is pinned with GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,207 +50,218 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0634984060940332350==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 09, 2021 at 03:46:43PM -0700, John Harrison wrote:
+> On 8/20/2021 15:44, Matthew Brost wrote:
+> > Taking a PM reference to prevent intel_gt_wait_for_idle from short
+> > circuiting while a scheduling of user context could be enabled.
+> As with earlier PM patch, needs more explanation of what the problem is and
+> why it is only now a problem.
+> 
+> 
 
-== Series Details ==
+Same explaination, will add here.
 
-Series: series starting with [1/5] drm/i915/display/adlp: Fix PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR calculation
-URL   : https://patchwork.freedesktop.org/series/94526/
-State : success
+> > 
+> > v2:
+> >   (Daniel Vetter)
+> >    - Add might_lock annotations to pin / unpin function
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_context.c       |  3 ++
+> >   drivers/gpu/drm/i915/gt/intel_engine_pm.h     | 15 ++++++++
+> >   drivers/gpu/drm/i915/gt/intel_gt_pm.h         | 10 ++++++
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 36 +++++++++++++++++--
+> >   drivers/gpu/drm/i915/intel_wakeref.h          | 12 +++++++
+> >   5 files changed, 73 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > index c8595da64ad8..508cfe5770c0 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > @@ -240,6 +240,8 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+> >   	if (err)
+> >   		goto err_post_unpin;
+> > +	intel_engine_pm_might_get(ce->engine);
+> > +
+> >   	if (unlikely(intel_context_is_closed(ce))) {
+> >   		err = -ENOENT;
+> >   		goto err_unlock;
+> > @@ -313,6 +315,7 @@ void __intel_context_do_unpin(struct intel_context *ce, int sub)
+> >   		return;
+> >   	CE_TRACE(ce, "unpin\n");
+> > +	intel_engine_pm_might_put(ce->engine);
+> >   	ce->ops->unpin(ce);
+> >   	ce->ops->post_unpin(ce);
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.h b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > index 17a5028ea177..3fe2ae1bcc26 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > @@ -9,6 +9,7 @@
+> >   #include "i915_request.h"
+> >   #include "intel_engine_types.h"
+> >   #include "intel_wakeref.h"
+> > +#include "intel_gt_pm.h"
+> >   static inline bool
+> >   intel_engine_pm_is_awake(const struct intel_engine_cs *engine)
+> > @@ -31,6 +32,13 @@ static inline bool intel_engine_pm_get_if_awake(struct intel_engine_cs *engine)
+> >   	return intel_wakeref_get_if_active(&engine->wakeref);
+> >   }
+> > +static inline void intel_engine_pm_might_get(struct intel_engine_cs *engine)
+> > +{
+> > +	if (!intel_engine_is_virtual(engine))
+> > +		intel_wakeref_might_get(&engine->wakeref);
+> Why doesn't this need to iterate through the physical engines of the virtual
+> engine?
+> 
 
-== Summary ==
+Yea, technically it should. This is just an annotation though to check
+if we do something horribly wrong in our code. If we use any physical
+engine in our stack this annotation should pop and we can fix it. I just
+don't see what making this 100% correct for virtual engines buys us. If
+you want I can fix this but thinking the more complex we make this
+annotation the less likely it just gets compiled out with lockdep off
+which is what we are aiming for.
 
-CI Bug Log - changes from CI_DRM_10566 -> Patchwork_21008
-====================================================
+Matt
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21008 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-gfx0:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-kbl-7567u/igt@amdgpu/amd_cs_nop@sync-gfx0.html
-
-  * igt@fbdev@write:
-    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][2] ([fdo#109271]) +5 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-bdw-gvtdvm/igt@fbdev@write.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][3] ([i915#146])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-rkl-guc:         [PASS][4] -> [SKIP][5] ([fdo#109308])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10566/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][6] -> [INCOMPLETE][7] ([i915#3921])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10566/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-7567u:       [DMESG-WARN][8] -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10566/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Additional (1): fi-bdw-gvtdvm 
-  Missing    (6): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10566 -> Patchwork_21008
-
-  CI-20190529: 20190529
-  CI_DRM_10566: 8c2d4adb2cd72ea1fae0c95562362319406f6d8e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6203: 64452a46b57ca4ef35eb65a547df8ed1b131e8f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21008: 6a5a62753b84653003695a67a8aea3cf44a2ab05 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6a5a62753b84 drm/i915/display: Workaround cursor left overs with PSR2 selective fetch enabled
-cce24682af93 drm/i915/display/psr: Use drm damage helpers to calculate plane damaged area
-2c287be2545f drm/i915/display: Wait at least 2 frames before selective update
-922da922a44f drm/i915/display/adlp: Add new PSR2 workarounds
-f02430c9cb76 drm/i915/display/adlp: Fix PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR calculation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/index.html
-
---===============0634984060940332350==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/5] drm/i915/display/adlp: Fix PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR calculation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94526/">https://patchwork.freedesktop.org/series/94526/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10566 -&gt; Patchwork_21008</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21008 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-kbl-7567u/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-bdw-gvtdvm/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10566/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-rkl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109308">fdo#109308</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10566/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10566/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21008/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Additional (1): fi-bdw-gvtdvm <br />
-  Missing    (6): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10566 -&gt; Patchwork_21008</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10566: 8c2d4adb2cd72ea1fae0c95562362319406f6d8e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6203: 64452a46b57ca4ef35eb65a547df8ed1b131e8f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21008: 6a5a62753b84653003695a67a8aea3cf44a2ab05 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6a5a62753b84 drm/i915/display: Workaround cursor left overs with PSR2 selective fetch enabled<br />
-cce24682af93 drm/i915/display/psr: Use drm damage helpers to calculate plane damaged area<br />
-2c287be2545f drm/i915/display: Wait at least 2 frames before selective update<br />
-922da922a44f drm/i915/display/adlp: Add new PSR2 workarounds<br />
-f02430c9cb76 drm/i915/display/adlp: Fix PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR calculation</p>
-
-</body>
-</html>
-
---===============0634984060940332350==--
+> John.
+> 
+> > +	intel_gt_pm_might_get(engine->gt);
+> > +}
+> > +
+> >   static inline void intel_engine_pm_put(struct intel_engine_cs *engine)
+> >   {
+> >   	intel_wakeref_put(&engine->wakeref);
+> > @@ -52,6 +60,13 @@ static inline void intel_engine_pm_flush(struct intel_engine_cs *engine)
+> >   	intel_wakeref_unlock_wait(&engine->wakeref);
+> >   }
+> > +static inline void intel_engine_pm_might_put(struct intel_engine_cs *engine)
+> > +{
+> > +	if (!intel_engine_is_virtual(engine))
+> > +		intel_wakeref_might_put(&engine->wakeref);
+> > +	intel_gt_pm_might_put(engine->gt);
+> > +}
+> > +
+> >   static inline struct i915_request *
+> >   intel_engine_create_kernel_request(struct intel_engine_cs *engine)
+> >   {
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > index a17bf0d4592b..3c173033ce23 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > @@ -31,6 +31,11 @@ static inline bool intel_gt_pm_get_if_awake(struct intel_gt *gt)
+> >   	return intel_wakeref_get_if_active(&gt->wakeref);
+> >   }
+> > +static inline void intel_gt_pm_might_get(struct intel_gt *gt)
+> > +{
+> > +	intel_wakeref_might_get(&gt->wakeref);
+> > +}
+> > +
+> >   static inline void intel_gt_pm_put(struct intel_gt *gt)
+> >   {
+> >   	intel_wakeref_put(&gt->wakeref);
+> > @@ -41,6 +46,11 @@ static inline void intel_gt_pm_put_async(struct intel_gt *gt)
+> >   	intel_wakeref_put_async(&gt->wakeref);
+> >   }
+> > +static inline void intel_gt_pm_might_put(struct intel_gt *gt)
+> > +{
+> > +	intel_wakeref_might_put(&gt->wakeref);
+> > +}
+> > +
+> >   #define with_intel_gt_pm(gt, tmp) \
+> >   	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
+> >   	     intel_gt_pm_put(gt), tmp = 0)
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index dbf919801de2..e0eed70f9b92 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -1550,7 +1550,12 @@ static int guc_context_pre_pin(struct intel_context *ce,
+> >   static int guc_context_pin(struct intel_context *ce, void *vaddr)
+> >   {
+> > -	return __guc_context_pin(ce, ce->engine, vaddr);
+> > +	int ret = __guc_context_pin(ce, ce->engine, vaddr);
+> > +
+> > +	if (likely(!ret && !intel_context_is_barrier(ce)))
+> > +		intel_engine_pm_get(ce->engine);
+> > +
+> > +	return ret;
+> >   }
+> >   static void guc_context_unpin(struct intel_context *ce)
+> > @@ -1559,6 +1564,9 @@ static void guc_context_unpin(struct intel_context *ce)
+> >   	unpin_guc_id(guc, ce);
+> >   	lrc_unpin(ce);
+> > +
+> > +	if (likely(!intel_context_is_barrier(ce)))
+> > +		intel_engine_pm_put_async(ce->engine);
+> >   }
+> >   static void guc_context_post_unpin(struct intel_context *ce)
+> > @@ -2328,8 +2336,30 @@ static int guc_virtual_context_pre_pin(struct intel_context *ce,
+> >   static int guc_virtual_context_pin(struct intel_context *ce, void *vaddr)
+> >   {
+> >   	struct intel_engine_cs *engine = guc_virtual_get_sibling(ce->engine, 0);
+> > +	int ret = __guc_context_pin(ce, engine, vaddr);
+> > +	intel_engine_mask_t tmp, mask = ce->engine->mask;
+> > +
+> > +	if (likely(!ret))
+> > +		for_each_engine_masked(engine, ce->engine->gt, mask, tmp)
+> > +			intel_engine_pm_get(engine);
+> > -	return __guc_context_pin(ce, engine, vaddr);
+> > +	return ret;
+> > +}
+> > +
+> > +static void guc_virtual_context_unpin(struct intel_context *ce)
+> > +{
+> > +	intel_engine_mask_t tmp, mask = ce->engine->mask;
+> > +	struct intel_engine_cs *engine;
+> > +	struct intel_guc *guc = ce_to_guc(ce);
+> > +
+> > +	GEM_BUG_ON(context_enabled(ce));
+> > +	GEM_BUG_ON(intel_context_is_barrier(ce));
+> > +
+> > +	unpin_guc_id(guc, ce);
+> > +	lrc_unpin(ce);
+> > +
+> > +	for_each_engine_masked(engine, ce->engine->gt, mask, tmp)
+> > +		intel_engine_pm_put_async(engine);
+> >   }
+> >   static void guc_virtual_context_enter(struct intel_context *ce)
+> > @@ -2366,7 +2396,7 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+> >   	.pre_pin = guc_virtual_context_pre_pin,
+> >   	.pin = guc_virtual_context_pin,
+> > -	.unpin = guc_context_unpin,
+> > +	.unpin = guc_virtual_context_unpin,
+> >   	.post_unpin = guc_context_post_unpin,
+> >   	.ban = guc_context_ban,
+> > diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
+> > index ef7e6a698e8a..dd530ae028e0 100644
+> > --- a/drivers/gpu/drm/i915/intel_wakeref.h
+> > +++ b/drivers/gpu/drm/i915/intel_wakeref.h
+> > @@ -124,6 +124,12 @@ enum {
+> >   	__INTEL_WAKEREF_PUT_LAST_BIT__
+> >   };
+> > +static inline void
+> > +intel_wakeref_might_get(struct intel_wakeref *wf)
+> > +{
+> > +	might_lock(&wf->mutex);
+> > +}
+> > +
+> >   /**
+> >    * intel_wakeref_put_flags: Release the wakeref
+> >    * @wf: the wakeref
+> > @@ -171,6 +177,12 @@ intel_wakeref_put_delay(struct intel_wakeref *wf, unsigned long delay)
+> >   			    FIELD_PREP(INTEL_WAKEREF_PUT_DELAY, delay));
+> >   }
+> > +static inline void
+> > +intel_wakeref_might_put(struct intel_wakeref *wf)
+> > +{
+> > +	might_lock(&wf->mutex);
+> > +}
+> > +
+> >   /**
+> >    * intel_wakeref_lock: Lock the wakeref (mutex)
+> >    * @wf: the wakeref
+> 
