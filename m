@@ -2,44 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3080407549
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Sep 2021 08:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB5040764B
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Sep 2021 13:37:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C30AB6EB4F;
-	Sat, 11 Sep 2021 06:07:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06D6A6EB74;
+	Sat, 11 Sep 2021 11:37:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CCBA6EB4F;
- Sat, 11 Sep 2021 06:07:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10103"; a="218074509"
-X-IronPort-AV: E=Sophos;i="5.85,284,1624345200"; d="scan'208";a="218074509"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 23:07:12 -0700
-X-IronPort-AV: E=Sophos;i="5.85,284,1624345200"; d="scan'208";a="549965074"
-Received: from dmescala-mobl3.amr.corp.intel.com (HELO [10.249.254.79])
- ([10.249.254.79])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2021 23:07:10 -0700
-Message-ID: <5ea3f498cc5ae84fa6aeba97a64e4eb8ab32e02b.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com, Matthew Auld
- <matthew.william.auld@gmail.com>
-Date: Sat, 11 Sep 2021 08:07:08 +0200
-In-Reply-To: <c8484b51-4365-bedd-be73-4c0898ac70b1@amd.com>
-References: <20210910131512.161655-1-thomas.hellstrom@linux.intel.com>
- <d7570cab-d402-761d-40e0-3d08d9b9d3c9@amd.com>
- <a1a8fd3f1ca13b84192bd3c8719f510e5b655b2c.camel@linux.intel.com>
- <c8484b51-4365-bedd-be73-4c0898ac70b1@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com
+ [IPv6:2a00:1450:4864:20::136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 659776EB74;
+ Sat, 11 Sep 2021 11:37:54 +0000 (UTC)
+Received: by mail-lf1-x136.google.com with SMTP id c8so9825654lfi.3;
+ Sat, 11 Sep 2021 04:37:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=OH7k5hheyxg1MUCedpNHWtHaiF5Uc4KYbqMmcrZmi4Y=;
+ b=qpCYLYxIcS2yXrChaWdHyW7Ss8QJvs8vsVMc6z/Lz5sIBwZLzGsGjH9mAkR+blWBjN
+ yy6BXBlLxMGeflptAChclPAUs5kZXAxZelnxIl59vPfUoVdvwaHIth2VmmiPgojvm93C
+ 0h2bF0JDleldaTKWvTB4+qQghkzcEY0PtX9CFgGwma81JtqYuzv9EJOVHaVB6ArTsRU6
+ ZXdjpq/6xGKN8rvC7+ACYPVQtgumFqvUUDAQ9QqxFPxSdRNjiTJewqRKY7Ctc+nLbbrF
+ /z3NtuzSIM5zthV/yQLTy7FrkUW4HKTi9YOvy/O07Alx2oBQq2F/uz7ZL7tc1BTb51ED
+ oxxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=OH7k5hheyxg1MUCedpNHWtHaiF5Uc4KYbqMmcrZmi4Y=;
+ b=7SEONKKst2/WKH7btxQCdP0d3TX05UTfo8JkBOuUUlnoCxhsEQhxEgVzQUqZ4kHp6U
+ Ei392ma3qlj0ScArMxrbk9erOtixe1puIO1hIwfjueOZtPADeXuB5KB5swsHtvB0ZgqA
+ 52NSoSaq+hWZI0hK1r87sWRuHJIkZc0jn8yOV6QBDGuQwdNzAoDErVX+axiJMQzL8YXJ
+ yWriWCrw8IbbMgd+FkjR4dCBffkwP0boL8xtDZbR1hjydhoGSQmczvAcx91x8lzzCWV8
+ 9IQzLjfp1HXdNNMrmCHwFfA5Bhzot5dLhdUvdw5cwgBlxjcfqDHSODIC/e5zfFi5azyG
+ o5Sg==
+X-Gm-Message-State: AOAM530UPIkAbPzuf1G+v/MgEptj/YuP7eXncLT35zAlBZQ/Z8+ztJdq
+ e7WK8cDHo+4Rqzru6kuuO8BnebNuKJkVtHoQhrc=
+X-Google-Smtp-Source: ABdhPJyskWh8/D7TwvN2hoXvSu6rBcqwVmPt1VFcZ+Pi8cnx+Cp/Y7eb6N7eCshLCtbySTXEdSFBlVZujAb6xKXJlQ8=
+X-Received: by 2002:a05:6512:1094:: with SMTP id
+ j20mr1864930lfg.197.1631360272569; 
+ Sat, 11 Sep 2021 04:37:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH] drm/ttm: Add a private member to the
- struct ttm_resource
+References: <d7487c6a-43c9-3940-4f42-b8fa31704e2e@infradead.org>
+In-Reply-To: <d7487c6a-43c9-3940-4f42-b8fa31704e2e@infradead.org>
+From: o1bigtenor <o1bigtenor@gmail.com>
+Date: Sat, 11 Sep 2021 06:37:16 -0500
+Message-ID: <CAPpdf59v2OyidgF_=Hpz9xY4=my9FFs_aDJgfh=scq2nec0QXw@mail.gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000008c1c1b05cbb6a94c"
+Subject: Re: [Intel-gfx] Intel UHD resolutions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,194 +66,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2021-09-10 at 19:03 +0200, Christian König wrote:
-> Am 10.09.21 um 17:30 schrieb Thomas Hellström:
-> > On Fri, 2021-09-10 at 16:40 +0200, Christian König wrote:
-> > > 
-> > > Am 10.09.21 um 15:15 schrieb Thomas Hellström:
-> > > > Both the provider (resource manager) and the consumer (the TTM
-> > > > driver)
-> > > > want to subclass struct ttm_resource. Since this is left for
-> > > > the
-> > > > resource
-> > > > manager, we need to provide a private pointer for the TTM
-> > > > driver.
-> > > > 
-> > > > Provide a struct ttm_resource_private for the driver to
-> > > > subclass
-> > > > for
-> > > > data with the same lifetime as the struct ttm_resource: In the
-> > > > i915
-> > > > case
-> > > > it will, for example, be an sg-table and radix tree into the
-> > > > LMEM
-> > > > /VRAM pages that currently are awkwardly attached to the GEM
-> > > > object.
-> > > > 
-> > > > Provide an ops structure for associated ops (Which is only
-> > > > destroy() ATM)
-> > > > It might seem pointless to provide a separate ops structure,
-> > > > but
-> > > > Linus
-> > > > has previously made it clear that that's the norm.
-> > > > 
-> > > > After careful audit one could perhaps also on a per-driver
-> > > > basis
-> > > > replace the delete_mem_notify() TTM driver callback with the
-> > > > above
-> > > > destroy function.
-> > > Well this is a really big NAK to this approach.
-> > > 
-> > > If you need to attach some additional information to the resource
-> > > then
-> > > implement your own resource manager like everybody else does.
-> > Well this was the long discussion we had back then when the
-> > resource
-> > mangagers started to derive from struct resource and I was under
-> > the
-> > impression that we had come to an agreement about the different
-> > use-
-> > cases here, and this was my main concern.
-> 
-> Ok, then we somehow didn't understood each other.
-> 
-> > I mean, it's a pretty big layer violation to do that for this use-
-> > case.
-> 
-> Well exactly that's the point. TTM should not have a layer design in
-> the 
-> first place.
-> 
-> Devices, BOs, resources etc.. are base classes which should implement
-> a 
-> base functionality which is then extended by the drivers to implement
-> the driver specific functionality.
-> 
-> That is a component based approach, and not layered at all.
-> 
-> > The TTM resource manager doesn't want to know about this data at
-> > all,
-> > it's private to the ttm resource user layer and the resource
-> > manager
-> > works perfectly well without it. (I assume the other drivers that
-> > implement their own resource managers need the data that the
-> > subclassing provides?)
-> 
-> Yes, that's exactly why we have the subclassing.
-> 
-> > The fundamental problem here is that there are two layers wanting
-> > to
-> > subclass struct ttm_resource. That means one layer gets to do that,
-> > the
-> > second gets to use a private pointer, (which in turn can provide
-> > yet
-> > another private pointer to a potential third layer). With your
-> > suggestion, the second layer instead is forced to subclass each
-> > subclassed instance it uses from  the first layer provides?
-> 
-> Well completely drop the layer approach/thinking here.
-> 
-> The resource is an object with a base class. The base class
-> implements 
-> the interface TTM needs to handle the object, e.g.
-> create/destroy/debug 
-> etc...
-> 
-> Then we need to subclass this object because without any additional 
-> information the object is pretty pointless.
-> 
-> One possibility for this is to use the range manager to implement 
-> something drm_mm based. BTW: We should probably rename that to
-> something 
-> like ttm_res_drm_mm or similar.
+--0000000000008c1c1b05cbb6a94c
+Content-Type: text/plain; charset="UTF-8"
 
-Sure I'm all in on that, but my point is this becomes pretty awkward
-because the reusable code already subclasses struct ttm_resource. Let
-me give you an example:
+On Fri, Sep 10, 2021 at 9:50 PM Randy Dunlap <rdunlap@infradead.org> wrote:
 
-Prereqs:
-1) We want to be able to re-use resource manager implementations among
-drivers.
-2) A driver might want to re-use multiple implementations and have
-identical data "struct i915_data" attached to both
+> Hi,
+>
+> I would like to use QHD resolution (2560x1440) with my shiny new
+> computer and display. That resolution works if I boot Windows 10
+> (cough).
+>
+> What do I need to do to use that resolution in Linux?
+>
+>
+Dunno if I can 'help' get everything going - - - - but I do have some
+ideas (having had to fight a lot to get my graphics sub-system working).
 
-With your suggestion that combination of prereqs would look like:
+Start up a terminal as your user and run $ xrandr --verbose and then if
+you would paste the lines up to the end of the EDID blob here. (Need
+more info that what you provided. )
 
-struct i915_resource {
-	/* Reason why we subclass */
-	struct i915_data my_data;
+Regards
 
-	/* 
-         * Uh this is awkward. We need to do this because these       
-         * already subclassed struct ttm_resource.
-         */
-	struct ttm_resource *resource;
-	union {
-		struct ttm_range_mgr_node range;
-		struct i915_ttm_buddy_resource buddy;
-        };
-};
+--0000000000008c1c1b05cbb6a94c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-And I can't make it look like
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 10, 2021 at 9:50 PM Randy=
+ Dunlap &lt;<a href=3D"mailto:rdunlap@infradead.org" target=3D"_blank">rdun=
+lap@infradead.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">Hi,<br>
+<br>
+I would like to use QHD resolution (2560x1440) with my shiny new<br>
+computer and display. That resolution works if I boot Windows 10<br>
+(cough).<br>
+<br>
+What do I need to do to use that resolution in Linux?<br><br></blockquote><=
+div><br></div><div>Dunno if I can &#39;help&#39; get everything going - - -=
+ - but I do have some=C2=A0</div><div>ideas (having had to fight a lot to g=
+et my graphics sub-system working).=C2=A0=C2=A0</div><div><br></div><div>St=
+art up a terminal as your user and run $ xrandr --verbose and then if=C2=A0=
+</div><div>you would paste the lines up to the end of the EDID blob here. (=
+Need=C2=A0</div><div>more info that what you provided. )=C2=A0</div><div><b=
+r></div><div>Regards</div></div></div>
 
-struct i915_resource {
-	struct i915_data my_data;
-	struct ttm_resource *resource;
-}
-
-Without that private back pointer.
- 
-But what I'd *really* would want is.
-
-struct i915_resource {
-	struct i915_data my_data;
-	struct ttm_resource resource;
-};
-
-This would be identical to how we subclass a struct ttm_buffer_object
-or a struct ttm_tt. But It can't look like this because then we can't
-reuse exising implementations that *already subclass* struct
-ttm_resource.
-
-What we have currently ttm_resource-wise is like having a struct
-tt_bo_vram, a struct ttm_bo_system, a struct ttm_bo_gtt and trying to
-subclass them all combined into a struct i915_bo. It would become
-awkward without a dynamic backend that facilitates subclassing a single
-struct ttm_buffer_object? 
-
-So basically the question boils down to: Why do we do struct
-ttm_resources differently?
-
-
-> 
-> What we should avoid is to abuse TTM resource interfaces in the
-> driver, 
-> e.g. what i915 is currently doing. This is a TTM->resource mgr
-> interface 
-> and should not be used by drivers at all.
-
-Yes I guess that can be easily fixed when whatever we end up with above
-lands.
-
-> 
-> > Ofc we can do that, but it does indeed feel pretty awkward.
-> > 
-> > In any case, if you still think that's the approach we should go
-> > for,
-> > I'd need to add init() and fini() members to the
-> > ttm_range_manager_func
-> > struct to allow subclassing without having to unnecessarily copy
-> > the
-> > full code?
-> 
-> Yes, exporting the ttm_range_manager functions as needed is one thing
-> I 
-> wanted to do for the amdgpu_gtt_mgr.c code as well.
-> 
-> Just don't extend the function table but rather directly export the 
-> necessary functions.
-
-Sure.
-/Thomas
-
-
+--0000000000008c1c1b05cbb6a94c--
