@@ -2,124 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC103408490
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 08:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F144084A3
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 08:24:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 819F86E0E1;
-	Mon, 13 Sep 2021 06:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10E2889F55;
+	Mon, 13 Sep 2021 06:24:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE5489D7F;
- Mon, 13 Sep 2021 06:17:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e9U0RoDVLnW3YxoLoeleF9vlTZwHuDuRKK/u9XiHviYT/+Fo+2tjnv1xEwNqhSYJHCFjuBBN4nyMXrjRAzFsZqyIdEUjCj1UeTcpq6bWimzqFa3JkoLwsbPMNPDrKaXJuEhjlSJRs6k4S8Gf+tDkxB7UbHatWEA/F4FxrXGGlKFwXJFoJ2Bp1Py6CsIzrqIUfDMcxhLhHzsWPrrQ7r9bB4ba1ao4FLGc5TkMbTChepGQOzvGoeVpqjSOx30amlUX9PlcCUcyM/dUQ6OoGRFKbgnxe2IZlS0q7MXPO7ufatmAbLdv+sfkrjRoLT8cZ2nkE+66NC5jqQ+WjIh6nSfDRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=IysUHUFPJZwcyDsYUhT0SWjdU+eOOYAn6wiF1sUkLAo=;
- b=gQoUn0ijQESVqInHZRJ8Qwyzl8VH7FhmUdPeB29HchMShLtcYmcmAbxhhIAArU1LEo4v+A3cX5V02PT+kk9lfxD24vpN8fMlFO5u1stsiD4DqnZSpZ3wDqCPhF0TifVijXdA8yeKm1N1BmoEdvMDU9EGRa8KTPrw93Ftx1bJXuoXitTC9+4FVMg42Fnv0vh1EnHEfyl3qlCdMryQAmvDoQ7gEx9j1qlX2edRLDn+Z6kxGB3U3YVph5R5aZALDWa+1eFyGr/x/Z+Ba+gG9AuY8CIqpSnMaDA9yW3MOBf4Ix7eC+ahLMZjUCiHdDs7ZlV9RgT9Ps2RZ/+2J2QwyovpRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IysUHUFPJZwcyDsYUhT0SWjdU+eOOYAn6wiF1sUkLAo=;
- b=1aYQTsHSKo39d+U2ClH/5x92V7iwvxx8A2n0n+v9JXuxS4DTVGoABSnlsXEGWlE/IxQQL0bLsYf8GZJXJ+C4sprRb2fGn0ork11Zx9GCR9YW+ucEn9QThXol/YI5KrCC32IUTU3HX0au2zmbs/QkOuWikJ035uwpJOPKbhmR10M=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
- by MN2PR12MB3677.namprd12.prod.outlook.com (2603:10b6:208:15a::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14; Mon, 13 Sep
- 2021 06:17:30 +0000
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4500.018; Mon, 13 Sep 2021
- 06:17:30 +0000
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
- Matthew Auld <matthew.william.auld@gmail.com>
-References: <20210910131512.161655-1-thomas.hellstrom@linux.intel.com>
- <d7570cab-d402-761d-40e0-3d08d9b9d3c9@amd.com>
- <a1a8fd3f1ca13b84192bd3c8719f510e5b655b2c.camel@linux.intel.com>
- <c8484b51-4365-bedd-be73-4c0898ac70b1@amd.com>
- <5ea3f498cc5ae84fa6aeba97a64e4eb8ab32e02b.camel@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <c67b3b42-d260-44dc-81cb-1d1eb18db643@amd.com>
-Date: Mon, 13 Sep 2021 08:17:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <5ea3f498cc5ae84fa6aeba97a64e4eb8ab32e02b.camel@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 115C089F55;
+ Mon, 13 Sep 2021 06:24:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="201759110"
+X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="201759110"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2021 23:23:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="543019311"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
+ by FMSMGA003.fm.intel.com with ESMTP; 12 Sep 2021 23:23:45 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 13 Sep 2021 07:23:44 +0100
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
+ Mon, 13 Sep 2021 11:53:42 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>
+Thread-Topic: [PATCH v2 4/6] drm/edid: parse the DisplayID v2.0 VESA vendor
+ block for MSO
+Thread-Index: AQHXnnMP3ZkKGG/hO0qHTdOFN1KAfKuhjZ7Q
+Date: Mon, 13 Sep 2021 06:23:42 +0000
+Message-ID: <264db723a9c34755bd8c2a052e3e5bf6@intel.com>
+References: <cover.1630419362.git.jani.nikula@intel.com>
+ <73ca2887e7b37880690f5c9ba4594c9cd1170669.1630419362.git.jani.nikula@intel.com>
+In-Reply-To: <73ca2887e7b37880690f5c9ba4594c9cd1170669.1630419362.git.jani.nikula@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-ClientProxiedBy: AM8P251CA0009.EURP251.PROD.OUTLOOK.COM
- (2603:10a6:20b:21b::14) To MN2PR12MB3775.namprd12.prod.outlook.com
- (2603:10b6:208:159::19)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Received: from [192.168.178.21] (91.14.161.181) by
- AM8P251CA0009.EURP251.PROD.OUTLOOK.COM (2603:10a6:20b:21b::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4500.14 via Frontend Transport; Mon, 13 Sep 2021 06:17:28 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ad3b162-a37c-4e74-8de5-08d9767e2a37
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3677:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB36779B8782B43D4346968FB983D99@MN2PR12MB3677.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: d7xXmdq6nn59m8mCiJxeRe027UAQMW25PCSgiPZqCujmyh0/MDCEvlF4+DIawR23R8XmrvBSDaHwUk9tJXBQSrsE1kE8GMhIZAIMfVUAgINy9DkcqsPPyxq9m5zDLcV63LmuqXaL1zviHmIhjrVoZHghmNW9fSLY9SYZiYzMIFA/h5FC6ud96v5PvhcNg/Wpcc9+Rct0QAp5Ayah+TZWAgO5QW6yWIPQ6qlARP1GB4lc6WeVeoaKo2bUQ4eSHuoZXWBiw8AZ4AY+EEWTA4l1g2a0UD91nCp0mJ7iiBk2UEjdG8RwGVRkSExhvEIvjvzyrAPhA9NI60Kk0lC+XSpI5w2dVD38iuepkFJBxOeDA+LdUqtI9wSz2cWg3r8H+hHyyTPg+gGRM8ZRqZo3jhbJnAlUObVE0cwRq0qMFlZCx/oj9CsAg8+TQtFyQzB60j7x1cXTAr1VYAHwp4oKCYNBd6C74m+tMT/UuIu8IQsD9bDGNgYAFqG/+ImRqjhuF1RyD3Fw4KDiCjJvbsUlNanHSPtB8Pk6iiuonQSCgpaCvYPDH2cX6OetVzuDMpzbwY3MDALxRqF3aB2P88ueXtWD4D4bIzxW7uujNCkmFmMbGCHlEK1x03yY66AiV05zvTyoO7aB+V8IExarUKg6kXJT1FOiRtbRvceeGhw5U/1RcMBL8uMJwyGNbedrcYD8aqhiSHCWTRGPO6cj1pizITpBTntBVkOcrYFaPzcbbfhZnKNSfQlVgoXYAMZOct+zBcMS
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(366004)(26005)(8936002)(186003)(5660300002)(38100700002)(16576012)(316002)(2616005)(2906002)(956004)(31696002)(66946007)(66556008)(66476007)(6486002)(86362001)(4326008)(6666004)(83380400001)(31686004)(66574015)(478600001)(36756003)(8676002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?STRKNG5iTW5nVkZ3N2dvTWFZekVWa0dxWHZyZDNxTHpKQzRlcDVqZ2xIK21a?=
- =?utf-8?B?Nk5LVG9CRzJLdnhZSytxMkpsQjJsMzA1OVlzWTlTV2FqN3BCOGpGVTh1WC9T?=
- =?utf-8?B?ZjJwQUtyUHBtWVZzSElSZk9kcjg4b1BiOEx1bENZYnVmQUdXZkZveUxqTXRp?=
- =?utf-8?B?SFBCd3NySUl0ZVFBYTV2aFVOaThwTkFZeVIzUWU4TEtZM3NhUGcwNkdsdVRp?=
- =?utf-8?B?NDMrTUJrWXZrOUt0WG5adFQ2Z3VJelBSR3d4MFNjZlVZbitHbzllUkJ5dVNB?=
- =?utf-8?B?ckdoOGs0SkJkZ0VSTHFmU3gyNHhNZ05Tdy9WQWhHVTZTd1o5WVFnRkpXSnVM?=
- =?utf-8?B?bGYxcm51YlFlanpEWHBxVjU4U2QwNGxEVVJKN05OTzNlNy9yU2l4RXJOamVp?=
- =?utf-8?B?ejlKQ1I0cHczWURsNVFhSWRPYTZ3UUg3aHhjNWdtRzJRM1daVlNRMjRTVUli?=
- =?utf-8?B?VzIraW9Ld2p0YS9qaFQ1TXgrMzJWQUR2SXBiT2VkUW1wZm1NQlhQdFcreGZ2?=
- =?utf-8?B?bVhEODlwZGJqZWwzckU4NkdNcTlqRTVCS0dyWitrZ21HWkp4MXZIdmRRa2lK?=
- =?utf-8?B?dDFpVWp1UlBXSi9WZkx5cUFJdlJQUEp5RkVUSFFRbW1NdGNMemZ5RGI0bXdX?=
- =?utf-8?B?M0ZKQzg1MG9UMDl5VnQ4TWRrNW1SNlBwcktEajJScEtDQnVGemxDOFh2UnBY?=
- =?utf-8?B?VE1ldnVZQ3hZZ2UzbjJ6K3VVdnV3dEFDYjgwRU5pSWVhazRkRXdXa2RWcm91?=
- =?utf-8?B?a1BXa2psN2hHbGJMaGRKRFJLdUNSZUQ1bFUwa3oxTXhLVjZZb0J5cWVZSjR2?=
- =?utf-8?B?T3lLdmNlMGxSN3hmYnhoR3hsWU5LNGpUelViUkF3ZG5Sc1U3NFRKSW1zTVNS?=
- =?utf-8?B?MzBScGpnMFpEUm16M1FkcVlJaW1QYjk3YlB5Q2tnUENHT2pxTml1QTNKNTZr?=
- =?utf-8?B?YXVCYXhmbUliSVp6ZjRldzJGMDBGNGRNMURIY2U5Ui92Rk9oUHNTQ2dkWVJ4?=
- =?utf-8?B?Wm1ycng2Y3N3aU5zWlpzRTEwOVJESVdkV1ZBMGIwSDFvNlFJSE41OG42YnZ4?=
- =?utf-8?B?OFZ0eXNWR0ZwU2d4cXFkWFVoNDlBbExRWVdqTzg3RWZQckVhQ2lnK2hwVXdp?=
- =?utf-8?B?VHRSTVVjVDJkRkRpSDZpRXJWRkYyT1lsNGhOb3hncklQZFloaC9xT1NFdnlH?=
- =?utf-8?B?VURsSUliZnVVNVY1S20xTnl3czdhbyt0dnUzN1BlTHFNd2NrNTdNR2R2R1d3?=
- =?utf-8?B?N3VaSm84bDM2bVkvRkI5MW9yVGhoWWxMWjNvelExMmxlOHVTM0ovZGd0eVJI?=
- =?utf-8?B?Tkg0cVFlbmdmWXhIbFg0eG43OEZkdjRweGNJMjRrb2MrK3Ftejd0ZWFCYldz?=
- =?utf-8?B?RXROb29BOEMzRUJBUm1jZ2FCYzNNSEtFbFU3Uk5uNW5PMVVoN1RRL3lxNFVn?=
- =?utf-8?B?RXMxSy9zbmMwYjc3V3AyWURXNnZjZnlkWU1UbHNBcjhXbXhkZE1GaUZVU1I4?=
- =?utf-8?B?OXhlTVM5eTVRcGovYkxaUkZURkxVSTlOd0sySjE4bng2TFBQSXI0c3g1YkpH?=
- =?utf-8?B?R0krUW1VVTdSeTNMenJiQ2U2ZlZsR2FBakJrVllzdVhVODcxYk1MVStwYi9P?=
- =?utf-8?B?Ry9XMWFIdkRLOXpqR2ZXWGR6azlYUUNqVG5vQ1lMNHpTdnBzQ2dtbEY2MHRi?=
- =?utf-8?B?NjVxOUhaSVdlQTA0NlpDY09rbWFwY0cyOURkcm1ldWN1S0tZV3FqbVdmVmZ4?=
- =?utf-8?Q?ouP5AgxPrLRTUujjJ9U0rVXLem/E4DuvR2Ejjo4?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ad3b162-a37c-4e74-8de5-08d9767e2a37
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2021 06:17:29.9774 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: soV9QonpKNAafO542AXONzrOK9uMk0dEpWaEKIWfJJ6oT9eMBnEzDhqhPRYK5+yh
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3677
-Subject: Re: [Intel-gfx] [RFC PATCH] drm/ttm: Add a private member to the
- struct ttm_resource
+Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/edid: parse the DisplayID v2.0
+ VESA vendor block for MSO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,174 +70,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 11.09.21 um 08:07 schrieb Thomas Hellström:
-> On Fri, 2021-09-10 at 19:03 +0200, Christian König wrote:
->> Am 10.09.21 um 17:30 schrieb Thomas Hellström:
->>> On Fri, 2021-09-10 at 16:40 +0200, Christian König wrote:
->>>> Am 10.09.21 um 15:15 schrieb Thomas Hellström:
->>>>> Both the provider (resource manager) and the consumer (the TTM
->>>>> driver)
->>>>> want to subclass struct ttm_resource. Since this is left for
->>>>> the
->>>>> resource
->>>>> manager, we need to provide a private pointer for the TTM
->>>>> driver.
->>>>>
->>>>> Provide a struct ttm_resource_private for the driver to
->>>>> subclass
->>>>> for
->>>>> data with the same lifetime as the struct ttm_resource: In the
->>>>> i915
->>>>> case
->>>>> it will, for example, be an sg-table and radix tree into the
->>>>> LMEM
->>>>> /VRAM pages that currently are awkwardly attached to the GEM
->>>>> object.
->>>>>
->>>>> Provide an ops structure for associated ops (Which is only
->>>>> destroy() ATM)
->>>>> It might seem pointless to provide a separate ops structure,
->>>>> but
->>>>> Linus
->>>>> has previously made it clear that that's the norm.
->>>>>
->>>>> After careful audit one could perhaps also on a per-driver
->>>>> basis
->>>>> replace the delete_mem_notify() TTM driver callback with the
->>>>> above
->>>>> destroy function.
->>>> Well this is a really big NAK to this approach.
->>>>
->>>> If you need to attach some additional information to the resource
->>>> then
->>>> implement your own resource manager like everybody else does.
->>> Well this was the long discussion we had back then when the
->>> resource
->>> mangagers started to derive from struct resource and I was under
->>> the
->>> impression that we had come to an agreement about the different
->>> use-
->>> cases here, and this was my main concern.
->> Ok, then we somehow didn't understood each other.
->>
->>> I mean, it's a pretty big layer violation to do that for this use-
->>> case.
->> Well exactly that's the point. TTM should not have a layer design in
->> the
->> first place.
->>
->> Devices, BOs, resources etc.. are base classes which should implement
->> a
->> base functionality which is then extended by the drivers to implement
->> the driver specific functionality.
->>
->> That is a component based approach, and not layered at all.
->>
->>> The TTM resource manager doesn't want to know about this data at
->>> all,
->>> it's private to the ttm resource user layer and the resource
->>> manager
->>> works perfectly well without it. (I assume the other drivers that
->>> implement their own resource managers need the data that the
->>> subclassing provides?)
->> Yes, that's exactly why we have the subclassing.
->>
->>> The fundamental problem here is that there are two layers wanting
->>> to
->>> subclass struct ttm_resource. That means one layer gets to do that,
->>> the
->>> second gets to use a private pointer, (which in turn can provide
->>> yet
->>> another private pointer to a potential third layer). With your
->>> suggestion, the second layer instead is forced to subclass each
->>> subclassed instance it uses from  the first layer provides?
->> Well completely drop the layer approach/thinking here.
->>
->> The resource is an object with a base class. The base class
->> implements
->> the interface TTM needs to handle the object, e.g.
->> create/destroy/debug
->> etc...
->>
->> Then we need to subclass this object because without any additional
->> information the object is pretty pointless.
->>
->> One possibility for this is to use the range manager to implement
->> something drm_mm based. BTW: We should probably rename that to
->> something
->> like ttm_res_drm_mm or similar.
-> Sure I'm all in on that, but my point is this becomes pretty awkward
-> because the reusable code already subclasses struct ttm_resource. Let
-> me give you an example:
->
-> Prereqs:
-> 1) We want to be able to re-use resource manager implementations among
-> drivers.
-> 2) A driver might want to re-use multiple implementations and have
-> identical data "struct i915_data" attached to both
 
-Well that's the point I don't really understand. Why would a driver want 
-to do this?
 
-It's perfectly possible that you have ttm_range_manager extended and a 
-potential ttm_page_manager, but that are two different objects then 
-which also need different handling.
+> -----Original Message-----
+> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Ja=
+ni Nikula
+> Sent: Tuesday, August 31, 2021 7:48 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org; ville.syrjala@linux.intel.com; Nikul=
+a, Jani
+> <jani.nikula@intel.com>
+> Subject: [PATCH v2 4/6] drm/edid: parse the DisplayID v2.0 VESA vendor bl=
+ock for
+> MSO
+>=20
+> The VESA Organization Vendor-Specific Data Block, defined in VESA Display=
+ID
+> Standard v2.0, specifies the eDP Multi-SST Operation (MSO) stream count a=
+nd
+> segment pixel overlap.
+>=20
+> DisplayID v1.3 has Appendix B: DisplayID as an EDID Extension, describing=
+ how
+> DisplayID sections may be embedded in EDID extension blocks. DisplayID v2=
+.0 does
+> not have such a section, perhaps implying that DisplayID v2.0 data should=
+ not be
+> included in EDID extensions, but rather in a "pure" DisplayID structure a=
+t its own DDC
+> address pair A4h/A5h, as described in VESA E-DDC Standard v1.3 chapter 3.
+>=20
+> However, in practice, displays out in the field have embedded DisplayID
+> v2.0 data blocks in EDID extensions, including, in particular, some eDP M=
+SO displays,
+> where a pure DisplayID structure is not available at all.
+>=20
+> Parse the MSO data from the DisplayID data block. Do it as part of
+> drm_add_display_info(), extending it to parse also DisplayID data to avoi=
+d requiring
+> extra calls to update the information.
+>=20
+> v2: Check for VESA OUI (Ville)
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_edid.c  | 72 +++++++++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h | 12 +++++++  include/drm/drm_displayid.h | =
+13
+> +++++++
+>  3 files changed, 97 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c inde=
+x
+> 92974b1478bc..c45c225267ca 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -28,6 +28,7 @@
+>   * DEALINGS IN THE SOFTWARE.
+>   */
+>=20
+> +#include <linux/bitfield.h>
+>  #include <linux/hdmi.h>
+>  #include <linux/i2c.h>
+>  #include <linux/kernel.h>
+> @@ -5145,6 +5146,71 @@ void drm_get_monitor_range(struct drm_connector
+> *connector,
+>  		      info->monitor_range.max_vfreq);  }
+>=20
+> +static void drm_parse_vesa_mso_data(struct drm_connector *connector,
+> +				    const struct displayid_block *block) {
+> +	struct displayid_vesa_vendor_specific_block *vesa =3D
+> +		(struct displayid_vesa_vendor_specific_block *)block;
+> +	struct drm_display_info *info =3D &connector->display_info;
+> +
+> +	if (block->num_bytes < 3) {
+> +		drm_dbg_kms(connector->dev, "Unexpected vendor block size
+> %u\n",
+> +			    block->num_bytes);
+> +		return;
+> +	}
+> +
+> +	if (oui(vesa->oui[0], vesa->oui[1], vesa->oui[2]) !=3D VESA_IEEE_OUI)
+> +		return;
+> +
+> +	if (sizeof(*vesa) !=3D sizeof(*block) + block->num_bytes) {
+> +		drm_dbg_kms(connector->dev, "Unexpected VESA vendor block
+> size\n");
+> +		return;
+> +	}
+> +
+> +	switch (FIELD_GET(DISPLAYID_VESA_MSO_MODE, vesa->mso)) {
+> +	default:
+> +		drm_dbg_kms(connector->dev, "Reserved MSO mode value\n");
+> +		fallthrough;
+> +	case 0:
+> +		info->mso_stream_count =3D 0;
+> +		break;
+> +	case 1:
+> +		info->mso_stream_count =3D 2; /* 2 or 4 links */
+> +		break;
+> +	case 2:
+> +		info->mso_stream_count =3D 4; /* 4 links */
+> +		break;
+> +	}
+> +
+> +	if (!info->mso_stream_count) {
+> +		info->mso_pixel_overlap =3D 0;
+> +		return;
+> +	}
+> +
+> +	info->mso_pixel_overlap =3D FIELD_GET(DISPLAYID_VESA_MSO_OVERLAP,
+> vesa->mso);
+> +	if (info->mso_pixel_overlap > 8) {
+> +		drm_dbg_kms(connector->dev, "Reserved MSO pixel overlap value
+> %u\n",
+> +			    info->mso_pixel_overlap);
+> +		info->mso_pixel_overlap =3D 8;
 
-> ....
-> This would be identical to how we subclass a struct ttm_buffer_object
-> or a struct ttm_tt. But It can't look like this because then we can't
-> reuse exising implementations that *already subclass* struct
-> ttm_resource.
->
-> What we have currently ttm_resource-wise is like having a struct
-> tt_bo_vram, a struct ttm_bo_system, a struct ttm_bo_gtt and trying to
-> subclass them all combined into a struct i915_bo. It would become
-> awkward without a dynamic backend that facilitates subclassing a single
-> struct ttm_buffer_object?
-
-Why? They all implement different handling.
-
-When you add a private point to ttm_resource you allow common handling 
-which doesn't take into account that this ttm_resource object is 
-subclassed.
-
-> So basically the question boils down to: Why do we do struct
-> ttm_resources differently?
-
-ttm_buffer_object is a subclass of drm_gem_object and I hope to make 
-ttm_device a subclass of drm_device in the near term.
-
-I really try to understand what you mean hear, but I even after reading 
-that multiple times I absolutely don't get it.
+Going beyond 8 is not right from a vendor perspective as it goes into reser=
+ved region.
+Should we not just set to 0 or how we decide that we fixed overlap at 8. It=
+ seems an
+undefined operation and it may vary from sink to sink.
 
 Regards,
-Christian.
+Uma Shankar
 
->> What we should avoid is to abuse TTM resource interfaces in the
->> driver,
->> e.g. what i915 is currently doing. This is a TTM->resource mgr
->> interface
->> and should not be used by drivers at all.
-> Yes I guess that can be easily fixed when whatever we end up with above
-> lands.
->
->>> Ofc we can do that, but it does indeed feel pretty awkward.
->>>
->>> In any case, if you still think that's the approach we should go
->>> for,
->>> I'd need to add init() and fini() members to the
->>> ttm_range_manager_func
->>> struct to allow subclassing without having to unnecessarily copy
->>> the
->>> full code?
->> Yes, exporting the ttm_range_manager functions as needed is one thing
->> I
->> wanted to do for the amdgpu_gtt_mgr.c code as well.
->>
->> Just don't extend the function table but rather directly export the
->> necessary functions.
-> Sure.
-> /Thomas
->
->
+> +	}
+> +
+> +	drm_dbg_kms(connector->dev, "MSO stream count %u, pixel overlap %u\n",
+> +		    info->mso_stream_count, info->mso_pixel_overlap); }
+> +
+> +static void drm_update_mso(struct drm_connector *connector, const
+> +struct edid *edid) {
+> +	const struct displayid_block *block;
+> +	struct displayid_iter iter;
+> +
+> +	displayid_iter_edid_begin(edid, &iter);
+> +	displayid_iter_for_each(block, &iter) {
+> +		if (block->tag =3D=3D DATA_BLOCK_2_VENDOR_SPECIFIC)
+> +			drm_parse_vesa_mso_data(connector, block);
+> +	}
+> +	displayid_iter_end(&iter);
+> +}
+> +
+>  /* A connector has no EDID information, so we've got no EDID to compute =
+quirks
+> from. Reset
+>   * all of the values which would have been set from EDID
+>   */
+> @@ -5168,6 +5234,9 @@ drm_reset_display_info(struct drm_connector
+> *connector)
+>=20
+>  	info->non_desktop =3D 0;
+>  	memset(&info->monitor_range, 0, sizeof(info->monitor_range));
+> +
+> +	info->mso_stream_count =3D 0;
+> +	info->mso_pixel_overlap =3D 0;
+>  }
+>=20
+>  u32 drm_add_display_info(struct drm_connector *connector, const struct e=
+did
+> *edid) @@ -5246,6 +5315,9 @@ u32 drm_add_display_info(struct drm_connecto=
+r
+> *connector, const struct edid *edi
+>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB444;
+>  	if (edid->features & DRM_EDID_FEATURE_RGB_YCRCB422)
+>  		info->color_formats |=3D DRM_COLOR_FORMAT_YCRCB422;
+> +
+> +	drm_update_mso(connector, edid);
+> +
+>  	return quirks;
+>  }
+>=20
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h in=
+dex
+> 79fa34e5ccdb..379746d3266f 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -590,6 +590,18 @@ struct drm_display_info {
+>  	 * @monitor_range: Frequency range supported by monitor range descripto=
+r
+>  	 */
+>  	struct drm_monitor_range_info monitor_range;
+> +
+> +	/**
+> +	 * @mso_stream_count: eDP Multi-SST Operation (MSO) stream count from
+> +	 * the DisplayID VESA vendor block. 0 for conventional Single-Stream
+> +	 * Transport (SST), or 2 or 4 MSO streams.
+> +	 */
+> +	u8 mso_stream_count;
+> +
+> +	/**
+> +	 * @mso_pixel_overlap: eDP MSO segment pixel overlap, 0-8 pixels.
+> +	 */
+> +	u8 mso_pixel_overlap;
+>  };
+>=20
+>  int drm_display_info_set_bus_formats(struct drm_display_info *info, diff=
+ --git
+> a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h index
+> 79771091771a..7ffbd9f7bfc7 100644
+> --- a/include/drm/drm_displayid.h
+> +++ b/include/drm/drm_displayid.h
+> @@ -23,9 +23,12 @@
+>  #define DRM_DISPLAYID_H
+>=20
+>  #include <linux/types.h>
+> +#include <linux/bits.h>
+>=20
+>  struct edid;
+>=20
+> +#define VESA_IEEE_OUI				0x3a0292
+> +
+>  /* DisplayID Structure versions */
+>  #define DISPLAY_ID_STRUCTURE_VER_12		0x12
+>  #define DISPLAY_ID_STRUCTURE_VER_20		0x20
+> @@ -126,6 +129,16 @@ struct displayid_detailed_timing_block {
+>  	struct displayid_detailed_timings_1 timings[];  };
+>=20
+> +#define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
+> +#define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
+> +
+> +struct displayid_vesa_vendor_specific_block {
+> +	struct displayid_block base;
+> +	u8 oui[3];
+> +	u8 data_structure_type;
+> +	u8 mso;
+> +} __packed;
+> +
+>  /* DisplayID iteration */
+>  struct displayid_iter {
+>  	const struct edid *edid;
+> --
+> 2.30.2
 
