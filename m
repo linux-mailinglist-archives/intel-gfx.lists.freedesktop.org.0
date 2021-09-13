@@ -1,52 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05B09408B32
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 14:41:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E31409083
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 15:52:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 618556E185;
-	Mon, 13 Sep 2021 12:41:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6076A6E1B7;
+	Mon, 13 Sep 2021 13:52:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0994F6E185;
- Mon, 13 Sep 2021 12:41:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="282663367"
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="282663367"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2021 05:41:19 -0700
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="507276373"
-Received: from hekner-mobl5.ger.corp.intel.com (HELO [10.249.254.119])
- ([10.249.254.119])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2021 05:41:12 -0700
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
- Matthew Auld <matthew.william.auld@gmail.com>
-References: <20210910131512.161655-1-thomas.hellstrom@linux.intel.com>
- <d7570cab-d402-761d-40e0-3d08d9b9d3c9@amd.com>
- <a1a8fd3f1ca13b84192bd3c8719f510e5b655b2c.camel@linux.intel.com>
- <c8484b51-4365-bedd-be73-4c0898ac70b1@amd.com>
- <5ea3f498cc5ae84fa6aeba97a64e4eb8ab32e02b.camel@linux.intel.com>
- <c67b3b42-d260-44dc-81cb-1d1eb18db643@amd.com>
- <a6badfa3-efbb-7830-e019-1dd61b0f800e@linux.intel.com>
- <5ca10e93-9bac-bd8f-39b0-d60fe06bc289@amd.com>
- <4b9e25e3-0a9d-a7a8-e092-8355c6b5878f@linux.intel.com>
-Message-ID: <7c0b6e6d-fd36-9a5c-758d-7c172c0c5e05@linux.intel.com>
-Date: Mon, 13 Sep 2021 14:41:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C847B6E183;
+ Mon, 13 Sep 2021 13:17:12 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id w29so13882849wra.8;
+ Mon, 13 Sep 2021 06:17:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ZdomM/e/zSdALEInWCh/AvZjZ5yHPc4saWmSbkGx8Dc=;
+ b=ouCR+3aNsA1DiTowvBNcV8DKE3ifr2meLpymuJYbnE0iyPBxH3K2CRGIogq0MrDrRd
+ Ah1C/sRwYxZoygqorAHIuOyDajlC5xLvlNs/P+aq4En6ifOF1IaRUtwN/DPE7u0t289Q
+ BkzADtUG7taEXdtKsr9cZEPU2cggQoh7zrxMN1S6yUHPn0qYMQr246TdMCeTUJWI6B5C
+ hX7gGoP5jEq04DtHwdWuSCAVJEIKnvaH1LaTNVMsRzD1qScXKm8R3xxpd+dtekJmHpjr
+ 90+O9aUK5BlBYMY/H4cT3mg98HMNCHS9z0/dSn3DbSxoBFYcQEOB5XD5A3HgQ4xhmzi/
+ +v2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ZdomM/e/zSdALEInWCh/AvZjZ5yHPc4saWmSbkGx8Dc=;
+ b=DUh2a99T4WAeQqqjBmblkP3e+tyN4ZLPJPtcsfQObozCAw//6oWuocRK98tRVJKI4X
+ Spm2b9Rv6bqJuLCfk9lj1mrFMcoRSckXhjMwhxuopgGsblZLASHzOn5H+8aE2UbeB88O
+ kOEYZKzmzueTrUyiJw5c3NEBZdIcMefoPScs43n/wVMqrJ9LNvpa3kQytktyFJB01R9F
+ X0J1Hkv3Nt0yNK32JQ8WMYTfObv5K4EVRz7nlTq2335BDbQA+UAsaTgB6mErkdVArGtR
+ rFIC5PKczS0Mn8GlFVka3/uNn3jwyo7nP1zEhJYqR4ppq8Lohig7bpMS6hOMpER8MDTp
+ 1eIA==
+X-Gm-Message-State: AOAM531CgW67Jui1449pywi7gEJ/hz82g9zNt5vYSzIU6jQCm139gahH
+ aBukpXsA3Kkf2C51NWz2Xeg=
+X-Google-Smtp-Source: ABdhPJwqVroUXWf2cq8qtCQb/MmqMUlY4BONTjLjBugzEnJvbKfR5QsL1Vb0BBVo//Fn92ciq/iymg==
+X-Received: by 2002:a5d:4b50:: with SMTP id w16mr12486672wrs.71.1631539031462; 
+ Mon, 13 Sep 2021 06:17:11 -0700 (PDT)
+Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
+ by smtp.gmail.com with ESMTPSA id
+ h18sm7602834wrb.33.2021.09.13.06.17.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Sep 2021 06:17:10 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org
+Cc: daniel@ffwll.ch,
+	intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Sep 2021 15:16:41 +0200
+Message-Id: <20210913131707.45639-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <4b9e25e3-0a9d-a7a8-e092-8355c6b5878f@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH] drm/ttm: Add a private member to the
- struct ttm_resource
+X-Mailman-Approved-At: Mon, 13 Sep 2021 13:52:14 +0000
+Subject: [Intel-gfx] Deploying new iterator interface for dma-buf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,178 +76,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi everybody,
 
-On 9/13/21 12:16 PM, Thomas Hellström wrote:
->
-> On 9/13/21 11:41 AM, Christian König wrote:
->> Am 13.09.21 um 11:36 schrieb Thomas Hellström:
->>> On 9/13/21 8:17 AM, Christian König wrote:
->>>> Am 11.09.21 um 08:07 schrieb Thomas Hellström:
->>>>> On Fri, 2021-09-10 at 19:03 +0200, Christian König wrote:
->>>>>> Am 10.09.21 um 17:30 schrieb Thomas Hellström:
->>>>>>> On Fri, 2021-09-10 at 16:40 +0200, Christian König wrote:
->>>>>>>> Am 10.09.21 um 15:15 schrieb Thomas Hellström:
->>>>>>>>> Both the provider (resource manager) and the consumer (the TTM
->>>>>>>>> driver)
->>>>>>>>> want to subclass struct ttm_resource. Since this is left for
->>>>>>>>> the
->>>>>>>>> resource
->>>>>>>>> manager, we need to provide a private pointer for the TTM
->>>>>>>>> driver.
->>>>>>>>>
->>>>>>>>> Provide a struct ttm_resource_private for the driver to
->>>>>>>>> subclass
->>>>>>>>> for
->>>>>>>>> data with the same lifetime as the struct ttm_resource: In the
->>>>>>>>> i915
->>>>>>>>> case
->>>>>>>>> it will, for example, be an sg-table and radix tree into the
->>>>>>>>> LMEM
->>>>>>>>> /VRAM pages that currently are awkwardly attached to the GEM
->>>>>>>>> object.
->>>>>>>>>
->>>>>>>>> Provide an ops structure for associated ops (Which is only
->>>>>>>>> destroy() ATM)
->>>>>>>>> It might seem pointless to provide a separate ops structure,
->>>>>>>>> but
->>>>>>>>> Linus
->>>>>>>>> has previously made it clear that that's the norm.
->>>>>>>>>
->>>>>>>>> After careful audit one could perhaps also on a per-driver
->>>>>>>>> basis
->>>>>>>>> replace the delete_mem_notify() TTM driver callback with the
->>>>>>>>> above
->>>>>>>>> destroy function.
->>>>>>>> Well this is a really big NAK to this approach.
->>>>>>>>
->>>>>>>> If you need to attach some additional information to the resource
->>>>>>>> then
->>>>>>>> implement your own resource manager like everybody else does.
->>>>>>> Well this was the long discussion we had back then when the
->>>>>>> resource
->>>>>>> mangagers started to derive from struct resource and I was under
->>>>>>> the
->>>>>>> impression that we had come to an agreement about the different
->>>>>>> use-
->>>>>>> cases here, and this was my main concern.
->>>>>> Ok, then we somehow didn't understood each other.
->>>>>>
->>>>>>> I mean, it's a pretty big layer violation to do that for this use-
->>>>>>> case.
->>>>>> Well exactly that's the point. TTM should not have a layer design in
->>>>>> the
->>>>>> first place.
->>>>>>
->>>>>> Devices, BOs, resources etc.. are base classes which should 
->>>>>> implement
->>>>>> a
->>>>>> base functionality which is then extended by the drivers to 
->>>>>> implement
->>>>>> the driver specific functionality.
->>>>>>
->>>>>> That is a component based approach, and not layered at all.
->>>>>>
->>>>>>> The TTM resource manager doesn't want to know about this data at
->>>>>>> all,
->>>>>>> it's private to the ttm resource user layer and the resource
->>>>>>> manager
->>>>>>> works perfectly well without it. (I assume the other drivers that
->>>>>>> implement their own resource managers need the data that the
->>>>>>> subclassing provides?)
->>>>>> Yes, that's exactly why we have the subclassing.
->>>>>>
->>>>>>> The fundamental problem here is that there are two layers wanting
->>>>>>> to
->>>>>>> subclass struct ttm_resource. That means one layer gets to do that,
->>>>>>> the
->>>>>>> second gets to use a private pointer, (which in turn can provide
->>>>>>> yet
->>>>>>> another private pointer to a potential third layer). With your
->>>>>>> suggestion, the second layer instead is forced to subclass each
->>>>>>> subclassed instance it uses from  the first layer provides?
->>>>>> Well completely drop the layer approach/thinking here.
->>>>>>
->>>>>> The resource is an object with a base class. The base class
->>>>>> implements
->>>>>> the interface TTM needs to handle the object, e.g.
->>>>>> create/destroy/debug
->>>>>> etc...
->>>>>>
->>>>>> Then we need to subclass this object because without any additional
->>>>>> information the object is pretty pointless.
->>>>>>
->>>>>> One possibility for this is to use the range manager to implement
->>>>>> something drm_mm based. BTW: We should probably rename that to
->>>>>> something
->>>>>> like ttm_res_drm_mm or similar.
->>>>> Sure I'm all in on that, but my point is this becomes pretty awkward
->>>>> because the reusable code already subclasses struct ttm_resource. Let
->>>>> me give you an example:
->>>>>
->>>>> Prereqs:
->>>>> 1) We want to be able to re-use resource manager implementations 
->>>>> among
->>>>> drivers.
->>>>> 2) A driver might want to re-use multiple implementations and have
->>>>> identical data "struct i915_data" attached to both
->>>>
->>>> Well that's the point I don't really understand. Why would a driver 
->>>> want to do this?
->>>
->>> Let's say you have a struct ttm_object_vram and a struct 
->>> ttm_object_gtt, both subclassing drm_gem_object. Then I'd say a 
->>> driver would want to subclass those to attach identical data, extend 
->>> functionality and provide a single i915_gem_object to the rest of 
->>> the driver, which couldn't care less whether it's vram or gtt? 
->>> Wouldn't you say having separate struct ttm_object_vram and a struct 
->>> ttm_object_gtt in this case would be awkward?. We *want* to allow 
->>> common handling.
->>
->> Yeah, but that's a bad idea. This is like diamond inheritance in C++.
->>
->> When you need the same functionality in different backends you 
->> implement that as separate object and then add a parent class.
->>
->>>
->>> It's the exact same situation here. With struct ttm_resource you let 
->>> *different* implementation flavours subclass it, which makes it 
->>> awkward for the driver to extend the functionality in a common way 
->>> by subclassing, unless the driver only uses a single implementation.
->>
->> Well the driver should use separate implementations for their 
->> different domains as much as possible.
->>
-> Hmm, Now you lost me a bit. Are you saying that the way we do dynamic 
-> backends in the struct ttm_buffer_object to facilitate driver 
-> subclassing is a bad idea or that the RFC with backpointer is a bad idea?
->
->
-Or if you mean diamond inheritance is bad, yes that's basically my point.
+we recently found that a good bunch of the RCU accesses to the dma_resv object are actually not correctly protected.
 
-Looking at
-https://en.wikipedia.org/wiki/Multiple_inheritance#/media/File:Diamond_inheritance.svg
+Those where fixed by either dropping the RCU approach and taking appropriate locks or using a central function to return the current fences as array and then work with that snapshot.
 
-1)
+This set now tries to prevent adding any new broken code by rolling out two new interfaces to access the fences in a dma_resv object:
 
-A would be the struct ttm_resource itself,
-D would be struct i915_resource,
-B would be struct ttm_range_mgr_node,
-C would be struct i915_ttm_buddy_resource
+dma_resv_for_each_fence() - Iterator which should be used while holding the reservation lock.
+dma_resv_for_each_fence_unlocked() - Iterator based on RCU which can be used without holding the reservation lock and automatic restart on concurrent modification.
 
-And we need to resolve the ambiguity using the awkward union construct, 
-iff we need to derive from both B and C.
+While doing this we also move the decision which fences to use for write and read accesses into the dma_resv object which results in a quite nice code de-duplication and simplification.
 
-Struct ttm_buffer_object and struct ttm_tt instead have B) and C) being 
-dynamic backends of A) or a single type derived from A) Hence the 
-problem doesn't exist for these types.
+The only two remaining users of the RCU shared fence interface are removing shared fences in amdkfd and debugfs code in qxl which will both be addresses in the next patch set.
 
-So the question from last email remains, if ditching this RFC, can we 
-have B) and C) implemented by helpers that can be used from D) and that 
-don't derive from A?
-
-Thanks,
-
-Thomas
-
+Please review and/or comment,
+Christian.
 
 
