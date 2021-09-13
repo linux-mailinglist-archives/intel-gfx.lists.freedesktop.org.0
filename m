@@ -2,48 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C98740896B
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 12:53:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 682B14089A0
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 12:58:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81DEF6E0A6;
-	Mon, 13 Sep 2021 10:53:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A106E15F;
+	Mon, 13 Sep 2021 10:58:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 523BB6E0A6
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 10:53:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="201146520"
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="201146520"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB176E0A6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 10:58:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="201147222"
+X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="201147222"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2021 03:53:12 -0700
+ 13 Sep 2021 03:58:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="551562107"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga002.fm.intel.com with ESMTP; 13 Sep 2021 03:53:12 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="451529421"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga002.jf.intel.com with ESMTP; 13 Sep 2021 03:58:00 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 13 Sep 2021 03:53:11 -0700
+ 15.1.2242.12; Mon, 13 Sep 2021 03:58:00 -0700
 Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 13 Sep 2021 03:52:53 -0700
+ 15.1.2242.12; Mon, 13 Sep 2021 03:57:58 -0700
 Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
  BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Mon, 13 Sep 2021 16:22:51 +0530
+ Mon, 13 Sep 2021 16:27:56 +0530
 From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
 To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Tangudu, Tilak"
+CC: Daniel Vetter <daniel.vetter@ffwll.ch>, David Weinehall
+ <david.weinehall@linux.intel.com>, "Tangudu, Tilak"
  <tilak.tangudu@intel.com>, "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 2/3] drm/i915: Disallow D3Cold.
-Thread-Index: AQHXpmuZx07Xjd5UKEyn7LmA3U8dH6uhyd8g
-Date: Mon, 13 Sep 2021 10:52:51 +0000
-Message-ID: <05c65f7e1cf04fdea37d2914beb0fe7c@intel.com>
+Thread-Topic: [PATCH 3/3] drm/i915: Enable runtime pm autosuspend by default
+Thread-Index: AQHXpmuSG8o9SgdSHkyWa50bn75Zwquhztxw
+Date: Mon, 13 Sep 2021 10:57:56 +0000
+Message-ID: <24b529f8a179488cbc62bb89306b1abd@intel.com>
 References: <20210910174447.289750-1-rodrigo.vivi@intel.com>
- <20210910174447.289750-2-rodrigo.vivi@intel.com>
-In-Reply-To: <20210910174447.289750-2-rodrigo.vivi@intel.com>
+ <20210910174447.289750-3-rodrigo.vivi@intel.com>
+In-Reply-To: <20210910174447.289750-3-rodrigo.vivi@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -55,7 +56,8 @@ x-originating-ip: [10.223.10.1]
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Disallow D3Cold.
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Enable runtime pm autosuspend
+ by default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,76 +76,59 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ro=
-drigo
-> Vivi
+> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
 > Sent: Friday, September 10, 2021 11:15 PM
 > To: intel-gfx@lists.freedesktop.org
-> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Tangudu, Tilak
-> <tilak.tangudu@intel.com>; Deak, Imre <imre.deak@intel.com>
-> Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Disallow D3Cold.
+> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Daniel Vetter
+> <daniel.vetter@ffwll.ch>; David Weinehall <david.weinehall@linux.intel.co=
+m>;
+> Tangudu, Tilak <tilak.tangudu@intel.com>; Deak, Imre <imre.deak@intel.com=
+>;
+> Gupta, Anshuman <anshuman.gupta@intel.com>
+> Subject: [PATCH 3/3] drm/i915: Enable runtime pm autosuspend by default
 >=20
-> During runtime or s2idle suspend and resume cases on discrete cards, if D=
-3Cold
-> is really achieved, we will blow everything up and freeze the machine bec=
-ause
-> we are not yet handling the pci states properly.
+> Let's enable runtime pm autosuspend by default everywhere.
 >=20
-> On Integrated it simply doesn't matter because D3hot is the maximum that =
-we
-> will get anyway, unless the system is on S3/S4 and our power is cut.
+> But at this time let's not touch the autosuspend_delay time, what caused =
+some
+> regression on our previous attempt.
 >=20
-> Let's put this hammer for now everywhere. So we can work to enable the au=
-to-
-> suspend by default without blowing up the world.
+> v2: CI on some gen9 platforms was not clean. But it came
+>     pretty clean on newer generations. For now, let's
+>     pick gen12 and newer. We will return later to extend
+>     that to older platforms.
 >=20
-> Then, this should be removed when we finally fix the D3Cold flow.
->=20
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: David Weinehall <david.weinehall@linux.intel.com>
 > Cc: Tilak Tangudu <tilak.tangudu@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Imre Deak <imre.deak@intel.com>
+> Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com> #v1
 > ---
->  drivers/gpu/drm/i915/i915_drv.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/gpu/drm/i915/intel_runtime_pm.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index a40b5d806321..086a9a475ce8 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -301,6 +301,7 @@ static void sanitize_gpu(struct drm_i915_private *i91=
-5)
->   */
->  static int i915_driver_early_probe(struct drm_i915_private *dev_priv)  {
-> +	struct pci_dev *pdev =3D to_pci_dev(dev_priv->drm.dev);
->  	int ret =3D 0;
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index f28b5bab61b4..f91a04c3ef14 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -605,6 +605,10 @@ void intel_runtime_pm_enable(struct
+> intel_runtime_pm *rpm)
+>  		pm_runtime_use_autosuspend(kdev);
+>  	}
 >=20
->  	if (i915_inject_probe_failure(dev_priv))
-> @@ -331,6 +332,13 @@ static int i915_driver_early_probe(struct
-> drm_i915_private *dev_priv)
->  	if (ret < 0)
->  		return ret;
->=20
-> +	/*
-> +	 * FIXME: Temporary hammer to avoid freezing the machine on our
-> DGFX
-> +	 * This should be totally removed when we handle the pci states
-> properly
-> +	 * on runtime PM and on s2idle cases.
-> +	 */
-> +	pci_d3cold_disable(pdev);
-	This still doesn't protect, if user space enables d3cold via sys-fs.
-	d3cold_allowed_store() may call pci_d3cold_enable()
-	Is it possible to disable it via PCI PM Caps at early probe?
-	Otherwise it should done in respective suspend callback to make sure
-	d3cold is disabled.
-
-Thanks,
-Anshuman Gupta.
+> +	/* XXX: Enable by default only for newer platforms for now */
+> +	if (GRAPHICS_VER(i915) >=3D 12)
+> +		pm_runtime_allow(kdev);
+	Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+	Looks good to me.
+	Br,
+	Anshuman Gupta.
 > +
->  	ret =3D vlv_suspend_init(dev_priv);
->  	if (ret < 0)
->  		goto err_workqueues;
+>  	/*
+>  	 * The core calls the driver load handler with an RPM reference held.
+>  	 * We drop that here and will reacquire it during unloading in
 > --
 > 2.31.1
 
