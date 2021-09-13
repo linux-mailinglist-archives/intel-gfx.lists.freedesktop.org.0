@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A1F4095B5
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 16:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBA0A4095B6
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 16:45:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 865866ECC0;
-	Mon, 13 Sep 2021 14:45:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE16B6ECB1;
+	Mon, 13 Sep 2021 14:45:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C67606ECBB
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 14:45:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="201204368"
-X-IronPort-AV: E=Sophos;i="5.85,290,1624345200"; d="scan'208";a="201204368"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2021 07:45:28 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DCAE6ECC2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 14:45:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="208923088"
+X-IronPort-AV: E=Sophos;i="5.85,290,1624345200"; d="scan'208";a="208923088"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2021 07:45:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,290,1624345200"; d="scan'208";a="481346605"
+X-IronPort-AV: E=Sophos;i="5.85,290,1624345200"; d="scan'208";a="515467576"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 13 Sep 2021 07:45:24 -0700
+ by orsmga001.jf.intel.com with SMTP; 13 Sep 2021 07:45:27 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 13 Sep 2021 17:45:24 +0300
+ Mon, 13 Sep 2021 17:45:27 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Sep 2021 17:44:39 +0300
-Message-Id: <20210913144440.23008-16-ville.syrjala@linux.intel.com>
+Date: Mon, 13 Sep 2021 17:44:40 +0300
+Message-Id: <20210913144440.23008-17-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
 References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 15/16] drm/i915: Reduce bigjoiner special casing
+Subject: [Intel-gfx] [PATCH 16/16] drm/i915: Nuke
+ PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,332 +52,183 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Try to make bigjoiner pipes less special.
-
-The main things here are that each pipe now does full
-clock computation/readout with its own shared_dpll reference.
-Also every pipe's cpu_transcoder always points correctly
-at the master transcoder.
-
-Due to the above changes state readout is now complete
-and all the related hacks can go away. The actual modeset
-sequence code is still a mess, but I think in order to clean
-that up properly we're probably going to have to redesign
-the modeset logic to treat transcoders vs. pipes separately.
-That is going to require significant amounts of work.
+Now that the bigjoiner state readout/computation has been
+made to do the right thing nuke the related state checker
+quirk.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c     |  16 +--
- drivers/gpu/drm/i915/display/intel_display.c | 132 ++++++-------------
- 2 files changed, 40 insertions(+), 108 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 105 ++++++++----------
+ .../drm/i915/display/intel_display_types.h    |   1 -
+ 2 files changed, 47 insertions(+), 59 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index f51c5d732d41..6a068a57f6d2 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3615,18 +3615,7 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 	if (drm_WARN_ON(&dev_priv->drm, transcoder_is_dsi(cpu_transcoder)))
- 		return;
- 
--	if (pipe_config->bigjoiner_slave) {
--		/* read out pipe settings from master */
--		enum transcoder save = pipe_config->cpu_transcoder;
--
--		/* Our own transcoder needs to be disabled when reading it in intel_ddi_read_func_ctl() */
--		WARN_ON(pipe_config->output_types);
--		pipe_config->cpu_transcoder = (enum transcoder)pipe_config->bigjoiner_linked_crtc->pipe;
--		intel_ddi_read_func_ctl(encoder, pipe_config);
--		pipe_config->cpu_transcoder = save;
--	} else {
--		intel_ddi_read_func_ctl(encoder, pipe_config);
--	}
-+	intel_ddi_read_func_ctl(encoder, pipe_config);
- 
- 	intel_ddi_mso_get_config(encoder, pipe_config);
- 
-@@ -3654,8 +3643,7 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 		dev_priv->vbt.edp.bpp = pipe_config->pipe_bpp;
- 	}
- 
--	if (!pipe_config->bigjoiner_slave)
--		ddi_dotclock_get(pipe_config);
-+	ddi_dotclock_get(pipe_config);
- 
- 	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
- 		pipe_config->lane_lat_optim_mask =
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 25ae9e4f6b66..17d12d12bc0a 100644
+index 17d12d12bc0a..a6d1d6fbaeef 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2027,15 +2027,17 @@ struct intel_encoder *
- intel_get_crtc_new_encoder(const struct intel_atomic_state *state,
- 			   const struct intel_crtc_state *crtc_state)
- {
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	const struct drm_connector_state *connector_state;
- 	const struct drm_connector *connector;
- 	struct intel_encoder *encoder = NULL;
-+	struct intel_crtc *master_crtc;
- 	int num_encoders = 0;
- 	int i;
+@@ -8087,51 +8087,48 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
  
-+	master_crtc = intel_master_crtc(crtc_state);
-+
- 	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
--		if (connector_state->crtc != &crtc->base)
-+		if (connector_state->crtc != &master_crtc->base)
- 			continue;
+ 	PIPE_CONF_CHECK_X(output_types);
  
- 		encoder = to_intel_encoder(connector_state->best_encoder);
-@@ -2044,7 +2046,7 @@ intel_get_crtc_new_encoder(const struct intel_atomic_state *state,
+-	/* FIXME do the readout properly and get rid of this quirk */
+-	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE)) {
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hdisplay);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_htotal);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hblank_start);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hblank_end);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hsync_start);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hsync_end);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hdisplay);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_htotal);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hblank_start);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hblank_end);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hsync_start);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hsync_end);
  
- 	drm_WARN(encoder->base.dev, num_encoders != 1,
- 		 "%d encoders for pipe %c\n",
--		 num_encoders, pipe_name(crtc->pipe));
-+		 num_encoders, pipe_name(master_crtc->pipe));
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vdisplay);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vtotal);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vblank_start);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vblank_end);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vsync_start);
+-		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vsync_end);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vdisplay);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vtotal);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vblank_start);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vblank_end);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vsync_start);
++	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vsync_end);
  
- 	return encoder;
- }
-@@ -3005,20 +3007,20 @@ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
- 		break;
- 	}
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hdisplay);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_htotal);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_start);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_end);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_start);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_end);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hdisplay);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_htotal);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_start);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_end);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_start);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_end);
  
--	if (!crtc_state->bigjoiner_slave) {
--		/* need to enable VDSC, which we skipped in pre-enable */
--		intel_dsc_enable(crtc_state);
--	} else {
--		/*
--		 * Enable sequence steps 1-7 on bigjoiner master
--		 */
-+	/*
-+	 * Enable sequence steps 1-7 on bigjoiner master
-+	 */
-+	if (crtc_state->bigjoiner_slave)
- 		intel_encoders_pre_pll_enable(state, master_crtc);
--		if (master_crtc_state->shared_dpll)
--			intel_enable_shared_dpll(master_crtc_state);
-+
-+	if (crtc_state->shared_dpll)
-+		intel_enable_shared_dpll(crtc_state);
-+
-+	if (crtc_state->bigjoiner_slave)
- 		intel_encoders_pre_enable(state, master_crtc);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vdisplay);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vtotal);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_start);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_end);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_start);
+-		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_end);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vdisplay);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vtotal);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_start);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_end);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_start);
++	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_end);
  
--		intel_dsc_enable(crtc_state);
--	}
-+	/* need to enable VDSC, which we skipped in pre-enable */
-+	intel_dsc_enable(crtc_state);
+-		PIPE_CONF_CHECK_I(pixel_multiplier);
++	PIPE_CONF_CHECK_I(pixel_multiplier);
  
- 	if (DISPLAY_VER(dev_priv) >= 13)
- 		intel_uncompressed_joiner_enable(crtc_state);
-@@ -3201,12 +3203,17 @@ static void ilk_crtc_disable(struct intel_atomic_state *state,
- static void hsw_crtc_disable(struct intel_atomic_state *state,
- 			     struct intel_crtc *crtc)
- {
-+	const struct intel_crtc_state *old_crtc_state =
-+		intel_atomic_get_old_crtc_state(state, crtc);
-+
- 	/*
- 	 * FIXME collapse everything to one hook.
- 	 * Need care with mst->ddi interactions.
- 	 */
--	intel_encoders_disable(state, crtc);
--	intel_encoders_post_disable(state, crtc);
-+	if (!old_crtc_state->bigjoiner_slave) {
-+		intel_encoders_disable(state, crtc);
-+		intel_encoders_post_disable(state, crtc);
-+	}
- }
+-		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+-				      DRM_MODE_FLAG_INTERLACE);
++	PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
++			      DRM_MODE_FLAG_INTERLACE);
  
- static void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state)
-@@ -5912,17 +5919,10 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 	if (DISPLAY_VER(dev_priv) >= 13 && !pipe_config->dsc.compression_enable)
- 		intel_uncompressed_joiner_get_config(pipe_config);
- 
--	if (!active) {
--		/* bigjoiner slave doesn't enable transcoder */
--		if (!pipe_config->bigjoiner_slave)
--			goto out;
-+	if (!active)
-+		goto out;
- 
--		active = true;
--		pipe_config->pixel_multiplier = 1;
--
--		/* we cannot read out most state, so don't bother.. */
--		pipe_config->quirks |= PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE;
--	} else if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
-+	if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
- 	    DISPLAY_VER(dev_priv) >= 11) {
- 		hsw_get_ddi_port_state(crtc, pipe_config);
- 		intel_get_transcoder_timings(crtc, pipe_config);
-@@ -5994,10 +5994,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 		}
- 	}
- 
--	if (pipe_config->bigjoiner_slave) {
--		/* Cannot be read out as a slave, set to 0. */
--		pipe_config->pixel_multiplier = 0;
--	} else if (pipe_config->cpu_transcoder != TRANSCODER_EDP &&
-+	if (pipe_config->cpu_transcoder != TRANSCODER_EDP &&
- 	    !transcoder_is_dsi(pipe_config->cpu_transcoder)) {
- 		pipe_config->pixel_multiplier =
- 			intel_de_read(dev_priv,
-@@ -6845,7 +6842,6 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 
- 	if (mode_changed && crtc_state->hw.enable &&
- 	    dev_priv->display.crtc_compute_clock &&
--	    !crtc_state->bigjoiner_slave &&
- 	    !drm_WARN_ON(&dev_priv->drm, crtc_state->shared_dpll)) {
- 		ret = dev_priv->display.crtc_compute_clock(crtc_state);
- 		if (ret)
-@@ -7463,7 +7459,6 @@ copy_bigjoiner_crtc_state(struct intel_crtc_state *crtc_state,
- 			  const struct intel_crtc_state *from_crtc_state)
- {
- 	struct intel_crtc_state *saved_state;
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
- 	saved_state = kmemdup(from_crtc_state, sizeof(*saved_state), GFP_KERNEL);
- 	if (!saved_state)
-@@ -7493,8 +7488,8 @@ copy_bigjoiner_crtc_state(struct intel_crtc_state *crtc_state,
- 	crtc_state->nv12_planes = crtc_state->c8_planes = crtc_state->update_planes = 0;
- 	crtc_state->bigjoiner_linked_crtc = to_intel_crtc(from_crtc_state->uapi.crtc);
- 	crtc_state->bigjoiner_slave = true;
--	crtc_state->cpu_transcoder = (enum transcoder)crtc->pipe;
--	crtc_state->has_audio = false;
-+	crtc_state->cpu_transcoder = from_crtc_state->cpu_transcoder;
-+	crtc_state->has_audio = from_crtc_state->has_audio;
- 
- 	return 0;
- }
-@@ -8581,10 +8576,6 @@ verify_crtc_state(struct intel_crtc *crtc,
- 	if (!new_crtc_state->hw.active)
- 		return;
- 
--	if (new_crtc_state->bigjoiner_slave)
--		/* No PLLs set for slave */
--		pipe_config->shared_dpll = NULL;
--
- 	intel_pipe_config_sanity_check(dev_priv, pipe_config);
- 
- 	if (!intel_pipe_config_compare(new_crtc_state,
-@@ -8703,9 +8694,6 @@ verify_mpllb_state(struct intel_atomic_state *state,
- 	if (!new_crtc_state->hw.active)
- 		return;
- 
--	if (new_crtc_state->bigjoiner_slave)
--		return;
--
- 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
- 	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
- 
-@@ -9915,16 +9903,6 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 
--	drm_WARN_ON(&dev_priv->drm, old_crtc_state->bigjoiner_slave);
--
--	/*
--	 * We still need special handling for disabling bigjoiner master
--	 * and slaves since for slave we do not have encoder or plls
--	 * so we dont need to disable those.
--	 */
--	if (old_crtc_state->bigjoiner)
--		old_crtc_state->bigjoiner_linked_crtc->active = false;
--
- 	/*
- 	 * We need to disable pipe CRC before disabling the pipe,
- 	 * or we race against vblank off.
-@@ -9965,7 +9943,7 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 	/* Only disable port sync and MST slaves */
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
--		if (!intel_crtc_needs_modeset(new_crtc_state) || old_crtc_state->bigjoiner)
-+		if (!intel_crtc_needs_modeset(new_crtc_state))
- 			continue;
- 
- 		if (!old_crtc_state->hw.active)
-@@ -9977,7 +9955,8 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 		 * Slave vblanks are masked till Master Vblanks.
- 		 */
- 		if (!is_trans_port_sync_slave(old_crtc_state) &&
--		    !intel_dp_mst_is_slave_trans(old_crtc_state))
-+		    !intel_dp_mst_is_slave_trans(old_crtc_state) &&
-+		    !old_crtc_state->bigjoiner_slave)
- 			continue;
- 
- 		intel_old_crtc_state_disables(state, old_crtc_state,
-@@ -9989,13 +9968,14 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
- 		if (!intel_crtc_needs_modeset(new_crtc_state) ||
--		    (handled & BIT(crtc->pipe)) ||
--		    old_crtc_state->bigjoiner_slave)
-+		    (handled & BIT(crtc->pipe)))
- 			continue;
- 
--		if (old_crtc_state->hw.active)
--			intel_old_crtc_state_disables(state, old_crtc_state,
--						      new_crtc_state, crtc);
-+		if (!old_crtc_state->hw.active)
-+			continue;
-+
-+		intel_old_crtc_state_disables(state, old_crtc_state,
-+					      new_crtc_state, crtc);
- 	}
- }
- 
-@@ -12373,9 +12353,6 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
- 		struct intel_plane *plane;
- 		int min_cdclk = 0;
- 
--		if (crtc_state->bigjoiner_slave)
--			continue;
--
- 		if (crtc_state->hw.active) {
- 			/*
- 			 * The initial mode needs to be set in order to keep
-@@ -12435,39 +12412,6 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
- 		intel_bw_crtc_update(bw_state, crtc_state);
- 
- 		intel_pipe_config_sanity_check(dev_priv, crtc_state);
--
--		/* discard our incomplete slave state, copy it from master */
--		if (crtc_state->bigjoiner && crtc_state->hw.active) {
--			struct intel_crtc *slave = crtc_state->bigjoiner_linked_crtc;
--			struct intel_crtc_state *slave_crtc_state =
--				to_intel_crtc_state(slave->base.state);
--
--			copy_bigjoiner_crtc_state(slave_crtc_state, crtc_state);
--			slave->base.mode = crtc->base.mode;
--
--			cdclk_state->min_cdclk[slave->pipe] = min_cdclk;
--			cdclk_state->min_voltage_level[slave->pipe] =
--				crtc_state->min_voltage_level;
--
--			for_each_intel_plane_on_crtc(&dev_priv->drm, slave, plane) {
--				const struct intel_plane_state *plane_state =
--					to_intel_plane_state(plane->base.state);
--
--				/*
--				 * FIXME don't have the fb yet, so can't
--				 * use intel_plane_data_rate() :(
--				 */
--				if (plane_state->uapi.visible)
--					crtc_state->data_rate[plane->id] =
--						4 * crtc_state->pixel_rate;
--				else
--					crtc_state->data_rate[plane->id] = 0;
--			}
--
--			intel_bw_crtc_update(bw_state, slave_crtc_state);
--			drm_calc_timestamping_constants(&slave->base,
--							&slave_crtc_state->hw.adjusted_mode);
+-		if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_MODE_SYNC_FLAGS)) {
+-			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+-					      DRM_MODE_FLAG_PHSYNC);
+-			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+-					      DRM_MODE_FLAG_NHSYNC);
+-			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+-					      DRM_MODE_FLAG_PVSYNC);
+-			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+-					      DRM_MODE_FLAG_NVSYNC);
 -		}
++	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_MODE_SYNC_FLAGS)) {
++		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
++				      DRM_MODE_FLAG_PHSYNC);
++		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
++				      DRM_MODE_FLAG_NHSYNC);
++		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
++				      DRM_MODE_FLAG_PVSYNC);
++		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
++				      DRM_MODE_FLAG_NVSYNC);
  	}
- }
  
+ 	PIPE_CONF_CHECK_I(output_format);
+@@ -8143,9 +8140,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	PIPE_CONF_CHECK_BOOL(hdmi_scrambling);
+ 	PIPE_CONF_CHECK_BOOL(hdmi_high_tmds_clock_ratio);
+ 	PIPE_CONF_CHECK_BOOL(has_infoframe);
+-	/* FIXME do the readout properly and get rid of this quirk */
+-	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE))
+-		PIPE_CONF_CHECK_BOOL(fec_enable);
++	PIPE_CONF_CHECK_BOOL(fec_enable);
+ 
+ 	PIPE_CONF_CHECK_BOOL_INCOMPLETE(has_audio);
+ 
+@@ -8174,9 +8169,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 		}
+ 
+ 		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
+-		/* FIXME do the readout properly and get rid of this quirk */
+-		if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE))
+-			PIPE_CONF_CHECK_CLOCK_FUZZY(pixel_rate);
++		PIPE_CONF_CHECK_CLOCK_FUZZY(pixel_rate);
+ 
+ 		PIPE_CONF_CHECK_X(gamma_mode);
+ 		if (IS_CHERRYVIEW(dev_priv))
+@@ -8201,11 +8194,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 
+ 	PIPE_CONF_CHECK_BOOL(double_wide);
+ 
+-	if (dev_priv->dpll.mgr)
++	if (dev_priv->dpll.mgr) {
+ 		PIPE_CONF_CHECK_P(shared_dpll);
+ 
+-	/* FIXME do the readout properly and get rid of this quirk */
+-	if (dev_priv->dpll.mgr && !PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE)) {
+ 		PIPE_CONF_CHECK_X(dpll_hw_state.dpll);
+ 		PIPE_CONF_CHECK_X(dpll_hw_state.dpll_md);
+ 		PIPE_CONF_CHECK_X(dpll_hw_state.fp0);
+@@ -8239,19 +8230,17 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_tdc_coldst_bias);
+ 	}
+ 
+-	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE)) {
+-		PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+-		PIPE_CONF_CHECK_X(dsi_pll.div);
++	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
++	PIPE_CONF_CHECK_X(dsi_pll.div);
+ 
+-		if (IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) >= 5)
+-			PIPE_CONF_CHECK_I(pipe_bpp);
++	if (IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) >= 5)
++		PIPE_CONF_CHECK_I(pipe_bpp);
+ 
+-		PIPE_CONF_CHECK_CLOCK_FUZZY(hw.pipe_mode.crtc_clock);
+-		PIPE_CONF_CHECK_CLOCK_FUZZY(hw.adjusted_mode.crtc_clock);
+-		PIPE_CONF_CHECK_CLOCK_FUZZY(port_clock);
++	PIPE_CONF_CHECK_CLOCK_FUZZY(hw.pipe_mode.crtc_clock);
++	PIPE_CONF_CHECK_CLOCK_FUZZY(hw.adjusted_mode.crtc_clock);
++	PIPE_CONF_CHECK_CLOCK_FUZZY(port_clock);
+ 
+-		PIPE_CONF_CHECK_I(min_voltage_level);
+-	}
++	PIPE_CONF_CHECK_I(min_voltage_level);
+ 
+ 	if (fastset && (current_config->has_psr || pipe_config->has_psr))
+ 		PIPE_CONF_CHECK_X_WITH_MASK(infoframes.enable,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 7d852affead1..ee45fc3b1672 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -938,7 +938,6 @@ struct intel_crtc_state {
+ 	 * accordingly.
+ 	 */
+ #define PIPE_CONFIG_QUIRK_MODE_SYNC_FLAGS	(1<<0) /* unreliable sync mode.flags */
+-#define PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE      (1<<1) /* bigjoiner slave, partial readout */
+ 	unsigned long quirks;
+ 
+ 	unsigned fb_bits; /* framebuffers to flip */
 -- 
 2.32.0
 
