@@ -2,59 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511474084AA
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 08:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7056D40873A
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Sep 2021 10:42:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AB3989FE8;
-	Mon, 13 Sep 2021 06:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 909DA6E11A;
+	Mon, 13 Sep 2021 08:42:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5502489FE3;
- Mon, 13 Sep 2021 06:26:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="307137938"
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="307137938"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2021 23:26:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="543019897"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by FMSMGA003.fm.intel.com with ESMTP; 12 Sep 2021 23:26:04 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 13 Sep 2021 07:26:02 +0100
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Mon, 13 Sep 2021 11:56:01 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Nikula,
- Jani" <jani.nikula@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2 6/6] drm/i915/edp: use MSO pixel overlap
- from DisplayID data
-Thread-Index: AQHXnnMRYfT60hCnxkmXHPx5ESPrdauhk2/A
-Date: Mon, 13 Sep 2021 06:26:01 +0000
-Message-ID: <5a3ed8934466442895654a9adb1af9f3@intel.com>
-References: <cover.1630419362.git.jani.nikula@intel.com>
- <87d8d80ba205eb2ecb50f613219e0a821a842616.1630419362.git.jani.nikula@intel.com>
-In-Reply-To: <87d8d80ba205eb2ecb50f613219e0a821a842616.1630419362.git.jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DFB26E11A;
+ Mon, 13 Sep 2021 08:42:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10105"; a="201118786"
+X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="201118786"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2021 01:42:40 -0700
+X-IronPort-AV: E=Sophos;i="5.85,288,1624345200"; d="scan'208";a="551510733"
+Received: from einfeld-mobl.ger.corp.intel.com (HELO [10.252.46.222])
+ ([10.252.46.222])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2021 01:42:38 -0700
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20210907132044.157225-1-maarten.lankhorst@linux.intel.com>
+ <YTiM/zf8BuNw7wes@hirez.programming.kicks-ass.net>
+ <96ab9cf1-250a-8f34-51ec-4a7f66a87b39@linux.intel.com>
+ <YTnETRSy9H0CRdpc@hirez.programming.kicks-ass.net>
+ <a7e5d99d-39c4-6d27-3029-4689a2a1a17a@linux.intel.com>
+ <YTtznr85mg5xXouP@hirez.programming.kicks-ass.net>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <e8a7754e-23e7-0250-5718-101a56d008f0@linux.intel.com>
+Date: Mon, 13 Sep 2021 10:42:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915/edp: use MSO pixel overlap
- from DisplayID data
+In-Reply-To: <YTtznr85mg5xXouP@hirez.programming.kicks-ass.net>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] kernel/locking: Add context to
+ ww_mutex_trylock.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,71 +61,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
-ni Nikula
-> Sent: Tuesday, August 31, 2021 7:48 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org; ville.syrjala@linux.intel.com; Nikul=
-a, Jani
-> <jani.nikula@intel.com>
-> Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915/edp: use MSO pixel overlap f=
-rom
-> DisplayID data
->=20
-> Now that we have MSO pixel overlap in display info, use it.
->=20
-
-Looks ok to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Op 10-09-2021 om 17:02 schreef Peter Zijlstra:
+> On Thu, Sep 09, 2021 at 11:32:18AM +0200, Maarten Lankhorst wrote:
+>> diff --git a/kernel/locking/mutex.c b/kernel/locking/mutex.c
+>> index d456579d0952..791c28005eef 100644
+>> --- a/kernel/locking/mutex.c
+>> +++ b/kernel/locking/mutex.c
+>> @@ -736,6 +736,44 @@ __ww_mutex_lock(struct mutex *lock, unsigned int state, unsigned int subclass,
+>>  	return __mutex_lock_common(lock, state, subclass, NULL, ip, ww_ctx, true);
+>>  }
+>>  
+>> +/**
+>> + * ww_mutex_trylock - tries to acquire the w/w mutex with optional acquire context
+>> + * @lock: mutex to lock
+>> + * @ctx: optional w/w acquire context
+>> + *
+>> + * Trylocks a mutex with the optional acquire context; no deadlock detection is
+>> + * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
+>> + *
+>> + * Unlike ww_mutex_lock, no deadlock handling is performed. However, if a @ctx is
+>> + * specified, -EALREADY and -EDEADLK handling may happen in calls to ww_mutex_lock.
+>> + *
+>> + * A mutex acquired with this function must be released with ww_mutex_unlock.
+>> + */
+>> +int __sched
+>> +ww_mutex_trylock(struct ww_mutex *ww, struct ww_acquire_ctx *ctx)
+>> +{
+>> +	bool locked;
+>> +
+>> +	if (!ctx)
+>> +		return mutex_trylock(&ww->base);
+>> +
+>> +#ifdef CONFIG_DEBUG_MUTEXES
+>> +	DEBUG_LOCKS_WARN_ON(ww->base.magic != &ww->base);
+>> +#endif
+>> +
+>> +	preempt_disable();
+>> +	locked = __mutex_trylock(&ww->base);
+>> +
+>> +	if (locked) {
+>> +		ww_mutex_set_context_fastpath(ww, ctx);
+>> +		mutex_acquire_nest(&ww->base.dep_map, 0, 1, &ctx->dep_map, _RET_IP_);
+>> +	}
+>> +	preempt_enable();
+>> +
+>> +	return locked;
+>> +}
+>> +EXPORT_SYMBOL(ww_mutex_trylock);
+>> +
+>>  #ifdef CONFIG_DEBUG_LOCK_ALLOC
+>>  void __sched
+>>  mutex_lock_nested(struct mutex *lock, unsigned int subclass)
+>> diff --git a/kernel/locking/ww_rt_mutex.c b/kernel/locking/ww_rt_mutex.c
+>> index 3f1fff7d2780..c4cb863edb4c 100644
+>> --- a/kernel/locking/ww_rt_mutex.c
+>> +++ b/kernel/locking/ww_rt_mutex.c
+>> @@ -50,6 +50,18 @@ __ww_rt_mutex_lock(struct ww_mutex *lock, struct ww_acquire_ctx *ww_ctx,
+>>  	return ret;
+>>  }
+>>  
+>> +int __sched
+>> +ww_mutex_trylock(struct ww_mutex *lock, struct ww_acquire_ctx *ctx)
+>> +{
+>> +	int locked = rt_mutex_trylock(&lock->base);
+>> +
+>> +	if (locked && ctx)
+>> +		ww_mutex_set_context_fastpath(lock, ctx);
+>> +
+>> +	return locked;
+>> +}
+>> +EXPORT_SYMBOL(ww_mutex_trylock);
+>> +
+>>  int __sched
+>>  ww_mutex_lock(struct ww_mutex *lock, struct ww_acquire_ctx *ctx)
+>>  {
+> That doesn't look right, how's this for you?
+>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index df402f63b741..baf21f9aa40e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2420,6 +2420,8 @@ static void intel_edp_mso_mode_fixup(struct
-> intel_connector *connector,  static void intel_edp_mso_init(struct intel_=
-dp
-> *intel_dp)  {
->  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> +	struct intel_connector *connector =3D intel_dp->attached_connector;
-> +	struct drm_display_info *info =3D &connector->base.display_info;
->  	u8 mso;
->=20
->  	if (intel_dp->edp_dpcd[0] < DP_EDP_14) @@ -2438,8 +2440,9 @@ static
-> void intel_edp_mso_init(struct intel_dp *intel_dp)
->  	}
->=20
->  	if (mso) {
-> -		drm_dbg_kms(&i915->drm, "Sink MSO %ux%u configuration\n",
-> -			    mso, drm_dp_max_lane_count(intel_dp->dpcd) / mso);
-> +		drm_dbg_kms(&i915->drm, "Sink MSO %ux%u configuration, pixel
-> overlap %u\n",
-> +			    mso, drm_dp_max_lane_count(intel_dp->dpcd) / mso,
-> +			    info->mso_pixel_overlap);
->  		if (!HAS_MSO(i915)) {
->  			drm_err(&i915->drm, "No source MSO support,
-> disabling\n");
->  			mso =3D 0;
-> @@ -2447,7 +2450,7 @@ static void intel_edp_mso_init(struct intel_dp *int=
-el_dp)
->  	}
->=20
->  	intel_dp->mso_link_count =3D mso;
-> -	intel_dp->mso_pixel_overlap =3D 0; /* FIXME: read from DisplayID v2.0 *=
-/
-> +	intel_dp->mso_pixel_overlap =3D mso ? info->mso_pixel_overlap : 0;
+> --- a/kernel/locking/mutex.c
+> +++ b/kernel/locking/mutex.c
+> @@ -94,6 +94,9 @@ static inline unsigned long __owner_flag
+>  	return owner & MUTEX_FLAGS;
 >  }
->=20
->  static bool
-> --
-> 2.30.2
+>  
+> +/*
+> + * Returns: __mutex_owner(lock) on failure or NULL on success.
+> + */
+>  static inline struct task_struct *__mutex_trylock_common(struct mutex *lock, bool handoff)
+>  {
+>  	unsigned long owner, curr = (unsigned long)current;
+> @@ -736,6 +739,47 @@ __ww_mutex_lock(struct mutex *lock, unsi
+>  	return __mutex_lock_common(lock, state, subclass, NULL, ip, ww_ctx, true);
+>  }
+>  
+> +/**
+> + * ww_mutex_trylock - tries to acquire the w/w mutex with optional acquire context
+> + * @ww: mutex to lock
+> + * @ww_ctx: optional w/w acquire context
+> + *
+> + * Trylocks a mutex with the optional acquire context; no deadlock detection is
+> + * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
+> + *
+> + * Unlike ww_mutex_lock, no deadlock handling is performed. However, if a @ctx is
+> + * specified, -EALREADY handling may happen in calls to ww_mutex_trylock.
+> + *
+> + * A mutex acquired with this function must be released with ww_mutex_unlock.
+> + */
+> +int ww_mutex_trylock(struct ww_mutex *ww, struct ww_acquire_ctx *ww_ctx)
+> +{
+> +	if (!ww_ctx)
+> +		return mutex_trylock(&ww->base);
+> +
+> +	MUTEX_WARN_ON(ww->base.magic != &ww->base);
+> +
+> +	if (unlikely(ww_ctx == READ_ONCE(ww->ctx)))
+> +		return -EALREADY;
+
+I'm not 100% sure this is a good idea, because it would make the trylock weird.
+For i915 I checked manually, because I didn't want to change the function signature. This is probably the other extreme.
+
+"if (ww_mutex_trylock())" would look correct, but actually be wrong and lead to double unlock without adjustments.
+Maybe we could make a ww_mutex_trylock_ctx_err, which would return -EALREADY or -EBUSY on failure, and 0 on success?
+We could keep ww_mutex_trylock without ctx, probably just #define as (!ww_mutex_trylock_ctx_err(lock, NULL))
+
+> +	/*
+> +	 * Reset the wounded flag after a kill. No other process can
+> +	 * race and wound us here, since they can't have a valid owner
+> +	 * pointer if we don't have any locks held.
+> +	 */
+> +	if (ww_ctx->acquired == 0)
+> +		ww_ctx->wounded = 0;
+
+Yeah I guess this needs fixing too. Not completely sure since trylock wouldn't do the whole
+ww dance, but since it's our first lock, probably best to do so regardless so other users don't trip over it.
+
+> +
+> +	if (__mutex_trylock(&ww->base)) {
+> +		ww_mutex_set_context_fastpath(ww, ww_ctx);
+> +		mutex_acquire_nest(&ww->base.dep_map, 0, 1, &ww_ctx->dep_map, _RET_IP_);
+> +		return 1;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ww_mutex_trylock);
+> +
+>  #ifdef CONFIG_DEBUG_LOCK_ALLOC
+>  void __sched
+>  mutex_lock_nested(struct mutex *lock, unsigned int subclass)
+> --- a/kernel/locking/ww_rt_mutex.c
+> +++ b/kernel/locking/ww_rt_mutex.c
+> @@ -9,6 +9,34 @@
+>  #define WW_RT
+>  #include "rtmutex.c"
+>  
+> +int ww_mutex_trylock(struct ww_mutex *lock, struct ww_acquire_ctx *ww_ctx)
+> +{
+> +	struct rt_mutex *rtm = &lock->base;
+> +
+> +	if (!ww_ctx)
+> +		return rt_mutex_trylock(rtm);
+> +
+> +	if (unlikely(ww_ctx == READ_ONCE(lock->ctx)))
+> +		return -EALREADY;
+> +
+> +	/*
+> +	 * Reset the wounded flag after a kill. No other process can
+> +	 * race and wound us here, since they can't have a valid owner
+> +	 * pointer if we don't have any locks held.
+> +	 */
+> +	if (ww_ctx->acquired == 0)
+> +		ww_ctx->wounded = 0;
+> +
+> +	if (__rt_mutex_trylock(&rtm->rtmutex)) {
+> +		ww_mutex_set_context_fastpath(lock, ww_ctx);
+> +		mutex_acquire_nest(&rtm->dep_map, 0, 1, ww_ctx->dep_map, _RET_IP_);
+> +		return 1;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ww_mutex_trylock);
+> +
+>  static int __sched
+>  __ww_rt_mutex_lock(struct ww_mutex *lock, struct ww_acquire_ctx *ww_ctx,
+>  		   unsigned int state, unsigned long ip)
+
 
