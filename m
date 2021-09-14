@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A05840BA19
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 23:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BE840BA1A
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 23:19:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2C906E822;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F286C6E826;
 	Tue, 14 Sep 2021 21:19:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C6F6E821
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAD46E822
  for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 21:19:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="222187455"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="222187455"
+X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="222187456"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="222187456"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2021 14:19:41 -0700
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="482026288"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="482026291"
 Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
  ([10.24.14.60])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2021 14:19:41 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+Cc: Daniel Vetter <daniel@ffwll.ch>,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Tue, 14 Sep 2021 14:25:05 -0700
-Message-Id: <20210914212507.177511-3-jose.souza@intel.com>
+Date: Tue, 14 Sep 2021 14:25:06 -0700
+Message-Id: <20210914212507.177511-4-jose.souza@intel.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210914212507.177511-1-jose.souza@intel.com>
 References: <20210914212507.177511-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/5] drm/i915/display: Workaround cursor left
- overs with PSR2 selective fetch enabled
+Subject: [Intel-gfx] [PATCH v2 4/5] drm/i915/display/psr: Use drm damage
+ helpers to calculate plane damaged area
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,63 +52,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Not sure why but when moving the cursor fast it causes some artifacts
-of the cursor to be left in the cursor path, adding some pixels above
-the cursor to the damaged area fixes the issue, so leaving this as a
-workaround until proper fix is found.
+drm_atomic_helper_damage_iter_init() + drm_atomic_for_each_plane_damage()
+returns the full plane area in case no damaged area was set by
+userspace or it was discarted by driver.
 
-This is reproducile on TGL and ADL-P.
+This is important to fix the rendering of userspace applications that
+does frontbuffer rendering and notify driver about dirty areas but do
+not set any dirty clips.
 
+With this we don't need to worry about to check and mark the whole
+area as damaged in page flips.
+
+Another important change here is the move of
+drm_atomic_add_affected_planes() call, it needs to called late
+otherwise the area of all the planes would be added to pipe_clip and
+not saving power.
+
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 25 ++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 37 +++++++++---------------
+ 1 file changed, 13 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 567c7ceef8dba..f8fa30e50e70c 100644
+index f8fa30e50e70c..5a1535e11e6bd 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1543,6 +1543,28 @@ static void intel_psr2_sel_fetch_pipe_alignment(const struct intel_crtc_state *c
- 		drm_warn(&dev_priv->drm, "Missing PSR2 sel fetch alignment with DSC\n");
- }
+@@ -22,6 +22,7 @@
+  */
  
-+/*
-+ * FIXME: Not sure why but when moving the cursor fast it causes some artifacts
-+ * of the cursor to be left in the cursor path, adding some pixels above the
-+ * cursor to the damaged area fixes the issue.
-+ */
-+static void cursor_area_workaround(const struct intel_plane_state *new_plane_state,
-+				   struct drm_rect *damaged_area,
-+				   struct drm_rect *pipe_clip)
-+{
-+	const struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
-+	int height;
-+
-+	if (plane->id != PLANE_CURSOR)
-+		return;
-+
-+	height = drm_rect_height(&new_plane_state->uapi.dst) / 2;
-+	damaged_area->y1 -=  height;
-+	damaged_area->y1 = max(damaged_area->y1, 0);
-+
-+	clip_area_update(pipe_clip, damaged_area);
-+}
-+
- int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc)
- {
-@@ -1611,6 +1633,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				damaged_area.y2 = new_plane_state->uapi.dst.y2;
- 				clip_area_update(&pipe_clip, &damaged_area);
- 			}
-+
-+			cursor_area_workaround(new_plane_state, &damaged_area,
-+					       &pipe_clip);
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_damage_helper.h>
+ 
+ #include "display/intel_dp.h"
+ 
+@@ -1578,10 +1579,6 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	if (!crtc_state->enable_psr2_sel_fetch)
+ 		return 0;
+ 
+-	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
+-	if (ret)
+-		return ret;
+-
+ 	/*
+ 	 * Calculate minimal selective fetch area of each plane and calculate
+ 	 * the pipe damaged area.
+@@ -1591,8 +1588,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
+ 					     new_plane_state, i) {
+ 		struct drm_rect src, damaged_area = { .y1 = -1 };
+-		struct drm_mode_rect *damaged_clips;
+-		u32 num_clips, j;
++		struct drm_atomic_helper_damage_iter iter;
++		struct drm_rect clip;
+ 
+ 		if (new_plane_state->uapi.crtc != crtc_state->uapi.crtc)
  			continue;
- 		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha ||
- 			   (!num_clips &&
+@@ -1612,8 +1609,6 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 			break;
+ 		}
+ 
+-		num_clips = drm_plane_get_damage_clips_count(&new_plane_state->uapi);
+-
+ 		/*
+ 		 * If visibility or plane moved, mark the whole plane area as
+ 		 * damaged as it needs to be complete redraw in the new and old
+@@ -1637,14 +1632,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 			cursor_area_workaround(new_plane_state, &damaged_area,
+ 					       &pipe_clip);
+ 			continue;
+-		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha ||
+-			   (!num_clips &&
+-			    new_plane_state->uapi.fb != old_plane_state->uapi.fb)) {
+-			/*
+-			 * If the plane don't have damaged areas but the
+-			 * framebuffer changed or alpha changed, mark the whole
+-			 * plane area as damaged.
+-			 */
++		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha) {
++			/* If alpha changed mark the whole plane area as damaged */
+ 			damaged_area.y1 = new_plane_state->uapi.dst.y1;
+ 			damaged_area.y2 = new_plane_state->uapi.dst.y2;
+ 			clip_area_update(&pipe_clip, &damaged_area);
+@@ -1652,15 +1641,11 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 		}
+ 
+ 		drm_rect_fp_to_int(&src, &new_plane_state->uapi.src);
+-		damaged_clips = drm_plane_get_damage_clips(&new_plane_state->uapi);
+ 
+-		for (j = 0; j < num_clips; j++) {
+-			struct drm_rect clip;
+-
+-			clip.x1 = damaged_clips[j].x1;
+-			clip.y1 = damaged_clips[j].y1;
+-			clip.x2 = damaged_clips[j].x2;
+-			clip.y2 = damaged_clips[j].y2;
++		drm_atomic_helper_damage_iter_init(&iter,
++						   &old_plane_state->uapi,
++						   &new_plane_state->uapi);
++		drm_atomic_for_each_plane_damage(&iter, &clip) {
+ 			if (drm_rect_intersect(&clip, &src))
+ 				clip_area_update(&damaged_area, &clip);
+ 		}
+@@ -1676,6 +1661,10 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	if (full_update)
+ 		goto skip_sel_fetch_set_loop;
+ 
++	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
++	if (ret)
++		return ret;
++
+ 	intel_psr2_sel_fetch_pipe_alignment(crtc_state, &pipe_clip);
+ 
+ 	/*
 -- 
 2.33.0
 
