@@ -2,39 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AA640B6F1
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 20:28:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0364140B737
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 20:53:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 869926E530;
-	Tue, 14 Sep 2021 18:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4F8F6E57E;
+	Tue, 14 Sep 2021 18:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3633E6E530
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 18:27:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="209188224"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="209188224"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 11:27:55 -0700
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="508250194"
-Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.216.6])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 11:27:52 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Dave Airlie <airlied@gmail.com>,
- Dave Airlie <airlied@redhat.com>
-Date: Tue, 14 Sep 2021 21:25:22 +0300
-Message-Id: <5389f8ab537f740f932c86034840636ddc6b6f8d.1631643729.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1631643729.git.jani.nikula@intel.com>
-References: <cover.1631643729.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EC41E6E57E;
+ Tue, 14 Sep 2021 18:53:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E48E2A00FD;
+ Tue, 14 Sep 2021 18:53:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 24/24] drm/i915: constify display wm vtable
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dave Airlie" <airlied@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Sep 2021 18:53:13 -0000
+Message-ID: <163164559390.3455.7165889626354280257@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1631643729.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1631643729.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_i915/display=3A_split_and_constify_vtable_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,266 +41,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+== Series Details ==
 
-Use a nop table for the cases where CxSR doesn't init properly.
+Series: i915/display: split and constify vtable (rev4)
+URL   : https://patchwork.freedesktop.org/series/94459/
+State : warning
 
-v2: use a nop table (Jani)
+== Summary ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 34 ++++-----
- drivers/gpu/drm/i915/i915_drv.h              |  2 +-
- drivers/gpu/drm/i915/intel_pm.c              | 80 ++++++++++++++------
- 3 files changed, 75 insertions(+), 41 deletions(-)
+$ dim checkpatch origin/drm-tip
+5757b633382c drm/i915/uncore: split the fw get function into separate vfunc
+09e6590ba72b drm/i915/pm: drop get_fifo_size vfunc.
+532203cca59e drm/i915: make update_wm take a dev_priv.
+7f1eb33ee2d3 drm/i915/wm: provide wrappers around watermark vfuncs calls (v2)
+-:10: WARNING:TYPO_SPELLING: 'existance' may be misspelled - perhaps 'existence'?
+#10: 
+One thing to note is that the code checks the existance of some
+                                              ^^^^^^^^^
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index dcdb7db313e4..03d8787151b1 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -162,16 +162,16 @@ static void intel_modeset_setup_hw_state(struct drm_device *dev,
-  */
- static void intel_update_watermarks(struct drm_i915_private *dev_priv)
- {
--	if (dev_priv->wm_disp.update_wm)
--		dev_priv->wm_disp.update_wm(dev_priv);
-+	if (dev_priv->wm_disp->update_wm)
-+		dev_priv->wm_disp->update_wm(dev_priv);
- }
+-:29: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#29: FILE: drivers/gpu/drm/i915/display/intel_display.c:129:
  
- static int intel_compute_pipe_wm(struct intel_atomic_state *state,
- 				 struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.compute_pipe_wm)
--		return dev_priv->wm_disp.compute_pipe_wm(state, crtc);
-+	if (dev_priv->wm_disp->compute_pipe_wm)
-+		return dev_priv->wm_disp->compute_pipe_wm(state, crtc);
- 	return 0;
- }
- 
-@@ -179,20 +179,20 @@ static int intel_compute_intermediate_wm(struct intel_atomic_state *state,
- 					 struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (!dev_priv->wm_disp.compute_intermediate_wm)
-+	if (!dev_priv->wm_disp->compute_intermediate_wm)
- 		return 0;
- 	if (drm_WARN_ON(&dev_priv->drm,
--			!dev_priv->wm_disp.compute_pipe_wm))
-+			!dev_priv->wm_disp->compute_pipe_wm))
- 		return 0;
--	return dev_priv->wm_disp.compute_intermediate_wm(state, crtc);
-+	return dev_priv->wm_disp->compute_intermediate_wm(state, crtc);
- }
- 
- static bool intel_initial_watermarks(struct intel_atomic_state *state,
- 				     struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.initial_watermarks) {
--		dev_priv->wm_disp.initial_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->initial_watermarks) {
-+		dev_priv->wm_disp->initial_watermarks(state, crtc);
- 		return true;
- 	}
- 	return false;
-@@ -202,23 +202,23 @@ static void intel_atomic_update_watermarks(struct intel_atomic_state *state,
- 					   struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.atomic_update_watermarks)
--		dev_priv->wm_disp.atomic_update_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->atomic_update_watermarks)
-+		dev_priv->wm_disp->atomic_update_watermarks(state, crtc);
- }
- 
- static void intel_optimize_watermarks(struct intel_atomic_state *state,
- 				      struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.optimize_watermarks)
--		dev_priv->wm_disp.optimize_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->optimize_watermarks)
-+		dev_priv->wm_disp->optimize_watermarks(state, crtc);
- }
- 
- static void intel_compute_global_watermarks(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.compute_global_watermarks)
--		dev_priv->wm_disp.compute_global_watermarks(state);
-+	if (dev_priv->wm_disp->compute_global_watermarks)
-+		dev_priv->wm_disp->compute_global_watermarks(state);
- }
- 
- /* returns HPLL frequency in kHz */
-@@ -3735,7 +3735,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
- 	if (DISPLAY_VER(dev_priv) != 2)
- 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
- 
--	if (!dev_priv->wm_disp.initial_watermarks)
-+	if (!dev_priv->wm_disp->initial_watermarks)
- 		intel_update_watermarks(dev_priv);
- 
- 	/* clock the pipe down to 640x480@60 to potentially save power */
-@@ -11409,7 +11409,7 @@ static void sanitize_watermarks(struct drm_i915_private *dev_priv)
- 	int i;
- 
- 	/* Only supported on platforms that use atomic watermark design */
--	if (!dev_priv->wm_disp.optimize_watermarks)
-+	if (!dev_priv->wm_disp->optimize_watermarks)
- 		return;
- 
- 	state = drm_atomic_state_alloc(&dev_priv->drm);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index be85934d2ac4..5054917fe6f4 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -978,7 +978,7 @@ struct drm_i915_private {
- 	const struct drm_i915_clock_gating_funcs *clock_gating_funcs;
- 
- 	/* pm display functions */
--	struct drm_i915_wm_disp_funcs wm_disp;
-+	const struct drm_i915_wm_disp_funcs *wm_disp;
- 
- 	/* irq display functions */
- 	const struct intel_hotplug_funcs *hotplug_funcs;
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 0a5c1e3c798b..6f9e53a8dda2 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -7977,6 +7977,51 @@ void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv)
- 	}
- }
- 
-+static const struct drm_i915_wm_disp_funcs skl_wm_funcs = {
-+	.compute_global_watermarks = skl_compute_wm,
-+};
 +
-+static const struct drm_i915_wm_disp_funcs ilk_wm_funcs = {
-+	.compute_pipe_wm = ilk_compute_pipe_wm,
-+	.compute_intermediate_wm = ilk_compute_intermediate_wm,
-+	.initial_watermarks = ilk_initial_watermarks,
-+	.optimize_watermarks = ilk_optimize_watermarks,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs vlv_wm_funcs = {
-+	.compute_pipe_wm = vlv_compute_pipe_wm,
-+	.compute_intermediate_wm = vlv_compute_intermediate_wm,
-+	.initial_watermarks = vlv_initial_watermarks,
-+	.optimize_watermarks = vlv_optimize_watermarks,
-+	.atomic_update_watermarks = vlv_atomic_update_fifo,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs g4x_wm_funcs = {
-+	.compute_pipe_wm = g4x_compute_pipe_wm,
-+	.compute_intermediate_wm = g4x_compute_intermediate_wm,
-+	.initial_watermarks = g4x_initial_watermarks,
-+	.optimize_watermarks = g4x_optimize_watermarks,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs pnv_wm_funcs = {
-+	.update_wm = pnv_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i965_wm_funcs = {
-+	.update_wm = i965_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i9xx_wm_funcs = {
-+	.update_wm = i9xx_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i845_wm_funcs = {
-+	.update_wm = i845_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs nop_funcs = {
-+};
-+
- /* Set up chip specific power management-related functions */
- void intel_init_pm(struct drm_i915_private *dev_priv)
- {
-@@ -7992,7 +8037,7 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 	/* For FIFO watermark updates */
- 	if (DISPLAY_VER(dev_priv) >= 9) {
- 		skl_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_global_watermarks = skl_compute_wm;
-+		dev_priv->wm_disp = &skl_wm_funcs;
- 	} else if (HAS_PCH_SPLIT(dev_priv)) {
- 		ilk_setup_wm_latency(dev_priv);
- 
-@@ -8000,31 +8045,19 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 		     dev_priv->wm.spr_latency[1] && dev_priv->wm.cur_latency[1]) ||
- 		    (DISPLAY_VER(dev_priv) != 5 && dev_priv->wm.pri_latency[0] &&
- 		     dev_priv->wm.spr_latency[0] && dev_priv->wm.cur_latency[0])) {
--			dev_priv->wm_disp.compute_pipe_wm = ilk_compute_pipe_wm;
--			dev_priv->wm_disp.compute_intermediate_wm =
--				ilk_compute_intermediate_wm;
--			dev_priv->wm_disp.initial_watermarks =
--				ilk_initial_watermarks;
--			dev_priv->wm_disp.optimize_watermarks =
--				ilk_optimize_watermarks;
-+			dev_priv->wm_disp = &ilk_wm_funcs;
- 		} else {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Failed to read display plane latency. "
- 				    "Disable CxSR\n");
-+			dev_priv->wm_disp = &nop_funcs;
- 		}
- 	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
- 		vlv_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_pipe_wm = vlv_compute_pipe_wm;
--		dev_priv->wm_disp.compute_intermediate_wm = vlv_compute_intermediate_wm;
--		dev_priv->wm_disp.initial_watermarks = vlv_initial_watermarks;
--		dev_priv->wm_disp.optimize_watermarks = vlv_optimize_watermarks;
--		dev_priv->wm_disp.atomic_update_watermarks = vlv_atomic_update_fifo;
-+		dev_priv->wm_disp = &vlv_wm_funcs;
- 	} else if (IS_G4X(dev_priv)) {
- 		g4x_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_pipe_wm = g4x_compute_pipe_wm;
--		dev_priv->wm_disp.compute_intermediate_wm = g4x_compute_intermediate_wm;
--		dev_priv->wm_disp.initial_watermarks = g4x_initial_watermarks;
--		dev_priv->wm_disp.optimize_watermarks = g4x_optimize_watermarks;
-+		dev_priv->wm_disp = &g4x_wm_funcs;
- 	} else if (IS_PINEVIEW(dev_priv)) {
- 		if (!intel_get_cxsr_latency(!IS_MOBILE(dev_priv),
- 					    dev_priv->is_ddr3,
-@@ -8038,21 +8071,22 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 				 dev_priv->fsb_freq, dev_priv->mem_freq);
- 			/* Disable CxSR and never update its watermark again */
- 			intel_set_memory_cxsr(dev_priv, false);
--			dev_priv->wm_disp.update_wm = NULL;
-+			dev_priv->wm_disp = &nop_funcs;
- 		} else
--			dev_priv->wm_disp.update_wm = pnv_update_wm;
-+			dev_priv->wm_disp = &pnv_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 4) {
--		dev_priv->wm_disp.update_wm = i965_update_wm;
-+		dev_priv->wm_disp = &i965_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 3) {
--		dev_priv->wm_disp.update_wm = i9xx_update_wm;
-+		dev_priv->wm_disp = &i9xx_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 2) {
- 		if (INTEL_NUM_PIPES(dev_priv) == 1)
--			dev_priv->wm_disp.update_wm = i845_update_wm;
-+			dev_priv->wm_disp = &i845_wm_funcs;
- 		else
--			dev_priv->wm_disp.update_wm = i9xx_update_wm;
-+			dev_priv->wm_disp = &i9xx_wm_funcs;
- 	} else {
- 		drm_err(&dev_priv->drm,
- 			"unexpected fall-through in %s\n", __func__);
-+		dev_priv->wm_disp = &nop_funcs;
- 	}
- }
- 
--- 
-2.30.2
+
+-:73: WARNING:LINE_SPACING: Missing a blank line after declarations
+#73: FILE: drivers/gpu/drm/i915/display/intel_display.c:173:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.compute_pipe_wm)
+
+-:82: WARNING:LINE_SPACING: Missing a blank line after declarations
+#82: FILE: drivers/gpu/drm/i915/display/intel_display.c:182:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (!dev_priv->display.compute_intermediate_wm)
+
+-:94: WARNING:LINE_SPACING: Missing a blank line after declarations
+#94: FILE: drivers/gpu/drm/i915/display/intel_display.c:194:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.initial_watermarks) {
+
+-:105: WARNING:LINE_SPACING: Missing a blank line after declarations
+#105: FILE: drivers/gpu/drm/i915/display/intel_display.c:205:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.atomic_update_watermarks)
+
+-:113: WARNING:LINE_SPACING: Missing a blank line after declarations
+#113: FILE: drivers/gpu/drm/i915/display/intel_display.c:213:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.optimize_watermarks)
+
+-:120: WARNING:LINE_SPACING: Missing a blank line after declarations
+#120: FILE: drivers/gpu/drm/i915/display/intel_display.c:220:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.compute_global_watermarks)
+
+-:134: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 20)
+#134: FILE: drivers/gpu/drm/i915/display/intel_display.c:2626:
++		if (!intel_initial_watermarks(state, crtc))
++		    if (new_crtc_state->update_wm_pre)
+
+-:135: WARNING:TABSTOP: Statements should start on a tabstop
+#135: FILE: drivers/gpu/drm/i915/display/intel_display.c:2627:
++		    if (new_crtc_state->update_wm_pre)
+
+-:176: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#176: FILE: drivers/gpu/drm/i915/display/intel_display.c:3670:
++	if (!intel_initial_watermarks(state, crtc))
++	    intel_update_watermarks(dev_priv);
+
+total: 0 errors, 10 warnings, 1 checks, 319 lines checked
+7e93339a1e25 drm/i915: add wrappers around cdclk vtable funcs.
+-:32: WARNING:LINE_SPACING: Missing a blank line after declarations
+#32: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:71:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	return dev_priv->display.bw_calc_min_cdclk(state);
+
+total: 0 errors, 1 warnings, 0 checks, 127 lines checked
+7873e633826d drm/i915/display: add intel_fdi_link_train wrapper.
+b2dd5cb088f2 drm/i915: split clock gating init from display vtable
+6635d9b3245f drm/i915: split watermark vfuncs from display vtable.
+0dabe5abfea3 drm/i915: split color functions from display vtable
+ebb933ee9c8b drm/i915: split audio functions from display vtable
+99eb443d286e drm/i915: split cdclk functions from display vtable.
+4bce65343710 drm/i915: split irq hotplug function from display vtable
+baae6f392081 drm/i915: split fdi link training from display vtable.
+44184a20e800 drm/i915: split the dpll clock compute out from display vtable.
+10058e725cab drm/i915: constify fdi link training vtable
+d1ba54b243d4 drm/i915: constify hotplug function vtable.
+f8f1a39c8a95 drm/i915: constify color function vtable.
+-:197: CHECK:BRACES: Unbalanced braces around else statement
+#197: FILE: drivers/gpu/drm/i915/display/intel_color.c:2194:
++		} else
+
+total: 0 errors, 0 warnings, 1 checks, 187 lines checked
+baa25b6c0efa drm/i915: constify the audio function vtable
+cd63adc71d18 drm/i915: constify the dpll clock vtable
+5b5fc1288374 drm/i915: constify the cdclk vtable
+244d2f8bdb78 drm/i915: drop unused function ptr and comments.
+143848d5704d drm/i915: constify display function vtable
+a8bd650dbe3f drm/i915: constify clock gating init vtable.
+d4004e4bb738 drm/i915: constify display wm vtable
+
 
