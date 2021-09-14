@@ -1,34 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7A640A6BE
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 08:36:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D0F40A6E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 08:51:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D313C6E419;
-	Tue, 14 Sep 2021 06:36:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A3C789CB3;
+	Tue, 14 Sep 2021 06:51:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9162C6E418;
- Tue, 14 Sep 2021 06:36:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89535A9A42;
- Tue, 14 Sep 2021 06:36:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3190571670678378536=="
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87BBF89CA2;
+ Tue, 14 Sep 2021 06:51:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=LSbheQE5W1GzxsoVMSKtyHYofonBgi8ZE4ralcCfVfA=; b=d5tnKjkwY7HDwglm/lFFY8Kozw
+ Qh+VuOImDKCktDeU6tf5Ao+tEUY3fwHo9DzmgAGZprYlAvP+CeQD+1J3LL2m06d4BF4WbAGSQxZdi
+ 3mMI65JcOQ956RqmqRbCMLCf7b4FbEwO6ulr86xXOZbyQI5+InlXs5d7wrj2pWOKRvAHvcBQkqvLd
+ ceP6ucsFVFx5My13IeYhdK76CtOPAnjuZYRik2sGmJA3YH1Psm7drw+Zn8SBgECptdRhaTg0GSlGj
+ 1a59t6nYwMjsZWP0SEhbwJ7F1TpqLO+G0+zJO9y7/WKB1QAe90s+qvT+mvsixFDFfp3v8Ai9H+nnK
+ 87qQ/QWA==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mQ2H8-00EM7w-95; Tue, 14 Sep 2021 06:50:51 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id A536C30026F;
+ Tue, 14 Sep 2021 08:50:37 +0200 (CEST)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 66606234E538E; Tue, 14 Sep 2021 08:50:37 +0200 (CEST)
+Date: Tue, 14 Sep 2021 08:50:37 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YUBGPdDDjKlxAuXJ@hirez.programming.kicks-ass.net>
+References: <20210907132044.157225-1-maarten.lankhorst@linux.intel.com>
+ <YTiM/zf8BuNw7wes@hirez.programming.kicks-ass.net>
+ <96ab9cf1-250a-8f34-51ec-4a7f66a87b39@linux.intel.com>
+ <YTnETRSy9H0CRdpc@hirez.programming.kicks-ass.net>
+ <a7e5d99d-39c4-6d27-3029-4689a2a1a17a@linux.intel.com>
+ <YTtznr85mg5xXouP@hirez.programming.kicks-ass.net>
+ <e8a7754e-23e7-0250-5718-101a56d008f0@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Sep 2021 06:36:05 -0000
-Message-ID: <163160136555.3455.1517894517914685295@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210914050956.30685-1-matthew.brost@intel.com>
-In-Reply-To: <20210914050956.30685-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRG8g?=
- =?utf-8?q?error_capture_async=2C_flush_G2H_processing_on_reset_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e8a7754e-23e7-0250-5718-101a56d008f0@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] kernel/locking: Add context to
+ ww_mutex_trylock.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,334 +71,495 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3190571670678378536==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Sep 13, 2021 at 10:42:36AM +0200, Maarten Lankhorst wrote:
 
-== Series Details ==
+> > +/**
+> > + * ww_mutex_trylock - tries to acquire the w/w mutex with optional acquire context
+> > + * @ww: mutex to lock
+> > + * @ww_ctx: optional w/w acquire context
+> > + *
+> > + * Trylocks a mutex with the optional acquire context; no deadlock detection is
+> > + * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
+> > + *
+> > + * Unlike ww_mutex_lock, no deadlock handling is performed. However, if a @ctx is
+> > + * specified, -EALREADY handling may happen in calls to ww_mutex_trylock.
+> > + *
+> > + * A mutex acquired with this function must be released with ww_mutex_unlock.
+> > + */
+> > +int ww_mutex_trylock(struct ww_mutex *ww, struct ww_acquire_ctx *ww_ctx)
+> > +{
+> > +	if (!ww_ctx)
+> > +		return mutex_trylock(&ww->base);
+> > +
+> > +	MUTEX_WARN_ON(ww->base.magic != &ww->base);
+> > +
+> > +	if (unlikely(ww_ctx == READ_ONCE(ww->ctx)))
+> > +		return -EALREADY;
+> 
+> I'm not 100% sure this is a good idea, because it would make the
+> trylock weird.  For i915 I checked manually, because I didn't want to
+> change the function signature. This is probably the other extreme.
+> 
+> "if (ww_mutex_trylock())" would look correct, but actually be wrong
+> and lead to double unlock without adjustments.  Maybe we could make a
+> ww_mutex_trylock_ctx_err, which would return -EALREADY or -EBUSY on
+> failure, and 0 on success?  We could keep ww_mutex_trylock without
+> ctx, probably just #define as (!ww_mutex_trylock_ctx_err(lock, NULL))
 
-Series: Do error capture async, flush G2H processing on reset (rev2)
-URL   : https://patchwork.freedesktop.org/series/94642/
-State : failure
+Urgh, yeah. Also, I suppose that if we already own it, we'll just fail
+the trylock anyway. Let me take this out.
 
-== Summary ==
+> > +	/*
+> > +	 * Reset the wounded flag after a kill. No other process can
+> > +	 * race and wound us here, since they can't have a valid owner
+> > +	 * pointer if we don't have any locks held.
+> > +	 */
+> > +	if (ww_ctx->acquired == 0)
+> > +		ww_ctx->wounded = 0;
+> 
+> Yeah I guess this needs fixing too. Not completely sure since trylock
+> wouldn't do the whole ww dance, but since it's our first lock,
+> probably best to do so regardless so other users don't trip over it.
 
-CI Bug Log - changes from CI_DRM_10576 -> Patchwork_21035
-====================================================
+This is actually critical, because if this trylock is the first lock
+acquisition for the context, there won't be any other opportunity to
+reset this value.
 
-Summary
--------
+> > +
+> > +	if (__mutex_trylock(&ww->base)) {
+> > +		ww_mutex_set_context_fastpath(ww, ww_ctx);
+> > +		mutex_acquire_nest(&ww->base.dep_map, 0, 1, &ww_ctx->dep_map, _RET_IP_);
+> > +		return 1;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +EXPORT_SYMBOL(ww_mutex_trylock);
 
-  **FAILURE**
+Updated version below...
 
-  Serious unknown changes coming with Patchwork_21035 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21035, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+---
+Subject: kernel/locking: Add context to ww_mutex_trylock()
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date: Thu, 9 Sep 2021 11:32:18 +0200
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/index.html
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Possible new issues
--------------------
+i915 will soon gain an eviction path that trylock a whole lot of locks
+for eviction, getting dmesg failures like below:
 
-  Here are the unknown changes that may have been introduced in Patchwork_21035:
+  BUG: MAX_LOCK_DEPTH too low!
+  turning off the locking correctness validator.
+  depth: 48  max: 48!
+  48 locks held by i915_selftest/5776:
+   #0: ffff888101a79240 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x88/0x160
+   #1: ffffc900009778c0 (reservation_ww_class_acquire){+.+.}-{0:0}, at: i915_vma_pin.constprop.63+0x39/0x1b0 [i915]
+   #2: ffff88800cf74de8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_vma_pin.constprop.63+0x5f/0x1b0 [i915]
+   #3: ffff88810c7f9e38 (&vm->mutex/1){+.+.}-{3:3}, at: i915_vma_pin_ww+0x1c4/0x9d0 [i915]
+   #4: ffff88810bad5768 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+   #5: ffff88810bad60e8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+  ...
+   #46: ffff88811964d768 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+   #47: ffff88811964e0e8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+  INFO: lockdep is turned off.
 
-### IGT changes ###
+Fixing eviction to nest into ww_class_acquire is a high priority, but
+it requires a rework of the entire driver, which can only be done one
+step at a time.
 
-#### Possible regressions ####
+As an intermediate solution, add an acquire context to
+ww_mutex_trylock, which allows us to do proper nesting annotations on
+the trylocks, making the above lockdep splat disappear.
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-kbl-7567u:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
+This is also useful in regulator_lock_nested, which may avoid dropping
+regulator_nesting_mutex in the uncontended path, so use it there.
 
-  * igt@i915_module_load@reload:
-    - fi-icl-u2:          NOTRUN -> [INCOMPLETE][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-icl-u2/igt@i915_module_load@reload.html
-    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-11600/igt@i915_module_load@reload.html
-    - fi-kbl-guc:         [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-kbl-guc/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-kbl-guc/igt@i915_module_load@reload.html
-    - fi-cfl-8109u:       [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-cfl-8109u/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8109u/igt@i915_module_load@reload.html
+TTM may be another user for this, where we could lock a buffer in a
+fastpath with list locks held, without dropping all locks we hold.
 
-  * igt@i915_selftest@live@mman:
-    - fi-cfl-8700k:       NOTRUN -> [INCOMPLETE][9]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8700k/igt@i915_selftest@live@mman.html
+[peterz: rework actual ww_mutex_trylock() implementations]
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+---
+ drivers/gpu/drm/drm_modeset_lock.c |    2 
+ drivers/regulator/core.c           |    2 
+ include/linux/dma-resv.h           |    2 
+ include/linux/ww_mutex.h           |   15 ------
+ kernel/locking/mutex.c             |   41 +++++++++++++++++
+ kernel/locking/test-ww_mutex.c     |   86 +++++++++++++++++++++++++++----------
+ kernel/locking/ww_rt_mutex.c       |   25 ++++++++++
+ lib/locking-selftest.c             |    2 
+ 8 files changed, 137 insertions(+), 38 deletions(-)
 
-  * igt@runner@aborted:
-    - fi-rkl-11600:       NOTRUN -> [FAIL][10]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-11600/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@reload:
-    - {fi-jsl-1}:         [INCOMPLETE][11] -> [TIMEOUT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-jsl-1/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-jsl-1/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@mman:
-    - {fi-jsl-1}:         NOTRUN -> [INCOMPLETE][13]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-jsl-1/igt@i915_selftest@live@mman.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21035 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][14] ([i915#3669])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-guc/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@runner@aborted:
-    - fi-cfl-8700k:       NOTRUN -> [FAIL][15] ([i915#2426] / [i915#3363])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8700k/igt@runner@aborted.html
-    - fi-icl-u2:          NOTRUN -> [FAIL][16] ([i915#2426] / [i915#3363] / [i915#3690])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-icl-u2/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-cfl-8700k:       [INCOMPLETE][17] -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html
-    - fi-icl-u2:          [INCOMPLETE][19] -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-    - fi-rkl-11600:       [INCOMPLETE][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-cml-u2:          [FAIL][23] ([i915#2082] / [i915#2426] / [i915#3363]) -> [FAIL][24] ([i915#2722] / [i915#3363])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-cml-u2/igt@runner@aborted.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cml-u2/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3669]: https://gitlab.freedesktop.org/drm/intel/issues/3669
-  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
-  [i915#3970]: https://gitlab.freedesktop.org/drm/intel/issues/3970
-
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Missing    (6): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-tgl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10576 -> Patchwork_21035
-
-  CI-20190529: 20190529
-  CI_DRM_10576: 881240262b8bd204464f1f5f663348688484b867 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21035: ee89055cacf0d8a57a3877abbae5701d6f69d096 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ee89055cacf0 drm/i915/guc: Refcount context during error capture
-65c7ecfceb43 drm/i915/guc: Flush G2H work queue during reset
-4bbb41208b02 drm/i915/guc: Do error capture asynchronously
-acc3118b7aaa drm/i915/guc: Move guc_ids under submission_state sub-structure
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/index.html
-
---===============3190571670678378536==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Do error capture async, flush G2H processing on reset (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94642/">https://patchwork.freedesktop.org/series/94642/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10576 -&gt; Patchwork_21035</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21035 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21035, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21035:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-icl-u2/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-11600/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-kbl-guc/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-kbl-guc/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-cfl-8109u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8109u/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8700k/igt@i915_selftest@live@mman.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-11600/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-jsl-1/igt@i915_module_load@reload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-jsl-1/igt@i915_module_load@reload.html">TIMEOUT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-jsl-1/igt@i915_selftest@live@mman.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21035 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-guc/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3669">i915#3669</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10576/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21035/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 37)</h2>
-<p>Missing    (6): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-tgl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10576 -&gt; Patchwork_21035</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10576: 881240262b8bd204464f1f5f663348688484b867 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21035: ee89055cacf0d8a57a3877abbae5701d6f69d096 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ee89055cacf0 drm/i915/guc: Refcount context during error capture<br />
-65c7ecfceb43 drm/i915/guc: Flush G2H work queue during reset<br />
-4bbb41208b02 drm/i915/guc: Do error capture asynchronously<br />
-acc3118b7aaa drm/i915/guc: Move guc_ids under submission_state sub-structure</p>
-
-</body>
-</html>
-
---===============3190571670678378536==--
+--- a/drivers/gpu/drm/drm_modeset_lock.c
++++ b/drivers/gpu/drm/drm_modeset_lock.c
+@@ -248,7 +248,7 @@ static inline int modeset_lock(struct dr
+ 	if (ctx->trylock_only) {
+ 		lockdep_assert_held(&ctx->ww_ctx);
+ 
+-		if (!ww_mutex_trylock(&lock->mutex))
++		if (!ww_mutex_trylock(&lock->mutex, NULL))
+ 			return -EBUSY;
+ 		else
+ 			return 0;
+--- a/drivers/regulator/core.c
++++ b/drivers/regulator/core.c
+@@ -145,7 +145,7 @@ static inline int regulator_lock_nested(
+ 
+ 	mutex_lock(&regulator_nesting_mutex);
+ 
+-	if (ww_ctx || !ww_mutex_trylock(&rdev->mutex)) {
++	if (!ww_mutex_trylock(&rdev->mutex, ww_ctx)) {
+ 		if (rdev->mutex_owner == current)
+ 			rdev->ref_cnt++;
+ 		else
+--- a/include/linux/dma-resv.h
++++ b/include/linux/dma-resv.h
+@@ -173,7 +173,7 @@ static inline int dma_resv_lock_slow_int
+  */
+ static inline bool __must_check dma_resv_trylock(struct dma_resv *obj)
+ {
+-	return ww_mutex_trylock(&obj->lock);
++	return ww_mutex_trylock(&obj->lock, NULL);
+ }
+ 
+ /**
+--- a/include/linux/ww_mutex.h
++++ b/include/linux/ww_mutex.h
+@@ -28,12 +28,10 @@
+ #ifndef CONFIG_PREEMPT_RT
+ #define WW_MUTEX_BASE			mutex
+ #define ww_mutex_base_init(l,n,k)	__mutex_init(l,n,k)
+-#define ww_mutex_base_trylock(l)	mutex_trylock(l)
+ #define ww_mutex_base_is_locked(b)	mutex_is_locked((b))
+ #else
+ #define WW_MUTEX_BASE			rt_mutex
+ #define ww_mutex_base_init(l,n,k)	__rt_mutex_init(l,n,k)
+-#define ww_mutex_base_trylock(l)	rt_mutex_trylock(l)
+ #define ww_mutex_base_is_locked(b)	rt_mutex_base_is_locked(&(b)->rtmutex)
+ #endif
+ 
+@@ -339,17 +337,8 @@ ww_mutex_lock_slow_interruptible(struct
+ 
+ extern void ww_mutex_unlock(struct ww_mutex *lock);
+ 
+-/**
+- * ww_mutex_trylock - tries to acquire the w/w mutex without acquire context
+- * @lock: mutex to lock
+- *
+- * Trylocks a mutex without acquire context, so no deadlock detection is
+- * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
+- */
+-static inline int __must_check ww_mutex_trylock(struct ww_mutex *lock)
+-{
+-	return ww_mutex_base_trylock(&lock->base);
+-}
++extern int __must_check ww_mutex_trylock(struct ww_mutex *lock,
++					 struct ww_acquire_ctx *ctx);
+ 
+ /***
+  * ww_mutex_destroy - mark a w/w mutex unusable
+--- a/kernel/locking/mutex.c
++++ b/kernel/locking/mutex.c
+@@ -94,6 +94,9 @@ static inline unsigned long __owner_flag
+ 	return owner & MUTEX_FLAGS;
+ }
+ 
++/*
++ * Returns: __mutex_owner(lock) on failure or NULL on success.
++ */
+ static inline struct task_struct *__mutex_trylock_common(struct mutex *lock, bool handoff)
+ {
+ 	unsigned long owner, curr = (unsigned long)current;
+@@ -736,6 +739,44 @@ __ww_mutex_lock(struct mutex *lock, unsi
+ 	return __mutex_lock_common(lock, state, subclass, NULL, ip, ww_ctx, true);
+ }
+ 
++/**
++ * ww_mutex_trylock - tries to acquire the w/w mutex with optional acquire context
++ * @ww: mutex to lock
++ * @ww_ctx: optional w/w acquire context
++ *
++ * Trylocks a mutex with the optional acquire context; no deadlock detection is
++ * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
++ *
++ * Unlike ww_mutex_lock, no deadlock handling is performed. However, if a @ctx is
++ * specified, -EALREADY handling may happen in calls to ww_mutex_trylock.
++ *
++ * A mutex acquired with this function must be released with ww_mutex_unlock.
++ */
++int ww_mutex_trylock(struct ww_mutex *ww, struct ww_acquire_ctx *ww_ctx)
++{
++	if (!ww_ctx)
++		return mutex_trylock(&ww->base);
++
++	MUTEX_WARN_ON(ww->base.magic != &ww->base);
++
++	/*
++	 * Reset the wounded flag after a kill. No other process can
++	 * race and wound us here, since they can't have a valid owner
++	 * pointer if we don't have any locks held.
++	 */
++	if (ww_ctx->acquired == 0)
++		ww_ctx->wounded = 0;
++
++	if (__mutex_trylock(&ww->base)) {
++		ww_mutex_set_context_fastpath(ww, ww_ctx);
++		mutex_acquire_nest(&ww->base.dep_map, 0, 1, &ww_ctx->dep_map, _RET_IP_);
++		return 1;
++	}
++
++	return 0;
++}
++EXPORT_SYMBOL(ww_mutex_trylock);
++
+ #ifdef CONFIG_DEBUG_LOCK_ALLOC
+ void __sched
+ mutex_lock_nested(struct mutex *lock, unsigned int subclass)
+--- a/kernel/locking/test-ww_mutex.c
++++ b/kernel/locking/test-ww_mutex.c
+@@ -16,6 +16,15 @@
+ static DEFINE_WD_CLASS(ww_class);
+ struct workqueue_struct *wq;
+ 
++#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
++#define ww_acquire_init_noinject(a, b) do { \
++		ww_acquire_init((a), (b)); \
++		(a)->deadlock_inject_countdown = ~0U; \
++	} while (0)
++#else
++#define ww_acquire_init_noinject(a, b) ww_acquire_init((a), (b))
++#endif
++
+ struct test_mutex {
+ 	struct work_struct work;
+ 	struct ww_mutex mutex;
+@@ -36,7 +45,7 @@ static void test_mutex_work(struct work_
+ 	wait_for_completion(&mtx->go);
+ 
+ 	if (mtx->flags & TEST_MTX_TRY) {
+-		while (!ww_mutex_trylock(&mtx->mutex))
++		while (!ww_mutex_trylock(&mtx->mutex, NULL))
+ 			cond_resched();
+ 	} else {
+ 		ww_mutex_lock(&mtx->mutex, NULL);
+@@ -109,19 +118,38 @@ static int test_mutex(void)
+ 	return 0;
+ }
+ 
+-static int test_aa(void)
++static int test_aa(bool trylock)
+ {
+ 	struct ww_mutex mutex;
+ 	struct ww_acquire_ctx ctx;
+ 	int ret;
++	const char *from = trylock ? "trylock" : "lock";
+ 
+ 	ww_mutex_init(&mutex, &ww_class);
+ 	ww_acquire_init(&ctx, &ww_class);
+ 
+-	ww_mutex_lock(&mutex, &ctx);
++	if (!trylock) {
++		ret = ww_mutex_lock(&mutex, &ctx);
++		if (ret) {
++			pr_err("%s: initial lock failed!\n", __func__);
++			goto out;
++		}
++	} else {
++		if (!ww_mutex_trylock(&mutex, &ctx)) {
++			pr_err("%s: initial trylock failed!\n", __func__);
++			goto out;
++		}
++	}
+ 
+-	if (ww_mutex_trylock(&mutex))  {
+-		pr_err("%s: trylocked itself!\n", __func__);
++	if (ww_mutex_trylock(&mutex, NULL))  {
++		pr_err("%s: trylocked itself without context from %s!\n", __func__, from);
++		ww_mutex_unlock(&mutex);
++		ret = -EINVAL;
++		goto out;
++	}
++
++	if (ww_mutex_trylock(&mutex, &ctx))  {
++		pr_err("%s: trylocked itself with context from %s!\n", __func__, from);
+ 		ww_mutex_unlock(&mutex);
+ 		ret = -EINVAL;
+ 		goto out;
+@@ -129,17 +157,17 @@ static int test_aa(void)
+ 
+ 	ret = ww_mutex_lock(&mutex, &ctx);
+ 	if (ret != -EALREADY) {
+-		pr_err("%s: missed deadlock for recursing, ret=%d\n",
+-		       __func__, ret);
++		pr_err("%s: missed deadlock for recursing, ret=%d from %s\n",
++		       __func__, ret, from);
+ 		if (!ret)
+ 			ww_mutex_unlock(&mutex);
+ 		ret = -EINVAL;
+ 		goto out;
+ 	}
+ 
++	ww_mutex_unlock(&mutex);
+ 	ret = 0;
+ out:
+-	ww_mutex_unlock(&mutex);
+ 	ww_acquire_fini(&ctx);
+ 	return ret;
+ }
+@@ -150,7 +178,7 @@ struct test_abba {
+ 	struct ww_mutex b_mutex;
+ 	struct completion a_ready;
+ 	struct completion b_ready;
+-	bool resolve;
++	bool resolve, trylock;
+ 	int result;
+ };
+ 
+@@ -160,8 +188,13 @@ static void test_abba_work(struct work_s
+ 	struct ww_acquire_ctx ctx;
+ 	int err;
+ 
+-	ww_acquire_init(&ctx, &ww_class);
+-	ww_mutex_lock(&abba->b_mutex, &ctx);
++	ww_acquire_init_noinject(&ctx, &ww_class);
++	if (!abba->trylock)
++		ww_mutex_lock(&abba->b_mutex, &ctx);
++	else
++		WARN_ON(!ww_mutex_trylock(&abba->b_mutex, &ctx));
++
++	WARN_ON(READ_ONCE(abba->b_mutex.ctx) != &ctx);
+ 
+ 	complete(&abba->b_ready);
+ 	wait_for_completion(&abba->a_ready);
+@@ -181,7 +214,7 @@ static void test_abba_work(struct work_s
+ 	abba->result = err;
+ }
+ 
+-static int test_abba(bool resolve)
++static int test_abba(bool trylock, bool resolve)
+ {
+ 	struct test_abba abba;
+ 	struct ww_acquire_ctx ctx;
+@@ -192,12 +225,18 @@ static int test_abba(bool resolve)
+ 	INIT_WORK_ONSTACK(&abba.work, test_abba_work);
+ 	init_completion(&abba.a_ready);
+ 	init_completion(&abba.b_ready);
++	abba.trylock = trylock;
+ 	abba.resolve = resolve;
+ 
+ 	schedule_work(&abba.work);
+ 
+-	ww_acquire_init(&ctx, &ww_class);
+-	ww_mutex_lock(&abba.a_mutex, &ctx);
++	ww_acquire_init_noinject(&ctx, &ww_class);
++	if (!trylock)
++		ww_mutex_lock(&abba.a_mutex, &ctx);
++	else
++		WARN_ON(!ww_mutex_trylock(&abba.a_mutex, &ctx));
++
++	WARN_ON(READ_ONCE(abba.a_mutex.ctx) != &ctx);
+ 
+ 	complete(&abba.a_ready);
+ 	wait_for_completion(&abba.b_ready);
+@@ -249,7 +288,7 @@ static void test_cycle_work(struct work_
+ 	struct ww_acquire_ctx ctx;
+ 	int err, erra = 0;
+ 
+-	ww_acquire_init(&ctx, &ww_class);
++	ww_acquire_init_noinject(&ctx, &ww_class);
+ 	ww_mutex_lock(&cycle->a_mutex, &ctx);
+ 
+ 	complete(cycle->a_signal);
+@@ -581,7 +620,9 @@ static int stress(int nlocks, int nthrea
+ static int __init test_ww_mutex_init(void)
+ {
+ 	int ncpus = num_online_cpus();
+-	int ret;
++	int ret, i;
++
++	printk(KERN_INFO "Beginning ww mutex selftests\n");
+ 
+ 	wq = alloc_workqueue("test-ww_mutex", WQ_UNBOUND, 0);
+ 	if (!wq)
+@@ -591,17 +632,19 @@ static int __init test_ww_mutex_init(voi
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = test_aa();
++	ret = test_aa(false);
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = test_abba(false);
++	ret = test_aa(true);
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = test_abba(true);
+-	if (ret)
+-		return ret;
++	for (i = 0; i < 4; i++) {
++		ret = test_abba(i & 1, i & 2);
++		if (ret)
++			return ret;
++	}
+ 
+ 	ret = test_cycle(ncpus);
+ 	if (ret)
+@@ -619,6 +662,7 @@ static int __init test_ww_mutex_init(voi
+ 	if (ret)
+ 		return ret;
+ 
++	printk(KERN_INFO "All ww mutex selftests passed\n");
+ 	return 0;
+ }
+ 
+--- a/kernel/locking/ww_rt_mutex.c
++++ b/kernel/locking/ww_rt_mutex.c
+@@ -9,6 +9,31 @@
+ #define WW_RT
+ #include "rtmutex.c"
+ 
++int ww_mutex_trylock(struct ww_mutex *lock, struct ww_acquire_ctx *ww_ctx)
++{
++	struct rt_mutex *rtm = &lock->base;
++
++	if (!ww_ctx)
++		return rt_mutex_trylock(rtm);
++
++	/*
++	 * Reset the wounded flag after a kill. No other process can
++	 * race and wound us here, since they can't have a valid owner
++	 * pointer if we don't have any locks held.
++	 */
++	if (ww_ctx->acquired == 0)
++		ww_ctx->wounded = 0;
++
++	if (__rt_mutex_trylock(&rtm->rtmutex)) {
++		ww_mutex_set_context_fastpath(lock, ww_ctx);
++		mutex_acquire_nest(&rtm->dep_map, 0, 1, ww_ctx->dep_map, _RET_IP_);
++		return 1;
++	}
++
++	return 0;
++}
++EXPORT_SYMBOL(ww_mutex_trylock);
++
+ static int __sched
+ __ww_rt_mutex_lock(struct ww_mutex *lock, struct ww_acquire_ctx *ww_ctx,
+ 		   unsigned int state, unsigned long ip)
+--- a/lib/locking-selftest.c
++++ b/lib/locking-selftest.c
+@@ -258,7 +258,7 @@ static void init_shared_classes(void)
+ #define WWAF(x)			ww_acquire_fini(x)
+ 
+ #define WWL(x, c)		ww_mutex_lock(x, c)
+-#define WWT(x)			ww_mutex_trylock(x)
++#define WWT(x)			ww_mutex_trylock(x, NULL)
+ #define WWL1(x)			ww_mutex_lock(x, NULL)
+ #define WWU(x)			ww_mutex_unlock(x)
+ 
