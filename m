@@ -1,146 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 450B140AE18
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 14:43:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9FB40AE1B
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 14:43:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9881C6E48C;
-	Tue, 14 Sep 2021 12:43:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A44C6E497;
+	Tue, 14 Sep 2021 12:43:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2E3F6E48C
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 12:43:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="244314620"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="244314620"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 05:43:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="507986437"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga008.fm.intel.com with ESMTP; 14 Sep 2021 05:43:07 -0700
-Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 14 Sep 2021 05:43:06 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Tue, 14 Sep 2021 05:43:06 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Tue, 14 Sep 2021 05:43:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fP6osnR0dsp+dzupFjmOACj09XD0K4z0+RfGEpmqBRWlbXcQvz5Ljt+IYHEAFKb3G7wK3+8U0C5ZnCjSzmbPPCoRowxKkAaayvNYGm55K4K/FYT7MhwR1MSA9d8RLVbNFe6XsHsHwdh74o/kmLmcCjEE2lsOAnny/AddCHinzAhSqmm8+Hce4tkq46ghlhWEBLzr5XK86Qcfv2tHqDsg/X+OWAkKkI2tOT9RuYeXWLIw2QEyQrtWFDXkzJ6WCgmC6jWDKuGtHu90/wx2VVXwuCZLyjdyV9TNzwRRs8a/mX+ojN1OK+qJgnTHF1xuhKpWMkAxp8L0Ksz/5QuSmTvtug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=RDPRmiqj3f9apUveCTLgNukoBwNszkRQXqNfzXUAyLY=;
- b=m23GY4c4/XxGPkaAt21e6PKqJC6HJrkvVNs3liLkje/Xl6wzJ01BkDBnFQPqgKY4WcPtSiHkNGE7HvfANpTKkcFY2/y2TKMrmYeZQQgCEdjbmw15aUq5hAnm+7jBYtXa4p+MlKugZsayk84HgMebOKcdSWlS1Rj7LJAR84fPNfXN5Qdr3ZRxY8OEV+A/HwIZQO4O3qnIhmuD9gRiZwzhx3m/QxZ6gws8u2ozIFzAsfSBXeuG1sYPniKSQEvK2AEzIpSesNTzX/67ci10BxCGrxA6gL3vM2/yaa8kqr8jpyiDmWZDKhazVorhCKroQsGTNLe/IpBcHg4Wilc50hFU4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RDPRmiqj3f9apUveCTLgNukoBwNszkRQXqNfzXUAyLY=;
- b=tyLYNpe6rqmMQvIqB9mj+fmEPny6Lg4LuGula1Y9z6FVxSxj9tmF7s8q5s8iSNxgbvTlSHTT70qxh7eQHVxUANs6M7P37K2PgTRGkGgIyDzjcJqo+ZF+4Wr8tu0f4pApn3q2y7OI0OtoMPw3tMCN8Z8cwsMtstmDhd7qPQFmX9s=
-Authentication-Results: ffwll.ch; dkim=none (message not signed)
- header.d=none;ffwll.ch; dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
- by CH0PR11MB5707.namprd11.prod.outlook.com (2603:10b6:610:110::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.16; Tue, 14 Sep
- 2021 12:43:05 +0000
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::c3e:dff7:364c:ba7]) by CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::c3e:dff7:364c:ba7%2]) with mapi id 15.20.4523.014; Tue, 14 Sep 2021
- 12:43:05 +0000
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "daniel@ffwll.ch" <daniel@ffwll.ch>
-References: <20210909230725.33735-1-jose.souza@intel.com>
- <20210909230725.33735-4-jose.souza@intel.com>
- <4fe68cb6-41cf-6ecc-2dd8-f5081fffcc00@intel.com>
- <154efb8de3e47e327e495b7e516a73a82a906674.camel@intel.com>
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <299d6b42-ad57-9984-2741-08639048a1b3@intel.com>
-Date: Tue, 14 Sep 2021 15:42:56 +0300
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2CC06E48C;
+ Tue, 14 Sep 2021 12:43:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="221651408"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="221651408"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 05:43:08 -0700
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="552451396"
+Received: from naumova-mobl-1.ccr.corp.intel.com (HELO [10.252.48.174])
+ ([10.252.48.174])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 05:43:05 -0700
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20210907132044.157225-1-maarten.lankhorst@linux.intel.com>
+ <YTiM/zf8BuNw7wes@hirez.programming.kicks-ass.net>
+ <96ab9cf1-250a-8f34-51ec-4a7f66a87b39@linux.intel.com>
+ <YTnETRSy9H0CRdpc@hirez.programming.kicks-ass.net>
+ <a7e5d99d-39c4-6d27-3029-4689a2a1a17a@linux.intel.com>
+ <YTtznr85mg5xXouP@hirez.programming.kicks-ass.net>
+ <e8a7754e-23e7-0250-5718-101a56d008f0@linux.intel.com>
+ <YUBGPdDDjKlxAuXJ@hirez.programming.kicks-ass.net>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <205e1591-343b-fb77-cfca-9c16af1484bd@linux.intel.com>
+Date: Tue, 14 Sep 2021 14:43:02 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-In-Reply-To: <154efb8de3e47e327e495b7e516a73a82a906674.camel@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DB6P192CA0015.EURP192.PROD.OUTLOOK.COM (2603:10a6:4:b8::25)
- To CH0PR11MB5409.namprd11.prod.outlook.com
- (2603:10b6:610:d0::7)
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-Received: from [10.237.72.198] (134.134.137.85) by
- DB6P192CA0015.EURP192.PROD.OUTLOOK.COM (2603:10a6:4:b8::25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4500.14 via Frontend Transport; Tue, 14 Sep 2021 12:43:02 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8f540f2f-c314-4f67-b229-08d9777d3264
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5707:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH0PR11MB570719F544696457EB6A5BEBB8DA9@CH0PR11MB5707.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YwMxvhft3fpY4uWrwN+E3on0luZ6b0JC0Tp8T+/AlVSMJ4eC3LewUAVbHNNK6xxMK7qewKpmXMlTCiCfOmJrOUh5551Rc3kMb/GEmi91DyIIv7mSjhSaQIRZ8M2yHywQ6uurayIy2jEvj96Z5uRah9bIdiaW5gK0pj/PeT9vAXNVCd+rzT6ZHlLJI2Tgjm7aE0JNtZbCEClghPdwcyxeMaO7RRI5DrzkO6y5Idty3c+djQWaX5ZGrenq8yv35AUpn7ub20q5ItbwQYe5sniqgethMAfHT2owYNqGH5Qo11NGmFbF4W4A3HbkJSM0n8W34O5JFUvaQE22QvLp8s9otmF8HlrVfEBCrMs/Nsgx+bWZoTgPqkkIpsgFRnfZ2Zk0lCxc/5utRKd7W2deiFAxFUczMg44+Kzvln/vlbK0zvyYw+CZdviF2g3MnnCKKt1ThXPkNLHDEcTiioUHU1nRbdmQLe05mR0YJG0VPJK/VgB1mLgqXPe1B/Y6hlE0Ak7MimHdsPltAyXqr1Im5Sm7udJfHycRhJXLaDwEjBsUKtOWGTLZS+xqGQSUQlab0ZOQJ8nuKfzbKrewZ51lsOp673x7JJ1n2BlNGOfsIaqYSnxrid5yRbBI2qQZLzwzq1RqK0nN5X39d62hqnePiQyvk6fMmDBZEuYbWTzRHzuPzIoqxlePYfWl5GiB/Q7xZgmHPEt4mMmI3WhAP+sdMoiQbwTylZSRF1HdPLjSDE0Vf2g=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(396003)(376002)(39860400002)(136003)(346002)(4326008)(6486002)(38100700002)(6666004)(26005)(2906002)(8676002)(2616005)(110136005)(66556008)(478600001)(66476007)(956004)(66946007)(186003)(36756003)(31696002)(316002)(8936002)(86362001)(53546011)(31686004)(5660300002)(16576012)(83380400001)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M1duZEFBUitYZlVKQXRVM1VDZGRoY3N0dUN4N1ZacnJ6UFNZYitYTUtKVjY1?=
- =?utf-8?B?ZTBKR0h3bk16bjdwWXhqRHZ4M0c4VUlEUnRnVzBYd2VKUElsTGdnZENySTNY?=
- =?utf-8?B?WmZWZUppdVF6SW9OdFROcGxueEhiRmhLM3NMemM5aDdpVHNUeVRwMlpNdFp5?=
- =?utf-8?B?VzBXVW5sa1l1SHQ2QUVGdG1yWndSelJyVmczMEVpdkFnalM0VEF5S0l5TlJk?=
- =?utf-8?B?S0xNbVBuSlplbVY1elhhOWNmMjl3QVJkK1RTV0xCcEl4eXo5eFoxUXlHRk9C?=
- =?utf-8?B?MzVwUW1RRnVpbEMxUkFRbWZrYWtXUDhOTytKVDZYcEpzQTRCdGhxVUFzd0JK?=
- =?utf-8?B?aS9BNXlnSE4yM2E1NFdKWEdJaWxLajBjTGYrSlhKdDlUb3FVK2RpdTlLcDBt?=
- =?utf-8?B?V3hFTE5qTHYzcG9ybVI4SGdIMVBPRjhyaC8xNUtyNnNndVEzNzZkdkE4OWpw?=
- =?utf-8?B?b05IRTF6cUlLc1ZCOElhSUJ1eHg1TndLT1EvWDFnTFF3R0pqRkRuOXlOT29L?=
- =?utf-8?B?aFplK015bUM3TnZVQ1FXUlZ0NExxL1ZkU1J3YVBZWi9mTTZFUVdWOGp5bENa?=
- =?utf-8?B?OTBESHBYdnhyVjlGRTl1NUlvbEdxT0h5b2RHUTNSMkM2MGliNE9Ia253MjZZ?=
- =?utf-8?B?THJjVHlyY2l0TjltT2pyMXNQVG1oQ2JjRk9Fbnl5QXdoWlF3R1BibUxCdDdy?=
- =?utf-8?B?THNSUTRIUytPcmQ2cE8yeHN0V2RYZ2ZzdlBEV1FFb2pNaENya1RkZThQZVF5?=
- =?utf-8?B?SWxmUGJ2SHNjdEY1REVLaks4UCtzQTQ4ZkhrS1grY2h6L3NCT0Q3c1JyMHJl?=
- =?utf-8?B?ekNFK1krRVY3bGkwSUxINWVzSVNnTVhLbU4zcDAveW9sV0ZqU2VBTXJSaEc3?=
- =?utf-8?B?WFBqN2VHVkJDeVE3T2hodE9jRmNHQXprbGpydFN2SUVVUnVlSkNRZ0dYbUsv?=
- =?utf-8?B?THFwRlBEd2FpOURZNnZGWUZGNWVHOUs4MlIxdVRNaThIWWt5S2haZEZMeWJ4?=
- =?utf-8?B?U3VMVTBwQmhOQ0svTDZzeks2Z2psTnYxQ2tnU1VWdGNJUFR5T3BkZ0VabGtD?=
- =?utf-8?B?YUlEUnpBVGRxU2ZXYmFjMUlYdkNpaEJyTGRRM2k0Rnl6Skg2eE5Mdk41RVdt?=
- =?utf-8?B?RFNSOGRqcEhqUnhDdTNWYitxZTliRk5KbHRzV2ZDWmxnWXVrY0JQZG8zNlVM?=
- =?utf-8?B?TWU5UVpqV0IyaGRhbkphYnJCMVBDRThSbW5GVDdTMlBRVU1UT0pKZ0Y2TXRq?=
- =?utf-8?B?eXdhN2NoYjkvMjVBeUZzMnV3bTlickY1a3lGbWNUVUZmUWRGa004NXBVai9C?=
- =?utf-8?B?ZzBjakR2N1BNYzBTZGxFeEtNMXJ2emFtTG5QaG9adGFjVDZ4N0dlSmtqQmZr?=
- =?utf-8?B?eDRWSkE2dnByRldHenRjRHhWbVlDL3NCblZYUjAzV3kxbzNWWGQ3T0lCVFlW?=
- =?utf-8?B?S0YzM3R4bXZ2bVBZOU5xWDRYdk83SUpFeG9keFdmak12bzFua2tIMFFaK0JI?=
- =?utf-8?B?L2tMc3l3Z2pNTzQxNUgzdzFSc3NsM2ZMOHFXYzVUNDdTMGYxMFl6Y2hmakFy?=
- =?utf-8?B?akZta1Qxb0dVTlpoUWJyQlAyaHlReStoTS9LMzNqVCsvNklDd0FWUldBZHRZ?=
- =?utf-8?B?cVJDV2J0RGlVblQzYVlDV1VpZWtFeko4TVdYTkhDOEpYaWMrSHFzK3N6em5p?=
- =?utf-8?B?cXZEUHFYMUNNdTZ1S2hmV21KOEtmblVZdyszT25KRGFMVjc3M2xiYlJLNE1n?=
- =?utf-8?Q?MQLqUwSHB2jzqshr+hvIiOaDCy4uh81U1OeckAH?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f540f2f-c314-4f67-b229-08d9777d3264
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2021 12:43:05.1296 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Km58wPxpbogBfuFBd+UEGZwWGYy1cL69+9WWDj8uujLks77dgxfN1CDckEQLEotcXKwrC0KBu+aNnLLA+UHwHBLVEuxw9pC/CM0UiFGQ6LM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5707
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/display/psr: Use drm damage
- helpers to calculate plane damaged area
+In-Reply-To: <YUBGPdDDjKlxAuXJ@hirez.programming.kicks-ass.net>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] kernel/locking: Add context to
+ ww_mutex_trylock.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,141 +63,496 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 9/13/21 7:45 PM, Souza, Jose wrote:
-> On Mon, 2021-09-13 at 19:03 +0300, Gwan-gyeong Mun wrote:
->>
->> On 9/10/21 2:07 AM, José Roberto de Souza wrote:
->>> drm_atomic_helper_damage_iter_init() + drm_atomic_for_each_plane_damage()
->>> returns the full plane area in case no damaged area was set by
->>> userspace or it was discarted by driver.
->>>
->>> This is important to fix the rendering of userspace applications that
->>> does frontbuffer rendering and notify driver about dirty areas but do
->>> not set any dirty clips.
->>>
->>> With this we don't need to worry about to check and mark the whole
->>> area as damaged in page flips.
->>>
->>> Another important change here is the move of
->>> drm_atomic_add_affected_planes() call, it needs to called late
->>> otherwise the area of all the planes would be added to pipe_clip and
->>> not saving power.
->>>
->>> Cc: Daniel Vetter <daniel@ffwll.ch>
->>> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->>> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_psr.c | 37 +++++++++---------------
->>>    1 file changed, 13 insertions(+), 24 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->>> index 1a3effa3ce709..670b0ceba110f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->>> @@ -22,6 +22,7 @@
->>>     */
->>>
->>>    #include <drm/drm_atomic_helper.h>
->>> +#include <drm/drm_damage_helper.h>
->>>
->>>    #include "display/intel_dp.h"
->>>
->>> @@ -1577,10 +1578,6 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    if (!crtc_state->enable_psr2_sel_fetch)
->>>    return 0;
->>>
->>> -ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
->>> -if (ret)
->>> -return ret;
->>> -
->>>    /*
->>>     * Calculate minimal selective fetch area of each plane and calculate
->>>     * the pipe damaged area.
->>> @@ -1590,8 +1587,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
->>>         new_plane_state, i) {
->>>    struct drm_rect src, damaged_area = { .y1 = -1 };
->>> -struct drm_mode_rect *damaged_clips;
->>> -u32 num_clips, j;
->>> +struct drm_atomic_helper_damage_iter iter;
->>> +struct drm_rect clip;
->>>
->>>    if (new_plane_state->uapi.crtc != crtc_state->uapi.crtc)
->>>    continue;
->>> @@ -1611,8 +1608,6 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    break;
->>>    }
->>>
->>> -num_clips = drm_plane_get_damage_clips_count(&new_plane_state->uapi);
->>> -
->>>    /*
->>>     * If visibility or plane moved, mark the whole plane area as
->>>     * damaged as it needs to be complete redraw in the new and old
->>> @@ -1633,14 +1628,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    clip_area_update(&pipe_clip, &damaged_area);
->>>    }
->>>    continue;
->>> -} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha ||
->>> -   (!num_clips &&
->>> -    new_plane_state->uapi.fb != old_plane_state->uapi.fb)) {
->>> -/*
->>> - * If the plane don't have damaged areas but the
->>> - * framebuffer changed or alpha changed, mark the whole
->>> - * plane area as damaged.
->>> - */
->>> +} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha) {
->>> +/* If alpha changed mark the whole plane area as damaged */
->>>    damaged_area.y1 = new_plane_state->uapi.dst.y1;
->>>    damaged_area.y2 = new_plane_state->uapi.dst.y2;
->>>    clip_area_update(&pipe_clip, &damaged_area);
->>> @@ -1648,15 +1637,11 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    }
->>>
->>>    drm_rect_fp_to_int(&src, &new_plane_state->uapi.src);
->>> -damaged_clips = drm_plane_get_damage_clips(&new_plane_state->uapi);
->>>
->>> -for (j = 0; j < num_clips; j++) {
->>> -struct drm_rect clip;
->>> -
->>> -clip.x1 = damaged_clips[j].x1;
->>> -clip.y1 = damaged_clips[j].y1;
->>> -clip.x2 = damaged_clips[j].x2;
->>> -clip.y2 = damaged_clips[j].y2;
->>> +drm_atomic_helper_damage_iter_init(&iter,
->>> +   &old_plane_state->uapi,
->>> +   &new_plane_state->uapi);
->> In the description of the drm_atomic_helper_damage_iter_init() function
->> says, in order to use drm_atomic_helper_damage_iter_init(), the driver
->> requires that the drm_atomic_helper_check_plane_state() helper function
->> should be called in advance.
->> However, in i915, drm_atomic_helper_check_plane_state() helper is not
->> used, and intel_atomic_plane_check_clipping() handles src.
->> And i915 is not using the atomic_check callback of
->> drm_plane_helper_funcs. Is it fine to use
->> drm_atomic_helper_damage_iter_init() in this case as well?
-> 
-> intel_atomic_plane_check_clipping() does the src rect rotation, scale and clipping that drm_atomic_helper_check_plane_state() also do, so we are safe
-> here.
-> 
-ok then, the other changes look good to me.
-Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> 
->>> +drm_atomic_for_each_plane_damage(&iter, &clip) {
->>>    if (drm_rect_intersect(&clip, &src))
->>>    clip_area_update(&damaged_area, &clip);
->>>    }
->>> @@ -1672,6 +1657,10 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    if (full_update)
->>>    goto skip_sel_fetch_set_loop;
->>>
->>> +ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
->>> +if (ret)
->>> +return ret;
+Op 14-09-2021 om 08:50 schreef Peter Zijlstra:
+> On Mon, Sep 13, 2021 at 10:42:36AM +0200, Maarten Lankhorst wrote:
+>
+>>> +/**
+>>> + * ww_mutex_trylock - tries to acquire the w/w mutex with optional acquire context
+>>> + * @ww: mutex to lock
+>>> + * @ww_ctx: optional w/w acquire context
+>>> + *
+>>> + * Trylocks a mutex with the optional acquire context; no deadlock detection is
+>>> + * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
+>>> + *
+>>> + * Unlike ww_mutex_lock, no deadlock handling is performed. However, if a @ctx is
+>>> + * specified, -EALREADY handling may happen in calls to ww_mutex_trylock.
+>>> + *
+>>> + * A mutex acquired with this function must be released with ww_mutex_unlock.
+>>> + */
+>>> +int ww_mutex_trylock(struct ww_mutex *ww, struct ww_acquire_ctx *ww_ctx)
+>>> +{
+>>> +	if (!ww_ctx)
+>>> +		return mutex_trylock(&ww->base);
 >>> +
->>>    intel_psr2_sel_fetch_pipe_alignment(crtc_state, &pipe_clip);
->>>
->>>    /*
->>>
-> 
+>>> +	MUTEX_WARN_ON(ww->base.magic != &ww->base);
+>>> +
+>>> +	if (unlikely(ww_ctx == READ_ONCE(ww->ctx)))
+>>> +		return -EALREADY;
+>> I'm not 100% sure this is a good idea, because it would make the
+>> trylock weird.  For i915 I checked manually, because I didn't want to
+>> change the function signature. This is probably the other extreme.
+>>
+>> "if (ww_mutex_trylock())" would look correct, but actually be wrong
+>> and lead to double unlock without adjustments.  Maybe we could make a
+>> ww_mutex_trylock_ctx_err, which would return -EALREADY or -EBUSY on
+>> failure, and 0 on success?  We could keep ww_mutex_trylock without
+>> ctx, probably just #define as (!ww_mutex_trylock_ctx_err(lock, NULL))
+> Urgh, yeah. Also, I suppose that if we already own it, we'll just fail
+> the trylock anyway. Let me take this out.
+>
+>>> +	/*
+>>> +	 * Reset the wounded flag after a kill. No other process can
+>>> +	 * race and wound us here, since they can't have a valid owner
+>>> +	 * pointer if we don't have any locks held.
+>>> +	 */
+>>> +	if (ww_ctx->acquired == 0)
+>>> +		ww_ctx->wounded = 0;
+>> Yeah I guess this needs fixing too. Not completely sure since trylock
+>> wouldn't do the whole ww dance, but since it's our first lock,
+>> probably best to do so regardless so other users don't trip over it.
+> This is actually critical, because if this trylock is the first lock
+> acquisition for the context, there won't be any other opportunity to
+> reset this value.
+>
+>>> +
+>>> +	if (__mutex_trylock(&ww->base)) {
+>>> +		ww_mutex_set_context_fastpath(ww, ww_ctx);
+>>> +		mutex_acquire_nest(&ww->base.dep_map, 0, 1, &ww_ctx->dep_map, _RET_IP_);
+>>> +		return 1;
+>>> +	}
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +EXPORT_SYMBOL(ww_mutex_trylock);
+> Updated version below...
+>
+> ---
+> Subject: kernel/locking: Add context to ww_mutex_trylock()
+> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Date: Thu, 9 Sep 2021 11:32:18 +0200
+>
+> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>
+> i915 will soon gain an eviction path that trylock a whole lot of locks
+> for eviction, getting dmesg failures like below:
+>
+>   BUG: MAX_LOCK_DEPTH too low!
+>   turning off the locking correctness validator.
+>   depth: 48  max: 48!
+>   48 locks held by i915_selftest/5776:
+>    #0: ffff888101a79240 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x88/0x160
+>    #1: ffffc900009778c0 (reservation_ww_class_acquire){+.+.}-{0:0}, at: i915_vma_pin.constprop.63+0x39/0x1b0 [i915]
+>    #2: ffff88800cf74de8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_vma_pin.constprop.63+0x5f/0x1b0 [i915]
+>    #3: ffff88810c7f9e38 (&vm->mutex/1){+.+.}-{3:3}, at: i915_vma_pin_ww+0x1c4/0x9d0 [i915]
+>    #4: ffff88810bad5768 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+>    #5: ffff88810bad60e8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+>   ...
+>    #46: ffff88811964d768 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+>    #47: ffff88811964e0e8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
+>   INFO: lockdep is turned off.
+>
+> Fixing eviction to nest into ww_class_acquire is a high priority, but
+> it requires a rework of the entire driver, which can only be done one
+> step at a time.
+>
+> As an intermediate solution, add an acquire context to
+> ww_mutex_trylock, which allows us to do proper nesting annotations on
+> the trylocks, making the above lockdep splat disappear.
+>
+> This is also useful in regulator_lock_nested, which may avoid dropping
+> regulator_nesting_mutex in the uncontended path, so use it there.
+>
+> TTM may be another user for this, where we could lock a buffer in a
+> fastpath with list locks held, without dropping all locks we hold.
+>
+> [peterz: rework actual ww_mutex_trylock() implementations]
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+> ---
+
+My original patch series with this patch in place still passes i915 selftests, looks good to me. :)
+
+Feel free to apply.
+
+
+>  drivers/gpu/drm/drm_modeset_lock.c |    2 
+>  drivers/regulator/core.c           |    2 
+>  include/linux/dma-resv.h           |    2 
+>  include/linux/ww_mutex.h           |   15 ------
+>  kernel/locking/mutex.c             |   41 +++++++++++++++++
+>  kernel/locking/test-ww_mutex.c     |   86 +++++++++++++++++++++++++++----------
+>  kernel/locking/ww_rt_mutex.c       |   25 ++++++++++
+>  lib/locking-selftest.c             |    2 
+>  8 files changed, 137 insertions(+), 38 deletions(-)
+>
+> --- a/drivers/gpu/drm/drm_modeset_lock.c
+> +++ b/drivers/gpu/drm/drm_modeset_lock.c
+> @@ -248,7 +248,7 @@ static inline int modeset_lock(struct dr
+>  	if (ctx->trylock_only) {
+>  		lockdep_assert_held(&ctx->ww_ctx);
+>  
+> -		if (!ww_mutex_trylock(&lock->mutex))
+> +		if (!ww_mutex_trylock(&lock->mutex, NULL))
+>  			return -EBUSY;
+>  		else
+>  			return 0;
+> --- a/drivers/regulator/core.c
+> +++ b/drivers/regulator/core.c
+> @@ -145,7 +145,7 @@ static inline int regulator_lock_nested(
+>  
+>  	mutex_lock(&regulator_nesting_mutex);
+>  
+> -	if (ww_ctx || !ww_mutex_trylock(&rdev->mutex)) {
+> +	if (!ww_mutex_trylock(&rdev->mutex, ww_ctx)) {
+>  		if (rdev->mutex_owner == current)
+>  			rdev->ref_cnt++;
+>  		else
+> --- a/include/linux/dma-resv.h
+> +++ b/include/linux/dma-resv.h
+> @@ -173,7 +173,7 @@ static inline int dma_resv_lock_slow_int
+>   */
+>  static inline bool __must_check dma_resv_trylock(struct dma_resv *obj)
+>  {
+> -	return ww_mutex_trylock(&obj->lock);
+> +	return ww_mutex_trylock(&obj->lock, NULL);
+>  }
+>  
+>  /**
+> --- a/include/linux/ww_mutex.h
+> +++ b/include/linux/ww_mutex.h
+> @@ -28,12 +28,10 @@
+>  #ifndef CONFIG_PREEMPT_RT
+>  #define WW_MUTEX_BASE			mutex
+>  #define ww_mutex_base_init(l,n,k)	__mutex_init(l,n,k)
+> -#define ww_mutex_base_trylock(l)	mutex_trylock(l)
+>  #define ww_mutex_base_is_locked(b)	mutex_is_locked((b))
+>  #else
+>  #define WW_MUTEX_BASE			rt_mutex
+>  #define ww_mutex_base_init(l,n,k)	__rt_mutex_init(l,n,k)
+> -#define ww_mutex_base_trylock(l)	rt_mutex_trylock(l)
+>  #define ww_mutex_base_is_locked(b)	rt_mutex_base_is_locked(&(b)->rtmutex)
+>  #endif
+>  
+> @@ -339,17 +337,8 @@ ww_mutex_lock_slow_interruptible(struct
+>  
+>  extern void ww_mutex_unlock(struct ww_mutex *lock);
+>  
+> -/**
+> - * ww_mutex_trylock - tries to acquire the w/w mutex without acquire context
+> - * @lock: mutex to lock
+> - *
+> - * Trylocks a mutex without acquire context, so no deadlock detection is
+> - * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
+> - */
+> -static inline int __must_check ww_mutex_trylock(struct ww_mutex *lock)
+> -{
+> -	return ww_mutex_base_trylock(&lock->base);
+> -}
+> +extern int __must_check ww_mutex_trylock(struct ww_mutex *lock,
+> +					 struct ww_acquire_ctx *ctx);
+>  
+>  /***
+>   * ww_mutex_destroy - mark a w/w mutex unusable
+> --- a/kernel/locking/mutex.c
+> +++ b/kernel/locking/mutex.c
+> @@ -94,6 +94,9 @@ static inline unsigned long __owner_flag
+>  	return owner & MUTEX_FLAGS;
+>  }
+>  
+> +/*
+> + * Returns: __mutex_owner(lock) on failure or NULL on success.
+> + */
+>  static inline struct task_struct *__mutex_trylock_common(struct mutex *lock, bool handoff)
+>  {
+>  	unsigned long owner, curr = (unsigned long)current;
+> @@ -736,6 +739,44 @@ __ww_mutex_lock(struct mutex *lock, unsi
+>  	return __mutex_lock_common(lock, state, subclass, NULL, ip, ww_ctx, true);
+>  }
+>  
+> +/**
+> + * ww_mutex_trylock - tries to acquire the w/w mutex with optional acquire context
+> + * @ww: mutex to lock
+> + * @ww_ctx: optional w/w acquire context
+> + *
+> + * Trylocks a mutex with the optional acquire context; no deadlock detection is
+> + * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
+> + *
+> + * Unlike ww_mutex_lock, no deadlock handling is performed. However, if a @ctx is
+> + * specified, -EALREADY handling may happen in calls to ww_mutex_trylock.
+> + *
+> + * A mutex acquired with this function must be released with ww_mutex_unlock.
+> + */
+> +int ww_mutex_trylock(struct ww_mutex *ww, struct ww_acquire_ctx *ww_ctx)
+> +{
+> +	if (!ww_ctx)
+> +		return mutex_trylock(&ww->base);
+> +
+> +	MUTEX_WARN_ON(ww->base.magic != &ww->base);
+> +
+> +	/*
+> +	 * Reset the wounded flag after a kill. No other process can
+> +	 * race and wound us here, since they can't have a valid owner
+> +	 * pointer if we don't have any locks held.
+> +	 */
+> +	if (ww_ctx->acquired == 0)
+> +		ww_ctx->wounded = 0;
+> +
+> +	if (__mutex_trylock(&ww->base)) {
+> +		ww_mutex_set_context_fastpath(ww, ww_ctx);
+> +		mutex_acquire_nest(&ww->base.dep_map, 0, 1, &ww_ctx->dep_map, _RET_IP_);
+> +		return 1;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ww_mutex_trylock);
+> +
+>  #ifdef CONFIG_DEBUG_LOCK_ALLOC
+>  void __sched
+>  mutex_lock_nested(struct mutex *lock, unsigned int subclass)
+> --- a/kernel/locking/test-ww_mutex.c
+> +++ b/kernel/locking/test-ww_mutex.c
+> @@ -16,6 +16,15 @@
+>  static DEFINE_WD_CLASS(ww_class);
+>  struct workqueue_struct *wq;
+>  
+> +#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+> +#define ww_acquire_init_noinject(a, b) do { \
+> +		ww_acquire_init((a), (b)); \
+> +		(a)->deadlock_inject_countdown = ~0U; \
+> +	} while (0)
+> +#else
+> +#define ww_acquire_init_noinject(a, b) ww_acquire_init((a), (b))
+> +#endif
+> +
+>  struct test_mutex {
+>  	struct work_struct work;
+>  	struct ww_mutex mutex;
+> @@ -36,7 +45,7 @@ static void test_mutex_work(struct work_
+>  	wait_for_completion(&mtx->go);
+>  
+>  	if (mtx->flags & TEST_MTX_TRY) {
+> -		while (!ww_mutex_trylock(&mtx->mutex))
+> +		while (!ww_mutex_trylock(&mtx->mutex, NULL))
+>  			cond_resched();
+>  	} else {
+>  		ww_mutex_lock(&mtx->mutex, NULL);
+> @@ -109,19 +118,38 @@ static int test_mutex(void)
+>  	return 0;
+>  }
+>  
+> -static int test_aa(void)
+> +static int test_aa(bool trylock)
+>  {
+>  	struct ww_mutex mutex;
+>  	struct ww_acquire_ctx ctx;
+>  	int ret;
+> +	const char *from = trylock ? "trylock" : "lock";
+>  
+>  	ww_mutex_init(&mutex, &ww_class);
+>  	ww_acquire_init(&ctx, &ww_class);
+>  
+> -	ww_mutex_lock(&mutex, &ctx);
+> +	if (!trylock) {
+> +		ret = ww_mutex_lock(&mutex, &ctx);
+> +		if (ret) {
+> +			pr_err("%s: initial lock failed!\n", __func__);
+> +			goto out;
+> +		}
+> +	} else {
+> +		if (!ww_mutex_trylock(&mutex, &ctx)) {
+> +			pr_err("%s: initial trylock failed!\n", __func__);
+> +			goto out;
+> +		}
+> +	}
+>  
+> -	if (ww_mutex_trylock(&mutex))  {
+> -		pr_err("%s: trylocked itself!\n", __func__);
+> +	if (ww_mutex_trylock(&mutex, NULL))  {
+> +		pr_err("%s: trylocked itself without context from %s!\n", __func__, from);
+> +		ww_mutex_unlock(&mutex);
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	if (ww_mutex_trylock(&mutex, &ctx))  {
+> +		pr_err("%s: trylocked itself with context from %s!\n", __func__, from);
+>  		ww_mutex_unlock(&mutex);
+>  		ret = -EINVAL;
+>  		goto out;
+> @@ -129,17 +157,17 @@ static int test_aa(void)
+>  
+>  	ret = ww_mutex_lock(&mutex, &ctx);
+>  	if (ret != -EALREADY) {
+> -		pr_err("%s: missed deadlock for recursing, ret=%d\n",
+> -		       __func__, ret);
+> +		pr_err("%s: missed deadlock for recursing, ret=%d from %s\n",
+> +		       __func__, ret, from);
+>  		if (!ret)
+>  			ww_mutex_unlock(&mutex);
+>  		ret = -EINVAL;
+>  		goto out;
+>  	}
+>  
+> +	ww_mutex_unlock(&mutex);
+>  	ret = 0;
+>  out:
+> -	ww_mutex_unlock(&mutex);
+>  	ww_acquire_fini(&ctx);
+>  	return ret;
+>  }
+> @@ -150,7 +178,7 @@ struct test_abba {
+>  	struct ww_mutex b_mutex;
+>  	struct completion a_ready;
+>  	struct completion b_ready;
+> -	bool resolve;
+> +	bool resolve, trylock;
+>  	int result;
+>  };
+>  
+> @@ -160,8 +188,13 @@ static void test_abba_work(struct work_s
+>  	struct ww_acquire_ctx ctx;
+>  	int err;
+>  
+> -	ww_acquire_init(&ctx, &ww_class);
+> -	ww_mutex_lock(&abba->b_mutex, &ctx);
+> +	ww_acquire_init_noinject(&ctx, &ww_class);
+> +	if (!abba->trylock)
+> +		ww_mutex_lock(&abba->b_mutex, &ctx);
+> +	else
+> +		WARN_ON(!ww_mutex_trylock(&abba->b_mutex, &ctx));
+> +
+> +	WARN_ON(READ_ONCE(abba->b_mutex.ctx) != &ctx);
+>  
+>  	complete(&abba->b_ready);
+>  	wait_for_completion(&abba->a_ready);
+> @@ -181,7 +214,7 @@ static void test_abba_work(struct work_s
+>  	abba->result = err;
+>  }
+>  
+> -static int test_abba(bool resolve)
+> +static int test_abba(bool trylock, bool resolve)
+>  {
+>  	struct test_abba abba;
+>  	struct ww_acquire_ctx ctx;
+> @@ -192,12 +225,18 @@ static int test_abba(bool resolve)
+>  	INIT_WORK_ONSTACK(&abba.work, test_abba_work);
+>  	init_completion(&abba.a_ready);
+>  	init_completion(&abba.b_ready);
+> +	abba.trylock = trylock;
+>  	abba.resolve = resolve;
+>  
+>  	schedule_work(&abba.work);
+>  
+> -	ww_acquire_init(&ctx, &ww_class);
+> -	ww_mutex_lock(&abba.a_mutex, &ctx);
+> +	ww_acquire_init_noinject(&ctx, &ww_class);
+> +	if (!trylock)
+> +		ww_mutex_lock(&abba.a_mutex, &ctx);
+> +	else
+> +		WARN_ON(!ww_mutex_trylock(&abba.a_mutex, &ctx));
+> +
+> +	WARN_ON(READ_ONCE(abba.a_mutex.ctx) != &ctx);
+>  
+>  	complete(&abba.a_ready);
+>  	wait_for_completion(&abba.b_ready);
+> @@ -249,7 +288,7 @@ static void test_cycle_work(struct work_
+>  	struct ww_acquire_ctx ctx;
+>  	int err, erra = 0;
+>  
+> -	ww_acquire_init(&ctx, &ww_class);
+> +	ww_acquire_init_noinject(&ctx, &ww_class);
+>  	ww_mutex_lock(&cycle->a_mutex, &ctx);
+>  
+>  	complete(cycle->a_signal);
+> @@ -581,7 +620,9 @@ static int stress(int nlocks, int nthrea
+>  static int __init test_ww_mutex_init(void)
+>  {
+>  	int ncpus = num_online_cpus();
+> -	int ret;
+> +	int ret, i;
+> +
+> +	printk(KERN_INFO "Beginning ww mutex selftests\n");
+>  
+>  	wq = alloc_workqueue("test-ww_mutex", WQ_UNBOUND, 0);
+>  	if (!wq)
+> @@ -591,17 +632,19 @@ static int __init test_ww_mutex_init(voi
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = test_aa();
+> +	ret = test_aa(false);
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = test_abba(false);
+> +	ret = test_aa(true);
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = test_abba(true);
+> -	if (ret)
+> -		return ret;
+> +	for (i = 0; i < 4; i++) {
+> +		ret = test_abba(i & 1, i & 2);
+> +		if (ret)
+> +			return ret;
+> +	}
+>  
+>  	ret = test_cycle(ncpus);
+>  	if (ret)
+> @@ -619,6 +662,7 @@ static int __init test_ww_mutex_init(voi
+>  	if (ret)
+>  		return ret;
+>  
+> +	printk(KERN_INFO "All ww mutex selftests passed\n");
+>  	return 0;
+>  }
+>  
+> --- a/kernel/locking/ww_rt_mutex.c
+> +++ b/kernel/locking/ww_rt_mutex.c
+> @@ -9,6 +9,31 @@
+>  #define WW_RT
+>  #include "rtmutex.c"
+>  
+> +int ww_mutex_trylock(struct ww_mutex *lock, struct ww_acquire_ctx *ww_ctx)
+> +{
+> +	struct rt_mutex *rtm = &lock->base;
+> +
+> +	if (!ww_ctx)
+> +		return rt_mutex_trylock(rtm);
+> +
+> +	/*
+> +	 * Reset the wounded flag after a kill. No other process can
+> +	 * race and wound us here, since they can't have a valid owner
+> +	 * pointer if we don't have any locks held.
+> +	 */
+> +	if (ww_ctx->acquired == 0)
+> +		ww_ctx->wounded = 0;
+> +
+> +	if (__rt_mutex_trylock(&rtm->rtmutex)) {
+> +		ww_mutex_set_context_fastpath(lock, ww_ctx);
+> +		mutex_acquire_nest(&rtm->dep_map, 0, 1, ww_ctx->dep_map, _RET_IP_);
+> +		return 1;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ww_mutex_trylock);
+> +
+>  static int __sched
+>  __ww_rt_mutex_lock(struct ww_mutex *lock, struct ww_acquire_ctx *ww_ctx,
+>  		   unsigned int state, unsigned long ip)
+> --- a/lib/locking-selftest.c
+> +++ b/lib/locking-selftest.c
+> @@ -258,7 +258,7 @@ static void init_shared_classes(void)
+>  #define WWAF(x)			ww_acquire_fini(x)
+>  
+>  #define WWL(x, c)		ww_mutex_lock(x, c)
+> -#define WWT(x)			ww_mutex_trylock(x)
+> +#define WWT(x)			ww_mutex_trylock(x, NULL)
+>  #define WWL1(x)			ww_mutex_lock(x, NULL)
+>  #define WWU(x)			ww_mutex_unlock(x)
+>  
+
+
