@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A3440AB42
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 11:58:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E54740AB4C
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 12:01:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C71376E461;
-	Tue, 14 Sep 2021 09:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A416E45C;
+	Tue, 14 Sep 2021 10:01:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 323826E45C;
- Tue, 14 Sep 2021 09:58:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82FCB6E45C;
+ Tue, 14 Sep 2021 10:01:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2811FA47DB;
- Tue, 14 Sep 2021 09:58:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0567154967673700568=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79CF0A00E8;
+ Tue, 14 Sep 2021 10:01:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Peter Zijlstra" <peterz@infradead.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Sep 2021 09:58:05 -0000
-Message-ID: <163161348513.3455.8144995648102646486@emeril.freedesktop.org>
+Date: Tue, 14 Sep 2021 10:01:07 -0000
+Message-ID: <163161366746.3456.400318035909316860@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210907132044.157225-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20210907132044.157225-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Iga2Vy?=
- =?utf-8?q?nel/locking=3A_Add_context_to_ww=5Fmutex=5Ftrylock=2E_=28rev4?=
- =?utf-8?q?=29?=
+References: <20210914085033.2833993-1-matthew.auld@intel.com>
+In-Reply-To: <20210914085033.2833993-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv2=2C1/7=5D_drm/i915/gem=3A_Break_o?=
+ =?utf-8?q?ut_some_shmem_backend_utils?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,283 +46,27 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0567154967673700568==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: kernel/locking: Add context to ww_mutex_trylock. (rev4)
-URL   : https://patchwork.freedesktop.org/series/94437/
-State : failure
+Series: series starting with [v2,1/7] drm/i915/gem: Break out some shmem backend utils
+URL   : https://patchwork.freedesktop.org/series/94648/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10579 -> Patchwork_21036
-====================================================
+$ dim checkpatch origin/drm-tip
+d3fcbc14d6ee drm/i915/gem: Break out some shmem backend utils
+5e8ae127a95f drm/ttm: add TTM_PAGE_FLAG_SHMEM
+56dd3266c291 drm/i915/ttm: add tt shmem backend
+89087b82443e drm/i915/ttm: use cached system pages when evicting lmem
+3eb4ab240a73 drm/i915: try to simplify make_{un}shrinkable
+-:164: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#164: FILE: drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:510:
+ 
++
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_21036 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21036, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21036:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@reload:
-    - fi-icl-u2:          NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-cfl-8109u:       NOTRUN -> [INCOMPLETE][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-cfl-8109u/igt@i915_selftest@live@mman.html
-    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-rkl-11600/igt@i915_selftest@live@mman.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-icl-y:           [TIMEOUT][4] -> [INCOMPLETE][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-icl-y/igt@i915_module_load@reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-y/igt@i915_module_load@reload.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@reload:
-    - {fi-jsl-1}:         [TIMEOUT][6] -> [INCOMPLETE][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-jsl-1/igt@i915_module_load@reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-jsl-1/igt@i915_module_load@reload.html
-
-  * igt@runner@aborted:
-    - {fi-ehl-2}:         NOTRUN -> [FAIL][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-ehl-2/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21036 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@runner@aborted:
-    - fi-rkl-11600:       NOTRUN -> [FAIL][9] ([i915#3928])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-rkl-11600/igt@runner@aborted.html
-    - fi-cfl-8109u:       NOTRUN -> [FAIL][10] ([i915#2426] / [i915#3363])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-cfl-8109u/igt@runner@aborted.html
-    - fi-icl-u2:          NOTRUN -> [FAIL][11] ([i915#2426] / [i915#3363] / [i915#3690])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-u2/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          [INCOMPLETE][12] -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-    - fi-rkl-11600:       [INCOMPLETE][14] -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html
-    - fi-cfl-8109u:       [INCOMPLETE][16] -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
+total: 0 errors, 0 warnings, 1 checks, 194 lines checked
+f2013b99cd76 drm/i915/ttm: make evicted shmem pages visible to the shrinker
+dba19f313885 drm/i915/ttm: enable shmem tt backend
 
 
-Participating hosts (39 -> 36)
-------------------------------
-
-  Missing    (3): fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10579 -> Patchwork_21036
-
-  CI-20190529: 20190529
-  CI_DRM_10579: a83151fa02e8d3e90729db21ee0e3830ff8c9565 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21036: 3e5b7ed1e30dd3a8399c11395786546eb4e52ab5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3e5b7ed1e30d kernel/locking: Add context to ww_mutex_trylock.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/index.html
-
---===============0567154967673700568==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>kernel/locking: Add context to ww_mutex_trylock. (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94437/">https://patchwork.freedesktop.org/series/94437/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10579 -&gt; Patchwork_21036</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21036 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21036, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21036:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-u2/igt@i915_module_load@reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-cfl-8109u/igt@i915_selftest@live@mman.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-rkl-11600/igt@i915_selftest@live@mman.html">INCOMPLETE</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-icl-y/igt@i915_module_load@reload.html">TIMEOUT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-y/igt@i915_module_load@reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-jsl-1/igt@i915_module_load@reload.html">TIMEOUT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-jsl-1/igt@i915_module_load@reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>{fi-ehl-2}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-ehl-2/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21036 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-rkl-11600/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10579/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21036/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 36)</h2>
-<p>Missing    (3): fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10579 -&gt; Patchwork_21036</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10579: a83151fa02e8d3e90729db21ee0e3830ff8c9565 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21036: 3e5b7ed1e30dd3a8399c11395786546eb4e52ab5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3e5b7ed1e30d kernel/locking: Add context to ww_mutex_trylock.</p>
-
-</body>
-</html>
-
---===============0567154967673700568==--
