@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFA240A76F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 09:31:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3516540A7DA
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 09:38:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B56D89E57;
-	Tue, 14 Sep 2021 07:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DADDA6E420;
+	Tue, 14 Sep 2021 07:37:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2DCA89E57
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 07:31:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="209007540"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="209007540"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 00:31:50 -0700
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCC636E420
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 07:37:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="202088461"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="202088461"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 00:37:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="451922765"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga002.jf.intel.com with ESMTP; 14 Sep 2021 00:31:50 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="609505501"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga001.fm.intel.com with ESMTP; 14 Sep 2021 00:37:57 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 14 Sep 2021 00:31:49 -0700
+ 15.1.2242.12; Tue, 14 Sep 2021 00:37:56 -0700
 Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 14 Sep 2021 00:31:48 -0700
+ 15.1.2242.12; Tue, 14 Sep 2021 00:37:55 -0700
 Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
  BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.012;
- Tue, 14 Sep 2021 13:01:46 +0530
+ Tue, 14 Sep 2021 13:07:53 +0530
 From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "Nikula, Jani" <jani.nikula@intel.com>, "Navare, Manasi D"
  <manasi.d.navare@intel.com>
 Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC engine
  for higher moderates
-Thread-Index: AQHXqK0inD+P6mZa3kyDbF0BuUUoBquixrYAgABcbgA=
-Date: Tue, 14 Sep 2021 07:31:46 +0000
-Message-ID: <9dd78b35e9bf41f8816a0e7dedf75c64@intel.com>
+Thread-Index: AQHXqK0inD+P6mZa3kyDbF0BuUUoBquixBCAgABgfSA=
+Date: Tue, 14 Sep 2021 07:37:53 +0000
+Message-ID: <ca11a0d5ffe24113935e1dd7d4d77ae1@intel.com>
 References: <20210913143923.21119-1-vandita.kulkarni@intel.com>
- <YUBPJrm1IZWwukS5@intel.com>
-In-Reply-To: <YUBPJrm1IZWwukS5@intel.com>
+ <20210914071909.GA27173@intel.com>
+In-Reply-To: <20210914071909.GA27173@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -53,7 +53,7 @@ dlp-product: dlpe-windows
 dlp-reaction: no-action
 dlp-version: 11.6.200.16
 x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC engine
@@ -74,8 +74,8 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Tuesday, September 14, 2021 12:59 PM
+> From: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
+> Sent: Tuesday, September 14, 2021 12:49 PM
 > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
 > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>=
 ;
@@ -139,19 +139,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 > > -	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
 > > +	if (adjusted_mode->crtc_clock > cdclk_state->actual.cdclk ||
 >=20
-> This is wrong. We compute the cdclk based on the requirements of the
-> mode/etc., not the other way around.
+> So in the end, we didn't have to bump CDCLK up to get rid of that?
 
-Okay , So you suggest that we set the cd clock to max when we have such req=
-uirement, than enabling the second engine?
+The solution that could fix the underruns was either of these:  set max cdc=
+lk that can drive this or enable the second dsc engine if slice count  > 2 =
+ to achieve 2ppc.
 
+>=20
+> Anyways, checked with BSpec 49259, seems to make sense, was no point in
+> comparing to max CDCLK, which is not even currently used.
+>=20
+> Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 >=20
 > >  	    pipe_config->bigjoiner) {
 > >  		if (pipe_config->dsc.slice_count < 2) {
 > >  			drm_dbg_kms(&dev_priv->drm,
 > > --
 > > 2.32.0
->=20
-> --
-> Ville Syrj=E4l=E4
-> Intel
+> >
