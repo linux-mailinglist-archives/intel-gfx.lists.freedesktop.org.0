@@ -1,74 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10E4C40B03F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 16:08:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B56C540B095
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 16:25:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281C06E49F;
-	Tue, 14 Sep 2021 14:08:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7544D89CDF;
+	Tue, 14 Sep 2021 14:25:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52EC96E49F
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 14:08:01 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id u16so20448838wrn.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 07:08:01 -0700 (PDT)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B43366E4AA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 14:25:12 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id m9so20584090wrb.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 07:25:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Dg8cDQ8ehBXndqT6qwECef/mwepLxtZdiJ5pZmst1Zg=;
- b=awwAKJfaIf7hQMZ6XqinIMywJmYd3dQ2pJKfKeYs4bvW/xRcw1cqOOteQRMnr7jl8P
- +IUboeJFm62w3rRyVYHf4HaxKf9vM9VgRjBtCqeB0rJSHV+F/vFqwApOkL/7xXeMyviv
- jgW4BQYR5PQK7Na831urlKILKoWhGhUtWR2t4=
+ :content-disposition:in-reply-to;
+ bh=39l65tskIAd0ta+T7Fx7rM81QzbjMBDRGva/8ONWPZs=;
+ b=f/2WHRpb/HgyB1uN/c69zTAs3XQ6lGfcTmwOnwstwOdyLOSe8avpbj7sbxVYI6geuo
+ 92Tg8LjCRIAtLLVGLKdrTOh9DwRWIUsnJl6rO2AEq9aR9m1jtK99tSrzeBv2dmHUSo0u
+ 7m3SHRVTTMzaaYgIRyOBU6OhPQlEXpvH6Er+E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=Dg8cDQ8ehBXndqT6qwECef/mwepLxtZdiJ5pZmst1Zg=;
- b=I8B8Xpd9NMORODfg3Lfin6VRfvEqtJCuORL/8B+Cn485WZ2dqQt5SbTST6oarnKTks
- 9jcri4f4ekuvKuMAD9xvyzbA99DUFJcG+bMol72ZnjMM5jKfuGj/4UQIA+31LCAUhQ43
- by0r1kno/4Sa0epDmsNK1PphFG12iSCpfa/3VvYha821J0RPgGWzzg8X914sT+R29riz
- 4cP0JfC4a/nV8zgD+BQ08nhS0JiSwi+U6e/to/MaH9nQiTYrcAoKXtNjCM3VzWG6I/FN
- 4tn7nHYeiyUWV2kg+CKmbGLYxuLmHfGhQik+bdJO4iWS3reZx1ZttCwh8gF894Evkfwi
- o7jw==
-X-Gm-Message-State: AOAM533mz5c9Wd1LLgxwgloXmolCCaDsqwuIB+C9/YEjrB8DpEmB3tNE
- n6HoRBUp9q/U1RE8Pdn0HzttSA==
-X-Google-Smtp-Source: ABdhPJyV7UnllTia7j2IPzScnkB/hpttETNyhicXALaPVgncjV4kwAZ/N4NyNacWWMSXiefCkRePuQ==
-X-Received: by 2002:a5d:5684:: with SMTP id f4mr17133175wrv.148.1631628479671; 
- Tue, 14 Sep 2021 07:07:59 -0700 (PDT)
+ :mime-version:content-disposition:in-reply-to;
+ bh=39l65tskIAd0ta+T7Fx7rM81QzbjMBDRGva/8ONWPZs=;
+ b=uwsMuumRu1aahDRahnVzG2JuftGGbMDtV5iV4DKyXCxC1UsGx6q3t7ds2XoOM3YFZA
+ Lt8n8uerSi9HgESBMe4T0X8U9meEPesQ/9MouyykOtlIYv4JNPtqLmQ+eiRgYLbYunvS
+ GWFOO45CCY93M+zpE4u4RbV/UmeBoUjQ5hpwRT2jtyENVMjjdgP2kZ9ekPt30SmBREXN
+ 1MYrb3FuJHEziSKQa6af6Y7B9Xgq/qB76GvVSqpI95h5LILbvU86Nw/noB3tgCpQlFIw
+ I1GTHPhkBBtdKodFnj9hFJIaN0nkYxxp2FQgvRPRoPykBL5mpFJP0r3/Kzgb5sZTDljm
+ qGgw==
+X-Gm-Message-State: AOAM5308AJ/64es5BTK2KArvgAQSsRvrk5b0EzQpJ9ivAsokLh62RVcN
+ u9FSH0YKZL92oV4F9XFhhXvk6hhDWKLZwQ==
+X-Google-Smtp-Source: ABdhPJzJnUeRQzqA2+VLckCaU82mlHyqyL+B9xXJCr9cxzGAQibf0SLTZbJnY8LubFyBqyMocvhJ7w==
+X-Received: by 2002:a05:6000:34a:: with SMTP id
+ e10mr19472595wre.421.1631629511136; 
+ Tue, 14 Sep 2021 07:25:11 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z2sm1225477wma.45.2021.09.14.07.07.58
+ by smtp.gmail.com with ESMTPSA id c2sm10607881wrs.60.2021.09.14.07.25.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Sep 2021 07:07:58 -0700 (PDT)
-Date: Tue, 14 Sep 2021 16:07:57 +0200
+ Tue, 14 Sep 2021 07:25:10 -0700 (PDT)
+Date: Tue, 14 Sep 2021 16:25:08 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
- Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <YUCsvTiS+AWfLyyL@phenom.ffwll.local>
-References: <5ea3f498cc5ae84fa6aeba97a64e4eb8ab32e02b.camel@linux.intel.com>
- <c67b3b42-d260-44dc-81cb-1d1eb18db643@amd.com>
- <a6badfa3-efbb-7830-e019-1dd61b0f800e@linux.intel.com>
- <5ca10e93-9bac-bd8f-39b0-d60fe06bc289@amd.com>
- <4b9e25e3-0a9d-a7a8-e092-8355c6b5878f@linux.intel.com>
- <7c0b6e6d-fd36-9a5c-758d-7c172c0c5e05@linux.intel.com>
- <0a0f1b45-a668-e0a8-dcd0-d4413ec3b39b@amd.com>
- <4add643ae0b1a1daa4657106f5554894145a9778.camel@linux.intel.com>
- <d3982c91-99eb-a0a8-a8ca-163d90feb0b6@amd.com>
- <bf1a66a2c2feb0d2131b2569079b77c2ecbb6d28.camel@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniele.ceraolospurio@intel.com, john.c.harrison@intel.com
+Message-ID: <YUCwxHL/aFHVbkx+@phenom.ffwll.local>
+References: <20210914050956.30685-1-matthew.brost@intel.com>
+ <20210914050956.30685-3-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bf1a66a2c2feb0d2131b2569079b77c2ecbb6d28.camel@linux.intel.com>
+In-Reply-To: <20210914050956.30685-3-matthew.brost@intel.com>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [RFC PATCH] drm/ttm: Add a private member to the
- struct ttm_resource
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/guc: Do error capture
+ asynchronously
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,279 +73,271 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 14, 2021 at 12:38:00PM +0200, Thomas Hellström wrote:
-> On Tue, 2021-09-14 at 10:53 +0200, Christian König wrote:
-> > Am 14.09.21 um 10:27 schrieb Thomas Hellström:
-> > > On Tue, 2021-09-14 at 09:40 +0200, Christian König wrote:
-> > > > Am 13.09.21 um 14:41 schrieb Thomas Hellström:
-> > > > > [SNIP]
-> > > > > > > > Let's say you have a struct ttm_object_vram and a struct
-> > > > > > > > ttm_object_gtt, both subclassing drm_gem_object. Then I'd
-> > > > > > > > say
-> > > > > > > > a
-> > > > > > > > driver would want to subclass those to attach identical
-> > > > > > > > data,
-> > > > > > > > extend functionality and provide a single i915_gem_object
-> > > > > > > > to
-> > > > > > > > the
-> > > > > > > > rest of the driver, which couldn't care less whether it's
-> > > > > > > > vram or
-> > > > > > > > gtt? Wouldn't you say having separate struct
-> > > > > > > > ttm_object_vram
-> > > > > > > > and a
-> > > > > > > > struct ttm_object_gtt in this case would be awkward?. We
-> > > > > > > > *want* to
-> > > > > > > > allow common handling.
-> > > > > > > Yeah, but that's a bad idea. This is like diamond
-> > > > > > > inheritance
-> > > > > > > in C++.
-> > > > > > > 
-> > > > > > > When you need the same functionality in different backends
-> > > > > > > you
-> > > > > > > implement that as separate object and then add a parent
-> > > > > > > class.
-> > > > > > > 
-> > > > > > > > It's the exact same situation here. With struct
-> > > > > > > > ttm_resource
-> > > > > > > > you
-> > > > > > > > let *different* implementation flavours subclass it,
-> > > > > > > > which
-> > > > > > > > makes it
-> > > > > > > > awkward for the driver to extend the functionality in a
-> > > > > > > > common way
-> > > > > > > > by subclassing, unless the driver only uses a single
-> > > > > > > > implementation.
-> > > > > > > Well the driver should use separate implementations for
-> > > > > > > their
-> > > > > > > different domains as much as possible.
-> > > > > > > 
-> > > > > > Hmm, Now you lost me a bit. Are you saying that the way we do
-> > > > > > dynamic
-> > > > > > backends in the struct ttm_buffer_object to facilitate driver
-> > > > > > subclassing is a bad idea or that the RFC with backpointer is
-> > > > > > a
-> > > > > > bad
-> > > > > > idea?
-> > > > > > 
-> > > > > > 
-> > > > > Or if you mean diamond inheritance is bad, yes that's basically
-> > > > > my
-> > > > > point.
-> > > > That diamond inheritance is a bad idea. What I don't understand
-> > > > is
-> > > > why
-> > > > you need that in the first place?
-> > > > 
-> > > > Information that you attach to a resource are specific to the
-> > > > domain
-> > > > where the resource is allocated from. So why do you want to
-> > > > attach
-> > > > the
-> > > > same information to a resources from different domains?
-> > > Again, for the same reason that we do that with struct
-> > > i915_gem_objects
-> > > and struct ttm_tts, to extend the functionality. I mean information
-> > > that we attach when we subclass a struct ttm_buffer_object doesn't
-> > > necessarily care about whether it's a VRAM or a GTT object. In
-> > > exactly
-> > > the same way, information that we want to attach to a struct
-> > > ttm_resource doesn't necessarily care whether it's a system or a
-> > > VRAM
-> > > resource, and need not be specific to any of those.
-> > > 
-> > > In this particular case, as memory management becomes asynchronous,
-> > > you
-> > > can't attach things like sg-tables and gpu binding information to
-> > > the
-> > > gem object anymore, because the object may have a number of
-> > > migrations
-> > > in the pipeline. Such things need to be attached to the structure
-> > > that
-> > > abstracts the memory allocation, and which may have a completely
-> > > different lifetime than the object itself.
-> > > 
-> > > In our particular case we want to attach information for cached
-> > > page
-> > > lookup and and sg-table, and moving forward probably the gpu
-> > > binding
-> > > (vma) information, and that is the same information for any
-> > > ttm_resource regardless where it's allocated from.
-> > > 
-> > > Typical example: A pipelined GPU operation happening before an
-> > > async
-> > > eviction goes wrong. We need to error capture and reset. But if we
-> > > look
-> > > at the object for error capturing, it's already updated pointing to
-> > > an
-> > > after-eviction resource, and the resource sits on a ghost object
-> > > (or in
-> > > the future when ghost objects go away perhaps in limbo somewhere).
-> > > 
-> > > We need to capture the memory pointed to by the struct ttm_resource
-> > > the
-> > > GPU was referencing, and to be able to do that we need to cache
-> > > driver-
-> > > specific info on the resource. Typically an sg-list and GPU binding
-> > > information.
-> > > 
-> > > Anyway, that cached information needs to be destroyed together with
-> > > the
-> > > resource and thus we need to be able to access that information
-> > > from
-> > > the resource in some way, regardless whether it's a pointer or
-> > > whether
-> > > we embed the struct resource.
-> > > 
-> > > I think it's pretty important here that we (using the inheritance
-> > > diagram below) recognize the need for D to inherit from A, just
-> > > like we
-> > > do for objects or ttm_tts.
-> > > 
-> > > 
-> > > > > Looking at
-> > > > > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMultiple_inheritance%23%2Fmedia%2FFile%3ADiamond_inheritance.svg&amp;data=04%7C01%7Cchristian.koenig%40amd.com%7C268bb562db8548b285b408d977598b2c%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637672048739103176%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=bPyDqiSF%2FHFZbl74ux0vfwh3uma5hZIUf2xbzb9yZz8%3D&amp;reserved=0
-> > > > >   
-> > > > > 
-> > > > > 
-> > > > > 1)
-> > > > > 
-> > > > > A would be the struct ttm_resource itself,
-> > > > > D would be struct i915_resource,
-> > > > > B would be struct ttm_range_mgr_node,
-> > > > > C would be struct i915_ttm_buddy_resource
-> > > > > 
-> > > > > And we need to resolve the ambiguity using the awkward union
-> > > > > construct, iff we need to derive from both B and C.
-> > > > > 
-> > > > > Struct ttm_buffer_object and struct ttm_tt instead have B) and
-> > > > > C)
-> > > > > being dynamic backends of A) or a single type derived from A)
-> > > > > Hence
-> > > > > the problem doesn't exist for these types.
-> > > > > 
-> > > > > So the question from last email remains, if ditching this RFC,
-> > > > > can
-> > > > > we
-> > > > > have B) and C) implemented by helpers that can be used from D)
-> > > > > and
-> > > > > that don't derive from A?
-> > > > Well we already have that in the form of drm_mm. I mean the
-> > > > ttm_range_manager is just a relatively small glue code which
-> > > > implements
-> > > > the TTMs resource interface using the drm_mm object and a
-> > > > spinlock.
-> > > > IIRC
-> > > > that less than 200 lines of code.
-> > > > 
-> > > > So you should already have the necessary helpers and just need to
-> > > > implement the resource manager as far as I can see.
-> > > > 
-> > > > I mean I reused the ttm_range_manager_node in for amdgpu_gtt_mgr
-> > > > and
-> > > > could potentially reuse a bit more of the ttm_range_manager code.
-> > > > But
-> > > > I
-> > > > don't see that as much of an issue, the extra functionality there
-> > > > is
-> > > > just minimal.
-> > > Sure but that would give up the prereq of having reusable resource
-> > > manager implementations. What happens if someone would like to
-> > > reuse
-> > > the buddy manager? And to complicate things even more, the
-> > > information
-> > > we attach to VRAM resources also needs to be attached to system
-> > > resources. Sure we could probably re-implement a combined system-
-> > > buddy-
-> > > range manager, but that seems like something overly complex.
-> > > 
-> > > The other object examples resolve the diamond inheritance with a
-> > > pointer to the specialization (BC) and let D derive from A.
-> > > 
-> > > TTM resources do it backwards. If we can just recognize that and
-> > > ponder
-> > > what's the easiest way to resolve this given the current design, I
-> > > actually think we'd arrive at a backpointer to allow downcasting
-> > > from A
-> > > to D.
-> > 
-> > Yeah, but I think you are approaching that from the wrong side.
-> > 
-> > For use cases like this I think you should probably have the
-> > following 
-> > objects and inheritances:
-> > 
-> > 1. Driver specific objects like i915_sg, i915_vma which don't inherit
-> > anything from TTM.
-> > 2. i915_vram_node which inherits from ttm_resource or a potential 
-> > ttm_buddy_allocator.
-> > 3. i915_gtt_node which inherits from ttm_range_manger_node.
-> > 4. Maybe i915_sys_node which inherits from ttm_resource as well.
-> > 
-> > The managers for the individual domains then provide the glue code to
-> > implement both the TTM resource interface as well as a driver
-> > specific 
-> > interface to access the driver objects.
+On Mon, Sep 13, 2021 at 10:09:54PM -0700, Matthew Brost wrote:
+> An error capture allocates memory, memory allocations depend on resets,
+> and resets need to flush the G2H handlers to seal several races. If the
+> error capture is done from the G2H handler this creates a circular
+> dependency. To work around this, do a error capture in a work queue
+> asynchronously from the G2H handler. This should be fine as (eventually)
+> all register state is put into a buffer by the GuC so it is safe to
+> restart the context before the error capture is complete.
 > 
-> Well yes, but this is not really much better than the union thing. More
-> memory efficient but also more duplicated type definitions and manager
-> definitions and in addition overriding the default system resource
-> manager, not counting the kerneldoc needed to explain why all this is
-> necessary.
-> 
-> It was this complexity I was trying to get away from in the first
-> place.
+> Example of lockdep splat below:
 
-I honestly don't think the union thing is the worst. At least as long as
-we're reworking i915 at a fairly invasive pace it's probably the lest
-worst approach.
+Pushing work into a work_struct to fix a lockdep splat does nothing more
+than hide the lockdep splat. Or it creates a race.
 
-For the specific case of sg list I'm also not sure how great our current
-i915 design of "everything is an sg" really is. In the wider community
-there's clear rejection of sg for p2p addresses, so having this as a
-per-ttm_res_manager kind of situation is probably not the worst.
-
-In that world every ttm_res_manager would have it's own implementation of
-binding into ptes, which then iterate over the pagetables with some common
-abstraction. So in a way more of a helper approach for the i915
-implementations of the various hooks, at the cost of a bit of code
-duplication.
-
-I do agree with Christian that the various backpointers to sort out the
-diamond inheritence issue isn't not great. The other options aren't pretty
-either, but at least it's more contained to i915.
+So no, let's not make this more of a mess than it already is please.
 -Daniel
 
-
-> /Thomas
 > 
+> [  154.625989] ======================================================
+> [  154.632195] WARNING: possible circular locking dependency detected
+> [  154.638393] 5.14.0-rc5-guc+ #50 Tainted: G     U
+> [  154.643991] ------------------------------------------------------
+> [  154.650196] i915_selftest/1673 is trying to acquire lock:
+> [  154.655621] ffff8881079cb918 ((work_completion)(&ct->requests.worker)){+.+.}-{0:0}, at: __flush_work+0x350/0x4d0 [  154.665826]
+>                but task is already holding lock:
+> [  154.671682] ffff8881079cbfb8 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0xf0/0x300 [i915] [  154.680659]
+>                which lock already depends on the new lock.
 > 
+> [  154.688857]
+>                the existing dependency chain (in reverse order) is:
+> [  154.696365]
+>                -> #2 (&gt->reset.mutex){+.+.}-{3:3}:
+> [  154.702571]        lock_acquire+0xd2/0x300
+> [  154.706695]        i915_gem_shrinker_taints_mutex+0x2d/0x50 [i915]
+> [  154.712959]        intel_gt_init_reset+0x61/0x80 [i915]
+> [  154.718258]        intel_gt_init_early+0xe6/0x120 [i915]
+> [  154.723648]        i915_driver_probe+0x592/0xdc0 [i915]
+> [  154.728942]        i915_pci_probe+0x43/0x1c0 [i915]
+> [  154.733891]        pci_device_probe+0x9b/0x110
+> [  154.738362]        really_probe+0x1a6/0x3a0
+> [  154.742568]        __driver_probe_device+0xf9/0x170
+> [  154.747468]        driver_probe_device+0x19/0x90
+> [  154.752114]        __driver_attach+0x99/0x170
+> [  154.756492]        bus_for_each_dev+0x73/0xc0
+> [  154.760870]        bus_add_driver+0x14b/0x1f0
+> [  154.765248]        driver_register+0x67/0xb0
+> [  154.769542]        i915_init+0x18/0x8c [i915]
+> [  154.773964]        do_one_initcall+0x53/0x2e0
+> [  154.778343]        do_init_module+0x56/0x210
+> [  154.782639]        load_module+0x25fc/0x29f0
+> [  154.786934]        __do_sys_finit_module+0xae/0x110
+> [  154.791835]        do_syscall_64+0x38/0xc0
+> [  154.795958]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [  154.801558]
+>                -> #1 (fs_reclaim){+.+.}-{0:0}:
+> [  154.807241]        lock_acquire+0xd2/0x300
+> [  154.811361]        fs_reclaim_acquire+0x9e/0xd0
+> [  154.815914]        kmem_cache_alloc_trace+0x30/0x790
+> [  154.820899]        i915_gpu_coredump_alloc+0x53/0x1a0 [i915]
+> [  154.826649]        i915_gpu_coredump+0x39/0x560 [i915]
+> [  154.831866]        i915_capture_error_state+0xa/0x70 [i915]
+> [  154.837513]        intel_guc_context_reset_process_msg+0x174/0x1f0 [i915]
+> [  154.844383]        ct_incoming_request_worker_func+0x130/0x1b0 [i915]
+> [  154.850898]        process_one_work+0x264/0x590
+> [  154.855451]        worker_thread+0x4b/0x3a0
+> [  154.859655]        kthread+0x147/0x170
+> [  154.863428]        ret_from_fork+0x1f/0x30
+> [  154.867548]
+>                -> #0 ((work_completion)(&ct->requests.worker)){+.+.}-{0:0}:
+> [  154.875747]        check_prev_add+0x90/0xc30
+> [  154.880042]        __lock_acquire+0x1643/0x2110
+> [  154.884595]        lock_acquire+0xd2/0x300
+> [  154.888715]        __flush_work+0x373/0x4d0
+> [  154.892920]        intel_guc_submission_reset_prepare+0xf3/0x340 [i915]
+> [  154.899606]        intel_uc_reset_prepare+0x40/0x50 [i915]
+> [  154.905166]        reset_prepare+0x55/0x60 [i915]
+> [  154.909946]        intel_gt_reset+0x11c/0x300 [i915]
+> [  154.914984]        do_device_reset+0x13/0x20 [i915]
+> [  154.919936]        check_whitelist_across_reset+0x166/0x250 [i915]
+> [  154.926212]        live_reset_whitelist.cold+0x6a/0x7a [i915]
+> [  154.932037]        __i915_subtests.cold+0x20/0x74 [i915]
+> [  154.937428]        __run_selftests.cold+0x96/0xee [i915]
+> [  154.942816]        i915_live_selftests+0x2c/0x60 [i915]
+> [  154.948125]        i915_pci_probe+0x93/0x1c0 [i915]
+> [  154.953076]        pci_device_probe+0x9b/0x110
+> [  154.957545]        really_probe+0x1a6/0x3a0
+> [  154.961749]        __driver_probe_device+0xf9/0x170
+> [  154.966653]        driver_probe_device+0x19/0x90
+> [  154.971290]        __driver_attach+0x99/0x170
+> [  154.975671]        bus_for_each_dev+0x73/0xc0
+> [  154.980053]        bus_add_driver+0x14b/0x1f0
+> [  154.984431]        driver_register+0x67/0xb0
+> [  154.988725]        i915_init+0x18/0x8c [i915]
+> [  154.993149]        do_one_initcall+0x53/0x2e0
+> [  154.997527]        do_init_module+0x56/0x210
+> [  155.001822]        load_module+0x25fc/0x29f0
+> [  155.006118]        __do_sys_finit_module+0xae/0x110
+> [  155.011019]        do_syscall_64+0x38/0xc0
+> [  155.015139]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [  155.020729]
+>                other info that might help us debug this:
 > 
+> [  155.028752] Chain exists of:
+>                  (work_completion)(&ct->requests.worker) --> fs_reclaim --> &gt->reset.mutex
 > 
-> > Amdgpu just uses a switch/case for now, but you could as well extend
-> > the 
-> > ttm_resource_manager_func table and upcast that inside the driver.
-> > 
-> > Regards,
-> > Christian.
-> > 
-> > > 
-> > > Thanks,
-> > > Thomas
-> > > 
-> > > 
-> > > 
-> > > > Regards,
-> > > > Christian.
-> > > > 
-> > > > > Thanks,
-> > > > > 
-> > > > > Thomas
-> > > > > 
-> > > > > 
-> > > > > 
-> > > 
-> > 
+> [  155.041294]  Possible unsafe locking scenario:
 > 
+> [  155.047240]        CPU0                    CPU1
+> [  155.051791]        ----                    ----
+> [  155.056344]   lock(&gt->reset.mutex);
+> [  155.060026]                                lock(fs_reclaim);
+> [  155.065706]                                lock(&gt->reset.mutex);
+> [  155.071912]   lock((work_completion)(&ct->requests.worker));
+> [  155.077595]
+>                 *** DEADLOCK ***
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_context.c       |  2 +
+>  drivers/gpu/drm/i915/gt/intel_context_types.h |  7 +++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 10 ++++
+>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 47 +++++++++++++++++--
+>  4 files changed, 62 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index ff637147b1a9..72ad60e9d908 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -399,6 +399,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>  	ce->guc_id.id = GUC_INVALID_LRC_ID;
+>  	INIT_LIST_HEAD(&ce->guc_id.link);
+>  
+> +	INIT_LIST_HEAD(&ce->guc_capture_link);
+> +
+>  	/*
+>  	 * Initialize fence to be complete as this is expected to be complete
+>  	 * unless there is a pending schedule disable outstanding.
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index af43b3c83339..925a06162e8e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -206,6 +206,13 @@ struct intel_context {
+>  		struct list_head link;
+>  	} guc_id;
+>  
+> +	/**
+> +	 * @guc_capture_link: in guc->submission_state.capture_list when an
+> +	 * error capture is pending on this context, protected by
+> +	 * guc->submission_state.lock
+> +	 */
+> +	struct list_head guc_capture_link;
+> +
+>  #ifdef CONFIG_DRM_I915_SELFTEST
+>  	/**
+>  	 * @drop_schedule_enable: Force drop of schedule enable G2H for selftest
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index 0e28f490c12d..87ee792eafd4 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -88,6 +88,16 @@ struct intel_guc {
+>  		 * refs
+>  		 */
+>  		struct list_head guc_id_list;
+> +		/**
+> +		 * @capture_list: list of intel_context that need to capture
+> +		 * error state
+> +		 */
+> +		struct list_head capture_list;
+> +		/**
+> +		 * @capture_worker: worker to do error capture when the GuC
+> +		 * signals a context has been reset
+> +		 */
+> +		struct work_struct capture_worker;
+>  	} submission_state;
+>  
+>  	/**
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 678da915eb9d..ba6838a35a69 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -91,7 +91,8 @@
+>   *
+>   * guc->submission_state.lock
+>   * Protects guc_id allocation for the given GuC, i.e. only one context can be
+> - * doing guc_id allocation operations at a time for each GuC in the system.
+> + * doing guc_id allocation operations at a time for each GuC in the system. Also
+> + * protects everything else under the guc->submission_state sub-structure.
+>   *
+>   * ce->guc_state.lock
+>   * Protects everything under ce->guc_state. Ensures that a context is in the
+> @@ -1126,6 +1127,8 @@ void intel_guc_submission_reset_finish(struct intel_guc *guc)
+>  	intel_gt_unpark_heartbeats(guc_to_gt(guc));
+>  }
+>  
+> +static void capture_worker_func(struct work_struct *w);
+> +
+>  /*
+>   * Set up the memory resources to be shared with the GuC (via the GGTT)
+>   * at firmware loading time.
+> @@ -1151,6 +1154,8 @@ int intel_guc_submission_init(struct intel_guc *guc)
+>  	spin_lock_init(&guc->submission_state.lock);
+>  	INIT_LIST_HEAD(&guc->submission_state.guc_id_list);
+>  	ida_init(&guc->submission_state.guc_ids);
+> +	INIT_LIST_HEAD(&guc->submission_state.capture_list);
+> +	INIT_WORK(&guc->submission_state.capture_worker, capture_worker_func);
+>  
+>  	return 0;
+>  }
+> @@ -2879,17 +2884,51 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+>  	return 0;
+>  }
+>  
+> -static void capture_error_state(struct intel_guc *guc,
+> -				struct intel_context *ce)
+> +static void capture_worker_func(struct work_struct *w)
+>  {
+> +	struct intel_guc *guc = container_of(w, struct intel_guc,
+> +					     submission_state.capture_worker);
+>  	struct intel_gt *gt = guc_to_gt(guc);
+>  	struct drm_i915_private *i915 = gt->i915;
+> +	struct intel_context *ce =
+> +		list_first_entry(&guc->submission_state.capture_list,
+> +				 struct intel_context, guc_capture_link);
+>  	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
+> +	unsigned long flags;
+>  	intel_wakeref_t wakeref;
+>  
+> +	spin_lock_irqsave(&guc->submission_state.lock, flags);
+> +	list_del_init(&ce->guc_capture_link);
+> +	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> +
+>  	intel_engine_set_hung_context(engine, ce);
+>  	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+> -		i915_capture_error_state(gt, engine->mask);
+> +		i915_capture_error_state(gt, ce->engine->mask);
+> +}
+> +
+> +static void capture_error_state(struct intel_guc *guc,
+> +				struct intel_context *ce)
+> +{
+> +	struct intel_gt *gt = guc_to_gt(guc);
+> +	struct drm_i915_private *i915 = gt->i915;
+> +	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&guc->submission_state.lock, flags);
+> +	list_add_tail(&guc->submission_state.capture_list,
+> +		      &ce->guc_capture_link);
+> +	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> +
+> +	/*
+> +	 * We do the error capture async as an error capture can allocate
+> +	 * memory, the reset path must flush the G2H handler in order to seal
+> +	 * several races, and the memory allocations depend on the reset path
+> +	 * (circular dependecy if error capture done here in the G2H handler).
+> +	 * Doing the error capture async should be ok, as (eventually) all
+> +	 * register state is captured in buffer by the GuC (i.e. it ok to
+> +	 * restart the context before the error capture is complete).
+> +	 */
+> +	queue_work(system_unbound_wq, &guc->submission_state.capture_worker);
+>  	atomic_inc(&i915->gpu_error.reset_engine_count[engine->uabi_class]);
+>  }
+>  
+> -- 
+> 2.32.0
 > 
 
 -- 
