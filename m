@@ -1,34 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF50540AA54
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 11:11:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 485A340AA45
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 11:09:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31EA389DFD;
-	Tue, 14 Sep 2021 09:11:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 494DB6E44B;
+	Tue, 14 Sep 2021 09:09:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1FEC89DFD
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 09:11:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="221601321"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="221601321"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 02:11:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="650691908"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga005.jf.intel.com with ESMTP; 14 Sep 2021 02:11:25 -0700
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Sep 2021 14:34:12 +0530
-Message-Id: <20210914090412.1393498-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 788316E441;
+ Tue, 14 Sep 2021 09:09:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="201441794"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="201441794"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 02:09:11 -0700
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="543866223"
+Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.216.6])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 02:09:07 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vasily Khoruzhick <anarsoul@gmail.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Lyude Paul <lyude@redhat.com>,
+ Sean Paul <seanpaul@chromium.org>, Aaron Ma <aaron.ma@canonical.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>
+In-Reply-To: <20210913193509.3575-1-anarsoul@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210913193509.3575-1-anarsoul@gmail.com>
+Date: Tue, 14 Sep 2021 12:09:03 +0300
+Message-ID: <87r1dr34nk.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove warning from the rps worker
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: add a delay before setting
+ panel brightness after power on
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,33 +54,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In commit 4e5c8a99e1cb ("drm/i915: Drop i915_request.lock requirement
-for intel_rps_boost()"), we decoupled the rps worker from the pm so
-that we could avoid the synchronization penalty which makes the
-assertion liable to run too early. Which makes warning invalid hence
-removed.
+On Mon, 13 Sep 2021, Vasily Khoruzhick <anarsoul@gmail.com> wrote:
+> Panel in my Dell XPS 7590, that uses Intel's HDR backlight interface to
+> control brightness, apparently needs a delay before setting brightness
+> after power on. Without this delay the panel does accept the setting
+> and may come up with some arbitrary brightness (sometimes it's too dark,
+> sometimes it's too bright, I wasn't able to find a system).
+>
+> I don't have access to the spec, so I'm not sure if it's expected
+> behavior or a quirk for particular device.
+>
+> Delay was chosen by experiment: it works with 100ms, but fails with
+> anything lower than 75ms.
 
-Fixes: 4e5c8a99e1cb ("drm/i915: Drop i915_request.lock requirement for intel_rps_boost()")
+Looks like we don't respect the panel delays for DPCD backlight. The
+values are used for setting up the panel power sequencer, and thus PWM
+based backlight, but we should probably use the delays in DPCD backlight
+code too.
 
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 2 --
- 1 file changed, 2 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index e1a198bbd135..172de6c9f949 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -882,8 +882,6 @@ void intel_rps_park(struct intel_rps *rps)
- 	if (!intel_rps_is_enabled(rps))
- 		return;
- 
--	GEM_BUG_ON(atomic_read(&rps->num_waiters));
--
- 	if (!intel_rps_clear_active(rps))
- 		return;
- 
+
+>
+> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 4f8337c7fd2e..c4f35e1b5870 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -210,6 +210,10 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  
+>  	ctrl = old_ctrl;
+>  	if (panel->backlight.edp.intel.sdr_uses_aux) {
+> +		/* Wait 100ms to ensure that panel is ready otherwise it may not
+> +		 * set chosen backlight level
+> +		 */
+> +		msleep(100);
+>  		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
+>  		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
+>  	} else {
+
 -- 
-2.31.1
-
+Jani Nikula, Intel Open Source Graphics Center
