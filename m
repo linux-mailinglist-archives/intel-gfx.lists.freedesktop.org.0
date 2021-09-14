@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62BE840BA1A
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 23:19:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D04240BA1B
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 23:19:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F286C6E826;
-	Tue, 14 Sep 2021 21:19:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45E4A6E827;
+	Tue, 14 Sep 2021 21:19:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAD46E822
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B40926E821
  for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 21:19:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="222187456"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="222187456"
+X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="222187457"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="222187457"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2021 14:19:41 -0700
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="482026291"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="482026293"
 Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
  ([10.24.14.60])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2021 14:19:41 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Daniel Vetter <daniel@ffwll.ch>,
- Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Tue, 14 Sep 2021 14:25:06 -0700
-Message-Id: <20210914212507.177511-4-jose.souza@intel.com>
+Date: Tue, 14 Sep 2021 14:25:07 -0700
+Message-Id: <20210914212507.177511-5-jose.souza@intel.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210914212507.177511-1-jose.souza@intel.com>
 References: <20210914212507.177511-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 4/5] drm/i915/display/psr: Use drm damage
- helpers to calculate plane damaged area
+Subject: [Intel-gfx] [PATCH v2 5/5] drm/i915/display/adlp: Add new PSR2
+ workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,121 +51,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm_atomic_helper_damage_iter_init() + drm_atomic_for_each_plane_damage()
-returns the full plane area in case no damaged area was set by
-userspace or it was discarted by driver.
+Wa_16014451276 fixes the starting coordinate for PSR2 selective
+updates. CHICKEN_TRANS definition of the workaround bit has a wrong
+name based on workaround definition and HSD.
 
-This is important to fix the rendering of userspace applications that
-does frontbuffer rendering and notify driver about dirty areas but do
-not set any dirty clips.
+Wa_14014971508 allows the screen to continue to be updated when
+coming back from DC5/DC6 and SF_SINGLE_FULL_FRAME bit is not kept
+set in PSR2_MAN_TRK_CTL.
 
-With this we don't need to worry about to check and mark the whole
-area as damaged in page flips.
+Wa_16012604467 fixes underruns when exiting PSR2 when it is in one
+of its internal states.
 
-Another important change here is the move of
-drm_atomic_add_affected_planes() call, it needs to called late
-otherwise the area of all the planes would be added to pipe_clip and
-not saving power.
+Wa_14014971508 is still in pending status in BSpec but by
+the time this is reviewed and ready to be merged it will be finalized.
 
-Cc: Daniel Vetter <daniel@ffwll.ch>
+v2:
+- renamed register to ADLP_1_BASED_X_GRANULARITY
+- added comment about all ADL-P supported panels being 1 based X
+granularity
+
+BSpec: 54369
+BSpec: 50054
 Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 37 +++++++++---------------
- 1 file changed, 13 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 27 +++++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_reg.h          |  4 ++++
+ 2 files changed, 30 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index f8fa30e50e70c..5a1535e11e6bd 100644
+index 5a1535e11e6bd..c1894b056d6c1 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -22,6 +22,7 @@
-  */
+@@ -1087,6 +1087,16 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp)
+ 		intel_de_write(dev_priv, reg, chicken);
+ 	}
  
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_damage_helper.h>
- 
- #include "display/intel_dp.h"
- 
-@@ -1578,10 +1579,6 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	if (!crtc_state->enable_psr2_sel_fetch)
- 		return 0;
- 
--	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
--	if (ret)
--		return ret;
--
- 	/*
- 	 * Calculate minimal selective fetch area of each plane and calculate
- 	 * the pipe damaged area.
-@@ -1591,8 +1588,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
- 					     new_plane_state, i) {
- 		struct drm_rect src, damaged_area = { .y1 = -1 };
--		struct drm_mode_rect *damaged_clips;
--		u32 num_clips, j;
-+		struct drm_atomic_helper_damage_iter iter;
-+		struct drm_rect clip;
- 
- 		if (new_plane_state->uapi.crtc != crtc_state->uapi.crtc)
- 			continue;
-@@ -1612,8 +1609,6 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 			break;
- 		}
- 
--		num_clips = drm_plane_get_damage_clips_count(&new_plane_state->uapi);
--
- 		/*
- 		 * If visibility or plane moved, mark the whole plane area as
- 		 * damaged as it needs to be complete redraw in the new and old
-@@ -1637,14 +1632,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 			cursor_area_workaround(new_plane_state, &damaged_area,
- 					       &pipe_clip);
- 			continue;
--		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha ||
--			   (!num_clips &&
--			    new_plane_state->uapi.fb != old_plane_state->uapi.fb)) {
--			/*
--			 * If the plane don't have damaged areas but the
--			 * framebuffer changed or alpha changed, mark the whole
--			 * plane area as damaged.
--			 */
-+		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha) {
-+			/* If alpha changed mark the whole plane area as damaged */
- 			damaged_area.y1 = new_plane_state->uapi.dst.y1;
- 			damaged_area.y2 = new_plane_state->uapi.dst.y2;
- 			clip_area_update(&pipe_clip, &damaged_area);
-@@ -1652,15 +1641,11 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 		}
- 
- 		drm_rect_fp_to_int(&src, &new_plane_state->uapi.src);
--		damaged_clips = drm_plane_get_damage_clips(&new_plane_state->uapi);
- 
--		for (j = 0; j < num_clips; j++) {
--			struct drm_rect clip;
--
--			clip.x1 = damaged_clips[j].x1;
--			clip.y1 = damaged_clips[j].y1;
--			clip.x2 = damaged_clips[j].x2;
--			clip.y2 = damaged_clips[j].y2;
-+		drm_atomic_helper_damage_iter_init(&iter,
-+						   &old_plane_state->uapi,
-+						   &new_plane_state->uapi);
-+		drm_atomic_for_each_plane_damage(&iter, &clip) {
- 			if (drm_rect_intersect(&clip, &src))
- 				clip_area_update(&damaged_area, &clip);
- 		}
-@@ -1676,6 +1661,10 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	if (full_update)
- 		goto skip_sel_fetch_set_loop;
- 
-+	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
-+	if (ret)
-+		return ret;
++	/*
++	 * Wa_16014451276:adlp
++	 * All supported adlp panels have 1-based X granularity, this may
++	 * cause issues if non-supported panels are used.
++	 */
++	if (IS_ALDERLAKE_P(dev_priv) &&
++	    intel_dp->psr.psr2_enabled)
++		intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
++			     ADLP_1_BASED_X_GRANULARITY);
 +
- 	intel_psr2_sel_fetch_pipe_alignment(crtc_state, &pipe_clip);
- 
  	/*
+ 	 * Per Spec: Avoid continuous PSR exit by masking MEMUP and HPD also
+ 	 * mask LPSP to avoid dependency on other drivers that might block
+@@ -1132,6 +1142,11 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp)
+ 			     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
+ 			     TRANS_SET_CONTEXT_LATENCY_MASK,
+ 			     TRANS_SET_CONTEXT_LATENCY_VALUE(1));
++
++	/* Wa_16012604467:adlp */
++	if (IS_ALDERLAKE_P(dev_priv) && intel_dp->psr.psr2_enabled)
++		intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
++			     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+ }
+ 
+ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+@@ -1321,6 +1336,11 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 			     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
+ 			     TRANS_SET_CONTEXT_LATENCY_MASK, 0);
+ 
++	/* Wa_16012604467:adlp */
++	if (IS_ALDERLAKE_P(dev_priv) && intel_dp->psr.psr2_enabled)
++		intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
++			     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
++
+ 	intel_snps_phy_update_psr_power_state(dev_priv, phy, false);
+ 
+ 	/* Disable PSR on Sink */
+@@ -1489,8 +1509,13 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+ 	u32 val = PSR2_MAN_TRK_CTL_ENABLE;
+ 
+ 	if (full_update) {
++		/*
++		 * Wa_14014971508:adlp
++		 * SINGLE_FULL_FRAME bit is not hold in register so can not be
++		 * restored by DMC, so using CONTINUOS_FULL_FRAME to mimic that
++		 */
+ 		if (IS_ALDERLAKE_P(dev_priv))
+-			val |= ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
++			val |= ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME;
+ 		else
+ 			val |= PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index c2853cc005ee6..c3a21f7c003de 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -8235,6 +8235,7 @@ enum {
+ #define  VSC_DATA_SEL_SOFTWARE_CONTROL	REG_BIT(25) /* GLK */
+ #define  FECSTALL_DIS_DPTSTREAM_DPTTG	REG_BIT(23)
+ #define  DDI_TRAINING_OVERRIDE_ENABLE	REG_BIT(19)
++#define  ADLP_1_BASED_X_GRANULARITY	REG_BIT(18)
+ #define  DDI_TRAINING_OVERRIDE_VALUE	REG_BIT(18)
+ #define  DDIE_TRAINING_OVERRIDE_ENABLE	REG_BIT(17) /* CHICKEN_TRANS_A only */
+ #define  DDIE_TRAINING_OVERRIDE_VALUE	REG_BIT(16) /* CHICKEN_TRANS_A only */
+@@ -12789,4 +12790,7 @@ enum skl_power_gate {
+ #define CLKREQ_POLICY			_MMIO(0x101038)
+ #define  CLKREQ_POLICY_MEM_UP_OVRD	REG_BIT(1)
+ 
++#define CLKGATE_DIS_MISC			_MMIO(0x46534)
++#define  CLKGATE_DIS_MISC_DMASC_GATING_DIS	REG_BIT(21)
++
+ #endif /* _I915_REG_H_ */
 -- 
 2.33.0
 
