@@ -1,35 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135FD40B847
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 21:40:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79C8F40B85E
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 21:52:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C6A6E59B;
-	Tue, 14 Sep 2021 19:40:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD17E6E5C5;
+	Tue, 14 Sep 2021 19:52:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9DA196E59B;
- Tue, 14 Sep 2021 19:40:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96815A00C9;
- Tue, 14 Sep 2021 19:40:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 545E36E5AE;
+ Tue, 14 Sep 2021 19:52:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="285805008"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="285805008"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 12:52:08 -0700
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="516082450"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 12:52:08 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date: Tue, 14 Sep 2021 12:51:51 -0700
+Message-Id: <20210914195151.560793-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Sep 2021 19:40:41 -0000
-Message-ID: <163164844159.3458.9675492930788217847@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210914193112.497379-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210914193112.497379-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Suspend_/_resume_backup-_and_restore_of_LMEM=2E?=
- =?utf-8?q?_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc/slpc: remove unneeded clflush calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,29 +46,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The clflush calls here aren't doing anything since we are not writting
+something and flushing the cache lines to be visible to GuC. Here the
+intention seems to be to make sure whatever GuC has written is visible
+to the CPU before we read them. However a clflush from the CPU side is
+the wrong instruction to use.
 
-Series: drm/i915: Suspend / resume backup- and restore of LMEM. (rev4)
-URL   : https://patchwork.freedesktop.org/series/94278/
-State : warning
+From code inspection on the other clflush() calls in i915/gt/uc/ these
+are the only ones with this behavrior. The others are apparently making
+sure what we write is visible to GuC.
 
-== Summary ==
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-c4b15f1489b7 drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects
-329f8dcaaa17 drm/i915/gem: Implement a function to process all gem objects of a region
-05ab254d5b1f drm/i915 Implement LMEM backup and restore for suspend / resume
--:294: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#294: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 490 lines checked
-d7decd7ad236 drm/i915/gt: Register the migrate contexts with their engines
-21ff3e091982 drm/i915: Don't back up pinned LMEM context images and rings during suspend
-62cf1113c535 drm/i915: Reduce the number of objects subject to memcpy recover
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 65a3e7fdb2b2..2e996b77df80 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -108,7 +108,6 @@ static u32 slpc_get_state(struct intel_guc_slpc *slpc)
+ 
+ 	GEM_BUG_ON(!slpc->vma);
+ 
+-	drm_clflush_virt_range(slpc->vaddr, sizeof(u32));
+ 	data = slpc->vaddr;
+ 
+ 	return data->header.global_state;
+@@ -172,8 +171,6 @@ static int slpc_query_task_state(struct intel_guc_slpc *slpc)
+ 		drm_err(&i915->drm, "Failed to query task state (%pe)\n",
+ 			ERR_PTR(ret));
+ 
+-	drm_clflush_virt_range(slpc->vaddr, SLPC_PAGE_SIZE_BYTES);
+-
+ 	return ret;
+ }
+ 
+-- 
+2.32.0
 
