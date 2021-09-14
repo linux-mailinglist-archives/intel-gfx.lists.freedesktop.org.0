@@ -1,45 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E77740C700
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 16:05:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A939B40C6FF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 16:05:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D988F6E93F;
-	Wed, 15 Sep 2021 14:05:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 139C06E940;
+	Wed, 15 Sep 2021 14:05:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B29C6E5C3;
- Tue, 14 Sep 2021 19:52:44 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E478260F25;
- Tue, 14 Sep 2021 19:52:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1D36E5C3;
+ Tue, 14 Sep 2021 19:53:38 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3760161108;
+ Tue, 14 Sep 2021 19:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1631649164;
- bh=MWZC3gluGK8hQ4vrKPYduZs4rZZZWKe3APwaEYkMSnk=;
- h=From:To:Cc:Subject:Date:From;
- b=VMPQ7wiQa96AHLQH+AGPwpnl3fDPyXHZdg68LV4cOttphZvHrM4KohpsDh0BD7wuP
- E1y+436smP9BwEABLatUk5xv6iYJiMvfxxxg5OxrmtGrLGb+EzR0Gg7lTV8zphHJCe
- paQzCkqmgcZpNPMk8u3Y2zIZERApyMMV02T+UhP/Exnr7EJm68wz5iLFbWLTYaP0Tl
- 1CKW+B/fJmsHR+cSFizt+QdMmK9XfeEnSEoMSTnWizvoQKmEhPNAKh0ucLlegdphDp
- P8njymThnzGWOroBF1fquKxOCfs0lo0gz2fpJLrnVFsQ/dNPtUvFcBzALbZYQAbh3Z
- VHvS23dZ8erKA==
+ s=k20201202; t=1631649218;
+ bh=th9TFOXsR06Xg/2ttcv1rjgy5eK+72XXt8aYRu+bByo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=J5M0TLTr0U8YWN17ZphgSgOsr2LkfGc/XojytM3rF1QIuC2MWJk+hTrgoPUij63Tf
+ ZbK1iGOjiaztEHrnL5vad2ePLBAKUcN1kbiRKDdllueg705sx3t9CQPF/dksuWcCpF
+ zlj9V/fW3WAvq5nZxn6+YWn1IPxkJ4ru23CZmt8YAU/PZ03YdtlWMiMmoghpuNkSeh
+ S4NZsiBS+u+8Wx1VRDVaVJMazZM2ZRgiyu6L77M8++T3suP5qVHK3rnjA5DQCkChLN
+ 18yNPa2S3CWiv3K22BWh1xIG6nTmWleS/yUu/XLKdD/bCeditfV4GkDlflsqU1n3KB
+ /VfLJbmib9UcA==
+Date: Tue, 14 Sep 2021 12:53:31 -0700
 From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Nick Desaulniers <ndesaulniers@google.com>,
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jason Ekstrand <jason@jlekstrand.net>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ Nick Desaulniers <ndesaulniers@google.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
- Nathan Chancellor <nathan@kernel.org>
-Date: Tue, 14 Sep 2021 12:49:45 -0700
-Message-Id: <20210914194944.4004260-1-nathan@kernel.org>
-X-Mailer: git-send-email 2.33.0
+ linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
+ llvm@lists.linux.dev
+Message-ID: <YUD9u88IGvdZ7MqW@archlinux-ax161>
+References: <20210824225427.2065517-1-nathan@kernel.org>
+ <YT+QmKyKCdotTcqA@archlinux-ax161> <87wnnj13t5.fsf@intel.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87wnnj13t5.fsf@intel.com>
 X-Mailman-Approved-At: Wed, 15 Sep 2021 14:05:10 +0000
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Clean up disabled warnings
+Subject: Re: [Intel-gfx] [PATCH 0/3] drm/i915: Enable
+ -Wsometimes-uninitialized
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,80 +62,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915 enables a wider set of warnings with '-Wall -Wextra' then disables
-several with cc-disable-warning. If an unknown flag gets added to
-KBUILD_CFLAGS when building with clang, all subsequent calls to
-cc-{disable-warning,option} will fail, meaning that all of these
-warnings do not get disabled [1].
+On Tue, Sep 14, 2021 at 08:10:14PM +0300, Jani Nikula wrote:
+> On Mon, 13 Sep 2021, Nathan Chancellor <nathan@kernel.org> wrote:
+> > On Tue, Aug 24, 2021 at 03:54:24PM -0700, Nathan Chancellor wrote:
+> >> Commit 46e2068081e9 ("drm/i915: Disable some extra clang warnings")
+> >> disabled -Wsometimes-uninitialized as noisy but there have been a few
+> >> fixes to clang that make the false positive rate fairly low so it should
+> >> be enabled to help catch obvious mistakes. The first two patches fix
+> >> revent instances of this warning then enables it for i915 like the rest
+> >> of the tree.
+> >> 
+> >> Cheers,
+> >> Nathan
+> >> 
+> >> Nathan Chancellor (3):
+> >>   drm/i915/selftests: Do not use import_obj uninitialized
+> >>   drm/i915/selftests: Always initialize err in
+> >>     igt_dmabuf_import_same_driver_lmem()
+> >>   drm/i915: Enable -Wsometimes-uninitialized
+> >> 
+> >>  drivers/gpu/drm/i915/Makefile                        | 1 -
+> >>  drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 7 ++++---
+> >>  2 files changed, 4 insertions(+), 4 deletions(-)
+> >> 
+> >> 
+> >> base-commit: fb43ebc83e069625cfeeb2490efc3ffa0013bfa4
+> >> -- 
+> >> 2.33.0
+> >> 
+> >> 
+> >
+> > Ping, could this be picked up for an -rc as these are very clearly bugs?
+> 
+> Thanks for the patches and review. Pushed to drm-intel-gt-next and
+> cherry-picked to drm-intel-fixes, header to -rc2.
 
-A separate series will address the root cause of the issue by not adding
-these flags when building with clang [2]; however, the symptom of these
-extra warnings appearing can be addressed separately by just removing
-the calls to cc-disable-warning, which makes the build ever so slightly
-faster because the compiler does not need to be called as much before
-building.
+Thanks a lot!
 
-The following warnings are supported by GCC 4.9 and clang 10.0.1, which
-are the minimum supported versions of these compilers so the call to
-cc-disable-warning is not necessary. Masahiro cleaned this up for the
-reset of the kernel in commit 4c8dd95a723d ("kbuild: add some extra
-warning flags unconditionally").
-
-* -Wmissing-field-initializers
-* -Wsign-compare
-* -Wtype-limits
-* -Wunused-parameter
-
--Wunused-but-set-variable was implemented in clang 13.0.0 and
--Wframe-address was implemented in clang 12.0.0 so the
-cc-disable-warning calls are kept for these two warnings.
-
-Lastly, -Winitializer-overrides is clang's version of -Woverride-init,
-which is disabled for the specific files that are problematic. clang
-added a compatibility alias in clang 8.0.0 so -Winitializer-overrides
-can be removed.
-
-[1]: https://lore.kernel.org/r/202108210311.CBtcgoUL-lkp@intel.com/
-[2]: https://lore.kernel.org/r/20210824022640.2170859-1-nathan@kernel.org/
-
-Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
-
-v1 -> v2: https://lore.kernel.org/r/20210824232237.2085342-1-nathan@kernel.org/
-
-* Rebase on drm-intel-gt-next now that the prerequisite patch series has
-  been merged: https://lore.kernel.org/r/87wnnj13t5.fsf@intel.com/
-
-* Add Nick's reviewed-by tag.
-
- drivers/gpu/drm/i915/Makefile | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index c584188aa15a..fd99374583d5 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -13,13 +13,11 @@
- # will most likely get a sudden build breakage... Hopefully we will fix
- # new warnings before CI updates!
- subdir-ccflags-y := -Wall -Wextra
--subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
--subdir-ccflags-y += $(call cc-disable-warning, type-limits)
--subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
-+subdir-ccflags-y += -Wno-unused-parameter
-+subdir-ccflags-y += -Wno-type-limits
-+subdir-ccflags-y += -Wno-missing-field-initializers
-+subdir-ccflags-y += -Wno-sign-compare
- subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
--# clang warnings
--subdir-ccflags-y += $(call cc-disable-warning, sign-compare)
--subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
- subdir-ccflags-y += $(call cc-disable-warning, frame-address)
- subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- 
-
-base-commit: 43192617f7816bb74584c1df06f57363afd15337
--- 
-2.33.0
-
+Cheers,
+Nathan
