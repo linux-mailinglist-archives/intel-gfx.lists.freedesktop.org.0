@@ -1,64 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B4E040B8AE
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 22:05:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A77F40B8B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 22:06:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1FEF6E5CF;
-	Tue, 14 Sep 2021 20:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C8BD6E5D2;
+	Tue, 14 Sep 2021 20:06:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0CCA6E5D1
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 20:05:07 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id x6so107536wrv.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 13:05:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=DDG9PdcmOXa2n3le33QPKji3syUWiWHWOF/c2oJOhJM=;
- b=cIp1QsqoMwufYhWeI4pmD4rACA3V2Rm8ZGseTnlKuQ9aCf1f3fVwgglQNiTlHD9C85
- liyI2Rvrm1gSXQruoIvmDxsF5iDmpR5fHreJ+pq3O4zI3KeGKno+Vp3/Kwgscf504zcg
- i73pwKq0EGyAy1fSxnHTde7UMVWilsrfTqmuQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=DDG9PdcmOXa2n3le33QPKji3syUWiWHWOF/c2oJOhJM=;
- b=M9HnNoCWY98NEsj+mIeu5xpMrW3CLd56nt3vPjZU98plToQRi/EsMq6778By3l6VNb
- t+KuVAQuaymnyA8nVmbLn2U9eYynl0m9nMN0YHKSfVAWtsuxMW4CKjKPtTYf98wCx91c
- e0H9plzAjaoq5vD3+48PzLhnyNyUmCQpBcW1wEr4e3RAdG5qZy7nfaCZqff6W4ClvWco
- OHbJWkRyfGGipjyAcgXRT4c0RXMALwhBQF6Q4fDvU+LG7f5vnuTDEMtGkgXT+RD4LQjG
- zl4T83o2LJ6uhFXAoXJfPl6BfTS2z5OWzMBOL6WU1AQk3khfJDZqhH8jes9V9JwSbHvD
- pUEg==
-X-Gm-Message-State: AOAM530MdyMo+BY17+6N6cPmsh3xfd1c5diS+HlVVD1DhNC3TCCH6XDA
- fEjAkk4C+pLdUwTPj6qPYMKQWA==
-X-Google-Smtp-Source: ABdhPJzgcukybCLJiXvHjYhJgi55RRlLKMwzdXaeZxCkc6sBhSx/mWN3v/72WEfVb16XjaFEW3HMOw==
-X-Received: by 2002:adf:f805:: with SMTP id s5mr926880wrp.259.1631649906282;
- Tue, 14 Sep 2021 13:05:06 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id r26sm2033278wmh.27.2021.09.14.13.05.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Sep 2021 13:05:05 -0700 (PDT)
-Date: Tue, 14 Sep 2021 22:05:03 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, john.c.harrison@intel.com
-Message-ID: <YUEAb30j+TPBMKGN@phenom.ffwll.local>
-References: <20210914044933.22932-1-matthew.brost@intel.com>
- <20210914044933.22932-2-matthew.brost@intel.com>
- <CAPM=9tzHmYkf_y2W_1TO2MPeohFQ9MzkTD1s0gmpNgLcWbX1NA@mail.gmail.com>
- <20210914153656.GA23874@jons-linux-dev-box>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 941756E5D4;
+ Tue, 14 Sep 2021 20:06:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8AB73AA915;
+ Tue, 14 Sep 2021 20:06:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9043469661419554350=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210914153656.GA23874@jons-linux-dev-box>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Do not define vma on stack
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Sep 2021 20:06:50 -0000
+Message-ID: <163165001056.3457.10275844488380855926@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210914193112.497379-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210914193112.497379-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Suspend_/_resume_backup-_and_restore_of_LMEM=2E_=28rev?=
+ =?utf-8?q?4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,109 +42,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 14, 2021 at 08:36:56AM -0700, Matthew Brost wrote:
-> On Tue, Sep 14, 2021 at 03:04:59PM +1000, Dave Airlie wrote:
-> > On Tue, 14 Sept 2021 at 14:55, Matthew Brost <matthew.brost@intel.com> wrote:
-> > >
-> > > From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> > >
-> > > Defining vma on stack can cause stack overflow, if
-> > > vma gets populated with new fields.
-> > 
-> > Is there some higher level locking stopping that from getting trashed?
-> > or a guarantee that uc_fw_bind_ggtt is only entered by one thread at a
-> > time?
-> > 
-> 
-> I believe this function is only called during driver load (inherently
-> one thread) or during a GT reset (protected by reset mutex) so at most 1
-> thread can be executing this code at once, thus it is safe to use a
-> global dummy vma in this function.
+--===============9043469661419554350==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This kind of stuff must be documented in kerneldoc comments. Please use
-the inline struct member format.
+== Series Details ==
 
-Also please document the other fields in that struct, cant hurt :-)
--Daniel
+Series: drm/i915: Suspend / resume backup- and restore of LMEM. (rev4)
+URL   : https://patchwork.freedesktop.org/series/94278/
+State : success
 
-> 
-> Matt
-> 
-> > Dave.
-> > 
-> > >
-> > > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 18 +++++++++---------
-> > >  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h |  2 ++
-> > >  2 files changed, 11 insertions(+), 9 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > > index 3a16d08608a5..f632dbd32b42 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > > @@ -413,20 +413,20 @@ static void uc_fw_bind_ggtt(struct intel_uc_fw *uc_fw)
-> > >  {
-> > >         struct drm_i915_gem_object *obj = uc_fw->obj;
-> > >         struct i915_ggtt *ggtt = __uc_fw_to_gt(uc_fw)->ggtt;
-> > > -       struct i915_vma dummy = {
-> > > -               .node.start = uc_fw_ggtt_offset(uc_fw),
-> > > -               .node.size = obj->base.size,
-> > > -               .pages = obj->mm.pages,
-> > > -               .vm = &ggtt->vm,
-> > > -       };
-> > > +       struct i915_vma *dummy = &uc_fw->dummy;
-> > > +
-> > > +       dummy->node.start = uc_fw_ggtt_offset(uc_fw);
-> > > +       dummy->node.size = obj->base.size;
-> > > +       dummy->pages = obj->mm.pages;
-> > > +       dummy->vm = &ggtt->vm;
-> > >
-> > >         GEM_BUG_ON(!i915_gem_object_has_pinned_pages(obj));
-> > > -       GEM_BUG_ON(dummy.node.size > ggtt->uc_fw.size);
-> > > +       GEM_BUG_ON(dummy->node.size > ggtt->uc_fw.size);
-> > >
-> > >         /* uc_fw->obj cache domains were not controlled across suspend */
-> > > -       drm_clflush_sg(dummy.pages);
-> > > +       drm_clflush_sg(dummy->pages);
-> > >
-> > > -       ggtt->vm.insert_entries(&ggtt->vm, &dummy, I915_CACHE_NONE, 0);
-> > > +       ggtt->vm.insert_entries(&ggtt->vm, dummy, I915_CACHE_NONE, 0);
-> > >  }
-> > >
-> > >  static void uc_fw_unbind_ggtt(struct intel_uc_fw *uc_fw)
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> > > index 99bb1fe1af66..693cc0ebcd63 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> > > @@ -10,6 +10,7 @@
-> > >  #include "intel_uc_fw_abi.h"
-> > >  #include "intel_device_info.h"
-> > >  #include "i915_gem.h"
-> > > +#include "i915_vma.h"
-> > >
-> > >  struct drm_printer;
-> > >  struct drm_i915_private;
-> > > @@ -75,6 +76,7 @@ struct intel_uc_fw {
-> > >         bool user_overridden;
-> > >         size_t size;
-> > >         struct drm_i915_gem_object *obj;
-> > > +       struct i915_vma dummy;
-> > >
-> > >         /*
-> > >          * The firmware build process will generate a version header file with major and
-> > > --
-> > > 2.32.0
-> > >
+== Summary ==
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+CI Bug Log - changes from CI_DRM_10584 -> Patchwork_21046
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21046/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21046 that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Additional (3): fi-kbl-soraka fi-tgl-1115g4 fi-kbl-guc 
+  Missing    (4): fi-bdw-samus fi-bsw-cyan bat-dg1-6 bat-dg1-5 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10584 -> Patchwork_21046
+
+  CI-20190529: 20190529
+  CI_DRM_10584: 7fa18a9066276df7e4c9ffe45c98f4604bd92bdd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21046: 62cf1113c535090369956f6de8583f56418ba8d1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+62cf1113c535 drm/i915: Reduce the number of objects subject to memcpy recover
+21ff3e091982 drm/i915: Don't back up pinned LMEM context images and rings during suspend
+d7decd7ad236 drm/i915/gt: Register the migrate contexts with their engines
+05ab254d5b1f drm/i915 Implement LMEM backup and restore for suspend / resume
+329f8dcaaa17 drm/i915/gem: Implement a function to process all gem objects of a region
+c4b15f1489b7 drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21046/index.html
+
+--===============9043469661419554350==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Suspend / resume backup- and restore of LMEM. (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94278/">https://patchwork.freedesktop.org/series/94278/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21046/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21046/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10584 -&gt; Patchwork_21046</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21046/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21046 that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Additional (3): fi-kbl-soraka fi-tgl-1115g4 fi-kbl-guc <br />
+  Missing    (4): fi-bdw-samus fi-bsw-cyan bat-dg1-6 bat-dg1-5 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10584 -&gt; Patchwork_21046</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10584: 7fa18a9066276df7e4c9ffe45c98f4604bd92bdd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21046: 62cf1113c535090369956f6de8583f56418ba8d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>62cf1113c535 drm/i915: Reduce the number of objects subject to memcpy recover<br />
+21ff3e091982 drm/i915: Don't back up pinned LMEM context images and rings during suspend<br />
+d7decd7ad236 drm/i915/gt: Register the migrate contexts with their engines<br />
+05ab254d5b1f drm/i915 Implement LMEM backup and restore for suspend / resume<br />
+329f8dcaaa17 drm/i915/gem: Implement a function to process all gem objects of a region<br />
+c4b15f1489b7 drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects</p>
+
+</body>
+</html>
+
+--===============9043469661419554350==--
