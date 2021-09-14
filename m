@@ -2,45 +2,119 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B214040AA0F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 10:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1628340AA19
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Sep 2021 11:03:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C1FF89B0B;
-	Tue, 14 Sep 2021 08:59:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 201016E43F;
+	Tue, 14 Sep 2021 09:02:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C0789B0B
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Sep 2021 08:59:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="282932752"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="282932752"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 01:59:16 -0700
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="471902616"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 01:59:14 -0700
-Date: Tue, 14 Sep 2021 11:59:58 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "Navare, Manasi D" <manasi.d.navare@intel.com>
-Message-ID: <20210914085958.GA27514@intel.com>
-References: <20210913143923.21119-1-vandita.kulkarni@intel.com>
- <YUBPJrm1IZWwukS5@intel.com>
- <9dd78b35e9bf41f8816a0e7dedf75c64@intel.com>
- <YUBT3ljaDzwtXkwq@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2048.outbound.protection.outlook.com [40.107.92.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2AF6E43A;
+ Tue, 14 Sep 2021 09:02:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HPs2iRKv5j605zqT69bmT2yaXyB49ttbIMwXr1x48UxzovMpDCN7U4X0FKiejeqnwAb8Lsjf3glMcsCzZLgwor7KJ8YeMSbrq5LJ+fcGDAidJqoTofm1dnK2l+HcxH01wD8c5e+3L6TCiPiyf7Jmm0FHOnBs8b5UVMfXChrY2/bnsppZTc+ljmImE1Frcs2hHT1ySKhEzYhoPUua47NpJdMlOjrBFUXV0oG7uhCMRlcSdjHnH/W4BaiZReCCBw+Me40PdTU3KTnRlpG+uuIDrUTDMUHBgAN00o5xvOdtkkT1WhldmEt0J0fl/ZnMJ3QlmVA5PqUnmIyWdJlA9kolCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=m+goSQlR/4+v1OUu0K+KVvv5+0imPFyAxhwOCqEdCso=;
+ b=UvvBu+o/7D7Su7nvjjk2fmxm+E8ZHn3mMilVZF2JFyKmKusJF+zI3kXx2d4PtccEJG8xE2BwLhOM95oEVSYPqKuab2xKm7H+o4h5zg+SLhy0lLfgyzqduanInjcgXQZ3SEC0ug47v/es+a8RKultlghwNBTGJ86s/gu/WBIFUM1Nx+Tu2QDqY1+tjDh2cVcE4CwcPEr/Hu2Jwt76cjLTxKaVq0YQJ4kru9NZDOcr1wp+S7+QlGVZRWJ2VDF/iCaT4kvPHTFVt8es1AYedPxBtryjoWqtg1xYT6JcmhDxUp63MbEKiwOM3eUuj/jU+FJ6xnsWNUjeSBQTAxvVu/FhCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m+goSQlR/4+v1OUu0K+KVvv5+0imPFyAxhwOCqEdCso=;
+ b=Mj5S7Oo9EbvLVVbJZhrb+crPuNlz51sMAyEam/2OYkkJkdCueU3S6byPc5ZUGwVJHEBhdB9TsZaJkle9DrjHMc7trc71b3qYCnuUGqpEaEqJf6SwEY6f4bq1g3xWap3q6Gf8S3NpeLGcCOasS+2s4hnJr4U7CbZr6PL1YeLAFxM=
+Authentication-Results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB4253.namprd12.prod.outlook.com (2603:10b6:208:1de::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.16; Tue, 14 Sep
+ 2021 09:02:53 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4500.019; Tue, 14 Sep 2021
+ 09:02:53 +0000
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+References: <20210914085033.2833993-1-matthew.auld@intel.com>
+ <20210914085033.2833993-2-matthew.auld@intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <106ed881-5cfb-6a73-f50a-32ef6edb5905@amd.com>
+Date: Tue, 14 Sep 2021 11:02:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <20210914085033.2833993-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YUBT3ljaDzwtXkwq@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC engine
- for higher moderates
+Content-Language: en-US
+X-ClientProxiedBy: AM9P193CA0002.EURP193.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21e::7) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
+MIME-Version: 1.0
+Received: from [192.168.178.21] (91.14.161.181) by
+ AM9P193CA0002.EURP193.PROD.OUTLOOK.COM (2603:10a6:20b:21e::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4500.14 via Frontend Transport; Tue, 14 Sep 2021 09:02:52 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b64a4b01-8bae-404e-93eb-08d9775e6f8d
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4253:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4253C8F5C104B93D5EA9654583DA9@MN2PR12MB4253.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oqOnww7d25hmL2OrBz2Q1xlDQgUqedfmdqOES51oSJzH5WyYjh7/lb/qDZ64li8Br+OxMmADgyvPdkrvwkPF2CGLi1l5F6g9G8C/CrwDHqzYopQSHj1XH8FoN1/4wvoQvKJDIjfBhDjUZyy7LGYfG1UDgg1yfn239g3wkAtFGOU0IMP21FUHzKyT9hdVqWMii7c9i6oHDlDF8Tq1IDE7AAV9CS4Hq/fwyXcrmDDRBFLYoHex1bOh+8rOkRo0RxA3sGNW9sgxTszw5Xsrc8vN4M+il5N9MaFYip06/HizYXbH4zbks+7OMLoHXgVcmckain8fxCri71mMFLpX++FURNz0zerdYJE+yQqmRngFnw8orYeuYBvIVgoVqTQTNx8Qm4fIlKC1cEiB8r3cVxMh7TaoBrZ3SIvZCD9DqlUapj3HCZrSKUyzcL0MVCTiLSNY08IePbG3jAXJiS/QJLvAh1DSgA26X1t7z5AOo63+fd3jv6E3gqSFt+sCDI8esCZo2W6SF6C2hT43g8fHpbJ4n5nXoM4lqKZrM/PYMhx6bA7WZVg/h+pzqQfF2sNZ2pyBqvZv5Qvw0JESbXqHjiEMmbRLTs793uuqdqJBGqLHoHKJ6dEo8WfS402vkjZnW3z5dFlRBGLjVutK35+q7W+v0FHMaHCEjXqDFcLqgLb4TquFBnzEv7aOfpX1A5hWb5BB+n2+W3bEkLG3FYwSwwlWFnhaSJC8o1DYqY3RYAQxOZ1+cI5AAyUtlkONiCspov7a
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(396003)(376002)(346002)(366004)(39860400002)(26005)(4326008)(478600001)(16576012)(316002)(6486002)(186003)(956004)(31686004)(2906002)(83380400001)(31696002)(8936002)(66476007)(6666004)(66946007)(66556008)(5660300002)(8676002)(2616005)(38100700002)(36756003)(86362001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dm5za1V4SjYrQ3FycUJrUE0rRmhvSGFrUG4wcjN2ZEEyQXZvMkM0aEdqQWJO?=
+ =?utf-8?B?VXlWWS9jdTliZ0E4L21xVlNxKzdaNnZPZlRUUFByaFRyM1JzWitIQmYwRTR3?=
+ =?utf-8?B?dTZhTm5jR3BRdFRaZXlUeTI1VEd6ZWl0U2VKV29iNnVndVpNKzZvbEZqUjN3?=
+ =?utf-8?B?dkpKZXB6VlpXUVZtZjdaT096NFVnUm1OanVOQzBJd2NRanFpOHRLNG91Qjha?=
+ =?utf-8?B?Wk9VOUR4MHFvbUJad0p3VEd1LzJsV1VYMzZBWE9CMUJxYmczRDFmOGEwUHJR?=
+ =?utf-8?B?V00wWDBHeDVObERXdGZoVHdnd3d2WWFPVENpVE5wSlVERmVaZUR0SVM1SzdG?=
+ =?utf-8?B?M3hPeHZvS2dHWDd4bDg2WmhIWk5SaUJwdUJ4d2JJN1F6R05qZ1R5R3gvZllx?=
+ =?utf-8?B?c3pBSXJCY29DbHMwOGtNRzlEOHhXK0x2TUNXUngxbURsWlp5SXBOMW43Rm5V?=
+ =?utf-8?B?WFJNVXVOZG9mRS9BWnVXekNIbXVDY05YSHcxV0RzQXU4aDQ3NDFkNmoyWWY1?=
+ =?utf-8?B?dTZOL2wwblp1ZU1udC8rWnJ1RUNZTzljWGtiamgvSFF3cVNSaGdHVVF3MENi?=
+ =?utf-8?B?eWVFRnVoUDZGTWhxMmtpQmowMzRJbnlvRTh4ckhXTkRsWHhQYjAwZlh4dElD?=
+ =?utf-8?B?L0RwMHlmTXIzTVZ5c3M4MzVDSHU3T0ZXM01yaWNqRnJsUEhMaFN1WGVKb2hp?=
+ =?utf-8?B?Y1l1cXZWS2t0UnpJSEZISEp3QzdYeC9VWXArU0ZoMmhyVk1vZHhaTXlkWGFz?=
+ =?utf-8?B?S2FJaVdMS09pQUVKa0k1ZHhJM1UrK0FuQll2UmRVeGJXai93ZytyYmRuMkUw?=
+ =?utf-8?B?UFdCaDIrZFE0Yjc0dzRIeCtQOUVReVVud2hZWHlhNU11ZzFhdnJ0V2M1dUJo?=
+ =?utf-8?B?TEtMQkhTemtBbUNnT3p6QVdqQ01wUHNwY0ZoZTg2NnNCRFhGYzZtTWxBSXo3?=
+ =?utf-8?B?ZlU1YVRZYWg5aTRXMlVadlFwN2ZSTmw1alF2RHFpRVM3KzNJSUtIL1J6UW5H?=
+ =?utf-8?B?bEt6K0xsUU4wOWJDZmNIMWdOc3N1T3ZtMjhJY1FnbEl0UXBzR2tYKzBtY3c1?=
+ =?utf-8?B?VjBXamhPaEEvbENTOTdEcklkTG9QR1ZvaElBc050RFNSbytnb21mLzFEdWxt?=
+ =?utf-8?B?U2dLK1hOTHhVci9sQ1lrZlh5d1BoL0VmMURFUFpmU1B3Nk1xMjFLQ3dPL1dL?=
+ =?utf-8?B?WGREV2JvbEFXWHZGa29iRmhzQm1QQWp4c0pJVnJuZDFrNVlBcEI1ZHlJTjFl?=
+ =?utf-8?B?SjlPdWtLTTh0VVhKUFAxQjhpMnBnVUVtL0dJdHY3cmVpMVBuWUtBWlVNMUk1?=
+ =?utf-8?B?dUNEMXc4K2dFVEk2Mk5sQVZxdjZ2ZmVnRFhaM3REbGU4eG9rOEl3MlhXS3RO?=
+ =?utf-8?B?S1ljRWZ4M1RmQzMvUThXZTVET3ZibGFFY0dTa3F2RFB6RW9sbCsvTEV1aFRo?=
+ =?utf-8?B?SFBFUnlGR3czY3kvM3AzcXBITkN2TGdmamdYdTV0R0JNWUwwK0NoSm1TbXhD?=
+ =?utf-8?B?Z0w2MDUrRmRSTjdHQVhiRTRXNmc0aWd3M2E2dHFMaHlGUDJWSnU0VHpBTWRO?=
+ =?utf-8?B?dnVHeTk2aHlNTm4zcHh2RWJpaXBEVjExNCtJL3RmdTVlakFtVWFqc3pSblRx?=
+ =?utf-8?B?SWl2RUN6YXYzcTI3Ty9ESVdJUndKVkxYSHlHYXdtRlNSQTFxalJKcXJTTFJ5?=
+ =?utf-8?B?S1p3a0JsU3V4bGh0NXg4YjcySUY5Qmd4QWhtZFFKZzBnL1VIWG5iaU8yUHY0?=
+ =?utf-8?Q?kgAUEtJPUesm5KmKL5ETh1sJLgvKMKnSi0Y/Kun?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b64a4b01-8bae-404e-93eb-08d9775e6f8d
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2021 09:02:53.2875 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9Ydsykdo0P2M3txYikHa9+StpAPrayTC2xn7J7SRXnvegFpPIEXXOozu1QMHhz+2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4253
+Subject: Re: [Intel-gfx] [PATCH v2 2/7] drm/ttm: add TTM_PAGE_FLAG_SHMEM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,94 +130,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 14, 2021 at 10:48:46AM +0300, Ville Syrj‰l‰ wrote:
-> On Tue, Sep 14, 2021 at 07:31:46AM +0000, Kulkarni, Vandita wrote:
-> > > -----Original Message-----
-> > > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > > Sent: Tuesday, September 14, 2021 12:59 PM
-> > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>;
-> > > Navare, Manasi D <manasi.d.navare@intel.com>
-> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC
-> > > engine for higher moderates
-> > > 
-> > > On Mon, Sep 13, 2021 at 08:09:23PM +0530, Vandita Kulkarni wrote:
-> > > > Each VDSC operates with 1ppc throughput, hence enable the second VDSC
-> > > > engine when moderate is higher that the current cdclk.
-> > > >
-> > > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 12 ++++++++++--
-> > > >  1 file changed, 10 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > index 161c33b2c869..55878f65f724 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > @@ -70,6 +70,7 @@
-> > > >  #include "intel_tc.h"
-> > > >  #include "intel_vdsc.h"
-> > > >  #include "intel_vrr.h"
-> > > > +#include "intel_cdclk.h"
-> > > >
-> > > >  #define DP_DPRX_ESI_LEN 14
-> > > >
-> > > > @@ -1291,10 +1292,13 @@ static int intel_dp_dsc_compute_config(struct
-> > > intel_dp *intel_dp,
-> > > >  				       struct drm_connector_state *conn_state,
-> > > >  				       struct link_config_limits *limits)  {
-> > > > +	struct intel_cdclk_state *cdclk_state;
-> > > >  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > > >  	struct drm_i915_private *dev_priv = to_i915(dig_port-
-> > > >base.base.dev);
-> > > >  	const struct drm_display_mode *adjusted_mode =
-> > > >  		&pipe_config->hw.adjusted_mode;
-> > > > +	struct intel_atomic_state *state =
-> > > > +				to_intel_atomic_state(pipe_config-
-> > > >uapi.state);
-> > > >  	int pipe_bpp;
-> > > >  	int ret;
-> > > >
-> > > > @@ -1373,12 +1377,16 @@ static int intel_dp_dsc_compute_config(struct
-> > > intel_dp *intel_dp,
-> > > >  		}
-> > > >  	}
-> > > >
-> > > > +	cdclk_state = intel_atomic_get_cdclk_state(state);
-> > > > +	if (IS_ERR(cdclk_state))
-> > > > +		return PTR_ERR(cdclk_state);
-> > > > +
-> > > >  	/*
-> > > >  	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
-> > > > -	 * is greater than the maximum Cdclock and if slice count is even
-> > > > +	 * is greater than the current Cdclock and if slice count is even
-> > > >  	 * then we need to use 2 VDSC instances.
-> > > >  	 */
-> > > > -	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
-> > > > +	if (adjusted_mode->crtc_clock > cdclk_state->actual.cdclk ||
-> > > 
-> > > This is wrong. We compute the cdclk based on the requirements of the
-> > > mode/etc., not the other way around.
+Am 14.09.21 um 10:50 schrieb Matthew Auld:
+> Add new flag to indicate special shmem based tt, which can directly
+> handle swapping itself, and should be visible to some shrinker.
+>
+> As part of this we should skip the ttm_pages_allocated accounting, since
+> such tt objects should already be reachable, and potentially reclaimable
+> by some shrinker, if under memory pressure, and so shouldn't directly
+> count towards the swap "watermark" level.
+>
+> We also need to stop touching the page->mapping and page->index for such
+> objects, like in ttm_tt_add_mapping, since shmem already uses these.
+> Some drivers seems to depend on the tt mapping/index behaviour for their
+> own purposes, so directly using shmem tt likely won't be usable there
+> as-is.
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+> Cc: Christian K√∂nig <christian.koenig@amd.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo_vm.c |  4 ++--
+>   drivers/gpu/drm/ttm/ttm_tt.c    | 10 +++++-----
+>   include/drm/ttm/ttm_tt.h        |  1 +
+>   3 files changed, 8 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> index f56be5bc0861..e2131c73dcb6 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> @@ -346,8 +346,8 @@ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+>   			} else if (unlikely(!page)) {
+>   				break;
+>   			}
+> -			page->index = drm_vma_node_start(&bo->base.vma_node) +
+> -				page_offset;
+> +			if (!(bo->ttm->page_flags & TTM_PAGE_FLAG_SHMEM))
+> +				page->index = drm_vma_node_start(&bo->base.vma_node) + page_offset;
 
-According to BSpec guideline, we decide whether we enable or disable second VDSC engine, based
-on that condition. As I understand that one is about DSC config calculation, based on CDCLK
-which was calculated. 
+I still have a rather bad feeling about that.
 
-If we bump up CDCLK, to avoid this, will we even then use a second VDSC ever?
+This should either not be necessary any more in general or the shmemfile 
+approach doesn't work correctly.
 
-Another thing is that probably enabling second VDSC is cheaper in terms of power consumption,
-than bumping up the CDCLK.
+Please send a patch to remove this for everybody instead and we will see 
+if that really works or not.
 
-Stan
+>   			pfn = page_to_pfn(page);
+>   		}
+>   
+> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+> index dae52433beeb..cc4815c1f505 100644
+> --- a/drivers/gpu/drm/ttm/ttm_tt.c
+> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
+> @@ -293,7 +293,7 @@ static void ttm_tt_add_mapping(struct ttm_device *bdev, struct ttm_tt *ttm)
+>   {
+>   	pgoff_t i;
+>   
+> -	if (ttm->page_flags & TTM_PAGE_FLAG_SG)
+> +	if (ttm->page_flags & (TTM_PAGE_FLAG_SG | TTM_PAGE_FLAG_SHMEM))
 
-> > 
-> > Okay , So you suggest that we set the cd clock to max when we have such requirement, than enabling the second engine?
-> 
-> That seems like the easiest solution. Another option might be to come up
-> with some lower dotclock limit for the use of the second vdsc. But not
-> sure we know where the tipping point is wrt. powr consumption.
-> 
-> -- 
-> Ville Syrj‰l‰
-> Intel
+Maybe you should re-use the TTM_PAGE_FLAG_SG for this and/or rename the 
+flag to better describe what it does.
+
+Something like TTM_PAGE_FLAG_EXTERNAL or similar? The only other use 
+case for TTM_PAGE_FLAG_SG which comes to my mind is controlling if the 
+pages array is allocated or not.
+
+Christian.
+
+>   		return;
+>   
+>   	for (i = 0; i < ttm->num_pages; ++i)
+> @@ -311,7 +311,7 @@ int ttm_tt_populate(struct ttm_device *bdev,
+>   	if (ttm_tt_is_populated(ttm))
+>   		return 0;
+>   
+> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
+> +	if (!(ttm->page_flags & (TTM_PAGE_FLAG_SG | TTM_PAGE_FLAG_SHMEM))) {
+>   		atomic_long_add(ttm->num_pages, &ttm_pages_allocated);
+>   		if (bdev->pool.use_dma32)
+>   			atomic_long_add(ttm->num_pages,
+> @@ -349,7 +349,7 @@ int ttm_tt_populate(struct ttm_device *bdev,
+>   	return 0;
+>   
+>   error:
+> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
+> +	if (!(ttm->page_flags & (TTM_PAGE_FLAG_SG | TTM_PAGE_FLAG_SHMEM))) {
+>   		atomic_long_sub(ttm->num_pages, &ttm_pages_allocated);
+>   		if (bdev->pool.use_dma32)
+>   			atomic_long_sub(ttm->num_pages,
+> @@ -364,7 +364,7 @@ static void ttm_tt_clear_mapping(struct ttm_tt *ttm)
+>   	pgoff_t i;
+>   	struct page **page = ttm->pages;
+>   
+> -	if (ttm->page_flags & TTM_PAGE_FLAG_SG)
+> +	if (ttm->page_flags & (TTM_PAGE_FLAG_SG | TTM_PAGE_FLAG_SHMEM))
+>   		return;
+>   
+>   	for (i = 0; i < ttm->num_pages; ++i) {
+> @@ -384,7 +384,7 @@ void ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm)
+>   	else
+>   		ttm_pool_free(&bdev->pool, ttm);
+>   
+> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
+> +	if (!(ttm->page_flags & (TTM_PAGE_FLAG_SG | TTM_PAGE_FLAG_SHMEM))) {
+>   		atomic_long_sub(ttm->num_pages, &ttm_pages_allocated);
+>   		if (bdev->pool.use_dma32)
+>   			atomic_long_sub(ttm->num_pages,
+> diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+> index 89b15d673b22..20d550185065 100644
+> --- a/include/drm/ttm/ttm_tt.h
+> +++ b/include/drm/ttm/ttm_tt.h
+> @@ -42,6 +42,7 @@ struct ttm_operation_ctx;
+>   #define TTM_PAGE_FLAG_ZERO_ALLOC      (1 << 6)
+>   #define TTM_PAGE_FLAG_SG              (1 << 8)
+>   #define TTM_PAGE_FLAG_NO_RETRY	      (1 << 9)
+> +#define TTM_PAGE_FLAG_SHMEM	      (1 << 10)
+>   
+>   #define TTM_PAGE_FLAG_PRIV_POPULATED  (1 << 31)
+>   
+
