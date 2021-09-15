@@ -1,35 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE25A40C521
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 14:22:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0512D40C547
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 14:30:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBED189F03;
-	Wed, 15 Sep 2021 12:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1517B6E91B;
+	Wed, 15 Sep 2021 12:30:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0677189F03;
- Wed, 15 Sep 2021 12:22:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F1AE6A9A42;
- Wed, 15 Sep 2021 12:22:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11D346E91B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 12:30:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="221967783"
+X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; d="scan'208";a="221967783"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2021 05:30:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; d="scan'208";a="544905775"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 15 Sep 2021 05:30:27 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 15 Sep 2021 15:30:26 +0300
+Date: Wed, 15 Sep 2021 15:30:26 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Message-ID: <YUHnYowcolvx1z4D@intel.com>
+References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
+ <20210913144440.23008-2-ville.syrjala@linux.intel.com>
+ <80815922ba68991fe0a4e8609d62464457d7c822.camel@intel.com>
+ <YUBbUtDCL5p/zlW9@intel.com>
+ <d81c249be2ac0c427ec7ecbb74b89436f8dac955.camel@intel.com>
+ <7fd9904877943a744cb011c9f8668620b6fde508.camel@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Sep 2021 12:22:22 -0000
-Message-ID: <163170854298.30118.3882638532219429201@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210914193112.497379-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210914193112.497379-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Suspend_/_resume_backup-_and_restore_of_LMEM=2E?=
- =?utf-8?q?_=28rev5=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7fd9904877943a744cb011c9f8668620b6fde508.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/16] Revert "drm/i915/display: Disable
+ audio, DRRS and PSR before planes"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,29 +55,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Sep 15, 2021 at 12:00:28AM +0000, Souza, Jose wrote:
+> On Tue, 2021-09-14 at 16:30 -0700, José Roberto de Souza wrote:
+> > On Tue, 2021-09-14 at 11:20 +0300, Ville Syrjälä wrote:
+> > > On Mon, Sep 13, 2021 at 04:28:35PM +0000, Souza, Jose wrote:
+> > > > On Mon, 2021-09-13 at 17:44 +0300, Ville Syrjala wrote:
+> > > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > 
+> > > > > Disabling planes in the middle of the modeset seuqnece does not make
+> > > > > sense since userspace can anyway disable planes before the modeset
+> > > > > even starts. So when the modeset seuqence starts the set of enabled
+> > > > > planes is entirely arbitrary. Trying to sprinkle the plane disabling
+> > > > > into the modeset sequence just means more randomness and potential
+> > > > > for hard to reproduce bugs.
+> > > > 
+> > > > The patch being reverted did not changed anything about plane, it only disables audio and PSR before pipe is disabled in this case.
+> > > 
+> > > The commit message only talks about planes. Also we already disable
+> > > the pipe in the post_disable hook, so PSR/audio was always disabled
+> > > before the pipe IIRC.
+> > 
+> > That is true, my bad.
+> > 
+> > Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+> 
+> Sorry I missed the intel_crtc_disable_planes() call, so here is the problem:
+> 
+> 
+> intel_commit_modeset_disables()
+> 	intel_old_crtc_state_disables()
+> 		intel_crtc_disable_planes()
+> 			intel_disable_plane()
+> 		dev_priv->display.crtc_disable(state, crtc)/hsw_crtc_disable()
+> 			intel_encoders_disable()
+> 				encoder->disable()/intel_disable_ddi()
+> 					intel_psr_disable()
+> 			intel_encoders_post_disable()
+> 				post_disable/intel_ddi_post_disable()
+> 					intel_disable_pipe()
+> 
+> So all the planes are disabled while PSR is still on, that is why this patch fixed the underrun.
+> 
+> We need to call the pre_disable() before intel_crtc_disable_planes() and for the case where pipe is not disabled but all of its planes are requires
+> the pending patch that I have.
+> 
+> Or do you have other suggestion?
 
-Series: drm/i915: Suspend / resume backup- and restore of LMEM. (rev5)
-URL   : https://patchwork.freedesktop.org/series/94278/
-State : warning
+I would like to follow the same sequence always, ie. disable planes
+first (be it from userspace or from the kernel just before the modeset),
+and then we take the exact same measures in both cases to deal with
+whatever is the problem with PSR vs. disabled planes. That makes the
+sequence as deterministic as possible, and thus we avoid potential
+weird bugs stemming from userspace behaviour wrt. disabling planes.
 
-== Summary ==
+Hmm. Our modeset plane disable code is certainly a bit lackluster.
+It misses a bunch of stuff that we do for normal plane updates.
+So we might want to put a few extra things in there. Maybe PSR
+needs the vblank_get+psr_idle trick? And we might want a
+vrr_push/etc. in there as well, not sure.
 
-$ dim checkpatch origin/drm-tip
-0dcc28cd9f83 drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects
-0d5d3f0fbde1 drm/i915/gem: Implement a function to process all gem objects of a region
-4fb1ade84390 drm/i915 Implement LMEM backup and restore for suspend / resume
--:294: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#294: 
-new file mode 100644
+What exactly is your solution to the case where the planes are
+already disabled by userspace?
 
-total: 0 errors, 1 warnings, 0 checks, 490 lines checked
-580679d858b8 drm/i915/gt: Register the migrate contexts with their engines
-9376b1663615 drm/i915: Don't back up pinned LMEM context images and rings during suspend
-cb6823a52864 drm/i915: Reduce the number of objects subject to memcpy recover
-
-
+-- 
+Ville Syrjälä
+Intel
