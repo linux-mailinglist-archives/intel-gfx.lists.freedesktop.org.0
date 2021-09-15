@@ -1,48 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0512D40C547
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 14:30:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5B440C5CE
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 15:01:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1517B6E91B;
-	Wed, 15 Sep 2021 12:30:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0925C6E923;
+	Wed, 15 Sep 2021 13:01:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11D346E91B
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 12:30:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="221967783"
-X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; d="scan'208";a="221967783"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2021 05:30:30 -0700
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D2316E923
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 13:00:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="209400704"
+X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; d="scan'208";a="209400704"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2021 06:00:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; d="scan'208";a="544905775"
+X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; d="scan'208";a="508765175"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 15 Sep 2021 05:30:27 -0700
+ by fmsmga008.fm.intel.com with SMTP; 15 Sep 2021 06:00:50 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 15 Sep 2021 15:30:26 +0300
-Date: Wed, 15 Sep 2021 15:30:26 +0300
+ Wed, 15 Sep 2021 16:00:46 +0300
+Date: Wed, 15 Sep 2021 16:00:46 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <YUHnYowcolvx1z4D@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YUHufiA3nPvmYFP6@intel.com>
 References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
- <20210913144440.23008-2-ville.syrjala@linux.intel.com>
- <80815922ba68991fe0a4e8609d62464457d7c822.camel@intel.com>
- <YUBbUtDCL5p/zlW9@intel.com>
- <d81c249be2ac0c427ec7ecbb74b89436f8dac955.camel@intel.com>
- <7fd9904877943a744cb011c9f8668620b6fde508.camel@intel.com>
+ <20210913144440.23008-6-ville.syrjala@linux.intel.com>
+ <87ee9qywh1.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7fd9904877943a744cb011c9f8668620b6fde508.camel@intel.com>
+In-Reply-To: <87ee9qywh1.fsf@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 01/16] Revert "drm/i915/display: Disable
- audio, DRRS and PSR before planes"
+Subject: Re: [Intel-gfx] [PATCH 05/16] drm/i915: s/pipe/transcoder/ when
+ dealing with PIPECONF/TRANSCONF
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,67 +54,382 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 15, 2021 at 12:00:28AM +0000, Souza, Jose wrote:
-> On Tue, 2021-09-14 at 16:30 -0700, José Roberto de Souza wrote:
-> > On Tue, 2021-09-14 at 11:20 +0300, Ville Syrjälä wrote:
-> > > On Mon, Sep 13, 2021 at 04:28:35PM +0000, Souza, Jose wrote:
-> > > > On Mon, 2021-09-13 at 17:44 +0300, Ville Syrjala wrote:
-> > > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > 
-> > > > > Disabling planes in the middle of the modeset seuqnece does not make
-> > > > > sense since userspace can anyway disable planes before the modeset
-> > > > > even starts. So when the modeset seuqence starts the set of enabled
-> > > > > planes is entirely arbitrary. Trying to sprinkle the plane disabling
-> > > > > into the modeset sequence just means more randomness and potential
-> > > > > for hard to reproduce bugs.
-> > > > 
-> > > > The patch being reverted did not changed anything about plane, it only disables audio and PSR before pipe is disabled in this case.
-> > > 
-> > > The commit message only talks about planes. Also we already disable
-> > > the pipe in the post_disable hook, so PSR/audio was always disabled
-> > > before the pipe IIRC.
-> > 
-> > That is true, my bad.
-> > 
-> > Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+On Wed, Sep 15, 2021 at 01:16:58PM +0300, Jani Nikula wrote:
+> On Mon, 13 Sep 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > PIPECONF becamse TRANSCONF when HSW introduced the EDP transcoder.
+> > Bigjoiner is making life even more confusing by introducing
+> > a N:1 relationship between pipes and transcoders. In that case
+> > we only enable/configure the transcoder corresponding to the
+> > master pipe. Let's do some renames to make it clear we're dealing
+> > with the transcoder rather than pipe when it comes to
+> > PIPECONF/TRANSCONF.
+> >
+> > I decided to leave the _cpu_ part out from the function/macro
+> > names since the PCH transcoder related stuff already has a
+> > _pch_ in their name. So shouldn't be possible to confuse them.
 > 
-> Sorry I missed the intel_crtc_disable_planes() call, so here is the problem:
-> 
-> 
-> intel_commit_modeset_disables()
-> 	intel_old_crtc_state_disables()
-> 		intel_crtc_disable_planes()
-> 			intel_disable_plane()
-> 		dev_priv->display.crtc_disable(state, crtc)/hsw_crtc_disable()
-> 			intel_encoders_disable()
-> 				encoder->disable()/intel_disable_ddi()
-> 					intel_psr_disable()
-> 			intel_encoders_post_disable()
-> 				post_disable/intel_ddi_post_disable()
-> 					intel_disable_pipe()
-> 
-> So all the planes are disabled while PSR is still on, that is why this patch fixed the underrun.
-> 
-> We need to call the pre_disable() before intel_crtc_disable_planes() and for the case where pipe is not disabled but all of its planes are requires
-> the pending patch that I have.
-> 
-> Or do you have other suggestion?
+> Wondering about flipping the names to intel_transcoder_enable and
+> intel_transcoder_disable, with a potential move to a separate file.
 
-I would like to follow the same sequence always, ie. disable planes
-first (be it from userspace or from the kernel just before the modeset),
-and then we take the exact same measures in both cases to deal with
-whatever is the problem with PSR vs. disabled planes. That makes the
-sequence as deterministic as possible, and thus we avoid potential
-weird bugs stemming from userspace behaviour wrt. disabling planes.
+If you're thinking about intel_transcoder.c then I doubts
+about it making much sense. Seems a bit too specific,
+and the transcoder vs. pipe split has been a rather fluid
+over the years so not all platforms may even fit into the
+same mold.
 
-Hmm. Our modeset plane disable code is certainly a bit lackluster.
-It misses a bunch of stuff that we do for normal plane updates.
-So we might want to put a few extra things in there. Maybe PSR
-needs the vblank_get+psr_idle trick? And we might want a
-vrr_push/etc. in there as well, not sure.
+I think what we want to do to the modeset code in
+intel_display.c is mainly just split on the high level vs.
+low level boundary somewhere. But splitting the low level
+code further is probably going to require more thought.
 
-What exactly is your solution to the case where the planes are
-already disabled by userspace?
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/g4x_dp.c        |  4 +--
+> >  drivers/gpu/drm/i915/display/intel_crt.c     |  4 +--
+> >  drivers/gpu/drm/i915/display/intel_ddi.c     |  4 +--
+> >  drivers/gpu/drm/i915/display/intel_display.c | 28 ++++++++++----------
+> >  drivers/gpu/drm/i915/display/intel_display.h | 12 ++++-----
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c  |  4 +--
+> >  drivers/gpu/drm/i915/display/intel_dpll.c    | 12 ++++-----
+> >  drivers/gpu/drm/i915/display/intel_fdi.c     |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_tv.c      |  2 +-
+> >  9 files changed, 36 insertions(+), 36 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> > index 9577f6843f79..8e0620ae2ed1 100644
+> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> > @@ -211,7 +211,7 @@ static void ilk_edp_pll_on(struct intel_dp *intel_dp,
+> >  	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  
+> > -	assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, pipe_config->cpu_transcoder);
+> >  	assert_dp_port_disabled(intel_dp);
+> >  	assert_edp_pll_disabled(dev_priv);
+> >  
+> > @@ -251,7 +251,7 @@ static void ilk_edp_pll_off(struct intel_dp *intel_dp,
+> >  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  
+> > -	assert_pipe_disabled(dev_priv, old_crtc_state->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, old_crtc_state->cpu_transcoder);
+> >  	assert_dp_port_disabled(intel_dp);
+> >  	assert_edp_pll_enabled(dev_priv);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> > index 408f82b0dc7d..1c161eeed82f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> > @@ -251,7 +251,7 @@ static void hsw_post_disable_crt(struct intel_atomic_state *state,
+> >  
+> >  	intel_crtc_vblank_off(old_crtc_state);
+> >  
+> > -	intel_disable_pipe(old_crtc_state);
+> > +	intel_disable_transcoder(old_crtc_state);
+> >  
+> >  	intel_ddi_disable_transcoder_func(old_crtc_state);
+> >  
+> > @@ -314,7 +314,7 @@ static void hsw_enable_crt(struct intel_atomic_state *state,
+> >  
+> >  	intel_ddi_enable_transcoder_func(encoder, crtc_state);
+> >  
+> > -	intel_enable_pipe(crtc_state);
+> > +	intel_enable_transcoder(crtc_state);
+> >  
+> >  	lpt_pch_enable(crtc_state);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index c1fd7cbb40e1..4f7420dda8b5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -2867,7 +2867,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> >  	if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST)) {
+> >  		intel_crtc_vblank_off(old_crtc_state);
+> >  
+> > -		intel_disable_pipe(old_crtc_state);
+> > +		intel_disable_transcoder(old_crtc_state);
+> >  
+> >  		intel_vrr_disable(old_crtc_state);
+> >  
+> > @@ -3138,7 +3138,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
+> >  
+> >  	intel_vrr_enable(encoder, crtc_state);
+> >  
+> > -	intel_enable_pipe(crtc_state);
+> > +	intel_enable_transcoder(crtc_state);
+> >  
+> >  	intel_crtc_vblank_on(crtc_state);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index afa26911c236..1a0eac3da3f0 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -120,7 +120,7 @@ static void intel_cpu_transcoder_set_m_n(const struct intel_crtc_state *crtc_sta
+> >  					 const struct intel_link_m_n *m2_n2);
+> >  static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state);
+> >  static void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state);
+> > -static void hsw_set_pipeconf(const struct intel_crtc_state *crtc_state);
+> > +static void hsw_set_transconf(const struct intel_crtc_state *crtc_state);
+> >  static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state);
+> >  static void ilk_pfit_enable(const struct intel_crtc_state *crtc_state);
+> >  static void intel_modeset_setup_hw_state(struct drm_device *dev,
+> > @@ -448,8 +448,8 @@ void assert_panel_unlocked(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  	     pipe_name(pipe));
+> >  }
+> >  
+> > -void assert_pipe(struct drm_i915_private *dev_priv,
+> > -		 enum transcoder cpu_transcoder, bool state)
+> > +void assert_transcoder(struct drm_i915_private *dev_priv,
+> > +		       enum transcoder cpu_transcoder, bool state)
+> >  {
+> >  	bool cur_state;
+> >  	enum intel_display_power_domain power_domain;
+> > @@ -766,7 +766,7 @@ enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
+> >  		return crtc->pipe;
+> >  }
+> >  
+> > -void intel_enable_pipe(const struct intel_crtc_state *new_crtc_state)
+> > +void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
+> >  {
+> >  	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > @@ -827,7 +827,7 @@ void intel_enable_pipe(const struct intel_crtc_state *new_crtc_state)
+> >  		intel_wait_for_pipe_scanline_moving(crtc);
+> >  }
+> >  
+> > -void intel_disable_pipe(const struct intel_crtc_state *old_crtc_state)
+> > +void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+> >  {
+> >  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > @@ -2883,7 +2883,7 @@ static void ilk_crtc_enable(struct intel_atomic_state *state,
+> >  
+> >  	if (dev_priv->display.initial_watermarks)
+> >  		dev_priv->display.initial_watermarks(state, crtc);
+> > -	intel_enable_pipe(new_crtc_state);
+> > +	intel_enable_transcoder(new_crtc_state);
+> >  
+> >  	if (new_crtc_state->has_pch_encoder)
+> >  		ilk_pch_enable(state, new_crtc_state);
+> > @@ -3062,7 +3062,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+> >  	}
+> >  
+> >  	if (!transcoder_is_dsi(cpu_transcoder))
+> > -		hsw_set_pipeconf(new_crtc_state);
+> > +		hsw_set_transconf(new_crtc_state);
+> >  
+> >  	crtc->active = true;
+> >  
+> > @@ -3157,7 +3157,7 @@ static void ilk_crtc_disable(struct intel_atomic_state *state,
+> >  
+> >  	intel_crtc_vblank_off(old_crtc_state);
+> >  
+> > -	intel_disable_pipe(old_crtc_state);
+> > +	intel_disable_transcoder(old_crtc_state);
+> >  
+> >  	ilk_pfit_disable(old_crtc_state);
+> >  
+> > @@ -3219,7 +3219,7 @@ static void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state)
+> >  	 */
+> >  	drm_WARN_ON(&dev_priv->drm,
+> >  		    intel_de_read(dev_priv, PFIT_CONTROL) & PFIT_ENABLE);
+> > -	assert_pipe_disabled(dev_priv, crtc_state->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+> >  
+> >  	intel_de_write(dev_priv, PFIT_PGM_RATIOS,
+> >  		       crtc_state->gmch_pfit.pgm_ratios);
+> > @@ -3511,7 +3511,7 @@ static void valleyview_crtc_enable(struct intel_atomic_state *state,
+> >  	intel_disable_primary_plane(new_crtc_state);
+> >  
+> >  	dev_priv->display.initial_watermarks(state, crtc);
+> > -	intel_enable_pipe(new_crtc_state);
+> > +	intel_enable_transcoder(new_crtc_state);
+> >  
+> >  	intel_crtc_vblank_on(new_crtc_state);
+> >  
+> > @@ -3557,7 +3557,7 @@ static void i9xx_crtc_enable(struct intel_atomic_state *state,
+> >  		dev_priv->display.initial_watermarks(state, crtc);
+> >  	else
+> >  		intel_update_watermarks(crtc);
+> > -	intel_enable_pipe(new_crtc_state);
+> > +	intel_enable_transcoder(new_crtc_state);
+> >  
+> >  	intel_crtc_vblank_on(new_crtc_state);
+> >  
+> > @@ -3576,7 +3576,7 @@ static void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state)
+> >  	if (!old_crtc_state->gmch_pfit.control)
+> >  		return;
+> >  
+> > -	assert_pipe_disabled(dev_priv, old_crtc_state->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, old_crtc_state->cpu_transcoder);
+> >  
+> >  	drm_dbg_kms(&dev_priv->drm, "disabling pfit, current: 0x%08x\n",
+> >  		    intel_de_read(dev_priv, PFIT_CONTROL));
+> > @@ -3602,7 +3602,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+> >  
+> >  	intel_crtc_vblank_off(old_crtc_state);
+> >  
+> > -	intel_disable_pipe(old_crtc_state);
+> > +	intel_disable_transcoder(old_crtc_state);
+> >  
+> >  	i9xx_pfit_disable(old_crtc_state);
+> >  
+> > @@ -5172,7 +5172,7 @@ static void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+> >  	intel_de_posting_read(dev_priv, PIPECONF(pipe));
+> >  }
+> >  
+> > -static void hsw_set_pipeconf(const struct intel_crtc_state *crtc_state)
+> > +static void hsw_set_transconf(const struct intel_crtc_state *crtc_state)
+> >  {
+> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> > index 4719ffc97fce..d425ee77aad7 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > @@ -531,8 +531,8 @@ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port);
+> >  bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
+> >  
+> >  void intel_plane_destroy(struct drm_plane *plane);
+> > -void intel_enable_pipe(const struct intel_crtc_state *new_crtc_state);
+> > -void intel_disable_pipe(const struct intel_crtc_state *old_crtc_state);
+> > +void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state);
+> > +void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
+> >  void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
+> >  void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
+> >  enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc);
+> > @@ -657,10 +657,10 @@ void assert_fdi_rx_pll(struct drm_i915_private *dev_priv,
+> >  		       enum pipe pipe, bool state);
+> >  #define assert_fdi_rx_pll_enabled(d, p) assert_fdi_rx_pll(d, p, true)
+> >  #define assert_fdi_rx_pll_disabled(d, p) assert_fdi_rx_pll(d, p, false)
+> > -void assert_pipe(struct drm_i915_private *dev_priv,
+> > -		 enum transcoder cpu_transcoder, bool state);
+> > -#define assert_pipe_enabled(d, t) assert_pipe(d, t, true)
+> > -#define assert_pipe_disabled(d, t) assert_pipe(d, t, false)
+> > +void assert_transcoder(struct drm_i915_private *dev_priv,
+> > +		       enum transcoder cpu_transcoder, bool state);
+> > +#define assert_transcoder_enabled(d, t) assert_transcoder(d, t, true)
+> > +#define assert_transcoder_disabled(d, t) assert_transcoder(d, t, false)
+> >  
+> >  /* Use I915_STATE_WARN(x) and I915_STATE_WARN_ON() (rather than WARN() and
+> >   * WARN_ON()) for hw state sanity checks to check for unexpected conditions
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 914bea983a28..9f1fc1a68ed2 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -398,7 +398,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+> >  
+> >  	intel_crtc_vblank_off(old_crtc_state);
+> >  
+> > -	intel_disable_pipe(old_crtc_state);
+> > +	intel_disable_transcoder(old_crtc_state);
+> >  
+> >  	drm_dp_update_payload_part2(&intel_dp->mst_mgr);
+> >  
+> > @@ -559,7 +559,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+> >  		intel_de_rmw(dev_priv, CHICKEN_TRANS(trans), 0,
+> >  			     FECSTALL_DIS_DPTSTREAM_DPTTG);
+> >  
+> > -	intel_enable_pipe(pipe_config);
+> > +	intel_enable_transcoder(pipe_config);
+> >  
+> >  	intel_crtc_vblank_on(pipe_config);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+> > index ace9157a1c30..487d8721ecf8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> > @@ -1402,7 +1402,7 @@ void i9xx_enable_pll(const struct intel_crtc_state *crtc_state)
+> >  	enum pipe pipe = crtc->pipe;
+> >  	int i;
+> >  
+> > -	assert_pipe_disabled(dev_priv, crtc_state->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+> >  
+> >  	/* PLL is protected by panel, make sure we can write it */
+> >  	if (i9xx_has_pps(dev_priv))
+> > @@ -1582,7 +1582,7 @@ void vlv_enable_pll(const struct intel_crtc_state *crtc_state)
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  	enum pipe pipe = crtc->pipe;
+> >  
+> > -	assert_pipe_disabled(dev_priv, crtc_state->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+> >  
+> >  	/* PLL is protected by panel, make sure we can write it */
+> >  	assert_panel_unlocked(dev_priv, pipe);
+> > @@ -1734,7 +1734,7 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  	enum pipe pipe = crtc->pipe;
+> >  
+> > -	assert_pipe_disabled(dev_priv, crtc_state->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+> >  
+> >  	/* PLL is protected by panel, make sure we can write it */
+> >  	assert_panel_unlocked(dev_priv, pipe);
+> > @@ -1818,7 +1818,7 @@ void vlv_disable_pll(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  	u32 val;
+> >  
+> >  	/* Make sure the pipe isn't still relying on us */
+> > -	assert_pipe_disabled(dev_priv, (enum transcoder)pipe);
+> > +	assert_transcoder_disabled(dev_priv, (enum transcoder)pipe);
+> >  
+> >  	val = DPLL_INTEGRATED_REF_CLK_VLV |
+> >  		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
+> > @@ -1835,7 +1835,7 @@ void chv_disable_pll(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  	u32 val;
+> >  
+> >  	/* Make sure the pipe isn't still relying on us */
+> > -	assert_pipe_disabled(dev_priv, (enum transcoder)pipe);
+> > +	assert_transcoder_disabled(dev_priv, (enum transcoder)pipe);
+> >  
+> >  	val = DPLL_SSC_REF_CLK_CHV |
+> >  		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
+> > @@ -1866,7 +1866,7 @@ void i9xx_disable_pll(const struct intel_crtc_state *crtc_state)
+> >  		return;
+> >  
+> >  	/* Make sure the pipe isn't still relying on us */
+> > -	assert_pipe_disabled(dev_priv, crtc_state->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+> >  
+> >  	intel_de_write(dev_priv, DPLL(pipe), DPLL_VGA_MODE_DIS);
+> >  	intel_de_posting_read(dev_priv, DPLL(pipe));
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > index fc09b781f15f..96ff12ad0873 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > @@ -281,7 +281,7 @@ static void ilk_fdi_link_train(struct intel_crtc *crtc,
+> >  		       intel_de_read(dev_priv, PIPE_DATA_M1(pipe)) & TU_SIZE_MASK);
+> >  
+> >  	/* FDI needs bits from pipe first */
+> > -	assert_pipe_enabled(dev_priv, crtc_state->cpu_transcoder);
+> > +	assert_transcoder_enabled(dev_priv, crtc_state->cpu_transcoder);
+> >  
+> >  	/* Train 1: umask FDI RX Interrupt symbol_lock and bit_lock bit
+> >  	   for train result */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+> > index d02f09f7e750..88a398df9621 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_tv.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+> > @@ -1529,7 +1529,7 @@ static void intel_tv_pre_enable(struct intel_atomic_state *state,
+> >  		intel_de_write(dev_priv, TV_CLR_LEVEL,
+> >  			       ((video_levels->black << TV_BLACK_LEVEL_SHIFT) | (video_levels->blank << TV_BLANK_LEVEL_SHIFT)));
+> >  
+> > -	assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
+> > +	assert_transcoder_disabled(dev_priv, pipe_config->cpu_transcoder);
+> >  
+> >  	/* Filter ctl must be set before TV_WIN_SIZE */
+> >  	tv_filter_ctl = TV_AUTO_SCALE;
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Ville Syrjälä
