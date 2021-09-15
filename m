@@ -1,29 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851ED40C40C
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 13:00:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A63540C45F
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 13:27:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7477E6E909;
-	Wed, 15 Sep 2021 10:59:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 196606E90A;
+	Wed, 15 Sep 2021 11:27:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D76B36E908;
- Wed, 15 Sep 2021 10:59:51 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date: Wed, 15 Sep 2021 12:59:46 +0200
-Message-Id: <20210915105946.394412-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.33.0
+Received: from smtp-relay-canonical-1.canonical.com
+ (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14DD46E90A;
+ Wed, 15 Sep 2021 11:27:05 +0000 (UTC)
+Received: from localhost (1.general.cking.uk.vpn [10.172.193.212])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 74E0E3F245; 
+ Wed, 15 Sep 2021 11:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1631705222;
+ bh=cc3O1bxDlaxpZJKHx5bBL2k1ahxsr3eUxsuOrkSwHes=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
+ b=TXL8wXtA8ZNQjBox1VLATAG9KebKRJQ75kVbfVXhc+YmCZgVMdKMdP78idKG6W7D0
+ 71deGXXjILTv7+HKK7/6DrDKopGZCIe3eAbWY+VTXbJN2Ma36v6YdTFyDQbBLxWaHJ
+ i8F38dQ0tYY2My/9FVqViYzt3tVD/BbhesJd9bgKtO0iM3eICVCn/MWd+nRn6uR6T1
+ eUIocUimfXiBQQbiMPL+jpoH8xAjTVlK2y108xWUr0sjStXHCsfx0ZR3yoxKcYhlTZ
+ BzNy44x8kz8vCzH64XEphHCXwJCpE+hDjMZYyMwxe9BpI4fXPHCAUvA0r2JHHjRo8G
+ l+6oEltjH/T0w==
+From: Colin King <colin.king@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Date: Wed, 15 Sep 2021 12:27:02 +0100
+Message-Id: <20210915112702.12783-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Add mmap lock around vma_lookup() to
- prevent lockdep splats
+Subject: [Intel-gfx] [PATCH][next] drm/i915: make array states static const
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,58 +59,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fixes the following splat:
+From: Colin Ian King <colin.king@canonical.com>
 
-i915: Running i915_gem_mman_live_selftests/igt_mmap
-------------[ cut here ]------------
-WARNING: CPU: 3 PID: 5654 at include/linux/mmap_lock.h:164 find_vma+0x4e/0xb0
-Modules linked in: i915(+) vgem fuse snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio mei_hdcp x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel snd_intel_dspcfg snd_hda_codec snd_hwdep e1000e snd_hda_core ptp snd_pcm ttm mei_me pps_core i2c_i801 prime_numbers i2c_smbus mei [last unloaded: i915]
-CPU: 3 PID: 5654 Comm: i915_selftest Tainted: G     U            5.15.0-rc1-CI-Trybot_7984+ #1
-Hardware name: Micro-Star International Co., Ltd. MS-7B54/Z370M MORTAR (MS-7B54), BIOS 1.00 10/31/2017
-RIP: 0010:find_vma+0x4e/0xb0
-Code: de 48 89 ef e8 d3 94 fe ff 48 85 c0 74 34 48 83 c4 08 5b 5d c3 48 8d bf 28 01 00 00 be ff ff ff ff e8 d6 46 8b 00 85 c0 75 c8 <0f> 0b 48 8b 85 b8 00 00 00 48 85 c0 75 c6 48 89 ef e8 12 26 87 00
-RSP: 0018:ffffc900013df980 EFLAGS: 00010246
-RAX: 0000000000000000 RBX: 00007f9df2b80000 RCX: 0000000000000000
-RDX: 0000000000000001 RSI: ffffffff822e314c RDI: ffffffff8233c83f
-RBP: ffff88811bafc840 R08: ffff888107d0ddb8 R09: 00000000fffffffe
-R10: 0000000000000001 R11: 00000000ffbae7ba R12: 0000000000000000
-R13: 0000000000000000 R14: ffff88812a710000 R15: ffff888114fa42c0
-FS:  00007f9def9d4c00(0000) GS:ffff888266580000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f799627fe50 CR3: 000000011bbc2006 CR4: 00000000003706e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- __igt_mmap+0xe0/0x490 [i915]
- igt_mmap+0xd2/0x160 [i915]
- ? __trace_bprintk+0x6e/0x80
- __i915_subtests.cold.7+0x42/0x92 [i915]
- ? i915_perf_selftests+0x20/0x20 [i915]
- ? __i915_nop_setup+0x10/0x10 [i915]
- __run_selftests.part.3+0x10d/0x172 [i915]
- i915_live_selftests.cold.5+0x1f/0x47 [i915]
- i915_pci_probe+0x93/0x1d0 [i915]
+Don't populate the read-only array states on the stack but instead it
+static. Also makes the object code smaller.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/4129
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
 ---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-index 02d40eb31a4c..e69e8861352d 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-@@ -907,7 +907,9 @@ static int __igt_mmap(struct drm_i915_private *i915,
- 
- 	pr_debug("igt_mmap(%s, %d) @ %lx\n", obj->mm.region->name, type, addr);
- 
-+	mmap_read_lock(current->mm);
- 	area = vma_lookup(current->mm, addr);
-+	mmap_read_unlock(current->mm);
- 	if (!area) {
- 		pr_err("%s: Did not create a vm_area_struct for the mmap\n",
- 		       obj->mm.region->name);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index cce1a926fcc1..a60710348613 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -893,7 +893,7 @@ static u32
+ sanitize_target_dc_state(struct drm_i915_private *dev_priv,
+ 			 u32 target_dc_state)
+ {
+-	u32 states[] = {
++	static const u32 states[] = {
+ 		DC_STATE_EN_UPTO_DC6,
+ 		DC_STATE_EN_UPTO_DC5,
+ 		DC_STATE_EN_DC3CO,
 -- 
-2.33.0
+2.32.0
 
