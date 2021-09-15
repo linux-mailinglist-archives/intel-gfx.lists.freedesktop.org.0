@@ -2,73 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED86140C701
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 16:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F72440C6FE
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 16:05:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A5AC6E944;
-	Wed, 15 Sep 2021 14:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692E16E93D;
+	Wed, 15 Sep 2021 14:05:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 432646E905;
- Wed, 15 Sep 2021 10:46:25 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id d6so3106351wrc.11;
- Wed, 15 Sep 2021 03:46:25 -0700 (PDT)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC8676E90C;
+ Wed, 15 Sep 2021 11:19:54 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id q26so3270792wrc.7;
+ Wed, 15 Sep 2021 04:19:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=subject:to:cc:references:from:message-id:date:user-agent
  :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=D9nsboeoRFRFMehNMSk+eKmCHRNzoEroL4U7NXf5xHE=;
- b=JPbeJFkuszuQHi62VBPFVyfsXE7vZIeRAcKmlRyPAcUXrtDixV1O2vSpzNP+27dS5b
- Oc+x3Ox1YY3dN6n1Wmt6/LHjo17mdc/I9jAtbqgnoPV8X52nfezTfcWVsrlnLx1MTNlk
- LJBDP13s+Z2MBEoQItK+ztISeVq9VVdxsm6yMqVqZ813/JJXRoxF+l4D5iJfwRvst520
- gkMgX+/6jR6uh9U9BP9HkLYgmDyNcy4DQm0ZiVcZ7cwO1AFWcxP6G9Liu60pOCVJLnMD
- NcmOSs2I3eBKe8HqozjGaZN3AAkYTxCAHK0u1umJnemFmsh4A132BZNkXj1ORbe1SbmA
- /C5A==
+ bh=93lsXU/Z3uxd8n34/9P2RUUBOmtBhYmL6uqJmdWmF/o=;
+ b=FQNYqWS4ukF31jcFARjgKDPNO9U9aouBEuBONB/qI4hHlUp1KzR9maed8WVf3OWJO8
+ 85TLH+YTmkH3tw0CfVzOXwI+iOtJF4kOffF0dTr1s/Pjd2670p2Qf4LuQFyIqp8JXQFi
+ XWkenTcCx01zB81GfqOYW4UP/io6X8tVe9sT0ndKSlPfX4HE/EP1HzYCGTYLITN/H6Dc
+ 3jxKXiSzQt+ZEIcz7DzBtRD4eNIU501L864O2eOyBIyFgvTf7mKxgiAtev3bjuTcF/nW
+ kVbw7aRw3wSsT7OzhJhjOZNXXZSmicoz4m/9xxj3L8xv/Mjc5bmoWY876ggpDz0AOyS6
+ utbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-transfer-encoding
  :content-language;
- bh=D9nsboeoRFRFMehNMSk+eKmCHRNzoEroL4U7NXf5xHE=;
- b=DOKj4lam/+XWO48ZommAteyg1Yy9cmzgo3XIwY8V6wI8dYPFlSEzzvzgk5dNOkaSRO
- QL52MgW9zQfrG5EhLzHRB+N5DADtW0AofiNDlfmm44ePAowBtGWIMumGCXAymb3GeNv5
- XR0zhyZAwL2d8vxZvghmxeG9wIRczezb9nbK6z+PSNIlGif68Ao4EaykvPCYWBt5WAUn
- XXGh9c3JlQ075AJqsZiE08u+1W75rcteA9aNpoT8y/lSaXYBfdVpUX1WjAaMWTuwI4Cy
- Lf9HXiuW0jknLC7soCEy11CUoJ2tK3q9uB9TlZkQlpB6/oI8SnRxy2DJ1or8Lez2lUDr
- gT9g==
-X-Gm-Message-State: AOAM532tLfcwMA192sjOltBJjxgWEwe8Z4FcxFfaC2lYoiyjOe7x3nwH
- 74HImWxkFiCGlRPEBh01CCvWPRHyKeY=
-X-Google-Smtp-Source: ABdhPJyhAqvQHAu9Wliypo7hySMKWisUP9ZWL1O87o2QWfl41r7mOXE9Jd9sB6J0ZYNElkdIpUFJBw==
-X-Received: by 2002:adf:e649:: with SMTP id b9mr4299584wrn.309.1631702783814; 
- Wed, 15 Sep 2021 03:46:23 -0700 (PDT)
+ bh=93lsXU/Z3uxd8n34/9P2RUUBOmtBhYmL6uqJmdWmF/o=;
+ b=yF0TbF1WTjek6dvCRnvjRy9NgwCTwI9LFKHmKp/8+9gQ0p0vV9ZHqTtAcK5i3Ek224
+ Jz7EUdFVGrmmjjdI5jz2/cTl4/sgPVk0yPtUQs0c7BPdkVZmjZyc06P4yv01nKQSQuvZ
+ y93uiIty3zrAqmOEnt8/wAUYOVehje3isqf2rYy6a5AIFzT63WLxHvyr8RSivqyqqlcz
+ X4b+U6JTdHGIOW3WnkmWERalqlJtHFDXioHSG3Xbar0uYfyLsZd672EgswpzWgoAcd75
+ dxdI1UVtTXbtYh2oWslNdTxgwGpVU8hRxwlyOqE/EgNL933+23BYNWAUcNwTthylXLT5
+ 9sLA==
+X-Gm-Message-State: AOAM531TljYEelEQbxSEedDIa/jj7jztYE59FSSlBe5/ZDP81p534mvI
+ kja2/ELsSz6qBMy97FogkuH7goQI0xk=
+X-Google-Smtp-Source: ABdhPJzo7z9Zb7dkNgAWCsWWmzcOTtaDbeuyUXJErhg6OxOAjyeFUh0u1y5yexp4OvMxrUy1oSqjJQ==
+X-Received: by 2002:a5d:43d2:: with SMTP id v18mr4451441wrr.98.1631704793321; 
+ Wed, 15 Sep 2021 04:19:53 -0700 (PDT)
 Received: from ?IPv6:2a02:908:1252:fb60:d03d:8939:3840:1f95?
  ([2a02:908:1252:fb60:d03d:8939:3840:1f95])
- by smtp.gmail.com with ESMTPSA id q128sm4727091wma.27.2021.09.15.03.46.22
+ by smtp.gmail.com with ESMTPSA id l1sm3450397wmq.8.2021.09.15.04.19.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Sep 2021 03:46:23 -0700 (PDT)
+ Wed, 15 Sep 2021 04:19:52 -0700 (PDT)
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
  linux-media@vger.kernel.org
 Cc: daniel@ffwll.ch, intel-gfx@lists.freedesktop.org
 References: <20210913131707.45639-1-christian.koenig@amd.com>
- <20210913131707.45639-2-christian.koenig@amd.com>
- <1eee4105-e154-9d1d-b92b-d17c6f8f8432@linux.intel.com>
- <abeccf85-13d1-9e3a-26c9-1ca0f6d4c322@gmail.com>
- <c03a61f2-9d70-c6f4-584d-b91c89ec7462@linux.intel.com>
+ <20210913131707.45639-19-christian.koenig@amd.com>
+ <46a40614-b448-7f2d-7b6b-0705c4277e2b@linux.intel.com>
+ <6c0217a7-6ac8-0c12-4087-ee55f456f99c@gmail.com>
+ <f9b65430-de19-7c3b-c77f-5a88114037c5@linux.intel.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <4da378ec-0411-aaf5-fb02-e3a18e7175d3@gmail.com>
-Date: Wed, 15 Sep 2021 12:46:22 +0200
+Message-ID: <be670538-cba3-1362-c79d-910a0bb54b3d@gmail.com>
+Date: Wed, 15 Sep 2021 13:19:51 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <c03a61f2-9d70-c6f4-584d-b91c89ec7462@linux.intel.com>
+In-Reply-To: <f9b65430-de19-7c3b-c77f-5a88114037c5@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
 X-Mailman-Approved-At: Wed, 15 Sep 2021 14:05:10 +0000
-Subject: Re: [Intel-gfx] [PATCH 01/26] dma-buf: add
- dma_resv_for_each_fence_unlocked
+Subject: Re: [Intel-gfx] [PATCH 18/26] drm/i915: use new iterator in
+ i915_gem_object_last_write_engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,142 +84,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 14.09.21 um 15:07 schrieb Tvrtko Ursulin:
-> On 14/09/2021 12:25, Christian König wrote:
->> Am 14.09.21 um 12:53 schrieb Tvrtko Ursulin:
+Am 14.09.21 um 14:47 schrieb Tvrtko Ursulin:
+>
+> On 14/09/2021 13:32, Christian König wrote:
+>> Am 14.09.21 um 14:27 schrieb Tvrtko Ursulin:
 >>>
 >>> On 13/09/2021 14:16, Christian König wrote:
->>>> [SNIP]
->>>> +        if (fence) {
->>>> +            fence = dma_fence_get_rcu(fence);
->>>> +        } else if (all_fences && cursor->fences) {
->>>> +            struct dma_resv_list *fences = cursor->fences;
+>>>> This is maybe even a fix since the RCU usage here looks incorrect.
 >>>
->>> If rcu lock is allowed to be dropped while walking the list what 
->>> guarantees list of fences hasn't been freed?
+>>> What you think is incorrect? Pointless extra rcu locking?
 >>
->> Ah, good point! We need to test the sequence number when we enter the 
->> function as well. Going to fix that.
+>> Yeah, exactly that. I also wondered for a second if rcu_read_lock() 
+>> can nest or not. But obviously it either works or lockdep hasn't 
+>> complained yet.
+>>
+>> But I've made a mistake here and at a couple of other places to 
+>> remove to many rcu_read_lock() calls. Thanks for pointing that out, 
+>> going to fix it as well.
 >
-> Right, but just to say, I am still on the fence a bit on the concept 
-> of the unlocked iterator. So for now I am looking only superficially 
-> at the implementation and i915 side of things.
-
-I'm really in favor of taking the lock as well and contain the unlocked 
-operation into the dma_resv object code and I think Daniel is on 
-absolutely the same side as well.
-
-But the use cases are as they are for now and I think containing the 
-internal structure of the dma_resv object is the right next step.
-
->>> [SNIP]
->>>>   +/**
->>>> + * struct dma_resv_cursor - current position into the dma_resv fences
->>>> + * @seq: sequence number to check
->>>> + * @index: index into the shared fences
->>>> + * @shared: the shared fences
->>>> + * @is_first: true if this is the first returned fence
->>>> + * @is_exclusive: if the current fence is the exclusive one
->>>> + */
->>>> +struct dma_resv_cursor {
->>>> +    unsigned int seq;
->>>> +    unsigned int index;
->>>> +    struct dma_resv_list *fences;
->>>> +    bool is_first;
->>>
->>> Is_first is useful to callers - like they are legitimately allowed 
->>> to look inside this, what could otherwise be private object?
->>
->> Yes, I was pondering on the same question. Key point is that this is 
->> only used by other dma_resv functions which also use cursor.fences 
->> for example.
->>
->> So this is only supposed to be used by code working with other 
->> privates of the dma_resv object as well.
+> Ack.
 >
-> Hmmm and you think external callers have no legitimate case of 
-> detecting restarts?
-
-Yes, if somebody needs a snapshot of the current state and can't for 
-some reason take the lock they should use dma_resv_get_fences() instead.
-
-On the other hand allocating memory in dma_resv_get_fences() has 
-probably more overhead than just grabbing and releasing the lock.
-
-> Or to better say will not have the need of distinguishing between real 
-> restarts and just the first iteration? I need to read more of the 
-> series to get a more complete opinion here.
-
-Yeah, that's indeed a good point. Off hand I don't see any, but we 
-should probably decide for each place individually if we should take the 
-lock, allocate memory or use the lockless iterator.
-
-> [SNIP]
->>>
->>>> +};
->>>> +
->>>> +/**
->>>> + * dma_resv_for_each_fence_unlocked - fence iterator
->>>> + * @obj: a dma_resv object pointer
->>>> + * @cursor: a struct dma_resv_cursor pointer
->>>> + * @all_fences: true if all fences should be returned
->>>> + * @fence: the current fence
->>>> + *
->>>> + * Iterate over the fences in a struct dma_resv object without 
->>>> holding the
->>>> + * dma_resv::lock. The RCU read side lock must be hold when using 
->>>> this, but can
->>>> + * be dropped and re-taken as necessary inside the loop. 
->>>> @all_fences controls
->>>> + * if the shared fences are returned as well.
->>>> + */
->>>> +#define dma_resv_for_each_fence_unlocked(obj, cursor, all_fences, 
->>>> fence)    \
->>>> +    for (fence = dma_resv_walk_unlocked(obj, cursor, all_fences, 
->>>> true); \
->>>> +         fence; dma_fence_put(fence),                    \
->>>> +         fence = dma_resv_walk_unlocked(obj, cursor, all_fences, 
->>>> false))
->>>
->>> Has the fact RCU lock can be dropped so there is potential to walk 
->>> over completely different snapshots been discussed?
+>>> Also, FWIW, I submitted a patch to remove this function altogether 
+>>> since its IMO pretty useless, just failed in getting anyone to ack 
+>>> it so far.
 >>
->> Well that's basically the heart of the functionality. Even without 
->> dropping the RCU lock there can be an restart at any time when the 
->> dma_resv object is modified.
+>> I was on the edge of suggesting that as well since it's only debugfs 
+>> usage looked quite pointless to me.
+>>
+>> Feel free to CC me on the patch and you can have my acked-by.
 >
-> Hm yes.. that's one of the thing which makes me undecided yet whether 
-> a generalised helper is desirable. For example i915_gem_busy_ioctl, as 
-> converted, is not completely like-for-like. Maybe it is irrelevant for 
-> that one, but then the question needs to be answered for all of the 
-> replacements.
->
->>
->>> At least if I followed the code correctly - it appears there is 
->>> potential the walk restarts from the start (exclusive slot) at any 
->>> point during the walk.
->>
->> Correct, yes.
->>
->>> Because theoretically I think you could take an atomic snapshot of 
->>> everything (given you have a cursor object) and then release it on 
->>> the end condition.
->>
->> That's what the dma_resv_get_fences() function is good for, yes. This 
->> one returns an array of fences.
->>
->> The key difference is that we need to allocate memory for that which 
->> is at least sometimes not feasible or desired.
->
-> Ah true.. dma_resv_list is not reference counted to simply grab it 
-> during setup.
->
->> Thanks for the review,
->
-> Np, it is intriguing to look at the option of code consolidation. Just 
-> need to read more of the series to form a better high level opinion.
+> Patch is here 
+> https://patchwork.freedesktop.org/patch/451864/?series=94202&rev=1, 
+> thanks!
 
-Really appreciated, thanks for looking into this.
+Feel free to add an Acked-by: Christian König <christian.koenig@amd.com> 
+to that one.
 
 Regards,
 Christian.
@@ -229,6 +128,7 @@ Christian.
 >
 > Tvrtko
 >
+>> Thanks,
 >> Christian.
 >>
 >>>
@@ -236,25 +136,39 @@ Christian.
 >>>
 >>> Tvrtko
 >>>
->>>> +
->>>>   #define dma_resv_held(obj) lockdep_is_held(&(obj)->lock.base)
->>>>   #define dma_resv_assert_held(obj) 
->>>> lockdep_assert_held(&(obj)->lock.base)
->>>>   @@ -366,6 +399,9 @@ void dma_resv_fini(struct dma_resv *obj);
->>>>   int dma_resv_reserve_shared(struct dma_resv *obj, unsigned int 
->>>> num_fences);
->>>>   void dma_resv_add_shared_fence(struct dma_resv *obj, struct 
->>>> dma_fence *fence);
->>>>   void dma_resv_add_excl_fence(struct dma_resv *obj, struct 
->>>> dma_fence *fence);
->>>> +struct dma_fence *dma_resv_walk_unlocked(struct dma_resv *obj,
->>>> +                     struct dma_resv_cursor *cursor,
->>>> +                     bool first, bool all_fences);
->>>>   int dma_resv_get_fences(struct dma_resv *obj, struct dma_fence 
->>>> **pfence_excl,
->>>>               unsigned *pshared_count, struct dma_fence ***pshared);
->>>>   int dma_resv_copy_fences(struct dma_resv *dst, struct dma_resv 
->>>> *src);
+>>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gem/i915_gem_object.h | 15 +++++++--------
+>>>>   1 file changed, 7 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h 
+>>>> b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>>> index e9eecebf5c9d..3343922af4d6 100644
+>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>>> @@ -500,16 +500,15 @@ static inline struct intel_engine_cs *
+>>>>   i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
+>>>>   {
+>>>>       struct intel_engine_cs *engine = NULL;
+>>>> +    struct dma_resv_cursor cursor;
+>>>>       struct dma_fence *fence;
+>>>>   -    rcu_read_lock();
+>>>> -    fence = dma_resv_get_excl_unlocked(obj->base.resv);
+>>>> -    rcu_read_unlock();
+>>>> -
+>>>> -    if (fence && dma_fence_is_i915(fence) && 
+>>>> !dma_fence_is_signaled(fence))
+>>>> -        engine = to_request(fence)->engine;
+>>>> -    dma_fence_put(fence);
+>>>> -
+>>>> +    dma_resv_for_each_fence_unlocked(obj->base.resv, &cursor, false,
+>>>> +                     fence) {
+>>>> +        if (fence && dma_fence_is_i915(fence) &&
+>>>> +            !dma_fence_is_signaled(fence))
+>>>> +            engine = to_request(fence)->engine;
+>>>> +    }
+>>>>       return engine;
+>>>>   }
 >>>>
 >>
 
