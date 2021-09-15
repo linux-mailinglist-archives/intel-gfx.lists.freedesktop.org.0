@@ -2,62 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F2640BC71
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 02:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9EEA40BC7A
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 02:09:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E83E6E85A;
-	Wed, 15 Sep 2021 00:00:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02ED46E85C;
+	Wed, 15 Sep 2021 00:09:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7440B6E85A
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 00:00:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="307716624"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="307716624"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2021 17:00:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="516160435"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga001.jf.intel.com with ESMTP; 14 Sep 2021 17:00:29 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 14 Sep 2021 17:00:29 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 14 Sep 2021 17:00:28 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Tue, 14 Sep 2021 17:00:28 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-CC: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 01/16] Revert "drm/i915/display: Disable audio, DRRS and
- PSR before planes"
-Thread-Index: AQHXqK3m6Vsz1GIV4EG6JPWGlpnnmKuinlCAgAEIdACAAP4aAIAACgoA
-Date: Wed, 15 Sep 2021 00:00:28 +0000
-Message-ID: <7fd9904877943a744cb011c9f8668620b6fde508.camel@intel.com>
-References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
- <20210913144440.23008-2-ville.syrjala@linux.intel.com>
- <80815922ba68991fe0a4e8609d62464457d7c822.camel@intel.com>
- <YUBbUtDCL5p/zlW9@intel.com>
- <d81c249be2ac0c427ec7ecbb74b89436f8dac955.camel@intel.com>
-In-Reply-To: <d81c249be2ac0c427ec7ecbb74b89436f8dac955.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DD9FCA31C05677449C73CCC43420D40C@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32FA26E85B;
+ Wed, 15 Sep 2021 00:09:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="209395568"
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="209395568"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 17:09:46 -0700
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; d="scan'208";a="552765972"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2021 17:09:46 -0700
+Date: Tue, 14 Sep 2021 17:04:46 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniele.ceraolospurio@intel.com, john.c.harrison@intel.com
+Message-ID: <20210915000444.GA33394@jons-linux-dev-box>
+References: <20210914050956.30685-1-matthew.brost@intel.com>
+ <20210914050956.30685-3-matthew.brost@intel.com>
+ <YUCwxHL/aFHVbkx+@phenom.ffwll.local>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/16] Revert "drm/i915/display: Disable
- audio, DRRS and PSR before planes"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YUCwxHL/aFHVbkx+@phenom.ffwll.local>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/guc: Do error capture
+ asynchronously
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,203 +53,297 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTA5LTE0IGF0IDE2OjMwIC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBPbiBUdWUsIDIwMjEtMDktMTQgYXQgMTE6MjAgKzAzMDAsIFZpbGxlIFN5cmrD
-pGzDpCB3cm90ZToNCj4gPiBPbiBNb24sIFNlcCAxMywgMjAyMSBhdCAwNDoyODozNVBNICswMDAw
-LCBTb3V6YSwgSm9zZSB3cm90ZToNCj4gPiA+IE9uIE1vbiwgMjAyMS0wOS0xMyBhdCAxNzo0NCAr
-MDMwMCwgVmlsbGUgU3lyamFsYSB3cm90ZToNCj4gPiA+ID4gRnJvbTogVmlsbGUgU3lyasOkbMOk
-IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gPiA+ID4gDQo+ID4gPiA+IERpc2Fi
-bGluZyBwbGFuZXMgaW4gdGhlIG1pZGRsZSBvZiB0aGUgbW9kZXNldCBzZXVxbmVjZSBkb2VzIG5v
-dCBtYWtlDQo+ID4gPiA+IHNlbnNlIHNpbmNlIHVzZXJzcGFjZSBjYW4gYW55d2F5IGRpc2FibGUg
-cGxhbmVzIGJlZm9yZSB0aGUgbW9kZXNldA0KPiA+ID4gPiBldmVuIHN0YXJ0cy4gU28gd2hlbiB0
-aGUgbW9kZXNldCBzZXVxZW5jZSBzdGFydHMgdGhlIHNldCBvZiBlbmFibGVkDQo+ID4gPiA+IHBs
-YW5lcyBpcyBlbnRpcmVseSBhcmJpdHJhcnkuIFRyeWluZyB0byBzcHJpbmtsZSB0aGUgcGxhbmUg
-ZGlzYWJsaW5nDQo+ID4gPiA+IGludG8gdGhlIG1vZGVzZXQgc2VxdWVuY2UganVzdCBtZWFucyBt
-b3JlIHJhbmRvbW5lc3MgYW5kIHBvdGVudGlhbA0KPiA+ID4gPiBmb3IgaGFyZCB0byByZXByb2R1
-Y2UgYnVncy4NCj4gPiA+IA0KPiA+ID4gVGhlIHBhdGNoIGJlaW5nIHJldmVydGVkIGRpZCBub3Qg
-Y2hhbmdlZCBhbnl0aGluZyBhYm91dCBwbGFuZSwgaXQgb25seSBkaXNhYmxlcyBhdWRpbyBhbmQg
-UFNSIGJlZm9yZSBwaXBlIGlzIGRpc2FibGVkIGluIHRoaXMgY2FzZS4NCj4gPiANCj4gPiBUaGUg
-Y29tbWl0IG1lc3NhZ2Ugb25seSB0YWxrcyBhYm91dCBwbGFuZXMuIEFsc28gd2UgYWxyZWFkeSBk
-aXNhYmxlDQo+ID4gdGhlIHBpcGUgaW4gdGhlIHBvc3RfZGlzYWJsZSBob29rLCBzbyBQU1IvYXVk
-aW8gd2FzIGFsd2F5cyBkaXNhYmxlZA0KPiA+IGJlZm9yZSB0aGUgcGlwZSBJSVJDLg0KPiANCj4g
-VGhhdCBpcyB0cnVlLCBteSBiYWQuDQo+IA0KPiBSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBk
-ZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNClNvcnJ5IEkgbWlzc2VkIHRoZSBpbnRl
-bF9jcnRjX2Rpc2FibGVfcGxhbmVzKCkgY2FsbCwgc28gaGVyZSBpcyB0aGUgcHJvYmxlbToNCg0K
-DQppbnRlbF9jb21taXRfbW9kZXNldF9kaXNhYmxlcygpDQoJaW50ZWxfb2xkX2NydGNfc3RhdGVf
-ZGlzYWJsZXMoKQ0KCQlpbnRlbF9jcnRjX2Rpc2FibGVfcGxhbmVzKCkNCgkJCWludGVsX2Rpc2Fi
-bGVfcGxhbmUoKQ0KCQlkZXZfcHJpdi0+ZGlzcGxheS5jcnRjX2Rpc2FibGUoc3RhdGUsIGNydGMp
-L2hzd19jcnRjX2Rpc2FibGUoKQ0KCQkJaW50ZWxfZW5jb2RlcnNfZGlzYWJsZSgpDQoJCQkJZW5j
-b2Rlci0+ZGlzYWJsZSgpL2ludGVsX2Rpc2FibGVfZGRpKCkNCgkJCQkJaW50ZWxfcHNyX2Rpc2Fi
-bGUoKQ0KCQkJaW50ZWxfZW5jb2RlcnNfcG9zdF9kaXNhYmxlKCkNCgkJCQlwb3N0X2Rpc2FibGUv
-aW50ZWxfZGRpX3Bvc3RfZGlzYWJsZSgpDQoJCQkJCWludGVsX2Rpc2FibGVfcGlwZSgpDQoNClNv
-IGFsbCB0aGUgcGxhbmVzIGFyZSBkaXNhYmxlZCB3aGlsZSBQU1IgaXMgc3RpbGwgb24sIHRoYXQg
-aXMgd2h5IHRoaXMgcGF0Y2ggZml4ZWQgdGhlIHVuZGVycnVuLg0KDQpXZSBuZWVkIHRvIGNhbGwg
-dGhlIHByZV9kaXNhYmxlKCkgYmVmb3JlIGludGVsX2NydGNfZGlzYWJsZV9wbGFuZXMoKSBhbmQg
-Zm9yIHRoZSBjYXNlIHdoZXJlIHBpcGUgaXMgbm90IGRpc2FibGVkIGJ1dCBhbGwgb2YgaXRzIHBs
-YW5lcyBhcmUgcmVxdWlyZXMNCnRoZSBwZW5kaW5nIHBhdGNoIHRoYXQgSSBoYXZlLg0KDQpPciBk
-byB5b3UgaGF2ZSBvdGhlciBzdWdnZXN0aW9uPw0KDQo+IA0KPiA+IA0KPiA+ID4gSSBoYXZlIG90
-aGVyIHBlbmRpbmcgcGF0Y2ggaGFuZGxpbmcgY2FzZXMgd2VyZSB1c2Vyc3BhY2Ugc3RpbGwgaGFz
-IHBpcGUgZW5hYmxlZCBidXQgbm8gcGxhbmVzIGVuYWJsZWQuDQo+ID4gDQo+ID4gU28gd2UgbmVl
-ZCB0aGF0IEkgZ3Vlc3MgcmF0aGVyIHRoYW4gaGFja2luZyBhcm91bmQgaXQgaW4gdGhlIG1vZGVz
-ZXQNCj4gPiBzZXF1ZW5jZS4NCj4gPiANCj4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gU28gaXQg
-bWFrZXMgbW9zdCBzZW5zZSB0byBqdXN0IGRpc2FibGUgYWxsIHBsYW5lcyBmaXJzdCBzbyB0aGF0
-IHRoZQ0KPiA+ID4gPiByZXN0IG9mIHRoZSBtb2Rlc2V0IHNlcXVlbmNlIHJlbWFpbnMgaWRlbnRp
-Y2FsIHJlZ2FyZGxlc3Mgb2Ygd2hpY2gNCj4gPiA+ID4gcGxhbmVzIGhhcHBlbiB0byBiZSBlbmFi
-bGVkIGJ5IHVzZXJzcGFjZSBhdCB0aGUgdGltZS4NCj4gPiA+IA0KPiA+ID4gVGhpcyBpcyBub3Qg
-d2hhdCBzcGVjaWZpY2F0aW9uIGFzayB1cyB0byBkbw0KPiA+IA0KPiA+IFRoZSB0ZXh0IGhhcyBh
-bHdheXMgYmVlbiB0aGUgc2FtZS4gSXQganVzdCBtYXJrcyB0aGUgbGFzdCBwb2ludCBhdCB3aGlj
-aA0KPiA+IHRoZSBwbGFuZXMgbXVzdCBiZSBkaXNhYmxlZC4NCj4gPiANCj4gPiA+IGFuZCBmb3Ig
-QWxkZXJsYWtlLVAgbm90IGZvbGxvd2luZyBpdCBjYXVzZXMgdW5kZXJydW5zLg0KPiA+IA0KPiA+
-IFNvdW5kcyBsaWtlIHdlIGhhdmUgc29tZSBvdGhlciBidWcgc29tZXdoZXJlIHRoZW4sIGJlY2F1
-ZSBzdXBwb3NlZGx5IHlvdQ0KPiA+IGdldCB0aGUgc2FtZSB1bmRlcnJ1biBpZiB5b3UgZGlzYWJs
-ZSBhbGwgdGhlIHBsYW5lcyBmcm9tIHVzZXJzcGFjZQ0KPiA+IGJlZm9yZSB0aGUgbW9kZXNldCB0
-aGVuPw0KPiANCj4gV2lsbCBjaGVjayB0aGlzIGNhc2Ugd2l0aCB0aGlzIHBhdGNoIHJldmVydGVk
-IG9uIHRvcCBvZiB0aGUgcGVuZGluZyBQU1IyIGFsZGVybGFrZS1QIHBhdGNoZXMuDQo+IA0KPiB0
-aGFua3MNCj4gDQo+ID4gDQo+ID4gPiANCj4gPiA+IEJTcGVjOiA0OTE5MA0KPiA+ID4gDQo+ID4g
-PiA+IA0KPiA+ID4gPiBUaGlzIHJldmVydHMgY29tbWl0IDg0MDMwYWRiOWUyN2QyMDJhNjYwMjI0
-ODhiZjAzNDlhOGJkNDUyMTMuDQo+ID4gPiA+IA0KPiA+ID4gPiBDYzogR3dhbi1neWVvbmcgTXVu
-IDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0KPiA+ID4gPiBDYzogSm9zw6kgUm9iZXJ0byBk
-ZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFZp
-bGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+ID4gPiA+IC0t
-LQ0KPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICAg
-IHwgMzAgKysrKysrKy0tLS0tLS0tLS0tLQ0KPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgIHwgMjQgLS0tLS0tLS0tLS0tLS0tDQo+ID4gPiA+ICAu
-Li4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggICAgfCAgNCAtLS0NCj4g
-PiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgICB8IDE0
-ICsrLS0tLS0tLQ0KPiA+ID4gPiAgNCBmaWxlcyBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCA1
-OSBkZWxldGlvbnMoLSkNCj4gPiA+ID4gDQo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kZGkuYw0KPiA+ID4gPiBpbmRleCAyM2VmMjkxZjdiMzAuLmMxZmQ3Y2JiNDBl
-MSAxMDA2NDQNCj4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kZGkuYw0KPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RkaS5jDQo+ID4gPiA+IEBAIC0zMTY0LDYgKzMxNjQsMTIgQEAgc3RhdGljIHZvaWQgaW50ZWxf
-ZGlzYWJsZV9kZGlfZHAoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiA+
-ICANCj4gPiA+ID4gIAlpbnRlbF9kcC0+bGlua190cmFpbmVkID0gZmFsc2U7DQo+ID4gPiA+ICAN
-Cj4gPiA+ID4gKwlpZiAob2xkX2NydGNfc3RhdGUtPmhhc19hdWRpbykNCj4gPiA+ID4gKwkJaW50
-ZWxfYXVkaW9fY29kZWNfZGlzYWJsZShlbmNvZGVyLA0KPiA+ID4gPiArCQkJCQkgIG9sZF9jcnRj
-X3N0YXRlLCBvbGRfY29ubl9zdGF0ZSk7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlpbnRlbF9kcnJz
-X2Rpc2FibGUoaW50ZWxfZHAsIG9sZF9jcnRjX3N0YXRlKTsNCj4gPiA+ID4gKwlpbnRlbF9wc3Jf
-ZGlzYWJsZShpbnRlbF9kcCwgb2xkX2NydGNfc3RhdGUpOw0KPiA+ID4gPiAgCWludGVsX2VkcF9i
-YWNrbGlnaHRfb2ZmKG9sZF9jb25uX3N0YXRlKTsNCj4gPiA+ID4gIAkvKiBEaXNhYmxlIHRoZSBk
-ZWNvbXByZXNzaW9uIGluIERQIFNpbmsgKi8NCj4gPiA+ID4gIAlpbnRlbF9kcF9zaW5rX3NldF9k
-ZWNvbXByZXNzaW9uX3N0YXRlKGludGVsX2RwLCBvbGRfY3J0Y19zdGF0ZSwNCj4gPiA+ID4gQEAg
-LTMxODEsNiArMzE4NywxMCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kaXNhYmxlX2RkaV9oZG1pKHN0
-cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+ID4gPiAgCXN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICppOTE1ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7DQo+ID4gPiA+ICAJ
-c3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciA9IG9sZF9jb25uX3N0YXRlLT5jb25uZWN0
-b3I7DQo+ID4gPiA+ICANCj4gPiA+ID4gKwlpZiAob2xkX2NydGNfc3RhdGUtPmhhc19hdWRpbykN
-Cj4gPiA+ID4gKwkJaW50ZWxfYXVkaW9fY29kZWNfZGlzYWJsZShlbmNvZGVyLA0KPiA+ID4gPiAr
-CQkJCQkgIG9sZF9jcnRjX3N0YXRlLCBvbGRfY29ubl9zdGF0ZSk7DQo+ID4gPiA+ICsNCj4gPiA+
-ID4gIAlpZiAoIWludGVsX2hkbWlfaGFuZGxlX3Npbmtfc2NyYW1ibGluZyhlbmNvZGVyLCBjb25u
-ZWN0b3IsDQo+ID4gPiA+ICAJCQkJCSAgICAgICBmYWxzZSwgZmFsc2UpKQ0KPiA+ID4gPiAgCQlk
-cm1fZGJnX2ttcygmaTkxNS0+ZHJtLA0KPiA+ID4gPiBAQCAtMzE4OCwyNSArMzE5OCw2IEBAIHN0
-YXRpYyB2b2lkIGludGVsX2Rpc2FibGVfZGRpX2hkbWkoc3RydWN0IGludGVsX2F0b21pY19zdGF0
-ZSAqc3RhdGUsDQo+ID4gPiA+ICAJCQkgICAgY29ubmVjdG9yLT5iYXNlLmlkLCBjb25uZWN0b3It
-Pm5hbWUpOw0KPiA+ID4gPiAgfQ0KPiA+ID4gPiAgDQo+ID4gPiA+IC1zdGF0aWMgdm9pZCBpbnRl
-bF9wcmVfZGlzYWJsZV9kZGkoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4g
-PiA+IC0JCQkJICBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gPiA+ID4gLQkJCQkg
-IGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0Y19zdGF0ZSwNCj4gPiA+ID4g
-LQkJCQkgIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfY29ubl9zdGF0ZSkN
-Cj4gPiA+ID4gLXsNCj4gPiA+ID4gLQlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwOw0KPiA+ID4g
-PiAtDQo+ID4gPiA+IC0JaWYgKG9sZF9jcnRjX3N0YXRlLT5oYXNfYXVkaW8pDQo+ID4gPiA+IC0J
-CWludGVsX2F1ZGlvX2NvZGVjX2Rpc2FibGUoZW5jb2Rlciwgb2xkX2NydGNfc3RhdGUsDQo+ID4g
-PiA+IC0JCQkJCSAgb2xkX2Nvbm5fc3RhdGUpOw0KPiA+ID4gPiAtDQo+ID4gPiA+IC0JaWYgKGlu
-dGVsX2NydGNfaGFzX3R5cGUob2xkX2NydGNfc3RhdGUsIElOVEVMX09VVFBVVF9IRE1JKSkNCj4g
-PiA+ID4gLQkJcmV0dXJuOw0KPiA+ID4gPiAtDQo+ID4gPiA+IC0JaW50ZWxfZHAgPSBlbmNfdG9f
-aW50ZWxfZHAoZW5jb2Rlcik7DQo+ID4gPiA+IC0JaW50ZWxfZHJyc19kaXNhYmxlKGludGVsX2Rw
-LCBvbGRfY3J0Y19zdGF0ZSk7DQo+ID4gPiA+IC0JaW50ZWxfcHNyX2Rpc2FibGUoaW50ZWxfZHAs
-IG9sZF9jcnRjX3N0YXRlKTsNCj4gPiA+ID4gLX0NCj4gPiA+ID4gLQ0KPiA+ID4gPiAgc3RhdGlj
-IHZvaWQgaW50ZWxfZGlzYWJsZV9kZGkoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUs
-DQo+ID4gPiA+ICAJCQkgICAgICBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gPiA+
-ID4gIAkJCSAgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0Y19zdGF0
-ZSwNCj4gPiA+ID4gQEAgLTQ1NDEsNyArNDUzMiw2IEBAIHZvaWQgaW50ZWxfZGRpX2luaXQoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBlbnVtIHBvcnQgcG9ydCkNCj4gPiA+ID4g
-IAllbmNvZGVyLT5lbmFibGUgPSBpbnRlbF9lbmFibGVfZGRpOw0KPiA+ID4gPiAgCWVuY29kZXIt
-PnByZV9wbGxfZW5hYmxlID0gaW50ZWxfZGRpX3ByZV9wbGxfZW5hYmxlOw0KPiA+ID4gPiAgCWVu
-Y29kZXItPnByZV9lbmFibGUgPSBpbnRlbF9kZGlfcHJlX2VuYWJsZTsNCj4gPiA+ID4gLQllbmNv
-ZGVyLT5wcmVfZGlzYWJsZSA9IGludGVsX3ByZV9kaXNhYmxlX2RkaTsNCj4gPiA+ID4gIAllbmNv
-ZGVyLT5kaXNhYmxlID0gaW50ZWxfZGlzYWJsZV9kZGk7DQo+ID4gPiA+ICAJZW5jb2Rlci0+cG9z
-dF9kaXNhYmxlID0gaW50ZWxfZGRpX3Bvc3RfZGlzYWJsZTsNCj4gPiA+ID4gIAllbmNvZGVyLT51
-cGRhdGVfcGlwZSA9IGludGVsX2RkaV91cGRhdGVfcGlwZTsNCj4gPiA+ID4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+ID4gaW5kZXggYTdjYTM4
-NjEzZjg5Li5jZDE1MDUxMmQyNzUgMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gPiA+IEBAIC0yNzIzLDI4ICsy
-NzIzLDYgQEAgc3RhdGljIHZvaWQgaW50ZWxfZW5jb2RlcnNfZW5hYmxlKHN0cnVjdCBpbnRlbF9h
-dG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+ID4gPiAgCX0NCj4gPiA+ID4gIH0NCj4gPiA+ID4gIA0K
-PiA+ID4gPiAtc3RhdGljIHZvaWQgaW50ZWxfZW5jb2RlcnNfcHJlX2Rpc2FibGUoc3RydWN0IGlu
-dGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiA+IC0JCQkJICAgICAgIHN0cnVjdCBpbnRl
-bF9jcnRjICpjcnRjKQ0KPiA+ID4gPiAtew0KPiA+ID4gPiAtCWNvbnN0IHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlICpvbGRfY3J0Y19zdGF0ZSA9DQo+ID4gPiA+IC0JCWludGVsX2F0b21pY19nZXRf
-b2xkX2NydGNfc3RhdGUoc3RhdGUsIGNydGMpOw0KPiA+ID4gPiAtCWNvbnN0IHN0cnVjdCBkcm1f
-Y29ubmVjdG9yX3N0YXRlICpvbGRfY29ubl9zdGF0ZTsNCj4gPiA+ID4gLQlzdHJ1Y3QgZHJtX2Nv
-bm5lY3RvciAqY29ubjsNCj4gPiA+ID4gLQlpbnQgaTsNCj4gPiA+ID4gLQ0KPiA+ID4gPiAtCWZv
-cl9lYWNoX29sZF9jb25uZWN0b3JfaW5fc3RhdGUoJnN0YXRlLT5iYXNlLCBjb25uLCBvbGRfY29u
-bl9zdGF0ZSwgaSkgew0KPiA+ID4gPiAtCQlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciA9
-DQo+ID4gPiA+IC0JCQl0b19pbnRlbF9lbmNvZGVyKG9sZF9jb25uX3N0YXRlLT5iZXN0X2VuY29k
-ZXIpOw0KPiA+ID4gPiAtDQo+ID4gPiA+IC0JCWlmIChvbGRfY29ubl9zdGF0ZS0+Y3J0YyAhPSAm
-Y3J0Yy0+YmFzZSkNCj4gPiA+ID4gLQkJCWNvbnRpbnVlOw0KPiA+ID4gPiAtDQo+ID4gPiA+IC0J
-CWlmIChlbmNvZGVyLT5wcmVfZGlzYWJsZSkNCj4gPiA+ID4gLQkJCWVuY29kZXItPnByZV9kaXNh
-YmxlKHN0YXRlLCBlbmNvZGVyLCBvbGRfY3J0Y19zdGF0ZSwNCj4gPiA+ID4gLQkJCQkJICAgICBv
-bGRfY29ubl9zdGF0ZSk7DQo+ID4gPiA+IC0JfQ0KPiA+ID4gPiAtfQ0KPiA+ID4gPiAtDQo+ID4g
-PiA+ICBzdGF0aWMgdm9pZCBpbnRlbF9lbmNvZGVyc19kaXNhYmxlKHN0cnVjdCBpbnRlbF9hdG9t
-aWNfc3RhdGUgKnN0YXRlLA0KPiA+ID4gPiAgCQkJCSAgIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRj
-KQ0KPiA+ID4gPiAgew0KPiA+ID4gPiBAQCAtOTgwNyw4ICs5Nzg1LDYgQEAgc3RhdGljIHZvaWQg
-aW50ZWxfb2xkX2NydGNfc3RhdGVfZGlzYWJsZXMoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAq
-c3RhdGUsDQo+ID4gPiA+ICANCj4gPiA+ID4gIAlkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwg
-b2xkX2NydGNfc3RhdGUtPmJpZ2pvaW5lcl9zbGF2ZSk7DQo+ID4gPiA+ICANCj4gPiA+ID4gLQlp
-bnRlbF9lbmNvZGVyc19wcmVfZGlzYWJsZShzdGF0ZSwgY3J0Yyk7DQo+ID4gPiA+IC0NCj4gPiA+
-ID4gIAlpbnRlbF9jcnRjX2Rpc2FibGVfcGxhbmVzKHN0YXRlLCBjcnRjKTsNCj4gPiA+ID4gIA0K
-PiA+ID4gPiAgCS8qDQo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ID4gPiA+IGluZGV4IGU5ZTgwNmQ5MGVlYy4uN2Q4
-NTJhZmZlYWQxIDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+ID4gPiBAQCAtMTk2LDEwICsx
-OTYsNiBAQCBzdHJ1Y3QgaW50ZWxfZW5jb2RlciB7DQo+ID4gPiA+ICAJdm9pZCAoKnVwZGF0ZV9j
-b21wbGV0ZSkoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqLA0KPiA+ID4gPiAgCQkJCXN0cnVj
-dCBpbnRlbF9lbmNvZGVyICosDQo+ID4gPiA+ICAJCQkJc3RydWN0IGludGVsX2NydGMgKik7DQo+
-ID4gPiA+IC0Jdm9pZCAoKnByZV9kaXNhYmxlKShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICos
-DQo+ID4gPiA+IC0JCQkgICAgc3RydWN0IGludGVsX2VuY29kZXIgKiwNCj4gPiA+ID4gLQkJCSAg
-ICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqLA0KPiA+ID4gPiAtCQkJICAgIGNvbnN0
-IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICopOw0KPiA+ID4gPiAgCXZvaWQgKCpkaXNhYmxl
-KShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICosDQo+ID4gPiA+ICAJCQlzdHJ1Y3QgaW50ZWxf
-ZW5jb2RlciAqLA0KPiA+ID4gPiAgCQkJY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKiwN
-Cj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHBfbXN0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+
-ID4gPiA+IGluZGV4IGQxMDQ0NDEzNDRjMC4uOTE0YmVhOTgzYTI4IDEwMDY0NA0KPiA+ID4gPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+ID4gPiA+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMNCj4gPiA+
-ID4gQEAgLTM0OCwxNiArMzQ4LDYgQEAgc3RhdGljIHZvaWQgd2FpdF9mb3JfYWN0X3NlbnQoc3Ry
-dWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ID4gPiA+ICAJZHJtX2RwX2NoZWNrX2FjdF9z
-dGF0dXMoJmludGVsX2RwLT5tc3RfbWdyKTsNCj4gPiA+ID4gIH0NCj4gPiA+ID4gIA0KPiA+ID4g
-PiAtc3RhdGljIHZvaWQgaW50ZWxfbXN0X3ByZV9kaXNhYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9t
-aWNfc3RhdGUgKnN0YXRlLA0KPiA+ID4gPiAtCQkJCSAgICAgc3RydWN0IGludGVsX2VuY29kZXIg
-KmVuY29kZXIsDQo+ID4gPiA+IC0JCQkJICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqb2xkX2NydGNfc3RhdGUsDQo+ID4gPiA+IC0JCQkJICAgICBjb25zdCBzdHJ1Y3QgZHJtX2Nv
-bm5lY3Rvcl9zdGF0ZSAqb2xkX2Nvbm5fc3RhdGUpDQo+ID4gPiA+IC17DQo+ID4gPiA+IC0JaWYg
-KG9sZF9jcnRjX3N0YXRlLT5oYXNfYXVkaW8pDQo+ID4gPiA+IC0JCWludGVsX2F1ZGlvX2NvZGVj
-X2Rpc2FibGUoZW5jb2Rlciwgb2xkX2NydGNfc3RhdGUsDQo+ID4gPiA+IC0JCQkJCSAgb2xkX2Nv
-bm5fc3RhdGUpOw0KPiA+ID4gPiAtfQ0KPiA+ID4gPiAtDQo+ID4gPiA+ICBzdGF0aWMgdm9pZCBp
-bnRlbF9tc3RfZGlzYWJsZV9kcChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4g
-PiA+ID4gIAkJCQkgc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ID4gPiA+ICAJCQkJ
-IGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0Y19zdGF0ZSwNCj4gPiA+ID4g
-QEAgLTM4Miw2ICszNzIsOSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9tc3RfZGlzYWJsZV9kcChzdHJ1
-Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gPiA+ID4gIAlpZiAocmV0KSB7DQo+ID4g
-PiA+ICAJCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJmYWlsZWQgdG8gdXBkYXRlIHBheWxvYWQg
-JWRcbiIsIHJldCk7DQo+ID4gPiA+ICAJfQ0KPiA+ID4gPiArCWlmIChvbGRfY3J0Y19zdGF0ZS0+
-aGFzX2F1ZGlvKQ0KPiA+ID4gPiArCQlpbnRlbF9hdWRpb19jb2RlY19kaXNhYmxlKGVuY29kZXIs
-DQo+ID4gPiA+ICsJCQkJCSAgb2xkX2NydGNfc3RhdGUsIG9sZF9jb25uX3N0YXRlKTsNCj4gPiA+
-ID4gIH0NCj4gPiA+ID4gIA0KPiA+ID4gPiAgc3RhdGljIHZvaWQgaW50ZWxfbXN0X3Bvc3RfZGlz
-YWJsZV9kcChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gPiA+ID4gQEAgLTkw
-NSw3ICs4OTgsNiBAQCBpbnRlbF9kcF9jcmVhdGVfZmFrZV9tc3RfZW5jb2RlcihzdHJ1Y3QgaW50
-ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwgZW51bSBwaXBlDQo+ID4gPiA+ICANCj4gPiA+ID4g
-IAlpbnRlbF9lbmNvZGVyLT5jb21wdXRlX2NvbmZpZyA9IGludGVsX2RwX21zdF9jb21wdXRlX2Nv
-bmZpZzsNCj4gPiA+ID4gIAlpbnRlbF9lbmNvZGVyLT5jb21wdXRlX2NvbmZpZ19sYXRlID0gaW50
-ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmlnX2xhdGU7DQo+ID4gPiA+IC0JaW50ZWxfZW5jb2Rlci0+
-cHJlX2Rpc2FibGUgPSBpbnRlbF9tc3RfcHJlX2Rpc2FibGVfZHA7DQo+ID4gPiA+ICAJaW50ZWxf
-ZW5jb2Rlci0+ZGlzYWJsZSA9IGludGVsX21zdF9kaXNhYmxlX2RwOw0KPiA+ID4gPiAgCWludGVs
-X2VuY29kZXItPnBvc3RfZGlzYWJsZSA9IGludGVsX21zdF9wb3N0X2Rpc2FibGVfZHA7DQo+ID4g
-PiA+ICAJaW50ZWxfZW5jb2Rlci0+dXBkYXRlX3BpcGUgPSBpbnRlbF9kZGlfdXBkYXRlX3BpcGU7
-DQo+ID4gPiANCj4gPiANCj4gDQoNCg==
+On Tue, Sep 14, 2021 at 04:25:08PM +0200, Daniel Vetter wrote:
+> On Mon, Sep 13, 2021 at 10:09:54PM -0700, Matthew Brost wrote:
+> > An error capture allocates memory, memory allocations depend on resets,
+> > and resets need to flush the G2H handlers to seal several races. If the
+> > error capture is done from the G2H handler this creates a circular
+> > dependency. To work around this, do a error capture in a work queue
+> > asynchronously from the G2H handler. This should be fine as (eventually)
+> > all register state is put into a buffer by the GuC so it is safe to
+> > restart the context before the error capture is complete.
+> > 
+> > Example of lockdep splat below:
+> 
+
+We discussed this a bit on IRC / have a Jira for this but still want to
+respond to the points below. 
+
+> Pushing work into a work_struct to fix a lockdep splat does nothing more
+> than hide the lockdep splat. Or it creates a race.
+>
+
+It does neither. In the reset path we care about flushing all
+outstanding G2H processing (e.g. we care about all context state
+updates) but we could care less about when (or even if) the error
+capture is done. The error capture is only thing in the G2H processing
+that allocates memory and as I said the reset path could care less about
+outstandind error catpure, thus we make it an async operation compared
+to the G2H processing. This 100% breaks the circular dependency between
+resets, flushing the G2H processing, and memory allocation. I also fail
+to see how this creates a race.
+
+> So no, let's not make this more of a mess than it already is please.
+
+Not saying there can't be other solutions but this one certainly works
+and is better than allocating large chunks of memory in a nowait
+context. Have Jira open to discuss other possible solutions.
+
+Matt
+
+> -Daniel
+> 
+> > 
+> > [  154.625989] ======================================================
+> > [  154.632195] WARNING: possible circular locking dependency detected
+> > [  154.638393] 5.14.0-rc5-guc+ #50 Tainted: G     U
+> > [  154.643991] ------------------------------------------------------
+> > [  154.650196] i915_selftest/1673 is trying to acquire lock:
+> > [  154.655621] ffff8881079cb918 ((work_completion)(&ct->requests.worker)){+.+.}-{0:0}, at: __flush_work+0x350/0x4d0 [  154.665826]
+> >                but task is already holding lock:
+> > [  154.671682] ffff8881079cbfb8 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0xf0/0x300 [i915] [  154.680659]
+> >                which lock already depends on the new lock.
+> > 
+> > [  154.688857]
+> >                the existing dependency chain (in reverse order) is:
+> > [  154.696365]
+> >                -> #2 (&gt->reset.mutex){+.+.}-{3:3}:
+> > [  154.702571]        lock_acquire+0xd2/0x300
+> > [  154.706695]        i915_gem_shrinker_taints_mutex+0x2d/0x50 [i915]
+> > [  154.712959]        intel_gt_init_reset+0x61/0x80 [i915]
+> > [  154.718258]        intel_gt_init_early+0xe6/0x120 [i915]
+> > [  154.723648]        i915_driver_probe+0x592/0xdc0 [i915]
+> > [  154.728942]        i915_pci_probe+0x43/0x1c0 [i915]
+> > [  154.733891]        pci_device_probe+0x9b/0x110
+> > [  154.738362]        really_probe+0x1a6/0x3a0
+> > [  154.742568]        __driver_probe_device+0xf9/0x170
+> > [  154.747468]        driver_probe_device+0x19/0x90
+> > [  154.752114]        __driver_attach+0x99/0x170
+> > [  154.756492]        bus_for_each_dev+0x73/0xc0
+> > [  154.760870]        bus_add_driver+0x14b/0x1f0
+> > [  154.765248]        driver_register+0x67/0xb0
+> > [  154.769542]        i915_init+0x18/0x8c [i915]
+> > [  154.773964]        do_one_initcall+0x53/0x2e0
+> > [  154.778343]        do_init_module+0x56/0x210
+> > [  154.782639]        load_module+0x25fc/0x29f0
+> > [  154.786934]        __do_sys_finit_module+0xae/0x110
+> > [  154.791835]        do_syscall_64+0x38/0xc0
+> > [  154.795958]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+> > [  154.801558]
+> >                -> #1 (fs_reclaim){+.+.}-{0:0}:
+> > [  154.807241]        lock_acquire+0xd2/0x300
+> > [  154.811361]        fs_reclaim_acquire+0x9e/0xd0
+> > [  154.815914]        kmem_cache_alloc_trace+0x30/0x790
+> > [  154.820899]        i915_gpu_coredump_alloc+0x53/0x1a0 [i915]
+> > [  154.826649]        i915_gpu_coredump+0x39/0x560 [i915]
+> > [  154.831866]        i915_capture_error_state+0xa/0x70 [i915]
+> > [  154.837513]        intel_guc_context_reset_process_msg+0x174/0x1f0 [i915]
+> > [  154.844383]        ct_incoming_request_worker_func+0x130/0x1b0 [i915]
+> > [  154.850898]        process_one_work+0x264/0x590
+> > [  154.855451]        worker_thread+0x4b/0x3a0
+> > [  154.859655]        kthread+0x147/0x170
+> > [  154.863428]        ret_from_fork+0x1f/0x30
+> > [  154.867548]
+> >                -> #0 ((work_completion)(&ct->requests.worker)){+.+.}-{0:0}:
+> > [  154.875747]        check_prev_add+0x90/0xc30
+> > [  154.880042]        __lock_acquire+0x1643/0x2110
+> > [  154.884595]        lock_acquire+0xd2/0x300
+> > [  154.888715]        __flush_work+0x373/0x4d0
+> > [  154.892920]        intel_guc_submission_reset_prepare+0xf3/0x340 [i915]
+> > [  154.899606]        intel_uc_reset_prepare+0x40/0x50 [i915]
+> > [  154.905166]        reset_prepare+0x55/0x60 [i915]
+> > [  154.909946]        intel_gt_reset+0x11c/0x300 [i915]
+> > [  154.914984]        do_device_reset+0x13/0x20 [i915]
+> > [  154.919936]        check_whitelist_across_reset+0x166/0x250 [i915]
+> > [  154.926212]        live_reset_whitelist.cold+0x6a/0x7a [i915]
+> > [  154.932037]        __i915_subtests.cold+0x20/0x74 [i915]
+> > [  154.937428]        __run_selftests.cold+0x96/0xee [i915]
+> > [  154.942816]        i915_live_selftests+0x2c/0x60 [i915]
+> > [  154.948125]        i915_pci_probe+0x93/0x1c0 [i915]
+> > [  154.953076]        pci_device_probe+0x9b/0x110
+> > [  154.957545]        really_probe+0x1a6/0x3a0
+> > [  154.961749]        __driver_probe_device+0xf9/0x170
+> > [  154.966653]        driver_probe_device+0x19/0x90
+> > [  154.971290]        __driver_attach+0x99/0x170
+> > [  154.975671]        bus_for_each_dev+0x73/0xc0
+> > [  154.980053]        bus_add_driver+0x14b/0x1f0
+> > [  154.984431]        driver_register+0x67/0xb0
+> > [  154.988725]        i915_init+0x18/0x8c [i915]
+> > [  154.993149]        do_one_initcall+0x53/0x2e0
+> > [  154.997527]        do_init_module+0x56/0x210
+> > [  155.001822]        load_module+0x25fc/0x29f0
+> > [  155.006118]        __do_sys_finit_module+0xae/0x110
+> > [  155.011019]        do_syscall_64+0x38/0xc0
+> > [  155.015139]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+> > [  155.020729]
+> >                other info that might help us debug this:
+> > 
+> > [  155.028752] Chain exists of:
+> >                  (work_completion)(&ct->requests.worker) --> fs_reclaim --> &gt->reset.mutex
+> > 
+> > [  155.041294]  Possible unsafe locking scenario:
+> > 
+> > [  155.047240]        CPU0                    CPU1
+> > [  155.051791]        ----                    ----
+> > [  155.056344]   lock(&gt->reset.mutex);
+> > [  155.060026]                                lock(fs_reclaim);
+> > [  155.065706]                                lock(&gt->reset.mutex);
+> > [  155.071912]   lock((work_completion)(&ct->requests.worker));
+> > [  155.077595]
+> >                 *** DEADLOCK ***
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_context.c       |  2 +
+> >  drivers/gpu/drm/i915/gt/intel_context_types.h |  7 +++
+> >  drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 10 ++++
+> >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 47 +++++++++++++++++--
+> >  4 files changed, 62 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > index ff637147b1a9..72ad60e9d908 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > @@ -399,6 +399,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+> >  	ce->guc_id.id = GUC_INVALID_LRC_ID;
+> >  	INIT_LIST_HEAD(&ce->guc_id.link);
+> >  
+> > +	INIT_LIST_HEAD(&ce->guc_capture_link);
+> > +
+> >  	/*
+> >  	 * Initialize fence to be complete as this is expected to be complete
+> >  	 * unless there is a pending schedule disable outstanding.
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > index af43b3c83339..925a06162e8e 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > @@ -206,6 +206,13 @@ struct intel_context {
+> >  		struct list_head link;
+> >  	} guc_id;
+> >  
+> > +	/**
+> > +	 * @guc_capture_link: in guc->submission_state.capture_list when an
+> > +	 * error capture is pending on this context, protected by
+> > +	 * guc->submission_state.lock
+> > +	 */
+> > +	struct list_head guc_capture_link;
+> > +
+> >  #ifdef CONFIG_DRM_I915_SELFTEST
+> >  	/**
+> >  	 * @drop_schedule_enable: Force drop of schedule enable G2H for selftest
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > index 0e28f490c12d..87ee792eafd4 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > @@ -88,6 +88,16 @@ struct intel_guc {
+> >  		 * refs
+> >  		 */
+> >  		struct list_head guc_id_list;
+> > +		/**
+> > +		 * @capture_list: list of intel_context that need to capture
+> > +		 * error state
+> > +		 */
+> > +		struct list_head capture_list;
+> > +		/**
+> > +		 * @capture_worker: worker to do error capture when the GuC
+> > +		 * signals a context has been reset
+> > +		 */
+> > +		struct work_struct capture_worker;
+> >  	} submission_state;
+> >  
+> >  	/**
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 678da915eb9d..ba6838a35a69 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -91,7 +91,8 @@
+> >   *
+> >   * guc->submission_state.lock
+> >   * Protects guc_id allocation for the given GuC, i.e. only one context can be
+> > - * doing guc_id allocation operations at a time for each GuC in the system.
+> > + * doing guc_id allocation operations at a time for each GuC in the system. Also
+> > + * protects everything else under the guc->submission_state sub-structure.
+> >   *
+> >   * ce->guc_state.lock
+> >   * Protects everything under ce->guc_state. Ensures that a context is in the
+> > @@ -1126,6 +1127,8 @@ void intel_guc_submission_reset_finish(struct intel_guc *guc)
+> >  	intel_gt_unpark_heartbeats(guc_to_gt(guc));
+> >  }
+> >  
+> > +static void capture_worker_func(struct work_struct *w);
+> > +
+> >  /*
+> >   * Set up the memory resources to be shared with the GuC (via the GGTT)
+> >   * at firmware loading time.
+> > @@ -1151,6 +1154,8 @@ int intel_guc_submission_init(struct intel_guc *guc)
+> >  	spin_lock_init(&guc->submission_state.lock);
+> >  	INIT_LIST_HEAD(&guc->submission_state.guc_id_list);
+> >  	ida_init(&guc->submission_state.guc_ids);
+> > +	INIT_LIST_HEAD(&guc->submission_state.capture_list);
+> > +	INIT_WORK(&guc->submission_state.capture_worker, capture_worker_func);
+> >  
+> >  	return 0;
+> >  }
+> > @@ -2879,17 +2884,51 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+> >  	return 0;
+> >  }
+> >  
+> > -static void capture_error_state(struct intel_guc *guc,
+> > -				struct intel_context *ce)
+> > +static void capture_worker_func(struct work_struct *w)
+> >  {
+> > +	struct intel_guc *guc = container_of(w, struct intel_guc,
+> > +					     submission_state.capture_worker);
+> >  	struct intel_gt *gt = guc_to_gt(guc);
+> >  	struct drm_i915_private *i915 = gt->i915;
+> > +	struct intel_context *ce =
+> > +		list_first_entry(&guc->submission_state.capture_list,
+> > +				 struct intel_context, guc_capture_link);
+> >  	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
+> > +	unsigned long flags;
+> >  	intel_wakeref_t wakeref;
+> >  
+> > +	spin_lock_irqsave(&guc->submission_state.lock, flags);
+> > +	list_del_init(&ce->guc_capture_link);
+> > +	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> > +
+> >  	intel_engine_set_hung_context(engine, ce);
+> >  	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+> > -		i915_capture_error_state(gt, engine->mask);
+> > +		i915_capture_error_state(gt, ce->engine->mask);
+> > +}
+> > +
+> > +static void capture_error_state(struct intel_guc *guc,
+> > +				struct intel_context *ce)
+> > +{
+> > +	struct intel_gt *gt = guc_to_gt(guc);
+> > +	struct drm_i915_private *i915 = gt->i915;
+> > +	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
+> > +	unsigned long flags;
+> > +
+> > +	spin_lock_irqsave(&guc->submission_state.lock, flags);
+> > +	list_add_tail(&guc->submission_state.capture_list,
+> > +		      &ce->guc_capture_link);
+> > +	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> > +
+> > +	/*
+> > +	 * We do the error capture async as an error capture can allocate
+> > +	 * memory, the reset path must flush the G2H handler in order to seal
+> > +	 * several races, and the memory allocations depend on the reset path
+> > +	 * (circular dependecy if error capture done here in the G2H handler).
+> > +	 * Doing the error capture async should be ok, as (eventually) all
+> > +	 * register state is captured in buffer by the GuC (i.e. it ok to
+> > +	 * restart the context before the error capture is complete).
+> > +	 */
+> > +	queue_work(system_unbound_wq, &guc->submission_state.capture_worker);
+> >  	atomic_inc(&i915->gpu_error.reset_engine_count[engine->uabi_class]);
+> >  }
+> >  
+> > -- 
+> > 2.32.0
+> > 
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
