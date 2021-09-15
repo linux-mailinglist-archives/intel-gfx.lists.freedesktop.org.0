@@ -2,34 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDC040CA1D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 18:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3A940CA83
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 18:40:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA6076E97C;
-	Wed, 15 Sep 2021 16:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE9E6E983;
+	Wed, 15 Sep 2021 16:40:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3BF196E97A;
- Wed, 15 Sep 2021 16:31:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 318E5A0099;
- Wed, 15 Sep 2021 16:31:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com
+ [IPv6:2607:f8b0:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFEDD6E97E;
+ Wed, 15 Sep 2021 16:40:04 +0000 (UTC)
+Received: by mail-il1-x129.google.com with SMTP id b8so3557001ilh.12;
+ Wed, 15 Sep 2021 09:40:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wDt8RHYkskYH5bCZrpjTNsOpmRiTxdwpQyKpfX6RY3A=;
+ b=c4nZOkxKhXrjzF+4aRawGgyBeuDQjMquxOQaXTLEjRuUh9Clvwgifr3VCvJ+3/BnMd
+ H3TsbOAAgDWfqJzfVi5rFN4vIsbwBxEJC/5SBt9ACtoMTKx0xS8dGLP8hlDxAE3qEeyj
+ aiUe7xoACIfeh/0AgBCa6WZklAaroRxXjZhxO0yGjFaCuUBgbCeHVIYWMNACkC6LczMr
+ Z/L9VPYLKhPHKwXF0GqI2tDWYGe4MsnOMPtlS3mLR8eGsmJXlWpzHeDtEwlL74nmtuLA
+ 8EtEkknEf0/uwfoyjNZPi4pZeTvv29i2rnJ1bXCqpf/4h5uwmcZgHRNdS5ND5bsMvC9n
+ H2Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wDt8RHYkskYH5bCZrpjTNsOpmRiTxdwpQyKpfX6RY3A=;
+ b=bBS9eXYcTJ+jzT9x1ebGkgxA/t7+Wly8Nl+lV0XeL6a6eaMhGrNGwny2HQLBBkFWNi
+ JNkM8pk6QSSdShTk3PXE+r5LwgWGRv/PTa6j2dhEiYmWLMxJO8uZXx6ml0CzFXuPCrVp
+ hS7HFl/tuNAdmR0z6ZRcBCBfeBqF81l7tFfyjRWxg8fsHu4Xgn/ufPGuL0Aj2EKhNS5w
+ imbwi43CcY1IKf2gkvbeXZVzPx8h1U8gQTAPkXljjsRfHGrSIwsf7Ju6FgTZ+1RA44hM
+ vYdMe7ozFXf0+LaEJRmjvzWF72cRROuGm92gIfZg1hgd11J/LSaDd0mOs0hTy1mvil2g
+ AV5w==
+X-Gm-Message-State: AOAM5314FxmtlbTn6k3U5AqPWZT1TcwREc93RmAMC19RQ5V9ph0rBOdb
+ 7JArfULZhh2ZH/7eFjHvVJw=
+X-Google-Smtp-Source: ABdhPJy5WFtRgBXIOMhVv5W9EirkoNRgDbTYeUFkQJ/30M5ye1Y7oMEnSngpAqjZtlR4c3M+5BW8vg==
+X-Received: by 2002:a92:d84f:: with SMTP id h15mr737927ilq.42.1631724003998;
+ Wed, 15 Sep 2021 09:40:03 -0700 (PDT)
+Received: from frodo.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
+ by smtp.googlemail.com with ESMTPSA id a5sm299540ilf.27.2021.09.15.09.40.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Sep 2021 09:40:03 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, daniel@ffwll.ch
+Cc: Jim Cromie <jim.cromie@gmail.com>
+Date: Wed, 15 Sep 2021 10:39:41 -0600
+Message-Id: <20210915163957.2949166-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imran Khan" <imran.f.khan@oracle.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Sep 2021 16:31:20 -0000
-Message-ID: <163172348019.30118.3391457393898783465@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210915014806.3206938-1-imran.f.khan@oracle.com>
-In-Reply-To: <20210915014806.3206938-1-imran.f.khan@oracle.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBs?=
- =?utf-8?q?ib=2C_stackdepot=3A_check_stackdepot_handle_before_accessing_sl?=
- =?utf-8?q?abs?=
+Subject: [Intel-gfx] [PATCH v8 00/16] use DYNAMIC_DEBUG to implement
+ DRM.debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,53 +70,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Jason, Greg, Daniel, DRM folks,
 
-Series: lib, stackdepot: check stackdepot handle before accessing slabs
-URL   : https://patchwork.freedesktop.org/series/94696/
-State : failure
+In DRM-debug currently, drm_debug_enabled() is called a lot to decide
+whether or not to write debug messages.  Each test is cheap, but costs
+continue with uptime.  DYNAMIC_DEBUG "dyndbg", when built with
+JUMP_LABEL, replaces each of those tests with a patchable NOOP, for
+"zero cost when off" debugs.
 
-== Summary ==
+Broadly, this patchset does 3 things, in 2 trees:
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/intel_runtime_pm.o
-drivers/gpu/drm/i915/intel_runtime_pm.c: In function ‘__print_intel_runtime_pm_wakeref’:
-drivers/gpu/drm/i915/intel_runtime_pm.c:196:3: error: too many arguments to function ‘stack_depot_print’
-   stack_depot_print(stack, buf, PAGE_SIZE, 2);
-   ^~~~~~~~~~~~~~~~~
-In file included from ./include/linux/page_ext.h:7,
-                 from ./include/linux/mm.h:25,
-                 from ./include/linux/kallsyms.h:13,
-                 from ./include/linux/bpf.h:20,
-                 from ./include/linux/bpf-cgroup.h:5,
-                 from ./include/linux/cgroup-defs.h:22,
-                 from ./include/linux/cgroup.h:28,
-                 from ./include/linux/memcontrol.h:13,
-                 from ./include/linux/swap.h:9,
-                 from ./include/linux/suspend.h:5,
-                 from ./include/linux/regulator/consumer.h:35,
-                 from ./include/linux/i2c.h:18,
-                 from drivers/gpu/drm/i915/i915_drv.h:39,
-                 from drivers/gpu/drm/i915/intel_runtime_pm.c:33:
-./include/linux/stackdepot.h:25:6: note: declared here
- void stack_depot_print(depot_stack_handle_t stack);
-      ^~~~~~~~~~~~~~~~~
-scripts/Makefile.build:277: recipe for target 'drivers/gpu/drm/i915/intel_runtime_pm.o' failed
-make[4]: *** [drivers/gpu/drm/i915/intel_runtime_pm.o] Error 1
-scripts/Makefile.build:540: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:540: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:540: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1874: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+Adds DEFINE_DYNAMIC_DEBUG_CATEGORIES, which defines a mapping from
+bits to "categorized" pr_debugs, a sysfs interface, and callbacks to
+implement the bits as dynamic_debug >controls.  This is modelled after
+DRM's debug interface.
 
+Uses the new macro in amdgpu & i915 to control existing pr_debugs
+according to their ad-hoc categorizations.
+
+Adapts the drm-debug API (~20 macros) to configurably "replace"
+drm_dbg & drm_dev_dbg with pr_debug & dev_dbg, which avoids
+drm_debug_enabled() overheads.  CONFIG_DRM_USE_DYNAMIC_DEBUG controls
+this; the memory costs are substantial (many new/converted drm
+callsites, 56 bytes/pr_debug), so the choice should be made by the
+user.
+
+       	       #prdbgs  KiB     #with DRM_USE_DYNAMIC_DEBUG=y
+  kernel       3079	166k
+  drm		  1	.06k     376	 21k
+  drm_kms_helper		 207	 12k
+  i915	        167	9.3k	1811	101k
+  amdgpu       2339	130k	3917	220k
+  nouveau      	  3	.17k	 105	~60k
+
+DEFINE_DYNAMIC_DEBUG_CATEGORIES is used to create the controlling
+bitmap, which is wired to __drm_debug var so remaining
+drm_debug_enabled() users stay in sync.
+
+this is v8:
+- 7 small tweaks to dyndbg pr-infos etc, no functional changes
+- drop help field from dyndbg_bitdesc
+- simplify declarative interface
+- move ^ anchor, trailing space to macro helper
+  this makes callback slightly more generic
+- i915/gvt move code, Makefile bits per Tvrtko
+- mem cost numbers
+- more CI fixes
+
+I think the dyndbg patches qualify to get in this cycle; all but the
+last are no-functional-changes, the last is a new feature (which uses
+existing mechanics without any adjustments), and has no users yet, so
+it can't cause regressions.
+
+Obviously, DRM is the anticipated user.  I've fixed the patchwork CI
+problems I have seen on v6, v7, and lkp-robot reports since.  Since
+CONFIG_DRM_USE_DYNAMIC_DEBUG=y by default, it should have seen "on"
+testing, not just "off" testing.
+
+Jim Cromie (16):
+
+Dyndbg no-functional-changes chunk:
+  dyndbg: add module to a vpr-info in dd-exec-queries
+  dyndbg: pr-info in boot-param should say so
+  dyndbg: rationalize verbosity
+  dyndbg: use alt-quotes in vpr-infos, not those user might use
+  dyndbg: vpr-info on remove-module complete, not starting
+  dyndbg: no vpr-info on empty queries
+  dyndbg-doc: fix bootparam usage example (possible conflict
+
+New Feature, using unchanged mechanisms:  
+  dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES bitmap and callbacks
+
+DRM 1st user(s):
+  drm: fix doc grammar error
+  i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
+  i915/gvt: use DEFINE_DYNAMIC_DEBUG_CATEGORIES for existing prdbgs
+  amdgpu: use DEFINE_DYNAMIC_DEBUG_CATEGORIES on existing prdbgs
+  drm_print: add choice to use dynamic debug in drm-debug
+  drm_print: instrument drm_debug_enabled
+  amdgpu_ucode: reduce number of pr_debug calls
+  nouveau: fold multiple DRM_DEBUG_DRIVERs together
+
+ .../admin-guide/dynamic-debug-howto.rst       |   8 +-
+ drivers/gpu/drm/Kconfig                       |  26 ++
+ drivers/gpu/drm/Makefile                      |   3 +
+ drivers/gpu/drm/amd/amdgpu/Makefile           |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c     | 293 ++++++++++--------
+ .../gpu/drm/amd/display/dc/core/dc_debug.c    |  43 ++-
+ drivers/gpu/drm/drm_print.c                   |  53 +++-
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ drivers/gpu/drm/i915/gvt/debug.h              |  18 +-
+ drivers/gpu/drm/i915/intel_gvt.c              |  34 ++
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  36 ++-
+ include/drm/drm_drv.h                         |   2 +-
+ include/drm/drm_print.h                       | 184 ++++++++---
+ include/linux/dynamic_debug.h                 |  62 ++++
+ lib/dynamic_debug.c                           | 121 ++++++--
+ 15 files changed, 650 insertions(+), 237 deletions(-)
+
+-- 
+2.31.1
 
