@@ -2,34 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B9540CD3D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 21:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E10140CD50
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 21:39:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC2776EA03;
-	Wed, 15 Sep 2021 19:32:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB106EA0A;
+	Wed, 15 Sep 2021 19:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 753516EA03;
- Wed, 15 Sep 2021 19:32:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6E57BA01BB;
- Wed, 15 Sep 2021 19:32:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9706E9F2;
+ Wed, 15 Sep 2021 19:39:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="283414314"
+X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; d="scan'208";a="283414314"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2021 12:39:42 -0700
+X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; d="scan'208";a="472521788"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2021 12:39:42 -0700
+Date: Wed, 15 Sep 2021 12:34:43 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
+Message-ID: <20210915193443.GA16098@jons-linux-dev-box>
+References: <20210820224446.30620-1-matthew.brost@intel.com>
+ <20210820224446.30620-14-matthew.brost@intel.com>
+ <bc782f52-a19a-0a2e-a472-fb469858135b@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Sep 2021 19:32:26 -0000
-Message-ID: <163173434644.30118.9170720679818994813@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210915185954.3114858-1-matthew.auld@intel.com>
-In-Reply-To: <20210915185954.3114858-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv3=2C01/12=5D_drm/ttm=3A_stop_setti?=
- =?utf-8?q?ng_page-=3Eindex_for_the_ttm=5Ftt?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bc782f52-a19a-0a2e-a472-fb469858135b@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 13/27] drm/i915/guc: Ensure GuC schedule
+ operations do not operate on child contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +50,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Sep 15, 2021 at 12:24:41PM -0700, John Harrison wrote:
+> On 8/20/2021 15:44, Matthew Brost wrote:
+> > In GuC parent-child contexts the parent context controls the scheduling,
+> > ensure only the parent does the scheduling operations.
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 24 ++++++++++++++-----
+> >   1 file changed, 18 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index dbcb9ab28a9a..00d54bb00bfb 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -320,6 +320,12 @@ static void decr_context_committed_requests(struct intel_context *ce)
+> >   	GEM_BUG_ON(ce->guc_state.number_committed_requests < 0);
+> >   }
+> > +static struct intel_context *
+> > +request_to_scheduling_context(struct i915_request *rq)
+> > +{
+> > +	return intel_context_to_parent(rq->context);
+> > +}
+> > +
+> >   static bool context_guc_id_invalid(struct intel_context *ce)
+> >   {
+> >   	return ce->guc_id.id == GUC_INVALID_LRC_ID;
+> > @@ -1684,6 +1690,7 @@ static void __guc_context_sched_disable(struct intel_guc *guc,
+> >   	GEM_BUG_ON(guc_id == GUC_INVALID_LRC_ID);
+> > +	GEM_BUG_ON(intel_context_is_child(ce));
+> >   	trace_intel_context_sched_disable(ce);
+> >   	guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> > @@ -1898,6 +1905,8 @@ static void guc_context_sched_disable(struct intel_context *ce)
+> >   	u16 guc_id;
+> >   	bool enabled;
+> > +	GEM_BUG_ON(intel_context_is_child(ce));
+> > +
+> >   	if (submission_disabled(guc) || context_guc_id_invalid(ce) ||
+> >   	    !lrc_desc_registered(guc, ce->guc_id.id)) {
+> >   		spin_lock_irqsave(&ce->guc_state.lock, flags);
+> > @@ -2286,6 +2295,8 @@ static void guc_signal_context_fence(struct intel_context *ce)
+> >   {
+> >   	unsigned long flags;
+> > +	GEM_BUG_ON(intel_context_is_child(ce));
+> > +
+> >   	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> >   	clr_context_wait_for_deregister_to_register(ce);
+> >   	__guc_signal_context_fence(ce);
+> > @@ -2315,7 +2326,7 @@ static void guc_context_init(struct intel_context *ce)
+> >   static int guc_request_alloc(struct i915_request *rq)
+> >   {
+> > -	struct intel_context *ce = rq->context;
+> > +	struct intel_context *ce = request_to_scheduling_context(rq);
+> >   	struct intel_guc *guc = ce_to_guc(ce);
+> >   	unsigned long flags;
+> >   	int ret;
+> > @@ -2358,11 +2369,12 @@ static int guc_request_alloc(struct i915_request *rq)
+> >   	 * exhausted and return -EAGAIN to the user indicating that they can try
+> >   	 * again in the future.
+> >   	 *
+> > -	 * There is no need for a lock here as the timeline mutex ensures at
+> > -	 * most one context can be executing this code path at once. The
+> > -	 * guc_id_ref is incremented once for every request in flight and
+> > -	 * decremented on each retire. When it is zero, a lock around the
+> > -	 * increment (in pin_guc_id) is needed to seal a race with unpin_guc_id.
+> > +	 * There is no need for a lock here as the timeline mutex (or
+> > +	 * parallel_submit mutex in the case of multi-lrc) ensures at most one
+> > +	 * context can be executing this code path at once. The guc_id_ref is
+> Isn't that now two? One uni-LRC holding the timeline mutex and one multi-LRC
+> holding the parallel submit mutex?
+> 
 
-Series: series starting with [v3,01/12] drm/ttm: stop setting page->index for the ttm_tt
-URL   : https://patchwork.freedesktop.org/series/94705/
-State : warning
+This is actually a stale comment and need scrub this. The
+parallel_submit mutex is gone, now we grab the ce->timeline locks
+starting at the parent and then all children in a loop. I think the
+original comment is sufficient.
 
-== Summary ==
+Matt
 
-$ dim checkpatch origin/drm-tip
-13d749649308 drm/ttm: stop setting page->index for the ttm_tt
--:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 58aa6622d32a ("drm/ttm: Correctly set page mapping and -index members")'
-#11: 
-commit 58aa6622d32af7d2c08d45085f44c54554a16ed7
-
-total: 1 errors, 0 warnings, 0 checks, 19 lines checked
-625b6c6d2e8a drm/ttm: move ttm_tt_{add, clear}_mapping into amdgpu
-437d165efeea drm/ttm: remove TTM_PAGE_FLAG_NO_RETRY
-7f778166b103 drm/ttm: s/FLAG_SG/FLAG_EXTERNAL/
-d5ca5e74a3c8 drm/ttm: add some kernel-doc for TTM_PAGE_FLAG_*
-fa296d488d3b drm/ttm: add TTM_PAGE_FLAG_EXTERNAL_MAPPABLE
--:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 667a50db0477 ("drm/ttm: Refuse to fault (prime-) imported pages")'
-#11: 
-commit 667a50db0477d47fdff01c666f5ee1ce26b5264c
-
-total: 1 errors, 0 warnings, 0 checks, 30 lines checked
-fc851ac1bf9e drm/i915/gem: Break out some shmem backend utils
-6ebd10cc602b drm/i915/ttm: add tt shmem backend
-3674047745cb drm/i915/ttm: use cached system pages when evicting lmem
-de3f5e9a7e28 drm/i915: try to simplify make_{un}shrinkable
--:164: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#164: FILE: drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:510:
- 
-+
-
-total: 0 errors, 0 warnings, 1 checks, 194 lines checked
-7b31a03b4172 drm/i915/ttm: make evicted shmem pages visible to the shrinker
-7401d4e19fbe drm/i915/ttm: enable shmem tt backend
-
-
+> John.
+> 
+> > +	 * incremented once for every request in flight and decremented on each
+> > +	 * retire. When it is zero, a lock around the increment (in pin_guc_id)
+> > +	 * is needed to seal a race with unpin_guc_id.
+> >   	 */
+> >   	if (atomic_add_unless(&ce->guc_id.ref, 1, 0))
+> >   		goto out;
+> 
