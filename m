@@ -2,34 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243BC40CD9F
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 22:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8156D40CDA2
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 22:01:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB03E6E9F8;
-	Wed, 15 Sep 2021 20:01:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 205D76EA14;
+	Wed, 15 Sep 2021 20:01:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 526096E9F8;
- Wed, 15 Sep 2021 20:01:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4AB2FA00E8;
- Wed, 15 Sep 2021 20:01:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3458339526742909222=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 517EB6EA23
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 20:01:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1631736098;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=bPCXFn39/DEXaGsX0ASeg1JZwNHf7DU2jWsEq6ti8Pg=;
+ b=ZezMy8UuN19K/1uOfahBa+pUez/IhFz3TjbPoYbX7Q9oHJG6l7xFZ/8kcVm9WxtG0fbLuY
+ +7L00xk8r/b4QUjfepF+nxuswwqF2iQb4vQaIJ5QLpqsviFt/6jVPTvhkHOg3KkOHzix34
+ ojuglzls6P/RVgiRxb5kjcMNTR1JH78=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-528-1V4DB5jGORi8R2yUwDs8ng-1; Wed, 15 Sep 2021 16:01:37 -0400
+X-MC-Unique: 1V4DB5jGORi8R2yUwDs8ng-1
+Received: by mail-qt1-f198.google.com with SMTP id
+ r6-20020a05622a034600b002a0ba9994f4so6913405qtw.22
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 13:01:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=bPCXFn39/DEXaGsX0ASeg1JZwNHf7DU2jWsEq6ti8Pg=;
+ b=e+t5D5u87ItDCPXV+7U2HoLwcF7KBhopcloN+LTgahWGJ+AKFHlKX8KTJdiO4lXBb8
+ KeEPiWPdFqyXlp397btN56mVcgf9A7YLqcFpIAh0sRbx47YSUT+QEXqZzKKB03u8E4Qz
+ mVLk/gaisetfMoeVXjzFZX03HmBIcVPObdgflBeH0jmkUGTUaZyY5l5AwG+kAQ2qN/DZ
+ NY21AUaCVdLla/qktmKbPAYh+GPzt+pB48oPxCFly7jLij3i3q02pupVtbo7IccxFjwY
+ URrgznEQTxJQqtACV9jVxAoseCEdTj9eZ8eUZYAT16VzljwXIWqLQPk3YwGPrGjkGGqZ
+ 8MaQ==
+X-Gm-Message-State: AOAM531zrsxvHnqXHjrninjP61wdXymTrtm993jEmc6lWi8j7bdNJgB5
+ ClU97oPNLgPqGoJS3Ht5Uq4yi9mvr3Wan1UXu2U7jVJnqlsIXCqR65S/uWcANOlK6SCaZLXxenG
+ 4QNaPEkOdTSIyQBuFCws47cm+felF
+X-Received: by 2002:ac8:7cb4:: with SMTP id z20mr1714855qtv.336.1631736094915; 
+ Wed, 15 Sep 2021 13:01:34 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxopU2Cm3bbIvfqRbDC1/+NFJoum/XBDHwhnxX89qn74FEtMSsNSK5F5Qt0SmwQMXy+cDPzvw==
+X-Received: by 2002:ac8:7cb4:: with SMTP id z20mr1714785qtv.336.1631736094261; 
+ Wed, 15 Sep 2021 13:01:34 -0700 (PDT)
+Received: from [192.168.8.206] (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id y12sm620433qtj.3.2021.09.15.13.01.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Sep 2021 13:01:33 -0700 (PDT)
+Message-ID: <d86ca7609de1b7aacb8e80923019dfa5cfb8c7df.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Hans de Goede <hdegoede@redhat.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Rajat Jain <rajatja@google.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mark Gross <mgross@linux.intel.com>, Andy Shevchenko <andy@infradead.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Pekka
+ Paalanen <pekka.paalanen@collabora.com>, Mario Limonciello
+ <mario.limonciello@outlook.com>, Mark Pearson <markpearson@lenovo.com>,
+ Sebastien Bacher <seb128@ubuntu.com>, Marco Trevisan
+ <marco.trevisan@canonical.com>, Emil Velikov <emil.l.velikov@gmail.com>, 
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org,  platform-driver-x86@vger.kernel.org
+Date: Wed, 15 Sep 2021 16:01:32 -0400
+In-Reply-To: <20210906073519.4615-3-hdegoede@redhat.com>
+References: <20210906073519.4615-1-hdegoede@redhat.com>
+ <20210906073519.4615-3-hdegoede@redhat.com>
+Organization: Red Hat
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Sep 2021 20:01:04 -0000
-Message-ID: <163173606426.30119.15137631458667376388@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210915185954.3114858-1-matthew.auld@intel.com>
-In-Reply-To: <20210915185954.3114858-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv3=2C01/12=5D_drm/ttm=3A_stop_setting_page?=
- =?utf-8?q?-=3Eindex_for_the_ttm=5Ftt?=
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm: Add privacy-screen class (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,489 +96,799 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3458339526742909222==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 2021-09-06 at 09:35 +0200, Hans de Goede wrote:
+> On some new laptops the LCD panel has a builtin electronic privacy-screen.
+> We want to export this functionality as a property on the drm connector
+> object. But often this functionality is not exposed on the GPU but on some
+> other (ACPI) device.
+> 
+> This commit adds a privacy-screen class allowing the driver for these
+> other devices to register themselves as a privacy-screen provider; and
+> allowing the drm/kms code to get a privacy-screen provider associated
+> with a specific GPU/connector combo.
+> 
+> Changes in v2:
+> - Make CONFIG_DRM_PRIVACY_SCREEN a bool which controls if the drm_privacy
+>   code gets built as part of the main drm module rather then making it
+>   a tristate which builds its own module.
+> - Add a #if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN) check to
+>   drm_privacy_screen_consumer.h and define stubs when the check fails.
+>   Together these 2 changes fix several dependency issues.
+> - Remove module related code now that this is part of the main drm.ko
+> - Use drm_class as class for the privacy-screen devices instead of
+>   adding a separate class for this
+> 
+> Changes in v3:
+> - Make the static inline drm_privacy_screen_get_state() stub set sw_state
+>   and hw_state to PRIVACY_SCREEN_DISABLED to squelch an uninitialized
+>   variable warning when CONFIG_DRM_PRIVICAY_SCREEN is not set
+> 
+> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  Documentation/gpu/drm-kms-helpers.rst     |  15 +
+>  MAINTAINERS                               |   8 +
+>  drivers/gpu/drm/Kconfig                   |   4 +
+>  drivers/gpu/drm/Makefile                  |   1 +
+>  drivers/gpu/drm/drm_drv.c                 |   4 +
+>  drivers/gpu/drm/drm_privacy_screen.c      | 401 ++++++++++++++++++++++
+>  include/drm/drm_privacy_screen_consumer.h |  50 +++
+>  include/drm/drm_privacy_screen_driver.h   |  80 +++++
+>  include/drm/drm_privacy_screen_machine.h  |  41 +++
+>  9 files changed, 604 insertions(+)
+>  create mode 100644 drivers/gpu/drm/drm_privacy_screen.c
+>  create mode 100644 include/drm/drm_privacy_screen_consumer.h
+>  create mode 100644 include/drm/drm_privacy_screen_driver.h
+>  create mode 100644 include/drm/drm_privacy_screen_machine.h
+> 
+> diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-
+> kms-helpers.rst
+> index 389892f36185..5d8715d2f998 100644
+> --- a/Documentation/gpu/drm-kms-helpers.rst
+> +++ b/Documentation/gpu/drm-kms-helpers.rst
+> @@ -423,3 +423,18 @@ Legacy CRTC/Modeset Helper Functions Reference
+>  
+>  .. kernel-doc:: drivers/gpu/drm/drm_crtc_helper.c
+>     :export:
+> +
+> +Privacy-screen class
+> +====================
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_privacy_screen.c
+> +   :doc: overview
+> +
+> +.. kernel-doc:: include/drm/drm_privacy_screen_driver.h
+> +   :internal:
+> +
+> +.. kernel-doc:: include/drm/drm_privacy_screen_machine.h
+> +   :internal:
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_privacy_screen.c
+> +   :export:
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ede4a37a53b3..a272ca600f98 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6376,6 +6376,14 @@ F:       drivers/gpu/drm/drm_panel.c
+>  F:     drivers/gpu/drm/panel/
+>  F:     include/drm/drm_panel.h
+>  
+> +DRM PRIVACY-SCREEN CLASS
+> +M:     Hans de Goede <hdegoede@redhat.com>
+> +L:     dri-devel@lists.freedesktop.org
+> +S:     Maintained
+> +T:     git git://anongit.freedesktop.org/drm/drm-misc
+> +F:     drivers/gpu/drm/drm_privacy_screen*
+> +F:     include/drm/drm_privacy_screen*
+> +
+>  DRM TTM SUBSYSTEM
+>  M:     Christian Koenig <christian.koenig@amd.com>
+>  M:     Huang Rui <ray.huang@amd.com>
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index b17e231ca6f7..7249b010ab90 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -481,3 +481,7 @@ config DRM_PANEL_ORIENTATION_QUIRKS
+>  config DRM_LIB_RANDOM
+>         bool
+>         default n
+> +
+> +config DRM_PRIVACY_SCREEN
+> +       bool
+> +       default n
+
+This is probably worth documenting for folks configuring their kernels to
+explain what this actually does (something simple like "Controls programmable
+privacy screens found on some devices, if unsure select Y" would probably be
+fine)
+
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 0dff40bb863c..788fc37096f6 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -32,6 +32,7 @@ drm-$(CONFIG_OF) += drm_of.o
+>  drm-$(CONFIG_PCI) += drm_pci.o
+>  drm-$(CONFIG_DEBUG_FS) += drm_debugfs.o drm_debugfs_crc.o
+>  drm-$(CONFIG_DRM_LOAD_EDID_FIRMWARE) += drm_edid_load.o
+> +drm-$(CONFIG_DRM_PRIVACY_SCREEN) += drm_privacy_screen.o
+>  
+>  obj-$(CONFIG_DRM_DP_AUX_BUS) += drm_dp_aux_bus.o
+>  
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 7a5097467ba5..dc293b771c3f 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -43,6 +43,7 @@
+>  #include <drm/drm_managed.h>
+>  #include <drm/drm_mode_object.h>
+>  #include <drm/drm_print.h>
+> +#include <drm/drm_privacy_screen_machine.h>
+>  
+>  #include "drm_crtc_internal.h"
+>  #include "drm_internal.h"
+> @@ -1029,6 +1030,7 @@ static const struct file_operations drm_stub_fops = {
+>  
+>  static void drm_core_exit(void)
+>  {
+> +       drm_privacy_screen_lookup_exit();
+>         unregister_chrdev(DRM_MAJOR, "drm");
+>         debugfs_remove(drm_debugfs_root);
+>         drm_sysfs_destroy();
+> @@ -1056,6 +1058,8 @@ static int __init drm_core_init(void)
+>         if (ret < 0)
+>                 goto error;
+>  
+> +       drm_privacy_screen_lookup_init();
+> +
+>         drm_core_init_complete = true;
+>  
+>         DRM_DEBUG("Initialized\n");
+> diff --git a/drivers/gpu/drm/drm_privacy_screen.c
+> b/drivers/gpu/drm/drm_privacy_screen.c
+> new file mode 100644
+> index 000000000000..294a09194bfb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_privacy_screen.c
+> @@ -0,0 +1,401 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright (C) 2020 - 2021 Red Hat, Inc.
+> + *
+> + * Authors:
+> + * Hans de Goede <hdegoede@redhat.com>
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/kernel.h>
+> +#include <linux/list.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/slab.h>
+> +#include <drm/drm_privacy_screen_machine.h>
+> +#include <drm/drm_privacy_screen_consumer.h>
+> +#include <drm/drm_privacy_screen_driver.h>
+> +#include "drm_internal.h"
+> +
+> +/**
+> + * DOC: overview
+> + *
+> + * This class allows non KMS drivers, from e.g. drivers/platform/x86 to
+> + * register a privacy-screen device, which the KMS drivers can then use
+> + * to implement the standard privacy-screen properties, see
+> + * :ref:`Standard Connector Properties<standard_connector_properties>`.
+> + *
+> + * KMS drivers using a privacy-screen class device are advised to use the
+> + * drm_connector_attach_privacy_screen_provider() and
+> + * drm_connector_update_privacy_screen() helpers for dealing with this.
+> + */
+> +
+> +#define to_drm_privacy_screen(dev) \
+> +       container_of(dev, struct drm_privacy_screen, dev)
+> +
+> +static DEFINE_MUTEX(drm_privacy_screen_lookup_lock);
+> +static LIST_HEAD(drm_privacy_screen_lookup_list);
+> +
+> +static DEFINE_MUTEX(drm_privacy_screen_devs_lock);
+> +static LIST_HEAD(drm_privacy_screen_devs);
+> +
+> +/*** drm_privacy_screen_machine.h functions ***/
+> +
+> +/**
+> + * drm_privacy_screen_lookup_add - add an entry to the static privacy-
+> screen
+> + *    lookup list
+> + * @lookup: lookup list entry to add
+> + *
+> + * Add an entry to the static privacy-screen lookup list. Note the
+> + * &struct list_head which is part of the &struct drm_privacy_screen_lookup
+> + * gets added to a list owned by the privacy-screen core. So the passed in
+> + * &struct drm_privacy_screen_lookup must not be free-ed until it is
+> removed
+> + * from the lookup list by calling drm_privacy_screen_lookup_remove().
+> + */
+> +void drm_privacy_screen_lookup_add(struct drm_privacy_screen_lookup
+> *lookup)
+> +{
+> +       mutex_lock(&drm_privacy_screen_lookup_lock);
+> +       list_add(&lookup->list, &drm_privacy_screen_lookup_list);
+> +       mutex_unlock(&drm_privacy_screen_lookup_lock);
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_lookup_add);
+> +
+> +/**
+> + * drm_privacy_screen_lookup_remove - remove an entry to the static
+> + *    privacy-screen lookup list
+> + * @lookup: lookup list entry to remove
+> + *
+> + * Remove an entry previously added with drm_privacy_screen_lookup_add()
+> + * from the static privacy-screen lookup list.
+> + */
+> +void drm_privacy_screen_lookup_remove(struct drm_privacy_screen_lookup
+> *lookup)
+> +{
+> +       mutex_lock(&drm_privacy_screen_lookup_lock);
+> +       list_del(&lookup->list);
+> +       mutex_unlock(&drm_privacy_screen_lookup_lock);
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_lookup_remove);
+> +
+> +/*** drm_privacy_screen_consumer.h functions ***/
+> +
+> +static struct drm_privacy_screen *drm_privacy_screen_get_by_name(
+> +       const char *name)
+> +{
+> +       struct drm_privacy_screen *priv;
+> +       struct device *dev = NULL;
+> +
+> +       mutex_lock(&drm_privacy_screen_devs_lock);
+> +
+> +       list_for_each_entry(priv, &drm_privacy_screen_devs, list) {
+> +               if (strcmp(dev_name(&priv->dev), name) == 0) {
+> +                       dev = get_device(&priv->dev);
+> +                       break;
+> +               }
+> +       }
+> +
+> +       mutex_unlock(&drm_privacy_screen_devs_lock);
+> +
+> +       return dev ? to_drm_privacy_screen(dev) : NULL;
+> +}
+> +
+> +/**
+> + * drm_privacy_screen_get - get a privacy-screen provider
+> + * @dev: consumer-device for which to get a privacy-screen provider
+> + * @con_id: (video)connector name for which to get a privacy-screen
+> provider
+> + *
+> + * Get a privacy-screen provider for a privacy-screen attached to the
+> + * display described by the @dev and @con_id parameters.
+> + *
+> + * Return:
+> + * * A pointer to a &struct drm_privacy_screen on success.
+> + * * ERR_PTR(-ENODEV) if no matching privacy-screen is found
+> + * * ERR_PTR(-EPROBE_DEFER) if there is a matching privacy-screen,
+> + *                          but it has not been registered yet.
+> + */
+> +struct drm_privacy_screen *drm_privacy_screen_get(struct device *dev,
+> +                                                 const char *con_id)
+> +{
+> +       const char *dev_id = dev ? dev_name(dev) : NULL;
+> +       struct drm_privacy_screen_lookup *l;
+> +       struct drm_privacy_screen *priv;
+> +       const char *provider = NULL;
+> +       int match, best = -1;
+> +
+> +       /*
+> +        * For now we only support using a static lookup table, which is
+> +        * populated by the drm_privacy_screen_arch_init() call. This should
+> +        * be extended with device-tree / fw_node lookup when support is
+> added
+> +        * for device-tree using hardware with a privacy-screen.
+> +        *
+> +        * The lookup algorithm was shamelessly taken from the clock
+> +        * framework:
+> +        *
+> +        * We do slightly fuzzy matching here:
+> +        *  An entry with a NULL ID is assumed to be a wildcard.
+> +        *  If an entry has a device ID, it must match
+> +        *  If an entry has a connection ID, it must match
+> +        * Then we take the most specific entry - with the following order
+> +        * of precedence: dev+con > dev only > con only.
+> +        */
+> +       mutex_lock(&drm_privacy_screen_lookup_lock);
+> +
+> +       list_for_each_entry(l, &drm_privacy_screen_lookup_list, list) {
+> +               match = 0;
+> +
+> +               if (l->dev_id) {
+> +                       if (!dev_id || strcmp(l->dev_id, dev_id))
+> +                               continue;
+> +
+> +                       match += 2;
+> +               }
+> +
+> +               if (l->con_id) {
+> +                       if (!con_id || strcmp(l->con_id, con_id))
+> +                               continue;
+> +
+> +                       match += 1;
+> +               }
+> +
+> +               if (match > best) {
+> +                       provider = l->provider;
+> +                       best = match;
+> +               }
+> +       }
+> +
+> +       mutex_unlock(&drm_privacy_screen_lookup_lock);
+> +
+> +       if (!provider)
+> +               return ERR_PTR(-ENODEV);
+> +
+> +       priv = drm_privacy_screen_get_by_name(provider);
+> +       if (!priv)
+> +               return ERR_PTR(-EPROBE_DEFER);
+> +
+> +       return priv;
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_get);
+> +
+> +/**
+> + * drm_privacy_screen_put - release a privacy-screen reference
+> + * @priv: privacy screen reference to release
+> + *
+> + * Release a privacy-screen provider reference gotten through
+> + * drm_privacy_screen_get(). May be called with a NULL or ERR_PTR,
+> + * in which case it is a no-op.
+> + */
+> +void drm_privacy_screen_put(struct drm_privacy_screen *priv)
+> +{
+> +       if (IS_ERR_OR_NULL(priv))
+> +               return;
+> +
+> +       put_device(&priv->dev);
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_put);
+> +
+> +/**
+> + * drm_privacy_screen_set_sw_state - set a privacy-screen's sw-state
+> + * @priv: privacy screen to set the sw-state for
+> + * @sw_state: new sw-state value to set
+> + *
+> + * Set the sw-state of a privacy screen. If the privacy-screen is not
+> + * in a locked hw-state, then the actual and hw-state of the privacy-screen
+> + * will be immediately updated to the new value. If the privacy-screen is
+> + * in a locked hw-state, then the new sw-state will be remembered as the
+> + * requested state to put the privacy-screen in when it becomes unlocked.
+> + *
+> + * Return: 0 on success, negative error code on failure.
+> + */
+> +int drm_privacy_screen_set_sw_state(struct drm_privacy_screen *priv,
+> +                                   enum drm_privacy_screen_status sw_state)
+> +{
+> +       int ret = 0;
+> +
+> +       mutex_lock(&priv->lock);
+> +
+> +       if (!priv->ops) {
+> +               ret = -ENODEV;
+> +               goto out;
+> +       }
+> +
+> +       /*
+> +        * As per the DRM connector properties documentation, setting the
+> +        * sw_state while the hw_state is locked is allowed. In this case
+> +        * it is a no-op other then storing the new sw_state so that it
+> +        * can be honored when the state gets unlocked.
+> +        */
+> +       if (priv->hw_state >= PRIVACY_SCREEN_DISABLED_LOCKED) {
+> +               priv->sw_state = sw_state;
+> +               goto out;
+> +       }
+> +
+> +       ret = priv->ops->set_sw_state(priv, sw_state);
+> +out:
+> +       mutex_unlock(&priv->lock);
+> +       return ret;
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_set_sw_state);
+> +
+> +/**
+> + * drm_privacy_screen_get_state - get privacy-screen's current state
+> + * @priv: privacy screen to get the state for
+> + * @sw_state_ret: address where to store the privacy-screens current sw-
+> state
+> + * @hw_state_ret: address where to store the privacy-screens current hw-
+> state
+> + *
+> + * Get the current state of a privacy-screen, both the sw-state and the
+> + * hw-state.
+> + */
+> +void drm_privacy_screen_get_state(struct drm_privacy_screen *priv,
+> +                                 enum drm_privacy_screen_status
+> *sw_state_ret,
+> +                                 enum drm_privacy_screen_status
+> *hw_state_ret)
+> +{
+> +       mutex_lock(&priv->lock);
+> +       *sw_state_ret = priv->sw_state;
+> +       *hw_state_ret = priv->hw_state;
+> +       mutex_unlock(&priv->lock);
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_get_state);
+> +
+> +/*** drm_privacy_screen_driver.h functions ***/
+> +
+> +static ssize_t sw_state_show(struct device *dev,
+> +                            struct device_attribute *attr, char *buf)
+> +{
+> +       struct drm_privacy_screen *priv = to_drm_privacy_screen(dev);
+> +       const char * const sw_state_names[] = {
+> +               "Disabled",
+> +               "Enabled",
+> +       };
+> +       ssize_t ret;
+> +
+> +       mutex_lock(&priv->lock);
+> +
+> +       if (!priv->ops)
+> +               ret = -ENODEV;
+> +       else if (WARN_ON(priv->sw_state >= ARRAY_SIZE(sw_state_names)))
+> +               ret = -ENXIO;
+> +       else
+> +               ret = sprintf(buf, "%s\n", sw_state_names[priv->sw_state]);
+> +
+> +       mutex_unlock(&priv->lock);
+> +       return ret;
+> +}
+> +/*
+> + * RO: Do not allow setting the sw_state through sysfs, this MUST be done
+> + * through the drm_properties on the drm_connector.
+> + */
+> +static DEVICE_ATTR_RO(sw_state);
+> +
+> +static ssize_t hw_state_show(struct device *dev,
+> +                            struct device_attribute *attr, char *buf)
+> +{
+> +       struct drm_privacy_screen *priv = to_drm_privacy_screen(dev);
+> +       const char * const hw_state_names[] = {
+> +               "Disabled",
+> +               "Enabled",
+> +               "Disabled, locked",
+> +               "Enabled, locked",
+> +       };
+> +       ssize_t ret;
+> +
+> +       mutex_lock(&priv->lock);
+> +
+> +       if (!priv->ops)
+> +               ret = -ENODEV;
+> +       else if (WARN_ON(priv->hw_state >= ARRAY_SIZE(hw_state_names)))
+> +               ret = -ENXIO;
+> +       else
+> +               ret = sprintf(buf, "%s\n", hw_state_names[priv->hw_state]);
+> +
+> +       mutex_unlock(&priv->lock);
+> +       return ret;
+> +}
+> +static DEVICE_ATTR_RO(hw_state);
+> +
+> +static struct attribute *drm_privacy_screen_attrs[] = {
+> +       &dev_attr_sw_state.attr,
+> +       &dev_attr_hw_state.attr,
+> +       NULL
+> +};
+> +ATTRIBUTE_GROUPS(drm_privacy_screen);
+> +
+> +static struct device_type drm_privacy_screen_type = {
+> +       .name = "privacy_screen",
+> +       .groups = drm_privacy_screen_groups,
+> +};
+> +
+> +static void drm_privacy_screen_device_release(struct device *dev)
+> +{
+> +       struct drm_privacy_screen *priv = to_drm_privacy_screen(dev);
+> +
+> +       kfree(priv);
+> +}
+> +
+> +/**
+> + * drm_privacy_screen_register - register a privacy-screen
+> + * @parent: parent-device for the privacy-screen
+> + * @ops: &struct drm_privacy_screen_ops pointer with ops for the privacy-
+> screen
+> + *
+> + * Create and register a privacy-screen.
+> + *
+> + * Return:
+> + * * A pointer to the created privacy-screen on success.
+> + * * An ERR_PTR(errno) on failure.
+> + */
+> +struct drm_privacy_screen *drm_privacy_screen_register(
+> +       struct device *parent, const struct drm_privacy_screen_ops *ops)
+> +{
+> +       struct drm_privacy_screen *priv;
+> +       int ret;
+> +
+> +       priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       mutex_init(&priv->lock);
+> +
+> +       priv->dev.class = drm_class;
+> +       priv->dev.type = &drm_privacy_screen_type;
+> +       priv->dev.parent = parent;
+> +       priv->dev.release = drm_privacy_screen_device_release;
+> +       dev_set_name(&priv->dev, "privacy_screen-%s", dev_name(parent));
+> +       priv->ops = ops;
+> +
+> +       priv->ops->get_hw_state(priv);
+> +
+> +       ret = device_register(&priv->dev);
+> +       if (ret) {
+> +               put_device(&priv->dev);
+> +               return ERR_PTR(ret);
+> +       }
+> +
+> +       mutex_lock(&drm_privacy_screen_devs_lock);
+> +       list_add(&priv->list, &drm_privacy_screen_devs);
+> +       mutex_unlock(&drm_privacy_screen_devs_lock);
+> +
+> +       return priv;
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_register);
+> +
+> +/**
+> + * drm_privacy_screen_unregister - unregister privacy-screen
+> + * @priv: privacy-screen to unregister
+> + *
+> + * Unregister a privacy-screen registered with
+> drm_privacy_screen_register().
+> + * May be called with a NULL or ERR_PTR, in which case it is a no-op.
+> + */
+> +void drm_privacy_screen_unregister(struct drm_privacy_screen *priv)
+> +{
+> +       if (IS_ERR_OR_NULL(priv))
+> +               return;
+> +
+> +       mutex_lock(&drm_privacy_screen_devs_lock);
+> +       list_del(&priv->list);
+> +       mutex_unlock(&drm_privacy_screen_devs_lock);
+> +
+> +       mutex_lock(&priv->lock);
+> +       priv->ops = NULL;
+> +       mutex_unlock(&priv->lock);
+> +
+> +       device_unregister(&priv->dev);
+> +}
+> +EXPORT_SYMBOL(drm_privacy_screen_unregister);
+> diff --git a/include/drm/drm_privacy_screen_consumer.h
+> b/include/drm/drm_privacy_screen_consumer.h
+> new file mode 100644
+> index 000000000000..0cbd23b0453d
+> --- /dev/null
+> +++ b/include/drm/drm_privacy_screen_consumer.h
+> @@ -0,0 +1,50 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright (C) 2020 Red Hat, Inc.
+> + *
+> + * Authors:
+> + * Hans de Goede <hdegoede@redhat.com>
+> + */
+> +
+> +#ifndef __DRM_PRIVACY_SCREEN_CONSUMER_H__
+> +#define __DRM_PRIVACY_SCREEN_CONSUMER_H__
+> +
+> +#include <linux/device.h>
+> +#include <drm/drm_connector.h>
+> +
+> +struct drm_privacy_screen;
+> +
+> +#if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN)
+> +struct drm_privacy_screen *drm_privacy_screen_get(struct device *dev,
+> +                                                 const char *con_id);
+> +void drm_privacy_screen_put(struct drm_privacy_screen *priv);
+> +
+> +int drm_privacy_screen_set_sw_state(struct drm_privacy_screen *priv,
+> +                                   enum drm_privacy_screen_status
+> sw_state);
+> +void drm_privacy_screen_get_state(struct drm_privacy_screen *priv,
+> +                                 enum drm_privacy_screen_status
+> *sw_state_ret,
+> +                                 enum drm_privacy_screen_status
+> *hw_state_ret);
+> +#else
+> +static inline struct drm_privacy_screen *drm_privacy_screen_get(struct
+> device *dev,
+> +                                                               const char
+> *con_id)
+> +{
+> +       return ERR_PTR(-ENODEV);
+> +}
+> +static inline void drm_privacy_screen_put(struct drm_privacy_screen *priv)
+> +{
+> +}
+> +static inline int drm_privacy_screen_set_sw_state(struct drm_privacy_screen
+> *priv,
+> +                                                 enum
+> drm_privacy_screen_status sw_state)
+> +{
+> +       return -ENODEV;
+> +}
+> +static inline void drm_privacy_screen_get_state(struct drm_privacy_screen
+> *priv,
+> +                                               enum
+> drm_privacy_screen_status *sw_state_ret,
+> +                                               enum
+> drm_privacy_screen_status *hw_state_ret)
+> +{
+> +       *sw_state_ret = PRIVACY_SCREEN_DISABLED;
+> +       *hw_state_ret = PRIVACY_SCREEN_DISABLED;
+> +}
+> +#endif
+> +
+> +#endif
+> diff --git a/include/drm/drm_privacy_screen_driver.h
+> b/include/drm/drm_privacy_screen_driver.h
+> new file mode 100644
+> index 000000000000..5187ae52eb03
+> --- /dev/null
+> +++ b/include/drm/drm_privacy_screen_driver.h
+> @@ -0,0 +1,80 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright (C) 2020 Red Hat, Inc.
+> + *
+> + * Authors:
+> + * Hans de Goede <hdegoede@redhat.com>
+> + */
+> +
+> +#ifndef __DRM_PRIVACY_SCREEN_DRIVER_H__
+> +#define __DRM_PRIVACY_SCREEN_DRIVER_H__
+> +
+> +#include <linux/device.h>
+> +#include <linux/list.h>
+> +#include <linux/mutex.h>
+> +#include <drm/drm_connector.h>
+> +
+> +struct drm_privacy_screen;
+> +
+> +/**
+> + * struct drm_privacy_screen_ops - drm_privacy_screen operations
+> + *
+> + * Defines the operations which the privacy-screen class code may call.
+> + * These functions should be implemented by the privacy-screen driver.
+> + */
+> +struct drm_privacy_screen_ops {
+> +       /**
+> +        * @set_sw_state: Called to request a change of the privacy-screen
+> +        * state. The privacy-screen class code contains a check to avoid
+> this
+> +        * getting called when the hw_state reports the state is locked.
+> +        * It is the driver's responsibility to update sw_state and
+> hw_state.
+> +        * This is always called with the drm_privacy_screen's lock held.
+> +        */
+> +       int (*set_sw_state)(struct drm_privacy_screen *priv,
+> +                           enum drm_privacy_screen_status sw_state);
+> +       /**
+> +        * @get_hw_state: Called to request that the driver gets the current
+> +        * privacy-screen state from the hardware and then updates sw_state
+> and
+> +        * hw_state accordingly. This will be called by the core just before
+> +        * the privacy-screen is registered in sysfs.
+> +        */
+> +       void (*get_hw_state)(struct drm_privacy_screen *priv);
+> +};
+> +
+> +/**
+> + * struct drm_privacy_screen - central privacy-screen structure
+> + *
+> + * Central privacy-screen structure, this contains the struct device used
+> + * to register the screen in sysfs, the screen's state, ops, etc.
+> + */
+> +struct drm_privacy_screen {
+> +       /** @dev: device used to register the privacy-screen in sysfs. */
+> +       struct device dev;
+> +       /** @lock: mutex protection all fields in this struct. */
+> +       struct mutex lock;
+> +       /** @list: privacy-screen devices list list-entry. */
+> +       struct list_head list;
+> +       /**
+> +        * @ops: &struct drm_privacy_screen_ops for this privacy-screen.
+> +        * This is NULL if the driver has unregistered the privacy-screen.
+> +        */
+> +       const struct drm_privacy_screen_ops *ops;
+> +       /**
+> +        * @sw_state: The privacy-screen's software state, see
+> +        * :ref:`Standard Connector
+> Properties<standard_connector_properties>`
+> +        * for more info.
+> +        */
+> +       enum drm_privacy_screen_status sw_state;
+> +       /**
+> +        * @hw_state: The privacy-screen's hardware state, see
+> +        * :ref:`Standard Connector
+> Properties<standard_connector_properties>`
+> +        * for more info.
+> +        */
+> +       enum drm_privacy_screen_status hw_state;
+> +};
+> +
+> +struct drm_privacy_screen *drm_privacy_screen_register(
+> +       struct device *parent, const struct drm_privacy_screen_ops *ops);
+> +void drm_privacy_screen_unregister(struct drm_privacy_screen *priv);
+> +
+> +#endif
+> diff --git a/include/drm/drm_privacy_screen_machine.h
+> b/include/drm/drm_privacy_screen_machine.h
+> new file mode 100644
+> index 000000000000..aaa0d38cce92
+> --- /dev/null
+> +++ b/include/drm/drm_privacy_screen_machine.h
+> @@ -0,0 +1,41 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright (C) 2020 Red Hat, Inc.
+> + *
+> + * Authors:
+> + * Hans de Goede <hdegoede@redhat.com>
+> + */
+> +
+> +#ifndef __DRM_PRIVACY_SCREEN_MACHINE_H__
+> +#define __DRM_PRIVACY_SCREEN_MACHINE_H__
+> +
+> +#include <linux/list.h>
+> +
+> +/**
+> + * struct drm_privacy_screen_lookup -  static privacy-screen lookup list
+> entry
+> + *
+> + * Used for the static lookup-list for mapping privacy-screen consumer
+> + * dev-connector pairs to a privacy-screen provider.
+> + */
+> +struct drm_privacy_screen_lookup {
+> +       /** @list: Lookup list list-entry. */
+> +       struct list_head list;
+> +       /** @dev_id: Consumer device name or NULL to match all devices. */
+> +       const char *dev_id;
+> +       /** @con_id: Consumer connector name or NULL to match all
+> connectors. */
+
+I think this patch mostly looks good, the one part that I'm a little confused
+on here is the con_id. Perhaps I missed this when looking over this patch, but
+what "connector name" are we referring to here - the DRM connector name (e.g.
+eDP-1), or something else? The reason I ask is because I wonder if connector
+names are really the way that we want to be looking DRM connectors up, since I
+believe it's possible for two different GPUs to have DRM connectors with the
+same name.
+
+> +       const char *con_id;
+> +       /** @provider: dev_name() of the privacy_screen provider. */
+> +       const char *provider;
+> +};
+> +
+> +void drm_privacy_screen_lookup_add(struct drm_privacy_screen_lookup
+> *lookup);
+> +void drm_privacy_screen_lookup_remove(struct drm_privacy_screen_lookup
+> *lookup);
+> +
+> +static inline void drm_privacy_screen_lookup_init(void)
+> +{
+> +}
+> +static inline void drm_privacy_screen_lookup_exit(void)
+> +{
+> +}
+> +
+> +#endif
+
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
-== Series Details ==
-
-Series: series starting with [v3,01/12] drm/ttm: stop setting page->index for the ttm_tt
-URL   : https://patchwork.freedesktop.org/series/94705/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10593 -> Patchwork_21064
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_21064 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21064, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21064:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-8809g:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-icl-y:           [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-icl-y/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-icl-y/igt@i915_module_load@reload.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-cml-u2:          [INCOMPLETE][5] ([i915#4136]) -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cml-u2/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cml-u2/igt@i915_module_load@reload.html
-    - fi-kbl-soraka:      [INCOMPLETE][7] ([i915#4136]) -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-soraka/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-soraka/igt@i915_module_load@reload.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@reload:
-    - {fi-ehl-2}:         [INCOMPLETE][9] ([i915#4136]) -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-ehl-2/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-ehl-2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - {fi-jsl-1}:         NOTRUN -> [INCOMPLETE][11]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-jsl-1/igt@i915_pm_rpm@module-reload.html
-
-  * igt@runner@aborted:
-    - {fi-jsl-1}:         NOTRUN -> [FAIL][12]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-jsl-1/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21064 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-compute:
-    - fi-cfl-guc:         NOTRUN -> [SKIP][13] ([fdo#109271]) +17 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-guc/igt@amdgpu/amd_basic@cs-compute.html
-
-  * igt@amdgpu/amd_basic@cs-sdma:
-    - fi-kbl-7500u:       NOTRUN -> [SKIP][14] ([fdo#109271]) +17 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html
-
-  * igt@amdgpu/amd_cs_nop@fork-gfx0:
-    - fi-icl-u2:          NOTRUN -> [SKIP][15] ([fdo#109315]) +17 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][16] ([i915#4130])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
-    - fi-cfl-8700k:       [PASS][17] -> [INCOMPLETE][18] ([i915#4130])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][19] ([i915#2190])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][20] ([i915#1155])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][21] ([fdo#111827]) +8 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][22] ([i915#4103]) +1 similar issue
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][23] ([fdo#109285])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][24] ([i915#1072]) +3 similar issues
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][25] ([i915#3301])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][26] ([i915#2426] / [i915#3363])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-8809g/igt@runner@aborted.html
-    - fi-kbl-guc:         NOTRUN -> [FAIL][27] ([i915#2426] / [i915#3363])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-guc/igt@runner@aborted.html
-    - fi-cml-u2:          NOTRUN -> [FAIL][28] ([i915#2082] / [i915#2426] / [i915#3363])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cml-u2/igt@runner@aborted.html
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][29] ([i915#1602] / [i915#2722])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          [INCOMPLETE][30] ([i915#4130]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-    - fi-kbl-7500u:       [INCOMPLETE][32] ([i915#4130]) -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@reload:
-    - fi-cfl-guc:         [INCOMPLETE][34] -> [PASS][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cfl-guc/igt@i915_module_load@reload.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-guc/igt@i915_module_load@reload.html
-    - fi-cfl-8109u:       [DMESG-WARN][36] ([i915#4136]) -> [PASS][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cfl-8109u/igt@i915_module_load@reload.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-8109u/igt@i915_module_load@reload.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-guc:         [INCOMPLETE][38] -> [INCOMPLETE][39] ([i915#4136])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-guc/igt@i915_module_load@reload.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-guc/igt@i915_module_load@reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4130]: https://gitlab.freedesktop.org/drm/intel/issues/4130
-  [i915#4136]: https://gitlab.freedesktop.org/drm/intel/issues/4136
-
-
-Participating hosts (39 -> 37)
-------------------------------
-
-  Additional (1): fi-tgl-1115g4 
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-dg1-6 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10593 -> Patchwork_21064
-
-  CI-20190529: 20190529
-  CI_DRM_10593: 6bc334de7baec4510b614dc80c330bf81fb8ca6f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21064: 7401d4e19fbe0734cd45caefa8f9f445c7f29ab8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7401d4e19fbe drm/i915/ttm: enable shmem tt backend
-7b31a03b4172 drm/i915/ttm: make evicted shmem pages visible to the shrinker
-de3f5e9a7e28 drm/i915: try to simplify make_{un}shrinkable
-3674047745cb drm/i915/ttm: use cached system pages when evicting lmem
-6ebd10cc602b drm/i915/ttm: add tt shmem backend
-fc851ac1bf9e drm/i915/gem: Break out some shmem backend utils
-fa296d488d3b drm/ttm: add TTM_PAGE_FLAG_EXTERNAL_MAPPABLE
-d5ca5e74a3c8 drm/ttm: add some kernel-doc for TTM_PAGE_FLAG_*
-7f778166b103 drm/ttm: s/FLAG_SG/FLAG_EXTERNAL/
-437d165efeea drm/ttm: remove TTM_PAGE_FLAG_NO_RETRY
-625b6c6d2e8a drm/ttm: move ttm_tt_{add, clear}_mapping into amdgpu
-13d749649308 drm/ttm: stop setting page->index for the ttm_tt
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/index.html
-
---===============3458339526742909222==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v3,01/12] drm/ttm: stop setting page-&gt;index for the ttm_tt</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94705/">https://patchwork.freedesktop.org/series/94705/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10593 -&gt; Patchwork_21064</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21064 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21064, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21064:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-icl-y/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-icl-y/igt@i915_module_load@reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cml-u2/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cml-u2/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-soraka/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-soraka/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-ehl-2/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-ehl-2/igt@i915_module_load@reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-jsl-1/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-jsl-1/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21064 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-compute:</p>
-<ul>
-<li>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-guc/igt@amdgpu/amd_basic@cs-compute.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@cs-sdma:</p>
-<ul>
-<li>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cfl-guc/igt@i915_module_load@reload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-guc/igt@i915_module_load@reload.html">PASS</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-cfl-8109u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-cfl-8109u/igt@i915_module_load@reload.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10593/fi-kbl-guc/igt@i915_module_load@reload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21064/fi-kbl-guc/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Additional (1): fi-tgl-1115g4 <br />
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-dg1-6 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10593 -&gt; Patchwork_21064</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10593: 6bc334de7baec4510b614dc80c330bf81fb8ca6f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6209: 07d6594ed02f55b68d64fa6dd7f80cfbc1ce4ef8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21064: 7401d4e19fbe0734cd45caefa8f9f445c7f29ab8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7401d4e19fbe drm/i915/ttm: enable shmem tt backend<br />
-7b31a03b4172 drm/i915/ttm: make evicted shmem pages visible to the shrinker<br />
-de3f5e9a7e28 drm/i915: try to simplify make_{un}shrinkable<br />
-3674047745cb drm/i915/ttm: use cached system pages when evicting lmem<br />
-6ebd10cc602b drm/i915/ttm: add tt shmem backend<br />
-fc851ac1bf9e drm/i915/gem: Break out some shmem backend utils<br />
-fa296d488d3b drm/ttm: add TTM_PAGE_FLAG_EXTERNAL_MAPPABLE<br />
-d5ca5e74a3c8 drm/ttm: add some kernel-doc for TTM_PAGE_FLAG_*<br />
-7f778166b103 drm/ttm: s/FLAG_SG/FLAG_EXTERNAL/<br />
-437d165efeea drm/ttm: remove TTM_PAGE_FLAG_NO_RETRY<br />
-625b6c6d2e8a drm/ttm: move ttm_tt_{add, clear}_mapping into amdgpu<br />
-13d749649308 drm/ttm: stop setting page-&gt;index for the ttm_tt</p>
-
-</body>
-</html>
-
---===============3458339526742909222==--
