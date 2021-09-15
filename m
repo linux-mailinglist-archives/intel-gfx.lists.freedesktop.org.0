@@ -2,143 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D88840CDA8
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 22:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 555CC40CDAC
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Sep 2021 22:05:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C85B06EA17;
-	Wed, 15 Sep 2021 20:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D55E06EA15;
+	Wed, 15 Sep 2021 20:05:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C73B06EA17;
- Wed, 15 Sep 2021 20:04:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="307964906"
-X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; d="scan'208";a="307964906"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2021 13:04:50 -0700
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7243E6EA15
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 20:05:02 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="202577145"
+X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; d="scan'208";a="202577145"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2021 13:05:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; d="scan'208";a="700352534"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga005.fm.intel.com with ESMTP; 15 Sep 2021 13:04:50 -0700
+X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; d="scan'208";a="516520892"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by orsmga001.jf.intel.com with ESMTP; 15 Sep 2021 13:05:01 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 15 Sep 2021 13:04:49 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2242.12; Wed, 15 Sep 2021 13:05:01 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Wed, 15 Sep 2021 13:04:49 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Wed, 15 Sep 2021 13:04:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Lz5GhxBLiVXQM5YB9WJu7NLLnYXH2XNxXTUhj/LcMQvqYJfCQMrvT3660MmJb6BetqDn3g775X9ZEh2N1vxIm88OrLyC9bZslY3HOruZGxlhNyA9nXeHlLBu1o69m8AD+3lgV0vj+491YoMLUB1HC9MTrDe4J8IMhaCNhEfJRCCa/JbX2UoaZNs3ePK7quuLl7GIS2xxH9enTYPrQ1TLTo5VbOZ1QmaWN7bN4YVLqQ8/YJVrmU3f2gtep6coOWAboXtDpmW08c0RQagHMzaZG+mHAcj+opH1coXHr3WkDLrELGfXWmjVPeDIhm9UY3nt/s8ijPcUPbkHT0bhNFHEHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=zIqJqQRcdSRYsGjJR6e0oT4q4ffoy1Hsij+tR+LUCCI=;
- b=lbAzEOwC3HuhPSh83DMM7mZPCRWMBe/Ey+2pOMBUVQoWr7BzOVVLKirVQV2iJKSl6SdsFp0/rVfeYS93JY4HH+fMgHvhHWqzFSKfh9u+MkVROOa/TpWbMTkcAVgDqOPzH5oqRDwcRoyrQS65ol0JCBfaVE02UhsroqbU6eiPkyXThN85eao53SFOs9yHM8G2h3MeYLyHPBV9lGa3sBuXj1NBixiWhkiuTmpmayOw/PcTEmluSXZHYghVhhFuj37F+B+iV5zHyiI1h9Gt3yMMLODjsUjEEkUXPuIKqh4VNaKA4WyroTvYcTCZCY7+NLsSveUgABaThuSeKaUDiqqaLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zIqJqQRcdSRYsGjJR6e0oT4q4ffoy1Hsij+tR+LUCCI=;
- b=d319BKSkeHrVftHJF51kuCk0bOlO33mxIVCeWGRn9OglBbj+nwHftb9tlBedv61bybWz551EBzkwVYjsiqpy2SqFb7tnVTEafkOHEgsEvkzun9AMkmIs/Q5xpvDkLsdHfVBJ5NHGsEXbnqFGlcAccC3AhR7DrqKvpPw1rENW9k4=
-Authentication-Results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com (2603:10b6:510:e5::13)
- by PH0PR11MB5657.namprd11.prod.outlook.com (2603:10b6:510:ee::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Wed, 15 Sep
- 2021 20:04:48 +0000
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::880d:1a54:ca07:738a]) by PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::880d:1a54:ca07:738a%8]) with mapi id 15.20.4500.019; Wed, 15 Sep 2021
- 20:04:48 +0000
-To: Matthew Brost <matthew.brost@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-CC: <daniel.vetter@ffwll.ch>, <tony.ye@intel.com>, <zhengguo.xu@intel.com>
-References: <20210820224446.30620-1-matthew.brost@intel.com>
- <20210820224446.30620-15-matthew.brost@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-Message-ID: <69b3d47e-75a3-b09a-aa52-5ff7113b7f32@intel.com>
-Date: Wed, 15 Sep 2021 13:04:45 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
-In-Reply-To: <20210820224446.30620-15-matthew.brost@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-ClientProxiedBy: MWHPR17CA0079.namprd17.prod.outlook.com
- (2603:10b6:300:c2::17) To PH0PR11MB5642.namprd11.prod.outlook.com
- (2603:10b6:510:e5::13)
+ 15.1.2242.12; Wed, 15 Sep 2021 13:05:00 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Wed, 15 Sep 2021 13:05:00 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+CC: "daniel@ffwll.ch" <daniel@ffwll.ch>, "Mun, Gwan-gyeong"
+ <gwan-gyeong.mun@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH CI 1/2] drm/i915/display/skl+: Drop
+ frontbuffer rendering support
+Thread-Index: AQHXpbMIFedAMa5Zo0aadx8lp+7gQ6ucmi+AgAACUgD////sgIAGc5gAgAKKwICAACPngIAADpsAgAA4IgA=
+Date: Wed, 15 Sep 2021 20:05:00 +0000
+Message-ID: <14b66ce95193c2f44382b045481b90c63070e661.camel@intel.com>
+References: <20210909194917.66433-1-jose.souza@intel.com>
+ <YTpsh3WkLIDm96h7@intel.com>
+ <32357a14fd9926ac5c332868e3aadfbb8105caf9.camel@intel.com>
+ <YTpuaUI6rpPzHDFS@intel.com>
+ <2a05f1b5555f5d5d0e66f447e4a8c51a4bb2905b.camel@intel.com>
+ <YUH5wR96pc0D09BD@intel.com> <YUIX3+B3tHTk/SwW@intel.com>
+ <YUIkIEnRL51dB8YJ@intel.com>
+In-Reply-To: <YUIkIEnRL51dB8YJ@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9A78138D8638274C83A78C0D92A5A6A8@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Received: from [192.168.1.221] (73.157.192.58) by
- MWHPR17CA0079.namprd17.prod.outlook.com (2603:10b6:300:c2::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4523.14 via Frontend Transport; Wed, 15 Sep 2021 20:04:47 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5c4e36bb-4e9e-4786-10dd-08d9788411ed
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5657:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <PH0PR11MB56576AE20F754A1E5F2EC03EBDDB9@PH0PR11MB5657.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7/aqXrG8GyGBnmkLIQzcTC1RD9Zz+HGRjrp3NqIJzSU5tHgAzXWar9aIC8Oe0xqqfsshk9BMwtkNx2U6v2GNqhVh/p+QHY0z4qZ60S+9t97wKAUcNtcXaw5YusMkE3HKCSRHkXVKq00D1azsUrBQfmKn7SogjeqcUZCjD6yrbw0TqRMvEneSh3IadVUsuvQM1gyDH7vVDomUup6v8kZK5f4ZHiHDNh4Sc7i9V218hPlGcvAc5u/4EXm+A+waHEVjS/fc6typdtP13jpEP6TG5V3h3P2dfcqEXiggqkXBRXaqpls+nB61N9q2uvFmdVdL0oGJtmjaU4pSNsXcu0wE5Qyf1L2WeobVBIj4S813t5g28VLDI5l/X+ZrDtfmFx0xb3A8kFfwCrmQDm5krTMxJ0HKYHE4ctn0hPY9ThM2XadePERtekWr88HJvZyKmk9mRUAyEu/qiuCdLTm5nhXcA82omWkFwIjvrdUq8k85RjCAL7an0IMkDr/5tqqgU9vKjEooCN1S5/Mfbq0a+1CC8AsDgxSc01cE3GfK6MPtukyLqowp4jFzLQsSwe3sQxM555zxB9PLbfhWSp7Cqo7mMkh5MTWIIXLWlS/1Bh1GLIVLGPBOkSo97Okde4acloOQU1xjFqJvjfq28xI977ccNDnqvMAIJjMpsGDip7n1tyk+lfMLXa+zc1vEjZ2He9PuFwew456UmQlgwaq92eYcpp7FO1fgGbFBGaX9uq5v/jmprqp81zke/VPJUOn1aOZ6
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB5642.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(8936002)(66946007)(2906002)(31696002)(53546011)(66476007)(83380400001)(38100700002)(66556008)(26005)(186003)(36756003)(31686004)(4326008)(508600001)(86362001)(316002)(16576012)(8676002)(5660300002)(2616005)(956004)(6486002)(107886003)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d3ovZXZUWGxIaUJyOEZ2N2ZxUDRTS3AyTktNUm15eFdHWEZVdVJac0VDOStS?=
- =?utf-8?B?OGdIbHFEdmwrWTJLdUE5T1MvendkazI5VytNNlRVTXhIQ250MWg3NXJlL2Ra?=
- =?utf-8?B?ZjVTVGNPeTRSbWhUUkVlN01qZnZVR2pkbUJQZUdxdXZjcmpzdDUxSHBKWDJH?=
- =?utf-8?B?U0RyT25ibXR1bXpobGV5c1cvUkxLRm5vc0x6alhVQ0pSVjZPZ1d3Tm9LWmdO?=
- =?utf-8?B?eFgwcW1jNnNJZzNyNEliTGt1MHBnSDNHWXdiSDhzL3JZRFZCWjZ2UllaOHln?=
- =?utf-8?B?RlJGenVuMnRmNmRLVUFoUzdhSExyaFBQTEt5N1lZOThQUUVIZG5aQzIxVHMw?=
- =?utf-8?B?Zkl6S01xbmNtSkNZS2U1bnorRTN6eWk0TVRXQjE0RlhPTWVmcm4ydXF3ajV1?=
- =?utf-8?B?Z01rdlp2ZWdkaHMxNlpsSWEveXJqNS9lOXd4ZGJGQVErTFk2K2RrNUVZdUVN?=
- =?utf-8?B?OU5Pa0ZTN3h3cGNsOWEwWEJiMU1iUlhlajR5OXBnSk9iWW5JRWJPNU9nUmNI?=
- =?utf-8?B?UlBPRnNOUXZwaWttY2YxVUpmZ1RLV0F4ek1MM2t5dFJVRDQ4bE1yQ2JHWW9j?=
- =?utf-8?B?YXdaeTFOekhmVnVTMUEzK0ZoS0sxU2NJMmJzUSs1N01qMmZQekhGUzlyQlJE?=
- =?utf-8?B?R1VRdGlCL25CQlpMSkgyeUExUnNHeE5sNjdFSEszUlA5eGZCTlVIb3gxZ3hZ?=
- =?utf-8?B?N1FSczZKN1c3TytZN3pXMUo3akhmeXBrWWNtTUxBWTkyY2JYdXV1VldlSE9H?=
- =?utf-8?B?cG5wOVFQbHFnK0c5R3ROengyNksvaG5hSm1QYUdCeS9EQzdLWFEzUzgxRld1?=
- =?utf-8?B?VjAwOGFKaTZGdmxTM0RYN2kzSml2bXZqTGpqSko1UHNDb1doNGNjSlNJMFZW?=
- =?utf-8?B?NjVPb215ZDVMUzBIL3IvYS8vM0ZUYlJjSmJtK0NpNDUzV0VqOTE5dWEyelor?=
- =?utf-8?B?ZHhvQVkzWFBvNmNUN0dueFdzdXk2RHBwMytDbXJ3aTBsdkdwOHhMWEhsbks2?=
- =?utf-8?B?aTVpU1NNaElydmpZRy93YnQ3TjdmcFRlOTFaZXpiMFkraU82dmFVMytoMmRh?=
- =?utf-8?B?eWdRWHFIRHhSYlcyS0Y4UkxLcVVlMkN2V1dsdks2ZlhCejJwcWJtZFMwY1Zy?=
- =?utf-8?B?NS9ndmxtZEp6NytFckFPK0RKS0FXZklaZHNpMko0Lys4ODJ1T1RObkIraGZ3?=
- =?utf-8?B?eW44L3psbnFxRkc4ZkppMXpnaTlLa3Bzd3owRkppK0g3UFAxY1FSelB2NlJB?=
- =?utf-8?B?ZGJhNkhlbFhmSGFNZ0RoeXZtLzNwUXhaWkdIYVFQd2hGbmljOG1pY3NibkY4?=
- =?utf-8?B?ZllBUlRjcEx1cEFQZE9JTFdoUXNaeUhRZFF0bWp0aDh0bW1lOGUzR1g0NGIx?=
- =?utf-8?B?SktIcDZlNkcvaVlVMnMwWitSYnRFSEJrMys3Um91S0tFMVNNektKOG1UNWpO?=
- =?utf-8?B?RlZPWTNYcEYrQUNnakU3SlUydjNveHdlVUhQWk1mQ0ZLZG96Yk15RllybU1P?=
- =?utf-8?B?d0RoYjRqRHdWUVVMenRvRngrbkV3ZFlvYlJpcW5LTU14VmY2M2Q1alY4U3A4?=
- =?utf-8?B?am4xSzVUT1FPREFPQ3JDbWZoQ2h4UDlqS1UyZlB3c3J1RkMweGltV0x1UDIv?=
- =?utf-8?B?c1N5LzBNb2NJNHQybWdHSmlEbUIxSGRJaTRCQWVhUnV0ZEJDd1Zjbmxtb2th?=
- =?utf-8?B?S0pkR1FMYzdma3gzeElZR0xuUDlFczAzaUI1cDhYWXExM3B6d1Bxb29lb25R?=
- =?utf-8?Q?E1XzAjQruoaHciLYAhegDRndQsLE1i9gAJ7FSRc?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c4e36bb-4e9e-4786-10dd-08d9788411ed
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5642.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2021 20:04:48.3262 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +BN6o8kIvX+W52RAUnnXrjXKnR0GrT1aIjaxr2OCDF/MD9e+tJ5RXkFAtIqZkEy7qUuF8D1K0A6O3UxLU6+4dKMb5QA3eHwZYqxDS73kv3Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5657
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 14/27] drm/i915/guc: Assign contexts in
- parent-child relationship consecutive guc_ids
+Subject: Re: [Intel-gfx] [PATCH CI 1/2] drm/i915/display/skl+: Drop
+ frontbuffer rendering support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,258 +77,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/20/2021 15:44, Matthew Brost wrote:
-> Assign contexts in parent-child relationship consecutive guc_ids. This
-> is accomplished by partitioning guc_id space between ones that need to
-> be consecutive (1/16 available guc_ids) and ones that do not (15/16 of
-> available guc_ids). The consecutive search is implemented via the bitmap
-> API.
->
-> This is a precursor to the full GuC multi-lrc implementation but aligns
-> to how GuC mutli-lrc interface is defined - guc_ids must be consecutive
-> when using the GuC multi-lrc interface.
->
-> v2:
->   (Daniel Vetter)
->    - Explictly state why we assign consecutive guc_ids
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   6 +-
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 107 +++++++++++++-----
->   2 files changed, 86 insertions(+), 27 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 023953e77553..3f95b1b4f15c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -61,9 +61,13 @@ struct intel_guc {
->   		 */
->   		spinlock_t lock;
->   		/**
-> -		 * @guc_ids: used to allocate new guc_ids
-> +		 * @guc_ids: used to allocate new guc_ids, single-lrc
->   		 */
->   		struct ida guc_ids;
-> +		/**
-> +		 * @guc_ids_bitmap: used to allocate new guc_ids, multi-lrc
-> +		 */
-> +		unsigned long *guc_ids_bitmap;
->   		/** @num_guc_ids: number of guc_ids that can be used */
->   		u32 num_guc_ids;
->   		/** @max_guc_ids: max number of guc_ids that can be used */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 00d54bb00bfb..e9dfd43d29a0 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -125,6 +125,18 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count);
->   
->   #define GUC_REQUEST_SIZE 64 /* bytes */
->   
-> +/*
-> + * We reserve 1/16 of the guc_ids for multi-lrc as these need to be contiguous
-> + * per the GuC submission interface. A different allocation algorithm is used
-> + * (bitmap vs. ida) between multi-lrc and single-lrc hence the reason to
-The 'hence' clause seems to be attached to the wrong reason. The id 
-space is partition because of the contiguous vs random requirements of 
-multi vs single LRC, not because a different allocator is used in one 
-partion vs the other.
-
-> + * partition the guc_id space. We believe the number of multi-lrc contexts in
-> + * use should be low and 1/16 should be sufficient. Minimum of 32 guc_ids for
-> + * multi-lrc.
-> + */
-> +#define NUMBER_MULTI_LRC_GUC_ID(guc) \
-> +	((guc)->submission_state.num_guc_ids / 16 > 32 ? \
-> +	 (guc)->submission_state.num_guc_ids / 16 : 32)
-> +
->   /*
->    * Below is a set of functions which control the GuC scheduling state which
->    * require a lock.
-> @@ -1176,6 +1188,10 @@ int intel_guc_submission_init(struct intel_guc *guc)
->   	INIT_LIST_HEAD(&guc->submission_state.destroyed_contexts);
->   	intel_gt_pm_unpark_work_init(&guc->submission_state.destroyed_worker,
->   				     destroyed_worker_func);
-> +	guc->submission_state.guc_ids_bitmap =
-> +		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
-> +	if (!guc->submission_state.guc_ids_bitmap)
-> +		return -ENOMEM;
->   
->   	return 0;
->   }
-> @@ -1188,6 +1204,7 @@ void intel_guc_submission_fini(struct intel_guc *guc)
->   	guc_lrc_desc_pool_destroy(guc);
->   	guc_flush_destroyed_contexts(guc);
->   	i915_sched_engine_put(guc->sched_engine);
-> +	bitmap_free(guc->submission_state.guc_ids_bitmap);
->   }
->   
->   static void queue_request(struct i915_sched_engine *sched_engine,
-> @@ -1239,18 +1256,43 @@ static void guc_submit_request(struct i915_request *rq)
->   	spin_unlock_irqrestore(&sched_engine->lock, flags);
->   }
->   
-> -static int new_guc_id(struct intel_guc *guc)
-> +static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   {
-> -	return ida_simple_get(&guc->submission_state.guc_ids, 0,
-> -			      guc->submission_state.num_guc_ids, GFP_KERNEL |
-> -			      __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
-> +	int ret;
-> +
-> +	GEM_BUG_ON(intel_context_is_child(ce));
-> +
-> +	if (intel_context_is_parent(ce))
-> +		ret = bitmap_find_free_region(guc->submission_state.guc_ids_bitmap,
-> +					      NUMBER_MULTI_LRC_GUC_ID(guc),
-> +					      order_base_2(ce->guc_number_children
-> +							   + 1));
-> +	else
-> +		ret = ida_simple_get(&guc->submission_state.guc_ids,
-> +				     NUMBER_MULTI_LRC_GUC_ID(guc),
-> +				     guc->submission_state.num_guc_ids,
-> +				     GFP_KERNEL | __GFP_RETRY_MAYFAIL |
-> +				     __GFP_NOWARN);
-> +	if (unlikely(ret < 0))
-> +		return ret;
-> +
-> +	ce->guc_id.id = ret;
-> +	return 0;
->   }
->   
->   static void __release_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   {
-> +	GEM_BUG_ON(intel_context_is_child(ce));
-> +
->   	if (!context_guc_id_invalid(ce)) {
-> -		ida_simple_remove(&guc->submission_state.guc_ids,
-> -				  ce->guc_id.id);
-> +		if (intel_context_is_parent(ce))
-> +			bitmap_release_region(guc->submission_state.guc_ids_bitmap,
-> +					      ce->guc_id.id,
-> +					      order_base_2(ce->guc_number_children
-> +							   + 1));
-Is there any check against adding/removing children when the guc_ids are 
-allocated? Presumably it shouldn't ever happen but if it did then the 
-bitmap_release would not match the allocation. Maybe add 
-BUG_ON(ce->guc_id) to the parent/child link functions (if it's not there 
-already?).
-
-> +		else
-> +			ida_simple_remove(&guc->submission_state.guc_ids,
-> +					  ce->guc_id.id);
->   		reset_lrc_desc(guc, ce->guc_id.id);
->   		set_context_guc_id_invalid(ce);
->   	}
-> @@ -1267,49 +1309,60 @@ static void release_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
->   }
->   
-> -static int steal_guc_id(struct intel_guc *guc)
-> +static int steal_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   {
-> -	struct intel_context *ce;
-> -	int guc_id;
-> +	struct intel_context *cn;
-Leaving this as 'ce' and calling the input parameter 'ce_in' would have 
-made for significantly easier to read diffs!
-
->   
->   	lockdep_assert_held(&guc->submission_state.lock);
-> +	GEM_BUG_ON(intel_context_is_child(ce));
-> +	GEM_BUG_ON(intel_context_is_parent(ce));
->   
->   	if (!list_empty(&guc->submission_state.guc_id_list)) {
-> -		ce = list_first_entry(&guc->submission_state.guc_id_list,
-> +		cn = list_first_entry(&guc->submission_state.guc_id_list,
->   				      struct intel_context,
->   				      guc_id.link);
->   
-> -		GEM_BUG_ON(atomic_read(&ce->guc_id.ref));
-> -		GEM_BUG_ON(context_guc_id_invalid(ce));
-> -
-> -		list_del_init(&ce->guc_id.link);
-> -		guc_id = ce->guc_id.id;
-> +		GEM_BUG_ON(atomic_read(&cn->guc_id.ref));
-> +		GEM_BUG_ON(context_guc_id_invalid(cn));
-> +		GEM_BUG_ON(intel_context_is_child(cn));
-> +		GEM_BUG_ON(intel_context_is_parent(cn));
->   
-> -		spin_lock(&ce->guc_state.lock);
-As far as I can tell, the only actual change to this function (beyond 
-'ce_in->id = id' vs 'return id' and adding anti-family asserts) is that 
-this spinlock was dropped. However, I'm not seeing any replacement for 
-it or any comment about why the spinlock is no longer necessary.
-
-John.
-
-
-> -		clr_context_registered(ce);
-> -		spin_unlock(&ce->guc_state.lock);
-> +		list_del_init(&cn->guc_id.link);
-> +		ce->guc_id = cn->guc_id;
-> +		clr_context_registered(cn);
-> +		set_context_guc_id_invalid(cn);
->   
-> -		set_context_guc_id_invalid(ce);
-> -		return guc_id;
-> +		return 0;
->   	} else {
->   		return -EAGAIN;
->   	}
->   }
->   
-> -static int assign_guc_id(struct intel_guc *guc, u16 *out)
-> +static int assign_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   {
->   	int ret;
->   
->   	lockdep_assert_held(&guc->submission_state.lock);
-> +	GEM_BUG_ON(intel_context_is_child(ce));
->   
-> -	ret = new_guc_id(guc);
-> +	ret = new_guc_id(guc, ce);
->   	if (unlikely(ret < 0)) {
-> -		ret = steal_guc_id(guc);
-> +		if (intel_context_is_parent(ce))
-> +			return -ENOSPC;
-> +
-> +		ret = steal_guc_id(guc, ce);
->   		if (ret < 0)
->   			return ret;
->   	}
->   
-> -	*out = ret;
-> +	if (intel_context_is_parent(ce)) {
-> +		struct intel_context *child;
-> +		int i = 1;
-> +
-> +		for_each_child(ce, child)
-> +			child->guc_id.id = ce->guc_id.id + i++;
-> +	}
-> +
->   	return 0;
->   }
->   
-> @@ -1327,7 +1380,7 @@ static int pin_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   	might_lock(&ce->guc_state.lock);
->   
->   	if (context_guc_id_invalid(ce)) {
-> -		ret = assign_guc_id(guc, &ce->guc_id.id);
-> +		ret = assign_guc_id(guc, ce);
->   		if (ret)
->   			goto out_unlock;
->   		ret = 1;	/* Indidcates newly assigned guc_id */
-> @@ -1369,8 +1422,10 @@ static void unpin_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   	unsigned long flags;
->   
->   	GEM_BUG_ON(atomic_read(&ce->guc_id.ref) < 0);
-> +	GEM_BUG_ON(intel_context_is_child(ce));
->   
-> -	if (unlikely(context_guc_id_invalid(ce)))
-> +	if (unlikely(context_guc_id_invalid(ce) ||
-> +		     intel_context_is_parent(ce)))
->   		return;
->   
->   	spin_lock_irqsave(&guc->submission_state.lock, flags);
-
+T24gV2VkLCAyMDIxLTA5LTE1IGF0IDE5OjQ5ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFdlZCwgU2VwIDE1LCAyMDIxIGF0IDA2OjU3OjE5UE0gKzAzMDAsIFZpbGxlIFN5cmrD
+pGzDpCB3cm90ZToNCj4gPiBPbiBXZWQsIFNlcCAxNSwgMjAyMSBhdCAwNDo0ODo0OVBNICswMzAw
+LCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6DQo+ID4gPiBPbiBNb24sIFNlcCAxMywgMjAyMSBhdCAx
+MDo1NDoxNFBNICswMDAwLCBTb3V6YSwgSm9zZSB3cm90ZToNCj4gPiA+ID4gT24gVGh1LCAyMDIx
+LTA5LTA5IGF0IDIzOjI4ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6DQo+ID4gPiA+ID4g
+T24gVGh1LCBTZXAgMDksIDIwMjEgYXQgMDg6MjM6MjBQTSArMDAwMCwgU291emEsIEpvc2Ugd3Jv
+dGU6DQo+ID4gPiA+ID4gPiBPbiBUaHUsIDIwMjEtMDktMDkgYXQgMjM6MjAgKzAzMDAsIFZpbGxl
+IFN5cmrDpGzDpCB3cm90ZToNCj4gPiA+ID4gPiA+ID4gT24gVGh1LCBTZXAgMDksIDIwMjEgYXQg
+MTI6NDk6MTZQTSAtMDcwMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSB3cm90ZToNCj4gPiA+ID4g
+PiA+ID4gPiBCeSBub3cgYWxsIHRoZSB1c2Vyc3BhY2UgYXBwbGljYXRpb25zIHNob3VsZCBoYXZl
+IG1pZ3JhdGVkIHRvIGF0b21pYw0KPiA+ID4gPiA+ID4gPiA+IG9yIGF0IGxlYXN0IGJlIGNhbGxp
+bmcgRFJNX0lPQ1RMX01PREVfRElSVFlGQi4NCj4gPiA+ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+
+ID4gPiBXaXRoIHRoYXQgd2UgY2FuIGtpbGwgZnJvbnRidWZmZXIgcmVuZGVyaW5nIHN1cHBvcnQg
+aW4gaTkxNSBmb3INCj4gPiA+ID4gPiA+ID4gPiBtb2Rlcm4gcGxhdGZvcm1zLg0KPiA+ID4gPiA+
+ID4gPiA+IA0KPiA+ID4gPiA+ID4gPiA+IFNvIGhlcmUgY29udmVydGluZyBsZWdhY3kgQVBJcyBp
+bnRvIGF0b21pYyBjb21taXRzIHNvIGl0IGNhbiBiZQ0KPiA+ID4gPiA+ID4gPiA+IHByb3Blcmx5
+IGhhbmRsZWQgYnkgZHJpdmVyIGk5MTUuDQo+ID4gPiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiA+
+ID4gU2V2ZXJhbCBJR1QgdGVzdHMgd2lsbCBmYWlsIHdpdGggdGhpcyBjaGFuZ2VzLCBiZWNhdXNl
+IHNvbWUgdGVzdHMNCj4gPiA+ID4gPiA+ID4gPiB3ZXJlIHN0cmVzc2luZyB0aG9zZSBmcm9udGJ1
+ZmZlciByZW5kZXJpbmcgc2NlbmFyaW9zIHRoYXQgbm8gdXNlcnNwYWNlDQo+ID4gPiA+ID4gPiA+
+ID4gc2hvdWxkIGJlIHVzaW5nIGJ5IG5vdywgZml4ZXMgdG8gSUdUIHNob3VsZCBiZSBzZW50IHNv
+b24uDQo+ID4gPiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gPiBJIGp1
+c3QgZ2F2ZSB0aGlzIGEgdHJ5IGhlcmUgYW5kIGl0J3MgdW51c2FibGUuIGdseGdlYXJzIHdlbnQg
+ZnJvbQ0KPiA+ID4gPiA+ID4gPiA5MDAwIHRvIDEyMCBmcHMgKHdhcyBleHBlY3RpbmcgNjBmcHMg
+dGJoLCBub3Qgc3VyZSB3aHkgSSBnZXQNCj4gPiA+ID4gPiA+ID4gZG91YmxlKSwgZXZlcnl0aGlu
+ZyBsYWdzIGxpa2UgbWFkLCBpZiBJIGRyYWcgYSB3aW5kb3cgYXJvdW5kDQo+ID4gPiA+ID4gPiA+
+IGdseGdlYXJzL290aGVyIHdpbmRvd3Mgc3RvcCB1cGRhdGluZyBlbnRpcmVseSwgZXRjLiBOQUsN
+Cj4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gQ2FuIHlvdSBzaGFyZSB5b3VyIHNldHVwPyBXaGF0
+IEdQVT8gRGVza3RvcCBlbnZpcm9ubWVudD8gTWVzYSB2ZXJzaW9uPyByZXNvbHV0aW9ucyBvZiBz
+aW5rcz8NCj4gPiA+ID4gPiA+IFdpbGwgdHJ5IGl0IGluIG15IGVuZC4NCj4gPiA+ID4gPiANCj4g
+PiA+ID4gPiBEb2Vzbid0IHJlYWxseSBtYXR0ZXIgYXMgbG9uZyBhcyB5b3UgZG9uJ3QgaGF2ZSBh
+IGNvbXBvc2l0b3IgbWFraW5nIGENCj4gPiA+ID4gPiBtZXNzIG9mIHRoaW5ncy4gVGhpcyBtYWNo
+aW5lIGlzIGEgY2ZsIHJ1bm5pbmcgbWF0ZSB3LyBjb21wb3NpdG9yIG9mZiwNCj4gPiA+ID4gPiBh
+bmQgc29tZSAxOTIweDEyMDAgZGlzcGxheS4NCj4gPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+
+IE1ha2luZyBkcm1fYXRvbWljX2hlbHBlcl9kaXJ0eWZiKCkgZG8gYSBub24tYmxvY2tpbmcgYXRv
+bWljIGNvbW1pdCBtYWtlcyB1c2VyIGV4cGVyaWVuY2UgcHJldHR5IHNpbWlsYXIgdG8gdGhlIG9u
+ZSB3aXRoIGNvbXBvc2l0aW5nIGVuYWJsZWQ6DQo+ID4gPiA+IGRybV9hdG9taWNfY29tbWl0KCkg
+KyBjb21wb3NpdG9yIG9mZjogaHR0cHM6Ly95b3V0dS5iZS9OQnQ2c21Yczk5VQ0KPiA+ID4gPiBk
+cm1fYXRvbWljX25vbmJsb2NraW5nX2NvbW1pdCgpICsgY29tcG9zaXRvciBvZmY6IGh0dHBzOi8v
+eW91dHUuYmUvUWlNaGtlR1hfTDgNCj4gPiA+ID4gZHJtX2F0b21pY19ub25ibG9ja2luZ19jb21t
+aXQoKSArIGNvbXBvc2l0b3Igb246IGh0dHBzOi8veW91dHUuYmUvS2RwSnlKNWs2c1ENCj4gPiA+
+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiBJIGRvIG5vdCBjb21wbGV0bHkgYWdyZWUgd2l0aCB0aGUg
+Y29tbWVudCBpbiBkcm1fYXRvbWljX2hlbHBlcl9kaXJ0eWZiKCkgYWJvdXQgd2h5IGl0IHVzZXMg
+YSBibG9ja2luZyBpbXBsZW1lbnRhdGlvbi4NCj4gPiA+ID4gV2l0aCBmcm9udGJ1ZmZlciByZW5k
+ZXJpbmcgdGhlIHJlZ2lzdGVycyBhcmUgcHJvZ3JhbW1lZCBidXQgdGhlIGNvbnRlbnQgY291bGQg
+b25seSBzaG93IHVwIGZvciB1c2VyIGEgd2hvbGUgZnJhbWUgbGF0ZXIuDQo+ID4gPiA+IA0KPiA+
+ID4gPiBQZXJoYXBzIGlmIHRoaXMgc29sdXRpb25zIGlzIGFjY2V0YWJsZSB3ZSBjb3VsZCBoYXZl
+IGEgbm9uLWJsb2NraW5nIHZlcnNpb24gb2YgZHJtX2F0b21pY19oZWxwZXJfZGlydHlmYigpIHNv
+IHRoZSBkcml2ZXJzIGN1cnJlbnQgdXNpbmcgaXQgZG9uJ3QgaGF2ZQ0KPiA+ID4gPiB0aGVpciBi
+ZWhhdmlvciBjaGFuZ2VkLg0KPiA+ID4gDQo+ID4gPiBOb24tYmxvY2tpbmcgdXBkYXRlIHdvdWxk
+IG1ha2Ugc2Vuc2UgdG8gbWUsIHdoZXJlYXMgYSBibG9ja2luZw0KPiA+ID4gdXBkYXRlIG1ha2Vz
+IG5vIHNlbnNlIGdpdmVuIGhvdyB0aGlzIGlzIHVzZWQgYnkgYWN0dWFsIHVzZXJzcGFjZS4NCj4g
+PiANCj4gPiBBY3R1YWxseSBuZWl0aGVyIG1heWJlIG1ha2VzIHRvdGFsIHNlbnNlIHNpbmNlIHVz
+ZXJzcGFjZSBwcm9iYWJseQ0KPiA+IGlzbid0IGV4cGVjdGluZyAtRUJVU1kgZnJvbSBkaXJ0eWZi
+LiBTbyB3ZSBtaWdodCBlbmQgdXAgd2l0aCBzdGFsZQ0KPiA+IGp1bmsgb24gdGhlIHNjcmVlbiBp
+ZiBubyBmdXJ0aGVyIHVwZGF0ZXMgY29tZSBpbiBhZnRlciBhbiAtRUJVU1kuDQoNCjEwMDAgZGly
+dHlmYiBjYWxscyB3aWxsIG9ubHkgaGF2ZSBhIGRpZmZlcmVudCBkaXJ0eSBhcmVhcywgd2hlbiBl
+eGVjdXRpbmcgYSBkaXJ0eWZiIGF0b21pYyBjb21taXQgd2UgY291bGQgYXBwZW5kIGFsbCB0aGUg
+cGVuZGluZyBkaXJ0eSBhcmVhcyBpbnRvDQp0aGlzIGF0b21pYyBjb21taXQgYW5kIHJlbW92ZSBh
+bGwgdGhlIHBlbmRpbmcgZGlydHlmYiBhdG9taWMgY29tbWl0cy4NCkkgZG91YnQgdGhhdCB1c2Vy
+c3BhY2Ugd2lsbCBiZSBhYmxlIHRvIGZpbGwgV1FfTUFYX0FDVElWRSBkaXJ0eWZiIGNhbGxzIGlu
+IG9uZSBzaW5nbGUgZnJhbWUuDQoNCj4gDQo+IE9uZSBvcHRpb24gd291bGQgYmUgdG8gdGVhY2gg
+dXNlcnNwYWNlIHRvIHJldHJ5IGFmdGVyIGFuIC1FQlVTWSwgYnV0DQo+IHdpdGhvdXQgYSBjb21w
+bGV0aW9uIGV2ZW50IGZyb20gZGlydHlmYiBpdCdzIGdvaW5nIHRvIGJlIGhhcmQgdG8ga25vdw0K
+PiB3aGVuIHRvIHJldHJ5Lg0KPiANCj4gPiANCj4gPiBUaGUgY3VycmVudCBmcm9udGJ1ZmZlciBz
+dHVmZiB3b3JrcyBtdWNoIG1vcmUgbGlrZSBhIG1haWxib3ggc3R5bGUNCj4gPiB1cGRhdGUgc28g
+d2UgZG9uJ3QgbG9zZSBzdHVmZiBhbmQgbmVpdGhlciBkbyB3ZSBibG9jay4NCj4gDQo+IEkgc3Vw
+cG9zZSB0aGUgb2J2aW91cyBzb2x1dGlvbiB3b3VsZCBiZSB0byB0ZWFjaCBrbXMgdG8gZG8gcHJv
+cGVyDQo+IG1haWxib3ggdXBkYXRlcy4gQnV0IHRoYXQgaXMgbm90IGVudGlyZWx5IHRyaXZpYWwu
+IE9uZSB3YXkgdG8gc2ltcGxpZnkNCj4gdGhlIHByb3Bvc2FsIGEgYml0IGlzIHRvIGxpbWl0IGl0
+IHRvIHB1cmUgcGFnZWZsaXBzLCB3aGljaCB3b3VsZA0KPiBzdWZmaWNlIGZvciBkaXJ0eWZiIGFz
+IHdlbGwgb2J2aW91c2x5LiBUaGF0IHdheSB3YXRlcm1hcmtzIGFuZCBvdGhlcg0KPiBwb3RlbnRp
+YWxseSB0cmlja3kgc3R1ZmYgd291bGRuJ3QgY2hhbmdlLg0KPiANCj4gQnV0IGFjdHVhbGx5IGZp
+Z3VyaW5nIG91dCB0aGUgcHJvcGVyIGNvbW1pdCBzZXF1ZW5jZSBmb3IgdGhpcyBtaWdodA0KPiB0
+YWtlIHNvbWUgZG9pbmcuIFRoZSB3YXkgSSB0aGluayBpdCBzaG91bGQgd29yayBpcyB0aGF0IHdl
+IGp1c3QgbGV0DQo+IGVhY2ggY29tbWl0IHRocm91Z2ggd2l0aG91dCBibG9ja2luZyBvbiB0aGUg
+cHJldmlvdXMgb25lLiBBIGxhdGVyDQo+IGNvbW1pdCBtYXkgc2ltcGx5IG92ZXJ3cml0ZSB0aGUg
+aGFyZHdhcmUgcmVnaXN0ZXJzIGJlZm9yZSB0aGUNCj4gdmFsdWVzIHdyaXR0ZW4gYnkgdGhlIHBy
+ZXZpb3VzIGNvbW1pdCBnZXQgbGF0Y2hlZC4gVGhlIHZibGFuayBldmFzaW9uDQo+IHN0dWZmIHdv
+dWxkIG1ha2UgaXQgcGVyZmVjdGx5IHNhZmUuDQo+IA0KPiBUaGUgaGFyZGVzdCB0aGluZyB0aGVy
+ZSBpcyBwcm9iYWJseSBmaWd1cmluZyBvdXQgaG93IHRvIGhhbmRsZSBhbGwNCj4gdGhlIHByZS9w
+b3N0X3BsYW5lX3VwZGF0ZSgpIHN0dWZmICBwcm9wZXJseSBzaW5jZSB3ZSBjYW4ndCBrbm93DQo+
+IGFoZWFkIG9mIHRpbWUgd2hldGhlciB0aGUgZmxpcCBnZXRzIGxhdGNoZWQgb3Igbm90LCBhbmQg
+c28gd2UgY2FuJ3QNCj4gcmVhbGx5IHVzZSB0aGUgb2xkIHN0YXRlIGR1cmluZyBzdGF0ZSBjb21w
+dXRhdGlvbiB0byBtYWtlIGFueQ0KPiBkZWNpc2lvbnMgYWZmZWN0aW5nIG91ciBmdXR1cmUgYmVo
+YXZpb3VyLiBCdXQgZ2l2ZW4gdGhhdCBhc3luYyBmbGlwcw0KPiBhcmUgbW9yZSBvciBsZXNzIHdv
+cmtpbmcgdG9kYXkgbWlnaHQgbWVhbiB0aGF0IEknbSB3b3JyaWVkIGFib3V0IG5vdGhpbmcuDQo+
+IEVpdGhlciB0aGF0IG9yIGFzeW5jIGZsaXBzIGFyZSBpbiBmYWN0IGJyb2tlbiBpbiBzb21lIGZ1
+bm55IHdheXMgSSd2ZSBub3QNCj4geWV0IHJlYWxpemVkLi4uDQo+IA0KPiBUaGUgb3RoZXIgcHJv
+YmxlbSBmb3IgYWN0dWFsIG1haWxib3ggcGFnZSBmbGlwcyBpcyBjb21wbGV0aW9uIGV2ZW50cy9v
+dXQNCj4gZmVuY2VzLiBUaGUgY3VycmVudCBvdXQgZmVuY2UgSSB0aGluayBpcyBub3QgcmVhbGx5
+IHN1aXRhYmxlIGZvciBjYXNlcw0KPiB3aGVyZSBhIGZsaXAgZW5kcyB1cCBnZXR0aW5nIG92ZXJ3
+cml0dGVuIGJ5IGEgbGF0ZXIgb25lLCBhbmQgdGh1cyB0aGUNCj4gZmIgcm90YXRpb24gbm8gbG9u
+Z2VyIGZvbGxvd3MgdGhlIG5vcm1hbCBmaWZvIG9yZGVyLiBCdXQgb2Ygd2UgZG9uJ3QNCj4gZXhw
+b3NlIGFjdHVhbCBtYWlsYm94IHBhZ2UgZmxpcHMgdGhyb3VnaCB0aGUgdWFwaSB0aGVuIHdlIGNv
+dWxkIGF2b2lkDQo+IHdvcnJ5aW5nIGFib3V0IHRoaXMgc3R1ZmYgaW5pdGlhbGx5Lg0KPiANCg0K
