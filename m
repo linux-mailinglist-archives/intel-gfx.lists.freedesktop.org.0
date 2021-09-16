@@ -2,49 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32F740DB07
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 15:21:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B56EF40DB32
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 15:28:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6190C6EDB9;
-	Thu, 16 Sep 2021 13:21:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 656766EDBD;
+	Thu, 16 Sep 2021 13:28:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA4C86EDB9
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 13:21:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="209651821"
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="209651821"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 06:21:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="545702011"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 16 Sep 2021 06:21:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Sep 2021 16:21:21 +0300
-Date: Thu, 16 Sep 2021 16:21:21 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <YUNE0fd/iwOaNXW9@intel.com>
-References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
- <20210913144440.23008-2-ville.syrjala@linux.intel.com>
- <80815922ba68991fe0a4e8609d62464457d7c822.camel@intel.com>
- <YUBbUtDCL5p/zlW9@intel.com>
- <d81c249be2ac0c427ec7ecbb74b89436f8dac955.camel@intel.com>
- <7fd9904877943a744cb011c9f8668620b6fde508.camel@intel.com>
- <YUHnYowcolvx1z4D@intel.com>
- <35baca4ced0a0f0a045ddce0292aca1d5917551a.camel@intel.com>
+Received: from desiato.infradead.org (desiato.infradead.org
+ [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCE8D6EB85;
+ Thu, 16 Sep 2021 13:28:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=ucgB2Hy9Xb9oPb1gxO7iwQPFqY9KF4YtX7AagAiN27A=; b=gQ93PbpOi4o4sJSoMcD83dOk+q
+ thS39oOFAyTncpoojn3WN+eJ3ZO7xrws5j4XeaIa+jepwKidpJ3/fu9pGVa3oeoukDYFVuMiEKOiJ
+ mmAho9PtRWbbhlwHC40zXObnxN1aTVFITKFm2TUtKgmj85RGe8qIUnoqq+yZfvTAHZQQqEV0n4nyV
+ ohACGJbJrHCtjUesy6hxKg9NNcCrjZsJEsamMphJIYzPYb9FhGkbG4cgCJDXxFutpundsmPKpDQbk
+ ZNqTblF/g9I6YjcjdWUDVb9FmctfA7qNn15RaLlx3aj1jkQ/R7sT6TFAieINXjhiabXq8Pd1joLjl
+ +rX83o0A==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mQrQz-003eye-5N; Thu, 16 Sep 2021 13:28:13 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 68E48300238;
+ Thu, 16 Sep 2021 15:28:11 +0200 (CEST)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 479A52CE72577; Thu, 16 Sep 2021 15:28:11 +0200 (CEST)
+Date: Thu, 16 Sep 2021 15:28:11 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org
+Message-ID: <YUNGaztoBrTzEuEG@hirez.programming.kicks-ass.net>
+References: <YTiM/zf8BuNw7wes@hirez.programming.kicks-ass.net>
+ <96ab9cf1-250a-8f34-51ec-4a7f66a87b39@linux.intel.com>
+ <YTnETRSy9H0CRdpc@hirez.programming.kicks-ass.net>
+ <a7e5d99d-39c4-6d27-3029-4689a2a1a17a@linux.intel.com>
+ <YTtznr85mg5xXouP@hirez.programming.kicks-ass.net>
+ <e8a7754e-23e7-0250-5718-101a56d008f0@linux.intel.com>
+ <YUBGPdDDjKlxAuXJ@hirez.programming.kicks-ass.net>
+ <205e1591-343b-fb77-cfca-9c16af1484bd@linux.intel.com>
+ <YUCpfrbfPSZvD3Xl@phenom.ffwll.local>
+ <a374d768-213e-58e7-d281-1c46d1c0c105@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <35baca4ced0a0f0a045ddce0292aca1d5917551a.camel@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 01/16] Revert "drm/i915/display: Disable
- audio, DRRS and PSR before planes"
+In-Reply-To: <a374d768-213e-58e7-d281-1c46d1c0c105@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] kernel/locking: Add context to
+ ww_mutex_trylock.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,87 +76,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 15, 2021 at 08:19:41PM +0000, Souza, Jose wrote:
-> On Wed, 2021-09-15 at 15:30 +0300, Ville Syrjälä wrote:
-> > On Wed, Sep 15, 2021 at 12:00:28AM +0000, Souza, Jose wrote:
-> > > On Tue, 2021-09-14 at 16:30 -0700, José Roberto de Souza wrote:
-> > > > On Tue, 2021-09-14 at 11:20 +0300, Ville Syrjälä wrote:
-> > > > > On Mon, Sep 13, 2021 at 04:28:35PM +0000, Souza, Jose wrote:
-> > > > > > On Mon, 2021-09-13 at 17:44 +0300, Ville Syrjala wrote:
-> > > > > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > > > 
-> > > > > > > Disabling planes in the middle of the modeset seuqnece does not make
-> > > > > > > sense since userspace can anyway disable planes before the modeset
-> > > > > > > even starts. So when the modeset seuqence starts the set of enabled
-> > > > > > > planes is entirely arbitrary. Trying to sprinkle the plane disabling
-> > > > > > > into the modeset sequence just means more randomness and potential
-> > > > > > > for hard to reproduce bugs.
-> > > > > > 
-> > > > > > The patch being reverted did not changed anything about plane, it only disables audio and PSR before pipe is disabled in this case.
-> > > > > 
-> > > > > The commit message only talks about planes. Also we already disable
-> > > > > the pipe in the post_disable hook, so PSR/audio was always disabled
-> > > > > before the pipe IIRC.
-> > > > 
-> > > > That is true, my bad.
-> > > > 
-> > > > Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
-> > > 
-> > > Sorry I missed the intel_crtc_disable_planes() call, so here is the problem:
-> > > 
-> > > 
-> > > intel_commit_modeset_disables()
-> > > 	intel_old_crtc_state_disables()
-> > > 		intel_crtc_disable_planes()
-> > > 			intel_disable_plane()
-> > > 		dev_priv->display.crtc_disable(state, crtc)/hsw_crtc_disable()
-> > > 			intel_encoders_disable()
-> > > 				encoder->disable()/intel_disable_ddi()
-> > > 					intel_psr_disable()
-> > > 			intel_encoders_post_disable()
-> > > 				post_disable/intel_ddi_post_disable()
-> > > 					intel_disable_pipe()
-> > > 
-> > > So all the planes are disabled while PSR is still on, that is why this patch fixed the underrun.
-> > > 
-> > > We need to call the pre_disable() before intel_crtc_disable_planes() and for the case where pipe is not disabled but all of its planes are requires
-> > > the pending patch that I have.
-> > > 
-> > > Or do you have other suggestion?
-> > 
-> > I would like to follow the same sequence always, ie. disable planes
-> > first (be it from userspace or from the kernel just before the modeset),
-> > and then we take the exact same measures in both cases to deal with
-> > whatever is the problem with PSR vs. disabled planes. That makes the
-> > sequence as deterministic as possible, and thus we avoid potential
-> > weird bugs stemming from userspace behaviour wrt. disabling planes.
-> > 
-> > Hmm. Our modeset plane disable code is certainly a bit lackluster.
-> > It misses a bunch of stuff that we do for normal plane updates.
-> > So we might want to put a few extra things in there. Maybe PSR
-> > needs the vblank_get+psr_idle trick? And we might want a
-> > vrr_push/etc. in there as well, not sure.
-> > 
-> > What exactly is your solution to the case where the planes are
-> > already disabled by userspace?
-> 
-> https://github.com/zehortigoza/linux/commit/013478a67e0b96abbaf6ab2d1b4be324b0fe737b
+On Thu, Sep 16, 2021 at 03:00:39PM +0200, Maarten Lankhorst wrote:
 
-That's not going to work correctly. You can't depend on
-connectors being part of the state since that's not the case for
-pure plane updates/etc.
+> > For merge logistics, can we pls have a stable branch? I expect that the
+> > i915 patches will be ready for 5.16.
+> >
+> > Or send it in for -rc2 so that the interface change doesn't cause needless
+> > conflicts, whatever you think is best.
 
-In general I really dislike the PSR code's reliance on the
-encoder/connector. Tht makes it really hard to do these sorts
-of things. So I think we'd have to redesign it to try to
-operate purely on the crtc and not need the encoder/connector.
+> Yeah, some central branch drm could pull from, would make upstreaming patches that depends on it easier. :)
 
-> 
-> Whole branch: https://github.com/zehortigoza/linux/commits/upstream-psr2-sel-fetch-new
-> 
-> > 
-> 
-
--- 
-Ville Syrjälä
-Intel
+I think I'll make tip/locking/wwmutex and include that in
+tip/locking/core, let me have a poke.
