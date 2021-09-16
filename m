@@ -2,79 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C937C40D9E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 14:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8939640D9EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 14:29:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 524566ED9A;
-	Thu, 16 Sep 2021 12:27:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B87CC6ED9E;
+	Thu, 16 Sep 2021 12:28:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-relay-internal-0.canonical.com
- (smtp-relay-internal-0.canonical.com [185.125.188.122])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2CC26ED9D
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 12:27:05 +0000 (UTC)
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
- [209.85.214.197])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5625A40192
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 12:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1631795224;
- bh=oruoXINM9lE6NQF44gguXgq2pHTP8iv51Cw7Sf30Jug=;
- h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
- MIME-Version;
- b=DJPdjkvub6rKzh7w+p1NEC/Uz7PbxB2Pl4Zu56+SK2qnkpKx/qEEZmfF2sqI7X2gC
- tA5eiGXhfKJOzTQ3k8Sh8EkK6nc47AtIVFXPbdq23aajpGI6r6byTS5aHMa+HggfiK
- 7oh+5f7O/mlkvSWV0GB611JMe5pdkpkqM+KRVdy2onr1R+CumolsvccJQJc0VGMgr0
- sK93ENyyk2UFtoZoQx2vDQcaQE+2YKCw0nh3kbAHKjS/DCIOVzvSs2tFz6MNHPZ3I3
- 6FlnIqfCiQBwk4w84fbK5bbcJeNaAXZACF2l8eVF3s3ZuMVn2vK5Z5tTVabglotUul
- EArlSXEt205vQ==
-Received: by mail-pl1-f197.google.com with SMTP id
- w10-20020a170903310a00b0013a74038765so3145370plc.22
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 05:27:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=oruoXINM9lE6NQF44gguXgq2pHTP8iv51Cw7Sf30Jug=;
- b=7QIGDj2+5w6R1yGEbGvlAEcOTOb95bIp9INZw1N7Vj4nx9tv512Rw3pSaJDYxLopmS
- ZK2twptXYXwXa2haHs54c59MUamnG516+rezeSejO6TZ+rPe5tbamV6+hsJIsYwa/vcA
- Gb2CLlbgjStre8QyBKi5kfIewfv0gbEYOkY8ZJ/DXfLzq8hyCHH6Y5szYsuWRu/x9qoH
- gNse2wig4RmsE+s3HFq8B2dO+1j9Vs7Fur6Eq7/h8zHWmRlc7rQV6PN/cK1z8cFhhe4+
- C4ouiluVB/vk9Xy11bR78oo8PHMs+lrzBxe1DlrcCYfYta1KBhv1JvUnnm7qYMb1CkV7
- sxvw==
-X-Gm-Message-State: AOAM531LcqmBUVghtFdwRN5UJfZW55ap4ao0rhr/XvcB7X7KMUHhOj9m
- l6tO8lLhvVHrmOcfKowhw5YzpUqp3LYB/bdtGmVHT7EUo+Peos/0AUQzkvjsYgy05+0/w8WZL4y
- 7I+zNq+j0a4X6MihkNP89LNE0SpLdXHbQQbGop1sCw4xi5A==
-X-Received: by 2002:a17:902:7488:b0:13c:9740:3c13 with SMTP id
- h8-20020a170902748800b0013c97403c13mr4614641pll.76.1631795222566; 
- Thu, 16 Sep 2021 05:27:02 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxNDmpBb62DYJob9a3dod7hjLoK8Qzzsy/X+2T2gIfx2zDj4qcfTeyPuJyeL4eX5C+Fx5VmHA==
-X-Received: by 2002:a17:902:7488:b0:13c:9740:3c13 with SMTP id
- h8-20020a170902748800b0013c97403c13mr4614631pll.76.1631795222361; 
- Thu, 16 Sep 2021 05:27:02 -0700 (PDT)
-Received: from localhost.localdomain ([69.163.84.166])
- by smtp.gmail.com with ESMTPSA id s9sm2897369pfu.129.2021.09.16.05.27.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Sep 2021 05:27:02 -0700 (PDT)
-From: Tim Gardner <tim.gardner@canonical.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: tim.gardner@canonical.com, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Thu, 16 Sep 2021 06:26:49 -0600
-Message-Id: <20210916122649.12691-1-tim.gardner@canonical.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <dc88e195-949c-bb46-b7d3-18e90df9b064@canonical.com>
-References: <dc88e195-949c-bb46-b7d3-18e90df9b064@canonical.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 521A06ED9E;
+ Thu, 16 Sep 2021 12:28:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4A6EBA9A42;
+ Thu, 16 Sep 2021 12:28:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: use strscpy() to avoid buffer
- overrun
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Sep 2021 12:28:58 -0000
+Message-ID: <163179533827.8837.17645405200757880977@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210916113042.3631-1-christian.koenig@amd.com>
+In-Reply-To: <20210916113042.3631-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/26=5D_dma-buf=3A_add_dma=5Fresv?=
+ =?utf-8?q?=5Ffor=5Feach=5Ffence=5Funlocked_v2?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,72 +42,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In capture_vma() Coverity complains of a possible buffer overrun. Even
-though this is a static function where all call sites can be checked,
-limiting the copy length could save some future grief.
+== Series Details ==
 
-CID 93300 (#1 of 1): Copy into fixed size buffer (STRING_OVERFLOW)
-4. fixed_size_dest: You might overrun the 16-character fixed-size string c->name
-   by copying name without checking the length.
-5. parameter_as_source: Note: This defect has an elevated risk because the
-   source argument is a parameter of the current function.
-1326        strcpy(c->name, name);
+Series: series starting with [01/26] dma-buf: add dma_resv_for_each_fence_unlocked v2
+URL   : https://patchwork.freedesktop.org/series/94750/
+State : warning
 
-Fix any possible overflows by using strscpy() which guarantees NULL termination.
+== Summary ==
 
-Also correct 2 other strcpy() call sites with the same potential for Coverity
-warnings or overruns.
+$ dim checkpatch origin/drm-tip
+79becb99fccc dma-buf: add dma_resv_for_each_fence_unlocked v2
+-:72: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#72: FILE: drivers/dma-buf/dma-resv.c:368:
++				fence = rcu_dereference(
 
-v2 - Change $SUBJECT from "drm/i915: zero fill vma name buffer"
-     Use strscpy() instead of strncpy(). Its a much simpler change.
+-:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#134: FILE: include/linux/dma-resv.h:183:
++#define dma_resv_for_each_fence_unlocked(obj, cursor, all_fences, fence)    \
++	for (fence = dma_resv_walk_unlocked(obj, cursor, all_fences, true); \
++	     fence; dma_fence_put(fence),				    \
++	     fence = dma_resv_walk_unlocked(obj, cursor, all_fences, false))
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Tim Gardner <tim.gardner@canonical.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+-:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cursor' - possible side-effects?
+#134: FILE: include/linux/dma-resv.h:183:
++#define dma_resv_for_each_fence_unlocked(obj, cursor, all_fences, fence)    \
++	for (fence = dma_resv_walk_unlocked(obj, cursor, all_fences, true); \
++	     fence; dma_fence_put(fence),				    \
++	     fence = dma_resv_walk_unlocked(obj, cursor, all_fences, false))
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 9cf6ac575de1..7f246f51959d 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1015,7 +1015,7 @@ i915_vma_coredump_create(const struct intel_gt *gt,
- 		return NULL;
- 	}
- 
--	strcpy(dst->name, name);
-+	strscpy(dst->name, name, sizeof(dst->name));
- 	dst->next = NULL;
- 
- 	dst->gtt_offset = vma->node.start;
-@@ -1279,7 +1279,7 @@ static bool record_context(struct i915_gem_context_coredump *e,
- 	rcu_read_lock();
- 	task = pid_task(ctx->pid, PIDTYPE_PID);
- 	if (task) {
--		strcpy(e->comm, task->comm);
-+		strscpy(e->comm, task->comm, sizeof(e->comm));
- 		e->pid = task->pid;
- 	}
- 	rcu_read_unlock();
-@@ -1323,7 +1323,7 @@ capture_vma(struct intel_engine_capture_vma *next,
- 		return next;
- 	}
- 
--	strcpy(c->name, name);
-+	strscpy(c->name, name, sizeof(c->name));
- 	c->vma = vma; /* reference held while active */
- 
- 	c->next = next;
--- 
-2.33.0
+-:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'all_fences' - possible side-effects?
+#134: FILE: include/linux/dma-resv.h:183:
++#define dma_resv_for_each_fence_unlocked(obj, cursor, all_fences, fence)    \
++	for (fence = dma_resv_walk_unlocked(obj, cursor, all_fences, true); \
++	     fence; dma_fence_put(fence),				    \
++	     fence = dma_resv_walk_unlocked(obj, cursor, all_fences, false))
+
+-:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fence' - possible side-effects?
+#134: FILE: include/linux/dma-resv.h:183:
++#define dma_resv_for_each_fence_unlocked(obj, cursor, all_fences, fence)    \
++	for (fence = dma_resv_walk_unlocked(obj, cursor, all_fences, true); \
++	     fence; dma_fence_put(fence),				    \
++	     fence = dma_resv_walk_unlocked(obj, cursor, all_fences, false))
+
+-:162: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 5 checks, 130 lines checked
+43fd9d11fcd6 dma-buf: add dma_resv_for_each_fence
+-:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#81: FILE: include/linux/dma-resv.h:182:
++#define dma_resv_for_each_fence(obj, cursor, all_fences, fence)		  \
++	for (fence = dma_resv_walk(obj, cursor, all_fences, true); fence; \
++	     fence = dma_resv_walk(obj, cursor, all_fences, false))
+
+-:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cursor' - possible side-effects?
+#81: FILE: include/linux/dma-resv.h:182:
++#define dma_resv_for_each_fence(obj, cursor, all_fences, fence)		  \
++	for (fence = dma_resv_walk(obj, cursor, all_fences, true); fence; \
++	     fence = dma_resv_walk(obj, cursor, all_fences, false))
+
+-:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'all_fences' - possible side-effects?
+#81: FILE: include/linux/dma-resv.h:182:
++#define dma_resv_for_each_fence(obj, cursor, all_fences, fence)		  \
++	for (fence = dma_resv_walk(obj, cursor, all_fences, true); fence; \
++	     fence = dma_resv_walk(obj, cursor, all_fences, false))
+
+-:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fence' - possible side-effects?
+#81: FILE: include/linux/dma-resv.h:182:
++#define dma_resv_for_each_fence(obj, cursor, all_fences, fence)		  \
++	for (fence = dma_resv_walk(obj, cursor, all_fences, true); fence; \
++	     fence = dma_resv_walk(obj, cursor, all_fences, false))
+
+-:97: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 4 checks, 73 lines checked
+a8b725463938 dma-buf: use new iterator in dma_resv_copy_fences
+-:124: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 106 lines checked
+20181be832c0 dma-buf: use new iterator in dma_resv_get_fences v2
+-:156: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 136 lines checked
+d07cfed64ece dma-buf: use new iterator in dma_resv_wait_timeout
+-:99: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 81 lines checked
+f26d368dba9c dma-buf: use new iterator in dma_resv_test_signaled
+-:91: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+bd71df193561 drm/ttm: use the new iterator in ttm_bo_flush_all_fences
+-:39: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+174500546b2b drm/amdgpu: use the new iterator in amdgpu_sync_resv
+-:72: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 55 lines checked
+f8f742ac41e1 drm/amdgpu: use new iterator in amdgpu_ttm_bo_eviction_valuable
+-:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+cc28ebf6dea3 drm/msm: use new iterator in msm_gem_describe
+-:55: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+8fe08b573247 drm/radeon: use new iterator in radeon_sync_resv
+-:53: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+d5ec3add7f52 drm/scheduler: use new iterator in drm_sched_job_add_implicit_dependencies v2
+-:56: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+f4e64617226b drm/i915: use the new iterator in i915_gem_busy_ioctl
+-:64: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
+77c552340892 drm/i915: use the new iterator in i915_sw_fence_await_reservation v2
+-:86: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 65 lines checked
+3b3d6edc3ec1 drm/i915: use the new iterator in i915_request_await_object v2
+-:70: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+fbe3139fe0d5 drm/i915: use new iterator in i915_gem_object_wait_reservation v2
+-:49: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#49: FILE: drivers/gpu/drm/i915/gem/i915_gem_wait.c:46:
++					 fence) {
++
+
+-:90: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 1 checks, 70 lines checked
+01cb40f10c37 drm/i915: use new iterator in i915_gem_object_wait_priority v2
+-:61: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 41 lines checked
+e4c67e16e633 drm/i915: use new iterator in i915_gem_object_last_write_engine v2
+-:43: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
+36237da723df drm/i915: use new cursor in intel_prepare_plane_fb v2
+-:45: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+92c356444b7b drm: use new iterator in drm_gem_fence_array_add_implicit v2
+-:63: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 44 lines checked
+ee7a40d3c32d drm: use new iterator in drm_gem_plane_helper_prepare_fb v2
+-:46: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+cf5d087e77ef drm/nouveau: use the new iterator in nouveau_fence_sync
+-:96: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 77 lines checked
+aa6d699f8f59 drm/nouveau: use the new interator in nv50_wndw_prepare_fb v2
+-:44: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
+10b96c40fe4f drm/etnaviv: use new iterator in etnaviv_gem_describe
+-:65: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 47 lines checked
+fc9b5ce671ec drm/etnaviv: replace dma_resv_get_excl_unlocked
+-:25: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+a648c89556c2 dma-buf: nuke dma_resv_get_excl_unlocked
+-:49: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
+
 
