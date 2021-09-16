@@ -2,57 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E92140D9C9
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 14:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C937C40D9E8
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 14:27:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 331B36ED9B;
-	Thu, 16 Sep 2021 12:22:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 524566ED9A;
+	Thu, 16 Sep 2021 12:27:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com
- [209.85.166.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EDC36ED8E;
- Thu, 16 Sep 2021 12:22:02 +0000 (UTC)
-Received: by mail-il1-f175.google.com with SMTP id h29so6442945ila.2;
- Thu, 16 Sep 2021 05:22:02 -0700 (PDT)
+Received: from smtp-relay-internal-0.canonical.com
+ (smtp-relay-internal-0.canonical.com [185.125.188.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2CC26ED9D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 12:27:05 +0000 (UTC)
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5625A40192
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 12:27:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1631795224;
+ bh=oruoXINM9lE6NQF44gguXgq2pHTP8iv51Cw7Sf30Jug=;
+ h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+ MIME-Version;
+ b=DJPdjkvub6rKzh7w+p1NEC/Uz7PbxB2Pl4Zu56+SK2qnkpKx/qEEZmfF2sqI7X2gC
+ tA5eiGXhfKJOzTQ3k8Sh8EkK6nc47AtIVFXPbdq23aajpGI6r6byTS5aHMa+HggfiK
+ 7oh+5f7O/mlkvSWV0GB611JMe5pdkpkqM+KRVdy2onr1R+CumolsvccJQJc0VGMgr0
+ sK93ENyyk2UFtoZoQx2vDQcaQE+2YKCw0nh3kbAHKjS/DCIOVzvSs2tFz6MNHPZ3I3
+ 6FlnIqfCiQBwk4w84fbK5bbcJeNaAXZACF2l8eVF3s3ZuMVn2vK5Z5tTVabglotUul
+ EArlSXEt205vQ==
+Received: by mail-pl1-f197.google.com with SMTP id
+ w10-20020a170903310a00b0013a74038765so3145370plc.22
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 05:27:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
- :message-id;
- bh=EVQqC8AW3pOLfAZpC/J13w/nd9TcW2QmXYLcYpULoW0=;
- b=UEfPcJ7BtlqcVv5cTG92IAXhz9b3dAMVUXyOyTktEjFsiaXla2C2oOex5EI5C0wVQU
- 1Xg9Clw7APGklqbhC0bZZjUIviGEHJixLxPzZ7lk9Cp2Y0lLnaiqzyUqeYKPGbXnRy1a
- KeruHjTZHctqqWkElrYiTfy2pBaxWGNtTNCLdORoBPYaahsanmPJNhjlodHngTn5xap0
- BCU17p6BX/ZarP68jSIDQMLII9TeQGHRS5TcP8I1wt6hk0N0xRWZz1YfnnbCwObS/n06
- QS2m3S04aflvIupZy+Ayctq5PLu9IeoFL9ZZfS4cHm+XFNvF7p5aW2bI85AhM3gUWxXj
- bVoQ==
-X-Gm-Message-State: AOAM5310QUm4te2edUzHR2UEsqA9ptgGvIMdnbaWh3OKmb91FA5+PR7Q
- 5bsRLPC97azEeqtscM9Y4g==
-X-Google-Smtp-Source: ABdhPJwf4LTJaVVOvBti2mp++cV6RVQejghzfyjFl1WK2fdLYY06RrcvFWCtsVFoXJlhrSb+x0UeIQ==
-X-Received: by 2002:a92:c98b:: with SMTP id y11mr3665064iln.205.1631794921982; 
- Thu, 16 Sep 2021 05:22:01 -0700 (PDT)
-Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net.
- [96.84.70.89])
- by smtp.gmail.com with ESMTPSA id i14sm1737953ilc.51.2021.09.16.05.21.59
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=oruoXINM9lE6NQF44gguXgq2pHTP8iv51Cw7Sf30Jug=;
+ b=7QIGDj2+5w6R1yGEbGvlAEcOTOb95bIp9INZw1N7Vj4nx9tv512Rw3pSaJDYxLopmS
+ ZK2twptXYXwXa2haHs54c59MUamnG516+rezeSejO6TZ+rPe5tbamV6+hsJIsYwa/vcA
+ Gb2CLlbgjStre8QyBKi5kfIewfv0gbEYOkY8ZJ/DXfLzq8hyCHH6Y5szYsuWRu/x9qoH
+ gNse2wig4RmsE+s3HFq8B2dO+1j9Vs7Fur6Eq7/h8zHWmRlc7rQV6PN/cK1z8cFhhe4+
+ C4ouiluVB/vk9Xy11bR78oo8PHMs+lrzBxe1DlrcCYfYta1KBhv1JvUnnm7qYMb1CkV7
+ sxvw==
+X-Gm-Message-State: AOAM531LcqmBUVghtFdwRN5UJfZW55ap4ao0rhr/XvcB7X7KMUHhOj9m
+ l6tO8lLhvVHrmOcfKowhw5YzpUqp3LYB/bdtGmVHT7EUo+Peos/0AUQzkvjsYgy05+0/w8WZL4y
+ 7I+zNq+j0a4X6MihkNP89LNE0SpLdXHbQQbGop1sCw4xi5A==
+X-Received: by 2002:a17:902:7488:b0:13c:9740:3c13 with SMTP id
+ h8-20020a170902748800b0013c97403c13mr4614641pll.76.1631795222566; 
+ Thu, 16 Sep 2021 05:27:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxNDmpBb62DYJob9a3dod7hjLoK8Qzzsy/X+2T2gIfx2zDj4qcfTeyPuJyeL4eX5C+Fx5VmHA==
+X-Received: by 2002:a17:902:7488:b0:13c:9740:3c13 with SMTP id
+ h8-20020a170902748800b0013c97403c13mr4614631pll.76.1631795222361; 
+ Thu, 16 Sep 2021 05:27:02 -0700 (PDT)
+Received: from localhost.localdomain ([69.163.84.166])
+ by smtp.gmail.com with ESMTPSA id s9sm2897369pfu.129.2021.09.16.05.27.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Sep 2021 05:22:00 -0700 (PDT)
-Received: (nullmailer pid 1119418 invoked by uid 1000);
- Thu, 16 Sep 2021 12:21:53 -0000
-From: Rob Herring <robh@kernel.org>
-To: Sean Paul <sean@poorly.run>
-Cc: swboyd@chromium.org, Daniel Vetter <daniel@ffwll.ch>,
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- intel-gfx@lists.freedesktop.org, Kuogee Hsieh <khsieh@codeaurora.org>,
- Sean Paul <seanpaul@chromium.org>, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, freedreno@lists.freedesktop.org
-In-Reply-To: <20210915203834.1439-13-sean@poorly.run>
-References: <20210915203834.1439-1-sean@poorly.run>
- <20210915203834.1439-13-sean@poorly.run>
-Date: Thu, 16 Sep 2021 07:21:53 -0500
-Message-Id: <1631794913.488685.1119417.nullmailer@robh.at.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH v2 12/13] dt-bindings: msm/dp: Add bindings
- for HDCP registers
+ Thu, 16 Sep 2021 05:27:02 -0700 (PDT)
+From: Tim Gardner <tim.gardner@canonical.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: tim.gardner@canonical.com, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Thu, 16 Sep 2021 06:26:49 -0600
+Message-Id: <20210916122649.12691-1-tim.gardner@canonical.com>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <dc88e195-949c-bb46-b7d3-18e90df9b064@canonical.com>
+References: <dc88e195-949c-bb46-b7d3-18e90df9b064@canonical.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915: use strscpy() to avoid buffer
+ overrun
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,52 +90,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Sep 2021 16:38:31 -0400, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
-> 
-> This patch adds the bindings for the MSM DisplayPort HDCP registers
-> which are required to write the HDCP key into the display controller as
-> well as the registers to enable HDCP authentication/key
-> exchange/encryption.
-> 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-13-sean@poorly.run #v1
-> 
-> Changes in v2:
-> -Drop register range names (Stephen)
-> -Fix yaml errors (Rob)
-> ---
->  .../devicetree/bindings/display/msm/dp-controller.yaml     | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
+In capture_vma() Coverity complains of a possible buffer overrun. Even
+though this is a static function where all call sites can be checked,
+limiting the copy length could save some future grief.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+CID 93300 (#1 of 1): Copy into fixed size buffer (STRING_OVERFLOW)
+4. fixed_size_dest: You might overrun the 16-character fixed-size string c->name
+   by copying name without checking the length.
+5. parameter_as_source: Note: This defect has an elevated risk because the
+   source argument is a parameter of the current function.
+1326        strcpy(c->name, name);
 
-yamllint warnings/errors:
+Fix any possible overflows by using strscpy() which guarantees NULL termination.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dt.yaml: example-0: displayport-controller@ae90000:reg:0: [0, 183042048, 0, 5120] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dt.yaml: example-0: displayport-controller@ae90000:reg:1: [0, 183308288, 0, 372] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dt.yaml: example-0: displayport-controller@ae90000:reg:2: [0, 183373824, 0, 44] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+Also correct 2 other strcpy() call sites with the same potential for Coverity
+warnings or overruns.
 
-doc reference errors (make refcheckdocs):
+v2 - Change $SUBJECT from "drm/i915: zero fill vma name buffer"
+     Use strscpy() instead of strncpy(). Its a much simpler change.
 
-See https://patchwork.ozlabs.org/patch/1528559
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Tim Gardner <tim.gardner@canonical.com>
+---
+ drivers/gpu/drm/i915/i915_gpu_error.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 9cf6ac575de1..7f246f51959d 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1015,7 +1015,7 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+ 		return NULL;
+ 	}
+ 
+-	strcpy(dst->name, name);
++	strscpy(dst->name, name, sizeof(dst->name));
+ 	dst->next = NULL;
+ 
+ 	dst->gtt_offset = vma->node.start;
+@@ -1279,7 +1279,7 @@ static bool record_context(struct i915_gem_context_coredump *e,
+ 	rcu_read_lock();
+ 	task = pid_task(ctx->pid, PIDTYPE_PID);
+ 	if (task) {
+-		strcpy(e->comm, task->comm);
++		strscpy(e->comm, task->comm, sizeof(e->comm));
+ 		e->pid = task->pid;
+ 	}
+ 	rcu_read_unlock();
+@@ -1323,7 +1323,7 @@ capture_vma(struct intel_engine_capture_vma *next,
+ 		return next;
+ 	}
+ 
+-	strcpy(c->name, name);
++	strscpy(c->name, name, sizeof(c->name));
+ 	c->vma = vma; /* reference held while active */
+ 
+ 	c->next = next;
+-- 
+2.33.0
 
