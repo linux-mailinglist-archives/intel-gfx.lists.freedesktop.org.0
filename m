@@ -1,41 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA8440D778
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 12:32:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02EA140D7A6
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 12:43:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8247B6EB55;
-	Thu, 16 Sep 2021 10:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3A866EB5B;
+	Thu, 16 Sep 2021 10:43:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 531576EB55
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 10:32:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="222190984"
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="222190984"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 03:32:53 -0700
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="545473609"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E7436EB5B;
+ Thu, 16 Sep 2021 10:43:38 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="244911700"
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="244911700"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 03:43:36 -0700
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="553817313"
 Received: from djustese-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.34.120])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 03:32:51 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 03:43:31 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Lee Shawn C <shawn.c.lee@intel.com>,
- Vandita Kulkarni <vandita.kulkarni@intel.com>,
- Cooper Chiou <cooper.chiou@intel.com>, William Tseng <william.tseng@intel.com>
-In-Reply-To: <20210916102118.17356-1-shawn.c.lee@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Tim Gardner <tim.gardner@canonical.com>, linux-kernel@vger.kernel.org
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <7a653532-046d-c68a-3dc9-ef2deaf455f9@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210916102118.17356-1-shawn.c.lee@intel.com>
-Date: Thu, 16 Sep 2021 13:32:47 +0300
-Message-ID: <87h7ekx12o.fsf@intel.com>
+References: <20210915192318.2061-1-tim.gardner@canonical.com>
+ <7a653532-046d-c68a-3dc9-ef2deaf455f9@linux.intel.com>
+Date: Thu, 16 Sep 2021 13:43:28 +0300
+Message-ID: <87ee9ox0kv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: unregister gmbus if LFP
- display was MIPI panel
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: zero fill vma name buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,69 +53,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Sep 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> Gmbus driver would setup all Intel i2c GMBuses. But DDC bus
-> may configured as gpio and reserved for MIPI driver to control
-> panel power on/off sequence.
+On Thu, 16 Sep 2021, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> On 15/09/2021 20:23, Tim Gardner wrote:
+>> In capture_vma() Coverity complains of a possible buffer overrun. Even
+>> though this is a static function where all call sites can be checked,
+>> limiting the copy length could save some future grief.
+>> 
+>> CID 93300 (#1 of 1): Copy into fixed size buffer (STRING_OVERFLOW)
+>> 4. fixed_size_dest: You might overrun the 16-character fixed-size string c->name
+>>     by copying name without checking the length.
+>> 5. parameter_as_source: Note: This defect has an elevated risk because the
+>>     source argument is a parameter of the current function.
+>> 1326        strcpy(c->name, name);
+>> 
+>> Fix any possible overflows by using strncpy(). Zero fill the name buffer to
+>> guarantee ASCII string NULL termination.
+>> 
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: David Airlie <airlied@linux.ie>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Signed-off-by: Tim Gardner <tim.gardner@canonical.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_gpu_error.c | 7 ++++---
+>>   1 file changed, 4 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> index 9cf6ac575de1..154df174e2d7 100644
+>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> @@ -1297,10 +1297,11 @@ static bool record_context(struct i915_gem_context_coredump *e,
+>>   	return simulated;
+>>   }
+>>   
+>> +#define VMA_NAME_LEN 16
+>>   struct intel_engine_capture_vma {
+>>   	struct intel_engine_capture_vma *next;
+>>   	struct i915_vma *vma;
+>> -	char name[16];
+>> +	char name[VMA_NAME_LEN];
+>>   };
+>>   
+>>   static struct intel_engine_capture_vma *
+>> @@ -1314,7 +1315,7 @@ capture_vma(struct intel_engine_capture_vma *next,
+>>   	if (!vma)
+>>   		return next;
+>>   
+>> -	c = kmalloc(sizeof(*c), gfp);
+>> +	c = kzalloc(sizeof(*c), gfp);
+>>   	if (!c)
+>>   		return next;
+>>   
+>> @@ -1323,7 +1324,7 @@ capture_vma(struct intel_engine_capture_vma *next,
+>>   		return next;
+>>   	}
+>>   
+>> -	strcpy(c->name, name);
+>> +	strncpy(c->name, name, VMA_NAME_LEN-1);
 >
-> Using i2c tool to communicate to peripherals via i2c interface
-> reversed for gmbus(DDC). There will be some high/low pulse
-> appear on DDC SCL and SDA (might be host sent out i2c slave
-> address). MIPI panel would be impacted due to unexpected signal
-> then caused abnormal display or shut down issue.
+> GCC is supposed to catch any problems here as you say in the commit message.
+>
+> But to fix I suggest a single line change to strlcpy(c->name, name, 
+> sizeof(c->name)) which always null terminates as bonus.
 
-Just a quick reply:
-
-So I don't know off the bat what the right solution is, but it's very
-obvious to me that we absolute can't go deleting gmbus adapters from DSI
-code.
-
+strscpy() is preferred over both strncpy() and strlcpy(). :)
 
 BR,
 Jani.
 
 >
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: William Tseng <william.tseng@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+> Probably same in i915_vma_coredump_create() which with strncpy would 
+> have a theoretical chance of attempting to copy over a 
+> non-null-terminated string.
 >
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 060bc8fb0d30..d2504e291fcb 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1999,6 +1999,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
->  	struct intel_connector *intel_connector;
->  	struct drm_connector *connector;
->  	struct drm_display_mode *fixed_mode;
-> +	struct intel_gmbus *bus;
->  	enum port port;
->  
->  	if (!intel_bios_is_dsi_present(dev_priv, &port))
-> @@ -2092,6 +2093,19 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
->  	icl_dphy_param_init(intel_dsi);
->  
->  	icl_dsi_add_properties(intel_connector);
-> +
-> +	/*
-> +	 * DDC bus may configured as gpio and reserved for MIPI driver
-> +	 * to control panel power on/off sequence. so, unregister gmbus
-> +	 * if MIPI was LFP display.
-> +	 */
-> +	bus = &dev_priv->gmbus[GMBUS_PIN_1_BXT];
-> +	i2c_del_adapter(&bus->adapter);
-> +
-> +	if (dev_priv->vbt.dsi.config->dual_link) {
-> +		bus = &dev_priv->gmbus[GMBUS_PIN_2_BXT];
-> +		i2c_del_adapter(&bus->adapter);
-> +	}
->  	return;
->  
->  err:
+> Regards,
+>
+> Tvrtko
+>
+>>   	c->vma = vma; /* reference held while active */
+>>   
+>>   	c->next = next;
+>> 
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
