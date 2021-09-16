@@ -2,60 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EBE640D69B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 11:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A47C440D698
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 11:48:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9315D6EB3D;
-	Thu, 16 Sep 2021 09:49:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A655C6EB3C;
+	Thu, 16 Sep 2021 09:48:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1501F6EB3D
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 09:49:55 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 0E2F93F36B;
- Thu, 16 Sep 2021 11:43:23 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id J4WD26aKYG4D; Thu, 16 Sep 2021 11:43:22 +0200 (CEST)
-Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id E2C853F33C;
- Thu, 16 Sep 2021 11:43:21 +0200 (CEST)
-Received: from [192.168.0.209] (unknown [192.198.151.53])
- by mail1.shipmail.org (Postfix) with ESMTPSA id C66A93601AE;
- Thu, 16 Sep 2021 11:43:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1631785401; bh=cZoYF+bN4MQh1PB1+KwnGv91Hmnq+39SimSxLtI+NsA=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=d6C3K6MtlCSLZOttk+bEfwRvQaA1S6Nh0ypZHHAtnVdbbjLtuivR7DYiQ8sK8Qgkt
- yDUBwUf85DIHVF2c6hLiwVBLPhQrLb/mIL6GG0QgkN8w8mk3zMj4nZBWF5tzPD2Ffz
- x72v9RMmXMgEesRBVH9oxhoko1hmb+O9/ZYj1zOY=
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1FD06EB3C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 09:48:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="209758692"
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="209758692"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 02:48:56 -0700
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="434440038"
+Received: from mkrygin-mobl1.ccr.corp.intel.com (HELO [10.249.254.218])
+ ([10.249.254.218])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 02:48:55 -0700
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
- <20210830121006.2978297-2-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <a0d252b5-49d9-164f-4150-56043d22f393@shipmail.org>
-Date: Thu, 16 Sep 2021 11:43:19 +0200
+ <20210830121006.2978297-18-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <42f9eb28-e07e-a240-489d-2c3cdf585d01@linux.intel.com>
+Date: Thu, 16 Sep 2021 11:48:53 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210830121006.2978297-2-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20210830121006.2978297-18-maarten.lankhorst@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 01/19] drm/i915: Move __i915_gem_free_object
- to ttm_bo_destroy
+Subject: Re: [Intel-gfx] [PATCH 17/19] drm/i915: Add functions to set/get
+ moving fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,62 +54,73 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 8/30/21 2:09 PM, Maarten Lankhorst wrote:
-> When we implement delayed destroy, we may have a second
-> call to the delete_mem_notify() handler, while free_object()
-> only should be called once.
->
-> Move it to bo->destroy(), to ensure it's only called once.
-> This fixes some weird memory corruption issues with delayed
-> destroy when async eviction is used.
+On 8/30/21 2:10 PM, Maarten Lankhorst wrote:
+> We want to get rid of i915_vma tracking to simplify the code and
+> lifetimes. Add a way to set/put the moving fence, in preparation for
+> removing the tracking.
 >
 > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c | 15 +++++++++++++++
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h |  6 ++++++
+>   2 files changed, 21 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 6fb9afb65034..dc0d2da297a0 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -32,6 +32,7 @@
+>   #include "i915_gem_object.h"
+>   #include "i915_memcpy.h"
+>   #include "i915_trace.h"
+> +#include "i915_gem_ttm.h"
+>   
+>   static struct kmem_cache *slab_objects;
+>   
+> @@ -674,6 +675,20 @@ static const struct drm_gem_object_funcs i915_gem_object_funcs = {
+>   	.export = i915_gem_prime_export,
+>   };
+>   
+> +struct dma_fence *
+> +i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
+> +{
+> +	return dma_fence_get(i915_gem_to_ttm(obj)->moving);
+> +}
+> +
+> +void  i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
+
+Two spaces after void?
+
+With that fixed:
 
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-I wonder whether you could push this early with a Fixes: tag, perhaps. I 
-actually managed to hit this once without any vma- or async 
-modifications, but a bit curious how.
-
-Thanks,
-
-Thomas
 
 
-
-
-
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 9 +++++----
->   1 file changed, 5 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 59ca53a3ef6a..eaf2ff29dd4a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -355,11 +355,8 @@ static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
->   {
->   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
->   
-> -	if (likely(obj)) {
-> -		/* This releases all gem object bindings to the backend. */
-> +	if (likely(obj))
->   		i915_ttm_free_cached_io_st(obj);
-> -		__i915_gem_free_object(obj);
-> -	}
+> +				       struct dma_fence *fence)
+> +{
+> +	dma_fence_put(i915_gem_to_ttm(obj)->moving);
+> +
+> +	i915_gem_to_ttm(obj)->moving = dma_fence_get(fence);
+> +}
+> +
+>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>   #include "selftests/huge_gem_object.c"
+>   #include "selftests/huge_pages.c"
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index 48112b9d76df..a23acfa98e21 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -520,6 +520,12 @@ i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
+>   	return engine;
 >   }
 >   
->   static struct intel_memory_region *
-> @@ -886,8 +883,12 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
->   {
->   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
->   
-> +	/* This releases all gem object bindings to the backend. */
-> +	__i915_gem_free_object(obj);
+> +struct dma_fence *
+> +i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj);
 > +
->   	i915_gem_object_release_memory_region(obj);
->   	mutex_destroy(&obj->ttm.get_io_page.lock);
+> +void  i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
+> +				       struct dma_fence *fence);
 > +
->   	if (obj->ttm.created)
->   		call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
->   }
+>   void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
+>   					 unsigned int cache_level);
+>   void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
