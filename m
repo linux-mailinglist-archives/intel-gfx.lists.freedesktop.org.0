@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8F640EBC4
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 22:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE8040EBC5
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 22:39:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81B616E8B3;
-	Thu, 16 Sep 2021 20:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B66C16E839;
+	Thu, 16 Sep 2021 20:39:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B53E36E839;
- Thu, 16 Sep 2021 20:39:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0BDE46E839;
+ Thu, 16 Sep 2021 20:39:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AE2D0A66C9;
- Thu, 16 Sep 2021 20:39:25 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 08C22A66C9;
+ Thu, 16 Sep 2021 20:39:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lee Shawn C" <shawn.c.lee@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Sep 2021 20:39:25 -0000
-Message-ID: <163182476568.8838.17634288470935121563@emeril.freedesktop.org>
+Date: Thu, 16 Sep 2021 20:39:56 -0000
+Message-ID: <163182479603.8836.7834259764149906074@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210916102118.17356-1-shawn.c.lee@intel.com>
 In-Reply-To: <20210916102118.17356-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/dsi=3A_unregister_gmbus_if_LFP_display_was_MIPI_pa?=
- =?utf-8?q?nel_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/dsi=3A_unregister_gmbus_if_LFP_display_was_MIPI_panel_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,13 +54,10 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-55ecb5a0d048 drm/i915/dsi: do not register gmbus if it was reserved for MIPI display
--:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#42: FILE: drivers/gpu/drm/i915/display/intel_gmbus.c:152:
-+			if ((pin == GMBUS_PIN_2_BXT && dev_priv->vbt.dsi.config->dual_link) ||
-+			     pin == GMBUS_PIN_1_BXT)
-
-total: 0 errors, 0 warnings, 1 checks, 31 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_gmbus.c:144:6: warning: symbol 'intel_gmbus_ddc_reserve_for_mipi' was not declared. Should it be static?
 
 
