@@ -1,53 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D213540D512
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 10:51:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34FCC40D52F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 10:56:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB526EB13;
-	Thu, 16 Sep 2021 08:51:39 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42AE96E3F7;
- Thu, 16 Sep 2021 08:51:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="209609621"
-X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="209609621"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 01:51:37 -0700
-X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="545444144"
-Received: from djustese-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.34.120])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 01:51:11 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rajat Jain <rajatja@google.com>, Lyude <lyude@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Gross <mgross@linux.intel.com>,
- Andy Shevchenko <andy@infradead.org>
-Cc: Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@linux.ie>, Pekka Paalanen <pekka.paalanen@collabora.com>,
- Mario Limonciello <mario.limonciello@outlook.com>,
- Mark Pearson <markpearson@lenovo.com>, Sebastien Bacher <seb128@ubuntu.com>,
- Marco Trevisan <marco.trevisan@canonical.com>,
- Emil Velikov <emil.l.velikov@gmail.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org
-In-Reply-To: <20210906073519.4615-4-hdegoede@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210906073519.4615-1-hdegoede@redhat.com>
- <20210906073519.4615-4-hdegoede@redhat.com>
-Date: Thu, 16 Sep 2021 11:51:08 +0300
-Message-ID: <87v930x5s3.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D118F6EB16;
+	Thu, 16 Sep 2021 08:56:25 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D4D6EB14;
+ Thu, 16 Sep 2021 08:56:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="202018067"
+X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="202018067"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 01:56:16 -0700
+X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="610571414"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 01:56:14 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1mQnEu-00088V-DS; Thu, 16 Sep 2021 11:59:28 +0300
+Date: Thu, 16 Sep 2021 11:59:28 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: John.C.Harrison@intel.com
+Cc: IGT-Dev@lists.freedesktop.org, Intel-GFX@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Message-ID: <YUMHcIsB1+9UmWKV@platvala-desk.ger.corp.intel.com>
+References: <20210915215558.2473428-1-John.C.Harrison@Intel.com>
+ <20210915215558.2473428-2-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/privacy-screen: Add X86 specific
- arch init code
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210915215558.2473428-2-John.C.Harrison@Intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/1] tests/i915/query: Query,
+ parse and validate the hwconfig table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,157 +57,355 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 06 Sep 2021, Hans de Goede <hdegoede@redhat.com> wrote:
-> Add X86 specific arch init code, which fills the privacy-screen lookup
-> table by checking for various vendor specific ACPI interfaces for
-> controlling the privacy-screen.
->
-> This initial version only checks for the Lenovo Thinkpad specific ACPI
-> methods for privacy-screen control.
->
-> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+On Wed, Sep 15, 2021 at 02:55:58PM -0700, John.C.Harrison@Intel.com wrote:
+> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> Newer platforms have an embedded table giving details about that
+> platform's hardware configuration. This table can be retrieved from
+> the KMD via the existing query API. So add a test for it as both an
+> example of how to fetch the table and to validate the contents as much
+> as is possible.
+> 
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/Makefile                 |  2 +-
->  drivers/gpu/drm/drm_privacy_screen_x86.c | 86 ++++++++++++++++++++++++
->  include/drm/drm_privacy_screen_machine.h |  5 ++
->  3 files changed, 92 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/drm_privacy_screen_x86.c
->
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 788fc37096f6..12997ca5670d 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -32,7 +32,7 @@ drm-$(CONFIG_OF) += drm_of.o
->  drm-$(CONFIG_PCI) += drm_pci.o
->  drm-$(CONFIG_DEBUG_FS) += drm_debugfs.o drm_debugfs_crc.o
->  drm-$(CONFIG_DRM_LOAD_EDID_FIRMWARE) += drm_edid_load.o
-> -drm-$(CONFIG_DRM_PRIVACY_SCREEN) += drm_privacy_screen.o
-> +drm-$(CONFIG_DRM_PRIVACY_SCREEN) += drm_privacy_screen.o drm_privacy_screen_x86.o
+>  include/drm-uapi/i915_drm.h |   1 +
+>  lib/intel_hwconfig_types.h  | 106 +++++++++++++++++++++++
+>  tests/i915/i915_query.c     | 168 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 275 insertions(+)
+>  create mode 100644 lib/intel_hwconfig_types.h
+> 
+> diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
+> index b9632bb2c..ae0c8dfad 100644
+> --- a/include/drm-uapi/i915_drm.h
+> +++ b/include/drm-uapi/i915_drm.h
+> @@ -2451,6 +2451,7 @@ struct drm_i915_query_item {
+>  #define DRM_I915_QUERY_ENGINE_INFO	2
+>  #define DRM_I915_QUERY_PERF_CONFIG      3
+>  #define DRM_I915_QUERY_MEMORY_REGIONS   4
+> +#define DRM_I915_QUERY_HWCONFIG_TABLE   5
+>  /* Must be kept compact -- no holes and well documented */
 
-Would be nice to avoid building drm_privacy_screen_x86.o altogether for
-CONFIG_X86=n, and avoid...
+Please update i915_drm.h with a copy from the kernel and state in the
+commit message which kernel commit sha it's from. If this change is
+not in the kernel yet, add this token to lib/i915/i915_drm_local.h
+instead.
 
->  
->  obj-$(CONFIG_DRM_DP_AUX_BUS) += drm_dp_aux_bus.o
->  
-> diff --git a/drivers/gpu/drm/drm_privacy_screen_x86.c b/drivers/gpu/drm/drm_privacy_screen_x86.c
-> new file mode 100644
-> index 000000000000..a2cafb294ca6
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_privacy_screen_x86.c
-> @@ -0,0 +1,86 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright (C) 2020 Red Hat, Inc.
-> + *
-> + * Authors:
-> + * Hans de Goede <hdegoede@redhat.com>
-> + */
-> +
-> +#include <linux/acpi.h>
-> +#include <drm/drm_privacy_screen_machine.h>
-> +
-> +#ifdef CONFIG_X86
-
-...ifdefs that cover the entire file. This can be a future improvement,
-though.
-
-> +static struct drm_privacy_screen_lookup arch_lookup;
-> +
-> +struct arch_init_data {
-> +	struct drm_privacy_screen_lookup lookup;
-> +	bool (*detect)(void);
-> +};
-> +
-> +#if IS_ENABLED(CONFIG_THINKPAD_ACPI)
-> +static acpi_status __init acpi_set_handle(acpi_handle handle, u32 level,
-> +					  void *context, void **return_value)
-> +{
-> +	*(acpi_handle *)return_value = handle;
-> +	return AE_CTRL_TERMINATE;
-> +}
-> +
-> +static bool __init detect_thinkpad_privacy_screen(void)
-> +{
-> +	union acpi_object obj = { .type = ACPI_TYPE_INTEGER };
-> +	struct acpi_object_list args = { .count = 1, .pointer = &obj, };
-> +	acpi_handle ec_handle = NULL;
-> +	unsigned long long output;
-> +	acpi_status status;
-> +
-> +	/* Get embedded-controller handle */
-> +	status = acpi_get_devices("PNP0C09", acpi_set_handle, NULL, &ec_handle);
-> +	if (ACPI_FAILURE(status) || !ec_handle)
-> +		return false;
-> +
-> +	/* And call the privacy-screen get-status method */
-> +	status = acpi_evaluate_integer(ec_handle, "HKEY.GSSS", &args, &output);
-> +	if (ACPI_FAILURE(status))
-> +		return false;
-> +
-> +	return (output & 0x10000) ? true : false;
-> +}
-> +#endif
-> +
-> +static const struct arch_init_data arch_init_data[] __initconst = {
-> +#if IS_ENABLED(CONFIG_THINKPAD_ACPI)
-> +	{
-> +		.lookup = {
-> +			.dev_id = NULL,
-> +			.con_id = NULL,
-> +			.provider = "privacy_screen-thinkpad_acpi",
-> +		},
-> +		.detect = detect_thinkpad_privacy_screen,
-> +	},
-> +#endif
-> +};
-> +
-> +void __init drm_privacy_screen_lookup_init(void)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(arch_init_data); i++) {
-> +		if (!arch_init_data[i].detect())
-> +			continue;
-> +
-> +		pr_info("Found '%s' privacy-screen provider\n",
-> +			arch_init_data[i].lookup.provider);
-> +
-> +		/* Make a copy because arch_init_data is __initconst */
-> +		arch_lookup = arch_init_data[i].lookup;
-> +		drm_privacy_screen_lookup_add(&arch_lookup);
-> +		break;
-> +	}
-> +}
-> +
-> +void drm_privacy_screen_lookup_exit(void)
-> +{
-> +	if (arch_lookup.provider)
-> +		drm_privacy_screen_lookup_remove(&arch_lookup);
-> +}
-> +#endif /* ifdef CONFIG_X86 */
-> diff --git a/include/drm/drm_privacy_screen_machine.h b/include/drm/drm_privacy_screen_machine.h
-> index aaa0d38cce92..02e5371904d3 100644
-> --- a/include/drm/drm_privacy_screen_machine.h
-> +++ b/include/drm/drm_privacy_screen_machine.h
-> @@ -31,11 +31,16 @@ struct drm_privacy_screen_lookup {
->  void drm_privacy_screen_lookup_add(struct drm_privacy_screen_lookup *lookup);
->  void drm_privacy_screen_lookup_remove(struct drm_privacy_screen_lookup *lookup);
->  
-> +#if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN) && IS_ENABLED(CONFIG_X86)
-> +void drm_privacy_screen_lookup_init(void);
-> +void drm_privacy_screen_lookup_exit(void);
-> +#else
->  static inline void drm_privacy_screen_lookup_init(void)
->  {
->  }
->  static inline void drm_privacy_screen_lookup_exit(void)
->  {
->  }
-> +#endif
->  
->  #endif
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Petri Latvala
+
+
+
+>  
+>  	/**
+> diff --git a/lib/intel_hwconfig_types.h b/lib/intel_hwconfig_types.h
+> new file mode 100644
+> index 000000000..c9961e6bd
+> --- /dev/null
+> +++ b/lib/intel_hwconfig_types.h
+> @@ -0,0 +1,106 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2021 Intel Corporation
+> + */
+> +
+> +#ifndef _INTEL_HWCONFIG_TYPES_H_
+> +#define _INTEL_HWCONFIG_TYPES_H_
+> +
+> +#include "intel_chipset.h"
+> +
+> +/**
+> + * enum intel_hwconfig - Global definition of hwconfig table attributes
+> + *
+> + * Intel devices provide a KLV (Key/Length/Value) table containing
+> + * the static hardware configuration for that platform.
+> + * This enum defines the current attribute keys for this KLV.
+> + */
+> +enum intel_hwconfig {
+> +	INTEL_HWCONFIG_MAX_SLICES_SUPPORTED = 1,
+> +	INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED,		/* 2 */
+> +	INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS,			/* 3 */
+> +	INTEL_HWCONFIG_NUM_PIXEL_PIPES,				/* 4 */
+> +	INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES,	/* 5 */
+> +	INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB,		/* 6 */
+> +	INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT,		/* 7 */
+> +	INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES,		/* 8 */
+> +	INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR,		/* 9 */
+> +	INTEL_HWCONFIG_MAX_MEMORY_CHANNELS,			/* 10 */
+> +	INTEL_HWCONFIG_MEMORY_TYPE,				/* 11 */
+> +	INTEL_HWCONFIG_CACHE_TYPES,                             /* 12 */
+> +	INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED,	/* 13 */
+> +	INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB,		/* 14 */
+> +	INTEL_HWCONFIG_NUM_THREADS_PER_EU,			/* 15 */
+> +	INTEL_HWCONFIG_TOTAL_VS_THREADS,			/* 16 */
+> +	INTEL_HWCONFIG_TOTAL_GS_THREADS,			/* 17 */
+> +	INTEL_HWCONFIG_TOTAL_HS_THREADS,			/* 18 */
+> +	INTEL_HWCONFIG_TOTAL_DS_THREADS,			/* 19 */
+> +	INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS,			/* 20 */
+> +	INTEL_HWCONFIG_TOTAL_PS_THREADS,			/* 21 */
+> +	INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE,		/* 22 */
+> +	INTEL_HWCONFIG_MAX_RCS,					/* 23 */
+> +	INTEL_HWCONFIG_MAX_CCS,					/* 24 */
+> +	INTEL_HWCONFIG_MAX_VCS,					/* 25 */
+> +	INTEL_HWCONFIG_MAX_VECS,				/* 26 */
+> +	INTEL_HWCONFIG_MAX_COPY_CS,				/* 27 */
+> +	INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB,		/* 28 */
+> +	INTEL_HWCONFIG_MIN_VS_URB_ENTRIES,			/* 29 */
+> +	INTEL_HWCONFIG_MAX_VS_URB_ENTRIES,			/* 30 */
+> +	INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES,			/* 31 */
+> +	INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES,			/* 32 */
+> +	INTEL_HWCONFIG_MIN_HS_URB_ENTRIES,			/* 33 */
+> +	INTEL_HWCONFIG_MAX_HS_URB_ENTRIES,			/* 34 */
+> +	INTEL_HWCONFIG_MIN_GS_URB_ENTRIES,			/* 35 */
+> +	INTEL_HWCONFIG_MAX_GS_URB_ENTRIES,			/* 36 */
+> +	INTEL_HWCONFIG_MIN_DS_URB_ENTRIES,			/* 37 */
+> +	INTEL_HWCONFIG_MAX_DS_URB_ENTRIES,			/* 38 */
+> +	INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE,		/* 39 */
+> +	INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE,	/* 40 */
+> +	INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES,	/* 41 */
+> +	INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES,	/* 42 */
+> +	INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES,		/* 43 */
+> +	INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 44 */
+> +	INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 45 */
+> +	INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS,			/* 46 */
+> +	INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS,		/* 47 */
+> +	INTEL_HWCONFIG_MIN_CS_URB_ENTRIES,			/* 48 */
+> +	INTEL_HWCONFIG_MAX_CS_URB_ENTRIES,			/* 49 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB,			/* 50 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST,			/* 51 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC,			/* 52 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO,			/* 53 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z,			/* 54 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR,			/* 55 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE,	/* 56 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER,	/* 57 */
+> +	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW,			/* 58 */
+> +	INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS,			/* 59 */
+> +	INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT,	/* 60 */
+> +	INTEL_HWCONFIG_RESERVED_CCS_WAYS,			/* 61 */
+> +	INTEL_HWCONFIG_CSR_SIZE_IN_MB,				/* 62 */
+> +	INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE,		/* 63 */
+> +	INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB,			/* 64 */
+> +	INTEL_HWCONFIG_SLM_SIZE_PER_DSS,			/* 65 */
+> +	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE,		/* 66 */
+> +	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS,		/* 67 */
+> +	INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB,		/* 68 */
+> +	INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB,	/* 69 */
+> +	INTEL_HWCONFIG_MAX_SUBSLICE,				/* 70 */
+> +	INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE,			/* 71 */
+> +	INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB,		/* 72 */
+> +	INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB,			/* 73 */
+> +	__INTEL_HWCONFIG_LIMIT
+> +};
+> +
+> +enum {
+> +	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4 = 0,
+> +	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5,
+> +};
+> +
+> +enum {
+> +	INTEL_HWCONFIG_CACHE_TYPE_L3    = BIT(0),
+> +	INTEL_HWCONFIG_CACHE_TYPE_LLC   = BIT(1),
+> +	INTEL_HWCONFIG_CACHE_TYPE_EDRAM = BIT(2),
+> +};
+> +
+> +#endif /* _INTEL_HWCONFIG_TYPES_H_ */
+> diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
+> index 3c791b8ba..1802287e3 100644
+> --- a/tests/i915/i915_query.c
+> +++ b/tests/i915/i915_query.c
+> @@ -22,6 +22,7 @@
+>   */
+>  
+>  #include "igt.h"
+> +#include "intel_hwconfig_types.h"
+>  
+>  #include <limits.h>
+>  
+> @@ -842,6 +843,170 @@ static void engines(int fd)
+>  	free(engines);
+>  }
+>  
+> +static const char * const hwconfig_keys[] = {
+> +	[INTEL_HWCONFIG_MAX_SLICES_SUPPORTED] = "Maximum number of Slices",
+> +	[INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED] = "Maximum number of DSS",
+> +	[INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS] = "Maximum number of EUs per DSS",
+> +	[INTEL_HWCONFIG_NUM_PIXEL_PIPES] = "Pixel Pipes",
+> +	[INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES] = "[DEPRECATED] Geometry Pipes",
+> +	[INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB] = "[DEPRECATED] L3 Size (in KB)",
+> +	[INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT] = "[DEPRECATED] L3 Bank Count",
+> +	[INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES] = "L3 Cache Ways Size (in bytes)",
+> +	[INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR] = "L3 Cache Ways Per Sector",
+> +	[INTEL_HWCONFIG_MAX_MEMORY_CHANNELS] = "Memory Channels",
+> +	[INTEL_HWCONFIG_MEMORY_TYPE] = "Memory type",
+> +	[INTEL_HWCONFIG_CACHE_TYPES] = "Cache types",
+> +	[INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED] = "Local memory page size",
+> +	[INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB] = "[DEPRECATED] SLM Size (in KB)",
+> +	[INTEL_HWCONFIG_NUM_THREADS_PER_EU] = "Num thread per EU",
+> +	[INTEL_HWCONFIG_TOTAL_VS_THREADS] = "Maximum Vertex Shader threads",
+> +	[INTEL_HWCONFIG_TOTAL_GS_THREADS] = "Maximum Geometry Shader threads",
+> +	[INTEL_HWCONFIG_TOTAL_HS_THREADS] = "Maximum Hull Shader threads",
+> +	[INTEL_HWCONFIG_TOTAL_DS_THREADS] = "Maximum Domain Shader threads",
+> +	[INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS] = "Maximum Vertex Shader Threads for POCS",
+> +	[INTEL_HWCONFIG_TOTAL_PS_THREADS] = "Maximum Pixel Shader Threads",
+> +	[INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE] = "[DEPRECATED] Maximum pixel rate for Fill",
+> +	[INTEL_HWCONFIG_MAX_RCS] = "MaxRCS",
+> +	[INTEL_HWCONFIG_MAX_CCS] = "MaxCCS",
+> +	[INTEL_HWCONFIG_MAX_VCS] = "MaxVCS",
+> +	[INTEL_HWCONFIG_MAX_VECS] = "MaxVECS",
+> +	[INTEL_HWCONFIG_MAX_COPY_CS] = "MaxCopyCS",
+> +	[INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB] = "[DEPRECATED] URB Size (in KB)",
+> +	[INTEL_HWCONFIG_MIN_VS_URB_ENTRIES] = "The minimum number of VS URB entries.",
+> +	[INTEL_HWCONFIG_MAX_VS_URB_ENTRIES] = "The maximum number of VS URB entries.",
+> +	[INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES] = "The minimum number of PCS URB entries",
+> +	[INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES] = "The maximum number of PCS URB entries",
+> +	[INTEL_HWCONFIG_MIN_HS_URB_ENTRIES] = "The minimum number of HS URB entries",
+> +	[INTEL_HWCONFIG_MAX_HS_URB_ENTRIES] = "The maximum number of HS URB entries",
+> +	[INTEL_HWCONFIG_MIN_GS_URB_ENTRIES] = "The minimum number of GS URB entries",
+> +	[INTEL_HWCONFIG_MAX_GS_URB_ENTRIES] = "The maximum number of GS URB entries",
+> +	[INTEL_HWCONFIG_MIN_DS_URB_ENTRIES] = "The minimum number of DS URB Entries",
+> +	[INTEL_HWCONFIG_MAX_DS_URB_ENTRIES] = "The maximum number of DS URB Entries",
+> +	[INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE] = "Push Constant URB Reserved Size (in bytes)",
+> +	[INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE] = "POCS Push Constant URB Reserved Size (in bytes)",
+> +	[INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES] = "URB Region Alignment Size (in bytes)",
+> +	[INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES] = "URB Allocation Size Units (in bytes)",
+> +	[INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES] = "Max URB Size CCS (in bytes)",
+> +	[INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "VS Min Deref BlockSize Handle Count",
+> +	[INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "DS Min Deref Block Size Handle Count",
+> +	[INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS] = "Num RT Stacks Per DSS",
+> +	[INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS] = "Max URB Starting Address",
+> +	[INTEL_HWCONFIG_MIN_CS_URB_ENTRIES] = "Min CS URB Entries",
+> +	[INTEL_HWCONFIG_MAX_CS_URB_ENTRIES] = "Max CS URB Entries",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB] = "L3 Alloc Per Bank - URB",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST] = "L3 Alloc Per Bank - Rest",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC] = "L3 Alloc Per Bank - DC",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO] = "L3 Alloc Per Bank - RO",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z] = "L3 Alloc Per Bank - Z",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR] = "L3 Alloc Per Bank - Color",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE] = "L3 Alloc Per Bank - Unified Tile Cache",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER] = "L3 Alloc Per Bank - Command Buffer",
+> +	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW] = "L3 Alloc Per Bank - RW",
+> +	[INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS] = "Num L3 Configs",
+> +	[INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT] = "Bindless Surface Offset Bit Count",
+> +	[INTEL_HWCONFIG_RESERVED_CCS_WAYS] = "Reserved CCS ways",
+> +	[INTEL_HWCONFIG_CSR_SIZE_IN_MB] = "CSR Size (in MB)",
+> +	[INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE] = "Geometry pipes per slice",
+> +	[INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB] = "L3 bank size (in KB)",
+> +	[INTEL_HWCONFIG_SLM_SIZE_PER_DSS] = "SLM size per DSS",
+> +	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE] = "Max pixel fill rate per slice",
+> +	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS] = "Max pixel fill rate per DSS",
+> +	[INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB] = "URB size per slice (in KB)",
+> +	[INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB] = "URB size per L3 bank count (in KB)",
+> +	[INTEL_HWCONFIG_MAX_SUBSLICE] = "Max subslices",
+> +	[INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE] = "Max EUs per subslice",
+> +	[INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB] = "RAMBO L3 bank size (in KB)",
+> +	[INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB] = "SLM size per SS (in KB)",
+> +};
+> +
+> +static void query_parse_and_validate_hwconfig_table(int i915)
+> +{
+> +	struct drm_i915_query_item item = {
+> +		.query_id = DRM_I915_QUERY_HWCONFIG_TABLE,
+> +	};
+> +	uint32_t *data, value;
+> +	int i = 0;
+> +	int len, j, max_words, table_size;
+> +
+> +	igt_assert(ARRAY_SIZE(hwconfig_keys) == __INTEL_HWCONFIG_LIMIT);
+> +
+> +	i915_query_items(i915, &item, 1);
+> +	table_size = item.length;
+> +	igt_require(table_size > 0);
+> +
+> +	data = malloc(table_size);
+> +	igt_assert(data);
+> +	memset(data, 0, table_size);
+> +	item.data_ptr = to_user_pointer(data);
+> +
+> +	i915_query_items(i915, &item, 1);
+> +	igt_assert(item.length == table_size);
+> +	igt_info("Table size = %d bytes\n", table_size);
+> +	igt_assert(table_size > 0);
+> +
+> +	/* HWConfig table is a list of KLV sets */
+> +	max_words = table_size / sizeof(uint32_t);
+> +	igt_assert(max_words * sizeof(uint32_t) == table_size);
+> +	while (i < max_words) {
+> +		/* Attribute ID zero is invalid */
+> +		igt_assert(data[i] > 0);
+> +		igt_assert(data[i] < __INTEL_HWCONFIG_LIMIT);
+> +
+> +		len = data[i + 1];
+> +		igt_assert(len > 0);
+> +		igt_assert((i + 2 + len) <= max_words);
+> +
+> +		igt_info("[%2d] %s: ", data[i], hwconfig_keys[data[i]]);
+> +
+> +		value = data[i + 2];
+> +		switch (data[i]) {
+> +		case INTEL_HWCONFIG_MEMORY_TYPE:
+> +			igt_assert(len == 1);
+> +			switch (value) {
+> +			case INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4:
+> +				igt_info("LPDDR4\n");
+> +				break;
+> +			case INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5:
+> +				igt_info("LPDDR5\n");
+> +				break;
+> +			default:
+> +				igt_assert(0);
+> +			}
+> +			break;
+> +
+> +		case INTEL_HWCONFIG_CACHE_TYPES:
+> +			igt_assert(len == 1);
+> +
+> +#define TEST_CACHE_TYPE(type)					\
+> +	if (value & INTEL_HWCONFIG_CACHE_TYPE_##type) {		\
+> +		value &= ~INTEL_HWCONFIG_CACHE_TYPE_##type;	\
+> +		igt_info(#type);				\
+> +		if (value)					\
+> +			igt_info(", ");				\
+> +	}
+> +
+> +			TEST_CACHE_TYPE(L3);
+> +			TEST_CACHE_TYPE(LLC);
+> +			TEST_CACHE_TYPE(EDRAM);
+> +#undef TEST_CACHE_TYPE
+> +
+> +			igt_assert(value == 0);
+> +			igt_info("\n");
+> +			break;
+> +
+> +		default:
+> +			for (j = i + 2; j < i + 1 + len; j++)
+> +				igt_info("%d, ", data[j]);
+> +			igt_info("%d\n", data[j]);
+> +		}
+> +
+> +		/* Advance to next key */
+> +		i += 2 + len;
+> +	}
+> +
+> +	free(data);
+> +}
+> +
+>  igt_main
+>  {
+>  	int fd = -1;
+> @@ -911,6 +1076,9 @@ igt_main
+>  			engines(fd);
+>  	}
+>  
+> +	igt_subtest("hwconfig_table")
+> +		query_parse_and_validate_hwconfig_table(fd);
+> +
+>  	igt_fixture {
+>  		close(fd);
+>  	}
+> -- 
+> 2.25.1
+> 
