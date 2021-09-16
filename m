@@ -2,53 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E7F40DA87
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 15:01:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A5B40DAE8
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 15:17:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E91316EDA4;
-	Thu, 16 Sep 2021 13:01:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9470F6EB7C;
+	Thu, 16 Sep 2021 13:17:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 176636EDA4;
- Thu, 16 Sep 2021 13:01:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="209647001"
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="209647001"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 06:00:44 -0700
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="553911087"
-Received: from kumardhx-mobl1.gar.corp.intel.com (HELO [10.252.50.13])
- ([10.252.50.13])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 06:00:41 -0700
-To: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>,
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
- Boqun Feng <boqun.feng@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org
-References: <20210907132044.157225-1-maarten.lankhorst@linux.intel.com>
- <YTiM/zf8BuNw7wes@hirez.programming.kicks-ass.net>
- <96ab9cf1-250a-8f34-51ec-4a7f66a87b39@linux.intel.com>
- <YTnETRSy9H0CRdpc@hirez.programming.kicks-ass.net>
- <a7e5d99d-39c4-6d27-3029-4689a2a1a17a@linux.intel.com>
- <YTtznr85mg5xXouP@hirez.programming.kicks-ass.net>
- <e8a7754e-23e7-0250-5718-101a56d008f0@linux.intel.com>
- <YUBGPdDDjKlxAuXJ@hirez.programming.kicks-ass.net>
- <205e1591-343b-fb77-cfca-9c16af1484bd@linux.intel.com>
- <YUCpfrbfPSZvD3Xl@phenom.ffwll.local>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <a374d768-213e-58e7-d281-1c46d1c0c105@linux.intel.com>
-Date: Thu, 16 Sep 2021 15:00:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.14.0
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0243F6EB7C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 13:17:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="308104596"
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="308104596"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 06:17:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="472765637"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 16 Sep 2021 06:17:53 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 16 Sep 2021 16:17:52 +0300
+Date: Thu, 16 Sep 2021 16:17:52 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Message-ID: <YUNEAE86LBNdEKqD@intel.com>
+References: <20210914212507.177511-1-jose.souza@intel.com>
+ <20210914212507.177511-3-jose.souza@intel.com>
+ <YUIKDNuiNBPHKQ96@intel.com>
+ <edd67a4450497f8d60acd147726ef7adf1641539.camel@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YUCpfrbfPSZvD3Xl@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] kernel/locking: Add context to
- ww_mutex_trylock.
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <edd67a4450497f8d60acd147726ef7adf1641539.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/i915/display: Workaround cursor
+ left overs with PSR2 selective fetch enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,119 +56,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 14-09-2021 om 15:54 schreef Daniel Vetter:
-> On Tue, Sep 14, 2021 at 02:43:02PM +0200, Maarten Lankhorst wrote:
->> Op 14-09-2021 om 08:50 schreef Peter Zijlstra:
->>> On Mon, Sep 13, 2021 at 10:42:36AM +0200, Maarten Lankhorst wrote:
->>>
->>>>> +/**
->>>>> + * ww_mutex_trylock - tries to acquire the w/w mutex with optional acquire context
->>>>> + * @ww: mutex to lock
->>>>> + * @ww_ctx: optional w/w acquire context
->>>>> + *
->>>>> + * Trylocks a mutex with the optional acquire context; no deadlock detection is
->>>>> + * possible. Returns 1 if the mutex has been acquired successfully, 0 otherwise.
->>>>> + *
->>>>> + * Unlike ww_mutex_lock, no deadlock handling is performed. However, if a @ctx is
->>>>> + * specified, -EALREADY handling may happen in calls to ww_mutex_trylock.
->>>>> + *
->>>>> + * A mutex acquired with this function must be released with ww_mutex_unlock.
->>>>> + */
->>>>> +int ww_mutex_trylock(struct ww_mutex *ww, struct ww_acquire_ctx *ww_ctx)
->>>>> +{
->>>>> +	if (!ww_ctx)
->>>>> +		return mutex_trylock(&ww->base);
->>>>> +
->>>>> +	MUTEX_WARN_ON(ww->base.magic != &ww->base);
->>>>> +
->>>>> +	if (unlikely(ww_ctx == READ_ONCE(ww->ctx)))
->>>>> +		return -EALREADY;
->>>> I'm not 100% sure this is a good idea, because it would make the
->>>> trylock weird.  For i915 I checked manually, because I didn't want to
->>>> change the function signature. This is probably the other extreme.
->>>>
->>>> "if (ww_mutex_trylock())" would look correct, but actually be wrong
->>>> and lead to double unlock without adjustments.  Maybe we could make a
->>>> ww_mutex_trylock_ctx_err, which would return -EALREADY or -EBUSY on
->>>> failure, and 0 on success?  We could keep ww_mutex_trylock without
->>>> ctx, probably just #define as (!ww_mutex_trylock_ctx_err(lock, NULL))
->>> Urgh, yeah. Also, I suppose that if we already own it, we'll just fail
->>> the trylock anyway. Let me take this out.
->>>
->>>>> +	/*
->>>>> +	 * Reset the wounded flag after a kill. No other process can
->>>>> +	 * race and wound us here, since they can't have a valid owner
->>>>> +	 * pointer if we don't have any locks held.
->>>>> +	 */
->>>>> +	if (ww_ctx->acquired == 0)
->>>>> +		ww_ctx->wounded = 0;
->>>> Yeah I guess this needs fixing too. Not completely sure since trylock
->>>> wouldn't do the whole ww dance, but since it's our first lock,
->>>> probably best to do so regardless so other users don't trip over it.
->>> This is actually critical, because if this trylock is the first lock
->>> acquisition for the context, there won't be any other opportunity to
->>> reset this value.
->>>
->>>>> +
->>>>> +	if (__mutex_trylock(&ww->base)) {
->>>>> +		ww_mutex_set_context_fastpath(ww, ww_ctx);
->>>>> +		mutex_acquire_nest(&ww->base.dep_map, 0, 1, &ww_ctx->dep_map, _RET_IP_);
->>>>> +		return 1;
->>>>> +	}
->>>>> +
->>>>> +	return 0;
->>>>> +}
->>>>> +EXPORT_SYMBOL(ww_mutex_trylock);
->>> Updated version below...
->>>
->>> ---
->>> Subject: kernel/locking: Add context to ww_mutex_trylock()
->>> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> Date: Thu, 9 Sep 2021 11:32:18 +0200
->>>
->>> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>
->>> i915 will soon gain an eviction path that trylock a whole lot of locks
->>> for eviction, getting dmesg failures like below:
->>>
->>>   BUG: MAX_LOCK_DEPTH too low!
->>>   turning off the locking correctness validator.
->>>   depth: 48  max: 48!
->>>   48 locks held by i915_selftest/5776:
->>>    #0: ffff888101a79240 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x88/0x160
->>>    #1: ffffc900009778c0 (reservation_ww_class_acquire){+.+.}-{0:0}, at: i915_vma_pin.constprop.63+0x39/0x1b0 [i915]
->>>    #2: ffff88800cf74de8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_vma_pin.constprop.63+0x5f/0x1b0 [i915]
->>>    #3: ffff88810c7f9e38 (&vm->mutex/1){+.+.}-{3:3}, at: i915_vma_pin_ww+0x1c4/0x9d0 [i915]
->>>    #4: ffff88810bad5768 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
->>>    #5: ffff88810bad60e8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
->>>   ...
->>>    #46: ffff88811964d768 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
->>>    #47: ffff88811964e0e8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: i915_gem_evict_something+0x110/0x860 [i915]
->>>   INFO: lockdep is turned off.
->>>
->>> Fixing eviction to nest into ww_class_acquire is a high priority, but
->>> it requires a rework of the entire driver, which can only be done one
->>> step at a time.
->>>
->>> As an intermediate solution, add an acquire context to
->>> ww_mutex_trylock, which allows us to do proper nesting annotations on
->>> the trylocks, making the above lockdep splat disappear.
->>>
->>> This is also useful in regulator_lock_nested, which may avoid dropping
->>> regulator_nesting_mutex in the uncontended path, so use it there.
->>>
->>> TTM may be another user for this, where we could lock a buffer in a
->>> fastpath with list locks held, without dropping all locks we hold.
->>>
->>> [peterz: rework actual ww_mutex_trylock() implementations]
->>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
->>> ---
->> My original patch series with this patch in place still passes i915 selftests, looks good to me. :)
-> For merge logistics, can we pls have a stable branch? I expect that the
-> i915 patches will be ready for 5.16.
->
-> Or send it in for -rc2 so that the interface change doesn't cause needless
-> conflicts, whatever you think is best.
-> -Daniel
-Yeah, some central branch drm could pull from, would make upstreaming patches that depends on it easier. :)
+On Wed, Sep 15, 2021 at 06:18:35PM +0000, Souza, Jose wrote:
+> On Wed, 2021-09-15 at 17:58 +0300, Ville Syrjälä wrote:
+> > On Tue, Sep 14, 2021 at 02:25:05PM -0700, José Roberto de Souza wrote:
+> > > Not sure why but when moving the cursor fast it causes some artifacts
+> > > of the cursor to be left in the cursor path, adding some pixels above
+> > > the cursor to the damaged area fixes the issue, so leaving this as a
+> > > workaround until proper fix is found.
+> > 
+> > Have you tried warping the cursor clear across the screen while
+> > a partial update is already pending? I think it will go badly.
+> 
+> You mean move the cursor for example from 0x0 to 500x500 in one frame?
+> It will mark as damaged the previous area and the new one.
+
+Legacy cursor updates bypass all that stuff so you're not going to
+updating the sel fetch area for the other planes.
+
+> 
+> > 
+> > In fact I'm thinking the mailbox style legacy cursor updates are just
+> > fundementally incompatible with partial updates since the cursor
+> > can move outside of the already committed update region any time.
+> > Ie. I suspect while the cursor is visible we simply can't do partial
+> > updates.
+> 
+> Probably I did not understand what you want to say, but each cursor update will be in one frame, updating the necessary area.
+
+The legacy cursor uses mailbox updates so there is no 1:1 relationship
+between actual scanned out frames and cursor ioctl calls. You can
+have umpteen thousand cursor updates per frame.
+
+> So I can't understand why it is incompatible.
+
+Because all the other planes already got their selective fetch area
+updated earlir, and now the cursor's new update area is something
+totally different. Doesn't the total area need to computed to comprise
+of a single crtc space rectangle essentially?
+
+So we could start with something like:
+
+sel fetch area
+ |
+ v
+ ________________
+| ________       |
+| | plane |      |
+| |       |_____ |
+| _________     ||
+|   _   | plane ||
+|  |_|  |_______||
+|________________|   
+    ^
+    |
+cursor
+
+Then the cursor moves before the hardware has even latched the previous
+update:
+
+old sel fetch area
+ |
+ v
+ ________________
+| ________       |
+| | plane |      |    _
+| |       |_____ |   |_|
+| _________     ||    ^
+|       | plane ||    |
+|       |_______||   cursor
+|________________|    
+
+-- 
+Ville Syrjälä
+Intel
