@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C0A40D488
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 10:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 852F140D4D4
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 10:44:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94D36EADD;
-	Thu, 16 Sep 2021 08:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C69ED6EB0E;
+	Thu, 16 Sep 2021 08:44:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6329A6EADC;
- Thu, 16 Sep 2021 08:31:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="219329307"
-X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="219329307"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 364B26EB0E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 08:44:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="244893100"
+X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="244893100"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 01:31:06 -0700
-X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="516698901"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 01:44:31 -0700
+X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="516703015"
 Received: from ipoconno-mobl3.ger.corp.intel.com (HELO [10.213.234.111])
  ([10.213.234.111])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 01:31:05 -0700
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
-References: <20210820224446.30620-1-matthew.brost@intel.com>
- <20210820224446.30620-9-matthew.brost@intel.com>
- <c599bfef-418f-9a25-9e90-c20117dc4665@linux.intel.com>
- <20210910194955.GA24003@jons-linux-dev-box>
- <d95ee5e5-7118-cd98-49c0-964f22ade45d@linux.intel.com>
- <20210913165029.GA8526@jons-linux-dev-box>
- <68b40289-b8c6-9740-b1a6-f37ea4ffc2f7@linux.intel.com>
- <20210914180436.GA11006@jons-linux-dev-box>
- <04d062aa-1978-ec0d-5905-a9914fd5e2f9@linux.intel.com>
- <20210915165833.GA15792@jons-linux-dev-box>
+ 16 Sep 2021 01:44:27 -0700
+To: Hugh Dickins <hughd@google.com>, intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Dave Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Pavel Machek <pavel@denx.de>,
+ linux-kernel@vger.kernel.org
+References: <9e1a6f3b-5e64-be91-ba54-9b5d135ef638@google.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <b3559aad-5266-c86c-ff9e-b6f43984d37d@linux.intel.com>
-Date: Thu, 16 Sep 2021 09:31:03 +0100
+Message-ID: <9e4c1c68-8d1e-ee2c-99bf-320046130775@linux.intel.com>
+Date: Thu, 16 Sep 2021 09:44:25 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210915165833.GA15792@jons-linux-dev-box>
+In-Reply-To: <9e1a6f3b-5e64-be91-ba54-9b5d135ef638@google.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 08/27] drm/i915: Add logical engine mapping
+Subject: Re: [Intel-gfx] 5.15-rc1 i915 blank screen booting on ThinkPads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,98 +65,64 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 15/09/2021 17:58, Matthew Brost wrote:
-> On Wed, Sep 15, 2021 at 09:24:15AM +0100, Tvrtko Ursulin wrote:
->>
->> On 14/09/2021 19:04, Matthew Brost wrote:
->>> On Tue, Sep 14, 2021 at 09:34:08AM +0100, Tvrtko Ursulin wrote:
->>>>
->>
->> 8<
->>
->>>> Today we have:
->>>>
->>>> for_each intel_engines: // intel_engines is a flat list of all engines
->>>> 	intel_engine_setup()
->>>>
->>>> You propose to change it to:
->>>>
->>>> for_each engine_class:
->>>>      for 0..max_global_engine_instance:
->>>>         for_each intel_engines:
->>>>            skip engine not present
->>>>            skip class not matching
->>>>
->>>>            count logical instance
->>>>
->>>>      for_each intel_engines:
->>>>         skip engine not present
->>>>         skip wrong class
->>>>
->>>>         intel_engine_setup()
->>>>
->>>>
->>>> I propose:
->>>>
->>>> // Leave as is:
->>>>
->>>> for_each intel_engines:
->>>>      intel_engine_setup()
->>>>
->>>> // Add:
->>>>
->>>> for_each engine_class:
->>>>      logical = 0
->>>>      for_each gt->engine_class[class]:
->>>>         skip engine not present
->>>>
->>>>         engine->logical_instance = logical++
->>>>
->>>>
->>>> When code which actually needs a preturbed "map" arrives you add that in to
->>>> this second loop.
->>>>
->>>
->>> See above, why introduce an algorithm that doesn't work for future parts
->>> + future patches are land imminently? It makes zero sense whatsoever.
->>> With your proposal we would literally land code to just throw it away a
->>> couple of months from now + break patches we intend to land soon. This
->>
->> It sure works, it just walks the per class list instead of walking the flat
->> list skipping one class at the time.
->>
->> Just add the map based transformation to the second pass later, when it
->> becomes required.
->>
-> 
-> I can flatten the algorithm if that helps alleviate your concerns but
-> with that being said, I've played around this locally and IMO makes the
-> code way more ugly. Sure it eliminates some iterations of the loop but
-> who really cares about that in a one time setup function?
-> 
->>> algorithm works and has no reason whatsoever to be optimal as it a one
->>> time setup call. I really don't understand why we are still talking
->>> about this paint color.
->>
->> I don't think bike shedding is not an appropriate term when complaint is how
->> proposed algorithm is needlessly complicated.
->>
-> 
-> Are you just ignoring the fact that the algorithm (map) is needed in
-> pending patches? IMO it is more complicated to write throw away code
-> when the proper algorithm is already written. If the logical mapping was
-> straight forward on all platforms as the ones currently upstream I would
-> 100% agree with your suggestion, but it isn't on unembargoed platforms
-> eminently going upstream. The algorithm I have works for the current
-> platforms + the pending platforms. IMO is 100% acceptable to merge
-> something looking towards a known future.
+Hi,
 
-FWIW my 2c is that unused bits detract from review. And my gut feeling 
-still is that code can be written in a simpler way and that the map 
-transform can still plug in easily on top in a later series.
+On 16/09/2021 05:37, Hugh Dickins wrote:
+> Two Lenovo ThinkPads, old T420s (2011), newer X1 Carbon 5th gen (2017):
+> i915 working fine on both up to 5.14, but blank screens booting 5.15-rc1,
+> kernel crashed in some way.
 
-I said FWIW since even if I am right you can still view my comments as 
-external/community inputs at this point and proceed however you wish.
+T420s could be SandyBridge and X1 Carbon KabyLake.
+
+> I wanted to say what i915 generations these are, but don't know where
+> to look - I don't see it in dmesg, even when DRM_I915_DEBUG enabled.
+> 
+> Possibly relevant: builtin kernels, CONFIG_MODULES off, no initrd.
+> 
+> On the older laptop:
+> 
+> First bisection showed first bad commit
+> 41e5c17ebfc2 "drm/i915/guc/slpc: Sysfs hooks for SLPC"
+> 
+> But reverting that still crashed boot with blank screen (and
+> reverting the two related commits after it made no difference).
+> 
+> Second bisection, starting from 5.15-rc1 bad and 41e5c17ebfc2 "good",
+> but patching it out each time before building, showed first bad commit
+> 3ffe82d701a4 "drm/i915/xehp: handle new steering options"
+> 
+> That one did not revert cleanly from 5.15-rc1, but reverting
+> 927dfdd09d8c "drm/i915/dg2: Add SQIDI steering" then
+> 1705f22c86fb "drm/i915/dg2: Update steering tables" then
+> 768fe28dd3dc "drm/i915/xehpsdv: Define steering tables" then
+> 3ffe82d701a4 "drm/i915/xehp: handle new steering options"
+> worked (there was one very easy fixup needed somewhere).
+> 
+> And 5.15-rc1 with those five reversions boots and runs fine...
+> on that older laptop.  But reverting those from the kernel on the
+> newer laptop did not help at all, still booting with blank screen
+> (or no more lines shown after the switch from VGA).  Put them back.
+
+Bisect results sound suspicious since the steering patches do not come 
+into play on SandyBridge.
+
+> On the newer laptop, bisection showed first bad commit
+> 62eaf0ae217d "drm/i915/guc: Support request cancellation"
+> 
+> And 5.15-rc1 with that reverted boots and runs fine on the newer.
+But not on the older laptop?
+
+Given bisect points to this, it may be worth trying to build both 
+kernels with CONFIG_DRM_I915_REQUEST_TIMEOUT=0 (no reverts) to see what 
+happens. But first the logs which I'll ask next.
+
+> I am hoping that there will be some i915 fixups to come in a later rc!
+> May be nothing more than uninitialized variables or NULL pointers.
+> You'll probably want more info from me: please ask, but I'm slow.
+
+Kernel logs with drm.debug=0xe, with the broken black screen state, 
+would probably answer a lot of questions if you could gather it from 
+both machines?
 
 Regards,
 
