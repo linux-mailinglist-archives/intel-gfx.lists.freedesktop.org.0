@@ -1,29 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0DC040DCB3
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 16:30:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5D840DD8F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 17:06:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED09B6EE06;
-	Thu, 16 Sep 2021 14:30:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C72606EB86;
+	Thu, 16 Sep 2021 15:05:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D64276EE06
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 14:30:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="222231895"
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="222231895"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 635576EB86
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 15:05:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="222637858"
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="222637858"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 07:30:31 -0700
-X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="516792531"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2021 08:05:57 -0700
+X-IronPort-AV: E=Sophos;i="5.85,298,1624345200"; d="scan'208";a="516802896"
 Received: from ipoconno-mobl3.ger.corp.intel.com (HELO [10.213.234.111])
  ([10.213.234.111])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 07:30:30 -0700
+ 16 Sep 2021 08:05:56 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>
 References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
  <20210830121006.2978297-8-maarten.lankhorst@linux.intel.com>
  <80c12456-e409-2455-2f47-bb999468d271@linux.intel.com>
@@ -32,15 +34,14 @@ References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
  <c781f846-612d-6996-b6e7-9f8ecfecf513@linux.intel.com>
  <c9ad5e04-a134-c088-5d61-40470f7c4761@linux.intel.com>
  <725121c9-f89e-b06e-7267-962fb548891c@linux.intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+ <a7176659-b4a3-33dc-e2e2-4cecf28f7dbb@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <a7176659-b4a3-33dc-e2e2-4cecf28f7dbb@linux.intel.com>
-Date: Thu, 16 Sep 2021 15:30:28 +0100
+Message-ID: <36f7efd5-ec3c-629a-cd9d-e38f12370bbd@linux.intel.com>
+Date: Thu, 16 Sep 2021 16:05:54 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <725121c9-f89e-b06e-7267-962fb548891c@linux.intel.com>
+In-Reply-To: <a7176659-b4a3-33dc-e2e2-4cecf28f7dbb@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -62,53 +63,77 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 16/09/2021 14:41, Maarten Lankhorst wrote:
-> Op 03-09-2021 om 12:48 schreef Tvrtko Ursulin:
->>
->> On 03/09/2021 10:31, Maarten Lankhorst wrote:
->>> Op 31-08-2021 om 12:29 schreef Tvrtko Ursulin:
->>>>
->>>> On 31/08/2021 10:34, Maarten Lankhorst wrote:
->>>>> Op 31-08-2021 om 11:18 schreef Tvrtko Ursulin:
->>>>>>
->>>>>> On 30/08/2021 13:09, Maarten Lankhorst wrote:
->>>>>>> vma->obj and vma->resv are now never NULL, and some checks can be removed.
->>>>>>
->>>>>> Is the direction here compatible with SVM / VM_BIND?
->>>>>
->>>>>
->>>>> Yeah, it should be. The changes here make the obj->resv->lock the main lock, so it should at least simplify locking for VM_BIND.
->>>>
->>>> Hm but what will vma->obj point to in case of SVM, when there is no GEM BO?
->>>
->>> Probably to one of the bo's in i915_vm, or a dummy bo that least shares the vm_resv object, similar to the aliasing gtt handling.
->>
->> As a long term or short term solution? Worried that would waste a lot of SLAB space just for convenience (whole struct drm_i915_gem_object just to store a single pointer to a dma_resv object, if I got that right), while it should be possible to come up with a cleaner design.
->>
->> Even for the upcoming page granularity work we will need multiple VMAs point to single GEM bo in ppgtt and that, when SVM is considered, could for instance mean that VMAs should instead be backed by some new backing store objects, which in turn may (or may not) point to GEM BOs.
->>
->> Regards,
->>
->> Tvrtko
+On 16/09/2021 15:30, Tvrtko Ursulin wrote:
 > 
-> We could revisit this if it's required for SVM, since we can always optimize that code later, I don't think it's a problem to remove it for now, especially since it's a lot easier if VMA becomes a pointer to a memory slab for an object only, without its own lifetime rules. :)
+> On 16/09/2021 14:41, Maarten Lankhorst wrote:
+>> Op 03-09-2021 om 12:48 schreef Tvrtko Ursulin:
+>>>
+>>> On 03/09/2021 10:31, Maarten Lankhorst wrote:
+>>>> Op 31-08-2021 om 12:29 schreef Tvrtko Ursulin:
+>>>>>
+>>>>> On 31/08/2021 10:34, Maarten Lankhorst wrote:
+>>>>>> Op 31-08-2021 om 11:18 schreef Tvrtko Ursulin:
+>>>>>>>
+>>>>>>> On 30/08/2021 13:09, Maarten Lankhorst wrote:
+>>>>>>>> vma->obj and vma->resv are now never NULL, and some checks can 
+>>>>>>>> be removed.
+>>>>>>>
+>>>>>>> Is the direction here compatible with SVM / VM_BIND?
+>>>>>>
+>>>>>>
+>>>>>> Yeah, it should be. The changes here make the obj->resv->lock the 
+>>>>>> main lock, so it should at least simplify locking for VM_BIND.
+>>>>>
+>>>>> Hm but what will vma->obj point to in case of SVM, when there is no 
+>>>>> GEM BO?
+>>>>
+>>>> Probably to one of the bo's in i915_vm, or a dummy bo that least 
+>>>> shares the vm_resv object, similar to the aliasing gtt handling.
+>>>
+>>> As a long term or short term solution? Worried that would waste a lot 
+>>> of SLAB space just for convenience (whole struct drm_i915_gem_object 
+>>> just to store a single pointer to a dma_resv object, if I got that 
+>>> right), while it should be possible to come up with a cleaner design.
+>>>
+>>> Even for the upcoming page granularity work we will need multiple 
+>>> VMAs point to single GEM bo in ppgtt and that, when SVM is 
+>>> considered, could for instance mean that VMAs should instead be 
+>>> backed by some new backing store objects, which in turn may (or may 
+>>> not) point to GEM BOs.
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>
+>> We could revisit this if it's required for SVM, since we can always 
+>> optimize that code later, I don't think it's a problem to remove it 
+>> for now, especially since it's a lot easier if VMA becomes a pointer 
+>> to a memory slab for an object only, without its own lifetime rules. :)
+> 
+> Not sure what you meant with "pointer to memory slab for an object"?
+> 
+> But on the high level, what worries me is whether the direction is not 
+> wrong. Sure you can change it all again later, but if we are moving 
+> towards the world where VMAs are fundamentally and predominantly *not* 
+> backed by GEM buffer objects, then I have to ask the question whether 
+> this plan of rewriting everything twice is the most efficient one.
+> 
+> Maybe its not that scary, not sure, but again, all I see is a large-ish 
+> series which implements some very important functionality, and _seems_ 
+> to rely on what I think is a design direction incompatible with where I 
+> thought we needed to go.
+> 
+> I suppose all I can do is ask you to verify this direction with Daniel. 
+> Maybe you already have but I did not see it in public at least. So 
+> adding him to CC.
 
-Not sure what you meant with "pointer to memory slab for an object"?
+Okay I reminded myself of how the SVM is implemented and perhaps it is 
+not a concern. It seems that it doesn't use the VMA for more than a 
+temporary vehicle during PTE setup stage.
 
-But on the high level, what worries me is whether the direction is not 
-wrong. Sure you can change it all again later, but if we are moving 
-towards the world where VMAs are fundamentally and predominantly *not* 
-backed by GEM buffer objects, then I have to ask the question whether 
-this plan of rewriting everything twice is the most efficient one.
-
-Maybe its not that scary, not sure, but again, all I see is a large-ish 
-series which implements some very important functionality, and _seems_ 
-to rely on what I think is a design direction incompatible with where I 
-thought we needed to go.
-
-I suppose all I can do is ask you to verify this direction with Daniel. 
-Maybe you already have but I did not see it in public at least. So 
-adding him to CC.
+And for page granularity paths over legacy binding I think it should 
+also be fine since, as you say, all VMAs can and should point to the 
+same obj.
 
 Regards,
 
