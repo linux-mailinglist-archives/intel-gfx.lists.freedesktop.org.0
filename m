@@ -1,141 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F11640D3A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 09:13:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C07840D3F5
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Sep 2021 09:41:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A0C26EABF;
-	Thu, 16 Sep 2021 07:13:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E22B26EAC4;
+	Thu, 16 Sep 2021 07:41:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B804D6EABF
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 07:13:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="286189660"
-X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="286189660"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 00:13:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; d="scan'208";a="651465413"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga005.jf.intel.com with ESMTP; 16 Sep 2021 00:13:15 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 16 Sep 2021 00:13:15 -0700
-Received: from orsmsx606.amr.corp.intel.com (10.22.229.19) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 16 Sep 2021 00:13:14 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Thu, 16 Sep 2021 00:13:14 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Thu, 16 Sep 2021 00:13:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jN3pYiJ4iF4CwQrBTZ88Zqqii2wbU2dIx8b1uSzg4Szpl8KLZHkP4htfl4DeAgFsPFaATnfbmazzGFndRguXFu98IefAoCwdTAcrxlTpPR0p4U9Qrq0ylv8ioepni2UqAeDbYLzS8nBH3lA9pmO26E7TWn1Xl8HANvCrMoqFiWwCYBF2UHBKPmp4kr0GTNrEJe9gS7XZ2LTpl2+x6kQyrxW/xW32T5+GWoaGRkzXTsV+4pTErQNX6nxo3kk9uPaj8a2G5N6xpH2Q4rDu6mj5PUntn5CROl1Fni+gKeplp+dMS+InVG+jg+puYuHhytv64i9bGHX1OJ9HGWNwgJSVRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=f740CmYS74McT96zKsXkQ1MTKMl/JpQCPekzjrhz1yo=;
- b=Bj0u/ASTh6XOfgIsTVwIWeu/Del44T8tGLjxXI4e7oodWvbEQVbxSDdq3c8GG3SpgvrkxRuaqF9x7UfeOykd4h/rlzz4KAIaQLyqPqn4VP9aIGqqMY2hbKnPE6+AxC0DPPhGX6CXbuwEkwtiNRElW2K79K8s/5DLZusveFwvcM/dhlV0oQhwuxQsyfYaUhpvxIsniYoIiCcwIpU94Rs/ckzaM9MksCk9Az/YBuCustXjbOjbpiYh1TC5V00u48zKbSQzToAmchEcaJNcyccgn6pH0ktec+O461Np9xuvMNE7sfC+KUqjqhADew4IQltftnq/JNniE3y2dQes7d5jVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f740CmYS74McT96zKsXkQ1MTKMl/JpQCPekzjrhz1yo=;
- b=nURBBHiIuRKuvOFNjNWtdWG4111v+rgemjeoda5evK6t8NRyAAXo4/yVmXwDBM6CvHFFDb+Cmn4qjFFi9BzglCVk5Wxoyl0cZFw9O3UiMmC/tyFM3i8jkZbFZVAKfK403e6fgNZi3GSQ4gsal1Hwnr/h2JHZpq5zJdghH/1fORk=
-Received: from BL3PR11MB5746.namprd11.prod.outlook.com (2603:10b6:208:353::21)
- by MN2PR11MB3791.namprd11.prod.outlook.com (2603:10b6:208:f9::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.17; Thu, 16 Sep
- 2021 07:13:12 +0000
-Received: from BL3PR11MB5746.namprd11.prod.outlook.com
- ([fe80::955e:e7a7:f183:f558]) by BL3PR11MB5746.namprd11.prod.outlook.com
- ([fe80::955e:e7a7:f183:f558%6]) with mapi id 15.20.4523.016; Thu, 16 Sep 2021
- 07:13:12 +0000
-From: "Siddiqui, Ayaz A" <ayaz.siddiqui@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Tang, CQ" <cq.tang@intel.com>
-Thread-Topic: [PATCH V5 1/5] drm/i915/gt: Add support of mocs propagation
-Thread-Index: AQHXoKWZSDykXwECNEyTaIkScgeWuKukhSgAgAHNofA=
-Date: Thu, 16 Sep 2021 07:13:12 +0000
-Message-ID: <BL3PR11MB5746C15238097B64D29FE5FAFCDC9@BL3PR11MB5746.namprd11.prod.outlook.com>
-References: <20210903092153.535736-1-ayaz.siddiqui@intel.com>
- <20210903092153.535736-2-ayaz.siddiqui@intel.com>
- <20210915033902.GF3389343@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20210915033902.GF3389343@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.200.16
-dlp-reaction: no-action
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 62ffbc6d-7049-4fe4-058d-08d978e1722b
-x-ms-traffictypediagnostic: MN2PR11MB3791:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR11MB37915F70F3A56ABB782D2A70FCDC9@MN2PR11MB3791.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: uOy6Mc3CL7CMUWm04+JbrO5ImGyNWpwYUhdeRsql6+jeaP/tJ2kC26WAaAa3UGLpdxRFibH8l2hO6fjtzKMRc1cd39diVtD9JcqjN3a5ez6cZs1ztzby+x2+9CUmYmwZvYBtNZxI5v+pV5c/+OL1XKaiq6bC9nrbf9rFGyKZMy1gYZxDRn3d5ApQM6laGV23ztweP0NB1gyzkOisXc+g9oFi2chNLnH7qMi1bEmaiedS/3uUeRcgGaroJqnFWT5I4Q0vYEqQcrKC0qZgN/GhOfWpnJqE5shkQ0UnafwekIEMuyz5pfXNLaz2TfzI2lzlQaZExR8GspQIdEpCqUi1xw1ZRbd2IJoN7y+VRggHA29uNc0aKdAoa6CK5ITb7CV4NsjNRUQ7pQzSG5S279w6eZuTnpIjr5vdVFGgpe1u4cZjBwuZbyxUVor2zpcp6l8XtJ3zuLBLMyp3K3v0vNFJF5RcnPjTxYN3t5IsBaUXnGZcKCEFyKzpd4fS0hHvF4mYHKq90ZVxnInhVMLnNv94Jm2zaDnJAXEJJiBtxAtEfGkTuDbyl7mHQyTUXFJvAm4mlrvOMBhOcrg8tKy2Y+ZlfU8335urb9DcnM5amsxMhMixKIdLlsw9JdI+41Zk6NFuepYjwbws0D3+5nOAIY5lTXU0cgFWEeu9sExdk0oFHTm/63ZzY987lAljAVugS8tTo2EBmLW4zV/rNhHPWwcS60gKDK1PVjUuG11iF3ml8GI=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB5746.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(136003)(39850400004)(346002)(376002)(396003)(83380400001)(6862004)(5660300002)(107886003)(26005)(478600001)(8936002)(186003)(52536014)(40140700001)(7696005)(6636002)(54906003)(38100700002)(122000001)(66476007)(66446008)(71200400001)(33656002)(66946007)(76116006)(64756008)(66556008)(53546011)(8676002)(38070700005)(55016002)(9686003)(316002)(2906002)(6506007)(86362001)(4326008)(21314003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?H8wz+z79CtYnP9hYQVPERVukLpRIeXisxcD2vf1C45HXcruo329fAQ5dy3cT?=
- =?us-ascii?Q?ustmL8PAScweBBpHlklTk51s9C6DlGC4QnDxLrJmhUibrZfimIr4rd8RCRbi?=
- =?us-ascii?Q?7LJ5B5uCljWnGlzgDtZy8e3coMMOOd1M9MIWHEif+oXXqa1lGllgrNO5ZEqH?=
- =?us-ascii?Q?NwtBpOH4eL0TI6iiMy/M/w4/pjAYaRiTAiOYCVd6gu97G9xfnSNwZbMWOppz?=
- =?us-ascii?Q?5IzZq6IZOnt9W7mRWk3b6RR+cWybiuMWpO3eybb4suO6Yf7/+dsfzxXo2VSE?=
- =?us-ascii?Q?JaEBB/2C484Pk9bwyRcxLxvcyB6ij36tNV+2K2X7z4oc8ljv0UnNzpqGwAaY?=
- =?us-ascii?Q?JpoKuqXP9s6/uGDqfYrA+zSilmVqKgXMKZ097AJllm4Yy2kQ4bY+98osfro8?=
- =?us-ascii?Q?Azw7NV7O6o6WgyGdX1P7pu8gOmskjP5qhF9Iq7Z7RoNDGewQy0ktVTZ11GE0?=
- =?us-ascii?Q?GFJLcAfXmccSHZ260iXolDnZPVpP7dxo+oZWcjtTHtHQ7LCi40i0KENfjSVp?=
- =?us-ascii?Q?jU7iMgliYfYsC9P6VM1vxXp7/HaIqBxmRBpNaqRjcEGQIehqlPR9TR6fT2d8?=
- =?us-ascii?Q?qhbOF2yNIcslpohSlurFp1fHDPkqnPgqT3siUlSNp5kYTHXK2mePybVk3+aI?=
- =?us-ascii?Q?t9PYt1m1npog5Y5REZtRC7IvRSeQDzW2xlZyCcMKw46dXYKivB1/VT8fV9ho?=
- =?us-ascii?Q?HexzdVpFs8UiT0pCLFeQwDfbKvwbwrrWKapWRMYuNRiWq3218b7BuQvWmTn2?=
- =?us-ascii?Q?26fBTB9j1F+5KaAh9PEzSVPxQyPwHbJ+E4Nnw58qMu+T1chfSBfgYfNEnIL5?=
- =?us-ascii?Q?ASGYaromkRVM65j70jyz9NCs5PzPyKPx4RqdU63wFApuiuag8+7yBO7zNffR?=
- =?us-ascii?Q?wtECzJJDxobs3ukXfsGZ4rqjwMQbC0a4D8xb7dtzBX2H8Y6uzg+BFfdcJQCF?=
- =?us-ascii?Q?runIJc4O1Lqjs3I/4b3wRm6ltcoL5Nmh99l+zLVwSIvq0L8C3o7Atw87hxZL?=
- =?us-ascii?Q?2PcYSyU1NhqXYWhEMra8RpLtfjth0VOa3zwqjsXULLkF4oEWJZBlITDZMSmT?=
- =?us-ascii?Q?A4fHglwTjRP3wwQxux2HY6qxJq96fzkcfhLoiUHUBkiUSAgmgSDaOw3wtoFE?=
- =?us-ascii?Q?+DZdSU8vQXpr0GT55Xnr/zjs+tdX6458+VQ/EUQyy5WTy9qTWxtTjn76M8Jx?=
- =?us-ascii?Q?xCJqqkQFMSoaS/t8WNIo+/ROapqOzkO6+iKYsHTSTSvbpZMtiKpbJ+0f/nNI?=
- =?us-ascii?Q?bK8xyPb+tCpwRN90+HejyZf3BPZ1RyHoh6Y/70LNqB5PWFN6c1qUpars6cTt?=
- =?us-ascii?Q?eaamEbl25C+2xPh53oXRQWd7?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 561 seconds by postgrey-1.36 at gabe;
+ Thu, 16 Sep 2021 07:41:00 UTC
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 534B56EAC4;
+ Thu, 16 Sep 2021 07:41:00 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 6D95E580E7E;
+ Thu, 16 Sep 2021 03:31:36 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Thu, 16 Sep 2021 03:31:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:mime-version:content-type; s=
+ fm3; bh=6oYCZ7JLyEEl0EuOcZvPcsvDTpEUHZ+NjqsOam/V6Pg=; b=JUC3QvXP
+ tnUg8y6pxanD8XPQLTn3oKju4B8D9goCBzQRGh22W2U7l5y8AFmC+lWwOn/eLm7q
+ ZEOQQhmTdPfxTSGIw6/TVN/OB6kQrYCVWUQB1CWgFXSuSZ09XjvNrSPBo2tmY+Sv
+ Y/IPfGBLJpSECDjkYqPGfKmkBa1AyIYBaD5v66dp4N8GJCz+vp1DQiNtJqqFCySe
+ bygZ75mpuQxxFQ4AIzEN90Ep+wQw0n1NjrRYOQx+5At36PkXcmgBXhUstXdAhs2G
+ naXsGBAn3MoPX/gLvazD4aY1u/S123IATPxrdOizcgFohdPgmHnMXGLaBQCxT1Nz
+ BurP3goQDB2WqA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm3; bh=6oYCZ7JLyEEl0EuOcZvPcsvDTpEUH
+ Z+NjqsOam/V6Pg=; b=HQMSAKhbAbRAdG+KphLUlew0GD10cfxz8eQ0N09M+SZC7
+ 18kNUvVDRFY0mlrI7Dhw5SszHz2OeO8aIza333z0iyzW7c0Eb8c19cWds/P8PtBA
+ ADO4OrDCDqPQh90Pl62EatoOpZlcntJOAm+Aq89TppwmHCJMNkqmUWEgPMRhOGD1
+ DF6r2i7daCXmNTi0hPxIJjs01TgNUyzJKFhbCO56IOfIluKfg2ywWhfJ5GvYrPhI
+ wM/xfSBF3Qmay+srWjBNFMPxWmgXKwyjZdw+yPt2GmngKBreH1oGX9zgok4GZ0Qs
+ WLEAuW76HqgAwet0Bm5Rt+hiojOGGZ049fpEoZZ8g==
+X-ME-Sender: <xms:1_JCYVpDeniPnRuQ6LDKJ9GP0CrS7aFDI4I02Tgag26pC_1c-VW3sw>
+ <xme:1_JCYXqlf48NQqlcc-EBi03ybyBE2ZFDXXg1nHJQh7M4CBBzr8BwTK0o1NF8sUAkB
+ TCCSldTsADVgVlPOsg>
+X-ME-Received: <xmr:1_JCYSNp3ReBhPoZM858mE8S7I1zrSEpbsKmoMQYJ9jgIhnIRikto301F_mHPrA73vBD05pL1ZFeXreK5EyanwghkxMVeatR106e>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehfedguddukecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkgggtugesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpedthffhvdejhfejledtjeegffeiffeivdeuudegteegudejueffieelfefgfedu
+ heenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghdpkhgvrhhnvghlrdhorh
+ hgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgr
+ gihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:1_JCYQ6i4qAFWH6Rq4k-9zkRa9p-vvkBBVFIzP2HevpscGv32gBV3w>
+ <xmx:1_JCYU5YQ-MfyxlqwnLM6yGrBHRZZ03QO5ueU6iP1Kag2XTZHt_wAQ>
+ <xmx:1_JCYYhJ0dEHueuxE41SSLlcHqLN6sp40V_FcfFB53EHKmrJBiTDVQ>
+ <xmx:2PJCYVFiPGoe_BRiLIhxjenCf-orerTfelkGb22HMXBfucofK2Z5FA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 16 Sep 2021 03:31:35 -0400 (EDT)
+Date: Thu, 16 Sep 2021 09:31:32 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Message-ID: <20210916073132.ptbbmjetm7v3ufq3@gilmour>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB5746.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62ffbc6d-7049-4fe4-058d-08d978e1722b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2021 07:13:12.6250 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bu9G15UL+NN4UrNZZ7BULkm2I3Kn3VuMq/iMIHttrc9tna9rSdbGXigxIkTWYg5LCTnFNadZDgmFl5+Qw8hjtQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3791
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH V5 1/5] drm/i915/gt: Add support of mocs
- propagation
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="nsbzyzo4xffmhlhq"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,150 +89,479 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+--nsbzyzo4xffmhlhq
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Wednesday, September 15, 2021 9:09 AM
-> To: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Tang, CQ <cq.tang@intel.com>
-> Subject: Re: [PATCH V5 1/5] drm/i915/gt: Add support of mocs propagation
->=20
-> On Fri, Sep 03, 2021 at 02:51:49PM +0530, Ayaz A Siddiqui wrote:
-> > Now there are lots of Command and registers that require mocs index
-> > programming.
-> > So propagating mocs_index from mocs to gt so that it can be used
-> > directly without having platform-specific checks.
-> >
-> > V2:
-> > Changed 'i915_mocs_index_gt' to anonymous structure.
-> >
-> > Cc: CQ Tang<cq.tang@intel.com>
-> > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> > Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_gt.c       |  2 ++
-> >  drivers/gpu/drm/i915/gt/intel_gt_types.h |  4 ++++
-> >  drivers/gpu/drm/i915/gt/intel_mocs.c     | 13 +++++++++++++
-> >  drivers/gpu/drm/i915/gt/intel_mocs.h     |  1 +
-> >  4 files changed, 20 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c
-> > b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > index 62d40c9866427..2aeaae036a6f8 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > @@ -682,6 +682,8 @@ int intel_gt_init(struct intel_gt *gt)
-> >  		goto err_pm;
-> >  	}
-> >
-> > +	set_mocs_index(gt);
-> > +
-> >  	err =3D intel_engines_init(gt);
-> >  	if (err)
-> >  		goto err_engines;
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> > b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> > index a81e21bf1bd1a..6fdcde64c1800 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> > @@ -192,6 +192,10 @@ struct intel_gt {
-> >
-> >  		unsigned long mslice_mask;
-> >  	} info;
-> > +
-> > +	struct {
-> > +		u8 uc_index;
-> > +	} mocs;
-> >  };
-> >
-> >  enum intel_gt_scratch_field {
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> > b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> > index 582c4423b95d6..7ccac15d9a331 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> > @@ -22,6 +22,7 @@ struct drm_i915_mocs_table {
-> >  	unsigned int size;
-> >  	unsigned int n_entries;
-> >  	const struct drm_i915_mocs_entry *table;
-> > +	u8 uc_index;
-> >  };
-> >
-> >  /* Defines for the tables (XXX_MOCS_0 - XXX_MOCS_63) */ @@ -340,14
-> > +341,18 @@ static unsigned int get_mocs_settings(const struct
-> > drm_i915_private *i915,  {
-> >  	unsigned int flags;
-> >
-> > +	memset(table, 0, sizeof(struct drm_i915_mocs_table));
-> > +
-> >  	if (IS_DG1(i915)) {
-> >  		table->size =3D ARRAY_SIZE(dg1_mocs_table);
-> >  		table->table =3D dg1_mocs_table;
-> > +		table->uc_index =3D 1;
-> >  		table->n_entries =3D GEN9_NUM_MOCS_ENTRIES;
-> >  	} else if (GRAPHICS_VER(i915) >=3D 12) {
-> >  		table->size  =3D ARRAY_SIZE(tgl_mocs_table);
-> >  		table->table =3D tgl_mocs_table;
-> >  		table->n_entries =3D GEN9_NUM_MOCS_ENTRIES;
-> > +		table->uc_index =3D 3;
-> >  	} else if (GRAPHICS_VER(i915) =3D=3D 11) {
-> >  		table->size  =3D ARRAY_SIZE(icl_mocs_table);
-> >  		table->table =3D icl_mocs_table;
-> > @@ -504,6 +509,14 @@ static u32 global_mocs_offset(void)
-> >  	return i915_mmio_reg_offset(GEN12_GLOBAL_MOCS(0));
-> >  }
-> >
-> > +void set_mocs_index(struct intel_gt *gt)
->=20
-> Hi Ayaz,
->=20
-> I overlooked it when doing my review before, but for non-static functions=
- like
-> this we should have a proper function name prefix
-> (intel_* in this case).
->=20
-> Would you mind writing a small patch to rename this?
->=20
-> Thanks.
->=20
->=20
-> Matt
-HI Matt,
- I have send a patch with above change in ML.
- Do we have some guideline link?
- It will be good to be
-aware with all the guide to avoid such mistake in future.
--Ayaz
-=20
->=20
-> > +{
-> > +	struct drm_i915_mocs_table table;
-> > +
-> > +	get_mocs_settings(gt->i915, &table);
-> > +	gt->mocs.uc_index =3D table.uc_index;
-> > +}
-> > +
-> >  void intel_mocs_init(struct intel_gt *gt)  {
-> >  	struct drm_i915_mocs_table table;
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.h
-> > b/drivers/gpu/drm/i915/gt/intel_mocs.h
-> > index d83274f5163bd..8a09d64b115f7 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_mocs.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_mocs.h
-> > @@ -36,5 +36,6 @@ struct intel_gt;
-> >
-> >  void intel_mocs_init(struct intel_gt *gt);  void
-> > intel_mocs_init_engine(struct intel_engine_cs *engine);
-> > +void set_mocs_index(struct intel_gt *gt);
-> >
-> >  #endif
-> > --
-> > 2.26.2
-> >
->=20
-> --
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+Hi Dave, Daniel,
+
+Here's the first drm-misc-next PR for 5.16
+
+Thanks!
+Maxime
+
+drm-misc-next-2021-09-16:
+drm-misc-next for $kernel-version:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+  - dma-buf: Avoid a warning with some allocations, Remove
+    DMA_FENCE_TRACE macros
+
+Core Changes:
+  - bridge: New helper to git rid of panels in drivers
+  - fence: Improve dma_fence_add_callback documentation, Improve
+    dma_fence_ops->wait documentation
+  - ioctl: Unexport drm_ioctl_permit
+  - lease: Documentation improvements
+  - fourcc: Add new macro to determine the modifier vendor
+  - quirks: Add the Steam Deck, Chuwi HiBook, Chuwi Hi10 Pro, Samsung
+    Galaxy Book 10.6, KD Kurio Smart C15200 2-in-1, Lenovo Ideapad D330
+  - resv: Improve the documentation
+  - shmem-helpers: Allocate WC pages on x86, Switch to vmf_insert_pfn
+  - sched: Fix for a timer being canceled too soon, Avoid null pointer
+    derefence if the fence is null in drm_sched_fence_free, Convert
+    drivers to rely on its dependency tracking
+  - ttm: Switch to kerneldoc, new helper to clear all DMA mappings, pool
+    shrinker optitimization, Remove ttm_tt_destroy_common, Fix for
+    unbinding on multiple drivers
+
+Driver Changes:
+  - bochs: New PCI IDs
+  - msm: Fence ordering impromevemnts
+  - stm: Add layer alpha support, zpos
+  - v3d: Fix for a Vulkan CTS failure
+  - vc4: Conversion to the new bridge helpers
+  - vgem: Use shmem helpers
+  - virtio: Support mapping exported vram
+  - zte: Remove obsolete driver
+
+  - bridge: Probe improvements for it66121, enable DSI EOTP for anx7625,
+    errors propagation improvements for anx7625
+
+  - panels: 60fps mode for otm8009a, New driver for Samsung S6D27A1
+The following changes since commit 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f:
+
+  Linux 5.15-rc1 (2021-09-12 16:28:37 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2021-09-16
+
+for you to fetch changes up to e4f868191138975f2fdf2f37c11318b47db4acc9:
+
+  drm/v3d: fix wait for TMU write combiner flush (2021-09-15 18:43:37 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for $kernel-version:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+  - dma-buf: Avoid a warning with some allocations, Remove
+    DMA_FENCE_TRACE macros
+
+Core Changes:
+  - bridge: New helper to git rid of panels in drivers
+  - fence: Improve dma_fence_add_callback documentation, Improve
+    dma_fence_ops->wait documentation
+  - ioctl: Unexport drm_ioctl_permit
+  - lease: Documentation improvements
+  - fourcc: Add new macro to determine the modifier vendor
+  - quirks: Add the Steam Deck, Chuwi HiBook, Chuwi Hi10 Pro, Samsung
+    Galaxy Book 10.6, KD Kurio Smart C15200 2-in-1, Lenovo Ideapad D330
+  - resv: Improve the documentation
+  - shmem-helpers: Allocate WC pages on x86, Switch to vmf_insert_pfn
+  - sched: Fix for a timer being canceled too soon, Avoid null pointer
+    derefence if the fence is null in drm_sched_fence_free, Convert
+    drivers to rely on its dependency tracking
+  - ttm: Switch to kerneldoc, new helper to clear all DMA mappings, pool
+    shrinker optitimization, Remove ttm_tt_destroy_common, Fix for
+    unbinding on multiple drivers
+
+Driver Changes:
+  - bochs: New PCI IDs
+  - msm: Fence ordering impromevemnts
+  - stm: Add layer alpha support, zpos
+  - v3d: Fix for a Vulkan CTS failure
+  - vc4: Conversion to the new bridge helpers
+  - vgem: Use shmem helpers
+  - virtio: Support mapping exported vram
+  - zte: Remove obsolete driver
+
+  - bridge: Probe improvements for it66121, enable DSI EOTP for anx7625,
+    errors propagation improvements for anx7625
+
+  - panels: 60fps mode for otm8009a, New driver for Samsung S6D27A1
+
+----------------------------------------------------------------
+Alyssa Rosenzweig (2):
+      drm/panfrost: Use upper/lower_32_bits helpers
+      drm/plane: Fix comment typo
+
+Andrey Grodzovsky (2):
+      drm/ttm: Create pinned list
+      drm/ttm: Clear all DMA mappings on demand
+
+Boris Brezillon (2):
+      panfrost: Don't cleanup the job if it was successfully queued
+      drm/sched: Fix drm_sched_fence_free() so it can be passed an uninitia=
+lized fence
+
+Cai Huoqing (7):
+      drm/bridge: cdns: Make use of the helper function devm_platform_iorem=
+ap_resource()
+      drm: adv7511: Convert to SPDX identifier
+      drm/vc4: Make use of the helper function devm_platform_ioremap_resour=
+ce()
+      drm/sun4i: Make use of the helper function devm_platform_ioremap_reso=
+urce()
+      drm/panfrost: Make use of the helper function devm_platform_ioremap_r=
+esource()
+      drm/mcde: Make use of the helper function devm_platform_ioremap_resou=
+rce()
+      drm/meson: Make use of the helper function devm_platform_ioremap_reso=
+urcexxx()
+
+Charan Teja Reddy (1):
+      dma-buf: WARN on dmabuf release with pending attachments
+
+Christian K=F6nig (21):
+      dma-buf: nuke seqno-fence
+      drm/vmwgfx: unbind in vmw_ttm_unpopulate
+      drm/amdgpu: unbind in amdgpu_ttm_tt_unpopulate
+      drm/nouveau: unbind in nouveau_ttm_tt_unpopulate
+      drm/radeon: unbind in radeon_ttm_tt_unpopulate()
+      drm/ttm: remove ttm_tt_destroy_common v2
+      mm/vmscan: add sync_shrinkers function v3
+      drm/ttm: optimize the pool shrinker a bit v2
+      dma-buf: nuke DMA_FENCE_TRACE macros v2
+      dma-buf: cleanup kerneldoc of removed component
+      dma-buf: clarify dma_fence_ops->wait documentation
+      dma-buf: clarify dma_fence_add_callback documentation
+      drm/ttm: cleanup ttm_resource_compat
+      drm/ttm: remove the outdated kerneldoc section
+      drm/ttm: add some general module kerneldoc
+      drm/ttm: add kerneldoc for enum ttm_caching
+      drm/ttm: enable TTM device object kerneldoc v2
+      drm/ttm: enable TTM resource object kerneldoc v2
+      drm/ttm: enable TTM placement kerneldoc
+      drm/ttm: enable TTM TT object kerneldoc v2
+      drm/ttm: enable TTM page pool kerneldoc
+
+Christophe JAILLET (1):
+      drm/r128: switch from 'pci_' to 'dma_' API
+
+Daniel Vetter (16):
+      drm/shmem-helper: Switch to vmf_insert_pfn
+      drm/shmem-helpers: Allocate wc pages on x86
+      drm/vgem: use shmem helpers
+      drm/sched: Split drm_sched_job_init
+      drm/msm: Improve drm/sched point of no return rules
+      drm/sched: Barriers are needed for entity->last_scheduled
+      drm/sched: Add dependency tracking
+      drm/sched: drop entity parameter from drm_sched_push_job
+      drm/sched: improve docs around drm_sched_entity
+      drm/panfrost: use scheduler dependency tracking
+      drm/lima: use scheduler dependency tracking
+      drm/v3d: Move drm_sched_job_init to v3d_job_init
+      drm/v3d: Use scheduler dependency handling
+      drm/msm: Use scheduler dependency handling
+      drm/msm: Don't break exclusive fence ordering
+      dma-resv: Give the docs a do-over
+
+David Stevens (1):
+      drm/virtio: support mapping exported vram
+
+Desmond Cheong Zhi Xi (1):
+      drm: unexport drm_ioctl_permit
+
+Douglas Anderson (1):
+      drm/panel-simple: Reorder logicpd_type_28 / mitsubishi_aa070mc01
+
+F.A.Sulaiman (1):
+      GPU: drm: fix style errors
+
+H. Peter Anvin (Intel) (1):
+      drm/bochs: add Bochs PCI ID for Simics model
+
+Hans de Goede (11):
+      drm: panel-orientation-quirks: Update the Lenovo Ideapad D330 quirk (=
+v2)
+      drm: panel-orientation-quirks: Add quirk for KD Kurio Smart C15200 2-=
+in-1
+      drm: panel-orientation-quirks: Add quirk for the Samsung Galaxy Book =
+10.6
+      drm: panel-orientation-quirks: Add quirk for the Chuwi Hi10 Pro
+      drm/connector: Give connector sysfs devices there own device_type
+      drm/connector: Add a fwnode pointer to drm_connector and register wit=
+h ACPI (v2)
+      drm/connector: Add drm_connector_find_by_fwnode() function (v3)
+      drm/connector: Add support for out-of-band hotplug notification (v3)
+      usb: typec: altmodes/displayport: Make dp_altmode_notify() more gener=
+ic
+      usb: typec: altmodes/displayport: Notify drm subsys of hotplug events
+      drm: panel-orientation-quirks: Add quirk for the Chuwi HiBook
+
+Huang Rui (1):
+      drm/ttm: fix the type mismatch error on sparc64
+
+Iago Toral Quiroga (1):
+      drm/v3d: fix wait for TMU write combiner flush
+
+Javier Martinez Canillas (1):
+      drm: Remove unused code to load the non-existing fbcon.ko
+
+Jernej Skrabec (1):
+      drm/sun4i: Fix macros in sun8i_csc.h
+
+John Stultz (1):
+      dma-buf: system_heap: Avoid warning on mid-order allocations
+
+Krzysztof Kozlowski (1):
+      dt-bindings: panel: ili9341: correct indentation
+
+Lukas Bulwahn (4):
+      drm: rockchip: remove reference to non-existing config DRM_RGB
+      drm: v3d: correct reference to config ARCH_BRCMSTB
+      drm: zte: remove obsolete DRM Support for ZTE SoCs
+      drm: omap: remove obsolete selection of OMAP2_DSS in config DRM_OMAP
+
+Markuss Broks (2):
+      drm/panel: Add DT bindings for Samsung S6D27A1 display panel
+      drm/panel: s6d27a1: Add driver for Samsung S6D27A1 display panel
+
+Maxime Ripard (5):
+      Merge tag 'drm-misc-intel-oob-hotplug-v1' of git://git.kernel.org/pub=
+/scm/linux/kernel/git/hansg/linux into drm-misc-next
+      Merge drm/drm-next into drm-misc-next
+      drm/bridge: Add a function to abstract away panels
+      drm/vc4: dpi: Switch to devm_drm_of_get_bridge
+      drm/vc4: dsi: Switch to devm_drm_of_get_bridge
+
+Monk Liu (1):
+      drm/sched: fix the bug of time out calculation(v4)
+
+Paul Cercueil (2):
+      drm/bridge: it66121: Initialize {device,vendor}_ids
+      drm/bridge: it66121: Wait for next bridge to be probed
+
+Philip Chen (1):
+      drm/bridge: parade-ps8640: Reorg the macros
+
+Raphael GALLAIS-POU - foss (1):
+      drm/panel: otm8009a: add a 60 fps mode
+
+Raphael Gallais-Pou (2):
+      drm/stm: ltdc: attach immutable zpos property to planes
+      drm/stm: ltdc: add layer alpha support
+
+Robert Foss (2):
+      drm/bridge: anx7625: Propagate errors from sp_tx_rst_aux()
+      drm/bridge: anx7625: Propagate errors from sp_tx_edid_read()
+
+Simon Ser (2):
+      drm: document drm_mode_create_lease object requirements
+      drm/panel-orientation-quirks: add Valve Steam Deck
+
+Thierry Reding (3):
+      drm/fourcc: Add macros to determine the modifier vendor
+      drm/arm: malidp: Use fourcc_mod_is_vendor() helper
+      drm/tegra: Use fourcc_mod_is_vendor() helper
+
+Xin Ji (1):
+      drm/bridge: anx7625: enable DSI EOTP
+
+bibo mao (1):
+      drm/qxl: User page size macro for qxl release bo
+
+xinhui pan (1):
+      drm/ttm: Try to check if new ttm man out of bounds during compile
+
+zhangzhijie (1):
+      drm: Improve the output_poll_changed description
+
+ .../bindings/display/panel/ilitek,ili9341.yaml     |   2 +-
+ .../bindings/display/panel/samsung,s6d27a1.yaml    |  98 +++
+ Documentation/driver-api/dma-buf.rst               |   6 -
+ Documentation/gpu/drm-mm.rst                       | 100 +--
+ MAINTAINERS                                        |   6 +
+ drivers/dma-buf/Makefile                           |   2 +-
+ drivers/dma-buf/dma-buf.c                          |   1 +
+ drivers/dma-buf/dma-fence.c                        |  13 +-
+ drivers/dma-buf/dma-resv.c                         |  24 +-
+ drivers/dma-buf/heaps/system_heap.c                |   5 +-
+ drivers/dma-buf/seqno-fence.c                      |  71 --
+ drivers/gpu/drm/Kconfig                            |   9 +-
+ drivers/gpu/drm/Makefile                           |   1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c          |  10 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |   4 +-
+ drivers/gpu/drm/arm/malidp_planes.c                |   2 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_cec.c       |  15 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |  27 +-
+ drivers/gpu/drm/bridge/cdns-dsi.c                  |   4 +-
+ drivers/gpu/drm/bridge/ite-it66121.c               |   5 +-
+ drivers/gpu/drm/bridge/parade-ps8640.c             |  18 +-
+ drivers/gpu/drm/drm_bridge.c                       |  41 +-
+ drivers/gpu/drm/drm_connector.c                    |  79 ++
+ drivers/gpu/drm/drm_crtc_internal.h                |   2 +
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |  23 +-
+ drivers/gpu/drm/drm_gem_vram_helper.c              |   1 -
+ drivers/gpu/drm/drm_ioctl.c                        |  21 +-
+ drivers/gpu/drm/drm_kms_helper_common.c            |  11 -
+ drivers/gpu/drm/drm_of.c                           |   3 +
+ drivers/gpu/drm/drm_panel_orientation_quirks.c     |  49 +-
+ drivers/gpu/drm/drm_sysfs.c                        |  87 +-
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c            |   4 +-
+ drivers/gpu/drm/gud/Kconfig                        |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |   1 -
+ drivers/gpu/drm/lima/lima_gem.c                    |   9 +-
+ drivers/gpu/drm/lima/lima_sched.c                  |  28 +-
+ drivers/gpu/drm/lima/lima_sched.h                  |   6 +-
+ drivers/gpu/drm/mcde/mcde_drv.c                    |   4 +-
+ drivers/gpu/drm/mcde/mcde_dsi.c                    |   4 +-
+ drivers/gpu/drm/meson/meson_drv.c                  |   3 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              |   4 +-
+ drivers/gpu/drm/msm/msm_gem.h                      |   5 -
+ drivers/gpu/drm/msm/msm_gem_submit.c               |  35 +-
+ drivers/gpu/drm/msm/msm_ringbuffer.c               |  12 -
+ drivers/gpu/drm/nouveau/nouveau_bo.c               |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_sgdma.c            |   2 -
+ drivers/gpu/drm/omapdrm/Kconfig                    |   1 -
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |  83 +-
+ drivers/gpu/drm/panel/panel-samsung-s6d27a1.c      | 320 +++++++
+ drivers/gpu/drm/panel/panel-simple.c               |  26 +-
+ drivers/gpu/drm/panfrost/panfrost_device.c         |   4 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c            |  29 +-
+ drivers/gpu/drm/panfrost/panfrost_job.c            |  48 +-
+ drivers/gpu/drm/panfrost/panfrost_job.h            |   5 +-
+ drivers/gpu/drm/panfrost/panfrost_mmu.c            |  12 +-
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c        |   4 +-
+ drivers/gpu/drm/qxl/qxl_release.c                  |   4 +-
+ drivers/gpu/drm/qxl/qxl_ttm.c                      |   1 -
+ drivers/gpu/drm/r128/ati_pcigart.c                 |  11 +-
+ drivers/gpu/drm/radeon/radeon_fence.c              |  24 +-
+ drivers/gpu/drm/radeon/radeon_ttm.c                |   7 +-
+ drivers/gpu/drm/rockchip/Kconfig                   |   1 -
+ drivers/gpu/drm/scheduler/sched_entity.c           | 140 ++--
+ drivers/gpu/drm/scheduler/sched_fence.c            |  64 +-
+ drivers/gpu/drm/scheduler/sched_main.c             | 199 ++++-
+ drivers/gpu/drm/stm/ltdc.c                         |   7 +-
+ drivers/gpu/drm/sun4i/sun4i_backend.c              |   4 +-
+ drivers/gpu/drm/sun4i/sun4i_frontend.c             |   4 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   4 +-
+ drivers/gpu/drm/sun4i/sun4i_tcon.c                 |   4 +-
+ drivers/gpu/drm/sun4i/sun4i_tv.c                   |   4 +-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             |   4 +-
+ drivers/gpu/drm/sun4i/sun8i_csc.h                  |   4 +-
+ drivers/gpu/drm/sun4i/sun8i_mixer.c                |   4 +-
+ drivers/gpu/drm/sun4i/sun8i_tcon_top.c             |   4 +-
+ drivers/gpu/drm/tegra/fb.c                         |   2 +-
+ drivers/gpu/drm/tegra/plane.c                      |   2 +-
+ drivers/gpu/drm/tiny/Kconfig                       |   4 +-
+ drivers/gpu/drm/tiny/bochs.c                       |   8 +
+ drivers/gpu/drm/ttm/ttm_bo.c                       |  67 +-
+ drivers/gpu/drm/ttm/ttm_device.c                   |  48 ++
+ drivers/gpu/drm/ttm/ttm_module.c                   |  12 +
+ drivers/gpu/drm/ttm/ttm_pool.c                     |  53 +-
+ drivers/gpu/drm/ttm/ttm_range_manager.c            |   8 +-
+ drivers/gpu/drm/ttm/ttm_resource.c                 |  49 ++
+ drivers/gpu/drm/ttm/ttm_tt.c                       |  17 +-
+ drivers/gpu/drm/udl/Kconfig                        |   1 +
+ drivers/gpu/drm/v3d/Kconfig                        |   2 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |   6 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                      | 118 ++-
+ drivers/gpu/drm/v3d/v3d_sched.c                    |  44 +-
+ drivers/gpu/drm/vc4/vc4_dpi.c                      |  15 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                      |   6 +-
+ drivers/gpu/drm/vc4/vc4_dsi.c                      |  28 +-
+ drivers/gpu/drm/vgem/vgem_drv.c                    | 342 +-------
+ drivers/gpu/drm/virtio/virtgpu_drv.h               |   8 +
+ drivers/gpu/drm/virtio/virtgpu_prime.c             |  32 +-
+ drivers/gpu/drm/virtio/virtgpu_vram.c              |  61 ++
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |  15 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c         |  10 +-
+ drivers/gpu/drm/zte/Kconfig                        |  10 -
+ drivers/gpu/drm/zte/Makefile                       |  10 -
+ drivers/gpu/drm/zte/zx_common_regs.h               |  28 -
+ drivers/gpu/drm/zte/zx_drm_drv.c                   | 184 ----
+ drivers/gpu/drm/zte/zx_drm_drv.h                   |  34 -
+ drivers/gpu/drm/zte/zx_hdmi.c                      | 760 -----------------
+ drivers/gpu/drm/zte/zx_hdmi_regs.h                 |  66 --
+ drivers/gpu/drm/zte/zx_plane.c                     | 537 ------------
+ drivers/gpu/drm/zte/zx_plane.h                     |  26 -
+ drivers/gpu/drm/zte/zx_plane_regs.h                | 120 ---
+ drivers/gpu/drm/zte/zx_tvenc.c                     | 400 ---------
+ drivers/gpu/drm/zte/zx_tvenc_regs.h                |  27 -
+ drivers/gpu/drm/zte/zx_vga.c                       | 527 ------------
+ drivers/gpu/drm/zte/zx_vga_regs.h                  |  33 -
+ drivers/gpu/drm/zte/zx_vou.c                       | 921 -----------------=
+----
+ drivers/gpu/drm/zte/zx_vou.h                       |  64 --
+ drivers/gpu/drm/zte/zx_vou_regs.h                  | 212 -----
+ drivers/usb/typec/altmodes/Kconfig                 |   1 +
+ drivers/usb/typec/altmodes/displayport.c           |  58 +-
+ include/drm/drm_bridge.h                           |   2 +
+ include/drm/drm_connector.h                        |  25 +
+ include/drm/drm_ioctl.h                            |   1 -
+ include/drm/drm_mode_config.h                      |  13 +-
+ include/drm/drm_plane.h                            |   2 +-
+ include/drm/gpu_scheduler.h                        | 188 ++++-
+ include/drm/ttm/ttm_bo_api.h                       |  12 -
+ include/drm/ttm/ttm_caching.h                      |  17 +
+ include/drm/ttm/ttm_device.h                       |  77 +-
+ include/drm/ttm/ttm_placement.h                    |   1 +
+ include/drm/ttm/ttm_pool.h                         |   5 +-
+ include/drm/ttm/ttm_range_manager.h                |  18 +-
+ include/drm/ttm/ttm_resource.h                     |   9 +-
+ include/drm/ttm/ttm_tt.h                           |  18 +-
+ include/linux/dma-buf.h                            |   7 +
+ include/linux/dma-fence.h                          |  32 +-
+ include/linux/dma-resv.h                           | 104 ++-
+ include/linux/seqno-fence.h                        | 109 ---
+ include/linux/shrinker.h                           |   1 +
+ include/uapi/drm/drm_fourcc.h                      |   6 +
+ include/uapi/drm/drm_mode.h                        |   3 +
+ mm/vmscan.c                                        |  15 +
+ 145 files changed, 2095 insertions(+), 5455 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung=
+,s6d27a1.yaml
+ delete mode 100644 drivers/dma-buf/seqno-fence.c
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6d27a1.c
+ delete mode 100644 drivers/gpu/drm/zte/Kconfig
+ delete mode 100644 drivers/gpu/drm/zte/Makefile
+ delete mode 100644 drivers/gpu/drm/zte/zx_common_regs.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_drm_drv.c
+ delete mode 100644 drivers/gpu/drm/zte/zx_drm_drv.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_hdmi.c
+ delete mode 100644 drivers/gpu/drm/zte/zx_hdmi_regs.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_plane.c
+ delete mode 100644 drivers/gpu/drm/zte/zx_plane.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_plane_regs.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_tvenc.c
+ delete mode 100644 drivers/gpu/drm/zte/zx_tvenc_regs.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_vga.c
+ delete mode 100644 drivers/gpu/drm/zte/zx_vga_regs.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_vou.c
+ delete mode 100644 drivers/gpu/drm/zte/zx_vou.h
+ delete mode 100644 drivers/gpu/drm/zte/zx_vou_regs.h
+ delete mode 100644 include/linux/seqno-fence.h
+
+--nsbzyzo4xffmhlhq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYULy1AAKCRDj7w1vZxhR
+xf0OAP4lrQfz/6bQ843ky3KAGji4iBOgp/PxSfvidqWFqtlp2gEAw2gtTbTmojeC
+PW2nGwaLVc3dguhibMEj9F0SbY0aTgo=
+=t19n
+-----END PGP SIGNATURE-----
+
+--nsbzyzo4xffmhlhq--
