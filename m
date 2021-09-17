@@ -1,139 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C88F640F7A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 14:35:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7322140F7EF
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 14:37:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1336EC4A;
-	Fri, 17 Sep 2021 12:35:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 705006EC64;
+	Fri, 17 Sep 2021 12:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 282896EC4F
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 12:35:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="210019667"
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="210019667"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 05:35:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="530711677"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga004.fm.intel.com with ESMTP; 17 Sep 2021 05:35:32 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 17 Sep 2021 05:35:32 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Fri, 17 Sep 2021 05:35:32 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Fri, 17 Sep 2021 05:35:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TtTXQF+g6ZP7ALf63jku3idcS1Ae3VyMwVW8ifSxFsK2qi/TX0zYepj7JZIOjzhDBGlDOcd2fa5Gb5Cikb5m57vImX+eAEZizapZim0tdH3yBtCNYsYHKp4Fx5cv80CnDrNGhPbMFGikHv0cdfCymw9pLJsIwMX7Vx91R8T3KgEIlcssrEGTgX5nUtbruBjwXtMmfYeUW0EyvJaz61Tdn8r+vX6I2pg9l0orzI3B+Bh7BO9XaPP9TpKHl/9/lsJbg9bK7nhVrVG13SlpzIvs8+UvsX9DcLldjDQwTDYB8TizTaWzd0om1TblwKGwFKP6Bi0mikvOyVaHCmpzs3p+3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=vDlS+gzd75PtZn6MiFVQU2x1LIuXyznmmmi1bwZxybo=;
- b=bg0XBD0G4z2OioEIsBkNIUIqSJQLFMogPZXmc8BaUpAjvSn2MGhkd/MrZzsESmY0O5aViv+8IWBfDGa4CL/dULFYZOUKjGqYmZoUc7BGeWrP8RTBrlgkMcwTsS2/HiyfAYz0IhTje5HHX7uBsyohvAlwP+Tcedep+9NcbDVOW/ulOcNm5fppbPuZLM2rCxlc0565EODOlSr4ivwKI9iW6HQ4FpxiJV4FeqfSJxQM8K1WguOwwaoAjR7mR6U84e3HiFEDeDWy81aXwr+nCzJFV9TLzIMYHdGNKhzTDX2tTtoGafoTScT7DrJG0c23i1U+0gRQhWa/OuG0zc4tSB43JQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vDlS+gzd75PtZn6MiFVQU2x1LIuXyznmmmi1bwZxybo=;
- b=JcnKNbZ5nSBz0u+J5suc0tUojoR3Lf6N25zfhX+1i4t48HszCZ71rZdI2WTBgmSOSPndZIxcrtS+HFvzITZgUMOig98qhHNOr7yg9VkXdWiSto9vp3YOAOi25OCIXEcd584h8b46JsPucJBdybT+Z3oRiPatkQ+3iuYWHcO1wz8=
-Received: from CO6PR11MB5651.namprd11.prod.outlook.com (2603:10b6:5:356::20)
- by CO6PR11MB5602.namprd11.prod.outlook.com (2603:10b6:303:13a::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Fri, 17 Sep
- 2021 12:35:30 +0000
-Received: from CO6PR11MB5651.namprd11.prod.outlook.com
- ([fe80::d92:b64a:8b59:cf4a]) by CO6PR11MB5651.namprd11.prod.outlook.com
- ([fe80::d92:b64a:8b59:cf4a%9]) with mapi id 15.20.4523.017; Fri, 17 Sep 2021
- 12:35:30 +0000
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>, "Chiou, Cooper"
- <cooper.chiou@intel.com>, "Tseng, William" <william.tseng@intel.com>,
- =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH] drm/i915/dsi: do not register gmbus if it was reserved
- for MIPI display
-Thread-Index: AQHXq3zkXTfXqY0ppkeBSvJyFKLeoauoDxGAgAAVANA=
-Date: Fri, 17 Sep 2021 12:35:30 +0000
-Message-ID: <CO6PR11MB56510C130E047D56EB5F10FFA3DD9@CO6PR11MB5651.namprd11.prod.outlook.com>
-References: <20210916102118.17356-1-shawn.c.lee@intel.com>
- <20210917043537.4575-1-shawn.c.lee@intel.com> <87wnnfv56y.fsf@intel.com>
-In-Reply-To: <87wnnfv56y.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1f900ab0-9f46-4061-93c8-08d979d7a29c
-x-ms-traffictypediagnostic: CO6PR11MB5602:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO6PR11MB5602C1E2A20C270D2D387750A3DD9@CO6PR11MB5602.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Ouni6POgHNFLvrZyK7mJonDkuo3ncTj6qh1ZJ9oX73g+/gbo+UyVhY/Lo4LfXkf1oyZrWVyc4AfYesR4UtwGRZyeLVKJgRDp7yK4jpoAk9ElAUgHvjRiXOJhJz3+m0I92Q3ZVxkjzgzBxkKH5ExtOslVJtauzeOrmvRZMSSOJ3DQTxN4ehA9bQd+K31RG2bxNE3ltkKNSaic0eygnIi/pKEAgo+310eOhv3DawcK2pM8yhp+bgzcYvN81ywlLpIcenDoGRQDLFM/6zm/2eneX3P6Av3Ho9OLKeRO3FBySkSaYDhs71lTA7HJFQPMhhGs7IOkcOzeYWInoruZN1wx2a9+LxG3Nx7qyngqAiy4RTWyEVoPfup7Dnd69TpSBhWqmFpQpJNw5LR1ftCmCMsEqBtxmgjt8+gJEqgOLwqNrS/Bo3uXfE9jmCrCId7NxUNXhGSKjVv1/0gao6HIUlQNqYpTmgcBAacPIvZzRpZ6fPzonfLzc4d+Gsof+94jvj/+pCPUbICkiEos39W16gi/d+0p+BD90yQ3viqfAXOn08a7eIYn9erYfR6fOs+7rKbslWakekVSQIqtkuNV7b267ALJ4znxBJ7xslb+3xIf3n4vR5z2zh1AywifqLCZmJQY7BmmmGBLQreqXLZrXuQ+Sqe3kITaiCZ4b9x9bBsimIBAAvUwtMThpO5ciyjRbp8/klEquqEmKLcIZUremR3Ujg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR11MB5651.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(186003)(26005)(5660300002)(4326008)(7696005)(8676002)(9686003)(2906002)(86362001)(55016002)(38100700002)(6506007)(122000001)(55236004)(38070700005)(76116006)(66476007)(508600001)(54906003)(66556008)(33656002)(71200400001)(110136005)(64756008)(66446008)(8936002)(8796002)(83380400001)(52536014)(316002)(66946007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?tZslDmmMY2TpfowOappl2miUGP2cNUy0TBRiyV/uhUSrFTeEJDJyUhIJRj?=
- =?iso-8859-1?Q?rVpk5T/bDB/79pOmyBDtZAcWlP9IIfnJJqA9FpeRBFb3HzPRQFLO27uA0E?=
- =?iso-8859-1?Q?ILJ31cIdnXXCBML/RxDXFUHqbkkbc3z1pzfOsdTiyzwPinp+G9qCXhPj+6?=
- =?iso-8859-1?Q?qKm077vXA/qD0CGwC3fNccWGrPw7ksnRZDQYWeeju/XGrBjqgifF6m4iz0?=
- =?iso-8859-1?Q?9/yYWwdzac5mNTNdFAKwqiV1YHd4zuTvDaR4ifFisAPC9WhqvHXVJLB1hg?=
- =?iso-8859-1?Q?/5mlHfDpQ+c9WGmrYNJm7KNGWUbUyVrFcsmRQYKrxNRchoQp5qIACSRIqQ?=
- =?iso-8859-1?Q?+wUSuj3eAQALhIw3+od+3kEHISce/ySvCkvAPEoDd0UReEXWEy9D9FFReo?=
- =?iso-8859-1?Q?fEH4RylPdI2K0f8RZRXXRKmK9UH/hKWBIZTvcLipmd+AE8T9RS/OFUdqO/?=
- =?iso-8859-1?Q?XUM/+hQHUfioBsBR0oZEoaASxPQY9LcSg2IyJ9bvAsDB4RfHKMMjJ0n3Xb?=
- =?iso-8859-1?Q?4QufMZbteIXijKcZ49kXxucyzHbNHovhI8bxbv9Hw1QnN6QnelZS6wQOuo?=
- =?iso-8859-1?Q?Jltm3b1vR6LS2rrM74LYF+nK1SlXz1ZQlMlEbj0OQbIAz09SwJO4JhAR1r?=
- =?iso-8859-1?Q?C2lNdfNvXArw7NIYRy+sJBHWi5vxZjr+exMrtDXkqb/No7YpCdrxLytKyU?=
- =?iso-8859-1?Q?H9jELimbvfOpH6He5bGVEGm5Jxz3YiYaZXyeNiRa174y8zRx+47O57DoHA?=
- =?iso-8859-1?Q?A7EuFDYzu47FaF99hVQJtVNMhzj6By/zFxCe+5nQykiToMf0jecOg0/VUI?=
- =?iso-8859-1?Q?FMBPlHgyPahrfjwrMQrKao3SuvB+w/BmZEeOd3+b+lt5/GWwnz5WzNMU/p?=
- =?iso-8859-1?Q?xl3ygCUDZdjzWfzV3e8jEntOKTrj0RvZ/JKoR+2S5V+r7derv+KBIoI4Yj?=
- =?iso-8859-1?Q?1g6SNhXksfv5q/3k/9AqTfNkfYp6om9c9HaPuRSt7QNv3PgjovkhF+U8mF?=
- =?iso-8859-1?Q?zKz5glhz2yPuwT9ZdpNHJEjsipsHzk/jsYBMvUNN1fbk/dK/TAxcPj/sMF?=
- =?iso-8859-1?Q?E3koib11TsoA9XU1nMJZ8A0NueRrl5tUG0orLrewphUjfLr4Be+j+G2PML?=
- =?iso-8859-1?Q?pwCDu4m7WbOJ3iY8k93bdU/nX9swUyNsq7maH4NBm4/LJ18SOgFSmW73BW?=
- =?iso-8859-1?Q?BUzG1T/u1+3huBp7zm9Fp9ca6+iFseuCULm4TOAG6U4lWKmVgjN5zc47HE?=
- =?iso-8859-1?Q?a7+0hDkF9x7FaQov2IX5D5NNcLAqBJGqSZ5toRz3WGN6XbirgwGxN/tl28?=
- =?iso-8859-1?Q?B3B2Vciqgw18AhHjr/M9NcDlt5Dfp5hJB2gpU6pYOeSnDoo=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A3D66EC62
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 12:37:04 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id w17so6779355wrv.10
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 05:37:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=R3ak1gCf40c0Y/NZW0USsZwtiWPgnrp+n/dtxyTzhjY=;
+ b=E9fBihNgvfvjKv/J3ZiC8Xw1tJKIOwujiQGrMp5hAs7MxT9ZKWdmqKgm2MmNZeyo4s
+ u2rpkhgm+HQei6xCWARbiAnnIRs2f4KKdbz1fhT1i7+ma7daZCqbW17dFq5cFj9sbZej
+ IEz6ySSvtJpqmjMX+szqZAIz7UZwhL3ljKcz4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=R3ak1gCf40c0Y/NZW0USsZwtiWPgnrp+n/dtxyTzhjY=;
+ b=gJbpwy2YLdabuB5LDvTncuuNC34n1KOVqnCtN1n94FfwEm1MSzDWAHSK7rjqIj861H
+ uejUq36WKHHIW2tBbAI0+qcEaJNpq6/NRo4DtQZ/GPYqD7PFLGgpZ5wY0SWsqmppV8sS
+ cLSY/RMMH2RTOpibTyoPm8YX5Ur4dmLYiK5Wfnxd/cUO+w7Vf0ZlJ3C46R55/segm8eY
+ q/pdViL3F0gsK6zvBQoCfIQJioQDZO/LwXIXFhbyAXrZF5dmEsIfPBgFjhfg51ToRpMp
+ lXFjgLVBfStgmWGjE8emIxYkd8L3/L+R9EYALYMNOPFGNq2wKbisn4UOtP5LKpqtoGPp
+ E+oA==
+X-Gm-Message-State: AOAM530JY1S0GQKYULAEOS6DSqpdWNtJsXjyajPShIYxhT0cBsd8QTjU
+ UyyssNhCgtw7evtrZwvIzZTRFg==
+X-Google-Smtp-Source: ABdhPJxGat6Aic8+U20N1X2KxauAA5wtr3cRDqmcziVUw1Yw1nYBQjatjFqFW+GTbPedHgQWi9u6gQ==
+X-Received: by 2002:a5d:4e47:: with SMTP id r7mr11957118wrt.417.1631882222660; 
+ Fri, 17 Sep 2021 05:37:02 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id j20sm6716257wrb.5.2021.09.17.05.37.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Sep 2021 05:37:02 -0700 (PDT)
+Date: Fri, 17 Sep 2021 14:37:00 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniele.ceraolospurio@intel.com
+Message-ID: <YUSL7GHasikSkafS@phenom.ffwll.local>
+References: <20210914050956.30685-1-matthew.brost@intel.com>
+ <20210914050956.30685-5-matthew.brost@intel.com>
+ <YUCxwV+A3C8BXQp+@phenom.ffwll.local>
+ <03f76ec8-0d10-6078-3dfe-ef72eeaac487@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5651.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f900ab0-9f46-4061-93c8-08d979d7a29c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2021 12:35:30.1391 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lFn4QD6+vsoGzOo58HDqFFP9Y1rnfQ33Rr1zy5dlcmspgSZLwD4D819NHa4jRiSqpIAPC3pi7naYaAINfl+vqg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5602
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: do not register gmbus if it
- was reserved for MIPI display
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <03f76ec8-0d10-6078-3dfe-ef72eeaac487@intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Refcount context during
+ error capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,109 +72,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "20210917043537.4575-1-shawn.c.lee@intel.com"
- <20210917043537.4575-1-shawn.c.lee@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Sep 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->On Fri, 17 Sep 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
->> Gmbus driver would setup all Intel i2c GMBuses. But DDC bus may=20
->> configured as gpio and reserved for MIPI driver to control panel power=20
->> on/off sequence.
->>
->> Using i2c tool to communicate to peripherals via i2c interface=20
->> reversed for gmbus(DDC). There will be some high/low pulse appear on=20
->> DDC SCL and SDA (might be host sent out i2c slave address). MIPI panel=20
->> would be impacted due to unexpected signal then caused abnormal=20
->> display or shut down issue.
->>
->> v2: gmbus driver should not add i2c adapter for DDC interface
->>     if LFP display was configured to support MIPI panel.
->> v3: fix sparse warning
->>
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
->> Cc: Cooper Chiou <cooper.chiou@intel.com>
->> Cc: William Tseng <william.tseng@intel.com>
->> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_gmbus.c | 18 +++++++++++++++++-
->>  1 file changed, 17 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c=20
->> b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> index ceb1bf8a8c3c..51d2b6bf2ed2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
->> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> @@ -141,6 +141,21 @@ bool intel_gmbus_is_valid_pin(struct drm_i915_priva=
-te *dev_priv,
->>  	return pin < size && get_gmbus_pin(dev_priv, pin)->name;  }
->> =20
->> +static bool intel_gmbus_ddc_reserve_for_mipi(struct drm_i915_private *d=
-ev_priv,
->> +					     unsigned int pin)
->> +{
->> +	if (intel_bios_is_dsi_present(dev_priv, NULL)) {
->> +		if (DISPLAY_VER(dev_priv) >=3D 11) {
->> +			if ((pin =3D=3D GMBUS_PIN_2_BXT && dev_priv->vbt.dsi.config->dual_li=
-nk) ||
->> +			     pin =3D=3D GMBUS_PIN_1_BXT) {
->> +				return true;
->> +			}
->> +		}
->> +	}
->> +
->> +	return false;
->> +}
->> +
->>  /* Intel GPIO access functions */
->> =20
->>  #define I2C_RISEFALL_TIME 10
->> @@ -859,7 +874,8 @@ int intel_gmbus_setup(struct drm_i915_private *dev_p=
-riv)
->>  	init_waitqueue_head(&dev_priv->gmbus_wait_queue);
->> =20
->>  	for (pin =3D 0; pin < ARRAY_SIZE(dev_priv->gmbus); pin++) {
->> -		if (!intel_gmbus_is_valid_pin(dev_priv, pin))
->> +		if (!intel_gmbus_is_valid_pin(dev_priv, pin) ||
->> +		     intel_gmbus_ddc_reserve_for_mipi(dev_priv, pin))
->>  			continue;
->> =20
->>  		bus =3D &dev_priv->gmbus[pin];
->
->This does not prevent the pin from being used for e.g. HDMI,=20
+On Tue, Sep 14, 2021 at 04:23:26PM -0700, John Harrison wrote:
+> On 9/14/2021 07:29, Daniel Vetter wrote:
+> > On Mon, Sep 13, 2021 at 10:09:56PM -0700, Matthew Brost wrote:
+> > > From: John Harrison <John.C.Harrison@Intel.com>
+> > > 
+> > > When i915 receives a context reset notification from GuC, it triggers
+> > > an error capture before resetting any outstanding requsts of that
+> > > context. Unfortunately, the error capture is not a time bound
+> > > operation. In certain situations it can take a long time, particularly
+> > > when multiple large LMEM buffers must be read back and eoncoded. If
+> > > this delay is longer than other timeouts (heartbeat, test recovery,
+> > > etc.) then a full GT reset can be triggered in the middle.
+> > > 
+> > > That can result in the context being reset by GuC actually being
+> > > destroyed before the error capture completes and the GuC submission
+> > > code resumes. Thus, the GuC side can start dereferencing stale
+> > > pointers and Bad Things ensue.
+> > > 
+> > > So add a refcount get of the context during the entire reset
+> > > operation. That way, the context can't be destroyed part way through
+> > > no matter what other resets or user interactions occur.
+> > > 
+> > > v2:
+> > >   (Matthew Brost)
+> > >    - Update patch to work with async error capture
+> > > 
+> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > This sounds like a fundamental issue in our reset/scheduler design. If we
+> > have multiple timeout-things working in parallel, then there's going to be
+> > an endless whack-a-mole fireworks show.
+> > 
+> > Reset is not a perf critical path (aside from media timeout, which guc
+> > handles internally anyway). Simplicity trumps everything else. The fix
+> > here is to guarantee that anything related to reset cannot happen in
+> > parallel with anything else related to reset/timeout. At least on a
+> > per-engine (and really on a per-reset domain) basis.
+> > 
+> > The fix we've developed for drm/sched is that the driver can allocate a
+> > single-thread work queue, pass it to each drm/sched instance, and all
+> > timeout handling is run in there.
+> > 
+> > For i915 it's more of a mess since we have a ton of random things that
+> > time out/reset potentially going on in parallel. But that's the design we
+> > should head towards.
+> > 
+> > _not_ sprinkling random refcounts all over the place until most of the
+> > oops/splats disappear. That's cargo-culting, not engineering.
+> > -Daniel
+> Not sure I follow this.
+> 
+> The code pulls an intel_context object out of a structure and proceeds to
+> dereference it in what can be a slow piece of code that is running in a
+> worker thread and is therefore already asynchronous to other activity.
+> Acquiring a reference count on that object while holding its pointer is
+> standard practice, I thought. That's the whole point of reference counting!
+> 
+> To be clear, this is not adding a brand new reference count object. It is
+> merely taking the correct lock on an object while accessing that object.
+> 
+> It uses the xarray's lock while accessing the xarray and then the ce's lock
+> while accessing the ce and makes sure to overlap the two to prevent any race
+> conditions. To me, that seems like a) correct object access practice and b)
+> it should have been there in the first place.
 
-Agree that customer may connect DDC pin to HDMI port. In my opinion, we sho=
-uld take care that while doing HW design review on customer board.
-HW member should aware these pins were reserved for MIPI display design. An=
-d i915 driver would reserve them as well if LFP display was MIPI DSI panel.
+Sure we do reference count. And we reference count intel_context. But we
+shouldn't just use a reference count because it's there and looks
+convenient.
 
->and things are probably going to go awfully wrong with intel_gmbus_get_ada=
-pter() when the adapter hasn't been registered. In that sense, this is no d=
-ifferent from v1.
->
+This is reset code. If the intel_context can go away while we process the
+reset affecting it, there's a giantic bug going on. Doing locally a bit
+more reference counting just makes the race small enough to not hit it
+anymore easily. It doesn't fix a bug anywhere, or if it does, then the
+locking looks really, really fragile.
 
-Before gmbus driver do i2c_add_adapter() or i2c_del_adapter(), it always ch=
-eck the pin is valid or not.
-It seems we can move intel_gmbus_ddc_reserve_for_mipi() into intel_gmbus_is=
-_valid_pin() to check pin was reserved or not.
-Then gmbus driver would not went wrong in intel_gmbus_get_adapter() when th=
-e adapter hasn't been registered.
+The proper fix here is breaking this back to data structures, figuring out
+what exactly the invariants are (e.g. it shouldn't be possible to try
+processing an intel_context when it's not longer in need of processing).
+And then figuring out the locking scheme you need.
 
-Best regards,
-Shawn
+For the intel_context refcount we currently (if I got them all):
+- gem_context -> intel_context refcount
+- some temp reference during execbuf
+- i915_request->context so that we don't tear down the context while it's
+  still running stuff
 
->Sure, the VBT probably shouldn't do that, but that's not an excuse for us =
-to not take it into account.
->
->Cc: Ville in case he has some clever ideas off the top of his head. I know=
- I'd have to spend time I don't have to figure this out.
->
->
->BR,
->Jani.
->
->
->--
->Jani Nikula, Intel Open Source Graphics Center
+The latter should be enough to also make sure the context doesn't
+disappear while guc code is processing it. If that's not enough, then we
+need to analyze this, figure out why/where, and rework this rules around
+locking/refcounting so that things are clean, simple, understandable and
+actually get the job done.
+
+This patch otoh looks a lot like "if we whack this refcount the oops goes
+away, therefore it must be the right fix". And that's not how locking
+works, at least not maintainable locking.
+
+Cheers, Daniel
+
+> 
+> John.
+> 
+> 
+> > 
+> > > ---
+> > >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 24 +++++++++++++++++--
+> > >   1 file changed, 22 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > index 1986a57b52cc..02917fc4d4a8 100644
+> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > @@ -2888,6 +2888,8 @@ static void capture_worker_func(struct work_struct *w)
+> > >   	intel_engine_set_hung_context(engine, ce);
+> > >   	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+> > >   		i915_capture_error_state(gt, ce->engine->mask);
+> > > +
+> > > +	intel_context_put(ce);
+> > >   }
+> > >   static void capture_error_state(struct intel_guc *guc,
+> > > @@ -2924,7 +2926,7 @@ static void guc_context_replay(struct intel_context *ce)
+> > >   	tasklet_hi_schedule(&sched_engine->tasklet);
+> > >   }
+> > > -static void guc_handle_context_reset(struct intel_guc *guc,
+> > > +static bool guc_handle_context_reset(struct intel_guc *guc,
+> > >   				     struct intel_context *ce)
+> > >   {
+> > >   	trace_intel_context_reset(ce);
+> > > @@ -2937,7 +2939,11 @@ static void guc_handle_context_reset(struct intel_guc *guc,
+> > >   		   !context_blocked(ce))) {
+> > >   		capture_error_state(guc, ce);
+> > >   		guc_context_replay(ce);
+> > > +
+> > > +		return false;
+> > >   	}
+> > > +
+> > > +	return true;
+> > >   }
+> > >   int intel_guc_context_reset_process_msg(struct intel_guc *guc,
+> > > @@ -2945,6 +2951,7 @@ int intel_guc_context_reset_process_msg(struct intel_guc *guc,
+> > >   {
+> > >   	struct intel_context *ce;
+> > >   	int desc_idx;
+> > > +	unsigned long flags;
+> > >   	if (unlikely(len != 1)) {
+> > >   		drm_err(&guc_to_gt(guc)->i915->drm, "Invalid length %u", len);
+> > > @@ -2952,11 +2959,24 @@ int intel_guc_context_reset_process_msg(struct intel_guc *guc,
+> > >   	}
+> > >   	desc_idx = msg[0];
+> > > +
+> > > +	/*
+> > > +	 * The context lookup uses the xarray but lookups only require an RCU lock
+> > > +	 * not the full spinlock. So take the lock explicitly and keep it until the
+> > > +	 * context has been reference count locked to ensure it can't be destroyed
+> > > +	 * asynchronously until the reset is done.
+> > > +	 */
+> > > +	xa_lock_irqsave(&guc->context_lookup, flags);
+> > >   	ce = g2h_context_lookup(guc, desc_idx);
+> > > +	if (ce)
+> > > +		intel_context_get(ce);
+> > > +	xa_unlock_irqrestore(&guc->context_lookup, flags);
+> > > +
+> > >   	if (unlikely(!ce))
+> > >   		return -EPROTO;
+> > > -	guc_handle_context_reset(guc, ce);
+> > > +	if (guc_handle_context_reset(guc, ce))
+> > > +		intel_context_put(ce);
+> > >   	return 0;
+> > >   }
+> > > -- 
+> > > 2.32.0
+> > > 
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
