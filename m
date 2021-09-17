@@ -2,33 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD454101C2
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 01:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C264D4101D9
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 01:43:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D358D6EE99;
-	Fri, 17 Sep 2021 23:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E25226EEA5;
+	Fri, 17 Sep 2021 23:43:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 40AC66EE99;
- Fri, 17 Sep 2021 23:31:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 39D2BA66C9;
- Fri, 17 Sep 2021 23:31:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 475C66EEA5;
+ Fri, 17 Sep 2021 23:43:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="286576805"
+X-IronPort-AV: E=Sophos;i="5.85,302,1624345200"; d="scan'208";a="286576805"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2021 16:43:12 -0700
+X-IronPort-AV: E=Sophos;i="5.85,302,1624345200"; d="scan'208";a="473271926"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2021 16:43:12 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Fri, 17 Sep 2021 16:38:08 -0700
+Message-Id: <20210917233808.32009-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Sep 2021 23:31:50 -0000
-Message-ID: <163192151020.810.138663117677280545@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210917161407.812335-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210917161407.812335-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Check_SFC_fusing_on_Xe=5FHP_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: fix blank screen booting crashes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,63 +42,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Hugh Dickins <hughd@google.com>
 
-Series: Check SFC fusing on Xe_HP (rev2)
-URL   : https://patchwork.freedesktop.org/series/94808/
-State : warning
+5.15-rc1 crashes with blank screen when booting up on two ThinkPads
+using i915.  Bisections converge convincingly, but arrive at different
+and surprising "culprits", none of them the actual culprit.
 
-== Summary ==
+netconsole (with init_netconsole() hacked to call i915_init() when
+logging has started, instead of by module_init()) tells the story:
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+kernel BUG at drivers/gpu/drm/i915/i915_sw_fence.c:245!
+with RSI: ffffffff814d408b pointing to sw_fence_dummy_notify().
+I've been building with CONFIG_CC_OPTIMIZE_FOR_SIZE=y, and that
+function needs to be 4-byte aligned.
 
+v2:
+ (Jani Nikula)
+  - Change BUG_ON to WARN_ON
+
+Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
+Signed-off-by: Hugh Dickins <hughd@google.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c | 1 +
+ drivers/gpu/drm/i915/i915_sw_fence.c    | 4 +++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index ff637147b1a9..f02c2202da9d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -362,6 +362,7 @@ static int __intel_context_active(struct i915_active *active)
+ 	return 0;
+ }
+ 
++__aligned(4)	/* Respect the I915_SW_FENCE_MASK */
+ static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
+ 				 enum i915_sw_fence_notify state)
+ {
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+index c589a681da77..1217b124c1d0 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+@@ -14,8 +14,10 @@
+ 
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
+ #define I915_SW_FENCE_BUG_ON(expr) BUG_ON(expr)
++#define I915_SW_FENCE_WARN_ON(expr) WARN_ON(expr)
+ #else
+ #define I915_SW_FENCE_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
++#define I915_SW_FENCE_WARN_ON(expr) BUILD_BUG_ON_INVALID(expr)
+ #endif
+ 
+ static DEFINE_SPINLOCK(i915_sw_fence_lock);
+@@ -242,7 +244,7 @@ void __i915_sw_fence_init(struct i915_sw_fence *fence,
+ 			  const char *name,
+ 			  struct lock_class_key *key)
+ {
+-	BUG_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
++	I915_SW_FENCE_WARN_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
+ 
+ 	__init_waitqueue_head(&fence->wait, name, key);
+ 	fence->flags = (unsigned long)fn;
+-- 
+2.32.0
 
