@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C3940F35C
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 09:37:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD6B40F434
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 10:34:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 792DE6EC0D;
-	Fri, 17 Sep 2021 07:37:26 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 355F86EC0C;
- Fri, 17 Sep 2021 07:37:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="245135628"
-X-IronPort-AV: E=Sophos;i="5.85,300,1624345200"; d="scan'208";a="245135628"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C1B6EC11;
+	Fri, 17 Sep 2021 08:34:31 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 212726EC10;
+ Fri, 17 Sep 2021 08:34:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="222790780"
+X-IronPort-AV: E=Sophos;i="5.85,300,1624345200"; d="scan'208";a="222790780"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 00:37:24 -0700
-X-IronPort-AV: E=Sophos;i="5.85,300,1624345200"; d="scan'208";a="554499884"
-Received: from shettiar-mobl2.ger.corp.intel.com (HELO [10.213.243.199])
- ([10.213.243.199])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2021 01:34:15 -0700
+X-IronPort-AV: E=Sophos;i="5.85,300,1624345200"; d="scan'208";a="554516520"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 00:37:22 -0700
-To: Tim Gardner <tim.gardner@canonical.com>, intel-gfx@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <dc88e195-949c-bb46-b7d3-18e90df9b064@canonical.com>
- <20210916122649.12691-1-tim.gardner@canonical.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <77c6c991-b7b4-0362-63ca-17a801187f7a@linux.intel.com>
-Date: Fri, 17 Sep 2021 08:37:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ 17 Sep 2021 01:34:13 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1mR9NA-0001cy-Ba; Fri, 17 Sep 2021 11:37:28 +0300
+Date: Fri, 17 Sep 2021 11:37:28 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: IGT-Dev@lists.freedesktop.org, Intel-GFX@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Message-ID: <YURTyDN+Y2Odmm1B@platvala-desk.ger.corp.intel.com>
+References: <20210915215558.2473428-1-John.C.Harrison@Intel.com>
+ <20210915215558.2473428-2-John.C.Harrison@Intel.com>
+ <YUMHcIsB1+9UmWKV@platvala-desk.ger.corp.intel.com>
+ <e4f66112-8628-0870-81a3-622838cdd86a@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210916122649.12691-1-tim.gardner@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: use strscpy() to avoid buffer
- overrun
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e4f66112-8628-0870-81a3-622838cdd86a@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/1] tests/i915/query: Query,
+ parse and validate the hwconfig table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,75 +58,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Sep 16, 2021 at 10:27:41AM -0700, John Harrison wrote:
+> On 9/16/2021 01:59, Petri Latvala wrote:
+> > On Wed, Sep 15, 2021 at 02:55:58PM -0700, John.C.Harrison@Intel.com wrote:
+> > > From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > 
+> > > Newer platforms have an embedded table giving details about that
+> > > platform's hardware configuration. This table can be retrieved from
+> > > the KMD via the existing query API. So add a test for it as both an
+> > > example of how to fetch the table and to validate the contents as much
+> > > as is possible.
+> > > 
+> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+> > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > >   include/drm-uapi/i915_drm.h |   1 +
+> > >   lib/intel_hwconfig_types.h  | 106 +++++++++++++++++++++++
+> > >   tests/i915/i915_query.c     | 168 ++++++++++++++++++++++++++++++++++++
+> > >   3 files changed, 275 insertions(+)
+> > >   create mode 100644 lib/intel_hwconfig_types.h
+> > > 
+> > > diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
+> > > index b9632bb2c..ae0c8dfad 100644
+> > > --- a/include/drm-uapi/i915_drm.h
+> > > +++ b/include/drm-uapi/i915_drm.h
+> > > @@ -2451,6 +2451,7 @@ struct drm_i915_query_item {
+> > >   #define DRM_I915_QUERY_ENGINE_INFO	2
+> > >   #define DRM_I915_QUERY_PERF_CONFIG      3
+> > >   #define DRM_I915_QUERY_MEMORY_REGIONS   4
+> > > +#define DRM_I915_QUERY_HWCONFIG_TABLE   5
+> > >   /* Must be kept compact -- no holes and well documented */
+> > Please update i915_drm.h with a copy from the kernel and state in the
+> > commit message which kernel commit sha it's from. If this change is
+> > not in the kernel yet, add this token to lib/i915/i915_drm_local.h
+> > instead.
+> > 
+> > 
+> Neither side is merged yet. My understanding is that all sides need to be
+> posted in parallel for CI to work. Once green and reviewed, the kernel side
+> gets merged first. Then the IGT/UMD patches get updated with the official
+> kernel headers, reposted and then merged.
 
-On 16/09/2021 13:26, Tim Gardner wrote:
-> In capture_vma() Coverity complains of a possible buffer overrun. Even
-> though this is a static function where all call sites can be checked,
-> limiting the copy length could save some future grief.
-> 
-> CID 93300 (#1 of 1): Copy into fixed size buffer (STRING_OVERFLOW)
-> 4. fixed_size_dest: You might overrun the 16-character fixed-size string c->name
->     by copying name without checking the length.
-> 5. parameter_as_source: Note: This defect has an elevated risk because the
->     source argument is a parameter of the current function.
-> 1326        strcpy(c->name, name);
-> 
-> Fix any possible overflows by using strscpy() which guarantees NULL termination.
-> 
-> Also correct 2 other strcpy() call sites with the same potential for Coverity
-> warnings or overruns.
-> 
-> v2 - Change $SUBJECT from "drm/i915: zero fill vma name buffer"
->       Use strscpy() instead of strncpy(). Its a much simpler change.
-> 
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Tim Gardner <tim.gardner@canonical.com>
-> ---
->   drivers/gpu/drm/i915/i915_gpu_error.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 9cf6ac575de1..7f246f51959d 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1015,7 +1015,7 @@ i915_vma_coredump_create(const struct intel_gt *gt,
->   		return NULL;
->   	}
->   
-> -	strcpy(dst->name, name);
-> +	strscpy(dst->name, name, sizeof(dst->name));
->   	dst->next = NULL;
->   
->   	dst->gtt_offset = vma->node.start;
-> @@ -1279,7 +1279,7 @@ static bool record_context(struct i915_gem_context_coredump *e,
->   	rcu_read_lock();
->   	task = pid_task(ctx->pid, PIDTYPE_PID);
->   	if (task) {
-> -		strcpy(e->comm, task->comm);
-> +		strscpy(e->comm, task->comm, sizeof(e->comm));
->   		e->pid = task->pid;
->   	}
->   	rcu_read_unlock();
-> @@ -1323,7 +1323,7 @@ capture_vma(struct intel_engine_capture_vma *next,
->   		return next;
->   	}
->   
-> -	strcpy(c->name, name);
-> +	strscpy(c->name, name, sizeof(c->name));
->   	c->vma = vma; /* reference held while active */
->   
->   	c->next = next;
-> 
+That lockstep dancing removal is the point of i915_drm_local.h. IGT
+side can even be merged that way before kernel side is ready, then
+updated with the real thing later at whatever cadence.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Regards,
-
-Tvrtko
+-- 
+Petri Latvala
