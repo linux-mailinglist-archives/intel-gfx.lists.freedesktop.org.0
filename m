@@ -2,65 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7B740F783
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 14:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D563640F78B
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 14:32:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96B6F6EC42;
-	Fri, 17 Sep 2021 12:31:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2804E89DBC;
+	Fri, 17 Sep 2021 12:32:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD0086EC41
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 12:31:06 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id t18so14980243wrb.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 05:31:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=o7A57kYyLnLxBk2EpQRgH/I2WuumqcnhiTb054cfE3c=;
- b=SZbQN8vwwsLhU3kygY95IQ0nezGZSNxMoK/x8YjC4MKKgST3177d41hO/yXqVZWf25
- aBKnaQHpklTXzWUOfTO/rjlub9XjiVYBMxFupu1b0Q87A0rnUeOgOOgZbNU+qwdc/U+H
- dZjclpEkSqRbCuXZZEnet9I5TUEQapPkdx16s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=o7A57kYyLnLxBk2EpQRgH/I2WuumqcnhiTb054cfE3c=;
- b=4qPKDJZ3vh1KQmiDyqxU4042FWk4JSH/ZezhlmaxBSAMpiGfjkPaf9evduyU1niyxO
- mzsqlAo2trdlqfkUtc742xAgMfDoj0j6rgaoAt98TD7dZtd0Uzy1/M5SHccklkfiySQf
- ec6GHIYuKHyQ1eYjw2teuV3sL1STgXNFvFhxwvaoWuaMHimiBCtx1syhI0tMap3wHpt/
- cbBKyVekPAa2m8InuN3kSAr76ErHDGDfQiAZFeoYVRlUV7FYX8DjSWJ2Xas/yAnk0Cuu
- FVo3boPmqTo6ZqRcIFeWoLAzdTKp01djyoXm2NiMaTWmxYqARLwiLVvnVVACvF8ZvMhU
- n+rw==
-X-Gm-Message-State: AOAM531ffRw4vPBE3Kd6KppnO/oeVmagk3gFGTMD3agBqorD8tNcbpR3
- WT7nU1gg6IpwPxz4arcbLqHoqohglw0vQA==
-X-Google-Smtp-Source: ABdhPJxpwEE7l8onXQlLNuW12oGzeMTFB4nKHgxTHgi0OhO/2feZan/noxssuPOPxbbqSqJX+mtukQ==
-X-Received: by 2002:adf:8170:: with SMTP id 103mr12045762wrm.167.1631881865219; 
- Fri, 17 Sep 2021 05:31:05 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id n26sm10038744wmi.43.2021.09.17.05.31.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Sep 2021 05:31:04 -0700 (PDT)
-Date: Fri, 17 Sep 2021 14:31:02 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, john.c.harrison@intel.com
-Message-ID: <YUSKhiKtpQjVcN9O@phenom.ffwll.local>
-References: <20210914044933.22932-1-matthew.brost@intel.com>
- <20210914044933.22932-2-matthew.brost@intel.com>
- <CAPM=9tzHmYkf_y2W_1TO2MPeohFQ9MzkTD1s0gmpNgLcWbX1NA@mail.gmail.com>
- <20210914153656.GA23874@jons-linux-dev-box>
- <YUEAb30j+TPBMKGN@phenom.ffwll.local>
- <20210914211022.GA15442@jons-linux-dev-box>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EBB389DBC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 12:32:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="308334214"
+X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="308334214"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2021 05:32:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="509902528"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 17 Sep 2021 05:32:51 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Sep 2021 15:32:51 +0300
+Date: Fri, 17 Sep 2021 15:32:51 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YUSK83PNOgEPQjB7@intel.com>
+References: <20210514125751.17075-1-ville.syrjala@linux.intel.com>
+ <20210514125751.17075-3-ville.syrjala@linux.intel.com>
+ <20210916162421.GB30274@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210914211022.GA15442@jons-linux-dev-box>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Do not define vma on stack
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210916162421.GB30274@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 02/14] drm/i915: Fix g4x cxsr enable
+ condition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,127 +54,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 14, 2021 at 02:10:22PM -0700, Matthew Brost wrote:
-> On Tue, Sep 14, 2021 at 10:05:03PM +0200, Daniel Vetter wrote:
-> > On Tue, Sep 14, 2021 at 08:36:56AM -0700, Matthew Brost wrote:
-> > > On Tue, Sep 14, 2021 at 03:04:59PM +1000, Dave Airlie wrote:
-> > > > On Tue, 14 Sept 2021 at 14:55, Matthew Brost <matthew.brost@intel.com> wrote:
-> > > > >
-> > > > > From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> > > > >
-> > > > > Defining vma on stack can cause stack overflow, if
-> > > > > vma gets populated with new fields.
-> > > > 
-> > > > Is there some higher level locking stopping that from getting trashed?
-> > > > or a guarantee that uc_fw_bind_ggtt is only entered by one thread at a
-> > > > time?
-> > > > 
-> > > 
-> > > I believe this function is only called during driver load (inherently
-> > > one thread) or during a GT reset (protected by reset mutex) so at most 1
-> > > thread can be executing this code at once, thus it is safe to use a
-> > > global dummy vma in this function.
+On Thu, Sep 16, 2021 at 07:24:21PM +0300, Lisovskiy, Stanislav wrote:
+> On Fri, May 14, 2021 at 03:57:39PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > 
-> > This kind of stuff must be documented in kerneldoc comments. Please use
-> > the inline struct member format.
+> > The intention was to check whether the primary plane is enabled
+> > without any sprites planes being enabled. Instead we ended up checking
+> > whether just any one of the planes is enabled. g4x isn't vlv/chv and
+> > cxsr only works with the primary plane. Fix the check to examine the
+> > bitmask of active planes rather than the number of bits set in said
+> > bitmask.
 > > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_pm.c | 5 ++---
+> >  1 file changed, 2 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> > index 00a5fe424c5a..2fb496fbed43 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -1376,8 +1376,7 @@ static int g4x_compute_pipe_wm(struct intel_crtc_state *crtc_state)
+> >  	struct intel_atomic_state *state =
+> >  		to_intel_atomic_state(crtc_state->uapi.state);
+> >  	struct g4x_wm_state *wm_state = &crtc_state->wm.g4x.optimal;
+> > -	int num_active_planes = hweight8(crtc_state->active_planes &
+> > -					 ~BIT(PLANE_CURSOR));
+> > +	u8 active_planes = crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+> >  	const struct g4x_pipe_wm *raw;
+> >  	const struct intel_plane_state *old_plane_state;
+> >  	const struct intel_plane_state *new_plane_state;
+> > @@ -1417,7 +1416,7 @@ static int g4x_compute_pipe_wm(struct intel_crtc_state *crtc_state)
+> >  	wm_state->sr.cursor = raw->plane[PLANE_CURSOR];
+> >  	wm_state->sr.fbc = raw->fbc;
+> >  
+> > -	wm_state->cxsr = num_active_planes == BIT(PLANE_PRIMARY);
+> > +	wm_state->cxsr = active_planes == BIT(PLANE_PRIMARY);
 > 
-> Forgot to include kerneldoc for this new field, will add.
-> 
-> > Also please document the other fields in that struct, cant hurt :-)
-> 
-> I'll see what I can do but I didn't write this code and may not fully
-> understand all the fields off hand.
+> Shouldn't this be "active_planes & BIT(PLANE_PRIMARY)" as we might
+> have other non-cursor planes enabled, which will then fail or am I missing something?
 
-Yeah sprinkling FIXME and stuff like that in or leaving it blank if it's
-completely unknown is fine.
--Daniel
-
-> 
-> Matt
-> 
-> > -Daniel
-> > 
-> > > 
-> > > Matt
-> > > 
-> > > > Dave.
-> > > > 
-> > > > >
-> > > > > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > > > Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 18 +++++++++---------
-> > > > >  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h |  2 ++
-> > > > >  2 files changed, 11 insertions(+), 9 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > > > > index 3a16d08608a5..f632dbd32b42 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > > > > @@ -413,20 +413,20 @@ static void uc_fw_bind_ggtt(struct intel_uc_fw *uc_fw)
-> > > > >  {
-> > > > >         struct drm_i915_gem_object *obj = uc_fw->obj;
-> > > > >         struct i915_ggtt *ggtt = __uc_fw_to_gt(uc_fw)->ggtt;
-> > > > > -       struct i915_vma dummy = {
-> > > > > -               .node.start = uc_fw_ggtt_offset(uc_fw),
-> > > > > -               .node.size = obj->base.size,
-> > > > > -               .pages = obj->mm.pages,
-> > > > > -               .vm = &ggtt->vm,
-> > > > > -       };
-> > > > > +       struct i915_vma *dummy = &uc_fw->dummy;
-> > > > > +
-> > > > > +       dummy->node.start = uc_fw_ggtt_offset(uc_fw);
-> > > > > +       dummy->node.size = obj->base.size;
-> > > > > +       dummy->pages = obj->mm.pages;
-> > > > > +       dummy->vm = &ggtt->vm;
-> > > > >
-> > > > >         GEM_BUG_ON(!i915_gem_object_has_pinned_pages(obj));
-> > > > > -       GEM_BUG_ON(dummy.node.size > ggtt->uc_fw.size);
-> > > > > +       GEM_BUG_ON(dummy->node.size > ggtt->uc_fw.size);
-> > > > >
-> > > > >         /* uc_fw->obj cache domains were not controlled across suspend */
-> > > > > -       drm_clflush_sg(dummy.pages);
-> > > > > +       drm_clflush_sg(dummy->pages);
-> > > > >
-> > > > > -       ggtt->vm.insert_entries(&ggtt->vm, &dummy, I915_CACHE_NONE, 0);
-> > > > > +       ggtt->vm.insert_entries(&ggtt->vm, dummy, I915_CACHE_NONE, 0);
-> > > > >  }
-> > > > >
-> > > > >  static void uc_fw_unbind_ggtt(struct intel_uc_fw *uc_fw)
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> > > > > index 99bb1fe1af66..693cc0ebcd63 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> > > > > @@ -10,6 +10,7 @@
-> > > > >  #include "intel_uc_fw_abi.h"
-> > > > >  #include "intel_device_info.h"
-> > > > >  #include "i915_gem.h"
-> > > > > +#include "i915_vma.h"
-> > > > >
-> > > > >  struct drm_printer;
-> > > > >  struct drm_i915_private;
-> > > > > @@ -75,6 +76,7 @@ struct intel_uc_fw {
-> > > > >         bool user_overridden;
-> > > > >         size_t size;
-> > > > >         struct drm_i915_gem_object *obj;
-> > > > > +       struct i915_vma dummy;
-> > > > >
-> > > > >         /*
-> > > > >          * The firmware build process will generate a version header file with major and
-> > > > > --
-> > > > > 2.32.0
-> > > > >
-> > 
-> > -- 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+CxSR is possible only when the primary plane is enabled and the
+sprite plane is disabled.
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Ville Syrjälä
+Intel
