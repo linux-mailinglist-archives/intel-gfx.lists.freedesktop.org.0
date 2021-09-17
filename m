@@ -2,64 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD2540FA41
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 16:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E11D640FA53
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 16:37:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B17EE6ED1E;
-	Fri, 17 Sep 2021 14:35:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE896ED26;
+	Fri, 17 Sep 2021 14:37:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E61FE6ED1E
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 14:35:25 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id t18so15616470wrb.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 07:35:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=qUsEEoXzY2X8rmoz2snm6FddyjyVftZB08rOLj8eGPk=;
- b=V69LD8XNFIK2pA5BGDgFz22fu1vZAC6dxuDh0z+ZAwT/+011bsa2C4OfgYKtSznaZy
- sQoc/4fK9UNRReXachSizIL7ICC3VLi5NxOqzeKTx0sAPQoLqWhHUCk+9sZwgsCjEFs0
- zUhCfZc+JsS7rwUGMQw6BqhIYA3l4rqZADzcA=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA596ED1E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 14:37:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1631889439;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=CJ3e8jOyCDOF8rQQhgiKBnbR6BCfFhW0qIeId7iiYOE=;
+ b=VHOE+jS/QSRnMR+xnusSNJFw32ZHSZ3qg1jKpm4/y5UcE+8RsCxd76Nt8+z76647JisB2N
+ 4eAM+zKxa04z70bvE1reuF2JLhXRQBrh1cq5MFQzqvurinBVQ/Hq1ugxsXaW34LPosnzn9
+ La8zF0/ou8FjNfYavlUZs40CHR4HpnM=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-498-cefuAd7wOiSDjlj5iPjvhg-1; Fri, 17 Sep 2021 10:37:18 -0400
+X-MC-Unique: cefuAd7wOiSDjlj5iPjvhg-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ m30-20020a50999e000000b003cdd7680c8cso9231911edb.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 07:37:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=qUsEEoXzY2X8rmoz2snm6FddyjyVftZB08rOLj8eGPk=;
- b=K5jxigxkK8Z8mWA3hL7x0AccYYuVUrw4smWcVb9QhfGwb14TFxmQ4mro9ypkDZrmvh
- kzbqC+CtYB7wJqceQZYxn48ximB83cecDtBIABjBOREkUGh/JtjflT2Z13ouZvYasAiZ
- w9Z5QusSTUE6swkREgbI/Y7F0GXGSw1b2nNvRhcIZnNv1ahNXslz+yUULTpfpjltNV4Y
- KSovcYFWnuORS/6iycAyi9J4E9bJgdJmuiCUhXyHTLkw+nMkkaBBUmuuHTSFcyWqHxS/
- muhHLBV2q2ojAoAy4GEAGpjY7MdxgRHiAgJl+n5+MF65AF9MF23KAR0WcJgdHQgcvimP
- IK9A==
-X-Gm-Message-State: AOAM532S3k4VYoNaviVjxqOqQS7RWkepFI0zqdLurVxlfO74EAJgJWuf
- Gne8QHkUycMfqQPcC0rOGWwTOQ==
-X-Google-Smtp-Source: ABdhPJwsHUAz1Ud7ieLF8h6emjPzljHMSSKQjwl95CP1FZbeae+6NCR/kaILhhfvihuz8brhiisDzQ==
-X-Received: by 2002:a5d:554e:: with SMTP id g14mr12646627wrw.48.1631889324502; 
- Fri, 17 Sep 2021 07:35:24 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id v17sm6813802wrr.69.2021.09.17.07.35.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Sep 2021 07:35:23 -0700 (PDT)
-Date: Fri, 17 Sep 2021 16:35:22 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- daniel@ffwll.ch
-Message-ID: <YUSnqqsMjXOPNB6W@phenom.ffwll.local>
-References: <20210917123513.1106-1-christian.koenig@amd.com>
- <20210917123513.1106-4-christian.koenig@amd.com>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=CJ3e8jOyCDOF8rQQhgiKBnbR6BCfFhW0qIeId7iiYOE=;
+ b=kkKeSlVqRAFici7/JfYtZnAFKchMmABeQDh1AVisT8CeBKwZYJr1NsN9fx0qvlsSmE
+ OgOJE4w1lUfOCSBcKJ/t+y2rSw9GsjBkFOhvUhAeT6oT/g54FvKFgzA+F9KUrMqnXQ/v
+ BsDSNX7BdP2j9w55Ynr/zfChzt3YlbMoAx4OIia92DC72gQYdOLr3+m2Qxyun1kMRzf1
+ rgD9GqrVz5SXgIo84vJtpPwlCkmKXCTS8qafVpe7DBArsj1vz73jwodey1UpjUvugCC9
+ UWTYlcK4edVX6foVc4WULPHjBaNo8qKkFvxCroAiWmtBsxvyE2KS41f/Ewlh9RobzK7g
+ 0WdA==
+X-Gm-Message-State: AOAM532vqJVt/sITfni9Yv2Y8rixN35sDfF3ATvmT4mh3w6UaB38Px4A
+ og7j0l9H8qDi+lkCw0cCAC2nf+EUFRwLIMaa55e2Kt8d3W8KOGxVAQxY6lgjMgLOsMBkAJdVp+i
+ NnQD9HfNgvadtlygm0xCZT+c23QXO
+X-Received: by 2002:a17:907:784b:: with SMTP id
+ lb11mr13019977ejc.307.1631889436267; 
+ Fri, 17 Sep 2021 07:37:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw+xf29Whki6LaC30NqHEYtyfl5WIlImxBgK34C2iLohIcq+l0p5eIIE5zOdzVhFt2nO7KWlg==
+X-Received: by 2002:a17:907:784b:: with SMTP id
+ lb11mr13019940ejc.307.1631889436065; 
+ Fri, 17 Sep 2021 07:37:16 -0700 (PDT)
+Received: from x1.localdomain ([2a0e:5700:4:11:334c:7e36:8d57:40cb])
+ by smtp.gmail.com with ESMTPSA id z3sm2288717eju.34.2021.09.17.07.37.15
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 17 Sep 2021 07:37:15 -0700 (PDT)
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rajat Jain <rajatja@google.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Lyude <lyude@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Gross <mgross@linux.intel.com>,
+ Andy Shevchenko <andy@infradead.org>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Mario Limonciello <mario.limonciello@outlook.com>,
+ Mark Pearson <markpearson@lenovo.com>, Sebastien Bacher <seb128@ubuntu.com>,
+ Marco Trevisan <marco.trevisan@canonical.com>,
+ Emil Velikov <emil.l.velikov@gmail.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
+References: <20210906073519.4615-1-hdegoede@redhat.com>
+ <20210906073519.4615-10-hdegoede@redhat.com> <YUNKh9xcIGoi1eol@intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <1239f5f3-fd02-4eed-f464-e92c0afbb620@redhat.com>
+Date: Fri, 17 Sep 2021 16:37:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <YUNKh9xcIGoi1eol@intel.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210917123513.1106-4-christian.koenig@amd.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 03/26] dma-buf: use new iterator in
- dma_resv_copy_fences
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: Add privacy-screen support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,146 +103,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 17, 2021 at 02:34:50PM +0200, Christian König wrote:
-> This makes the function much simpler since the complex
-> retry logic is now handled else where.
+Hi,
+
+On 9/16/21 3:45 PM, Ville SyrjÃ¤lÃ¤ wrote:
+> On Mon, Sep 06, 2021 at 09:35:19AM +0200, Hans de Goede wrote:
+>> Add support for eDP panels with a built-in privacy screen using the
+>> new drm_privacy_screen class.
+>>
+>> One thing which stands out here is the addition of these 2 lines to
+>> intel_atomic_commit_tail:
+>>
+>> 	for_each_new_connector_in_state(&state->base, connector, ...
+>> 		drm_connector_update_privacy_screen(connector, state);
+>>
+>> It may seem more logical to instead take care of updating the
+>> privacy-screen state by marking the crtc as needing a modeset and then
+>> do this in both the encoder update_pipe (for fast-sets) and enable
+>> (for full modesets) callbacks. But ATM these callbacks only get passed
+>> the new connector_state and these callbacks are all called after
+>> drm_atomic_helper_swap_state() at which point there is no way to get
+>> the old state from the new state.
 > 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> ---
->  drivers/dma-buf/dma-resv.c | 86 ++++++++++++++++----------------------
->  1 file changed, 35 insertions(+), 51 deletions(-)
+> Pretty sure the full atomic state is plumbed all the way
+> down these days.
+
+Including the old state? AFAICT the old-state is being thrown away
+from drm_atomic_helper_swap_state(), so if we do this in a different
+place then we don't have access to the old-state.
+
+
 > 
-> diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
-> index a3c79a99fb44..406150dea5e4 100644
-> --- a/drivers/dma-buf/dma-resv.c
-> +++ b/drivers/dma-buf/dma-resv.c
-> @@ -426,74 +426,58 @@ EXPORT_SYMBOL_GPL(dma_resv_iter_walk);
->   */
->  int dma_resv_copy_fences(struct dma_resv *dst, struct dma_resv *src)
->  {
-> -	struct dma_resv_list *src_list, *dst_list;
-> -	struct dma_fence *old, *new;
-> -	unsigned int i;
-> +	struct dma_resv_iter cursor;
-> +	struct dma_resv_list *list;
-> +	struct dma_fence *f, *excl;
->  
->  	dma_resv_assert_held(dst);
->  
-> -	rcu_read_lock();
-> -	src_list = dma_resv_shared_list(src);
-> -
-> -retry:
-> -	if (src_list) {
-> -		unsigned int shared_count = src_list->shared_count;
-> -
-> -		rcu_read_unlock();
-> +	list = NULL;
-> +	excl = NULL;
->  
-> -		dst_list = dma_resv_list_alloc(shared_count);
-> -		if (!dst_list)
-> -			return -ENOMEM;
-> +	rcu_read_lock();
-> +	dma_resv_iter_begin(&cursor, src, true);
-> +	dma_resv_for_each_fence_unlocked(&cursor, f) {
->  
-> -		rcu_read_lock();
-> -		src_list = dma_resv_shared_list(src);
-> -		if (!src_list || src_list->shared_count > shared_count) {
-> -			kfree(dst_list);
-> -			goto retry;
-> -		}
-> +		if (cursor.is_first) {
-
-Maybe have a wrapper for this, like dma_resv_iter_is_reset or is_first or
-is_restart (my preference) with some nice docs that this returns true
-everytime we had to restart the sequence?
-
-Otherwise I fully agree, this is so much better with all the hairy
-restarting and get_rcu and test_bit shovelled away somewhere.
-
-Either way (but I much prefer a wrapper for is_first):
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-> +			dma_resv_list_free(list);
-> +			dma_fence_put(excl);
->  
-> -		dst_list->shared_count = 0;
-> -		for (i = 0; i < src_list->shared_count; ++i) {
-> -			struct dma_fence __rcu **dst;
-> -			struct dma_fence *fence;
-> +			if (cursor.fences) {
-> +				unsigned int cnt = cursor.fences->shared_count;
->  
-> -			fence = rcu_dereference(src_list->shared[i]);
-> -			if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-> -				     &fence->flags))
-> -				continue;
-> +				rcu_read_unlock();
-> +				list = dma_resv_list_alloc(cnt);
-> +				if (!list) {
-> +					dma_resv_iter_end(&cursor);
-> +					return -ENOMEM;
-> +				}
->  
-> -			if (!dma_fence_get_rcu(fence)) {
-> -				dma_resv_list_free(dst_list);
-> -				src_list = dma_resv_shared_list(src);
-> -				goto retry;
-> -			}
-> +				list->shared_count = 0;
-> +				rcu_read_lock();
->  
-> -			if (dma_fence_is_signaled(fence)) {
-> -				dma_fence_put(fence);
-> -				continue;
-> +			} else {
-> +				list = NULL;
->  			}
-> -
-> -			dst = &dst_list->shared[dst_list->shared_count++];
-> -			rcu_assign_pointer(*dst, fence);
-> +			excl = NULL;
->  		}
-> -	} else {
-> -		dst_list = NULL;
-> -	}
->  
-> -	new = dma_fence_get_rcu_safe(&src->fence_excl);
-> +		dma_fence_get(f);
-> +		if (dma_resv_iter_is_exclusive(&cursor))
-> +			excl = f;
-> +		else
-> +			RCU_INIT_POINTER(list->shared[list->shared_count++], f);
-> +	}
-> +	dma_resv_iter_end(&cursor);
->  	rcu_read_unlock();
->  
-> -	src_list = dma_resv_shared_list(dst);
-> -	old = dma_resv_excl_fence(dst);
-> -
->  	write_seqcount_begin(&dst->seq);
-> -	/* write_seqcount_begin provides the necessary memory barrier */
-> -	RCU_INIT_POINTER(dst->fence_excl, new);
-> -	RCU_INIT_POINTER(dst->fence, dst_list);
-> +	excl = rcu_replace_pointer(dst->fence_excl, excl, dma_resv_held(dst));
-> +	list = rcu_replace_pointer(dst->fence, list, dma_resv_held(dst));
->  	write_seqcount_end(&dst->seq);
->  
-> -	dma_resv_list_free(src_list);
-> -	dma_fence_put(old);
-> +	dma_resv_list_free(list);
-> +	dma_fence_put(excl);
->  
->  	return 0;
->  }
-> -- 
-> 2.25.1
+>>
+>> Without access to the old state, we do not know if the sw_state of
+>> the privacy-screen has changes so we would need to call
+>> drm_privacy_screen_set_sw_state() unconditionally. This is undesirable
+>> since all current known privacy-screen providers use ACPI calls which
+>> are somewhat expensive to make.
 > 
+> I doubt anyone is going to care about a bit of overhead for a modeset.
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+But this is not a modeset, this is more like changing the backlight brightness,
+atm the code does not set the needs_modeset when only the privacy-screen
+sw-state has changed.
+
+Also in my experience the firmware (AML) code which we end up calling
+for this is not the highest quality code, often it has interesting
+issues / unhandled corner cases. So in my experience with ACPI we
+really should try to avoid these calls unless we absolutely must make them,
+but I guess not making unnecessary calls is something which could be handled
+inside the actual privacy-screen driver instead.
+
+> The usual rule is that a modeset doesn't skip anything. That way we
+> can be 100% sure we remeber to update everythinbg. For fastsets I guess
+> one could argue skipping it if not needed, but not sure even that is
+> warranted.
+
+Right, but again this is not a full modeset.
+
+> 
+> The current code you have in there is cettainly 110% dodgy. Since the
+> sw_state is stored in the connector state I presume it's at least
+> trying to be an atomic property, which means you shouldn't go poking
+> at it after the swap_state ever.
+
+It is not being poked, it is only being read, also this is happening
+before swap_state.
+
+Note I'm open for suggestions to handle this differently,
+including changing the drm_connector_update_privacy_screen()
+helper which currently relies on being passed the state before swap_state
+is called:
+
+void drm_connector_update_privacy_screen(struct drm_connector *connector,
+					 struct drm_atomic_state *state)
+{
+	struct drm_connector_state *new_connector_state, *old_connector_state;
+	int ret;
+
+	if (!connector->privacy_screen)
+		return;
+
+	new_connector_state = drm_atomic_get_new_connector_state(state, connector);
+	old_connector_state = drm_atomic_get_old_connector_state(state, connector);
+
+	if (new_connector_state->privacy_screen_sw_state ==
+	    old_connector_state->privacy_screen_sw_state)
+		return;
+
+	ret = drm_privacy_screen_set_sw_state(connector->privacy_screen,
+				new_connector_state->privacy_screen_sw_state);
+	if (ret) {
+		drm_err(connector->dev, "Error updating privacy-screen sw_state\n");
+		return;
+	}
+
+So if you have any suggestions how to do this differently, please let me know
+and I will take a shot at implementing those suggestions.
+
+Please keep in mind that the drm_privacy_screen_set_sw_state() call also
+needs to happens when just the connector_state->privacy_screen_sw_state changes,
+which is not a reason to do a full modeset (iow needs_modeset maybe 0 during
+the commit)
+
+Regards,
+
+Hans
+
+
+
