@@ -2,40 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD88540FB5B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 17:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1762840FC2E
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 17:24:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A1E86ED8A;
-	Fri, 17 Sep 2021 15:08:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F94E6ED99;
+	Fri, 17 Sep 2021 15:24:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65D316ED8A
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 15:08:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="286498776"
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="286498776"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 08:08:28 -0700
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="554669555"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 08:08:25 -0700
-Date: Fri, 17 Sep 2021 18:09:10 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210917150910.GA1224@intel.com>
-References: <20210514125751.17075-1-ville.syrjala@linux.intel.com>
- <20210514125751.17075-5-ville.syrjala@linux.intel.com>
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D59176ED8A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 15:24:31 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ u19-20020a7bc053000000b002f8d045b2caso7178020wmc.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 08:24:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=UUmIc1Zm6f0TtwRpO+dF5pS2Y2cDE7pjg0cLbOF+M+E=;
+ b=Rzn08IPZenhQ6bvtAtCZFtUgcNOadCOdu78eHBCqYGv/hV+L9cluJaEyplz5gcBA7R
+ 38wK30kV3P5we6pC4sOpGFJx71Gq1+1ryDNONUjrKLim7Yfc3dXqvMmu3/gJm1MKY0gs
+ TcW6XWN+ON+jrkBcBdm/eQYlZqOq4Sg4Mar8E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=UUmIc1Zm6f0TtwRpO+dF5pS2Y2cDE7pjg0cLbOF+M+E=;
+ b=MoMSu4whra78EHDytiSXQPMWJH9LkmKNWOzF7AH9CsD2yPtoEhGEQA9NCz0IurqJFC
+ cpImkPF3vMK4YeC+fT7BmpchU00hACTHguCda07LRM88MJnKn8gnTCPtHhEdNazCtFXH
+ LW/P9Nl8IfLtTMhAbLbXGijP9IqMrWZ+yKjFKmG+MOP426YApPKgsoZ5Wwu1JB4llvOE
+ 5JvCWd8Pf/rVe3Nfua58brOouDnhNMhHMX9fS+85i9IAfNuN8l2QiKFK2prs3wqhc7CT
+ pz8Ep2P0o5OYqlQL/AlKIgHNjRfKBDYDcEI075lIJ4o/5+X5ZB1nXu43/3RuKPBSnGuu
+ yZTA==
+X-Gm-Message-State: AOAM533rUvB3wcpea5v8Cz8oSTwU/RIY+nG5EyX81BXUijP7t2jR2BWT
+ s98rZ17WUUWr7m+TQH5K9OfRqQ==
+X-Google-Smtp-Source: ABdhPJy9S40vw/exT9dD330IOj7yv3V6vas+VLUTS5747KBqEVcQ3/55Lywp40+PNtXXNtDS+CHl4w==
+X-Received: by 2002:a1c:7e12:: with SMTP id z18mr16190125wmc.60.1631892270408; 
+ Fri, 17 Sep 2021 08:24:30 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id r5sm6880779wrm.79.2021.09.17.08.24.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Sep 2021 08:24:29 -0700 (PDT)
+Date: Fri, 17 Sep 2021 17:24:27 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Fernando Ramos <greenfoo@u92.eu>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Message-ID: <YUSzKxZwW8C29dLV@phenom.ffwll.local>
+Mail-Followup-To: Fernando Ramos <greenfoo@u92.eu>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20210916211552.33490-1-greenfoo@u92.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210514125751.17075-5-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 04/14] drm/i915: Apply WaUse32BppForSRWM to
- elk as well as ctg
+In-Reply-To: <20210916211552.33490-1-greenfoo@u92.eu>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 00/15] drm: cleanup: Use
+ DRM_MODESET_LOCK_ALL_* helpers where possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,50 +84,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 14, 2021 at 03:57:41PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, Sep 16, 2021 at 11:15:37PM +0200, Fernando Ramos wrote:
+> Hi all,
 > 
-> The w/a database lists this for both ctg and elk. So let's apply it to
-> elk as well. And add the w/a name.
+> One of the things in the DRM TODO list ("Documentation/gpu/todo.rst") was to
+> "use DRM_MODESET_LOCAL_ALL_* helpers instead of boilerplate". That's what this
+> patch series is about.
 > 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 12 ++++--------
->  1 file changed, 4 insertions(+), 8 deletions(-)
+> You will find two types of changes here:
 > 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 8a08a7c0e71f..661bc6fdf38c 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -1152,17 +1152,13 @@ static u16 g4x_compute_wm(const struct intel_crtc_state *crtc_state,
->  	cpp = plane_state->hw.fb->format->cpp[0];
->  
->  	/*
-> -	 * Not 100% sure which way ELK should go here as the
-> -	 * spec only says CL/CTG should assume 32bpp and BW
-> -	 * doesn't need to. But as these things followed the
-> -	 * mobile vs. desktop lines on gen3 as well, let's
-> -	 * assume ELK doesn't need this.
-> +	 * WaUse32BppForSRWM:ctg,elk
->  	 *
-> -	 * The spec also fails to list such a restriction for
-> -	 * the HPLL watermark, which seems a little strange.
-> +	 * The spec fails to list this restriction for the
-> +	 * HPLL watermark, which seems a little strange.
->  	 * Let's use 32bpp for the HPLL watermark as well.
->  	 */
-> -	if (IS_GM45(dev_priv) && plane->id == PLANE_PRIMARY &&
-> +	if (plane->id == PLANE_PRIMARY &&
+>   - Replacing "drm_modeset_lock_all_ctx()" (and surrounding boilerplate) with
+>     "DRM_MODESET_LOCK_ALL_BEGIN()/END()" in the remaining places (as it has
+>     already been done in previous commits such as b7ea04d2)
+> 
+>   - Replacing "drm_modeset_lock_all()" with "DRM_MODESET_LOCK_ALL_BEGIN()/END()"
+>     in the remaining places (as it has already been done in previous commits
+>     such as 57037094)
+>     
+> Most of the changes are straight forward, except for a few cases in the "amd"
+> and "i915" drivers where some extra dancing was needed to overcome the
+> limitation that the DRM_MODESET_LOCK_ALL_BEGIN()/END() macros can only be used
+> once inside the same function (the reason being that the macro expansion
+> includes *labels*, and you can not have two labels named the same inside one
+> function)
+> 
+> Notice that, even after this patch series, some places remain where
+> "drm_modeset_lock_all()" and "drm_modeset_lock_all_ctx()" are still present,
+> all inside drm core (which makes sense), except for two (in "amd" and "i915")
+> which cannot be replaced due to the way they are being used.
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Can we at least replace those with drm_modeset_lock_all_ctx and delete
+drm_modeset_lock_all? That would be really nice goal to make sure these
+don't spread further.
 
->  	    level != G4X_WM_LEVEL_NORMAL)
->  		cpp = max(cpp, 4u);
->  
+Otherwise great stuff, I'm trying to volunteer a few reviewers.
+-Daniel
+
+> 
+> Fernando Ramos (15):
+>   dmr: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   dmr/i915: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   dmr/msm: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/vmwgfx: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/tegra: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/shmobile: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/radeon: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/omapdrm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/nouveau: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/msm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/i915: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/gma500: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   drm/amd: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+>   doc: drm: remove TODO entry regarding DRM_MODSET_LOCK_ALL cleanup
+> 
+>  Documentation/gpu/todo.rst                    | 17 -------
+>  Documentation/locking/ww-mutex-design.rst     |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 13 +++--
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 50 +++++++++----------
+>  .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 23 +++++----
+>  drivers/gpu/drm/drm_client_modeset.c          | 14 +++---
+>  drivers/gpu/drm/drm_crtc_helper.c             | 18 ++++---
+>  drivers/gpu/drm/drm_fb_helper.c               | 10 ++--
+>  drivers/gpu/drm/drm_framebuffer.c             |  6 ++-
+>  drivers/gpu/drm/gma500/psb_device.c           | 14 ++++--
+>  drivers/gpu/drm/i915/display/intel_audio.c    | 12 +++--
+>  drivers/gpu/drm/i915/display/intel_display.c  | 22 +++-----
+>  .../drm/i915/display/intel_display_debugfs.c  | 35 ++++++++-----
+>  drivers/gpu/drm/i915/display/intel_overlay.c  | 45 ++++++++---------
+>  drivers/gpu/drm/i915/display/intel_pipe_crc.c |  5 +-
+>  drivers/gpu/drm/i915/i915_drv.c               | 12 +++--
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c      |  6 ++-
+>  .../gpu/drm/msm/disp/msm_disp_snapshot_util.c | 10 ++--
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c       | 12 +++--
+>  drivers/gpu/drm/omapdrm/omap_fb.c             |  6 ++-
+>  drivers/gpu/drm/radeon/radeon_device.c        | 13 +++--
+>  drivers/gpu/drm/radeon/radeon_dp_mst.c        |  7 ++-
+>  drivers/gpu/drm/shmobile/shmob_drm_drv.c      |  6 ++-
+>  drivers/gpu/drm/tegra/dsi.c                   |  6 ++-
+>  drivers/gpu/drm/tegra/hdmi.c                  |  5 +-
+>  drivers/gpu/drm/tegra/sor.c                   | 10 ++--
+>  drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c         | 11 ++--
+>  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           | 12 +++--
+>  28 files changed, 222 insertions(+), 180 deletions(-)
+> 
 > -- 
-> 2.26.3
+> 2.33.0
 > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
