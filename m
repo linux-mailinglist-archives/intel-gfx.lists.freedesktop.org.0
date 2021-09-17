@@ -2,40 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0A2410064
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 22:47:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 427BC41007F
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 23:05:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2FF36E04A;
-	Fri, 17 Sep 2021 20:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61F9D6E069;
+	Fri, 17 Sep 2021 21:05:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C460E6E048
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 20:47:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="222923334"
-X-IronPort-AV: E=Sophos;i="5.85,302,1624345200"; d="scan'208";a="222923334"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 13:47:18 -0700
-X-IronPort-AV: E=Sophos;i="5.85,302,1624345200"; d="scan'208";a="510073013"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
- ([10.24.14.60])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 13:47:17 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Fri, 17 Sep 2021 13:52:41 -0700
-Message-Id: <20210917205241.231527-3-jose.souza@intel.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210917205241.231527-1-jose.souza@intel.com>
-References: <20210917205241.231527-1-jose.souza@intel.com>
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com
+ [IPv6:2607:f8b0:4864:20::d2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 610336E06D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 21:05:14 +0000 (UTC)
+Received: by mail-io1-xd2f.google.com with SMTP id s20so5234944ioa.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 14:05:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=hYgcz2WmuoTKimNGZMC9XjOQ7lSec5qs3OosNYmK+Ok=;
+ b=MAON7TiphB4V7pl4cblyJU4fCBNd3AtveOG2N9qog5RtSabP80L+gI+5W27tWQEYLK
+ YvxUcBYeSvcJBT3VOHqcvtcl2yR2zxzhCXaRrDEpW3uWD+ac6AA5S7WHRFuVEyzyQGom
+ qMxoopdTBnoIy53LkjdOG7U3iBmeF+WbFnj58NcCFjGcmDj0US9Aj5CLvjp4UlgJEzUD
+ sRe+TgOi1lGjWJsBHO7J/tQRLOJhoEV0WYfMQci4h8eCOR15IdQdEu2t5kFFVeMq1Xo+
+ T48/kki+hg31MvafHT2J/GJxN48aHiGWQuGcWTn5gGcE1IRjdxEeVAxWrFFhXxEteocl
+ sUlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=hYgcz2WmuoTKimNGZMC9XjOQ7lSec5qs3OosNYmK+Ok=;
+ b=irx+eNGvM6vNOFTr9GQOkdT9WYFtmCkK0fA0WRy/bwVtbM7pGgltTs0G6oao/szurL
+ ktRcEZvO93083gjSBDzPtSMxxpvuHb7U3i41BQ3l8lOFWmClKSsNaz+cvXUk6o1zo7+4
+ LzD7RURVljsPahmV4ula+liQokQLlS8HWwfydVEAof4S/WJScimzo8MZ6qCNPfVM/XLL
+ +P5rIlj4m7uc+IVBaAWfobzZhVygMsFSL6Z5hOteKz8NpqmyvIO/VH33ZORzXQdZsIAx
+ eqFudXCSGZ5BvEv+dzynrfWqPPiCLk9hYPQxFbv4n8U3wvOqgmXvXoLHazbN2tueGCjX
+ qaTg==
+X-Gm-Message-State: AOAM531gnF1ywHzN5FAc/GERSdC8/yr5W+ymmyck53yvidYkHlPNv7NL
+ YVvl53xmxXPBLS0iW7001ksy9A==
+X-Google-Smtp-Source: ABdhPJyVGXTAKtSUaIMT4jST+b54K6uGNImHSympt1CfZVSL4qvHFcKKnAOXl2UCKvZYN210dAx95g==
+X-Received: by 2002:a5e:d80a:: with SMTP id l10mr9913779iok.36.1631912713480; 
+ Fri, 17 Sep 2021 14:05:13 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+ by smtp.gmail.com with ESMTPSA id a5sm4857356ilf.27.2021.09.17.14.05.12
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 17 Sep 2021 14:05:13 -0700 (PDT)
+Date: Fri, 17 Sep 2021 17:05:07 -0400
+From: Sean Paul <sean@poorly.run>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Message-ID: <20210917210507.GR2515@art_vandelay>
+References: <20210915203834.1439-1-sean@poorly.run>
+ <20210915203834.1439-14-sean@poorly.run>
+ <CAE-0n52Gm6SsjUTEEOt-9LD9dGCb7pFf0OC_xKSnRxLy4PO_iw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/display: Match PSR2 selective
- fetch sequences with specification
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n52Gm6SsjUTEEOt-9LD9dGCb7pFf0OC_xKSnRxLy4PO_iw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v2 13/13] drm/msm: Implement HDCP 1.x using
+ the new drm HDCP helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,187 +81,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We were not completely following the selective fetch programming
-sequence, here some things we were doing wrong:
-- not programming plane selective fetch a PSR2_MAN_TRK_CTL registers
-when doing a modeset
-- programming PSR2_MAN_TRK_CTL out of vblank
+On Thu, Sep 16, 2021 at 11:00:25PM -0700, Stephen Boyd wrote:
+> Quoting Sean Paul (2021-09-15 13:38:32)
 
-With this changes the last remainig underrun found in Alderlake-P is
-fixed.
+/snip
 
-Bspec: 55229
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c   |  4 ++-
- drivers/gpu/drm/i915/display/intel_display.c  | 12 +++----
- drivers/gpu/drm/i915/display/intel_psr.c      | 33 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_psr.h      |  2 ++
- .../drm/i915/display/skl_universal_plane.c    |  4 +--
- 5 files changed, 36 insertions(+), 19 deletions(-)
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > index 2f6247e80e9d..de16fca8782a 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_debug.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > @@ -8,6 +8,7 @@
+> >  #include <linux/debugfs.h>
+> >  #include <drm/drm_connector.h>
+> >  #include <drm/drm_file.h>
+> > +#include <drm/drm_hdcp.h>
+> >
+> >  #include "dp_parser.h"
+> >  #include "dp_catalog.h"
+> > @@ -15,6 +16,7 @@
+> >  #include "dp_ctrl.h"
+> >  #include "dp_debug.h"
+> >  #include "dp_display.h"
+> > +#include "dp_hdcp.h"
+> >
+> >  #define DEBUG_NAME "msm_dp"
+> >
+> > @@ -24,6 +26,7 @@ struct dp_debug_private {
+> >         struct dp_usbpd *usbpd;
+> >         struct dp_link *link;
+> >         struct dp_panel *panel;
+> > +       struct dp_hdcp *hdcp;
+> >         struct drm_connector **connector;
+> >         struct device *dev;
+> >         struct drm_device *drm_dev;
+> > @@ -349,6 +352,38 @@ static int dp_test_active_open(struct inode *inode,
+> >                         inode->i_private);
+> >  }
+> >
+> > +static ssize_t dp_hdcp_key_write(struct file *file, const char __user *ubuf,
+> 
+> Is this the API that userspace is going to use to set the key? Or a
+> simple debug interface that's used to test this code out? I hope it's a
+> debugging aid and not the normal flow given that it's through debugfs.
+> 
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index c7618fef01439..901ad3a4c8c3b 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -536,8 +536,10 @@ static void i9xx_update_cursor(struct intel_plane *plane,
- 	if (DISPLAY_VER(dev_priv) >= 9)
- 		skl_write_cursor_wm(plane, crtc_state);
- 
--	if (!intel_crtc_needs_modeset(crtc_state))
-+	if (plane_state)
- 		intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, 0);
-+	else
-+		intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
- 
- 	if (plane->cursor.base != base ||
- 	    plane->cursor.size != fbc_ctl ||
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f6c0c595f6313..224bf622a1c1a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6812,11 +6812,9 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 
- 	}
- 
--	if (!mode_changed) {
--		ret = intel_psr2_sel_fetch_update(state, crtc);
--		if (ret)
--			return ret;
--	}
-+	ret = intel_psr2_sel_fetch_update(state, crtc);
-+	if (ret)
-+		return ret;
- 
- 	return 0;
- }
-@@ -9709,10 +9707,10 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
- 
- 		if (new_crtc_state->update_pipe)
- 			intel_pipe_fastset(old_crtc_state, new_crtc_state);
--
--		intel_psr2_program_trans_man_trk_ctl(new_crtc_state);
- 	}
- 
-+	intel_psr2_program_trans_man_trk_ctl(new_crtc_state);
-+
- 	if (dev_priv->display.atomic_update_watermarks)
- 		dev_priv->display.atomic_update_watermarks(state, crtc);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index bd13325782f11..101a23bdd7b5b 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -561,15 +561,16 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 		val |= EDP_PSR2_SU_SDP_SCANLINE;
- 
- 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-+		u32 tmp;
-+
- 		/* Wa_1408330847 */
- 		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
- 				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
- 				     DIS_RAM_BYPASS_PSR2_MAN_TRACK);
- 
--		intel_de_write(dev_priv,
--			       PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder),
--			       PSR2_MAN_TRK_CTL_ENABLE);
-+		tmp = intel_de_read(dev_priv, PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder));
-+		drm_WARN_ON(&dev_priv->drm, !(tmp & PSR2_MAN_TRK_CTL_ENABLE));
- 	} else if (HAS_PSR2_SEL_FETCH(dev_priv)) {
- 		intel_de_write(dev_priv,
- 			       PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder), 0);
-@@ -1450,6 +1451,18 @@ static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
- 	intel_de_write(dev_priv, CURSURFLIVE(intel_dp->psr.pipe), 0);
- }
- 
-+void intel_psr2_disable_plane_sel_fetch(struct intel_plane *plane,
-+					const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-+	enum pipe pipe = plane->pipe;
-+
-+	if (!crtc_state->enable_psr2_sel_fetch)
-+		return;
-+
-+	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), 0);
-+}
-+
- void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 					const struct intel_crtc_state *crtc_state,
- 					const struct intel_plane_state *plane_state,
-@@ -1464,11 +1477,11 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 	if (!crtc_state->enable_psr2_sel_fetch)
- 		return;
- 
--	val = plane_state ? plane_state->ctl : 0;
--	val &= plane->id == PLANE_CURSOR ? val : PLANE_SEL_FETCH_CTL_ENABLE;
--	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), val);
--	if (!val || plane->id == PLANE_CURSOR)
-+	if (plane->id == PLANE_CURSOR) {
-+		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
-+				  plane_state->ctl);
- 		return;
-+	}
- 
- 	clip = &plane_state->psr2_sel_fetch_area;
- 
-@@ -1487,14 +1500,16 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 	val = (drm_rect_height(clip) - 1) << 16;
- 	val |= (drm_rect_width(&plane_state->uapi.src) >> 16) - 1;
- 	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_SIZE(pipe, plane->id), val);
-+
-+	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
-+			  PLANE_SEL_FETCH_CTL_ENABLE);
- }
- 
- void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 
--	if (!HAS_PSR2_SEL_FETCH(dev_priv) ||
--	    !crtc_state->enable_psr2_sel_fetch)
-+	if (!crtc_state->enable_psr2_sel_fetch)
- 		return;
- 
- 	intel_de_write(dev_priv, PSR2_MAN_TRK_CTL(crtc_state->cpu_transcoder),
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 641521b101c82..e502964697c62 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -51,6 +51,8 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 					const struct intel_crtc_state *crtc_state,
- 					const struct intel_plane_state *plane_state,
- 					int color_plane);
-+void intel_psr2_disable_plane_sel_fetch(struct intel_plane *plane,
-+					const struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
- 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 724e7b04f3b63..247155f2a5538 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -656,6 +656,7 @@ skl_disable_plane(struct intel_plane *plane,
- 
- 	skl_write_plane_wm(plane, crtc_state);
- 
-+	intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
- 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
- 	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
- 
-@@ -1096,8 +1097,7 @@ skl_program_plane(struct intel_plane *plane,
- 				  (plane_state->view.color_plane[1].y << 16) |
- 				   plane_state->view.color_plane[1].x);
- 
--	if (!drm_atomic_crtc_needs_modeset(&crtc_state->uapi))
--		intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, color_plane);
-+	intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, color_plane);
- 
- 	/*
- 	 * Enable the scaler before the plane so that we don't
+At the moment, generic UAPI is not useful beyond msm-based CrOS devices, which
+is not really a burden upstream should be carrying. On other platforms
+(including qc-based Android devices), the key injection is done in HW. As such,
+I'm tempted to kick key injection UAPI down the road.
+
+Once I finish the userspace client in CrOS, I can upload the UAPI for folks to
+comment on.
+
+/snip
+
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_display.h b/drivers/gpu/drm/msm/dp/dp_display.h
+> > index 8b47cdabb67e..421268e47f30 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_display.h
+> > +++ b/drivers/gpu/drm/msm/dp/dp_display.h
+
+> > +static int dp_hdcp_load_keys(struct drm_connector *connector)
+> > +{
+> > +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
+> > +       struct dp_hdcp_key *key;
+> > +       int i, ret = 0;
+> > +
+> > +       mutex_lock(&hdcp->key_lock);
+> > +
+> > +       key = hdcp->key;
+> > +
+> > +       if (!key->valid) {
+> > +               ret = -ENOENT;
+> > +               goto out;
+> > +       }
+> > +
+> > +       dp_hdcp_write_dp(hdcp, DP_HDCP_SW_LOWER_AKSV, key->ksv.words[0]);
+> > +       dp_hdcp_write_dp(hdcp, DP_HDCP_SW_UPPER_AKSV, key->ksv.words[1]);
+> > +
+> > +       for (i = 0; i < DP_HDCP_NUM_KEYS; i++) {
+> > +               dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_LSB(i),
+> > +                                  key->keys[i].words[0]);
+> > +               dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_MSB(i),
+> > +                                  key->keys[i].words[1]);
+> > +       }
+> > +
+> > +       dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_VALID, DP_HDCP_SW_KEY_VALID);
+> > +       wmb();
+> 
+> What are the wmb()s for? Can you add a comment indicating what we're
+> trying to fix by having them?
+> 
+
+I think these were left over from testing (when things weren't working for me).
+Will remove in the next version, thanks for catching!
+
+/snip
+
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c b/drivers/gpu/drm/msm/dp/dp_parser.c
+> > index 0519dd3ac3c3..75a163b0b5af 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_parser.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
+
+/snip
+
+> > @@ -55,6 +55,8 @@ static void dp_parser_unmap_io_resources(struct dp_parser *parser)
+> >  {
+> >         struct dp_io *io = &parser->io;
+> >
+> > +       msm_dss_iounmap(&io->hdcp_tz);
+> > +       msm_dss_iounmap(&io->hdcp_key);
+> >         msm_dss_iounmap(&io->dp_controller);
+> >  }
+> >
+> > @@ -64,10 +66,20 @@ static int dp_parser_ctrl_res(struct dp_parser *parser)
+> >         struct platform_device *pdev = parser->pdev;
+> >         struct dp_io *io = &parser->io;
+> >
+> > -       rc = msm_dss_ioremap(pdev, &io->dp_controller);
+> > -       if (rc) {
+> > -               DRM_ERROR("unable to remap dp io resources, rc=%d\n", rc);
+> > +       rc = msm_dss_ioremap(pdev, &io->dp_controller, 0);
+> > +       if (rc)
+> >                 goto err;
+> > +
+> > +       rc = msm_dss_ioremap(pdev, &io->hdcp_key, 1);
+> > +       if (rc) {
+> > +               io->hdcp_key.base = NULL;
+> > +               io->hdcp_key.len = 0;
+> > +       }
+> > +
+> > +       rc = msm_dss_ioremap(pdev, &io->hdcp_tz, 2);
+> > +       if (rc) {
+> > +               io->hdcp_tz.base = NULL;
+> > +               io->hdcp_tz.len = 0;
+> 
+> Bjorn is trying to split the single io region apart into 4 different
+> regions[1]. This would add two more io regions. Maybe this should come
+> after those patches and be indexed later? I worry about needing to add
+> more register properties later on though. Maybe a better approach would
+> be to make them mandatory for certain compatible strings instead.
+
+Thanks for the heads up, I'll look into adding a compatible string.
+
+All your other comments will be addressed in v3.
+
+Sean
+
+> 
+> [1] https://lore.kernel.org/r/20210825222557.1499104-6-bjorn.andersson@linaro.org
+> 
+> >         }
+> >
+> >         io->phy = devm_phy_get(&pdev->dev, "dp");
+
 -- 
-2.33.0
-
+Sean Paul, Software Engineer, Google / Chromium OS
