@@ -1,64 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E8840FE53
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 19:02:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F8540FE55
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 19:04:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F8D86E02E;
-	Fri, 17 Sep 2021 17:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B7596E02E;
+	Fri, 17 Sep 2021 17:04:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D59F36E039
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 17:02:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="222494525"
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="222494525"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 10:02:22 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931086E02E;
+ Fri, 17 Sep 2021 17:04:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="219649201"
+X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="219649201"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2021 10:04:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="483133273"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 17 Sep 2021 10:02:22 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 17 Sep 2021 10:02:21 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 17 Sep 2021 10:02:21 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Fri, 17 Sep 2021 10:02:21 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-CC: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2 3/5] drm/i915/display: Workaround cursor
- left overs with PSR2 selective fetch enabled
-Thread-Index: AQHXqa47Y9mVfs3M+0eviC8Dq7E/pqulpjoAgAA5fYCAATzGAIAAQiiAgAFMggCAAEPvgA==
-Date: Fri, 17 Sep 2021 17:02:21 +0000
-Message-ID: <c347299ba2b7bdcb2de79ee60569977058aeb51a.camel@intel.com>
-References: <20210914212507.177511-1-jose.souza@intel.com>
- <20210914212507.177511-3-jose.souza@intel.com> <YUIKDNuiNBPHKQ96@intel.com>
- <edd67a4450497f8d60acd147726ef7adf1641539.camel@intel.com>
- <YUNEAE86LBNdEKqD@intel.com>
- <1fb0554d051d0c98ae7282110c6690de4619a970.camel@intel.com>
- <YUSSbMQKuQxQ7Ug9@intel.com>
-In-Reply-To: <YUSSbMQKuQxQ7Ug9@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <07DFBB610D406745AAC5E85BF378CE56@intel.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="517194610"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 17 Sep 2021 10:04:27 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Sep 2021 20:04:26 +0300
+Date: Fri, 17 Sep 2021 20:04:26 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rajat Jain <rajatja@google.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude <lyude@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Gross <mgross@linux.intel.com>,
+ Andy Shevchenko <andy@infradead.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Mario Limonciello <mario.limonciello@outlook.com>,
+ Mark Pearson <markpearson@lenovo.com>,
+ Sebastien Bacher <seb128@ubuntu.com>,
+ Marco Trevisan <marco.trevisan@canonical.com>,
+ Emil Velikov <emil.l.velikov@gmail.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
+Message-ID: <YUTKmkCZ4RE095Ys@intel.com>
+References: <20210906073519.4615-1-hdegoede@redhat.com>
+ <20210906073519.4615-10-hdegoede@redhat.com>
+ <YUNKh9xcIGoi1eol@intel.com>
+ <1239f5f3-fd02-4eed-f464-e92c0afbb620@redhat.com>
+ <YUTBb05YNayO3yOg@intel.com>
+ <686d5177-3bf9-ddb0-5e55-a2e9969f36f7@redhat.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/i915/display: Workaround cursor
- left overs with PSR2 selective fetch enabled
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <686d5177-3bf9-ddb0-5e55-a2e9969f36f7@redhat.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: Add privacy-screen support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,50 +71,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIxLTA5LTE3IGF0IDE2OjA0ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFRodSwgU2VwIDE2LCAyMDIxIGF0IDA1OjA5OjA4UE0gKzAwMDAsIFNvdXphLCBKb3Nl
-IHdyb3RlOg0KPiA+IE9uIFRodSwgMjAyMS0wOS0xNiBhdCAxNjoxNyArMDMwMCwgVmlsbGUgU3ly
-asOkbMOkIHdyb3RlOg0KPiA+ID4gT24gV2VkLCBTZXAgMTUsIDIwMjEgYXQgMDY6MTg6MzVQTSAr
-MDAwMCwgU291emEsIEpvc2Ugd3JvdGU6DQo+ID4gPiA+IE9uIFdlZCwgMjAyMS0wOS0xNSBhdCAx
-Nzo1OCArMDMwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOg0KPiA+ID4gPiA+IE9uIFR1ZSwgU2Vw
-IDE0LCAyMDIxIGF0IDAyOjI1OjA1UE0gLTA3MDAsIEpvc8OpIFJvYmVydG8gZGUgU291emEgd3Jv
-dGU6DQo+ID4gPiA+ID4gPiBOb3Qgc3VyZSB3aHkgYnV0IHdoZW4gbW92aW5nIHRoZSBjdXJzb3Ig
-ZmFzdCBpdCBjYXVzZXMgc29tZSBhcnRpZmFjdHMNCj4gPiA+ID4gPiA+IG9mIHRoZSBjdXJzb3Ig
-dG8gYmUgbGVmdCBpbiB0aGUgY3Vyc29yIHBhdGgsIGFkZGluZyBzb21lIHBpeGVscyBhYm92ZQ0K
-PiA+ID4gPiA+ID4gdGhlIGN1cnNvciB0byB0aGUgZGFtYWdlZCBhcmVhIGZpeGVzIHRoZSBpc3N1
-ZSwgc28gbGVhdmluZyB0aGlzIGFzIGENCj4gPiA+ID4gPiA+IHdvcmthcm91bmQgdW50aWwgcHJv
-cGVyIGZpeCBpcyBmb3VuZC4NCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBIYXZlIHlvdSB0cmllZCB3
-YXJwaW5nIHRoZSBjdXJzb3IgY2xlYXIgYWNyb3NzIHRoZSBzY3JlZW4gd2hpbGUNCj4gPiA+ID4g
-PiBhIHBhcnRpYWwgdXBkYXRlIGlzIGFscmVhZHkgcGVuZGluZz8gSSB0aGluayBpdCB3aWxsIGdv
-IGJhZGx5Lg0KPiA+ID4gPiANCj4gPiA+ID4gWW91IG1lYW4gbW92ZSB0aGUgY3Vyc29yIGZvciBl
-eGFtcGxlIGZyb20gMHgwIHRvIDUwMHg1MDAgaW4gb25lIGZyYW1lPw0KPiA+ID4gPiBJdCB3aWxs
-IG1hcmsgYXMgZGFtYWdlZCB0aGUgcHJldmlvdXMgYXJlYSBhbmQgdGhlIG5ldyBvbmUuDQo+ID4g
-PiANCj4gPiA+IExlZ2FjeSBjdXJzb3IgdXBkYXRlcyBieXBhc3MgYWxsIHRoYXQgc3R1ZmYgc28g
-eW91J3JlIG5vdCBnb2luZyB0bw0KPiA+ID4gdXBkYXRpbmcgdGhlIHNlbCBmZXRjaCBhcmVhIGZv
-ciB0aGUgb3RoZXIgcGxhbmVzLg0KPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiA+IA0KPiA+ID4g
-PiA+IEluIGZhY3QgSSdtIHRoaW5raW5nIHRoZSBtYWlsYm94IHN0eWxlIGxlZ2FjeSBjdXJzb3Ig
-dXBkYXRlcyBhcmUganVzdA0KPiA+ID4gPiA+IGZ1bmRlbWVudGFsbHkgaW5jb21wYXRpYmxlIHdp
-dGggcGFydGlhbCB1cGRhdGVzIHNpbmNlIHRoZSBjdXJzb3INCj4gPiA+ID4gPiBjYW4gbW92ZSBv
-dXRzaWRlIG9mIHRoZSBhbHJlYWR5IGNvbW1pdHRlZCB1cGRhdGUgcmVnaW9uIGFueSB0aW1lLg0K
-PiA+ID4gPiA+IEllLiBJIHN1c3BlY3Qgd2hpbGUgdGhlIGN1cnNvciBpcyB2aXNpYmxlIHdlIHNp
-bXBseSBjYW4ndCBkbyBwYXJ0aWFsDQo+ID4gPiA+ID4gdXBkYXRlcy4NCj4gPiA+ID4gDQo+ID4g
-PiA+IFByb2JhYmx5IEkgZGlkIG5vdCB1bmRlcnN0YW5kIHdoYXQgeW91IHdhbnQgdG8gc2F5LCBi
-dXQgZWFjaCBjdXJzb3IgdXBkYXRlIHdpbGwgYmUgaW4gb25lIGZyYW1lLCB1cGRhdGluZyB0aGUg
-bmVjZXNzYXJ5IGFyZWEuDQo+ID4gPiANCj4gPiA+IFRoZSBsZWdhY3kgY3Vyc29yIHVzZXMgbWFp
-bGJveCB1cGRhdGVzIHNvIHRoZXJlIGlzIG5vIDE6MSByZWxhdGlvbnNoaXANCj4gPiA+IGJldHdl
-ZW4gYWN0dWFsIHNjYW5uZWQgb3V0IGZyYW1lcyBhbmQgY3Vyc29yIGlvY3RsIGNhbGxzLiBZb3Ug
-Y2FuDQo+ID4gPiBoYXZlIHVtcHRlZW4gdGhvdXNhbmQgY3Vyc29yIHVwZGF0ZXMgcGVyIGZyYW1l
-Lg0KPiA+IA0KPiA+IE5vdCBpZiBpbnRlbF9sZWdhY3lfY3Vyc29yX3VwZGF0ZSgpIGlzIGNoYW5n
-ZWQgdG8gZ28gdG8gdGhlIHNsb3cgcGF0aCBhbmQgZG8gb25lIGF0b21pYyBjb21taXQgZm9yIGVh
-Y2ggbW92ZS4NCj4gPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvNDUz
-MTkyLz9zZXJpZXM9OTQ1MjImcmV2PTENCj4gDQo+IFRoYXQncyBub3QgZ29pbmcgdG8gZmx5LiBU
-aGUgd2hvbGUgcmVhc29uIGZvciB0aGUgbGVnYWN5IGN1cnNvciB0aGluZyBpcw0KPiB0aGF0IFgg
-bGlrZXMgdG8gZG8gdGhvdXNhbmRzIG9mIGN1cnNvciB1cGRhdGVzIHBlciBmcmFtZS4NCg0KRnJv
-bSB1c2VyIGV4cGVyaWVuY2UgcGVyc3BlY3RpdmUgdGhlcmUgaXMgbm8gaXNzdWVzIGluIGNvbnZl
-cnRpbmcgdG8gYXRvbWljIGNvbW1pdCwgdGhvc2UgMyB2aWRlb3MgdGhhdCBJIHNoYXJlZCB3aXRo
-IHlvdSBoYXZlIHRoaXMgY29udmVyc2lvbi4gDQoNCj4gDQo+ID4gDQo+ID4gSSBiZWxpZXZlIGNv
-bXBvc2l0b3JzIHdpbGwgZG8gYSBzaW5nbGUgYXRvbWljIGNvbW1pdCB1cGRhdGluZyBjdXJzb3Ig
-YW5kIGFsbCB0aGUgb3RoZXIgcGxhbmVzIGludG8gYSBzaW5nbGUgY29tbWl0Lg0KPiANCj4gTm8u
-IFggb2J2aW91c2x5IGRvZXNuJ3QgZG8gdGhhdC4gQW5kIElJUkMgY2hyb21lb3MgYWxzbyB1c2Vz
-IHRoZQ0KPiBsZWdhY3kgY3Vyc29yIGlvY3RsIGZvciB0aGUgY3Vyc29yIGRlc3BpdGUgdXNpbmcg
-YXRvbWljIGNvbW1pdHMgZm9yDQo+IGV2ZXJ5dGhpbmcgZWxzZS4NCj4gDQoNCg==
+On Fri, Sep 17, 2021 at 06:42:04PM +0200, Hans de Goede wrote:
+> Hi,
+> 
+> On 9/17/21 6:25 PM, Ville Syrjälä wrote:
+> > On Fri, Sep 17, 2021 at 04:37:14PM +0200, Hans de Goede wrote:
+> >> Hi,
+> >>
+> >> On 9/16/21 3:45 PM, Ville Syrjälä wrote:
+> >>> On Mon, Sep 06, 2021 at 09:35:19AM +0200, Hans de Goede wrote:
+> >>>> Add support for eDP panels with a built-in privacy screen using the
+> >>>> new drm_privacy_screen class.
+> >>>>
+> >>>> One thing which stands out here is the addition of these 2 lines to
+> >>>> intel_atomic_commit_tail:
+> >>>>
+> >>>> 	for_each_new_connector_in_state(&state->base, connector, ...
+> >>>> 		drm_connector_update_privacy_screen(connector, state);
+> >>>>
+> >>>> It may seem more logical to instead take care of updating the
+> >>>> privacy-screen state by marking the crtc as needing a modeset and then
+> >>>> do this in both the encoder update_pipe (for fast-sets) and enable
+> >>>> (for full modesets) callbacks. But ATM these callbacks only get passed
+> >>>> the new connector_state and these callbacks are all called after
+> >>>> drm_atomic_helper_swap_state() at which point there is no way to get
+> >>>> the old state from the new state.
+> >>>
+> >>> Pretty sure the full atomic state is plumbed all the way
+> >>> down these days.
+> >>
+> >> Including the old state? AFAICT the old-state is being thrown away
+> >> from drm_atomic_helper_swap_state(),
+> > 
+> > No. That's just when those annoying foo_state->state pointers get
+> > clobbered. We've been moving away from using those and just
+> > plumbing the entire atomic state everywhere.
+> > 
+> > Nothing actually gets freed until the whole drm_atomic_state gets
+> > nuked after the commit is done.
+> > 
+> >> so if we do this in a different
+> >> place then we don't have access to the old-state.
+> >>
+> >>
+> >>>
+> >>>>
+> >>>> Without access to the old state, we do not know if the sw_state of
+> >>>> the privacy-screen has changes so we would need to call
+> >>>> drm_privacy_screen_set_sw_state() unconditionally. This is undesirable
+> >>>> since all current known privacy-screen providers use ACPI calls which
+> >>>> are somewhat expensive to make.
+> >>>
+> >>> I doubt anyone is going to care about a bit of overhead for a modeset.
+> >>
+> >> But this is not a modeset, this is more like changing the backlight brightness,
+> >> atm the code does not set the needs_modeset when only the privacy-screen
+> >> sw-state has changed.
+> >>
+> >> Also in my experience the firmware (AML) code which we end up calling
+> >> for this is not the highest quality code, often it has interesting
+> >> issues / unhandled corner cases. So in my experience with ACPI we
+> >> really should try to avoid these calls unless we absolutely must make them,
+> >> but I guess not making unnecessary calls is something which could be handled
+> >> inside the actual privacy-screen driver instead.
+> >>
+> >>> The usual rule is that a modeset doesn't skip anything. That way we
+> >>> can be 100% sure we remeber to update everythinbg. For fastsets I guess
+> >>> one could argue skipping it if not needed, but not sure even that is
+> >>> warranted.
+> >>
+> >> Right, but again this is not a full modeset.
+> > 
+> > In general fastset is is just an optimized modeset. Userspace asked
+> > for a modeset, but we noticed it doesn't need it. I don't think
+> > there is a particular expectation that it's super fast.
+> > 
+> > But if this is really annoyingly slow in some actual usecase
+> 
+> Yeah these acpi-calls might take like a 100 ms easily, so
+> we really want to avoid it if it is not necessary.
+> 
+> > then
+> > one way to avoid that need to compare against the old state is just
+> > introduce another foo_changed flag.
+> 
+> Ok, so I have the feeling that you have an idea of how you think this
+> should be done / how this code should look instead of what I have
+> currently.
+> 
+> Can you perhaps provide a rough sketch / description of how you
+> think this should be done (instead of the current implementation) ?
+> 
+> Should I do the update from the the encoder update_pipe (for fast-sets)
+> and enable (for full modesets) callbacks instead as I mention in
+> the commit message ?
+> 
+> And since I still only want to do the call if there is an actual
+> change, where could I best do the old / new sw_state change cmp to
+> set the new foo_changed flag?
+>
+
+I guess it could be just something like this:
+
+intel_digital_connector_duplicate_state()
+{
+	foo_changed = false;
+}
+
+intel_digital_connector_atomic_check()
+{
+	if (old_foo != new_foo) {
+		mode_changed = true;
+		foo_changed = true;
+	}
+}
+
+update_pipe()
+{
+	if (foo_changed)
+		update_foo();
+}
+
+-- 
+Ville Syrjälä
+Intel
