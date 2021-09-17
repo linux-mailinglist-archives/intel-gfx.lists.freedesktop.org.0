@@ -2,51 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7474410180
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 00:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E8541018C
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 00:57:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD8E66EE8D;
-	Fri, 17 Sep 2021 22:52:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 404106EE94;
+	Fri, 17 Sep 2021 22:57:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 151796EE8D
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 22:52:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="209975120"
-X-IronPort-AV: E=Sophos;i="5.85,302,1624345200"; d="scan'208";a="209975120"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 15:52:57 -0700
-X-IronPort-AV: E=Sophos;i="5.85,302,1624345200"; d="scan'208";a="546662097"
-Received: from unknown (HELO localhost) ([10.251.216.224])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 15:52:51 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, Hugh Dickins <hughd@google.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
- John Harrison <John.C.Harrison@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Dave Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Pavel Machek <pavel@denx.de>,
- linux-kernel@vger.kernel.org
-In-Reply-To: <20210917213032.GA34270@jons-linux-dev-box>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <9e1a6f3b-5e64-be91-ba54-9b5d135ef638@google.com>
- <9e4c1c68-8d1e-ee2c-99bf-320046130775@linux.intel.com>
- <87mtocx1rm.fsf@intel.com> <1f955bff-fd9e-d2ee-132a-f758add9e9cb@google.com>
- <20210917213032.GA34270@jons-linux-dev-box>
-Date: Sat, 18 Sep 2021 01:52:48 +0300
-Message-ID: <87k0jevmpr.fsf@intel.com>
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E08AC6EE8E;
+ Fri, 17 Sep 2021 22:57:39 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id A55D82B00BD5;
+ Fri, 17 Sep 2021 18:57:38 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute3.internal (MEProxy); Fri, 17 Sep 2021 18:57:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=WMLpEFBE93jrQXCWdCpO4Ix/sm2
+ jroLMl/pxBagZPTo=; b=UucEzm++DdPegc7AIie9vkXls9cdxOuR/tbOhB2OS3c
+ yjHTAhpwwSY0t9ERGUGvilcYQB0+9Q0nFmwaCMtbG6psDnd6DyRQ1P+Q5Z/USqDY
+ 7MUDYAcpYI0bL6tjSfdobTf7eYgVldkdeY7SfLWu6vd1UzBqdkAuaBtSNCeGTeXV
+ ztNEY4IuVotlC9QZB3U5DhiYL9IRX+lnAYS1lZcakZaeC8yRqRWlLShiJcuWvq9p
+ 2Ig66C5G0SgWxaid9PnmP2LQbpQUdxX7PH+mdvo4Jlg/NwpaBvT/ef7a+jZ9wIoj
+ EwYlYY4LNAVBguuYxHiVYCTEkz2j4OAQnSk0qC7UQ1Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=WMLpEF
+ BE93jrQXCWdCpO4Ix/sm2jroLMl/pxBagZPTo=; b=KaVrhnyA+J97tyCTA/B8PE
+ OpUr6t8TFqt9xWbXvQu6jE4U2fcFTf+RmqDuOmd0KS2+OXe8ht5wZk1Yy30z56eS
+ cvRnQcutN1iT33QTKWfcKEJJ6yaqUkIw/6270BOAPNYQI/PHZiKN+tGPb5Py4e+r
+ 7EbfujsB++dWI+6YumBBTPRIOq1wBVZ/sTB2y1xXC35j/m6FdK8LdYeQOHOOvuQ7
+ 6qP6H0XtZSlJ7u7Cd39sp1vsne4HuGNaZTf8HC1mQI6iJOipuPX6zg1IqxjtLNyh
+ iv4peoPLj45XNiUf5yXyKdybk89V2n5Bdx+Fdqdnbj+XezNDnR7eIQzeCknMcDAg
+ ==
+X-ME-Sender: <xms:YR1FYWJqrDZl6aQKzXbLt78kWrRnB8L29XBVdH4kIMMf4vt-VW1jKg>
+ <xme:YR1FYeJzS4X78Jc9_9vkjvXmq2G1jQH1-zvRbKsUrBUYiQXvM8qakbycDG1Bi3ZmS
+ ufcFqpYNjuOxgajUw>
+X-ME-Received: <xmr:YR1FYWu79VLy5GCP_Dhc7mdjJ_8NgQP_6avPgVPbHNQnQIXm4tHBUnBoSUJl-Pzps5oqZP_x>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgudeiucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
+ nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
+ gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
+ heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
+ gvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:YR1FYbZaiu5WV3xy_1zUjmtwLCyuVa8Y3c18cXagVazQx-pFyD-eoA>
+ <xmx:YR1FYdbnc477cSnWYRc2L2KUKh2DM-uz7g-ccvLrSaNsIEZ_r-1J4A>
+ <xmx:YR1FYXCW0peK2ic7qefI2FgPB6gm97oZaiFrU1FgQA3eBDMDdpkT7w>
+ <xmx:Yh1FYfmUYx05lxhx-jq8sjs3zQSdxgM6bGklit2hrg7ivFQsbN715pI_MrQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 17 Sep 2021 18:57:34 -0400 (EDT)
+Date: Sat, 18 Sep 2021 00:57:31 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: Sean Paul <sean@poorly.run>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Message-ID: <YUUdW2fb8wC+ClX0@zacax395.localdomain>
+References: <20210916211552.33490-1-greenfoo@u92.eu>
+ <20210916211552.33490-13-greenfoo@u92.eu>
+ <20210917154830.GM2515@art_vandelay>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] 5.15-rc1 i915 blank screen booting on ThinkPads
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210917154830.GM2515@art_vandelay>
+Subject: Re: [Intel-gfx] [PATCH 12/15] drm/i915: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,81 +89,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Sep 2021, Matthew Brost <matthew.brost@intel.com> wrote:
-> On Fri, Sep 17, 2021 at 02:26:48PM -0700, Hugh Dickins wrote:
->> On Thu, 16 Sep 2021, Jani Nikula wrote:
->> > On Thu, 16 Sep 2021, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> > > On 16/09/2021 05:37, Hugh Dickins wrote:
->> > >> Two Lenovo ThinkPads, old T420s (2011), newer X1 Carbon 5th gen (2017):
->> > >> i915 working fine on both up to 5.14, but blank screens booting 5.15-rc1,
->> > >> kernel crashed in some way.
->> ...
->> > > Kernel logs with drm.debug=0xe, with the broken black screen state, 
->> > > would probably answer a lot of questions if you could gather it from 
->> > > both machines?
->> > 
->> > And for that, I think it's best to file separate bugs at [1] and attach
->> > the logs there. It helps keep the info in one place. Thanks.
->> > 
->> > BR,
->> > Jani.
->> > 
->> > [1] https://gitlab.freedesktop.org/drm/intel/issues/new
->> 
->> Thanks for the quick replies: but of course, getting kernel logs was
->> the difficult part, this being bootup, with just a blank screen, and
->> no logging to disk at this stage.  I've never needed it before, but
->> netconsole to the rescue.
->> 
->> Problem then obvious, both machines now working,
->> please let me skip the bug reports, here's a patch:
->> 
->
-> Thanks for finding / fixing this Hugh. I will post this patch in a way
-> our CI system can understand.
+> >  	int i;
+> > +	int ret;
+> 
+> Please move up with i
 
-Thanks indeed!
+Done!
 
-Matt, please get rid of the BUG_ON while at it, and make it a
-WARN. Oopsing doesn't do anyone any good.
 
-BR,
-Jani.
+> > +	DRM_MODESET_LOCK_ALL_END((&dev_priv->drm), ctx, ret);
+> >  
+> >  	return 0;
+> 
+> Return ret here
 
->
-> Matt 
->
->> [PATCH] drm/i915: fix blank screen booting crashes
->> 
->> 5.15-rc1 crashes with blank screen when booting up on two ThinkPads
->> using i915.  Bisections converge convincingly, but arrive at different
->> and surprising "culprits", none of them the actual culprit.
->> 
->> netconsole (with init_netconsole() hacked to call i915_init() when
->> logging has started, instead of by module_init()) tells the story:
->> 
->> kernel BUG at drivers/gpu/drm/i915/i915_sw_fence.c:245!
->> with RSI: ffffffff814d408b pointing to sw_fence_dummy_notify().
->> I've been building with CONFIG_CC_OPTIMIZE_FOR_SIZE=y, and that
->> function needs to be 4-byte aligned.
->> 
->> Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
->> Signed-off-by: Hugh Dickins <hughd@google.com>
->> ---
->> 
->>  drivers/gpu/drm/i915/gt/intel_context.c |    1 +
->>  1 file changed, 1 insertion(+)
->> 
->> --- a/drivers/gpu/drm/i915/gt/intel_context.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
->> @@ -362,6 +362,7 @@ static int __intel_context_active(struct
->>  	return 0;
->>  }
->>  
->> +__aligned(4)	/* Respect the I915_SW_FENCE_MASK */
->>  static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
->>  				 enum i915_sw_fence_notify state)
->>  {
+Done!
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+
+> > +	struct drm_modeset_acquire_ctx ctx;
+> >  	int i;
+> > +	int ret;
+> 
+> Please move up with i
+
+Done!
+
+
+> > -	drm_modeset_unlock_all(dev);
+> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+> >  
+> >  	return 0;
+> 
+> Return ret
+
+Done!
+
+
+> > -	drm_modeset_unlock_all(dev);
+> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+> >  
+> >  	return 0;
+> 
+> Return ret
+
+Done!
+
+
+> > -	drm_modeset_unlock_all(dev);
+> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+> >  
+> 
+> Check ret here and return an error if it's != 0
+
+Done!
+
+
+> > @@ -1194,14 +1195,11 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+> >  	if (ret != 0)
+> >  		goto out_unlock;
+> >  
+> > -	drm_modeset_unlock_all(dev);
+> > -	i915_gem_object_put(new_bo);
+> > -
+> > -	return 0;
+> > -
+> >  out_unlock:
+> > -	drm_modeset_unlock_all(dev);
+> > -	i915_gem_object_put(new_bo);
+> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+> > +
+> > +	if (params->flags & I915_OVERLAY_ENABLE)
+> > +		i915_gem_object_put(new_bo);
+> 
+> This function refactor is a bit more involved than the
+> s/drm_modeset_lock_all/DRM_MODESET_LOCK_ALL_*/ changes in the rest of the patch.
+> Could you split it out into a separate patch so it's not hidden away?
+
+Sure, no problem.
+
