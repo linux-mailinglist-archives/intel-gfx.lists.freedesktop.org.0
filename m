@@ -2,43 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D563640F78B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 14:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8874A40F8B5
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 15:03:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2804E89DBC;
-	Fri, 17 Sep 2021 12:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C576ED11;
+	Fri, 17 Sep 2021 13:02:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EBB389DBC
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 12:32:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="308334214"
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="308334214"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 05:32:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="509902528"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 17 Sep 2021 05:32:51 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Sep 2021 15:32:51 +0300
-Date: Fri, 17 Sep 2021 15:32:51 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YUSK83PNOgEPQjB7@intel.com>
-References: <20210514125751.17075-1-ville.syrjala@linux.intel.com>
- <20210514125751.17075-3-ville.syrjala@linux.intel.com>
- <20210916162421.GB30274@intel.com>
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
+ [IPv6:2a00:1450:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7614F6EC44;
+ Fri, 17 Sep 2021 12:35:17 +0000 (UTC)
+Received: by mail-wr1-x42e.google.com with SMTP id t8so14939664wrq.4;
+ Fri, 17 Sep 2021 05:35:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=NqzuWFeqLMR3DIAr8L16pZ3er+uc6gXgKxZaXcF1adA=;
+ b=MR4GVrYUq6pOKxeWCneMvbSRqOC+VP7J5W57KEltAJySgk58K8pLppWet97v8xr9aX
+ eb2V/mPYRz6HL01TnvLNKPQ8Tz2PlzAAqNDxPkCgOec3gIuwxxFwml86jPEsA8B3aQQ8
+ iZB/PiZ4oLuGzCphdVPgKJ6L54dJvbQ46+jf3uI7NTYjLgv9o3HLQk949201HWtFMOXM
+ xAYI/JNljopIky6BUOHugrkZZyUec0piAVdIschbj4Er9Ak502jXuQ3qJFIkMzquZa8Q
+ n43uaQzUhAPF8ddZ3lRUE+oZtPlVf7U5Dzrl1Pk9J9wsAQ/dH8KARjNA0DIonGaHMW3s
+ oRRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=NqzuWFeqLMR3DIAr8L16pZ3er+uc6gXgKxZaXcF1adA=;
+ b=B6+5v8N5F6Y3+jBECwYGGWI7TmuBBh4/DXwBa5JfMLfgcPX1E6RSgix8aLWO0YX2I0
+ okv5zeOmKbfarQsv+XMDVeaCswOFLadQfm2pVA9mrHDPiNBN58NG0BOsigphkMpDh4Zd
+ EOfTwGxC97koc/YETJ8dOlQxdhlYTqS4LbTSWSj485T800NDOTgl6GSKu2wMZSSBiPKi
+ FjvGEPbWErk0mDOfAxKFZVVwf0+TgWqMzCdl7sInEUfCdt6kuyqxlZrSWghs2DiTd9V6
+ eRKSDkJriGfgXnPKtAaU3S2bB3G7+waW5jQpSIw3qwY4BlJklSZFs3/xuuqueqNMFtmi
+ GoNw==
+X-Gm-Message-State: AOAM530i8IdmlsuA2XhjD6K6kQCo/g19IoBEihtGN2eG3eTv+gggg6IP
+ ckW1tzjeB0X+CidfCsQJT5e8cmu4aZ0=
+X-Google-Smtp-Source: ABdhPJyK+onjjmSAKaFQWBBQw+peagAXA1OgNeJVDQ/AMdoYnHiB3CR/VT28asGrQ3AobNAvWnDc4g==
+X-Received: by 2002:adf:f18a:: with SMTP id h10mr12091268wro.42.1631882116093; 
+ Fri, 17 Sep 2021 05:35:16 -0700 (PDT)
+Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
+ by smtp.gmail.com with ESMTPSA id
+ l21sm6122049wmh.31.2021.09.17.05.35.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Sep 2021 05:35:15 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: daniel@ffwll.ch
+Date: Fri, 17 Sep 2021 14:34:47 +0200
+Message-Id: <20210917123513.1106-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210916162421.GB30274@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 02/14] drm/i915: Fix g4x cxsr enable
- condition
+X-Mailman-Approved-At: Fri, 17 Sep 2021 13:02:50 +0000
+Subject: [Intel-gfx] Deploying new iterator interface for dma-buf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,49 +75,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 16, 2021 at 07:24:21PM +0300, Lisovskiy, Stanislav wrote:
-> On Fri, May 14, 2021 at 03:57:39PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > The intention was to check whether the primary plane is enabled
-> > without any sprites planes being enabled. Instead we ended up checking
-> > whether just any one of the planes is enabled. g4x isn't vlv/chv and
-> > cxsr only works with the primary plane. Fix the check to examine the
-> > bitmask of active planes rather than the number of bits set in said
-> > bitmask.
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/intel_pm.c | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > index 00a5fe424c5a..2fb496fbed43 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -1376,8 +1376,7 @@ static int g4x_compute_pipe_wm(struct intel_crtc_state *crtc_state)
-> >  	struct intel_atomic_state *state =
-> >  		to_intel_atomic_state(crtc_state->uapi.state);
-> >  	struct g4x_wm_state *wm_state = &crtc_state->wm.g4x.optimal;
-> > -	int num_active_planes = hweight8(crtc_state->active_planes &
-> > -					 ~BIT(PLANE_CURSOR));
-> > +	u8 active_planes = crtc_state->active_planes & ~BIT(PLANE_CURSOR);
-> >  	const struct g4x_pipe_wm *raw;
-> >  	const struct intel_plane_state *old_plane_state;
-> >  	const struct intel_plane_state *new_plane_state;
-> > @@ -1417,7 +1416,7 @@ static int g4x_compute_pipe_wm(struct intel_crtc_state *crtc_state)
-> >  	wm_state->sr.cursor = raw->plane[PLANE_CURSOR];
-> >  	wm_state->sr.fbc = raw->fbc;
-> >  
-> > -	wm_state->cxsr = num_active_planes == BIT(PLANE_PRIMARY);
-> > +	wm_state->cxsr = active_planes == BIT(PLANE_PRIMARY);
-> 
-> Shouldn't this be "active_planes & BIT(PLANE_PRIMARY)" as we might
-> have other non-cursor planes enabled, which will then fail or am I missing something?
+Hopefully the last round for this.
 
-CxSR is possible only when the primary plane is enabled and the
-sprite plane is disabled.
+Added dma_resv_iter_begin/end as requested by Daniel. Fixed a bunch of
+problems pointed out by the CI systems and found a few more myselve.
 
--- 
-Ville Syrjälä
-Intel
+Please review and/or comment,
+Christian.
+
+
