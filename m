@@ -2,65 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C0B40FAA7
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 16:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4651240FAC0
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 16:50:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1D5D6ED82;
-	Fri, 17 Sep 2021 14:45:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF8B6ED29;
+	Fri, 17 Sep 2021 14:50:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
- [IPv6:2a00:1450:4864:20::52e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E409D6ED7D
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 14:45:32 +0000 (UTC)
-Received: by mail-ed1-x52e.google.com with SMTP id v24so30876454eda.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 07:45:32 -0700 (PDT)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5B86ED29
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 14:50:21 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id v24so30930321eda.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 07:50:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=wz2r8Rw4gqbVGILBBsKjUR6eLdLizuihefxtloorVPI=;
- b=dGMlVF44MnGWCRZ8L0BQUFARQV3UIV2ckjuP2h0mTeMnC2rx1AQmsBDqh9NUl10eYg
- 97kY/fQ7d7vLDu2qysmuF0Y6SRaryxtgQigFFsi0Cs4QDmHbLtNHqjYJL2Gl22iqKKpH
- h4U+lM/8nH6QEKWdzBQVwstmSCRzK2Kbo8i/k=
+ bh=5RGQxzmlKwLpLejf7DyioqG8/xNm2Xdb7FS3U66xIrQ=;
+ b=KISrc2lSZllL6gBcY+5XK+lD9HLQ+zSIdbbchQVQTKVYPWwYnEjy+hUmPmmIETYGLF
+ uHXfp7iHt4eWj5756feNhEgkLI5RnAYOgGkQY6YIHy39zA7xuIHJnrMN1HGGfkOydDXx
+ ugowRSHA+WDJH+laAfL4w+ShJz/VT+5qy9Ato=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=wz2r8Rw4gqbVGILBBsKjUR6eLdLizuihefxtloorVPI=;
- b=evg4F4TBHtEF0MViEFdudcbfMdWCBuNYThPJfE082XXBXOet3Fad7GMS9GaFWZOdPg
- Hp1zQ7mSbTBqavLZj62XwEWN9cYUbB9k+N5n25CFohsYrSH7SCBvOSDk0tQJJHU7+VRI
- oR9Qoeou/RLnFDfABir/EQVtSg3uVMuSNVAL8kweuLgTN+xQkN4GCmmoSocztIHvuER1
- 2Bq3nkRtPTlfyJyS1gYd8M7xl6oUe99E8L0vwkeH6Cq2bS26eDYvGkdRMzPHnpyYiQq5
- 9AYchqcuo12RsShj+W0cLFToIhiVkzEV9pjDfdV17/U3T01SigGG/OHpJGmbNGxZRL95
- iajA==
-X-Gm-Message-State: AOAM532unBZm1ibWBpE9GdOO3cpxv1bTu5r4aBynG1ocG2MqZBxzdesp
- sPvify132GMrUemxtP8znFaARA==
-X-Google-Smtp-Source: ABdhPJyyblJCLjZajzeKpqWDj9X2cRAcImcMI5oX9JtcEMGLvT6fyS0mnqKK2zSi0SFdhRRdLUWHzA==
-X-Received: by 2002:a17:906:1856:: with SMTP id
- w22mr13230531eje.393.1631889931009; 
- Fri, 17 Sep 2021 07:45:31 -0700 (PDT)
+ bh=5RGQxzmlKwLpLejf7DyioqG8/xNm2Xdb7FS3U66xIrQ=;
+ b=u7No5Umt07qa8sXNazYVWqu3lstbvZIWHwkopXAG+JO8DA2/oOc0rqxJwH08Pstekz
+ hl57UZDkWzfLLXkeHvU+aKS+2fOBZgKhjEhD9GCQLitt2cyd4Aryhvnu9/P9G1kaU3ZJ
+ 2jUMVQNHJS26hBd7f/aE2JdgI11GY/Z8BTF2nBOqIbdFZw3KnTCTekv7ibhJpKfnjtvm
+ hxFsdjksRGw+4WNjZMxGBv+UbHO05w3E14LPWpmvHN4v9J9ix/g756mDQzmk73tKGVud
+ gUY2djkMmHTpNRM4G8iW+CelfIKdRPBuVYC9A6AuCfDcIgv4R90BwSkpqUoEIgbWUJjG
+ OEFw==
+X-Gm-Message-State: AOAM530iX+011Sy9lAHIlZPKfVBWQ5SEEQEPA/YlTBKgCqxJHouh8szq
+ 93QTfVysmrR+bGpQFE1+UQ65RA==
+X-Google-Smtp-Source: ABdhPJxba/NO0TrkGTviWKbmqvAbMZ4UOj73wmiM3lhAiN+9qVsSuL5PWtv7x1Y8+C+2+v3sFyzyhA==
+X-Received: by 2002:a50:fb06:: with SMTP id d6mr12689369edq.31.1631890219229; 
+ Fri, 17 Sep 2021 07:50:19 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id b3sm2105487edx.55.2021.09.17.07.45.30
+ by smtp.gmail.com with ESMTPSA id z12sm2718687edx.66.2021.09.17.07.50.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Sep 2021 07:45:30 -0700 (PDT)
-Date: Fri, 17 Sep 2021 16:45:28 +0200
+ Fri, 17 Sep 2021 07:50:18 -0700 (PDT)
+Date: Fri, 17 Sep 2021 16:50:17 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
 Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
  linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  daniel@ffwll.ch
-Message-ID: <YUSqCIxUbkk0qCO9@phenom.ffwll.local>
+Message-ID: <YUSrKdHwcK+us4XG@phenom.ffwll.local>
 References: <20210917123513.1106-1-christian.koenig@amd.com>
- <20210917123513.1106-7-christian.koenig@amd.com>
+ <20210917123513.1106-8-christian.koenig@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210917123513.1106-7-christian.koenig@amd.com>
+In-Reply-To: <20210917123513.1106-8-christian.koenig@amd.com>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 06/26] dma-buf: use new iterator in
- dma_resv_test_signaled
+Subject: Re: [Intel-gfx] [PATCH 07/26] drm/ttm: use the new iterator in
+ ttm_bo_flush_all_fences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,104 +75,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 17, 2021 at 02:34:53PM +0200, Christian König wrote:
-> This makes the function much simpler since the complex
-> retry logic is now handled elsewhere.
+On Fri, Sep 17, 2021 at 02:34:54PM +0200, Christian König wrote:
+> This is probably a fix since we didn't even grabed a reference to the
+> fences.
+
+It's rcu protected, and we only care about speeding things up a bit. I
+think this wont have any impact on correctness, and I don't think any
+driver could blow up?
+
+But yeah maybe we should have a few assert sprinkled into various
+dma_fence functions to make sure we never call them when the refcount has
+dropped to 0. That would catch stuff like this, and help lock down the
+dma-fence api quite a bit.
 > 
 > Signed-off-by: Christian König <christian.koenig@amd.com>
 > ---
->  drivers/dma-buf/dma-resv.c | 56 ++++++--------------------------------
->  1 file changed, 9 insertions(+), 47 deletions(-)
+>  drivers/gpu/drm/ttm/ttm_bo.c | 14 ++++----------
+>  1 file changed, 4 insertions(+), 10 deletions(-)
 > 
-> diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
-> index c7db553ab115..d8f428ddaedd 100644
-> --- a/drivers/dma-buf/dma-resv.c
-> +++ b/drivers/dma-buf/dma-resv.c
-> @@ -593,22 +593,6 @@ long dma_resv_wait_timeout(struct dma_resv *obj, bool wait_all, bool intr,
->  EXPORT_SYMBOL_GPL(dma_resv_wait_timeout);
->  
->  
-> -static inline int dma_resv_test_signaled_single(struct dma_fence *passed_fence)
-> -{
-> -	struct dma_fence *fence, *lfence = passed_fence;
-> -	int ret = 1;
-> -
-> -	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &lfence->flags)) {
-> -		fence = dma_fence_get_rcu(lfence);
-> -		if (!fence)
-> -			return -1;
-> -
-> -		ret = !!dma_fence_is_signaled(fence);
-> -		dma_fence_put(fence);
-> -	}
-> -	return ret;
-> -}
-> -
->  /**
->   * dma_resv_test_signaled - Test if a reservation object's fences have been
->   * signaled.
-> @@ -625,43 +609,21 @@ static inline int dma_resv_test_signaled_single(struct dma_fence *passed_fence)
->   */
->  bool dma_resv_test_signaled(struct dma_resv *obj, bool test_all)
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 3b22c0013dbf..7d804c0c69b0 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -269,22 +269,16 @@ static int ttm_bo_individualize_resv(struct ttm_buffer_object *bo)
+>  static void ttm_bo_flush_all_fences(struct ttm_buffer_object *bo)
 >  {
+>  	struct dma_resv *resv = &bo->base._resv;
+> -	struct dma_resv_list *fobj;
 > +	struct dma_resv_iter cursor;
 >  	struct dma_fence *fence;
-> -	unsigned int seq;
-> -	int ret;
+> -	int i;
 >  
 >  	rcu_read_lock();
-> -retry:
-> -	ret = true;
-> -	seq = read_seqcount_begin(&obj->seq);
+> -	fobj = dma_resv_shared_list(resv);
+> -	fence = dma_resv_excl_fence(resv);
+> -	if (fence && !fence->ops->signaled)
+> -		dma_fence_enable_sw_signaling(fence);
 > -
-> -	if (test_all) {
-> -		struct dma_resv_list *fobj = dma_resv_shared_list(obj);
-> -		unsigned int i, shared_count;
+> -	for (i = 0; fobj && i < fobj->shared_count; ++i) {
+> -		fence = rcu_dereference(fobj->shared[i]);
 > -
-> -		shared_count = fobj ? fobj->shared_count : 0;
-> -		for (i = 0; i < shared_count; ++i) {
-> -			fence = rcu_dereference(fobj->shared[i]);
-> -			ret = dma_resv_test_signaled_single(fence);
-> -			if (ret < 0)
-> -				goto retry;
-> -			else if (!ret)
-> -				break;
-> +	dma_resv_iter_begin(&cursor, obj, test_all);
+> +	dma_resv_iter_begin(&cursor, resv, true);
 > +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		if (!dma_fence_is_signaled(fence)) {
+>  		if (!fence->ops->signaled)
 
-Should we be extremely clever and document that the iterator already
-filters out unsignalled fences? We could rely on that here :-) Otoh we
-don't want to make the full is_signalled check in that iterator, so this
-makes sense.
+Imo delete this check here. If that really matters for performance we
+should have it in the core dma_fence function, not replicated all over the
+place like this. Noodling around in dma_fence internals like this isn't
+cool.
 
-Again rcu_read_lock into the iterators pls. With that:
+With that removal included:
 
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-> +			dma_resv_iter_end(&cursor);
-> +			rcu_read_unlock();
-> +			return false;
->  		}
+>  			dma_fence_enable_sw_signaling(fence);
 >  	}
-> -
-> -	fence = dma_resv_excl_fence(obj);
-> -	if (ret && fence) {
-> -		ret = dma_resv_test_signaled_single(fence);
-> -		if (ret < 0)
-> -			goto retry;
-> -
-> -	}
-> -
-> -	if (read_seqcount_retry(&obj->seq, seq))
-> -		goto retry;
-> -
 > +	dma_resv_iter_end(&cursor);
 >  	rcu_read_unlock();
-> -	return ret;
-> +	return true;
 >  }
->  EXPORT_SYMBOL_GPL(dma_resv_test_signaled);
 >  
 > -- 
 > 2.25.1
