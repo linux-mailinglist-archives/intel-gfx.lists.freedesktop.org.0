@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA5B40F8B1
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 15:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B9940F8C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 15:03:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 311886ED1E;
-	Fri, 17 Sep 2021 13:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 330F06ECB8;
+	Fri, 17 Sep 2021 13:03:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E63716EC50;
- Fri, 17 Sep 2021 12:35:32 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- f62-20020a1c1f41000000b0030b42643f72so1776919wmf.3; 
- Fri, 17 Sep 2021 05:35:32 -0700 (PDT)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1A436EC50;
+ Fri, 17 Sep 2021 12:35:33 +0000 (UTC)
+Received: by mail-wm1-x32d.google.com with SMTP id
+ u19-20020a7bc053000000b002f8d045b2caso6789119wmc.1; 
+ Fri, 17 Sep 2021 05:35:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=BPSU1DXFCGE7WDMspzajAb5+e08n2RYsOOJEReWtL6U=;
- b=G7GZR/a3uftoZUOQE1c5/xOo1bxgEpGvghaVs/z0MIKYtjDRjokQ7n9avxKHenfJmP
- QJpAsdMHxHBym8ybMepqG99FkHP3tRqLVtRAzRFUZBypbd+VXJUStpFWHbDo5iiVCgn3
- Pbvps5yJ8rmr9efaFRBWkvaz8BarNd/aexogI9NPT7fHt/P6Dyl16sGMXHbZKkPWhT1L
- qFMnnDBkaCb+iz+HInXNKlKtuO9s1Apg9hXVe07nLBnntrGUmKflElYKOw7/qyMdOOOa
- r16gh0Q625ASoLJMdrsIWYI8ud+9xFbYuUCCUqSU9RwfLAo9dQiRgQb5UNk7i6huNurb
- cjqA==
+ bh=kXKjeGBADw7OkfdzhZSt4MyIYI/kiJUFDi8gqE27MEk=;
+ b=XGeEkOBDKSxjLIr9h/2LXxg9b9Qp9nQ1jeAbxOHQ+Y2aKqPLBmAEgc5hv8ZllcOneH
+ SXLXD4Mlufs09lr7ateqOtcrvkmEeRMotR+E4NhWQCyLAYRPsfbdDJ8QfQihjOVRtBb/
+ xCd1cQ8thLx5ZidjLtsClZ4an9qRTn3z+LA+qfuFiJJKwZSMcLebr9doAJ8QSVJK5CHz
+ ygSW/dgDvOCbV2ZTz9v5mgMlKmTm9mWcPKxCldkP9CEENogrstu9w/h1Qn7IC1T6zdFi
+ OQhQVLbMuZCAhuj0EXJXdrqUBXxpexyAaR3qsYU9TGdqdQHnqbdisIfWYbgmHxzCrgBG
+ 0UBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=BPSU1DXFCGE7WDMspzajAb5+e08n2RYsOOJEReWtL6U=;
- b=xQKSksIxyYOHG83y5KqXsdG1m4bq72jurys9ZR2tdMG8QkiCExA5B+gzQbt8pLu2Xd
- ZpGeFwyf7YFudK9LHYcwkera3u/vppUVMhh24e3vsnOrt2iQQrxl8aCJu+EvnkwqcSBu
- dCU7wTWgZYF7m72Cc0LFVADj2KPOwowBL18hy8nmhca95UYKAGZB7DGhS5B4X4J8hvff
- DZfGjFlQPXQh+y63VqxuQLJvZ648Lb2C17TbBOlDRH0ZQSL9mfOJDuPlTENS7E3FbD4n
- QW5iv/Njo+tJzw2GHbhOKFVjTLCAA7otLxds7yb3aSPfI40CBV78EK3VhKgmKJ07t4Uq
- b4BA==
-X-Gm-Message-State: AOAM53135ztaosFo3Uw6/uWI0VurAoPU6RLBCzi11YtpILZF4nSD7OEY
- UNRTddOyPk+HvF3GrABI1e8=
-X-Google-Smtp-Source: ABdhPJyYZOZM3qHZmzmJADXhbU1qBTWv4kCQvYb25PVLMl4AWhnK4e6h1RUh9Oi/FX1k49dfTAyXWQ==
-X-Received: by 2002:a7b:cbc4:: with SMTP id n4mr15128737wmi.93.1631882131496; 
- Fri, 17 Sep 2021 05:35:31 -0700 (PDT)
+ bh=kXKjeGBADw7OkfdzhZSt4MyIYI/kiJUFDi8gqE27MEk=;
+ b=Tbdzx4DFTbZfBhErbEUSs7GvwfamgGFeUf1YeRIeTlOX1fw+ht21GqSOKfe6CgF/tl
+ AWObr1FEyjleHqN4yAikq5mK0WaZ4AsaFbud27/FE2t2JBsxIFK3zdc4UtXWuYFZb3GY
+ FA0ED0jICyKO0A/VDfaYvkJLuF+kOsrK3w7/1nkhpA9rEQjL+9Ybfswtc3TBra3B40uV
+ 6L0I1/oijoQPuYWEWGJ9UBxOpKVVWko0j75aapQwoxjLriyQeAA5QZH60dHYOkstN/YV
+ 2iok1d7nukWx8Zh1HjgDsV7b0kEObFEzAG/gkzjxkC4gn4AWWoscycmrIe90a/Xha/iI
+ HIrg==
+X-Gm-Message-State: AOAM531bbGT+fpA5DNhrLKhrrWtsFadzIr48t5PtKIYB58AipGyyHo3c
+ 56SbI1tTmwHGgfNYMSmIK+I=
+X-Google-Smtp-Source: ABdhPJxnRPxEMk2FxBtoUnZidz/iVaBR9QM19ZzVdBgpzDZjd+/cY+u8xzzlOzFvnY7JyZ0eNQMvpQ==
+X-Received: by 2002:a7b:cc96:: with SMTP id p22mr10074382wma.83.1631882132299; 
+ Fri, 17 Sep 2021 05:35:32 -0700 (PDT)
 Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
  by smtp.gmail.com with ESMTPSA id
- l21sm6122049wmh.31.2021.09.17.05.35.30
+ l21sm6122049wmh.31.2021.09.17.05.35.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Sep 2021 05:35:31 -0700 (PDT)
+ Fri, 17 Sep 2021 05:35:32 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
  linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
 Cc: daniel@ffwll.ch
-Date: Fri, 17 Sep 2021 14:35:05 +0200
-Message-Id: <20210917123513.1106-19-christian.koenig@amd.com>
+Date: Fri, 17 Sep 2021 14:35:06 +0200
+Message-Id: <20210917123513.1106-20-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210917123513.1106-1-christian.koenig@amd.com>
 References: <20210917123513.1106-1-christian.koenig@amd.com>
@@ -62,8 +62,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 17 Sep 2021 13:02:50 +0000
-Subject: [Intel-gfx] [PATCH 18/26] drm/i915: use new iterator in
- i915_gem_object_last_write_engine v2
+Subject: [Intel-gfx] [PATCH 19/26] drm/i915: use new cursor in
+ intel_prepare_plane_fb v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,44 +79,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is maybe even a fix since the RCU usage here looks incorrect.
+Simplifying the code a bit.
 
-v2: add missing rcu_read_lock()/unlock()
+v2: add rcu_read_lock()/unlock()
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 48112b9d76df..487329a96e92 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -507,16 +507,18 @@ static inline struct intel_engine_cs *
- i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
- {
- 	struct intel_engine_cs *engine = NULL;
-+	struct dma_resv_iter cursor;
- 	struct dma_fence *fence;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 134a6acbd8fb..51e3df0de1ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -11290,6 +11290,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	i915_gem_object_flush_frontbuffer(obj, ORIGIN_DIRTYFB);
  
- 	rcu_read_lock();
--	fence = dma_resv_get_excl_unlocked(obj->base.resv);
-+	dma_resv_iter_begin(&cursor, obj->base.resv, false);
-+	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-+		if (fence && dma_fence_is_i915(fence) &&
-+		    !dma_fence_is_signaled(fence))
-+			engine = to_request(fence)->engine;
-+	}
-+	dma_resv_iter_end(&cursor);
- 	rcu_read_unlock();
--
--	if (fence && dma_fence_is_i915(fence) && !dma_fence_is_signaled(fence))
--		engine = to_request(fence)->engine;
--	dma_fence_put(fence);
--
- 	return engine;
- }
+ 	if (!new_plane_state->uapi.fence) { /* implicit fencing */
++		struct dma_resv_iter cursor;
+ 		struct dma_fence *fence;
  
+ 		ret = i915_sw_fence_await_reservation(&state->commit_ready,
+@@ -11300,12 +11301,16 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		if (ret < 0)
+ 			goto unpin_fb;
+ 
+-		fence = dma_resv_get_excl_unlocked(obj->base.resv);
+-		if (fence) {
++		rcu_read_lock();
++		dma_resv_iter_begin(&cursor, obj->base.resv, false);
++		dma_resv_for_each_fence_unlocked(&cursor, fence) {
++			rcu_read_unlock();
+ 			add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+ 						   fence);
+-			dma_fence_put(fence);
++			rcu_read_lock();
+ 		}
++		dma_resv_iter_end(&cursor);
++		rcu_read_unlock();
+ 	} else {
+ 		add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+ 					   new_plane_state->uapi.fence);
 -- 
 2.25.1
 
