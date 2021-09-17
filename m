@@ -1,76 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F17840F235
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 08:19:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B5440F2E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 09:10:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E87D06EB8A;
-	Fri, 17 Sep 2021 06:19:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D951B6EC08;
+	Fri, 17 Sep 2021 07:10:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
- [66.111.4.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A62696EB8A
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 06:19:31 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailout.nyi.internal (Postfix) with ESMTP id 4D7865C0194
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 02:19:28 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Fri, 17 Sep 2021 02:19:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
- :from:to:subject:message-id:references:mime-version:content-type
- :in-reply-to; s=fm3; bh=N883k0tKOwzllyDroJ54PRkVihQ/RUs92kLGQhXt
- bZg=; b=voY/UY0klTkdxoJJRdgaiBGdyycor1QQWjylilCyh6BviKkN/WooOyJt
- jmSc+ZEYMsDyOX6nz3Ia1NCXoSbnSiamHQuOzEqdtL3Qze6fu2GH6lbKEFj61o5x
- 9trFipIN5l9LZhGT/SvvcFveyVLebJ75IB3RaGRT590uetpfTnnGR3635C/SSEV2
- 4yJo8PnUlvp2rwisjDhwW6DpNFNP3hRSp1qf5rlwS1Z7kl+f4cHjK48lXZwrI5jE
- UFgNWf38MCvZ7WIw/q9hYUFg6MXzNwF1CuT+g3tBrCcEjAIwNraA3wAMOfsJ7Bk8
- 8TCnJgCx/jKp+wUsw3BzQjM2+gBpUA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=N883k0
- tKOwzllyDroJ54PRkVihQ/RUs92kLGQhXtbZg=; b=GXW+dHfT9/DnPQpYvd+Zq0
- yhMaSZr82whYtjTM8aAQXgcS7lzofOlZfjwyrRoPx2Bi/uLTNWJG4z1HaVOtMRSz
- 3oeEaLWcKYjWi0JKRkOG460ne3BTQ4J1tc+rih5L+uKuRcJpeb9sHHWHnB0IO420
- VNf5nu4G/iSOqkvTdFdNiOMTgXQeMb83DkIs5Mdq3Jcy8XoXOPTI/p1A5AqQRL/x
- nV3NAdpb1fxSzF5Izjr2oPaMe2CuNjZ2rgtA9BncQuKpBMtprRNM23jXW/ytRdbx
- CDAEtr4+lpU3C18B9/AwNFWvz8hWE/DAOLNn40wbSnykatIrFRHfbv/bVif8pYqw
- ==
-X-ME-Sender: <xms:bzNEYbW7hJR5YsxoAjTHqTgT6ZUAxmzI8omhs1FUHsh_14gezMyvvw>
- <xme:bzNEYTmm-sUfdY_IA7wUQOQtxolJz2tfseb6fv7MPQFU0ZC8WBlDGGFMIAXrg1LwF
- W9s4b5IIJQ3ktJ4VQ>
-X-ME-Received: <xmr:bzNEYXZU_B7vEAPgCbVRk_chXBSheNKzLaa2XdGXZwRhQjVozpqFVwAbbaMdXnEoQkQvGvr4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehhedguddthecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehttd
- ortddttdejnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeevveffleevtddtvdeljeffvdehle
- ffffehfefhhfdvtdffkeevvdfhfffhfffhhfenucffohhmrghinhepudehqdhrtgdurdgr
- mhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
- gvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:bzNEYWVm_VrWmYjRbPjYppGD-HqBM6gZwATeb0EpUymIJB68HHej5A>
- <xmx:bzNEYVkbQ59--OlM87Bwc6GzpWvPDyQ48_le4omNBt9-Z5nsPePDNg>
- <xmx:bzNEYTc3F__OO_rmnMjFpCgaSDtDbqT4fcSI42BvTIQ2Lm_3lQG7eQ>
- <xmx:cDNEYTQHjg8xdPohDH3PmfAjBTfvIWeUD1pxmsArIKHqsgoV-ejd_A>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA for
- <intel-gfx@lists.freedesktop.org>; Fri,
- 17 Sep 2021 02:19:26 -0400 (EDT)
-Date: Fri, 17 Sep 2021 08:19:18 +0200
-From: Fernando Ramos <greenfoo@u92.eu>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <YUQzZsWuXRhapjXH@zacax395.localdomain>
-References: <20210916211552.33490-1-greenfoo@u92.eu>
- <163183640457.8837.7824778788682274896@emeril.freedesktop.org>
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A38136EC07;
+ Fri, 17 Sep 2021 07:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1631862598;
+ bh=bp0ZUgxCQhZbRnxIHPQI96iWY/FZMiRUNVypU7TLoCE=;
+ h=Date:From:To:Cc:Subject:From;
+ b=iFXX8Rq0LD9Ebq6aGKM2Eqb/JrL4epmgtLmA8mPndCRIJNsC1o1HlLZEbU++LacWi
+ PxsU5/2vdAkqjmzcTfHbeOoPc88kwJxbo0lFkgIf6JrARzJfKG8c5huL2+AHclw+0Z
+ in7JBPNB9VXKAyDOWkZmXZ0QRk437VmpzjPOiqt2RYBcU3gOEKSJqul7CCLNrLvJyL
+ WO98I/3Oacmp6aQi5YDmc37JnEZ7iwZ0KFt6aAHhe5clJvlrVENhDNX5j26tqofyJN
+ 9iDk7maTLlrSfAl+OyUIUbj+/BII5UT2DR4Mcm0qL7U9prEF5eQ+IcyHCfc1OAiLB6
+ kzBCIZPYgrLRA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4H9lT116S1z9sW4;
+ Fri, 17 Sep 2021 17:09:55 +1000 (AEST)
+Date: Fri, 17 Sep 2021 17:09:53 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Cc: Maxime Ripard <maxime@cerno.tech>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Message-ID: <20210917170953.19d0177f@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <163183640457.8837.7824778788682274896@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm=3A_cleanup=3A_Use_DRM=5FMODESET=5FLOCK=5FALL=5F*_helpers_whe?=
- =?utf-8?q?re_possible?=
+Content-Type: multipart/signed; boundary="Sig_/DbFq18WWwwrtySTT.BPm7f_";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,13 +56,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21/09/16 11:53PM, Patchwork wrote:
+--Sig_/DbFq18WWwwrtySTT.BPm7f_
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> Patch failed at 0012 drm/i915: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Hi all,
 
-Hi, I created the patch against drm-next (which currently points to
-<v5.15-rc1>).
+After merging the drm-misc tree, today's linux-next build (x86_64
+modules_install) failed like this:
 
-Am I doing something wrong? Should I be targeting a different commit?
+depmod: ERROR: Cycle detected: drm_kms_helper -> drm -> drm_kms_helper
+depmod: ERROR: Cycle detected: cec
+depmod: ERROR: Found 2 modules in dependency cycles!
 
-Thanks.
+Caused by commit
+
+  87ea95808d53 ("drm/bridge: Add a function to abstract away panels")
+
+I have reverted these commits for today:
+
+  a43dd76bacd0 ("drm/vc4: dsi: Switch to devm_drm_of_get_bridge")
+  0caddbbfdfa2 ("drm/vc4: dpi: Switch to devm_drm_of_get_bridge")
+  87ea95808d53 ("drm/bridge: Add a function to abstract away panels")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/DbFq18WWwwrtySTT.BPm7f_
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFEP0EACgkQAVBC80lX
+0GzMtwf/cTt3xaEfQHZ7JsDX0+AwM/sYl4xNWtaU6fKrZi000GsPNbxx7xZSz7K7
+5kW0VIM76nkMzTpV6y4midx25Tzgp8vMUnkbuiGUkHApIBRCNgCvRyweg0PsQFhS
+jMVqc4UNxv4V+1OzC5PGXiEOhpLmYyPCGex5lyvibykvDUJ4F//brQKmKYTfkW3Y
+6SukkK+u4M+e21vBNryrPcM4OJykoLh3kZgKrsM9DSpoAq3AZoYYTQOV7jbWC/MN
+qn6+NoiQjraPIVRBrYa/mUHb6dGpeC9pwllOST9ijOMxrQ+zZpDj9aDJfFyJv7Yd
+QrY/kuu4R7rtsriQNyuKy8f+jUKSWA==
+=esFv
+-----END PGP SIGNATURE-----
+
+--Sig_/DbFq18WWwwrtySTT.BPm7f_--
