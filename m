@@ -2,79 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16FDA40FE36
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 18:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E8840FE53
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Sep 2021 19:02:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0195E6E02A;
-	Fri, 17 Sep 2021 16:56:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F8D86E02E;
+	Fri, 17 Sep 2021 17:02:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com
- [64.147.123.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 735186E02A;
- Fri, 17 Sep 2021 16:56:44 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailout.west.internal (Postfix) with ESMTP id 152E132001BB;
- Fri, 17 Sep 2021 12:56:41 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute1.internal (MEProxy); Fri, 17 Sep 2021 12:56:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=jRLqcO8DyOfLRMp2YJoKkxVQ/qr
- hMa51voQnXd8BUks=; b=tpelSp52Sh2CxisPGqKDGNRA452mrk6vgNjQ0GlWGJF
- ffsIqOos3nj9efE0XTWtqlvNi/QUopESQEuUaWnTa3VwJZcR33FtCwJ3+LPwJqSO
- teu1TU1fqgLCP1wHH9cDlFbt/zStFQibJPOFnKOUB2P+g4jMNgkDqSkPT1Ijjtgz
- Vu5R0Ufe2UvCDA9jNY+nRtkgw1dbx00TKWtrjoV6FinKDal7Y46YmUuCkpdLXDOF
- LpXIhICTcGjFoWpDZDfOu18avBdGgtxw+0LtvlOjcoSN60tkt08tvv52uOVyRd4a
- 8iqMp1w/QszY41Q5EDZUOR/7mUnrphpMWROfEEUfmyA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=jRLqcO
- 8DyOfLRMp2YJoKkxVQ/qrhMa51voQnXd8BUks=; b=OfqjzntzCj8kf2aNypo1hB
- pzX4Iu3j8f+LyIADIRb+YHXJPw94B23EHWLXwhw8xUhdBSbnG2fNWCiBhnLmGrWt
- /rByRtO02tamiwF9cOvx3wVhnwPDBa4LQ3vDKQv5ynqj3d3gzpr/6fp7fa6b9h5T
- Mdm+3Rf0a5RsLFnPbfaN3XcnBQmzCHC7CMXVeWoxBDLwF7+I3R9iUZ8Unh5D5foO
- OUuM3X6SRfZphq3LXtsr7chHkDtn226NdQssfJ2zJeBPA9QKtxU0NY0mVTu90oek
- PG3bciSufUEY36reMCoDcWTgOa3Ez+wO0K0Bc4cT9IE2KcxbxM/USFIwpPgg6Hvw
- ==
-X-ME-Sender: <xms:x8hEYfZbl8Oo2oBwOr6qiB_-RgYS7U8KpSxZrVxfqY23ou9_yDaQWA>
- <xme:x8hEYeZHz6Y7lo8aVzUzV5TVbq-3qhNoNZvAyc0I20hrTC_wXMX9utTvAXciDF29m
- yGuRrdi-JMCJ5y5z_g>
-X-ME-Received: <xmr:x8hEYR-ZQvSI8HPxkD20xxii8xQGFXZOMKXn0v6Im3Qg1aM9MfWi3M0qHljSS7PABXrCxv8Juu3ObAStgxJLpJ8hQkGXmk7W7uuD>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehiedguddtudcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeejuddvhfekkefhtdegiefhledutdevtdfhkedtleefjefgleduhfetudev
- jeehhfenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvg
- hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhn
- ohdrthgvtghh
-X-ME-Proxy: <xmx:x8hEYVp4ZCVOd4GDecGXyeMgXc6DiC-YtXA6dkRDkpcyhxF_PFr1jQ>
- <xmx:x8hEYareI2vpzmSjyhpYJG9SxMA_BS8hKID75lf9mjWc3Upl9N9UlQ>
- <xmx:x8hEYbQm8QkWcmHZktDzQYgsQWXD2okhhCaXGOb96cOv6xDaMnGEgQ>
- <xmx:yMhEYXCaS8e0dzkM1cEBxqHVqIGW4tx-qKTjlzBrf9UtHsHRTkMz3Q>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 17 Sep 2021 12:56:39 -0400 (EDT)
-Date: Fri, 17 Sep 2021 18:56:37 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- manasi.d.navare@intel.com
-Message-ID: <20210917165637.t3vdblkgk5rzplyu@gilmour>
-References: <cover.1631191763.git.jani.nikula@intel.com>
- <87mtobuzuo.fsf@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D59F36E039
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Sep 2021 17:02:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="222494525"
+X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="222494525"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2021 10:02:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; d="scan'208";a="483133273"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga008.jf.intel.com with ESMTP; 17 Sep 2021 10:02:22 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 17 Sep 2021 10:02:21 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 17 Sep 2021 10:02:21 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Fri, 17 Sep 2021 10:02:21 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+CC: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2 3/5] drm/i915/display: Workaround cursor
+ left overs with PSR2 selective fetch enabled
+Thread-Index: AQHXqa47Y9mVfs3M+0eviC8Dq7E/pqulpjoAgAA5fYCAATzGAIAAQiiAgAFMggCAAEPvgA==
+Date: Fri, 17 Sep 2021 17:02:21 +0000
+Message-ID: <c347299ba2b7bdcb2de79ee60569977058aeb51a.camel@intel.com>
+References: <20210914212507.177511-1-jose.souza@intel.com>
+ <20210914212507.177511-3-jose.souza@intel.com> <YUIKDNuiNBPHKQ96@intel.com>
+ <edd67a4450497f8d60acd147726ef7adf1641539.camel@intel.com>
+ <YUNEAE86LBNdEKqD@intel.com>
+ <1fb0554d051d0c98ae7282110c6690de4619a970.camel@intel.com>
+ <YUSSbMQKuQxQ7Ug9@intel.com>
+In-Reply-To: <YUSSbMQKuQxQ7Ug9@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <07DFBB610D406745AAC5E85BF378CE56@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="achh35ttjdfm2zx5"
-Content-Disposition: inline
-In-Reply-To: <87mtobuzuo.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 00/13] drm/i915/dp: dp 2.0 enabling prep
- work
+Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/i915/display: Workaround cursor
+ left overs with PSR2 selective fetch enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,39 +74,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---achh35ttjdfm2zx5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Sep 17, 2021 at 03:54:23PM +0300, Jani Nikula wrote:
-> On Thu, 09 Sep 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> > v3 of https://patchwork.freedesktop.org/series/93800/ with minor tweaks
-> > and the already merged patches obviously dropped.
-> >
-> > Jani Nikula (13):
-> >   drm/dp: add DP 2.0 UHBR link rate and bw code conversions
-> >   drm/dp: use more of the extended receiver cap
-> >   drm/dp: add LTTPR DP 2.0 DPCD addresses
-> >   drm/dp: add helper for extracting adjust 128b/132b TX FFE preset
->=20
-> Maarten, Maxime, Thomas, can I get an ack to merge these four patches
-> via drm-intel please, or would you prefer a topic branch instead?
-
-Yes, you can merge them through drm-intel
-
-Maxime
-
---achh35ttjdfm2zx5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYUTIxQAKCRDj7w1vZxhR
-xUtDAQDKKR1NSMd9SgL0CLx5EN0AC0l0IrGq39QQImUN0QL/HwD/Ud//WNo1oIIU
-uy37i+Kp/k+XDOpqVW8QR0U7s3hWbgU=
-=5KZX
------END PGP SIGNATURE-----
-
---achh35ttjdfm2zx5--
+T24gRnJpLCAyMDIxLTA5LTE3IGF0IDE2OjA0ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFRodSwgU2VwIDE2LCAyMDIxIGF0IDA1OjA5OjA4UE0gKzAwMDAsIFNvdXphLCBKb3Nl
+IHdyb3RlOg0KPiA+IE9uIFRodSwgMjAyMS0wOS0xNiBhdCAxNjoxNyArMDMwMCwgVmlsbGUgU3ly
+asOkbMOkIHdyb3RlOg0KPiA+ID4gT24gV2VkLCBTZXAgMTUsIDIwMjEgYXQgMDY6MTg6MzVQTSAr
+MDAwMCwgU291emEsIEpvc2Ugd3JvdGU6DQo+ID4gPiA+IE9uIFdlZCwgMjAyMS0wOS0xNSBhdCAx
+Nzo1OCArMDMwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOg0KPiA+ID4gPiA+IE9uIFR1ZSwgU2Vw
+IDE0LCAyMDIxIGF0IDAyOjI1OjA1UE0gLTA3MDAsIEpvc8OpIFJvYmVydG8gZGUgU291emEgd3Jv
+dGU6DQo+ID4gPiA+ID4gPiBOb3Qgc3VyZSB3aHkgYnV0IHdoZW4gbW92aW5nIHRoZSBjdXJzb3Ig
+ZmFzdCBpdCBjYXVzZXMgc29tZSBhcnRpZmFjdHMNCj4gPiA+ID4gPiA+IG9mIHRoZSBjdXJzb3Ig
+dG8gYmUgbGVmdCBpbiB0aGUgY3Vyc29yIHBhdGgsIGFkZGluZyBzb21lIHBpeGVscyBhYm92ZQ0K
+PiA+ID4gPiA+ID4gdGhlIGN1cnNvciB0byB0aGUgZGFtYWdlZCBhcmVhIGZpeGVzIHRoZSBpc3N1
+ZSwgc28gbGVhdmluZyB0aGlzIGFzIGENCj4gPiA+ID4gPiA+IHdvcmthcm91bmQgdW50aWwgcHJv
+cGVyIGZpeCBpcyBmb3VuZC4NCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBIYXZlIHlvdSB0cmllZCB3
+YXJwaW5nIHRoZSBjdXJzb3IgY2xlYXIgYWNyb3NzIHRoZSBzY3JlZW4gd2hpbGUNCj4gPiA+ID4g
+PiBhIHBhcnRpYWwgdXBkYXRlIGlzIGFscmVhZHkgcGVuZGluZz8gSSB0aGluayBpdCB3aWxsIGdv
+IGJhZGx5Lg0KPiA+ID4gPiANCj4gPiA+ID4gWW91IG1lYW4gbW92ZSB0aGUgY3Vyc29yIGZvciBl
+eGFtcGxlIGZyb20gMHgwIHRvIDUwMHg1MDAgaW4gb25lIGZyYW1lPw0KPiA+ID4gPiBJdCB3aWxs
+IG1hcmsgYXMgZGFtYWdlZCB0aGUgcHJldmlvdXMgYXJlYSBhbmQgdGhlIG5ldyBvbmUuDQo+ID4g
+PiANCj4gPiA+IExlZ2FjeSBjdXJzb3IgdXBkYXRlcyBieXBhc3MgYWxsIHRoYXQgc3R1ZmYgc28g
+eW91J3JlIG5vdCBnb2luZyB0bw0KPiA+ID4gdXBkYXRpbmcgdGhlIHNlbCBmZXRjaCBhcmVhIGZv
+ciB0aGUgb3RoZXIgcGxhbmVzLg0KPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiA+IA0KPiA+ID4g
+PiA+IEluIGZhY3QgSSdtIHRoaW5raW5nIHRoZSBtYWlsYm94IHN0eWxlIGxlZ2FjeSBjdXJzb3Ig
+dXBkYXRlcyBhcmUganVzdA0KPiA+ID4gPiA+IGZ1bmRlbWVudGFsbHkgaW5jb21wYXRpYmxlIHdp
+dGggcGFydGlhbCB1cGRhdGVzIHNpbmNlIHRoZSBjdXJzb3INCj4gPiA+ID4gPiBjYW4gbW92ZSBv
+dXRzaWRlIG9mIHRoZSBhbHJlYWR5IGNvbW1pdHRlZCB1cGRhdGUgcmVnaW9uIGFueSB0aW1lLg0K
+PiA+ID4gPiA+IEllLiBJIHN1c3BlY3Qgd2hpbGUgdGhlIGN1cnNvciBpcyB2aXNpYmxlIHdlIHNp
+bXBseSBjYW4ndCBkbyBwYXJ0aWFsDQo+ID4gPiA+ID4gdXBkYXRlcy4NCj4gPiA+ID4gDQo+ID4g
+PiA+IFByb2JhYmx5IEkgZGlkIG5vdCB1bmRlcnN0YW5kIHdoYXQgeW91IHdhbnQgdG8gc2F5LCBi
+dXQgZWFjaCBjdXJzb3IgdXBkYXRlIHdpbGwgYmUgaW4gb25lIGZyYW1lLCB1cGRhdGluZyB0aGUg
+bmVjZXNzYXJ5IGFyZWEuDQo+ID4gPiANCj4gPiA+IFRoZSBsZWdhY3kgY3Vyc29yIHVzZXMgbWFp
+bGJveCB1cGRhdGVzIHNvIHRoZXJlIGlzIG5vIDE6MSByZWxhdGlvbnNoaXANCj4gPiA+IGJldHdl
+ZW4gYWN0dWFsIHNjYW5uZWQgb3V0IGZyYW1lcyBhbmQgY3Vyc29yIGlvY3RsIGNhbGxzLiBZb3Ug
+Y2FuDQo+ID4gPiBoYXZlIHVtcHRlZW4gdGhvdXNhbmQgY3Vyc29yIHVwZGF0ZXMgcGVyIGZyYW1l
+Lg0KPiA+IA0KPiA+IE5vdCBpZiBpbnRlbF9sZWdhY3lfY3Vyc29yX3VwZGF0ZSgpIGlzIGNoYW5n
+ZWQgdG8gZ28gdG8gdGhlIHNsb3cgcGF0aCBhbmQgZG8gb25lIGF0b21pYyBjb21taXQgZm9yIGVh
+Y2ggbW92ZS4NCj4gPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvNDUz
+MTkyLz9zZXJpZXM9OTQ1MjImcmV2PTENCj4gDQo+IFRoYXQncyBub3QgZ29pbmcgdG8gZmx5LiBU
+aGUgd2hvbGUgcmVhc29uIGZvciB0aGUgbGVnYWN5IGN1cnNvciB0aGluZyBpcw0KPiB0aGF0IFgg
+bGlrZXMgdG8gZG8gdGhvdXNhbmRzIG9mIGN1cnNvciB1cGRhdGVzIHBlciBmcmFtZS4NCg0KRnJv
+bSB1c2VyIGV4cGVyaWVuY2UgcGVyc3BlY3RpdmUgdGhlcmUgaXMgbm8gaXNzdWVzIGluIGNvbnZl
+cnRpbmcgdG8gYXRvbWljIGNvbW1pdCwgdGhvc2UgMyB2aWRlb3MgdGhhdCBJIHNoYXJlZCB3aXRo
+IHlvdSBoYXZlIHRoaXMgY29udmVyc2lvbi4gDQoNCj4gDQo+ID4gDQo+ID4gSSBiZWxpZXZlIGNv
+bXBvc2l0b3JzIHdpbGwgZG8gYSBzaW5nbGUgYXRvbWljIGNvbW1pdCB1cGRhdGluZyBjdXJzb3Ig
+YW5kIGFsbCB0aGUgb3RoZXIgcGxhbmVzIGludG8gYSBzaW5nbGUgY29tbWl0Lg0KPiANCj4gTm8u
+IFggb2J2aW91c2x5IGRvZXNuJ3QgZG8gdGhhdC4gQW5kIElJUkMgY2hyb21lb3MgYWxzbyB1c2Vz
+IHRoZQ0KPiBsZWdhY3kgY3Vyc29yIGlvY3RsIGZvciB0aGUgY3Vyc29yIGRlc3BpdGUgdXNpbmcg
+YXRvbWljIGNvbW1pdHMgZm9yDQo+IGV2ZXJ5dGhpbmcgZWxzZS4NCj4gDQoNCg==
