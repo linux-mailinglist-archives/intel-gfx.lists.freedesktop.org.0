@@ -2,33 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C034410128
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 00:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6550C410149
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 00:33:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD306E084;
-	Fri, 17 Sep 2021 22:11:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C8556E0B6;
+	Fri, 17 Sep 2021 22:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6CFF66E082;
- Fri, 17 Sep 2021 22:11:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5AF14A7525;
- Fri, 17 Sep 2021 22:11:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 843C46E0AD;
+ Fri, 17 Sep 2021 22:33:00 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+ by mailnew.west.internal (Postfix) with ESMTP id 509562B00BB2;
+ Fri, 17 Sep 2021 18:32:59 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Fri, 17 Sep 2021 18:33:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=Pwv+7pylkaIrPBg3R0kBxNlV+Qf
+ DULkAa/KMRtw0Pno=; b=cfp6Lw7yuzUQ0udmdQnhrDY8tgotCYiVevyu0EjtXCj
+ KJacrwUjOBWZJWeXN0Sz14XZVtEJbMQ46gwVn6S1HQDcYsNwDq2jqyZiY/Z9ObdO
+ 1vJkK66GTlosny/xLMkHvVNIThNMfn2VG5maIVFf20nlpR+9y6b7Y89jzNN572hk
+ 56+i9UG6adSGYwQ+Ha31bT/ZKo9JEls6qXOWdhaZTvDO9o5zx71d0IBKkOQ1eFff
+ xsujTYE1EkvMBaAhi/ZXTcU8E874UTt+PSSKenlNB4Qwsc820XcLR/zmuMcJiBc8
+ KJKf7gSTcbrzfH7NRU1t3SomC0fkGuaSxmJoGjYxgqg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Pwv+7p
+ ylkaIrPBg3R0kBxNlV+QfDULkAa/KMRtw0Pno=; b=OT0vUGuSB3Q5GUldtkZ4hD
+ ISjHzWRc9lXwqyHNnnx6Peo23H19RklTOphrbBZUNdCTQyRu5r+kbWTEfrLUFbHn
+ 5svWwEO38lRt1VJqd6W69ohk0Lo6XGOyxrMZCQ/s0MX7w0Y9zOl7yzNQTBDa9CqW
+ gfObJfg1FFmTZZkocCGwnLlqeMCyw5TTzIhfMXhBYHPcT/CA7lCCezfXVtBz2bQr
+ Exf8wJBCzAWDF+/QpJo68z7TBJlF2+S/9bP0qmexdv61MBJR0XRFhXBu/g7cOSdz
+ hvpXFlV7dEfudE1n3FV692nxLddDL1PkqVzv7PyUPUclMd0L+xUiUJvz9AaEmy8g
+ ==
+X-ME-Sender: <xms:mhdFYbBBlz_6nrWMgjtxeQJo0MHomyJWN7ILPvbkC1UQTnGB5INQ7w>
+ <xme:mhdFYRg0oW7LqwRzCPWzRjcoPFmyhwP_ICrJan_ClGt6MSvJbTa9By4nL4P9NiW3I
+ -8urXjsqHxaduPQRA>
+X-ME-Received: <xmr:mhdFYWkW8bxmH_uOwsWTsTtXCb-KcfiMzAk-jd6UIksbA44xHuzaB0hK-orp-q_H1wbT88zr>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgudduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
+ nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
+ gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
+ heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
+ gvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:mhdFYdxMeAjK1wBVSQh1hHIPI8lZVjEAub0quqxAjCGVrclzqvqGBQ>
+ <xmx:mhdFYQQmWo_y31divswy8Lt1Y68E3N1OdkcJFlWUsF3JK1OlUIfXMg>
+ <xmx:mhdFYQZkIAwiNuGSzUsVOQBcn479ovRRuwdSLwS86L20TRh6QIGOkw>
+ <xmx:mhdFYZ9c6ocv8m6ErBEB8z2Qcha4_Xl_cFXbUOTIrICPGY7HC2YRmeitXP0>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 17 Sep 2021 18:32:55 -0400 (EDT)
+Date: Sat, 18 Sep 2021 00:32:52 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: Sean Paul <sean@poorly.run>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Message-ID: <YUUXlOh0rKcynrPZ@zacax395.localdomain>
+References: <20210916211552.33490-1-greenfoo@u92.eu>
+ <20210916211552.33490-9-greenfoo@u92.eu>
+ <20210917154031.GH2515@art_vandelay>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hugh Dickins" <hughd@google.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Sep 2021 22:11:03 -0000
-Message-ID: <163191666333.811.5460740203145455754@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <9e1a6f3b-5e64-be91-ba54-9b5d135ef638@google.com>
-In-Reply-To: <9e1a6f3b-5e64-be91-ba54-9b5d135ef638@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_5=2E15-rc1_i915_blank_screen_booting_on_ThinkPads?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210917154031.GH2515@art_vandelay>
+Subject: Re: [Intel-gfx] [PATCH 08/15] drm/radeon: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,24 +86,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+> > +	struct drm_modeset_acquire_ctx ctx;
+> >  	int i, r;
+> > +	int ret;
+> 
+> Could you please tuck this up with i & r?
 
-Series: 5.15-rc1 i915 blank screen booting on ThinkPads
-URL   : https://patchwork.freedesktop.org/series/94820/
-State : warning
+Done!
 
-== Summary ==
 
-$ dim checkpatch origin/drm-tip
-0a23b1f1e8f8 5.15-rc1 i915 blank screen booting on ThinkPads
--:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#7: 
-> On Thu, 16 Sep 2021, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> > -	drm_modeset_unlock_all(dev);
+> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+> 
+> You should check ret here
 
-total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+Would it be save to return at this point if the lock fails?
+
+In other words, can I just add this? --> "if (ret) return ret;"
+
+
+> > +	struct drm_modeset_acquire_ctx ctx;
+> >  	int r;
+> > +	int ret;
+> 
+> Same suggestion here, move up with r
+
+Done!
+
+
+> > -		drm_modeset_unlock_all(dev);
+> > +		DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+> 
+> Also check ret here
+
+Same question. Would "if (ret) return ret;" be safe here?
+
+
+> >  	int i;
+> > +	int ret;
+> 
+> Move up with i
+
+Done!
+
+
+> > -	drm_modeset_unlock_all(dev);
+> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+> >  	return 0;
+
+I can also "return ret;" instead of "0".
+
+What happens when a DEFINE_SHOW_ATTRIBUTE'd function returns non-zero? Is it ok?
+Or do we want to always return "0" to print whatever we can?
 
 
