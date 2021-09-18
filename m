@@ -2,42 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2249D4104CE
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 09:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C8C410592
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 11:42:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E57916E0F5;
-	Sat, 18 Sep 2021 07:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5161F6E084;
+	Sat, 18 Sep 2021 09:42:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4716E0E9;
- Sat, 18 Sep 2021 07:35:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="202421990"
-X-IronPort-AV: E=Sophos;i="5.85,303,1624345200"; 
- d="asc'?scan'208";a="202421990"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2021 00:35:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,303,1624345200"; 
- d="asc'?scan'208";a="472547845"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.143])
- by fmsmga007.fm.intel.com with ESMTP; 18 Sep 2021 00:34:58 -0700
-Date: Sat, 18 Sep 2021 15:11:05 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>,
- Zhi Wang <zhi.a.wang@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
- "Yuan, Hang" <hang.yuan@intel.com>
-Message-ID: <20210918071105.GY14689@zhen-hp.sh.intel.com>
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16B606E06B;
+ Sat, 18 Sep 2021 09:42:50 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id 3B3CE2B011CB;
+ Sat, 18 Sep 2021 05:42:47 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Sat, 18 Sep 2021 05:42:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=iQMJviYlb4ZEn676riwj+ykMcaY
+ gM3Bpxtt9O2JGErE=; b=WDwHHQXezEJe3XzQX3Em61caD1JOywMykQAjQo9+FvS
+ BAUw0ysziTYQHd2JcCD0Bk8z0AXCgaxpNkpKZQLKoYJ1OqQBcoFQ33Qgu5/ta31z
+ DyByahRv0mE53Ony+dsf9vdzav7TkXvnoNMK9J+5jBpTqlb9TTjAdddlmlrRrTqr
+ Yf6gJ7BLyxE0uyTPoJtiPyFjieupdONy4OEcmHP6qj5k/GfsUOqHapmuJhhnj03u
+ aNQMVgCiAY4CTWJmetOTs/5AqGukMpQkXerlp7nEGlI0rsksg0Xiyj8h6lzqpt5F
+ kGOaxLJK9jw+z2uqeAdy7jRYyyLk3cfoC3lOSyJK4ZQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=iQMJvi
+ Ylb4ZEn676riwj+ykMcaYgM3Bpxtt9O2JGErE=; b=NQPv4xozCXDNOuWW95l8r0
+ wqgyyHyXfB+TEZFR29p5hrSTv1MyvPh8hK33MLJE8IkeC7FBi0cuYZiJYqFoOouk
+ N1SMt7gdmUOFX7+6dS0zB2EDvB6PtfJ+RXPRE6Xm8Yv6zbnwvVa6/DoxXhlvqsiV
+ DiPPdP8iqD22W7bL33bjydi/YElws4Ckpr/ugaxvRzvclMAOlkEEUlIc955FTNr+
+ MRHnTWDFICCu6KCQ4D+EyAmzhwMruzmoz98VLdiUyE9IpnmcGdvH0hhH/n8X3vhI
+ fEDavwtqAGgk1//zVUmRJDSgl5exPhNz4+P4Pt8zN7dvnYLXClZYKlaWnCVGwsuA
+ ==
+X-ME-Sender: <xms:lrRFYfbjRE-L4f3Nfyw9rN67HO9pJVZbRLl_BAWGbVpLMk1TuqfX0g>
+ <xme:lrRFYeYv4mcID7VMTZfIPCn8tDGxqPm2ySOv1G-A0NKEFUBuK3A-ve84o5-867vr0
+ mX6PcSXDWBC1Grk_A>
+X-ME-Received: <xmr:lrRFYR9hvwXVM79X0a8T4DolehjhDAUODuSF4_ucBL_MRX00TWXEJTRAqvy--tKCLhHOxX8g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehkedgudejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
+ nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
+ gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
+ heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
+ gvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:lrRFYVqgNRMK_pamLceVRt2VyFRqwtZ2Qcb5LGQOAC_FeeRGMnNf5g>
+ <xmx:lrRFYarmIXc0_KRWqyzkrnne4mGC_Rk6K5ND2K3AeQUIKytJ04dpkA>
+ <xmx:lrRFYbSOSsDAnV7UWjB8L5nXiW3YpBe6JQMbwEeiJuzXn7eXbd_4lg>
+ <xmx:lrRFYZ2Lu9EzyIqd7DyRxbU3UzqW3Goj4jk6MyoI0oEwokzv5BiUmX82bJc>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 18 Sep 2021 05:42:43 -0400 (EDT)
+Date: Sat, 18 Sep 2021 11:42:40 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: Sean Paul <sean@poorly.run>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Message-ID: <YUW0kJr1XoqCENhl@zacax395.localdomain>
+References: <20210916211552.33490-1-greenfoo@u92.eu>
+ <20210916211552.33490-15-greenfoo@u92.eu>
+ <20210917155548.GO2515@art_vandelay>
+ <YUUh7X+Ft7vKHlcT@zacax395.localdomain>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="JP+T4n/bALQSJXh8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] gvt-fixes
+In-Reply-To: <YUUh7X+Ft7vKHlcT@zacax395.localdomain>
+Subject: Re: [Intel-gfx] [PATCH 14/15] drm/amd: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,55 +87,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 21/09/18 01:17AM, Fernando Ramos wrote:
 
---JP+T4n/bALQSJXh8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> > > +#include <drm/drm_drv.h>
+> > 
+> > Top-level headers generally come above the driver headers. Also, now that I think
+> > about this a bit more, all of the new includes in this set should probably be
+> > for 'drm_modeset_lock.h' instead of 'drm_drv.h'.
+> 
+> Ok. Let me try that.
 
+Turns out that the DRM_MODESET_LOCK_ALL_*() macros expansion includes a call
+to drm_drv_uses_atomic_modeset() which is defined in "drm_drv.h".
 
-Hi,
+Thus, #include'ing <drm/drm_drv.h> cannot be avoided.
 
-Here's one ww lock fini fix from Zhi which resolved recent regression
-with i915 change.
+This makes me wonder...
 
-Thanks
---
-The following changes since commit 71de496cc489b6bae2f51f89da7f28849bf2836e:
+  1. "drm_drv.h" includes "drm_device.h", which includes "drm_mode_config.h",
+     which includes "drm_modeset_lock.h"
 
-  drm/i915/dp: Drop redundant debug print (2021-08-26 07:31:52 -0400)
+  2. "drm_modeset_lock.h" defines DRM_MODESET_LOCK_ALL_*() which expands into
+     drm_drv_uses_atomic_modeset()
 
-are available in the Git repository at:
+  3. drm_drv_uses_atomic_modeset() is declared in "drm_drv.h"
 
-  https://github.com/intel/gvt-linux tags/gvt-fixes-2021-09-18
+There seems to be a circular dependency here.
 
-for you to fetch changes up to d168cd797982db9db617113644c87b8f5f3cf27e:
+We can try to fix this, but I suggest to do it in a different patch series.
 
-  drm/i915/gvt: fix the usage of ww lock in gvt scheduler. (2021-09-13 21:59:31 +0800)
-
-----------------------------------------------------------------
-gvt-fixes-2021-09-18
-
-- ww locking fix from Zhi
-
-----------------------------------------------------------------
-Zhi A Wang (1):
-      drm/i915/gvt: fix the usage of ww lock in gvt scheduler.
-
- drivers/gpu/drm/i915/gvt/scheduler.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
---JP+T4n/bALQSJXh8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYUWRBAAKCRCxBBozTXgY
-J1PJAJwKnf5blAPxydslLivIrdp4QVJtewCeP0eJC0AYSu3CjmfCM9tVIoltXvo=
-=tN2f
------END PGP SIGNATURE-----
-
---JP+T4n/bALQSJXh8--
