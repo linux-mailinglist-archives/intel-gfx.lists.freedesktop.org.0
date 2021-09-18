@@ -1,42 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69E84103A2
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 06:30:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 356F44103BF
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 06:52:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57C406F3C2;
-	Sat, 18 Sep 2021 04:30:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A40D16F3C6;
+	Sat, 18 Sep 2021 04:52:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA316F3AE;
- Sat, 18 Sep 2021 04:30:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10110"; a="222962845"
-X-IronPort-AV: E=Sophos;i="5.85,303,1624345200"; d="scan'208";a="222962845"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 21:30:20 -0700
-X-IronPort-AV: E=Sophos;i="5.85,303,1624345200"; d="scan'208";a="701554795"
-Received: from yseah-mobl.gar.corp.intel.com (HELO ldmartin-desk2)
- ([10.252.130.247])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2021 21:30:19 -0700
-Date: Fri, 17 Sep 2021 21:30:19 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <20210918043019.hhol5fgwbi2ogod2@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-15-matthew.auld@intel.com>
- <87im3hh8sy.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 452816E0D7;
+ Sat, 18 Sep 2021 04:52:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3525BAA0EB;
+ Sat, 18 Sep 2021 04:52:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <87im3hh8sy.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 14/19] drm/i915/oprom: Basic sanitization
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 18 Sep 2021 04:52:34 -0000
+Message-ID: <163194075418.23825.11252259365335399039@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210918042008.29468-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20210918042008.29468-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Introduce_Intel_PXP_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,27 +41,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 17, 2021 at 02:57:33PM +0300, Jani Nikula wrote:
->On Mon, 12 Apr 2021, Matthew Auld <matthew.auld@intel.com> wrote:
->> From: Anshuman Gupta <anshuman.gupta@intel.com>
->>
->> Sanitize OPROM header, CPD signature and OPROM PCI version.
->> OPROM_HEADER, EXPANSION_ROM_HEADER and OPROM_MEU_BLOB structures
->> and PCI struct offsets are provided by GSC counterparts.
->> These are yet to be Documented in B.Spec.
->> After successful sanitization, extract VBT from opregion
->> image.
->
->So I don't understand what the point is with two consecutive patches
->where the latter rewrites a lot of the former.
+== Series Details ==
 
-I actually wonder what's the point of this. Getting it from spi is
-already the fallback and looks much more complex. Yes, it's pretty
-detailed and document the format pretty well, but it still looks more
-complex than the initial code. Do you see additional benefit in this
-one?
+Series: drm/i915: Introduce Intel PXP (rev8)
+URL   : https://patchwork.freedesktop.org/series/90503/
+State : warning
 
-Lucas De Marchi
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e27175183684 drm/i915/pxp: Define PXP component interface
+-:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#31: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 49 lines checked
+012116d10cdd mei: pxp: export pavp client to me client bus
+-:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#36: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 276 lines checked
+af5e58681019 drm/i915/pxp: define PXP device flag and kconfig
+-:47: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#47: FILE: drivers/gpu/drm/i915/i915_drv.h:1681:
++#define HAS_PXP(dev_priv) (IS_ENABLED(CONFIG_DRM_I915_PXP) && \
++			   INTEL_INFO(dev_priv)->has_pxp) && \
++			   VDBOX_MASK(&dev_priv->gt)
+
+-:47: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#47: FILE: drivers/gpu/drm/i915/i915_drv.h:1681:
++#define HAS_PXP(dev_priv) (IS_ENABLED(CONFIG_DRM_I915_PXP) && \
++			   INTEL_INFO(dev_priv)->has_pxp) && \
++			   VDBOX_MASK(&dev_priv->gt)
+
+total: 1 errors, 0 warnings, 1 checks, 33 lines checked
+5dedc9b4fe19 drm/i915/pxp: allocate a vcs context for pxp usage
+-:99: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#99: 
+new file mode 100644
+
+-:128: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#128: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:25:
++	for (engine = gt->engine_class[VIDEO_DECODE_CLASS][0]; !engine; engine++);
+
+total: 1 errors, 1 warnings, 0 checks, 170 lines checked
+d38c24e6e3ee drm/i915/pxp: Implement funcs to create the TEE channel
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 145 lines checked
+fa9eb97502e6 drm/i915/pxp: set KCR reg init
+-:30: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#30: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:14:
++
++}
+
+total: 0 errors, 0 warnings, 1 checks, 64 lines checked
+930d960635dc drm/i915/pxp: Create the arbitrary session after boot
+-:107: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#107: 
+new file mode 100644
+
+-:392: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#392: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h:36:
++
++
+
+total: 0 errors, 1 warnings, 1 checks, 345 lines checked
+5e0df3748521 drm/i915/pxp: Implement arb session teardown
+-:63: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#63: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:153:
++#define   MI_FLUSH_DW_PROTECTED_MEM_EN	(1<<22)
+                                       	  ^
+
+-:117: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#117: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 1 checks, 283 lines checked
+82b3c64893e8 drm/i915/pxp: Implement PXP irq handler
+-:212: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#212: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 424 lines checked
+c6743ef21dc4 drm/i915/pxp: interfaces for using protected objects
+4eded7843af4 drm/i915/pxp: start the arb session on demand
+575446839b7e drm/i915/pxp: Enable PXP power management
+-:121: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#121: 
+new file mode 100644
+
+-:195: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#195: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_pm.h:18:
++}
++static inline void intel_pxp_resume(struct intel_pxp *pxp)
+
+total: 0 errors, 1 warnings, 1 checks, 238 lines checked
+cb48f7c7e563 drm/i915/pxp: Add plane decryption support
+-:36: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#36: 
+v10 (Daniele): update PXP check again to match rework in earlier patches and
+
+total: 0 errors, 1 warnings, 0 checks, 155 lines checked
+0f9612c2a9dc drm/i915/pxp: black pixels on pxp disabled
+-:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#169: FILE: drivers/gpu/drm/i915/i915_reg.h:11412:
++#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
++							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
+
+-:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#169: FILE: drivers/gpu/drm/i915/i915_reg.h:11412:
++#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
++							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
+
+-:170: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#170: FILE: drivers/gpu/drm/i915/i915_reg.h:11413:
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
+
+-:183: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#183: FILE: drivers/gpu/drm/i915/i915_reg.h:11426:
++#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:183: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#183: FILE: drivers/gpu/drm/i915/i915_reg.h:11426:
++#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:184: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#184: FILE: drivers/gpu/drm/i915/i915_reg.h:11427:
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
+
+-:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#197: FILE: drivers/gpu/drm/i915/i915_reg.h:11440:
++#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#197: FILE: drivers/gpu/drm/i915/i915_reg.h:11440:
++#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:198: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#198: FILE: drivers/gpu/drm/i915/i915_reg.h:11441:
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
+
+total: 0 errors, 3 warnings, 6 checks, 148 lines checked
+c47b65bb5067 drm/i915/pxp: add pxp debugfs
+-:48: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#48: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 120 lines checked
+3dfd4a0acb75 drm/i915/pxp: add PXP documentation
+6033e584a830 drm/i915/pxp: enable PXP for integrated Gen12
+
+
