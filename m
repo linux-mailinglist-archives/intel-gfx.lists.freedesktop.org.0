@@ -1,80 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C8C410592
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Sep 2021 11:42:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A77D8410DBC
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 01:07:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5161F6E084;
-	Sat, 18 Sep 2021 09:42:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03CB56E2B8;
+	Sun, 19 Sep 2021 23:07:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
- [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16B606E06B;
- Sat, 18 Sep 2021 09:42:50 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id 3B3CE2B011CB;
- Sat, 18 Sep 2021 05:42:47 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Sat, 18 Sep 2021 05:42:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
- :from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=iQMJviYlb4ZEn676riwj+ykMcaY
- gM3Bpxtt9O2JGErE=; b=WDwHHQXezEJe3XzQX3Em61caD1JOywMykQAjQo9+FvS
- BAUw0ysziTYQHd2JcCD0Bk8z0AXCgaxpNkpKZQLKoYJ1OqQBcoFQ33Qgu5/ta31z
- DyByahRv0mE53Ony+dsf9vdzav7TkXvnoNMK9J+5jBpTqlb9TTjAdddlmlrRrTqr
- Yf6gJ7BLyxE0uyTPoJtiPyFjieupdONy4OEcmHP6qj5k/GfsUOqHapmuJhhnj03u
- aNQMVgCiAY4CTWJmetOTs/5AqGukMpQkXerlp7nEGlI0rsksg0Xiyj8h6lzqpt5F
- kGOaxLJK9jw+z2uqeAdy7jRYyyLk3cfoC3lOSyJK4ZQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=iQMJvi
- Ylb4ZEn676riwj+ykMcaYgM3Bpxtt9O2JGErE=; b=NQPv4xozCXDNOuWW95l8r0
- wqgyyHyXfB+TEZFR29p5hrSTv1MyvPh8hK33MLJE8IkeC7FBi0cuYZiJYqFoOouk
- N1SMt7gdmUOFX7+6dS0zB2EDvB6PtfJ+RXPRE6Xm8Yv6zbnwvVa6/DoxXhlvqsiV
- DiPPdP8iqD22W7bL33bjydi/YElws4Ckpr/ugaxvRzvclMAOlkEEUlIc955FTNr+
- MRHnTWDFICCu6KCQ4D+EyAmzhwMruzmoz98VLdiUyE9IpnmcGdvH0hhH/n8X3vhI
- fEDavwtqAGgk1//zVUmRJDSgl5exPhNz4+P4Pt8zN7dvnYLXClZYKlaWnCVGwsuA
- ==
-X-ME-Sender: <xms:lrRFYfbjRE-L4f3Nfyw9rN67HO9pJVZbRLl_BAWGbVpLMk1TuqfX0g>
- <xme:lrRFYeYv4mcID7VMTZfIPCn8tDGxqPm2ySOv1G-A0NKEFUBuK3A-ve84o5-867vr0
- mX6PcSXDWBC1Grk_A>
-X-ME-Received: <xmr:lrRFYR9hvwXVM79X0a8T4DolehjhDAUODuSF4_ucBL_MRX00TWXEJTRAqvy--tKCLhHOxX8g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehkedgudejucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
- nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
- gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
- heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
- gvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:lrRFYVqgNRMK_pamLceVRt2VyFRqwtZ2Qcb5LGQOAC_FeeRGMnNf5g>
- <xmx:lrRFYarmIXc0_KRWqyzkrnne4mGC_Rk6K5ND2K3AeQUIKytJ04dpkA>
- <xmx:lrRFYbSOSsDAnV7UWjB8L5nXiW3YpBe6JQMbwEeiJuzXn7eXbd_4lg>
- <xmx:lrRFYZ2Lu9EzyIqd7DyRxbU3UzqW3Goj4jk6MyoI0oEwokzv5BiUmX82bJc>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 18 Sep 2021 05:42:43 -0400 (EDT)
-Date: Sat, 18 Sep 2021 11:42:40 +0200
-From: Fernando Ramos <greenfoo@u92.eu>
-To: Sean Paul <sean@poorly.run>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Message-ID: <YUW0kJr1XoqCENhl@zacax395.localdomain>
-References: <20210916211552.33490-1-greenfoo@u92.eu>
- <20210916211552.33490-15-greenfoo@u92.eu>
- <20210917155548.GO2515@art_vandelay>
- <YUUh7X+Ft7vKHlcT@zacax395.localdomain>
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABD466E2B8;
+ Sun, 19 Sep 2021 23:07:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1632092853;
+ bh=/y3BMjdPouVMaRIxDFH1zDnVpECOAnWjGL7jfG4p6KU=;
+ h=Date:From:To:Cc:Subject:From;
+ b=cNdPyGwxLSPoMadDLwNaK/7sp/kr7gC3LQQn9C3FsZo//2vtgKKd+7LHe17pcBALA
+ NVruV0G+BywEgjK86xX9joygfdRYJgVh70AH5BC51Ems2tbcn71d/F54EBnvqoxfV9
+ CRVtyYJmw/yKyGUZRSx7hCqPDaE1LWRwijRP9z22a2+qP4JdBlmQmftBqcRcA3h8qW
+ GZra8XKA17g8PPl9FGq4wg/xbMnV/aW+yZsDk9PGT0cAnKWpc978i5LMxrSiIsLGWK
+ o6+VTmYWB62U/exeDLW8fVb1C1HBj7QN1pHqkSDL3+koqsGlKlbsQ5EOxGAMwgt3uy
+ 51zT8LIK9//Xw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4HCNcz64yQz9sR4;
+ Mon, 20 Sep 2021 09:07:31 +1000 (AEST)
+Date: Mon, 20 Sep 2021 09:07:29 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, Maxime Ripard
+ <maxime@cerno.tech>
+Message-ID: <20210920090729.19458953@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YUUh7X+Ft7vKHlcT@zacax395.localdomain>
-Subject: Re: [Intel-gfx] [PATCH 14/15] drm/amd: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Content-Type: multipart/signed; boundary="Sig_/STKEsFTlVk9UE/CSsnEVvBS";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc-fixes tree
+ with Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,32 +57,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21/09/18 01:17AM, Fernando Ramos wrote:
+--Sig_/STKEsFTlVk9UE/CSsnEVvBS
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> > > +#include <drm/drm_drv.h>
-> > 
-> > Top-level headers generally come above the driver headers. Also, now that I think
-> > about this a bit more, all of the new includes in this set should probably be
-> > for 'drm_modeset_lock.h' instead of 'drm_drv.h'.
-> 
-> Ok. Let me try that.
+Hi all,
 
-Turns out that the DRM_MODESET_LOCK_ALL_*() macros expansion includes a call
-to drm_drv_uses_atomic_modeset() which is defined in "drm_drv.h".
+Today's linux-next merge of the drm-misc-fixes tree got a conflict in:
 
-Thus, #include'ing <drm/drm_drv.h> cannot be avoided.
+  drivers/gpu/drm/vc4/vc4_hdmi.c
 
-This makes me wonder...
+between commit:
 
-  1. "drm_drv.h" includes "drm_device.h", which includes "drm_mode_config.h",
-     which includes "drm_modeset_lock.h"
+  b1044a9b8100 ("Revert drm/vc4 hdmi runtime PM changes")
 
-  2. "drm_modeset_lock.h" defines DRM_MODESET_LOCK_ALL_*() which expands into
-     drm_drv_uses_atomic_modeset()
+from Linus' tree and commits:
 
-  3. drm_drv_uses_atomic_modeset() is declared in "drm_drv.h"
+  36e9bcb8edfc ("drm/vc4: select PM")
+  a22dad7fa0cd ("drm/vc4: hdmi: Rework the pre_crtc_configure error handlin=
+g")
 
-There seems to be a circular dependency here.
+from the drm-misc-fixes tree.
 
-We can try to fix this, but I suggest to do it in a different patch series.
+I fixed it up (I just effectively reverted the change in Linus' tree) and
+can carry the fix as necessary. This is now fixed as far as linux-next
+is concerned, but any non trivial conflicts should be mentioned to your
+upstream maintainer when your tree is submitted for merging.  You may
+also want to consider cooperating with the maintainer of the conflicting
+tree to minimise any particularly complex conflicts.
 
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/STKEsFTlVk9UE/CSsnEVvBS
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFHwrIACgkQAVBC80lX
+0GwKZQf+KNVEEMRpeML0EC3GVZmsVTbhrVGlTjlN1Je3T33hBSxO5WRkmEM7f4pY
+k5IDtwnhFRsJmCgsE4H04w7TITimEtxqyY9ADZFt0qWO1+i06qMz70URT32+0WIs
+uhAyc8yPp4Ii/ZesRQ7dUcveUkAL4gfhW27VCUVZWmcMLUN/MjIVK2Ed3MuATsOM
+kedG0mvk+Pa/RRJTeva6ZrjkFNNspHWrMzPSt7iV+pUom20xB+VpcOLN2W0M2mFk
+JwdrQVBKZjBlSPrdd9DRp8yskOuaKdAiFjqNaIbSkLkmPO5eDBI9ao2rSMtfMwXF
+2tdZvcG3pw6GoZWwykGDgKSlUDFL1A==
+=OrlO
+-----END PGP SIGNATURE-----
+
+--Sig_/STKEsFTlVk9UE/CSsnEVvBS--
