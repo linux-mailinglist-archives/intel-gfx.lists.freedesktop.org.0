@@ -2,41 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B4F4115BD
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 15:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7AE84115CB
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 15:28:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7951B6E4F1;
-	Mon, 20 Sep 2021 13:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D73646E504;
+	Mon, 20 Sep 2021 13:28:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 939DD89D30;
- Mon, 20 Sep 2021 06:52:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
- s=20170329; 
- h=MIME-Version:Content-Type:Date:Cc:To:From:Subject:Message-ID;
- bh=HIeG4c8Cgmfkp2RX70iP04l8SH3i1ZCSA3GfMJ3wXno=; 
- b=DCzMV7lmoCMokoovP1iX2KHPGYUR/wTQpGCNy+9xKRZkBQcH07aWbXFGYERIkHM3lfFVNoNx0iGJ5Xbps1UWSIYcX6hrx1iwGVmKoldMLAR7Q1Y5Ggxlj1lUKDEA4xMMs2cAyZmRB8Ra+zyIl/BeQL2G/ezHTAnxTieKYFoai4KWnNlxXKPINbVM6yWl/GYC0oNJD4FftCFPmgwUQfb1rjvYfjF2tpYeAuStkjfKhdqUWloAn/k/f6NXLhEhVr5YeKcpgrNvWGZ8jJ0W2xAMRYm7YRg9/9ggKVljN6gjGrn3CKcXmHEiZYC8YOapYTB7Tm6mlLYaguEqBmczc5PJkw==;
-Received: from 1.pool85-50-22.dynamic.orange.es ([85.50.22.1]
- helo=[192.168.1.109]) by fanzine.igalia.com with esmtpsa 
- (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
- id 1mSD9s-0001Nl-0K; Mon, 20 Sep 2021 08:52:08 +0200
-Message-ID: <f61913b1abac118c7c85a3b788264e2f8c8fab33.camel@igalia.com>
-From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
-To: events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- libre-soc-dev@lists.libre-soc.org
-Cc: board@foundation.x.org
-Date: Mon, 20 Sep 2021 08:51:57 +0200
-Content-Type: multipart/signed; micalg="pgp-sha256";
- protocol="application/pgp-signature"; boundary="=-2+e6MjXtLH+zpwS79csn"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
+ [IPv6:2607:f8b0:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2AA6E3B7;
+ Mon, 20 Sep 2021 07:05:05 +0000 (UTC)
+Received: by mail-pf1-x42b.google.com with SMTP id e16so15363749pfc.6;
+ Mon, 20 Sep 2021 00:05:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:from:subject:to:message-id:date:user-agent:mime-version
+ :content-language:content-transfer-encoding;
+ bh=Pc9p5CeYocJsFTsxO2J3P5SkG+9sBB3CRGrdNGvJ86w=;
+ b=hbmwZqj3MpKQ5//Hg10kU6Kj8T04rOQQtH9AWjBljqu3Pxs/4Q1pkTbp14+1JpVMyS
+ 63HcbV4pZl++7Rlt3dSRBeSnOKHdMJc2dM7JwxX2P89coD2bAIXs9akKSZt4xw7GmaLs
+ N7GepXnWxgCnFi24KlLWI4eOa3UvwMAU4HRD+bbF8TU7PT0/wBsdSealXQjH5gIsJRj3
+ mDmO6+A2sTLkbtF87sDF5KlLe03C1q+9lshJQxNVdeJQWtvIL+PC7dJFXT+mOq3hmj21
+ rh+E8gmCT/UARrWcEmLtbl7fvmjCMRkyzNk+hLgbuYcRxMJsWziXPa1oJvtbVnijnB71
+ dGmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:cc:from:subject:to:message-id:date:user-agent
+ :mime-version:content-language:content-transfer-encoding;
+ bh=Pc9p5CeYocJsFTsxO2J3P5SkG+9sBB3CRGrdNGvJ86w=;
+ b=AGN3B/TDp4a6LHfkEDvi4gF5BeI5ufB5G29aoh9aCFH7lYww/7AEyp6+UJPjtgfE4j
+ 2YIkPeQEPRboutnNn20WXgfCmt7lb49C6TDGn1OTUs2F+2vW51tzkEXNa8Um8NOaIF/B
+ lTpzqs5jV56gikFfk52oCY/t8UMArdVK3lZUcitvn8gCGqP3e9AaqIEpZZtz6UFi0eJl
+ V+KkEda6p7BDPwoUuuDLx2nhOMzb5T1+sA0zWFPzCixWKfuo40gHYYIfOlIK3GxRHI06
+ uIwMxhFyp2MdpzBvrmGs72SckTVTqwN2AWo4Qq90jOa+sNO1ugXqpUYtDcRgNBpclyHU
+ 8Vbg==
+X-Gm-Message-State: AOAM531u4dxDEYwxGlnsKvsMEo2Iuhozanv8TfE8qrxqDN9U67wL5fSv
+ 8nieQ66GFTSxzjKrf8ET/Fw=
+X-Google-Smtp-Source: ABdhPJy0g/g/0MXLpBUsJfWEhVRkdyUgSGWsPHG4TnjrOKnWaswLMzGC8Sdf8xnA4o4sa03Behlz4Q==
+X-Received: by 2002:a62:60c2:0:b0:446:b494:39cc with SMTP id
+ u185-20020a6260c2000000b00446b49439ccmr10743109pfb.22.1632121504570; 
+ Mon, 20 Sep 2021 00:05:04 -0700 (PDT)
+Received: from [192.168.11.2] (KD106167171201.ppp-bb.dion.ne.jp.
+ [106.167.171.201])
+ by smtp.gmail.com with ESMTPSA id h17sm5814700pfk.66.2021.09.20.00.05.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 20 Sep 2021 00:05:04 -0700 (PDT)
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+From: Akira Yokosawa <akiyks@gmail.com>
+To: John Harrison <John.C.Harrison@Intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <4a227569-074f-c501-58bb-d0d8f60a8ae9@gmail.com>
+Date: Mon, 20 Sep 2021 16:05:00 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 20 Sep 2021 13:28:35 +0000
-Subject: [Intel-gfx] Have you attended XDC 2021? Give us your feedback!
+Subject: [Intel-gfx] [PATCH] drm/i915/guc,
+ docs: Fix pdfdocs build error by removing nested grid
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,73 +82,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Nested grids in grid-table cells are not specified as proper ReST
+constructs.
+Commit 572f2a5cd974 ("drm/i915/guc: Update firmware to v62.0.0")
+added a couple of kerneldoc tables of the form:
 
---=-2+e6MjXtLH+zpwS79csn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  +---+-------+------------------------------------------------------+
+  | 1 |  31:0 |  +------------------------------------------------+  |
+  +---+-------+  |                                                |  |
+  |...|       |  |  Embedded `HXG Message`_                       |  |
+  +---+-------+  |                                                |  |
+  | n |  31:0 |  +------------------------------------------------+  |
+  +---+-------+------------------------------------------------------+
 
-Hi,
+For "make htmldocs", they happen to work as one might expect,
+but they are incompatible with "make latexdocs" and "make pdfdocs",
+and cause the generated gpu.tex file to become incomplete and
+unbuildable by xelatex.
 
-First of all, thanks organizers for such a great conference. It was
-smooth and, although there were some issues as it is usual in any
-conference, they were fixed promptly :-)
+Restore the compatibility by removing those nested grids in the tables.
 
-I would like also to thank all of you for attending and participating
-either via submitting talks, watching them or joining the hallway track
-in IRC :-D Without you this conference won't make sense.
+Size comparison of generated gpu.tex:
 
-Now it is time to gather feedback from you :-D
+                  Sphinx 2.4.4  Sphinx 4.2.0
+  v5.14:               3238686       3841631
+  v5.15-rc1:            376270        432729
+  with this fix:       3377846       3998095
 
-* Do you have any comment on how was XDC 2021?
-  - For example, have you tried the new streaming service
-(https://streaming.media.ccc.de/xdc2021)? Was it fine?
+Fixes: 572f2a5cd974 ("drm/i915/guc: Update firmware to v62.0.0")
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Signed-off-by: Akira Yokosawa <akiyks@gmail.com>
+---
+Hi all,
 
-* Do you think we can improve on something for future events?
+I know there is little interest in building pdfdocs (or LaTeX) version
+of kernel-doc, and this issue does not matter most of you.
 
-* What did you like most/least about the conference?
+But "make pdfdocs" is supposed to work, give or take those tables
+with squeezed columns, and at least it is expected to complete
+without fatal errors.
 
-You can reply privately to me if you wish. We will share all the
-gathered feedback among organizers and the X.Org Foundation board.
+I have no idea who is responsible to those grid-tables, so added
+a lot of people in the To: and Cc: lists.
 
-Now that I got your attention... Did you like XDC 2021? What about
-organizing XDC 2023 (likely in Europe)?
+Does removing those nested grids look reasonable to you?
 
-We know this is a decision that takes time (trigger internal
-discussion, looking for volunteers, budget, and a venue suitable for
-the event, etc). Therefore, we encourage potential interested parties
-to start the internal discussions now, so any question they have can be
-answered before we open the call for proposals for XDC 2023 next year.
-Please read [0] and feel free to contact me or the board for more info
-if needed.
+Any feedback is welcome!
 
-Thanks,
+Note: This patch is against the docs-next branch of Jon's -doc tree
+(git://git.lwn.net/linux.git).  It can be applied against v5.15-rc1
+and v5.15-rc2 as well.
 
-Sam
+        Thanks, Akira
+--
+ .../gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h | 10 +++++-----
+ .../drm/i915/gt/uc/abi/guc_communication_mmio_abi.h    | 10 +++++-----
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
-[0] https://www.x.org/wiki/Events/RFP/
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+index 99e1fad5ca20..c9086a600bce 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+@@ -102,11 +102,11 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+  *  |   +-------+--------------------------------------------------------------+
+  *  |   |   7:0 | NUM_DWORDS = length (in dwords) of the embedded HXG message  |
+  *  +---+-------+--------------------------------------------------------------+
+- *  | 1 |  31:0 |  +--------------------------------------------------------+  |
+- *  +---+-------+  |                                                        |  |
+- *  |...|       |  |  Embedded `HXG Message`_                               |  |
+- *  +---+-------+  |                                                        |  |
+- *  | n |  31:0 |  +--------------------------------------------------------+  |
++ *  | 1 |  31:0 |                                                              |
++ *  +---+-------+                                                              |
++ *  |...|       | [Embedded `HXG Message`_]                                    |
++ *  +---+-------+                                                              |
++ *  | n |  31:0 |                                                              |
+  *  +---+-------+--------------------------------------------------------------+
+  */
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+index bbf1ddb77434..9baa3cb07d13 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+@@ -38,11 +38,11 @@
+  *  +---+-------+--------------------------------------------------------------+
+  *  |   | Bits  | Description                                                  |
+  *  +===+=======+==============================================================+
+- *  | 0 |  31:0 |  +--------------------------------------------------------+  |
+- *  +---+-------+  |                                                        |  |
+- *  |...|       |  |  Embedded `HXG Message`_                               |  |
+- *  +---+-------+  |                                                        |  |
+- *  | n |  31:0 |  +--------------------------------------------------------+  |
++ *  | 0 |  31:0 |                                                              |
++ *  +---+-------+                                                              |
++ *  |...|       | [Embedded `HXG Message`_]                                    |
++ *  +---+-------+                                                              |
++ *  | n |  31:0 |                                                              |
+  *  +---+-------+--------------------------------------------------------------+
+  */
+ 
 
-
---=-2+e6MjXtLH+zpwS79csn
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmFIL40ACgkQf/S6MvF9
-w0Pm2xAAiXNnIPiWHUDIS5hG6kdWVdDYs0mf/4THHuuVhq6m3TmlKWgpE4EACuNu
-mRX84tg+mEpvp8BDvWYH9sweHTM8qjzRvm95m/RODQGkIHy2VPcHVAeswUm6+9Gh
-a1z8trwsFqIeAiyCXzzQzHx1ix/NrleOnSAL6vSSYvKzDJl5gLfMX4b910SZIhGD
-MSRBDQyi1xTg+4bwvDTP3Digp/Z/YPjoQi8W/TMyMArwoP6Wh/knDfamm/cE+fhF
-1Ijd0JAy5EAB3da9ElurrMuYnlG1N4V0qhS7VCBsaHDSb+/5eM+sZVZcn8tUboVM
-qQ2Vk7+zdlHKxLGEIDePJKQWACG91EpMahZGmAFgJHP0V8iD78XO6oXGLVrzJNYZ
-ppYlgfVXzQLpeKC/SIgIi1qtVI3r1mmbjNVk3tmAOURFxJjm/E2e+Sushh0P0RSN
-T4wuUA8Y3dcmyya/A+k+mu7hkQqmHa2ejbjtn0ie4F2qlXA4X1gypeWSGQdDEKHp
-wvbZKawnEQhPQMAIoX7WoeEmxebMIO8xIJL+A698P+/G7aaIqjuOIvYGX7JWKp5k
-HhxiAnf/iAimeCkkdLhjfDO3zbtEqwQ28XCOM2IW3kI9pmCohbWH7bUxKXYgSuIr
-PInGDOUadk/c3jDZGf7Ta1d7ekcp9b62czwrZSw6rVeHG5NYrUA=
-=JFe3
------END PGP SIGNATURE-----
-
---=-2+e6MjXtLH+zpwS79csn--
+base-commit: 242f4c77b1c8cebfdfa0ad5b40e2e4ae0316e57d
+-- 
+2.17.1
 
