@@ -2,61 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EA35412778
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 22:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F6B4127BA
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 23:06:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB376E857;
-	Mon, 20 Sep 2021 20:47:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17C2E6E861;
+	Mon, 20 Sep 2021 21:06:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79D176E855;
- Mon, 20 Sep 2021 20:47:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="223266646"
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="223266646"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 13:47:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="434894689"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga006.jf.intel.com with ESMTP; 20 Sep 2021 13:47:06 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 20 Sep 2021 13:47:06 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 20 Sep 2021 13:47:06 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Mon, 20 Sep 2021 13:47:06 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "lma@semihalf.com"
- <lma@semihalf.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "upstream@semihalf.com" <upstream@semihalf.com>
-Thread-Topic: [PATCH v1] drm/i915/bdb: Fix version check
-Thread-Index: AQHXrimO0gfIStxtp0mPj/fNNtEfLKut2+4A
-Date: Mon, 20 Sep 2021 20:47:06 +0000
-Message-ID: <051f4a37e178d11c6dbcd05b5d6be28731cd7302.camel@intel.com>
-References: <20210920141101.194959-1-lma@semihalf.com>
-In-Reply-To: <20210920141101.194959-1-lma@semihalf.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D5116FE95D2FFF4A81734BE9D6B4662C@intel.com>
-Content-Transfer-Encoding: base64
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A28D46E861
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Sep 2021 21:06:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1632171971;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=QYU+FG0NgEDN5QbX73oIIwX0hoDQqIX9Lmp+LI9M8t8=;
+ b=IVX8sqH0GkBdoygwqFlodSyNhOWnP5fNDyerDk+Af4qxE+nDFFDS2ntCIGXCY+kaRPmovT
+ Ad1yMCkvyRdXzLZYccZY8FxGlA7LyrYyRrEFwjBMSbtogLxBM9mfSGd9NDVFoc9r3My1kh
+ BvXdIAZlHf8KCnb2hbt/fWu46IylNKg=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-532-a2of5mcePZO8Ly-k2Nc3mg-1; Mon, 20 Sep 2021 17:06:10 -0400
+X-MC-Unique: a2of5mcePZO8Ly-k2Nc3mg-1
+Received: by mail-qt1-f199.google.com with SMTP id
+ o7-20020a05622a138700b002a0e807258bso185199048qtk.13
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Sep 2021 14:06:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=QYU+FG0NgEDN5QbX73oIIwX0hoDQqIX9Lmp+LI9M8t8=;
+ b=VqoLXkNcLme/ppEPARdh2khiQrPCXTmIQCBJuYXUvXNrbNiTbm7cQGcur4YgAC0lVp
+ jMOxd8VsY/84r+9bkjCVMgPiRSwaM8JBre7hPHws8YG3nZqspMcyrImDF1U4O/Prwjbc
+ fDlcbyVWOmVKAwh4MnJS23uzMowkM1WKtyBwtxDUuTLrUqkAfspdstnxJmEniRhrRKkV
+ ipgeh/yqFJNiX8EuSHUd8U2bSSMsiSqZskCTcmFpEA7ZpFMI7TJ/p2K5xEN6R91ULZRu
+ ymvdpnytLCzqsnLGuith/dpeR53yUgwrpD6mIkskWxB5L6B28BnhuHiw8z3IqQECDdyK
+ Uz2w==
+X-Gm-Message-State: AOAM531IOlAyGQetlfxaci/nF1+4FW6WYZIdVaQ5szB2ZWyK5vPKYhoQ
+ rFUQBw9R9gxWGUoF8gyV8oBDEo3vBHL6KamwhNQsCTpp+Ln661B1FVX65eoW+0MVc3yilFEAnDT
+ OlkuQ5fIjfU2OoZAboIGoZClBWa/8
+X-Received: by 2002:ad4:44f3:: with SMTP id p19mr27905075qvt.33.1632171969966; 
+ Mon, 20 Sep 2021 14:06:09 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyS2jHSKoCWXuvuoiupSPbp5jSZ8WpAjMlaKmSvPqiXflQvfBQ1tFrLdqMk5bP0vfLGV3tG7A==
+X-Received: by 2002:ad4:44f3:: with SMTP id p19mr27905058qvt.33.1632171969792; 
+ Mon, 20 Sep 2021 14:06:09 -0700 (PDT)
+Received: from [192.168.8.206] (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id x4sm7820134qkx.62.2021.09.20.14.06.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Sep 2021 14:06:09 -0700 (PDT)
+Message-ID: <38aa092530b936609ba2b425e5caf2d63dbcf617.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Hans de Goede <hdegoede@redhat.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Rajat Jain <rajatja@google.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Mark Gross <mgross@linux.intel.com>, Andy
+ Shevchenko <andy@infradead.org>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?=
+ <ville.syrjala@linux.intel.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Pekka
+ Paalanen <pekka.paalanen@collabora.com>, Mario Limonciello
+ <mario.limonciello@outlook.com>, Mark Pearson <markpearson@lenovo.com>,
+ Sebastien Bacher <seb128@ubuntu.com>, Marco Trevisan
+ <marco.trevisan@canonical.com>, Emil Velikov <emil.l.velikov@gmail.com>, 
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org,  platform-driver-x86@vger.kernel.org
+Date: Mon, 20 Sep 2021 17:06:07 -0400
+In-Reply-To: <a4f10bbe-c87a-90f1-0691-01c0da485fa6@redhat.com>
+References: <20210906073519.4615-1-hdegoede@redhat.com>
+ <20210906073519.4615-10-hdegoede@redhat.com> <87sfy4x3ic.fsf@intel.com>
+ <a4f10bbe-c87a-90f1-0691-01c0da485fa6@redhat.com>
+Organization: Red Hat
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915/bdb: Fix version check
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: Add privacy-screen support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,52 +102,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIxLTA5LTIwIGF0IDE2OjExICswMjAwLCBMdWthc3ogTWFqY3phayB3cm90ZToN
-Cj4gV2l0aCBwYXRjaCAiZHJtL2k5MTUvdmJ0OiBGaXggYmFja2xpZ2h0IHBhcnNpbmcgZm9yIFZC
-VCAyMzQrIg0KPiB0aGUgc2l6ZSBvZiBiZGJfbGZwX2JhY2tsaWdodF9kYXRhIHN0cnVjdHVyZSBo
-YXMgYmVlbiBpbmNyZWFzZWQsDQo+IGNhdXNpbmcgaWYtc3RhdGVtZW50IGluIHRoZSBwYXJzZV9s
-ZnBfYmFja2xpZ2h0IGZ1bmN0aW9uDQo+IHRoYXQgY29tYXByZXMgdGhpcyBzdHJ1Y3R1cmUgc2l6
-ZSB0byB0aGUgb25lIHJldHJpZXZlZCBmcm9tIEJEQiwNCj4gYWx3YXlzIHRvIGZhaWwgZm9yIG9s
-ZGVyIHJldmlzaW9ucy4NCj4gVGhpcyBwYXRjaCBmaXhlcyBpdCBieSBjb21wYXJpbmcgYSB0b3Rh
-bCBzaXplIG9mIGFsbCBmaWxlZHMgZnJvbQ0KPiB0aGUgc3RydWN0dXJlIChwcmVzZW50IGJlZm9y
-ZSB0aGUgY2hhbmdlKSB3aXRoIHRoZSB2YWx1ZSBnYXRoZXJlZCBmcm9tIEJEQi4NCj4gVGVzdGVk
-IG9uIENocm9tZWJvb2sgUGl4ZWxib29rIChOb2N0dXJuZSkgKHJlcG9ydHMgYmRiLT52ZXJzaW9u
-ID0gMjIxKQ0KPiANCj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIDUuNCsNCj4gVGVz
-dGVkLWJ5OiBMdWthc3ogTWFqY3phayA8bG1hQHNlbWloYWxmLmNvbT4NCj4gU2lnbmVkLW9mZi1i
-eTogTHVrYXN6IE1hamN6YWsgPGxtYUBzZW1paGFsZi5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMgICAgIHwgNCArKystDQo+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9kZWZzLmggfCA1ICsrKysrDQo+ICAyIGZp
-bGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMNCj4gaW5kZXggM2MyNTkyNjA5MmRl
-Li4wNTJhMTliNDU1ZDEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfYmlvcy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfYmlvcy5jDQo+IEBAIC00NTIsNyArNDUyLDkgQEAgcGFyc2VfbGZwX2JhY2tsaWdodChzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gIA0KPiAgCWk5MTUtPnZidC5iYWNrbGlnaHQu
-dHlwZSA9IElOVEVMX0JBQ0tMSUdIVF9ESVNQTEFZX0RESTsNCj4gIAlpZiAoYmRiLT52ZXJzaW9u
-ID49IDE5MSAmJg0KPiAtCSAgICBnZXRfYmxvY2tzaXplKGJhY2tsaWdodF9kYXRhKSA+PSBzaXpl
-b2YoKmJhY2tsaWdodF9kYXRhKSkgew0KPiArCSAgICBnZXRfYmxvY2tzaXplKGJhY2tsaWdodF9k
-YXRhKSA+PSAoc2l6ZW9mKGJhY2tsaWdodF9kYXRhLT5lbnRyeV9zaXplKSArDQo+ICsJCQkJCSAg
-ICAgIHNpemVvZihiYWNrbGlnaHRfZGF0YS0+ZGF0YSkgKw0KPiArCQkJCQkgICAgICBzaXplb2Yo
-YmFja2xpZ2h0X2RhdGEtPmxldmVsKSkpIHsNCg0KTWlzc2luZyBzaXplb2YoYmFja2xpZ2h0X2Rh
-dGEtPmJhY2tsaWdodF9jb250cm9sKSBidXQgdGhpcyBpcyBnZXR0aW5nIHZlcnkgdmVyYm9zZS4N
-CldvdWxkIGJlIGJldHRlciBoYXZlIGEgZXhwZWN0ZWQgc2l6ZSB2YXJpYWJsZSBzZXQgZWFjaCB2
-ZXJzaW9uIHNldCBpbiB0aGUgYmVnaW5uaW5nIG9mIHRoaXMgZnVuY3Rpb24uDQoNCnNvbWV0aGlu
-ZyBsaWtlOg0Kc3dpdGNoIChiZGItPnZlcnNpb24pIHsNCmNhc2UgMTkxOg0KCWV4cGVjdGVkX3Np
-emUgPSB4Ow0KCWJyZWFrOw0KY2FzZSAyMzQ6DQoJZXhwZWN0ZWRfc2l6ZSA9IHg7DQoJYnJlYWs7
-DQpjYXNlIDIzNjoNCmRlZmF1bHQ6DQoJZXhwZWN0ZWRfc2l6ZSA9IHg7DQp9DQoJDQoNCj4gIAkJ
-Y29uc3Qgc3RydWN0IGxmcF9iYWNrbGlnaHRfY29udHJvbF9tZXRob2QgKm1ldGhvZDsNCj4gIA0K
-PiAgCQltZXRob2QgPSAmYmFja2xpZ2h0X2RhdGEtPmJhY2tsaWdodF9jb250cm9sW3BhbmVsX3R5
-cGVdOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92
-YnRfZGVmcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5o
-DQo+IGluZGV4IDMzMDA3N2MyZTU4OC4uZmZmNDU2YmY4NzgzIDEwMDY0NA0KPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9kZWZzLmgNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oDQo+IEBAIC04MTQsNiArODE0
-LDExIEBAIHN0cnVjdCBsZnBfYnJpZ2h0bmVzc19sZXZlbCB7DQo+ICAJdTE2IHJlc2VydmVkOw0K
-PiAgfSBfX3BhY2tlZDsNCj4gIA0KPiArLyoNCj4gKyAqIENoYW5naW5nIHN0cnVjdCBiZGJfbGZw
-X2JhY2tsaWdodF9kYXRhIG1pZ2h0IGFmZmVjdCBpdHMNCj4gKyAqIHNpemUgY29tcGFyYXRpb24g
-dG8gdGhlIHZhbHVlIGhvbGQgaW4gQkRCLg0KPiArICogKGUuZy4gaW4gcGFyc2VfbGZwX2JhY2ts
-aWdodCgpKQ0KPiArICovDQoNClRoaXMgaXMgdHJ1ZSBmb3IgYWxsIHRoZSBibG9ja3Mgc28gSSBk
-b24ndCB0aGluayB3ZSBuZWVkIHRoaXMgY29tbWVudC4NCg0KPiAgc3RydWN0IGJkYl9sZnBfYmFj
-a2xpZ2h0X2RhdGEgew0KPiAgCXU4IGVudHJ5X3NpemU7DQo+ICAJc3RydWN0IGxmcF9iYWNrbGln
-aHRfZGF0YV9lbnRyeSBkYXRhWzE2XTsNCg0K
+On Thu, 2021-09-16 at 12:32 +0200, Hans de Goede wrote:
+> 
+> I'm fine with refactoring this a bit and adding
+> an intel_modeset_probe_defer() helper for this, I assume I should also
+> move the vga_switcheroo_client_probe_defer(pdev) check there?
+> 
+> As you suggested yourself in your reply to the coverletter I will
+> push out the rest of the series to drm-misc-next while we figure this
+> out. Assuming Lyude is happy with the answers which I gave to her
+> remarks about some of the other patches.
+
+I am, btw!
+
+> 
+> Regards,
+> 
+> Hans
+> 
+
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
+
