@@ -2,65 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5141D410FB5
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 08:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C109C41100A
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 09:28:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3CBB6E3B7;
-	Mon, 20 Sep 2021 06:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBC06E3E5;
+	Mon, 20 Sep 2021 07:28:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com
- [IPv6:2607:f8b0:4864:20::82b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 805D189FBC;
- Mon, 20 Sep 2021 06:58:19 +0000 (UTC)
-Received: by mail-qt1-x82b.google.com with SMTP id u21so14628290qtw.8;
- Sun, 19 Sep 2021 23:58:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5h7cl8Ajs5AwUhLTVL4cZufs552Y56de9iOn7+e0oio=;
- b=NWbm5PltTIwo+bw8yBo/aN2z9NHLRVzLbsvW1RKr1HFznCGoO3u/sSp6yeT8/6+9yp
- XvN/wruXJfaDK4OlgpgMNREJhzOL1AvlVwGBVqB49R4OzHgk3fjWsA1gwjOWaKGEhkAR
- JUTZHNBF/tw41uF9ZA382+S+yPDqcZ6JoX2B8RCqRK6nmTF3BlZeMzWcNqt5KCdxrTvm
- mnh5GlfBLdoADFqo9QHvaBQGepmMxmBGj0pOPhKhIUidyjKZa2Dtk2XzWjRJqJ5ShLib
- pz7LSBdsBo4n4Sr3/+pSxS+zSWhWp5UlgwV5N2eTPb736LDSM2OJwr0kuDq1Xy05eeqO
- caKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5h7cl8Ajs5AwUhLTVL4cZufs552Y56de9iOn7+e0oio=;
- b=fMNPHYfA26t9a80O33nxypqpBgDTty1Wd7FgI9opOUHB9hI/AQZ34kf/INZ9k3xwQe
- I1Hqw5NrduI2u4OmfRb96DcOqfYCq7T0mngROcPLS5WRCzVil1dk/iEf3w7Vy2uvmfNH
- 9z7/P+lOqoXNu8+NINV5OrztCWF9KE3AwLj/YMWe2f0pPGf8JXg7GsM4WYdmXGgHVx8/
- eBPW80TbvrJq5yacE1Ar/J+hiYevert9cAhzieebU48aD+O1V0JMTAfrblVCz9RT1SHG
- VIh2fE0w6IdALaDJO5dwQZb1371oBiCwHuBEEOf2ZW4BWNg1Ojpm8BdJdQTByd/0yQ/J
- cQug==
-X-Gm-Message-State: AOAM530Mhcl8dvJGO0h8lLY4Zddl3mu8tZ60+7/5jDvCt6PX3ZgQaCeP
- UqlhY9TqOK9NKgW8Q3cWixs2uNTSrZLpa9Oa/8c=
-X-Google-Smtp-Source: ABdhPJxgIjW/sYBwCAwNOauYqYmXhV85Q+NRfeADRCpLGDjLuUSmiyDtCixGmB6wEfjHNGJYF4h8sH9zAiausdbUp6k=
-X-Received: by 2002:ac8:5dcc:: with SMTP id e12mr21395932qtx.164.1632121098542; 
- Sun, 19 Sep 2021 23:58:18 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF766E3E5;
+ Mon, 20 Sep 2021 07:28:18 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10112"; a="210161168"
+X-IronPort-AV: E=Sophos;i="5.85,307,1624345200"; d="scan'208";a="210161168"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2021 00:28:17 -0700
+X-IronPort-AV: E=Sophos;i="5.85,307,1624345200"; d="scan'208";a="473459185"
+Received: from gbradyx-mobl2.ger.corp.intel.com (HELO [10.213.235.119])
+ ([10.213.235.119])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2021 00:28:16 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210917233818.33659-1-matthew.brost@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Hugh Dickins <hughd@google.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <8c906ac4-c6a3-ee45-970f-07679456fd18@linux.intel.com>
+Date: Mon, 20 Sep 2021 08:28:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210913193509.3575-1-anarsoul@gmail.com>
- <87r1dr34nk.fsf@intel.com>
- <410de2c8e865446ec7f9d72a419b2674d34891bf.camel@redhat.com>
- <87v932zt5j.fsf@intel.com>
- <CA+E=qVdELSDKWBwyayTDjRr+RXuWjXN6Vb8EzbgS_0YTb=1dFg@mail.gmail.com>
- <87sfy6z0mr.fsf@intel.com>
-In-Reply-To: <87sfy6z0mr.fsf@intel.com>
-From: Vasily Khoruzhick <anarsoul@gmail.com>
-Date: Sun, 19 Sep 2021 23:57:52 -0700
-Message-ID: <CA+E=qVcvOnMxo7njvib8fAwsxfziWBjKicD5HwJQo7N=n_22sA@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Lyude Paul <lyude@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, 
- Daniel Vetter <daniel@ffwll.ch>, Sean Paul <seanpaul@chromium.org>, 
- Aaron Ma <aaron.ma@canonical.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: add a delay before setting
- panel brightness after power on
+In-Reply-To: <20210917233818.33659-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix blank screen booting crashes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,95 +53,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 15, 2021 at 1:47 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Tue, 14 Sep 2021, Vasily Khoruzhick <anarsoul@gmail.com> wrote:
-> > On Tue, Sep 14, 2021 at 3:31 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> >>
-> >> On Tue, 14 Sep 2021, Lyude Paul <lyude@redhat.com> wrote:
-> >> > On Tue, 2021-09-14 at 12:09 +0300, Jani Nikula wrote:
-> >> >> On Mon, 13 Sep 2021, Vasily Khoruzhick <anarsoul@gmail.com> wrote:
-> >> >> > Panel in my Dell XPS 7590, that uses Intel's HDR backlight interface to
-> >> >> > control brightness, apparently needs a delay before setting brightness
-> >> >> > after power on. Without this delay the panel does accept the setting
-> >> >> > and may come up with some arbitrary brightness (sometimes it's too dark,
-> >> >> > sometimes it's too bright, I wasn't able to find a system).
-> >> >> >
-> >> >> > I don't have access to the spec, so I'm not sure if it's expected
-> >> >> > behavior or a quirk for particular device.
-> >> >> >
-> >> >> > Delay was chosen by experiment: it works with 100ms, but fails with
-> >> >> > anything lower than 75ms.
-> >> >>
-> >> >> Looks like we don't respect the panel delays for DPCD backlight. The
-> >> >> values are used for setting up the panel power sequencer, and thus PWM
-> >> >> based backlight, but we should probably use the delays in DPCD backlight
-> >> >> code too.
-> >> >
-> >> > This makes sense to me, you're referring to the panel delays in the VBT
-> >> > correct?
-> >>
-> >> Yes. See pps_init_delays() and intel_pps_backlight_on(). The delays
-> >> aren't applied to DPCD backlight, I think it would make sense if they
-> >> were.
-> >
-> > I guess it explains why it usually stops working after suspend.
-> > Probably BIOS doesn't re-init the power sequencer on resume.
->
-> The point is, the DPCD backlight isn't driven via the power sequencer,
-> while the PWM pin would be.
->
-> Please file a bug at [1], and attach /sys/kernel/debug/dri/0/i915_vbt as
-> well as dmesg from boot with drm.debug=14 module parameter set.
 
-Done, see https://gitlab.freedesktop.org/drm/intel/-/issues/4170
+On 18/09/2021 00:38, Matthew Brost wrote:
+> From: Hugh Dickins <hughd@google.com>
+> 
+> 5.15-rc1 crashes with blank screen when booting up on two ThinkPads
+> using i915.  Bisections converge convincingly, but arrive at different
+> and surprising "culprits", none of them the actual culprit.
 
-> Thanks,
-> Jani.
->
->
-> [1] https://gitlab.freedesktop.org/drm/intel/issues/new
->
->
->
-> >
-> >> BR,
-> >> Jani.
-> >>
-> >> >
-> >> >>
-> >> >> BR,
-> >> >> Jani.
-> >> >>
-> >> >>
-> >> >> >
-> >> >> > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> >> >> > ---
-> >> >> >  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++++
-> >> >> >  1 file changed, 4 insertions(+)
-> >> >> >
-> >> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> >> >> > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> >> >> > index 4f8337c7fd2e..c4f35e1b5870 100644
-> >> >> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> >> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> >> >> > @@ -210,6 +210,10 @@ intel_dp_aux_hdr_enable_backlight(const struct
-> >> >> > intel_crtc_state *crtc_state,
-> >> >> >
-> >> >> >         ctrl = old_ctrl;
-> >> >> >         if (panel->backlight.edp.intel.sdr_uses_aux) {
-> >> >> > +               /* Wait 100ms to ensure that panel is ready otherwise it
-> >> >> > may not
-> >> >> > +                * set chosen backlight level
-> >> >> > +                */
-> >> >> > +               msleep(100);
-> >> >> >                 ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
-> >> >> >                 intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
-> >> >> >         } else {
-> >> >>
-> >>
-> >> --
-> >> Jani Nikula, Intel Open Source Graphics Center
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+It is certainly surprising this patch crashed SNB and KBL.
+
+How feasible would it be to make this code just not run when GuC is not 
+used? Given the field it adds is called ce->guc_blocked it sounds like a 
+natural and preferable thing to do... if possible.
+
+> netconsole (with init_netconsole() hacked to call i915_init() when
+> logging has started, instead of by module_init()) tells the story:
+> 
+> kernel BUG at drivers/gpu/drm/i915/i915_sw_fence.c:245!
+> with RSI: ffffffff814d408b pointing to sw_fence_dummy_notify().
+> I've been building with CONFIG_CC_OPTIMIZE_FOR_SIZE=y, and that
+> function needs to be 4-byte aligned.
+> 
+> v2:
+>   (Jani Nikula)
+>    - Change BUG_ON to WARN_ON
+
+However in this case the code would then go on and call into a wrong 
+function offset which may be worse than a BUG_ON, no?
+
+> 
+> Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
+> Signed-off-by: Hugh Dickins <hughd@google.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_context.c | 1 +
+>   drivers/gpu/drm/i915/i915_sw_fence.c    | 4 +++-
+>   2 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index ff637147b1a9..f02c2202da9d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -362,6 +362,7 @@ static int __intel_context_active(struct i915_active *active)
+>   	return 0;
+>   }
+>   
+> +__aligned(4)	/* Respect the I915_SW_FENCE_MASK */
+
+Hugh suggested __i915_sw_fence_call which I think would be the right 
+thing to do.
+
+Regards,
+
+Tvrtko
+
+>   static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
+>   				 enum i915_sw_fence_notify state)
+>   {
+> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+> index c589a681da77..1217b124c1d0 100644
+> --- a/drivers/gpu/drm/i915/i915_sw_fence.c
+> +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+> @@ -14,8 +14,10 @@
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
+>   #define I915_SW_FENCE_BUG_ON(expr) BUG_ON(expr)
+> +#define I915_SW_FENCE_WARN_ON(expr) WARN_ON(expr)
+>   #else
+>   #define I915_SW_FENCE_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
+> +#define I915_SW_FENCE_WARN_ON(expr) BUILD_BUG_ON_INVALID(expr)
+>   #endif
+>   
+>   static DEFINE_SPINLOCK(i915_sw_fence_lock);
+> @@ -242,7 +244,7 @@ void __i915_sw_fence_init(struct i915_sw_fence *fence,
+>   			  const char *name,
+>   			  struct lock_class_key *key)
+>   {
+> -	BUG_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
+> +	I915_SW_FENCE_WARN_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
+>   
+>   	__init_waitqueue_head(&fence->wait, name, key);
+>   	fence->flags = (unsigned long)fn;
+> 
