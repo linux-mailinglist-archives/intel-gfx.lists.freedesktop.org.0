@@ -1,63 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235EF4126D4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 21:24:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88EB4126E7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 21:30:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D64F6E83C;
-	Mon, 20 Sep 2021 19:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C12A96E83C;
+	Mon, 20 Sep 2021 19:30:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
- [IPv6:2607:f8b0:4864:20::22e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA7296E83A;
- Mon, 20 Sep 2021 19:24:19 +0000 (UTC)
-Received: by mail-oi1-x22e.google.com with SMTP id y201so11500364oie.3;
- Mon, 20 Sep 2021 12:24:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=8VQWXazgnx4l5Gn1N59IZ0kuogl5HA+pJlzQ83m5GU8=;
- b=MVbyNQtPdR5MOM2R+o+OqzkoLyJ87UDX24Vn+Fq2Rkfv9pcljG9plxgIG1Fk1UhFxe
- PRTzKJZhGntEn9qjHhUwt3p1tWpO/0KeHO/On3e2wHiWrhA/mFDH84ttUeGVpEzR0Ocl
- YY00oQSgz0ddf1U/IUu8psDliX2xVrImKdIXOKzSagUCT3GgK0RSO3QQejsH+K9LbV0R
- opAUFzRT+KgGfQqkBy1gidjRFjh/cYgA5SDyme3QHBmtvjnViOpC7JxRMiAQJECkS5aL
- EfYDT2/G3Ie2hqYlrsQT3vCM1ty4M5vOJhkvNhCW+BORE14B2eVq4CyoZNlW5UVTUrx6
- MR8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=8VQWXazgnx4l5Gn1N59IZ0kuogl5HA+pJlzQ83m5GU8=;
- b=uHhjUBBmMkGdC+92kFmF0gl1vARbOINNJolTDovg0V0EPPX8OYMT0UE2cl4Kgb13k2
- SHniCS/g06oIeqtutujh+u79Iplzl4Rc+9KWW9ESqMEbunRAA35WM/M+KuzanN5t900s
- 8+EngJl1L3ZJj3SgLzEz6oNMVcUCxoh4mcatEI5n0rGS9Tvl9UhojHitAZzaWQHOnijq
- 9glQiv3NNgAA0WnusYyg9wTt/FULVwYFlePdFtzd8mb6/523ORwNY8/AGre3ScXZrIrM
- XXf9rTfeF1xd+HUOFK5lC4QMXXOwIXAc/50AiUo0N4LQKVXTJjQj8oSKf3COIxi8ma2d
- oFlg==
-X-Gm-Message-State: AOAM533m4pRXOdX/UHkzWKwAgYLWhDrwlzHdpMHViSHOK9YESnAE9H64
- gNcqp3PwY24z21sixW0N4vN1uyHyBKHu1cq9eLU=
-X-Google-Smtp-Source: ABdhPJwZ7wpnpORs2p5lAkyoBhZm7EkaCga400UlmEcHwbWS5eAaN0ZGxYV4G8tDSQ0JJCSsX7TkIzmv2QNmpoamv0A=
-X-Received: by 2002:a05:6808:1310:: with SMTP id
- y16mr530012oiv.123.1632165859129; 
- Mon, 20 Sep 2021 12:24:19 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4B87E6E83C;
+ Mon, 20 Sep 2021 19:30:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3CB06A7525;
+ Mon, 20 Sep 2021 19:30:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5922369821214952821=="
 MIME-Version: 1.0
-References: <20210920192011.221102-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20210920192011.221102-1-Arunpravin.PaneerSelvam@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 20 Sep 2021 15:24:07 -0400
-Message-ID: <CADnq5_O6xXp_JZYjpvsCoPUZMv4AFJ4L_Ocka_A6iUt-kZ2bog@mail.gmail.com>
-To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
-Cc: Maling list - DRI developers <dri-devel@lists.freedesktop.org>, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Christian Koenig <christian.koenig@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>, 
- "Deucher, Alexander" <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/2] Enable buddy memory manager support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Sep 2021 19:30:28 -0000
+Message-ID: <163216622821.25896.16293254578685079179@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210920155914.707984-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210920155914.707984-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Suspend_/_resume_backup-_and_restore_of_LMEM=2E_=28rev?=
+ =?utf-8?q?6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,710 +42,470 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 20, 2021 at 3:21 PM Arunpravin
-<Arunpravin.PaneerSelvam@amd.com> wrote:
+--===============5922369821214952821==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Please prefix the patch subject with drm.  E.g.,
-drm: Enable buddy memory manager support
+== Series Details ==
 
-Same for the second patch, but make it drm/amdgpu instead.
+Series: drm/i915: Suspend / resume backup- and restore of LMEM. (rev6)
+URL   : https://patchwork.freedesktop.org/series/94278/
+State : failure
 
-Alex
+== Summary ==
 
->
-> Port Intel buddy system manager to drm root folder
-> Add CPU mappable/non-mappable region support to the drm buddy manager
->
-> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
-> ---
->  drivers/gpu/drm/Makefile    |   2 +-
->  drivers/gpu/drm/drm_buddy.c | 465 ++++++++++++++++++++++++++++++++++++
->  include/drm/drm_buddy.h     | 154 ++++++++++++
->  3 files changed, 620 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/drm_buddy.c
->  create mode 100644 include/drm/drm_buddy.h
->
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index a118692a6df7..fe1a2fc09675 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -18,7 +18,7 @@ drm-y       :=3D        drm_aperture.o drm_auth.o drm_c=
-ache.o \
->                 drm_dumb_buffers.o drm_mode_config.o drm_vblank.o \
->                 drm_syncobj.o drm_lease.o drm_writeback.o drm_client.o \
->                 drm_client_modeset.o drm_atomic_uapi.o drm_hdcp.o \
-> -               drm_managed.o drm_vblank_work.o
-> +               drm_managed.o drm_vblank_work.o drm_buddy.o
->
->  drm-$(CONFIG_DRM_LEGACY) +=3D drm_agpsupport.o drm_bufs.o drm_context.o =
-drm_dma.o \
->                             drm_legacy_misc.o drm_lock.o drm_memory.o drm=
-_scatter.o \
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> new file mode 100644
-> index 000000000000..f07919a004b6
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_buddy.c
-> @@ -0,0 +1,465 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright =EF=BF=BD 2021 Intel Corporation
-> + */
-> +
-> +#include <linux/kmemleak.h>
-> +#include <drm/drm_buddy.h>
-> +
-> +static struct drm_buddy_block *drm_block_alloc(struct drm_buddy_mm *mm,
-> +                       struct drm_buddy_block *parent, unsigned int orde=
-r,
-> +                       u64 offset)
-> +{
-> +       struct drm_buddy_block *block;
-> +
-> +       BUG_ON(order > DRM_BUDDY_MAX_ORDER);
-> +
-> +       block =3D kmem_cache_zalloc(mm->slab_blocks, GFP_KERNEL);
-> +       if (!block)
-> +               return NULL;
-> +
-> +       block->header =3D offset;
-> +       block->header |=3D order;
-> +       block->parent =3D parent;
-> +       block->start =3D offset >> PAGE_SHIFT;
-> +       block->size =3D (mm->chunk_size << order) >> PAGE_SHIFT;
-> +
-> +       BUG_ON(block->header & DRM_BUDDY_HEADER_UNUSED);
-> +       return block;
-> +}
-> +
-> +static void drm_block_free(struct drm_buddy_mm *mm, struct drm_buddy_blo=
-ck *block)
-> +{
-> +       kmem_cache_free(mm->slab_blocks, block);
-> +}
-> +
-> +static void add_ordered(struct drm_buddy_mm *mm, struct drm_buddy_block =
-*block)
-> +{
-> +       struct drm_buddy_block *node;
-> +
-> +       if (list_empty(&mm->free_list[drm_buddy_block_order(block)])) {
-> +               list_add(&block->link,
-> +                               &mm->free_list[drm_buddy_block_order(bloc=
-k)]);
-> +               return;
-> +       }
-> +
-> +       list_for_each_entry(node, &mm->free_list[drm_buddy_block_order(bl=
-ock)], link)
-> +               if (block->start > node->start)
-> +                       break;
-> +
-> +       __list_add(&block->link, node->link.prev, &node->link);
-> +}
-> +
-> +static void mark_allocated(struct drm_buddy_block *block)
-> +{
-> +       block->header &=3D ~DRM_BUDDY_HEADER_STATE;
-> +       block->header |=3D DRM_BUDDY_ALLOCATED;
-> +
-> +       list_del(&block->link);
-> +}
-> +
-> +static void mark_free(struct drm_buddy_mm *mm,
-> +                     struct drm_buddy_block *block)
-> +{
-> +       block->header &=3D ~DRM_BUDDY_HEADER_STATE;
-> +       block->header |=3D DRM_BUDDY_FREE;
-> +
-> +       add_ordered(mm, block);
-> +}
-> +
-> +static void mark_split(struct drm_buddy_block *block)
-> +{
-> +       block->header &=3D ~DRM_BUDDY_HEADER_STATE;
-> +       block->header |=3D DRM_BUDDY_SPLIT;
-> +
-> +       list_del(&block->link);
-> +}
-> +
-> +int drm_buddy_init(struct drm_buddy_mm *mm, u64 size, u64 chunk_size)
-> +{
-> +       unsigned int i;
-> +       u64 offset;
-> +
-> +       if (size < chunk_size)
-> +               return -EINVAL;
-> +
-> +       if (chunk_size < PAGE_SIZE)
-> +               return -EINVAL;
-> +
-> +       if (!is_power_of_2(chunk_size))
-> +               return -EINVAL;
-> +
-> +       size =3D round_down(size, chunk_size);
-> +
-> +       mm->size =3D size;
-> +       mm->chunk_size =3D chunk_size;
-> +       mm->max_order =3D ilog2(size) - ilog2(chunk_size);
-> +
-> +       BUG_ON(mm->max_order > DRM_BUDDY_MAX_ORDER);
-> +
-> +       mm->slab_blocks =3D KMEM_CACHE(drm_buddy_block, SLAB_HWCACHE_ALIG=
-N);
-> +
-> +       if (!mm->slab_blocks)
-> +               return -ENOMEM;
-> +
-> +       mm->free_list =3D kmalloc_array(mm->max_order + 1,
-> +                                     sizeof(struct list_head),
-> +                                     GFP_KERNEL);
-> +       if (!mm->free_list)
-> +               goto out_destroy_slab;
-> +
-> +       for (i =3D 0; i <=3D mm->max_order; ++i)
-> +               INIT_LIST_HEAD(&mm->free_list[i]);
-> +
-> +       mm->n_roots =3D hweight64(size);
-> +
-> +       mm->roots =3D kmalloc_array(mm->n_roots,
-> +                                 sizeof(struct drm_buddy_block *),
-> +                                 GFP_KERNEL);
-> +       if (!mm->roots)
-> +               goto out_free_list;
-> +
-> +       offset =3D 0;
-> +       i =3D 0;
-> +
-> +       /*
-> +        * Split into power-of-two blocks, in case we are given a size th=
-at is
-> +        * not itself a power-of-two.
-> +        */
-> +       do {
-> +               struct drm_buddy_block *root;
-> +               unsigned int order;
-> +               u64 root_size;
-> +
-> +               root_size =3D rounddown_pow_of_two(size);
-> +               order =3D ilog2(root_size) - ilog2(chunk_size);
-> +
-> +               root =3D drm_block_alloc(mm, NULL, order, offset);
-> +               if (!root)
-> +                       goto out_free_roots;
-> +
-> +               mark_free(mm, root);
-> +
-> +               BUG_ON(i > mm->max_order);
-> +               BUG_ON(drm_buddy_block_size(mm, root) < chunk_size);
-> +
-> +               mm->roots[i] =3D root;
-> +
-> +               offset +=3D root_size;
-> +               size -=3D root_size;
-> +               i++;
-> +       } while (size);
-> +
-> +       return 0;
-> +
-> +out_free_roots:
-> +       while (i--)
-> +               drm_block_free(mm, mm->roots[i]);
-> +       kfree(mm->roots);
-> +out_free_list:
-> +       kfree(mm->free_list);
-> +out_destroy_slab:
-> +       kmem_cache_destroy(mm->slab_blocks);
-> +       return -ENOMEM;
-> +}
-> +EXPORT_SYMBOL(drm_buddy_init);
-> +
-> +void drm_buddy_fini(struct drm_buddy_mm *mm)
-> +{
-> +       int i;
-> +
-> +       for (i =3D 0; i < mm->n_roots; ++i) {
-> +               WARN_ON(!drm_buddy_block_is_free(mm->roots[i]));
-> +               drm_block_free(mm, mm->roots[i]);
-> +       }
-> +
-> +       kfree(mm->roots);
-> +       kfree(mm->free_list);
-> +       kmem_cache_destroy(mm->slab_blocks);
-> +}
-> +EXPORT_SYMBOL(drm_buddy_fini);
-> +
-> +static int split_block(struct drm_buddy_mm *mm,
-> +                      struct drm_buddy_block *block)
-> +{
-> +       unsigned int block_order =3D drm_buddy_block_order(block) - 1;
-> +       u64 offset =3D drm_buddy_block_offset(block);
-> +
-> +       BUG_ON(!drm_buddy_block_is_free(block));
-> +       BUG_ON(!drm_buddy_block_order(block));
-> +
-> +       block->left =3D drm_block_alloc(mm, block, block_order, offset);
-> +       if (!block->left)
-> +               return -ENOMEM;
-> +
-> +       block->right =3D drm_block_alloc(mm, block, block_order,
-> +                                       offset + (mm->chunk_size << block=
-_order));
-> +       if (!block->right) {
-> +               drm_block_free(mm, block->left);
-> +               return -ENOMEM;
-> +       }
-> +
-> +       mark_free(mm, block->left);
-> +       mark_free(mm, block->right);
-> +
-> +       mark_split(block);
-> +
-> +       return 0;
-> +}
-> +
-> +static struct drm_buddy_block *
-> +get_buddy(struct drm_buddy_block *block)
-> +{
-> +       struct drm_buddy_block *parent;
-> +
-> +       parent =3D block->parent;
-> +       if (!parent)
-> +               return NULL;
-> +
-> +       if (parent->left =3D=3D block)
-> +               return parent->right;
-> +
-> +       return parent->left;
-> +}
-> +
-> +static void __drm_buddy_free(struct drm_buddy_mm *mm,
-> +                             struct drm_buddy_block *block)
-> +{
-> +       struct drm_buddy_block *parent;
-> +
-> +       while ((parent =3D block->parent)) {
-> +               struct drm_buddy_block *buddy;
-> +
-> +               buddy =3D get_buddy(block);
-> +
-> +               if (!drm_buddy_block_is_free(buddy))
-> +                       break;
-> +
-> +               list_del(&buddy->link);
-> +
-> +               drm_block_free(mm, block);
-> +               drm_block_free(mm, buddy);
-> +
-> +               block =3D parent;
-> +       }
-> +
-> +       mark_free(mm, block);
-> +}
-> +
-> +void drm_buddy_free(struct drm_buddy_mm *mm,
-> +                    struct drm_buddy_block *block)
-> +{
-> +       BUG_ON(!drm_buddy_block_is_allocated(block));
-> +       __drm_buddy_free(mm, block);
-> +}
-> +EXPORT_SYMBOL(drm_buddy_free);
-> +
-> +void drm_buddy_free_list(struct drm_buddy_mm *mm, struct list_head *obje=
-cts)
-> +{
-> +       struct drm_buddy_block *block, *on;
-> +
-> +       list_for_each_entry_safe(block, on, objects, link) {
-> +               drm_buddy_free(mm, block);
-> +               cond_resched();
-> +       }
-> +       INIT_LIST_HEAD(objects);
-> +}
-> +EXPORT_SYMBOL(drm_buddy_free_list);
-> +
-> +/*
-> + * Allocate power-of-two block. The order value here translates to:
-> + *
-> + *   0 =3D 2^0 * mm->chunk_size
-> + *   1 =3D 2^1 * mm->chunk_size
-> + *   2 =3D 2^2 * mm->chunk_size
-> + *   ...
-> + */
-> +struct drm_buddy_block *
-> +drm_buddy_alloc(struct drm_buddy_mm *mm, unsigned int order,
-> +               bool bar_enabled, unsigned int limit,
-> +               enum drm_buddy_alloc_mode mode)
-> +{
-> +       struct drm_buddy_block *block =3D NULL;
-> +       unsigned int pages;
-> +       unsigned int i;
-> +       int err;
-> +
-> +       pages =3D (mm->chunk_size << order) >> PAGE_SHIFT;
-> +
-> +       for (i =3D order; i <=3D mm->max_order; ++i) {
-> +               if (mode =3D=3D DRM_BUDDY_TOP_DOWN) {
-> +                       if (!list_empty(&mm->free_list[i])) {
-> +                               block =3D list_first_entry(&mm->free_list=
-[i],
-> +                                               struct drm_buddy_block, l=
-ink);
-> +
-> +                               if (bar_enabled) {
-> +                                       if (!(block->start > limit))
-> +                                               continue;
-> +                               }
-> +
-> +                               break;
-> +                       }
-> +               } else if (mode =3D=3D DRM_BUDDY_BOTTOM_UP) {
-> +                       if (!list_empty(&mm->free_list[i])) {
-> +                               block =3D list_last_entry(&mm->free_list[=
-i],
-> +                                               struct drm_buddy_block, l=
-ink);
-> +
-> +                               if (bar_enabled) {
-> +                                       if (!(block->start < limit &&
-> +                                                       (block->start + p=
-ages) < limit))
-> +                                               continue;
-> +                               }
-> +
-> +                               break;
-> +                       }
-> +               }
-> +       }
-> +
-> +       if (!block)
-> +               return ERR_PTR(-ENOSPC);
-> +
-> +       BUG_ON(!drm_buddy_block_is_free(block));
-> +
-> +       while (i !=3D order) {
-> +               err =3D split_block(mm, block);
-> +               if (unlikely(err))
-> +                       goto out_free;
-> +
-> +               /* Go low */
-> +               if (mode =3D=3D DRM_BUDDY_TOP_DOWN)
-> +                       block =3D block->right;
-> +               else
-> +                       block =3D block->left;
-> +               i--;
-> +       }
-> +
-> +       if (mode =3D=3D DRM_BUDDY_TOP_DOWN && bar_enabled) {
-> +               if (!(block->start > limit))
-> +                       return ERR_PTR(-ENOSPC);
-> +       } else if (mode =3D=3D DRM_BUDDY_BOTTOM_UP && bar_enabled) {
-> +               if (!(block->start < limit &&
-> +                               (block->start + pages) < limit))
-> +                       return ERR_PTR(-ENOSPC);
-> +       }
-> +
-> +       mark_allocated(block);
-> +       kmemleak_update_trace(block);
-> +       return block;
-> +
-> +out_free:
-> +       if (i !=3D order)
-> +               __drm_buddy_free(mm, block);
-> +       return ERR_PTR(err);
-> +}
-> +EXPORT_SYMBOL(drm_buddy_alloc);
-> +
-> +static inline bool overlaps(u64 s1, u64 e1, u64 s2, u64 e2)
-> +{
-> +       return s1 <=3D e2 && e1 >=3D s2;
-> +}
-> +
-> +static inline bool contains(u64 s1, u64 e1, u64 s2, u64 e2)
-> +{
-> +       return s1 <=3D s2 && e1 >=3D e2;
-> +}
-> +
-> +/*
-> + * Allocate range. Note that it's safe to chain together multiple alloc_=
-ranges
-> + * with the same blocks list.
-> + *
-> + * Intended for pre-allocating portions of the address space, for exampl=
-e to
-> + * reserve a block for the initial framebuffer or similar, hence the exp=
-ectation
-> + * here is that drm_buddy_alloc() is still the main vehicle for
-> + * allocations, so if that's not the case then the drm_mm range allocato=
-r is
-> + * probably a much better fit, and so you should probably go use that in=
-stead.
-> + */
-> +int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
-> +                       struct list_head *blocks,
-> +                       u64 start, u64 size)
-> +{
-> +       struct drm_buddy_block *block;
-> +       struct drm_buddy_block *buddy;
-> +       LIST_HEAD(allocated);
-> +       LIST_HEAD(dfs);
-> +       u64 end;
-> +       int err;
-> +       int i;
-> +
-> +       if (size < mm->chunk_size)
-> +               return -EINVAL;
-> +
-> +       if (!IS_ALIGNED(size | start, mm->chunk_size))
-> +               return -EINVAL;
-> +
-> +       if (range_overflows(start, size, mm->size))
-> +               return -EINVAL;
-> +
-> +       for (i =3D 0; i < mm->n_roots; ++i)
-> +               list_add_tail(&mm->roots[i]->tmp_link, &dfs);
-> +
-> +       end =3D start + size - 1;
-> +
-> +       do {
-> +               u64 block_start;
-> +               u64 block_end;
-> +
-> +               block =3D list_first_entry_or_null(&dfs,
-> +                                                struct drm_buddy_block,
-> +                                                tmp_link);
-> +               if (!block)
-> +                       break;
-> +
-> +               list_del(&block->tmp_link);
-> +
-> +               block_start =3D drm_buddy_block_offset(block);
-> +               block_end =3D block_start + drm_buddy_block_size(mm, bloc=
-k) - 1;
-> +
-> +               if (!overlaps(start, end, block_start, block_end))
-> +                       continue;
-> +
-> +               if (drm_buddy_block_is_allocated(block)) {
-> +                       err =3D -ENOSPC;
-> +                       goto err_free;
-> +               }
-> +
-> +               if (contains(start, end, block_start, block_end)) {
-> +                       if (!drm_buddy_block_is_free(block)) {
-> +                               err =3D -ENOSPC;
-> +                               goto err_free;
-> +                       }
-> +
-> +                       mark_allocated(block);
-> +                       list_add_tail(&block->link, &allocated);
-> +                       continue;
-> +               }
-> +
-> +               if (!drm_buddy_block_is_split(block)) {
-> +                       err =3D split_block(mm, block);
-> +                       if (unlikely(err))
-> +                               goto err_undo;
-> +               }
-> +
-> +               list_add(&block->right->tmp_link, &dfs);
-> +               list_add(&block->left->tmp_link, &dfs);
-> +       } while (1);
-> +
-> +       list_splice_tail(&allocated, blocks);
-> +       return 0;
-> +
-> +err_undo:
-> +       /*
-> +        * We really don't want to leave around a bunch of split blocks, =
-since
-> +        * bigger is better, so make sure we merge everything back before=
- we
-> +        * free the allocated blocks.
-> +        */
-> +       buddy =3D get_buddy(block);
-> +       if (buddy &&
-> +           (drm_buddy_block_is_free(block) &&
-> +            drm_buddy_block_is_free(buddy)))
-> +               __drm_buddy_free(mm, block);
-> +
-> +err_free:
-> +       drm_buddy_free_list(mm, &allocated);
-> +       return err;
-> +}
-> +EXPORT_SYMBOL(drm_buddy_alloc_range);
-> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
-> new file mode 100644
-> index 000000000000..50e4d819a3dd
-> --- /dev/null
-> +++ b/include/drm/drm_buddy.h
-> @@ -0,0 +1,154 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =EF=BF=BD 2021 Intel Corporation
-> + */
-> +
-> +#ifndef __DRM_BUDDY_H__
-> +#define __DRM_BUDDY_H__
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/list.h>
-> +#include <linux/slab.h>
-> +#include <linux/sched.h>
-> +
-> +#define range_overflows(start, size, max) ({ \
-> +       typeof(start) start__ =3D (start); \
-> +       typeof(size) size__ =3D (size); \
-> +       typeof(max) max__ =3D (max); \
-> +       (void)(&start__ =3D=3D &size__); \
-> +       (void)(&start__ =3D=3D &max__); \
-> +       start__ >=3D max__ || size__ > max__ - start__; \
-> +})
-> +
-> +enum drm_buddy_alloc_mode {
-> +        DRM_BUDDY_TOP_DOWN =3D 0,
-> +        DRM_BUDDY_BOTTOM_UP,
-> +        DRM_BUDDY_ALLOC_RANGE
-> +};
-> +
-> +struct drm_buddy_block {
-> +#define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
-> +#define DRM_BUDDY_HEADER_STATE  GENMASK_ULL(11, 10)
-> +#define   DRM_BUDDY_ALLOCATED     (1 << 10)
-> +#define   DRM_BUDDY_FREE          (2 << 10)
-> +#define   DRM_BUDDY_SPLIT         (3 << 10)
-> +/* Free to be used, if needed in the future */
-> +#define DRM_BUDDY_HEADER_UNUSED GENMASK_ULL(9, 6)
-> +#define DRM_BUDDY_HEADER_ORDER  GENMASK_ULL(5, 0)
-> +       u64 header;
-> +       /* Store start and size fields in pages */
-> +       u64 start;
-> +       u64 size;
-> +
-> +       struct drm_buddy_block *left;
-> +       struct drm_buddy_block *right;
-> +       struct drm_buddy_block *parent;
-> +
-> +       void *private; /* owned by creator */
-> +
-> +       /*
-> +        * While the block is allocated by the user through drm_buddy_all=
-oc*,
-> +        * the user has ownership of the link, for example to maintain wi=
-thin
-> +        * a list, if so desired. As soon as the block is freed with
-> +        * drm_buddy_free* ownership is given back to the mm.
-> +        */
-> +       struct list_head link;
-> +       struct list_head tmp_link;
-> +};
-> +
-> +/* Order-zero must be at least PAGE_SIZE */
-> +#define DRM_BUDDY_MAX_ORDER (63 - PAGE_SHIFT)
-> +
-> +/*
-> + * Binary Buddy System.
-> + *
-> + * Locking should be handled by the user, a simple mutex around
-> + * drm_buddy_alloc* and drm_buddy_free* should suffice.
-> + */
-> +struct drm_buddy_mm {
-> +       struct kmem_cache *slab_blocks;
-> +       /* Maintain a free list for each order. */
-> +       struct list_head *free_list;
-> +
-> +       /*
-> +        * Maintain explicit binary tree(s) to track the allocation of th=
-e
-> +        * address space. This gives us a simple way of finding a buddy b=
-lock
-> +        * and performing the potentially recursive merge step when freei=
-ng a
-> +        * block.  Nodes are either allocated or free, in which case they=
- will
-> +        * also exist on the respective free list.
-> +        */
-> +       struct drm_buddy_block **roots;
-> +
-> +       /*
-> +        * Anything from here is public, and remains static for the lifet=
-ime of
-> +        * the mm. Everything above is considered do-not-touch.
-> +        */
-> +       unsigned int n_roots;
-> +       unsigned int max_order;
-> +
-> +       /* Must be at least PAGE_SIZE */
-> +       u64 chunk_size;
-> +       u64 size;
-> +};
-> +
-> +static inline u64
-> +drm_buddy_block_offset(struct drm_buddy_block *block)
-> +{
-> +       return block->header & DRM_BUDDY_HEADER_OFFSET;
-> +}
-> +
-> +static inline unsigned int
-> +drm_buddy_block_order(struct drm_buddy_block *block)
-> +{
-> +       return block->header & DRM_BUDDY_HEADER_ORDER;
-> +}
-> +
-> +static inline unsigned int
-> +drm_buddy_block_state(struct drm_buddy_block *block)
-> +{
-> +       return block->header & DRM_BUDDY_HEADER_STATE;
-> +}
-> +
-> +static inline bool
-> +drm_buddy_block_is_allocated(struct drm_buddy_block *block)
-> +{
-> +       return drm_buddy_block_state(block) =3D=3D DRM_BUDDY_ALLOCATED;
-> +}
-> +
-> +static inline bool
-> +drm_buddy_block_is_free(struct drm_buddy_block *block)
-> +{
-> +       return drm_buddy_block_state(block) =3D=3D DRM_BUDDY_FREE;
-> +}
-> +
-> +static inline bool
-> +drm_buddy_block_is_split(struct drm_buddy_block *block)
-> +{
-> +       return drm_buddy_block_state(block) =3D=3D DRM_BUDDY_SPLIT;
-> +}
-> +
-> +static inline u64
-> +drm_buddy_block_size(struct drm_buddy_mm *mm,
-> +                     struct drm_buddy_block *block)
-> +{
-> +       return mm->chunk_size << drm_buddy_block_order(block);
-> +}
-> +
-> +int drm_buddy_init(struct drm_buddy_mm *mm, u64 size, u64 chunk_size);
-> +
-> +void drm_buddy_fini(struct drm_buddy_mm *mm);
-> +
-> +struct drm_buddy_block *
-> +drm_buddy_alloc(struct drm_buddy_mm *mm, unsigned int order,
-> +               bool bar_limit_enabled, unsigned int limit,
-> +               enum drm_buddy_alloc_mode mode);
-> +
-> +int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
-> +                          struct list_head *blocks,
-> +                          u64 start, u64 size);
-> +
-> +void drm_buddy_free(struct drm_buddy_mm *mm, struct drm_buddy_block *blo=
-ck);
-> +
-> +void drm_buddy_free_list(struct drm_buddy_mm *mm, struct list_head *obje=
-cts);
-> +
-> +#endif
-> --
-> 2.25.1
->
+CI Bug Log - changes from CI_DRM_10613 -> Patchwork_21100
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_21100 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21100, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21100:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@reload:
+    - fi-skl-6600u:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-skl-6600u/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-skl-6600u/igt@i915_module_load@reload.html
+    - fi-ivb-3770:        [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-ivb-3770/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ivb-3770/igt@i915_module_load@reload.html
+    - fi-bsw-kefka:       [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-bsw-kefka/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bsw-kefka/igt@i915_module_load@reload.html
+    - fi-bsw-nick:        [PASS][7] -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-bsw-nick/igt@i915_module_load@reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bsw-nick/igt@i915_module_load@reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21100 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-sdma:
+    - fi-kbl-7500u:       NOTRUN -> [SKIP][9] ([fdo#109271]) +17 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][10] ([fdo#109271]) +27 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@nop-compute0:
+    - fi-ilk-650:         NOTRUN -> [SKIP][11] ([fdo#109271]) +18 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ilk-650/igt@amdgpu/amd_cs_nop@nop-compute0.html
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][12] ([fdo#109315]) +17 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-11600/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-cfl-guc:         [PASS][13] -> [INCOMPLETE][14] ([i915#4130])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html
+    - fi-kbl-7567u:       [PASS][15] -> [INCOMPLETE][16] ([i915#4130])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
+    - fi-bdw-5557u:       NOTRUN -> [WARN][17] ([i915#3718])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_module_load@reload:
+    - fi-cfl-8109u:       NOTRUN -> [INCOMPLETE][18] ([i915#4130])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-8109u/igt@i915_module_load@reload.html
+    - fi-icl-y:           [PASS][19] -> [INCOMPLETE][20] ([i915#4130])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-icl-y/igt@i915_module_load@reload.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-icl-y/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-snb-2600:        NOTRUN -> [SKIP][21] ([fdo#109271])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-snb-2600/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        NOTRUN -> [INCOMPLETE][22] ([i915#3921])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-pnv-d510:        [PASS][23] -> [DMESG-FAIL][24] ([i915#4140])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-pnv-d510/igt@i915_selftest@live@requests.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-pnv-d510/igt@i915_selftest@live@requests.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][25] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-rkl-11600:       [PASS][26] -> [SKIP][27] ([i915#1845])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-rkl-11600/igt@prime_vgem@basic-fence-flip.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-11600/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][28] ([fdo#109271] / [i915#2403])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-pnv-d510/igt@runner@aborted.html
+    - fi-cfl-8109u:       NOTRUN -> [FAIL][29] ([i915#2426] / [i915#3363])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-8109u/igt@runner@aborted.html
+    - fi-bsw-nick:        NOTRUN -> [FAIL][30] ([i915#3690])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bsw-nick/igt@runner@aborted.html
+    - fi-cml-u2:          NOTRUN -> [FAIL][31] ([i915#2082] / [i915#2426] / [i915#3363])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cml-u2/igt@runner@aborted.html
+    - fi-ivb-3770:        NOTRUN -> [FAIL][32] ([i915#2426])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ivb-3770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-kbl-7500u:       [INCOMPLETE][33] ([i915#4130]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+    - fi-cfl-8109u:       [INCOMPLETE][35] ([i915#4130]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_module_load@reload:
+    - fi-ilk-650:         [INCOMPLETE][37] -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-ilk-650/igt@i915_module_load@reload.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ilk-650/igt@i915_module_load@reload.html
+    - fi-snb-2600:        [INCOMPLETE][39] -> [PASS][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-snb-2600/igt@i915_module_load@reload.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-snb-2600/igt@i915_module_load@reload.html
+    - fi-rkl-11600:       [INCOMPLETE][41] ([i915#4136]) -> [PASS][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-rkl-11600/igt@i915_module_load@reload.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-11600/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-rkl-guc:         [SKIP][43] ([fdo#109308]) -> [PASS][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-8809g:       [INCOMPLETE][45] ([i915#4136]) -> [INCOMPLETE][46] ([i915#4130])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-8809g/igt@i915_module_load@reload.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-8809g/igt@i915_module_load@reload.html
+    - fi-cml-u2:          [INCOMPLETE][47] ([i915#4136]) -> [INCOMPLETE][48] ([i915#4130])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-cml-u2/igt@i915_module_load@reload.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cml-u2/igt@i915_module_load@reload.html
+    - fi-kbl-soraka:      [INCOMPLETE][49] -> [INCOMPLETE][50] ([i915#4136])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-soraka/igt@i915_module_load@reload.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-soraka/igt@i915_module_load@reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4130]: https://gitlab.freedesktop.org/drm/intel/issues/4130
+  [i915#4136]: https://gitlab.freedesktop.org/drm/intel/issues/4136
+  [i915#4140]: https://gitlab.freedesktop.org/drm/intel/issues/4140
+
+
+Participating hosts (37 -> 32)
+------------------------------
+
+  Missing    (5): bat-dg1-6 fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10613 -> Patchwork_21100
+
+  CI-20190529: 20190529
+  CI_DRM_10613: 6c1bed68f9286bb83d50c4ab62a1b7d02c752ed5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6213: e9ae59cb8b4f1e7bc61a9261f33fc7e52ae06c65 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21100: c222b6056f9426728857c91fff3ebd346638d4e8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c222b6056f94 drm/i915: Reduce the number of objects subject to memcpy recover
+cc2f68116763 drm/i915: Don't back up pinned LMEM context images and rings during suspend
+aa022e1a6969 drm/i915/gt: Register the migrate contexts with their engines
+1a68e6875e24 drm/i915 Implement LMEM backup and restore for suspend / resume
+c446f298a66d drm/i915/gem: Implement a function to process all gem objects of a region
+5fe8cae9d0ac drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/index.html
+
+--===============5922369821214952821==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Suspend / resume backup- and restore of LMEM. (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94278/">https://patchwork.freedesktop.org/series/94278/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10613 -&gt; Patchwork_21100</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21100 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21100, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21100:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-skl-6600u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-skl-6600u/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-ivb-3770/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ivb-3770/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-bsw-kefka/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bsw-kefka/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-bsw-nick/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bsw-nick/igt@i915_module_load@reload.html">INCOMPLETE</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21100 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-sdma:</p>
+<ul>
+<li>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-compute0:</p>
+<ul>
+<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ilk-650/igt@amdgpu/amd_cs_nop@nop-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-11600/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>
+<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
+</li>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>
+<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-8109u/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
+</li>
+<li>
+<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-icl-y/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-icl-y/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-snb-2600/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4140">i915#4140</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-rkl-11600/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-11600/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a>)</p>
+</li>
+<li>
+<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ivb-3770/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>
+<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
+</li>
+<li>
+<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>
+<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-ilk-650/igt@i915_module_load@reload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-ilk-650/igt@i915_module_load@reload.html">PASS</a></p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-snb-2600/igt@i915_module_load@reload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-snb-2600/igt@i915_module_load@reload.html">PASS</a></p>
+</li>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-rkl-11600/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-11600/igt@i915_module_load@reload.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109308">fdo#109308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>
+<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-8809g/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-8809g/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-cml-u2/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-cml-u2/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10613/fi-kbl-soraka/igt@i915_module_load@reload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21100/fi-kbl-soraka/igt@i915_module_load@reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (37 -&gt; 32)</h2>
+<p>Missing    (5): bat-dg1-6 fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10613 -&gt; Patchwork_21100</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10613: 6c1bed68f9286bb83d50c4ab62a1b7d02c752ed5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6213: e9ae59cb8b4f1e7bc61a9261f33fc7e52ae06c65 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21100: c222b6056f9426728857c91fff3ebd346638d4e8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c222b6056f94 drm/i915: Reduce the number of objects subject to memcpy recover<br />
+cc2f68116763 drm/i915: Don't back up pinned LMEM context images and rings during suspend<br />
+aa022e1a6969 drm/i915/gt: Register the migrate contexts with their engines<br />
+1a68e6875e24 drm/i915 Implement LMEM backup and restore for suspend / resume<br />
+c446f298a66d drm/i915/gem: Implement a function to process all gem objects of a region<br />
+5fe8cae9d0ac drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects</p>
+
+</body>
+</html>
+
+--===============5922369821214952821==--
