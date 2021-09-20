@@ -2,34 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F49C41268A
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 20:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18C8641269B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 21:06:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAC706E7D3;
-	Mon, 20 Sep 2021 18:59:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5B2C6E859;
+	Mon, 20 Sep 2021 19:06:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D3D5B6E7D0;
- Mon, 20 Sep 2021 18:59:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CB2A5A008A;
- Mon, 20 Sep 2021 18:59:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29B156E833
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Sep 2021 19:06:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="223242643"
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="223242643"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2021 12:06:17 -0700
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="532394306"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2021 12:06:15 -0700
+Date: Mon, 20 Sep 2021 22:06:12 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Message-ID: <20210920190612.GA830348@ideak-desk.fi.intel.com>
+References: <20210917205241.231527-1-jose.souza@intel.com>
+ <20210917210557.GH729837@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Sep 2021 18:59:12 -0000
-Message-ID: <163216435280.25898.9972458024919836533@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210920155914.707984-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210920155914.707984-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Suspend_/_resume_backup-_and_restore_of_LMEM=2E?=
- =?utf-8?q?_=28rev6=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210917210557.GH729837@ideak-desk.fi.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display/dmc: Set
+ DC_STATE_DEBUG_MASK_CORES after firmware load
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,29 +48,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sat, Sep 18, 2021 at 12:06:01AM +0300, Imre Deak wrote:
+> On Fri, Sep 17, 2021 at 01:52:39PM -0700, José Roberto de Souza wrote:
+> > Specification asks for DC_STATE_DEBUG_MASK_CORES to be set for all
+> > platforms that supports DMC, not only for geminilake and broxton.
+> 
+> According to the spec it's only required for BXT and GLK, see
+> Bspec 4234, 49193, 49194.
+> 
+> The register description is a bit vague, would need to be clarified
+> probably.
 
-Series: drm/i915: Suspend / resume backup- and restore of LMEM. (rev6)
-URL   : https://patchwork.freedesktop.org/series/94278/
-State : warning
+The spec got updated now for TGL+, thanks. Provided that you can
+get the spec up-to-date for GEN9 platforms as well:
 
-== Summary ==
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-$ dim checkpatch origin/drm-tip
-5fe8cae9d0ac drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects
-c446f298a66d drm/i915/gem: Implement a function to process all gem objects of a region
-1a68e6875e24 drm/i915 Implement LMEM backup and restore for suspend / resume
--:287: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#287: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 459 lines checked
-aa022e1a6969 drm/i915/gt: Register the migrate contexts with their engines
-cc2f68116763 drm/i915: Don't back up pinned LMEM context images and rings during suspend
-c222b6056f94 drm/i915: Reduce the number of objects subject to memcpy recover
-
-
+> 
+> > While at is also taking the oportunity to simply the code.
+> > 
+> > BSpec: 7402
+> > BSpec: 49436
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dmc.c | 16 +++-------------
+> >  1 file changed, 3 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > index b0268552b2863..2dc9d632969db 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > @@ -255,20 +255,10 @@ intel_get_stepping_info(struct drm_i915_private *i915,
+> >  
+> >  static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+> >  {
+> > -	u32 val, mask;
+> > -
+> > -	mask = DC_STATE_DEBUG_MASK_MEMORY_UP;
+> > -
+> > -	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+> > -		mask |= DC_STATE_DEBUG_MASK_CORES;
+> > -
+> >  	/* The below bit doesn't need to be cleared ever afterwards */
+> > -	val = intel_de_read(dev_priv, DC_STATE_DEBUG);
+> > -	if ((val & mask) != mask) {
+> > -		val |= mask;
+> > -		intel_de_write(dev_priv, DC_STATE_DEBUG, val);
+> > -		intel_de_posting_read(dev_priv, DC_STATE_DEBUG);
+> > -	}
+> > +	intel_de_rmw(dev_priv, DC_STATE_DEBUG, 0,
+> > +		     DC_STATE_DEBUG_MASK_CORES | DC_STATE_DEBUG_MASK_MEMORY_UP);
+> > +	intel_de_posting_read(dev_priv, DC_STATE_DEBUG);
+> >  }
+> >  
+> >  /**
+> > -- 
+> > 2.33.0
+> > 
