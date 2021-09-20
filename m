@@ -1,42 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8010A411054
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 09:40:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04D184110A3
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 10:04:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDEE56E409;
-	Mon, 20 Sep 2021 07:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2CD26E40F;
+	Mon, 20 Sep 2021 08:04:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B01C6E409
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Sep 2021 07:40:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10112"; a="219887949"
-X-IronPort-AV: E=Sophos;i="5.85,307,1624345200"; d="scan'208";a="219887949"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 00:40:41 -0700
-X-IronPort-AV: E=Sophos;i="5.85,307,1624345200"; d="scan'208";a="700907703"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 00:40:40 -0700
-Date: Mon, 20 Sep 2021 00:52:15 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210920075210.GA439@labuser-Z97X-UD5H>
-References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
- <20210913144440.23008-3-ville.syrjala@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F080689D56;
+ Mon, 20 Sep 2021 08:04:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10112"; a="223128994"
+X-IronPort-AV: E=Sophos;i="5.85,307,1624345200"; d="scan'208";a="223128994"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2021 01:04:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,307,1624345200"; d="scan'208";a="612380727"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga001.fm.intel.com with ESMTP; 20 Sep 2021 01:04:36 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 20 Sep 2021 01:04:35 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 20 Sep 2021 01:04:34 -0700
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
+ Mon, 20 Sep 2021 13:34:32 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>
+CC: "Auld, Matthew" <matthew.auld@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 14/19] drm/i915/oprom: Basic sanitization
+Thread-Index: AQHXL3uUZJb5Qa4rAEOKCneFU4maiarnbHmAgMJkIoCAA1owAIAAXUjg
+Date: Mon, 20 Sep 2021 08:04:32 +0000
+Message-ID: <97159e5b7e8f4ef49b773be085b886be@intel.com>
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+ <20210412090526.30547-15-matthew.auld@intel.com> <87im3hh8sy.fsf@intel.com>
+ <20210918043019.hhol5fgwbi2ogod2@ldmartin-desk2> <87czp3vgl9.fsf@intel.com>
+In-Reply-To: <87czp3vgl9.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.200.16
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210913144440.23008-3-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 02/16] drm/i915: Disable all planes before
- modesetting any pipes
+Subject: Re: [Intel-gfx] [PATCH 14/19] drm/i915/oprom: Basic sanitization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,103 +73,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 13, 2021 at 05:44:26PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Let's disable planes on all pipes affected by the modeset before
-> we start doing the actual modeset. This means we have less
-> random planes enabled during the modeset, and it also mirrors
-> what we already do when enabling pipes on skl+ since we enable
-> planes on all pipes as the very last step. As a bonus we also
-> nuke a bunch og bigjoiner special casing.
-> 
-> I've occasionally pondered about going even furher here and
-> doing the pre_plane_update() stuff for all pipes first, then
-> actually disabling the planes, and finally running the rest
-> of the modeset sequence. This would potentially allow
-> parallelizing all the extra vblank waits across multiple pipes,
-> and would make the plane disable even more atomic. But let's
-> go one step a time here.
 
-So you are moving the plane disables all together in the commit_disables()?
-But dont we need to pass old_crtc_state->bigjoiner_linked_crtc) crtc in case of bigjoiner?
-How is that handled?
 
-Regards
-Manasi
-
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++++-----------
->  1 file changed, 13 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index cd150512d275..afa26911c236 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9785,18 +9785,13 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
->  
->  	drm_WARN_ON(&dev_priv->drm, old_crtc_state->bigjoiner_slave);
->  
-> -	intel_crtc_disable_planes(state, crtc);
-> -
->  	/*
->  	 * We still need special handling for disabling bigjoiner master
->  	 * and slaves since for slave we do not have encoder or plls
->  	 * so we dont need to disable those.
->  	 */
-> -	if (old_crtc_state->bigjoiner) {
-> -		intel_crtc_disable_planes(state,
-> -					  old_crtc_state->bigjoiner_linked_crtc);
-> +	if (old_crtc_state->bigjoiner)
->  		old_crtc_state->bigjoiner_linked_crtc->active = false;
-> -	}
->  
->  	/*
->  	 * We need to disable pipe CRC before disabling the pipe,
-> @@ -9823,6 +9818,18 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
->  	u32 handled = 0;
->  	int i;
->  
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> +					    new_crtc_state, i) {
-> +		if (!intel_crtc_needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		if (!old_crtc_state->hw.active)
-> +			continue;
-> +
-> +		intel_pre_plane_update(state, crtc);
-> +		intel_crtc_disable_planes(state, crtc);
-> +	}
-> +
->  	/* Only disable port sync and MST slaves */
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
-> @@ -9841,7 +9848,6 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
->  		    !intel_dp_mst_is_slave_trans(old_crtc_state))
->  			continue;
->  
-> -		intel_pre_plane_update(state, crtc);
->  		intel_old_crtc_state_disables(state, old_crtc_state,
->  					      new_crtc_state, crtc);
->  		handled |= BIT(crtc->pipe);
-> @@ -9855,14 +9861,6 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
->  		    old_crtc_state->bigjoiner_slave)
->  			continue;
->  
-> -		intel_pre_plane_update(state, crtc);
-> -		if (old_crtc_state->bigjoiner) {
-> -			struct intel_crtc *slave =
-> -				old_crtc_state->bigjoiner_linked_crtc;
-> -
-> -			intel_pre_plane_update(state, slave);
-> -		}
-> -
->  		if (old_crtc_state->hw.active)
->  			intel_old_crtc_state_disables(state, old_crtc_state,
->  						      new_crtc_state, crtc);
-> -- 
-> 2.32.0
-> 
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Monday, September 20, 2021 1:12 PM
+> To: De Marchi, Lucas <lucas.demarchi@intel.com>
+> Cc: Auld, Matthew <matthew.auld@intel.com>; intel-gfx@lists.freedesktop.o=
+rg;
+> dri-devel@lists.freedesktop.org; Gupta, Anshuman
+> <anshuman.gupta@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH 14/19] drm/i915/oprom: Basic sanitization
+>=20
+> On Fri, 17 Sep 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > On Mon, May 17, 2021 at 02:57:33PM +0300, Jani Nikula wrote:
+> >>On Mon, 12 Apr 2021, Matthew Auld <matthew.auld@intel.com> wrote:
+> >>> From: Anshuman Gupta <anshuman.gupta@intel.com>
+> >>>
+> >>> Sanitize OPROM header, CPD signature and OPROM PCI version.
+> >>> OPROM_HEADER, EXPANSION_ROM_HEADER and OPROM_MEU_BLOB
+> structures and
+> >>> PCI struct offsets are provided by GSC counterparts.
+> >>> These are yet to be Documented in B.Spec.
+> >>> After successful sanitization, extract VBT from opregion image.
+> >>
+> >>So I don't understand what the point is with two consecutive patches
+> >>where the latter rewrites a lot of the former.
+> >
+> > I actually wonder what's the point of this. Getting it from spi is
+> > already the fallback and looks much more complex. Yes, it's pretty
+> > detailed and document the format pretty well, but it still looks more
+> > complex than the initial code. Do you see additional benefit in this
+> > one?
+Getting opregion image from spi is needed to get the intel_opregion and its=
+ mailboxes on discrete card.
+>=20
+> The commit message doesn't really explain much. Anshuman?
+I will get rework of the patches and float it again.
+Thanks,
+Anshuman Gupta.
+>=20
+> BR,
+> Jani.
+>=20
+>=20
+> --
+> Jani Nikula, Intel Open Source Graphics Center
