@@ -1,92 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F6B4127BA
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 23:06:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE054127F7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 23:25:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17C2E6E861;
-	Mon, 20 Sep 2021 21:06:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91F3B6E88A;
+	Mon, 20 Sep 2021 21:25:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A28D46E861
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Sep 2021 21:06:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1632171971;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=QYU+FG0NgEDN5QbX73oIIwX0hoDQqIX9Lmp+LI9M8t8=;
- b=IVX8sqH0GkBdoygwqFlodSyNhOWnP5fNDyerDk+Af4qxE+nDFFDS2ntCIGXCY+kaRPmovT
- Ad1yMCkvyRdXzLZYccZY8FxGlA7LyrYyRrEFwjBMSbtogLxBM9mfSGd9NDVFoc9r3My1kh
- BvXdIAZlHf8KCnb2hbt/fWu46IylNKg=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-532-a2of5mcePZO8Ly-k2Nc3mg-1; Mon, 20 Sep 2021 17:06:10 -0400
-X-MC-Unique: a2of5mcePZO8Ly-k2Nc3mg-1
-Received: by mail-qt1-f199.google.com with SMTP id
- o7-20020a05622a138700b002a0e807258bso185199048qtk.13
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Sep 2021 14:06:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=QYU+FG0NgEDN5QbX73oIIwX0hoDQqIX9Lmp+LI9M8t8=;
- b=VqoLXkNcLme/ppEPARdh2khiQrPCXTmIQCBJuYXUvXNrbNiTbm7cQGcur4YgAC0lVp
- jMOxd8VsY/84r+9bkjCVMgPiRSwaM8JBre7hPHws8YG3nZqspMcyrImDF1U4O/Prwjbc
- fDlcbyVWOmVKAwh4MnJS23uzMowkM1WKtyBwtxDUuTLrUqkAfspdstnxJmEniRhrRKkV
- ipgeh/yqFJNiX8EuSHUd8U2bSSMsiSqZskCTcmFpEA7ZpFMI7TJ/p2K5xEN6R91ULZRu
- ymvdpnytLCzqsnLGuith/dpeR53yUgwrpD6mIkskWxB5L6B28BnhuHiw8z3IqQECDdyK
- Uz2w==
-X-Gm-Message-State: AOAM531IOlAyGQetlfxaci/nF1+4FW6WYZIdVaQ5szB2ZWyK5vPKYhoQ
- rFUQBw9R9gxWGUoF8gyV8oBDEo3vBHL6KamwhNQsCTpp+Ln661B1FVX65eoW+0MVc3yilFEAnDT
- OlkuQ5fIjfU2OoZAboIGoZClBWa/8
-X-Received: by 2002:ad4:44f3:: with SMTP id p19mr27905075qvt.33.1632171969966; 
- Mon, 20 Sep 2021 14:06:09 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyS2jHSKoCWXuvuoiupSPbp5jSZ8WpAjMlaKmSvPqiXflQvfBQ1tFrLdqMk5bP0vfLGV3tG7A==
-X-Received: by 2002:ad4:44f3:: with SMTP id p19mr27905058qvt.33.1632171969792; 
- Mon, 20 Sep 2021 14:06:09 -0700 (PDT)
-Received: from [192.168.8.206] (pool-108-49-102-102.bstnma.fios.verizon.net.
- [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id x4sm7820134qkx.62.2021.09.20.14.06.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Sep 2021 14:06:09 -0700 (PDT)
-Message-ID: <38aa092530b936609ba2b425e5caf2d63dbcf617.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Hans de Goede <hdegoede@redhat.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Rajat Jain <rajatja@google.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>,  Mark Gross <mgross@linux.intel.com>, Andy
- Shevchenko <andy@infradead.org>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?=
- <ville.syrjala@linux.intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Pekka
- Paalanen <pekka.paalanen@collabora.com>, Mario Limonciello
- <mario.limonciello@outlook.com>, Mark Pearson <markpearson@lenovo.com>,
- Sebastien Bacher <seb128@ubuntu.com>, Marco Trevisan
- <marco.trevisan@canonical.com>, Emil Velikov <emil.l.velikov@gmail.com>, 
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org,  platform-driver-x86@vger.kernel.org
-Date: Mon, 20 Sep 2021 17:06:07 -0400
-In-Reply-To: <a4f10bbe-c87a-90f1-0691-01c0da485fa6@redhat.com>
-References: <20210906073519.4615-1-hdegoede@redhat.com>
- <20210906073519.4615-10-hdegoede@redhat.com> <87sfy4x3ic.fsf@intel.com>
- <a4f10bbe-c87a-90f1-0691-01c0da485fa6@redhat.com>
-Organization: Red Hat
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34)
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39C256E87C;
+ Mon, 20 Sep 2021 21:25:35 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id EECA82B012E5;
+ Mon, 20 Sep 2021 17:25:31 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Mon, 20 Sep 2021 17:25:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=AWImI2KGSpvCbthaTGpOCk4QbRl
+ 8dZEEYq4SHjBTZJE=; b=USXGjuU+4R2n9u+CDG6f9J49IGnM33Ay4XL+MlmTPNv
+ zeb26cRTrDZymp/Wy0xOKrb0j7P0vB55p2h5DS5Co/L1vAGjJoI0JQcZh93opH11
+ 4hsuQsFzDJ4FhOR4s7lTtgsnMNm+7OJWq8pl9qVcXWJF1hr9RNClUgeMfBLC8kcb
+ WyhUfNH8fNniw9f56QJwijgyaUFVFtXVm0bLLG/NskWpOyT6fINV5jlub6v5TEPQ
+ VsBBXzNvOEzK+lONgNf2QcFjqJvJG3T8ipYXGF4VfGvx8NtLjS2OlTOKVN/Oy1pT
+ LUKfj8RyH4XVxQ7OUFm/X8+0xVYdgIpKJSzQ0okyh3g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=AWImI2
+ KGSpvCbthaTGpOCk4QbRl8dZEEYq4SHjBTZJE=; b=Aaj6hUmY/KPtF72LH13Yrv
+ mhXLRAym+vY8SVlWlLweQ7NtjfFgQ8vEjItH8b++bypf/hy2iQn7jXeRszrOQgwP
+ bXw8UJGlZzVijGiBljQD7wCXpJriQ+UJnLTQq0TINKW2ITc6xyX1sxYD3uohAlQu
+ 6NXwJfYejUwBe4HT5zuWM3MzCB5nfIJSe2ywV7rnVQevRT4FOiZsdm/CiUuvY9Ur
+ +w/vhof0UnA4w+UPfcdCYlDEWSOhnSlYH+YUv0M8vfe3CCycZx+YQprmNbDIjPC5
+ Cm8RaSUQGSODp8Y/5sbZydYQDDu4pZLzEq8bUfLwBEXWTYEB65RxOuAwkjZCPNrw
+ ==
+X-ME-Sender: <xms:SvxIYb_SD3L6GKZGVyKR7v3MeCFNcaciiz1aAknxnzN1mAygQkqBOw>
+ <xme:SvxIYXtxHvokL16p3vxzx4LR9djf0dxSIuc0NrHJnrHy5ApNkIX81_FKyP9MujcT9
+ HkykA1gYSfghYEL1Q>
+X-ME-Received: <xmr:SvxIYZArrxeoKSowR3xIM7iucgEBrsqP3y96noTubNXQwy3MMLQSSHnoIGnz94lvXMXyUj08>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudeivddgudehlecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehttd
+ ertddttdejnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpedvjeeifeelhfetiefhhfdthfefke
+ fhhfeutdetvdfgvefgveefheffgfekjeefheenucevlhhushhtvghrufhiiigvpedtnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:SvxIYXdYXMRZ0FKBeMVhN17WTZvhEpWL2Yj5nRDic3kSBqDeyY_H4g>
+ <xmx:SvxIYQNZxI6Eiljl_BP_kv2DzxGV3Hrcbf9AGmdTrdbaPqAM5R83Zw>
+ <xmx:SvxIYZk0PVsalhpoyFR0uPrwJJnzF_M7F_mQGyC2mlSLjujPt_T2Ug>
+ <xmx:S_xIYREyT86uoIjKzNQk2NcGSP8U-MKgIMOwk712MBk4AtGVUt2psHpZW2g>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 20 Sep 2021 17:25:27 -0400 (EDT)
+Date: Mon, 20 Sep 2021 23:25:24 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: kernel test robot <lkp@intel.com>
+Cc: dri-devel@lists.freedesktop.org, kbuild-all@lists.01.org,
+ linux-kernel@vger.kernel.org, sean@poorly.run,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org
+Message-ID: <YUj8RHdl7aIONPa0@zacax395.localdomain>
+References: <20210916211552.33490-4-greenfoo@u92.eu>
+ <202109200942.M3etmn3s-lkp@intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: Add privacy-screen support
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <202109200942.M3etmn3s-lkp@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 03/15] dmr/msm: cleanup:
+ drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,27 +88,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2021-09-16 at 12:32 +0200, Hans de Goede wrote:
+On 21/09/20 09:54AM, kernel test robot wrote:
 > 
-> I'm fine with refactoring this a bit and adding
-> an intel_modeset_probe_defer() helper for this, I assume I should also
-> move the vga_switcheroo_client_probe_defer(pdev) check there?
-> 
-> As you suggested yourself in your reply to the coverletter I will
-> push out the rest of the series to drm-misc-next while we figure this
-> out. Assuming Lyude is happy with the answers which I gave to her
-> remarks about some of the other patches.
+> [auto build test ERROR on drm-exynos/exynos-drm-next]
+> [also build test ERROR on tegra-drm/drm/tegra/for-next linus/master v5.15-rc2 next-20210917]
 
-I am, btw!
+I forgot to #include <drm/drm_drv.h> for those platforms and didn't notice
+because I only tried to build for X86. I'll fix it.
 
-> 
-> Regards,
-> 
-> Hans
-> 
 
--- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+> [cannot apply to drm-intel/for-linux-next tegra/for-next drm-tip/drm-tip airlied/drm-next]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base'.
 
+I built this patch against drm-next, which currently points to v5.15-rc1.
+
+Should I be targeting a different branch? In any case, as suggested, I'll
+remember to use "--base" in the future to make it easier to apply. Thanks for
+the hint.
+
+
+> All errors (new ones prefixed by >>):
+> 
+>    In file included from include/drm/drm_crtc.h:36,
+>                     from include/drm/drm_atomic_helper.h:31,
+>                     from drivers/gpu/drm/msm/disp/msm_disp_snapshot.h:9,
+>                     from drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c:8:
+>    drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c: In function 'msm_disp_capture_atomic_state':
+> >> include/drm/drm_modeset_lock.h:167:14: error: implicit declaration of function 'drm_drv_uses_atomic_modeset' [-Werror=implicit-function-declaration]
+>      167 |         if (!drm_drv_uses_atomic_modeset(dev))                          \
+>          |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+>    drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c:108:9: note: in expansion of macro 'DRM_MODESET_LOCK_ALL_BEGIN'
+>      108 |         DRM_MODESET_LOCK_ALL_BEGIN(ddev, ctx, 0, ret);
+>          |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>    cc1: some warnings being treated as errors
+
+Out of curiosity: The top comment says there were two build errors (one on
+exynos and another one on tegra), but there is only one reported bug (on msm).
+
+Is this because the bot only reports the first error found? Is there a link to
+a report with each of the build errors on each of the platforms?
+
+Thanks.
