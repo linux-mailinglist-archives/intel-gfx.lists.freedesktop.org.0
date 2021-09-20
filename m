@@ -2,43 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B1B7412754
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 22:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA35412778
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 22:47:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 747A76E855;
-	Mon, 20 Sep 2021 20:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB376E857;
+	Mon, 20 Sep 2021 20:47:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 576E589BF6;
- Mon, 20 Sep 2021 20:34:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="202728293"
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="202728293"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 13:34:12 -0700
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="511527894"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 13:34:11 -0700
-Date: Mon, 20 Sep 2021 13:29:15 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Hugh Dickins <hughd@google.com>
-Message-ID: <20210920202915.GB19283@jons-linux-dev-box>
-References: <20210917233818.33659-1-matthew.brost@intel.com>
- <8c906ac4-c6a3-ee45-970f-07679456fd18@linux.intel.com>
- <87fstzvgrr.fsf@intel.com>
- <5fbbf1dc-e5fa-263c-ab2a-f308fae035f6@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79D176E855;
+ Mon, 20 Sep 2021 20:47:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="223266646"
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="223266646"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2021 13:47:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="434894689"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga006.jf.intel.com with ESMTP; 20 Sep 2021 13:47:06 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 20 Sep 2021 13:47:06 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 20 Sep 2021 13:47:06 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Mon, 20 Sep 2021 13:47:06 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "lma@semihalf.com"
+ <lma@semihalf.com>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "upstream@semihalf.com" <upstream@semihalf.com>
+Thread-Topic: [PATCH v1] drm/i915/bdb: Fix version check
+Thread-Index: AQHXrimO0gfIStxtp0mPj/fNNtEfLKut2+4A
+Date: Mon, 20 Sep 2021 20:47:06 +0000
+Message-ID: <051f4a37e178d11c6dbcd05b5d6be28731cd7302.camel@intel.com>
+References: <20210920141101.194959-1-lma@semihalf.com>
+In-Reply-To: <20210920141101.194959-1-lma@semihalf.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D5116FE95D2FFF4A81734BE9D6B4662C@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5fbbf1dc-e5fa-263c-ab2a-f308fae035f6@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix blank screen booting crashes
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915/bdb: Fix version check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,115 +72,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 20, 2021 at 08:42:42AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 20/09/2021 08:38, Jani Nikula wrote:
-> > On Mon, 20 Sep 2021, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> > > On 18/09/2021 00:38, Matthew Brost wrote:
-> > > > From: Hugh Dickins <hughd@google.com>
-> > > > 
-> > > > 5.15-rc1 crashes with blank screen when booting up on two ThinkPads
-> > > > using i915.  Bisections converge convincingly, but arrive at different
-> > > > and surprising "culprits", none of them the actual culprit.
-> > > 
-> > > It is certainly surprising this patch crashed SNB and KBL.
-> > > 
-> > > How feasible would it be to make this code just not run when GuC is not
-> > > used? Given the field it adds is called ce->guc_blocked it sounds like a
-> > > natural and preferable thing to do... if possible.
-> > > 
-> > > > netconsole (with init_netconsole() hacked to call i915_init() when
-> > > > logging has started, instead of by module_init()) tells the story:
-> > > > 
-> > > > kernel BUG at drivers/gpu/drm/i915/i915_sw_fence.c:245!
-> > > > with RSI: ffffffff814d408b pointing to sw_fence_dummy_notify().
-> > > > I've been building with CONFIG_CC_OPTIMIZE_FOR_SIZE=y, and that
-> > > > function needs to be 4-byte aligned.
-> > > > 
-> > > > v2:
-> > > >    (Jani Nikula)
-> > > >     - Change BUG_ON to WARN_ON
-> > > 
-> > > However in this case the code would then go on and call into a wrong
-> > > function offset which may be worse than a BUG_ON, no?
-> > 
-> > So how about just
-> > 
-> > if (WARN_ON(...))
-> > 	return;
-
-I don't think it is quite that simple as if we short circuit this
-function fence->flags will be NULL which would be bad too. I'll have
-make a few more changes to make this safe.
-
-Matt
-
-> > 
-> > or whatever is needed to give both the user and the CI a better
-> > opportunity to see the error.
-> 
-> Sounds good to me.
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> 
-> > 
-> > BR,
-> > Jani
-> > 
-> > 
-> > > 
-> > > > 
-> > > > Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
-> > > > Signed-off-by: Hugh Dickins <hughd@google.com>
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/i915/gt/intel_context.c | 1 +
-> > > >    drivers/gpu/drm/i915/i915_sw_fence.c    | 4 +++-
-> > > >    2 files changed, 4 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > index ff637147b1a9..f02c2202da9d 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > @@ -362,6 +362,7 @@ static int __intel_context_active(struct i915_active *active)
-> > > >    	return 0;
-> > > >    }
-> > > > +__aligned(4)	/* Respect the I915_SW_FENCE_MASK */
-> > > 
-> > > Hugh suggested __i915_sw_fence_call which I think would be the right
-> > > thing to do.
-> > > 
-> > > Regards,
-> > > 
-> > > Tvrtko
-> > > 
-> > > >    static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
-> > > >    				 enum i915_sw_fence_notify state)
-> > > >    {
-> > > > diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-> > > > index c589a681da77..1217b124c1d0 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_sw_fence.c
-> > > > +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-> > > > @@ -14,8 +14,10 @@
-> > > >    #if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
-> > > >    #define I915_SW_FENCE_BUG_ON(expr) BUG_ON(expr)
-> > > > +#define I915_SW_FENCE_WARN_ON(expr) WARN_ON(expr)
-> > > >    #else
-> > > >    #define I915_SW_FENCE_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
-> > > > +#define I915_SW_FENCE_WARN_ON(expr) BUILD_BUG_ON_INVALID(expr)
-> > > >    #endif
-> > > >    static DEFINE_SPINLOCK(i915_sw_fence_lock);
-> > > > @@ -242,7 +244,7 @@ void __i915_sw_fence_init(struct i915_sw_fence *fence,
-> > > >    			  const char *name,
-> > > >    			  struct lock_class_key *key)
-> > > >    {
-> > > > -	BUG_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
-> > > > +	I915_SW_FENCE_WARN_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
-> > > >    	__init_waitqueue_head(&fence->wait, name, key);
-> > > >    	fence->flags = (unsigned long)fn;
-> > > > 
-> > 
+T24gTW9uLCAyMDIxLTA5LTIwIGF0IDE2OjExICswMjAwLCBMdWthc3ogTWFqY3phayB3cm90ZToN
+Cj4gV2l0aCBwYXRjaCAiZHJtL2k5MTUvdmJ0OiBGaXggYmFja2xpZ2h0IHBhcnNpbmcgZm9yIFZC
+VCAyMzQrIg0KPiB0aGUgc2l6ZSBvZiBiZGJfbGZwX2JhY2tsaWdodF9kYXRhIHN0cnVjdHVyZSBo
+YXMgYmVlbiBpbmNyZWFzZWQsDQo+IGNhdXNpbmcgaWYtc3RhdGVtZW50IGluIHRoZSBwYXJzZV9s
+ZnBfYmFja2xpZ2h0IGZ1bmN0aW9uDQo+IHRoYXQgY29tYXByZXMgdGhpcyBzdHJ1Y3R1cmUgc2l6
+ZSB0byB0aGUgb25lIHJldHJpZXZlZCBmcm9tIEJEQiwNCj4gYWx3YXlzIHRvIGZhaWwgZm9yIG9s
+ZGVyIHJldmlzaW9ucy4NCj4gVGhpcyBwYXRjaCBmaXhlcyBpdCBieSBjb21wYXJpbmcgYSB0b3Rh
+bCBzaXplIG9mIGFsbCBmaWxlZHMgZnJvbQ0KPiB0aGUgc3RydWN0dXJlIChwcmVzZW50IGJlZm9y
+ZSB0aGUgY2hhbmdlKSB3aXRoIHRoZSB2YWx1ZSBnYXRoZXJlZCBmcm9tIEJEQi4NCj4gVGVzdGVk
+IG9uIENocm9tZWJvb2sgUGl4ZWxib29rIChOb2N0dXJuZSkgKHJlcG9ydHMgYmRiLT52ZXJzaW9u
+ID0gMjIxKQ0KPiANCj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIDUuNCsNCj4gVGVz
+dGVkLWJ5OiBMdWthc3ogTWFqY3phayA8bG1hQHNlbWloYWxmLmNvbT4NCj4gU2lnbmVkLW9mZi1i
+eTogTHVrYXN6IE1hamN6YWsgPGxtYUBzZW1paGFsZi5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMgICAgIHwgNCArKystDQo+ICBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9kZWZzLmggfCA1ICsrKysrDQo+ICAyIGZp
+bGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMNCj4gaW5kZXggM2MyNTkyNjA5MmRl
+Li4wNTJhMTliNDU1ZDEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfYmlvcy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfYmlvcy5jDQo+IEBAIC00NTIsNyArNDUyLDkgQEAgcGFyc2VfbGZwX2JhY2tsaWdodChzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gIA0KPiAgCWk5MTUtPnZidC5iYWNrbGlnaHQu
+dHlwZSA9IElOVEVMX0JBQ0tMSUdIVF9ESVNQTEFZX0RESTsNCj4gIAlpZiAoYmRiLT52ZXJzaW9u
+ID49IDE5MSAmJg0KPiAtCSAgICBnZXRfYmxvY2tzaXplKGJhY2tsaWdodF9kYXRhKSA+PSBzaXpl
+b2YoKmJhY2tsaWdodF9kYXRhKSkgew0KPiArCSAgICBnZXRfYmxvY2tzaXplKGJhY2tsaWdodF9k
+YXRhKSA+PSAoc2l6ZW9mKGJhY2tsaWdodF9kYXRhLT5lbnRyeV9zaXplKSArDQo+ICsJCQkJCSAg
+ICAgIHNpemVvZihiYWNrbGlnaHRfZGF0YS0+ZGF0YSkgKw0KPiArCQkJCQkgICAgICBzaXplb2Yo
+YmFja2xpZ2h0X2RhdGEtPmxldmVsKSkpIHsNCg0KTWlzc2luZyBzaXplb2YoYmFja2xpZ2h0X2Rh
+dGEtPmJhY2tsaWdodF9jb250cm9sKSBidXQgdGhpcyBpcyBnZXR0aW5nIHZlcnkgdmVyYm9zZS4N
+CldvdWxkIGJlIGJldHRlciBoYXZlIGEgZXhwZWN0ZWQgc2l6ZSB2YXJpYWJsZSBzZXQgZWFjaCB2
+ZXJzaW9uIHNldCBpbiB0aGUgYmVnaW5uaW5nIG9mIHRoaXMgZnVuY3Rpb24uDQoNCnNvbWV0aGlu
+ZyBsaWtlOg0Kc3dpdGNoIChiZGItPnZlcnNpb24pIHsNCmNhc2UgMTkxOg0KCWV4cGVjdGVkX3Np
+emUgPSB4Ow0KCWJyZWFrOw0KY2FzZSAyMzQ6DQoJZXhwZWN0ZWRfc2l6ZSA9IHg7DQoJYnJlYWs7
+DQpjYXNlIDIzNjoNCmRlZmF1bHQ6DQoJZXhwZWN0ZWRfc2l6ZSA9IHg7DQp9DQoJDQoNCj4gIAkJ
+Y29uc3Qgc3RydWN0IGxmcF9iYWNrbGlnaHRfY29udHJvbF9tZXRob2QgKm1ldGhvZDsNCj4gIA0K
+PiAgCQltZXRob2QgPSAmYmFja2xpZ2h0X2RhdGEtPmJhY2tsaWdodF9jb250cm9sW3BhbmVsX3R5
+cGVdOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92
+YnRfZGVmcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5o
+DQo+IGluZGV4IDMzMDA3N2MyZTU4OC4uZmZmNDU2YmY4NzgzIDEwMDY0NA0KPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9kZWZzLmgNCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oDQo+IEBAIC04MTQsNiArODE0
+LDExIEBAIHN0cnVjdCBsZnBfYnJpZ2h0bmVzc19sZXZlbCB7DQo+ICAJdTE2IHJlc2VydmVkOw0K
+PiAgfSBfX3BhY2tlZDsNCj4gIA0KPiArLyoNCj4gKyAqIENoYW5naW5nIHN0cnVjdCBiZGJfbGZw
+X2JhY2tsaWdodF9kYXRhIG1pZ2h0IGFmZmVjdCBpdHMNCj4gKyAqIHNpemUgY29tcGFyYXRpb24g
+dG8gdGhlIHZhbHVlIGhvbGQgaW4gQkRCLg0KPiArICogKGUuZy4gaW4gcGFyc2VfbGZwX2JhY2ts
+aWdodCgpKQ0KPiArICovDQoNClRoaXMgaXMgdHJ1ZSBmb3IgYWxsIHRoZSBibG9ja3Mgc28gSSBk
+b24ndCB0aGluayB3ZSBuZWVkIHRoaXMgY29tbWVudC4NCg0KPiAgc3RydWN0IGJkYl9sZnBfYmFj
+a2xpZ2h0X2RhdGEgew0KPiAgCXU4IGVudHJ5X3NpemU7DQo+ICAJc3RydWN0IGxmcF9iYWNrbGln
+aHRfZGF0YV9lbnRyeSBkYXRhWzE2XTsNCg0K
