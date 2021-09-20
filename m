@@ -2,70 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6994115C9
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A6BF4115CA
 	for <lists+intel-gfx@lfdr.de>; Mon, 20 Sep 2021 15:28:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 591246E4FE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC1BB6E503;
 	Mon, 20 Sep 2021 13:28:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28BA76E400;
- Mon, 20 Sep 2021 07:35:24 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id x6so27070098wrv.13;
- Mon, 20 Sep 2021 00:35:24 -0700 (PDT)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
+ [IPv6:2a00:1450:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E1BD6E45D;
+ Mon, 20 Sep 2021 10:09:36 +0000 (UTC)
+Received: by mail-wr1-x42e.google.com with SMTP id q26so27978506wrc.7;
+ Mon, 20 Sep 2021 03:09:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=subject:to:cc:references:from:message-id:date:user-agent
  :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=4P1io5nUKE9cYx4NjlZE02ncCC38OG0LveUarkFjV+4=;
- b=g1ECzyspCR1I5FXZUYHtyQjmn0g8obadz/rLTIBlDOnrWeK1lYdb3dq8fXweE8pgIm
- zeVqQxIrvocx0hYvxeUpUllzbjdMRJquTTNHCMqST+4ZUYhooFzm/It2BrdYC3HMLDnO
- CKvNyRc7uAY1bxU2Vac1ZSZySnmvoSB+UE4idjXKpjIEPn+fj0MfP4nPTwQWB/hJ+iKn
- 2IAkDl8Wcz3jsqN1ck9SIn6J9NExLt/oGu9FfacfJqQwBghvkiGSAmbQ8+Sinn16cHj6
- JYMDp3ZC+4aP32H2XE2MPv2eqZGjXRM9J0pYcAF21RBHbCWTxF3rDxSFXMZZHnFTBbqG
- B0pA==
+ bh=3VemnJCb4o4i8G4jW2f7/S7wTJolafn8kMYbyHr6SFk=;
+ b=eSGIIcJaT4kNOCy+9SOq9MXZUInm7154x0Y0TDUf1zJUnCm3MYD2V1eiaEDFM+ikIu
+ mTn9HImJPxCawMjCUC6YlVF7Ch+njUhzUpgD5ZWlQRzZC+qUmSTh5hAu9+JwMlZh7reb
+ MKImCjo4FtxgVLUdjSSJsu8KwWEDlhcb6qP4Eg+DuHmVGo98S5QndTPgr81vqFVn5qiw
+ GQVBzB7dR8ZUn7uILPeIIkf2YnJRkE9LrfrCHvWtHsNUKJ4QnsK3j1mVbzbrLSsCYC19
+ y61gqOdNFGytLhVMVSWuN1G3WnbRbMiXXx51AYgIU8DVlGA5ghHfbbszX/BhmAPHnOW4
+ R1Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-transfer-encoding
  :content-language;
- bh=4P1io5nUKE9cYx4NjlZE02ncCC38OG0LveUarkFjV+4=;
- b=koo3e2bhsasDT16Si2no5Pc0aS3FfMU5OrMG1t6RyXpOklLBUaMrhfM0tR6D+e+tJq
- VvWHD5F57sU1cYv5B+omXf5bBTZWKJYi4Me8Koj1cgobKJIoMYtm3F4Vnj0Vryt94oWZ
- K45p5teOGjO+Uqwl3iN+39TvZ2qLS7TzHClGX0wTugnWYNrA9FBc6kUx9vM4x5oJECEI
- ICkwDxeC2fOW3qBZZ+xUPxtZbgpQaT527b0lKNUIHgiRgzpD+nPLH3wSkEjRl5xiTm3N
- sz836qE48/XuWfOM7UXmumj7mJX25lsHrcLfjBc07hTkKjFcYB7D9AQeZooJGLbxpazw
- 0Pwg==
-X-Gm-Message-State: AOAM531lGzA3xo109t8ytUBg1ANQzIMBlgdzj0xDR2lTCPPHoZx5Tb7F
- Y997OqaQ4bq/WhLAEWxiPyTcVA0HFv4=
-X-Google-Smtp-Source: ABdhPJypvNSGDrPpIVDHLrykJEmmH/dwdyUKHUY1DGVerjxgk4VaBJNzEgJNAkRV7PORtSTG0FxAig==
-X-Received: by 2002:adf:ed92:: with SMTP id c18mr26101944wro.86.1632123322752; 
- Mon, 20 Sep 2021 00:35:22 -0700 (PDT)
+ bh=3VemnJCb4o4i8G4jW2f7/S7wTJolafn8kMYbyHr6SFk=;
+ b=kp6cPNoQPQ+neFRAyAqNfWruQm1HdO9e7d1t+NuoWsTjAsQdeGaIZIGu6/Ds24vJUA
+ HoK9IcYnY4SaxKwwo9RY3Xuizbf8UhLGThxMK7OV2IedrcMcxi20ecOZeEUov1ltwEMh
+ 8nK7O4xm6tttmg2mgG5m4y/0gToBl7byGWi4AjAoZoxZfVV8oQ5/c3Jr63rYy03rvLTn
+ n5d9IJRrqMH5wavxLQ63LQGod9LE9ybVXFwcjuaXz1/WDEbUWQ/DVPaNHZgI0Wv3Vshq
+ BCFII9dcpGBKv1XXNvkVul7WfBYvKj8sIwOQBtVQjqRxXVz8OdeFYkdApp9+jeM6ociy
+ Woyw==
+X-Gm-Message-State: AOAM533pI+rpMgtexWPlmGawFP4Etk+YKEV+gmuRVYrJRU72r55C7mn1
+ tW5sJvANkX3sZiSpZotEf+lRtAx96k8=
+X-Google-Smtp-Source: ABdhPJz/o/fBTI27PJ7q0BWsTxmcjTrE8Gty+CrpeqGWtFMAVDa+3w99KLO7NaciY60qWWbKLQH2Mw==
+X-Received: by 2002:adf:f207:: with SMTP id p7mr27559291wro.166.1632132574548; 
+ Mon, 20 Sep 2021 03:09:34 -0700 (PDT)
 Received: from [192.168.178.21] (p5b0ea1b5.dip0.t-ipconnect.de.
  [91.14.161.181])
- by smtp.gmail.com with ESMTPSA id q11sm14805870wrn.65.2021.09.20.00.35.21
+ by smtp.gmail.com with ESMTPSA id c14sm9748086wrd.50.2021.09.20.03.09.33
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 20 Sep 2021 00:35:22 -0700 (PDT)
-To: Daniel Vetter <daniel@ffwll.ch>
+ Mon, 20 Sep 2021 03:09:33 -0700 (PDT)
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>
 Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
  linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
 References: <20210917123513.1106-1-christian.koenig@amd.com>
- <20210917123513.1106-22-christian.koenig@amd.com>
- <YUSsdbTxvJwaRv9x@phenom.ffwll.local>
+ <20210917123513.1106-2-christian.koenig@amd.com>
+ <YUSWzm+TjD7GHHO5@phenom.ffwll.local>
+ <8268d2e8-8a37-0ff1-7065-c8aaf5c8672b@linux.intel.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <2ded7e42-e1f3-72fb-5de6-810c000255be@gmail.com>
-Date: Mon, 20 Sep 2021 09:35:20 +0200
+Message-ID: <e4aa2e1e-753e-655c-423f-93a0bb853b9d@gmail.com>
+Date: Mon, 20 Sep 2021 12:09:32 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <YUSsdbTxvJwaRv9x@phenom.ffwll.local>
+In-Reply-To: <8268d2e8-8a37-0ff1-7065-c8aaf5c8672b@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
 X-Mailman-Approved-At: Mon, 20 Sep 2021 13:28:35 +0000
-Subject: Re: [Intel-gfx] [PATCH 21/26] drm: use new iterator in
- drm_gem_plane_helper_prepare_fb v2
+Subject: Re: [Intel-gfx] [PATCH 01/26] dma-buf: add
+ dma_resv_for_each_fence_unlocked v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,72 +83,374 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 17.09.21 um 16:55 schrieb Daniel Vetter:
-> On Fri, Sep 17, 2021 at 02:35:08PM +0200, Christian König wrote:
->> Makes the handling a bit more complex, but avoids the use of
->> dma_resv_get_excl_unlocked().
+Am 20.09.21 um 10:43 schrieb Tvrtko Ursulin:
+> On 17/09/2021 14:23, Daniel Vetter wrote:
+>> On Fri, Sep 17, 2021 at 02:34:48PM +0200, Christian König wrote:
+>>> Abstract the complexity of iterating over all the fences
+>>> in a dma_resv object.
+>>>
+>>> The new loop handles the whole RCU and retry dance and
+>>> returns only fences where we can be sure we grabbed the
+>>> right one.
+>>>
+>>> v2: fix accessing the shared fences while they might be freed,
+>>>      improve kerneldoc, rename _cursor to _iter, add
+>>>      dma_resv_iter_is_exclusive, add dma_resv_iter_begin/end
+>>>
+>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>> ---
+>>>   drivers/dma-buf/dma-resv.c | 61 +++++++++++++++++++++++++++
+>>>   include/linux/dma-resv.h   | 84 
+>>> ++++++++++++++++++++++++++++++++++++++
+>>>   2 files changed, 145 insertions(+)
+>>>
+>>> diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
+>>> index 84fbe60629e3..3e77cad2c9d4 100644
+>>> --- a/drivers/dma-buf/dma-resv.c
+>>> +++ b/drivers/dma-buf/dma-resv.c
+>>> @@ -323,6 +323,67 @@ void dma_resv_add_excl_fence(struct dma_resv 
+>>> *obj, struct dma_fence *fence)
+>>>   }
+>>>   EXPORT_SYMBOL(dma_resv_add_excl_fence);
+>>>   +/**
+>>> + * dma_resv_iter_walk_unlocked - walk over fences in a dma_resv obj
+>>> + * @cursor: cursor to record the current position
+>>> + * @first: if we should start over
+>>> + *
+>>> + * Return all the fences in the dma_resv object which are not yet 
+>>> signaled.
+>>> + * The returned fence has an extra local reference so will stay alive.
+>>> + * If a concurrent modify is detected the whole iterration is 
+>>> started over again.
+>>> + */
+>>> +struct dma_fence *dma_resv_iter_walk_unlocked(struct dma_resv_iter 
+>>> *cursor,
 >>
->> v2: add missing rcu_read_lock()/unlock()
+>> Bit ocd, but I'd still just call that iter_next.
 >>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
->> ---
->>   drivers/gpu/drm/drm_gem_atomic_helper.c | 14 ++++++++++++--
->>   1 file changed, 12 insertions(+), 2 deletions(-)
+>>> +                          bool first)
 >>
->> diff --git a/drivers/gpu/drm/drm_gem_atomic_helper.c b/drivers/gpu/drm/drm_gem_atomic_helper.c
->> index e570398abd78..d8f9c6432544 100644
->> --- a/drivers/gpu/drm/drm_gem_atomic_helper.c
->> +++ b/drivers/gpu/drm/drm_gem_atomic_helper.c
->> @@ -143,6 +143,7 @@
->>    */
->>   int drm_gem_plane_helper_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
->>   {
->> +	struct dma_resv_iter cursor;
->>   	struct drm_gem_object *obj;
->>   	struct dma_fence *fence;
->>   
->> @@ -150,9 +151,18 @@ int drm_gem_plane_helper_prepare_fb(struct drm_plane *plane, struct drm_plane_st
->>   		return 0;
->>   
->>   	obj = drm_gem_fb_get_obj(state->fb, 0);
->> -	fence = dma_resv_get_excl_unlocked(obj->resv);
->> -	drm_atomic_set_fence_for_plane(state, fence);
->> +	rcu_read_lock();
->> +	dma_resv_iter_begin(&cursor, obj->resv, false);
->> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
->> +		rcu_read_unlock();
->> +		/* TODO: We only use the first write fence here */
->> +		drm_atomic_set_fence_for_plane(state, fence);
-> Yeah I wonder whether we should/need to collate them all together. But I
-> guesss whomever hits that first with their funny multi-plane yuv or
-> whatever gets to do that. Or I'm not clear on what exactly your TODO here
-> means?
+>> Hm I'd put all the init code into iter_begin ...
+>
+> @Christian:
+>
+> Could you engineer something in here which would, at least in debug 
+> builds, catch failures to call "iter begin" before using the iterator 
+> macro?
 
-Yeah, exactly that. Basically we have use cases where where we have more 
-than one fence to wait for.
+Yeah, I've already played with the thought of somehow teaching lockdep 
+that. But then abandoned this as abusive of lockdep.
 
-The TODO is here because adding that to the atomic helper is just not my 
-construction site at the moment.
+>
+>>
+>>> +{
+>>> +    struct dma_resv *obj = cursor->obj;
+>>
+>> Aren't we missing rcu_read_lock() around the entire thing here?
+>>
+>>> +
+>>> +    first |= read_seqcount_retry(&obj->seq, cursor->seq);
+>>> +    do {
+>>> +        /* Drop the reference from the previous round */
+>>> +        dma_fence_put(cursor->fence);
+>>> +
+>>> +        cursor->is_first = first;
+>>> +        if (first) {
+>>> +            cursor->seq = read_seqcount_begin(&obj->seq);
+>>> +            cursor->index = -1;
+>>> +            cursor->fences = dma_resv_shared_list(obj);
+>>
+>> And then also call iter_begin from here. That way we guarantee that
+>> read_seqcount_begin is always called before _retry(). It's not a problem
+>> with the seqcount implementation (I think at least), but it definitely
+>> looks funny.
+>>
+>> Calling iter_begin here also makes it clear that we're essentially
+>> restarting.
+>>
+>>> +
+>>> +            cursor->fence = dma_resv_excl_fence(obj);
+>>> +            if (cursor->fence &&
+>>> +                test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+>>
+>> Please use the right dma_fence wrapper here for this and don't look 
+>> at the
+>> bits/flags outside of dma_fence.[hc] code. I just realized that we don't
+>> have the right amount of barriers in there for the fastpath, i.e. if we
+>> have:
+>>
+>> x = 0; /* static initializer */
+>>
+>> thread a
+>>     x = 1;
+>>     dma_fence_signal(fence);
+>>
+>>
+>> thread b;
+>>     if (dma_fence_is_signalled(fence))
+>>         printk("%i\n", x);
+>>
+>> Then you might actually be able to observe x == 0 in thread b. Which is
+>> not what we want at all.
+>
+> @Daniel:
+>
+> What do you mean here - in terms of if 'x' is "external" (not part of 
+> dma-fence), then are you suggesting dma-fence code should serialise it 
+> by using barriers?
+>
+> That would sound incorrect to me, or in other words, I think it's fine 
+> if x == 0 is observed in your example thread B since that code is 
+> mixing external data with dma-fence.
+
+No, Daniel is right. The problem is that on architectures other than x86 
+barriers are per memory address (or rather cache line in practice).
+
+So you need to be really careful that you see the fully consistent state 
+and not just one variable but others in the old state.
+
+But this was buggy before as well. I'm just pulling the existing test 
+into the new iterator.
+
+>
+> Hm also, there is that annoying bit where by using 
+> dma_fence_is_signaled any code becomes a fence signaling critical 
+> path, which I never bought into. There should be a way to test the 
+> signaled status without actually doing the signaling. Or I am 
+> misunderstanding something so badly that is really really has to be 
+> like this?
+
+You are mixing things up. Testing is unproblematic, signaling is the 
+problematic one.
+
+>
+>> So no open-coding of dma_fence flag bits code outside of drm_fence.[hc]
+>> please. And yes i915-gem code is unfortunately a disaster.
+>
+> Don't even miss an opportunity for some good trashing no? :D
+>
+> But yes, deconstructed dma_fence_signal I thought we were supposed to 
+> add to core. Or at least propose, don't exactly remember how that went.
+
+The problem is that you need to grab a reference to call 
+dma_fence_signal while testing the flag works without one.
 
 Regards,
 Christian.
 
 >
->> +		return 0;
->> +	}
->> +	dma_resv_iter_end(&cursor);
->> +	rcu_read_unlock();
-> Imo we should do full dma_resv_lock here. atomic helpers are designed to
-> allow this, and it simplifies things. Also it really doesn't matter for
-> atomic, we should be able to do 60fps*a few planes easily :-)
-> -Daniel
->
->>   
->> +	drm_atomic_set_fence_for_plane(state, NULL);
->>   	return 0;
->>   }
->>   EXPORT_SYMBOL_GPL(drm_gem_plane_helper_prepare_fb);
->> -- 
->> 2.25.1
 >>
+>>> + &cursor->fence->flags))
+>>> +                cursor->fence = NULL;
+>>> +        } else {
+>>> +            cursor->fence = NULL;
+>>> +        }
+>>> +
+>>> +        if (cursor->fence) {
+>>> +            cursor->fence = dma_fence_get_rcu(cursor->fence);
+>>> +        } else if (cursor->all_fences && cursor->fences) {
+>>> +            struct dma_resv_list *fences = cursor->fences;
+>>> +
+>>> +            while (++cursor->index < fences->shared_count) {
+>>> +                cursor->fence = rcu_dereference(
+>>> +                    fences->shared[cursor->index]);
+>>> +                if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+>>> +                          &cursor->fence->flags))
+>>> +                    break;
+>>> +            }
+>>> +            if (cursor->index < fences->shared_count)
+>>> +                cursor->fence =
+>>> +                    dma_fence_get_rcu(cursor->fence);
+>>> +            else
+>>> +                cursor->fence = NULL;
+>>> +        }
+>>
+>> The control flow here is very hairy, but I'm not sure how to best do 
+>> this.
+>> With my suggestion to move the read_seqcount_begin into iter_begin maybe
+>> something like this:
+>>
+>> iter_next()
+>> {
+>>     do {
+>>         dma_fence_put(cursor->fence)
+>>         cursor->fence = NULL;
+>>
+>>         if (cursor->index == -1) { /* reset by iter_begin()
+>>             cursor->fence = get_exclusive();
+>>             cusor->index++;
+>>         } else {
+>>             cursor->fence = shared_fences[++cursor->index]
+>>         }
+>>
+>>         if (!dma_fence_is_signalled(cursor->fence))
+>>             continue; /* just grab the next fence. */
+>>
+>>         cursor->fence =  dma_fence_get_rcu(cursor->fence);
+>>
+>>         if (!cursor->fence || read_seqcount_retry()) {
+>>             /* we lost the race, restart completely */
+>>             iter_begin(); /* ->fence will be cleaned up at beginning 
+>> of the loop */
+>>             continue;
+>>         }
+>>
+>>         return cursor->fence;
+>>     } while (true);
+>> }
+>>
+>> Maybe I missed something, but that avoids the duplication of all the
+>> tricky code, i.e. checking for signalling, rcu protected conditional
+>> fence_get, and the retry is also nicely at the end.
+>>> +
+>>> +        /* For the eventually next round */
+>>> +        first = true;
+>>> +    } while (read_seqcount_retry(&obj->seq, cursor->seq));
+>>> +
+>>> +    return cursor->fence;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(dma_resv_iter_walk_unlocked);
+>>> +
+>>>   /**
+>>>    * dma_resv_copy_fences - Copy all fences from src to dst.
+>>>    * @dst: the destination reservation object
+>>> diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
+>>> index 9100dd3dc21f..693d16117153 100644
+>>> --- a/include/linux/dma-resv.h
+>>> +++ b/include/linux/dma-resv.h
+>>> @@ -149,6 +149,90 @@ struct dma_resv {
+>>>       struct dma_resv_list __rcu *fence;
+>>>   };
+>>>   +/**
+>>> + * struct dma_resv_iter - current position into the dma_resv fences
+>>> + *
+>>> + * Don't touch this directly in the driver, use the accessor 
+>>> function instead.
+>>> + */
+>>> +struct dma_resv_iter {
+>>> +    /** @obj: The dma_resv object we iterate over */
+>>> +    struct dma_resv *obj;
+>>> +
+>>> +    /** @all_fences: If all fences should be returned */
+>>> +    bool all_fences;
+>>> +
+>>> +    /** @fence: the currently handled fence */
+>>> +    struct dma_fence *fence;
+>>> +
+>>> +    /** @seq: sequence number to check for modifications */
+>>> +    unsigned int seq;
+>>> +
+>>> +    /** @index: index into the shared fences */
+>>
+>> If you go with my suggestion (assuming it works): Please add "-1 
+>> indicates
+>> to pick the exclusive fence instead."
+>>
+>>> +    unsigned int index;
+>>> +
+>>> +    /** @fences: the shared fences */
+>>> +    struct dma_resv_list *fences;
+>>> +
+>>> +    /** @is_first: true if this is the first returned fence */
+>>> +    bool is_first;
+>>
+>> I think if we just rely on -1 == exclusive fence/is_first we don't need
+>> this one here?
+>>
+>>> +};
+>>> +
+>>> +struct dma_fence *dma_resv_iter_walk_unlocked(struct dma_resv_iter 
+>>> *cursor,
+>>> +                          bool first);
+>>> +
+>>> +/**
+>>> + * dma_resv_iter_begin - initialize a dma_resv_iter object
+>>> + * @cursor: The dma_resv_iter object to initialize
+>>> + * @obj: The dma_resv object which we want to iterator over
+>>> + * @all_fences: If all fences should be returned or just the 
+>>> exclusive one
+>>
+>> Please add: "Callers must clean up the iterator with 
+>> dma_resv_iter_end()."
+>>
+>>> + */
+>>> +static inline void dma_resv_iter_begin(struct dma_resv_iter *cursor,
+>>> +                    struct dma_resv *obj,
+>>> +                    bool all_fences)
+>>> +{
+>>> +    cursor->obj = obj;
+>>> +    cursor->all_fences = all_fences;
+>>> +    cursor->fence = NULL;
+>>> +}
+>>> +
+>>> +/**
+>>> + * dma_resv_iter_end - cleanup a dma_resv_iter object
+>>> + * @cursor: the dma_resv_iter object which should be cleaned up
+>>> + *
+>>> + * Make sure that the reference to the fence in the cursor is properly
+>>> + * dropped.
+>>
+>> Please add:
+>>
+>> "This function must be called every time dma_resv_iter_begin() was 
+>> called
+>> to clean up any references."
+>>> + */
+>>> +static inline void dma_resv_iter_end(struct dma_resv_iter *cursor)
+>>> +{
+>>> +    dma_fence_put(cursor->fence);
+>>> +}
+>>> +
+>>> +/**
+>>> + * dma_resv_iter_is_exclusive - test if the current fence is the 
+>>> exclusive one
+>>> + * @cursor: the cursor of the current position
+>>> + *
+>>> + * Returns true if the currently returned fence is the exclusive one.
+>>> + */
+>>> +static inline bool dma_resv_iter_is_exclusive(struct dma_resv_iter 
+>>> *cursor)
+>>> +{
+>>> +    return cursor->index == -1;
+>>> +}
+>>> +
+>>> +/**
+>>> + * dma_resv_for_each_fence_unlocked - unlocked fence iterator
+>>> + * @cursor: a struct dma_resv_iter pointer
+>>> + * @fence: the current fence
+>>> + *
+>>> + * Iterate over the fences in a struct dma_resv object without 
+>>> holding the
+>>> + * dma_resv::lock. The RCU read side lock must be hold when using 
+>>> this, but can
+>>> + * be dropped and re-taken as necessary inside the loop. The cursor 
+>>> needs to be
+>>> + * initialized with dma_resv_iter_begin_unlocked() and cleaned up with
+>>
+>> We don't have an _unlocked version?
+>
+> @Christian:
+>
+> I'd also mention that the fence reference is held during the walk so 
+> someone is less likely to grab extra ones.
+>
+>>
+>>> + * dma_resv_iter_end_unlocked().
+>>> + */
+>>> +#define dma_resv_for_each_fence_unlocked(cursor, fence)            \
+>>> +    for (fence = dma_resv_iter_walk_unlocked(cursor, true);        \
+>>> +         fence; fence = dma_resv_iter_walk_unlocked(cursor, false))
+>>> +
+>>>   #define dma_resv_held(obj) lockdep_is_held(&(obj)->lock.base)
+>>>   #define dma_resv_assert_held(obj) 
+>>> lockdep_assert_held(&(obj)->lock.base)
+>>>   --
+>>> 2.25.1
+>>>
+>>
+>
+> Regards,
+>
+> Tvrtko
+>
 
