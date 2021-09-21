@@ -2,44 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4C9412E4D
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 07:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 566B341304F
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 10:44:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1F0B6E8FD;
-	Tue, 21 Sep 2021 05:47:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CFFD6E914;
+	Tue, 21 Sep 2021 08:44:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9BCB6E8F9;
- Tue, 21 Sep 2021 05:47:11 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="202784213"
-X-IronPort-AV: E=Sophos;i="5.85,310,1624345200"; d="scan'208";a="202784213"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 22:47:09 -0700
-X-IronPort-AV: E=Sophos;i="5.85,310,1624345200"; d="scan'208";a="584920749"
-Received: from twallyn-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.83.37])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 22:47:09 -0700
-Date: Mon, 20 Sep 2021 22:47:08 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <20210921054708.p63rjkxux742op72@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210914195151.560793-1-lucas.demarchi@intel.com>
- <27c071ae-13b8-d71d-d869-e9cbd7431afd@intel.com>
- <b6b996be-b60c-41f1-e531-77c2bcdda920@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B77876E90D;
+ Tue, 21 Sep 2021 08:44:21 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="308864064"
+X-IronPort-AV: E=Sophos;i="5.85,310,1624345200"; d="scan'208";a="308864064"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2021 01:44:21 -0700
+X-IronPort-AV: E=Sophos;i="5.85,310,1624345200"; d="scan'208";a="549401600"
+Received: from unknown (HELO localhost) ([10.251.218.108])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2021 01:44:17 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com, manasi.d.navare@intel.com
+In-Reply-To: <20210917165637.t3vdblkgk5rzplyu@gilmour>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1631191763.git.jani.nikula@intel.com>
+ <87mtobuzuo.fsf@intel.com> <20210917165637.t3vdblkgk5rzplyu@gilmour>
+Date: Tue, 21 Sep 2021 11:44:14 +0300
+Message-ID: <87sfxytj1d.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <b6b996be-b60c-41f1-e531-77c2bcdda920@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: remove unneeded clflush
- calls
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v3 00/13] drm/i915/dp: dp 2.0 enabling prep
+ work
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,22 +52,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 15, 2021 at 12:29:12PM -0700, John Harrison wrote:
->On 9/15/2021 12:24, Belgaumkar, Vinay wrote:
->>On 9/14/2021 12:51 PM, Lucas De Marchi wrote:
->>>The clflush calls here aren't doing anything since we are not writting
->>>something and flushing the cache lines to be visible to GuC. Here the
->>>intention seems to be to make sure whatever GuC has written is visible
->>>to the CPU before we read them. However a clflush from the CPU side is
->>>the wrong instruction to use.
->Is there a right instruction to use? Either we need to verify that no 
+On Fri, 17 Sep 2021, Maxime Ripard <maxime@cerno.tech> wrote:
+> On Fri, Sep 17, 2021 at 03:54:23PM +0300, Jani Nikula wrote:
+>> On Thu, 09 Sep 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+>> > v3 of https://patchwork.freedesktop.org/series/93800/ with minor tweaks
+>> > and the already merged patches obviously dropped.
+>> >
+>> > Jani Nikula (13):
+>> >   drm/dp: add DP 2.0 UHBR link rate and bw code conversions
+>> >   drm/dp: use more of the extended receiver cap
+>> >   drm/dp: add LTTPR DP 2.0 DPCD addresses
+>> >   drm/dp: add helper for extracting adjust 128b/132b TX FFE preset
+>> 
+>> Maarten, Maxime, Thomas, can I get an ack to merge these four patches
+>> via drm-intel please, or would you prefer a topic branch instead?
+>
+> Yes, you can merge them through drm-intel
 
-how can there be a right instruction? If the GuC needs to flush, then
-the GuC needs to do it, nothing to be done by the CPU.
+Thanks, I've done that.
 
-Flushing the CPU cache line here is doing nothing to guarantee that what
-was written by GuC hit the memory and we are reading it. Not sure why it
-was actually added, but since it was added by Vinay and he reviewed this
-patch, I'm assuming he also agrees
+BR,
+Jani.
 
-Lucas De Marchi
+-- 
+Jani Nikula, Intel Open Source Graphics Center
