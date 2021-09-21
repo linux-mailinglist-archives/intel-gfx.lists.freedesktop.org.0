@@ -1,38 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF911413556
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 16:29:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 340E3413577
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 16:36:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4776E9B2;
-	Tue, 21 Sep 2021 14:29:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8736E9B7;
+	Tue, 21 Sep 2021 14:36:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5735C6E9B3;
- Tue, 21 Sep 2021 14:29:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="245792485"
-X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="245792485"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2021 07:21:52 -0700
-X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="549509971"
-Received: from agallagh-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.17.108])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2021 07:21:51 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 21 Sep 2021 15:21:16 +0100
-Message-Id: <20210921142116.3807946-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7F786E9B5;
+ Tue, 21 Sep 2021 14:36:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="203527677"
+X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="203527677"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2021 07:35:30 -0700
+X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="556963770"
+Received: from ekyne-mobl.ger.corp.intel.com (HELO [10.213.200.64])
+ ([10.213.200.64])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2021 07:35:29 -0700
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+References: <20210910201030.3436066-1-matthew.d.roper@intel.com>
+ <20210910201030.3436066-5-matthew.d.roper@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <939bbb3c-9814-a6e7-19b3-7c0d6b068ade@linux.intel.com>
+Date: Tue, 21 Sep 2021 15:35:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: exercise shmem_writeback
- with THP
+In-Reply-To: <20210910201030.3436066-5-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/i915/uncore: Drop gen11/gen12
+ mmio write handlers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,42 +54,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In commit:
 
-commit 1e6decf30af5c5c75445ed6ad4e65a26de578a03
-Author: Hugh Dickins <hughd@google.com>
-Date:   Thu Sep 2 14:54:43 2021 -0700
+On 10/09/2021 21:10, Matt Roper wrote:
+> Now that the reference to the shadow table is stored within the uncore,
+> we don't need to generate separate fwtable, gen11_fwtable, and
+> gen12_fwtable variants of the register write functions; a single
+> 'fwtable' implementation will work for all of those platforms now.
+> 
+> While consolidating the functions, gen11/gen12 pick up a
+> NEEDS_FORCE_WAKE() check that they didn't have before, allowing them to
+> bypass a lot of forcewake/shadow checking for non-GT registers (e.g.,
+> display).  However since these later platforms also introduce media
+> engines at higher MMIO offsets, the definition of NEEDS_FORCE_WAKE() is
+> extended to also consider register offsets above GEN11_BSD_RING_BASE.
+> 
+> v2:
+>   - Restore NEEDS_FORCE_WAKE(), but extend it for compatibility with the
+>     gen11+ platforms by also passing offsets above GEN11_BSD_RING_BASE.
+>     (Chris, Tvrtko)
+> 
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>   drivers/gpu/drm/i915/intel_uncore.c | 61 ++++++++++-------------------
+>   1 file changed, 21 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 4c6898746d10..bfb2a6337f9d 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -851,7 +851,10 @@ void assert_forcewakes_active(struct intel_uncore *uncore,
+>   }
+>   
+>   /* We give fast paths for the really cool registers */
+> -#define NEEDS_FORCE_WAKE(reg) ((reg) < 0x40000)
+> +#define NEEDS_FORCE_WAKE(reg) ({ \
+> +	u32 __reg = (reg); \
+> +	__reg < 0x40000 || __reg >= GEN11_BSD_RING_BASE; \
+> +})
+>   
+>   static int fw_range_cmp(u32 offset, const struct intel_forcewake_range *entry)
+>   {
+> @@ -1071,27 +1074,10 @@ static const struct intel_forcewake_range __chv_fw_ranges[] = {
+>   };
+>   
+>   #define __fwtable_reg_write_fw_domains(uncore, offset) \
+> -({ \
+> -	enum forcewake_domains __fwd = 0; \
+> -	if (NEEDS_FORCE_WAKE((offset)) && !is_shadowed(uncore, offset)) \
+> -		__fwd = find_fw_domain(uncore, offset); \
+> -	__fwd; \
+> -})
+> -
+> -#define __gen11_fwtable_reg_write_fw_domains(uncore, offset) \
+>   ({ \
+>   	enum forcewake_domains __fwd = 0; \
+>   	const u32 __offset = (offset); \
+> -	if (!is_shadowed(uncore, __offset)) \
+> -		__fwd = find_fw_domain(uncore, __offset); \
+> -	__fwd; \
+> -})
+> -
+> -#define __gen12_fwtable_reg_write_fw_domains(uncore, offset) \
+> -({ \
+> -	enum forcewake_domains __fwd = 0; \
+> -	const u32 __offset = (offset); \
+> -	if (!is_shadowed(uncore, __offset)) \
+> +	if (NEEDS_FORCE_WAKE((__offset)) && !is_shadowed(uncore, __offset)) \
+>   		__fwd = find_fw_domain(uncore, __offset); \
+>   	__fwd; \
+>   })
+> @@ -1675,34 +1661,29 @@ __gen6_write(8)
+>   __gen6_write(16)
+>   __gen6_write(32)
+>   
+> -#define __gen_write(func, x) \
+> +#define __gen_fwtable_write(x) \
+>   static void \
+> -func##_write##x(struct intel_uncore *uncore, i915_reg_t reg, u##x val, bool trace) { \
+> +fwtable_write##x(struct intel_uncore *uncore, i915_reg_t reg, u##x val, bool trace) { \
+>   	enum forcewake_domains fw_engine; \
+>   	GEN6_WRITE_HEADER; \
+> -	fw_engine = __##func##_reg_write_fw_domains(uncore, offset); \
+> +	fw_engine = __fwtable_reg_write_fw_domains(uncore, offset); \
+>   	if (fw_engine) \
+>   		__force_wake_auto(uncore, fw_engine); \
+>   	__raw_uncore_write##x(uncore, reg, val); \
+>   	GEN6_WRITE_FOOTER; \
+>   }
+>   
+> -#define __gen_reg_write_funcs(func) \
+> -static enum forcewake_domains \
+> -func##_reg_write_fw_domains(struct intel_uncore *uncore, i915_reg_t reg) { \
+> -	return __##func##_reg_write_fw_domains(uncore, i915_mmio_reg_offset(reg)); \
+> -} \
+> -\
+> -__gen_write(func, 8) \
+> -__gen_write(func, 16) \
+> -__gen_write(func, 32)
+> -
+> +static enum forcewake_domains
+> +fwtable_reg_write_fw_domains(struct intel_uncore *uncore, i915_reg_t reg)
+> +{
+> +	return __fwtable_reg_write_fw_domains(uncore, i915_mmio_reg_offset(reg));
+> +}
+>   
+> -__gen_reg_write_funcs(gen12_fwtable);
+> -__gen_reg_write_funcs(gen11_fwtable);
+> -__gen_reg_write_funcs(fwtable);
+> +__gen_fwtable_write(8)
+> +__gen_fwtable_write(16)
+> +__gen_fwtable_write(32)
+>   
+> -#undef __gen_reg_write_funcs
+> +#undef __gen_fwtable_write
+>   #undef GEN6_WRITE_FOOTER
+>   #undef GEN6_WRITE_HEADER
+>   
+> @@ -2080,22 +2061,22 @@ static int uncore_forcewake_init(struct intel_uncore *uncore)
+>   	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __dg2_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen12_shadowed_regs);
+> -		ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
+> +		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+>   		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+>   	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __xehp_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen12_shadowed_regs);
+> -		ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
+> +		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+>   		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+>   	} else if (GRAPHICS_VER(i915) >= 12) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __gen12_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen12_shadowed_regs);
+> -		ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
+> +		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+>   		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+>   	} else if (GRAPHICS_VER(i915) == 11) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __gen11_fw_ranges);
+>   		ASSIGN_SHADOW_TABLE(uncore, gen11_shadowed_regs);
+> -		ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen11_fwtable);
+> +		ASSIGN_WRITE_MMIO_VFUNCS(uncore, fwtable);
+>   		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
+>   	} else if (IS_GRAPHICS_VER(i915, 9, 10)) {
+>   		ASSIGN_FW_DOMAINS_TABLE(uncore, __gen9_fw_ranges);
+> 
 
-    shmem: shmem_writepage() split unlikely i915 THP
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-it looks THP + shmem_writeback was an unexpected combination, and ends up
-hitting some BUG_ON, but it also looks like that is now fixed.
+Regards,
 
-While the IGTs did eventually hit this(although not during pre-merge it
-seems), it's likely worthwhile adding some explicit coverage for this
-scenario in the shrink_thp selftest.
-
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/4166
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index 0827634c842c..8260a533d43f 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1589,7 +1589,8 @@ static int igt_shrink_thp(void *arg)
- 	i915_gem_shrink(NULL, i915, -1UL, NULL,
- 			I915_SHRINK_BOUND |
- 			I915_SHRINK_UNBOUND |
--			I915_SHRINK_ACTIVE);
-+			I915_SHRINK_ACTIVE |
-+			I915_SHRINK_WRITEBACK);
- 	if (should_swap == i915_gem_object_has_pages(obj)) {
- 		pr_err("unexpected pages mismatch, should_swap=%s\n",
- 		       yesno(should_swap));
--- 
-2.26.3
-
+Tvrtko
