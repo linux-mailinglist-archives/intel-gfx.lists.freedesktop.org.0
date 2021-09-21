@@ -1,39 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 654B34129F3
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 02:23:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50B284129F9
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 02:31:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 708846E8C7;
-	Tue, 21 Sep 2021 00:23:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC4806E8BD;
+	Tue, 21 Sep 2021 00:30:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4966E8C4
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 00:23:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="203410807"
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="203410807"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 17:23:34 -0700
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="549183766"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 17:23:33 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Tue, 21 Sep 2021 03:23:13 +0300
-Message-Id: <20210921002313.1132357-14-imre.deak@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210921002313.1132357-1-imre.deak@intel.com>
-References: <20210921002313.1132357-1-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A6796E8BD;
+ Tue, 21 Sep 2021 00:30:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 015FCA47EA;
+ Tue, 21 Sep 2021 00:30:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 13/13] drm/i915/tc: Fix system hang on ADL-P
- during TypeC PHY disconnect
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Sep 2021 00:30:58 -0000
+Message-ID: <163218425897.15890.4835298907171051239@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210921002313.1132357-1-imre.deak@intel.com>
+In-Reply-To: <20210921002313.1132357-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/tc=3A_Fix_TypeC_connect/disconnect_sequences?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,40 +41,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The PHY ownership release->AUX PW disable steps during a modeset
-disable->PHY disconnect sequence can hang the system if the PHY
-disconnect happens after disabling the PHY's PLL. The spec doesn't
-require a specific order for these two steps, so this issue is still
-being root caused by HW/FW teams. Until that is found, let's make
-sure the disconnect happens before the PLL is disabled, and do this on
-all platforms for consistency.
+== Series Details ==
 
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_tc.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: drm/i915/tc: Fix TypeC connect/disconnect sequences
+URL   : https://patchwork.freedesktop.org/series/94878/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 99b66c2852e53..dc52b76bd57e2 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -813,6 +813,12 @@ void intel_tc_port_put_link(struct intel_digital_port *dig_port)
- 	intel_tc_port_lock(dig_port);
- 	--dig_port->tc_link_refcount;
- 	intel_tc_port_unlock(dig_port);
-+
-+	/*
-+	 * Disconnecting the PHY after the PHY's PLL gets disabled may
-+	 * hang the system on ADL-P, so disconnect the PHY here synchronously.
-+	 */
-+	intel_tc_port_flush_work(dig_port);
- }
- 
- static bool
--- 
-2.27.0
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+9d2a21b4286f drm/i915/tc: Fix TypeC port init/resume time sanitization
+8cf6d77baac7 drm/i915/adlp/tc: Fix PHY connected check for Thunderbolt mode
+3a96d2e03bbf drm/i915/tc: Remove waiting for PHY complete during releasing ownership
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+commit ddec362724f9 ("drm/i915: Wait for TypeC PHY complete flag to clear in safe mode")
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+4e8751ecf807 drm/i915/tc: Check for DP-alt, legacy sinks before taking PHY ownership
+cc76a5af71d5 drm/i915/tc: Add/use helpers to retrieve TypeC port properties
+344a4da141dd drm/i915/tc: Don't keep legacy TypeC ports in connected state w/o a sink
+dc6bbabc3efa drm/i915/tc: Add a mode for the TypeC PHY's disconnected state
+-:111: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#111: FILE: drivers/gpu/drm/i915/display/intel_tc.c:714:
++	drm_WARN_ON(&i915->drm, dig_port->tc_mode != TC_PORT_TBT_ALT &&
++				!tc_phy_is_owned(dig_port));
+
+total: 0 errors, 0 warnings, 1 checks, 91 lines checked
+1a6d3f2220ba drm/i915/tc: Refactor TC-cold block/unblock helpers
+d163824eae60 drm/i915/tc: Avoid using legacy AUX PW in TBT mode
+24944d022b80 drm/i915/icl/tc: Remove the ICL special casing during TC-cold blocking
+d9687de8553d drm/i915/tc: Fix TypeC PHY connect/disconnect logic on ADL-P
+14a2cb6aae07 drm/i915/tc: Drop extra TC cold blocking from intel_tc_port_connected()
+1890abf291df drm/i915/tc: Fix system hang on ADL-P during TypeC PHY disconnect
+
 
