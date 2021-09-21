@@ -1,72 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09EEE41332E
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 14:09:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 351DA41338A
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 14:49:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351B96E95D;
-	Tue, 21 Sep 2021 12:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42DB76E97B;
+	Tue, 21 Sep 2021 12:49:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC896E95D
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 12:09:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="203491773"
-X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="203491773"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E69F6E97D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 12:49:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="287020084"
+X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="287020084"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2021 05:09:36 -0700
-X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="549459308"
-Received: from unknown (HELO localhost) ([10.251.218.108])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2021 05:09:35 -0700
-Resent-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7,
- 02160 Espoo
-Resent-To: intel-gfx@lists.freedesktop.org
-Resent-From: Jani Nikula <jani.nikula@intel.com>
-Resent-Date: Tue, 21 Sep 2021 15:09:33 +0300
-Resent-Message-ID: <8735pyt9j6.fsf@intel.com>
-MIME-Version: 1.0
-Received: from outlook.iglb.intel.com [163.33.184.135]
- by jnikula-mobl3.ger.corp.intel.com with IMAP (fetchmail-6.4.0.beta4)
- for <jani@localhost> (single-drop); Tue, 21 Sep 2021 14:27:00 +0300 (EEST)
-Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
- irsmsx605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Mailbox Transport; Tue, 21 Sep 2021 12:26:18 +0100
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 21 Sep 2021 12:26:17 +0100
-Received: from orsmga008.jf.intel.com (10.7.209.65) by
- orsmsx607.amr.corp.intel.com (10.22.229.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Tue, 21 Sep 2021 04:26:17 -0700
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2021 05:49:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="484148609"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga008.jf.intel.com with ESMTP; 21 Sep 2021 04:26:14 -0700
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-To: <alsa-devel@alsa-project.org>, <tiwai@suse.de>, <jani.nikula@intel.com>,
- Imre Deak <imre.deak@intel.com>, <dri-devel@lists.freedesktop.org>, "Russell
- King" <rmk+kernel@arm.linux.org.uk>, <gregkh@linuxfoundation.org>
-CC: "Rafael J . Wysocki" <rafael@kernel.org>, <kai.vehmanen@linux.intel.com>, 
- <intel-gfx@lists.freedesktop.org>
-Date: Tue, 21 Sep 2021 14:18:10 +0300
-Message-ID: <20210921111810.2766726-1-kai.vehmanen@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="549470592"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 21 Sep 2021 05:49:25 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Sep 2021 15:49:24 +0300
+Date: Tue, 21 Sep 2021 15:49:24 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YUnU1AK4qKEZeV3v@intel.com>
+References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
+ <20210913144440.23008-3-ville.syrjala@linux.intel.com>
+ <20210920075210.GA439@labuser-Z97X-UD5H>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-MS-Exchange-Organization-Network-Message-Id: b45520f4-f2d2-4ff5-09df-08d97cf2a0e0
-X-MS-Exchange-Organization-AuthSource: ORSMSX607.amr.corp.intel.com
-X-MS-Exchange-Organization-AuthAs: Internal
-X-MS-Exchange-Organization-AuthMechanism: 10
-Content-Type: text/plain
-X-MS-Exchange-Organization-AVStamp-Enterprise: 1.0
-X-MS-Exchange-Transport-EndToEndLatency: 00:00:00.8921095
-X-MS-Exchange-Processed-By-BccFoldering: 15.01.2242.012
-Subject: [Intel-gfx] [RFC PATCH] component: do not leave master devres group
- open after bind
+In-Reply-To: <20210920075210.GA439@labuser-Z97X-UD5H>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 02/16] drm/i915: Disable all planes before
+ modesetting any pipes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,111 +54,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In current code, the devres group for aggregate master is left open
-after call to component_master_add_*(). This leads to problems when the
-master does further managed allocations on its own. When any
-participating driver calls component_del(), this leads to immediate
-release of resources.
+On Mon, Sep 20, 2021 at 12:52:15AM -0700, Navare, Manasi wrote:
+> On Mon, Sep 13, 2021 at 05:44:26PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Let's disable planes on all pipes affected by the modeset before
+> > we start doing the actual modeset. This means we have less
+> > random planes enabled during the modeset, and it also mirrors
+> > what we already do when enabling pipes on skl+ since we enable
+> > planes on all pipes as the very last step. As a bonus we also
+> > nuke a bunch og bigjoiner special casing.
+> > 
+> > I've occasionally pondered about going even furher here and
+> > doing the pre_plane_update() stuff for all pipes first, then
+> > actually disabling the planes, and finally running the rest
+> > of the modeset sequence. This would potentially allow
+> > parallelizing all the extra vblank waits across multiple pipes,
+> > and would make the plane disable even more atomic. But let's
+> > go one step a time here.
+> 
+> So you are moving the plane disables all together in the commit_disables()?
+> But dont we need to pass old_crtc_state->bigjoiner_linked_crtc) crtc in case of bigjoiner?
+> How is that handled?
 
-This came up when investigating a page fault occurring with i915 DRM
-driver unbind with 5.15-rc1 kernel. The following sequence occurs:
+Whether bigjoiner is used or not is irrelevant when disabling the
+planes.
 
- i915_pci_remove()
-   -> intel_display_driver_unregister()
-     -> i915_audio_component_cleanup()
-       -> component_del()
-         -> component.c:take_down_master()
-           -> hdac_component_master_unbind() [via master->ops->unbind()]
-           -> devres_release_group(master->parent, NULL)
+> 
+> Regards
+> Manasi
+> 
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++++-----------
+> >  1 file changed, 13 insertions(+), 15 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index cd150512d275..afa26911c236 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -9785,18 +9785,13 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
+> >  
+> >  	drm_WARN_ON(&dev_priv->drm, old_crtc_state->bigjoiner_slave);
+> >  
+> > -	intel_crtc_disable_planes(state, crtc);
+> > -
+> >  	/*
+> >  	 * We still need special handling for disabling bigjoiner master
+> >  	 * and slaves since for slave we do not have encoder or plls
+> >  	 * so we dont need to disable those.
+> >  	 */
+> > -	if (old_crtc_state->bigjoiner) {
+> > -		intel_crtc_disable_planes(state,
+> > -					  old_crtc_state->bigjoiner_linked_crtc);
+> > +	if (old_crtc_state->bigjoiner)
+> >  		old_crtc_state->bigjoiner_linked_crtc->active = false;
+> > -	}
+> >  
+> >  	/*
+> >  	 * We need to disable pipe CRC before disabling the pipe,
+> > @@ -9823,6 +9818,18 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+> >  	u32 handled = 0;
+> >  	int i;
+> >  
+> > +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > +					    new_crtc_state, i) {
+> > +		if (!intel_crtc_needs_modeset(new_crtc_state))
+> > +			continue;
+> > +
+> > +		if (!old_crtc_state->hw.active)
+> > +			continue;
+> > +
+> > +		intel_pre_plane_update(state, crtc);
+> > +		intel_crtc_disable_planes(state, crtc);
+> > +	}
+> > +
+> >  	/* Only disable port sync and MST slaves */
+> >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> >  					    new_crtc_state, i) {
+> > @@ -9841,7 +9848,6 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+> >  		    !intel_dp_mst_is_slave_trans(old_crtc_state))
+> >  			continue;
+> >  
+> > -		intel_pre_plane_update(state, crtc);
+> >  		intel_old_crtc_state_disables(state, old_crtc_state,
+> >  					      new_crtc_state, crtc);
+> >  		handled |= BIT(crtc->pipe);
+> > @@ -9855,14 +9861,6 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+> >  		    old_crtc_state->bigjoiner_slave)
+> >  			continue;
+> >  
+> > -		intel_pre_plane_update(state, crtc);
+> > -		if (old_crtc_state->bigjoiner) {
+> > -			struct intel_crtc *slave =
+> > -				old_crtc_state->bigjoiner_linked_crtc;
+> > -
+> > -			intel_pre_plane_update(state, slave);
+> > -		}
+> > -
+> >  		if (old_crtc_state->hw.active)
+> >  			intel_old_crtc_state_disables(state, old_crtc_state,
+> >  						      new_crtc_state, crtc);
+> > -- 
+> > 2.32.0
+> > 
 
-With older kernels this has not caused issues, but with audio driver
-moving to use managed interfaces for more of its allocations, this no
-longer works. Devres log shows following to occur:
-
-component_master_add_with_match()
-[  126.886032] snd_hda_intel 0000:00:1f.3: DEVRES ADD 00000000323ccdc5 devm_component_match_release (24 bytes)
-[  126.886045] snd_hda_intel 0000:00:1f.3: DEVRES ADD 00000000865cdb29 grp< (0 bytes)
-[  126.886049] snd_hda_intel 0000:00:1f.3: DEVRES ADD 000000001b480725 grp< (0 bytes)
-
-audio driver completes its PCI probe()
-[  126.892238] snd_hda_intel 0000:00:1f.3: DEVRES ADD 000000001b480725 pcim_iomap_release (48 bytes)
-
-component_del() called() at DRM/i915 unbind()
-[  137.579422] i915 0000:00:02.0: DEVRES REL 00000000ef44c293 grp< (0 bytes)
-[  137.579445] snd_hda_intel 0000:00:1f.3: DEVRES REL 00000000865cdb29 grp< (0 bytes)
-[  137.579458] snd_hda_intel 0000:00:1f.3: DEVRES REL 000000001b480725 pcim_iomap_release (48 bytes)
-
-So the "devres_release_group(master->parent, NULL)" ends up freeing the
-pcim_iomap allocation. Upon next runtime resume, the audio driver will
-cause a page fault as the iomap alloc was released without the driver
-knowing about it.
-
-Fix this issue by using the "struct master" pointer as identifier for
-the devres group, and by closing the devres group after the master->ops->bind()
-call is done. This allows devres allocations done by the driver acting as
-master to be isolated from the binding state of the aggregate driver. This
-modifies the logic originally introduced in commit 9e1ccb4a7700
-("drivers/base: fix devres handling for master device").
-
-BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/4136
-Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
----
- drivers/base/component.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-Hi,
-I'm sending this as RFC as I'm not sure of the implications of
-not leaving the devres group open might have to other users
-of the component framework.
-
-For audio, the current behaviour seems very problematic. The display
-codec is usually just one of many audio codecs attached to the controller,
-and unbind of the display codec (and the aggregate driver created with
-DRM), should not bring down the whole audio card.
-
-However, now all allocations audio driver does after call to
-component_master_add_with_match(), will be freed when display
-driver calls component_del().
-
-Closing the devres group at end of component_master_add_*() would
-seem the cleanest option. Looking for feedback whether this approach
-is feasible. One alternative would be for the audio driver to
-close the "last opened" group after its call to component_master_add(),
-but this seems messy (audio would make assumptions on component.c
-internals).
-
-diff --git a/drivers/base/component.c b/drivers/base/component.c
-index 5e79299f6c3f..870485cbbb87 100644
---- a/drivers/base/component.c
-+++ b/drivers/base/component.c
-@@ -246,7 +246,7 @@ static int try_to_bring_up_master(struct master *master,
- 		return 0;
- 	}
- 
--	if (!devres_open_group(master->parent, NULL, GFP_KERNEL))
-+	if (!devres_open_group(master->parent, master, GFP_KERNEL))
- 		return -ENOMEM;
- 
- 	/* Found all components */
-@@ -258,6 +258,7 @@ static int try_to_bring_up_master(struct master *master,
- 		return ret;
- 	}
- 
-+	devres_close_group(master->parent, NULL);
- 	master->bound = true;
- 	return 1;
- }
-@@ -282,7 +283,7 @@ static void take_down_master(struct master *master)
- {
- 	if (master->bound) {
- 		master->ops->unbind(master->parent);
--		devres_release_group(master->parent, NULL);
-+		devres_release_group(master->parent, master);
- 		master->bound = false;
- 	}
- }
-
-base-commit: 930e99a51fcc8b1254e0a45fbe0cd5a5b8a704a5
 -- 
-2.32.0
-
+Ville Syrjälä
+Intel
