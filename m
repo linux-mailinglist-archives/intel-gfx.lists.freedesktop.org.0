@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0784129E8
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 02:23:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A387A4129EA
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 02:23:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0D06E8BD;
-	Tue, 21 Sep 2021 00:23:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4EF86E8BF;
+	Tue, 21 Sep 2021 00:23:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 521A56E8BD
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 00:23:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="308811917"
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="308811917"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD8076E8BE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 00:23:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="308811925"
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="308811925"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 17:23:17 -0700
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="549183669"
+ 20 Sep 2021 17:23:19 -0700
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="549183675"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 17:23:16 -0700
+ 20 Sep 2021 17:23:17 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Tue, 21 Sep 2021 03:23:00 +0300
-Message-Id: <20210921002313.1132357-1-imre.deak@intel.com>
+Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Tue, 21 Sep 2021 03:23:01 +0300
+Message-Id: <20210921002313.1132357-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210921002313.1132357-1-imre.deak@intel.com>
+References: <20210921002313.1132357-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/13] drm/i915/tc: Fix TypeC connect/disconnect
- sequences
+Subject: [Intel-gfx] [PATCH 01/13] drm/i915/tc: Fix TypeC port init/resume
+ time sanitization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +50,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patchset fixes two issues on ADL-P related to the TypeC PHY
-connect/disconnect sequences in patch 11 and 13 and a few other minor
-TypeC issues I noticed on the way. The fix in patch 11 requires some
-refactoring and it affects all TypeC platforms; this was the way that
-made sense to me to keep things consistent across all platforms and
-TypeC modes and also bring the connect/disconnect sequences closer to
-the specification.
+Atm during driver loading and system resume TypeC ports are accessed
+before their HW/SW state is synced. Move the TypeC port sanitization to
+the encoder's sync_state hook to fix this.
 
-Tested on ICL, TGL, ADL-P, on all the 3 TypeC port types where
-available.
-
+Fixes: f9e76a6e68d3 ("drm/i915: Add an encoder hook to sanitize its state during init/resume")
 Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c     |  8 +++++++-
+ drivers/gpu/drm/i915/display/intel_display.c | 20 +++++---------------
+ 2 files changed, 12 insertions(+), 16 deletions(-)
 
-Imre Deak (13):
-  drm/i915/tc: Fix TypeC port init/resume time sanitization
-  drm/i915/adlp/tc: Fix PHY connected check for Thunderbolt mode
-  drm/i915/tc: Remove waiting for PHY complete during releasing
-    ownership
-  drm/i915/tc: Check for DP-alt,legacy sinks before taking PHY ownership
-  drm/i915/tc: Add/use helpers to retrieve TypeC port properties
-  drm/i915/tc: Don't keep legacy TypeC ports in connected state w/o a
-    sink
-  drm/i915/tc: Add a mode for the TypeC PHY's disconnected state
-  drm/i915/tc: Refactor TC-cold block/unblock helpers
-  drm/i915/tc: Avoid using legacy AUX PW in TBT mode
-  drm/i915/icl/tc: Remove the ICL special casing during TC-cold blocking
-  drm/i915/tc: Fix TypeC PHY connect/disconnect logic on ADL-P
-  drm/i915/tc: Drop extra TC cold blocking from
-    intel_tc_port_connected()
-  drm/i915/tc: Fix system hang on ADL-P during TypeC PHY disconnect
-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  46 +--
- drivers/gpu/drm/i915/display/intel_display.c  |  26 +-
- drivers/gpu/drm/i915/display/intel_display.h  |   1 +
- .../drm/i915/display/intel_display_power.c    |   4 +-
- .../drm/i915/display/intel_display_types.h    |   3 +
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |   6 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   5 +-
- drivers/gpu/drm/i915/display/intel_tc.c       | 275 +++++++++++-------
- drivers/gpu/drm/i915/display/intel_tc.h       |   6 +-
- 9 files changed, 218 insertions(+), 154 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index bba0ab99836b1..c4ed4675f5791 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3840,7 +3840,13 @@ void hsw_ddi_get_config(struct intel_encoder *encoder,
+ static void intel_ddi_sync_state(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state)
+ {
+-	if (intel_crtc_has_dp_encoder(crtc_state))
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	enum phy phy = intel_port_to_phy(i915, encoder->port);
++
++	if (intel_phy_is_tc(i915, phy))
++		intel_tc_port_sanitize(enc_to_dig_port(encoder));
++
++	if (crtc_state && intel_crtc_has_dp_encoder(crtc_state))
+ 		intel_dp_sync_state(encoder, crtc_state);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f6c0c595f6313..8547842935389 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -12194,18 +12194,16 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+ 	readout_plane_state(dev_priv);
+ 
+ 	for_each_intel_encoder(dev, encoder) {
++		struct intel_crtc_state *crtc_state = NULL;
++
+ 		pipe = 0;
+ 
+ 		if (encoder->get_hw_state(encoder, &pipe)) {
+-			struct intel_crtc_state *crtc_state;
+-
+ 			crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+ 			crtc_state = to_intel_crtc_state(crtc->base.state);
+ 
+ 			encoder->base.crtc = &crtc->base;
+ 			intel_encoder_get_config(encoder, crtc_state);
+-			if (encoder->sync_state)
+-				encoder->sync_state(encoder, crtc_state);
+ 
+ 			/* read out to slave crtc as well for bigjoiner */
+ 			if (crtc_state->bigjoiner) {
+@@ -12220,6 +12218,9 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+ 			encoder->base.crtc = NULL;
+ 		}
+ 
++		if (encoder->sync_state)
++			encoder->sync_state(encoder, crtc_state);
++
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "[ENCODER:%d:%s] hw state readout: %s, pipe %c\n",
+ 			    encoder->base.base.id, encoder->base.name,
+@@ -12502,17 +12503,6 @@ intel_modeset_setup_hw_state(struct drm_device *dev,
+ 	intel_modeset_readout_hw_state(dev);
+ 
+ 	/* HW state is read out, now we need to sanitize this mess. */
+-
+-	/* Sanitize the TypeC port mode upfront, encoders depend on this */
+-	for_each_intel_encoder(dev, encoder) {
+-		enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+-
+-		/* We need to sanitize only the MST primary port. */
+-		if (encoder->type != INTEL_OUTPUT_DP_MST &&
+-		    intel_phy_is_tc(dev_priv, phy))
+-			intel_tc_port_sanitize(enc_to_dig_port(encoder));
+-	}
+-
+ 	get_encoder_power_domains(dev_priv);
+ 
+ 	if (HAS_PCH_IBX(dev_priv))
 -- 
 2.27.0
 
