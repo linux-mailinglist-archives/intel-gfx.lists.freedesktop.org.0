@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9101D4138DE
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 19:43:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B91C94138E4
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 19:43:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 939636EA0B;
-	Tue, 21 Sep 2021 17:43:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9914E6EA1E;
+	Tue, 21 Sep 2021 17:43:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A266B6E9C9;
- Tue, 21 Sep 2021 17:37:09 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id u18so39817326wrg.5;
- Tue, 21 Sep 2021 10:37:09 -0700 (PDT)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
+ [IPv6:2a00:1450:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 923DC6E9C1;
+ Tue, 21 Sep 2021 17:37:10 +0000 (UTC)
+Received: by mail-wr1-x42e.google.com with SMTP id t18so41545825wrb.0;
+ Tue, 21 Sep 2021 10:37:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=12q+kmLcqrOLQ+PRaX5+iil+oP7YjLgyfMuSdQvd75Y=;
- b=VePXpSNXCwTK5NQ0fCHN0VvxQK/RJqR8uuQ+7WinkOk4JnqT4ta3E4ePLIcwg5K1gG
- Un7iqimOrX8S/QtaB6twwiic17xykFh68tj8EcjBBrYjZBdgG3TQT89RtNBlaYZ9WprC
- hEX7NmJtWqpb6IUdhuKLhrmP5gOcsItiqcZodcdLctFKGDSNsxIWgPwhVa/jCMCtAHgc
- +pAIXpLxIUSq1izgp14q+0rIhzS2/CkJE65YKYBdQ5VeTMI4ZJG1Pw4zi9uT1pYxlk8x
- wcTp1ZjYNCAwPy8mK1WaNbPK3wmz/8+TT6OvZOugu63a2TBHOv6qMoutROi2Q965Ft4T
- IhYQ==
+ bh=RSipxlf8Rt1aqHkUOElk7qKJcjfTHCxexIhn6lnwGw0=;
+ b=f90LXtFRXtKJDn4uKSQnEBW8D1SlWElg5O4xeEUOqGVkwdBPNP/q8LJYXvMSmVlEmT
+ qVgkUrV2iqSXc3JyfSV1HGVZSR+HEO4zuaoP0pGWlse9f3W9Hdscnt3CO+gqpv5lc1aL
+ 9bfbs4m1hfr4lHxxkaBlmX5+SOoJFNh68TG3f4pg62cltvOsYtxOewJjWhOL/BgrHRnp
+ Lw7YgzjP9T4Mp82ESB1ImssdMR3uou+yDcLky9LWguv9W+5TQzFVJSjzFVRuvUt1nTX/
+ dciLLbCqC+IX2tyabgMUWY1pnfnhdfClexC4voHBtSqFfd4V1aMvxgNSK5JRdLWAdSAt
+ DJbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=12q+kmLcqrOLQ+PRaX5+iil+oP7YjLgyfMuSdQvd75Y=;
- b=fesfFlDE2SvBQ1Pj7bwH0QfAW31xdc1ZGb4awR8ZDnftZpKC51tU9WGOrfTdW14IIa
- XSjtzvXwK/vI7FKzAZLGBInwWzlMMBZHcjNpbraLCOyGF+NmLKFVMXIFeyn5MyY5PtMb
- d29doZjfByCMIewFeGn6nyi7Y7rytQzHtO29NGcZ0pUxjcf++FVGPgGf4vmhYUKs34Xf
- uoTnXrFPvxzoLCphjSeKfacXZbJmm86y0Jt3tlOnEJnncKYwB1cxRtKn7Er0NI24VcWP
- R+GvGJtQDP3RZL4nSYoSL1FRqM7W4RZVI1XEmbD03vOGuXob+/uyRn3a1vhPi7y3FGJ7
- 2Osg==
-X-Gm-Message-State: AOAM5324FbUEOpd+T+BTV8kU9CrcuzMheYVbyvVeq6Fz3ipzC3hitGJ9
- 7xwwXSWthzKvZS9jDYRLKHk=
-X-Google-Smtp-Source: ABdhPJwZXkcoOGg52wUstyhEmW0SBl14bNG6ygc2+W4Cn9IQUk6lNLl53rNUcP3WtzLBLwOzwiXawQ==
-X-Received: by 2002:a1c:7fd0:: with SMTP id a199mr6202904wmd.20.1632245828252; 
- Tue, 21 Sep 2021 10:37:08 -0700 (PDT)
+ bh=RSipxlf8Rt1aqHkUOElk7qKJcjfTHCxexIhn6lnwGw0=;
+ b=c3LN5xSU7PVtsDbxqpKYoLLs5BtKbPz/w7DzOUsZWP0xqsdRIX0rAt8wZ99SV05hdw
+ 7ztzelzwDFfreOSMqUIYsCYAZOE1sBKX6VVpQDKfNI6cCxxz2v5PTG8iRp1Wl+FLpEJm
+ SDU8bJ8w1K9AEZfPx3Q+89nq9bQmgbiTHx68vRi2/ol1IlNjuKOwpUKI2UnMb0uWNoYg
+ 6Y9biAaRNra4MYhqgdPrE3w2Kh+CYBVvfiHI5/zElFn9S+Z1wk1bmqTIBghn73N/pCYA
+ 6lzuaFq/L29JSQ69qBJ0sviGuyIWc4ja0id61IFmFiHQDrWgs+ovn3oYRwGFbXg6KAIY
+ zUBA==
+X-Gm-Message-State: AOAM532l69TP4G8GoPwAULOXsfe9Xwlnjqnmlq3+KoADqsAmc7HPrN6R
+ tS/wqfqH2EO34jjqeVCR68g=
+X-Google-Smtp-Source: ABdhPJwjPZB/DU++bulTsI5pVdxKg1lMKPfow8+x4fcDYyYQLiGzaVVz3OqzT+5zXi11WvQ7Em1M0Q==
+X-Received: by 2002:a1c:1dcd:: with SMTP id d196mr5795434wmd.9.1632245829165; 
+ Tue, 21 Sep 2021 10:37:09 -0700 (PDT)
 Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
  by smtp.gmail.com with ESMTPSA id
- z13sm23310477wrs.90.2021.09.21.10.37.07
+ z13sm23310477wrs.90.2021.09.21.10.37.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Sep 2021 10:37:07 -0700 (PDT)
+ Tue, 21 Sep 2021 10:37:08 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -54,8 +54,8 @@ To: ckoenig.leichtzumerken@gmail.com, linaro-mm-sig@lists.linaro.org,
  intel-gfx@lists.freedesktop.org
 Cc: daniel@ffwll.ch,
 	tvrtko.ursulin@linux.intel.com
-Date: Tue, 21 Sep 2021 19:36:40 +0200
-Message-Id: <20210921173659.246165-7-christian.koenig@amd.com>
+Date: Tue, 21 Sep 2021 19:36:41 +0200
+Message-Id: <20210921173659.246165-8-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210921173659.246165-1-christian.koenig@amd.com>
 References: <20210921173659.246165-1-christian.koenig@amd.com>
@@ -63,8 +63,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 21 Sep 2021 17:43:00 +0000
-Subject: [Intel-gfx] [PATCH 07/26] drm/ttm: use the new iterator in
- ttm_bo_flush_all_fences
+Subject: [Intel-gfx] [PATCH 08/26] drm/amdgpu: use the new iterator in
+ amdgpu_sync_resv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,47 +80,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is probably a fix since we didn't even grabed a reference to the
-fences.
+Simplifying the code a bit.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c | 16 ++++------------
- 1 file changed, 4 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c | 44 ++++++++----------------
+ 1 file changed, 14 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 3b22c0013dbf..301b0b4b082e 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -269,23 +269,15 @@ static int ttm_bo_individualize_resv(struct ttm_buffer_object *bo)
- static void ttm_bo_flush_all_fences(struct ttm_buffer_object *bo)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
+index 862eb3c1c4c5..f7d8487799b2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
+@@ -252,41 +252,25 @@ int amdgpu_sync_resv(struct amdgpu_device *adev, struct amdgpu_sync *sync,
+ 		     struct dma_resv *resv, enum amdgpu_sync_mode mode,
+ 		     void *owner)
  {
- 	struct dma_resv *resv = &bo->base._resv;
--	struct dma_resv_list *fobj;
+-	struct dma_resv_list *flist;
 +	struct dma_resv_iter cursor;
- 	struct dma_fence *fence;
--	int i;
--
--	rcu_read_lock();
--	fobj = dma_resv_shared_list(resv);
--	fence = dma_resv_excl_fence(resv);
--	if (fence && !fence->ops->signaled)
--		dma_fence_enable_sw_signaling(fence);
--
--	for (i = 0; fobj && i < fobj->shared_count; ++i) {
--		fence = rcu_dereference(fobj->shared[i]);
+ 	struct dma_fence *f;
+-	unsigned i;
+-	int r = 0;
++	int r;
  
-+	dma_resv_iter_begin(&cursor, resv, true);
-+	dma_resv_for_each_fence_unlocked(&cursor, fence) {
- 		if (!fence->ops->signaled)
- 			dma_fence_enable_sw_signaling(fence);
+ 	if (resv == NULL)
+ 		return -EINVAL;
+ 
+-	/* always sync to the exclusive fence */
+-	f = dma_resv_excl_fence(resv);
+-	dma_fence_chain_for_each(f, f) {
+-		struct dma_fence_chain *chain = to_dma_fence_chain(f);
+-
+-		if (amdgpu_sync_test_fence(adev, mode, owner, chain ?
+-					   chain->fence : f)) {
+-			r = amdgpu_sync_fence(sync, f);
+-			dma_fence_put(f);
+-			if (r)
+-				return r;
+-			break;
+-		}
+-	}
+-
+-	flist = dma_resv_shared_list(resv);
+-	if (!flist)
+-		return 0;
+-
+-	for (i = 0; i < flist->shared_count; ++i) {
+-		f = rcu_dereference_protected(flist->shared[i],
+-					      dma_resv_held(resv));
+-
+-		if (amdgpu_sync_test_fence(adev, mode, owner, f)) {
+-			r = amdgpu_sync_fence(sync, f);
+-			if (r)
+-				return r;
++	dma_resv_for_each_fence(&cursor, resv, true, f) {
++		dma_fence_chain_for_each(f, f) {
++			struct dma_fence_chain *chain = to_dma_fence_chain(f);
++
++			if (amdgpu_sync_test_fence(adev, mode, owner, chain ?
++						   chain->fence : f)) {
++				r = amdgpu_sync_fence(sync, f);
++				dma_fence_put(f);
++				if (r)
++					return r;
++				break;
++			}
+ 		}
  	}
--	rcu_read_unlock();
-+	dma_resv_iter_end(&cursor);
- }
- 
- /**
+ 	return 0;
 -- 
 2.25.1
 
