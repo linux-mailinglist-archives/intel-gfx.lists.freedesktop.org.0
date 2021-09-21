@@ -1,69 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3BD4138E0
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 19:43:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26D941391E
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 19:48:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3286EA0D;
-	Tue, 21 Sep 2021 17:43:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 818256E9FA;
+	Tue, 21 Sep 2021 17:48:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 744EB6E9CE;
- Tue, 21 Sep 2021 17:37:28 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id g16so41544975wrb.3;
- Tue, 21 Sep 2021 10:37:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=yn0dGzK8VwWATbg/MRLaeJ+EViGvUvAidNc2i9iKcqg=;
- b=BXp4vBPHgyMt4mphaz8OlmhLC0Sy42FigPpS5Xtaglzg8jnncZVb0WYrLRp7PkG67y
- EHAOzQG6va2BUIy7jCQSOuZEWwJpuKQuZRbs9aiRHWiKMfyJLCORDDkTJCPgIWFSrAv1
- JOnT7ZOgGjBpz2DR2WIg/inxZkW0h7LqShC5fkRQ02Bw8sv5HKrgCbsYomF+jFmAfdEx
- YMpr+i/ZdI2ZB/cXzb0XpsmqLoe38hF2I8tVtgvzfCzVMacaKtA2nHV6EJB63hYBAxxD
- xaJ7r5LREA2u9InAvND2j+55speamLkaFXslzhZ1T750nN/2aswO71LMSDEk/KX3HTC+
- Ri4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=yn0dGzK8VwWATbg/MRLaeJ+EViGvUvAidNc2i9iKcqg=;
- b=5PbNVbv9CoWjVEeyB1rry27x/M7HW3C1Yo9aOW+G4w95tvkFLCU2MHI1XiDcYbOtmx
- y0OWCQSYgSj+62WRmAeV7AsE0/CNwWmFk5U4gWJ/UVZj5rellzeaIks5caQ+b54pa0Al
- TzLkbt4QtDKqHWKm1B6ac+CC3h5Su2t4CBqp8XWmbMWprGO0YO7Lxs8RTim29iD52Tv3
- Lh/IdBm2KKsm5gMMCbMjQ1s2afrdfL1z3uE5pkvlrhL/g7qcB5ythGpixDM6TIw+JuLE
- e1a0XYriY+4iIYEkMluMGWy3EAGin0Ii1FSqxOf+BCvRcMqUJ94Rbb+esozOmFfnZSG1
- 3VyQ==
-X-Gm-Message-State: AOAM531NWiHWzM9uVYLkpRrjyz3DMZ23VbBiFMCgKfq2FG1j0gRggO+n
- zhuDgA/Rx4oidy5WL92G6s4=
-X-Google-Smtp-Source: ABdhPJzffrVmg63SpfjQoBj+8p0lFtYH9jgDg4ojsj/wafQkZwiDlftx4b0n0/O0NMeTyr9ebaN9Xg==
-X-Received: by 2002:adf:f187:: with SMTP id h7mr18547361wro.115.1632245847038; 
- Tue, 21 Sep 2021 10:37:27 -0700 (PDT)
-Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
- by smtp.gmail.com with ESMTPSA id
- z13sm23310477wrs.90.2021.09.21.10.37.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Sep 2021 10:37:26 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: ckoenig.leichtzumerken@gmail.com, linaro-mm-sig@lists.linaro.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-Cc: daniel@ffwll.ch,
-	tvrtko.ursulin@linux.intel.com
-Date: Tue, 21 Sep 2021 19:36:59 +0200
-Message-Id: <20210921173659.246165-26-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210921173659.246165-1-christian.koenig@amd.com>
-References: <20210921173659.246165-1-christian.koenig@amd.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4631F6E9F5;
+ Tue, 21 Sep 2021 17:48:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="220236384"
+X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="220236384"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2021 10:48:33 -0700
+X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; d="scan'208";a="484265889"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2021 10:48:33 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Tue, 21 Sep 2021 10:43:32 -0700
+Message-Id: <20210921174332.30784-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 21 Sep 2021 17:43:01 +0000
-Subject: [Intel-gfx] [PATCH 26/26] dma-buf: nuke dma_resv_get_excl_unlocked
+Subject: [Intel-gfx] [PATCH] drm/i915: fix blank screen booting crashes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,50 +45,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Heureka, that's finally not used any more.
+From: Hugh Dickins <hughd@google.com>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+5.15-rc1 crashes with blank screen when booting up on two ThinkPads
+using i915.  Bisections converge convincingly, but arrive at different
+and surprising "culprits", none of them the actual culprit.
+
+netconsole (with init_netconsole() hacked to call i915_init() when
+logging has started, instead of by module_init()) tells the story:
+
+kernel BUG at drivers/gpu/drm/i915/i915_sw_fence.c:245!
+with RSI: ffffffff814d408b pointing to sw_fence_dummy_notify().
+I've been building with CONFIG_CC_OPTIMIZE_FOR_SIZE=y, and that
+function needs to be 4-byte aligned.
+
+v2:
+ (Jani Nikula)
+  - Change BUG_ON to WARN_ON
+v3:
+ (Jani / Tvrtko)
+  - Short circuit __i915_sw_fence_init on WARN_ON
+
+Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
+Signed-off-by: Hugh Dickins <hughd@google.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/linux/dma-resv.h | 26 --------------------------
- 1 file changed, 26 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c |  4 ++--
+ drivers/gpu/drm/i915/i915_sw_fence.c    | 17 ++++++++++-------
+ 2 files changed, 12 insertions(+), 9 deletions(-)
 
-diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
-index 72e7ebaa675f..42ea6f667120 100644
---- a/include/linux/dma-resv.h
-+++ b/include/linux/dma-resv.h
-@@ -436,32 +436,6 @@ dma_resv_excl_fence(struct dma_resv *obj)
- 	return rcu_dereference_check(obj->fence_excl, dma_resv_held(obj));
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index ff637147b1a9..e7f78bc7ebfc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -362,8 +362,8 @@ static int __intel_context_active(struct i915_active *active)
+ 	return 0;
  }
  
--/**
-- * dma_resv_get_excl_unlocked - get the reservation object's
-- * exclusive fence, without lock held.
-- * @obj: the reservation object
-- *
-- * If there is an exclusive fence, this atomically increments it's
-- * reference count and returns it.
-- *
-- * RETURNS
-- * The exclusive fence or NULL if none
-- */
--static inline struct dma_fence *
--dma_resv_get_excl_unlocked(struct dma_resv *obj)
--{
--	struct dma_fence *fence;
+-static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
+-				 enum i915_sw_fence_notify state)
++static int __i915_sw_fence_call
++sw_fence_dummy_notify(struct i915_sw_fence *sf, enum i915_sw_fence_notify state)
+ {
+ 	return NOTIFY_DONE;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+index c589a681da77..08cea73264e7 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+@@ -13,9 +13,9 @@
+ #include "i915_selftest.h"
+ 
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
+-#define I915_SW_FENCE_BUG_ON(expr) BUG_ON(expr)
++#define I915_SW_FENCE_WARN_ON(expr) WARN_ON(expr)
+ #else
+-#define I915_SW_FENCE_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
++#define I915_SW_FENCE_WARN_ON(expr) BUILD_BUG_ON_INVALID(expr)
+ #endif
+ 
+ static DEFINE_SPINLOCK(i915_sw_fence_lock);
+@@ -129,7 +129,10 @@ static int __i915_sw_fence_notify(struct i915_sw_fence *fence,
+ 	i915_sw_fence_notify_t fn;
+ 
+ 	fn = (i915_sw_fence_notify_t)(fence->flags & I915_SW_FENCE_MASK);
+-	return fn(fence, state);
++	if (likely(fn))
++		return fn(fence, state);
++	else
++		return 0;
+ }
+ 
+ #ifdef CONFIG_DRM_I915_SW_FENCE_DEBUG_OBJECTS
+@@ -242,9 +245,9 @@ void __i915_sw_fence_init(struct i915_sw_fence *fence,
+ 			  const char *name,
+ 			  struct lock_class_key *key)
+ {
+-	BUG_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
 -
--	if (!rcu_access_pointer(obj->fence_excl))
--		return NULL;
--
--	rcu_read_lock();
--	fence = dma_fence_get_rcu_safe(&obj->fence_excl);
--	rcu_read_unlock();
--
--	return fence;
--}
--
- /**
-  * dma_resv_shared_list - get the reservation object's shared fence list
-  * @obj: the reservation object
+ 	__init_waitqueue_head(&fence->wait, name, key);
++	if (WARN_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK))
++		return;
+ 	fence->flags = (unsigned long)fn;
+ 
+ 	i915_sw_fence_reinit(fence);
+@@ -257,8 +260,8 @@ void i915_sw_fence_reinit(struct i915_sw_fence *fence)
+ 	atomic_set(&fence->pending, 1);
+ 	fence->error = 0;
+ 
+-	I915_SW_FENCE_BUG_ON(!fence->flags);
+-	I915_SW_FENCE_BUG_ON(!list_empty(&fence->wait.head));
++	I915_SW_FENCE_WARN_ON(!fence->flags);
++	I915_SW_FENCE_WARN_ON(!list_empty(&fence->wait.head));
+ }
+ 
+ void i915_sw_fence_commit(struct i915_sw_fence *fence)
 -- 
-2.25.1
+2.32.0
 
