@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48B94129F2
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0A24129F1
 	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 02:23:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 395EC6E8C4;
-	Tue, 21 Sep 2021 00:23:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2FD6E8C6;
+	Tue, 21 Sep 2021 00:23:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D72406E8C4
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 00:23:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="203410795"
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="203410795"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CEE66E8C7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 00:23:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10113"; a="203410799"
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="203410799"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 17:23:29 -0700
-X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="549183742"
+ 20 Sep 2021 17:23:30 -0700
+X-IronPort-AV: E=Sophos;i="5.85,309,1624345200"; d="scan'208";a="549183749"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2021 17:23:28 -0700
+ 20 Sep 2021 17:23:29 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Tue, 21 Sep 2021 03:23:09 +0300
-Message-Id: <20210921002313.1132357-10-imre.deak@intel.com>
+Date: Tue, 21 Sep 2021 03:23:10 +0300
+Message-Id: <20210921002313.1132357-11-imre.deak@intel.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210921002313.1132357-1-imre.deak@intel.com>
 References: <20210921002313.1132357-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 09/13] drm/i915/tc: Avoid using legacy AUX PW in
- TBT mode
+Subject: [Intel-gfx] [PATCH 10/13] drm/i915/icl/tc: Remove the ICL special
+ casing during TC-cold blocking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,113 +49,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the ADL-P TBT mode the spec doesn't require blocking TC-cold by
-using the legacy AUX power domain. To avoid the timeouts that this would
-cause during PHY disconnect/reconnect sequences (which will be more
-frequent after a follow-up change) use the TC_COLD_OFF power domain in
-TBT mode on all platforms. On TGL this power domain blocks TC-cold via a
-PUNIT command, while on other platforms the domain just takes a runtime
-PM reference.
-
-If the HPD live status indicates that the port mode needs to be reset
-- for instance after switching from TBT to a DP-alt sink - still take
-the AUX domain, since the IOM firmware handshake requires this.
+While a TypeC port mode is locked a DISPLAY_CORE power domain reference
+is held, which implies a runtime PM ref. By removing the ICL !legacy
+port special casing, a TC_COLD_OFF power domain reference will be taken
+for such ports, which also translates to a runtime PM ref on that
+platform. A follow-up change will stop holding the DISPLAY_CORE power
+domain while the port is locked.
 
 Cc: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tc.c | 55 ++++++++++++++++---------
- 1 file changed, 36 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_tc.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 24d2dc2e19a7d..b2a3d297bfc19 100644
+index b2a3d297bfc19..8d799cf7ccefd 100644
 --- a/drivers/gpu/drm/i915/display/intel_tc.c
 +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -59,10 +59,10 @@ bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port)
- static enum intel_display_power_domain
- tc_cold_get_power_domain(struct intel_digital_port *dig_port, enum tc_port_mode mode)
+@@ -71,9 +71,6 @@ tc_cold_block_in_mode(struct intel_digital_port *dig_port, enum tc_port_mode mod
  {
--	if (intel_tc_cold_requires_aux_pw(dig_port))
--		return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
--	else
-+	if (mode == TC_PORT_TBT_ALT || !intel_tc_cold_requires_aux_pw(dig_port))
- 		return POWER_DOMAIN_TC_COLD_OFF;
-+
-+	return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
- }
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
  
- static intel_wakeref_t
-@@ -624,6 +624,36 @@ static void intel_tc_port_reset_mode(struct intel_digital_port *dig_port,
- 		    tc_port_mode_name(dig_port->tc_mode));
- }
- 
-+static bool intel_tc_port_needs_reset(struct intel_digital_port *dig_port)
-+{
-+	return intel_tc_port_get_target_mode(dig_port) != dig_port->tc_mode;
-+}
-+
-+static void intel_tc_port_update_mode(struct intel_digital_port *dig_port,
-+				      int required_lanes, bool force_disconnect)
-+{
-+	enum intel_display_power_domain domain;
-+	intel_wakeref_t wref;
-+	bool needs_reset = force_disconnect;
-+
-+	if (!needs_reset) {
-+		/* Get power domain required to check the hotplug live status. */
-+		wref = tc_cold_block(dig_port, &domain);
-+		needs_reset = intel_tc_port_needs_reset(dig_port);
-+		tc_cold_unblock(dig_port, domain, wref);
-+	}
-+
-+	if (!needs_reset)
-+		return;
-+
-+	/* Get power domain required for resetting the mode. */
-+	wref = tc_cold_block_in_mode(dig_port, TC_PORT_DISCONNECTED, &domain);
-+
-+	intel_tc_port_reset_mode(dig_port, required_lanes, force_disconnect);
-+
-+	tc_cold_unblock(dig_port, domain, wref);
-+}
-+
- static void
- intel_tc_port_link_init_refcount(struct intel_digital_port *dig_port,
- 				 int refcount)
-@@ -670,11 +700,6 @@ void intel_tc_port_sanitize(struct intel_digital_port *dig_port)
- 	mutex_unlock(&dig_port->tc_lock);
- }
- 
--static bool intel_tc_port_needs_reset(struct intel_digital_port *dig_port)
--{
--	return intel_tc_port_get_target_mode(dig_port) != dig_port->tc_mode;
--}
+-	if (DISPLAY_VER(i915) == 11 && !dig_port->tc_legacy_port)
+-		return 0;
 -
- /*
-  * The type-C ports are different because even when they are connected, they may
-  * not be available/usable by the graphics driver: see the comment on
-@@ -714,18 +739,10 @@ static void __intel_tc_port_lock(struct intel_digital_port *dig_port,
+ 	*domain = tc_cold_get_power_domain(dig_port, mode);
  
- 	mutex_lock(&dig_port->tc_lock);
+ 	return intel_display_power_get(i915, *domain);
+@@ -108,9 +105,6 @@ assert_tc_cold_blocked(struct intel_digital_port *dig_port)
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+ 	bool enabled;
  
--	if (!dig_port->tc_link_refcount) {
--		enum intel_display_power_domain domain;
--		intel_wakeref_t tc_cold_wref;
- 
--		tc_cold_wref = tc_cold_block(dig_port, &domain);
+-	if (DISPLAY_VER(i915) == 11 && !dig_port->tc_legacy_port)
+-		return;
 -
--		if (force_disconnect || intel_tc_port_needs_reset(dig_port))
--			intel_tc_port_reset_mode(dig_port, required_lanes,
--						 force_disconnect);
--
--		tc_cold_unblock(dig_port, domain, tc_cold_wref);
--	}
-+	if (!dig_port->tc_link_refcount)
-+		intel_tc_port_update_mode(dig_port, required_lanes,
-+					  force_disconnect);
- 
- 	drm_WARN_ON(&i915->drm, dig_port->tc_mode == TC_PORT_DISCONNECTED);
- 	drm_WARN_ON(&i915->drm, dig_port->tc_mode != TC_PORT_TBT_ALT &&
+ 	enabled = intel_display_power_is_enabled(i915,
+ 						 tc_cold_get_power_domain(dig_port,
+ 									  dig_port->tc_mode));
 -- 
 2.27.0
 
