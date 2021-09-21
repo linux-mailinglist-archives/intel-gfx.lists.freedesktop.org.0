@@ -1,68 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A124133BF
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 15:06:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C205F4133BE
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Sep 2021 15:06:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12E0B89D44;
-	Tue, 21 Sep 2021 13:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C89B289D43;
+	Tue, 21 Sep 2021 13:06:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
- [IPv6:2607:f8b0:4864:20::102b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 601B96E911
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 09:01:49 +0000 (UTC)
-Received: by mail-pj1-x102b.google.com with SMTP id
- lb1-20020a17090b4a4100b001993f863df2so2026931pjb.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 02:01:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=semihalf-com.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=56qdcbF4khZId0epbEdp0X64oIo3h3hxQw6L3Qej4kk=;
- b=Emi4BcUvaAsnynPqDTuG2hpNeLk/xr71b1qG5TugJPDqcKT/fyduYe3k/Z3YaROuoX
- bxYrzx1E6I+4zDr5c5wqwk7YSI072ENQ0Jp+JstaYy7sevPGVQG+FWl9qhQjtjfBYu9B
- OOPYGotgS7HsdY674eyHohczO4NCAnzcy/kbaa0siOcXrgrQSyMscVj0vagpyEHWvjSw
- ykaJR1wJILV8GMnj9VN/7Lk6KTJ2GfUVqVepYjsv0Xk8nc67z+p+wLbtHsvrwyMOIE2Y
- Cm0VHIdP4obcMSFJzQ19ZELoeTbHMMMwMViPsXep990NrkPnSrf92MdOo7E+boB40Fu8
- wk5g==
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1176B6E3F7;
+ Tue, 21 Sep 2021 09:41:56 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id t8so37259557wrq.4;
+ Tue, 21 Sep 2021 02:41:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=lhKy8aw3qz18WoJCn9BMq8t8vFOczTyYGa6bT8vvq40=;
+ b=BmHd6yMMPHdEgnvHlRJtatT9HbSmrNtHG/X/GfMCHnmVWusFjkEtaNZpFD8t1aPtky
+ iKuYgZHlA3+iGCUFN/VRPiafTrtsMFY1UFeFUoDHjxjSeoH98JXblO7cTfRr4LFhyki3
+ KBc/78souy9wsXqzT4kE0T5HPHQtfywc+voR9i1oP50QPrvpyea53Vzn+2cJButAuitw
+ snfglU4bZraTBIGW37zZayAFHbSmltE3zRbaUFai7O3UvVTTqoBqY7Psr61tCnmcaeg9
+ 8UEVaAUcynqDW4TWU5ryOH9L3lGXAnGQHi3wgFMirbU78Fbh8xSnlSDdkQHztyO0b2Yj
+ WhKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=56qdcbF4khZId0epbEdp0X64oIo3h3hxQw6L3Qej4kk=;
- b=NBjafggmIyqLUHhlpA4u4YjrhoDhwdv0YYjMszrQOJlzNBa8voklDEgowh7rO2NbS7
- d2NMFcVcB0GC5EeGccxraungwSZIa8nXGHZmnV2JHjyzZ32KKzTDE3W2XXAujPhMYvVC
- JOJgj8E0CTm7bF5vtgSBGAU4QTtk8rv0fGsL7W8WqhQUQYNCgMHBw49+CvliNFrYOCwX
- OSj8hGDNGUfI9sVjV6nKMg/IVs6bUEloSqm3DFOb3a32tdkTtI23f/x6rK4/mtrB7e+c
- flpLp9JaGmkwIqAA4kYf2WhWReMrTc8syBcgi83OTWO87DXFMReozCzUZtV9K5kGrHSy
- 2eYQ==
-X-Gm-Message-State: AOAM530pKwbQXujZpGkisY/USIYITPvQPyl36B4C+PLbuB+jvUwcsTy1
- AnEgBSQlPxqaGDzAvXHLFG+dN7g45P9KbdFuoq0u5g==
-X-Google-Smtp-Source: ABdhPJxkhXDAgMHSOB81dxPKEiV/mPe07wPsWzLzC7dGArUAzbmez9eAszJ13drtSIgf5gkJT7PkZxdrGqUClXPaTxw=
-X-Received: by 2002:a17:90a:de98:: with SMTP id
- n24mr4176955pjv.4.1632214908782; 
- Tue, 21 Sep 2021 02:01:48 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=lhKy8aw3qz18WoJCn9BMq8t8vFOczTyYGa6bT8vvq40=;
+ b=AS73KMmRpWlqR99I10DTrUACDg+yCqoO+/C9LdsiwRCg/AZjNLlF5FBqaYwvBf52sF
+ 1laCnx5rVGkB5CrHMCU86A+OQBu9C97AjT0akq4j0rJeOrFfz6mwZ5hpDbUd2Otw3Oq1
+ qzghzEMtpT8i4E36kNys0HJQlls3+MOgYsnnpESiz1h6ulW0UGZCESZ6t5g6XcJomDog
+ aCABzJepfmPTLunSNJL0qBjFqNX/b/zWsWI4TjbLp/BImDtZws7j6TWNMbolJwPvdmGU
+ EXcN904FtJWSK2SiA5AIVYlTtk+bvBPJkdUjcFcJzXgjDU5dIVOJqCIlIeUjVLRlDbir
+ tlew==
+X-Gm-Message-State: AOAM532BPeTuxnxem2QOL/Y/6QITCC5dPJoflXCW9FCazZmLrgXjcP4Z
+ i/b2V5DZ2wLKzdsknqw7MpI=
+X-Google-Smtp-Source: ABdhPJx9nQdVuGGy9wMdElYgZLnuNTs32BWOoQ8xeJsHeWKaP1XN12OLjWgPt9yZUC6aBjhEO9VgxA==
+X-Received: by 2002:a7b:c112:: with SMTP id w18mr3563637wmi.86.1632217314584; 
+ Tue, 21 Sep 2021 02:41:54 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:9e25:63a7:d115:3eab?
+ ([2a02:908:1252:fb60:9e25:63a7:d115:3eab])
+ by smtp.gmail.com with ESMTPSA id n186sm2168506wme.31.2021.09.21.02.41.53
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 21 Sep 2021 02:41:53 -0700 (PDT)
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: daniel@ffwll.ch
+References: <20210917123513.1106-1-christian.koenig@amd.com>
+ <20210917123513.1106-14-christian.koenig@amd.com>
+ <6fbaca09-ec51-c44e-708c-334ef8be8595@linux.intel.com>
+ <368e8495-f4de-cbb2-3584-e022a5937885@gmail.com>
+ <563bb7c3-f956-212d-6085-b1b88292887c@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <64b6a924-be38-0ed0-da92-86296702f71c@gmail.com>
+Date: Tue, 21 Sep 2021 11:41:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210920141101.194959-1-lma@semihalf.com>
- <051f4a37e178d11c6dbcd05b5d6be28731cd7302.camel@intel.com>
-In-Reply-To: <051f4a37e178d11c6dbcd05b5d6be28731cd7302.camel@intel.com>
-From: Lukasz Majczak <lma@semihalf.com>
-Date: Tue, 21 Sep 2021 11:01:37 +0200
-Message-ID: <CAFJ_xboPCc5HkSmu-yVsBF253JhBNSmttDgbOa=2w23EKvbW5A@mail.gmail.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "Lee, Shawn C" <shawn.c.lee@intel.com>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, 
- "stable@vger.kernel.org" <stable@vger.kernel.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, 
- "upstream@semihalf.com" <upstream@semihalf.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <563bb7c3-f956-212d-6085-b1b88292887c@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-Mailman-Approved-At: Tue, 21 Sep 2021 13:06:49 +0000
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915/bdb: Fix version check
+Subject: Re: [Intel-gfx] [PATCH 13/26] drm/i915: use the new iterator in
+ i915_gem_busy_ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,127 +84,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-pon., 20 wrz 2021 o 22:47 Souza, Jose <jose.souza@intel.com> napisa=C5=82(a=
-):
+Am 20.09.21 um 12:33 schrieb Tvrtko Ursulin:
+> On 20/09/2021 11:13, Christian König wrote:
+>> Am 20.09.21 um 10:45 schrieb Tvrtko Ursulin:
+>>>
+>>> On 17/09/2021 13:35, Christian König wrote:
+>>>> This makes the function much simpler since the complex
+>>>> retry logic is now handled else where.
+>>>>
+>>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gem/i915_gem_busy.c | 32 
+>>>> ++++++++----------------
+>>>>   1 file changed, 11 insertions(+), 21 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_busy.c 
+>>>> b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>>>> index 6234e17259c1..b1cb7ba688da 100644
+>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>>>> @@ -82,8 +82,8 @@ i915_gem_busy_ioctl(struct drm_device *dev, void 
+>>>> *data,
+>>>>   {
+>>>>       struct drm_i915_gem_busy *args = data;
+>>>>       struct drm_i915_gem_object *obj;
+>>>> -    struct dma_resv_list *list;
+>>>> -    unsigned int seq;
+>>>> +    struct dma_resv_iter cursor;
+>>>> +    struct dma_fence *fence;
+>>>>       int err;
+>>>>         err = -ENOENT;
+>>>> @@ -109,27 +109,17 @@ i915_gem_busy_ioctl(struct drm_device *dev, 
+>>>> void *data,
+>>>>        * to report the overall busyness. This is what the 
+>>>> wait-ioctl does.
+>>>>        *
+>>>>        */
+>>>> -retry:
+>>>> -    seq = raw_read_seqcount(&obj->base.resv->seq);
+>>>> -
+>>>> -    /* Translate the exclusive fence to the READ *and* WRITE 
+>>>> engine */
+>>>> -    args->busy = 
+>>>> busy_check_writer(dma_resv_excl_fence(obj->base.resv));
+>>>> -
+>>>> -    /* Translate shared fences to READ set of engines */
+>>>> -    list = dma_resv_shared_list(obj->base.resv);
+>>>> -    if (list) {
+>>>> -        unsigned int shared_count = list->shared_count, i;
+>>>> -
+>>>> -        for (i = 0; i < shared_count; ++i) {
+>>>> -            struct dma_fence *fence =
+>>>> -                rcu_dereference(list->shared[i]);
+>>>> -
+>>>> +    args->busy = false;
+>>>> +    dma_resv_iter_begin(&cursor, obj->base.resv, true);
+>>>> +    dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>>>
+>>> You did not agree with my suggestion to reset args->busy on restart 
+>>> and so preserve current behaviour?
+>>
+>> No, I want to keep the restart behavior internally to the dma_resv 
+>> object and as far as I can see it should not make a difference here.
 >
-> On Mon, 2021-09-20 at 16:11 +0200, Lukasz Majczak wrote:
-> > With patch "drm/i915/vbt: Fix backlight parsing for VBT 234+"
-> > the size of bdb_lfp_backlight_data structure has been increased,
-> > causing if-statement in the parse_lfp_backlight function
-> > that comapres this structure size to the one retrieved from BDB,
-> > always to fail for older revisions.
-> > This patch fixes it by comparing a total size of all fileds from
-> > the structure (present before the change) with the value gathered from =
-BDB.
-> > Tested on Chromebook Pixelbook (Nocturne) (reports bdb->version =3D 221=
-)
-> >
-> > Cc: <stable@vger.kernel.org> # 5.4+
-> > Tested-by: Lukasz Majczak <lma@semihalf.com>
-> > Signed-off-by: Lukasz Majczak <lma@semihalf.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bios.c     | 4 +++-
-> >  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 5 +++++
-> >  2 files changed, 8 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/dr=
-m/i915/display/intel_bios.c
-> > index 3c25926092de..052a19b455d1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -452,7 +452,9 @@ parse_lfp_backlight(struct drm_i915_private *i915,
-> >
-> >       i915->vbt.backlight.type =3D INTEL_BACKLIGHT_DISPLAY_DDI;
-> >       if (bdb->version >=3D 191 &&
-> > -         get_blocksize(backlight_data) >=3D sizeof(*backlight_data)) {
-> > +         get_blocksize(backlight_data) >=3D (sizeof(backlight_data->en=
-try_size) +
-> > +                                           sizeof(backlight_data->data=
-) +
-> > +                                           sizeof(backlight_data->leve=
-l))) {
+> To be clear, on paper difference between old and new implementation is 
+> if the restart happens while processing the shared fences.
 >
-> Missing sizeof(backlight_data->backlight_control) but this is getting ver=
-y verbose.
-> Would be better have a expected size variable set each version set in the=
- beginning of this function.
+> Old implementation unconditionally goes to "args->busy =
+> >>> busy_check_writer(dma_resv_excl_fence(obj->base.resv));" and so 
+> overwrites the set of flags returned to userspace.
 >
-> something like:
-> switch (bdb->version) {
-> case 191:
->         expected_size =3D x;
->         break;
-> case 234:
->         expected_size =3D x;
->         break;
-> case 236:
-> default:
->         expected_size =3D x;
-> }
+> New implementation can merge new read flags to the old set of flags 
+> and so return a composition of past and current fences.
 >
+> Maybe it does not matter hugely in this case, depends if userspace 
+> typically just restarts until flags are clear. But I am not sure.
 >
-> >               const struct lfp_backlight_control_method *method;
-> >
-> >               method =3D &backlight_data->backlight_control[panel_type]=
-;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gp=
-u/drm/i915/display/intel_vbt_defs.h
-> > index 330077c2e588..fff456bf8783 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > @@ -814,6 +814,11 @@ struct lfp_brightness_level {
-> >       u16 reserved;
-> >  } __packed;
-> >
-> > +/*
-> > + * Changing struct bdb_lfp_backlight_data might affect its
-> > + * size comparation to the value hold in BDB.
-> > + * (e.g. in parse_lfp_backlight())
-> > + */
+> On the higher level - what do you mean with wanting to keep the 
+> restart behaviour internal? Not providing iterators users means of 
+> detecting it? I think it has to be provided.
+
+Ok I will adjust that for now to get the patch set upstream. But in 
+general when somebody outside of the dma_resv code base depends on the 
+restart behavior then that's a bug inside the design of that code.
+
+The callers should only care about what unsignaled fences are inside the 
+dma_resv container and it shouldn't matter if those fences are presented 
+once or multiple times because of a reset..
+
+When this makes a difference we have a bug in the handling and should 
+probably consider taking the dma_resv.lock instead.
+
+Regards,
+Christian.
+
 >
-> This is true for all the blocks so I don't think we need this comment.
+> Regards,
 >
-> >  struct bdb_lfp_backlight_data {
-> >       u8 entry_size;
-> >       struct lfp_backlight_data_entry data[16];
+> Tvrtko
 >
-Hi Jose, Jani
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>> +        if (dma_resv_iter_is_exclusive(&cursor))
+>>>> +            /* Translate the exclusive fence to the READ *and* 
+>>>> WRITE engine */
+>>>> +            args->busy = busy_check_writer(fence);
+>>>> +        else
+>>>> +            /* Translate shared fences to READ set of engines */
+>>>>               args->busy |= busy_check_reader(fence);
+>>>> -        }
+>>>>       }
+>>>> -
+>>>> -    if (args->busy && read_seqcount_retry(&obj->base.resv->seq, seq))
+>>>> -        goto retry;
+>>>> +    dma_resv_iter_end(&cursor);
+>>>>         err = 0;
+>>>>   out:
+>>>>
+>>
 
-Jani - you are right - I was working on 5.4 with a backported patch  -
-I'm sorry for this confusion.
-
-Jose,
-
-Regarding expected_size, I couldn't find documentation that could
-described this structure size changes among revisions, so all I could
-do is to do an educated guess, basing on comments at this structure,
-like:
-
-(gdb) ptype /o  struct bdb_lfp_backlight_data
-/* offset    |  size */  type =3D struct bdb_lfp_backlight_data {
-/*    0      |     1 */    u8 entry_size;
-/*    1      |    96 */    struct lfp_backlight_data_entry data[16];
-/*   97      |    16 */    u8 level[16];
-/*  113      |    16 */    struct lfp_backlight_control_method
-backlight_control[16];
-/*  129      |    64 */    struct lfp_brightness_level
-brightness_level[16]; /* 234+ */
-/*  193      |    64 */    struct lfp_brightness_level
-brightness_min_level[16]; /* 234+ */
-/*  257      |    16 */    u8 brightness_precision_bits[16]; /* 236+ */
-
-                           /* total size (bytes):  273 */
-                         }
-
-if (revision <=3D 234)
-   expected_size =3D 129;
-else if (revision > 234 && revision <=3D236)
-  expected_size =3D 257;
-else /* revision > 236 */
-   expected_size =3D 273;
-
-Is this approach ok? Otherwise I think I would need help from you to
-get exact numbers for each revision...
-
-Best regards,
-Lukasz
