@@ -1,144 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1160F414E1A
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 18:29:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01BE5414E49
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 18:44:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA656EC40;
-	Wed, 22 Sep 2021 16:29:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E37946EC44;
+	Wed, 22 Sep 2021 16:44:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71D616EC40
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Sep 2021 16:28:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="223282326"
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="223282326"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 09:28:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="550317830"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP; 22 Sep 2021 09:28:57 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 22 Sep 2021 09:28:57 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Wed, 22 Sep 2021 09:28:57 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Wed, 22 Sep 2021 09:28:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VnjGdLKRTOkj8pfkqPHHvR+2Ntn0/qFwsareVRG5AECLYPwdcwxE8aAGjkXpDe+jzbagvIx6w5clf0qiySgL3E3t15HLXLZ22GaNLILsYsdTYH3EnmU+T3+BHffVrlWlzp/NBcs7pf97nouHrvde1R5LY6hYQvdOhjFP/mCsxGAmtqVb14wLWzjRbc0HIaCIj04NFbT5gH7FcH/ePG7/DtWHEnOPOeowwJnIvwRRn9zDCuZyDLsLmxvwSYKVpDI2Xpjmp5j8caRH0pdlCKbw5H3Ln6T7Qhq3UycBT5Q5mmipIbImWcfPfZ2uMvx75AdyQPlFhT0RcMEZVWgMAlgIJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=R2n657S2j3+fkP5jijFDDsTJvmaAyJHdCgBaXXvLHy8=;
- b=QHUmSycjw2gAhk1RBvupGpONi4dEzUQ3ZyPDdREfdEW26sBHM9sF5c2jbEA68mPEa8hk9RdcrnS2N/zojBSpEke4o3mJ8s3OLni6SnyO6CS1ZEq4ApgyAk4q1RaBjumIrzsIkD2Yb3hIIRSOV2l3B1U75uTCCEEjtSEsqlZORxaSZy+enH62leaflK7Njjf0p0n6anOHTfNT/NcrdIQ0uBWURr9ySkXidGEMCLVU+Jqf/lsVAccIgwYc9VB2pg9+7XUH3ouCTJixDAJSZ8f5BMjRnoXil5zUbTurSEuF+aUqzxeQYJyt09+n6d+Hb8l8NfoB/YdWxumubQkjCKSOMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R2n657S2j3+fkP5jijFDDsTJvmaAyJHdCgBaXXvLHy8=;
- b=YbxkUbwf61tRzS9ol3q/rqEIoCx1xOStj8Oeyphqier3tAyQu9K9MjpG2zkUD11/z+mA1T5Zr40KL5/44LpBVmUu6sXfhRka1mV3TohfLxORKCqjgZJze04RDBQeqNTB5AhVPvP4SDH+oBDqM1Nfgi1gNE242gIIV2dTWr+2vcM=
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
- by CH0PR11MB5755.namprd11.prod.outlook.com (2603:10b6:610:103::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Wed, 22 Sep
- 2021 16:28:55 +0000
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::c3e:dff7:364c:ba7]) by CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::c3e:dff7:364c:ba7%2]) with mapi id 15.20.4544.015; Wed, 22 Sep 2021
- 16:28:55 +0000
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20210921004113.261827-1-jose.souza@intel.com>
- <20210921004113.261827-2-jose.souza@intel.com>
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <51b29ee9-7927-7b0d-eb86-b8cff7775ffc@intel.com>
-Date: Wed, 22 Sep 2021 19:28:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-In-Reply-To: <20210921004113.261827-2-jose.souza@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DU2PR04CA0302.eurprd04.prod.outlook.com
- (2603:10a6:10:2b5::7) To CH0PR11MB5409.namprd11.prod.outlook.com
- (2603:10b6:610:d0::7)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5045F6E02B;
+ Wed, 22 Sep 2021 16:44:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="284654207"
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="284654207"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 09:43:43 -0700
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="513046531"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 09:43:42 -0700
+Date: Wed, 22 Sep 2021 09:38:47 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
+Message-ID: <20210922163846.GA4476@jons-linux-dev-box>
+References: <20210820224446.30620-1-matthew.brost@intel.com>
+ <20210820224446.30620-21-matthew.brost@intel.com>
+ <01b32a39-4a22-45fe-ae58-dfcf4edd31b9@intel.com>
 MIME-Version: 1.0
-Received: from [10.237.72.208] (134.134.137.88) by
- DU2PR04CA0302.eurprd04.prod.outlook.com (2603:10a6:10:2b5::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4523.16 via Frontend Transport; Wed, 22 Sep 2021 16:28:52 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 32b4b75d-a06a-4fcc-87fa-08d97de611d9
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5755:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH0PR11MB5755E2EEA2AB66D1610402AFB8A29@CH0PR11MB5755.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1186;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yje4dsVHv6Qjr1AzRyUsMGto5xG9Phrm+m9tYjf8hrb1D6l6FoZdSZB+Z+41jChZug8RznFWjCUzCwXSo7new9Tns3wC2wwj7NljQwDAtlkRkvDjk2oM40ZEHjBtPoUZjjxZuO/SiXxYMiT2Zl71BX5aB73x0tyBuwlHV8oHGSBLBDbivbpRrNbMTcVlCk6GNdoKCI2jvMjfhWC75liVvFkyA2246fqKo2SdnaEVbDZTj11vYPksk6KnNhFjRkwYWWf06rVvFB44kVKsKZx4lDXyTrFH9tqeX+OEziCUXR6/6DLu8AZTS4ZUtf2FZiO5uQefdcu/b4FVNNz4tcsO9KnXptJbhCCh5zTac55iwOWaKX+BXGKYiGqqM73kjQsvREbrSH8KoEG5Zarp9R9I2pwKBMxeH1R2Ju+wQCaWMAeyK8yuIj6PN3qNBdPGCnhYC8RjwvKzO3IRpore6oA4KMTGmONR38N+pT/gJetnmEw8ihGjfaDuHAefhM6XjSMi/Ey0r14ujd1E5WvPcOXkLTVhz1ijXhxRWy8pNN0IlFiu2d2yr5r/pdxzvWx6TJdfeUvNydtZmQu6vgBtGSp7szSgZ5vl30gLd+amhLiOsg9FTBIdBm1XL84X3/Y/owvw99c2EXaCwu4HwW8Aq/HzjhcA+1J6pk6MS+p45DItQFFwCtrD0yUr2jV0MdMuC0JrlMnW7jIEGToJrAhLTcp8aeCDwvNczBrBrTkqkwgWhoc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(5660300002)(30864003)(83380400001)(26005)(66476007)(2906002)(508600001)(31696002)(6666004)(66574015)(2616005)(66556008)(53546011)(16576012)(36756003)(86362001)(31686004)(186003)(316002)(6486002)(8936002)(8676002)(66946007)(38100700002)(956004)(4326008)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OER3bHA1YjVWQVEwK0RqaTRaVkxDSGZ4ZitZOFlMODlVd285a2JNQStZc0Nx?=
- =?utf-8?B?Vmk5Ry83a0VVbkJpSW1URFJEdHVZWGVYK0EwNHRiTmdsU1RRNGFrd1pKcTBr?=
- =?utf-8?B?RGxYMUtKbWdoU0tlUVNzbnhvR2FqV3R4aUJvMy8vTlVIVE01dFAyU2xhZE90?=
- =?utf-8?B?TEhWOHVJcTVEcTFObUJCMUdKcDlsT1J6VFhRYTJDTDkxNmx4QWRMMFlzNUgv?=
- =?utf-8?B?V3JRWEVmemFVbS9RYXFNOTlNcmVjRHhBNlgrakRsVStkcUd4ZXlIM2pFV09o?=
- =?utf-8?B?b1BrLzN6QzhtZEJJQXFDakJva3RkV1h6cFRHUjJVNUFCSStuVGt2aktGWE9Z?=
- =?utf-8?B?ZFN3S285RTRkWm9EUWpmOVlYSkI5dFRqNmo1cGZaOHo4TStEUURIcG1BbmpO?=
- =?utf-8?B?NEh2eGRUZ2xhbk5CWGNZelJqRGpieG5XYlpCcEVQUG4zaWt2eGdkNTNwdHFP?=
- =?utf-8?B?RTd4U3ZlTXgwNVR0Ym9EcmxialFTTzE3M2cxUEpWcmVSd2IrejdheE1MMUtM?=
- =?utf-8?B?M2U2UGFIcHRXNzVEZUphQ2FEd2tMMlIxNkNUd3NqQTdadFNJMFF4cUduSmls?=
- =?utf-8?B?T3ZWVnMwU0NNTVdsRk82YnFaOGI3TjlnK0xHNXZSdkUxWGR6ckdmTXMxdkIx?=
- =?utf-8?B?dXA4OC8yYVg3ZnpFcW9KQnRvWHYwNkh6czE1VW42aVhleHFDbmtENnFvNDJl?=
- =?utf-8?B?dVVEd1VVMG45VXA0OFVieEFJTDFKRkpVTkRBMEVHalpTQ1Y5bUhYem1RekRD?=
- =?utf-8?B?bXI5cVEzNE5yOEoyYnQ3SmdIV25mYTVVTlBLbVU1UXArTzdLTDR5TFNLajhu?=
- =?utf-8?B?emltdXg3RnNQdHFmcnpWamg0cklQeEVGQ2FtTmNkbklOeWJlZWVyYjgvQlBC?=
- =?utf-8?B?MkxtZExrL2Y1K1JsSXA1ZVhMVXF2UGh4S3RyOC9zb2Z0ZjIyWC9lZW03WEls?=
- =?utf-8?B?WGlZNWxNZjBlbVdZTHo2T2ZvTzJyVkgwZlhxVFFjOGw0MWw1TmhRem9za2Ix?=
- =?utf-8?B?YzZ1Tml1cHpqL1o1RVhuZjJKR2xPa2ZocGsra0dnSUV1WVUwbGpFVE9ZMVlk?=
- =?utf-8?B?ZjhBM3Urc2xnNExyZUVSRXR0MlpQQkQxbk1TTEo5a0FEekZMa2dvY3Vvb3VV?=
- =?utf-8?B?b1pYbTFISXpOMzdMWU0yL0xCZHBDaWJGQlhsTWwrNDNoUnhDV0d4WWFmQXRs?=
- =?utf-8?B?Zmc1NTE2OEV2TDkzRkttWER4K3FvR2ZXRjZaZVo1ZytiVmJUSFJCWXRzckt2?=
- =?utf-8?B?cFRRYjkyZlpJamJ1ZlRzMHhRNExNNisvU0txN1FxVnlUSURRbGdQc2txYUlM?=
- =?utf-8?B?Qk03ZXdJSHBCMDRTeDF3NlppbER2dXc2RnZNaGg0MkxDY3A1QkY0N2NwMVN0?=
- =?utf-8?B?ZmlFSkU4V29SSlBiM01nUjJpT1pvNmxScVVNc0VuNml1RWxjbEYvVU1lM1VV?=
- =?utf-8?B?WmdCeEtaWmRzK1c1QnZ5eVFxWnF3VmEycSs1UDhmMXVqSEIrNndwdUtvTkdx?=
- =?utf-8?B?cFpXdGJhOFNsSGJjTXNLR3R3YWh0U2FpN252N1FNTXFjZ1Zybzg2eGc2SXdh?=
- =?utf-8?B?NlRqRSttSFcweVJ2Tk9WVEh6MDBXbzdwU05RWm1IZmFhNmpFNkl5Zk1lemUr?=
- =?utf-8?B?MmlHUWluS3pMRzd5eHppN2pWWXc2RnVFaFNtVit6cFd3UDBjMUFiZVdtWWVl?=
- =?utf-8?B?ZFJoOWdpSUhBRTQ5SzRmamNQMEpWazNDU0Q4QWdoUDlyL1U0U2NkKytRZDhY?=
- =?utf-8?Q?DK1pv3RY4lOZYG+SidKe+d+eHolbqpk7/NxJMSw?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32b4b75d-a06a-4fcc-87fa-08d97de611d9
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2021 16:28:54.8549 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SizdJfR1WUk8TMmUXZVv4+oEITdnqLb4uSKfPC8DjF/Sb/gYXEkQd862AhOu9SWIIBc95QYxaeTUbMo11qo+hKUXdmyi6q0FWiD/BJbl93c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5755
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 2/3] drm/i915/display: Only keep PSR
- enabled if there is active planes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <01b32a39-4a22-45fe-ae58-dfcf4edd31b9@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 20/27] drm/i915/guc: Connect UAPI to GuC
+ multi-lrc interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,403 +53,881 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Looks good to me.
-Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+On Mon, Sep 20, 2021 at 05:09:28PM -0700, John Harrison wrote:
+> On 8/20/2021 15:44, Matthew Brost wrote:
+> > Introduce 'set parallel submit' extension to connect UAPI to GuC
+> > multi-lrc interface. Kernel doc in new uAPI should explain it all.
+> > 
+> > IGT: https://patchwork.freedesktop.org/patch/447008/?series=93071&rev=1
+> > media UMD: link to come
+> Is this link still not available?
+> 
 
-On 9/21/21 3:41 AM, José Roberto de Souza wrote:
-> PSR always had a requirement to only be enabled if there is active
-> planes but not following that never caused any issues.
-> But that changes in Alderlake-P, leaving PSR enabled without
-> active planes causes transcoder/port underruns.
+Have it now: https://github.com/intel/media-driver/pull/1252
+
+> Also, see 'kernel test robot' emails saying that sparse is complaining about
+> something I don't understand but presumably needs to be fixed.
+>
+
+Yea, those warning need to be fixed.
+ 
 > 
-> Similar behavior was fixed during the pipe disable sequence by
-> commit 84030adb9e27 ("drm/i915/display: Disable audio, DRRS and PSR before planes").
+> > 
+> > v2:
+> >   (Daniel Vetter)
+> >    - Add IGT link and placeholder for media UMD link
+> > 
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_context.c   | 220 +++++++++++++++++-
+> >   .../gpu/drm/i915/gem/i915_gem_context_types.h |   6 +
+> >   drivers/gpu/drm/i915/gt/intel_context_types.h |   9 +-
+> >   drivers/gpu/drm/i915/gt/intel_engine.h        |  12 +-
+> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   6 +-
+> >   .../drm/i915/gt/intel_execlists_submission.c  |   6 +-
+> >   drivers/gpu/drm/i915/gt/selftest_execlists.c  |  12 +-
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 114 ++++++++-
+> >   include/uapi/drm/i915_drm.h                   | 128 ++++++++++
+> >   9 files changed, 485 insertions(+), 28 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > index bcaaf514876b..de0fd145fb47 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > @@ -522,9 +522,149 @@ set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
+> >   	return 0;
+> >   }
+> > +static int
+> > +set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
+> > +				      void *data)
+> > +{
+> > +	struct i915_context_engines_parallel_submit __user *ext =
+> > +		container_of_user(base, typeof(*ext), base);
+> > +	const struct set_proto_ctx_engines *set = data;
+> > +	struct drm_i915_private *i915 = set->i915;
+> > +	u64 flags;
+> > +	int err = 0, n, i, j;
+> > +	u16 slot, width, num_siblings;
+> > +	struct intel_engine_cs **siblings = NULL;
+> > +	intel_engine_mask_t prev_mask;
+> > +
+> > +	/* Disabling for now */
+> > +	return -ENODEV;
+> > +
+> > +	if (!(intel_uc_uses_guc_submission(&i915->gt.uc)))
+> > +		return -ENODEV;
+> This needs a FIXME comment to say that exec list will be added later.
 > 
-> intel_dp_compute_psr_vsc_sdp() had to move from
-> intel_psr_enable_locked() to intel_psr_compute_config() because we
-> need to be able to disable/enable PSR from atomic states without
-> connector and encoder state.
+
+Sure.
+
+> > +
+> > +	if (get_user(slot, &ext->engine_index))
+> > +		return -EFAULT;
+> > +
+> > +	if (get_user(width, &ext->width))
+> > +		return -EFAULT;
+> > +
+> > +	if (get_user(num_siblings, &ext->num_siblings))
+> > +		return -EFAULT;
+> > +
+> > +	if (slot >= set->num_engines) {
+> > +		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
+> > +			slot, set->num_engines);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (set->engines[slot].type != I915_GEM_ENGINE_TYPE_INVALID) {
+> > +		drm_dbg(&i915->drm,
+> > +			"Invalid placement[%d], already occupied\n", slot);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (get_user(flags, &ext->flags))
+> > +		return -EFAULT;
+> > +
+> > +	if (flags) {
+> > +		drm_dbg(&i915->drm, "Unknown flags 0x%02llx", flags);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	for (n = 0; n < ARRAY_SIZE(ext->mbz64); n++) {
+> > +		err = check_user_mbz(&ext->mbz64[n]);
+> > +		if (err)
+> > +			return err;
+> > +	}
+> > +
+> > +	if (width < 2) {
+> > +		drm_dbg(&i915->drm, "Width (%d) < 2\n", width);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (num_siblings < 1) {
+> > +		drm_dbg(&i915->drm, "Number siblings (%d) < 1\n",
+> > +			num_siblings);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	siblings = kmalloc_array(num_siblings * width,
+> > +				 sizeof(*siblings),
+> > +				 GFP_KERNEL);
+> > +	if (!siblings)
+> > +		return -ENOMEM;
+> > +
+> > +	/* Create contexts / engines */
+> > +	for (i = 0; i < width; ++i) {
+> > +		intel_engine_mask_t current_mask = 0;
+> > +		struct i915_engine_class_instance prev_engine;
+> > +
+> > +		for (j = 0; j < num_siblings; ++j) {
+> > +			struct i915_engine_class_instance ci;
+> > +
+> > +			n = i * num_siblings + j;
+> > +			if (copy_from_user(&ci, &ext->engines[n], sizeof(ci))) {
+> > +				err = -EFAULT;
+> > +				goto out_err;
+> > +			}
+> > +
+> > +			siblings[n] =
+> > +				intel_engine_lookup_user(i915, ci.engine_class,
+> > +							 ci.engine_instance);
+> > +			if (!siblings[n]) {
+> > +				drm_dbg(&i915->drm,
+> > +					"Invalid sibling[%d]: { class:%d, inst:%d }\n",
+> > +					n, ci.engine_class, ci.engine_instance);
+> > +				err = -EINVAL;
+> > +				goto out_err;
+> > +			}
+> > +
+> > +			if (n) {
+> > +				if (prev_engine.engine_class !=
+> > +				    ci.engine_class) {
+> > +					drm_dbg(&i915->drm,
+> > +						"Mismatched class %d, %d\n",
+> > +						prev_engine.engine_class,
+> > +						ci.engine_class);
+> > +					err = -EINVAL;
+> > +					goto out_err;
+> > +				}
+> > +			}
+> > +
+> > +			prev_engine = ci;
+> > +			current_mask |= siblings[n]->logical_mask;
+> > +		}
+> > +
+> > +		if (i > 0) {
+> > +			if (current_mask != prev_mask << 1) {
+> > +				drm_dbg(&i915->drm,
+> > +					"Non contiguous logical mask 0x%x, 0x%x\n",
+> > +					prev_mask, current_mask);
+> > +				err = -EINVAL;
+> > +				goto out_err;
+> > +			}
+> > +		}
+> > +		prev_mask = current_mask;
+> > +	}
+> > +
+> > +	set->engines[slot].type = I915_GEM_ENGINE_TYPE_PARALLEL;
+> > +	set->engines[slot].num_siblings = num_siblings;
+> > +	set->engines[slot].width = width;
+> > +	set->engines[slot].siblings = siblings;
+> > +
+> > +	return 0;
+> > +
+> > +out_err:
+> > +	kfree(siblings);
+> > +
+> > +	return err;
+> > +}
+> > +
+> >   static const i915_user_extension_fn set_proto_ctx_engines_extensions[] = {
+> >   	[I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE] = set_proto_ctx_engines_balance,
+> >   	[I915_CONTEXT_ENGINES_EXT_BOND] = set_proto_ctx_engines_bond,
+> > +	[I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT] =
+> > +		set_proto_ctx_engines_parallel_submit,
+> >   };
+> >   static int set_proto_ctx_engines(struct drm_i915_file_private *fpriv,
+> > @@ -821,6 +961,25 @@ static int intel_context_set_gem(struct intel_context *ce,
+> >   	return ret;
+> >   }
+> > +static void __unpin_engines(struct i915_gem_engines *e, unsigned int count)
+> > +{
+> > +	while (count--) {
+> > +		struct intel_context *ce = e->engines[count], *child;
+> > +
+> > +		if (!ce || !test_bit(CONTEXT_PERMA_PIN, &ce->flags))
+> > +			continue;
+> > +
+> > +		for_each_child(ce, child)
+> > +			intel_context_unpin(child);
+> > +		intel_context_unpin(ce);
+> > +	}
+> > +}
+> > +
+> > +static void unpin_engines(struct i915_gem_engines *e)
+> > +{
+> > +	__unpin_engines(e, e->num_engines);
+> > +}
+> > +
+> >   static void __free_engines(struct i915_gem_engines *e, unsigned int count)
+> >   {
+> >   	while (count--) {
+> > @@ -936,6 +1095,40 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx,
+> >   	return err;
+> >   }
+> > +static int perma_pin_contexts(struct intel_context *ce)
+> What is this perma_ping thing about?
+>
+
+This is per Daniel Vetters suggestion in previous rev. Basically to
+simplify the parallel submit implementation pin the contexts are
+creation time and unpin when the contexts get destroyed. It removes
+complexity from gt/intel_context.c, the execbuf IOCTL, and backend
+pinning / unpinning functions.
+ 
+> > +{
+> > +	struct intel_context *child;
+> > +	int i = 0, j = 0, ret;
+> > +
+> > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > +
+> > +	ret = intel_context_pin(ce);
+> > +	if (unlikely(ret))
+> > +		return ret;
+> > +
+> > +	for_each_child(ce, child) {
+> > +		ret = intel_context_pin(child);
+> > +		if (unlikely(ret))
+> > +			goto unwind;
+> > +		++i;
+> > +	}
+> > +
+> > +	set_bit(CONTEXT_PERMA_PIN, &ce->flags);
+> > +
+> > +	return 0;
+> > +
+> > +unwind:
+> > +	intel_context_unpin(ce);
+> > +	for_each_child(ce, child) {
+> > +		if (j++ < i)
+> > +			intel_context_unpin(child);
+> > +		else
+> > +			break;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> >   static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+> >   					     unsigned int num_engines,
+> >   					     struct i915_gem_proto_engine *pe)
+> > @@ -946,7 +1139,7 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+> >   	e = alloc_engines(num_engines);
+> >   	e->num_engines = num_engines;
+> >   	for (n = 0; n < num_engines; n++) {
+> > -		struct intel_context *ce;
+> > +		struct intel_context *ce, *child;
+> >   		int ret;
+> >   		switch (pe[n].type) {
+> > @@ -956,7 +1149,13 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+> >   		case I915_GEM_ENGINE_TYPE_BALANCED:
+> >   			ce = intel_engine_create_virtual(pe[n].siblings,
+> > -							 pe[n].num_siblings);
+> > +							 pe[n].num_siblings, 0);
+> > +			break;
+> > +
+> > +		case I915_GEM_ENGINE_TYPE_PARALLEL:
+> > +			ce = intel_engine_create_parallel(pe[n].siblings,
+> > +							  pe[n].num_siblings,
+> > +							  pe[n].width);
+> >   			break;
+> >   		case I915_GEM_ENGINE_TYPE_INVALID:
+> > @@ -977,6 +1176,22 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+> >   			err = ERR_PTR(ret);
+> >   			goto free_engines;
+> >   		}
+> > +		for_each_child(ce, child) {
+> > +			ret = intel_context_set_gem(child, ctx, pe->sseu);
+> > +			if (ret) {
+> > +				err = ERR_PTR(ret);
+> > +				goto free_engines;
+> > +			}
+> > +		}
+> > +
+> > +		/* XXX: Must be done after setting gem context */
+> Why the 'XXX'? Is it saying that the ordering is a problem that needs to be
+> fixed?
 > 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_ddi.c      |   2 -
->   drivers/gpu/drm/i915/display/intel_display.c  |  14 +-
->   .../drm/i915/display/intel_display_types.h    |   3 +-
->   drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
->   drivers/gpu/drm/i915/display/intel_dp.h       |   2 +-
->   drivers/gpu/drm/i915/display/intel_psr.c      | 140 ++++++++++--------
->   drivers/gpu/drm/i915/display/intel_psr.h      |  11 +-
->   7 files changed, 98 insertions(+), 80 deletions(-)
+
+Add 'XXX' because originally I hid this behavior in the vfunc used in
+intel_engine_create_parallel but as I say we need the gem context set
+first. In theory we could fix this with a bit more of rework so all of
+this is in the backend, thus the 'XXX'. 
+
+> > +		if (pe[n].type == I915_GEM_ENGINE_TYPE_PARALLEL) {
+> > +			ret = perma_pin_contexts(ce);
+> > +			if (ret) {
+> > +				err = ERR_PTR(ret);
+> > +				goto free_engines;
+> > +			}
+> > +		}
+> >   	}
+> >   	return e;
+> > @@ -1200,6 +1415,7 @@ static void context_close(struct i915_gem_context *ctx)
+> >   	/* Flush any concurrent set_engines() */
+> >   	mutex_lock(&ctx->engines_mutex);
+> > +	unpin_engines(ctx->engines);
+> >   	engines_idle_release(ctx, rcu_replace_pointer(ctx->engines, NULL, 1));
+> >   	i915_gem_context_set_closed(ctx);
+> >   	mutex_unlock(&ctx->engines_mutex);
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> > index 94c03a97cb77..7b096d83bca1 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> > @@ -78,6 +78,9 @@ enum i915_gem_engine_type {
+> >   	/** @I915_GEM_ENGINE_TYPE_BALANCED: A load-balanced engine set */
+> >   	I915_GEM_ENGINE_TYPE_BALANCED,
+> > +
+> > +	/** @I915_GEM_ENGINE_TYPE_PARALLEL: A parallel engine set */
+> > +	I915_GEM_ENGINE_TYPE_PARALLEL,
+> >   };
+> >   /**
+> > @@ -108,6 +111,9 @@ struct i915_gem_proto_engine {
+> >   	/** @num_siblings: Number of balanced siblings */
+> >   	unsigned int num_siblings;
+> > +	/** @width: Width of each sibling */
+> > +	unsigned int width;
+> > +
+> >   	/** @siblings: Balanced siblings */
+> >   	struct intel_engine_cs **siblings;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > index a63329520c35..713d85b0b364 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > @@ -55,9 +55,13 @@ struct intel_context_ops {
+> >   	void (*reset)(struct intel_context *ce);
+> >   	void (*destroy)(struct kref *kref);
+> > -	/* virtual engine/context interface */
+> > +	/* virtual/parallel engine/context interface */
+> >   	struct intel_context *(*create_virtual)(struct intel_engine_cs **engine,
+> > -						unsigned int count);
+> > +						unsigned int count,
+> > +						unsigned long flags);
+> > +	struct intel_context *(*create_parallel)(struct intel_engine_cs **engines,
+> > +						 unsigned int num_siblings,
+> > +						 unsigned int width);
+> >   	struct intel_engine_cs *(*get_sibling)(struct intel_engine_cs *engine,
+> >   					       unsigned int sibling);
+> >   };
+> > @@ -113,6 +117,7 @@ struct intel_context {
+> >   #define CONTEXT_NOPREEMPT		8
+> >   #define CONTEXT_LRCA_DIRTY		9
+> >   #define CONTEXT_GUC_INIT		10
+> > +#define CONTEXT_PERMA_PIN		11
+> >   	struct {
+> >   		u64 timeout_us;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> > index 87579affb952..43f16a8347ee 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> > @@ -279,9 +279,19 @@ intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
+> >   	return intel_engine_has_preemption(engine);
+> >   }
+> > +#define FORCE_VIRTUAL	BIT(0)
+> >   struct intel_context *
+> >   intel_engine_create_virtual(struct intel_engine_cs **siblings,
+> > -			    unsigned int count);
+> > +			    unsigned int count, unsigned long flags);
+> > +
+> > +static inline struct intel_context *
+> > +intel_engine_create_parallel(struct intel_engine_cs **engines,
+> > +			     unsigned int num_engines,
+> > +			     unsigned int width)
+> > +{
+> > +	GEM_BUG_ON(!engines[0]->cops->create_parallel);
+> > +	return engines[0]->cops->create_parallel(engines, num_engines, width);
+> > +}
+> >   static inline bool
+> >   intel_virtual_engine_has_heartbeat(const struct intel_engine_cs *engine)
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > index 4d790f9a65dd..f66c75c77584 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > @@ -1923,16 +1923,16 @@ ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine, ktime_t *now)
+> >   struct intel_context *
+> >   intel_engine_create_virtual(struct intel_engine_cs **siblings,
+> > -			    unsigned int count)
+> > +			    unsigned int count, unsigned long flags)
+> >   {
+> >   	if (count == 0)
+> >   		return ERR_PTR(-EINVAL);
+> > -	if (count == 1)
+> > +	if (count == 1 && !(flags & FORCE_VIRTUAL))
+> >   		return intel_context_create(siblings[0]);
+> >   	GEM_BUG_ON(!siblings[0]->cops->create_virtual);
+> > -	return siblings[0]->cops->create_virtual(siblings, count);
+> > +	return siblings[0]->cops->create_virtual(siblings, count, flags);
+> >   }
+> >   struct i915_request *
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > index 813a6de01382..d1e2d6f8ff81 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > @@ -201,7 +201,8 @@ static struct virtual_engine *to_virtual_engine(struct intel_engine_cs *engine)
+> >   }
+> >   static struct intel_context *
+> > -execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count);
+> > +execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+> > +			 unsigned long flags);
+> >   static struct i915_request *
+> >   __active_request(const struct intel_timeline * const tl,
+> > @@ -3782,7 +3783,8 @@ static void virtual_submit_request(struct i915_request *rq)
+> >   }
+> >   static struct intel_context *
+> > -execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count)
+> > +execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+> > +			 unsigned long flags)
+> >   {
+> >   	struct virtual_engine *ve;
+> >   	unsigned int n;
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> > index f12ffe797639..e876a9d88a5c 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> > @@ -3733,7 +3733,7 @@ static int nop_virtual_engine(struct intel_gt *gt,
+> >   	GEM_BUG_ON(!nctx || nctx > ARRAY_SIZE(ve));
+> >   	for (n = 0; n < nctx; n++) {
+> > -		ve[n] = intel_engine_create_virtual(siblings, nsibling);
+> > +		ve[n] = intel_engine_create_virtual(siblings, nsibling, 0);
+> >   		if (IS_ERR(ve[n])) {
+> >   			err = PTR_ERR(ve[n]);
+> >   			nctx = n;
+> > @@ -3929,7 +3929,7 @@ static int mask_virtual_engine(struct intel_gt *gt,
+> >   	 * restrict it to our desired engine within the virtual engine.
+> >   	 */
+> > -	ve = intel_engine_create_virtual(siblings, nsibling);
+> > +	ve = intel_engine_create_virtual(siblings, nsibling, 0);
+> >   	if (IS_ERR(ve)) {
+> >   		err = PTR_ERR(ve);
+> >   		goto out_close;
+> > @@ -4060,7 +4060,7 @@ static int slicein_virtual_engine(struct intel_gt *gt,
+> >   		i915_request_add(rq);
+> >   	}
+> > -	ce = intel_engine_create_virtual(siblings, nsibling);
+> > +	ce = intel_engine_create_virtual(siblings, nsibling, 0);
+> >   	if (IS_ERR(ce)) {
+> >   		err = PTR_ERR(ce);
+> >   		goto out;
+> > @@ -4112,7 +4112,7 @@ static int sliceout_virtual_engine(struct intel_gt *gt,
+> >   	/* XXX We do not handle oversubscription and fairness with normal rq */
+> >   	for (n = 0; n < nsibling; n++) {
+> > -		ce = intel_engine_create_virtual(siblings, nsibling);
+> > +		ce = intel_engine_create_virtual(siblings, nsibling, 0);
+> >   		if (IS_ERR(ce)) {
+> >   			err = PTR_ERR(ce);
+> >   			goto out;
+> > @@ -4214,7 +4214,7 @@ static int preserved_virtual_engine(struct intel_gt *gt,
+> >   	if (err)
+> >   		goto out_scratch;
+> > -	ve = intel_engine_create_virtual(siblings, nsibling);
+> > +	ve = intel_engine_create_virtual(siblings, nsibling, 0);
+> >   	if (IS_ERR(ve)) {
+> >   		err = PTR_ERR(ve);
+> >   		goto out_scratch;
+> > @@ -4354,7 +4354,7 @@ static int reset_virtual_engine(struct intel_gt *gt,
+> >   	if (igt_spinner_init(&spin, gt))
+> >   		return -ENOMEM;
+> > -	ve = intel_engine_create_virtual(siblings, nsibling);
+> > +	ve = intel_engine_create_virtual(siblings, nsibling, 0);
+> >   	if (IS_ERR(ve)) {
+> >   		err = PTR_ERR(ve);
+> >   		goto out_spin;
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 07eee9a399c8..2554d0eb4afd 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -121,7 +121,13 @@ struct guc_virtual_engine {
+> >   };
+> >   static struct intel_context *
+> > -guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count);
+> > +guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+> > +		   unsigned long flags);
+> > +
+> > +static struct intel_context *
+> > +guc_create_parallel(struct intel_engine_cs **engines,
+> > +		    unsigned int num_siblings,
+> > +		    unsigned int width);
+> >   #define GUC_REQUEST_SIZE 64 /* bytes */
+> > @@ -2581,6 +2587,7 @@ static const struct intel_context_ops guc_context_ops = {
+> >   	.destroy = guc_context_destroy,
+> >   	.create_virtual = guc_create_virtual,
+> > +	.create_parallel = guc_create_parallel,
+> >   };
+> >   static void submit_work_cb(struct irq_work *wrk)
+> > @@ -2827,8 +2834,6 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+> >   	.get_sibling = guc_virtual_get_sibling,
+> >   };
+> > -/* Future patches will use this function */
+> > -__maybe_unused
+> >   static int guc_parent_context_pin(struct intel_context *ce, void *vaddr)
+> >   {
+> >   	struct intel_engine_cs *engine = guc_virtual_get_sibling(ce->engine, 0);
+> > @@ -2845,8 +2850,6 @@ static int guc_parent_context_pin(struct intel_context *ce, void *vaddr)
+> >   	return __guc_context_pin(ce, engine, vaddr);
+> >   }
+> > -/* Future patches will use this function */
+> > -__maybe_unused
+> >   static int guc_child_context_pin(struct intel_context *ce, void *vaddr)
+> >   {
+> >   	struct intel_engine_cs *engine = guc_virtual_get_sibling(ce->engine, 0);
+> > @@ -2858,8 +2861,6 @@ static int guc_child_context_pin(struct intel_context *ce, void *vaddr)
+> >   	return __guc_context_pin(ce, engine, vaddr);
+> >   }
+> > -/* Future patches will use this function */
+> > -__maybe_unused
+> >   static void guc_parent_context_unpin(struct intel_context *ce)
+> >   {
+> >   	struct intel_guc *guc = ce_to_guc(ce);
+> > @@ -2875,8 +2876,6 @@ static void guc_parent_context_unpin(struct intel_context *ce)
+> >   	lrc_unpin(ce);
+> >   }
+> > -/* Future patches will use this function */
+> > -__maybe_unused
+> >   static void guc_child_context_unpin(struct intel_context *ce)
+> >   {
+> >   	GEM_BUG_ON(context_enabled(ce));
+> > @@ -2887,8 +2886,6 @@ static void guc_child_context_unpin(struct intel_context *ce)
+> >   	lrc_unpin(ce);
+> >   }
+> > -/* Future patches will use this function */
+> > -__maybe_unused
+> >   static void guc_child_context_post_unpin(struct intel_context *ce)
+> >   {
+> >   	GEM_BUG_ON(!intel_context_is_child(ce));
+> > @@ -2899,6 +2896,98 @@ static void guc_child_context_post_unpin(struct intel_context *ce)
+> >   	intel_context_unpin(ce->parent);
+> >   }
+> > +static void guc_child_context_destroy(struct kref *kref)
+> > +{
+> > +	struct intel_context *ce = container_of(kref, typeof(*ce), ref);
+> > +
+> > +	__guc_context_destroy(ce);
+> > +}
+> > +
+> > +static const struct intel_context_ops virtual_parent_context_ops = {
+> > +	.alloc = guc_virtual_context_alloc,
+> > +
+> > +	.pre_pin = guc_context_pre_pin,
+> > +	.pin = guc_parent_context_pin,
+> > +	.unpin = guc_parent_context_unpin,
+> > +	.post_unpin = guc_context_post_unpin,
+> > +
+> > +	.ban = guc_context_ban,
+> > +
+> > +	.cancel_request = guc_context_cancel_request,
+> > +
+> > +	.enter = guc_virtual_context_enter,
+> > +	.exit = guc_virtual_context_exit,
+> > +
+> > +	.sched_disable = guc_context_sched_disable,
+> > +
+> > +	.destroy = guc_context_destroy,
+> > +
+> > +	.get_sibling = guc_virtual_get_sibling,
+> > +};
+> > +
+> > +static const struct intel_context_ops virtual_child_context_ops = {
+> > +	.alloc = guc_virtual_context_alloc,
+> > +
+> > +	.pre_pin = guc_context_pre_pin,
+> > +	.pin = guc_child_context_pin,
+> > +	.unpin = guc_child_context_unpin,
+> > +	.post_unpin = guc_child_context_post_unpin,
+> > +
+> > +	.cancel_request = guc_context_cancel_request,
+> > +
+> > +	.enter = guc_virtual_context_enter,
+> > +	.exit = guc_virtual_context_exit,
+> > +
+> > +	.destroy = guc_child_context_destroy,
+> > +
+> > +	.get_sibling = guc_virtual_get_sibling,
+> > +};
+> > +
+> > +static struct intel_context *
+> > +guc_create_parallel(struct intel_engine_cs **engines,
+> > +		    unsigned int num_siblings,
+> > +		    unsigned int width)
+> > +{
+> > +	struct intel_engine_cs **siblings = NULL;
+> > +	struct intel_context *parent = NULL, *ce, *err;
+> > +	int i, j;
+> > +
+> > +	siblings = kmalloc_array(num_siblings,
+> > +				 sizeof(*siblings),
+> > +				 GFP_KERNEL);
+> > +	if (!siblings)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	for (i = 0; i < width; ++i) {
+> > +		for (j = 0; j < num_siblings; ++j)
+> > +			siblings[j] = engines[i * num_siblings + j];
+> > +
+> > +		ce = intel_engine_create_virtual(siblings, num_siblings,
+> > +						 FORCE_VIRTUAL);
+> > +		if (!ce) {
+> > +			err = ERR_PTR(-ENOMEM);
+> > +			goto unwind;
+> > +		}
+> > +
+> > +		if (i == 0) {
+> > +			parent = ce;
+> > +			parent->ops = &virtual_parent_context_ops;
+> > +		} else {
+> > +			ce->ops = &virtual_child_context_ops;
+> > +			intel_context_bind_parent_child(parent, ce);
+> > +		}
+> > +	}
+> > +
+> > +	kfree(siblings);
+> > +	return parent;
+> > +
+> > +unwind:
+> > +	if (parent)
+> > +		intel_context_put(parent);
+> > +	kfree(siblings);
+> > +	return err;
+> > +}
+> > +
+> >   static bool
+> >   guc_irq_enable_breadcrumbs(struct intel_breadcrumbs *b)
+> >   {
+> > @@ -3726,7 +3815,8 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
+> >   }
+> >   static struct intel_context *
+> > -guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count)
+> > +guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+> > +		   unsigned long flags)
+> >   {
+> >   	struct guc_virtual_engine *ve;
+> >   	struct intel_guc *guc;
+> > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > index b1248a67b4f8..b153f8215403 100644
+> > --- a/include/uapi/drm/i915_drm.h
+> > +++ b/include/uapi/drm/i915_drm.h
+> > @@ -1824,6 +1824,7 @@ struct drm_i915_gem_context_param {
+> >    * Extensions:
+> >    *   i915_context_engines_load_balance (I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE)
+> >    *   i915_context_engines_bond (I915_CONTEXT_ENGINES_EXT_BOND)
+> > + *   i915_context_engines_parallel_submit (I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT)
+> >    */
+> >   #define I915_CONTEXT_PARAM_ENGINES	0xa
+> > @@ -2049,6 +2050,132 @@ struct i915_context_engines_bond {
+> >   	struct i915_engine_class_instance engines[N__]; \
+> >   } __attribute__((packed)) name__
+> > +/**
+> > + * struct i915_context_engines_parallel_submit - Configure engine for
+> > + * parallel submission.
+> > + *
+> > + * Setup a slot in the context engine map to allow multiple BBs to be submitted
+> > + * in a single execbuf IOCTL. Those BBs will then be scheduled to run on the GPU
+> > + * in parallel. Multiple hardware contexts are created internally in the i915
+> i915 run -> i915 to run
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index bba0ab99836b1..a4667741d3548 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3034,7 +3034,6 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
->   		intel_dp_stop_link_train(intel_dp, crtc_state);
->   
->   	intel_edp_backlight_on(crtc_state, conn_state);
-> -	intel_psr_enable(intel_dp, crtc_state, conn_state);
->   
->   	if (!dig_port->lspcon.active || dig_port->dp.has_hdmi_sink)
->   		intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
-> @@ -3255,7 +3254,6 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
->   
->   	intel_ddi_set_dp_msa(crtc_state, conn_state);
->   
-> -	intel_psr_update(intel_dp, crtc_state, conn_state);
->   	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
->   	intel_drrs_update(intel_dp, crtc_state);
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index f6c0c595f6313..ddcd8d6efc788 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8093,10 +8093,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->   		if (bp_gamma)
->   			PIPE_CONF_CHECK_COLOR_LUT(gamma_mode, hw.gamma_lut, bp_gamma);
->   
-> -		PIPE_CONF_CHECK_BOOL(has_psr);
-> -		PIPE_CONF_CHECK_BOOL(has_psr2);
-> -		PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
-> -		PIPE_CONF_CHECK_I(dc3co_exitline);
-> +		if (current_config->active_planes) {
-> +			PIPE_CONF_CHECK_BOOL(has_psr);
-> +			PIPE_CONF_CHECK_BOOL(has_psr2);
-> +			PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
-> +			PIPE_CONF_CHECK_I(dc3co_exitline);
-> +		}
->   	}
->   
->   	PIPE_CONF_CHECK_BOOL(double_wide);
-> @@ -8153,7 +8155,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->   		PIPE_CONF_CHECK_I(min_voltage_level);
->   	}
->   
-> -	if (fastset && (current_config->has_psr || pipe_config->has_psr))
-> +	if (current_config->has_psr || pipe_config->has_psr)
->   		PIPE_CONF_CHECK_X_WITH_MASK(infoframes.enable,
->   					    ~intel_hdmi_infoframe_enable(DP_SDP_VSC));
->   	else
-> @@ -10207,6 +10209,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->   		intel_encoders_update_prepare(state);
->   
->   	intel_dbuf_pre_plane_update(state);
-> +	intel_psr_pre_plane_update(state);
->   
->   	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->   		if (new_crtc_state->uapi.async_flip)
-> @@ -10270,6 +10273,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->   	}
->   
->   	intel_dbuf_post_plane_update(state);
-> +	intel_psr_post_plane_update(state);
->   
->   	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
->   		intel_post_plane_update(state, crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index e9e806d90eec4..c900bfbb7cc52 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1056,12 +1056,14 @@ struct intel_crtc_state {
->   	struct intel_link_m_n dp_m2_n2;
->   	bool has_drrs;
->   
-> +	/* PSR is supported but might not be enabled due the lack of enabled planes */
->   	bool has_psr;
->   	bool has_psr2;
->   	bool enable_psr2_sel_fetch;
->   	bool req_psr2_sdp_prior_scanline;
->   	u32 dc3co_exitline;
->   	u16 su_y_granularity;
-> +	struct drm_dp_vsc_sdp psr_vsc;
->   
->   	/*
->   	 * Frequence the dpll for the port should run at. Differs from the
-> @@ -1525,7 +1527,6 @@ struct intel_psr {
->   	u32 dc3co_exitline;
->   	u32 dc3co_exit_delay;
->   	struct delayed_work dc3co_work;
-> -	struct drm_dp_vsc_sdp vsc;
->   };
->   
->   struct intel_dp {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 7559911c140a7..378008873e039 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1674,7 +1674,7 @@ void intel_dp_compute_psr_vsc_sdp(struct intel_dp *intel_dp,
->   {
->   	vsc->sdp_type = DP_SDP_VSC;
->   
-> -	if (intel_dp->psr.psr2_enabled) {
-> +	if (crtc_state->has_psr2) {
->   		if (intel_dp->psr.colorimetry_support &&
->   		    intel_dp_needs_vsc_sdp(crtc_state, conn_state)) {
->   			/* [PSR2, +Colorimetry] */
-> @@ -1828,7 +1828,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->   		g4x_dp_set_clock(encoder, pipe_config);
->   
->   	intel_vrr_compute_config(pipe_config, conn_state);
-> -	intel_psr_compute_config(intel_dp, pipe_config);
-> +	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
->   	intel_drrs_compute_config(intel_dp, pipe_config, output_bpp,
->   				  constant_n);
->   	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-> @@ -2888,7 +2888,7 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
->   
->   void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
->   			    const struct intel_crtc_state *crtc_state,
-> -			    struct drm_dp_vsc_sdp *vsc)
-> +			    const struct drm_dp_vsc_sdp *vsc)
->   {
->   	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index 94b568704b22b..3343c25916807 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -88,7 +88,7 @@ void intel_dp_compute_psr_vsc_sdp(struct intel_dp *intel_dp,
->   				  struct drm_dp_vsc_sdp *vsc);
->   void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
->   			    const struct intel_crtc_state *crtc_state,
-> -			    struct drm_dp_vsc_sdp *vsc);
-> +			    const struct drm_dp_vsc_sdp *vsc);
->   void intel_dp_set_infoframes(struct intel_encoder *encoder, bool enable,
->   			     const struct intel_crtc_state *crtc_state,
->   			     const struct drm_connector_state *conn_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index c1894b056d6c1..8ceb22c5a1a6b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -949,7 +949,8 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
->   }
->   
->   void intel_psr_compute_config(struct intel_dp *intel_dp,
-> -			      struct intel_crtc_state *crtc_state)
-> +			      struct intel_crtc_state *crtc_state,
-> +			      struct drm_connector_state *conn_state)
->   {
->   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->   	const struct drm_display_mode *adjusted_mode =
-> @@ -1001,7 +1002,10 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
->   
->   	crtc_state->has_psr = true;
->   	crtc_state->has_psr2 = intel_psr2_config_valid(intel_dp, crtc_state);
-> +
->   	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
-> +	intel_dp_compute_psr_vsc_sdp(intel_dp, crtc_state, conn_state,
-> +				     &crtc_state->psr_vsc);
->   }
->   
->   void intel_psr_get_config(struct intel_encoder *encoder,
-> @@ -1181,8 +1185,7 @@ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
->   }
->   
->   static void intel_psr_enable_locked(struct intel_dp *intel_dp,
-> -				    const struct intel_crtc_state *crtc_state,
-> -				    const struct drm_connector_state *conn_state)
-> +				    const struct intel_crtc_state *crtc_state)
->   {
->   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> @@ -1209,9 +1212,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
->   
->   	drm_dbg_kms(&dev_priv->drm, "Enabling PSR%s\n",
->   		    intel_dp->psr.psr2_enabled ? "2" : "1");
-> -	intel_dp_compute_psr_vsc_sdp(intel_dp, crtc_state, conn_state,
-> -				     &intel_dp->psr.vsc);
-> -	intel_write_dp_vsc_sdp(encoder, crtc_state, &intel_dp->psr.vsc);
-> +	intel_write_dp_vsc_sdp(encoder, crtc_state, &crtc_state->psr_vsc);
->   	intel_snps_phy_update_psr_power_state(dev_priv, phy, true);
->   	intel_psr_enable_sink(intel_dp);
->   	intel_psr_enable_source(intel_dp);
-> @@ -1221,33 +1222,6 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
->   	intel_psr_activate(intel_dp);
->   }
->   
-> -/**
-> - * intel_psr_enable - Enable PSR
-> - * @intel_dp: Intel DP
-> - * @crtc_state: new CRTC state
-> - * @conn_state: new CONNECTOR state
-> - *
-> - * This function can only be called after the pipe is fully trained and enabled.
-> - */
-> -void intel_psr_enable(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state,
-> -		      const struct drm_connector_state *conn_state)
-> -{
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -
-> -	if (!CAN_PSR(intel_dp))
-> -		return;
-> -
-> -	if (!crtc_state->has_psr)
-> -		return;
-> -
-> -	drm_WARN_ON(&dev_priv->drm, dev_priv->drrs.dp);
-> -
-> -	mutex_lock(&intel_dp->psr.lock);
-> -	intel_psr_enable_locked(intel_dp, crtc_state, conn_state);
-> -	mutex_unlock(&intel_dp->psr.lock);
-> -}
-> -
->   static void intel_psr_exit(struct intel_dp *intel_dp)
->   {
->   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> @@ -1719,48 +1693,92 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->   	return 0;
->   }
->   
-> -/**
-> - * intel_psr_update - Update PSR state
-> - * @intel_dp: Intel DP
-> - * @crtc_state: new CRTC state
-> - * @conn_state: new CONNECTOR state
-> - *
-> - * This functions will update PSR states, disabling, enabling or switching PSR
-> - * version when executing fastsets. For full modeset, intel_psr_disable() and
-> - * intel_psr_enable() should be called instead.
-> - */
-> -void intel_psr_update(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state,
-> -		      const struct drm_connector_state *conn_state)
-> +static void _intel_psr_pre_plane_update(const struct intel_atomic_state *state,
-> +					const struct intel_crtc_state *crtc_state)
->   {
-> -	struct intel_psr *psr = &intel_dp->psr;
-> -	bool enable, psr2_enable;
-> +	struct intel_encoder *encoder;
->   
-> -	if (!CAN_PSR(intel_dp))
-> +	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
-> +					     crtc_state->uapi.encoder_mask) {
-> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +		struct intel_psr *psr = &intel_dp->psr;
-> +		bool needs_to_disable = false;
-> +
-> +		mutex_lock(&psr->lock);
-> +
-> +		/*
-> +		 * Reasons to disable:
-> +		 * - PSR disabled in new state
-> +		 * - All planes will go inactive
-> +		 * - Changing between PSR versions
-> +		 */
-> +		needs_to_disable |= !crtc_state->has_psr;
-> +		needs_to_disable |= !crtc_state->active_planes;
-> +		needs_to_disable |= crtc_state->has_psr2 != psr->psr2_enabled;
-> +
-> +		if (psr->enabled && needs_to_disable)
-> +			intel_psr_disable_locked(intel_dp);
-> +
-> +		mutex_unlock(&psr->lock);
-> +	}
-> +}
-> +
-> +void intel_psr_pre_plane_update(const struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct intel_crtc_state *crtc_state;
-> +	struct intel_crtc *crtc;
-> +	int i;
-> +
-> +	if (!HAS_PSR(dev_priv))
->   		return;
->   
-> -	mutex_lock(&intel_dp->psr.lock);
-> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i)
-> +		_intel_psr_pre_plane_update(state, crtc_state);
-> +}
->   
-> -	enable = crtc_state->has_psr;
-> -	psr2_enable = crtc_state->has_psr2;
-> +static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
-> +					 const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct intel_encoder *encoder;
-> +
-> +	if (!crtc_state->has_psr)
-> +		return;
-> +
-> +	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
-> +					     crtc_state->uapi.encoder_mask) {
-> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +		struct intel_psr *psr = &intel_dp->psr;
-> +
-> +		mutex_lock(&psr->lock);
-> +
-> +		drm_WARN_ON(&dev_priv->drm, psr->enabled && !crtc_state->active_planes);
-> +
-> +		/* Only enable if there is active planes */
-> +		if (!psr->enabled && crtc_state->active_planes)
-> +			intel_psr_enable_locked(intel_dp, crtc_state);
->   
-> -	if (enable == psr->enabled && psr2_enable == psr->psr2_enabled &&
-> -	    crtc_state->enable_psr2_sel_fetch == psr->psr2_sel_fetch_enabled) {
->   		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
->   		if (crtc_state->crc_enabled && psr->enabled)
->   			psr_force_hw_tracking_exit(intel_dp);
->   
-> -		goto unlock;
-> +		mutex_unlock(&psr->lock);
->   	}
-> +}
->   
-> -	if (psr->enabled)
-> -		intel_psr_disable_locked(intel_dp);
-> +void intel_psr_post_plane_update(const struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct intel_crtc_state *crtc_state;
-> +	struct intel_crtc *crtc;
-> +	int i;
->   
-> -	if (enable)
-> -		intel_psr_enable_locked(intel_dp, crtc_state, conn_state);
-> +	if (!HAS_PSR(dev_priv))
-> +		return;
->   
-> -unlock:
-> -	mutex_unlock(&intel_dp->psr.lock);
-> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i)
-> +		_intel_psr_post_plane_update(state, crtc_state);
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-> index 641521b101c82..2ca50df1f4fba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
-> @@ -20,14 +20,10 @@ struct intel_plane;
->   struct intel_encoder;
->   
->   void intel_psr_init_dpcd(struct intel_dp *intel_dp);
-> -void intel_psr_enable(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state,
-> -		      const struct drm_connector_state *conn_state);
-> +void intel_psr_pre_plane_update(const struct intel_atomic_state *state);
-> +void intel_psr_post_plane_update(const struct intel_atomic_state *state);
->   void intel_psr_disable(struct intel_dp *intel_dp,
->   		       const struct intel_crtc_state *old_crtc_state);
-> -void intel_psr_update(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state,
-> -		      const struct drm_connector_state *conn_state);
->   int intel_psr_debug_set(struct intel_dp *intel_dp, u64 value);
->   void intel_psr_invalidate(struct drm_i915_private *dev_priv,
->   			  unsigned frontbuffer_bits,
-> @@ -37,7 +33,8 @@ void intel_psr_flush(struct drm_i915_private *dev_priv,
->   		     enum fb_op_origin origin);
->   void intel_psr_init(struct intel_dp *intel_dp);
->   void intel_psr_compute_config(struct intel_dp *intel_dp,
-> -			      struct intel_crtc_state *crtc_state);
-> +			      struct intel_crtc_state *crtc_state,
-> +			      struct drm_connector_state *conn_state);
->   void intel_psr_get_config(struct intel_encoder *encoder,
->   			  struct intel_crtc_state *pipe_config);
->   void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir);
+> > + * run these BBs. Once a slot is configured for N BBs only N BBs can be
+> > + * submitted in each execbuf IOCTL and this is implicit behavior e.g. The user
+> > + * doesn't tell the execbuf IOCTL there are N BBs, the execbuf IOCTL knows how
+> > + * many BBs there are based on the slot's configuration. The N BBs are the last
+> > + * N buffer objects or first N if I915_EXEC_BATCH_FIRST is set.
+> > + *
+> > + * The default placement behavior is to create implicit bonds between each
+> > + * context if each context maps to more than 1 physical engine (e.g. context is
+> > + * a virtual engine). Also we only allow contexts of same engine class and these
+> > + * contexts must be in logically contiguous order. Examples of the placement
+> > + * behavior described below. Lastly, the default is to not allow BBs to
+> behaviour described -> behaviour are described
+> 
+> > + * preempted mid BB rather insert coordinated preemption on all hardware
+> to preempted mid BB rather -> to be preempted mid-batch. Rather
+> 
+> coordinated preemption on -> coordinated preemption points on
+> 
+> > + * contexts between each set of BBs. Flags may be added in the future to change
+> may -> could - 'may' implies we are thinking about doing it (maybe just for
+> fun or because we're bored), 'could' implies a user has to ask for the
+> facility if they need it.
+>
+
+Will reword all of this.
+ 
+> > + * both of these default behaviors.
+> > + *
+> > + * Returns -EINVAL if hardware context placement configuration is invalid or if
+> > + * the placement configuration isn't supported on the platform / submission
+> > + * interface.
+> > + * Returns -ENODEV if extension isn't supported on the platform / submission
+> > + * interface.
+> > + *
+> > + * .. code-block:: none
+> > + *
+> > + *	Example 1 pseudo code:
+> > + *	CS[X] = generic engine of same class, logical instance X
+> > + *	INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> I would put these two terminology explanations above the 'example 1' line
+> given that they are generic to all examples.
+> 
+> > + *	set_engines(INVALID)
+> > + *	set_parallel(engine_index=0, width=2, num_siblings=1,
+> > + *		     engines=CS[0],CS[1])
+> > + *
+> > + *	Results in the following valid placement:
+> > + *	CS[0], CS[1]
+> > + *
+> > + *	Example 2 pseudo code:
+> > + *	CS[X] = generic engine of same class, logical instance X
+> > + *	INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> And drop them from here.
+>
+
+Sure.
+ 
+> > + *	set_engines(INVALID)
+> > + *	set_parallel(engine_index=0, width=2, num_siblings=2,
+> > + *		     engines=CS[0],CS[2],CS[1],CS[3])
+> > + *
+> > + *	Results in the following valid placements:
+> > + *	CS[0], CS[1]
+> > + *	CS[2], CS[3]
+> > + *
+> > + *	This can also be thought of as 2 virtual engines described by 2-D array
+> > + *	in the engines the field with bonds placed between each index of the
+> > + *	virtual engines. e.g. CS[0] is bonded to CS[1], CS[2] is bonded to
+> > + *	CS[3].
+> I find this description just adds to the confusion. It doesn't help that the
+> sentence is broken/unparsable - 'described by 2-D array in the engines the
+> field with bonds'?
+> 
+> "This can be thought of as two virtual engines, each containing two engines
+> thereby making a 2D array. However, there are bonds tying the entries
+> together and placing restrictions on how they can be scheduled.
+> Specifically, the scheduler can choose only vertical columns from the 2D
+> array. That is, CS[0] is bonded to CS[1] and CS[2] to CS[3]. So if the
+> scheduler wants to submit to CS[0], it must also choose CS[1] and vice
+> versa. Same for CS[2] requires also using CS[3]."
+> 
+> Does that make sense?
+>
+
+Yours is better. Will add.
+ 
+> > + *	VE[0] = CS[0], CS[2]
+> > + *	VE[1] = CS[1], CS[3]
+> > + *
+> > + *	Example 3 pseudo code:
+> > + *	CS[X] = generic engine of same class, logical instance X
+> > + *	INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> And again.
+> 
+> > + *	set_engines(INVALID)
+> > + *	set_parallel(engine_index=0, width=2, num_siblings=2,
+> > + *		     engines=CS[0],CS[1],CS[1],CS[3])
+> > + *
+> > + *	Results in the following valid and invalid placements:
+> > + *	CS[0], CS[1]
+> > + *	CS[1], CS[3] - Not logical contiguous, return -EINVAL
+> logical -> logically
+>
+
+Yep.
+ 
+> > + */
+> > +struct i915_context_engines_parallel_submit {
+> > +	/**
+> > +	 * @base: base user extension.
+> > +	 */
+> > +	struct i915_user_extension base;
+> > +
+> > +	/**
+> > +	 * @engine_index: slot for parallel engine
+> > +	 */
+> > +	__u16 engine_index;
+> > +
+> > +	/**
+> > +	 * @width: number of contexts per parallel engine
+> Meaning number of engines in the virtual engine? As in, width = 3 means that
+> the scheduler has a choice of three different engines to submit the one
+> single batch buffer to?
+>
+
+No, width is number of BBs in a single submission. Will update the
+comment to reflect that.
+ 
+> > +	 */
+> > +	__u16 width;
+> > +
+> > +	/**
+> > +	 * @num_siblings: number of siblings per context
+> > +	 */
+> > +	__u16 num_siblings;
+> Meaning the number of engines which must run in parallel. As in,
+> num_siblings = 2 means that there will be two batch buffers submitted to
+> every execbuf IOCTL call and that both must execute concurrently on two
+> separate engines?
+>
+
+This means the number of possible different engine sets the N (width)
+batch buffers could be placed on. Will update this comment too.
+
+Matt
+ 
+> John.
+> 
+> > +
+> > +	/**
+> > +	 * @mbz16: reserved for future use; must be zero
+> > +	 */
+> > +	__u16 mbz16;
+> > +
+> > +	/**
+> > +	 * @flags: all undefined flags must be zero, currently not defined flags
+> > +	 */
+> > +	__u64 flags;
+> > +
+> > +	/**
+> > +	 * @mbz64: reserved for future use; must be zero
+> > +	 */
+> > +	__u64 mbz64[3];
+> > +
+> > +	/**
+> > +	 * @engines: 2-d array of engine instances to configure parallel engine
+> > +	 *
+> > +	 * length = width (i) * num_siblings (j)
+> > +	 * index = j + i * num_siblings
+> > +	 */
+> > +	struct i915_engine_class_instance engines[0];
+> > +
+> > +} __packed;
+> > +
+> > +#define I915_DEFINE_CONTEXT_ENGINES_PARALLEL_SUBMIT(name__, N__) struct { \
+> > +	struct i915_user_extension base; \
+> > +	__u16 engine_index; \
+> > +	__u16 width; \
+> > +	__u16 num_siblings; \
+> > +	__u16 mbz16; \
+> > +	__u64 flags; \
+> > +	__u64 mbz64[3]; \
+> > +	struct i915_engine_class_instance engines[N__]; \
+> > +} __attribute__((packed)) name__
+> > +
+> >   /**
+> >    * DOC: Context Engine Map uAPI
+> >    *
+> > @@ -2108,6 +2235,7 @@ struct i915_context_param_engines {
+> >   	__u64 extensions; /* linked chain of extension blocks, 0 terminates */
+> >   #define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE 0 /* see i915_context_engines_load_balance */
+> >   #define I915_CONTEXT_ENGINES_EXT_BOND 1 /* see i915_context_engines_bond */
+> > +#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
+> >   	struct i915_engine_class_instance engines[0];
+> >   } __attribute__((packed));
 > 
