@@ -2,39 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A86414C14
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 16:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BFA9414C33
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 16:37:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F00696EC06;
-	Wed, 22 Sep 2021 14:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3C6C6EBFD;
+	Wed, 22 Sep 2021 14:37:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27B536EBFE
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Sep 2021 14:32:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="309159988"
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="309159988"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEBDF6E831;
+ Wed, 22 Sep 2021 14:37:40 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="309161512"
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="309161512"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 07:32:05 -0700
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="436245951"
-Received: from vidyaram-mobl1.gar.corp.intel.com (HELO localhost)
- ([10.251.218.73])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 07:32:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Dave Airlie <airlied@gmail.com>, Dave Airlie <airlied@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>
-Date: Wed, 22 Sep 2021 17:29:48 +0300
-Message-Id: <49d87f528942d894af3664f0373d06d9e3185ccd.1632320821.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1632320821.git.jani.nikula@intel.com>
-References: <cover.1632320821.git.jani.nikula@intel.com>
+ 22 Sep 2021 07:36:33 -0700
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="704043056"
+Received: from bbrowne-mobl.ger.corp.intel.com (HELO [10.213.200.151])
+ ([10.213.200.151])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 07:36:31 -0700
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: daniel@ffwll.ch
+References: <20210922091044.2612-1-christian.koenig@amd.com>
+ <20210922091044.2612-2-christian.koenig@amd.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <093432d2-de8e-9684-03aa-7cb4842ea755@linux.intel.com>
+Date: Wed, 22 Sep 2021 15:36:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20210922091044.2612-2-christian.koenig@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 24/24] drm/i915: constify display wm vtable
+Subject: Re: [Intel-gfx] [PATCH 01/26] dma-buf: add
+ dma_resv_for_each_fence_unlocked v4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,263 +56,266 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
 
-Use a nop table for the cases where CxSR doesn't init properly.
+On 22/09/2021 10:10, Christian König wrote:
+> Abstract the complexity of iterating over all the fences
+> in a dma_resv object.
+> 
+> The new loop handles the whole RCU and retry dance and
+> returns only fences where we can be sure we grabbed the
+> right one.
+> 
+> v2: fix accessing the shared fences while they might be freed,
+>      improve kerneldoc, rename _cursor to _iter, add
+>      dma_resv_iter_is_exclusive, add dma_resv_iter_begin/end
+> 
+> v3: restructor the code, move rcu_read_lock()/unlock() into the
+>      iterator, add dma_resv_iter_is_restarted()
+> 
+> v4: fix NULL deref when no explicit fence exists, drop superflous
+>      rcu_read_lock()/unlock() calls.
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> ---
+>   drivers/dma-buf/dma-resv.c | 95 ++++++++++++++++++++++++++++++++++++++
+>   include/linux/dma-resv.h   | 95 ++++++++++++++++++++++++++++++++++++++
+>   2 files changed, 190 insertions(+)
+> 
+> diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
+> index 84fbe60629e3..7768140ab36d 100644
+> --- a/drivers/dma-buf/dma-resv.c
+> +++ b/drivers/dma-buf/dma-resv.c
+> @@ -323,6 +323,101 @@ void dma_resv_add_excl_fence(struct dma_resv *obj, struct dma_fence *fence)
+>   }
+>   EXPORT_SYMBOL(dma_resv_add_excl_fence);
+>   
+> +/**
+> + * dma_resv_iter_restart_unlocked - restart the unlocked iterator
+> + * @cursor: The dma_resv_iter object to restart
+> + *
+> + * Restart the unlocked iteration by initializing the cursor object.
+> + */
+> +static void dma_resv_iter_restart_unlocked(struct dma_resv_iter *cursor)
+> +{
+> +	cursor->seq = read_seqcount_begin(&cursor->obj->seq);
+> +	cursor->index = -1;
+> +	if (cursor->all_fences)
+> +		cursor->fences = dma_resv_shared_list(cursor->obj);
+> +	else
+> +		cursor->fences = NULL;
+> +	cursor->is_restarted = true;
+> +}
+> +
+> +/**
+> + * dma_resv_iter_walk_unlocked - walk over fences in a dma_resv obj
+> + * @cursor: cursor to record the current position
+> + *
+> + * Return all the fences in the dma_resv object which are not yet signaled.
+> + * The returned fence has an extra local reference so will stay alive.
+> + * If a concurrent modify is detected the whole iterration is started over again.
 
-v2: use a nop table (Jani)
+iteration
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 34 ++++-----
- drivers/gpu/drm/i915/i915_drv.h              |  2 +-
- drivers/gpu/drm/i915/intel_pm.c              | 80 ++++++++++++++------
- 3 files changed, 75 insertions(+), 41 deletions(-)
+> + */
+> +static void dma_resv_iter_walk_unlocked(struct dma_resv_iter *cursor)
+> +{
+> +	struct dma_resv *obj = cursor->obj;
+> +
+> +	do {
+> +		/* Drop the reference from the previous round */
+> +		dma_fence_put(cursor->fence);
+> +
+> +		if (cursor->index++ == -1) {
+> +			cursor->fence = dma_resv_excl_fence(obj);
+> +
+> +		} else if (!cursor->fences ||
+> +			   cursor->index >= cursor->fences->shared_count) {
+> +			cursor->fence = NULL;
+> +
+> +		} else {
+> +			struct dma_resv_list *fences = cursor->fences;
+> +			unsigned int idx = cursor->index;
+> +
+> +			cursor->fence = rcu_dereference(fences->shared[idx]);
+> +		}
+> +		if (cursor->fence)
+> +			cursor->fence = dma_fence_get_rcu(cursor->fence);
+> +	} while (cursor->fence && dma_fence_is_signaled(cursor->fence));
+> +}
+> +
+> +/**
+> + * dma_resv_iter_first_unlocked - first fence in an unlocked dma_resv obj.
+> + * @cursor: the cursor with the current position
+> + *
+> + * Returns the first fence from an unlocked dma_resv obj.
+> + */
+> +struct dma_fence *dma_resv_iter_first_unlocked(struct dma_resv_iter *cursor)
+> +{
+> +	rcu_read_lock();
+> +	do {
+> +		dma_resv_iter_restart_unlocked(cursor);
+> +		dma_resv_iter_walk_unlocked(cursor);
+> +	} while (read_seqcount_retry(&cursor->obj->seq, cursor->seq));
+> +	rcu_read_unlock();
+> +
+> +	return cursor->fence;
+> +}
+> +EXPORT_SYMBOL(dma_resv_iter_first_unlocked);
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8add1920c2cc..3d452f364d09 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -162,16 +162,16 @@ static void intel_modeset_setup_hw_state(struct drm_device *dev,
-  */
- static void intel_update_watermarks(struct drm_i915_private *dev_priv)
- {
--	if (dev_priv->wm_disp.update_wm)
--		dev_priv->wm_disp.update_wm(dev_priv);
-+	if (dev_priv->wm_disp->update_wm)
-+		dev_priv->wm_disp->update_wm(dev_priv);
- }
- 
- static int intel_compute_pipe_wm(struct intel_atomic_state *state,
- 				 struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.compute_pipe_wm)
--		return dev_priv->wm_disp.compute_pipe_wm(state, crtc);
-+	if (dev_priv->wm_disp->compute_pipe_wm)
-+		return dev_priv->wm_disp->compute_pipe_wm(state, crtc);
- 	return 0;
- }
- 
-@@ -179,20 +179,20 @@ static int intel_compute_intermediate_wm(struct intel_atomic_state *state,
- 					 struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (!dev_priv->wm_disp.compute_intermediate_wm)
-+	if (!dev_priv->wm_disp->compute_intermediate_wm)
- 		return 0;
- 	if (drm_WARN_ON(&dev_priv->drm,
--			!dev_priv->wm_disp.compute_pipe_wm))
-+			!dev_priv->wm_disp->compute_pipe_wm))
- 		return 0;
--	return dev_priv->wm_disp.compute_intermediate_wm(state, crtc);
-+	return dev_priv->wm_disp->compute_intermediate_wm(state, crtc);
- }
- 
- static bool intel_initial_watermarks(struct intel_atomic_state *state,
- 				     struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.initial_watermarks) {
--		dev_priv->wm_disp.initial_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->initial_watermarks) {
-+		dev_priv->wm_disp->initial_watermarks(state, crtc);
- 		return true;
- 	}
- 	return false;
-@@ -202,23 +202,23 @@ static void intel_atomic_update_watermarks(struct intel_atomic_state *state,
- 					   struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.atomic_update_watermarks)
--		dev_priv->wm_disp.atomic_update_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->atomic_update_watermarks)
-+		dev_priv->wm_disp->atomic_update_watermarks(state, crtc);
- }
- 
- static void intel_optimize_watermarks(struct intel_atomic_state *state,
- 				      struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.optimize_watermarks)
--		dev_priv->wm_disp.optimize_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->optimize_watermarks)
-+		dev_priv->wm_disp->optimize_watermarks(state, crtc);
- }
- 
- static void intel_compute_global_watermarks(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.compute_global_watermarks)
--		dev_priv->wm_disp.compute_global_watermarks(state);
-+	if (dev_priv->wm_disp->compute_global_watermarks)
-+		dev_priv->wm_disp->compute_global_watermarks(state);
- }
- 
- /* returns HPLL frequency in kHz */
-@@ -3734,7 +3734,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
- 	if (DISPLAY_VER(dev_priv) != 2)
- 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
- 
--	if (!dev_priv->wm_disp.initial_watermarks)
-+	if (!dev_priv->wm_disp->initial_watermarks)
- 		intel_update_watermarks(dev_priv);
- 
- 	/* clock the pipe down to 640x480@60 to potentially save power */
-@@ -11414,7 +11414,7 @@ static void sanitize_watermarks(struct drm_i915_private *dev_priv)
- 	int i;
- 
- 	/* Only supported on platforms that use atomic watermark design */
--	if (!dev_priv->wm_disp.optimize_watermarks)
-+	if (!dev_priv->wm_disp->optimize_watermarks)
- 		return;
- 
- 	state = drm_atomic_state_alloc(&dev_priv->drm);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 390091b898d5..6fd89cd9b3f9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -978,7 +978,7 @@ struct drm_i915_private {
- 	const struct drm_i915_clock_gating_funcs *clock_gating_funcs;
- 
- 	/* pm display functions */
--	struct drm_i915_wm_disp_funcs wm_disp;
-+	const struct drm_i915_wm_disp_funcs *wm_disp;
- 
- 	/* irq display functions */
- 	const struct intel_hotplug_funcs *hotplug_funcs;
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 0a5c1e3c798b..6f9e53a8dda2 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -7977,6 +7977,51 @@ void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv)
- 	}
- }
- 
-+static const struct drm_i915_wm_disp_funcs skl_wm_funcs = {
-+	.compute_global_watermarks = skl_compute_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs ilk_wm_funcs = {
-+	.compute_pipe_wm = ilk_compute_pipe_wm,
-+	.compute_intermediate_wm = ilk_compute_intermediate_wm,
-+	.initial_watermarks = ilk_initial_watermarks,
-+	.optimize_watermarks = ilk_optimize_watermarks,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs vlv_wm_funcs = {
-+	.compute_pipe_wm = vlv_compute_pipe_wm,
-+	.compute_intermediate_wm = vlv_compute_intermediate_wm,
-+	.initial_watermarks = vlv_initial_watermarks,
-+	.optimize_watermarks = vlv_optimize_watermarks,
-+	.atomic_update_watermarks = vlv_atomic_update_fifo,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs g4x_wm_funcs = {
-+	.compute_pipe_wm = g4x_compute_pipe_wm,
-+	.compute_intermediate_wm = g4x_compute_intermediate_wm,
-+	.initial_watermarks = g4x_initial_watermarks,
-+	.optimize_watermarks = g4x_optimize_watermarks,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs pnv_wm_funcs = {
-+	.update_wm = pnv_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i965_wm_funcs = {
-+	.update_wm = i965_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i9xx_wm_funcs = {
-+	.update_wm = i9xx_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i845_wm_funcs = {
-+	.update_wm = i845_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs nop_funcs = {
-+};
-+
- /* Set up chip specific power management-related functions */
- void intel_init_pm(struct drm_i915_private *dev_priv)
- {
-@@ -7992,7 +8037,7 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 	/* For FIFO watermark updates */
- 	if (DISPLAY_VER(dev_priv) >= 9) {
- 		skl_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_global_watermarks = skl_compute_wm;
-+		dev_priv->wm_disp = &skl_wm_funcs;
- 	} else if (HAS_PCH_SPLIT(dev_priv)) {
- 		ilk_setup_wm_latency(dev_priv);
- 
-@@ -8000,31 +8045,19 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 		     dev_priv->wm.spr_latency[1] && dev_priv->wm.cur_latency[1]) ||
- 		    (DISPLAY_VER(dev_priv) != 5 && dev_priv->wm.pri_latency[0] &&
- 		     dev_priv->wm.spr_latency[0] && dev_priv->wm.cur_latency[0])) {
--			dev_priv->wm_disp.compute_pipe_wm = ilk_compute_pipe_wm;
--			dev_priv->wm_disp.compute_intermediate_wm =
--				ilk_compute_intermediate_wm;
--			dev_priv->wm_disp.initial_watermarks =
--				ilk_initial_watermarks;
--			dev_priv->wm_disp.optimize_watermarks =
--				ilk_optimize_watermarks;
-+			dev_priv->wm_disp = &ilk_wm_funcs;
- 		} else {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Failed to read display plane latency. "
- 				    "Disable CxSR\n");
-+			dev_priv->wm_disp = &nop_funcs;
- 		}
- 	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
- 		vlv_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_pipe_wm = vlv_compute_pipe_wm;
--		dev_priv->wm_disp.compute_intermediate_wm = vlv_compute_intermediate_wm;
--		dev_priv->wm_disp.initial_watermarks = vlv_initial_watermarks;
--		dev_priv->wm_disp.optimize_watermarks = vlv_optimize_watermarks;
--		dev_priv->wm_disp.atomic_update_watermarks = vlv_atomic_update_fifo;
-+		dev_priv->wm_disp = &vlv_wm_funcs;
- 	} else if (IS_G4X(dev_priv)) {
- 		g4x_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_pipe_wm = g4x_compute_pipe_wm;
--		dev_priv->wm_disp.compute_intermediate_wm = g4x_compute_intermediate_wm;
--		dev_priv->wm_disp.initial_watermarks = g4x_initial_watermarks;
--		dev_priv->wm_disp.optimize_watermarks = g4x_optimize_watermarks;
-+		dev_priv->wm_disp = &g4x_wm_funcs;
- 	} else if (IS_PINEVIEW(dev_priv)) {
- 		if (!intel_get_cxsr_latency(!IS_MOBILE(dev_priv),
- 					    dev_priv->is_ddr3,
-@@ -8038,21 +8071,22 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 				 dev_priv->fsb_freq, dev_priv->mem_freq);
- 			/* Disable CxSR and never update its watermark again */
- 			intel_set_memory_cxsr(dev_priv, false);
--			dev_priv->wm_disp.update_wm = NULL;
-+			dev_priv->wm_disp = &nop_funcs;
- 		} else
--			dev_priv->wm_disp.update_wm = pnv_update_wm;
-+			dev_priv->wm_disp = &pnv_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 4) {
--		dev_priv->wm_disp.update_wm = i965_update_wm;
-+		dev_priv->wm_disp = &i965_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 3) {
--		dev_priv->wm_disp.update_wm = i9xx_update_wm;
-+		dev_priv->wm_disp = &i9xx_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 2) {
- 		if (INTEL_NUM_PIPES(dev_priv) == 1)
--			dev_priv->wm_disp.update_wm = i845_update_wm;
-+			dev_priv->wm_disp = &i845_wm_funcs;
- 		else
--			dev_priv->wm_disp.update_wm = i9xx_update_wm;
-+			dev_priv->wm_disp = &i9xx_wm_funcs;
- 	} else {
- 		drm_err(&dev_priv->drm,
- 			"unexpected fall-through in %s\n", __func__);
-+		dev_priv->wm_disp = &nop_funcs;
- 	}
- }
- 
--- 
-2.30.2
+Why is this one split from dma_resv_iter_begin and even exported? I 
+couldn't find any users in the series.
 
+> +
+> +/**
+> + * dma_resv_iter_next_unlocked - next fence in an unlocked dma_resv obj.
+> + * @cursor: the cursor with the current position
+> + *
+> + * Returns the next fence from an unlocked dma_resv obj.
+> + */
+> +struct dma_fence *dma_resv_iter_next_unlocked(struct dma_resv_iter *cursor)
+> +{
+> +	bool restart;
+> +
+> +	rcu_read_lock();
+> +	cursor->is_restarted = false;
+> +	restart = read_seqcount_retry(&cursor->obj->seq, cursor->seq);
+> +	do {
+> +		if (restart)
+> +			dma_resv_iter_restart_unlocked(cursor);
+> +		dma_resv_iter_walk_unlocked(cursor);
+> +		restart = true;
+> +	} while (read_seqcount_retry(&cursor->obj->seq, cursor->seq));
+> +	rcu_read_unlock();
+> +
+> +	return cursor->fence;
+> +}
+> +EXPORT_SYMBOL(dma_resv_iter_next_unlocked);
+
+Couldn't dma_resv_iter_first_unlocked and dma_resv_iter_next_unlocked 
+share the same implementation? Especially if you are able to replace 
+cursor->is_restarted with cursor->index == -1.
+
+> +
+>   /**
+>    * dma_resv_copy_fences - Copy all fences from src to dst.
+>    * @dst: the destination reservation object
+> diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
+> index 9100dd3dc21f..baf77a542392 100644
+> --- a/include/linux/dma-resv.h
+> +++ b/include/linux/dma-resv.h
+> @@ -149,6 +149,101 @@ struct dma_resv {
+>   	struct dma_resv_list __rcu *fence;
+>   };
+>   
+> +/**
+> + * struct dma_resv_iter - current position into the dma_resv fences
+> + *
+> + * Don't touch this directly in the driver, use the accessor function instead.
+> + */
+> +struct dma_resv_iter {
+> +	/** @obj: The dma_resv object we iterate over */
+> +	struct dma_resv *obj;
+> +
+> +	/** @all_fences: If all fences should be returned */
+> +	bool all_fences;
+> +
+> +	/** @fence: the currently handled fence */
+> +	struct dma_fence *fence;
+> +
+> +	/** @seq: sequence number to check for modifications */
+> +	unsigned int seq;
+> +
+> +	/** @index: index into the shared fences */
+> +	unsigned int index;
+> +
+> +	/** @fences: the shared fences */
+> +	struct dma_resv_list *fences;
+> +
+> +	/** @is_restarted: true if this is the first returned fence */
+> +	bool is_restarted;
+> +};
+> +
+> +struct dma_fence *dma_resv_iter_first_unlocked(struct dma_resv_iter *cursor);
+> +struct dma_fence *dma_resv_iter_next_unlocked(struct dma_resv_iter *cursor);
+> +
+> +/**
+> + * dma_resv_iter_begin - initialize a dma_resv_iter object
+> + * @cursor: The dma_resv_iter object to initialize
+> + * @obj: The dma_resv object which we want to iterator over
+
+iterate
+
+> + * @all_fences: If all fences should be returned or just the exclusive one
+> + */
+> +static inline void dma_resv_iter_begin(struct dma_resv_iter *cursor,
+> +				       struct dma_resv *obj,
+> +				       bool all_fences)
+> +{
+> +	cursor->obj = obj;
+> +	cursor->all_fences = all_fences;
+> +	cursor->fence = NULL;
+> +}
+> +
+> +/**
+> + * dma_resv_iter_end - cleanup a dma_resv_iter object
+> + * @cursor: the dma_resv_iter object which should be cleaned up
+> + *
+> + * Make sure that the reference to the fence in the cursor is properly
+> + * dropped.
+> + */
+> +static inline void dma_resv_iter_end(struct dma_resv_iter *cursor)
+> +{
+> +	dma_fence_put(cursor->fence);
+> +}
+> +
+> +/**
+> + * dma_resv_iter_is_exclusive - test if the current fence is the exclusive one
+> + * @cursor: the cursor of the current position
+> + *
+> + * Returns true if the currently returned fence is the exclusive one.
+> + */
+> +static inline bool dma_resv_iter_is_exclusive(struct dma_resv_iter *cursor)
+> +{
+> +	return cursor->index == -1;
+> +}
+> +
+> +/**
+> + * dma_resv_iter_is_restarted - test if this is the first fence after a restart
+> + * @cursor: the cursor with the current position
+> + *
+> + * Return true if this is the first fence in an interation after a restart.
+
+iteration
+
+> + */
+> +static inline bool dma_resv_iter_is_restarted(struct dma_resv_iter *cursor)
+> +{
+> +	return cursor->is_restarted;
+> +}
+> +
+> +/**
+> + * dma_resv_for_each_fence_unlocked - unlocked fence iterator
+> + * @cursor: a struct dma_resv_iter pointer
+> + * @fence: the current fence
+> + *
+> + * Iterate over the fences in a struct dma_resv object without holding the
+> + * &dma_resv.lock and using RCU instead. The cursor needs to be initialized
+> + * with dma_resv_iter_begin() and cleaned up with dma_resv_iter_end(). Inside
+> + * the iterator a reference to the dma_fence is hold and the RCU lock dropped.
+
+held
+
+> + * When the dma_resv is modified the iteration starts over again.
+> + */
+> +#define dma_resv_for_each_fence_unlocked(cursor, fence)			\
+> +	for (fence = dma_resv_iter_first_unlocked(cursor);		\
+> +	     fence; fence = dma_resv_iter_next_unlocked(cursor))
+> +
+>   #define dma_resv_held(obj) lockdep_is_held(&(obj)->lock.base)
+>   #define dma_resv_assert_held(obj) lockdep_assert_held(&(obj)->lock.base)
+>   
+> 
+
+Regards,
+
+Tvrtko
