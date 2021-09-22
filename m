@@ -1,40 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D7F415353
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 00:24:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4598841536B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 00:27:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 314186E05C;
-	Wed, 22 Sep 2021 22:24:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C87A6EC7D;
+	Wed, 22 Sep 2021 22:27:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6003A6E051;
- Wed, 22 Sep 2021 22:24:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="246159692"
-X-IronPort-AV: E=Sophos;i="5.85,315,1624345200"; d="scan'208";a="246159692"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 15:24:30 -0700
-X-IronPort-AV: E=Sophos;i="5.85,315,1624345200"; d="scan'208";a="704207023"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 15:24:30 -0700
-Date: Wed, 22 Sep 2021 15:24:29 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20210922222429.GY3389343@mdroper-desk1.amr.corp.intel.com>
-References: <20210903142320.216705-1-janusz.krzysztofik@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9901A6E086;
+ Wed, 22 Sep 2021 22:27:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 91239A73C9;
+ Wed, 22 Sep 2021 22:27:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5837357961184774976=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210903142320.216705-1-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH RESEND] drm/i915: Flush buffer pools on
- driver remove
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Sep 2021 22:27:26 -0000
+Message-ID: <163234964658.6941.16196850112256168755@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210922215242.66683-1-jose.souza@intel.com>
+In-Reply-To: <20210922215242.66683-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/display/dmc=3A_Set_DC?=
+ =?utf-8?q?=5FSTATE=5FDEBUG=5FMASK=5FCORES_after_firmware_load?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,101 +42,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 03, 2021 at 04:23:20PM +0200, Janusz Krzysztofik wrote:
-> In preparation for clean driver release, attempts to drain work queues
-> and release freed objects are taken at driver remove time.  However, GT
-> buffer pools are now not flushed before the driver release phase.
-> Since unused objects may stay there for up to one second, some may
-> survive until driver release is attempted.  That can potentially
-> explain sporadic then hardly reproducible issues observed at driver
-> release time, like non-zero shrink counter or outstanding address space
+--===============5837357961184774976==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-So just to make sure I'm understanding the description here:
- - We currently do an explicit flush of the buffer pools within the call
-   path of drm_driver.release(); this removes all buffers, regardless of
-   their age.
- - However there may be other code that runs *earlier* within the
-   drm_driver.release() call chain that expects buffer pools have
-   already been flushed and are already empty.
- - Since buffer pools auto-flush old buffers once per second in a worker
-   thread, there's a small window where if we remove the driver while
-   there are still buffers with an age of less than one second, the
-   assumptions of the other release code may be violated.
+== Series Details ==
 
-So by moving the flush to driver remove (which executes earlier via the
-pci_driver.remove() flow) you're ensuring that all buffers are flushed
-before _any_ code in drm_driver.release() executes.
+Series: series starting with [CI,1/3] drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load
+URL   : https://patchwork.freedesktop.org/series/94967/
+State : success
 
-I found the wording of the commit message here somewhat confusing since
-it's talking about flushes we do in driver release, but mentions
-problems that arise during driver release due to lack of flushing.  You
-might want to reword the commit message somewhat to help clarify.
-Otherwise, the code change itself looks reasonable to me.
+== Summary ==
 
-BTW, I do notice that drm_driver.release() in general is technically
-deprecated at this point (with a suggestion in the drm_drv.h comments to
-switch to using drmm_add_action(), drmm_kmalloc(), etc. to manage the
-cleanup of resources).  At some point in the future me may want to
-rework the i915 cleanup in general according to that guidance.
+CI Bug Log - changes from CI_DRM_10629 -> Patchwork_21136
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21136:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {fi-ehl-2}:         [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21136 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#3921])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-r:           [DMESG-FAIL][5] ([i915#2291] / [i915#541]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
-Matt
+Participating hosts (42 -> 35)
+------------------------------
 
-> areas.
-> 
-> Flush buffer pools on GT remove as a fix.  On driver release, don't
-> flush the pools again, just assert that the flush was called and
-> nothing added more in between.
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
-> Resending with Cc: dri-devel@lists.freedesktop.org as requested, and a
-> typo in commit description fixed.
-> 
-> Thanks,
-> Janusz
-> 
->  drivers/gpu/drm/i915/gt/intel_gt.c             | 2 ++
->  drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 2 --
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 62d40c986642..8f322a4ecd87 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -737,6 +737,8 @@ void intel_gt_driver_remove(struct intel_gt *gt)
->  	intel_uc_driver_remove(&gt->uc);
->  
->  	intel_engines_release(gt);
-> +
-> +	intel_gt_flush_buffer_pool(gt);
->  }
->  
->  void intel_gt_driver_unregister(struct intel_gt *gt)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> index aa0a59c5b614..acc49c56a9f3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> @@ -245,8 +245,6 @@ void intel_gt_fini_buffer_pool(struct intel_gt *gt)
->  	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
->  	int n;
->  
-> -	intel_gt_flush_buffer_pool(gt);
-> -
->  	for (n = 0; n < ARRAY_SIZE(pool->cache_list); n++)
->  		GEM_BUG_ON(!list_empty(&pool->cache_list[n]));
->  }
-> -- 
-> 2.25.1
-> 
+  Missing    (7): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10629 -> Patchwork_21136
+
+  CI-20190529: 20190529
+  CI_DRM_10629: ce6974ec90355ddef78e6bc2221cb2296e5ba349 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6214: 13550e92c6c7bd825abb6c9b087d12a524b4674c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21136: f58ed69579ae3a19f7ddbbbaf0ba19dbc67ecfe7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f58ed69579ae drm/i915/display: Only keep PSR enabled if there is active planes
+99491a0cc1f9 drm/i915/display: Match PSR2 selective fetch sequences with specification
+5b64a2f4c3ca drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html
+
+--===============5837357961184774976==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94967/">https://patchwork.freedesktop.org/series/94967/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10629 -&gt; Patchwork_21136</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21136:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21136 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (42 -&gt; 35)</h2>
+<p>Missing    (7): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10629 -&gt; Patchwork_21136</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10629: ce6974ec90355ddef78e6bc2221cb2296e5ba349 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6214: 13550e92c6c7bd825abb6c9b087d12a524b4674c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21136: f58ed69579ae3a19f7ddbbbaf0ba19dbc67ecfe7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f58ed69579ae drm/i915/display: Only keep PSR enabled if there is active planes<br />
+99491a0cc1f9 drm/i915/display: Match PSR2 selective fetch sequences with specification<br />
+5b64a2f4c3ca drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load</p>
+
+</body>
+</html>
+
+--===============5837357961184774976==--
