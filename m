@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487EC4147DB
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 13:35:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C303B41481A
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 13:46:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFE76EB83;
-	Wed, 22 Sep 2021 11:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6036EB86;
+	Wed, 22 Sep 2021 11:46:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA4416EB80;
- Wed, 22 Sep 2021 11:35:19 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="220376078"
-X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="220376078"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 04:35:03 -0700
-X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="474525554"
-Received: from mmazarel-mobl1.ger.corp.intel.com (HELO [10.249.254.175])
- ([10.249.254.175])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 04:35:01 -0700
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-References: <20210922083807.888206-1-thomas.hellstrom@linux.intel.com>
- <20210922083807.888206-3-thomas.hellstrom@linux.intel.com>
- <CAM0jSHPWMTq0TpLbpUwczGMDjcvh-kjw35d-xUQ_9RNrj9hY+w@mail.gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <d1462f5b-f657-c2c2-17b3-cac28cad78e4@linux.intel.com>
-Date: Wed, 22 Sep 2021 13:34:59 +0200
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE8416EB80;
+ Wed, 22 Sep 2021 11:46:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="246013760"
+X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="246013760"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 04:46:49 -0700
+X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="703689779"
+Received: from bbrowne-mobl.ger.corp.intel.com (HELO [10.213.200.151])
+ ([10.213.200.151])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 04:46:47 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: daniel@ffwll.ch
+References: <20210922091044.2612-1-christian.koenig@amd.com>
+ <20210922091044.2612-14-christian.koenig@amd.com>
+ <6b22cb75-6c41-db55-83f2-3eae87b585aa@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <4c357136-3279-ff57-1c4f-62276534c887@linux.intel.com>
+Date: Wed, 22 Sep 2021 12:46:46 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHPWMTq0TpLbpUwczGMDjcvh-kjw35d-xUQ_9RNrj9hY+w@mail.gmail.com>
+In-Reply-To: <6b22cb75-6c41-db55-83f2-3eae87b585aa@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/ttm: Fix lockdep warning in
- __i915_gem_free_object()
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 13/26] drm/i915: use the new iterator in
+ i915_gem_busy_ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,57 +58,102 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 9/22/21 12:55 PM, Matthew Auld wrote:
-> On Wed, 22 Sept 2021 at 09:38, Thomas Hellström
-> <thomas.hellstrom@linux.intel.com> wrote:
->> In the mman selftest, some tests make the ttm_bo_init_reserved() fail,
->> which may trigger a call to the i915_ttm_bo_destroy() function.
->> However, at this point the gem object refcount is set to 1, which
->> triggers a lockdep warning in __i915_gem_free_object() and a
->> corresponding failure in DG1 BAT, i915_selftest@live@mman.
+On 22/09/2021 11:21, Tvrtko Ursulin wrote:
+> 
+> On 22/09/2021 10:10, Christian König wrote:
+>> This makes the function much simpler since the complex
+>> retry logic is now handled else where.
 >>
->> Fix this by clearing the gem object refcount if called from that
->> failure path.
->>
->> Fixes: f9b23c157a78 ("drm/i915: Move __i915_gem_free_object to ttm_bo_destroy")
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
 >> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 4 ++++
->>   1 file changed, 4 insertions(+)
+>>   drivers/gpu/drm/i915/gem/i915_gem_busy.c | 35 ++++++++++--------------
+>>   1 file changed, 14 insertions(+), 21 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index b94497989995..b1f561543ff3 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -900,6 +900,10 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
->>
->>          i915_ttm_backup_free(obj);
->>
->> +       /* Failure during ttm_bo_init_reserved leaves the refcount set to 1. */
->> +       if (IS_ENABLED(CONFIG_LOCKDEP) && !obj->ttm.created)
->> +               refcount_set(&obj->base.refcount.refcount, 0);
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_busy.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>> index 6234e17259c1..313afb4a11c7 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>> @@ -82,8 +82,8 @@ i915_gem_busy_ioctl(struct drm_device *dev, void *data,
+>>   {
+>>       struct drm_i915_gem_busy *args = data;
+>>       struct drm_i915_gem_object *obj;
+>> -    struct dma_resv_list *list;
+>> -    unsigned int seq;
+>> +    struct dma_resv_iter cursor;
+>> +    struct dma_fence *fence;
+>>       int err;
+>>       err = -ENOENT;
+>> @@ -109,27 +109,20 @@ i915_gem_busy_ioctl(struct drm_device *dev, void 
+>> *data,
+>>        * to report the overall busyness. This is what the wait-ioctl 
+>> does.
+>>        *
+>>        */
+>> -retry:
+>> -    seq = raw_read_seqcount(&obj->base.resv->seq);
+>> -
+>> -    /* Translate the exclusive fence to the READ *and* WRITE engine */
+>> -    args->busy = busy_check_writer(dma_resv_excl_fence(obj->base.resv));
+>> -
+>> -    /* Translate shared fences to READ set of engines */
+>> -    list = dma_resv_shared_list(obj->base.resv);
+>> -    if (list) {
+>> -        unsigned int shared_count = list->shared_count, i;
+>> -
+>> -        for (i = 0; i < shared_count; ++i) {
+>> -            struct dma_fence *fence =
+>> -                rcu_dereference(list->shared[i]);
+>> -
+>> +    args->busy = false;
+> 
+> You can drop this line, especially since it is not a boolean. With that:
+> 
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Having said this, one thing to add in the commit message is some 
+commentary that although simpler in code, the new implementation has a 
+lot more atomic instructions due all the extra fence get/put.
+
+Saying this because I remembered busy ioctl is quite an over-popular 
+one. Thinking about traces from some real userspaces I looked at in the 
+past.
+
+So I think ack from maintainers will be required here. Because I just 
+don't know if any performance impact will be visible or not. So view my 
+r-b as "code looks fine" but I am on the fence if it should actually be 
+merged. Probably leaning towards no actually - given how the code is 
+localised here and I dislike burdening old platforms with more CPU time 
+it could be cheaply left as is.
+
+Regards,
+
+Tvrtko
+
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>> +    dma_resv_iter_begin(&cursor, obj->base.resv, true);
+>> +    dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>> +        if (dma_resv_iter_is_restarted(&cursor))
+>> +            args->busy = 0;
 >> +
->>          /* This releases all gem object bindings to the backend. */
->>          __i915_gem_free_object(obj);
-> The __i915_gem_free_object is also nuking stuff like mm.placements,
-> which is still owned by the caller AFAIK, or at least it is until we
-> have successfully initialised the object, so smells like potential
-> double free? Can we easily move that under the ttm.created check?
-> Otherwise maybe we are meant to move the mm.placements handling into
-> the RCU callback?
-
-Yes, it indeed sounds like a closer look is needed for the error 
-handling here. Perhaps it makes sense to initialize the TTM part and 
-then the GEM part while still having the lock. Meanwhile I'll put it 
-under the ttm.created check.
-
-Thanks,
-
-Thomas
-
-
->
->> --
->> 2.31.1
+>> +        if (dma_resv_iter_is_exclusive(&cursor))
+>> +            /* Translate the exclusive fence to the READ *and* WRITE 
+>> engine */
+>> +            args->busy |= busy_check_writer(fence);
+>> +        else
+>> +            /* Translate shared fences to READ set of engines */
+>>               args->busy |= busy_check_reader(fence);
+>> -        }
+>>       }
+>> -
+>> -    if (args->busy && read_seqcount_retry(&obj->base.resv->seq, seq))
+>> -        goto retry;
+>> +    dma_resv_iter_end(&cursor);
+>>       err = 0;
+>>   out:
 >>
