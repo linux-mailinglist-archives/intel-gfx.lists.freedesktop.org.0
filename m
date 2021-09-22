@@ -1,40 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA831414777
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 13:13:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 487EC4147DB
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 13:35:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1E1E6EB78;
-	Wed, 22 Sep 2021 11:13:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFE76EB83;
+	Wed, 22 Sep 2021 11:35:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEAA86EB78;
- Wed, 22 Sep 2021 11:12:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="284582051"
-X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="284582051"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 04:12:59 -0700
-X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="550208051"
-Received: from vidyaram-mobl1.gar.corp.intel.com (HELO localhost)
- ([10.251.218.73])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 04:12:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, tvrtko.ursulin@intel.com
-In-Reply-To: <20210922021305.33096-1-matthew.brost@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210922021305.33096-1-matthew.brost@intel.com>
-Date: Wed, 22 Sep 2021 14:12:55 +0300
-Message-ID: <877df8n9s8.fsf@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA4416EB80;
+ Wed, 22 Sep 2021 11:35:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="220376078"
+X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="220376078"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 04:35:03 -0700
+X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="474525554"
+Received: from mmazarel-mobl1.ger.corp.intel.com (HELO [10.249.254.175])
+ ([10.249.254.175])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 04:35:01 -0700
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+References: <20210922083807.888206-1-thomas.hellstrom@linux.intel.com>
+ <20210922083807.888206-3-thomas.hellstrom@linux.intel.com>
+ <CAM0jSHPWMTq0TpLbpUwczGMDjcvh-kjw35d-xUQ_9RNrj9hY+w@mail.gmail.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <d1462f5b-f657-c2c2-17b3-cac28cad78e4@linux.intel.com>
+Date: Wed, 22 Sep 2021 13:34:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Drop stealing of bits from
- i915_sw_fence function pointer
+In-Reply-To: <CAM0jSHPWMTq0TpLbpUwczGMDjcvh-kjw35d-xUQ_9RNrj9hY+w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/ttm: Fix lockdep warning in
+ __i915_gem_free_object()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,204 +57,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Sep 2021, Matthew Brost <matthew.brost@intel.com> wrote:
-> Rather than stealing bits from i915_sw_fence function pointer use
-> seperate fields for function pointer and flags. If using two different
-> fields, the 4 byte alignment for the i915_sw_fence function pointer can
-> also be dropped.
 
-Yes, please, thank you.
+On 9/22/21 12:55 PM, Matthew Auld wrote:
+> On Wed, 22 Sept 2021 at 09:38, Thomas Hellström
+> <thomas.hellstrom@linux.intel.com> wrote:
+>> In the mman selftest, some tests make the ttm_bo_init_reserved() fail,
+>> which may trigger a call to the i915_ttm_bo_destroy() function.
+>> However, at this point the gem object refcount is set to 1, which
+>> triggers a lockdep warning in __i915_gem_free_object() and a
+>> corresponding failure in DG1 BAT, i915_selftest@live@mman.
+>>
+>> Fix this by clearing the gem object refcount if called from that
+>> failure path.
+>>
+>> Fixes: f9b23c157a78 ("drm/i915: Move __i915_gem_free_object to ttm_bo_destroy")
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> index b94497989995..b1f561543ff3 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> @@ -900,6 +900,10 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
+>>
+>>          i915_ttm_backup_free(obj);
+>>
+>> +       /* Failure during ttm_bo_init_reserved leaves the refcount set to 1. */
+>> +       if (IS_ENABLED(CONFIG_LOCKDEP) && !obj->ttm.created)
+>> +               refcount_set(&obj->base.refcount.refcount, 0);
+>> +
+>>          /* This releases all gem object bindings to the backend. */
+>>          __i915_gem_free_object(obj);
+> The __i915_gem_free_object is also nuking stuff like mm.placements,
+> which is still owned by the caller AFAIK, or at least it is until we
+> have successfully initialised the object, so smells like potential
+> double free? Can we easily move that under the ttm.created check?
+> Otherwise maybe we are meant to move the mm.placements handling into
+> the RCU callback?
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Yes, it indeed sounds like a closer look is needed for the error 
+handling here. Perhaps it makes sense to initialize the TTM part and 
+then the GEM part while still having the lock. Meanwhile I'll put it 
+under the ttm.created check.
 
+Thanks,
 
-BR,
-Jani.
+Thomas
+
 
 >
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
->  drivers/gpu/drm/i915/i915_request.c           |  4 ++--
->  drivers/gpu/drm/i915/i915_sw_fence.c          |  9 +++-----
->  drivers/gpu/drm/i915/i915_sw_fence.h          | 21 +++++++++----------
->  drivers/gpu/drm/i915/i915_sw_fence_work.c     |  2 +-
->  .../gpu/drm/i915/selftests/i915_sw_fence.c    |  2 +-
->  drivers/gpu/drm/i915/selftests/lib_sw_fence.c |  4 ++--
->  8 files changed, 21 insertions(+), 25 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a7ca38613f89..6d5bb55ffc82 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -10323,7 +10323,7 @@ static void intel_atomic_commit_work(struct work_struct *work)
->  	intel_atomic_commit_tail(state);
->  }
->  
-> -static int __i915_sw_fence_call
-> +static int
->  intel_atomic_commit_ready(struct i915_sw_fence *fence,
->  			  enum i915_sw_fence_notify notify)
->  {
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index c2ab0e22db0a..df5fec5c3da8 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -800,7 +800,7 @@ static void free_engines_rcu(struct rcu_head *rcu)
->  	free_engines(engines);
->  }
->  
-> -static int __i915_sw_fence_call
-> +static int
->  engines_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
->  	struct i915_gem_engines *engines =
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index ce446716d092..945d3025a0b6 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -719,7 +719,7 @@ void i915_request_cancel(struct i915_request *rq, int error)
->  	intel_context_cancel_request(rq->context, rq);
->  }
->  
-> -static int __i915_sw_fence_call
-> +static int
->  submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
->  	struct i915_request *request =
-> @@ -755,7 +755,7 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  	return NOTIFY_DONE;
->  }
->  
-> -static int __i915_sw_fence_call
-> +static int
->  semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
->  	struct i915_request *rq = container_of(fence, typeof(*rq), semaphore);
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-> index c589a681da77..5cf101cf06d2 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence.c
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-> @@ -34,7 +34,7 @@ enum {
->  
->  static void *i915_sw_fence_debug_hint(void *addr)
->  {
-> -	return (void *)(((struct i915_sw_fence *)addr)->flags & I915_SW_FENCE_MASK);
-> +	return (void *)(((struct i915_sw_fence *)addr)->fn);
->  }
->  
->  #ifdef CONFIG_DRM_I915_SW_FENCE_DEBUG_OBJECTS
-> @@ -126,10 +126,7 @@ static inline void debug_fence_assert(struct i915_sw_fence *fence)
->  static int __i915_sw_fence_notify(struct i915_sw_fence *fence,
->  				  enum i915_sw_fence_notify state)
->  {
-> -	i915_sw_fence_notify_t fn;
-> -
-> -	fn = (i915_sw_fence_notify_t)(fence->flags & I915_SW_FENCE_MASK);
-> -	return fn(fence, state);
-> +	return fence->fn(fence, state);
->  }
->  
->  #ifdef CONFIG_DRM_I915_SW_FENCE_DEBUG_OBJECTS
-> @@ -242,7 +239,7 @@ void __i915_sw_fence_init(struct i915_sw_fence *fence,
->  			  const char *name,
->  			  struct lock_class_key *key)
->  {
-> -	BUG_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
-> +	BUG_ON(!fn);
->  
->  	__init_waitqueue_head(&fence->wait, name, key);
->  	fence->flags = (unsigned long)fn;
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
-> index 30a863353ee6..70ba1789aa89 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence.h
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence.h
-> @@ -17,26 +17,25 @@
->  
->  struct completion;
->  struct dma_resv;
-> +struct i915_sw_fence;
-> +
-> +enum i915_sw_fence_notify {
-> +	FENCE_COMPLETE,
-> +	FENCE_FREE
-> +};
-> +
-> +typedef int (*i915_sw_fence_notify_t)(struct i915_sw_fence *,
-> +				      enum i915_sw_fence_notify state);
->  
->  struct i915_sw_fence {
->  	wait_queue_head_t wait;
-> +	i915_sw_fence_notify_t fn;
->  	unsigned long flags;
->  	atomic_t pending;
->  	int error;
->  };
->  
->  #define I915_SW_FENCE_CHECKED_BIT	0 /* used internally for DAG checking */
-> -#define I915_SW_FENCE_PRIVATE_BIT	1 /* available for use by owner */
-> -#define I915_SW_FENCE_MASK		(~3)
-> -
-> -enum i915_sw_fence_notify {
-> -	FENCE_COMPLETE,
-> -	FENCE_FREE
-> -};
-> -
-> -typedef int (*i915_sw_fence_notify_t)(struct i915_sw_fence *,
-> -				      enum i915_sw_fence_notify state);
-> -#define __i915_sw_fence_call __aligned(4)
->  
->  void __i915_sw_fence_init(struct i915_sw_fence *fence,
->  			  i915_sw_fence_notify_t fn,
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> index 5b33ef23d54c..d2e56b387993 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> @@ -23,7 +23,7 @@ static void fence_work(struct work_struct *work)
->  	dma_fence_put(&f->dma);
->  }
->  
-> -static int __i915_sw_fence_call
-> +static int
->  fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
->  	struct dma_fence_work *f = container_of(fence, typeof(*f), chain);
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-> index cbf45d85cbff..daa985e5a19b 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-> @@ -28,7 +28,7 @@
->  
->  #include "../i915_selftest.h"
->  
-> -static int __i915_sw_fence_call
-> +static int
->  fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
->  	switch (state) {
-> diff --git a/drivers/gpu/drm/i915/selftests/lib_sw_fence.c b/drivers/gpu/drm/i915/selftests/lib_sw_fence.c
-> index 080b90b63d16..eb59a41bdb79 100644
-> --- a/drivers/gpu/drm/i915/selftests/lib_sw_fence.c
-> +++ b/drivers/gpu/drm/i915/selftests/lib_sw_fence.c
-> @@ -26,7 +26,7 @@
->  
->  /* Small library of different fence types useful for writing tests */
->  
-> -static int __i915_sw_fence_call
-> +static int
->  nop_fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
->  	return NOTIFY_DONE;
-> @@ -89,7 +89,7 @@ struct heap_fence {
->  	};
->  };
->  
-> -static int __i915_sw_fence_call
-> +static int
->  heap_fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
->  	struct heap_fence *h = container_of(fence, typeof(*h), fence);
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>> --
+>> 2.31.1
+>>
