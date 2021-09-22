@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA2E414E08
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 18:23:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8549414DE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 18:16:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D2689E98;
-	Wed, 22 Sep 2021 16:23:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E21C06EC33;
+	Wed, 22 Sep 2021 16:16:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4628989E98;
- Wed, 22 Sep 2021 16:23:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="246077688"
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="246077688"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 09:21:36 -0700
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="436285110"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 09:21:35 -0700
-Date: Wed, 22 Sep 2021 09:16:39 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
-Message-ID: <20210922161629.GA4220@jons-linux-dev-box>
-References: <20210820224446.30620-1-matthew.brost@intel.com>
- <20210820224446.30620-18-matthew.brost@intel.com>
- <174cb140-6d0c-5862-1cdb-79aa17c3a8e3@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E450B6EC37;
+ Wed, 22 Sep 2021 16:16:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DDE0AA008A;
+ Wed, 22 Sep 2021 16:16:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <174cb140-6d0c-5862-1cdb-79aa17c3a8e3@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 17/27] drm/i915/guc: Implement multi-lrc
- reset
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Sep 2021 16:16:56 -0000
+Message-ID: <163232741690.6943.13362052727902784637@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210922155145.93174-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210922155145.93174-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Per_client_GPU_stats_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,298 +41,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 20, 2021 at 03:44:18PM -0700, John Harrison wrote:
-> On 8/20/2021 15:44, Matthew Brost wrote:
-> 
->     Update context and full GPU reset to work with multi-lrc. The idea is
->     parent context tracks all the active requests inflight for itself and
->     its' children. The parent context owns the reset replaying / canceling
-> 
-> its' -> its
-> 
-> 
->     requests as needed.
-> 
->     Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->     ---
->      drivers/gpu/drm/i915/gt/intel_context.c       | 11 ++--
->      .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 63 +++++++++++++------
->      2 files changed, 51 insertions(+), 23 deletions(-)
-> 
->     diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
->     index 00d1aee6d199..5615be32879c 100644
->     --- a/drivers/gpu/drm/i915/gt/intel_context.c
->     +++ b/drivers/gpu/drm/i915/gt/intel_context.c
->     @@ -528,20 +528,21 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
-> 
->      struct i915_request *intel_context_find_active_request(struct intel_context *ce)
->      {
->     +       struct intel_context *parent = intel_context_to_parent(ce);
->             struct i915_request *rq, *active = NULL;
->             unsigned long flags;
-> 
->             GEM_BUG_ON(!intel_engine_uses_guc(ce->engine));
-> 
-> Should this not check the parent as well/instead?
-> 
+== Series Details ==
 
-I don't think so. The 'ce' could be a not parallel context, a parent
-context, or a child context. 
+Series: Per client GPU stats (rev4)
+URL   : https://patchwork.freedesktop.org/series/92574/
+State : warning
 
-> And to be clear, this can be called on regular contexts (where ce == parent)
-> and on both the parent or child contexts of multi-LRC contexts (where ce may or
-> may not match parent)?
->
+== Summary ==
 
-Right. The parent owns the parent->guc_state.lock/requests and search
-that list for the first non-completed request that matches submitted
-'ce'.
- 
-> 
-> 
-> 
->     -       spin_lock_irqsave(&ce->guc_state.lock, flags);
->     -       list_for_each_entry_reverse(rq, &ce->guc_state.requests,
->     +       spin_lock_irqsave(&parent->guc_state.lock, flags);
->     +       list_for_each_entry_reverse(rq, &parent->guc_state.requests,
->                                         sched.link) {
->     -               if (i915_request_completed(rq))
->     +               if (i915_request_completed(rq) && rq->context == ce)
-> 
-> 'rq->context == ce' means:
-> 
->  1. single-LRC context, rq is owned by ce
->  2. multi-LRC context, ce is child, rq really belongs to ce but is being
->     tracked by parent
->  3. multi-LRC context, ce is parent, rq really is owned by ce
-> 
-> So when 'rq->ce != ce', it means that the request is owned by a different child
-> to 'ce' but within the same multi-LRC group. So we want to ignore that request
-> and keep searching until we find one that is really owned by the target ce?
->
+$ dim checkpatch origin/drm-tip
+d3ced17ae466 drm/i915: Explicitly track DRM clients
+-:88: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#88: 
+new file mode 100644
 
-All correct.
- 
-> 
->                             break;
-> 
->     -               active = rq;
->     +               active = (rq->context == ce) ? rq : active;
-> 
-> Would be clearer to say 'if(rq->ce != ce) continue;' and leave 'active = rq;'
-> alone?
->
+total: 0 errors, 1 warnings, 0 checks, 231 lines checked
+23952d0281f4 drm/i915: Make GEM contexts track DRM clients
+aa77a600c1f2 drm/i915: Track runtime spent in closed and unreachable GEM contexts
+6f240d00ff32 drm/i915: Track all user contexts per client
+13cdce7379be drm/i915: Track context current active time
+-:139: WARNING:LINE_SPACING: Missing a blank line after declarations
+#139: FILE: drivers/gpu/drm/i915/gt/intel_context_types.h:143:
++			u32 last;
++			I915_SELFTEST_DECLARE(u32 num_underflow);
 
-Yes, that is probably cleaner.
- 
-> And again, the intention is to ignore requests that are owned by other members
-> of the same multi-LRC group?
-> 
-> Would be good to add some documentation to this function to explain the above
-> (assuming my description is correct?).
->
+total: 0 errors, 1 warnings, 0 checks, 296 lines checked
+4c4f367b390e drm: Document fdinfo format specification
+-:40: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#40: 
+new file mode 100644
 
-Will add a comment explaining this.
- 
-> 
->             }
->     -       spin_unlock_irqrestore(&ce->guc_state.lock, flags);
->     +       spin_unlock_irqrestore(&parent->guc_state.lock, flags);
-> 
->             return active;
->      }
->     diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->     index f0b60fecf253..e34e0ea9136a 100644
->     --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->     +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->     @@ -670,6 +670,11 @@ static int rq_prio(const struct i915_request *rq)
->             return rq->sched.attr.priority;
->      }
-> 
->     +static inline bool is_multi_lrc(struct intel_context *ce)
->     +{
->     +       return intel_context_is_parallel(ce);
->     +}
->     +
->      static bool is_multi_lrc_rq(struct i915_request *rq)
->      {
->             return intel_context_is_parallel(rq->context);
->     @@ -1179,10 +1184,13 @@ __unwind_incomplete_requests(struct intel_context *ce)
-> 
->      static void __guc_reset_context(struct intel_context *ce, bool stalled)
->      {
->     +       bool local_stalled;
->             struct i915_request *rq;
->             unsigned long flags;
->             u32 head;
->     +       int i, number_children = ce->guc_number_children;
-> 
-> If this is a child context, does it not need to pull the child count from the
-> parent? Likewise the list/link pointers below? Or does each child context have
-> a full list of its siblings + parent?
-> 
+-:45: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#45: FILE: Documentation/gpu/drm-usage-stats.rst:1:
++.. _drm-client-usage-stats:
 
-This function shouldn't be called by a child. Will add
-GEM_BUG_ON(intel_context_is_child(ce)) to this function.
+total: 0 errors, 2 warnings, 0 checks, 104 lines checked
+91c47a76ce10 drm/i915: Expose client engine utilisation via fdinfo
 
-> 
->             bool skip = false;
->     +       struct intel_context *parent = ce;
-> 
->             intel_context_get(ce);
-> 
->     @@ -1209,25 +1217,34 @@ static void __guc_reset_context(struct intel_context *ce, bool stalled)
->             if (unlikely(skip))
->                     goto out_put;
-> 
->     -       rq = intel_context_find_active_request(ce);
->     -       if (!rq) {
->     -               head = ce->ring->tail;
->     -               stalled = false;
->     -               goto out_replay;
->     -       }
->     +       for (i = 0; i < number_children + 1; ++i) {
->     +               if (!intel_context_is_pinned(ce))
->     +                       goto next_context;
->     +
->     +               local_stalled = false;
->     +               rq = intel_context_find_active_request(ce);
->     +               if (!rq) {
->     +                       head = ce->ring->tail;
->     +                       goto out_replay;
->     +               }
-> 
->     -       if (!i915_request_started(rq))
->     -               stalled = false;
->     +               GEM_BUG_ON(i915_active_is_idle(&ce->active));
->     +               head = intel_ring_wrap(ce->ring, rq->head);
-> 
->     -       GEM_BUG_ON(i915_active_is_idle(&ce->active));
->     -       head = intel_ring_wrap(ce->ring, rq->head);
->     -       __i915_request_reset(rq, stalled);
->     +               if (i915_request_started(rq))
-> 
-> Why change the ordering of the started test versus the wrap/reset call? Is it
-> significant? Why is it now important to be reversed?
->
 
-Off the top of my head I'm not sure what the ordering is changed. I'll
-have to double check on this.
- 
-> 
->     +                       local_stalled = true;
-> 
->     +               __i915_request_reset(rq, local_stalled && stalled);
->      out_replay:
->     -       guc_reset_state(ce, head, stalled);
->     -       __unwind_incomplete_requests(ce);
->     +               guc_reset_state(ce, head, local_stalled && stalled);
->     +next_context:
->     +               if (i != number_children)
->     +                       ce = list_next_entry(ce, guc_child_link);
-> 
-> Can this not be put in to the step clause of the for statement?
-> 
-
-Maybe? Does list_next_entry blow up on that last entry? Idk? If not,
-then yes this can be added to the loop. Will double check on this.
-
-> 
->     +       }
->     +
->     +       __unwind_incomplete_requests(parent);
->      out_put:
->     -       intel_context_put(ce);
->     +       intel_context_put(parent);
-> 
-> As above, I think this function would benefit from some comments to explain
-> exactly what is being done and why.
->
-
-Sure. Will add some comments.
-
-Matt
- 
-> John.
-> 
-> 
->      }
-> 
->      void intel_guc_submission_reset(struct intel_guc *guc, bool stalled)
->     @@ -1248,7 +1265,8 @@ void intel_guc_submission_reset(struct intel_guc *guc, bool stalled)
-> 
->                     xa_unlock(&guc->context_lookup);
-> 
->     -               if (intel_context_is_pinned(ce))
->     +               if (intel_context_is_pinned(ce) &&
->     +                   !intel_context_is_child(ce))
->                             __guc_reset_context(ce, stalled);
-> 
->                     intel_context_put(ce);
->     @@ -1340,7 +1358,8 @@ void intel_guc_submission_cancel_requests(struct intel_guc *guc)
-> 
->                     xa_unlock(&guc->context_lookup);
-> 
->     -               if (intel_context_is_pinned(ce))
->     +               if (intel_context_is_pinned(ce) &&
->     +                   !intel_context_is_child(ce))
->                             guc_cancel_context_requests(ce);
-> 
->                     intel_context_put(ce);
->     @@ -2031,6 +2050,8 @@ static struct i915_sw_fence *guc_context_block(struct intel_context *ce)
->             u16 guc_id;
->             bool enabled;
-> 
->     +       GEM_BUG_ON(intel_context_is_child(ce));
->     +
->             spin_lock_irqsave(&ce->guc_state.lock, flags);
-> 
->             incr_context_blocked(ce);
->     @@ -2068,6 +2089,7 @@ static void guc_context_unblock(struct intel_context *ce)
->             bool enable;
-> 
->             GEM_BUG_ON(context_enabled(ce));
->     +       GEM_BUG_ON(intel_context_is_child(ce));
-> 
->             spin_lock_irqsave(&ce->guc_state.lock, flags);
-> 
->     @@ -2099,11 +2121,14 @@ static void guc_context_unblock(struct intel_context *ce)
->      static void guc_context_cancel_request(struct intel_context *ce,
->                                            struct i915_request *rq)
->      {
->     +       struct intel_context *block_context =
->     +               request_to_scheduling_context(rq);
->     +
->             if (i915_sw_fence_signaled(&rq->submit)) {
->                     struct i915_sw_fence *fence;
-> 
->                     intel_context_get(ce);
->     -               fence = guc_context_block(ce);
->     +               fence = guc_context_block(block_context);
->                     i915_sw_fence_wait(fence);
->                     if (!i915_request_completed(rq)) {
->                             __i915_request_skip(rq);
->     @@ -2117,7 +2142,7 @@ static void guc_context_cancel_request(struct intel_context *ce,
->                      */
->                     flush_work(&ce_to_guc(ce)->ct.requests.worker);
-> 
->     -               guc_context_unblock(ce);
->     +               guc_context_unblock(block_context);
->                     intel_context_put(ce);
->             }
->      }
->     @@ -2143,6 +2168,8 @@ static void guc_context_ban(struct intel_context *ce, struct i915_request *rq)
->             intel_wakeref_t wakeref;
->             unsigned long flags;
-> 
->     +       GEM_BUG_ON(intel_context_is_child(ce));
->     +
->             guc_flush_submissions(guc);
-> 
->             spin_lock_irqsave(&ce->guc_state.lock, flags);
-> 
-> 
-> SECURITY NOTE: file ~/.netrc must not be accessible by others
