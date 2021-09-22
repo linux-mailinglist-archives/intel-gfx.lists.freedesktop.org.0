@@ -2,34 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C152F4149D6
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 14:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2BC414A9D
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 15:34:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37516EB93;
-	Wed, 22 Sep 2021 12:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18F0B8999A;
+	Wed, 22 Sep 2021 13:34:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DB6BF6EB93;
- Wed, 22 Sep 2021 12:55:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D7C26AA917;
- Wed, 22 Sep 2021 12:55:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF93689854;
+ Wed, 22 Sep 2021 13:34:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="284603458"
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="284603458"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 06:34:11 -0700
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="533685342"
+Received: from tranthip-mobl.ccr.corp.intel.com (HELO [10.213.32.169])
+ ([10.213.32.169])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 06:34:08 -0700
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+References: <20210921110121.3783395-1-matthew.auld@intel.com>
+ <20210921110121.3783395-10-matthew.auld@intel.com>
+ <92d33ac7-f1b9-26e4-d39f-c351c4220dfa@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <b42594cb-a9aa-8240-e03b-5d6c303242d0@intel.com>
+Date: Wed, 22 Sep 2021 14:34:02 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Sep 2021 12:55:23 -0000
-Message-ID: <163231532387.6942.10892011222041216458@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210922091044.2612-1-christian.koenig@amd.com>
-In-Reply-To: <20210922091044.2612-1-christian.koenig@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B01/26=5D_dma-buf=3A_add_dma=5Fresv=5Ffor?=
- =?utf-8?q?=5Feach=5Ffence=5Funlocked_v4?=
+In-Reply-To: <92d33ac7-f1b9-26e4-d39f-c351c4220dfa@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v4 10/14] drm/i915/ttm: hide shmem objects
+ from TTM LRU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +53,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 21/09/2021 12:48, Christian König wrote:
+> Am 21.09.21 um 13:01 schrieb Matthew Auld:
+>> This is probably a NAK. But ideally we need to somehow prevent TTM from
+>> seeing shmem objects when doing its LRU swap walk. Since these are
+>> EXTERNAL they are ignored anyway, but keeping them in the LRU seems
+>> pretty wasteful.  Trying to use bo_pin() for this is all kinds of nasty
+>> since we need to be able to do the bo_unpin() from the unpopulate hook,
+>> but since that can be called from the BO destroy path we will likely go
+>> down in flames.
+>>
+>> An alternative is to maybe just add EXTERNAL objects to some
+>> bdev->external LRU in TTM, or just don't add them at all?
+> 
+> Yeah, that goes into the same direction as why I want to push the LRU 
+> into the resource for some time.
+> 
+> The problem is that the LRU is needed for multiple things. E.g. 
+> swapping, GART management, resource constrains, IOMMU teardown etc..
+> 
+> So for now I think that everything should be on the LRU even if it isn't 
+> valid to be there for some use case.
 
-Series: series starting with [01/26] dma-buf: add dma_resv_for_each_fence_unlocked v4
-URL   : https://patchwork.freedesktop.org/series/94943/
-State : failure
+Ok. Is it a no-go to keep TT_FLAG_EXTERNAL on say bdev->external?
 
-== Summary ==
-
-Applying: dma-buf: add dma_resv_for_each_fence_unlocked v4
-Applying: dma-buf: add dma_resv_for_each_fence
-Applying: dma-buf: use new iterator in dma_resv_copy_fences
-Applying: dma-buf: use new iterator in dma_resv_get_fences v2
-Applying: dma-buf: use new iterator in dma_resv_wait_timeout
-Applying: dma-buf: use new iterator in dma_resv_test_signaled
-Applying: drm/ttm: use the new iterator in ttm_bo_flush_all_fences
-Applying: drm/amdgpu: use the new iterator in amdgpu_sync_resv
-Applying: drm/amdgpu: use new iterator in amdgpu_ttm_bo_eviction_valuable
-Applying: drm/msm: use new iterator in msm_gem_describe
-Applying: drm/radeon: use new iterator in radeon_sync_resv
-Applying: drm/scheduler: use new iterator in drm_sched_job_add_implicit_dependencies v2
-Applying: drm/i915: use the new iterator in i915_gem_busy_ioctl
-Applying: drm/i915: use the new iterator in i915_sw_fence_await_reservation v3
-Applying: drm/i915: use the new iterator in i915_request_await_object v2
-Applying: drm/i915: use new iterator in i915_gem_object_wait_reservation
-Applying: drm/i915: use new iterator in i915_gem_object_wait_priority
-Applying: drm/i915: use new iterator in i915_gem_object_last_write_engine
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gem/i915_gem_object.h
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gem/i915_gem_object.h
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gem/i915_gem_object.h
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0018 drm/i915: use new iterator in i915_gem_object_last_write_engine
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
-
+> 
+> Regards,
+> Christian.
+> 
+>>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 17 +++++++++++++++++
+>>   1 file changed, 17 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> index 174aebe11264..b438ddb52764 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> @@ -800,6 +800,22 @@ static unsigned long i915_ttm_io_mem_pfn(struct 
+>> ttm_buffer_object *bo,
+>>       return ((base + sg_dma_address(sg)) >> PAGE_SHIFT) + ofs;
+>>   }
+>> +static void i915_ttm_del_from_lru_notify(struct ttm_buffer_object *bo)
+>> +{
+>> +    struct i915_ttm_tt *i915_tt =
+>> +        container_of(bo->ttm, typeof(*i915_tt), ttm);
+>> +
+>> +    /* Idealy we need to prevent TTM from seeing shmem objects when 
+>> doing
+>> +     * its LRU swap walk. Since these are EXTERNAL they are ignored 
+>> anyway,
+>> +     * but keeping them in the LRU is pretty waseful. Trying to use 
+>> bo_pin()
+>> +     * for this is very nasty since we need to be able to do the 
+>> bo_unpin()
+>> +     * from the unpopulate hook, but since that can be called from 
+>> the BO
+>> +     * destroy path we will go down in flames.
+>> +     */
+>> +    if (bo->ttm && ttm_tt_is_populated(bo->ttm) && i915_tt->is_shmem)
+>> +        list_del_init(&bo->lru);
+>> +}
+>> +
+>>   static struct ttm_device_funcs i915_ttm_bo_driver = {
+>>       .ttm_tt_create = i915_ttm_tt_create,
+>>       .ttm_tt_populate = i915_ttm_tt_populate,
+>> @@ -810,6 +826,7 @@ static struct ttm_device_funcs i915_ttm_bo_driver = {
+>>       .move = i915_ttm_move,
+>>       .swap_notify = i915_ttm_swap_notify,
+>>       .delete_mem_notify = i915_ttm_delete_mem_notify,
+>> +    .del_from_lru_notify = i915_ttm_del_from_lru_notify,
+>>       .io_mem_reserve = i915_ttm_io_mem_reserve,
+>>       .io_mem_pfn = i915_ttm_io_mem_pfn,
+>>   };
+> 
