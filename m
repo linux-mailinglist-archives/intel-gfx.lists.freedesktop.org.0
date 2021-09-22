@@ -1,35 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4598841536B
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 00:27:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A014153A7
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 00:56:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C87A6EC7D;
-	Wed, 22 Sep 2021 22:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D58D89EEB;
+	Wed, 22 Sep 2021 22:56:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9901A6E086;
- Wed, 22 Sep 2021 22:27:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 91239A73C9;
- Wed, 22 Sep 2021 22:27:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5837357961184774976=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E405989EEB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Sep 2021 22:56:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="221832575"
+X-IronPort-AV: E=Sophos;i="5.85,315,1624345200"; d="scan'208";a="221832575"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 15:56:05 -0700
+X-IronPort-AV: E=Sophos;i="5.85,315,1624345200"; d="scan'208";a="613720967"
+Received: from hchegond-ivm.jf.intel.com (HELO intel.com) ([10.165.21.135])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 15:56:04 -0700
+Date: Wed, 22 Sep 2021 15:56:00 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ "Huang, Sean Z" <sean.z.huang@intel.com>, Huang@freedesktop.org,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20210922225600.GA55710@intel.com>
+References: <20210922001531.399533-1-alan.previn.teres.alexis@intel.com>
+ <20210922001531.399533-9-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Sep 2021 22:27:26 -0000
-Message-ID: <163234964658.6941.16196850112256168755@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210922215242.66683-1-jose.souza@intel.com>
-In-Reply-To: <20210922215242.66683-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/display/dmc=3A_Set_DC?=
- =?utf-8?q?=5FSTATE=5FDEBUG=5FMASK=5FCORES_after_firmware_load?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210922001531.399533-9-alan.previn.teres.alexis@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v11 08/17] drm/i915/pxp: Implement arb
+ session teardown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,192 +50,366 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5837357961184774976==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [CI,1/3] drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load
-URL   : https://patchwork.freedesktop.org/series/94967/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10629 -> Patchwork_21136
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21136:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - {fi-ehl-2}:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21136 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#3921])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-r:           [DMESG-FAIL][5] ([i915#2291] / [i915#541]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (42 -> 35)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10629 -> Patchwork_21136
-
-  CI-20190529: 20190529
-  CI_DRM_10629: ce6974ec90355ddef78e6bc2221cb2296e5ba349 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6214: 13550e92c6c7bd825abb6c9b087d12a524b4674c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21136: f58ed69579ae3a19f7ddbbbaf0ba19dbc67ecfe7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f58ed69579ae drm/i915/display: Only keep PSR enabled if there is active planes
-99491a0cc1f9 drm/i915/display: Match PSR2 selective fetch sequences with specification
-5b64a2f4c3ca drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html
-
---===============5837357961184774976==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94967/">https://patchwork.freedesktop.org/series/94967/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10629 -&gt; Patchwork_21136</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21136:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@gt_heartbeat:<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21136 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_heartbeat:<ul>
-<li>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10629/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21136/fi-kbl-r/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 35)</h2>
-<p>Missing    (7): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10629 -&gt; Patchwork_21136</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10629: ce6974ec90355ddef78e6bc2221cb2296e5ba349 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6214: 13550e92c6c7bd825abb6c9b087d12a524b4674c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21136: f58ed69579ae3a19f7ddbbbaf0ba19dbc67ecfe7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f58ed69579ae drm/i915/display: Only keep PSR enabled if there is active planes<br />
-99491a0cc1f9 drm/i915/display: Match PSR2 selective fetch sequences with specification<br />
-5b64a2f4c3ca drm/i915/display/dmc: Set DC_STATE_DEBUG_MASK_CORES after firmware load</p>
-
-</body>
-</html>
-
---===============5837357961184774976==--
+On Tue, Sep 21, 2021 at 05:15:22PM -0700, Alan Previn wrote:
+> From: "Huang, Sean Z" <sean.z.huang@intel.com>
+> 
+> Teardown is triggered when the display topology changes and no
+> long meets the secure playback requirement, and hardware trashes
+> all the encryption keys for display. Additionally, we want to emit a
+> teardown operation to make sure we're clean on boot and resume
+> 
+> v2: emit in the ring, use high prio request (Chris)
+> v3: better defines, stalling flush, cleaned up and renamed submission
+>     funcs (Chris)
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                |   1 +
+>  drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  22 ++-
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c         |   7 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c     | 141 +++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h     |  15 ++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_session.c |  29 ++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_session.h |   1 +
+>  7 files changed, 212 insertions(+), 4 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 334efd835cd8..ac4585f98e43 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -283,6 +283,7 @@ i915-y += i915_perf.o
+>  # Protected execution platform (PXP) support
+>  i915-$(CONFIG_DRM_I915_PXP) += \
+>  	pxp/intel_pxp.o \
+> +	pxp/intel_pxp_cmd.o \
+>  	pxp/intel_pxp_session.o \
+>  	pxp/intel_pxp_tee.o
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> index 1c3af0fc0456..f8253012d166 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> @@ -28,10 +28,13 @@
+>  #define INSTR_26_TO_24_MASK	0x7000000
+>  #define   INSTR_26_TO_24_SHIFT	24
+>  
+> +#define __INSTR(client) ((client) << INSTR_CLIENT_SHIFT)
+> +
+>  /*
+>   * Memory interface instructions used by the kernel
+>   */
+> -#define MI_INSTR(opcode, flags) (((opcode) << 23) | (flags))
+> +#define MI_INSTR(opcode, flags) \
+> +	(__INSTR(INSTR_MI_CLIENT) | (opcode) << 23 | (flags))
+>  /* Many MI commands use bit 22 of the header dword for GGTT vs PPGTT */
+>  #define  MI_GLOBAL_GTT    (1<<22)
+>  
+> @@ -57,6 +60,7 @@
+>  #define MI_SUSPEND_FLUSH	MI_INSTR(0x0b, 0)
+>  #define   MI_SUSPEND_FLUSH_EN	(1<<0)
+>  #define MI_SET_APPID		MI_INSTR(0x0e, 0)
+> +#define   MI_SET_APPID_SESSION_ID(x)	((x) << 0)
+>  #define MI_OVERLAY_FLIP		MI_INSTR(0x11, 0)
+>  #define   MI_OVERLAY_CONTINUE	(0x0<<21)
+>  #define   MI_OVERLAY_ON		(0x1<<21)
+> @@ -146,6 +150,7 @@
+>  #define MI_STORE_REGISTER_MEM_GEN8   MI_INSTR(0x24, 2)
+>  #define   MI_SRM_LRM_GLOBAL_GTT		(1<<22)
+>  #define MI_FLUSH_DW		MI_INSTR(0x26, 1) /* for GEN6 */
+> +#define   MI_FLUSH_DW_PROTECTED_MEM_EN	(1 << 22)
+>  #define   MI_FLUSH_DW_STORE_INDEX	(1<<21)
+>  #define   MI_INVALIDATE_TLB		(1<<18)
+>  #define   MI_FLUSH_DW_OP_STOREDW	(1<<14)
+> @@ -272,6 +277,19 @@
+>  #define   MI_MATH_REG_ZF		0x32
+>  #define   MI_MATH_REG_CF		0x33
+>  
+> +/*
+> + * Media instructions used by the kernel
+> + */
+> +#define MEDIA_INSTR(pipe, op, sub_op, flags) \
+> +	(__INSTR(INSTR_RC_CLIENT) | (pipe) << INSTR_SUBCLIENT_SHIFT | \
+> +	(op) << INSTR_26_TO_24_SHIFT | (sub_op) << 16 | (flags))
+> +
+> +#define MFX_WAIT				MEDIA_INSTR(1, 0, 0, 0)
+> +#define  MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG	REG_BIT(8)
+> +#define  MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG	REG_BIT(9)
+> +
+> +#define CRYPTO_KEY_EXCHANGE			MEDIA_INSTR(2, 6, 9, 0)
+> +
+>  /*
+>   * Commands used only by the command parser
+>   */
+> @@ -328,8 +346,6 @@
+>  #define GFX_OP_3DSTATE_BINDING_TABLE_EDIT_PS \
+>  	((0x3<<29)|(0x3<<27)|(0x0<<24)|(0x47<<16))
+>  
+> -#define MFX_WAIT  ((0x3<<29)|(0x1<<27)|(0x0<<16))
+> -
+>  #define COLOR_BLT     ((0x2<<29)|(0x40<<22))
+>  #define SRC_COPY_BLT  ((0x2<<29)|(0x43<<22))
+>  
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index 54ad5e3d0df2..a589d40e08a8 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -109,9 +109,14 @@ void intel_pxp_fini(struct intel_pxp *pxp)
+>  
+>  void intel_pxp_init_hw(struct intel_pxp *pxp)
+>  {
+> +	int ret;
+> +
+>  	kcr_pxp_enable(pxp_to_gt(pxp));
+>  
+> -	intel_pxp_create_arb_session(pxp);
+> +	/* always emit a full termination to clean the state */
+> +	ret = intel_pxp_terminate_arb_session_and_global(pxp);
+> +	if (!ret)
+> +		intel_pxp_create_arb_session(pxp);
+>  }
+>  
+>  void intel_pxp_fini_hw(struct intel_pxp *pxp)
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> new file mode 100644
+> index 000000000000..80678dafde15
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> @@ -0,0 +1,141 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_cmd.h"
+> +#include "intel_pxp_session.h"
+> +#include "gt/intel_context.h"
+> +#include "gt/intel_engine_pm.h"
+> +#include "gt/intel_gpu_commands.h"
+> +#include "gt/intel_ring.h"
+> +
+> +#include "i915_trace.h"
+> +
+> +/* stall until prior PXP and MFX/HCP/HUC objects are cmopleted */
+> +#define MFX_WAIT_PXP (MFX_WAIT | \
+> +		      MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | \
+> +		      MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG)
+> +
+> +static u32 *pxp_emit_session_selection(u32 *cs, u32 idx)
+> +{
+> +	*cs++ = MFX_WAIT_PXP;
+> +
+> +	/* pxp off */
+> +	*cs++ = MI_FLUSH_DW;
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +
+> +	/* select session */
+> +	*cs++ = MI_SET_APPID | MI_SET_APPID_SESSION_ID(idx);
+> +
+> +	*cs++ = MFX_WAIT_PXP;
+> +
+> +	/* pxp on */
+> +	*cs++ = MI_FLUSH_DW | MI_FLUSH_DW_PROTECTED_MEM_EN |
+> +		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX;
+> +	*cs++ = I915_GEM_HWS_PXP_ADDR | MI_FLUSH_DW_USE_GTT;
+> +	*cs++ = 0;
+> +
+> +	*cs++ = MFX_WAIT_PXP;
+> +
+> +	return cs;
+> +}
+> +
+> +static u32 *pxp_emit_inline_termination(u32 *cs)
+> +{
+> +	/* session inline termination */
+> +	*cs++ = CRYPTO_KEY_EXCHANGE;
+> +	*cs++ = 0;
+> +
+> +	return cs;
+> +}
+> +
+> +static u32 *pxp_emit_session_termination(u32 *cs, u32 idx)
+> +{
+> +	cs = pxp_emit_session_selection(cs, idx);
+> +	cs = pxp_emit_inline_termination(cs);
+> +
+> +	return cs;
+> +}
+> +
+> +static u32 *pxp_emit_wait(u32 *cs)
+> +{
+> +	/* wait for cmds to go through */
+> +	*cs++ = MFX_WAIT_PXP;
+> +	*cs++ = 0;
+> +
+> +	return cs;
+> +}
+> +
+> +/*
+> + * if we ever need to terminate more than one session, we can submit multiple
+> + * selections and terminations back-to-back with a single wait at the end
+> + */
+> +#define SELECTION_LEN 10
+> +#define TERMINATION_LEN 2
+> +#define SESSION_TERMINATION_LEN(x) ((SELECTION_LEN + TERMINATION_LEN) * (x))
+> +#define WAIT_LEN 2
+> +
+> +static void pxp_request_commit(struct i915_request *rq)
+> +{
+> +	struct i915_sched_attr attr = { .priority = I915_PRIORITY_MAX };
+> +	struct intel_timeline * const tl = i915_request_timeline(rq);
+> +
+> +	lockdep_unpin_lock(&tl->mutex, rq->cookie);
+> +
+> +	trace_i915_request_add(rq);
+> +	__i915_request_commit(rq);
+> +	__i915_request_queue(rq, &attr);
+> +
+> +	mutex_unlock(&tl->mutex);
+> +}
+> +
+> +int intel_pxp_terminate_session(struct intel_pxp *pxp, u32 id)
+> +{
+> +	struct i915_request *rq;
+> +	struct intel_context *ce = pxp->ce;
+> +	u32 *cs;
+> +	int err;
+err needs to be initialized to 0. If not initialized, it may be used
+uninitialized in the line I mentioned below.
+> +
+> +	if (!intel_pxp_is_enabled(pxp))
+> +		return 0;
+> +
+> +	rq = i915_request_create(ce);
+> +	if (IS_ERR(rq))
+> +		return PTR_ERR(rq);
+> +
+> +	if (ce->engine->emit_init_breadcrumb) {
+> +		err = ce->engine->emit_init_breadcrumb(rq);
+> +		if (err)
+> +			goto out_rq;
+> +	}
+> +
+> +	cs = intel_ring_begin(rq, SESSION_TERMINATION_LEN(1) + WAIT_LEN);
+> +	if (IS_ERR(cs)) {
+> +		err = PTR_ERR(cs);
+> +		goto out_rq;
+> +	}
+> +
+> +	cs = pxp_emit_session_termination(cs, id);
+> +	cs = pxp_emit_wait(cs);
+> +
+> +	intel_ring_advance(rq, cs);
+> +
+> +out_rq:
+> +	i915_request_get(rq);
+> +
+> +	if (unlikely(err))
+uninitialized 'err' may be used in the above line.
+> +		i915_request_set_error_once(rq, err);
+> +
+> +	pxp_request_commit(rq);
+> +
+> +	if (!err && i915_request_wait(rq, 0, HZ / 5) < 0)
+> +		err = -ETIME;
+> +
+> +	i915_request_put(rq);
+> +
+> +	return err;
+> +}
+> +
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> new file mode 100644
+> index 000000000000..6d6299543578
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_PXP_CMD_H__
+> +#define __INTEL_PXP_CMD_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_pxp;
+> +
+> +int intel_pxp_terminate_session(struct intel_pxp *pxp, u32 idx);
+> +
+> +#endif /* __INTEL_PXP_CMD_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> index 3331868f354c..b8e24adeb1f3 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> @@ -7,6 +7,7 @@
+>  #include "i915_drv.h"
+>  
+>  #include "intel_pxp.h"
+> +#include "intel_pxp_cmd.h"
+>  #include "intel_pxp_session.h"
+>  #include "intel_pxp_tee.h"
+>  #include "intel_pxp_types.h"
+> @@ -15,6 +16,9 @@
+>  
+>  #define GEN12_KCR_SIP _MMIO(0x32260) /* KCR hwdrm session in play 0-31 */
+>  
+> +/* PXP global terminate register for session termination */
+> +#define PXP_GLOBAL_TERMINATE _MMIO(0x320f8)
+> +
+>  static bool intel_pxp_session_is_in_play(struct intel_pxp *pxp, u32 id)
+>  {
+>  	struct intel_gt *gt = pxp_to_gt(pxp);
+> @@ -72,3 +76,28 @@ int intel_pxp_create_arb_session(struct intel_pxp *pxp)
+>  
+>  	return 0;
+>  }
+> +
+> +int intel_pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
+> +{
+> +	int ret;
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +	pxp->arb_is_valid = false;
+> +
+> +	/* terminate the hw sessions */
+> +	ret = intel_pxp_terminate_session(pxp, ARB_SESSION);
+> +	if (ret) {
+> +		drm_err(&gt->i915->drm, "Failed to submit session termination\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, false);
+> +	if (ret) {
+> +		drm_err(&gt->i915->drm, "Session state did not clear\n");
+> +		return ret;
+> +	}
+> +
+> +	intel_uncore_write(gt->uncore, PXP_GLOBAL_TERMINATE, 1);
+> +
+> +	return ret;
+> +}
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.h b/drivers/gpu/drm/i915/pxp/intel_pxp_session.h
+> index 316c3bebed9c..7354314b1cc4 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.h
+> @@ -11,5 +11,6 @@
+>  struct intel_pxp;
+>  
+>  int intel_pxp_create_arb_session(struct intel_pxp *pxp);
+> +int intel_pxp_terminate_arb_session_and_global(struct intel_pxp *pxp);
+>  
+>  #endif /* __INTEL_PXP_SESSION_H__ */
+> -- 
+> 2.25.1
+> 
