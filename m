@@ -1,43 +1,144 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77442414E23
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 18:31:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9488A414E19
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 18:28:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCE856EC41;
-	Wed, 22 Sep 2021 16:31:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE0256EC41;
+	Wed, 22 Sep 2021 16:28:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3265B6EC40;
- Wed, 22 Sep 2021 16:31:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="210716551"
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="210716551"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 09:30:52 -0700
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="474751081"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 09:30:51 -0700
-Date: Wed, 22 Sep 2021 09:25:55 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
-Message-ID: <20210922162555.GA4456@jons-linux-dev-box>
-References: <20210820224446.30620-1-matthew.brost@intel.com>
- <20210820224446.30620-16-matthew.brost@intel.com>
- <c840bf5b-c5e9-872d-e04f-2dfe1852e555@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ACCA6EC41
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Sep 2021 16:28:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="246079322"
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="246079322"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 09:28:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="484629791"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by orsmga008.jf.intel.com with ESMTP; 22 Sep 2021 09:28:24 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 22 Sep 2021 09:28:24 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Wed, 22 Sep 2021 09:28:24 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.12; Wed, 22 Sep 2021 09:28:23 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I162O42q+0KeyfvluaF2JfZd4JfRR7ePPYokkjdk6OCZ5QzhwNsn2FC3meAddyazQk2u3xZjao4yfJCXTIQSt/yDz1McWJMj9B98MYHshn/SxqnjEluPwFZPPO3QadC9pt6c757KIPoWx8F2rzg1z4Vh87tCHMrks77H+rGNXvBf+KdNCwzl8SCrGGv4PVw9CtC2NWwVhJ9XFXldVKfFK8C/d2GZJGQMJ542nBlFBRXHamgIfJk6ZoUbkiKt/2H653IEsAZb87utM4C5aBt6DOTJJ7yEUf+/we7wzfOirXCmj6xebnE2/uaBELzyLKCt4dzEtNkFzFf+J3Ka/4PhSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=R2n657S2j3+fkP5jijFDDsTJvmaAyJHdCgBaXXvLHy8=;
+ b=dXDRaxA6O1ZZpfR9/RoI6NfAQ3b4teRUxxt+qwBWaIbyW1wn8ZmzkunNVxIHEyaOwetIl+44Q6yKvKItgy2BY2QqBX/p3bAzWb3fjbfvo0aDfvUtJna6eERGKQ6wdUfkJ77EbbvZOSmsAsfnoygEMYD9H4Huj+QZaAbrSr9dG1PFCrcbUyHP9Jf/LMBuCoZ2VfRbnQ+5OEXwbAAg1XHkJUafiu602lAZ3NMngZpfVZQ30d/CEM79kd8mNCKQwpvHO9HLgBq6nWciYRS2t/wqxUO2sI1gYuFnPdCV6efqurPK298HIOBDQ/7uprmEx7VHgkR6wbLQplPqK5ZcGoUV1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R2n657S2j3+fkP5jijFDDsTJvmaAyJHdCgBaXXvLHy8=;
+ b=HfuPSqyax2ya9SSmeC2tq+eNNWPmIqGrSZkgnbwHOBBW1SgQJLBML79yogYJjYIOjpT/2nlqo1wflo/ZDnJWZDnP32n/lXTYGlKXN2BCyBS5kKITo0I5q+tMnKEzA5ksdOPnWmWDU9h+U6+v5zH+/fc+THDIZknBxKmI9DjI6po=
+Authentication-Results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
+ by CH0PR11MB5708.namprd11.prod.outlook.com (2603:10b6:610:111::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Wed, 22 Sep
+ 2021 16:28:20 +0000
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::c3e:dff7:364c:ba7]) by CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::c3e:dff7:364c:ba7%2]) with mapi id 15.20.4544.015; Wed, 22 Sep 2021
+ 16:28:20 +0000
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20210921004113.261827-1-jose.souza@intel.com>
+ <20210921004113.261827-2-jose.souza@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Message-ID: <1ce7141d-d154-c329-bc98-a0539999ad71@intel.com>
+Date: Wed, 22 Sep 2021 19:28:08 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
+In-Reply-To: <20210921004113.261827-2-jose.souza@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DU2PR04CA0321.eurprd04.prod.outlook.com
+ (2603:10a6:10:2b5::26) To CH0PR11MB5409.namprd11.prod.outlook.com
+ (2603:10b6:610:d0::7)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c840bf5b-c5e9-872d-e04f-2dfe1852e555@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 15/27] drm/i915/guc: Implement multi-lrc
- submission
+Received: from [10.237.72.208] (134.134.137.88) by
+ DU2PR04CA0321.eurprd04.prod.outlook.com (2603:10a6:10:2b5::26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4523.16 via Frontend Transport; Wed, 22 Sep 2021 16:28:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c3fc32bc-1321-4755-58de-08d97de5fd0c
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5708:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH0PR11MB5708C95024D6EC38CEDA8C0EB8A29@CH0PR11MB5708.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1186;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yGz0VEfgxwdFEnp55ww7kQeuSdWbclNp1MiALevOyurHRuj/99iTxO3T8nEs0UrhXdDwjTD2qK6shvbBcQEUetyM5H2q7qFfOU29tbr1FLA7IQP1uOkb847JFI9bMyhcENREadTo2DBn79AOj7OHYz9v6gjxWrqw1F0DmRCA8MVwhOCAM13TLq2iIWdfn+11pz7xFfAcApHUt3VXI3HS3BEF19Y43NTBmzd7elzeeTkdbhb9jjf6uKW4uiDmWiljhfXAp9msKQMMgX1QEBXUStkV2JH1lmbYGxlTN2bIcoxAwW+cVsPwjM7/Jo470J5oJdmKHety2yMSKE6UB/KawpGxLvBlCv2B0unzVBoEqSRoslQvXRU8mzaVILQUdQt1ThPCoAMCcjX8lHDDsL0OU7uIrhniiKFQGWGEWxefeOMW7G+SQJZNI674JcOWCWbh78dgYXMyB2mPjROuCvzEUza2wijojYOGpv6a5NdG6wnOkoJxPV0sQI69KPx666+D/7hjMOmIgdVWj9K+jXmPtDI0uy4eSHBx+4xuKFIFgnvEM+hIgSaHFQOuefAPhx0yD0Ij8p0sbGifzwD/2bxNy2GVzfjDKEM0mYeZQPRffH1IGwRDiS+zz0bpJ0g6zu39DYpPjbat3deWNjh1tayT8t6AZDKEXLm7Csbyht/xS6tG7Io62TMYjNlGSeHfWvNHQF7QkaC82E8IdhHV2WB2SHHI4h0sJUbpZmbb16bwqHo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(86362001)(53546011)(5660300002)(508600001)(30864003)(83380400001)(16576012)(31696002)(316002)(6486002)(6666004)(66574015)(2906002)(4326008)(38100700002)(26005)(2616005)(186003)(8936002)(66556008)(956004)(66476007)(36756003)(66946007)(8676002)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MGdVSWJpNDY5T0FBZVVvWmt5VnRURGgzS1A0QkFNNXJWS1BDekhYQmVhSy84?=
+ =?utf-8?B?dDBCQ3dWaHpNK1lUbFZVNnhsNmJEbWZSeDQ4K2hZWUF6M2hsU3hPRy9MckxG?=
+ =?utf-8?B?cEtmRGN6eWlna2prWnA2L1dVOEl4UWRvUk1RN0JDUjQrdmVSRk5hdjFmbEND?=
+ =?utf-8?B?NXd4SVdEU2Y1S2pDTDhCL05iMklHVzQwbVFQZnc1dDlqWjMrY3VhckhFQVhq?=
+ =?utf-8?B?NXY2SS9mMGUyd3B2NDhOZEpWK1VKQ2pRSmQ3L08wd1YxOExGcFA4TlZEVHNa?=
+ =?utf-8?B?OFZMVXFrUEZtN0RLZWhWaEgwelgxREtod0ZUWHdMVnpVVkhBRkJ6UW1Jb2Vx?=
+ =?utf-8?B?N2pjZHBrc0x1ODJ2NDhlWGJZcVZTVUhUNU5SSDVJd1E0OG5vSjZhYWNrZEVF?=
+ =?utf-8?B?UTBpb0o3OTRrb0RIckhmV0RSYXh5dWlRWXBFR2tBbkFiZGZscm1lVlJuVCts?=
+ =?utf-8?B?VTR2MEhRK3liN3B2cFRjbDQzSDVZWldla2oyRmF0dGZkWFdFMjRRdklROUR3?=
+ =?utf-8?B?OUtCcHEwRy8yNmo1ZTdnR2NMd2kxQ1VxVlE3azBPb3d3MHJzbFkrN2dwTEQz?=
+ =?utf-8?B?aE0rUDVtLzE1UTlUcmgrVUFjZWZ1bWQycWUxSHVBRUViWUpKRVZha2RpcllD?=
+ =?utf-8?B?YjFNNk5nQWhuK2x4QlhjVnV2Q1NtemRPQVBVUDZORjVkU0RWcTBpZ0tGUXYv?=
+ =?utf-8?B?L0w0L0NDZHlibk8xSFdJQXA1S2paWnloT0RtRGlUa1pHb3Z1WVZkb2wyRkU4?=
+ =?utf-8?B?UFZ0NE95ektrNHg1d3NxRjRoaWZFUnhOZE5NUVFuUVdRVTRXTjRzQXlJdTRS?=
+ =?utf-8?B?QXBYc1dBbnhDTVhvc0VWdjlFRlkxUmF4eXRSVEE3eVUzRXcyUmRFa0ZZSUgx?=
+ =?utf-8?B?S0lzWGRLQjZUeHhUMXZyc3VodU11S2t5OUhZczdBelM4djFwbkVTWmlPTjEx?=
+ =?utf-8?B?cEREbkFFUUJyUml2RlhXNHd2WG5uQ0FnS0ZZK1M4ck13bUFHdVlOOFBOcm52?=
+ =?utf-8?B?UWJxbUE2bU1jOG1xZmwyS0EveEJRdGJuNTRIYU9JUm5nZlJxR1E4Q0Z3c01p?=
+ =?utf-8?B?K2VMakdmNzFDQlYrd0JydFFLL1hQaytRMDFPUnBnQkEzUHBBNXdySzhOaHEz?=
+ =?utf-8?B?Y2t1WldhYU81YXlIUUwzZUtaYVlaTWdKMVhxdngrV1F4bi9Sc1Rhd0dNZUpU?=
+ =?utf-8?B?dXpZbERtL2ZLV2U5TDR1cllleUNpdlZWdGhMTXZTZzU1MVh0dXhFem1obWRx?=
+ =?utf-8?B?L1JBVzdDbXpITEkrVkgxTytvRzRocDNpTTZIWTNqWVRKeFNmam9WQ0R5a3Zw?=
+ =?utf-8?B?T29TVjY4OXlJN0ZIMENxYUNMN0NFc2x6TTBtVVRHOXh2aEVPVVZBQW1QekxR?=
+ =?utf-8?B?RHZXOVFzWU9jcmVKNWozRTVETVVuUkx1dmt5SzIzQW41NDlhMVhXQlVYNFg0?=
+ =?utf-8?B?YkZsTFB1WEFnV00waEVyL2pLRGF4cEN6VmxoaC9BbytMelNmZEN2OEFXUFFG?=
+ =?utf-8?B?Ym5jbGpXYVk3Yk1nVHA4M0FMNnplTzUyTkp1WGRPS1VhOXpTS2kxbnZnREJP?=
+ =?utf-8?B?T2x4MHpjSExxZ2VFSVFRYUpaNUZ4TkJwTXJZd0Q4RldVSEpZM3BNUllwZld6?=
+ =?utf-8?B?d0NrUDQ3Z2pCMnluSmtjaFk4ZFZNNHd3NXRVSzg2Y3pTSm5KaElBYlo0VjI5?=
+ =?utf-8?B?WmR6T1ZyQ0JxQ2crVDNzcjZma0JGUkIrZjVOMlhTdCtZV1FGOFpkVGtIYnVn?=
+ =?utf-8?Q?75q8u4Csx/Yn8Lxl1GkL69ByocOFlqdz9hit1rB?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3fc32bc-1321-4755-58de-08d97de5fd0c
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2021 16:28:20.0304 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OueU9o3rXxwOQcO5YGv/Ugch2/witUbh6EE/f8AUo39PMeGUbh/KyNo8jXKbnT99iunjGaJ9zbcRbucWTJX4ONYhZySQ14nbxJciKCtHiqk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5708
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v3 2/3] drm/i915/display: Only keep PSR
+ enabled if there is active planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,634 +154,403 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 20, 2021 at 02:48:52PM -0700, John Harrison wrote:
-> On 8/20/2021 15:44, Matthew Brost wrote:
-> > Implement multi-lrc submission via a single workqueue entry and single
-> > H2G. The workqueue entry contains an updated tail value for each
-> > request, of all the contexts in the multi-lrc submission, and updates
-> > these values simultaneously. As such, the tasklet and bypass path have
-> > been updated to coalesce requests into a single submission.
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  21 ++
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   8 +
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  24 +-
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   6 +-
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 312 +++++++++++++++---
-> >   drivers/gpu/drm/i915/i915_request.h           |   8 +
-> >   6 files changed, 317 insertions(+), 62 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> > index fbfcae727d7f..879aef662b2e 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> > @@ -748,3 +748,24 @@ void intel_guc_load_status(struct intel_guc *guc, struct drm_printer *p)
-> >   		}
-> >   	}
-> >   }
-> > +
-> > +void intel_guc_write_barrier(struct intel_guc *guc)
-> > +{
-> > +	struct intel_gt *gt = guc_to_gt(guc);
-> > +
-> > +	if (i915_gem_object_is_lmem(guc->ct.vma->obj)) {
-> > +		GEM_BUG_ON(guc->send_regs.fw_domains);
-> Granted, this patch is just moving code from one file to another not
-> changing it. However, I think it would be worth adding a blank line in here.
-> Otherwise the 'this register' comment below can be confusingly read as
-> referring to the send_regs.fw_domain entry above.
+Looks good to me.
+Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+
+On 9/21/21 3:41 AM, José Roberto de Souza wrote:
+> PSR always had a requirement to only be enabled if there is active
+> planes but not following that never caused any issues.
+> But that changes in Alderlake-P, leaving PSR enabled without
+> active planes causes transcoder/port underruns.
 > 
-> And maybe add a comment why it is a bug for the send_regs value to be set?
-> I'm not seeing any obvious connection between it and the reset of this code.
+> Similar behavior was fixed during the pipe disable sequence by
+> commit 84030adb9e27 ("drm/i915/display: Disable audio, DRRS and PSR before planes").
 > 
-
-Can add a blank line. I think the GEM_BUG_ON relates to being able to
-use intel_uncore_write_fw vs intel_uncore_write. Can add comment.
-
-> > +		/*
-> > +		 * This register is used by the i915 and GuC for MMIO based
-> > +		 * communication. Once we are in this code CTBs are the only
-> > +		 * method the i915 uses to communicate with the GuC so it is
-> > +		 * safe to write to this register (a value of 0 is NOP for MMIO
-> > +		 * communication). If we ever start mixing CTBs and MMIOs a new
-> > +		 * register will have to be chosen.
-> > +		 */
-> > +		intel_uncore_write_fw(gt->uncore, GEN11_SOFT_SCRATCH(0), 0);
-> > +	} else {
-> > +		/* wmb() sufficient for a barrier if in smem */
-> > +		wmb();
-> > +	}
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > index 3f95b1b4f15c..0ead2406d03c 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > @@ -37,6 +37,12 @@ struct intel_guc {
-> >   	/* Global engine used to submit requests to GuC */
-> >   	struct i915_sched_engine *sched_engine;
-> >   	struct i915_request *stalled_request;
-> > +	enum {
-> > +		STALL_NONE,
-> > +		STALL_REGISTER_CONTEXT,
-> > +		STALL_MOVE_LRC_TAIL,
-> > +		STALL_ADD_REQUEST,
-> > +	} submission_stall_reason;
-> >   	/* intel_guc_recv interrupt related state */
-> >   	spinlock_t irq_lock;
-> > @@ -332,4 +338,6 @@ void intel_guc_submission_cancel_requests(struct intel_guc *guc);
-> >   void intel_guc_load_status(struct intel_guc *guc, struct drm_printer *p);
-> > +void intel_guc_write_barrier(struct intel_guc *guc);
-> > +
-> >   #endif
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > index 20c710a74498..10d1878d2826 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > @@ -377,28 +377,6 @@ static u32 ct_get_next_fence(struct intel_guc_ct *ct)
-> >   	return ++ct->requests.last_fence;
-> >   }
-> > -static void write_barrier(struct intel_guc_ct *ct)
-> > -{
-> > -	struct intel_guc *guc = ct_to_guc(ct);
-> > -	struct intel_gt *gt = guc_to_gt(guc);
-> > -
-> > -	if (i915_gem_object_is_lmem(guc->ct.vma->obj)) {
-> > -		GEM_BUG_ON(guc->send_regs.fw_domains);
-> > -		/*
-> > -		 * This register is used by the i915 and GuC for MMIO based
-> > -		 * communication. Once we are in this code CTBs are the only
-> > -		 * method the i915 uses to communicate with the GuC so it is
-> > -		 * safe to write to this register (a value of 0 is NOP for MMIO
-> > -		 * communication). If we ever start mixing CTBs and MMIOs a new
-> > -		 * register will have to be chosen.
-> > -		 */
-> > -		intel_uncore_write_fw(gt->uncore, GEN11_SOFT_SCRATCH(0), 0);
-> > -	} else {
-> > -		/* wmb() sufficient for a barrier if in smem */
-> > -		wmb();
-> > -	}
-> > -}
-> > -
-> >   static int ct_write(struct intel_guc_ct *ct,
-> >   		    const u32 *action,
-> >   		    u32 len /* in dwords */,
-> > @@ -468,7 +446,7 @@ static int ct_write(struct intel_guc_ct *ct,
-> >   	 * make sure H2G buffer update and LRC tail update (if this triggering a
-> >   	 * submission) are visible before updating the descriptor tail
-> >   	 */
-> > -	write_barrier(ct);
-> > +	intel_guc_write_barrier(ct_to_guc(ct));
-> >   	/* update local copies */
-> >   	ctb->tail = tail;
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> > index 0e600a3b8f1e..6cd26dc060d1 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> > @@ -65,12 +65,14 @@
-> >   #define   WQ_TYPE_PSEUDO		(0x2 << WQ_TYPE_SHIFT)
-> >   #define   WQ_TYPE_INORDER		(0x3 << WQ_TYPE_SHIFT)
-> >   #define   WQ_TYPE_NOOP			(0x4 << WQ_TYPE_SHIFT)
-> > -#define WQ_TARGET_SHIFT			10
-> > +#define   WQ_TYPE_MULTI_LRC		(0x5 << WQ_TYPE_SHIFT)
-> > +#define WQ_TARGET_SHIFT			8
-> >   #define WQ_LEN_SHIFT			16
-> >   #define WQ_NO_WCFLUSH_WAIT		(1 << 27)
-> >   #define WQ_PRESENT_WORKLOAD		(1 << 28)
-> > -#define WQ_RING_TAIL_SHIFT		20
-> > +#define WQ_GUC_ID_SHIFT			0
-> > +#define WQ_RING_TAIL_SHIFT		18
-> Presumably all of these API changes are not actually new? They really came
-> in with the reset of the v40 re-write? It's just that this is the first time
-> we are using them and therefore need to finally update the defines?
+> intel_dp_compute_psr_vsc_sdp() had to move from
+> intel_psr_enable_locked() to intel_psr_compute_config() because we
+> need to be able to disable/enable PSR from atomic states without
+> connector and encoder state.
 > 
-
-Yes.
-
-> >   #define WQ_RING_TAIL_MAX		0x7FF	/* 2^11 QWords */
-> >   #define WQ_RING_TAIL_MASK		(WQ_RING_TAIL_MAX << WQ_RING_TAIL_SHIFT)
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index e9dfd43d29a0..b107ad095248 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -391,6 +391,29 @@ __get_process_desc(struct intel_context *ce)
-> >   		   LRC_STATE_OFFSET) / sizeof(u32)));
-> >   }
-> > +static u32 *get_wq_pointer(struct guc_process_desc *desc,
-> > +			   struct intel_context *ce,
-> > +			   u32 wqi_size)
-> > +{
-> > +	/*
-> > +	 * Check for space in work queue. Caching a value of head pointer in
-> > +	 * intel_context structure in order reduce the number accesses to shared
-> > +	 * GPU memory which may be across a PCIe bus.
-> > +	 */
-> > +#define AVAILABLE_SPACE	\
-> > +	CIRC_SPACE(ce->guc_wqi_tail, ce->guc_wqi_head, GUC_WQ_SIZE)
-> > +	if (wqi_size > AVAILABLE_SPACE) {
-> > +		ce->guc_wqi_head = READ_ONCE(desc->head);
-> > +
-> > +		if (wqi_size > AVAILABLE_SPACE)
-> > +			return NULL;
-> > +	}
-> > +#undef AVAILABLE_SPACE
-> > +
-> > +	return ((u32 *)__get_process_desc(ce)) +
-> > +		((WQ_OFFSET + ce->guc_wqi_tail) / sizeof(u32));
-> > +}
-> > +
-> >   static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
-> >   {
-> >   	struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
-> > @@ -547,10 +570,10 @@ int intel_guc_wait_for_idle(struct intel_guc *guc, long timeout)
-> >   static int guc_lrc_desc_pin(struct intel_context *ce, bool loop);
-> > -static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> > +static int __guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >   {
-> >   	int err = 0;
-> > -	struct intel_context *ce = rq->context;
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> >   	u32 action[3];
-> >   	int len = 0;
-> >   	u32 g2h_len_dw = 0;
-> > @@ -571,26 +594,17 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >   	GEM_BUG_ON(!atomic_read(&ce->guc_id.ref));
-> >   	GEM_BUG_ON(context_guc_id_invalid(ce));
-> > -	/*
-> > -	 * Corner case where the GuC firmware was blown away and reloaded while
-> > -	 * this context was pinned.
-> > -	 */
-> > -	if (unlikely(!lrc_desc_registered(guc, ce->guc_id.id))) {
-> > -		err = guc_lrc_desc_pin(ce, false);
-> > -		if (unlikely(err))
-> > -			return err;
-> > -	}
-> > -
-> >   	spin_lock(&ce->guc_state.lock);
-> >   	/*
-> >   	 * The request / context will be run on the hardware when scheduling
-> > -	 * gets enabled in the unblock.
-> > +	 * gets enabled in the unblock. For multi-lrc we still submit the
-> > +	 * context to move the LRC tails.
-> >   	 */
-> > -	if (unlikely(context_blocked(ce)))
-> > +	if (unlikely(context_blocked(ce) && !intel_context_is_parent(ce)))
-> >   		goto out;
-> > -	enabled = context_enabled(ce);
-> > +	enabled = context_enabled(ce) || context_blocked(ce);
-> Would be better to say '|| is_parent(ce)' rather than blocked? The reason
-> for reason for claiming enabled when not is because it's a multi-LRC parent,
-> right? Or can there be a parent that is neither enabled nor blocked for
-> which we don't want to do the processing? But why would that make sense/be
-> possible?
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_ddi.c      |   2 -
+>   drivers/gpu/drm/i915/display/intel_display.c  |  14 +-
+>   .../drm/i915/display/intel_display_types.h    |   3 +-
+>   drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
+>   drivers/gpu/drm/i915/display/intel_dp.h       |   2 +-
+>   drivers/gpu/drm/i915/display/intel_psr.c      | 140 ++++++++++--------
+>   drivers/gpu/drm/i915/display/intel_psr.h      |  11 +-
+>   7 files changed, 98 insertions(+), 80 deletions(-)
 > 
-
-No. If it is parent and blocked we want to submit the enable but not
-enable submission. In the non-multi-lrc case the submit has already been
-done by the i915 (moving lrc tail).
-
-> >   	if (!enabled) {
-> >   		action[len++] = INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
-> > @@ -609,6 +623,18 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >   		trace_intel_context_sched_enable(ce);
-> >   		atomic_inc(&guc->outstanding_submission_g2h);
-> >   		set_context_enabled(ce);
-> > +
-> > +		/*
-> > +		 * Without multi-lrc KMD does the submission step (moving the
-> > +		 * lrc tail) so enabling scheduling is sufficient to submit the
-> > +		 * context. This isn't the case in multi-lrc submission as the
-> > +		 * GuC needs to move the tails, hence the need for another H2G
-> > +		 * to submit a multi-lrc context after enabling scheduling.
-> > +		 */
-> > +		if (intel_context_is_parent(ce)) {
-> > +			action[0] = INTEL_GUC_ACTION_SCHED_CONTEXT;
-> > +			err = intel_guc_send_nb(guc, action, len - 1, 0);
-> > +		}
-> >   	} else if (!enabled) {
-> >   		clr_context_pending_enable(ce);
-> >   		intel_context_put(ce);
-> > @@ -621,6 +647,18 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >   	return err;
-> >   }
-> > +static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> > +{
-> > +	int ret = __guc_add_request(guc, rq);
-> > +
-> > +	if (unlikely(ret == -EBUSY)) {
-> > +		guc->stalled_request= rq;
-> > +		guc->submission_stall_reason = STALL_ADD_REQUEST;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >   static void guc_set_lrc_tail(struct i915_request *rq)
-> >   {
-> >   	rq->context->lrc_reg_state[CTX_RING_TAIL] =
-> > @@ -632,6 +670,127 @@ static int rq_prio(const struct i915_request *rq)
-> >   	return rq->sched.attr.priority;
-> >   }
-> > +static bool is_multi_lrc_rq(struct i915_request *rq)
-> > +{
-> > +	return intel_context_is_child(rq->context) ||
-> > +		intel_context_is_parent(rq->context);
-> > +}
-> > +
-> > +static bool can_merge_rq(struct i915_request *rq,
-> > +			 struct i915_request *last)
-> > +{
-> > +	return request_to_scheduling_context(rq) ==
-> > +		request_to_scheduling_context(last);
-> > +}
-> > +
-> > +static u32 wq_space_until_wrap(struct intel_context *ce)
-> > +{
-> > +	return (GUC_WQ_SIZE - ce->guc_wqi_tail);
-> > +}
-> > +
-> > +static void write_wqi(struct guc_process_desc *desc,
-> > +		      struct intel_context *ce,
-> > +		      u32 wqi_size)
-> > +{
-> > +	/*
-> > +	 * Ensure WQE are visible before updating tail
-> WQE or WQI?
->
-
-WQI (work queue instance) is the convention used but I actually like WQE
-(work queue entry) better. Will change the name to WQE everywhere.
- 
-> > +	 */
-> > +	intel_guc_write_barrier(ce_to_guc(ce));
-> > +
-> > +	ce->guc_wqi_tail = (ce->guc_wqi_tail + wqi_size) & (GUC_WQ_SIZE - 1);
-> > +	WRITE_ONCE(desc->tail, ce->guc_wqi_tail);
-> > +}
-> > +
-> > +static int guc_wq_noop_append(struct intel_context *ce)
-> > +{
-> > +	struct guc_process_desc *desc = __get_process_desc(ce);
-> > +	u32 *wqi = get_wq_pointer(desc, ce, wq_space_until_wrap(ce));
-> > +
-> > +	if (!wqi)
-> > +		return -EBUSY;
-> > +
-> > +	*wqi = WQ_TYPE_NOOP |
-> > +		((wq_space_until_wrap(ce) / sizeof(u32) - 1) << WQ_LEN_SHIFT);
-> This should have a BUG_ON check that the requested size fits within the
-> WQ_LEN field?
->
-
-I could add that.
- 
-> Indeed, would be better to use the FIELD macros as they do that kind of
-> thing for you.
->
-
-Yes, they do. I forget how they work, will figure this out and use the
-macros.
- 
-> 
-> > +	ce->guc_wqi_tail = 0;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __guc_wq_item_append(struct i915_request *rq)
-> > +{
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> > +	struct intel_context *child;
-> > +	struct guc_process_desc *desc = __get_process_desc(ce);
-> > +	unsigned int wqi_size = (ce->guc_number_children + 4) *
-> > +		sizeof(u32);
-> > +	u32 *wqi;
-> > +	int ret;
-> > +
-> > +	/* Ensure context is in correct state updating work queue */
-> > +	GEM_BUG_ON(!atomic_read(&ce->guc_id.ref));
-> > +	GEM_BUG_ON(context_guc_id_invalid(ce));
-> > +	GEM_BUG_ON(context_wait_for_deregister_to_register(ce));
-> > +	GEM_BUG_ON(!lrc_desc_registered(ce_to_guc(ce), ce->guc_id.id));
-> > +
-> > +	/* Insert NOOP if this work queue item will wrap the tail pointer. */
-> > +	if (wqi_size > wq_space_until_wrap(ce)) {
-> > +		ret = guc_wq_noop_append(ce);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	wqi = get_wq_pointer(desc, ce, wqi_size);
-> > +	if (!wqi)
-> > +		return -EBUSY;
-> > +
-> > +	*wqi++ = WQ_TYPE_MULTI_LRC |
-> > +		((wqi_size / sizeof(u32) - 1) << WQ_LEN_SHIFT);
-> > +	*wqi++ = ce->lrc.lrca;
-> > +	*wqi++ = (ce->guc_id.id << WQ_GUC_ID_SHIFT) |
-> > +		 ((ce->ring->tail / sizeof(u64)) << WQ_RING_TAIL_SHIFT);
-> As above, would be better to use FIELD macros instead of manual shifting.
-> 
-
-Will do.
-
-Matt
-
-> John.
-> 
-> 
-> > +	*wqi++ = 0;	/* fence_id */
-> > +	for_each_child(ce, child)
-> > +		*wqi++ = child->ring->tail / sizeof(u64);
-> > +
-> > +	write_wqi(desc, ce, wqi_size);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int guc_wq_item_append(struct intel_guc *guc,
-> > +			      struct i915_request *rq)
-> > +{
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> > +	int ret = 0;
-> > +
-> > +	if (likely(!intel_context_is_banned(ce))) {
-> > +		ret = __guc_wq_item_append(rq);
-> > +
-> > +		if (unlikely(ret == -EBUSY)) {
-> > +			guc->stalled_request = rq;
-> > +			guc->submission_stall_reason = STALL_MOVE_LRC_TAIL;
-> > +		}
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static bool multi_lrc_submit(struct i915_request *rq)
-> > +{
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> > +
-> > +	intel_ring_set_tail(rq->ring, rq->tail);
-> > +
-> > +	/*
-> > +	 * We expect the front end (execbuf IOCTL) to set this flag on the last
-> > +	 * request generated from a multi-BB submission. This indicates to the
-> > +	 * backend (GuC interface) that we should submit this context thus
-> > +	 * submitting all the requests generated in parallel.
-> > +	 */
-> > +	return test_bit(I915_FENCE_FLAG_SUBMIT_PARALLEL, &rq->fence.flags) ||
-> > +		intel_context_is_banned(ce);
-> > +}
-> > +
-> >   static int guc_dequeue_one_context(struct intel_guc *guc)
-> >   {
-> >   	struct i915_sched_engine * const sched_engine = guc->sched_engine;
-> > @@ -645,7 +804,17 @@ static int guc_dequeue_one_context(struct intel_guc *guc)
-> >   	if (guc->stalled_request) {
-> >   		submit = true;
-> >   		last = guc->stalled_request;
-> > -		goto resubmit;
-> > +
-> > +		switch (guc->submission_stall_reason) {
-> > +		case STALL_REGISTER_CONTEXT:
-> > +			goto register_context;
-> > +		case STALL_MOVE_LRC_TAIL:
-> > +			goto move_lrc_tail;
-> > +		case STALL_ADD_REQUEST:
-> > +			goto add_request;
-> > +		default:
-> > +			MISSING_CASE(guc->submission_stall_reason);
-> > +		}
-> >   	}
-> >   	while ((rb = rb_first_cached(&sched_engine->queue))) {
-> > @@ -653,8 +822,8 @@ static int guc_dequeue_one_context(struct intel_guc *guc)
-> >   		struct i915_request *rq, *rn;
-> >   		priolist_for_each_request_consume(rq, rn, p) {
-> > -			if (last && rq->context != last->context)
-> > -				goto done;
-> > +			if (last && !can_merge_rq(rq, last))
-> > +				goto register_context;
-> >   			list_del_init(&rq->sched.link);
-> > @@ -662,33 +831,84 @@ static int guc_dequeue_one_context(struct intel_guc *guc)
-> >   			trace_i915_request_in(rq, 0);
-> >   			last = rq;
-> > -			submit = true;
-> > +
-> > +			if (is_multi_lrc_rq(rq)) {
-> > +				/*
-> > +				 * We need to coalesce all multi-lrc requests in
-> > +				 * a relationship into a single H2G. We are
-> > +				 * guaranteed that all of these requests will be
-> > +				 * submitted sequentially.
-> > +				 */
-> > +				if (multi_lrc_submit(rq)) {
-> > +					submit = true;
-> > +					goto register_context;
-> > +				}
-> > +			} else {
-> > +				submit = true;
-> > +			}
-> >   		}
-> >   		rb_erase_cached(&p->node, &sched_engine->queue);
-> >   		i915_priolist_free(p);
-> >   	}
-> > -done:
-> > +
-> > +register_context:
-> >   	if (submit) {
-> > -		guc_set_lrc_tail(last);
-> > -resubmit:
-> > +		struct intel_context *ce = request_to_scheduling_context(last);
-> > +
-> > +		if (unlikely(!lrc_desc_registered(guc, ce->guc_id.id) &&
-> > +			     !intel_context_is_banned(ce))) {
-> > +			ret = guc_lrc_desc_pin(ce, false);
-> > +			if (unlikely(ret == -EPIPE)) {
-> > +				goto deadlk;
-> > +			} else if (ret == -EBUSY) {
-> > +				guc->stalled_request = last;
-> > +				guc->submission_stall_reason =
-> > +					STALL_REGISTER_CONTEXT;
-> > +				goto schedule_tasklet;
-> > +			} else if (ret != 0) {
-> > +				GEM_WARN_ON(ret);	/* Unexpected */
-> > +				goto deadlk;
-> > +			}
-> > +		}
-> > +
-> > +move_lrc_tail:
-> > +		if (is_multi_lrc_rq(last)) {
-> > +			ret = guc_wq_item_append(guc, last);
-> > +			if (ret == -EBUSY) {
-> > +				goto schedule_tasklet;
-> > +			} else if (ret != 0) {
-> > +				GEM_WARN_ON(ret);	/* Unexpected */
-> > +				goto deadlk;
-> > +			}
-> > +		} else {
-> > +			guc_set_lrc_tail(last);
-> > +		}
-> > +
-> > +add_request:
-> >   		ret = guc_add_request(guc, last);
-> > -		if (unlikely(ret == -EPIPE))
-> > +		if (unlikely(ret == -EPIPE)) {
-> > +			goto deadlk;
-> > +		} else if (ret == -EBUSY) {
-> > +			goto schedule_tasklet;
-> > +		} else if (ret != 0) {
-> > +			GEM_WARN_ON(ret);	/* Unexpected */
-> >   			goto deadlk;
-> > -		else if (ret == -EBUSY) {
-> > -			tasklet_schedule(&sched_engine->tasklet);
-> > -			guc->stalled_request = last;
-> > -			return false;
-> >   		}
-> >   	}
-> >   	guc->stalled_request = NULL;
-> > +	guc->submission_stall_reason = STALL_NONE;
-> >   	return submit;
-> >   deadlk:
-> >   	sched_engine->tasklet.callback = NULL;
-> >   	tasklet_disable_nosync(&sched_engine->tasklet);
-> >   	return false;
-> > +
-> > +schedule_tasklet:
-> > +	tasklet_schedule(&sched_engine->tasklet);
-> > +	return false;
-> >   }
-> >   static void guc_submission_tasklet(struct tasklet_struct *t)
-> > @@ -1227,10 +1447,16 @@ static int guc_bypass_tasklet_submit(struct intel_guc *guc,
-> >   	trace_i915_request_in(rq, 0);
-> > -	guc_set_lrc_tail(rq);
-> > -	ret = guc_add_request(guc, rq);
-> > -	if (ret == -EBUSY)
-> > -		guc->stalled_request = rq;
-> > +	if (is_multi_lrc_rq(rq)) {
-> > +		if (multi_lrc_submit(rq)) {
-> > +			ret = guc_wq_item_append(guc, rq);
-> > +			if (!ret)
-> > +				ret = guc_add_request(guc, rq);
-> > +		}
-> > +	} else {
-> > +		guc_set_lrc_tail(rq);
-> > +		ret = guc_add_request(guc, rq);
-> > +	}
-> >   	if (unlikely(ret == -EPIPE))
-> >   		disable_submission(guc);
-> > @@ -1238,6 +1464,16 @@ static int guc_bypass_tasklet_submit(struct intel_guc *guc,
-> >   	return ret;
-> >   }
-> > +bool need_tasklet(struct intel_guc *guc, struct i915_request *rq)
-> > +{
-> > +	struct i915_sched_engine *sched_engine = rq->engine->sched_engine;
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> > +
-> > +	return submission_disabled(guc) || guc->stalled_request ||
-> > +		!i915_sched_engine_is_empty(sched_engine) ||
-> > +		!lrc_desc_registered(guc, ce->guc_id.id);
-> > +}
-> > +
-> >   static void guc_submit_request(struct i915_request *rq)
-> >   {
-> >   	struct i915_sched_engine *sched_engine = rq->engine->sched_engine;
-> > @@ -1247,8 +1483,7 @@ static void guc_submit_request(struct i915_request *rq)
-> >   	/* Will be called from irq-context when using foreign fences. */
-> >   	spin_lock_irqsave(&sched_engine->lock, flags);
-> > -	if (submission_disabled(guc) || guc->stalled_request ||
-> > -	    !i915_sched_engine_is_empty(sched_engine))
-> > +	if (need_tasklet(guc, rq))
-> >   		queue_request(sched_engine, rq, rq_prio(rq));
-> >   	else if (guc_bypass_tasklet_submit(guc, rq) == -EBUSY)
-> >   		tasklet_hi_schedule(&sched_engine->tasklet);
-> > @@ -2241,9 +2476,10 @@ static bool new_guc_prio_higher(u8 old_guc_prio, u8 new_guc_prio)
-> >   static void add_to_context(struct i915_request *rq)
-> >   {
-> > -	struct intel_context *ce = rq->context;
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> >   	u8 new_guc_prio = map_i915_prio_to_guc_prio(rq_prio(rq));
-> > +	GEM_BUG_ON(intel_context_is_child(ce));
-> >   	GEM_BUG_ON(rq->guc_prio == GUC_PRIO_FINI);
-> >   	spin_lock(&ce->guc_state.lock);
-> > @@ -2276,7 +2512,9 @@ static void guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
-> >   static void remove_from_context(struct i915_request *rq)
-> >   {
-> > -	struct intel_context *ce = rq->context;
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> > +
-> > +	GEM_BUG_ON(intel_context_is_child(ce));
-> >   	spin_lock_irq(&ce->guc_state.lock);
-> > @@ -2692,7 +2930,7 @@ static void guc_init_breadcrumbs(struct intel_engine_cs *engine)
-> >   static void guc_bump_inflight_request_prio(struct i915_request *rq,
-> >   					   int prio)
-> >   {
-> > -	struct intel_context *ce = rq->context;
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> >   	u8 new_guc_prio = map_i915_prio_to_guc_prio(prio);
-> >   	/* Short circuit function */
-> > @@ -2715,7 +2953,7 @@ static void guc_bump_inflight_request_prio(struct i915_request *rq,
-> >   static void guc_retire_inflight_request_prio(struct i915_request *rq)
-> >   {
-> > -	struct intel_context *ce = rq->context;
-> > +	struct intel_context *ce = request_to_scheduling_context(rq);
-> >   	spin_lock(&ce->guc_state.lock);
-> >   	guc_prio_fini(rq, ce);
-> > diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> > index 177eaf55adff..8f0073e19079 100644
-> > --- a/drivers/gpu/drm/i915/i915_request.h
-> > +++ b/drivers/gpu/drm/i915/i915_request.h
-> > @@ -139,6 +139,14 @@ enum {
-> >   	 * the GPU. Here we track such boost requests on a per-request basis.
-> >   	 */
-> >   	I915_FENCE_FLAG_BOOST,
-> > +
-> > +	/*
-> > +	 * I915_FENCE_FLAG_SUBMIT_PARALLEL - request with a context in a
-> > +	 * parent-child relationship (parallel submission, multi-lrc) should
-> > +	 * trigger a submission to the GuC rather than just moving the context
-> > +	 * tail.
-> > +	 */
-> > +	I915_FENCE_FLAG_SUBMIT_PARALLEL,
-> >   };
-> >   /**
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index bba0ab99836b1..a4667741d3548 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3034,7 +3034,6 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
+>   		intel_dp_stop_link_train(intel_dp, crtc_state);
+>   
+>   	intel_edp_backlight_on(crtc_state, conn_state);
+> -	intel_psr_enable(intel_dp, crtc_state, conn_state);
+>   
+>   	if (!dig_port->lspcon.active || dig_port->dp.has_hdmi_sink)
+>   		intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
+> @@ -3255,7 +3254,6 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
+>   
+>   	intel_ddi_set_dp_msa(crtc_state, conn_state);
+>   
+> -	intel_psr_update(intel_dp, crtc_state, conn_state);
+>   	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
+>   	intel_drrs_update(intel_dp, crtc_state);
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index f6c0c595f6313..ddcd8d6efc788 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8093,10 +8093,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>   		if (bp_gamma)
+>   			PIPE_CONF_CHECK_COLOR_LUT(gamma_mode, hw.gamma_lut, bp_gamma);
+>   
+> -		PIPE_CONF_CHECK_BOOL(has_psr);
+> -		PIPE_CONF_CHECK_BOOL(has_psr2);
+> -		PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
+> -		PIPE_CONF_CHECK_I(dc3co_exitline);
+> +		if (current_config->active_planes) {
+> +			PIPE_CONF_CHECK_BOOL(has_psr);
+> +			PIPE_CONF_CHECK_BOOL(has_psr2);
+> +			PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
+> +			PIPE_CONF_CHECK_I(dc3co_exitline);
+> +		}
+>   	}
+>   
+>   	PIPE_CONF_CHECK_BOOL(double_wide);
+> @@ -8153,7 +8155,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>   		PIPE_CONF_CHECK_I(min_voltage_level);
+>   	}
+>   
+> -	if (fastset && (current_config->has_psr || pipe_config->has_psr))
+> +	if (current_config->has_psr || pipe_config->has_psr)
+>   		PIPE_CONF_CHECK_X_WITH_MASK(infoframes.enable,
+>   					    ~intel_hdmi_infoframe_enable(DP_SDP_VSC));
+>   	else
+> @@ -10207,6 +10209,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>   		intel_encoders_update_prepare(state);
+>   
+>   	intel_dbuf_pre_plane_update(state);
+> +	intel_psr_pre_plane_update(state);
+>   
+>   	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>   		if (new_crtc_state->uapi.async_flip)
+> @@ -10270,6 +10273,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>   	}
+>   
+>   	intel_dbuf_post_plane_update(state);
+> +	intel_psr_post_plane_update(state);
+>   
+>   	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+>   		intel_post_plane_update(state, crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index e9e806d90eec4..c900bfbb7cc52 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1056,12 +1056,14 @@ struct intel_crtc_state {
+>   	struct intel_link_m_n dp_m2_n2;
+>   	bool has_drrs;
+>   
+> +	/* PSR is supported but might not be enabled due the lack of enabled planes */
+>   	bool has_psr;
+>   	bool has_psr2;
+>   	bool enable_psr2_sel_fetch;
+>   	bool req_psr2_sdp_prior_scanline;
+>   	u32 dc3co_exitline;
+>   	u16 su_y_granularity;
+> +	struct drm_dp_vsc_sdp psr_vsc;
+>   
+>   	/*
+>   	 * Frequence the dpll for the port should run at. Differs from the
+> @@ -1525,7 +1527,6 @@ struct intel_psr {
+>   	u32 dc3co_exitline;
+>   	u32 dc3co_exit_delay;
+>   	struct delayed_work dc3co_work;
+> -	struct drm_dp_vsc_sdp vsc;
+>   };
+>   
+>   struct intel_dp {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 7559911c140a7..378008873e039 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1674,7 +1674,7 @@ void intel_dp_compute_psr_vsc_sdp(struct intel_dp *intel_dp,
+>   {
+>   	vsc->sdp_type = DP_SDP_VSC;
+>   
+> -	if (intel_dp->psr.psr2_enabled) {
+> +	if (crtc_state->has_psr2) {
+>   		if (intel_dp->psr.colorimetry_support &&
+>   		    intel_dp_needs_vsc_sdp(crtc_state, conn_state)) {
+>   			/* [PSR2, +Colorimetry] */
+> @@ -1828,7 +1828,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+>   		g4x_dp_set_clock(encoder, pipe_config);
+>   
+>   	intel_vrr_compute_config(pipe_config, conn_state);
+> -	intel_psr_compute_config(intel_dp, pipe_config);
+> +	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
+>   	intel_drrs_compute_config(intel_dp, pipe_config, output_bpp,
+>   				  constant_n);
+>   	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
+> @@ -2888,7 +2888,7 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+>   
+>   void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
+>   			    const struct intel_crtc_state *crtc_state,
+> -			    struct drm_dp_vsc_sdp *vsc)
+> +			    const struct drm_dp_vsc_sdp *vsc)
+>   {
+>   	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> index 94b568704b22b..3343c25916807 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -88,7 +88,7 @@ void intel_dp_compute_psr_vsc_sdp(struct intel_dp *intel_dp,
+>   				  struct drm_dp_vsc_sdp *vsc);
+>   void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
+>   			    const struct intel_crtc_state *crtc_state,
+> -			    struct drm_dp_vsc_sdp *vsc);
+> +			    const struct drm_dp_vsc_sdp *vsc);
+>   void intel_dp_set_infoframes(struct intel_encoder *encoder, bool enable,
+>   			     const struct intel_crtc_state *crtc_state,
+>   			     const struct drm_connector_state *conn_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index c1894b056d6c1..8ceb22c5a1a6b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -949,7 +949,8 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+>   }
+>   
+>   void intel_psr_compute_config(struct intel_dp *intel_dp,
+> -			      struct intel_crtc_state *crtc_state)
+> +			      struct intel_crtc_state *crtc_state,
+> +			      struct drm_connector_state *conn_state)
+>   {
+>   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>   	const struct drm_display_mode *adjusted_mode =
+> @@ -1001,7 +1002,10 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+>   
+>   	crtc_state->has_psr = true;
+>   	crtc_state->has_psr2 = intel_psr2_config_valid(intel_dp, crtc_state);
+> +
+>   	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
+> +	intel_dp_compute_psr_vsc_sdp(intel_dp, crtc_state, conn_state,
+> +				     &crtc_state->psr_vsc);
+>   }
+>   
+>   void intel_psr_get_config(struct intel_encoder *encoder,
+> @@ -1181,8 +1185,7 @@ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+>   }
+>   
+>   static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+> -				    const struct intel_crtc_state *crtc_state,
+> -				    const struct drm_connector_state *conn_state)
+> +				    const struct intel_crtc_state *crtc_state)
+>   {
+>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> @@ -1209,9 +1212,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>   
+>   	drm_dbg_kms(&dev_priv->drm, "Enabling PSR%s\n",
+>   		    intel_dp->psr.psr2_enabled ? "2" : "1");
+> -	intel_dp_compute_psr_vsc_sdp(intel_dp, crtc_state, conn_state,
+> -				     &intel_dp->psr.vsc);
+> -	intel_write_dp_vsc_sdp(encoder, crtc_state, &intel_dp->psr.vsc);
+> +	intel_write_dp_vsc_sdp(encoder, crtc_state, &crtc_state->psr_vsc);
+>   	intel_snps_phy_update_psr_power_state(dev_priv, phy, true);
+>   	intel_psr_enable_sink(intel_dp);
+>   	intel_psr_enable_source(intel_dp);
+> @@ -1221,33 +1222,6 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>   	intel_psr_activate(intel_dp);
+>   }
+>   
+> -/**
+> - * intel_psr_enable - Enable PSR
+> - * @intel_dp: Intel DP
+> - * @crtc_state: new CRTC state
+> - * @conn_state: new CONNECTOR state
+> - *
+> - * This function can only be called after the pipe is fully trained and enabled.
+> - */
+> -void intel_psr_enable(struct intel_dp *intel_dp,
+> -		      const struct intel_crtc_state *crtc_state,
+> -		      const struct drm_connector_state *conn_state)
+> -{
+> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> -
+> -	if (!CAN_PSR(intel_dp))
+> -		return;
+> -
+> -	if (!crtc_state->has_psr)
+> -		return;
+> -
+> -	drm_WARN_ON(&dev_priv->drm, dev_priv->drrs.dp);
+> -
+> -	mutex_lock(&intel_dp->psr.lock);
+> -	intel_psr_enable_locked(intel_dp, crtc_state, conn_state);
+> -	mutex_unlock(&intel_dp->psr.lock);
+> -}
+> -
+>   static void intel_psr_exit(struct intel_dp *intel_dp)
+>   {
+>   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> @@ -1719,48 +1693,92 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+>   	return 0;
+>   }
+>   
+> -/**
+> - * intel_psr_update - Update PSR state
+> - * @intel_dp: Intel DP
+> - * @crtc_state: new CRTC state
+> - * @conn_state: new CONNECTOR state
+> - *
+> - * This functions will update PSR states, disabling, enabling or switching PSR
+> - * version when executing fastsets. For full modeset, intel_psr_disable() and
+> - * intel_psr_enable() should be called instead.
+> - */
+> -void intel_psr_update(struct intel_dp *intel_dp,
+> -		      const struct intel_crtc_state *crtc_state,
+> -		      const struct drm_connector_state *conn_state)
+> +static void _intel_psr_pre_plane_update(const struct intel_atomic_state *state,
+> +					const struct intel_crtc_state *crtc_state)
+>   {
+> -	struct intel_psr *psr = &intel_dp->psr;
+> -	bool enable, psr2_enable;
+> +	struct intel_encoder *encoder;
+>   
+> -	if (!CAN_PSR(intel_dp))
+> +	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+> +					     crtc_state->uapi.encoder_mask) {
+> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +		struct intel_psr *psr = &intel_dp->psr;
+> +		bool needs_to_disable = false;
+> +
+> +		mutex_lock(&psr->lock);
+> +
+> +		/*
+> +		 * Reasons to disable:
+> +		 * - PSR disabled in new state
+> +		 * - All planes will go inactive
+> +		 * - Changing between PSR versions
+> +		 */
+> +		needs_to_disable |= !crtc_state->has_psr;
+> +		needs_to_disable |= !crtc_state->active_planes;
+> +		needs_to_disable |= crtc_state->has_psr2 != psr->psr2_enabled;
+> +
+> +		if (psr->enabled && needs_to_disable)
+> +			intel_psr_disable_locked(intel_dp);
+> +
+> +		mutex_unlock(&psr->lock);
+> +	}
+> +}
+> +
+> +void intel_psr_pre_plane_update(const struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_crtc_state *crtc_state;
+> +	struct intel_crtc *crtc;
+> +	int i;
+> +
+> +	if (!HAS_PSR(dev_priv))
+>   		return;
+>   
+> -	mutex_lock(&intel_dp->psr.lock);
+> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i)
+> +		_intel_psr_pre_plane_update(state, crtc_state);
+> +}
+>   
+> -	enable = crtc_state->has_psr;
+> -	psr2_enable = crtc_state->has_psr2;
+> +static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
+> +					 const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_encoder *encoder;
+> +
+> +	if (!crtc_state->has_psr)
+> +		return;
+> +
+> +	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+> +					     crtc_state->uapi.encoder_mask) {
+> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +		struct intel_psr *psr = &intel_dp->psr;
+> +
+> +		mutex_lock(&psr->lock);
+> +
+> +		drm_WARN_ON(&dev_priv->drm, psr->enabled && !crtc_state->active_planes);
+> +
+> +		/* Only enable if there is active planes */
+> +		if (!psr->enabled && crtc_state->active_planes)
+> +			intel_psr_enable_locked(intel_dp, crtc_state);
+>   
+> -	if (enable == psr->enabled && psr2_enable == psr->psr2_enabled &&
+> -	    crtc_state->enable_psr2_sel_fetch == psr->psr2_sel_fetch_enabled) {
+>   		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
+>   		if (crtc_state->crc_enabled && psr->enabled)
+>   			psr_force_hw_tracking_exit(intel_dp);
+>   
+> -		goto unlock;
+> +		mutex_unlock(&psr->lock);
+>   	}
+> +}
+>   
+> -	if (psr->enabled)
+> -		intel_psr_disable_locked(intel_dp);
+> +void intel_psr_post_plane_update(const struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_crtc_state *crtc_state;
+> +	struct intel_crtc *crtc;
+> +	int i;
+>   
+> -	if (enable)
+> -		intel_psr_enable_locked(intel_dp, crtc_state, conn_state);
+> +	if (!HAS_PSR(dev_priv))
+> +		return;
+>   
+> -unlock:
+> -	mutex_unlock(&intel_dp->psr.lock);
+> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i)
+> +		_intel_psr_post_plane_update(state, crtc_state);
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+> index 641521b101c82..2ca50df1f4fba 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+> @@ -20,14 +20,10 @@ struct intel_plane;
+>   struct intel_encoder;
+>   
+>   void intel_psr_init_dpcd(struct intel_dp *intel_dp);
+> -void intel_psr_enable(struct intel_dp *intel_dp,
+> -		      const struct intel_crtc_state *crtc_state,
+> -		      const struct drm_connector_state *conn_state);
+> +void intel_psr_pre_plane_update(const struct intel_atomic_state *state);
+> +void intel_psr_post_plane_update(const struct intel_atomic_state *state);
+>   void intel_psr_disable(struct intel_dp *intel_dp,
+>   		       const struct intel_crtc_state *old_crtc_state);
+> -void intel_psr_update(struct intel_dp *intel_dp,
+> -		      const struct intel_crtc_state *crtc_state,
+> -		      const struct drm_connector_state *conn_state);
+>   int intel_psr_debug_set(struct intel_dp *intel_dp, u64 value);
+>   void intel_psr_invalidate(struct drm_i915_private *dev_priv,
+>   			  unsigned frontbuffer_bits,
+> @@ -37,7 +33,8 @@ void intel_psr_flush(struct drm_i915_private *dev_priv,
+>   		     enum fb_op_origin origin);
+>   void intel_psr_init(struct intel_dp *intel_dp);
+>   void intel_psr_compute_config(struct intel_dp *intel_dp,
+> -			      struct intel_crtc_state *crtc_state);
+> +			      struct intel_crtc_state *crtc_state,
+> +			      struct drm_connector_state *conn_state);
+>   void intel_psr_get_config(struct intel_encoder *encoder,
+>   			  struct intel_crtc_state *pipe_config);
+>   void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir);
 > 
