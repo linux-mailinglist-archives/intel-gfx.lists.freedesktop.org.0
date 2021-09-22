@@ -2,62 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98C1414709
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 12:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0C7414755
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 13:10:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 084936EB73;
-	Wed, 22 Sep 2021 10:55:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A26526EB79;
+	Wed, 22 Sep 2021 11:10:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com
- [IPv6:2607:f8b0:4864:20::f2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E5026EB72;
- Wed, 22 Sep 2021 10:55:31 +0000 (UTC)
-Received: by mail-qv1-xf2c.google.com with SMTP id cf2so1601120qvb.10;
- Wed, 22 Sep 2021 03:55:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=/ickBN4sxuNoZS5aIyM24sHBfu2G2WppVsO8x/cnD8U=;
- b=joGJCqAcevqp1tkoGsMmtdP32hjLSthS5w3MAZimwyTk0AjwmCIMAuAzAVHLRuV0EY
- U0VuIQyQgqUz3Js97/vT+1/8cOT1rc9zeYh+96IXOnKIWmrtQa/bLsAKrIQeObOLeWpH
- jr92lpXGw/RZlJqDXYsx/hcnO/Ye4f+AKaHkvKB67jxpyZjm0RDrkR6PNSrxCjpjLPKu
- GESXbJBxXd3U6eIKIdFHfAcp2okeWZvRwhxoMv3Mk+I98Y7NWBDUqAoGMqJ4orVshdgK
- 6N9O7EoS8lGMgRN3JXKSmtnuKLHwJGgI53zn3+V1RafnQVnu1TBODnRrIcSvd+QpLCoK
- CvxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=/ickBN4sxuNoZS5aIyM24sHBfu2G2WppVsO8x/cnD8U=;
- b=iW+X44E/KF5twliY2CWG/8D7LZQW+xmJXNoP38BgpFkLgh2Odm/RyXPDkupCAcObpr
- 2Q9+C5yPoI8f9YInhw+vZZDuAO3at497pFsvjlKm9RXfLComOGqG2RR2df0f7h366A9l
- hFS6A8dkmRZeICnyrT4JIDrTKZS1PyqWS6dJwZcosV0Z4YX97mXY1QRFyYIoe0j1s4/X
- ItAUI0/ThGvOOzi5cDFCx+6npVCRgsZ+wQ35uiUj35c2xyn/in12E/O25j7Cn0bG4Ofn
- HWAD/PcNGMhRKpYbwkwKeIq6j52jMJ60v0KI7h5WcbNU9gpdqUI7OjejUtav1yDE9yfI
- ILSQ==
-X-Gm-Message-State: AOAM5320qc65zNjY4EsItMq6euxmaTW7cuEnR7gm9C8h1P97A7l5atIb
- VK471J8C1bZhY1Ak0KAholEnENUl48XYgRnhMfs=
-X-Google-Smtp-Source: ABdhPJzkLCaOatuugLxOHBT1YsmTT+BjhxRzqUVV9ujZa7aKYoAfIjeyWIr2mRlEPx8I0YjNJ4PK1CIfGDykr7QjRro=
-X-Received: by 2002:a05:6214:153:: with SMTP id
- x19mr35483439qvs.18.1632308130779; 
- Wed, 22 Sep 2021 03:55:30 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59AFD6EB78;
+ Wed, 22 Sep 2021 11:10:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="210648503"
+X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="210648503"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 04:10:30 -0700
+X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; d="scan'208";a="550207398"
+Received: from vidyaram-mobl1.gar.corp.intel.com (HELO localhost)
+ ([10.251.218.73])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 04:10:26 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Nathan Chancellor <nathan@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com, manasi.d.navare@intel.com, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>, "Pan\, Xinhui" <Xinhui.Pan@amd.com>,
+ amd-gfx@lists.freedesktop.org, Stephen Rothwell <sfr@canb.auug.org.au>,
+ linux-next@vger.kernel.org, Dave Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>
+In-Reply-To: <YUpjj7IwBqMYSR7z@archlinux-ax161>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1631191763.git.jani.nikula@intel.com>
+ <def17e2329722f22c35807be26b35590ccb93bfd.1631191763.git.jani.nikula@intel.com>
+ <YUpjj7IwBqMYSR7z@archlinux-ax161>
+Date: Wed, 22 Sep 2021 14:10:23 +0300
+Message-ID: <87a6k4n9wg.fsf@intel.com>
 MIME-Version: 1.0
-References: <20210922083807.888206-1-thomas.hellstrom@linux.intel.com>
- <20210922083807.888206-3-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210922083807.888206-3-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 22 Sep 2021 11:55:02 +0100
-Message-ID: <CAM0jSHPWMTq0TpLbpUwczGMDjcvh-kjw35d-xUQ_9RNrj9hY+w@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- ML dri-devel <dri-devel@lists.freedesktop.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/ttm: Fix lockdep warning in
- __i915_gem_free_object()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v3 03/13] drm/dp: add LTTPR DP 2.0 DPCD
+ addresses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,52 +57,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 Sept 2021 at 09:38, Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
+On Tue, 21 Sep 2021, Nathan Chancellor <nathan@kernel.org> wrote:
+> On Thu, Sep 09, 2021 at 03:51:55PM +0300, Jani Nikula wrote:
+>> DP 2.0 brings some new DPCD addresses for PHY repeaters.
+>> 
+>> Cc: dri-devel@lists.freedesktop.org
+>> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  include/drm/drm_dp_helper.h | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>> 
+>> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+>> index 1d5b3dbb6e56..f3a61341011d 100644
+>> --- a/include/drm/drm_dp_helper.h
+>> +++ b/include/drm/drm_dp_helper.h
+>> @@ -1319,6 +1319,10 @@ struct drm_panel;
+>>  #define DP_MAX_LANE_COUNT_PHY_REPEATER			    0xf0004 /* 1.4a */
+>>  #define DP_Repeater_FEC_CAPABILITY			    0xf0004 /* 1.4 */
+>>  #define DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT		    0xf0005 /* 1.4a */
+>> +#define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER	    0xf0006 /* 2.0 */
+>> +# define DP_PHY_REPEATER_128B132B_SUPPORTED		    (1 << 0)
+>> +/* See DP_128B132B_SUPPORTED_LINK_RATES for values */
+>> +#define DP_PHY_REPEATER_128B132B_RATES			    0xf0007 /* 2.0 */
+>>  
+>>  enum drm_dp_phy {
+>>  	DP_PHY_DPRX,
+>> -- 
+>> 2.30.2
+>> 
+>> 
 >
-> In the mman selftest, some tests make the ttm_bo_init_reserved() fail,
-> which may trigger a call to the i915_ttm_bo_destroy() function.
-> However, at this point the gem object refcount is set to 1, which
-> triggers a lockdep warning in __i915_gem_free_object() and a
-> corresponding failure in DG1 BAT, i915_selftest@live@mman.
+> This patch causes a build failure in -next when combined with the AMD
+> tree:
 >
-> Fix this by clearing the gem object refcount if called from that
-> failure path.
+> In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c:33:
+> In file included from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:70:
+> In file included from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_mode.h:36:
+> ./include/drm/drm_dp_helper.h:1322:9: error: 'DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER' macro redefined [-Werror,-Wmacro-redefined]
+> #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER            0xf0006 /* 2.0 */
+>         ^
+> ./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: note: previous definition is here
+> #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER        0xF0006
+>         ^
+> 1 error generated.
 >
-> Fixes: f9b23c157a78 ("drm/i915: Move __i915_gem_free_object to ttm_bo_des=
-troy")
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i9=
-15/gem/i915_gem_ttm.c
-> index b94497989995..b1f561543ff3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -900,6 +900,10 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *b=
-o)
->
->         i915_ttm_backup_free(obj);
->
-> +       /* Failure during ttm_bo_init_reserved leaves the refcount set to=
- 1. */
-> +       if (IS_ENABLED(CONFIG_LOCKDEP) && !obj->ttm.created)
-> +               refcount_set(&obj->base.refcount.refcount, 0);
-> +
->         /* This releases all gem object bindings to the backend. */
->         __i915_gem_free_object(obj);
+> Perhaps something like this should be applied during the merge of the
+> second tree or maybe this patch should be in a branch that could be
+> shared between the Intel and AMD trees so that this diff could be
+> applied to the AMD tree directly? Not sure what the standard procedure
+> for this is.
 
-The __i915_gem_free_object is also nuking stuff like mm.placements,
-which is still owned by the caller AFAIK, or at least it is until we
-have successfully initialised the object, so smells like potential
-double free? Can we easily move that under the ttm.created check?
-Otherwise maybe we are meant to move the mm.placements handling into
-the RCU callback?
+What's in the drm-intel-next branch is changing DRM DP helpers in
+include/drm/drm_dp_helper.h with acks from a drm-misc maintainer. That's
+where this stuff is supposed to land, not in a driver specific file, and
+especially not if added with just a DP_ prefix.
+
+
+BR,
+Jani.
 
 >
-> --
-> 2.31.1
+> Cheers,
+> Nathan
 >
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+> index 234dfbea926a..279863b5c650 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+> @@ -4590,7 +4590,7 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
+>  								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+>  
+>  		link->dpcd_caps.lttpr_caps.supported_128b_132b_rates.raw =
+> -				lttpr_dpcd_data[DP_PHY_REPEATER_128b_132b_RATES -
+> +				lttpr_dpcd_data[DP_PHY_REPEATER_128B132B_RATES -
+>  								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+>  #endif
+>  
+> diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+> index a5e798b5da79..8caf9af5ffa2 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+> @@ -878,8 +878,6 @@ struct psr_caps {
+>  # define DP_DSC_DECODER_COUNT_MASK			(0b111 << 5)
+>  # define DP_DSC_DECODER_COUNT_SHIFT			5
+>  #define DP_MAIN_LINK_CHANNEL_CODING_SET			0x108
+> -#define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER	0xF0006
+> -#define DP_PHY_REPEATER_128b_132b_RATES			0xF0007
+>  #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1	0xF0022
+>  #define DP_INTRA_HOP_AUX_REPLY_INDICATION		(1 << 3)
+>  /* TODO - Use DRM header to replace above once available */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
