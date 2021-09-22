@@ -2,37 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBB8414D72
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 17:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9871414D62
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 17:52:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F57F6EC34;
-	Wed, 22 Sep 2021 15:52:16 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 278296EC33;
- Wed, 22 Sep 2021 15:52:14 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="221738581"
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="221738581"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D232789ED6;
+	Wed, 22 Sep 2021 15:51:56 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A066989E69;
+ Wed, 22 Sep 2021 15:51:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="284637719"
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="284637719"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 08:52:13 -0700
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="704069046"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 08:51:53 -0700
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="704068937"
+Received: from bbrowne-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.200.151])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 08:52:13 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <dri-devel@lists.freedesktop.org>,
-	<intel-gfx@lists.freedesktop.org>
-Cc: <jani.nikula@linux.intel.com>, <tvrtko.ursulin@intel.com>,
- <lucas.demarchi@intel.com>
-Date: Wed, 22 Sep 2021 08:47:13 -0700
-Message-Id: <20210922154713.1109-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.32.0
+ 22 Sep 2021 08:51:52 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Date: Wed, 22 Sep 2021 16:51:38 +0100
+Message-Id: <20210922155145.93174-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Drop stealing of bits from
- i915_sw_fence function pointer
+Subject: [Intel-gfx] [PATCH 0/7] Per client GPU stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,278 +47,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rather than stealing bits from i915_sw_fence function pointer use
-seperate fields for function pointer and flags. If using two different
-fields, the 4 byte alignment for the i915_sw_fence function pointer can
-also be dropped.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Same old work but now rebased and series ending with some DRM docs proposing
+the common specification which should enable nice common userspace tools to be
+written.
+
+For the moment I only have intel_gpu_top converted to use this and that seems to
+work okay.
 
 v2:
- (CI)
-  - Set new function field rather than flags in __i915_sw_fence_init
+ * Added prototype of possible amdgpu changes and spec updates to align with the
+   common spec.
+
 v3:
- (Tvrtko)
-  - Remove BUG_ON(!fence->flags) in reinit as that will now blow up
-  - Only define fence->flags if CONFIG_DRM_I915_SW_FENCE_CHECK_DAG is
-    defined
+ * Documented that 'drm-driver' tag shall correspond with
+   struct drm_driver.name.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
- drivers/gpu/drm/i915/i915_request.c           |  4 +--
- drivers/gpu/drm/i915/i915_sw_fence.c          | 28 +++++++++++--------
- drivers/gpu/drm/i915/i915_sw_fence.h          | 23 +++++++--------
- drivers/gpu/drm/i915/i915_sw_fence_work.c     |  2 +-
- .../gpu/drm/i915/selftests/i915_sw_fence.c    |  2 +-
- drivers/gpu/drm/i915/selftests/lib_sw_fence.c |  8 +++---
- 8 files changed, 39 insertions(+), 32 deletions(-)
+v4:
+ * Dropped amdgpu conversion from the series for now until AMD folks can find
+   some time to finish that patch.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a7ca38613f89..6d5bb55ffc82 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10323,7 +10323,7 @@ static void intel_atomic_commit_work(struct work_struct *work)
- 	intel_atomic_commit_tail(state);
- }
- 
--static int __i915_sw_fence_call
-+static int
- intel_atomic_commit_ready(struct i915_sw_fence *fence,
- 			  enum i915_sw_fence_notify notify)
- {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index c2ab0e22db0a..df5fec5c3da8 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -800,7 +800,7 @@ static void free_engines_rcu(struct rcu_head *rcu)
- 	free_engines(engines);
- }
- 
--static int __i915_sw_fence_call
-+static int
- engines_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
- 	struct i915_gem_engines *engines =
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index ce446716d092..945d3025a0b6 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -719,7 +719,7 @@ void i915_request_cancel(struct i915_request *rq, int error)
- 	intel_context_cancel_request(rq->context, rq);
- }
- 
--static int __i915_sw_fence_call
-+static int
- submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
- 	struct i915_request *request =
-@@ -755,7 +755,7 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- 	return NOTIFY_DONE;
- }
- 
--static int __i915_sw_fence_call
-+static int
- semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
- 	struct i915_request *rq = container_of(fence, typeof(*rq), semaphore);
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index c589a681da77..f10d31818ecc 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -18,7 +18,9 @@
- #define I915_SW_FENCE_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
- #endif
- 
-+#ifdef CONFIG_DRM_I915_SW_FENCE_CHECK_DAG
- static DEFINE_SPINLOCK(i915_sw_fence_lock);
-+#endif
- 
- #define WQ_FLAG_BITS \
- 	BITS_PER_TYPE(typeof_member(struct wait_queue_entry, flags))
-@@ -34,7 +36,7 @@ enum {
- 
- static void *i915_sw_fence_debug_hint(void *addr)
- {
--	return (void *)(((struct i915_sw_fence *)addr)->flags & I915_SW_FENCE_MASK);
-+	return (void *)(((struct i915_sw_fence *)addr)->fn);
- }
- 
- #ifdef CONFIG_DRM_I915_SW_FENCE_DEBUG_OBJECTS
-@@ -126,10 +128,7 @@ static inline void debug_fence_assert(struct i915_sw_fence *fence)
- static int __i915_sw_fence_notify(struct i915_sw_fence *fence,
- 				  enum i915_sw_fence_notify state)
- {
--	i915_sw_fence_notify_t fn;
--
--	fn = (i915_sw_fence_notify_t)(fence->flags & I915_SW_FENCE_MASK);
--	return fn(fence, state);
-+	return fence->fn(fence, state);
- }
- 
- #ifdef CONFIG_DRM_I915_SW_FENCE_DEBUG_OBJECTS
-@@ -242,10 +241,13 @@ void __i915_sw_fence_init(struct i915_sw_fence *fence,
- 			  const char *name,
- 			  struct lock_class_key *key)
- {
--	BUG_ON(!fn || (unsigned long)fn & ~I915_SW_FENCE_MASK);
-+	BUG_ON(!fn);
- 
- 	__init_waitqueue_head(&fence->wait, name, key);
--	fence->flags = (unsigned long)fn;
-+	fence->fn = fn;
-+#ifdef CONFIG_DRM_I915_SW_FENCE_CHECK_DAG
-+	fence->flags = 0;
-+#endif
- 
- 	i915_sw_fence_reinit(fence);
- }
-@@ -257,7 +259,6 @@ void i915_sw_fence_reinit(struct i915_sw_fence *fence)
- 	atomic_set(&fence->pending, 1);
- 	fence->error = 0;
- 
--	I915_SW_FENCE_BUG_ON(!fence->flags);
- 	I915_SW_FENCE_BUG_ON(!list_empty(&fence->wait.head));
- }
- 
-@@ -279,6 +280,7 @@ static int i915_sw_fence_wake(wait_queue_entry_t *wq, unsigned mode, int flags,
- 	return 0;
- }
- 
-+#ifdef CONFIG_DRM_I915_SW_FENCE_CHECK_DAG
- static bool __i915_sw_fence_check_if_after(struct i915_sw_fence *fence,
- 				    const struct i915_sw_fence * const signaler)
- {
-@@ -322,9 +324,6 @@ static bool i915_sw_fence_check_if_after(struct i915_sw_fence *fence,
- 	unsigned long flags;
- 	bool err;
- 
--	if (!IS_ENABLED(CONFIG_DRM_I915_SW_FENCE_CHECK_DAG))
--		return false;
--
- 	spin_lock_irqsave(&i915_sw_fence_lock, flags);
- 	err = __i915_sw_fence_check_if_after(fence, signaler);
- 	__i915_sw_fence_clear_checked_bit(fence);
-@@ -332,6 +331,13 @@ static bool i915_sw_fence_check_if_after(struct i915_sw_fence *fence,
- 
- 	return err;
- }
-+#else
-+static bool i915_sw_fence_check_if_after(struct i915_sw_fence *fence,
-+					 const struct i915_sw_fence * const signaler)
-+{
-+	return false;
-+}
-+#endif
- 
- static int __i915_sw_fence_await_sw_fence(struct i915_sw_fence *fence,
- 					  struct i915_sw_fence *signaler,
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
-index 30a863353ee6..a7c603bc1b01 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.h
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.h
-@@ -17,26 +17,27 @@
- 
- struct completion;
- struct dma_resv;
-+struct i915_sw_fence;
-+
-+enum i915_sw_fence_notify {
-+	FENCE_COMPLETE,
-+	FENCE_FREE
-+};
-+
-+typedef int (*i915_sw_fence_notify_t)(struct i915_sw_fence *,
-+				      enum i915_sw_fence_notify state);
- 
- struct i915_sw_fence {
- 	wait_queue_head_t wait;
-+	i915_sw_fence_notify_t fn;
-+#ifdef CONFIG_DRM_I915_SW_FENCE_CHECK_DAG
- 	unsigned long flags;
-+#endif
- 	atomic_t pending;
- 	int error;
- };
- 
- #define I915_SW_FENCE_CHECKED_BIT	0 /* used internally for DAG checking */
--#define I915_SW_FENCE_PRIVATE_BIT	1 /* available for use by owner */
--#define I915_SW_FENCE_MASK		(~3)
--
--enum i915_sw_fence_notify {
--	FENCE_COMPLETE,
--	FENCE_FREE
--};
--
--typedef int (*i915_sw_fence_notify_t)(struct i915_sw_fence *,
--				      enum i915_sw_fence_notify state);
--#define __i915_sw_fence_call __aligned(4)
- 
- void __i915_sw_fence_init(struct i915_sw_fence *fence,
- 			  i915_sw_fence_notify_t fn,
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-index 5b33ef23d54c..d2e56b387993 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-@@ -23,7 +23,7 @@ static void fence_work(struct work_struct *work)
- 	dma_fence_put(&f->dma);
- }
- 
--static int __i915_sw_fence_call
-+static int
- fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
- 	struct dma_fence_work *f = container_of(fence, typeof(*f), chain);
-diff --git a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-index cbf45d85cbff..daa985e5a19b 100644
---- a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-@@ -28,7 +28,7 @@
- 
- #include "../i915_selftest.h"
- 
--static int __i915_sw_fence_call
-+static int
- fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
- 	switch (state) {
-diff --git a/drivers/gpu/drm/i915/selftests/lib_sw_fence.c b/drivers/gpu/drm/i915/selftests/lib_sw_fence.c
-index 080b90b63d16..bf2752cc1e0b 100644
---- a/drivers/gpu/drm/i915/selftests/lib_sw_fence.c
-+++ b/drivers/gpu/drm/i915/selftests/lib_sw_fence.c
-@@ -26,7 +26,7 @@
- 
- /* Small library of different fence types useful for writing tests */
- 
--static int __i915_sw_fence_call
-+static int
- nop_fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
- 	return NOTIFY_DONE;
-@@ -41,12 +41,12 @@ void __onstack_fence_init(struct i915_sw_fence *fence,
- 	__init_waitqueue_head(&fence->wait, name, key);
- 	atomic_set(&fence->pending, 1);
- 	fence->error = 0;
--	fence->flags = (unsigned long)nop_fence_notify;
-+	fence->fn = nop_fence_notify;
- }
- 
- void onstack_fence_fini(struct i915_sw_fence *fence)
- {
--	if (!fence->flags)
-+	if (!fence->fn)
- 		return;
- 
- 	i915_sw_fence_commit(fence);
-@@ -89,7 +89,7 @@ struct heap_fence {
- 	};
- };
- 
--static int __i915_sw_fence_call
-+static int
- heap_fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
- 	struct heap_fence *h = container_of(fence, typeof(*h), fence);
+Tvrtko Ursulin (7):
+  drm/i915: Explicitly track DRM clients
+  drm/i915: Make GEM contexts track DRM clients
+  drm/i915: Track runtime spent in closed and unreachable GEM contexts
+  drm/i915: Track all user contexts per client
+  drm/i915: Track context current active time
+  drm: Document fdinfo format specification
+  drm/i915: Expose client engine utilisation via fdinfo
+
+ Documentation/gpu/drm-usage-stats.rst         | 103 +++++++++++++
+ Documentation/gpu/i915.rst                    |  27 ++++
+ Documentation/gpu/index.rst                   |   1 +
+ drivers/gpu/drm/i915/Makefile                 |   5 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  42 ++++-
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   6 +
+ drivers/gpu/drm/i915/gt/intel_context.c       |  27 +++-
+ drivers/gpu/drm/i915/gt/intel_context.h       |  15 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  24 ++-
+ .../drm/i915/gt/intel_execlists_submission.c  |  23 ++-
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    |   4 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  27 ++--
+ drivers/gpu/drm/i915/gt/intel_lrc.h           |  24 +++
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  10 +-
+ drivers/gpu/drm/i915/i915_drm_client.c        | 143 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.h        |  66 ++++++++
+ drivers/gpu/drm/i915/i915_drv.c               |   9 ++
+ drivers/gpu/drm/i915/i915_drv.h               |   5 +
+ drivers/gpu/drm/i915/i915_gem.c               |  21 ++-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   9 +-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   2 +-
+ 21 files changed, 537 insertions(+), 56 deletions(-)
+ create mode 100644 Documentation/gpu/drm-usage-stats.rst
+ create mode 100644 drivers/gpu/drm/i915/i915_drm_client.c
+ create mode 100644 drivers/gpu/drm/i915/i915_drm_client.h
+
 -- 
-2.32.0
+2.30.2
 
