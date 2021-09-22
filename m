@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E72CD414BED
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 16:30:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4671A414BF0
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Sep 2021 16:30:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 525EA6EC06;
-	Wed, 22 Sep 2021 14:30:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 434916EBFF;
+	Wed, 22 Sep 2021 14:30:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82FC06EC03
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Sep 2021 14:30:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="223649655"
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="223649655"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 07:30:23 -0700
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="533790470"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B2A86EC00
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Sep 2021 14:30:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="220409758"
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="220409758"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 07:30:28 -0700
+X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; d="scan'208";a="484591055"
 Received: from vidyaram-mobl1.gar.corp.intel.com (HELO localhost)
  ([10.251.218.73])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2021 07:30:20 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2021 07:30:25 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Dave Airlie <airlied@gmail.com>, Dave Airlie <airlied@redhat.com>,
  Jani Nikula <jani.nikula@intel.com>
-Date: Wed, 22 Sep 2021 17:29:29 +0300
-Message-Id: <bfde9189bea309228141f56724851805d6c28d64.1632320821.git.jani.nikula@intel.com>
+Date: Wed, 22 Sep 2021 17:29:30 +0300
+Message-Id: <d446b36574f1bc51fc605f8c8446c071669e6f2d.1632320821.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1632320821.git.jani.nikula@intel.com>
 References: <cover.1632320821.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 05/24] drm/i915: add wrappers around cdclk
- vtable funcs.
+Subject: [Intel-gfx] [PATCH 06/24] drm/i915/display: add
+ intel_fdi_link_train wrapper.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,8 +53,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-This adds wrappers around all the vtable callers so they are in
-one place.
+This wraps the fdi link training vfunc to make it clearer.
 
 Suggested by Jani.
 
@@ -62,167 +61,54 @@ Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 47 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_cdclk.h    |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- .../drm/i915/display/intel_display_power.c    |  2 +-
- 4 files changed, 44 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c     | 8 ++++++++
+ drivers/gpu/drm/i915/display/intel_fdi.h     | 2 ++
+ 3 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 9aec17b33819..0e09f259914f 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -59,6 +59,37 @@
-  * dividers can be programmed correctly.
-  */
- 
-+void intel_cdclk_get_cdclk(struct drm_i915_private *dev_priv,
-+			   struct intel_cdclk_config *cdclk_config)
-+{
-+	dev_priv->display.get_cdclk(dev_priv, cdclk_config);
-+}
-+
-+int intel_cdclk_bw_calc_min_cdclk(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	return dev_priv->display.bw_calc_min_cdclk(state);
-+}
-+
-+static void intel_cdclk_set_cdclk(struct drm_i915_private *dev_priv,
-+				  const struct intel_cdclk_config *cdclk_config,
-+				  enum pipe pipe)
-+{
-+	dev_priv->display.set_cdclk(dev_priv, cdclk_config, pipe);
-+}
-+
-+static int intel_cdclk_modeset_calc_cdclk(struct drm_i915_private *dev_priv,
-+					  struct intel_cdclk_state *cdclk_config)
-+{
-+	return dev_priv->display.modeset_calc_cdclk(cdclk_config);
-+}
-+
-+static u8 intel_cdclk_calc_voltage_level(struct drm_i915_private *dev_priv,
-+					 int cdclk)
-+{
-+	return dev_priv->display.calc_voltage_level(cdclk);
-+}
-+
- static void fixed_133mhz_get_cdclk(struct drm_i915_private *dev_priv,
- 				   struct intel_cdclk_config *cdclk_config)
- {
-@@ -1466,7 +1497,7 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
- 	 * at least what the CDCLK frequency requires.
- 	 */
- 	cdclk_config->voltage_level =
--		dev_priv->display.calc_voltage_level(cdclk_config->cdclk);
-+		intel_cdclk_calc_voltage_level(dev_priv, cdclk_config->cdclk);
- }
- 
- static void bxt_de_pll_disable(struct drm_i915_private *dev_priv)
-@@ -1777,7 +1808,7 @@ static void bxt_cdclk_init_hw(struct drm_i915_private *dev_priv)
- 	cdclk_config.cdclk = bxt_calc_cdclk(dev_priv, 0);
- 	cdclk_config.vco = bxt_calc_cdclk_pll_vco(dev_priv, cdclk_config.cdclk);
- 	cdclk_config.voltage_level =
--		dev_priv->display.calc_voltage_level(cdclk_config.cdclk);
-+		intel_cdclk_calc_voltage_level(dev_priv, cdclk_config.cdclk);
- 
- 	bxt_set_cdclk(dev_priv, &cdclk_config, INVALID_PIPE);
- }
-@@ -1789,7 +1820,7 @@ static void bxt_cdclk_uninit_hw(struct drm_i915_private *dev_priv)
- 	cdclk_config.cdclk = cdclk_config.bypass;
- 	cdclk_config.vco = 0;
- 	cdclk_config.voltage_level =
--		dev_priv->display.calc_voltage_level(cdclk_config.cdclk);
-+		intel_cdclk_calc_voltage_level(dev_priv, cdclk_config.cdclk);
- 
- 	bxt_set_cdclk(dev_priv, &cdclk_config, INVALID_PIPE);
- }
-@@ -1956,7 +1987,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
- 				     &dev_priv->gmbus_mutex);
- 	}
- 
--	dev_priv->display.set_cdclk(dev_priv, cdclk_config, pipe);
-+	intel_cdclk_set_cdclk(dev_priv, cdclk_config, pipe);
- 
- 	for_each_intel_dp(&dev_priv->drm, encoder) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-@@ -2424,7 +2455,7 @@ static int bxt_modeset_calc_cdclk(struct intel_cdclk_state *cdclk_state)
- 	cdclk_state->logical.cdclk = cdclk;
- 	cdclk_state->logical.voltage_level =
- 		max_t(int, min_voltage_level,
--		      dev_priv->display.calc_voltage_level(cdclk));
-+		      intel_cdclk_calc_voltage_level(dev_priv, cdclk));
- 
- 	if (!cdclk_state->active_pipes) {
- 		cdclk = bxt_calc_cdclk(dev_priv, cdclk_state->force_min_cdclk);
-@@ -2433,7 +2464,7 @@ static int bxt_modeset_calc_cdclk(struct intel_cdclk_state *cdclk_state)
- 		cdclk_state->actual.vco = vco;
- 		cdclk_state->actual.cdclk = cdclk;
- 		cdclk_state->actual.voltage_level =
--			dev_priv->display.calc_voltage_level(cdclk);
-+			intel_cdclk_calc_voltage_level(dev_priv, cdclk);
- 	} else {
- 		cdclk_state->actual = cdclk_state->logical;
- 	}
-@@ -2525,7 +2556,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- 	new_cdclk_state->active_pipes =
- 		intel_calc_active_pipes(state, old_cdclk_state->active_pipes);
- 
--	ret = dev_priv->display.modeset_calc_cdclk(new_cdclk_state);
-+	ret = intel_cdclk_modeset_calc_cdclk(dev_priv, new_cdclk_state);
- 	if (ret)
- 		return ret;
- 
-@@ -2705,7 +2736,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
-  */
- void intel_update_cdclk(struct drm_i915_private *dev_priv)
- {
--	dev_priv->display.get_cdclk(dev_priv, &dev_priv->cdclk.hw);
-+	intel_cdclk_get_cdclk(dev_priv, &dev_priv->cdclk.hw);
- 
- 	/*
- 	 * 9:0 CMBUS [sic] CDCLK frequency (cdfreq):
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index b34eb00fb327..309b3f394e24 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -68,7 +68,9 @@ void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
- void intel_dump_cdclk_config(const struct intel_cdclk_config *cdclk_config,
- 			     const char *context);
- int intel_modeset_calc_cdclk(struct intel_atomic_state *state);
--
-+void intel_cdclk_get_cdclk(struct drm_i915_private *dev_priv,
-+			   struct intel_cdclk_config *cdclk_config);
-+int intel_cdclk_bw_calc_min_cdclk(struct intel_atomic_state *state);
- struct intel_cdclk_state *
- intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 331c9030a8c1..5a02c9e1dca8 100644
+index 5a02c9e1dca8..c32ac150212d 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -9152,7 +9152,7 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
- 	    old_cdclk_state->force_min_cdclk != new_cdclk_state->force_min_cdclk)
- 		*need_cdclk_calc = true;
+@@ -2156,7 +2156,7 @@ static void ilk_pch_enable(const struct intel_atomic_state *state,
+ 	assert_pch_transcoder_disabled(dev_priv, pipe);
  
--	ret = dev_priv->display.bw_calc_min_cdclk(state);
-+	ret = intel_cdclk_bw_calc_min_cdclk(state);
- 	if (ret)
- 		return ret;
+ 	/* For PCH output, training FDI link */
+-	dev_priv->display.fdi_link_train(crtc, crtc_state);
++	intel_fdi_link_train(crtc, crtc_state);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index cce1a926fcc1..a274e2b33e91 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1195,7 +1195,7 @@ static void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
+ 	/* We need to program the right clock selection before writing the pixel
+ 	 * mutliplier into the DPLL. */
+diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+index 96ff12ad0873..d20669e53663 100644
+--- a/drivers/gpu/drm/i915/display/intel_fdi.c
++++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+@@ -10,6 +10,14 @@
+ #include "intel_fdi.h"
+ #include "intel_sideband.h"
  
--	dev_priv->display.get_cdclk(dev_priv, &cdclk_config);
-+	intel_cdclk_get_cdclk(dev_priv, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
- 	drm_WARN_ON(&dev_priv->drm,
- 		    intel_cdclk_needs_modeset(&dev_priv->cdclk.hw,
++void intel_fdi_link_train(struct intel_crtc *crtc,
++			  const struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++
++	dev_priv->display.fdi_link_train(crtc, crtc_state);
++}
++
+ /* units of 100MHz */
+ static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
+index 60acf2133145..61cb216a09f5 100644
+--- a/drivers/gpu/drm/i915/display/intel_fdi.h
++++ b/drivers/gpu/drm/i915/display/intel_fdi.h
+@@ -26,4 +26,6 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
+ void intel_fdi_pll_freq_update(struct drm_i915_private *i915);
+ void lpt_fdi_program_mphy(struct drm_i915_private *i915);
+ 
++void intel_fdi_link_train(struct intel_crtc *crtc,
++			  const struct intel_crtc_state *crtc_state);
+ #endif
 -- 
 2.30.2
 
