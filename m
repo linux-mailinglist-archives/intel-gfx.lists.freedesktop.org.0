@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1736415D3F
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 13:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51577415D2B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 13:57:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71EAF6ED0D;
-	Thu, 23 Sep 2021 11:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7DC6ED13;
+	Thu, 23 Sep 2021 11:57:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4E7C6ECF8
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 07:56:23 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id w29so14484238wra.8
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 00:56:23 -0700 (PDT)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
+ [IPv6:2a00:1450:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D74C6ECF6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 07:56:24 +0000 (UTC)
+Received: by mail-wr1-x42e.google.com with SMTP id t8so14591405wrq.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 00:56:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:subject:date:message-id:in-reply-to:references:mime-version
  :content-transfer-encoding;
- bh=s+B96AdxRkADIO5Sz7pGY2LZZPwHDe6rOqsFSHpv8M0=;
- b=ID7zk2ljNoV/wxX7aKuzEWSHvPd/v+Cr/kHkuLyO+yI4ahaoxvyMetsxjVKCtl5d8Z
- LEF/UjoR+QOcsaiQeH1GcAt9GgIsnLYgP3YTNBQFwP5gtGYvDT8DOEQxk8B2LJ9BOE1o
- MnYJEg8xYfwsErZnN6F6k5ZhP19ppsE3h3Ecb5iBbDvzi3ILhmaLdzvMKNUj+IF0UNRA
- b+g4/oMWikwLDtDc8lCs4qjndx4zhGjGawSbeULPb0pslzIb/1VYPwI9eEGqYkAXCXK+
- JTe0wWcD8+Pq8VIUeyBrSRSdvX1w6SrsDPQZW8a3MH7ujzvA/IKG25hRTlpZtqWhM4qz
- VYow==
+ bh=y78+lw9uajwG2nya7zXv9lL0eVUeHEAbTx0GIeLnzI0=;
+ b=W0OzX7EiFb1ngl/k3/EYf3XYd5icD2grdh7nSOEWlf4FJkieovgZkcl8rb6esgxfIV
+ TZAgmwe2qMrP4Srmv25K7L5HU5Y+tEzEGvcqaCMWknORIv6g85KLjSH4kuWEfl7OFWTc
+ FRGlqBiykj6WxF3pRsDUwp2TUJ74o9czCZ1NpjJolIh6+p1aDWyhpS4aANFtv/cC5k9z
+ S7l1lXHhJF+KpCYejqVIIMnGtxAnIfd4fCbYcHi7hyoUlgCbqfVDVi7utn0ngPGc9H3S
+ kTaK/6fT1m9N2UjP+wmoVTUDjRYql28acp6yTsaRIg/4WKKua7PL79xT1cJjVd+BXpPs
+ v2jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=s+B96AdxRkADIO5Sz7pGY2LZZPwHDe6rOqsFSHpv8M0=;
- b=bp94fyf0mkzi+s5sauvOdwtmLP5c+WUwAtTt+vVQT5z5NE6BylloPRHh28QBmtp1DP
- H6gqe1Fk2ZxWDALIogXu73r+bweq8SrvmJKi9/qtqKBbg4JwDLr271/Yr0jBcpxjtS7o
- sNRxnEQdpNUJq2/Niq3SkPCLXTY6JJTnd3kD1xT04WlF8wR/k7TT/vtG/5uDVnqV4N85
- axQhlPUiSMn95t5JHOJKzQv6boQ/8hw/L09qhBB705wqC376Xa5LEwQMxweQ4tF5wAon
- ZCvWllOydhR9OYz2vH5xc0uZVGccB65nLtRV07jIC4Vv90tzYn7gTYE31Cik2f2CB+Wa
- /ypQ==
-X-Gm-Message-State: AOAM5314yr+uZiq7eoEaf9b50BUpcPbLuK606HfCXM5uYRwRgKul3ypj
- XzLVJuBdgvQ7zINiUE5fbJso53vw5EM=
-X-Google-Smtp-Source: ABdhPJz2vnJvre8C0kcDobZD+b4c5oOe+DwttGUrPW5XRL2N6HPY7JagTBRotPa4CNe/jTW2iKR9Qg==
-X-Received: by 2002:a1c:7515:: with SMTP id o21mr2950244wmc.150.1632383782210; 
+ bh=y78+lw9uajwG2nya7zXv9lL0eVUeHEAbTx0GIeLnzI0=;
+ b=UCXDzg7cp9NRrSgei+c5qZpXFTEsdBD/EAH9P9BC2D655eCCoCFHvvuez24deBTQ9y
+ qAPnxFDydvMu8VcXGy/UezRQOQN8wGZJREsr+DCjRTUU0dvDQohCEGQ5phhSeNu07WZl
+ AWMOhpIvbQ3Md29xElcWueDF9JRBv94i9VqLmkkKj1rFuufG2NFZtUFmprl3OPPtpmLb
+ pg1NYT62H6olHm0yGZ+8f9/Q5+5ojKrO/+UdTkitTtr95i5U7p9Te11vlCzrs1GPChvk
+ fzUkmMP5KpENK2hwJ31IsK2xdDikEBZY8jCtKhbAX+LayKA8zF0Ovm3Ga8JEB9yDgOp3
+ 1H1g==
+X-Gm-Message-State: AOAM532nH/NLpecjKCQ19dDxf67e7RjA6l3n1hERBrb7I2XsdfMjetQ+
+ KfmM//lA5oSNzLh4ojU5Y+XPLxX/vIw=
+X-Google-Smtp-Source: ABdhPJwGn4HNf6NXCbI3r5zn38+YH/qnd22g4A4AT+35hoG+oXw5+1XUtxIo5oK1Qz4LaIh/wxE/8w==
+X-Received: by 2002:a1c:21c3:: with SMTP id h186mr14543982wmh.18.1632383782962; 
  Thu, 23 Sep 2021 00:56:22 -0700 (PDT)
 Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
  by smtp.gmail.com with ESMTPSA id
- k19sm4280704wmr.21.2021.09.23.00.56.21
+ k19sm4280704wmr.21.2021.09.23.00.56.22
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Sep 2021 00:56:21 -0700 (PDT)
+ Thu, 23 Sep 2021 00:56:22 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Sep 2021 09:55:58 +0200
-Message-Id: <20210923075608.2873-15-christian.koenig@amd.com>
+Date: Thu, 23 Sep 2021 09:55:59 +0200
+Message-Id: <20210923075608.2873-16-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210923075608.2873-1-christian.koenig@amd.com>
 References: <20210923075608.2873-1-christian.koenig@amd.com>
@@ -60,8 +60,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 23 Sep 2021 11:57:22 +0000
-Subject: [Intel-gfx] [PATCH 15/25] drm/i915: use the new iterator in
- i915_sw_fence_await_reservation v3
+Subject: [Intel-gfx] [PATCH 16/25] drm/i915: use the new iterator in
+ i915_request_await_object v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,87 +79,63 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Simplifying the code a bit.
 
-v2: use dma_resv_for_each_fence instead, according to Tvrtko the lock is
-    held here anyway.
-v3: back to using dma_resv_for_each_fence_unlocked.
+v2: add missing rcu_read_lock()/rcu_read_unlock()
+v3: use dma_resv_for_each_fence instead
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/i915_sw_fence.c | 53 ++++++----------------------
- 1 file changed, 11 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 34 +++++------------------------
+ 1 file changed, 5 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index c589a681da77..7ea0dbf81530 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -572,56 +572,25 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
- 				    unsigned long timeout,
- 				    gfp_t gfp)
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index ce446716d092..3839712ebd23 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1509,38 +1509,14 @@ i915_request_await_object(struct i915_request *to,
+ 			  struct drm_i915_gem_object *obj,
+ 			  bool write)
  {
 -	struct dma_fence *excl;
 +	struct dma_resv_iter cursor;
-+	struct dma_fence *f;
- 	int ret = 0, pending;
- 
- 	debug_fence_assert(fence);
- 	might_sleep_if(gfpflags_allow_blocking(gfp));
++	struct dma_fence *fence;
+ 	int ret = 0;
  
 -	if (write) {
 -		struct dma_fence **shared;
 -		unsigned int count, i;
 -
--		ret = dma_resv_get_fences(resv, &excl, &count, &shared);
--		if (ret)
+-		ret = dma_resv_get_fences(obj->base.resv, &excl, &count,
+-					  &shared);
++	dma_resv_for_each_fence(&cursor, obj->base.resv, write, fence) {
++		ret = i915_request_await_dma_fence(to, fence);
+ 		if (ret)
 -			return ret;
 -
 -		for (i = 0; i < count; i++) {
--			if (shared[i]->ops == exclude)
--				continue;
--
--			pending = i915_sw_fence_await_dma_fence(fence,
--								shared[i],
--								timeout,
--								gfp);
--			if (pending < 0) {
--				ret = pending;
+-			ret = i915_request_await_dma_fence(to, shared[i]);
+-			if (ret)
 -				break;
--			}
 -
--			ret |= pending;
+-			dma_fence_put(shared[i]);
 -		}
 -
--		for (i = 0; i < count; i++)
+-		for (; i < count; i++)
 -			dma_fence_put(shared[i]);
 -		kfree(shared);
 -	} else {
--		excl = dma_resv_get_excl_unlocked(resv);
+-		excl = dma_resv_get_excl_unlocked(obj->base.resv);
 -	}
 -
--	if (ret >= 0 && excl && excl->ops != exclude) {
--		pending = i915_sw_fence_await_dma_fence(fence,
--							excl,
--							timeout,
-+	dma_resv_iter_begin(&cursor, resv, write);
-+	dma_resv_for_each_fence_unlocked(&cursor, f) {
-+		pending = i915_sw_fence_await_dma_fence(fence, f, timeout,
- 							gfp);
--		if (pending < 0)
-+		if (pending < 0) {
- 			ret = pending;
--		else
--			ret |= pending;
--	}
+-	if (excl) {
+-		if (ret == 0)
+-			ret = i915_request_await_dma_fence(to, excl);
 -
--	dma_fence_put(excl);
+-		dma_fence_put(excl);
 +			break;
-+		}
+ 	}
  
-+		ret |= pending;
-+	}
-+	dma_resv_iter_end(&cursor);
  	return ret;
- }
- 
 -- 
 2.25.1
 
