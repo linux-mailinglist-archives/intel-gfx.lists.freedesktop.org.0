@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A527415924
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 09:35:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89561415928
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 09:35:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA6B46ED0A;
-	Thu, 23 Sep 2021 07:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39DB36ED11;
+	Thu, 23 Sep 2021 07:35:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF47F6ED00
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F08056ECF6
  for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 07:35:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="223816421"
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="223816421"
+X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="223816422"
+X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="223816422"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 00:34:59 -0700
+ 23 Sep 2021 00:35:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="558167540"
+X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="558167570"
 Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
  by fmsmga002.fm.intel.com with ESMTP; 23 Sep 2021 00:34:59 -0700
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Date: Thu, 23 Sep 2021 00:35:27 -0700
-Message-Id: <20210923073529.1058204-16-alan.previn.teres.alexis@intel.com>
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Thu, 23 Sep 2021 00:35:28 -0700
+Message-Id: <20210923073529.1058204-17-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210923073529.1058204-1-alan.previn.teres.alexis@intel.com>
 References: <20210923073529.1058204-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v12 15/17] drm/i915/pxp: add pxp debugfs
+Subject: [Intel-gfx] [PATCH v12 16/17] drm/i915/pxp: add PXP documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,169 +51,167 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-2 debugfs files, one to query the current status of the pxp session and one
-to trigger an invalidation for testing.
+Now that all the pieces are in place we can add a description of how the
+feature works. Also modify the comments in struct intel_pxp into
+kerneldoc.
 
-v2: rename debugfs, fix date (Alan)
-
-v12: rebased to latest drm-tip (rename of files/structs from
-     debugfs_gt to intel_debugfs_gt caused compiler errors).
+v2: improve doc (Rodrigo)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by : Alan Previn <alan.previn.teres.alexis@intel.com>
-Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                |  1 +
- drivers/gpu/drm/i915/gt/intel_gt_debugfs.c   |  2 +
- drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c | 78 ++++++++++++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h | 21 ++++++
- 4 files changed, 102 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
+ Documentation/gpu/i915.rst                 |  8 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.c       | 29 ++++++++++++-
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h | 47 ++++++++++++++++------
+ 3 files changed, 71 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 9283d74551a6..17dfa43e29cc 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -284,6 +284,7 @@ i915-y += i915_perf.o
- i915-$(CONFIG_DRM_I915_PXP) += \
- 	pxp/intel_pxp.o \
- 	pxp/intel_pxp_cmd.o \
-+	pxp/intel_pxp_debugfs.o \
- 	pxp/intel_pxp_irq.o \
- 	pxp/intel_pxp_pm.o \
- 	pxp/intel_pxp_session.o \
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-index 03fb4aefbf90..1fe19ccd2794 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-@@ -10,6 +10,7 @@
- #include "intel_gt_engines_debugfs.h"
- #include "intel_gt_pm_debugfs.h"
- #include "intel_sseu_debugfs.h"
-+#include "pxp/intel_pxp_debugfs.h"
- #include "uc/intel_uc_debugfs.h"
+diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+index 311e10400708..b7d801993bfa 100644
+--- a/Documentation/gpu/i915.rst
++++ b/Documentation/gpu/i915.rst
+@@ -471,6 +471,14 @@ Object Tiling IOCTLs
+ .. kernel-doc:: drivers/gpu/drm/i915/gem/i915_gem_tiling.c
+    :doc: buffer object tiling
  
- void intel_gt_debugfs_register(struct intel_gt *gt)
-@@ -28,6 +29,7 @@ void intel_gt_debugfs_register(struct intel_gt *gt)
- 	intel_sseu_debugfs_register(gt, root);
++Protected Objects
++-----------------
++
++.. kernel-doc:: drivers/gpu/drm/i915/pxp/intel_pxp.c
++   :doc: PXP
++
++.. kernel-doc:: drivers/gpu/drm/i915/pxp/intel_pxp_types.h
++
+ Microcontrollers
+ ================
  
- 	intel_uc_debugfs_register(&gt->uc, root);
-+	intel_pxp_debugfs_register(&gt->pxp, root);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index cb254aeac4a7..5ff34836fd97 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -11,6 +11,34 @@
+ #include "gt/intel_context.h"
+ #include "i915_drv.h"
+ 
++/**
++ * DOC: PXP
++ *
++ * PXP (Protected Xe Path) is a feature available in Gen12 and newer platforms.
++ * It allows execution and flip to display of protected (i.e. encrypted)
++ * objects. The SW support is enabled via the CONFIG_DRM_I915_PXP kconfig.
++ *
++ * Objects can opt-in to PXP encryption at creation time via the
++ * I915_GEM_CREATE_EXT_PROTECTED_CONTENT create_ext flag. For objects to be
++ * correctly protected they must be used in conjunction with a context created
++ * with the I915_CONTEXT_PARAM_PROTECTED_CONTENT flag. See the documentation
++ * of those two uapi flags for details and restrictions.
++ *
++ * Protected objects are tied to a pxp session; currently we only support one
++ * session, which i915 manages and whose index is available in the uapi
++ * (I915_PROTECTED_CONTENT_DEFAULT_SESSION) for use in instructions targeting
++ * protected objects.
++ * The session is invalidated by the HW when certain events occur (e.g.
++ * suspend/resume). When this happens, all the objects that were used with the
++ * session are marked as invalid and all contexts marked as using protected
++ * content are banned. Any further attempt at using them in an execbuf call is
++ * rejected, while flips are converted to black frames.
++ *
++ * Some of the PXP setup operations are performed by the Management Engine,
++ * which is handled by the mei driver; communication between i915 and mei is
++ * performed via the mei_pxp component module.
++ */
++
+ struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
+ {
+ 	return container_of(pxp, struct intel_gt, pxp);
+@@ -268,4 +296,3 @@ void intel_pxp_invalidate(struct intel_pxp *pxp)
+ 	}
+ 	spin_unlock_irq(&i915->gem.contexts.lock);
  }
+-
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+index ae24064bb57e..73ef7d1754e1 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+@@ -16,42 +16,65 @@
+ struct intel_context;
+ struct i915_pxp_component;
  
- void intel_gt_debugfs_register_files(struct dentry *root,
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-new file mode 100644
-index 000000000000..10e1e45471f1
---- /dev/null
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2021 Intel Corporation
++/**
++ * struct intel_pxp - pxp state
 + */
-+
-+#include <linux/debugfs.h>
-+#include <drm/drm_print.h>
-+
-+#include "gt/intel_gt_debugfs.h"
-+#include "pxp/intel_pxp.h"
-+#include "pxp/intel_pxp_irq.h"
-+#include "i915_drv.h"
-+
-+static int pxp_info_show(struct seq_file *m, void *data)
-+{
-+	struct intel_pxp *pxp = m->private;
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	bool enabled = intel_pxp_is_enabled(pxp);
-+
-+	if (!enabled) {
-+		drm_printf(&p, "pxp disabled\n");
-+		return 0;
-+	}
-+
-+	drm_printf(&p, "active: %s\n", yesno(intel_pxp_is_active(pxp)));
-+	drm_printf(&p, "instance counter: %u\n", pxp->key_instance);
-+
-+	return 0;
-+}
-+DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(pxp_info);
-+
-+static int pxp_terminate_get(void *data, u64 *val)
-+{
-+	/* nothing to read */
-+	return -EPERM;
-+}
-+
-+static int pxp_terminate_set(void *data, u64 val)
-+{
-+	struct intel_pxp *pxp = data;
-+	struct intel_gt *gt = pxp_to_gt(pxp);
-+
-+	if (!intel_pxp_is_active(pxp))
-+		return -ENODEV;
-+
-+	/* simulate a termination interrupt */
-+	spin_lock_irq(&gt->irq_lock);
-+	intel_pxp_irq_handler(pxp, GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT);
-+	spin_unlock_irq(&gt->irq_lock);
-+
-+	if (!wait_for_completion_timeout(&pxp->termination,
-+					 msecs_to_jiffies(100)))
-+		return -ETIMEDOUT;
-+
-+	return 0;
-+}
-+
-+DEFINE_SIMPLE_ATTRIBUTE(pxp_terminate_fops, pxp_terminate_get, pxp_terminate_set, "%llx\n");
-+void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *gt_root)
-+{
-+	static const struct intel_gt_debugfs_file files[] = {
-+		{ "info", &pxp_info_fops, NULL },
-+		{ "terminate_state", &pxp_terminate_fops, NULL },
-+	};
-+	struct dentry *root;
-+
-+	if (!gt_root)
-+		return;
-+
-+	if (!HAS_PXP((pxp_to_gt(pxp)->i915)))
-+		return;
-+
-+	root = debugfs_create_dir("pxp", gt_root);
-+	if (IS_ERR(root))
-+		return;
-+
-+	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), pxp);
-+}
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
-new file mode 100644
-index 000000000000..7e0c3d2f5d7e
---- /dev/null
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_PXP_DEBUGFS_H__
-+#define __INTEL_PXP_DEBUGFS_H__
-+
-+struct intel_pxp;
-+struct dentry;
-+
-+#ifdef CONFIG_DRM_I915_PXP
-+void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *root);
-+#else
-+static inline void
-+intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *root)
-+{
-+}
-+#endif
-+
-+#endif /* __INTEL_PXP_DEBUGFS_H__ */
+ struct intel_pxp {
++	/**
++	 * @pxp_component: i915_pxp_component struct of the bound mei_pxp
++	 * module. Only set and cleared inside component bind/unbind functions,
++	 * which are protected by &tee_mutex.
++	 */
+ 	struct i915_pxp_component *pxp_component;
++	/**
++	 * @pxp_component_added: track if the pxp component has been added.
++	 * Set and cleared in tee init and fini functions respectively.
++	 */
+ 	bool pxp_component_added;
+ 
++	/** @ce: kernel-owned context used for PXP operations */
+ 	struct intel_context *ce;
+ 
+-	/*
++	/** @arb_mutex: protects arb session start */
++	struct mutex arb_mutex;
++	/**
++	 * @arb_is_valid: tracks arb session status.
+ 	 * After a teardown, the arb session can still be in play on the HW
+ 	 * even if the keys are gone, so we can't rely on the HW state of the
+ 	 * session to know if it's valid and need to track the status in SW.
+ 	 */
+-	struct mutex arb_mutex; /* protects arb session start */
+ 	bool arb_is_valid;
+ 
+-	/*
+-	 * Keep track of which key instance we're on, so we can use it to
+-	 * determine if an object was created using the current key or a
++	/**
++	 * @key_instance: tracks which key instance we're on, so we can use it
++	 * to determine if an object was created using the current key or a
+ 	 * previous one.
+ 	 */
+ 	u32 key_instance;
+ 
+-	struct mutex tee_mutex; /* protects the tee channel binding */
++	/** @tee_mutex: protects the tee channel binding and messaging. */
++	struct mutex tee_mutex;
+ 
+-	/*
+-	 * If the HW perceives an attack on the integrity of the encryption it
+-	 * will invalidate the keys and expect SW to re-initialize the session.
+-	 * We keep track of this state to make sure we only re-start the arb
+-	 * session when required.
++	/**
++	 * @hw_state_invalidated: if the HW perceives an attack on the integrity
++	 * of the encryption it will invalidate the keys and expect SW to
++	 * re-initialize the session. We keep track of this state to make sure
++	 * we only re-start the arb session when required.
+ 	 */
+ 	bool hw_state_invalidated;
+ 
++	/** @irq_enabled: tracks the status of the kcr irqs */
+ 	bool irq_enabled;
++	/**
++	 * @termination: tracks the status of a pending termination. Only
++	 * re-initialized under gt->irq_lock and completed in &session_work.
++	 */
+ 	struct completion termination;
+ 
++	/** @session_work: worker that manages session events. */
+ 	struct work_struct session_work;
+-	u32 session_events; /* protected with gt->irq_lock */
++	/** @session_events: pending session events, protected with gt->irq_lock. */
++	u32 session_events;
+ #define PXP_TERMINATION_REQUEST  BIT(0)
+ #define PXP_TERMINATION_COMPLETE BIT(1)
+ #define PXP_INVAL_REQUIRED       BIT(2)
 -- 
 2.25.1
 
