@@ -1,45 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D880A4159AE
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 10:01:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4EDD41593B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 09:43:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFA0B6ECF6;
-	Thu, 23 Sep 2021 08:01:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A62096E0F1;
+	Thu, 23 Sep 2021 07:43:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D51DB6ECF6;
- Thu, 23 Sep 2021 08:01:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="246237859"
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; 
- d="asc'?scan'208";a="246237859"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 01:01:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; 
- d="asc'?scan'208";a="550748427"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.143])
- by FMSMGA003.fm.intel.com with ESMTP; 23 Sep 2021 01:01:03 -0700
-Date: Thu, 23 Sep 2021 15:36:59 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jim Cromie <jim.cromie@gmail.com>
-Cc: jbaron@akamai.com, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, daniel@ffwll.ch
-Message-ID: <20210923073659.GZ14689@zhen-hp.sh.intel.com>
-References: <20210915163957.2949166-1-jim.cromie@gmail.com>
- <20210915163957.2949166-11-jim.cromie@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 93E5A6ECF3;
+ Thu, 23 Sep 2021 07:43:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8CCC5A8830;
+ Thu, 23 Sep 2021 07:43:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="Bu8it7iiRSEf40bY"
-Content-Disposition: inline
-In-Reply-To: <20210915163957.2949166-11-jim.cromie@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v8 10/16] i915/gvt: remove spaces in
- pr_debug "gvt: core:" etc prefixes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Sep 2021 07:43:26 -0000
+Message-ID: <163238300657.31048.13546467354427408750@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210923073529.1058204-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20210923073529.1058204-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Introduce_Intel_PXP_=28rev11=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,114 +41,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---Bu8it7iiRSEf40bY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Series: drm/i915: Introduce Intel PXP (rev11)
+URL   : https://patchwork.freedesktop.org/series/90503/
+State : warning
 
-On 2021.09.15 10:39:51 -0600, Jim Cromie wrote:
-> Taking embedded spaces out of existing prefixes makes them better
-> class-prefixes; simplifying the extra quoting needed otherwise:
->=20
->   $> echo format "^gvt: core:" +p >control
->=20
-> Dropping the internal spaces means any trailing space in a query will
-> more clearly terminate the prefix being searched for.
->=20
-> Consider a generic drm-debug example:
->=20
->   # turn off ATOMIC reports
->   echo format "^drm:atomic: " -p > control
->=20
->   # turn off all ATOMIC:* reports, including any sub-categories
->   echo format "^drm:atomic:" -p > control
->=20
->   # turn on ATOMIC:FAIL: reports
->   echo format "^drm:atomic:fail: " +p > control
->=20
-> Removing embedded spaces in the class-prefixes simplifies the
-> corresponding match-prefix.  This means that "quoted" match-prefixes
-> are only needed when the trailing space is desired, in order to
-> exclude explicitly sub-categorized pr-debugs; in this example,
-> "drm:atomic:fail:".
->=20
-> RFC: maybe the prefix catenation should paste in the " " class-prefix
-> terminator explicitly.  A pr_debug_() flavor could exclude the " ",
-> allowing ad-hoc sub-categorization by appending for example, "fail:"
-> to "drm:atomic:" without the default " " insertion.
->=20
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
-> v8:
-> . fix patchwork CI warning
-> ---
->  drivers/gpu/drm/i915/gvt/debug.h | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/debug.h b/drivers/gpu/drm/i915/gvt/=
-debug.h
-> index c6027125c1ec..bbecc279e077 100644
-> --- a/drivers/gpu/drm/i915/gvt/debug.h
-> +++ b/drivers/gpu/drm/i915/gvt/debug.h
-> @@ -36,30 +36,30 @@ do {									\
->  } while (0)
-> =20
->  #define gvt_dbg_core(fmt, args...) \
-> -	pr_debug("gvt: core: "fmt, ##args)
-> +	pr_debug("gvt:core: " fmt, ##args)
-> =20
->  #define gvt_dbg_irq(fmt, args...) \
-> -	pr_debug("gvt: irq: "fmt, ##args)
-> +	pr_debug("gvt:irq: " fmt, ##args)
-> =20
->  #define gvt_dbg_mm(fmt, args...) \
-> -	pr_debug("gvt: mm: "fmt, ##args)
-> +	pr_debug("gvt:mm: " fmt, ##args)
-> =20
->  #define gvt_dbg_mmio(fmt, args...) \
-> -	pr_debug("gvt: mmio: "fmt, ##args)
-> +	pr_debug("gvt:mmio: " fmt, ##args)
-> =20
->  #define gvt_dbg_dpy(fmt, args...) \
-> -	pr_debug("gvt: dpy: "fmt, ##args)
-> +	pr_debug("gvt:dpy: " fmt, ##args)
-> =20
->  #define gvt_dbg_el(fmt, args...) \
-> -	pr_debug("gvt: el: "fmt, ##args)
-> +	pr_debug("gvt:el: " fmt, ##args)
-> =20
->  #define gvt_dbg_sched(fmt, args...) \
-> -	pr_debug("gvt: sched: "fmt, ##args)
-> +	pr_debug("gvt:sched: " fmt, ##args)
-> =20
->  #define gvt_dbg_render(fmt, args...) \
-> -	pr_debug("gvt: render: "fmt, ##args)
-> +	pr_debug("gvt:render: " fmt, ##args)
-> =20
->  #define gvt_dbg_cmd(fmt, args...) \
-> -	pr_debug("gvt: cmd: "fmt, ##args)
-> +	pr_debug("gvt:cmd: " fmt, ##args)
-> =20
->  #endif
-> --=20
+== Summary ==
 
-Looks good to me. Thanks!
+$ dim checkpatch origin/drm-tip
+d573193f656b drm/i915/pxp: Define PXP component interface
+-:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#31: 
+new file mode 100644
 
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+total: 0 errors, 1 warnings, 0 checks, 49 lines checked
+be0229d7c21c mei: pxp: export pavp client to me client bus
+-:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#36: 
+new file mode 100644
 
---Bu8it7iiRSEf40bY
-Content-Type: application/pgp-signature; name="signature.asc"
+total: 0 errors, 1 warnings, 0 checks, 276 lines checked
+d5f0364f8628 drm/i915/pxp: define PXP device flag and kconfig
+-:49: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#49: FILE: drivers/gpu/drm/i915/i915_drv.h:1686:
++#define HAS_PXP(dev_priv)  ((IS_ENABLED(CONFIG_DRM_I915_PXP) && \
++			    INTEL_INFO(dev_priv)->has_pxp) && \
++			    VDBOX_MASK(&dev_priv->gt))
 
------BEGIN PGP SIGNATURE-----
+total: 0 errors, 0 warnings, 1 checks, 33 lines checked
+0135b76609df drm/i915/pxp: allocate a vcs context for pxp usage
+-:100: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#100: 
+new file mode 100644
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYUwulgAKCRCxBBozTXgY
-J8qzAJ9cfZulZLyzqg5hhI9G1fLDqKMDlQCgi+YapDkpvZuzya6guQeaCyf+Nps=
-=+ZKA
------END PGP SIGNATURE-----
+total: 0 errors, 1 warnings, 0 checks, 172 lines checked
+f0dc7d51c7fd drm/i915/pxp: Implement funcs to create the TEE channel
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
 
---Bu8it7iiRSEf40bY--
+total: 0 errors, 1 warnings, 0 checks, 145 lines checked
+9c77444f0c7a drm/i915/pxp: set KCR reg init
+7f9d4f4dbf82 drm/i915/pxp: Create the arbitrary session after boot
+-:107: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#107: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 344 lines checked
+c784be950ed9 drm/i915/pxp: Implement arb session teardown
+-:118: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#118: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 283 lines checked
+b9d1ab8e40fd drm/i915/pxp: Implement PXP irq handler
+-:213: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#213: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 424 lines checked
+8e6e843fb2fb drm/i915/pxp: interfaces for using protected objects
+0c9a75cd894c drm/i915/pxp: start the arb session on demand
+f229a02dbed6 drm/i915/pxp: Enable PXP power management
+-:122: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#122: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 239 lines checked
+11f5b485dd79 drm/i915/pxp: Add plane decryption support
+ba9bc18886f3 drm/i915/pxp: black pixels on pxp disabled
+-:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#169: FILE: drivers/gpu/drm/i915/i915_reg.h:11412:
++#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
++							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
+
+-:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#169: FILE: drivers/gpu/drm/i915/i915_reg.h:11412:
++#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
++							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
+
+-:170: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#170: FILE: drivers/gpu/drm/i915/i915_reg.h:11413:
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
+
+-:183: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#183: FILE: drivers/gpu/drm/i915/i915_reg.h:11426:
++#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:183: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#183: FILE: drivers/gpu/drm/i915/i915_reg.h:11426:
++#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:184: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#184: FILE: drivers/gpu/drm/i915/i915_reg.h:11427:
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
+
+-:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#197: FILE: drivers/gpu/drm/i915/i915_reg.h:11440:
++#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#197: FILE: drivers/gpu/drm/i915/i915_reg.h:11440:
++#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
++							    (index) * 4)
+
+-:198: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#198: FILE: drivers/gpu/drm/i915/i915_reg.h:11441:
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
+
+total: 0 errors, 3 warnings, 6 checks, 148 lines checked
+f6bbdd6e7086 drm/i915/pxp: add pxp debugfs
+-:51: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#51: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 120 lines checked
+7f1a7d78fdae drm/i915/pxp: add PXP documentation
+35a035fabcfb drm/i915/pxp: enable PXP for integrated Gen12
+
+
