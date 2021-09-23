@@ -2,38 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9327241660A
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 21:40:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 424ED416606
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 21:40:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DDF76EDA7;
-	Thu, 23 Sep 2021 19:40:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B52116EDA3;
+	Thu, 23 Sep 2021 19:40:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF0A26E10B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE6C6E10B
  for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 19:40:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="223970617"
-X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="223970617"
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="223970614"
+X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="223970614"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2021 12:40:43 -0700
-X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="455236756"
+X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="455236755"
 Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
  ([10.24.14.60])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2021 12:40:43 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Date: Thu, 23 Sep 2021 12:46:15 -0700
-Message-Id: <20210923194617.69136-5-jose.souza@intel.com>
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Date: Thu, 23 Sep 2021 12:46:16 -0700
+Message-Id: <20210923194617.69136-6-jose.souza@intel.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210923194617.69136-1-jose.souza@intel.com>
 References: <20210923194617.69136-1-jose.souza@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/7] drm/i915/display/psr: Do full fetch when
- handling biplanar formats
+Subject: [Intel-gfx] [PATCH 6/7] drm/i915/display/adlp: Allow PSR2 to be
+ enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,38 +51,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+With all the recent fixes PSR2 is properly working in Alderlake-P but
+due to some issues that don't have software workarounds it will not be
+supported in display steppings older than B0.
 
-We are still missing the PSR2 selective fetch handling of biplanar
-formats but until proper handle is added we can workaround it by
-doing full frames fetch when state has biplanar formats.
+Even with this patch PSR2 will no be enabled by default in ADL-P, it
+still requires enable_psr2_sel_fetch to be set to true, what some
+of our tests does.
 
-Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 356e0e96abf4e..001d81f128989 100644
+index 001d81f128989..37727ff2b2ec9 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1579,6 +1579,9 @@ static void cursor_area_workaround(const struct intel_plane_state *new_plane_sta
-  * also planes are not updated if they have a negative X
-  * position so for now doing a full update in this cases
-  *
-+ * TODO: We are missing biplanar formats handling, until it is
-+ * implemented it will send full frame updates.
-+ *
-  * Plane scaling and rotation is not supported by selective fetch and both
-  * properties can change without a modeset, so need to be check at every
-  * atomic commmit.
-@@ -1588,6 +1591,7 @@ static bool psr2_sel_fetch_plane_state_supported(const struct intel_plane_state
- 	if (plane_state->uapi.dst.y1 < 0 ||
- 	    plane_state->uapi.dst.x1 < 0 ||
- 	    plane_state->scaler_id >= 0 ||
-+	    plane_state->hw.fb->format->is_yuv ||
- 	    plane_state->uapi.rotation != DRM_MODE_ROTATE_0)
+@@ -830,12 +830,8 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
  		return false;
+ 	}
+ 
+-	/*
+-	 * We are missing the implementation of some workarounds to enabled PSR2
+-	 * in Alderlake_P, until ready PSR2 should be kept disabled.
+-	 */
+-	if (IS_ALDERLAKE_P(dev_priv)) {
+-		drm_dbg_kms(&dev_priv->drm, "PSR2 is missing the implementation of workarounds\n");
++	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
++		drm_dbg_kms(&dev_priv->drm, "PSR2 not completely functional in this stepping\n");
+ 		return false;
+ 	}
  
 -- 
 2.33.0
