@@ -2,49 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97A70416119
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 16:34:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 819D14161C6
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 17:10:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 481FE6ED72;
-	Thu, 23 Sep 2021 14:34:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72BCD6E0A6;
+	Thu, 23 Sep 2021 15:10:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9996ED65;
- Thu, 23 Sep 2021 14:34:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="210930884"
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="210930884"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 07:33:42 -0700
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="702743894"
-Received: from gerardqu-mobl.ger.corp.intel.com (HELO [10.213.243.237])
- ([10.213.243.237])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 07:33:41 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABE616E0A6;
+ Thu, 23 Sep 2021 15:10:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="223904164"
+X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="223904164"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2021 08:10:31 -0700
+X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="551160791"
+Received: from lloh-mobl.ger.corp.intel.com (HELO localhost) ([10.249.35.91])
+ by fmsmga003-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2021 08:10:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Akira Yokosawa <akiyks@gmail.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>
-References: <20210922062527.865433-1-thomas.hellstrom@linux.intel.com>
- <20210922062527.865433-4-thomas.hellstrom@linux.intel.com>
- <f276fe3d-5ed8-7ac9-440d-3703f6f0e5e5@linux.intel.com>
- <0f1050c9-b9fe-b587-2aac-cceae4032638@linux.intel.com>
- <061617be-9bf4-7853-a34d-7501f6b3179f@linux.intel.com>
- <199e2c25-8133-360e-4b85-18485522c2be@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a3b8aa87-1276-7dd7-611b-b2aaf758860a@linux.intel.com>
-Date: Thu, 23 Sep 2021 15:33:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <4a227569-074f-c501-58bb-d0d8f60a8ae9@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <4a227569-074f-c501-58bb-d0d8f60a8ae9@gmail.com>
+Date: Thu, 23 Sep 2021 18:10:23 +0300
+Message-ID: <87czozba5c.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <199e2c25-8133-360e-4b85-18485522c2be@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v6 3/9] drm/i915/gt: Increase suspend timeout
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc,
+ docs: Fix pdfdocs build error by removing nested grid
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,93 +55,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 20 Sep 2021, Akira Yokosawa <akiyks@gmail.com> wrote:
+> Nested grids in grid-table cells are not specified as proper ReST
+> constructs.
+> Commit 572f2a5cd974 ("drm/i915/guc: Update firmware to v62.0.0")
+> added a couple of kerneldoc tables of the form:
+>
+>   +---+-------+------------------------------------------------------+
+>   | 1 |  31:0 |  +------------------------------------------------+  |
+>   +---+-------+  |                                                |  |
+>   |...|       |  |  Embedded `HXG Message`_                       |  |
+>   +---+-------+  |                                                |  |
+>   | n |  31:0 |  +------------------------------------------------+  |
+>   +---+-------+------------------------------------------------------+
+>
+> For "make htmldocs", they happen to work as one might expect,
+> but they are incompatible with "make latexdocs" and "make pdfdocs",
+> and cause the generated gpu.tex file to become incomplete and
+> unbuildable by xelatex.
+>
+> Restore the compatibility by removing those nested grids in the tables.
+>
+> Size comparison of generated gpu.tex:
+>
+>                   Sphinx 2.4.4  Sphinx 4.2.0
+>   v5.14:               3238686       3841631
+>   v5.15-rc1:            376270        432729
+>   with this fix:       3377846       3998095
+>
+> Fixes: 572f2a5cd974 ("drm/i915/guc: Update firmware to v62.0.0")
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Signed-off-by: Akira Yokosawa <akiyks@gmail.com>
 
-On 23/09/2021 14:19, Thomas Hellström wrote:
-> 
-> On 9/23/21 2:59 PM, Tvrtko Ursulin wrote:
->>
->> On 23/09/2021 12:47, Thomas Hellström wrote:
->>> Hi, Tvrtko,
->>>
->>> On 9/23/21 12:13 PM, Tvrtko Ursulin wrote:
->>>>
->>>> On 22/09/2021 07:25, Thomas Hellström wrote:
->>>>> With GuC submission on DG1, the execution of the requests times out
->>>>> for the gem_exec_suspend igt test case after executing around 800-900
->>>>> of 1000 submitted requests.
->>>>>
->>>>> Given the time we allow elsewhere for fences to signal (in the 
->>>>> order of
->>>>> seconds), increase the timeout before we mark the gt wedged and 
->>>>> proceed.
->>>>
->>>> I suspect it is not about requests not retiring in time but about 
->>>> the intel_guc_wait_for_idle part of intel_gt_wait_for_idle. Although 
->>>> I don't know which G2H message is the code waiting for at suspend 
->>>> time so perhaps something to run past the GuC experts.
->>>
->>> So what's happening here is that the tests submits 1000 requests, 
->>> each writing a value to an object, and then that object content is 
->>> checked after resume. With GuC it turns out that only 800-900 or so 
->>> values are actually written before we time out, and the test 
->>> (basic-S3) fails, but not on every run.
->>
->> Yes and that did not make sense to me. It is a single context even so 
->> I did not come up with an explanation why would GuC be slower.
->>
->> Unless it somehow manages to not even update the ring tail in time and 
->> requests are still only stuck in the software queue? Perhaps you can 
->> see that from context tail and head when it happens.
->>
->>> This is a bit interesting in itself, because I never saw the hang-S3 
->>> test fail, which from what I can tell basically is an identical test 
->>> but with a spinner submitted after the 1000th request. Could be that 
->>> the suspend backup code ends up waiting for something before we end 
->>> up in intel_gt_wait_for_idle, giving more requests time to execute.
->>
->> No idea, I don't know the suspend paths that well. For instance before 
->> looking at the code I thought we would preempt what's executing and 
->> not wait for everything that has been submitted to finish. :)
->>
->>>> Anyway, if that turns out to be correct then perhaps it would be 
->>>> better to split the two timeouts (like if required GuC timeout is 
->>>> perhaps fundamentally independent) so it's clear who needs how much 
->>>> time. Adding Matt and John to comment.
->>>
->>> You mean we have separate timeouts depending on whether we're using 
->>> GuC or execlists submission?
->>
->> No, I don't know yet. First I think we need to figure out what exactly 
->> is happening.
-> 
-> Well then TBH I will need to file a separate Jira about that. There 
-> might be various things going on here like swiching between the migrate 
-> context for eviction of unrelated LMEM buffers and the context used by 
-> gem_exec_suspend. The gem_exec_suspend failures are blocking DG1 BAT so 
-> it's pretty urgent to get this series merged. If you insist I can leave 
-> this patch out for now, but rather I'd commit it as is and File a Jira 
-> instead.
+Pushed to drm-intel-gt-next, thanks for the patch.
 
-I see now how you have i915_gem_suspend() in between two lmem_suspend() 
-calls in this series. So first call has the potential of creating a lot 
-of requests and that you think interferes? Sounds plausible but implies 
-GuC timeslicing is less efficient if I follow?
+This makes the HTML output arguably worse, but there were no comments
+from anyone and the pdf build needs to work.
 
-IMO it is okay to leave for follow up work but strictly speaking, unless 
-I am missing something, the approach of bumping the timeout does not 
-sound valid if the copying is done async.
+BR,
+Jani.
 
-Because the timeout is then mandated not only as function of GPU 
-activity (lets say user controlled), but also the amount of 
-unpinned/idle buffers which happen to be laying around (which is more 
-i915 controlled, or mixed at least).
 
-So question is, with enough data to copy, any timeout could be too low 
-and then how long do we want to wait before failing suspend? Is this an 
-argument to have a separate timeout specifically addressing the suspend 
-path or not I am not sure. Perhaps there is no choice and simply wait 
-until buffers are swapped out otherwise nothing will work.
 
-Regards,
+> ---
+> Hi all,
+>
+> I know there is little interest in building pdfdocs (or LaTeX) version
+> of kernel-doc, and this issue does not matter most of you.
+>
+> But "make pdfdocs" is supposed to work, give or take those tables
+> with squeezed columns, and at least it is expected to complete
+> without fatal errors.
+>
+> I have no idea who is responsible to those grid-tables, so added
+> a lot of people in the To: and Cc: lists.
+>
+> Does removing those nested grids look reasonable to you?
+>
+> Any feedback is welcome!
+>
+> Note: This patch is against the docs-next branch of Jon's -doc tree
+> (git://git.lwn.net/linux.git).  It can be applied against v5.15-rc1
+> and v5.15-rc2 as well.
+>
+>         Thanks, Akira
+> --
+>  .../gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h | 10 +++++-----
+>  .../drm/i915/gt/uc/abi/guc_communication_mmio_abi.h    | 10 +++++-----
+>  2 files changed, 10 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> index 99e1fad5ca20..c9086a600bce 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> @@ -102,11 +102,11 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+>   *  |   +-------+--------------------------------------------------------------+
+>   *  |   |   7:0 | NUM_DWORDS = length (in dwords) of the embedded HXG message  |
+>   *  +---+-------+--------------------------------------------------------------+
+> - *  | 1 |  31:0 |  +--------------------------------------------------------+  |
+> - *  +---+-------+  |                                                        |  |
+> - *  |...|       |  |  Embedded `HXG Message`_                               |  |
+> - *  +---+-------+  |                                                        |  |
+> - *  | n |  31:0 |  +--------------------------------------------------------+  |
+> + *  | 1 |  31:0 |                                                              |
+> + *  +---+-------+                                                              |
+> + *  |...|       | [Embedded `HXG Message`_]                                    |
+> + *  +---+-------+                                                              |
+> + *  | n |  31:0 |                                                              |
+>   *  +---+-------+--------------------------------------------------------------+
+>   */
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+> index bbf1ddb77434..9baa3cb07d13 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+> @@ -38,11 +38,11 @@
+>   *  +---+-------+--------------------------------------------------------------+
+>   *  |   | Bits  | Description                                                  |
+>   *  +===+=======+==============================================================+
+> - *  | 0 |  31:0 |  +--------------------------------------------------------+  |
+> - *  +---+-------+  |                                                        |  |
+> - *  |...|       |  |  Embedded `HXG Message`_                               |  |
+> - *  +---+-------+  |                                                        |  |
+> - *  | n |  31:0 |  +--------------------------------------------------------+  |
+> + *  | 0 |  31:0 |                                                              |
+> + *  +---+-------+                                                              |
+> + *  |...|       | [Embedded `HXG Message`_]                                    |
+> + *  +---+-------+                                                              |
+> + *  | n |  31:0 |                                                              |
+>   *  +---+-------+--------------------------------------------------------------+
+>   */
+>  
+>
+> base-commit: 242f4c77b1c8cebfdfa0ad5b40e2e4ae0316e57d
 
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
