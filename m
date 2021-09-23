@@ -1,59 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4484B415D2E
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 13:57:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 826E9415D3D
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 13:58:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7E46ED20;
-	Thu, 23 Sep 2021 11:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D2ED6ED0B;
+	Thu, 23 Sep 2021 11:58:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB61C6E0F2
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 07:56:19 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id q11so14487590wrr.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 00:56:19 -0700 (PDT)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FFEF6ECF8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 07:56:20 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id d21so14423217wra.12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 00:56:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:subject:date:message-id:in-reply-to:references:mime-version
  :content-transfer-encoding;
- bh=SQ++zZ5/yZpkHj9Fw3rhcDISIEh5bldO1ALOtoZPTbI=;
- b=JXVoytsv9/SsGjstM6+NqsOmWF79/3PMOAT5X6oLPm2XzKEvCzNmm9RhCDCoXwk4Hj
- kA/Rs0MKBxOs1oL0w14Fa24RLoqj/CTvUCbl2EERTSfT8hiSJ2zkyum1uflgYhbbrAkb
- 7otG6vztVfw4i0HqmWd0v7a5/v7Yna8i9x0cfBoiMnjALnGEmDaYQLQKAlD+PYJuua8k
- +HltBgLxJtHp/pVOGL13jBkFVuF5+9zgdiSFEEaazRF3VAL1F9LNZobuK5IcaXox0j9h
- gV1eg9z0Sx2uowKzQ6vQcnSZ/ucdvHyT+Qdhcg0JmCZyfEbL7uY5+K6uS8K6e50ySyC6
- gkHQ==
+ bh=Xs3urb+CfK37NrDBLos1427ZQKhaGuo6xOveDYDdwk4=;
+ b=ZwDfpOhbmWhwLMk8IJuyvyPJQPys8ZM/DIvja7+YSw8UFRiMqx8auI8AtQCCP2IX7W
+ Noiu0gSXP1pv6YQM3ijzXSAFP4F2l9WrXFokxpBMNLDWzPu4qQQw7Gb70Iz7pWPS+zMP
+ sq9cFCx7KW3JiijFCQNEqL9yFFoC5aNqhL0rQnEHwZhKEdaHD9A3rZKjedBuw+RmbOoO
+ rlkQnNk7CU7KGdBeKSBmhneo2lVpyoEyiuYKVu9eoVwTT7Cj1zPo8Q0bJ6uhBmrxZQYK
+ JXVE1rE98HYPQ9pqJpMrQd1EMUgdrpgyvkiLxVCFotu0f//rY0865bQrt/fuPezu9xJj
+ +akA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=SQ++zZ5/yZpkHj9Fw3rhcDISIEh5bldO1ALOtoZPTbI=;
- b=tgVer5+KEA8GTQkIWR9ZO3XgVOZ+ogcnQt+a8LcWth/cKAAzYljYRBTsedbgqME9st
- Bef7fRDYBE3jtQvNe5XxVMAdQ5RA+TvDjdwIxVA+QtqxkDYH9Rc3ujN4jHispIMCtGPZ
- ecMRhyBqioShvYkL/i75Cxb/PhZ8ljZGCVsVStz3aao2gt2rM6Ex3LEBgmD9YlolbeoS
- DMF3Y5ej7tjbNpWZfovN9BCGf7bdfDz9VozWPv4i0UXNu9laeNp5+HEZhGHr50W9LrxW
- 4Mf4sbirlAdClY56k1Tl44oawgaKrvCP6Bxf/BqXf4kCLER59fqeGv8L/uAseH7x+MIb
- Ge4g==
-X-Gm-Message-State: AOAM530wAONf8PFDIP7UdD2zPROQM5th4LzPcgvN+FyQIZSn8fB/uG1A
- uwY4hrGiKQYUkA6mNYGFYCkWRyFemz8=
-X-Google-Smtp-Source: ABdhPJwbG3HA460PIx5c5/LxNVYXBW0wtSO9jm0hd085/2JWNGw+T2bHDobwGGjtOciL6ZJHVRt4Tw==
-X-Received: by 2002:a05:600c:19ca:: with SMTP id
- u10mr2914991wmq.45.1632383778294; 
+ bh=Xs3urb+CfK37NrDBLos1427ZQKhaGuo6xOveDYDdwk4=;
+ b=dTfTqM4CRNBLM4q8BK75d23meRureN/LKQ9lpXL5BBPNCfl+Bn567LElIdWjWxLYua
+ LXQGa+utAt1C/p0Kf/Ewr46sHjKFtgi/HAPjKZ33FP2gonsce1dLHOj0fP5A1/vc8cOr
+ Fu0jRfpzAN7Z5IZ+ZyWI6wyV9p/bpnxJTGjST2vTDtQb4iXyqqKklyb14w+oJ7mFIQZg
+ 5GPEUei0Lw+ZuxH7Z4ZgTH6ENY5eEiPkEc2ndAKSfElrAEzzz8lVWWVmedC2FPsn8AXW
+ uFq7frhCZM8ZFja4x0WkRLikBcge5v5JIRqvLaY8HbXSB57nlJJmIJZQBzq0G3HfWrE8
+ +uYA==
+X-Gm-Message-State: AOAM531wyFzb2oIVYPb+p4+gWistdIrXODEn8NWhabE4zUvbud84T4ki
+ N0W1W3ZU0J56RFAlTbQVUfL7EDnlDyY=
+X-Google-Smtp-Source: ABdhPJwRagv4wSh+wbPrYAhKMMEMkBbbGAn2z0ndhVG8dWc3kpkcOselyLfnRt42XprQqGkh1LQs4Q==
+X-Received: by 2002:a1c:800e:: with SMTP id b14mr14917314wmd.54.1632383778992; 
  Thu, 23 Sep 2021 00:56:18 -0700 (PDT)
 Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
  by smtp.gmail.com with ESMTPSA id
- k19sm4280704wmr.21.2021.09.23.00.56.17
+ k19sm4280704wmr.21.2021.09.23.00.56.18
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Sep 2021 00:56:17 -0700 (PDT)
+ Thu, 23 Sep 2021 00:56:18 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Sep 2021 09:55:53 +0200
-Message-Id: <20210923075608.2873-10-christian.koenig@amd.com>
+Date: Thu, 23 Sep 2021 09:55:54 +0200
+Message-Id: <20210923075608.2873-11-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210923075608.2873-1-christian.koenig@amd.com>
 References: <20210923075608.2873-1-christian.koenig@amd.com>
@@ -61,8 +60,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 23 Sep 2021 11:57:22 +0000
-Subject: [Intel-gfx] [PATCH 10/25] drm/amdgpu: use new iterator in
- amdgpu_vm_prt_fini
+Subject: [Intel-gfx] [PATCH 11/25] drm/msm: use new iterator in
+ msm_gem_describe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,53 +77,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need to actually allocate an array of fences here.
+Simplifying the code a bit. Also drop the RCU read side lock since the
+object is locked anyway.
+
+Untested since I can't get the driver to compile on !ARM.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 26 +++++---------------------
- 1 file changed, 5 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/msm/msm_gem.c | 19 +++++--------------
+ 1 file changed, 5 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 6b15cad78de9..e42dd79ed6f4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2090,30 +2090,14 @@ static void amdgpu_vm_free_mapping(struct amdgpu_device *adev,
- static void amdgpu_vm_prt_fini(struct amdgpu_device *adev, struct amdgpu_vm *vm)
+diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
+index 22308a1b66fc..14907622769f 100644
+--- a/drivers/gpu/drm/msm/msm_gem.c
++++ b/drivers/gpu/drm/msm/msm_gem.c
+@@ -880,7 +880,7 @@ void msm_gem_describe(struct drm_gem_object *obj, struct seq_file *m,
  {
- 	struct dma_resv *resv = vm->root.bo->tbo.base.resv;
--	struct dma_fence *excl, **shared;
--	unsigned i, shared_count;
--	int r;
+ 	struct msm_gem_object *msm_obj = to_msm_bo(obj);
+ 	struct dma_resv *robj = obj->resv;
+-	struct dma_resv_list *fobj;
 +	struct dma_resv_iter cursor;
-+	struct dma_fence *fence;
- 
--	r = dma_resv_get_fences(resv, &excl, &shared_count, &shared);
--	if (r) {
--		/* Not enough memory to grab the fence list, as last resort
--		 * block for all the fences to complete.
--		 */
--		dma_resv_wait_timeout(resv, true, false,
--						    MAX_SCHEDULE_TIMEOUT);
--		return;
--	}
--
--	/* Add a callback for each fence in the reservation object */
--	amdgpu_vm_prt_get(adev);
--	amdgpu_vm_add_prt_cb(adev, excl);
--
--	for (i = 0; i < shared_count; ++i) {
-+	dma_resv_for_each_fence(&cursor, resv, true, fence) {
-+		/* Add a callback for each fence in the reservation object */
- 		amdgpu_vm_prt_get(adev);
--		amdgpu_vm_add_prt_cb(adev, shared[i]);
-+		amdgpu_vm_add_prt_cb(adev, fence);
+ 	struct dma_fence *fence;
+ 	struct msm_gem_vma *vma;
+ 	uint64_t off = drm_vma_node_start(&obj->vma_node);
+@@ -955,22 +955,13 @@ void msm_gem_describe(struct drm_gem_object *obj, struct seq_file *m,
+ 		seq_puts(m, "\n");
  	}
+ 
+-	rcu_read_lock();
+-	fobj = dma_resv_shared_list(robj);
+-	if (fobj) {
+-		unsigned int i, shared_count = fobj->shared_count;
 -
--	kfree(shared);
+-		for (i = 0; i < shared_count; i++) {
+-			fence = rcu_dereference(fobj->shared[i]);
++	dma_resv_for_each_fence(&cursor, robj, true, fence) {
++		if (dma_resv_iter_is_exclusive(&cursor))
++			describe_fence(fence, "Exclusive", m);
++		else
+ 			describe_fence(fence, "Shared", m);
+-		}
+ 	}
+ 
+-	fence = dma_resv_excl_fence(robj);
+-	if (fence)
+-		describe_fence(fence, "Exclusive", m);
+-	rcu_read_unlock();
+-
+ 	msm_gem_unlock(obj);
  }
  
- /**
 -- 
 2.25.1
 
