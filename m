@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 644C041664D
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 22:01:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B806D41664B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 22:01:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E41F6EDA6;
-	Thu, 23 Sep 2021 20:01:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A83AA89E06;
+	Thu, 23 Sep 2021 20:01:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D7AF89E1D
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FCD489E06
  for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 20:01:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="223578128"
-X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="223578128"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 13:01:28 -0700
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="211171945"
+X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="211171945"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2021 13:01:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="455242002"
+X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="435932105"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 23 Sep 2021 13:01:25 -0700
+ by orsmga006.jf.intel.com with SMTP; 23 Sep 2021 13:01:28 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Sep 2021 23:01:25 +0300
+ Thu, 23 Sep 2021 23:01:28 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Sep 2021 23:01:08 +0300
-Message-Id: <20210923200109.4459-6-ville.syrjala@linux.intel.com>
+Date: Thu, 23 Sep 2021 23:01:09 +0300
+Message-Id: <20210923200109.4459-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
 References: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/6] drm/i915: Reject user modes that don't
- match fixed mode's refresh rate
+Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Drop pointless fixed_mode checks
+ from dsi code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,67 +52,118 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-When using a panel with a fixed mode we don't change the refresh
-rate of the display. Reject any user requested mode which doesn't
-match that fixed refresh rate.
-
-Unfortunately when Xorg sees the scaling_mode property on the
-connecor it likes to automagically cook up modes whose refresh
-rate is a fair bit off from the fixed refresh rate we use. So
-we have to give it some extra latitude so that we don't start to
-reject all of it.
-
-Note that sDVO is a bit special in the way it cooks up the
-display timings and thus doesn't use intel_panel_compute_config()
-so we just hand roll the check there for the time being.
+We don't support dsi displays without a fixed mode, so drop
+all the pointless checks.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_panel.c | 9 +++++++++
- drivers/gpu/drm/i915/display/intel_sdvo.c  | 9 ++++++++-
- 2 files changed, 17 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dsi.c | 15 ++++-----
+ drivers/gpu/drm/i915/display/vlv_dsi.c   | 41 ++++++++++--------------
+ 2 files changed, 23 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 77c1ca387de0..8c1ea322502c 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -53,6 +53,15 @@ int intel_panel_compute_config(struct intel_connector *connector,
- 	if (!fixed_mode)
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c b/drivers/gpu/drm/i915/display/intel_dsi.c
+index 6f1171112a3a..6b0301ba046e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi.c
+@@ -61,22 +61,19 @@ enum drm_mode_status intel_dsi_mode_valid(struct drm_connector *connector,
+ 	struct intel_connector *intel_connector = to_intel_connector(connector);
+ 	const struct drm_display_mode *fixed_mode = intel_connector->panel.fixed_mode;
+ 	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
++	enum drm_mode_status status;
  
-+	/*
-+	 * We don't want to lie too much to the user about the refresh
-+	 * rate they're going to get. But we have to allow a bit of latitude
-+	 * for Xorg since it likes to automagically cook up modes with slightly
-+	 * off refresh rates.
-+	 */
-+	if (abs(drm_mode_vrefresh(adjusted_mode) - drm_mode_vrefresh(fixed_mode)) > 1)
-+		return -EINVAL;
-+
- 	drm_mode_copy(adjusted_mode, fixed_mode);
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
  
- 	drm_mode_set_crtcinfo(adjusted_mode, 0);
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index fe0ea1db4cf1..33631dbe5589 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -1335,8 +1335,15 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
- 							   adjusted_mode);
- 		pipe_config->sdvo_tv_clock = true;
- 	} else if (IS_LVDS(intel_sdvo_connector)) {
-+		const struct drm_display_mode *fixed_mode =
-+			intel_sdvo_connector->base.panel.fixed_mode;
-+
-+		/* see intel_panel_compute_config() */
-+		if (abs(drm_mode_vrefresh(mode) - drm_mode_vrefresh(fixed_mode)) > 1)
-+			return -EINVAL;
-+
- 		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo,
--							     intel_sdvo_connector->base.panel.fixed_mode))
-+							     fixed_mode))
- 			return -EINVAL;
+ 	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return MODE_NO_DBLESCAN;
  
- 		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
+-	if (fixed_mode) {
+-		enum drm_mode_status status;
++	status = intel_panel_mode_valid(intel_connector, mode);
++	if (status != MODE_OK)
++		return status;
+ 
+-		status = intel_panel_mode_valid(intel_connector, mode);
+-		if (status != MODE_OK)
+-			return status;
+-
+-		if (fixed_mode->clock > max_dotclk)
+-			return MODE_CLOCK_HIGH;
+-	}
++	if (fixed_mode->clock > max_dotclk)
++		return MODE_CLOCK_HIGH;
+ 
+ 	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
+ }
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 260e852245e9..081b772bfe10 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -271,22 +271,19 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
+ 	struct intel_dsi *intel_dsi = container_of(encoder, struct intel_dsi,
+ 						   base);
+ 	struct intel_connector *intel_connector = intel_dsi->attached_connector;
+-	const struct drm_display_mode *fixed_mode = intel_connector->panel.fixed_mode;
+ 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	int ret;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
+-	if (fixed_mode) {
+-		ret = intel_panel_compute_config(intel_connector, adjusted_mode);
+-		if (ret)
+-			return ret;
++	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
++	if (ret)
++		return ret;
+ 
+-		ret = intel_panel_fitting(pipe_config, conn_state);
+-		if (ret)
+-			return ret;
+-	}
++	ret = intel_panel_fitting(pipe_config, conn_state);
++	if (ret)
++		return ret;
+ 
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return -EINVAL;
+@@ -1633,25 +1630,21 @@ static const struct drm_connector_funcs intel_dsi_connector_funcs = {
+ static void vlv_dsi_add_properties(struct intel_connector *connector)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
++	u32 allowed_scalers;
+ 
+-	if (connector->panel.fixed_mode) {
+-		u32 allowed_scalers;
++	allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) | BIT(DRM_MODE_SCALE_FULLSCREEN);
++	if (!HAS_GMCH(dev_priv))
++		allowed_scalers |= BIT(DRM_MODE_SCALE_CENTER);
+ 
+-		allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) | BIT(DRM_MODE_SCALE_FULLSCREEN);
+-		if (!HAS_GMCH(dev_priv))
+-			allowed_scalers |= BIT(DRM_MODE_SCALE_CENTER);
++	drm_connector_attach_scaling_mode_property(&connector->base,
++						   allowed_scalers);
+ 
+-		drm_connector_attach_scaling_mode_property(&connector->base,
+-								allowed_scalers);
++	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
+-		connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+-
+-		drm_connector_set_panel_orientation_with_quirk(
+-				&connector->base,
+-				intel_dsi_get_panel_orientation(connector),
+-				connector->panel.fixed_mode->hdisplay,
+-				connector->panel.fixed_mode->vdisplay);
+-	}
++	drm_connector_set_panel_orientation_with_quirk(&connector->base,
++						       intel_dsi_get_panel_orientation(connector),
++						       connector->panel.fixed_mode->hdisplay,
++						       connector->panel.fixed_mode->vdisplay);
+ }
+ 
+ #define NS_KHZ_RATIO		1000000
 -- 
 2.32.0
 
