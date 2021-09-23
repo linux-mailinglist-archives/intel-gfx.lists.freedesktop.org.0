@@ -2,33 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18CBE41663E
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 21:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C33416645
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 22:01:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 935756E10B;
-	Thu, 23 Sep 2021 19:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABEBF6E10B;
+	Thu, 23 Sep 2021 20:01:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 47E196E10B;
- Thu, 23 Sep 2021 19:57:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 43EB8A47EB;
- Thu, 23 Sep 2021 19:57:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D396F6E10B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 20:01:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="223961622"
+X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="223961622"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2021 13:01:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,317,1624345200"; d="scan'208";a="558674026"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga002.fm.intel.com with SMTP; 23 Sep 2021 13:01:10 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 Sep 2021 23:01:09 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Sep 2021 23:01:03 +0300
+Message-Id: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dave Airlie" <airlied@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Sep 2021 19:57:39 -0000
-Message-ID: <163242705927.31050.3493465041394375658@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1632320821.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1632320821.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
- =?utf-8?q?915/display=3A_split_and_constify_vtable_=28rev8=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/6] drm/i915: Reject bogus modes with fixed
+ mode panels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,28 +45,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: i915/display: split and constify vtable (rev8)
-URL   : https://patchwork.freedesktop.org/series/94459/
-State : failure
+Let's start to reject user modes whose refresh rate is
+nowhere near the actual fixed mode refresh rate we're
+going to use. ATM we're just flat out lying to the user.
 
-== Summary ==
+We'll also pimp the connector's mode list validation 
+a bit.
 
-Applying: drm/i915/uncore: split the fw get function into separate vfunc
-Applying: drm/i915/pm: drop get_fifo_size vfunc.
-Applying: drm/i915: make update_wm take a dev_priv.
-Applying: drm/i915/wm: provide wrappers around watermark vfuncs calls (v2)
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_display.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0004 drm/i915/wm: provide wrappers around watermark vfuncs calls (v2)
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Ville Syrjälä (6):
+  drm/i915: Extract intel_panel_mode_valid()
+  drm/i915: Use intel_panel_mode_valid() for DSI/LVDS/DVO
+  drm/i915: Reject modes that don't match fixed_mode vrefresh
+  drm/i915: Introduce intel_panel_compute_config()
+  drm/i915: Reject user modes that don't match fixed mode's refresh rate
+  drm/i915: Drop pointless fixed_mode checks from dsi code
 
+ drivers/gpu/drm/i915/display/icl_dsi.c     |  7 ++--
+ drivers/gpu/drm/i915/display/intel_dp.c    | 13 ++++---
+ drivers/gpu/drm/i915/display/intel_dsi.c   | 16 ++++-----
+ drivers/gpu/drm/i915/display/intel_dvo.c   | 24 ++++++++-----
+ drivers/gpu/drm/i915/display/intel_lvds.c  | 15 ++++----
+ drivers/gpu/drm/i915/display/intel_panel.c | 41 ++++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_panel.h |  5 +++
+ drivers/gpu/drm/i915/display/intel_sdvo.c  | 21 ++++++-----
+ drivers/gpu/drm/i915/display/vlv_dsi.c     | 39 +++++++++-----------
+ 9 files changed, 116 insertions(+), 65 deletions(-)
+
+-- 
+2.32.0
 
