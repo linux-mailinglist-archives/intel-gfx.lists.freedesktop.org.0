@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A596D415AC0
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 11:18:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C2F415AC6
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 11:20:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A0136E0FE;
-	Thu, 23 Sep 2021 09:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 820946E10D;
+	Thu, 23 Sep 2021 09:20:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E9536E0FB;
- Thu, 23 Sep 2021 09:18:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="203300182"
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="203300182"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 02:18:33 -0700
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="558250490"
-Received: from ideacone-mobl1.ger.corp.intel.com (HELO [10.252.8.21])
- ([10.252.8.21])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 02:18:31 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com
-References: <20210922062527.865433-1-thomas.hellstrom@linux.intel.com>
- <20210922062527.865433-4-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <14313c48-8817-fc9f-2a38-32d49d69a21a@intel.com>
-Date: Thu, 23 Sep 2021 10:18:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E83536E10C;
+ Thu, 23 Sep 2021 09:20:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DFC20A00E8;
+ Thu, 23 Sep 2021 09:20:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20210922062527.865433-4-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v6 3/9] drm/i915/gt: Increase suspend timeout
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Sep 2021 09:20:52 -0000
+Message-ID: <163238885291.31051.7192666216214860882@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Tile_F_plane_format_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,44 +41,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 22/09/2021 07:25, Thomas Hellström wrote:
-> With GuC submission on DG1, the execution of the requests times out
-> for the gem_exec_suspend igt test case after executing around 800-900
-> of 1000 submitted requests.
-> 
-> Given the time we allow elsewhere for fences to signal (in the order of
-> seconds), increase the timeout before we mark the gt wedged and proceed.
-> 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Acked-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
 
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt_pm.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index dea8e2479897..f84f2bfe2de0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -19,6 +19,8 @@
->   #include "intel_rps.h"
->   #include "intel_wakeref.h"
->   
-> +#define I915_GT_SUSPEND_IDLE_TIMEOUT (HZ / 2)
-> +
->   static void user_forcewake(struct intel_gt *gt, bool suspend)
->   {
->   	int count = atomic_read(&gt->user_wakeref);
-> @@ -279,7 +281,7 @@ static void wait_for_suspend(struct intel_gt *gt)
->   	if (!intel_gt_pm_is_awake(gt))
->   		return;
->   
-> -	if (intel_gt_wait_for_idle(gt, I915_GEM_IDLE_TIMEOUT) == -ETIME) {
-> +	if (intel_gt_wait_for_idle(gt, I915_GT_SUSPEND_IDLE_TIMEOUT) == -ETIME) {
->   		/*
->   		 * Forcibly cancel outstanding work and leave
->   		 * the gpu quiet.
-> 
+Series: drm/i915: Tile F plane format support
+URL   : https://patchwork.freedesktop.org/series/94983/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+a9ee2ce07783 drm/i915: Tile F plane format support
+-:281: WARNING:LINE_CONTINUATIONS: Avoid unnecessary line continuations
+#281: FILE: drivers/gpu/drm/i915/i915_pci.c:973:
++	.has_ftile = 1, \
+
+total: 0 errors, 1 warnings, 0 checks, 248 lines checked
+
+
