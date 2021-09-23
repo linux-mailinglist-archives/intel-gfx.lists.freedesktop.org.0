@@ -2,44 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95087416285
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 17:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB1414162D4
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 18:15:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF17F6ED8A;
-	Thu, 23 Sep 2021 15:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8852F6ED92;
+	Thu, 23 Sep 2021 16:15:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD9986ED8A
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Sep 2021 15:54:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="203372327"
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="203372327"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2021 08:51:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="435857906"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 23 Sep 2021 08:51:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Sep 2021 18:51:35 +0300
-Date: Thu, 23 Sep 2021 18:51:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YUyih3OsTjKtdgKT@intel.com>
-References: <20210514125751.17075-1-ville.syrjala@linux.intel.com>
- <20210514125751.17075-6-ville.syrjala@linux.intel.com>
- <20210917153422.GB1224@intel.com> <YUs4GKt3Uy4W94wI@intel.com>
- <20210923132421.GA11567@intel.com>
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AEA36ED92;
+ Thu, 23 Sep 2021 16:15:24 +0000 (UTC)
+Message-ID: <20210923153311.225307347@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1632413059;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=HKJ62ec0H3rRqwouVaEOlCdmeDwscUCB9fggww1qtqs=;
+ b=S9Sw4KaTyb9s7Z3KdYbFaJAvUzjpHUVpUTxvyQ3jFIhlWRMGgqgxLk8/cDw3/6XKvUpZZp
+ dhPkgsAfepaag4dai3tsQG8H1SEb6OcdSZOt4ZOJ+L5fXItf38KOz+VqvC3n7RURS0RvCQ
+ AOymsMXCjVfXsiR5+QYlShryPPOPagMf/WTMdP3bCxY4nDARQHkLdyUfBjfybnlnp7aDF4
+ +1FziWh42JVQop5OoCpYLsWFXx4DjgT4Pae3ReQR206O4iu4W5dBMixmm0/zU/iKuBBxQg
+ Lzba969dREamrSViMjsujMdwDyfjxU3YaUi5eaDsZEB1EpwUfhtSN4rB5GULJA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1632413059;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=HKJ62ec0H3rRqwouVaEOlCdmeDwscUCB9fggww1qtqs=;
+ b=qLgcomT0elm/TlKSiEwnkZ3rD3NJKvPZV3pfy2RnYzqCkiviMbALY7urqFmSkwiw4ven3n
+ 7eMZvc1fRymbs4Dw==
+From: Thomas Gleixner <tglx@linutronix.de>
+To: LKML <linux-kernel@vger.kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>, Dmitry Vyukov <dvyukov@google.com>,
+ Johannes Berg <johannes.berg@intel.com>,
+ Loic Poulain <loic.poulain@linaro.org>, netdev@vger.kernel.org,
+ Sergey Ryazanov <ryazanov.s.a@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ M Chetan Kumar <m.chetan.kumar@intel.com>,
+ Johannes Berg <johannes@sipsolutions.net>,
+ "David S. Miller" <davem@davemloft.net>,
+ Intel Corporation <linuxwwan@intel.com>, alsa-devel@alsa-project.org,
+ Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
+ Oliver Hartkopp <socketcan@hartkopp.net>, linux-can@vger.kernel.org,
+ Marc Kleine-Budde <mkl@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ linux-pm@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ "Eric W. Biederman" <ebiederm@xmission.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210923132421.GA11567@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 05/14] drm/i915: Fix HPLL watermark readout
- for g4x
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Thu, 23 Sep 2021 18:04:18 +0200 (CEST)
+Subject: [Intel-gfx] [patch 00/11] hrtimers: Cleanup hrtimer_forward()
+ [ab]use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,123 +73,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 23, 2021 at 04:24:21PM +0300, Lisovskiy, Stanislav wrote:
-> On Wed, Sep 22, 2021 at 05:05:12PM +0300, Ville Syrjälä wrote:
-> > On Fri, Sep 17, 2021 at 06:34:22PM +0300, Lisovskiy, Stanislav wrote:
-> > > On Fri, May 14, 2021 at 03:57:42PM +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > 
-> > > > If HPLL watermarks are already enabled, let's not mark them as
-> > > > disabled by forgetting to bump 'level' before we call
-> > > > g4x_raw_plane_wm_set().
-> > > > 
-> > > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/intel_pm.c | 7 +++++--
-> > > >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > > > index 661bc6fdf38c..990ee5a590d3 100644
-> > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > @@ -6468,7 +6468,8 @@ void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv)
-> > > >  		for_each_plane_id_on_crtc(crtc, plane_id)
-> > > >  			raw->plane[plane_id] = active->wm.plane[plane_id];
-> > > >  
-> > > > -		if (++level > max_level)
-> > > > +		level = G4X_WM_LEVEL_SR;
-> > > > +		if (level > max_level)
-> > > 
-> > > Do I understand correctly that its basically identical to what
-> > > was before, so this is done here just for it to look more explicit?
-> > > 
-> > > I.e we had for example max_level G4X_WM_LEVEL_SR and level G4X_WM_LEVEL_NORMAL
-> > > , after ++level it will anyway become G4X_WM_LEVEL_SR and same for next one.
-> > > 
-> > > 
-> > > >  			goto out;
-> > > >  
-> > > >  		raw = &crtc_state->wm.g4x.raw[level];
-> > > > @@ -6477,7 +6478,8 @@ void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv)
-> > > >  		raw->plane[PLANE_SPRITE0] = 0;
-> > > >  		raw->fbc = active->sr.fbc;
-> > > >  
-> > > > -		if (++level > max_level)
-> > > > +		level = G4X_WM_LEVEL_HPLL;
-> > > > +		if (level > max_level)
-> > > >  			goto out;
-> > > >  
-> > > >  		raw = &crtc_state->wm.g4x.raw[level];
-> > > > @@ -6486,6 +6488,7 @@ void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv)
-> > > >  		raw->plane[PLANE_SPRITE0] = 0;
-> > > >  		raw->fbc = active->hpll.fbc;
-> > > >  
-> > > > +		level++;
-> > > 
-> > > Hi Ville,
-> > > 
-> > > So if we reached here, it means level = G4X_WM_LEVEL_HPLL, which is 
-> > > the max wm level defined, why are we then incrementing it even more?
-> > > 
-> > > the g4x_raw_plane_wm_set will be using that value as a level:
-> > > 
-> > > for (; level < intel_wm_num_levels(dev_priv); level++) {
-> > > 	struct g4x_pipe_wm *raw = &crtc_state->wm.g4x.raw[level];
-> > > 
-> > > 	dirty |= raw->plane[plane_id] != value;
-> > > 	raw->plane[plane_id] = value;
-> > > }
-> > > 
-> > > however level then will be equal to NUM_G4X_WM_LEVELS, which is actually
-> > > an illegal value, or is that an expected behaviour?
-> > > 
-> > > Just trying to understand, whats happening here, before stamping an r-b :)
-> > > 
-> > > Stan
-> > > 
-> > > 
-> > > >  	out:
-> > > >  		for_each_plane_id_on_crtc(crtc, plane_id)
-> > > >  			g4x_raw_plane_wm_set(crtc_state, level,
-> > 
-> > Right, so the code is basically this:
-> > 
-> > level = G4X_WM_LEVEL_SR;
-> > if (level > max_level)
-> > 	goto out;
-> > level = G4X_WM_LEVEL_HPLL;
-> > if (level > max_level)
-> > 	goto out;
-> > level++ /* ie. level=NUM_G4X_WM_LEVELS */
-> > out:
-> > invalidate_raw_watermarks_starting_from_level(level);
-> > 
-> > So if we take the first goto we want to invalidate all
-> > watermarks starting from SR, second goto wants to invalidate
-> > all watermarks starting from HPLL, and if we didn't take either
-> > goto we don't want to invalidate any watermarks because we deemed
-> > everything up to and including HPLL is ok. So we can't just
-> > leave level==G4X_WM_LEVEL_HPLL or else the code would still invalidate
-> > the HPLL watermarks. Instead we level++ so that the invalidate call
-> > becomes a nop.
-> > 
-> > The other option I suppose would be to skip the invalidation stuff
-> > if we didn't take either of the gotos, but I'm thinking that would make
-> > the code more messy.
-> 
-> Ah ok, thought its setting wm levels, but if its actually invalidating,
-> makes sense. Probably that is why it uses USHRT_MAX as a value.
-
-Yes. I guess it wouldn't hurt to add a tiny raw_wm_invalidate()
-wrapper or something to make the code more self explanatory.
-
-> 
-> Thanks for the clarification.
-> 
-> Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
-Ta.
-
--- 
-Ville Syrjälä
-Intel
+QSByZWNlbnQgc3l6Ym90IHJlcG9ydCB1bmVhcnRoZWQgYWJ1c2Ugb2YgaHJ0aW1lcl9mb3J3YXJk
+KCkgd2hpY2ggY2FuIGNhdXNlCnJ1bmF3YXkgdGltZXJzIGhvZ2dpbmcgdGhlIENQVSBpbiB0aW1l
+ciBleHBpcnkgY29udGV4dCBieSByZWFybWluZyB0aGUKdGltZXIgaW4gdGhlIHBhc3Qgb3ZlciBh
+bmQgb3Zlci4KClRoaXMgaGFwcGVucyB3aGVuIHRoZSBjYWxsZXIgdXNlcyB0aW1lci0+ZXhwaXJ5
+IGZvciB0aGUgJ25vdycgYXJndW1lbnQgb2YKaHJ0aW1lcl9mb3J3YXJkKCkuIFRoYXQgd29ya3Mg
+YXMgbG9uZyBhcyB0aGUgdGltZXIgZXhwaXJ5IGlzIG9uIHRpbWUsIGJ1dApjYW4gY2F1c2UgYSBs
+b25nIHBlcmlvZCBvZiByZWFybS9maXJlIGxvb3BzIHdoaWNoIGhvZyB0aGUgQ1BVLiBFeHBpcmlu
+ZwpsYXRlIGNhbiBoYXZlIHZhcmlvdXMgY2F1c2VzLCBidXQgb2J2aW91c2x5IHZpcnR1YWxpemF0
+aW9uIGlzIHByb25lIHRvIHRoYXQKZHVlIHRvIFZDUFUgc2NoZWR1bGluZy4KClRoZSBjb3JyZWN0
+IHVzYWdlIG9mIGhydGltZXJfZm9yd2FyZCgpIGlzIHRvIGhhbmQgdGhlIGN1cnJlbnQgdGltZSB0
+byB0aGUKJ25vdycgYXJndW1lbnQgd2hpY2ggZW5zdXJlcyB0aGF0IHRoZSBuZXh0IGV2ZW50IG9u
+IHRoZSBwZXJpb2RpYyB0aW1lIGxpbmUKaXMgcGFzdCBub3cuIFRoaXMgaXMgd2hhdCBocnRpbWVy
+X2ZvcndhcmRfbm93KCkgcHJvdmlkZXMuCgpUaGUgZm9sbG93aW5nIHNlcmllcyBhZGRyZXNzZXMg
+dGhpczoKCiAgICAxKSBBZGQgYSBkZWJ1ZyBtZWNoYW5pc20gdG8gdGhlIGhydGltZXIgZXhwaXJ5
+IGxvb3AKCiAgICAyKSBDb252ZXJ0IGFsbCBocnRpbWVyX2ZvcndhcmQoKSB1c2FnZSBvdXRzaWRl
+IG9mIGtlcm5lbC90aW1lLyB0bwogICAgICAgdXNlIGhydGltZXJfZm9yd2FyZF9ub3coKS4KCiAg
+ICAzKSBDb25maW5lIGhydGltZXJfZm9yd2FyZCgpIHRvIGtlcm5lbC90aW1lLyBjb3JlIGNvZGUu
+CgpUaGUgbWFjODAyMTFfaHdzaW0gcGF0Y2ggaGFzIGFscmVhZHkgYmVlbiBwaWNrZWQgdXAgYnkg
+dGhlIHdpcmVsZXNzCm1haW50YWluZXIgYW5kIGFsbCBvdGhlciBwYXRjaGVzIHdoaWNoIGFmZmVj
+dCB1c2FnZSBvdXRzaWRlIHRoZSBjb3JlIGNvZGUKY2FuIGJlIHBpY2tlZCB1cCBieSB0aGUgcmVs
+ZXZhbnQgc3Vic3lzdGVtcy4gSWYgYSBtYWludGFpbmVyIHdhbnRzIG1lIHRvCnBpY2sgYSBwYXJ0
+aWN1bGFyIHBhdGNoIHVwLCBwbGVhc2UgbGV0IG1lIGtub3cuCgpUaGUgbGFzdCBwYXRjaCB3aGlj
+aCBjb25maW5lcyBocnRpbWVyX2ZvcndhcmQoKSB3aWxsIGJlIHBvc3Rwb25lZCB1bnRpbCBhbGwK
+b3RoZXIgcGF0Y2hlcyBoYXZlIGJlZW4gbWVyZ2VkIGludG8gTGludXMgdHJlZS4KClRoZSBzZXJp
+ZXMgaXMgYWxzbyBhdmFpbGFibGUgZnJvbSBnaXQ6CgogICAgZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcv
+cHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3RnbHgvZGV2ZWwuZ2l0IGhydGltZXIKClRoYW5rcywK
+Cgl0Z2x4Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wbXUuYyAgICAgICAgfCAgICAy
+IC0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL21hYzgwMjExX2h3c2ltLmMgIHwgICAgNCArLQogZHJp
+dmVycy9uZXQvd3dhbi9pb3NtL2lvc21faXBjX2ltZW0uYyAgfCAgICA0ICstCiBkcml2ZXJzL3Bv
+d2VyL3Jlc2V0L2x0YzI5NTItcG93ZXJvZmYuYyB8ICAgIDQgLS0KIGluY2x1ZGUvbGludXgvaHJ0
+aW1lci5oICAgICAgICAgICAgICAgIHwgICAyNiAtLS0tLS0tLS0tLS0tLS0tLQogaW5jbHVkZS9s
+aW51eC9wb3NpeC10aW1lcnMuaCAgICAgICAgICAgfCAgICAzICsrCiBrZXJuZWwvc2lnbmFsLmMg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICAgMTQgKy0tLS0tLS0tCiBrZXJuZWwvdGltZS9ocnRp
+bWVyLmMgICAgICAgICAgICAgICAgICB8ICAgNDggKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKystCiBrZXJuZWwvdGltZS9pdGltZXIuYyAgICAgICAgICAgICAgICAgICB8ICAgMTMgKysr
+KysrKysKIGtlcm5lbC90aW1lL3Bvc2l4LXRpbWVycy5jICAgICAgICAgICAgIHwgICA0MiArKysr
+KysrKysrKy0tLS0tLS0tLS0tLS0tLS0tCiBrZXJuZWwvdGltZS90aWNrLWludGVybmFsLmggICAg
+ICAgICAgICB8ICAgIDEgCiBuZXQvY2FuL2JjbS5jICAgICAgICAgICAgICAgICAgICAgICAgICB8
+ICAgIDIgLQogc291bmQvZHJpdmVycy9wY3NwL3Bjc3BfbGliLmMgICAgICAgICAgfCAgICAyIC0K
+IDEzIGZpbGVzIGNoYW5nZWQsIDkyIGluc2VydGlvbnMoKyksIDczIGRlbGV0aW9ucygtKQoK
