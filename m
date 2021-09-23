@@ -1,34 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D11415B64
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 11:49:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE42415B97
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Sep 2021 11:58:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 960C66ED00;
-	Thu, 23 Sep 2021 09:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE326E118;
+	Thu, 23 Sep 2021 09:58:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0056D6E118;
- Thu, 23 Sep 2021 09:49:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED4A6A73C9;
- Thu, 23 Sep 2021 09:49:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7301530872007224420=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 634BF6E118;
+ Thu, 23 Sep 2021 09:58:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="210885952"
+X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="210885952"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2021 02:58:42 -0700
+X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; d="scan'208";a="475458540"
+Received: from gboschi-mobl.ger.corp.intel.com (HELO [10.249.254.197])
+ ([10.249.254.197])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2021 02:58:40 -0700
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, Matthew Brost <matthew.brost@intel.com>
+References: <20210922062527.865433-1-thomas.hellstrom@linux.intel.com>
+ <20210922062527.865433-8-thomas.hellstrom@linux.intel.com>
+ <4b3b0a3b-56a3-efac-10ca-34d9dbeef005@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <6ce9e5df-c7ed-f836-ab53-3abbeeed65e5@linux.intel.com>
+Date: Thu, 23 Sep 2021 11:58:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Sep 2021 09:49:49 -0000
-Message-ID: <163239058996.31048.16552481651217093245@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Tile_F_plane_format_support?=
+In-Reply-To: <4b3b0a3b-56a3-efac-10ca-34d9dbeef005@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v6 7/9] drm/i915: Reduce the number of
+ objects subject to memcpy recover
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,253 +52,252 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7301530872007224420==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 9/23/21 11:44 AM, Matthew Auld wrote:
+> On 22/09/2021 07:25, Thomas Hellström wrote:
+>> We really only need memcpy restore for objects that affect the
+>> operability of the migrate context. That is, primarily the page-table
+>> objects of the migrate VM.
+>>
+>> Add an object flag, I915_BO_ALLOC_PM_EARLY for objects that need early
+>> restores using memcpy and a way to assign LMEM page-table object flags
+>> to be used by the vms.
+>>
+>> Restore objects without this flag with the gpu blitter and only objects
+>> carrying the flag using TTM memcpy.
+>>
+>> Initially mark the migrate, gt, gtt and vgpu vms to use this flag, and
+>> defer for a later audit which vms actually need it. Most importantly, 
+>> user-
+>> allocated vms with pinned page-table objects can be restored using the
+>> blitter.
+>>
+>> Performance-wise memcpy restore is probably as fast as gpu restore if 
+>> not
+>> faster, but using gpu restore will help tackling future restrictions in
+>> mappable LMEM size.
+>>
+>> v4:
+>> - Don't mark the aliasing ppgtt page table flags for early resume, but
+>>    rather the ggtt page table flags as intended. (Matthew Auld)
+>> - The check for user buffer objects during early resume is pointless, 
+>> since
+>>    they are never marked I915_BO_ALLOC_PM_EARLY. (Matthew Auld)
+>> v5:
+>> - Mark GuC LMEM objects with I915_BO_ALLOC_PM_EARLY to have them 
+>> restored
+>>    before we fire up the migrate context.
+>>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.c      |  4 ++--
+>>   drivers/gpu/drm/i915/gem/i915_gem_object_types.h |  9 ++++++---
+>>   drivers/gpu/drm/i915/gem/i915_gem_pm.c           |  6 +++++-
+>>   drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c       |  5 +++--
+>>   drivers/gpu/drm/i915/gem/selftests/huge_pages.c  |  2 +-
+>>   drivers/gpu/drm/i915/gt/gen6_ppgtt.c             |  2 +-
+>>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c             |  5 +++--
+>>   drivers/gpu/drm/i915/gt/gen8_ppgtt.h             |  4 +++-
+>>   drivers/gpu/drm/i915/gt/intel_ggtt.c             |  3 ++-
+>>   drivers/gpu/drm/i915/gt/intel_gt.c               |  2 +-
+>>   drivers/gpu/drm/i915/gt/intel_gtt.c              |  3 ++-
+>>   drivers/gpu/drm/i915/gt/intel_gtt.h              |  9 +++++++--
+>>   drivers/gpu/drm/i915/gt/intel_migrate.c          |  2 +-
+>>   drivers/gpu/drm/i915/gt/intel_ppgtt.c            | 13 ++++++++-----
+>>   drivers/gpu/drm/i915/gt/selftest_hangcheck.c     |  2 +-
+>>   drivers/gpu/drm/i915/gt/uc/intel_guc.c           |  3 ++-
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c         |  7 +++++--
+>>   drivers/gpu/drm/i915/gvt/scheduler.c             |  2 +-
+>>   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c    |  4 ++--
+>>   19 files changed, 56 insertions(+), 31 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> index c2ab0e22db0a..8208fd5b72c3 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -1287,7 +1287,7 @@ i915_gem_create_context(struct drm_i915_private 
+>> *i915,
+>>       } else if (HAS_FULL_PPGTT(i915)) {
+>>           struct i915_ppgtt *ppgtt;
+>>   -        ppgtt = i915_ppgtt_create(&i915->gt);
+>> +        ppgtt = i915_ppgtt_create(&i915->gt, 0);
+>>           if (IS_ERR(ppgtt)) {
+>>               drm_dbg(&i915->drm, "PPGTT setup failed (%ld)\n",
+>>                   PTR_ERR(ppgtt));
+>> @@ -1465,7 +1465,7 @@ int i915_gem_vm_create_ioctl(struct drm_device 
+>> *dev, void *data,
+>>       if (args->flags)
+>>           return -EINVAL;
+>>   -    ppgtt = i915_ppgtt_create(&i915->gt);
+>> +    ppgtt = i915_ppgtt_create(&i915->gt, 0);
+>>       if (IS_ERR(ppgtt))
+>>           return PTR_ERR(ppgtt);
+>>   diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+>> index 118691ce81d7..fa2ba9e2a4d0 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+>> @@ -294,13 +294,16 @@ struct drm_i915_gem_object {
+>>   #define I915_BO_ALLOC_USER        BIT(3)
+>>   /* Object is allowed to lose its contents on suspend / resume, even 
+>> if pinned */
+>>   #define I915_BO_ALLOC_PM_VOLATILE BIT(4)
+>> +/* Object needs to be restored early using memcpy during resume */
+>> +#define I915_BO_ALLOC_PM_EARLY    BIT(5)
+>>   #define I915_BO_ALLOC_FLAGS (I915_BO_ALLOC_CONTIGUOUS | \
+>>                    I915_BO_ALLOC_VOLATILE | \
+>>                    I915_BO_ALLOC_CPU_CLEAR | \
+>>                    I915_BO_ALLOC_USER | \
+>> -                 I915_BO_ALLOC_PM_VOLATILE)
+>> -#define I915_BO_READONLY          BIT(5)
+>> -#define I915_TILING_QUIRK_BIT     6 /* unknown swizzling; do not 
+>> release! */
+>> +                 I915_BO_ALLOC_PM_VOLATILE | \
+>> +                 I915_BO_ALLOC_PM_EARLY)
+>> +#define I915_BO_READONLY          BIT(6)
+>> +#define I915_TILING_QUIRK_BIT     7 /* unknown swizzling; do not 
+>> release! */
+>>         /**
+>>        * @mem_flags - Mutable placement-related flags
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+>> index 12b37b4c1192..726b40e1fbb0 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+>> @@ -97,8 +97,12 @@ int i915_gem_backup_suspend(struct 
+>> drm_i915_private *i915)
+>>        * More objects may have become unpinned as requests were
+>>        * retired. Now try to evict again. The gt may be wedged here
+>>        * in which case we automatically fall back to memcpy.
+>> +     * We allow also backing up pinned objects that have not been
+>> +     * marked for early recover, and that may contain, for example,
+>> +     * page-tables for the migrate context.
+>>        */
+>> -    ret = lmem_suspend(i915, I915_TTM_BACKUP_ALLOW_GPU);
+>> +    ret = lmem_suspend(i915, I915_TTM_BACKUP_ALLOW_GPU |
+>> +               I915_TTM_BACKUP_PINNED);
+>>       if (ret)
+>>           goto out_recover;
+>>   diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+>> index 03a00d193f40..3b6d14b5c604 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+>> @@ -57,7 +57,8 @@ static int i915_ttm_backup(struct 
+>> i915_gem_apply_to_region *apply,
+>>       if (pm_apply->allow_gpu && i915_gem_object_evictable(obj))
+>>           return ttm_bo_validate(bo, i915_ttm_sys_placement(), &ctx);
+>>   -    if (!pm_apply->backup_pinned)
+>> +    if (!pm_apply->backup_pinned ||
+>> +        (pm_apply->allow_gpu && (obj->flags & I915_BO_ALLOC_PM_EARLY)))
+>>           return 0;
+>>         if (obj->flags & I915_BO_ALLOC_PM_VOLATILE)
+>> @@ -155,7 +156,7 @@ static int i915_ttm_restore(struct 
+>> i915_gem_apply_to_region *apply,
+>>       if (!backup)
+>>           return 0;
+>>   -    if (!pm_apply->allow_gpu && (obj->flags & I915_BO_ALLOC_USER))
+>> +    if (!pm_apply->allow_gpu && !(obj->flags & I915_BO_ALLOC_PM_EARLY))
+>>           return 0;
+>>         err = i915_gem_object_lock(backup, apply->ww);
+>> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c 
+>> b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+>> index 0827634c842c..77d84a9e8789 100644
+>> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+>> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+>> @@ -1645,7 +1645,7 @@ int i915_gem_huge_page_mock_selftests(void)
+>>       mkwrite_device_info(dev_priv)->ppgtt_type = INTEL_PPGTT_FULL;
+>>       mkwrite_device_info(dev_priv)->ppgtt_size = 48;
+>>   -    ppgtt = i915_ppgtt_create(&dev_priv->gt);
+>> +    ppgtt = i915_ppgtt_create(&dev_priv->gt, 0);
+>>       if (IS_ERR(ppgtt)) {
+>>           err = PTR_ERR(ppgtt);
+>>           goto out_unlock;
+>> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c 
+>> b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+>> index 1aee5e6b1b23..890191f286e3 100644
+>> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+>> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+>> @@ -429,7 +429,7 @@ struct i915_ppgtt *gen6_ppgtt_create(struct 
+>> intel_gt *gt)
+>>       mutex_init(&ppgtt->flush);
+>>       mutex_init(&ppgtt->pin_mutex);
+>>   -    ppgtt_init(&ppgtt->base, gt);
+>> +    ppgtt_init(&ppgtt->base, gt, 0);
+>>       ppgtt->base.vm.pd_shift = ilog2(SZ_4K * SZ_4K / 
+>> sizeof(gen6_pte_t));
+>>       ppgtt->base.vm.top = 1;
+>>   diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c 
+>> b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>> index 6a5af995f5b1..037a9a6e4889 100644
+>> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>> @@ -753,7 +753,8 @@ gen8_alloc_top_pd(struct i915_address_space *vm)
+>>    * space.
+>>    *
+>>    */
+>> -struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
+>> +struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+>> +                     unsigned long lmem_pt_obj_flags)
+>>   {
+>>       struct i915_ppgtt *ppgtt;
+>>       int err;
+>> @@ -762,7 +763,7 @@ struct i915_ppgtt *gen8_ppgtt_create(struct 
+>> intel_gt *gt)
+>>       if (!ppgtt)
+>>           return ERR_PTR(-ENOMEM);
+>>   -    ppgtt_init(ppgtt, gt);
+>> +    ppgtt_init(ppgtt, gt, lmem_pt_obj_flags);
+>>       ppgtt->vm.top = i915_vm_is_4lvl(&ppgtt->vm) ? 3 : 2;
+>>       ppgtt->vm.pd_shift = ilog2(SZ_4K * SZ_4K / sizeof(gen8_pte_t));
+>>   diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.h 
+>> b/drivers/gpu/drm/i915/gt/gen8_ppgtt.h
+>> index b9028c2ad3c7..f541d19264b4 100644
+>> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.h
+>> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.h
+>> @@ -12,7 +12,9 @@ struct i915_address_space;
+>>   struct intel_gt;
+>>   enum i915_cache_level;
+>>   -struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt);
+>> +struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+>> +                     unsigned long lmem_pt_obj_flags);
+>> +
+>>   u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+>>                enum i915_cache_level level,
+>>                u32 flags);
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c 
+>> b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> index 8d71f67926f1..06576fc1310e 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> @@ -644,7 +644,7 @@ static int init_aliasing_ppgtt(struct i915_ggtt 
+>> *ggtt)
+>>       struct i915_ppgtt *ppgtt;
+>>       int err;
+>>   -    ppgtt = i915_ppgtt_create(ggtt->vm.gt);
+>> +    ppgtt = i915_ppgtt_create(ggtt->vm.gt, 0);
+>>       if (IS_ERR(ppgtt))
+>>           return PTR_ERR(ppgtt);
+>>   @@ -909,6 +909,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+>>           size = gen8_get_total_gtt_size(snb_gmch_ctl);
+>>         ggtt->vm.alloc_pt_dma = alloc_pt_dma;
+>> +    ggtt->vm.lmem_pt_obj_flags = I915_BO_ALLOC_PM_EARLY;
+>
+> The scratch page is still in system memory for the ggtt, so I guess 
+> this is not needed? Although maybe that will change, so probably good 
+> to keep?
 
-Series: drm/i915: Tile F plane format support
-URL   : https://patchwork.freedesktop.org/series/94983/
-State : success
+Hmm, yes, I guess lets keep this for a possible future audit for now. I 
+think there are other vms that may not need this flag either.
 
-== Summary ==
+Thanks for  reviewing!
 
-CI Bug Log - changes from CI_DRM_10630 -> Patchwork_21143
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21143 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +8 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888]) +1 similar issue
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10630/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][6] ([i915#1982])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][7] ([i915#1886] / [i915#2291])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#533])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#533])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-rkl-guc:         [PASS][12] -> [SKIP][13] ([i915#3919])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10630/fi-rkl-guc/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-rkl-guc/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][14] ([fdo#109271]) +37 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#3919]: https://gitlab.freedesktop.org/drm/intel/issues/3919
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+/Thomas
 
 
-Participating hosts (33 -> 29)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (5): bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10630 -> Patchwork_21143
-
-  CI-20190529: 20190529
-  CI_DRM_10630: a3ffd2c50784aebf118e55aee39f223a44150eca @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6214: 13550e92c6c7bd825abb6c9b087d12a524b4674c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21143: a9ee2ce07783cb017eb23becece43bc81b146206 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a9ee2ce07783 drm/i915: Tile F plane format support
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/index.html
-
---===============7301530872007224420==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Tile F plane format support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94983/">https://patchwork.freedesktop.org/series/94983/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10630 -&gt; Patchwork_21143</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21143 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10630/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10630/fi-rkl-guc/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-rkl-guc/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3919">i915#3919</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21143/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +37 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (33 -&gt; 29)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (5): bat-adls-5 bat-dg1-6 bat-dg1-5 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10630 -&gt; Patchwork_21143</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10630: a3ffd2c50784aebf118e55aee39f223a44150eca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6214: 13550e92c6c7bd825abb6c9b087d12a524b4674c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21143: a9ee2ce07783cb017eb23becece43bc81b146206 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a9ee2ce07783 drm/i915: Tile F plane format support</p>
-
-</body>
-</html>
-
---===============7301530872007224420==--
