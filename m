@@ -2,54 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B3BE417C08
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 21:57:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF7C417C40
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 22:16:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C2496E23B;
-	Fri, 24 Sep 2021 19:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 687796E249;
+	Fri, 24 Sep 2021 20:16:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0096E23B
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:57:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10117"; a="309710221"
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="309710221"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 12:57:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="559797134"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by fmsmga002.fm.intel.com with ESMTP; 24 Sep 2021 12:57:54 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 24 Sep 2021 20:57:52 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Fri, 24 Sep 2021 12:57:51 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH 06/13] drm/i915/tc: Don't keep legacy TypeC ports in
- connected state w/o a sink
-Thread-Index: AQHXrn7l/1lJs2Abz0m8vZGjNcDECqu0FtmA
-Date: Fri, 24 Sep 2021 19:57:51 +0000
-Message-ID: <6c88e7ff5d6f73d2cbdedc8aefc685531c9f8e6a.camel@intel.com>
-References: <20210921002313.1132357-1-imre.deak@intel.com>
- <20210921002313.1132357-7-imre.deak@intel.com>
-In-Reply-To: <20210921002313.1132357-7-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9FB52AF524AF744E8CACE0FFAF602420@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A35536E249
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 20:16:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10117"; a="285169917"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="285169917"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 13:16:27 -0700
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="551934579"
+Received: from lydiaag-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.255.38.248])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 13:16:26 -0700
+Date: Fri, 24 Sep 2021 16:16:24 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <YU4yGOCG92pgn754@intel.com>
+References: <20201027044618.719064-1-lucas.demarchi@intel.com>
+ <20201027044618.719064-3-lucas.demarchi@intel.com>
+ <160448371454.8986.12904696092648361290@jlahtine-mobl.ger.corp.intel.com>
+ <20201105010422.l2mum5gep7dxva5f@ldmartin-desk1.jf.intel.com>
+ <160456334665.5393.4671076622521791518@jlahtine-mobl.ger.corp.intel.com>
+ <20210706234430.nm64jerbt3kkoeue@ldmartin-desk2>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 06/13] drm/i915/tc: Don't keep legacy TypeC
- ports in connected state w/o a sink
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210706234430.nm64jerbt3kkoeue@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: remove some debug-only
+ registers from MCHBAR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,47 +55,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTA5LTIxIGF0IDAzOjIzICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEEg
-Zm9sbG93LXVwIHBhdGNoIHdpbGwgZGlzY29ubmVjdC9yZWNvbm5lY3QgUEhZcyBhcm91bmQgQVVY
-IHRyYW5zZmVycw0KPiBhbmQgbW9kZXNldCBlbmFibGUvZGlzYWJsZXMuIFRvIHByZXBhcmUgZm9y
-IHRoYXQgYW5kIG1ha2UgdGhpbmdzDQo+IGNvbnNpc3RlbnQgZm9yIGFsbCBUeXBlQyBtb2RlcyBz
-dG9wIGNvbm5lY3RpbmcgdGhlIFBIWSBpbiBsZWdhY3kgbW9kZQ0KPiB3aXRob3V0IGEgc2luayBi
-ZWluZyBjb25uZWN0ZWQuIFRoaXMgd2FzIGRvbmUgYmVmb3JlIHNpbmNlIGluIGxlZ2FjeQ0KPiBt
-b2RlIHRoZSBQSFkgaXMgZGVkaWNhdGVkIHRvIGRpc3BsYXkgdXNhZ2UsIHNvIHRoZXJlIHdhcyBu
-byBwb2ludCBpbg0KPiBkaXNjb25uZWN0aW5nIGl0LiBIb3dldmVyIGFmdGVyIHRoZSBmb2xsb3ct
-dXAgY2hhbmdlcyB0aGUgVEMtY29sZA0KPiBibG9ja2luZyBwb3dlciBkb21haW5zIHdpbGwgYmUg
-aGVsZCBhcyBsb25nIGFzIHRoZSBQSFkgaXMgaW4gdGhlDQo+IGNvbm5lY3RlZCBzdGF0ZSwgc28g
-d2UnbGwgbmVlZCB0byBkaXNjb25uZWN0L3JlLWNvbm5lY3QgdGhlIFBIWSBpbiBhbGwNCj4gVHlw
-ZUMgbW9kZXMgdG8gYWxsb3cgZm9yIHBvd2VyIHNhdmluZy4NCg0KUmV2aWV3ZWQtYnk6IEpvc8Op
-IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IA0KPiBDYzogSm9z
-w6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYt
-Ynk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgfCAxMiArLS0tLS0tLS0tLS0NCj4gIDEgZmls
-ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMTEgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+IGluZGV4IDUxMWM0NmUzNmUyMzcuLmFh
-NGMxZTVlMGMwMDIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfdGMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Rj
-LmMNCj4gQEAgLTUxMSw4ICs1MTEsNiBAQCBzdGF0aWMgdm9pZCBpY2xfdGNfcGh5X2Rpc2Nvbm5l
-Y3Qoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ICB7DQo+ICAJc3dpdGNo
-IChkaWdfcG9ydC0+dGNfbW9kZSkgew0KPiAgCWNhc2UgVENfUE9SVF9MRUdBQ1k6DQo+IC0JCS8q
-IE5vdGhpbmcgdG8gZG8sIHdlIG5ldmVyIGRpc2Nvbm5lY3QgZnJvbSBsZWdhY3kgbW9kZSAqLw0K
-PiAtCQlicmVhazsNCj4gIAljYXNlIFRDX1BPUlRfRFBfQUxUOg0KPiAgCQl0Y19waHlfdGFrZV9v
-d25lcnNoaXAoZGlnX3BvcnQsIGZhbHNlKTsNCj4gIAkJZGlnX3BvcnQtPnRjX21vZGUgPSBUQ19Q
-T1JUX1RCVF9BTFQ7DQo+IEBAIC01ODAsOSArNTc4LDcgQEAgaW50ZWxfdGNfcG9ydF9nZXRfdGFy
-Z2V0X21vZGUoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ICAJaWYgKGxp
-dmVfc3RhdHVzX21hc2spDQo+ICAJCXJldHVybiBmbHMobGl2ZV9zdGF0dXNfbWFzaykgLSAxOw0K
-PiAgDQo+IC0JcmV0dXJuIHRjX3BoeV9zdGF0dXNfY29tcGxldGUoZGlnX3BvcnQpICYmDQo+IC0J
-ICAgICAgIGRpZ19wb3J0LT50Y19sZWdhY3lfcG9ydCA/IFRDX1BPUlRfTEVHQUNZIDoNCj4gLQkJ
-CQkJICBUQ19QT1JUX1RCVF9BTFQ7DQo+ICsJcmV0dXJuIFRDX1BPUlRfVEJUX0FMVDsNCj4gIH0N
-Cj4gIA0KPiAgc3RhdGljIHZvaWQgaW50ZWxfdGNfcG9ydF9yZXNldF9tb2RlKHN0cnVjdCBpbnRl
-bF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LA0KPiBAQCAtNjQzLDE0ICs2MzksOCBAQCB2b2lkIGlu
-dGVsX3RjX3BvcnRfc2FuaXRpemUoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQp
-DQo+ICAJCQkJICAgICJQb3J0ICVzOiBQSFkgZGlzY29ubmVjdGVkIHdpdGggJWQgYWN0aXZlIGxp
-bmsocylcbiIsDQo+ICAJCQkJICAgIGRpZ19wb3J0LT50Y19wb3J0X25hbWUsIGFjdGl2ZV9saW5r
-cyk7DQo+ICAJCWludGVsX3RjX3BvcnRfbGlua19pbml0X3JlZmNvdW50KGRpZ19wb3J0LCBhY3Rp
-dmVfbGlua3MpOw0KPiAtDQo+IC0JCWdvdG8gb3V0Ow0KPiAgCX0NCj4gIA0KPiAtCWlmIChkaWdf
-cG9ydC0+dGNfbGVnYWN5X3BvcnQpDQo+IC0JCWljbF90Y19waHlfY29ubmVjdChkaWdfcG9ydCwg
-MSk7DQo+IC0NCj4gLW91dDoNCj4gIAlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiUG9ydCAlczog
-c2FuaXRpemUgbW9kZSAoJXMpXG4iLA0KPiAgCQkgICAgZGlnX3BvcnQtPnRjX3BvcnRfbmFtZSwN
-Cj4gIAkJICAgIHRjX3BvcnRfbW9kZV9uYW1lKGRpZ19wb3J0LT50Y19tb2RlKSk7DQoNCg==
+On Tue, Jul 06, 2021 at 04:44:30PM -0700, Lucas De Marchi wrote:
+> On Thu, Nov 05, 2020 at 10:02:27AM +0200, Joonas Lahtinen wrote:
+> > Quoting Lucas De Marchi (2020-11-05 03:04:22)
+> > > On Wed, Nov 04, 2020 at 11:55:15AM +0200, Joonas Lahtinen wrote:
+> > > >Quoting Lucas De Marchi (2020-10-27 06:46:18)
+> > > >> GT_PERF_STATUS and RP_STATE_LIMITS were added a long time ago in
+> > > >> commit 3b8d8d91d51c ("drm/i915: dynamic render p-state support for Sandy
+> > > >> Bridge").  Other than printing their values in debugfs we don't do
+> > > >> anything with them.  There's not much useful information in them. These
+> > > >> registers may change location in future platforms, but instead of adding
+> > > >> new locations, it's simpler to just remove them.
+> > > >
+> > > >This code seems to have been updated for Gen9LP, so that would indicate
+> > > >the debugging information is useful, right? The value is even decoded, not
+> > > >simply dumped as most registers. So I would be hesitant to drop it for
+> > > >not being useful.
+> > > 
+> > > but just updating the register in itself for a new gen doesn't mean it's
+> > > actually useful... the commit message where this happened is pretty
+> > > vague: 350405623ff3 ("drm/i915: Update rps frequencies for BXT")
+> > > 
+> > > My first reaction would be to do the same if the register had moved or
+> > > if it ceased to exist in a new platform. Talking with Matt Roper some
+> > > time ago we arrived to the conclusion that just printing these values is
+> > > not giving us much benefit and it could very well be accomplished by
+> > > intel_reg.
+> > > 
+> > > So answering the question:  is it really useful as is? IMO, no.
+> > 
+> > A quick discussion on #intel-gfx seems to indicate it was used for
+> > bug triaging in the past year. So that would indicate it is still
+> > useful to include.
+> 
+> getting back to this as we are trying to upstream XeHP-SDV that doesn't
+> have access to the MCHBAR. So do you think we should just make it
+> conditional instead of removing?
+
+Yes, please let's make this conditional.
+
+> 
+> I'm still on the side that this additional code doesn't bring much value
+> and could be replaced by intel-reg.
+
+In general I'd agree. However:
+
+1. Sometimes it is very hard to find out what registers and bits have
+some useful information.
+2. If it is hard to remove sometimes it is harder to add some information
+like this.
+3. I was not part of the IRC chat that Joonas mentioned, but apparently
+this data was useful in the past for some cases.
+
+Thanks,
+Rodrigo.
+
+> 
+> > 
+> > So let's not remove it.
+> > 
+> > > >The second question is why we have a huge block of 1-to-1 duplicated
+> > > >code in there. Has there been an incorrect merge or some transition has
+> > > >been left mid-way?
+> > > 
+> > > not a bad merge, no. It seems to be to preserve the previous file
+> > > location since now it moved to be inside a gt dir. Long term I think
+> > > this is bad both because of the code duplication and because it's easy
+> > > to update one and forget the other.
+> > 
+> > I started a discussion in the thread of the original patch which called
+> > to move code but left the old code in place too, effectively copying it.
+> > 
+> > When this path was written and such code duplication noticed, would have
+> > been good to highlight or address the code duplication.
+> 
+> yes, but it doesn't mean there will be an action regarding that, as can
+> be noticed since that duplication is still there today and this patch
+> applies cleanly :-/... and they had slightly different changes according
+> to
+> 
+> 	git log -L:frequency_show:drivers/gpu/drm/i915/gt/debugfs_gt_pm.c \
+> 		-L:i915_frequency_info:drivers/gpu/drm/i915/i915_debugfs.c
+> 
+> 
+> Lucas De Marchi
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
