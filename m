@@ -2,33 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 647E7417A7C
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 20:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14B23417BA2
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 21:14:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39D056E202;
-	Fri, 24 Sep 2021 18:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6250A6E233;
+	Fri, 24 Sep 2021 19:14:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E52F56E200;
- Fri, 24 Sep 2021 18:05:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CBD69AA0EB;
- Fri, 24 Sep 2021 18:05:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5030486396123138868=="
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2196E235;
+ Fri, 24 Sep 2021 19:14:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10117"; a="223789600"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="223789600"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 12:14:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="437094327"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga003.jf.intel.com with ESMTP; 24 Sep 2021 12:14:18 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Gaurav Kumar <kumar.gaurav@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Juston Li <juston.li@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Jason Ekstrand <jason@jlekstrand.net>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Date: Fri, 24 Sep 2021 12:14:35 -0700
+Message-Id: <20210924191452.1539378-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Sep 2021 18:05:44 -0000
-Message-ID: <163250674479.20559.9643507993173014836@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210924144646.4096402-1-matthew.auld@intel.com>
-In-Reply-To: <20210924144646.4096402-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_remember_to_call_i915=5Fsw=5Ffence=5Ffini?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v13 00/17] drm/i915: Introduce Intel PXP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,190 +53,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5030486396123138868==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+PXP (Protected Xe Path) is an i915 component, available on
+GEN12 and newer platforms, that helps to establish the hardware
+protected session and manage the status of the alive software session,
+as well as its life cycle.
 
-== Series Details ==
+changes from v12:
+- Patch #4: Fixed for loop pointer dereference (Vinay).
+- Patch #10: Rebasing required for latest drm-tim today.
+- Patch #11: Increase timeout again in intel_pxp_start to
+  cover accumulated underlying dependant operations.
+- Patch #12: Rebasing required for latest drm-tip today.
 
-Series: drm/i915: remember to call i915_sw_fence_fini
-URL   : https://patchwork.freedesktop.org/series/95029/
-State : success
+Tested with: https://patchwork.freedesktop.org/series/87570/
 
-== Summary ==
+Cc: Gaurav Kumar <kumar.gaurav@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Juston Li <juston.li@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Cc: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
 
-CI Bug Log - changes from CI_DRM_10639 -> Patchwork_21154
-====================================================
+Anshuman Gupta (2):
+  drm/i915/pxp: Add plane decryption support
+  drm/i915/pxp: black pixels on pxp disabled
 
-Summary
--------
+Daniele Ceraolo Spurio (9):
+  drm/i915/pxp: Define PXP component interface
+  drm/i915/pxp: define PXP device flag and kconfig
+  drm/i915/pxp: allocate a vcs context for pxp usage
+  drm/i915/pxp: set KCR reg init
+  drm/i915/pxp: interfaces for using protected objects
+  drm/i915/pxp: start the arb session on demand
+  drm/i915/pxp: add pxp debugfs
+  drm/i915/pxp: add PXP documentation
+  drm/i915/pxp: enable PXP for integrated Gen12
 
-  **SUCCESS**
+Huang, Sean Z (5):
+  drm/i915/pxp: Implement funcs to create the TEE channel
+  drm/i915/pxp: Create the arbitrary session after boot
+  drm/i915/pxp: Implement arb session teardown
+  drm/i915/pxp: Implement PXP irq handler
+  drm/i915/pxp: Enable PXP power management
 
-  No regressions found.
+Vitaly Lubart (1):
+  mei: pxp: export pavp client to me client bus
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/index.html
+ Documentation/gpu/i915.rst                    |   8 +
+ drivers/gpu/drm/i915/Kconfig                  |  11 +
+ drivers/gpu/drm/i915/Makefile                 |  10 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  34 ++
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ .../drm/i915/display/skl_universal_plane.c    |  49 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  97 +++++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |   6 +
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  28 ++
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  72 +++--
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  18 ++
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   6 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   9 +-
+ .../gpu/drm/i915/gem/selftests/mock_context.c |   4 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h        |   2 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |  22 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    |   2 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  16 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/i915_drv.c               |   2 +
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +
+ drivers/gpu/drm/i915/i915_pci.c               |   2 +
+ drivers/gpu/drm/i915/i915_reg.h               |  48 +++
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 299 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          |  64 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 141 +++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  15 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  |  78 +++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h  |  21 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      | 101 ++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |  32 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  46 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  24 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c  | 175 ++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.h  |  15 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 172 ++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  17 +
+ .../drm/i915/pxp/intel_pxp_tee_interface.h    |  36 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  83 +++++
+ drivers/misc/mei/Kconfig                      |   2 +
+ drivers/misc/mei/Makefile                     |   1 +
+ drivers/misc/mei/pxp/Kconfig                  |  13 +
+ drivers/misc/mei/pxp/Makefile                 |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                | 229 ++++++++++++++
+ drivers/misc/mei/pxp/mei_pxp.h                |  18 ++
+ include/drm/i915_component.h                  |   1 +
+ include/drm/i915_pxp_tee_interface.h          |  42 +++
+ include/uapi/drm/i915_drm.h                   |  97 ++++++
+ 52 files changed, 2159 insertions(+), 42 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
 
-Known issues
-------------
+-- 
+2.25.1
 
-  Here are the changes found in Patchwork_21154 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#2940])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10639/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][3] ([fdo#109271] / [i915#1436] / [i915#3428])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-bsw-nick/igt@runner@aborted.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][4] ([i915#1602] / [i915#2029])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [FAIL][5] ([i915#1888]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10639/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:
-    - fi-rkl-11600:       [SKIP][7] ([i915#4098]) -> [PASS][8] +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10639/fi-rkl-11600/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-rkl-11600/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
-
-
-Participating hosts (41 -> 34)
-------------------------------
-
-  Missing    (7): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10639 -> Patchwork_21154
-
-  CI-20190529: 20190529
-  CI_DRM_10639: e1c0405b8ce0a35b7057d4a09f6f429ef9a2865d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21154: 235d2c955af7c70fe87e334911072eb7992e5a28 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-235d2c955af7 drm/i915: remember to call i915_sw_fence_fini
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/index.html
-
---===============5030486396123138868==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: remember to call i915_sw_fence_fini</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95029/">https://patchwork.freedesktop.org/series/95029/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10639 -&gt; Patchwork_21154</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21154 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10639/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10639/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10639/fi-rkl-11600/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21154/fi-rkl-11600/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 34)</h2>
-<p>Missing    (7): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10639 -&gt; Patchwork_21154</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10639: e1c0405b8ce0a35b7057d4a09f6f429ef9a2865d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21154: 235d2c955af7c70fe87e334911072eb7992e5a28 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>235d2c955af7 drm/i915: remember to call i915_sw_fence_fini</p>
-
-</body>
-</html>
-
---===============5030486396123138868==--
