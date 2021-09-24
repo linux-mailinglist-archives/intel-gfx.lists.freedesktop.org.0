@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E01341712D
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 13:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B30D341712E
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 13:48:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE2F6EE0D;
-	Fri, 24 Sep 2021 11:48:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 026F26EE0F;
+	Fri, 24 Sep 2021 11:48:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EEF76EE0D
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 11:48:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="220856829"
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="220856829"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:47:59 -0700
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="559255674"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 563C66EE0F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 11:48:05 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="309614203"
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="309614203"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 04:48:04 -0700
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="551662840"
 Received: from avanhout-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.153])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:47:57 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 04:48:03 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Dave Airlie <airlied@redhat.com>
-Date: Fri, 24 Sep 2021 14:47:19 +0300
-Message-Id: <20210924114741.15940-2-jani.nikula@intel.com>
+Date: Fri, 24 Sep 2021 14:47:20 +0300
+Message-Id: <20210924114741.15940-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210924114741.15940-1-jani.nikula@intel.com>
 References: <20210924114741.15940-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 02/24] drm/i915/pm: drop get_fifo_size vfunc.
+Subject: [Intel-gfx] [CI 03/24] drm/i915: make update_wm take a dev_priv.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,86 +52,165 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-The i845_update_wm code was always calling the i845 variant,
-and the i9xx_update_wm had only a choice between i830 and i9xx
-paths, hardly worth the vfunc overhead.
+The crtc was never being used here.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h |  2 --
- drivers/gpu/drm/i915/intel_pm.c | 20 +++++++++++---------
- 2 files changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 +++++-----
+ drivers/gpu/drm/i915/i915_drv.h              |  2 +-
+ drivers/gpu/drm/i915/intel_pm.c              | 20 +++++++-------------
+ drivers/gpu/drm/i915/intel_pm.h              |  2 +-
+ 4 files changed, 14 insertions(+), 20 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f27c294beb92..566a7d2feb1a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2383,7 +2383,7 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+ 	intel_frontbuffer_flip(dev_priv, new_crtc_state->fb_bits);
+ 
+ 	if (new_crtc_state->update_wm_post && new_crtc_state->hw.active)
+-		intel_update_watermarks(crtc);
++		intel_update_watermarks(dev_priv);
+ 
+ 	if (hsw_post_update_enable_ips(old_crtc_state, new_crtc_state))
+ 		hsw_enable_ips(new_crtc_state);
+@@ -2540,7 +2540,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 		if (dev_priv->display.initial_watermarks)
+ 			dev_priv->display.initial_watermarks(state, crtc);
+ 		else if (new_crtc_state->update_wm_pre)
+-			intel_update_watermarks(crtc);
++			intel_update_watermarks(dev_priv);
+ 	}
+ 
+ 	/*
+@@ -3587,7 +3587,7 @@ static void i9xx_crtc_enable(struct intel_atomic_state *state,
+ 	if (dev_priv->display.initial_watermarks)
+ 		dev_priv->display.initial_watermarks(state, crtc);
+ 	else
+-		intel_update_watermarks(crtc);
++		intel_update_watermarks(dev_priv);
+ 	intel_enable_transcoder(new_crtc_state);
+ 
+ 	intel_crtc_vblank_on(new_crtc_state);
+@@ -3654,7 +3654,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+ 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
+ 
+ 	if (!dev_priv->display.initial_watermarks)
+-		intel_update_watermarks(crtc);
++		intel_update_watermarks(dev_priv);
+ 
+ 	/* clock the pipe down to 640x480@60 to potentially save power */
+ 	if (IS_I830(dev_priv))
+@@ -3730,7 +3730,7 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 		encoder->base.crtc = NULL;
+ 
+ 	intel_fbc_disable(crtc);
+-	intel_update_watermarks(crtc);
++	intel_update_watermarks(dev_priv);
+ 	intel_disable_shared_dpll(crtc_state);
+ 
+ 	intel_display_power_put_all_in_set(dev_priv, &crtc->enabled_power_domains);
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index cc355aa05dbf..fa0ca65cf176 100644
+index fa0ca65cf176..a098a1bc83b1 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -330,8 +330,6 @@ struct drm_i915_display_funcs {
- 			  const struct intel_cdclk_config *cdclk_config,
- 			  enum pipe pipe);
- 	int (*bw_calc_min_cdclk)(struct intel_atomic_state *state);
--	int (*get_fifo_size)(struct drm_i915_private *dev_priv,
--			     enum i9xx_plane_id i9xx_plane);
- 	int (*compute_pipe_wm)(struct intel_atomic_state *state,
- 			       struct intel_crtc *crtc);
- 	int (*compute_intermediate_wm)(struct intel_atomic_state *state,
+@@ -341,7 +341,7 @@ struct drm_i915_display_funcs {
+ 	void (*optimize_watermarks)(struct intel_atomic_state *state,
+ 				    struct intel_crtc *crtc);
+ 	int (*compute_global_watermarks)(struct intel_atomic_state *state);
+-	void (*update_wm)(struct intel_crtc *crtc);
++	void (*update_wm)(struct drm_i915_private *dev_priv);
+ 	int (*modeset_calc_cdclk)(struct intel_cdclk_state *state);
+ 	u8 (*calc_voltage_level)(int cdclk);
+ 	/* Returns the active state of the crtc, and if the crtc is active,
 diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 97b68bbbc689..0e0309733c79 100644
+index 0e0309733c79..226f456cde3a 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -2342,7 +2342,10 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
- 	else
- 		wm_info = &i830_a_wm_info;
+@@ -881,9 +881,8 @@ static struct intel_crtc *single_enabled_crtc(struct drm_i915_private *dev_priv)
+ 	return enabled;
+ }
  
--	fifo_size = dev_priv->display.get_fifo_size(dev_priv, PLANE_A);
-+	if (DISPLAY_VER(dev_priv) == 2)
-+		fifo_size = i830_get_fifo_size(dev_priv, PLANE_A);
-+	else
-+		fifo_size = i9xx_get_fifo_size(dev_priv, PLANE_A);
- 	crtc = intel_get_crtc_for_plane(dev_priv, PLANE_A);
- 	if (intel_crtc_active(crtc)) {
- 		const struct drm_display_mode *pipe_mode =
-@@ -2369,7 +2372,10 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
- 	if (DISPLAY_VER(dev_priv) == 2)
- 		wm_info = &i830_bc_wm_info;
+-static void pnv_update_wm(struct intel_crtc *unused_crtc)
++static void pnv_update_wm(struct drm_i915_private *dev_priv)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(unused_crtc->base.dev);
+ 	struct intel_crtc *crtc;
+ 	const struct cxsr_latency *latency;
+ 	u32 reg;
+@@ -2248,9 +2247,8 @@ static void vlv_optimize_watermarks(struct intel_atomic_state *state,
+ 	mutex_unlock(&dev_priv->wm.wm_mutex);
+ }
  
--	fifo_size = dev_priv->display.get_fifo_size(dev_priv, PLANE_B);
-+	if (DISPLAY_VER(dev_priv) == 2)
-+		fifo_size = i830_get_fifo_size(dev_priv, PLANE_B);
-+	else
-+		fifo_size = i9xx_get_fifo_size(dev_priv, PLANE_B);
- 	crtc = intel_get_crtc_for_plane(dev_priv, PLANE_B);
- 	if (intel_crtc_active(crtc)) {
- 		const struct drm_display_mode *pipe_mode =
-@@ -2485,7 +2491,7 @@ static void i845_update_wm(struct intel_crtc *unused_crtc)
- 	pipe_mode = &crtc->config->hw.pipe_mode;
- 	planea_wm = intel_calculate_wm(pipe_mode->crtc_clock,
- 				       &i845_wm_info,
--				       dev_priv->display.get_fifo_size(dev_priv, PLANE_A),
-+				       i845_get_fifo_size(dev_priv, PLANE_A),
- 				       4, pessimal_latency_ns);
- 	fwater_lo = intel_uncore_read(&dev_priv->uncore, FW_BLC) & ~0xfff;
- 	fwater_lo |= (3<<8) | planea_wm;
-@@ -8052,15 +8058,11 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 		dev_priv->display.update_wm = i965_update_wm;
- 	} else if (DISPLAY_VER(dev_priv) == 3) {
- 		dev_priv->display.update_wm = i9xx_update_wm;
--		dev_priv->display.get_fifo_size = i9xx_get_fifo_size;
- 	} else if (DISPLAY_VER(dev_priv) == 2) {
--		if (INTEL_NUM_PIPES(dev_priv) == 1) {
-+		if (INTEL_NUM_PIPES(dev_priv) == 1)
- 			dev_priv->display.update_wm = i845_update_wm;
--			dev_priv->display.get_fifo_size = i845_get_fifo_size;
--		} else {
-+		else
- 			dev_priv->display.update_wm = i9xx_update_wm;
--			dev_priv->display.get_fifo_size = i830_get_fifo_size;
--		}
- 	} else {
- 		drm_err(&dev_priv->drm,
- 			"unexpected fall-through in %s\n", __func__);
+-static void i965_update_wm(struct intel_crtc *unused_crtc)
++static void i965_update_wm(struct drm_i915_private *dev_priv)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(unused_crtc->base.dev);
+ 	struct intel_crtc *crtc;
+ 	int srwm = 1;
+ 	int cursor_sr = 16;
+@@ -2324,9 +2322,8 @@ static void i965_update_wm(struct intel_crtc *unused_crtc)
+ 
+ #undef FW_WM
+ 
+-static void i9xx_update_wm(struct intel_crtc *unused_crtc)
++static void i9xx_update_wm(struct drm_i915_private *dev_priv)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(unused_crtc->base.dev);
+ 	const struct intel_watermark_params *wm_info;
+ 	u32 fwater_lo;
+ 	u32 fwater_hi;
+@@ -2476,9 +2473,8 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
+ 		intel_set_memory_cxsr(dev_priv, true);
+ }
+ 
+-static void i845_update_wm(struct intel_crtc *unused_crtc)
++static void i845_update_wm(struct drm_i915_private *dev_priv)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(unused_crtc->base.dev);
+ 	struct intel_crtc *crtc;
+ 	const struct drm_display_mode *pipe_mode;
+ 	u32 fwater_lo;
+@@ -7136,7 +7132,7 @@ void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ 
+ /**
+  * intel_update_watermarks - update FIFO watermark values based on current modes
+- * @crtc: the #intel_crtc on which to compute the WM
++ * @dev_priv: i915 device
+  *
+  * Calculate watermark values for the various WM regs based on current mode
+  * and plane configuration.
+@@ -7167,12 +7163,10 @@ void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
+  * We don't use the sprite, so we can ignore that.  And on Crestline we have
+  * to set the non-SR watermarks to 8.
+  */
+-void intel_update_watermarks(struct intel_crtc *crtc)
++void intel_update_watermarks(struct drm_i915_private *dev_priv)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-
+ 	if (dev_priv->display.update_wm)
+-		dev_priv->display.update_wm(crtc);
++		dev_priv->display.update_wm(dev_priv);
+ }
+ 
+ void intel_enable_ipc(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
+index 941b3ae555c8..99bce0b4f5fb 100644
+--- a/drivers/gpu/drm/i915/intel_pm.h
++++ b/drivers/gpu/drm/i915/intel_pm.h
+@@ -29,7 +29,7 @@ struct skl_wm_level;
+ void intel_init_clock_gating(struct drm_i915_private *dev_priv);
+ void intel_suspend_hw(struct drm_i915_private *dev_priv);
+ int ilk_wm_max_level(const struct drm_i915_private *dev_priv);
+-void intel_update_watermarks(struct intel_crtc *crtc);
++void intel_update_watermarks(struct drm_i915_private *dev_priv);
+ void intel_init_pm(struct drm_i915_private *dev_priv);
+ void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv);
+ void intel_pm_setup(struct drm_i915_private *dev_priv);
 -- 
 2.30.2
 
