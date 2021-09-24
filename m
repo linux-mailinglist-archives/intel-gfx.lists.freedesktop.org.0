@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9F3417775
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 17:24:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 468954177CE
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 17:32:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFA346E1D2;
-	Fri, 24 Sep 2021 15:24:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19EB66EE51;
+	Fri, 24 Sep 2021 15:32:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E80976E1CF
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 15:24:19 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="222207112"
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="222207112"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 08:24:19 -0700
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="703887858"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6749B6EE4C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 15:32:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="287765350"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="287765350"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 08:31:57 -0700
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="476185349"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 08:24:18 -0700
-Date: Fri, 24 Sep 2021 18:24:15 +0300
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 08:31:56 -0700
+Date: Fri, 24 Sep 2021 18:31:52 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: "Souza, Jose" <jose.souza@intel.com>
 Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <20210924152415.GC1452431@ideak-desk.fi.intel.com>
+Message-ID: <20210924153152.GD1452431@ideak-desk.fi.intel.com>
 References: <20210921002313.1132357-1-imre.deak@intel.com>
- <20210921002313.1132357-3-imre.deak@intel.com>
- <6f82ecb6ff1d3ce8606b8cfadd0605677d44125b.camel@intel.com>
+ <20210921002313.1132357-5-imre.deak@intel.com>
+ <f56fd922c9b349cee458be9edcbe028cab178fd6.camel@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6f82ecb6ff1d3ce8606b8cfadd0605677d44125b.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 02/13] drm/i915/adlp/tc: Fix PHY connected
- check for Thunderbolt mode
+In-Reply-To: <f56fd922c9b349cee458be9edcbe028cab178fd6.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/13] drm/i915/tc: Check for DP-alt,
+ legacy sinks before taking PHY ownership
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,42 +51,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 24, 2021 at 02:18:30AM +0300, Souza, Jose wrote:
+On Fri, Sep 24, 2021 at 03:30:07AM +0300, Souza, Jose wrote:
 > On Tue, 2021-09-21 at 03:23 +0300, Imre Deak wrote:
-> > On ADL-P the PHY ready (aka status complete on other platforms) flag is
-> > always set, besides when a DP-alt, legacy sink is connected also when a
-> > TBT sink is connected or nothing is connected. So assume the PHY to be
-> > connected when both the TBT live status and PHY ready flags are set.
+> > On ADL-P the PHY ready/complete flag is always set even in TBT-alt mode.
+> > To avoid taking the PHY ownership and the following spurious "PHY sudden
+> > disconnect" messages on this platform when connecting the PHY in TBT
+> > mode, check if there is any DP-alt or legacy sink connected before
+> > taking the ownership.
 > > 
 > > Cc: José Roberto de Souza <jose.souza@intel.com>
 > > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_tc.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> >  drivers/gpu/drm/i915/display/intel_tc.c | 7 +++++++
+> >  1 file changed, 7 insertions(+)
 > > 
 > > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-> > index 3ffece568ed98..7dc3696085c71 100644
+> > index 0d3555437b0b1..1f76c11d70834 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_tc.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> > @@ -509,6 +509,10 @@ static bool icl_tc_phy_is_connected(struct intel_digital_port *dig_port)
-> >  		return dig_port->tc_mode == TC_PORT_TBT_ALT;
+> > @@ -432,6 +432,13 @@ static void icl_tc_phy_connect(struct intel_digital_port *dig_port,
+> >  		goto out_set_tbt_alt_mode;
 > >  	}
 > >  
-> > +	/* On ADL-P the PHY complete flag is set in TBT mode as well. */
-> > +	if (IS_ALDERLAKE_P(i915) && dig_port->tc_mode == TC_PORT_TBT_ALT)
-> > +		return true;
+> > +	if (!(tc_port_live_status_mask(dig_port) &
+> > +	      (BIT(TC_PORT_DP_ALT) | BIT(TC_PORT_LEGACY)))) {
+> > +		drm_dbg_kms(&i915->drm, "Port %s: nothing is connected\n",
+> > +			    dig_port->tc_port_name);
 > 
-> I don't have hardware to test(My adl-p do not have TC ports enabled)
-> but if phy complete/ready is set in TBT mode, this change makes sense.
+> Misleading log, it could have actual TBT connected and it would print
+> nothing is connected.
 
-The reg description has been updated now, it's a bit clearer. But yes,
-that's what I see it's set regardless of something being connected or
-not and regardless of what is connected.
+Yes, missed that case. Will change that to print live_status_mask()
+instead.
 
+> Could you also add a comment in tc_phy_status_complete() about the TBT
+> behavior on adl-p?
+
+It means a different thing than what it means on previous platforms, can
+add a note about this. 
+
+> Fixing the above:
 > Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 > 
+> > +		goto out_set_tbt_alt_mode;
+> > +	}
 > > +
-> >  	if (!tc_phy_is_owned(dig_port)) {
-> >  		drm_dbg_kms(&i915->drm, "Port %s: PHY not owned\n",
-> >  			    dig_port->tc_port_name);
+> >  	if (!tc_phy_take_ownership(dig_port, true) &&
+> >  	    !drm_WARN_ON(&i915->drm, dig_port->tc_legacy_port))
+> >  		goto out_set_tbt_alt_mode;
 > 
