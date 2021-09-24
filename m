@@ -1,42 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C8241720E
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 14:41:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F16204176AA
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 16:13:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C83A46EE18;
-	Fri, 24 Sep 2021 12:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DFA26EE20;
+	Fri, 24 Sep 2021 14:13:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0616EE20
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 12:41:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="204220748"
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="204220748"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8050A6EE1F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 14:13:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="223724173"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="223724173"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 05:41:25 -0700
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 07:13:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="559295907"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="559637216"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 24 Sep 2021 05:41:24 -0700
+ by fmsmga002.fm.intel.com with SMTP; 24 Sep 2021 07:13:31 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 24 Sep 2021 15:41:23 +0300
-Date: Fri, 24 Sep 2021 15:41:23 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+ Fri, 24 Sep 2021 17:13:30 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <YU3Hc2k7njIKsLEd@intel.com>
-References: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
- <20210923200109.4459-5-ville.syrjala@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Date: Fri, 24 Sep 2021 17:13:30 +0300
+Message-Id: <20210924141330.1515-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210923200109.4459-5-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915: Introduce
- intel_panel_compute_config()
+Subject: [Intel-gfx] [PATCH] drm/i915/fbc: Allow FBC with Yf tiling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,177 +48,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 23, 2021 at 11:01:07PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> 
-> Let's introduce a compute_config() helper for fixed mode panels.
-> For now all it does is the fixed_mode->adjusted_mode copy.
-> 
-> Note that with sDVO we have to ask the external encoder chip
-> to spit out our actual display timings for us, so we won't
-> use intel_panel_compute_config() there.
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Hmm. Actually I think it would be fine to use it as is since we
-just overwrite adjusted_mode with the data from the encder, and 
-we don't use adjusted_mode for anything else before that. So
-overwriting it with the fixed_mode just prior to overwriting it
-with the mode returned by the encoder should be OK.
+FBC+Yf tiling seems to work just fine, and unlike with linear
+the hardware does appear to correctly calculate the CFB stride
+with using the override stride on both cfl and glk. So no need
+for any additional tweaks.
 
-That would avoid having to hand roll the refresh rate check for
-sdvo in the followup patch.
+Cc: Uma Shankar <uma.shankar@intel.com> #v2
+Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-> 
-> Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c     |  7 ++++---
->  drivers/gpu/drm/i915/display/intel_dp.c    |  5 +++--
->  drivers/gpu/drm/i915/display/intel_dvo.c   | 10 ++++++++--
->  drivers/gpu/drm/i915/display/intel_lvds.c  |  5 +++--
->  drivers/gpu/drm/i915/display/intel_panel.c | 11 +++++++++--
->  drivers/gpu/drm/i915/display/intel_panel.h |  2 ++
->  drivers/gpu/drm/i915/display/vlv_dsi.c     |  4 +++-
->  7 files changed, 32 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 060bc8fb0d30..a6edd5241b14 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1666,14 +1666,15 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
->  	struct intel_dsi *intel_dsi = container_of(encoder, struct intel_dsi,
->  						   base);
->  	struct intel_connector *intel_connector = intel_dsi->attached_connector;
-> -	const struct drm_display_mode *fixed_mode =
-> -		intel_connector->panel.fixed_mode;
->  	struct drm_display_mode *adjusted_mode =
->  		&pipe_config->hw.adjusted_mode;
->  	int ret;
->  
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
-> -	intel_panel_fixed_mode(fixed_mode, adjusted_mode);
-> +
-> +	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> +	if (ret)
-> +		return ret;
->  
->  	ret = intel_panel_fitting(pipe_config, conn_state);
->  	if (ret)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 2b8b495fc2a9..b5cd188ca520 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1757,8 +1757,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->  		pipe_config->has_audio = intel_conn_state->force_audio == HDMI_AUDIO_ON;
->  
->  	if (intel_dp_is_edp(intel_dp) && intel_connector->panel.fixed_mode) {
-> -		intel_panel_fixed_mode(intel_connector->panel.fixed_mode,
-> -				       adjusted_mode);
-> +		ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> +		if (ret)
-> +			return ret;
->  
->  		ret = intel_panel_fitting(pipe_config, conn_state);
->  		if (ret)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-> index f8fdc0386fd4..2eeb209afc64 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-> @@ -256,6 +256,7 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
->  				    struct drm_connector_state *conn_state)
->  {
->  	struct intel_dvo *intel_dvo = enc_to_dvo(encoder);
-> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	const struct drm_display_mode *fixed_mode =
->  		intel_dvo->attached_connector->panel.fixed_mode;
->  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-> @@ -266,8 +267,13 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
->  	 * with the panel scaling set up to source from the H/VDisplay
->  	 * of the original mode.
->  	 */
-> -	if (fixed_mode)
-> -		intel_panel_fixed_mode(fixed_mode, adjusted_mode);
-> +	if (fixed_mode) {
-> +		int ret;
-> +
-> +		ret = intel_panel_compute_config(connector, adjusted_mode);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-> index 37e81bc71f7c..130e6ea61e11 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> @@ -444,8 +444,9 @@ static int intel_lvds_compute_config(struct intel_encoder *intel_encoder,
->  	 * with the panel scaling set up to source from the H/VDisplay
->  	 * of the original mode.
->  	 */
-> -	intel_panel_fixed_mode(intel_connector->panel.fixed_mode,
-> -			       adjusted_mode);
-> +	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> +	if (ret)
-> +		return ret;
->  
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-> index b2ad0f065218..77c1ca387de0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -45,12 +45,19 @@ bool intel_panel_use_ssc(struct drm_i915_private *i915)
->  		&& !(i915->quirks & QUIRK_LVDS_SSC_DISABLE);
->  }
->  
-> -void intel_panel_fixed_mode(const struct drm_display_mode *fixed_mode,
-> -			    struct drm_display_mode *adjusted_mode)
-> +int intel_panel_compute_config(struct intel_connector *connector,
-> +			       struct drm_display_mode *adjusted_mode)
->  {
-> +	const struct drm_display_mode *fixed_mode = connector->panel.fixed_mode;
-> +
-> +	if (!fixed_mode)
-> +		return 0;
-> +
->  	drm_mode_copy(adjusted_mode, fixed_mode);
->  
->  	drm_mode_set_crtcinfo(adjusted_mode, 0);
-> +
-> +	return 0;
->  }
->  
->  static bool is_downclock_mode(const struct drm_display_mode *downclock_mode,
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-> index 71bad6d546fa..d50b3f7e9e58 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.h
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
-> @@ -31,6 +31,8 @@ intel_panel_mode_valid(struct intel_connector *connector,
->  		       const struct drm_display_mode *mode);
->  int intel_panel_fitting(struct intel_crtc_state *crtc_state,
->  			const struct drm_connector_state *conn_state);
-> +int intel_panel_compute_config(struct intel_connector *connector,
-> +			       struct drm_display_mode *adjusted_mode);
->  struct drm_display_mode *
->  intel_panel_edid_downclock_mode(struct intel_connector *connector,
->  				const struct drm_display_mode *fixed_mode);
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index b0a2b6b96799..260e852245e9 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -279,7 +279,9 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	if (fixed_mode) {
-> -		intel_panel_fixed_mode(fixed_mode, adjusted_mode);
-> +		ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> +		if (ret)
-> +			return ret;
->  
->  		ret = intel_panel_fitting(pipe_config, conn_state);
->  		if (ret)
-> -- 
-> 2.32.0
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 46f62fdf9eee..687431faf02f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -746,6 +746,7 @@ static bool tiling_is_valid(struct drm_i915_private *dev_priv,
+ 	switch (modifier) {
+ 	case DRM_FORMAT_MOD_LINEAR:
+ 	case I915_FORMAT_MOD_Y_TILED:
++	case I915_FORMAT_MOD_Yf_TILED:
+ 		return DISPLAY_VER(dev_priv) >= 9;
+ 	case I915_FORMAT_MOD_X_TILED:
+ 		return true;
 -- 
-Ville Syrj‰l‰
-Intel
+2.32.0
+
