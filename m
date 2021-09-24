@@ -2,43 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FC91416E85
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 11:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE5F416EA3
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 11:12:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B5C66E1A7;
-	Fri, 24 Sep 2021 09:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A496E1A2;
+	Fri, 24 Sep 2021 09:12:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B9A76E1A7
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 09:08:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="211274280"
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="211274280"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E2C86E1A2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 09:12:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="309591595"
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="309591595"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 02:08:44 -0700
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="551510337"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 02:11:46 -0700
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="551511254"
 Received: from sambroox-mobl.ger.corp.intel.com (HELO [10.213.245.2])
  ([10.213.245.2])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 02:08:07 -0700
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org
+ 24 Sep 2021 02:11:46 -0700
+To: intel-gfx@lists.freedesktop.org,
+ Patchwork <patchwork@emeril.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
 References: <20210923075608.2873-1-christian.koenig@amd.com>
- <20210923075608.2873-14-christian.koenig@amd.com>
+ <163240233283.31050.11977750526229880215@emeril.freedesktop.org>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <8b4a5e61-b3fb-155c-8a79-069f232f5f20@linux.intel.com>
-Date: Fri, 24 Sep 2021 10:08:06 +0100
+Message-ID: <e0aada02-8a1c-dfd3-d855-8776259b27fb@linux.intel.com>
+Date: Fri, 24 Sep 2021 10:11:44 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210923075608.2873-14-christian.koenig@amd.com>
+In-Reply-To: <163240233283.31050.11977750526229880215@emeril.freedesktop.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 14/25] drm/i915: use the new iterator in
- i915_gem_busy_ioctl v2
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/25=5D_dma-buf=3A_add_dma=5Fresv=5Ffor?=
+ =?utf-8?q?=5Feach=5Ffence=5Funlocked_v5?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,76 +58,27 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 23/09/2021 08:55, Christian König wrote:
-> This makes the function much simpler since the complex
-> retry logic is now handled else where.
+On 23/09/2021 14:05, Patchwork wrote:
 
-Please mention the increased cost versus the old implementation (two 
-atomics per fence when walking vs no atomics).
+[snip]
+
+>   *
+> 
+>     igt@gem_busy@busy@all:
+> 
+>       o fi-apl-guc: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10630/fi-apl-guc/igt@gem_busy@busy@all.html>
+>         -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21144/fi-apl-guc/igt@gem_busy@busy@all.html>
+>         +2 similar issues
+
+All seem to be the same failure:
+
+(gem_busy:874) igt_dummyload-CRITICAL: Test assertion failure function igt_spin_factory, file ../lib/igt_dummyload.c:490:
+(gem_busy:874) igt_dummyload-CRITICAL: Failed assertion: gem_bo_busy(fd, spin->handle)
+
+Which is saying spinner which was just submitted is not immediately reported as busy. And that sounds impossible. Must be a pretty basic bug somewhere which I don't immediately see. Like unlocked iterator failing to walk the fences or something.
 
 Regards,
 
 Tvrtko
-
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_busy.c | 35 ++++++++++--------------
->   1 file changed, 14 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_busy.c b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-> index 6234e17259c1..dc72b36dae54 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-> @@ -82,8 +82,8 @@ i915_gem_busy_ioctl(struct drm_device *dev, void *data,
->   {
->   	struct drm_i915_gem_busy *args = data;
->   	struct drm_i915_gem_object *obj;
-> -	struct dma_resv_list *list;
-> -	unsigned int seq;
-> +	struct dma_resv_iter cursor;
-> +	struct dma_fence *fence;
->   	int err;
->   
->   	err = -ENOENT;
-> @@ -109,27 +109,20 @@ i915_gem_busy_ioctl(struct drm_device *dev, void *data,
->   	 * to report the overall busyness. This is what the wait-ioctl does.
->   	 *
->   	 */
-> -retry:
-> -	seq = raw_read_seqcount(&obj->base.resv->seq);
-> -
-> -	/* Translate the exclusive fence to the READ *and* WRITE engine */
-> -	args->busy = busy_check_writer(dma_resv_excl_fence(obj->base.resv));
-> -
-> -	/* Translate shared fences to READ set of engines */
-> -	list = dma_resv_shared_list(obj->base.resv);
-> -	if (list) {
-> -		unsigned int shared_count = list->shared_count, i;
-> -
-> -		for (i = 0; i < shared_count; ++i) {
-> -			struct dma_fence *fence =
-> -				rcu_dereference(list->shared[i]);
-> -
-> +	args->busy = 0;
-> +	dma_resv_iter_begin(&cursor, obj->base.resv, true);
-> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		if (dma_resv_iter_is_restarted(&cursor))
-> +			args->busy = 0;
-> +
-> +		if (dma_resv_iter_is_exclusive(&cursor))
-> +			/* Translate the exclusive fence to the READ *and* WRITE engine */
-> +			args->busy |= busy_check_writer(fence);
-> +		else
-> +			/* Translate shared fences to READ set of engines */
->   			args->busy |= busy_check_reader(fence);
-> -		}
->   	}
-> -
-> -	if (args->busy && read_seqcount_retry(&obj->base.resv->seq, seq))
-> -		goto retry;
-> +	dma_resv_iter_end(&cursor);
->   
->   	err = 0;
->   out:
-> 
