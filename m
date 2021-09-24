@@ -1,45 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF7C417C40
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 22:16:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8F58417C4D
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 22:21:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 687796E249;
-	Fri, 24 Sep 2021 20:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C926E23B;
+	Fri, 24 Sep 2021 20:21:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A35536E249
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 20:16:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10117"; a="285169917"
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="285169917"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 13:16:27 -0700
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="551934579"
-Received: from lydiaag-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.255.38.248])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 13:16:26 -0700
-Date: Fri, 24 Sep 2021 16:16:24 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <YU4yGOCG92pgn754@intel.com>
-References: <20201027044618.719064-1-lucas.demarchi@intel.com>
- <20201027044618.719064-3-lucas.demarchi@intel.com>
- <160448371454.8986.12904696092648361290@jlahtine-mobl.ger.corp.intel.com>
- <20201105010422.l2mum5gep7dxva5f@ldmartin-desk1.jf.intel.com>
- <160456334665.5393.4671076622521791518@jlahtine-mobl.ger.corp.intel.com>
- <20210706234430.nm64jerbt3kkoeue@ldmartin-desk2>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6DEB86E23B;
+ Fri, 24 Sep 2021 20:21:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 656D2AA0ED;
+ Fri, 24 Sep 2021 20:21:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210706234430.nm64jerbt3kkoeue@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: remove some debug-only
- registers from MCHBAR
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Sep 2021 20:21:06 -0000
+Message-ID: <163251486637.20561.7012988336446775350@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210924153113.2159-1-christian.koenig@amd.com>
+In-Reply-To: <20210924153113.2159-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/27=5D_dma-buf=3A_add_dma=5Fresv?=
+ =?utf-8?q?=5Ffor=5Feach=5Ffence=5Funlocked_v6?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,94 +42,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 06, 2021 at 04:44:30PM -0700, Lucas De Marchi wrote:
-> On Thu, Nov 05, 2020 at 10:02:27AM +0200, Joonas Lahtinen wrote:
-> > Quoting Lucas De Marchi (2020-11-05 03:04:22)
-> > > On Wed, Nov 04, 2020 at 11:55:15AM +0200, Joonas Lahtinen wrote:
-> > > >Quoting Lucas De Marchi (2020-10-27 06:46:18)
-> > > >> GT_PERF_STATUS and RP_STATE_LIMITS were added a long time ago in
-> > > >> commit 3b8d8d91d51c ("drm/i915: dynamic render p-state support for Sandy
-> > > >> Bridge").  Other than printing their values in debugfs we don't do
-> > > >> anything with them.  There's not much useful information in them. These
-> > > >> registers may change location in future platforms, but instead of adding
-> > > >> new locations, it's simpler to just remove them.
-> > > >
-> > > >This code seems to have been updated for Gen9LP, so that would indicate
-> > > >the debugging information is useful, right? The value is even decoded, not
-> > > >simply dumped as most registers. So I would be hesitant to drop it for
-> > > >not being useful.
-> > > 
-> > > but just updating the register in itself for a new gen doesn't mean it's
-> > > actually useful... the commit message where this happened is pretty
-> > > vague: 350405623ff3 ("drm/i915: Update rps frequencies for BXT")
-> > > 
-> > > My first reaction would be to do the same if the register had moved or
-> > > if it ceased to exist in a new platform. Talking with Matt Roper some
-> > > time ago we arrived to the conclusion that just printing these values is
-> > > not giving us much benefit and it could very well be accomplished by
-> > > intel_reg.
-> > > 
-> > > So answering the question:  is it really useful as is? IMO, no.
-> > 
-> > A quick discussion on #intel-gfx seems to indicate it was used for
-> > bug triaging in the past year. So that would indicate it is still
-> > useful to include.
-> 
-> getting back to this as we are trying to upstream XeHP-SDV that doesn't
-> have access to the MCHBAR. So do you think we should just make it
-> conditional instead of removing?
+== Series Details ==
 
-Yes, please let's make this conditional.
+Series: series starting with [01/27] dma-buf: add dma_resv_for_each_fence_unlocked v6
+URL   : https://patchwork.freedesktop.org/series/95034/
+State : warning
 
-> 
-> I'm still on the side that this additional code doesn't bring much value
-> and could be replaced by intel-reg.
+== Summary ==
 
-In general I'd agree. However:
+$ dim checkpatch origin/drm-tip
+3d5f427224f6 dma-buf: add dma_resv_for_each_fence_unlocked v6
+-:23: WARNING:TYPO_SPELLING: 'superflous' may be misspelled - perhaps 'superfluous'?
+#23: 
+v4: fix NULL deref when no explicit fence exists, drop superflous
+                                                       ^^^^^^^^^^
 
-1. Sometimes it is very hard to find out what registers and bits have
-some useful information.
-2. If it is hard to remove sometimes it is harder to add some information
-like this.
-3. I was not part of the IRC chat that Joonas mentioned, but apparently
-this data was useful in the past for some cases.
+-:240: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cursor' - possible side-effects?
+#240: FILE: include/linux/dma-resv.h:243:
++#define dma_resv_for_each_fence_unlocked(cursor, fence)			\
++	for (fence = dma_resv_iter_first_unlocked(cursor);		\
++	     fence; fence = dma_resv_iter_next_unlocked(cursor))
 
-Thanks,
-Rodrigo.
+-:240: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fence' - possible side-effects?
+#240: FILE: include/linux/dma-resv.h:243:
++#define dma_resv_for_each_fence_unlocked(cursor, fence)			\
++	for (fence = dma_resv_iter_first_unlocked(cursor);		\
++	     fence; fence = dma_resv_iter_next_unlocked(cursor))
 
-> 
-> > 
-> > So let's not remove it.
-> > 
-> > > >The second question is why we have a huge block of 1-to-1 duplicated
-> > > >code in there. Has there been an incorrect merge or some transition has
-> > > >been left mid-way?
-> > > 
-> > > not a bad merge, no. It seems to be to preserve the previous file
-> > > location since now it moved to be inside a gt dir. Long term I think
-> > > this is bad both because of the code duplication and because it's easy
-> > > to update one and forget the other.
-> > 
-> > I started a discussion in the thread of the original patch which called
-> > to move code but left the old code in place too, effectively copying it.
-> > 
-> > When this path was written and such code duplication noticed, would have
-> > been good to highlight or address the code duplication.
-> 
-> yes, but it doesn't mean there will be an action regarding that, as can
-> be noticed since that duplication is still there today and this patch
-> applies cleanly :-/... and they had slightly different changes according
-> to
-> 
-> 	git log -L:frequency_show:drivers/gpu/drm/i915/gt/debugfs_gt_pm.c \
-> 		-L:i915_frequency_info:drivers/gpu/drm/i915/i915_debugfs.c
-> 
-> 
-> Lucas De Marchi
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-:246: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 2 warnings, 2 checks, 205 lines checked
+c206e319e15f dma-buf: add dma_resv_for_each_fence
+-:100: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cursor' - possible side-effects?
+#100: FILE: include/linux/dma-resv.h:261:
++#define dma_resv_for_each_fence(cursor, obj, all_fences, fence)	\
++	for (dma_resv_iter_begin(cursor, obj, all_fences),	\
++	     fence = dma_resv_iter_first(cursor); fence;	\
++	     fence = dma_resv_iter_next(cursor))
+
+-:100: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fence' - possible side-effects?
+#100: FILE: include/linux/dma-resv.h:261:
++#define dma_resv_for_each_fence(cursor, obj, all_fences, fence)	\
++	for (dma_resv_iter_begin(cursor, obj, all_fences),	\
++	     fence = dma_resv_iter_first(cursor); fence;	\
++	     fence = dma_resv_iter_next(cursor))
+
+-:107: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 2 checks, 83 lines checked
+91c79d06d613 dma-buf: add dma_resv selftest
+-:37: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#37: 
+new file mode 100644
+
+-:42: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/dma-buf/st-dma-resv.c', please use '//' instead
+#42: FILE: drivers/dma-buf/st-dma-resv.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:42: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#42: FILE: drivers/dma-buf/st-dma-resv.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:45: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#45: FILE: drivers/dma-buf/st-dma-resv.c:4:
++/*
++* Copyright © 2019 Intel Corporation
+
+-:205: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 5 warnings, 0 checks, 176 lines checked
+53c907415a88 dma-buf: use new iterator in dma_resv_copy_fences
+-:125: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 106 lines checked
+4a551f9a6ed4 dma-buf: use new iterator in dma_resv_get_fences v3
+-:156: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 134 lines checked
+6892bf07b652 dma-buf: use new iterator in dma_resv_wait_timeout
+-:101: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 82 lines checked
+322cf44af822 dma-buf: use new iterator in dma_resv_test_signaled
+-:92: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+4790d19afac8 dma-buf: use the new iterator in dma_buf_debug_show
+-:55: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+f7392db5486e drm/ttm: use the new iterator in ttm_bo_flush_all_fences
+-:46: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 27 lines checked
+e4a12d604246 drm/amdgpu: use the new iterator in amdgpu_sync_resv
+-:72: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 55 lines checked
+505d7a33614e drm/amdgpu: use new iterator in amdgpu_ttm_bo_eviction_valuable
+-:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+8e9c0646c296 drm/amdgpu: use new iterator in amdgpu_vm_prt_fini
+-:52: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
+a5d63c4faed3 drm/msm: use new iterator in msm_gem_describe
+-:55: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+e28070977d16 drm/radeon: use new iterator in radeon_sync_resv
+-:53: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+fc8984904773 drm/scheduler: use new iterator in drm_sched_job_add_implicit_dependencies v2
+-:57: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+cba25141f14c drm/i915: use the new iterator in i915_gem_busy_ioctl v2
+-:69: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 49 lines checked
+f3670bf3f189 drm/i915: use the new iterator in i915_sw_fence_await_reservation v3
+-:89: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 67 lines checked
+66e0731b7682 drm/i915: use the new iterator in i915_request_await_object v2
+-:65: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+57635ce0d636 drm/i915: use new iterator in i915_gem_object_wait_reservation
+-:82: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 64 lines checked
+f5f6de7f6991 drm/i915: use new iterator in i915_gem_object_wait_priority
+-:55: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+4cdf20dd2cc3 drm/i915: use new cursor in intel_prepare_plane_fb
+-:40: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+ab1e97345ff5 drm: use new iterator in drm_gem_fence_array_add_implicit v3
+-:56: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+0c12495336ba drm: use new iterator in drm_gem_plane_helper_prepare_fb
+-:45: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 26 lines checked
+99805ba5df9a drm/nouveau: use the new iterator in nouveau_fence_sync
+-:96: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 77 lines checked
+57e7c63ecba3 drm/nouveau: use the new interator in nv50_wndw_prepare_fb
+-:41: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+17e53fef2daf drm/etnaviv: use new iterator in etnaviv_gem_describe
+-:69: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
+5aab0a62bfd5 drm/etnaviv: replace dma_resv_get_excl_unlocked
+-:25: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+
+
