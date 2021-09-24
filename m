@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274A7417144
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 13:49:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE74417146
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 13:49:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3ECC6EE1D;
-	Fri, 24 Sep 2021 11:49:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3F586EE0F;
+	Fri, 24 Sep 2021 11:49:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC0856EE14
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 11:49:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="287727224"
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="287727224"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:49:46 -0700
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="485362243"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB3386EE17
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 11:49:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="222170129"
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="222170129"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 04:49:51 -0700
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="475176039"
 Received: from avanhout-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.153])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:49:43 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 04:49:49 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Dave Airlie <airlied@redhat.com>
-Date: Fri, 24 Sep 2021 14:47:39 +0300
-Message-Id: <20210924114741.15940-22-jani.nikula@intel.com>
+Date: Fri, 24 Sep 2021 14:47:40 +0300
+Message-Id: <20210924114741.15940-23-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210924114741.15940-1-jani.nikula@intel.com>
 References: <20210924114741.15940-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 22/24] drm/i915: constify display function vtable
+Subject: [Intel-gfx] [CI 23/24] drm/i915: constify clock gating init vtable.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,178 +52,155 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-Make nice clear tables instead of having things in two places.
+I used a macro to avoid making any really silly mistakes here.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 81 ++++++++++++--------
- drivers/gpu/drm/i915/i915_drv.h              |  2 +-
- 2 files changed, 52 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h |  2 +-
+ drivers/gpu/drm/i915/intel_pm.c | 78 +++++++++++++++++++++++----------
+ 2 files changed, 55 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4f89ef430129..5619b26aa765 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3797,7 +3797,7 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
- 
- 	drm_WARN_ON(&dev_priv->drm, IS_ERR(temp_crtc_state) || ret);
- 
--	dev_priv->display.crtc_disable(to_intel_atomic_state(state), crtc);
-+	dev_priv->display->crtc_disable(to_intel_atomic_state(state), crtc);
- 
- 	drm_atomic_state_put(state);
- 
-@@ -6006,7 +6006,7 @@ static bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 
--	if (!i915->display.get_pipe_config(crtc, crtc_state))
-+	if (!i915->display->get_pipe_config(crtc, crtc_state))
- 		return false;
- 
- 	crtc_state->hw.active = true;
-@@ -9814,7 +9814,7 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
- 
- 	intel_crtc_update_active_timings(new_crtc_state);
- 
--	dev_priv->display.crtc_enable(state, crtc);
-+	dev_priv->display->crtc_enable(state, crtc);
- 
- 	if (new_crtc_state->bigjoiner_slave)
- 		return;
-@@ -9902,7 +9902,7 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
- 	 */
- 	intel_crtc_disable_pipe_crc(crtc);
- 
--	dev_priv->display.crtc_disable(state, crtc);
-+	dev_priv->display->crtc_disable(state, crtc);
- 	crtc->active = false;
- 	intel_fbc_disable(crtc);
- 	intel_disable_shared_dpll(old_crtc_state);
-@@ -10282,7 +10282,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	}
- 
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
--	dev_priv->display.commit_modeset_enables(state);
-+	dev_priv->display->commit_modeset_enables(state);
- 
- 	if (state->modeset) {
- 		intel_encoders_update_complete(state);
-@@ -11286,6 +11286,46 @@ static const struct drm_mode_config_funcs intel_mode_funcs = {
- 	.atomic_state_free = intel_atomic_state_free,
- };
- 
-+static const struct drm_i915_display_funcs skl_display_funcs = {
-+	.get_pipe_config = hsw_get_pipe_config,
-+	.crtc_enable = hsw_crtc_enable,
-+	.crtc_disable = hsw_crtc_disable,
-+	.commit_modeset_enables = skl_commit_modeset_enables,
-+	.get_initial_plane_config = skl_get_initial_plane_config,
-+};
-+
-+static const struct drm_i915_display_funcs ddi_display_funcs = {
-+	.get_pipe_config = hsw_get_pipe_config,
-+	.crtc_enable = hsw_crtc_enable,
-+	.crtc_disable = hsw_crtc_disable,
-+	.commit_modeset_enables = intel_commit_modeset_enables,
-+	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+};
-+
-+static const struct drm_i915_display_funcs pch_split_display_funcs = {
-+	.get_pipe_config = ilk_get_pipe_config,
-+	.crtc_enable = ilk_crtc_enable,
-+	.crtc_disable = ilk_crtc_disable,
-+	.commit_modeset_enables = intel_commit_modeset_enables,
-+	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+};
-+
-+static const struct drm_i915_display_funcs vlv_display_funcs = {
-+	.get_pipe_config = i9xx_get_pipe_config,
-+	.crtc_enable = valleyview_crtc_enable,
-+	.crtc_disable = i9xx_crtc_disable,
-+	.commit_modeset_enables = intel_commit_modeset_enables,
-+	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+};
-+
-+static const struct drm_i915_display_funcs i9xx_display_funcs = {
-+	.get_pipe_config = i9xx_get_pipe_config,
-+	.crtc_enable = i9xx_crtc_enable,
-+	.crtc_disable = i9xx_crtc_disable,
-+	.commit_modeset_enables = intel_commit_modeset_enables,
-+	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+};
-+
- /**
-  * intel_init_display_hooks - initialize the display modesetting hooks
-  * @dev_priv: device private
-@@ -11301,38 +11341,19 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
- 	intel_dpll_init_clock_hook(dev_priv);
- 
- 	if (DISPLAY_VER(dev_priv) >= 9) {
--		dev_priv->display.get_pipe_config = hsw_get_pipe_config;
--		dev_priv->display.crtc_enable = hsw_crtc_enable;
--		dev_priv->display.crtc_disable = hsw_crtc_disable;
-+		dev_priv->display = &skl_display_funcs;
- 	} else if (HAS_DDI(dev_priv)) {
--		dev_priv->display.get_pipe_config = hsw_get_pipe_config;
--		dev_priv->display.crtc_enable = hsw_crtc_enable;
--		dev_priv->display.crtc_disable = hsw_crtc_disable;
-+		dev_priv->display = &ddi_display_funcs;
- 	} else if (HAS_PCH_SPLIT(dev_priv)) {
--		dev_priv->display.get_pipe_config = ilk_get_pipe_config;
--		dev_priv->display.crtc_enable = ilk_crtc_enable;
--		dev_priv->display.crtc_disable = ilk_crtc_disable;
-+		dev_priv->display = &pch_split_display_funcs;
- 	} else if (IS_CHERRYVIEW(dev_priv) ||
- 		   IS_VALLEYVIEW(dev_priv)) {
--		dev_priv->display.get_pipe_config = i9xx_get_pipe_config;
--		dev_priv->display.crtc_enable = valleyview_crtc_enable;
--		dev_priv->display.crtc_disable = i9xx_crtc_disable;
-+		dev_priv->display = &vlv_display_funcs;
- 	} else {
--		dev_priv->display.get_pipe_config = i9xx_get_pipe_config;
--		dev_priv->display.crtc_enable = i9xx_crtc_enable;
--		dev_priv->display.crtc_disable = i9xx_crtc_disable;
-+		dev_priv->display = &i9xx_display_funcs;
- 	}
- 
- 	intel_fdi_init_hook(dev_priv);
--
--	if (DISPLAY_VER(dev_priv) >= 9) {
--		dev_priv->display.commit_modeset_enables = skl_commit_modeset_enables;
--		dev_priv->display.get_initial_plane_config = skl_get_initial_plane_config;
--	} else {
--		dev_priv->display.commit_modeset_enables = intel_commit_modeset_enables;
--		dev_priv->display.get_initial_plane_config = i9xx_get_initial_plane_config;
--	}
--
- }
- 
- void intel_modeset_init_hw(struct drm_i915_private *i915)
-@@ -11760,7 +11781,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
- 		 * can even allow for smooth boot transitions if the BIOS
- 		 * fb is large enough for the active pipe configuration.
- 		 */
--		i915->display.get_initial_plane_config(crtc, &plane_config);
-+		i915->display->get_initial_plane_config(crtc, &plane_config);
- 
- 		/*
- 		 * If the fb is shared between multiple heads, we'll
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 71b72db434b0..6a6d08219526 100644
+index 6a6d08219526..390091b898d5 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -990,7 +990,7 @@ struct drm_i915_private {
- 	const struct intel_dpll_funcs *dpll_funcs;
+@@ -975,7 +975,7 @@ struct drm_i915_private {
+ 	struct workqueue_struct *flip_wq;
  
- 	/* Display functions */
--	struct drm_i915_display_funcs display;
-+	const struct drm_i915_display_funcs *display;
+ 	/* pm private clock gating functions */
+-	struct drm_i915_clock_gating_funcs clock_gating_funcs;
++	const struct drm_i915_clock_gating_funcs *clock_gating_funcs;
  
- 	/* Display internal color functions */
- 	const struct intel_color_funcs *color_funcs;
+ 	/* pm display functions */
+ 	struct drm_i915_wm_disp_funcs wm_disp;
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index b37888781ec9..08e0195edeb7 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -7869,7 +7869,7 @@ static void i830_init_clock_gating(struct drm_i915_private *dev_priv)
+ 
+ void intel_init_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	dev_priv->clock_gating_funcs.init_clock_gating(dev_priv);
++	dev_priv->clock_gating_funcs->init_clock_gating(dev_priv);
+ }
+ 
+ void intel_suspend_hw(struct drm_i915_private *dev_priv)
+@@ -7884,6 +7884,36 @@ static void nop_init_clock_gating(struct drm_i915_private *dev_priv)
+ 		    "No clock gating settings or workarounds applied.\n");
+ }
+ 
++#define CG_FUNCS(platform)						\
++static const struct drm_i915_clock_gating_funcs platform##_clock_gating_funcs = { \
++	.init_clock_gating = platform##_init_clock_gating,		\
++}
++
++CG_FUNCS(adlp);
++CG_FUNCS(dg1);
++CG_FUNCS(gen12lp);
++CG_FUNCS(icl);
++CG_FUNCS(cfl);
++CG_FUNCS(skl);
++CG_FUNCS(kbl);
++CG_FUNCS(bxt);
++CG_FUNCS(glk);
++CG_FUNCS(bdw);
++CG_FUNCS(chv);
++CG_FUNCS(hsw);
++CG_FUNCS(ivb);
++CG_FUNCS(vlv);
++CG_FUNCS(gen6);
++CG_FUNCS(ilk);
++CG_FUNCS(g4x);
++CG_FUNCS(i965gm);
++CG_FUNCS(i965g);
++CG_FUNCS(gen3);
++CG_FUNCS(i85x);
++CG_FUNCS(i830);
++CG_FUNCS(nop);
++#undef CG_FUNCS
++
+ /**
+  * intel_init_clock_gating_hooks - setup the clock gating hooks
+  * @dev_priv: device private
+@@ -7896,52 +7926,52 @@ static void nop_init_clock_gating(struct drm_i915_private *dev_priv)
+ void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv)
+ {
+ 	if (IS_ALDERLAKE_P(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = adlp_init_clock_gating;
++		dev_priv->clock_gating_funcs = &adlp_clock_gating_funcs;
+ 	else if (IS_DG1(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = dg1_init_clock_gating;
++		dev_priv->clock_gating_funcs = &dg1_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(dev_priv) == 12)
+-		dev_priv->clock_gating_funcs.init_clock_gating = gen12lp_init_clock_gating;
++		dev_priv->clock_gating_funcs = &gen12lp_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(dev_priv) == 11)
+-		dev_priv->clock_gating_funcs.init_clock_gating = icl_init_clock_gating;
++		dev_priv->clock_gating_funcs = &icl_clock_gating_funcs;
+ 	else if (IS_COFFEELAKE(dev_priv) || IS_COMETLAKE(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = cfl_init_clock_gating;
++		dev_priv->clock_gating_funcs = &cfl_clock_gating_funcs;
+ 	else if (IS_SKYLAKE(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = skl_init_clock_gating;
++		dev_priv->clock_gating_funcs = &skl_clock_gating_funcs;
+ 	else if (IS_KABYLAKE(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = kbl_init_clock_gating;
++		dev_priv->clock_gating_funcs = &kbl_clock_gating_funcs;
+ 	else if (IS_BROXTON(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = bxt_init_clock_gating;
++		dev_priv->clock_gating_funcs = &bxt_clock_gating_funcs;
+ 	else if (IS_GEMINILAKE(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = glk_init_clock_gating;
++		dev_priv->clock_gating_funcs = &glk_clock_gating_funcs;
+ 	else if (IS_BROADWELL(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = bdw_init_clock_gating;
++		dev_priv->clock_gating_funcs = &bdw_clock_gating_funcs;
+ 	else if (IS_CHERRYVIEW(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = chv_init_clock_gating;
++		dev_priv->clock_gating_funcs = &chv_clock_gating_funcs;
+ 	else if (IS_HASWELL(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = hsw_init_clock_gating;
++		dev_priv->clock_gating_funcs = &hsw_clock_gating_funcs;
+ 	else if (IS_IVYBRIDGE(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = ivb_init_clock_gating;
++		dev_priv->clock_gating_funcs = &ivb_clock_gating_funcs;
+ 	else if (IS_VALLEYVIEW(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = vlv_init_clock_gating;
++		dev_priv->clock_gating_funcs = &vlv_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(dev_priv) == 6)
+-		dev_priv->clock_gating_funcs.init_clock_gating = gen6_init_clock_gating;
++		dev_priv->clock_gating_funcs = &gen6_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(dev_priv) == 5)
+-		dev_priv->clock_gating_funcs.init_clock_gating = ilk_init_clock_gating;
++		dev_priv->clock_gating_funcs = &ilk_clock_gating_funcs;
+ 	else if (IS_G4X(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = g4x_init_clock_gating;
++		dev_priv->clock_gating_funcs = &g4x_clock_gating_funcs;
+ 	else if (IS_I965GM(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = i965gm_init_clock_gating;
++		dev_priv->clock_gating_funcs = &i965gm_clock_gating_funcs;
+ 	else if (IS_I965G(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = i965g_init_clock_gating;
++		dev_priv->clock_gating_funcs = &i965g_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(dev_priv) == 3)
+-		dev_priv->clock_gating_funcs.init_clock_gating = gen3_init_clock_gating;
++		dev_priv->clock_gating_funcs = &gen3_clock_gating_funcs;
+ 	else if (IS_I85X(dev_priv) || IS_I865G(dev_priv))
+-		dev_priv->clock_gating_funcs.init_clock_gating = i85x_init_clock_gating;
++		dev_priv->clock_gating_funcs = &i85x_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(dev_priv) == 2)
+-		dev_priv->clock_gating_funcs.init_clock_gating = i830_init_clock_gating;
++		dev_priv->clock_gating_funcs = &i830_clock_gating_funcs;
+ 	else {
+ 		MISSING_CASE(INTEL_DEVID(dev_priv));
+-		dev_priv->clock_gating_funcs.init_clock_gating = nop_init_clock_gating;
++		dev_priv->clock_gating_funcs = &nop_clock_gating_funcs;
+ 	}
+ }
+ 
 -- 
 2.30.2
 
