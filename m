@@ -2,34 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177FA416C7C
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 09:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E888A416E71
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 11:04:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 449876EDF3;
-	Fri, 24 Sep 2021 07:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C3A6E1D3;
+	Fri, 24 Sep 2021 09:03:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B52C96E159;
- Fri, 24 Sep 2021 07:04:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AB9B6AADD2;
- Fri, 24 Sep 2021 07:04:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 945646EE09;
+ Fri, 24 Sep 2021 09:03:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="204190003"
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="204190003"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 02:03:56 -0700
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="551509027"
+Received: from sambroox-mobl.ger.corp.intel.com (HELO [10.213.245.2])
+ ([10.213.245.2])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 02:03:54 -0700
+To: Thomas Gleixner <tglx@linutronix.de>, LKML <linux-kernel@vger.kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20210923153311.225307347@linutronix.de>
+ <20210923153339.808080761@linutronix.de>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <c459f1ec-446e-317e-2835-4e9dbef44f64@linux.intel.com>
+Date: Fri, 24 Sep 2021 10:03:52 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20210923153339.808080761@linutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Fernando Ramos" <greenfoo@u92.eu>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Sep 2021 07:04:51 -0000
-Message-ID: <163246709167.20560.3388795520357940181@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210924064324.229457-1-greenfoo@u92.eu>
-In-Reply-To: <20210924064324.229457-1-greenfoo@u92.eu>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm=3A_cleanup=3A_Use_DRM=5FMODESET=5FLOCK=5FALL=5F*_helpers_whe?=
- =?utf-8?q?re_possible_=28rev2=29?=
+Subject: Re: [Intel-gfx] [patch 07/11] drm/i915/pmu: Use
+ hrtimer_forward_now()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,36 +55,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm: cleanup: Use DRM_MODESET_LOCK_ALL_* helpers where possible (rev2)
-URL   : https://patchwork.freedesktop.org/series/94786/
-State : failure
+On 23/09/2021 17:04, Thomas Gleixner wrote:
+> hrtimer_forward() is about to be removed from the public
+> interfaces. Replace it with hrtimer_forward_now() which provides the same
+> functionality.
+> 
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_pmu.c |    2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -439,7 +439,7 @@ static enum hrtimer_restart i915_sample(
+>   	engines_sample(gt, period_ns);
+>   	frequency_sample(gt, period_ns);
+>   
+> -	hrtimer_forward(hrtimer, now, ns_to_ktime(PERIOD));
+> +	hrtimer_forward_now(hrtimer, ns_to_ktime(PERIOD));
+>   
+>   	return HRTIMER_RESTART;
+>   }
+> 
 
-== Summary ==
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Applying: drm: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/i915: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/msm: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/vmwgfx: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/tegra: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/shmobile: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/radeon: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/omapdrm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/nouveau: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/msm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-Applying: drm/i915: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_display.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0012 drm/i915: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Regards,
 
-
+Tvrtko
