@@ -2,106 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EB764171E4
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 14:32:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2FDA4171E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 14:32:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A96B76EE1D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF4E6EE17;
 	Fri, 24 Sep 2021 12:32:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 558B26E17F;
- Fri, 24 Sep 2021 02:54:44 +0000 (UTC)
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18O02VFJ017299; 
- Thu, 23 Sep 2021 22:54:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=zoqu0xjY8xvBr+WpJGH45TyxUeL+ccy34ZawDizGpFM=;
- b=MS1RYQqNh5MZNGpPu8ooZ+n+rwb6xjS5YnNgpjkZkgR2qu0f6CAqq7J5YLOV6XtYbYKu
- c7W63DC+KByz7rZxmeJyIdZakNY4JYAf47iSg3A8XsdxDrQ2l+zHUEtZNlK1/lWK4ihB
- cYbCU3BAss7FrYKb6fdrPOZb3SEwkd+0OT/jG1hiuOR3Ydp7L43r00VKJE3bMlc6xeW2
- hGHHBIRQbueZecv2v5lyGkNnvs3xMfwfPlMx7pOZkZ90wQ6qa5XNbj0vU8ik29jNdJeq
- FPXXjYcqKfaox/NSS+LnKABaLngBqvLpVZzApq1RIw80Wo/6spJRrWfAPTuwQncJajHS 8A== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 3b93snawsh-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 23 Sep 2021 22:54:41 -0400
-Received: from m0098409.ppops.net (m0098409.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 18O2dT9n018221;
- Thu, 23 Sep 2021 22:54:40 -0400
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com
- [169.62.189.11])
- by mx0a-001b2d01.pphosted.com with ESMTP id 3b93snaws3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 23 Sep 2021 22:54:40 -0400
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
- by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18O2lZsr002446;
- Fri, 24 Sep 2021 02:54:39 GMT
-Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com
- [9.57.198.29]) by ppma03dal.us.ibm.com with ESMTP id 3b93g1u8yw-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 24 Sep 2021 02:54:39 +0000
-Received: from b01ledav004.gho.pok.ibm.com (b01ledav004.gho.pok.ibm.com
- [9.57.199.109])
- by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 18O2sc8144433820
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 24 Sep 2021 02:54:38 GMT
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 87BEB112067;
- Fri, 24 Sep 2021 02:54:38 +0000 (GMT)
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 507CF112064;
- Fri, 24 Sep 2021 02:54:32 +0000 (GMT)
-Received: from farman-thinkpad-t470p (unknown [9.211.34.14])
- by b01ledav004.gho.pok.ibm.com (Postfix) with ESMTP;
- Fri, 24 Sep 2021 02:54:32 +0000 (GMT)
-Message-ID: <40149f01475f5a68bbd92d560cd97f9d4ce4e581.camel@linux.ibm.com>
-From: Eric Farman <farman@linux.ibm.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, Cornelia Huck <cohuck@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>, Christian Borntraeger
- <borntraeger@de.ibm.com>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Harald Freudenberger <freude@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Jason Herne <jjherne@linux.ibm.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org, Kirti
- Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org, Matthew
- Rosato <mjrosato@linux.ibm.com>, Peter Oberparleiter
- <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Vineeth Vijayan <vneethv@linux.ibm.com>, Zhenyu
- Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>, Christoph
- Hellwig <hch@lst.de>
-Date: Thu, 23 Sep 2021 22:54:30 -0400
-In-Reply-To: <20210921131908.GK327412@nvidia.com>
-References: <6-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
- <87tuiff7m2.fsf@redhat.com> <20210921131908.GK327412@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-16.el8) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: B8BC6k_a_B_997uB0jzc3T2U0q5Lmp5u
-X-Proofpoint-ORIG-GUID: HB6TdxZZw3JHEK9Ne1Vst8GTlGdjJFQu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-23_07,2021-09-23_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501
- malwarescore=0 mlxlogscore=999 adultscore=0 bulkscore=0 impostorscore=0
- suspectscore=0 spamscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2109230001
- definitions=main-2109240011
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABB736E1A2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 09:13:59 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id t8so25397056wri.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 02:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=s75AKAdlvrGxfSygK/8bjn28ZtmSZIKyQWgmPrqblu8=;
+ b=plfRUem2N/3P4wlghr8oV3cVlUqGTlVk7PnrtxSFRI8zXQpu8Vkn4mMe5711MK88q4
+ ieS2wT/LVwgWXdLFf5Rq0RSQXyQjbMyM6vr75bI5N/0TkHkRCUzA8iniHnVtp5Sjq5H/
+ yeBccdCkvwgUlb/HV1evTRIoJ0oy2m29RKeHGqyaqxtUpg5bgYof5DWTEPQ8G/ckxK6y
+ XrX7vl1Hy6ygRCKyH3W4oF7lTykGnqvllF+Vsvmkcxni9NRDvrpJqOrMpA3dt+VTtmqm
+ na3bkjYDwBNHUDuXyB8X4BFbsaFwf/XWnW0aFdRNo6XmPjQ3RklhkEGeM6E0ZJTQq2Ne
+ d4Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=s75AKAdlvrGxfSygK/8bjn28ZtmSZIKyQWgmPrqblu8=;
+ b=D+JGT7s/0n+/6v9g1fFiPdeb/1cJ+meel8t1UGoB3P9AWIk/uTDz/Y87ySM1uoWgL9
+ dMnz60Dhuh+gH5bS8b0kbWDvNDWAUBcn4rf6sLq8HUeHvqmcuDTabdaTN1c7yD6e3SeY
+ X0SuNaKrk8CFVpG1Ej1VM8os6RFWOGntKirpnz3hfKVBdEB+sOkuBlnxrjF/D7cp7LX8
+ wLjx2zw3lyXjzwIl+WznrAvOXt1tsJSruaLjo9Ak6Fzbxzdy5TPdSBWitR2GpiDO8tR7
+ XdtWI6awcqsOyxV4in3SYYtAyunkBSVsdPlzCdvD5drl3bNr4wI3VERbiKXyHQ+dv3wq
+ TDWw==
+X-Gm-Message-State: AOAM531irYnToSgbTog68L935R5omDL8PZ4jt8+9snhyWXyowb45qOu9
+ j4nKetByMHSWZYebpxZDsTjYdj6Z91Q=
+X-Google-Smtp-Source: ABdhPJzRQSpKMxC+dgkFCaVCUtZc2EnR5oiGjk9M8DmI1HF3w9zYLlI2bXQLTtgt1SJTCY0zUPi2MA==
+X-Received: by 2002:a1c:7d4d:: with SMTP id y74mr900644wmc.181.1632474838139; 
+ Fri, 24 Sep 2021 02:13:58 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:5264:89d9:5fe9:27b8?
+ ([2a02:908:1252:fb60:5264:89d9:5fe9:27b8])
+ by smtp.gmail.com with ESMTPSA id i7sm324316wrp.5.2021.09.24.02.13.57
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 24 Sep 2021 02:13:57 -0700 (PDT)
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Patchwork <patchwork@emeril.freedesktop.org>
+References: <20210923075608.2873-1-christian.koenig@amd.com>
+ <163240233283.31050.11977750526229880215@emeril.freedesktop.org>
+ <e0aada02-8a1c-dfd3-d855-8776259b27fb@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <636b43d9-65e1-7b86-8589-745c83bf9734@gmail.com>
+Date: Fri, 24 Sep 2021 11:13:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <e0aada02-8a1c-dfd3-d855-8776259b27fb@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-Mailman-Approved-At: Fri, 24 Sep 2021 12:32:21 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 6/9] vfio/mdev: Add mdev available
- instance checking to the core
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/25=5D_dma-buf=3A_add_dma=5Fresv=5Ffor?=
+ =?utf-8?q?=5Feach=5Ffence=5Funlocked_v5?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,62 +82,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2021-09-21 at 10:19 -0300, Jason Gunthorpe wrote:
-> On Mon, Sep 20, 2021 at 08:02:29PM +0200, Cornelia Huck wrote:
-> > On Thu, Sep 09 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> > 
-> > > Many of the mdev drivers use a simple counter for keeping track
-> > > of the
-> > > available instances. Move this code to the core code and store
-> > > the counter
-> > > in the mdev_type. Implement it using correct locking, fixing
-> > > mdpy.
-> > > 
-> > > Drivers provide a get_available() callback to set the number of
-> > > available
-> > > instances for their mtypes which is fixed at registration time.
-> > > The core
-> > > provides a standard sysfs attribute to return the
-> > > available_instances.
-> > 
-> > So, according to the documentation, available_instances is
-> > mandatory. This means that drivers either need to provide
-> > get_available
-> > or implement their own version of the attribute. I think we want to
-> > update vfio-mediated-device.rst as well?
-> 
-> I added this, and something similar for the device_api patch too,
-> thanks
-> 
-> diff --git a/Documentation/driver-api/vfio-mediated-device.rst
-> b/Documentation/driver-api/vfio-mediated-device.rst
-> index 9f26079cacae35..0a130d76b33a48 100644
-> --- a/Documentation/driver-api/vfio-mediated-device.rst
-> +++ b/Documentation/driver-api/vfio-mediated-device.rst
-> @@ -106,6 +106,7 @@ structure to represent a mediated device's
-> driver::
->  	     int  (*probe)  (struct mdev_device *dev);
->  	     void (*remove) (struct mdev_device *dev);
->  	     struct device_driver    driver;
-> +	     unsigned int (*get_available)(struct mdev_type *mtype);
->       };
->  
->  A mediated bus driver for mdev should use this structure in the
-> function calls
-> @@ -230,7 +231,8 @@ Directories and files under the sysfs for Each
-> Physical Device
->  * available_instances
->  
->    This attribute should show the number of devices of type <type-id> 
-> that can be
-> -  created.
-> +  created. Drivers can supply a get_availble() function pointer to 
 
-s/availble/available/
 
-> have the core
-> +  code create and maintain this sysfs automatically.
->  
->  * [device]
->  
+Am 24.09.21 um 11:11 schrieb Tvrtko Ursulin:
+>
+> On 23/09/2021 14:05, Patchwork wrote:
+>
+> [snip]
+>
+>>   *
+>>
+>>     igt@gem_busy@busy@all:
+>>
+>>       o fi-apl-guc: PASS
+>> <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10630/fi-apl-guc/igt@gem_busy@busy@all.html>
+>>         -> FAIL
+>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21144/fi-apl-guc/igt@gem_busy@busy@all.html>
+>>         +2 similar issues
+>
+> All seem to be the same failure:
+>
+> (gem_busy:874) igt_dummyload-CRITICAL: Test assertion failure function 
+> igt_spin_factory, file ../lib/igt_dummyload.c:490:
+> (gem_busy:874) igt_dummyload-CRITICAL: Failed assertion: 
+> gem_bo_busy(fd, spin->handle)
+>
+> Which is saying spinner which was just submitted is not immediately 
+> reported as busy. And that sounds impossible. Must be a pretty basic 
+> bug somewhere which I don't immediately see. Like unlocked iterator 
+> failing to walk the fences or something.
+
+I was just to write a mail to you about this since I'm currently 
+scratching my head what exactly goes wrong here.
+
+Is there an igt test which uses only vgem and currently fails which I 
+could also run on AMD hardware?
+
+Thanks,
+Christian.
+
+>
+> Regards,
+>
+> Tvrtko
 
