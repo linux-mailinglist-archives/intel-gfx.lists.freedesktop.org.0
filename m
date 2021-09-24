@@ -2,71 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985B8417E32
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Sep 2021 01:29:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EED1417E62
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Sep 2021 01:45:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D82CE6E2A3;
-	Fri, 24 Sep 2021 23:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 837B26EE9B;
+	Fri, 24 Sep 2021 23:45:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
- [IPv6:2607:f8b0:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18A696EE94
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 23:29:38 +0000 (UTC)
-Received: by mail-ot1-x330.google.com with SMTP id
- l16-20020a9d6a90000000b0053b71f7dc83so15295722otq.7
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 16:29:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:in-reply-to:references:from:user-agent:date:message-id
- :subject:to:cc;
- bh=KO/CabPuiXFYnZa9iBglJ3138h8B98Ui/4zI5/2sqsk=;
- b=SODtg8OIsqHbvJ50Z3qFqh94Tb/naSmW2y3VEKwEud+ZJWSP4iexSipSjkP9/sg8MG
- JLyF2sawmXGsaOExAY5IpnGyxphi5ZSg/IzFiTh7ubJbMdhu52fMEN+LQYE7k4eaSndJ
- N7hPJYka6/+2FzlATDvlyaqD5QJX/O5eK7+mU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:in-reply-to:references:from
- :user-agent:date:message-id:subject:to:cc;
- bh=KO/CabPuiXFYnZa9iBglJ3138h8B98Ui/4zI5/2sqsk=;
- b=4Bs5RAw3ca9Fj/aOlrK5en7wackr9wjBtXmPoIJSVNNgvkRl9MidYok9G1/XnAbpQ7
- Ba/bBxalB6+6qoHy+W5TvOvNvnB5QMr2y6HyTOoWLbhiRQ6ECODQI6rmvimGB+eIN1Aj
- IpUyt55CGHrcwEGWtzhDgKvW3UY4l9tA8ZSd2L5dmGmWAE7BmwMk9hDNkva6dfEk+j98
- gkexUuOAVc5gazzaTMlilvmaPMON/ACwS+9ALJ2Ar8+H0alBFwRatiefl+hpX2XjCnme
- RkjTm8HVtvfcUaCcgVUdGrD8etdCl2rN15bDEQ3rwcc3Ys6JkPNGFp+IKdqY/n8VZi0U
- w/Xw==
-X-Gm-Message-State: AOAM531jc95iY6S8/OFn1P61CALwu6defUlbPKEO3DoT2tS5fWYGe7eq
- mRE8rShAF9rLAgxRtyTqFcMa5t6shw+jPHj9A/77hQ==
-X-Google-Smtp-Source: ABdhPJwlAszEzZB2TV1RCUzR+4m+DZq43dZbjDKAekfKdsfJvgOSYj+F6NoJgYZfE/Q621NGQ0Q0a8WaLAiueCEHtYU=
-X-Received: by 2002:a9d:6a0f:: with SMTP id g15mr6376247otn.126.1632526177229; 
- Fri, 24 Sep 2021 16:29:37 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 24 Sep 2021 16:29:36 -0700
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 89B986EE9B;
+ Fri, 24 Sep 2021 23:45:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 812D5AA0EB;
+ Fri, 24 Sep 2021 23:45:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3867173805530250372=="
 MIME-Version: 1.0
-In-Reply-To: <1b477c65-d5cd-2ece-1f60-f9a7762f07b9@redhat.com>
-References: <20210817215201.795062-1-hdegoede@redhat.com>
- <20210817215201.795062-9-hdegoede@redhat.com>
- <CAE-0n53cRs3USijgp5nKy0KoykrNAOs90K-pMk9QBkT+qOgyHw@mail.gmail.com>
- <1b477c65-d5cd-2ece-1f60-f9a7762f07b9@redhat.com>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date: Fri, 24 Sep 2021 16:29:36 -0700
-Message-ID: <CAE-0n51chKmcnNX=RLw1a=zkXdB1xgZtGQQFnDWeEb_8et6jBw@mail.gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Guenter Roeck <linux@roeck-us.net>, Hans de Goede <hdegoede@redhat.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Lyude <lyude@redhat.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- pmalani@chromium.org, robh@kernel.org
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, 
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org, 
- linux-usb@vger.kernel.org, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 8/8] usb: typec: altmodes/displayport:
- Notify drm subsys of hotplug events
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Sep 2021 23:45:22 -0000
+Message-ID: <163252712250.20559.4031119279819628125@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210924223451.71316-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20210924223451.71316-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/pmu=3A_Connect_engine_busyness_stats_from_GuC_to_pmu?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,193 +41,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(Sorry for the slow reply)
+--===============3867173805530250372==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Quoting Hans de Goede (2021-09-16 06:17:56)
-> Hi,
->
-> On 9/16/21 5:20 AM, Stephen Boyd wrote:
-> > Quoting Hans de Goede (2021-08-17 14:52:01)
-> >> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
-> >> index aa669b9cf70e..c1d8c23baa39 100644
-> >> --- a/drivers/usb/typec/altmodes/displayport.c
-> >> +++ b/drivers/usb/typec/altmodes/displayport.c
-> >> @@ -125,6 +129,7 @@ static int dp_altmode_configure(struct dp_altmode *dp, u8 con)
-> >>  static int dp_altmode_status_update(struct dp_altmode *dp)
-> >>  {
-> >>         bool configured = !!DP_CONF_GET_PIN_ASSIGN(dp->data.conf);
-> >> +       bool hpd = !!(dp->data.status & DP_STATUS_HPD_STATE);
-> >>         u8 con = DP_STATUS_CONNECTION(dp->data.status);
-> >>         int ret = 0;
-> >>
-> >> @@ -137,6 +142,11 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
-> >>                 ret = dp_altmode_configure(dp, con);
-> >>                 if (!ret)
-> >>                         dp->state = DP_STATE_CONFIGURE;
-> >> +       } else {
-> >> +               if (dp->hpd != hpd) {
-> >> +                       drm_connector_oob_hotplug_event(dp->connector_fwnode);
-> >> +                       dp->hpd = hpd;
-> >> +               }
-> >>         }
-> >>
-> >>         return ret;
-> >> @@ -512,6 +522,7 @@ static const struct attribute_group dp_altmode_group = {
-> >>  int dp_altmode_probe(struct typec_altmode *alt)
-> >>  {
-> >>         const struct typec_altmode *port = typec_altmode_get_partner(alt);
-> >> +       struct fwnode_handle *fwnode;
-> >>         struct dp_altmode *dp;
-> >>         int ret;
-> >>
-> >> @@ -540,6 +551,11 @@ int dp_altmode_probe(struct typec_altmode *alt)
-> >>         alt->desc = "DisplayPort";
-> >>         alt->ops = &dp_altmode_ops;
-> >>
-> >> +       fwnode = dev_fwnode(alt->dev.parent->parent); /* typec_port fwnode */
-> >> +       dp->connector_fwnode = fwnode_find_reference(fwnode, "displayport", 0);
-> >
-> > I'm trying to figure out how to translate this over to DT bindings.
->
-> First of all let me say that it is great that people are looking
-> into using this functionality outside of the niche application
-> for which I wrote it.
+== Series Details ==
 
-Glad to hear it! This sort of thing is the norm on ARM based SoCs. I
-rarely ever see the HPD pin actually connected to the GPU/DPU hardware.
-It almost always goes through some other chip and then software has to
-deal with it by looking at the gpio or external hardware block, etc.
+Series: drm/i915/pmu: Connect engine busyness stats from GuC to pmu
+URL   : https://patchwork.freedesktop.org/series/95043/
+State : failure
 
->
-> > Is
-> > there a binding document for this fwnode reference? If not, can you
-> > please update
-> > Documentation/devicetree/bindings/connector/usb-connector.yaml with this
-> > property?
->
-> My use case is some Intel Cherry Trail based mini-laptops which use a
-> Intel Whiskey Cove PMIC with a FUSB302 Type-C controller + a
-> PI3USB30532 USB switch, specifically the GPD Win and GPD Pocket
-> (first generation of each).
->
-> These are ACPI/X86 devices so devicetree is not used there, the
-> connector_fwnode checked here is actually sw_node, this sw_node
-> reference gets setup here:
->
-> drivers/platform/x86/intel/int33fe/intel_cht_int33fe_typec.c
->
-> The setup/use of a sw_node reference for this was actually
-> designed by Heikki (in the Cc already), so he might be a better
-> person to answer your questions.
+== Summary ==
 
-Ok, thanks for the background.
+CI Bug Log - changes from CI_DRM_10643 -> Patchwork_21158
+====================================================
 
->
-> With that said, as to your question if I can document this in
-> usb-connector.yaml, no I cannot (sorry). Since this is a sw_node
-> setup by X86 code and not a normal devicetree fwnode reference,
-> atm this is purely a kernel internal API/binding really and the
-> DT-binding maintainers have repeatedly told me that I should NOT
-> submit DT-binding updates for these. Only once a real devicetree
-> user for this shows up will the accept DT-bindings patches for this.
->
-> The good news here though is, that if this turns out to be
-> non-ideal for the devicetree case we can still change things
-> as long as drivers/platform/x86/intel/int33fe/intel_cht_int33fe_typec.c
-> also gets updated so as to not break things.
+Summary
+-------
 
-I see. At least there's an escape hatch.
+  **FAILURE**
 
->
-> > I think this means that the type-c node would have a 'displayport =
-> > <&some_phandle>' property in it that points to the display port hardware
-> > device that's pumping out the DisplayPort data?
->
-> It points to a fwnode belonging to the drm-connector for the DisplayPort
-> connector/pins to which the Type-C data-lines mux/switch is connected, see:
->
-> https://cgit.freedesktop.org/drm-misc/commit/?id=48c429c6d18db115c277b75000152d8fa4cd35d0
-> https://cgit.freedesktop.org/drm-misc/commit/?id=3d3f7c1e68691574c1d87cd0f9f2348323bc0199
-> https://cgit.freedesktop.org/drm-intel/commit/?id=a481d0e80eabbc3fed666103744aeaf47f63e708
->
-> So this get working with devicetree you would need something like this:
->
-> 1. Have devicetree-node-s describing video-output connectors, similar
-> to how we have usb-connector nodes to describe usb-connectors
->
-> 2. Have your drm/kms driver lookup these video-output-connector of_node-s
-> and assign them to drm_connector.fwnode, at least for the DP video-output
-> used.
->
-> 3. Have the usb-connector node for your Type-C connector (the same of_node
-> as which has the source-pdos, sink-pdos, etc props) have a
-> 'displayport = <&some_phandle>' property pointing to the of_node for
-> the DP video-output used.
->
-> I hope this helps.
+  Serious unknown changes coming with Patchwork_21158 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21158, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Yep. For DT we already have a graph binding to show the output of the
-display hardware (DPU). Right now it's not connected to anything though.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html
 
-I'm currently thinking that a clean solution is to connect that graph
-endpoint to some mux node and then have the mux node connect to each
-type-c node. Then a driver that registers the mux and type-c connectors
-can generate a drm_bridge instance (or instances) and drm can chain them
-all together by walking the graph and connecting the DPU to the mux
-bridge and then each type-c connector's bridge. I don't know how a mux
-would work in the drm bridge design, so either that becomes a first
-class type of operation or we register two bridges in the mux driver and
-mux in the backend.
+Possible new issues
+-------------------
 
-This feels similar to how we handle DSI-to-eDP bridges, except that the
-end of the bridge chain is a type-c connector that could have MST to
-deal with. I'm not super familiar with MST but maybe MST could also
-become bridge aware and then we wouldn't have to do anything special.
-I'll cross that bridge when I come to it.
+  Here are the unknown changes that may have been introduced in Patchwork_21158:
 
-I image the DPU would search the graph for a panel and then if there
-isn't a panel downstream I think it would make one up, or do nothing?
-I'm not very sure about this part either.
+### IGT changes ###
 
-Anyway, I'm going to try to prototype out some code to do this unless
-someone wants to say it's a terrible idea. Let me know.
+#### Possible regressions ####
 
->
-> >
-> >> +       if (IS_ERR(dp->connector_fwnode))
-> >> +               dp->connector_fwnode = NULL;
-> >> +
-> >>         typec_altmode_set_drvdata(alt, dp);
-> >>
-> >>         dp->state = DP_STATE_ENTER;
-> >> @@ -555,6 +571,13 @@ void dp_altmode_remove(struct typec_altmode *alt)
-> >>
-> >>         sysfs_remove_group(&alt->dev.kobj, &dp_altmode_group);
-> >>         cancel_work_sync(&dp->work);
-> >> +
-> >> +       if (dp->connector_fwnode) {
-> >> +               if (dp->hpd)
-> >> +                       drm_connector_oob_hotplug_event(dp->connector_fwnode);
-> >
-> > I was hoping that we could make a type-c connector into a drm_bridge.
-> > I'm thinking that it would be a DP-to-panel bridge. Then a panel could
-> > be created as well on the end of the type-c connector and the bridge
-> > would report hpd whenever the type-c logic figures out the cable has
-> > been connected and hpd is asserted. The actual DisplayPort hardware
-> > that's encoding data would then find the bridge through the graph
-> > binding connected to the output node.
-> >
-> > I'm not sure how MST is handled though. In that scenario maybe there's
-> > more than one panel?
->
-> Yeah, given that MST over DP over Type-C is very much possible my
-> first instinct is that this drm_bridge + bridge-to-panel idea is
-> not going to work very well. Also the output could be anything, it
-> could be a projector, or the DP input of a video-grabber, or ...
-> so modelling this as a panel feels wrong.
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10643/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html
 
-Agreed. I suppose making a panel in the connector is the wrong
-direction, but making a bridge there should be OK.
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21158 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@runner@aborted:
+    - fi-rkl-guc:         NOTRUN -> [FAIL][3] ([i915#1602])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
+  [i915#4136]: https://gitlab.freedesktop.org/drm/intel/issues/4136
+
+
+Participating hosts (40 -> 34)
+------------------------------
+
+  Missing    (6): bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10643 -> Patchwork_21158
+
+  CI-20190529: 20190529
+  CI_DRM_10643: 6b2cb2c1f403ce807a7877c62cf1a8dcb5aef77a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21158: 341d088143ed862d96ea278c4824eec48c7b0516 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+341d088143ed drm/i915/pmu: Connect engine busyness stats from GuC to pmu
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html
+
+--===============3867173805530250372==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pmu: Connect engine busyness stats from GuC to pmu</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95043/">https://patchwork.freedesktop.org/series/95043/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10643 -&gt; Patchwork_21158</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21158 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21158, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21158:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s0:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10643/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21158 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (40 -&gt; 34)</h2>
+<p>Missing    (6): bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10643 -&gt; Patchwork_21158</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10643: 6b2cb2c1f403ce807a7877c62cf1a8dcb5aef77a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21158: 341d088143ed862d96ea278c4824eec48c7b0516 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>341d088143ed drm/i915/pmu: Connect engine busyness stats from GuC to pmu</p>
+
+</body>
+</html>
+
+--===============3867173805530250372==--
