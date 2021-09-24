@@ -2,45 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B670417BAE
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 21:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 422FC417BAD
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 21:14:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F3896EE56;
-	Fri, 24 Sep 2021 19:15:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B98166EE7A;
+	Fri, 24 Sep 2021 19:14:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E20FD6E249
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:14:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10117"; a="211389596"
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="211389596"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 188276E23F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:14:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10117"; a="211389597"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="211389597"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2021 12:14:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="437094379"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="437094383"
 Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
  by orsmga003.jf.intel.com with ESMTP; 24 Sep 2021 12:14:21 -0700
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Anshuman Gupta <anshuman.gupta@intel.com>,
- Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- Huang Sean Z <sean.z.huang@intel.com>,
- Gaurav Kumar <kumar.gaurav@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Gaurav Kumar <kumar.gaurav@intel.com>, Shankar Uma <uma.shankar@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Juston Li <juston.li@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-Date: Fri, 24 Sep 2021 12:14:48 -0700
-Message-Id: <20210924191452.1539378-14-alan.previn.teres.alexis@intel.com>
+ Juston Li <juston.li@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Fri, 24 Sep 2021 12:14:49 -0700
+Message-Id: <20210924191452.1539378-15-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210924191452.1539378-1-alan.previn.teres.alexis@intel.com>
 References: <20210924191452.1539378-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v13 13/17] drm/i915/pxp: Add plane decryption
- support
+Subject: [Intel-gfx] [PATCH v13 14/17] drm/i915/pxp: black pixels on pxp
+ disabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,253 +55,207 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 
-Add support to enable/disable PLANE_SURF Decryption Request bit.
-It requires only to enable plane decryption support when following
-condition met.
-1. PXP session is enabled.
-2. Buffer object is protected.
+When protected sufaces has flipped and pxp session is disabled,
+display black pixels by using plane color CTM correction.
 
 v2:
-- Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
+- Display black pixels in async flip too.
 
 v3:
-- intel_pxp_gem_object_status() API changes.
+- Removed the black pixels logic for async flip. [Ville]
+- Used plane state to force black pixels. [Ville]
 
-v4: use intel_pxp_is_active (Daniele)
+v4 (Daniele): update pxp_is_borked check.
 
-v5: rebase and use the new protected object status checker (Daniele)
+v5: rebase on top of v9 plane decryption moving the decrypt check
+    (Juston)
 
-v6: used plane state for plane_decryption to handle async flip
-    as suggested by Ville.
-
-v7: check pxp session while plane decrypt state computation. [Ville]
-    removed pointless code. [Ville]
-
-v8 (Daniele): update PXP check
-
-v9: move decrypt check after icl_check_nv12_planes() when overlays
-    have fb set (Juston)
-
-v10 (Daniele): update PXP check again to match rework in earlier
-patches and don't consider protection valid if the object has not
-been used in an execbuf beforehand.
-
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Cc: Huang Sean Z <sean.z.huang@intel.com>
-Cc: Gaurav Kumar <kumar.gaurav@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Gaurav Kumar <kumar.gaurav@intel.com>
+Cc: Shankar Uma <uma.shankar@intel.com>
 Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Juston Li <juston.li@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com> #v9
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 26 +++++++++++++++++++
- .../drm/i915/display/intel_display_types.h    |  3 +++
- .../drm/i915/display/skl_universal_plane.c    | 15 ++++++++---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
- drivers/gpu/drm/i915/i915_reg.h               |  1 +
- drivers/gpu/drm/i915/pxp/intel_pxp.c          |  9 ++++---
- drivers/gpu/drm/i915/pxp/intel_pxp.h          |  7 +++--
- 7 files changed, 54 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 12 ++++-
+ .../drm/i915/display/intel_display_types.h    |  3 ++
+ .../drm/i915/display/skl_universal_plane.c    | 36 ++++++++++++++-
+ drivers/gpu/drm/i915/i915_reg.h               | 46 +++++++++++++++++++
+ 4 files changed, 94 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f27c294beb92..e84c627eb476 100644
+index e84c627eb476..ba6f2fd29c94 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -71,6 +71,8 @@
- #include "gt/intel_rps.h"
- #include "gt/gen8_ppgtt.h"
- 
-+#include "pxp/intel_pxp.h"
-+
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
- #include "i915_drv.h"
-@@ -9007,13 +9009,23 @@ static int intel_bigjoiner_add_affected_planes(struct intel_atomic_state *state)
- 	return 0;
+@@ -9016,6 +9016,11 @@ static bool bo_has_valid_encryption(struct drm_i915_gem_object *obj)
+ 	return intel_pxp_key_check(&i915->gt.pxp, obj, false) == 0;
  }
  
-+static bool bo_has_valid_encryption(struct drm_i915_gem_object *obj)
++static bool pxp_is_borked(struct drm_i915_gem_object *obj)
 +{
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+
-+	return intel_pxp_key_check(&i915->gt.pxp, obj, false) == 0;
++	return i915_gem_object_is_protected(obj) && !bo_has_valid_encryption(obj);
 +}
 +
  static int intel_atomic_check_planes(struct intel_atomic_state *state)
  {
  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
- 	struct intel_plane_state *plane_state;
- 	struct intel_plane *plane;
-+	struct intel_plane_state *new_plane_state;
-+	struct intel_plane_state *old_plane_state;
- 	struct intel_crtc *crtc;
-+	const struct drm_framebuffer *fb;
- 	int i, ret;
- 
- 	ret = icl_add_linked_planes(state);
-@@ -9061,6 +9073,16 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
- 			return ret;
- 	}
- 
-+	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
-+		new_plane_state = intel_atomic_get_new_plane_state(state, plane);
-+		old_plane_state = intel_atomic_get_old_plane_state(state, plane);
-+		fb = new_plane_state->hw.fb;
-+		if (fb)
-+			new_plane_state->decrypt = bo_has_valid_encryption(intel_fb_obj(fb));
-+		else
-+			new_plane_state->decrypt = old_plane_state->decrypt;
-+	}
-+
- 	return 0;
- }
- 
-@@ -9347,6 +9369,10 @@ static int intel_atomic_check_async(struct intel_atomic_state *state)
- 			drm_dbg_kms(&i915->drm, "Color range cannot be changed in async flip\n");
- 			return -EINVAL;
- 		}
-+
-+		/* plane decryption is allow to change only in synchronous flips */
-+		if (old_plane_state->decrypt != new_plane_state->decrypt)
-+			return -EINVAL;
+@@ -9077,10 +9082,13 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+ 		new_plane_state = intel_atomic_get_new_plane_state(state, plane);
+ 		old_plane_state = intel_atomic_get_old_plane_state(state, plane);
+ 		fb = new_plane_state->hw.fb;
+-		if (fb)
++		if (fb) {
+ 			new_plane_state->decrypt = bo_has_valid_encryption(intel_fb_obj(fb));
+-		else
++			new_plane_state->force_black = pxp_is_borked(intel_fb_obj(fb));
++		} else {
+ 			new_plane_state->decrypt = old_plane_state->decrypt;
++			new_plane_state->force_black = old_plane_state->force_black;
++		}
  	}
  
  	return 0;
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 9413ebae15f5..3a64cade03e6 100644
+index 3a64cade03e6..da5b95235aa8 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -623,6 +623,9 @@ struct intel_plane_state {
+@@ -626,6 +626,9 @@ struct intel_plane_state {
+ 	/* Plane pxp decryption state */
+ 	bool decrypt;
  
- 	struct intel_fb_view view;
- 
-+	/* Plane pxp decryption state */
-+	bool decrypt;
++	/* Plane state to display black pixels when pxp is borked */
++	bool force_black;
 +
  	/* plane control register */
  	u32 ctl;
  
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 91f1be7174e5..ff9b5486ca1f 100644
+index ff9b5486ca1f..a0e53a3b267a 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -18,6 +18,7 @@
- #include "intel_sprite.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
-+#include "pxp/intel_pxp.h"
+@@ -1008,6 +1008,33 @@ static u32 skl_surf_address(const struct intel_plane_state *plane_state,
+ 	}
+ }
  
- static const u32 skl_plane_formats[] = {
- 	DRM_FORMAT_C8,
-@@ -1030,7 +1031,7 @@ skl_program_plane(struct intel_plane *plane,
- 	u8 alpha = plane_state->hw.alpha >> 8;
- 	u32 plane_color_ctl = 0, aux_dist = 0;
- 	unsigned long irqflags;
--	u32 keymsk, keymax;
-+	u32 keymsk, keymax, plane_surf;
- 	u32 plane_ctl = plane_state->ctl;
- 
- 	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
-@@ -1118,8 +1119,16 @@ skl_program_plane(struct intel_plane *plane,
- 	 * the control register just before the surface register.
++static void intel_load_plane_csc_black(struct intel_plane *intel_plane)
++{
++	struct drm_i915_private *dev_priv = to_i915(intel_plane->base.dev);
++	enum pipe pipe = intel_plane->pipe;
++	enum plane_id plane = intel_plane->id;
++	u16 postoff = 0;
++
++	drm_dbg_kms(&dev_priv->drm, "plane color CTM to black  %s:%d\n",
++		    intel_plane->base.name, plane);
++	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 0), 0);
++	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 1), 0);
++
++	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 2), 0);
++	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 3), 0);
++
++	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 4), 0);
++	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 5), 0);
++
++	intel_de_write_fw(dev_priv, PLANE_CSC_PREOFF(pipe, plane, 0), 0);
++	intel_de_write_fw(dev_priv, PLANE_CSC_PREOFF(pipe, plane, 1), 0);
++	intel_de_write_fw(dev_priv, PLANE_CSC_PREOFF(pipe, plane, 2), 0);
++
++	intel_de_write_fw(dev_priv, PLANE_CSC_POSTOFF(pipe, plane, 0), postoff);
++	intel_de_write_fw(dev_priv, PLANE_CSC_POSTOFF(pipe, plane, 1), postoff);
++	intel_de_write_fw(dev_priv, PLANE_CSC_POSTOFF(pipe, plane, 2), postoff);
++}
++
+ static void
+ skl_program_plane(struct intel_plane *plane,
+ 		  const struct intel_crtc_state *crtc_state,
+@@ -1120,14 +1147,21 @@ skl_program_plane(struct intel_plane *plane,
  	 */
  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
--	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
--			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-+	plane_surf = intel_plane_ggtt_offset(plane_state) + surf_addr;
-+
-+	/*
-+	 * FIXME: pxp session invalidation can hit any time even at time of commit
-+	 * or after the commit, display content will be garbage.
-+	 */
-+	if (plane_state->decrypt)
-+		plane_surf |= PLANE_SURF_DECRYPT;
-+
-+	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
+ 	plane_surf = intel_plane_ggtt_offset(plane_state) + surf_addr;
++	plane_color_ctl = intel_de_read_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id));
+ 
+ 	/*
+ 	 * FIXME: pxp session invalidation can hit any time even at time of commit
+ 	 * or after the commit, display content will be garbage.
+ 	 */
+-	if (plane_state->decrypt)
++	if (plane_state->decrypt) {
+ 		plane_surf |= PLANE_SURF_DECRYPT;
++	} else if (plane_state->force_black) {
++		intel_load_plane_csc_black(plane);
++		plane_color_ctl |= PLANE_COLOR_PLANE_CSC_ENABLE;
++	}
+ 
++	intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id),
++			  plane_color_ctl);
+ 	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
  
  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index d129a9f951da..c75afc8784e3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -832,7 +832,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
- 		 */
- 		if (i915_gem_context_uses_protected_content(eb->gem_context) &&
- 		    i915_gem_object_is_protected(obj)) {
--			err = intel_pxp_key_check(&vm->gt->pxp, obj);
-+			err = intel_pxp_key_check(&vm->gt->pxp, obj, true);
- 			if (err) {
- 				i915_gem_object_put(obj);
- 				return ERR_PTR(err);
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 9172bc3acb43..682c239b2d55 100644
+index 682c239b2d55..8f162a487eb9 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7380,6 +7380,7 @@ enum {
- #define _PLANE_SURF_3(pipe)	_PIPE(pipe, _PLANE_SURF_3_A, _PLANE_SURF_3_B)
- #define PLANE_SURF(pipe, plane)	\
- 	_MMIO_PLANE(plane, _PLANE_SURF_1(pipe), _PLANE_SURF_2(pipe))
-+#define   PLANE_SURF_DECRYPT			REG_BIT(2)
+@@ -7257,6 +7257,7 @@ enum {
+ #define _PLANE_COLOR_CTL_3_A			0x703CC /* GLK+ */
+ #define   PLANE_COLOR_PIPE_GAMMA_ENABLE		(1 << 30) /* Pre-ICL */
+ #define   PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE	(1 << 28)
++#define   PLANE_COLOR_PLANE_CSC_ENABLE			REG_BIT(21) /* ICL+ */
+ #define   PLANE_COLOR_INPUT_CSC_ENABLE		(1 << 20) /* ICL+ */
+ #define   PLANE_COLOR_PIPE_CSC_ENABLE		(1 << 23) /* Pre-ICL */
+ #define   PLANE_COLOR_CSC_MODE_BYPASS			(0 << 17)
+@@ -11399,6 +11400,51 @@ enum skl_power_gate {
+ 					_PAL_PREC_MULTI_SEG_DATA_A, \
+ 					_PAL_PREC_MULTI_SEG_DATA_B)
  
- #define _PLANE_OFFSET_1_B			0x711a4
- #define _PLANE_OFFSET_2_B			0x712a4
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 7f241c0218c1..b85b72f12726 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -191,7 +191,9 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp)
- 	intel_pxp_irq_disable(pxp);
- }
- 
--int intel_pxp_key_check(struct intel_pxp *pxp, struct drm_i915_gem_object *obj)
-+int intel_pxp_key_check(struct intel_pxp *pxp,
-+			struct drm_i915_gem_object *obj,
-+			bool assign)
- {
- 	if (!intel_pxp_is_active(pxp))
- 		return -ENODEV;
-@@ -207,9 +209,10 @@ int intel_pxp_key_check(struct intel_pxp *pxp, struct drm_i915_gem_object *obj)
- 	 * as such. If the object is already encrypted, check instead if the
- 	 * used key is still valid.
- 	 */
--	if (!obj->pxp_key_instance)
-+	if (!obj->pxp_key_instance && assign)
- 		obj->pxp_key_instance = pxp->key_instance;
--	else if (obj->pxp_key_instance != pxp->key_instance)
++#define _MMIO_PLANE_GAMC(plane, i, a, b)  _MMIO(_PIPE(plane, a, b) + (i) * 4)
 +
-+	if (obj->pxp_key_instance != pxp->key_instance)
- 		return -ENOEXEC;
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index bce0014d9ff9..aa262258d4d4 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -29,7 +29,9 @@ void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
- 
- int intel_pxp_start(struct intel_pxp *pxp);
- 
--int intel_pxp_key_check(struct intel_pxp *pxp, struct drm_i915_gem_object *obj);
-+int intel_pxp_key_check(struct intel_pxp *pxp,
-+			struct drm_i915_gem_object *obj,
-+			bool assign);
- 
- void intel_pxp_invalidate(struct intel_pxp *pxp);
- #else
-@@ -52,7 +54,8 @@ static inline bool intel_pxp_is_active(const struct intel_pxp *pxp)
- }
- 
- static inline int intel_pxp_key_check(struct intel_pxp *pxp,
--				      struct drm_i915_gem_object *obj)
-+				      struct drm_i915_gem_object *obj,
-+				      bool assign)
- {
- 	return -ENODEV;
- }
++/* Plane CSC Registers */
++#define _PLANE_CSC_RY_GY_1_A	0x70210
++#define _PLANE_CSC_RY_GY_2_A	0x70310
++
++#define _PLANE_CSC_RY_GY_1_B	0x71210
++#define _PLANE_CSC_RY_GY_2_B	0x71310
++
++#define _PLANE_CSC_RY_GY_1(pipe)	_PIPE(pipe, _PLANE_CSC_RY_GY_1_A, \
++					      _PLANE_CSC_RY_GY_1_B)
++#define _PLANE_CSC_RY_GY_2(pipe)	_PIPE(pipe, _PLANE_INPUT_CSC_RY_GY_2_A, \
++					      _PLANE_INPUT_CSC_RY_GY_2_B)
++#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
++							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
++
++#define _PLANE_CSC_PREOFF_HI_1_A		0x70228
++#define _PLANE_CSC_PREOFF_HI_2_A		0x70328
++
++#define _PLANE_CSC_PREOFF_HI_1_B		0x71228
++#define _PLANE_CSC_PREOFF_HI_2_B		0x71328
++
++#define _PLANE_CSC_PREOFF_HI_1(pipe)	_PIPE(pipe, _PLANE_CSC_PREOFF_HI_1_A, \
++					      _PLANE_CSC_PREOFF_HI_1_B)
++#define _PLANE_CSC_PREOFF_HI_2(pipe)	_PIPE(pipe, _PLANE_CSC_PREOFF_HI_2_A, \
++					      _PLANE_CSC_PREOFF_HI_2_B)
++#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
++							    (index) * 4)
++
++#define _PLANE_CSC_POSTOFF_HI_1_A		0x70234
++#define _PLANE_CSC_POSTOFF_HI_2_A		0x70334
++
++#define _PLANE_CSC_POSTOFF_HI_1_B		0x71234
++#define _PLANE_CSC_POSTOFF_HI_2_B		0x71334
++
++#define _PLANE_CSC_POSTOFF_HI_1(pipe)	_PIPE(pipe, _PLANE_CSC_POSTOFF_HI_1_A, \
++					      _PLANE_CSC_POSTOFF_HI_1_B)
++#define _PLANE_CSC_POSTOFF_HI_2(pipe)	_PIPE(pipe, _PLANE_CSC_POSTOFF_HI_2_A, \
++					      _PLANE_CSC_POSTOFF_HI_2_B)
++#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
++							    (index) * 4)
++
+ /* pipe CSC & degamma/gamma LUTs on CHV */
+ #define _CGM_PIPE_A_CSC_COEFF01	(VLV_DISPLAY_BASE + 0x67900)
+ #define _CGM_PIPE_A_CSC_COEFF23	(VLV_DISPLAY_BASE + 0x67904)
 -- 
 2.25.1
 
