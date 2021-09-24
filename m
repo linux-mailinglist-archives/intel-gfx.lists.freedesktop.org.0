@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10FA6417134
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 13:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56AE8417133
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 13:48:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C51F86EE1E;
-	Fri, 24 Sep 2021 11:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 259F86EE25;
+	Fri, 24 Sep 2021 11:48:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3626EE1C
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 11:48:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="222169859"
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="222169859"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:48:27 -0700
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="535385632"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF5396EE27
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 11:48:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="211297590"
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="211297590"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 04:48:32 -0700
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="559255831"
 Received: from avanhout-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.153])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:48:25 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 04:48:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Dave Airlie <airlied@redhat.com>
-Date: Fri, 24 Sep 2021 14:47:24 +0300
-Message-Id: <20210924114741.15940-7-jani.nikula@intel.com>
+Date: Fri, 24 Sep 2021 14:47:25 +0300
+Message-Id: <20210924114741.15940-8-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210924114741.15940-1-jani.nikula@intel.com>
 References: <20210924114741.15940-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 07/24] drm/i915: split clock gating init from
- display vtable
+Subject: [Intel-gfx] [CI 08/24] drm/i915: split watermark vfuncs from
+ display vtable.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,139 +53,247 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-This function is only used inside intel_pm.c
+These are the watermark api between display and pm.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h |  9 ++++++-
- drivers/gpu/drm/i915/intel_pm.c | 48 ++++++++++++++++-----------------
- 2 files changed, 32 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 34 ++++++++---------
+ drivers/gpu/drm/i915/i915_drv.h              | 24 ++++++++----
+ drivers/gpu/drm/i915/intel_pm.c              | 40 ++++++++++----------
+ 3 files changed, 53 insertions(+), 45 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c767fc689c77..d1e269f734c7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -162,16 +162,16 @@ static void intel_modeset_setup_hw_state(struct drm_device *dev,
+  */
+ static void intel_update_watermarks(struct drm_i915_private *dev_priv)
+ {
+-	if (dev_priv->display.update_wm)
+-		dev_priv->display.update_wm(dev_priv);
++	if (dev_priv->wm_disp.update_wm)
++		dev_priv->wm_disp.update_wm(dev_priv);
+ }
+ 
+ static int intel_compute_pipe_wm(struct intel_atomic_state *state,
+ 				 struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	if (dev_priv->display.compute_pipe_wm)
+-		return dev_priv->display.compute_pipe_wm(state, crtc);
++	if (dev_priv->wm_disp.compute_pipe_wm)
++		return dev_priv->wm_disp.compute_pipe_wm(state, crtc);
+ 	return 0;
+ }
+ 
+@@ -179,20 +179,20 @@ static int intel_compute_intermediate_wm(struct intel_atomic_state *state,
+ 					 struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	if (!dev_priv->display.compute_intermediate_wm)
++	if (!dev_priv->wm_disp.compute_intermediate_wm)
+ 		return 0;
+ 	if (drm_WARN_ON(&dev_priv->drm,
+-			!dev_priv->display.compute_pipe_wm))
++			!dev_priv->wm_disp.compute_pipe_wm))
+ 		return 0;
+-	return dev_priv->display.compute_intermediate_wm(state, crtc);
++	return dev_priv->wm_disp.compute_intermediate_wm(state, crtc);
+ }
+ 
+ static bool intel_initial_watermarks(struct intel_atomic_state *state,
+ 				     struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	if (dev_priv->display.initial_watermarks) {
+-		dev_priv->display.initial_watermarks(state, crtc);
++	if (dev_priv->wm_disp.initial_watermarks) {
++		dev_priv->wm_disp.initial_watermarks(state, crtc);
+ 		return true;
+ 	}
+ 	return false;
+@@ -202,23 +202,23 @@ static void intel_atomic_update_watermarks(struct intel_atomic_state *state,
+ 					   struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	if (dev_priv->display.atomic_update_watermarks)
+-		dev_priv->display.atomic_update_watermarks(state, crtc);
++	if (dev_priv->wm_disp.atomic_update_watermarks)
++		dev_priv->wm_disp.atomic_update_watermarks(state, crtc);
+ }
+ 
+ static void intel_optimize_watermarks(struct intel_atomic_state *state,
+ 				      struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	if (dev_priv->display.optimize_watermarks)
+-		dev_priv->display.optimize_watermarks(state, crtc);
++	if (dev_priv->wm_disp.optimize_watermarks)
++		dev_priv->wm_disp.optimize_watermarks(state, crtc);
+ }
+ 
+ static void intel_compute_global_watermarks(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	if (dev_priv->display.compute_global_watermarks)
+-		dev_priv->display.compute_global_watermarks(state);
++	if (dev_priv->wm_disp.compute_global_watermarks)
++		dev_priv->wm_disp.compute_global_watermarks(state);
+ }
+ 
+ /* returns HPLL frequency in kHz */
+@@ -3743,7 +3743,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+ 	if (DISPLAY_VER(dev_priv) != 2)
+ 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
+ 
+-	if (!dev_priv->display.initial_watermarks)
++	if (!dev_priv->wm_disp.initial_watermarks)
+ 		intel_update_watermarks(dev_priv);
+ 
+ 	/* clock the pipe down to 640x480@60 to potentially save power */
+@@ -11402,7 +11402,7 @@ static void sanitize_watermarks(struct drm_i915_private *dev_priv)
+ 	int i;
+ 
+ 	/* Only supported on platforms that use atomic watermark design */
+-	if (!dev_priv->display.optimize_watermarks)
++	if (!dev_priv->wm_disp.optimize_watermarks)
+ 		return;
+ 
+ 	state = drm_atomic_state_alloc(&dev_priv->drm);
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index a098a1bc83b1..497a466ed0cf 100644
+index 497a466ed0cf..a095184df006 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -323,6 +323,11 @@ struct intel_crtc;
- struct intel_limit;
- struct dpll;
+@@ -328,13 +328,10 @@ struct drm_i915_clock_gating_funcs {
+ 	void (*init_clock_gating)(struct drm_i915_private *dev_priv);
+ };
  
-+/* functions used internal in intel_pm.c */
-+struct drm_i915_clock_gating_funcs {
-+	void (*init_clock_gating)(struct drm_i915_private *dev_priv);
+-struct drm_i915_display_funcs {
+-	void (*get_cdclk)(struct drm_i915_private *dev_priv,
+-			  struct intel_cdclk_config *cdclk_config);
+-	void (*set_cdclk)(struct drm_i915_private *dev_priv,
+-			  const struct intel_cdclk_config *cdclk_config,
+-			  enum pipe pipe);
+-	int (*bw_calc_min_cdclk)(struct intel_atomic_state *state);
++/* functions used for watermark calcs for display. */
++struct drm_i915_wm_disp_funcs {
++	/* update_wm is for legacy wm management */
++	void (*update_wm)(struct drm_i915_private *dev_priv);
+ 	int (*compute_pipe_wm)(struct intel_atomic_state *state,
+ 			       struct intel_crtc *crtc);
+ 	int (*compute_intermediate_wm)(struct intel_atomic_state *state,
+@@ -346,7 +343,15 @@ struct drm_i915_display_funcs {
+ 	void (*optimize_watermarks)(struct intel_atomic_state *state,
+ 				    struct intel_crtc *crtc);
+ 	int (*compute_global_watermarks)(struct intel_atomic_state *state);
+-	void (*update_wm)(struct drm_i915_private *dev_priv);
 +};
 +
- struct drm_i915_display_funcs {
- 	void (*get_cdclk)(struct drm_i915_private *dev_priv,
- 			  struct intel_cdclk_config *cdclk_config);
-@@ -365,7 +370,6 @@ struct drm_i915_display_funcs {
- 				    const struct drm_connector_state *old_conn_state);
- 	void (*fdi_link_train)(struct intel_crtc *crtc,
- 			       const struct intel_crtc_state *crtc_state);
--	void (*init_clock_gating)(struct drm_i915_private *dev_priv);
- 	void (*hpd_irq_setup)(struct drm_i915_private *dev_priv);
- 	/* clock updates for mode set */
- 	/* cursor updates */
-@@ -954,6 +958,9 @@ struct drm_i915_private {
- 	/* unbound hipri wq for page flips/plane updates */
- 	struct workqueue_struct *flip_wq;
++struct drm_i915_display_funcs {
++	void (*get_cdclk)(struct drm_i915_private *dev_priv,
++			  struct intel_cdclk_config *cdclk_config);
++	void (*set_cdclk)(struct drm_i915_private *dev_priv,
++			  const struct intel_cdclk_config *cdclk_config,
++			  enum pipe pipe);
++	int (*bw_calc_min_cdclk)(struct intel_atomic_state *state);
+ 	int (*modeset_calc_cdclk)(struct intel_cdclk_state *state);
+ 	u8 (*calc_voltage_level)(int cdclk);
+ 	/* Returns the active state of the crtc, and if the crtc is active,
+@@ -961,6 +966,9 @@ struct drm_i915_private {
+ 	/* pm private clock gating functions */
+ 	struct drm_i915_clock_gating_funcs clock_gating_funcs;
  
-+	/* pm private clock gating functions */
-+	struct drm_i915_clock_gating_funcs clock_gating_funcs;
++	/* pm display functions */
++	struct drm_i915_wm_disp_funcs wm_disp;
 +
  	/* Display functions */
  	struct drm_i915_display_funcs display;
  
 diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 11c9df62391d..34d6faee8969 100644
+index 34d6faee8969..b37888781ec9 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -7869,7 +7869,7 @@ static void i830_init_clock_gating(struct drm_i915_private *dev_priv)
+@@ -7960,7 +7960,7 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
+ 	/* For FIFO watermark updates */
+ 	if (DISPLAY_VER(dev_priv) >= 9) {
+ 		skl_setup_wm_latency(dev_priv);
+-		dev_priv->display.compute_global_watermarks = skl_compute_wm;
++		dev_priv->wm_disp.compute_global_watermarks = skl_compute_wm;
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+ 		ilk_setup_wm_latency(dev_priv);
  
- void intel_init_clock_gating(struct drm_i915_private *dev_priv)
- {
--	dev_priv->display.init_clock_gating(dev_priv);
-+	dev_priv->clock_gating_funcs.init_clock_gating(dev_priv);
- }
- 
- void intel_suspend_hw(struct drm_i915_private *dev_priv)
-@@ -7896,52 +7896,52 @@ static void nop_init_clock_gating(struct drm_i915_private *dev_priv)
- void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv)
- {
- 	if (IS_ALDERLAKE_P(dev_priv))
--		dev_priv->display.init_clock_gating = adlp_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = adlp_init_clock_gating;
- 	else if (IS_DG1(dev_priv))
--		dev_priv->display.init_clock_gating = dg1_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = dg1_init_clock_gating;
- 	else if (GRAPHICS_VER(dev_priv) == 12)
--		dev_priv->display.init_clock_gating = gen12lp_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = gen12lp_init_clock_gating;
- 	else if (GRAPHICS_VER(dev_priv) == 11)
--		dev_priv->display.init_clock_gating = icl_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = icl_init_clock_gating;
- 	else if (IS_COFFEELAKE(dev_priv) || IS_COMETLAKE(dev_priv))
--		dev_priv->display.init_clock_gating = cfl_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = cfl_init_clock_gating;
- 	else if (IS_SKYLAKE(dev_priv))
--		dev_priv->display.init_clock_gating = skl_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = skl_init_clock_gating;
- 	else if (IS_KABYLAKE(dev_priv))
--		dev_priv->display.init_clock_gating = kbl_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = kbl_init_clock_gating;
- 	else if (IS_BROXTON(dev_priv))
--		dev_priv->display.init_clock_gating = bxt_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = bxt_init_clock_gating;
- 	else if (IS_GEMINILAKE(dev_priv))
--		dev_priv->display.init_clock_gating = glk_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = glk_init_clock_gating;
- 	else if (IS_BROADWELL(dev_priv))
--		dev_priv->display.init_clock_gating = bdw_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = bdw_init_clock_gating;
- 	else if (IS_CHERRYVIEW(dev_priv))
--		dev_priv->display.init_clock_gating = chv_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = chv_init_clock_gating;
- 	else if (IS_HASWELL(dev_priv))
--		dev_priv->display.init_clock_gating = hsw_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = hsw_init_clock_gating;
- 	else if (IS_IVYBRIDGE(dev_priv))
--		dev_priv->display.init_clock_gating = ivb_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = ivb_init_clock_gating;
- 	else if (IS_VALLEYVIEW(dev_priv))
--		dev_priv->display.init_clock_gating = vlv_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = vlv_init_clock_gating;
- 	else if (GRAPHICS_VER(dev_priv) == 6)
--		dev_priv->display.init_clock_gating = gen6_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = gen6_init_clock_gating;
- 	else if (GRAPHICS_VER(dev_priv) == 5)
--		dev_priv->display.init_clock_gating = ilk_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = ilk_init_clock_gating;
- 	else if (IS_G4X(dev_priv))
--		dev_priv->display.init_clock_gating = g4x_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = g4x_init_clock_gating;
- 	else if (IS_I965GM(dev_priv))
--		dev_priv->display.init_clock_gating = i965gm_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = i965gm_init_clock_gating;
- 	else if (IS_I965G(dev_priv))
--		dev_priv->display.init_clock_gating = i965g_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = i965g_init_clock_gating;
- 	else if (GRAPHICS_VER(dev_priv) == 3)
--		dev_priv->display.init_clock_gating = gen3_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = gen3_init_clock_gating;
- 	else if (IS_I85X(dev_priv) || IS_I865G(dev_priv))
--		dev_priv->display.init_clock_gating = i85x_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = i85x_init_clock_gating;
- 	else if (GRAPHICS_VER(dev_priv) == 2)
--		dev_priv->display.init_clock_gating = i830_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = i830_init_clock_gating;
- 	else {
- 		MISSING_CASE(INTEL_DEVID(dev_priv));
--		dev_priv->display.init_clock_gating = nop_init_clock_gating;
-+		dev_priv->clock_gating_funcs.init_clock_gating = nop_init_clock_gating;
- 	}
- }
- 
+@@ -7968,12 +7968,12 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
+ 		     dev_priv->wm.spr_latency[1] && dev_priv->wm.cur_latency[1]) ||
+ 		    (DISPLAY_VER(dev_priv) != 5 && dev_priv->wm.pri_latency[0] &&
+ 		     dev_priv->wm.spr_latency[0] && dev_priv->wm.cur_latency[0])) {
+-			dev_priv->display.compute_pipe_wm = ilk_compute_pipe_wm;
+-			dev_priv->display.compute_intermediate_wm =
++			dev_priv->wm_disp.compute_pipe_wm = ilk_compute_pipe_wm;
++			dev_priv->wm_disp.compute_intermediate_wm =
+ 				ilk_compute_intermediate_wm;
+-			dev_priv->display.initial_watermarks =
++			dev_priv->wm_disp.initial_watermarks =
+ 				ilk_initial_watermarks;
+-			dev_priv->display.optimize_watermarks =
++			dev_priv->wm_disp.optimize_watermarks =
+ 				ilk_optimize_watermarks;
+ 		} else {
+ 			drm_dbg_kms(&dev_priv->drm,
+@@ -7982,17 +7982,17 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
+ 		}
+ 	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+ 		vlv_setup_wm_latency(dev_priv);
+-		dev_priv->display.compute_pipe_wm = vlv_compute_pipe_wm;
+-		dev_priv->display.compute_intermediate_wm = vlv_compute_intermediate_wm;
+-		dev_priv->display.initial_watermarks = vlv_initial_watermarks;
+-		dev_priv->display.optimize_watermarks = vlv_optimize_watermarks;
+-		dev_priv->display.atomic_update_watermarks = vlv_atomic_update_fifo;
++		dev_priv->wm_disp.compute_pipe_wm = vlv_compute_pipe_wm;
++		dev_priv->wm_disp.compute_intermediate_wm = vlv_compute_intermediate_wm;
++		dev_priv->wm_disp.initial_watermarks = vlv_initial_watermarks;
++		dev_priv->wm_disp.optimize_watermarks = vlv_optimize_watermarks;
++		dev_priv->wm_disp.atomic_update_watermarks = vlv_atomic_update_fifo;
+ 	} else if (IS_G4X(dev_priv)) {
+ 		g4x_setup_wm_latency(dev_priv);
+-		dev_priv->display.compute_pipe_wm = g4x_compute_pipe_wm;
+-		dev_priv->display.compute_intermediate_wm = g4x_compute_intermediate_wm;
+-		dev_priv->display.initial_watermarks = g4x_initial_watermarks;
+-		dev_priv->display.optimize_watermarks = g4x_optimize_watermarks;
++		dev_priv->wm_disp.compute_pipe_wm = g4x_compute_pipe_wm;
++		dev_priv->wm_disp.compute_intermediate_wm = g4x_compute_intermediate_wm;
++		dev_priv->wm_disp.initial_watermarks = g4x_initial_watermarks;
++		dev_priv->wm_disp.optimize_watermarks = g4x_optimize_watermarks;
+ 	} else if (IS_PINEVIEW(dev_priv)) {
+ 		if (!intel_get_cxsr_latency(!IS_MOBILE(dev_priv),
+ 					    dev_priv->is_ddr3,
+@@ -8006,18 +8006,18 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
+ 				 dev_priv->fsb_freq, dev_priv->mem_freq);
+ 			/* Disable CxSR and never update its watermark again */
+ 			intel_set_memory_cxsr(dev_priv, false);
+-			dev_priv->display.update_wm = NULL;
++			dev_priv->wm_disp.update_wm = NULL;
+ 		} else
+-			dev_priv->display.update_wm = pnv_update_wm;
++			dev_priv->wm_disp.update_wm = pnv_update_wm;
+ 	} else if (DISPLAY_VER(dev_priv) == 4) {
+-		dev_priv->display.update_wm = i965_update_wm;
++		dev_priv->wm_disp.update_wm = i965_update_wm;
+ 	} else if (DISPLAY_VER(dev_priv) == 3) {
+-		dev_priv->display.update_wm = i9xx_update_wm;
++		dev_priv->wm_disp.update_wm = i9xx_update_wm;
+ 	} else if (DISPLAY_VER(dev_priv) == 2) {
+ 		if (INTEL_NUM_PIPES(dev_priv) == 1)
+-			dev_priv->display.update_wm = i845_update_wm;
++			dev_priv->wm_disp.update_wm = i845_update_wm;
+ 		else
+-			dev_priv->display.update_wm = i9xx_update_wm;
++			dev_priv->wm_disp.update_wm = i9xx_update_wm;
+ 	} else {
+ 		drm_err(&dev_priv->drm,
+ 			"unexpected fall-through in %s\n", __func__);
 -- 
 2.30.2
 
