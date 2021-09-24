@@ -1,40 +1,109 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6930C417147
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 13:50:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8704C4171E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 14:32:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF876EE18;
-	Fri, 24 Sep 2021 11:50:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8596EE33;
+	Fri, 24 Sep 2021 12:32:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4030B6EE17
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 11:49:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="309614528"
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="309614528"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:49:55 -0700
-X-IronPort-AV: E=Sophos;i="5.85,319,1624345200"; d="scan'208";a="551677938"
-Received: from avanhout-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.37.153])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2021 04:49:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Dave Airlie <airlied@redhat.com>
-Date: Fri, 24 Sep 2021 14:47:41 +0300
-Message-Id: <20210924114741.15940-24-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210924114741.15940-1-jani.nikula@intel.com>
-References: <20210924114741.15940-1-jani.nikula@intel.com>
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 24/24] drm/i915: constify display wm vtable
+X-Greylist: delayed 1421 seconds by postgrey-1.36 at gabe;
+ Fri, 24 Sep 2021 03:17:29 UTC
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F410F6E17F;
+ Fri, 24 Sep 2021 03:17:29 +0000 (UTC)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18O1dWP7018194; 
+ Thu, 23 Sep 2021 22:53:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : subject :
+ from : to : cc : date : in-reply-to : references : content-type :
+ mime-version : content-transfer-encoding; s=pp1;
+ bh=wuouC2eqvPDvQ1Md7kHHpeWYjluxjEmJURkvCvdNlcs=;
+ b=rNEIbh80Df3xj+oBlUfUz/ifiBmf2od1re3ZROT1t6M+X+3HgCobqOdlFHHTTS4GgR18
+ NeaT56ACus5MT7Owl7H+Zed2qaTebaWE5S+sIJWEJ+FnDdZFrKtWmSRN+WX3tVOgSWZz
+ wp2nWrWKM8/9bduQCQVSZFpCrey1DOQ+WPA0/TPFscmBouH+c1piVOlL/5GU4UU4LwCU
+ Ys6t3wuMX1TaucjJc/VHU8xgR9uhnikRLGAlS/ADFbYQk0Ql1WwCcQUSdBegBPdODqoI
+ k0zKNd5GKwvWGvQ0gSrmn7JyDmTarcaw2aniWqwTe7BiuncLSQiX9fP0ghupY6Nzi6sX Mw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com with ESMTP id 3b93suatwk-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 23 Sep 2021 22:53:44 -0400
+Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
+ by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 18O2mTFU017258;
+ Thu, 23 Sep 2021 22:53:43 -0400
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com
+ [169.62.189.11])
+ by mx0b-001b2d01.pphosted.com with ESMTP id 3b93suatwc-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 23 Sep 2021 22:53:43 -0400
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+ by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18O2lXBH002397;
+ Fri, 24 Sep 2021 02:53:42 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com
+ (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+ by ppma03dal.us.ibm.com with ESMTP id 3b93g1u8j0-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 24 Sep 2021 02:53:42 +0000
+Received: from b03ledav002.gho.boulder.ibm.com
+ (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
+ by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 18O2reqp39649698
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 24 Sep 2021 02:53:41 GMT
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id BE3CC136060;
+ Fri, 24 Sep 2021 02:53:40 +0000 (GMT)
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id D54D513605D;
+ Fri, 24 Sep 2021 02:53:38 +0000 (GMT)
+Received: from farman-thinkpad-t470p (unknown [9.211.34.14])
+ by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
+ Fri, 24 Sep 2021 02:53:38 +0000 (GMT)
+Message-ID: <144b3f129af82c0e928250342b71f2372cc67ea3.camel@linux.ibm.com>
+From: Eric Farman <farman@linux.ibm.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@linux.ie>, Tony
+ Krowiak <akrowiak@linux.ibm.com>, Alex Williamson
+ <alex.williamson@redhat.com>, Christian Borntraeger
+ <borntraeger@de.ibm.com>, Cornelia Huck <cohuck@redhat.com>, Daniel Vetter
+ <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, Harald Freudenberger
+ <freude@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens
+ <hca@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Jason Herne <jjherne@linux.ibm.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org, Kirti
+ Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org, Matthew
+ Rosato <mjrosato@linux.ibm.com>, Peter Oberparleiter
+ <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Vineeth Vijayan <vneethv@linux.ibm.com>, Zhenyu
+ Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
+Cc: Christoph Hellwig <hch@lst.de>
+Date: Thu, 23 Sep 2021 22:53:37 -0400
+In-Reply-To: <1-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
+References: <1-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5 (3.28.5-16.el8) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: _r2Z3ezORzHmn3cXQji0mW9FA5OFlGWs
+X-Proofpoint-GUID: dAyJm55gTKyHAGMoz8sVyegi9l8Z5giQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-23_07,2021-09-23_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 spamscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=947 mlxscore=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1015
+ malwarescore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2109230001 definitions=main-2109240011
+X-Mailman-Approved-At: Fri, 24 Sep 2021 12:32:21 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 1/9] vfio/ccw: Use functions for
+ alloc/free of the vfio_ccw_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,263 +119,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Thu, 2021-09-09 at 16:38 -0300, Jason Gunthorpe wrote:
+> Makes the code easier to understand what is memory lifecycle and what
+> is
+> other stuff.
+> 
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/s390/cio/vfio_ccw_drv.c | 137 ++++++++++++++++++----------
+> ----
+>  1 file changed, 78 insertions(+), 59 deletions(-)
 
-Use a nop table for the cases where CxSR doesn't init properly.
-
-v2: use a nop table (Jani)
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 34 ++++-----
- drivers/gpu/drm/i915/i915_drv.h              |  2 +-
- drivers/gpu/drm/i915/intel_pm.c              | 80 ++++++++++++++------
- 3 files changed, 75 insertions(+), 41 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5619b26aa765..2d566b254322 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -162,16 +162,16 @@ static void intel_modeset_setup_hw_state(struct drm_device *dev,
-  */
- static void intel_update_watermarks(struct drm_i915_private *dev_priv)
- {
--	if (dev_priv->wm_disp.update_wm)
--		dev_priv->wm_disp.update_wm(dev_priv);
-+	if (dev_priv->wm_disp->update_wm)
-+		dev_priv->wm_disp->update_wm(dev_priv);
- }
- 
- static int intel_compute_pipe_wm(struct intel_atomic_state *state,
- 				 struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.compute_pipe_wm)
--		return dev_priv->wm_disp.compute_pipe_wm(state, crtc);
-+	if (dev_priv->wm_disp->compute_pipe_wm)
-+		return dev_priv->wm_disp->compute_pipe_wm(state, crtc);
- 	return 0;
- }
- 
-@@ -179,20 +179,20 @@ static int intel_compute_intermediate_wm(struct intel_atomic_state *state,
- 					 struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (!dev_priv->wm_disp.compute_intermediate_wm)
-+	if (!dev_priv->wm_disp->compute_intermediate_wm)
- 		return 0;
- 	if (drm_WARN_ON(&dev_priv->drm,
--			!dev_priv->wm_disp.compute_pipe_wm))
-+			!dev_priv->wm_disp->compute_pipe_wm))
- 		return 0;
--	return dev_priv->wm_disp.compute_intermediate_wm(state, crtc);
-+	return dev_priv->wm_disp->compute_intermediate_wm(state, crtc);
- }
- 
- static bool intel_initial_watermarks(struct intel_atomic_state *state,
- 				     struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.initial_watermarks) {
--		dev_priv->wm_disp.initial_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->initial_watermarks) {
-+		dev_priv->wm_disp->initial_watermarks(state, crtc);
- 		return true;
- 	}
- 	return false;
-@@ -202,23 +202,23 @@ static void intel_atomic_update_watermarks(struct intel_atomic_state *state,
- 					   struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.atomic_update_watermarks)
--		dev_priv->wm_disp.atomic_update_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->atomic_update_watermarks)
-+		dev_priv->wm_disp->atomic_update_watermarks(state, crtc);
- }
- 
- static void intel_optimize_watermarks(struct intel_atomic_state *state,
- 				      struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.optimize_watermarks)
--		dev_priv->wm_disp.optimize_watermarks(state, crtc);
-+	if (dev_priv->wm_disp->optimize_watermarks)
-+		dev_priv->wm_disp->optimize_watermarks(state, crtc);
- }
- 
- static void intel_compute_global_watermarks(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	if (dev_priv->wm_disp.compute_global_watermarks)
--		dev_priv->wm_disp.compute_global_watermarks(state);
-+	if (dev_priv->wm_disp->compute_global_watermarks)
-+		dev_priv->wm_disp->compute_global_watermarks(state);
- }
- 
- /* returns HPLL frequency in kHz */
-@@ -3743,7 +3743,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
- 	if (DISPLAY_VER(dev_priv) != 2)
- 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
- 
--	if (!dev_priv->wm_disp.initial_watermarks)
-+	if (!dev_priv->wm_disp->initial_watermarks)
- 		intel_update_watermarks(dev_priv);
- 
- 	/* clock the pipe down to 640x480@60 to potentially save power */
-@@ -11423,7 +11423,7 @@ static void sanitize_watermarks(struct drm_i915_private *dev_priv)
- 	int i;
- 
- 	/* Only supported on platforms that use atomic watermark design */
--	if (!dev_priv->wm_disp.optimize_watermarks)
-+	if (!dev_priv->wm_disp->optimize_watermarks)
- 		return;
- 
- 	state = drm_atomic_state_alloc(&dev_priv->drm);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 390091b898d5..6fd89cd9b3f9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -978,7 +978,7 @@ struct drm_i915_private {
- 	const struct drm_i915_clock_gating_funcs *clock_gating_funcs;
- 
- 	/* pm display functions */
--	struct drm_i915_wm_disp_funcs wm_disp;
-+	const struct drm_i915_wm_disp_funcs *wm_disp;
- 
- 	/* irq display functions */
- 	const struct intel_hotplug_funcs *hotplug_funcs;
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 08e0195edeb7..ef5f73934dab 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -7975,6 +7975,51 @@ void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv)
- 	}
- }
- 
-+static const struct drm_i915_wm_disp_funcs skl_wm_funcs = {
-+	.compute_global_watermarks = skl_compute_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs ilk_wm_funcs = {
-+	.compute_pipe_wm = ilk_compute_pipe_wm,
-+	.compute_intermediate_wm = ilk_compute_intermediate_wm,
-+	.initial_watermarks = ilk_initial_watermarks,
-+	.optimize_watermarks = ilk_optimize_watermarks,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs vlv_wm_funcs = {
-+	.compute_pipe_wm = vlv_compute_pipe_wm,
-+	.compute_intermediate_wm = vlv_compute_intermediate_wm,
-+	.initial_watermarks = vlv_initial_watermarks,
-+	.optimize_watermarks = vlv_optimize_watermarks,
-+	.atomic_update_watermarks = vlv_atomic_update_fifo,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs g4x_wm_funcs = {
-+	.compute_pipe_wm = g4x_compute_pipe_wm,
-+	.compute_intermediate_wm = g4x_compute_intermediate_wm,
-+	.initial_watermarks = g4x_initial_watermarks,
-+	.optimize_watermarks = g4x_optimize_watermarks,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs pnv_wm_funcs = {
-+	.update_wm = pnv_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i965_wm_funcs = {
-+	.update_wm = i965_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i9xx_wm_funcs = {
-+	.update_wm = i9xx_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs i845_wm_funcs = {
-+	.update_wm = i845_update_wm,
-+};
-+
-+static const struct drm_i915_wm_disp_funcs nop_funcs = {
-+};
-+
- /* Set up chip specific power management-related functions */
- void intel_init_pm(struct drm_i915_private *dev_priv)
- {
-@@ -7990,7 +8035,7 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 	/* For FIFO watermark updates */
- 	if (DISPLAY_VER(dev_priv) >= 9) {
- 		skl_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_global_watermarks = skl_compute_wm;
-+		dev_priv->wm_disp = &skl_wm_funcs;
- 	} else if (HAS_PCH_SPLIT(dev_priv)) {
- 		ilk_setup_wm_latency(dev_priv);
- 
-@@ -7998,31 +8043,19 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 		     dev_priv->wm.spr_latency[1] && dev_priv->wm.cur_latency[1]) ||
- 		    (DISPLAY_VER(dev_priv) != 5 && dev_priv->wm.pri_latency[0] &&
- 		     dev_priv->wm.spr_latency[0] && dev_priv->wm.cur_latency[0])) {
--			dev_priv->wm_disp.compute_pipe_wm = ilk_compute_pipe_wm;
--			dev_priv->wm_disp.compute_intermediate_wm =
--				ilk_compute_intermediate_wm;
--			dev_priv->wm_disp.initial_watermarks =
--				ilk_initial_watermarks;
--			dev_priv->wm_disp.optimize_watermarks =
--				ilk_optimize_watermarks;
-+			dev_priv->wm_disp = &ilk_wm_funcs;
- 		} else {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Failed to read display plane latency. "
- 				    "Disable CxSR\n");
-+			dev_priv->wm_disp = &nop_funcs;
- 		}
- 	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
- 		vlv_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_pipe_wm = vlv_compute_pipe_wm;
--		dev_priv->wm_disp.compute_intermediate_wm = vlv_compute_intermediate_wm;
--		dev_priv->wm_disp.initial_watermarks = vlv_initial_watermarks;
--		dev_priv->wm_disp.optimize_watermarks = vlv_optimize_watermarks;
--		dev_priv->wm_disp.atomic_update_watermarks = vlv_atomic_update_fifo;
-+		dev_priv->wm_disp = &vlv_wm_funcs;
- 	} else if (IS_G4X(dev_priv)) {
- 		g4x_setup_wm_latency(dev_priv);
--		dev_priv->wm_disp.compute_pipe_wm = g4x_compute_pipe_wm;
--		dev_priv->wm_disp.compute_intermediate_wm = g4x_compute_intermediate_wm;
--		dev_priv->wm_disp.initial_watermarks = g4x_initial_watermarks;
--		dev_priv->wm_disp.optimize_watermarks = g4x_optimize_watermarks;
-+		dev_priv->wm_disp = &g4x_wm_funcs;
- 	} else if (IS_PINEVIEW(dev_priv)) {
- 		if (!intel_get_cxsr_latency(!IS_MOBILE(dev_priv),
- 					    dev_priv->is_ddr3,
-@@ -8036,21 +8069,22 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
- 				 dev_priv->fsb_freq, dev_priv->mem_freq);
- 			/* Disable CxSR and never update its watermark again */
- 			intel_set_memory_cxsr(dev_priv, false);
--			dev_priv->wm_disp.update_wm = NULL;
-+			dev_priv->wm_disp = &nop_funcs;
- 		} else
--			dev_priv->wm_disp.update_wm = pnv_update_wm;
-+			dev_priv->wm_disp = &pnv_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 4) {
--		dev_priv->wm_disp.update_wm = i965_update_wm;
-+		dev_priv->wm_disp = &i965_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 3) {
--		dev_priv->wm_disp.update_wm = i9xx_update_wm;
-+		dev_priv->wm_disp = &i9xx_wm_funcs;
- 	} else if (DISPLAY_VER(dev_priv) == 2) {
- 		if (INTEL_NUM_PIPES(dev_priv) == 1)
--			dev_priv->wm_disp.update_wm = i845_update_wm;
-+			dev_priv->wm_disp = &i845_wm_funcs;
- 		else
--			dev_priv->wm_disp.update_wm = i9xx_update_wm;
-+			dev_priv->wm_disp = &i9xx_wm_funcs;
- 	} else {
- 		drm_err(&dev_priv->drm,
- 			"unexpected fall-through in %s\n", __func__);
-+		dev_priv->wm_disp = &nop_funcs;
- 	}
- }
- 
--- 
-2.30.2
+Reviewed-by: Eric Farman <farman@linux.ibm.com>
 
