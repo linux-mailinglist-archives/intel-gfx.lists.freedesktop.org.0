@@ -2,33 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EED1417E62
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Sep 2021 01:45:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0CB8417E64
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Sep 2021 01:45:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 837B26EE9B;
-	Fri, 24 Sep 2021 23:45:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5DFB6EE9F;
+	Fri, 24 Sep 2021 23:45:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 89B986EE9B;
- Fri, 24 Sep 2021 23:45:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 812D5AA0EB;
- Fri, 24 Sep 2021 23:45:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3867173805530250372=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7F756EE9C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 23:45:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10117"; a="211269954"
+X-IronPort-AV: E=Sophos;i="5.85,321,1624345200"; d="scan'208";a="211269954"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 16:45:42 -0700
+X-IronPort-AV: E=Sophos;i="5.85,321,1624345200"; d="scan'208";a="485542782"
+Received: from jlee24-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.77.175])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 16:45:42 -0700
+Date: Fri, 24 Sep 2021 16:45:31 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <20210924234531.qqke6j6taghm7kwt@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20201027044618.719064-1-lucas.demarchi@intel.com>
+ <20201027044618.719064-3-lucas.demarchi@intel.com>
+ <160448371454.8986.12904696092648361290@jlahtine-mobl.ger.corp.intel.com>
+ <20201105010422.l2mum5gep7dxva5f@ldmartin-desk1.jf.intel.com>
+ <160456334665.5393.4671076622521791518@jlahtine-mobl.ger.corp.intel.com>
+ <20210706234430.nm64jerbt3kkoeue@ldmartin-desk2>
+ <YU4yGOCG92pgn754@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Sep 2021 23:45:22 -0000
-Message-ID: <163252712250.20559.4031119279819628125@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210924223451.71316-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20210924223451.71316-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/pmu=3A_Connect_engine_busyness_stats_from_GuC_to_pmu?=
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <YU4yGOCG92pgn754@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: remove some debug-only
+ registers from MCHBAR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,178 +54,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3867173805530250372==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Sep 24, 2021 at 04:16:24PM -0400, Rodrigo Vivi wrote:
+>On Tue, Jul 06, 2021 at 04:44:30PM -0700, Lucas De Marchi wrote:
+>> On Thu, Nov 05, 2020 at 10:02:27AM +0200, Joonas Lahtinen wrote:
+>> > Quoting Lucas De Marchi (2020-11-05 03:04:22)
+>> > > On Wed, Nov 04, 2020 at 11:55:15AM +0200, Joonas Lahtinen wrote:
+>> > > >Quoting Lucas De Marchi (2020-10-27 06:46:18)
+>> > > >> GT_PERF_STATUS and RP_STATE_LIMITS were added a long time ago in
+>> > > >> commit 3b8d8d91d51c ("drm/i915: dynamic render p-state support for Sandy
+>> > > >> Bridge").  Other than printing their values in debugfs we don't do
+>> > > >> anything with them.  There's not much useful information in them. These
+>> > > >> registers may change location in future platforms, but instead of adding
+>> > > >> new locations, it's simpler to just remove them.
+>> > > >
+>> > > >This code seems to have been updated for Gen9LP, so that would indicate
+>> > > >the debugging information is useful, right? The value is even decoded, not
+>> > > >simply dumped as most registers. So I would be hesitant to drop it for
+>> > > >not being useful.
+>> > >
+>> > > but just updating the register in itself for a new gen doesn't mean it's
+>> > > actually useful... the commit message where this happened is pretty
+>> > > vague: 350405623ff3 ("drm/i915: Update rps frequencies for BXT")
+>> > >
+>> > > My first reaction would be to do the same if the register had moved or
+>> > > if it ceased to exist in a new platform. Talking with Matt Roper some
+>> > > time ago we arrived to the conclusion that just printing these values is
+>> > > not giving us much benefit and it could very well be accomplished by
+>> > > intel_reg.
+>> > >
+>> > > So answering the question:  is it really useful as is? IMO, no.
+>> >
+>> > A quick discussion on #intel-gfx seems to indicate it was used for
+>> > bug triaging in the past year. So that would indicate it is still
+>> > useful to include.
+>>
+>> getting back to this as we are trying to upstream XeHP-SDV that doesn't
+>> have access to the MCHBAR. So do you think we should just make it
+>> conditional instead of removing?
+>
+>Yes, please let's make this conditional.
+>
+>>
+>> I'm still on the side that this additional code doesn't bring much value
+>> and could be replaced by intel-reg.
+>
+>In general I'd agree. However:
+>
+>1. Sometimes it is very hard to find out what registers and bits have
+>some useful information.
+>2. If it is hard to remove sometimes it is harder to add some information
+>like this.
+>3. I was not part of the IRC chat that Joonas mentioned, but apparently
+>this data was useful in the past for some cases.
 
-== Series Details ==
+I will disagree and commit since 2 maintainers are against the
+removal. I will send a new updated patch. Just to make my point clear:
 
-Series: drm/i915/pmu: Connect engine busyness stats from GuC to pmu
-URL   : https://patchwork.freedesktop.org/series/95043/
-State : failure
+1) This doesn't expose anything more than what is available with
+intel_reg
 
-== Summary ==
+2) we are already printing the wrong value for "recent" platforms:
+one of the register wasn't updated for anything after gen9. The other
+register doesn't actually seem to exist anymore after gen9.
 
-CI Bug Log - changes from CI_DRM_10643 -> Patchwork_21158
-====================================================
+3) It adds to the maintenance, particularly because this is an mchbar
+register which is not available in bspec
 
-Summary
--------
+4) It's still not clear how exactly this was useful
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_21158 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21158, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21158:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10643/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21158 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@runner@aborted:
-    - fi-rkl-guc:         NOTRUN -> [FAIL][3] ([i915#1602])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
-  [i915#4136]: https://gitlab.freedesktop.org/drm/intel/issues/4136
-
-
-Participating hosts (40 -> 34)
-------------------------------
-
-  Missing    (6): bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10643 -> Patchwork_21158
-
-  CI-20190529: 20190529
-  CI_DRM_10643: 6b2cb2c1f403ce807a7877c62cf1a8dcb5aef77a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21158: 341d088143ed862d96ea278c4824eec48c7b0516 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-341d088143ed drm/i915/pmu: Connect engine busyness stats from GuC to pmu
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html
-
---===============3867173805530250372==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pmu: Connect engine busyness stats from GuC to pmu</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95043/">https://patchwork.freedesktop.org/series/95043/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10643 -&gt; Patchwork_21158</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21158 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21158, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21158:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10643/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21158 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21158/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (40 -&gt; 34)</h2>
-<p>Missing    (6): bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10643 -&gt; Patchwork_21158</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10643: 6b2cb2c1f403ce807a7877c62cf1a8dcb5aef77a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21158: 341d088143ed862d96ea278c4824eec48c7b0516 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>341d088143ed drm/i915/pmu: Connect engine busyness stats from GuC to pmu</p>
-
-</body>
-</html>
-
---===============3867173805530250372==--
+Lucas De Marchi
