@@ -1,35 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A330417702
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 16:46:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB5D417707
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Sep 2021 16:47:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7693B6EE27;
-	Fri, 24 Sep 2021 14:46:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F77D6EE23;
+	Fri, 24 Sep 2021 14:47:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0C5346EE27;
- Fri, 24 Sep 2021 14:46:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05BD1AA3D8;
- Fri, 24 Sep 2021 14:46:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9E846EE23;
+ Fri, 24 Sep 2021 14:47:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="220885786"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="220885786"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 07:47:31 -0700
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; d="scan'208";a="559648895"
+Received: from llfarnan-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.243.250])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2021 07:47:30 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Date: Fri, 24 Sep 2021 15:46:46 +0100
+Message-Id: <20210924144646.4096402-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Sep 2021 14:46:08 -0000
-Message-ID: <163249476899.20559.5241614167728488380@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210924114741.15940-1-jani.nikula@intel.com>
-In-Reply-To: <20210924114741.15940-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C01/24=5D_drm/i915/uncore=3A_sp?=
- =?utf-8?q?lit_the_fw_get_function_into_separate_vfunc?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: remember to call i915_sw_fence_fini
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,108 +46,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Seems to fix some object-debug splat which appeared while debugging
+something unrelated.
 
-Series: series starting with [CI,01/24] drm/i915/uncore: split the fw get function into separate vfunc
-URL   : https://patchwork.freedesktop.org/series/95024/
-State : warning
+v2: s/guc_blocked/guc_state.blocked/
 
-== Summary ==
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-$ dim checkpatch origin/drm-tip
-4914c76ee59e drm/i915/uncore: split the fw get function into separate vfunc
-08a545dfec89 drm/i915/pm: drop get_fifo_size vfunc.
-f58fcec3881f drm/i915: make update_wm take a dev_priv.
-059557612cc1 drm/i915/wm: provide wrappers around watermark vfuncs calls (v2)
--:10: WARNING:TYPO_SPELLING: 'existance' may be misspelled - perhaps 'existence'?
-#10: 
-One thing to note is that the code checks the existance of some
-                                              ^^^^^^^^^
-
--:29: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#29: FILE: drivers/gpu/drm/i915/display/intel_display.c:129:
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index ff637147b1a9..e9a0cad5c34d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -419,6 +419,7 @@ void intel_context_fini(struct intel_context *ce)
  
-+
-
--:73: WARNING:LINE_SPACING: Missing a blank line after declarations
-#73: FILE: drivers/gpu/drm/i915/display/intel_display.c:173:
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	if (dev_priv->display.compute_pipe_wm)
-
--:82: WARNING:LINE_SPACING: Missing a blank line after declarations
-#82: FILE: drivers/gpu/drm/i915/display/intel_display.c:182:
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	if (!dev_priv->display.compute_intermediate_wm)
-
--:94: WARNING:LINE_SPACING: Missing a blank line after declarations
-#94: FILE: drivers/gpu/drm/i915/display/intel_display.c:194:
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	if (dev_priv->display.initial_watermarks) {
-
--:105: WARNING:LINE_SPACING: Missing a blank line after declarations
-#105: FILE: drivers/gpu/drm/i915/display/intel_display.c:205:
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	if (dev_priv->display.atomic_update_watermarks)
-
--:113: WARNING:LINE_SPACING: Missing a blank line after declarations
-#113: FILE: drivers/gpu/drm/i915/display/intel_display.c:213:
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	if (dev_priv->display.optimize_watermarks)
-
--:120: WARNING:LINE_SPACING: Missing a blank line after declarations
-#120: FILE: drivers/gpu/drm/i915/display/intel_display.c:220:
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	if (dev_priv->display.compute_global_watermarks)
-
--:134: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 20)
-#134: FILE: drivers/gpu/drm/i915/display/intel_display.c:2635:
-+		if (!intel_initial_watermarks(state, crtc))
-+		    if (new_crtc_state->update_wm_pre)
-
--:135: WARNING:TABSTOP: Statements should start on a tabstop
-#135: FILE: drivers/gpu/drm/i915/display/intel_display.c:2636:
-+		    if (new_crtc_state->update_wm_pre)
-
--:176: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
-#176: FILE: drivers/gpu/drm/i915/display/intel_display.c:3679:
-+	if (!intel_initial_watermarks(state, crtc))
-+	    intel_update_watermarks(dev_priv);
-
-total: 0 errors, 10 warnings, 1 checks, 319 lines checked
-20efb2b4959a drm/i915: add wrappers around cdclk vtable funcs.
--:32: WARNING:LINE_SPACING: Missing a blank line after declarations
-#32: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:71:
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	return dev_priv->display.bw_calc_min_cdclk(state);
-
-total: 0 errors, 1 warnings, 0 checks, 127 lines checked
-109ed63792a7 drm/i915/display: add intel_fdi_link_train wrapper.
-6746f62182b9 drm/i915: split clock gating init from display vtable
-434a5c505c8e drm/i915: split watermark vfuncs from display vtable.
-e87887a29e0e drm/i915: split color functions from display vtable
-241186abd3cd drm/i915: split audio functions from display vtable
-285397427e1f drm/i915: split cdclk functions from display vtable.
-b9df3e8f5dd5 drm/i915: split irq hotplug function from display vtable
-2979a6404d3e drm/i915: split fdi link training from display vtable.
-155b90d4459b drm/i915: split the dpll clock compute out from display vtable.
-014d3658282b drm/i915: constify fdi link training vtable
-d9a04ba4dcf8 drm/i915: constify hotplug function vtable.
-cfc30359d062 drm/i915: constify color function vtable.
--:197: CHECK:BRACES: Unbalanced braces around else statement
-#197: FILE: drivers/gpu/drm/i915/display/intel_color.c:2194:
-+		} else
-
-total: 0 errors, 0 warnings, 1 checks, 187 lines checked
-defe9d3b4a87 drm/i915: constify the audio function vtable
-904291d2789a drm/i915: constify the dpll clock vtable
-b0b0887ac32a drm/i915: constify the cdclk vtable
-83d7a5733fce drm/i915: drop unused function ptr and comments.
-26fa20672d80 drm/i915: constify display function vtable
-5ed7e0842222 drm/i915: constify clock gating init vtable.
-c4c4c3ae4110 drm/i915: constify display wm vtable
-
+ 	mutex_destroy(&ce->pin_mutex);
+ 	i915_active_fini(&ce->active);
++	i915_sw_fence_fini(&ce->guc_state.blocked);
+ }
+ 
+ void i915_context_module_exit(void)
+-- 
+2.26.3
 
