@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F1ED4184ED
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Sep 2021 00:20:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99767418500
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Sep 2021 00:37:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC726E489;
-	Sat, 25 Sep 2021 22:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCC56E4B0;
+	Sat, 25 Sep 2021 22:37:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 459 seconds by postgrey-1.36 at gabe;
- Sat, 25 Sep 2021 22:20:03 UTC
-Received: from smtp-relay-canonical-0.canonical.com
- (smtp-relay-canonical-0.canonical.com [185.125.188.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64A3D6E489
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Sep 2021 22:20:03 +0000 (UTC)
-Received: from localhost (1.general.cking.uk.vpn [10.172.193.212])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 2E89C40CE2; 
- Sat, 25 Sep 2021 22:12:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1632607942;
- bh=5GJGeMUE1rwvKSTEVK8obPvzmMX2uPbl+sLWvpxmi/Y=;
- h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
- b=o4XySPeeDyWl8UU398FbX6sZORi8Iwe8Z326AxuuHOnrT5Y+Y60FQxN9UjaUo5REF
- PQB+RALfQQwlBSs9LrS/H816hXRMgqvezkOn7p2JJY7FToR1nPKzukbCvvGXEscnWb
- 37+yBQTol2XTHhpUooVwce+IMzaBU5oetc6tt+7iEC5rYea39xzBcJwF9otwBeeg7d
- l/bxY6ggW8dA4m9ax3F9hIhXLFHeQoc0z1K0iIxwzr36ENrsTt/IZXLj/OmwrJdyMp
- t2TAo0Yf03dsAv/X9fn4RCvde3KAS7Wv8z9EdVy/vXsZXzccMe05nLcuLqtUUA66jQ
- 5dolgvk2MnX3w==
-From: Colin King <colin.king@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Chris Wilson <chris@chris-wilson.co.uk>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Date: Sat, 25 Sep 2021 23:12:21 +0100
-Message-Id: <20210925221221.181630-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.32.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7FAD96E4AF;
+ Sat, 25 Sep 2021 22:37:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 76DC2AADCF;
+ Sat, 25 Sep 2021 22:37:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5616374507140299434=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: return NULL rather than a plain 0
- integer
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Colin King" <colin.king@canonical.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 25 Sep 2021 22:37:56 -0000
+Message-ID: <163260947646.10331.13600131335047589852@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210925221221.181630-1-colin.king@canonical.com>
+In-Reply-To: <20210925221221.181630-1-colin.king@canonical.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_return_NULL_rather_than_a_plain_0_integer?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,33 +41,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Colin Ian King <colin.king@canonical.com>
+--===============5616374507140299434==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Function gen7_ctx_vma returns a pointer to struct i915_vma, so
-returning a plain 0 integer isn't good practice. Fix this by
-returning a NULL instead.
+== Series Details ==
 
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915/gt: return NULL rather than a plain 0 integer
+URL   : https://patchwork.freedesktop.org/series/95062/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 2958e2fae380..3c65efcb7bed 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1265,7 +1265,7 @@ static struct i915_vma *gen7_ctx_vma(struct intel_engine_cs *engine)
- 	int size, err;
- 
- 	if (GRAPHICS_VER(engine->i915) != 7 || engine->class != RENDER_CLASS)
--		return 0;
-+		return NULL;
- 
- 	err = gen7_ctx_switch_bb_setup(engine, NULL /* probe size */);
- 	if (err < 0)
--- 
-2.32.0
+== Summary ==
 
+Applying: drm/i915/gt: return NULL rather than a plain 0 integer
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gt/intel_ring_submission.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/gt/intel_ring_submission.c
+No changes -- Patch already applied.
+
+
+
+--===============5616374507140299434==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: return NULL rather than a plain 0 integer</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95062/">https://patchwork.freedesktop.org/series/95062/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915/gt: return NULL rather than a plain 0 integer<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/gt/intel_ring_submission.c<br />
+Falling back to patching base and 3-way merge...<br />
+Auto-merging drivers/gpu/drm/i915/gt/intel_ring_submission.c<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============5616374507140299434==--
