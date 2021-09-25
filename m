@@ -1,39 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D743E4191C6
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 11:46:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A14F3419341
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 13:41:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED3F06E83A;
-	Mon, 27 Sep 2021 09:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24CD589FAC;
+	Mon, 27 Sep 2021 11:41:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 368F86E83A
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 09:46:28 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10119"; a="222553512"
-X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="222553512"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 02:45:55 -0700
-X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="553129834"
-Received: from susuale1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.36.178])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 02:45:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210927084735.2520467-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210927084735.2520467-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Mon, 27 Sep 2021 12:45:51 +0300
-Message-ID: <87a6jys65s.fsf@intel.com>
+X-Greylist: delayed 1858 seconds by postgrey-1.36 at gabe;
+ Sat, 25 Sep 2021 13:33:15 UTC
+Received: from baidu.com (mx22.baidu.com [220.181.50.185])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7EAD96E25A;
+ Sat, 25 Sep 2021 13:33:15 +0000 (UTC)
+Received: from BC-Mail-Ex12.internal.baidu.com (unknown [172.31.51.52])
+ by Forcepoint Email with ESMTPS id 2ECBE2642B6E4D6F05C4;
+ Sat, 25 Sep 2021 20:46:20 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-Ex12.internal.baidu.com (172.31.51.52) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2242.12; Sat, 25 Sep 2021 20:46:20 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Sat, 25 Sep 2021 20:46:19 +0800
+From: Cai Huoqing <caihuoqing@baidu.com>
+To: <caihuoqing@baidu.com>
+CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Zhenyu Wang
+ <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <intel-gvt-dev@lists.freedesktop.org>
+Date: Sat, 25 Sep 2021 20:46:12 +0800
+Message-ID: <20210925124613.144-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH V5] drm/i915/gen11: Disable cursor clock
- gating in HDR mode
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BJHW-Mail-Ex01.internal.baidu.com (10.127.64.11) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+X-Mailman-Approved-At: Mon, 27 Sep 2021 11:41:03 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: Use direction definition
+ DMA_BIDIRECTIONAL instead of PCI_DMA_BIDIRECTIONAL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,119 +59,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 27 Sep 2021, Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com> wrote:
-> Display underrun in HDR mode when cursor is enabled.
-> RTL fix will be implemented CLKGATE_DIS_PSL_A bit 28-46520h.
-> As per W/A 1604331009, Disable cursor clock gating in HDR mode.
->
-> Bspec : 33451
->
-> Changes since V4:
-> 	- Added WA needed check - Ville
-> 	- Replace BIT with REG_BIT - Ville
-> 	- Add WA enable/disable support back which was added in V1 - Ville
-> Changes since V3:
->         - Disable WA when not in HDR mode or cursor plane not active - Ville
->         - Extract required args from crtc_state - Ville
->         - Create HDR mode API using bdw_set_pipemisc ref - Ville
->         - Tested with HDR video as well full setmode, WA applies and disables
-> Changes since V2:
->         - Made it general gen11 WA
->         - Removed WA needed check
->         - Added cursor plane active check
->         - Once WA enable, software will not disable
-> Changes since V1:
->         - Modified way CLKGATE_DIS_PSL bit 28 was modified
->
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 36 ++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h              |  1 +
->  2 files changed, 37 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index f27c294beb92..fef3e182c5e7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -214,6 +214,19 @@ icl_wa_scalerclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
->  		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);
->  }
->  
-> +/* Wa_1604331009:icl,jsl,ehl */
-> +static void
-> +icl_wa_cursorclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
-> +		       bool enable)
-> +{
-> +	if (enable)
-> +		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
-> +			       intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | CURSOR_GATING_DIS);
-> +	else
-> +		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
-> +			       intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~CURSOR_GATING_DIS);
+Replace direction definition PCI_DMA_BIDIRECTIONAL
+with DMA_BIDIRECTIONAL, because it helps to enhance readability
+and avoid possible inconsistency.
 
-	intel_de_rmw(i915, CLKGATE_DIS_PSL(pipe), CURSOR_GATING_DIS, enable ? CURSOR_GATING_DIS : 0);
+Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+---
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c |  4 ++--
+ drivers/gpu/drm/i915/gvt/gtt.c              | 17 ++++++++---------
+ drivers/gpu/drm/i915/gvt/kvmgt.c            |  4 ++--
+ drivers/gpu/drm/i915/i915_gem_gtt.c         |  4 ++--
+ 4 files changed, 14 insertions(+), 15 deletions(-)
 
-> +}
-> +
->  static bool
->  is_trans_port_sync_slave(const struct intel_crtc_state *crtc_state)
->  {
-> @@ -2356,6 +2369,19 @@ static bool needs_scalerclk_wa(const struct intel_crtc_state *crtc_state)
->  	return false;
->  }
->  
-> +static bool needs_cursorclk_wa(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
-> +
-> +	/* Wa_1604331009:icl,jsl,ehl */
-> +	if (is_hdr_mode(crtc_state) &&
-> +	    crtc_state->active_planes & BIT(PLANE_CURSOR) &&
-> +	    DISPLAY_VER(dev_priv) == 11)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  static bool planes_enabling(const struct intel_crtc_state *old_crtc_state,
->  			    const struct intel_crtc_state *new_crtc_state)
->  {
-> @@ -2398,6 +2424,11 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
->  	if (needs_scalerclk_wa(old_crtc_state) &&
->  	    !needs_scalerclk_wa(new_crtc_state))
->  		icl_wa_scalerclkgating(dev_priv, pipe, false);
-> +
-> +	if (needs_cursorclk_wa(old_crtc_state) &&
-> +	    !needs_cursorclk_wa(new_crtc_state))
-> +		icl_wa_cursorclkgating(dev_priv, pipe, false);
-> +
->  }
->  
->  static void intel_crtc_enable_flip_done(struct intel_atomic_state *state,
-> @@ -2494,6 +2525,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
->  	    needs_scalerclk_wa(new_crtc_state))
->  		icl_wa_scalerclkgating(dev_priv, pipe, true);
->  
-> +	/* Wa_1604331009:icl,jsl,ehl */
-> +	if (!needs_cursorclk_wa(old_crtc_state) &&
-> +	    needs_cursorclk_wa(new_crtc_state))
-> +		icl_wa_cursorclkgating(dev_priv, pipe, true);
-> +
->  	/*
->  	 * Vblank time updates from the shadow to live plane control register
->  	 * are blocked if the memory self-refresh mode is active at that
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index ef594df039db..7b3eed5b4e42 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -4272,6 +4272,7 @@ enum {
->  #define   DPF_GATING_DIS		(1 << 10)
->  #define   DPF_RAM_GATING_DIS		(1 << 9)
->  #define   DPFR_GATING_DIS		(1 << 8)
-> +#define   CURSOR_GATING_DIS		REG_BIT(28)
->  
->  #define CLKGATE_DIS_PSL(pipe) \
->  	_MMIO_PIPE(pipe, _CLKGATE_DIS_PSL_A, _CLKGATE_DIS_PSL_B)
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index a74b72f50cc9..afb35d2e5c73 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -32,7 +32,7 @@ static int init_fake_lmem_bar(struct intel_memory_region *mem)
+ 	mem->remap_addr = dma_map_resource(i915->drm.dev,
+ 					   mem->region.start,
+ 					   mem->fake_mappable.size,
+-					   PCI_DMA_BIDIRECTIONAL,
++					   DMA_BIDIRECTIONAL,
+ 					   DMA_ATTR_FORCE_CONTIGUOUS);
+ 	if (dma_mapping_error(i915->drm.dev, mem->remap_addr)) {
+ 		drm_mm_remove_node(&mem->fake_mappable);
+@@ -62,7 +62,7 @@ static void release_fake_lmem_bar(struct intel_memory_region *mem)
+ 	dma_unmap_resource(mem->i915->drm.dev,
+ 			   mem->remap_addr,
+ 			   mem->fake_mappable.size,
+-			   PCI_DMA_BIDIRECTIONAL,
++			   DMA_BIDIRECTIONAL,
+ 			   DMA_ATTR_FORCE_CONTIGUOUS);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+index e5c2fdfc20e3..53d0cb327539 100644
+--- a/drivers/gpu/drm/i915/gvt/gtt.c
++++ b/drivers/gpu/drm/i915/gvt/gtt.c
+@@ -745,7 +745,7 @@ static void ppgtt_free_spt(struct intel_vgpu_ppgtt_spt *spt)
+ 	trace_spt_free(spt->vgpu->id, spt, spt->guest_page.type);
+ 
+ 	dma_unmap_page(kdev, spt->shadow_page.mfn << I915_GTT_PAGE_SHIFT, 4096,
+-		       PCI_DMA_BIDIRECTIONAL);
++		       DMA_BIDIRECTIONAL);
+ 
+ 	radix_tree_delete(&spt->vgpu->gtt.spt_tree, spt->shadow_page.mfn);
+ 
+@@ -849,7 +849,7 @@ static struct intel_vgpu_ppgtt_spt *ppgtt_alloc_spt(
+ 	 */
+ 	spt->shadow_page.type = type;
+ 	daddr = dma_map_page(kdev, spt->shadow_page.page,
+-			     0, 4096, PCI_DMA_BIDIRECTIONAL);
++			     0, 4096, DMA_BIDIRECTIONAL);
+ 	if (dma_mapping_error(kdev, daddr)) {
+ 		gvt_vgpu_err("fail to map dma addr\n");
+ 		ret = -EINVAL;
+@@ -865,7 +865,7 @@ static struct intel_vgpu_ppgtt_spt *ppgtt_alloc_spt(
+ 	return spt;
+ 
+ err_unmap_dma:
+-	dma_unmap_page(kdev, daddr, PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
++	dma_unmap_page(kdev, daddr, PAGE_SIZE, DMA_BIDIRECTIONAL);
+ err_free_spt:
+ 	free_spt(spt);
+ 	return ERR_PTR(ret);
+@@ -2409,8 +2409,7 @@ static int alloc_scratch_pages(struct intel_vgpu *vgpu,
+ 		return -ENOMEM;
+ 	}
+ 
+-	daddr = dma_map_page(dev, virt_to_page(scratch_pt), 0,
+-			4096, PCI_DMA_BIDIRECTIONAL);
++	daddr = dma_map_page(dev, virt_to_page(scratch_pt), 0, 4096, DMA_BIDIRECTIONAL);
+ 	if (dma_mapping_error(dev, daddr)) {
+ 		gvt_vgpu_err("fail to dmamap scratch_pt\n");
+ 		__free_page(virt_to_page(scratch_pt));
+@@ -2461,7 +2460,7 @@ static int release_scratch_page_tree(struct intel_vgpu *vgpu)
+ 		if (vgpu->gtt.scratch_pt[i].page != NULL) {
+ 			daddr = (dma_addr_t)(vgpu->gtt.scratch_pt[i].page_mfn <<
+ 					I915_GTT_PAGE_SHIFT);
+-			dma_unmap_page(dev, daddr, 4096, PCI_DMA_BIDIRECTIONAL);
++			dma_unmap_page(dev, daddr, 4096, DMA_BIDIRECTIONAL);
+ 			__free_page(vgpu->gtt.scratch_pt[i].page);
+ 			vgpu->gtt.scratch_pt[i].page = NULL;
+ 			vgpu->gtt.scratch_pt[i].page_mfn = 0;
+@@ -2741,7 +2740,7 @@ int intel_gvt_init_gtt(struct intel_gvt *gvt)
+ 	}
+ 
+ 	daddr = dma_map_page(dev, virt_to_page(page), 0,
+-			4096, PCI_DMA_BIDIRECTIONAL);
++			4096, DMA_BIDIRECTIONAL);
+ 	if (dma_mapping_error(dev, daddr)) {
+ 		gvt_err("fail to dmamap scratch ggtt page\n");
+ 		__free_page(virt_to_page(page));
+@@ -2755,7 +2754,7 @@ int intel_gvt_init_gtt(struct intel_gvt *gvt)
+ 		ret = setup_spt_oos(gvt);
+ 		if (ret) {
+ 			gvt_err("fail to initialize SPT oos\n");
+-			dma_unmap_page(dev, daddr, 4096, PCI_DMA_BIDIRECTIONAL);
++			dma_unmap_page(dev, daddr, 4096, DMA_BIDIRECTIONAL);
+ 			__free_page(gvt->gtt.scratch_page);
+ 			return ret;
+ 		}
+@@ -2779,7 +2778,7 @@ void intel_gvt_clean_gtt(struct intel_gvt *gvt)
+ 	dma_addr_t daddr = (dma_addr_t)(gvt->gtt.scratch_mfn <<
+ 					I915_GTT_PAGE_SHIFT);
+ 
+-	dma_unmap_page(dev, daddr, 4096, PCI_DMA_BIDIRECTIONAL);
++	dma_unmap_page(dev, daddr, 4096, DMA_BIDIRECTIONAL);
+ 
+ 	__free_page(gvt->gtt.scratch_page);
+ 
+diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+index 7efa386449d1..20b82fb036f8 100644
+--- a/drivers/gpu/drm/i915/gvt/kvmgt.c
++++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+@@ -328,7 +328,7 @@ static int gvt_dma_map_page(struct intel_vgpu *vgpu, unsigned long gfn,
+ 		return ret;
+ 
+ 	/* Setup DMA mapping. */
+-	*dma_addr = dma_map_page(dev, page, 0, size, PCI_DMA_BIDIRECTIONAL);
++	*dma_addr = dma_map_page(dev, page, 0, size, DMA_BIDIRECTIONAL);
+ 	if (dma_mapping_error(dev, *dma_addr)) {
+ 		gvt_vgpu_err("DMA mapping failed for pfn 0x%lx, ret %d\n",
+ 			     page_to_pfn(page), ret);
+@@ -344,7 +344,7 @@ static void gvt_dma_unmap_page(struct intel_vgpu *vgpu, unsigned long gfn,
+ {
+ 	struct device *dev = vgpu->gvt->gt->i915->drm.dev;
+ 
+-	dma_unmap_page(dev, dma_addr, size, PCI_DMA_BIDIRECTIONAL);
++	dma_unmap_page(dev, dma_addr, size, DMA_BIDIRECTIONAL);
+ 	gvt_unpin_guest_page(vgpu, gfn, size);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+index 36489be4896b..cd5f2348a187 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+@@ -30,7 +30,7 @@ int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
+ 	do {
+ 		if (dma_map_sg_attrs(obj->base.dev->dev,
+ 				     pages->sgl, pages->nents,
+-				     PCI_DMA_BIDIRECTIONAL,
++				     DMA_BIDIRECTIONAL,
+ 				     DMA_ATTR_SKIP_CPU_SYNC |
+ 				     DMA_ATTR_NO_KERNEL_MAPPING |
+ 				     DMA_ATTR_NO_WARN))
+@@ -64,7 +64,7 @@ void i915_gem_gtt_finish_pages(struct drm_i915_gem_object *obj,
+ 		usleep_range(100, 250);
+ 
+ 	dma_unmap_sg(i915->drm.dev, pages->sgl, pages->nents,
+-		     PCI_DMA_BIDIRECTIONAL);
++		     DMA_BIDIRECTIONAL);
+ }
+ 
+ /**
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
