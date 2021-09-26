@@ -2,33 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E190418AC1
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Sep 2021 21:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D099F418AE5
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Sep 2021 22:10:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E984B6E54C;
-	Sun, 26 Sep 2021 19:26:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 746286E55C;
+	Sun, 26 Sep 2021 20:10:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 960B36E546;
- Sun, 26 Sep 2021 19:26:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7BB35A008A;
- Sun, 26 Sep 2021 19:26:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5200360581133415664=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43B376E558;
+ Sun, 26 Sep 2021 20:10:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10119"; a="285381150"
+X-IronPort-AV: E=Sophos;i="5.85,324,1624345200"; d="scan'208";a="285381150"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2021 13:10:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,324,1624345200"; d="scan'208";a="705610353"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by fmsmga006.fm.intel.com with ESMTP; 26 Sep 2021 13:10:20 -0700
+Received: from mwajdecz-MOBL.ger.corp.intel.com
+ (mwajdecz-MOBL.ger.corp.intel.com [10.249.154.207])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 18QKAJio000675; Sun, 26 Sep 2021 21:10:19 +0100
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, CQ Tang <cq.tang@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Date: Sun, 26 Sep 2021 22:10:05 +0200
+Message-Id: <20210926201005.1450-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 26 Sep 2021 19:26:18 -0000
-Message-ID: <163268437846.27227.16217418935430592768@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210926184545.1407-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20210926184545.1407-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Improve_CTB_error_handling_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Use fixed offset for PTEs location
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,256 +47,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5200360581133415664==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+We assumed that for all modern GENs the PTEs and register space are
+split in the GTTMMADR BAR, but while it is true, we should rather use
+fixed offset as it is defined in the specification.
 
-== Series Details ==
+Bspec: 4409, 4457, 4604, 11181, 9027, 13246, 13321, 44980
 
-Series: drm/i915/guc: Improve CTB error handling (rev3)
-URL   : https://patchwork.freedesktop.org/series/92118/
-State : success
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: CQ Tang <cq.tang@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index ba7c7ed89fa8..f17383e76eb7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -813,6 +813,21 @@ static unsigned int chv_get_total_gtt_size(u16 gmch_ctrl)
+ 	return 0;
+ }
+ 
++static unsigned int gen6_gttmmadr_size(struct drm_i915_private *i915)
++{
++	/*
++	 * GEN6: GTTMMADR size is 4MB and GTTADR starts at 2MB offset
++	 * GEN8: GTTMMADR size is 16MB and GTTADR starts at 8MB offset
++	 */
++	GEM_BUG_ON(GRAPHICS_VER(i915) < 6);
++	return (GRAPHICS_VER(i915) < 8) ? SZ_4M : SZ_16M;
++}
++
++static unsigned int gen6_gttadr_offset(struct drm_i915_private *i915)
++{
++	return gen6_gttmmadr_size(i915) / 2;
++}
++
+ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+ {
+ 	struct drm_i915_private *i915 = ggtt->vm.i915;
+@@ -821,8 +836,8 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+ 	u32 pte_flags;
+ 	int ret;
+ 
+-	/* For Modern GENs the PTEs and register space are split in the BAR */
+-	phys_addr = pci_resource_start(pdev, 0) + pci_resource_len(pdev, 0) / 2;
++	GEM_WARN_ON(pci_resource_len(pdev, 0) != gen6_gttmmadr_size(i915));
++	phys_addr = pci_resource_start(pdev, 0) + gen6_gttadr_offset(i915);
+ 
+ 	/*
+ 	 * On BXT+/ICL+ writes larger than 64 bit to the GTT pagetable range
+-- 
+2.25.1
 
-CI Bug Log - changes from CI_DRM_10644 -> Patchwork_21161
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21161 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][2] ([i915#1155])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][3] ([i915#4006] / [i915#4193])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_addfb_basic@too-wide:
-    - fi-tgl-1115g4:      NOTRUN -> [DMESG-WARN][4] ([i915#4002]) +87 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_addfb_basic@too-wide.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#4103]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([fdo#109285])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#1072]) +2 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#1072] / [i915#1385])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#3301])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][11] ([i915#2722])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@runner@aborted.html
-
-  
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1385]: https://gitlab.freedesktop.org/drm/intel/issues/1385
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#4002]: https://gitlab.freedesktop.org/drm/intel/issues/4002
-  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4193]: https://gitlab.freedesktop.org/drm/intel/issues/4193
-
-
-Participating hosts (38 -> 33)
-------------------------------
-
-  Additional (1): fi-tgl-1115g4 
-  Missing    (6): bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-kbl-7500u fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10644 -> Patchwork_21161
-
-  CI-20190529: 20190529
-  CI_DRM_10644: ca294d706a72bd502f7e36b988c57fd634880b00 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21161: fe02b7c0835428d2b14ebbb4d5a9bea6aa9db253 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fe02b7c08354 drm/i915/guc: Move and improve error message for missed CTB reply
-4e2f5273bef4 drm/i915/guc: Print error name on CTB send failure
-2bd46fb94fab drm/i915/guc: Print error name on CTB (de)registration failure
-937f0903b643 drm/i915/guc: Verify result from CTB (de)register action
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/index.html
-
---===============5200360581133415664==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Improve CTB error handling (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92118/">https://patchwork.freedesktop.org/series/92118/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10644 -&gt; Patchwork_21161</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21161 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4193">i915#4193</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@too-wide:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_addfb_basic@too-wide.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) +87 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21161/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (38 -&gt; 33)</h2>
-<p>Additional (1): fi-tgl-1115g4 <br />
-  Missing    (6): bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-kbl-7500u fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10644 -&gt; Patchwork_21161</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10644: ca294d706a72bd502f7e36b988c57fd634880b00 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6218: 8d4169d9543d8e5c01f0c746f603801a4d65ead0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21161: fe02b7c0835428d2b14ebbb4d5a9bea6aa9db253 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fe02b7c08354 drm/i915/guc: Move and improve error message for missed CTB reply<br />
-4e2f5273bef4 drm/i915/guc: Print error name on CTB send failure<br />
-2bd46fb94fab drm/i915/guc: Print error name on CTB (de)registration failure<br />
-937f0903b643 drm/i915/guc: Verify result from CTB (de)register action</p>
-
-</body>
-</html>
-
---===============5200360581133415664==--
