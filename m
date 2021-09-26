@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99767418500
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Sep 2021 00:37:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BA13418A8A
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Sep 2021 20:46:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCC56E4B0;
-	Sat, 25 Sep 2021 22:37:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C968689D42;
+	Sun, 26 Sep 2021 18:45:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7FAD96E4AF;
- Sat, 25 Sep 2021 22:37:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 76DC2AADCF;
- Sat, 25 Sep 2021 22:37:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5616374507140299434=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81B9489D42
+ for <intel-gfx@lists.freedesktop.org>; Sun, 26 Sep 2021 18:45:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10119"; a="224395812"
+X-IronPort-AV: E=Sophos;i="5.85,324,1624345200"; d="scan'208";a="224395812"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2021 11:45:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,324,1624345200"; d="scan'208";a="437486435"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga003.jf.intel.com with ESMTP; 26 Sep 2021 11:45:56 -0700
+Received: from mwajdecz-MOBL.ger.corp.intel.com
+ (mwajdecz-MOBL.ger.corp.intel.com [10.249.154.207])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 18QIjsYn013937; Sun, 26 Sep 2021 19:45:55 +0100
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Sun, 26 Sep 2021 20:45:41 +0200
+Message-Id: <20210926184545.1407-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin King" <colin.king@canonical.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sat, 25 Sep 2021 22:37:56 -0000
-Message-ID: <163260947646.10331.13600131335047589852@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210925221221.181630-1-colin.king@canonical.com>
-In-Reply-To: <20210925221221.181630-1-colin.king@canonical.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_return_NULL_rather_than_a_plain_0_integer?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI v2 0/4] drm/i915/guc: Improve CTB error handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,67 +47,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5616374507140299434==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There was a gap in handling MMIO result from CTB (de)registration
+and while fixing it improve some other error reports.
 
-== Series Details ==
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-Series: drm/i915/gt: return NULL rather than a plain 0 integer
-URL   : https://patchwork.freedesktop.org/series/95062/
-State : failure
+v2: collect latest CI results
 
-== Summary ==
+Michal Wajdeczko (4):
+  drm/i915/guc: Verify result from CTB (de)register action
+  drm/i915/guc: Print error name on CTB (de)registration failure
+  drm/i915/guc: Print error name on CTB send failure
+  drm/i915/guc: Move and improve error message for missed CTB reply
 
-Applying: drm/i915/gt: return NULL rather than a plain 0 integer
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gt/intel_ring_submission.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gt/intel_ring_submission.c
-No changes -- Patch already applied.
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 30 ++++++++++++++---------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
 
+-- 
+2.25.1
 
-
---===============5616374507140299434==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: return NULL rather than a plain 0 integer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95062/">https://patchwork.freedesktop.org/series/95062/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-</table>
-
-
-    <p>Applying: drm/i915/gt: return NULL rather than a plain 0 integer<br />
-Using index info to reconstruct a base tree...<br />
-M   drivers/gpu/drm/i915/gt/intel_ring_submission.c<br />
-Falling back to patching base and 3-way merge...<br />
-Auto-merging drivers/gpu/drm/i915/gt/intel_ring_submission.c<br />
-No changes -- Patch already applied.</p>
-
-</body>
-</html>
-
---===============5616374507140299434==--
