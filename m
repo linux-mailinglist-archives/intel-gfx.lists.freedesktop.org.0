@@ -2,130 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7737341944D
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 14:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80B8041955A
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 15:47:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38FFA6E530;
-	Mon, 27 Sep 2021 12:32:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F3F089D7D;
+	Mon, 27 Sep 2021 13:46:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2063.outbound.protection.outlook.com [40.107.92.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A43F89D60;
- Mon, 27 Sep 2021 12:32:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sw/EJf6u79Y3NZkFEko7XC0cejMqOhV1rUtXOLLXQnvsXvJtZNdjaTOOtooCOOlH6p4OAFEQrdVA/WsaCD/q05foh0kLth4y1EXQsF1s506YHV8SuI5N+evhBVtXhjJ/GG6lK6gH99B64NXdwf6KwTM41xH8n0wpymah6BG7WH6xgXAavPVw+JY0nuLcQfTHSHCbBBaFzwEK2duA2rMLy0sYZO4YBPRGrnld79lrqr5aXlHjr3TwlVVcIhVZTMQDczF7LHrO3rjakAO0clNqSKcufP+EuUJsE9c1VnmihyMyAFe0ZPRsy61L2xI+VHlHyxAObbOXX8qBJ4h+H9TvFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=VPuYeARoLAGaWd4B+MYD+Kvz4eTB/ENysfGucY3TCD4=;
- b=T91cYUKB9KqRWYib6TxzWcpb772d4X2/Glyt3MYG/aSiD55Zq47Z3DQuRnpIcMcWRvIA3uCNc4FQ45B2aFxWQoxZNYhGO87D+xq6AFP4Fha54nQql7chF4+vtj+7h+GusKGyIXkL9HvxUkMozwGynOnzCS+ywecpCtcJMQ6WOAxQbTVKzu/ZOfzthZdH1lOSG5IymbAK1ztClibk6+RVn5pWPOyx5t2+7AbMxRvzxN9aebdRmLHOtnQBT71FzaeHzO8aIYe39wwHtvzfIhH0dr/LuGGRRgTOOkxtI0y4FGREWCoEIFFdba5kX3Zuvn9ttj3vZR8NxtTnUjYNXKG6Pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VPuYeARoLAGaWd4B+MYD+Kvz4eTB/ENysfGucY3TCD4=;
- b=BkClbsX0vEsW3fkr3jKCcR8QtDTrEgp3aRlX0S3q63HusQQ6nM2KpERgH7DTseKW5plR0weVhA2LwK2JoxMVK2wm0hp8GikPvVFVelm5wPb+cvX9sEI3PoTnxaVUgUo6OgyAvdJJZNevcxwNDoQE/g7U8f7aCeqX42yqOsTbgtm4reKkxEy6ejsgqtC/xG+yvjXhiQosaCpC9kWXCO2ZlwYrFn9DViLJ2OlioEGWItcddnRyRS95uqu5kV9zXVNh92YZkpJ5lb89e8UDW7LKG32ZWS+68K4JP0LtJAK0CtpQtKQ2dl8y9KJW2AltP5RLiJcYaN3b9qcHlBaUhV3q0w==
-Authentication-Results: linux.ibm.com; dkim=none (message not signed)
- header.d=none;linux.ibm.com; dmarc=none action=none header.from=nvidia.com;
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
- by BL1PR12MB5361.namprd12.prod.outlook.com (2603:10b6:208:31f::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Mon, 27 Sep
- 2021 12:32:55 +0000
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::e8af:232:915e:2f95]) by BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::e8af:232:915e:2f95%8]) with mapi id 15.20.4544.021; Mon, 27 Sep 2021
- 12:32:55 +0000
-Date: Mon, 27 Sep 2021 09:32:53 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Eric Farman <farman@linux.ibm.com>
-Cc: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org,
- Harald Freudenberger <freude@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Jason Herne <jjherne@linux.ibm.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- kvm@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, Christoph Hellwig <hch@lst.de>
-Message-ID: <20210927123253.GY964074@nvidia.com>
-References: <7-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
- <f887a563e688057d6759e6de65d480326f502331.camel@linux.ibm.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f887a563e688057d6759e6de65d480326f502331.camel@linux.ibm.com>
-X-ClientProxiedBy: MN2PR11CA0003.namprd11.prod.outlook.com
- (2603:10b6:208:23b::8) To BL0PR12MB5506.namprd12.prod.outlook.com
- (2603:10b6:208:1cb::22)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BB9C789D7D;
+ Mon, 27 Sep 2021 13:46:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B44C5A47EA;
+ Mon, 27 Sep 2021 13:46:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Received: from mlx.ziepe.ca (142.162.113.129) by
- MN2PR11CA0003.namprd11.prod.outlook.com (2603:10b6:208:23b::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4544.13 via Frontend Transport; Mon, 27 Sep 2021 12:32:55 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1mUpoU-006JoX-0b; Mon, 27 Sep 2021 09:32:54 -0300
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2b6b6dde-8c8a-4eef-b973-08d981b2ee35
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5361:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL1PR12MB53614B30E68D92FBF33E4CE5C2A79@BL1PR12MB5361.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +KGy/ruVUqPkAAZpRe/xrxVhchw6SNIgpS2N/GImST8+2+mG0OY5HxFSwiZ9C8U4bDj7P8Di6Vz6UW0e454NMujv/L6bRyKC8TO0t35b02ttzaVVL5vi1cIrKzt1jk/10KdowjqoPpfkq1ee2YjBOTUOvB8dCO1SwXGyUtG0texd2S+Rsn0Ab2NPyPHbhlG28MygIGS/tj4GAq3bcOgkuvow/97K35JrbMtHE3jNowFUyPimfJndtLjGU6ZP0AzRdQaCePraOQZvk7886emgPvubXbOitBypWasu4FpJWQP8UCU65f9A/dxQlLsB5s3PuduZ6pYP1O3uMhJlCPr0gG2qDGBKDxlvsD0GENjDLblh14r3aMgHPWAUCs0MbRSvvkUPhfewTPzVeN8mjWj+3kPNm7WWLYmEjvk0TBB7F4ObHrGlPa/HakMCq+mEQBYo0vbP+onvOVRPRkazyThevRcq7PIwbNYy/3MlTzBmzELVDHon5nFFFcVjaWWh4o3f/HnpvPbg3dEXUEfviPJv5WumgwQDQiUp86KToYAnmsrGjweOI+1Mh42ugd+vRhxJGcWx/KswLERK2T9xyHdEmO8UiW/Src42cebIWeXjvi498T6v2cyJdisIwmRqekPT/aQ5hTJWh28TGCcxZz9eSgDL/9E/2Vvowjxilhe8PShlzmdXVl0ixLGvtnalTwtv
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(5660300002)(186003)(36756003)(316002)(66946007)(38100700002)(508600001)(6916009)(1076003)(86362001)(54906003)(26005)(83380400001)(7416002)(4326008)(426003)(8936002)(8676002)(66556008)(66476007)(9746002)(9786002)(2616005)(2906002)(33656002)(27376004);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xQBg7oaA/nsKBs7gEs9o5HnJTNwGmm/BinACDNN6SRiL/soxyzD6fnuTyDlj?=
- =?us-ascii?Q?9dS+7mfH8oc8ySu2a61x7H5/1/eMBmzGn7ZQpjWMiv5KZJKeEbp5YslF3lRO?=
- =?us-ascii?Q?DYJB3Z/TGMTXL5CbmVb73a/+szVKQZuOi9a2uTLMNx8LQeeXdgHDkBSGylhr?=
- =?us-ascii?Q?BHzG1cRTmR7A6qd6e9eYdyocBhSUW6j52WbTE3IJJixd48ZqMKBQAtPwuBFt?=
- =?us-ascii?Q?uigGuMCAq0jpaM0tTmjeEUtVbUDPRcr/zehKeFqxGraToqfEysIaLMQ+Dr4W?=
- =?us-ascii?Q?7j/ZnSjZC8r0OjaMCo25Ao200FBf79mpUMuPzFLXaTWP1Zg0rKNZ0jXe/CMD?=
- =?us-ascii?Q?YX2nJybakCjNXfRkaSVMrl4cyorU7vQYnOQOwC+lqBffhdphd187VjUVzqNm?=
- =?us-ascii?Q?bgEoOFI/5imb9rwXDI/G4bVYY52xyAFr1QvJ2xSm+tv2UHMS/mzRd6Xs1tiA?=
- =?us-ascii?Q?W2DNl6rVN2BAVxLrFAOQ/hAZfehVflZovFDaV1vyEM6buETcglCTXfG2pLWA?=
- =?us-ascii?Q?VLY2bE0akElQkZSDbwiz2Xmv3O6M336E9tTTPcRvOvgdwALcNPm71Bbno3a+?=
- =?us-ascii?Q?KbCvY7eUzrvB7cZsNlTKw5qmBbxxGeM0wCyrlSn8tktkAUy6R0I6CmP8Lx0G?=
- =?us-ascii?Q?1VvEE1QSsRvKlqP/pH61l7y9Jo3qDdO4lsR0C/lRPqcPYDXDpuBxFv9nmTqB?=
- =?us-ascii?Q?vEsEagVKMNguf69292xaOp7TrzxCQhZUZhSKnkVP6gFWSUUhatusV6w+UQEw?=
- =?us-ascii?Q?nDbLzjjgWAIwRl085hBVUrAWjppR5lHkdraJMdL8optzZnu97v5q3xYsiuam?=
- =?us-ascii?Q?LiIVyTQvBPkfqchfpmI29+BMvwiQe0MQjaB84HbIZhugfKBaJCyH1W/f6njR?=
- =?us-ascii?Q?vKip9Z/wxRubwGG5Mft6pFgtQUHVb3ZzWsBrQxn6+vtVysmTvC855WcrPLFF?=
- =?us-ascii?Q?MZzHwNbuJbDd5o9oez93Wy50kQdRG2pe61TaLIKNqalPwRQctKDJQGRmndeY?=
- =?us-ascii?Q?O84X92Vwhtfbi8WY2wjmTdqkkR7VIR+aezfsoXACNpRltfRUvnJlu26aw71/?=
- =?us-ascii?Q?60x4DqsolAkCvr8HenFhkvkroOvYSFSIYbhlQMOoPap44CbhBPIDkGBmbeaO?=
- =?us-ascii?Q?ku3iXOl9AkmJ+YGMWcx+ZMgHihvSzmMt4RzTQ5ov2/w27Ogqhx854NnfYxOA?=
- =?us-ascii?Q?YPPFnuW29fgJaBXGCvrlrClUdtlErO9KUbxH0ODLtioOBks8wxMggreFpYEU?=
- =?us-ascii?Q?Hwx+ov0hJuovAg5lw/D3zLxvleQ+I3f8vo0MRkjAxOoIcrxAQJQHR+uwo/0R?=
- =?us-ascii?Q?ne0DyyCSWcgmVwp18eepiiaG?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b6b6dde-8c8a-4eef-b973-08d981b2ee35
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2021 12:32:55.3521 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LEeJX/HROIopexUY6vjR/7c6DnFMfI3fGNwjxjVO6pw5IG1+KnwHnKXmm05A78dJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5361
-Subject: Re: [Intel-gfx] [PATCH v2 7/9] vfio/ccw: Remove private->mdev
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Sep 2021 13:46:57 -0000
+Message-ID: <163275041769.14086.15093804268700185901@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210924114741.15940-1-jani.nikula@intel.com>
+In-Reply-To: <20210924114741.15940-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C01/24=5D_drm/i915/uncore=3A_sp?=
+ =?utf-8?q?lit_the_fw_get_function_into_separate_vfunc_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,46 +42,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 24, 2021 at 04:45:02PM -0400, Eric Farman wrote:
-> On Thu, 2021-09-09 at 16:38 -0300, Jason Gunthorpe wrote:
-> > Having a mdev pointer floating about in addition to a struct
-> > vfio_device
-> > is confusing. It is only used for three things:
-> > 
-> > - Getting the mdev 'struct device *' - this is the same as
-> >      private->vdev.dev
-> > 
-> > - Printing the uuid of the mdev in logging. The uuid is also the
-> > dev_name
-> >   of the mdev so this is the same string as
-> >      dev_name(private->vdev.dev)
-> > 
-> > - A weird attempt to fence the vfio_ccw_sch_io_todo() work. This work
-> > is
-> >   only queued during states IDLE/PROCESSING/PENDING and flushed when
-> >   entering CLOSED. Thus the work already cannot run when the mdev is
-> > NULL.
-> >   Remove it.
-> > 
-> > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> >  drivers/s390/cio/vfio_ccw_drv.c     |  6 ++--
-> >  drivers/s390/cio/vfio_ccw_fsm.c     | 48 +++++++++++++------------
-> >  drivers/s390/cio/vfio_ccw_ops.c     | 16 ++++------
-> >  drivers/s390/cio/vfio_ccw_private.h |  2 --
-> >  include/linux/mdev.h                |  4 ---
-> >  5 files changed, 30 insertions(+), 46 deletions(-)
-> 
-> I like this patch. Unfortunately it depends on the removal of a hunk in
-> patch 4, which sets the FSM state to different values based on whether
-> private->mdev is NULL or not, so can't go on its own. Need to spend
-> more time thinking about that patch.
+== Series Details ==
 
-The FSM patch is important, really what is happening is the FSM logic
-takes on the roles that was being split all over the place with other
-logic, like this mdev stuff. To make that work we need a FSM that
-makes sense..
+Series: series starting with [CI,01/24] drm/i915/uncore: split the fw get function into separate vfunc (rev2)
+URL   : https://patchwork.freedesktop.org/series/95024/
+State : warning
 
-Jason
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+2b7863019540 drm/i915/uncore: split the fw get function into separate vfunc
+94a78839f40b drm/i915/pm: drop get_fifo_size vfunc.
+5318ffce7d30 drm/i915: make update_wm take a dev_priv.
+ee6db36e4128 drm/i915/wm: provide wrappers around watermark vfuncs calls (v2)
+-:10: WARNING:TYPO_SPELLING: 'existance' may be misspelled - perhaps 'existence'?
+#10: 
+One thing to note is that the code checks the existance of some
+                                              ^^^^^^^^^
+
+-:29: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#29: FILE: drivers/gpu/drm/i915/display/intel_display.c:129:
+ 
++
+
+-:73: WARNING:LINE_SPACING: Missing a blank line after declarations
+#73: FILE: drivers/gpu/drm/i915/display/intel_display.c:173:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.compute_pipe_wm)
+
+-:82: WARNING:LINE_SPACING: Missing a blank line after declarations
+#82: FILE: drivers/gpu/drm/i915/display/intel_display.c:182:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (!dev_priv->display.compute_intermediate_wm)
+
+-:94: WARNING:LINE_SPACING: Missing a blank line after declarations
+#94: FILE: drivers/gpu/drm/i915/display/intel_display.c:194:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.initial_watermarks) {
+
+-:105: WARNING:LINE_SPACING: Missing a blank line after declarations
+#105: FILE: drivers/gpu/drm/i915/display/intel_display.c:205:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.atomic_update_watermarks)
+
+-:113: WARNING:LINE_SPACING: Missing a blank line after declarations
+#113: FILE: drivers/gpu/drm/i915/display/intel_display.c:213:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.optimize_watermarks)
+
+-:120: WARNING:LINE_SPACING: Missing a blank line after declarations
+#120: FILE: drivers/gpu/drm/i915/display/intel_display.c:220:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	if (dev_priv->display.compute_global_watermarks)
+
+-:134: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 20)
+#134: FILE: drivers/gpu/drm/i915/display/intel_display.c:2635:
++		if (!intel_initial_watermarks(state, crtc))
++		    if (new_crtc_state->update_wm_pre)
+
+-:135: WARNING:TABSTOP: Statements should start on a tabstop
+#135: FILE: drivers/gpu/drm/i915/display/intel_display.c:2636:
++		    if (new_crtc_state->update_wm_pre)
+
+-:176: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#176: FILE: drivers/gpu/drm/i915/display/intel_display.c:3679:
++	if (!intel_initial_watermarks(state, crtc))
++	    intel_update_watermarks(dev_priv);
+
+total: 0 errors, 10 warnings, 1 checks, 319 lines checked
+ef85392431fb drm/i915: add wrappers around cdclk vtable funcs.
+-:32: WARNING:LINE_SPACING: Missing a blank line after declarations
+#32: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:71:
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	return dev_priv->display.bw_calc_min_cdclk(state);
+
+total: 0 errors, 1 warnings, 0 checks, 127 lines checked
+10620e0570af drm/i915/display: add intel_fdi_link_train wrapper.
+c5c429b682d4 drm/i915: split clock gating init from display vtable
+8a23f0867b3c drm/i915: split watermark vfuncs from display vtable.
+10c74f253f1b drm/i915: split color functions from display vtable
+71cad70999ec drm/i915: split audio functions from display vtable
+9c2d5bf60e9c drm/i915: split cdclk functions from display vtable.
+cf78aa87190e drm/i915: split irq hotplug function from display vtable
+1fc071461a5f drm/i915: split fdi link training from display vtable.
+3304e00e8390 drm/i915: split the dpll clock compute out from display vtable.
+382c970cd570 drm/i915: constify fdi link training vtable
+0b73a463c571 drm/i915: constify hotplug function vtable.
+3183c2e12386 drm/i915: constify color function vtable.
+-:197: CHECK:BRACES: Unbalanced braces around else statement
+#197: FILE: drivers/gpu/drm/i915/display/intel_color.c:2194:
++		} else
+
+total: 0 errors, 0 warnings, 1 checks, 187 lines checked
+17d48b7ee1aa drm/i915: constify the audio function vtable
+f0894e362361 drm/i915: constify the dpll clock vtable
+a77d3b26a6e8 drm/i915: constify the cdclk vtable
+9f8f5ae0a14f drm/i915: drop unused function ptr and comments.
+c23f4c7439e1 drm/i915: constify display function vtable
+3c09f0446f68 drm/i915: constify clock gating init vtable.
+4f103c0eb7b1 drm/i915: constify display wm vtable
+
+
