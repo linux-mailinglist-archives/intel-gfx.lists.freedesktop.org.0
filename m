@@ -1,59 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B292419FE7
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 22:13:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A722F419FF0
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 22:15:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD9046E040;
-	Mon, 27 Sep 2021 20:12:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5527C89BAB;
+	Mon, 27 Sep 2021 20:15:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ECF76E040
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 20:12:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1632773566;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=skkbLXdqWZa0OlDaidm6eR+nQIQyI/93FeXhSOp26Z8=;
- b=gAoaS/5OR76Nsm3PBXFzxLyUsR8HbH5xo9ky5BtLkIMBQvDA2cCDH1UyVe+3aPSIYkAXZl
- mC7DC334oKJXYR6E0qN0ZvfJ66Ge7HN3J1RZt4D7kFuRgGjONBmB/TUh8AxA+vqGHrWTh7
- dey10bsuO0VbKpeiVfzzPecIpv3dxz4=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-599-vMAX0IiuMhKBo2akEbWmDg-1; Mon, 27 Sep 2021 16:12:45 -0400
-X-MC-Unique: vMAX0IiuMhKBo2akEbWmDg-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E3AFD802921;
- Mon, 27 Sep 2021 20:12:43 +0000 (UTC)
-Received: from Ruby.lyude.net (unknown [10.22.17.167])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 8BE7510074EF;
- Mon, 27 Sep 2021 20:12:42 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Sean Paul <seanpaul@chromium.org>, linux-kernel@vger.kernel.org (open list)
-Date: Mon, 27 Sep 2021 16:12:06 -0400
-Message-Id: <20210927201206.682788-4-lyude@redhat.com>
-In-Reply-To: <20210927201206.682788-1-lyude@redhat.com>
-References: <20210927201206.682788-1-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A9FD89BAB;
+ Mon, 27 Sep 2021 20:15:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 32F86A47EB;
+ Mon, 27 Sep 2021 20:15:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Clarify probing order in
- intel_dp_aux_init_backlight_funcs()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Sep 2021 20:15:28 -0000
+Message-ID: <163277372818.14084.6818854397938138339@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_DP_per-lane_drive_settings_prep_work?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,53 +41,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hooray! We've managed to hit enough bugs upstream that I've been able to
-come up with a pretty solid explanation for how backlight controls are
-actually supposed to be detected and used these days. As well, having the
-rest of the PWM bits in VESA's backlight interface implemented seems to
-have fixed all of the problematic brightness controls laptop panels that
-we've hit so far.
+== Series Details ==
 
-So, let's actually document this instead of just calling the laptop panels
-liars. As well, I would like to formally apologize to all of the laptop
-panels I called liars. I'm sorry laptop panels, hopefully you can all
-forgive me and we can move past this~
+Series: drm/i915: DP per-lane drive settings prep work
+URL   : https://patchwork.freedesktop.org/series/95122/
+State : warning
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- .../drm/i915/display/intel_dp_aux_backlight.c    | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 9b1ac02b0263..1e20c607408c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -456,11 +456,17 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
- 	}
- 
- 	/*
--	 * A lot of eDP panels in the wild will report supporting both the
--	 * Intel proprietary backlight control interface, and the VESA
--	 * backlight control interface. Many of these panels are liars though,
--	 * and will only work with the Intel interface. So, always probe for
--	 * that first.
-+	 * Since Intel has their own backlight control interface, the majority of machines out there
-+	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
-+	 * the VESA interface. However, other GPUs (such as Nvidia's) will always use the VESA
-+	 * interface. This means that there's quite a number of panels out there that will advertise
-+	 * support for both interfaces, primarily systems with Intel/Nvidia hybrid GPU setups.
-+	 *
-+	 * There's a catch to this though: on many panels that advertise support for both
-+	 * interfaces, the VESA backlight interface will stop working once we've programmed the
-+	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
-+	 * backlight interface at all. This means that the only sensible way for us to detect both
-+	 * interfaces is to probe for Intel's first, and VESA's second.
- 	 */
- 	if (try_intel_interface && intel_dp_aux_supports_hdr_backlight(connector)) {
- 		drm_dbg_kms(dev, "Using Intel proprietary eDP backlight controls\n");
--- 
-2.31.1
+$ dim checkpatch origin/drm-tip
+d25e0ee15f99 drm/i915: s/ddi_translations/trans/
+-:1808: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1808: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:73:
++		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_PRE, trans->entries[level].snps.snps_pre_cursor);
+
+-:1809: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#1809: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:74:
++		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, trans->entries[level].snps.snps_post_cursor);
+
+total: 0 errors, 2 warnings, 0 checks, 1677 lines checked
+158bafff357f drm/i915: Generalize .set_signal_levels()
+617cbf9f5683 drm/i915: Nuke usless .set_signal_levels() wrappers
+d80d9fa4792e drm/i915: De-wrapper bxt_ddi_phy_set_signal_levels()
+34dea577d85c drm/i915: Hoover the level>=n_entries WARN into intel_ddi_level()
+9c635abb2137 drm/i915: Nuke intel_ddi_hdmi_num_entries()
+98c92bf385b0 drm/i915: Pass the lane to intel_ddi_level()
+386bedb16c5a drm/i915: Prepare link training for per-lane drive settings
+14e097e04109 drm/i915: Allow per-lane drive settings with LTTPRs
+
 
