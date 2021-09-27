@@ -2,38 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2A341A2C9
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 00:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 595C741A2D5
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 00:21:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC10D6E048;
-	Mon, 27 Sep 2021 22:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B957D89DEC;
+	Mon, 27 Sep 2021 22:21:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDA96E048
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 22:13:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="221370019"
-X-IronPort-AV: E=Sophos;i="5.85,327,1624345200"; d="scan'208";a="221370019"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 15:13:50 -0700
-X-IronPort-AV: E=Sophos;i="5.85,327,1624345200"; d="scan'208";a="561578909"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 15:13:49 -0700
-Date: Tue, 28 Sep 2021 01:13:45 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <20210927221345.GB2043218@ideak-desk.fi.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBA4889DEC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 22:21:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="224610823"
+X-IronPort-AV: E=Sophos;i="5.85,327,1624345200"; d="scan'208";a="224610823"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2021 15:21:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,327,1624345200"; d="scan'208";a="586972876"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
+ by orsmga004.jf.intel.com with ESMTP; 27 Sep 2021 15:21:25 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 27 Sep 2021 23:21:23 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Mon, 27 Sep 2021 15:21:22 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 08/13] drm/i915/tc: Refactor TC-cold block/unblock helpers
+Thread-Index: AQHXrn7nb8c7xbwLM06PECJcF7cxIqu47v2AgAADPYCAAAO8gA==
+Date: Mon, 27 Sep 2021 22:21:21 +0000
+Message-ID: <e640e3f2a01ddc4e9f57a9ff7411468a938441df.camel@intel.com>
 References: <20210921002313.1132357-1-imre.deak@intel.com>
  <20210921002313.1132357-9-imre.deak@intel.com>
  <f349e0bd28b4041fc71eb76882bae5bf542a6d86.camel@intel.com>
+ <20210927221345.GB2043218@ideak-desk.fi.intel.com>
+In-Reply-To: <20210927221345.GB2043218@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C46FCCD53BFD0746B546D7C831CCB42E@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f349e0bd28b4041fc71eb76882bae5bf542a6d86.camel@intel.com>
 Subject: Re: [Intel-gfx] [PATCH 08/13] drm/i915/tc: Refactor TC-cold
  block/unblock helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -51,224 +66,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 28, 2021 at 12:56:24AM +0300, Souza, Jose wrote:
-> On Tue, 2021-09-21 at 03:23 +0300, Imre Deak wrote:
-> > A follow-up change will select the TC-cold blocking power domain based
-> > on the TypeC mode, prepare for that here.
-> > 
-> > Also bring intel_tc_cold_requires_aux_pw() earlier to its logical place
-> > for readability.
-> > 
-> > No functional change.
-> > 
-> > Cc: José Roberto de Souza <jose.souza@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_display_types.h    |  2 +
-> >  drivers/gpu/drm/i915/display/intel_tc.c       | 63 +++++++++++--------
-> >  2 files changed, 39 insertions(+), 26 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index e9e806d90eec4..08a73ffded957 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1663,8 +1663,10 @@ struct intel_digital_port {
-> >  	enum intel_display_power_domain ddi_io_power_domain;
-> >  	intel_wakeref_t ddi_io_wakeref;
-> >  	intel_wakeref_t aux_wakeref;
-> > +
-> >  	struct mutex tc_lock;	/* protects the TypeC port mode */
-> >  	intel_wakeref_t tc_lock_wakeref;
-> > +	enum intel_display_power_domain tc_lock_power_domain;
-> >  	int tc_link_refcount;
-> >  	bool tc_legacy_port:1;
-> >  	char tc_port_name[8];
-> > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-> > index 77b16a7c43466..24d2dc2e19a7d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> > @@ -48,8 +48,16 @@ bool intel_tc_port_in_legacy_mode(struct intel_digital_port *dig_port)
-> >  	return intel_tc_port_in_mode(dig_port, TC_PORT_LEGACY);
-> >  }
-> >  
-> > +bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > +
-> > +	return (DISPLAY_VER(i915) == 11 && dig_port->tc_legacy_port) ||
-> > +		IS_ALDERLAKE_P(i915);
-> > +}
-> > +
-> >  static enum intel_display_power_domain
-> > -tc_cold_get_power_domain(struct intel_digital_port *dig_port)
-> > +tc_cold_get_power_domain(struct intel_digital_port *dig_port, enum tc_port_mode mode)
-> >  {
-> >  	if (intel_tc_cold_requires_aux_pw(dig_port))
-> >  		return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
-> > @@ -58,23 +66,30 @@ tc_cold_get_power_domain(struct intel_digital_port *dig_port)
-> >  }
-> >  
-> >  static intel_wakeref_t
-> > -tc_cold_block(struct intel_digital_port *dig_port)
-> > +tc_cold_block_in_mode(struct intel_digital_port *dig_port, enum tc_port_mode mode,
-> > +		      enum intel_display_power_domain *domain)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > -	enum intel_display_power_domain domain;
-> >  
-> >  	if (DISPLAY_VER(i915) == 11 && !dig_port->tc_legacy_port)
-> >  		return 0;
-> >  
-> > -	domain = tc_cold_get_power_domain(dig_port);
-> > -	return intel_display_power_get(i915, domain);
-> > +	*domain = tc_cold_get_power_domain(dig_port, mode);
-> 
-> I see problems with this approach.
->
-> If there is a TC alt-mode is connected and current software state is
-> TBT or disconnected it will not get the power domain to exit TC cold,
-> what could case invalid reads of registers.
-
-If the mode needs to be changed, like in the above cases, the power
-domain required to exit TC cold will be taken.
-
-> From the next patch commit message: 'For the ADL-P TBT mode the spec
-> doesn't require blocking TC-cold by using the legacy AUX power
-> domain'.
->
-> It is not required for TBT but when there is nothing connected,
-> hardware is not in TBT mode so it can still get into TC cold.
-
-If there is nothing connected the required power domain will be taken to
-exit TC cold.
-
-> > +
-> > +	return intel_display_power_get(i915, *domain);
-> > +}
-> > +
-> > +static intel_wakeref_t
-> > +tc_cold_block(struct intel_digital_port *dig_port, enum intel_display_power_domain *domain)
-> > +{
-> > +	return tc_cold_block_in_mode(dig_port, dig_port->tc_mode, domain);
-> >  }
-> >  
-> >  static void
-> > -tc_cold_unblock(struct intel_digital_port *dig_port, intel_wakeref_t wakeref)
-> > +tc_cold_unblock(struct intel_digital_port *dig_port, enum intel_display_power_domain domain,
-> > +		intel_wakeref_t wakeref)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > -	enum intel_display_power_domain domain;
-> >  
-> >  	/*
-> >  	 * wakeref == -1, means some error happened saving save_depot_stack but
-> > @@ -84,8 +99,7 @@ tc_cold_unblock(struct intel_digital_port *dig_port, intel_wakeref_t wakeref)
-> >  	if (wakeref == 0)
-> >  		return;
-> >  
-> > -	domain = tc_cold_get_power_domain(dig_port);
-> > -	intel_display_power_put_async(i915, domain, wakeref);
-> > +	intel_display_power_put(i915, domain, wakeref);
-> >  }
-> >  
-> >  static void
-> > @@ -98,7 +112,8 @@ assert_tc_cold_blocked(struct intel_digital_port *dig_port)
-> >  		return;
-> >  
-> >  	enabled = intel_display_power_is_enabled(i915,
-> > -						 tc_cold_get_power_domain(dig_port));
-> > +						 tc_cold_get_power_domain(dig_port,
-> > +									  dig_port->tc_mode));
-> >  	drm_WARN_ON(&i915->drm, !enabled);
-> >  }
-> >  
-> > @@ -634,7 +649,8 @@ void intel_tc_port_sanitize(struct intel_digital_port *dig_port)
-> >  
-> >  	drm_WARN_ON(&i915->drm, dig_port->tc_mode != TC_PORT_DISCONNECTED);
-> >  	if (active_links) {
-> > -		intel_wakeref_t tc_cold_wref = tc_cold_block(dig_port);
-> > +		enum intel_display_power_domain domain;
-> > +		intel_wakeref_t tc_cold_wref = tc_cold_block(dig_port, &domain);
-> >  
-> >  		dig_port->tc_mode = intel_tc_port_get_current_mode(dig_port);
-> >  
-> > @@ -644,7 +660,7 @@ void intel_tc_port_sanitize(struct intel_digital_port *dig_port)
-> >  				    dig_port->tc_port_name, active_links);
-> >  		intel_tc_port_link_init_refcount(dig_port, active_links);
-> >  
-> > -		tc_cold_unblock(dig_port, tc_cold_wref);
-> > +		tc_cold_unblock(dig_port, domain, tc_cold_wref);
-> >  	}
-> >  
-> >  	drm_dbg_kms(&i915->drm, "Port %s: sanitize mode (%s)\n",
-> > @@ -673,15 +689,16 @@ bool intel_tc_port_connected(struct intel_encoder *encoder)
-> >  {
-> >  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> >  	bool is_connected;
-> > +	enum intel_display_power_domain domain;
-> >  	intel_wakeref_t tc_cold_wref;
-> >  
-> >  	intel_tc_port_lock(dig_port);
-> > -	tc_cold_wref = tc_cold_block(dig_port);
-> > +	tc_cold_wref = tc_cold_block(dig_port, &domain);
-> >  
-> >  	is_connected = tc_port_live_status_mask(dig_port) &
-> >  		       BIT(dig_port->tc_mode);
-> >  
-> > -	tc_cold_unblock(dig_port, tc_cold_wref);
-> > +	tc_cold_unblock(dig_port, domain, tc_cold_wref);
-> >  	intel_tc_port_unlock(dig_port);
-> >  
-> >  	return is_connected;
-> > @@ -698,15 +715,16 @@ static void __intel_tc_port_lock(struct intel_digital_port *dig_port,
-> >  	mutex_lock(&dig_port->tc_lock);
-> >  
-> >  	if (!dig_port->tc_link_refcount) {
-> > +		enum intel_display_power_domain domain;
-> >  		intel_wakeref_t tc_cold_wref;
-> >  
-> > -		tc_cold_wref = tc_cold_block(dig_port);
-> > +		tc_cold_wref = tc_cold_block(dig_port, &domain);
-> >  
-> >  		if (force_disconnect || intel_tc_port_needs_reset(dig_port))
-> >  			intel_tc_port_reset_mode(dig_port, required_lanes,
-> >  						 force_disconnect);
-> >  
-> > -		tc_cold_unblock(dig_port, tc_cold_wref);
-> > +		tc_cold_unblock(dig_port, domain, tc_cold_wref);
-> >  	}
-> >  
-> >  	drm_WARN_ON(&i915->drm, dig_port->tc_mode == TC_PORT_DISCONNECTED);
-> > @@ -775,6 +793,7 @@ void intel_tc_port_put_link(struct intel_digital_port *dig_port)
-> >  static bool
-> >  tc_has_modular_fia(struct drm_i915_private *i915, struct intel_digital_port *dig_port)
-> >  {
-> > +	enum intel_display_power_domain domain;
-> >  	intel_wakeref_t wakeref;
-> >  	u32 val;
-> >  
-> > @@ -782,9 +801,9 @@ tc_has_modular_fia(struct drm_i915_private *i915, struct intel_digital_port *dig
-> >  		return false;
-> >  
-> >  	mutex_lock(&dig_port->tc_lock);
-> > -	wakeref = tc_cold_block(dig_port);
-> > +	wakeref = tc_cold_block(dig_port, &domain);
-> >  	val = intel_uncore_read(&i915->uncore, PORT_TX_DFLEXDPSP(FIA1));
-> > -	tc_cold_unblock(dig_port, wakeref);
-> > +	tc_cold_unblock(dig_port, domain, wakeref);
-> >  	mutex_unlock(&dig_port->tc_lock);
-> >  
-> >  	drm_WARN_ON(&i915->drm, val == 0xffffffff);
-> > @@ -829,11 +848,3 @@ void intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy)
-> >  	dig_port->tc_link_refcount = 0;
-> >  	tc_port_load_fia_params(i915, dig_port);
-> >  }
-> > -
-> > -bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port)
-> > -{
-> > -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > -
-> > -	return (DISPLAY_VER(i915) == 11 && dig_port->tc_legacy_port) ||
-> > -		IS_ALDERLAKE_P(i915);
-> > -}
-> 
+T24gVHVlLCAyMDIxLTA5LTI4IGF0IDAxOjEzICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE9u
+IFR1ZSwgU2VwIDI4LCAyMDIxIGF0IDEyOjU2OjI0QU0gKzAzMDAsIFNvdXphLCBKb3NlIHdyb3Rl
+Og0KPiA+IE9uIFR1ZSwgMjAyMS0wOS0yMSBhdCAwMzoyMyArMDMwMCwgSW1yZSBEZWFrIHdyb3Rl
+Og0KPiA+ID4gQSBmb2xsb3ctdXAgY2hhbmdlIHdpbGwgc2VsZWN0IHRoZSBUQy1jb2xkIGJsb2Nr
+aW5nIHBvd2VyIGRvbWFpbiBiYXNlZA0KPiA+ID4gb24gdGhlIFR5cGVDIG1vZGUsIHByZXBhcmUg
+Zm9yIHRoYXQgaGVyZS4NCj4gPiA+IA0KPiA+ID4gQWxzbyBicmluZyBpbnRlbF90Y19jb2xkX3Jl
+cXVpcmVzX2F1eF9wdygpIGVhcmxpZXIgdG8gaXRzIGxvZ2ljYWwgcGxhY2UNCj4gPiA+IGZvciBy
+ZWFkYWJpbGl0eS4NCj4gPiA+IA0KPiA+ID4gTm8gZnVuY3Rpb25hbCBjaGFuZ2UuDQo+ID4gPiAN
+Cj4gPiA+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4N
+Cj4gPiA+IFNpZ25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4g
+PiA+IC0tLQ0KPiA+ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMu
+aCAgICB8ICAyICsNCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Rj
+LmMgICAgICAgfCA2MyArKysrKysrKysrKy0tLS0tLS0tDQo+ID4gPiAgMiBmaWxlcyBjaGFuZ2Vk
+LCAzOSBpbnNlcnRpb25zKCspLCAyNiBkZWxldGlvbnMoLSkNCj4gPiA+IA0KPiA+ID4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5o
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4g
+PiA+IGluZGV4IGU5ZTgwNmQ5MGVlYzQuLjA4YTczZmZkZWQ5NTcgMTAwNjQ0DQo+ID4gPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVz
+LmgNCj4gPiA+IEBAIC0xNjYzLDggKzE2NjMsMTAgQEAgc3RydWN0IGludGVsX2RpZ2l0YWxfcG9y
+dCB7DQo+ID4gPiAgCWVudW0gaW50ZWxfZGlzcGxheV9wb3dlcl9kb21haW4gZGRpX2lvX3Bvd2Vy
+X2RvbWFpbjsNCj4gPiA+ICAJaW50ZWxfd2FrZXJlZl90IGRkaV9pb193YWtlcmVmOw0KPiA+ID4g
+IAlpbnRlbF93YWtlcmVmX3QgYXV4X3dha2VyZWY7DQo+ID4gPiArDQo+ID4gPiAgCXN0cnVjdCBt
+dXRleCB0Y19sb2NrOwkvKiBwcm90ZWN0cyB0aGUgVHlwZUMgcG9ydCBtb2RlICovDQo+ID4gPiAg
+CWludGVsX3dha2VyZWZfdCB0Y19sb2NrX3dha2VyZWY7DQo+ID4gPiArCWVudW0gaW50ZWxfZGlz
+cGxheV9wb3dlcl9kb21haW4gdGNfbG9ja19wb3dlcl9kb21haW47DQo+ID4gPiAgCWludCB0Y19s
+aW5rX3JlZmNvdW50Ow0KPiA+ID4gIAlib29sIHRjX2xlZ2FjeV9wb3J0OjE7DQo+ID4gPiAgCWNo
+YXIgdGNfcG9ydF9uYW1lWzhdOw0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfdGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfdGMuYw0KPiA+ID4gaW5kZXggNzdiMTZhN2M0MzQ2Ni4uMjRkMmRjMmUxOWE3ZCAxMDA2NDQN
+Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYw0KPiA+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+ID4gPiBA
+QCAtNDgsOCArNDgsMTYgQEAgYm9vbCBpbnRlbF90Y19wb3J0X2luX2xlZ2FjeV9tb2RlKHN0cnVj
+dCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQ0KPiA+ID4gIAlyZXR1cm4gaW50ZWxfdGNf
+cG9ydF9pbl9tb2RlKGRpZ19wb3J0LCBUQ19QT1JUX0xFR0FDWSk7DQo+ID4gPiAgfQ0KPiA+ID4g
+IA0KPiA+ID4gK2Jvb2wgaW50ZWxfdGNfY29sZF9yZXF1aXJlc19hdXhfcHcoc3RydWN0IGludGVs
+X2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ID4gPiArew0KPiA+ID4gKwlzdHJ1Y3QgZHJtX2k5
+MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoZGlnX3BvcnQtPmJhc2UuYmFzZS5kZXYpOw0KPiA+
+ID4gKw0KPiA+ID4gKwlyZXR1cm4gKERJU1BMQVlfVkVSKGk5MTUpID09IDExICYmIGRpZ19wb3J0
+LT50Y19sZWdhY3lfcG9ydCkgfHwNCj4gPiA+ICsJCUlTX0FMREVSTEFLRV9QKGk5MTUpOw0KPiA+
+ID4gK30NCj4gPiA+ICsNCj4gPiA+ICBzdGF0aWMgZW51bSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2Rv
+bWFpbg0KPiA+ID4gLXRjX2NvbGRfZ2V0X3Bvd2VyX2RvbWFpbihzdHJ1Y3QgaW50ZWxfZGlnaXRh
+bF9wb3J0ICpkaWdfcG9ydCkNCj4gPiA+ICt0Y19jb2xkX2dldF9wb3dlcl9kb21haW4oc3RydWN0
+IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQsIGVudW0gdGNfcG9ydF9tb2RlIG1vZGUpDQo+
+ID4gPiAgew0KPiA+ID4gIAlpZiAoaW50ZWxfdGNfY29sZF9yZXF1aXJlc19hdXhfcHcoZGlnX3Bv
+cnQpKQ0KPiA+ID4gIAkJcmV0dXJuIGludGVsX2xlZ2FjeV9hdXhfdG9fcG93ZXJfZG9tYWluKGRp
+Z19wb3J0LT5hdXhfY2gpOw0KPiA+ID4gQEAgLTU4LDIzICs2NiwzMCBAQCB0Y19jb2xkX2dldF9w
+b3dlcl9kb21haW4oc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ID4gPiAg
+fQ0KPiA+ID4gIA0KPiA+ID4gIHN0YXRpYyBpbnRlbF93YWtlcmVmX3QNCj4gPiA+IC10Y19jb2xk
+X2Jsb2NrKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQ0KPiA+ID4gK3RjX2Nv
+bGRfYmxvY2tfaW5fbW9kZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwgZW51
+bSB0Y19wb3J0X21vZGUgbW9kZSwNCj4gPiA+ICsJCSAgICAgIGVudW0gaW50ZWxfZGlzcGxheV9w
+b3dlcl9kb21haW4gKmRvbWFpbikNCj4gPiA+ICB7DQo+ID4gPiAgCXN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICppOTE1ID0gdG9faTkxNShkaWdfcG9ydC0+YmFzZS5iYXNlLmRldik7DQo+ID4gPiAt
+CWVudW0gaW50ZWxfZGlzcGxheV9wb3dlcl9kb21haW4gZG9tYWluOw0KPiA+ID4gIA0KPiA+ID4g
+IAlpZiAoRElTUExBWV9WRVIoaTkxNSkgPT0gMTEgJiYgIWRpZ19wb3J0LT50Y19sZWdhY3lfcG9y
+dCkNCj4gPiA+ICAJCXJldHVybiAwOw0KPiA+ID4gIA0KPiA+ID4gLQlkb21haW4gPSB0Y19jb2xk
+X2dldF9wb3dlcl9kb21haW4oZGlnX3BvcnQpOw0KPiA+ID4gLQlyZXR1cm4gaW50ZWxfZGlzcGxh
+eV9wb3dlcl9nZXQoaTkxNSwgZG9tYWluKTsNCj4gPiA+ICsJKmRvbWFpbiA9IHRjX2NvbGRfZ2V0
+X3Bvd2VyX2RvbWFpbihkaWdfcG9ydCwgbW9kZSk7DQo+ID4gDQo+ID4gSSBzZWUgcHJvYmxlbXMg
+d2l0aCB0aGlzIGFwcHJvYWNoLg0KPiA+IA0KPiA+IElmIHRoZXJlIGlzIGEgVEMgYWx0LW1vZGUg
+aXMgY29ubmVjdGVkIGFuZCBjdXJyZW50IHNvZnR3YXJlIHN0YXRlIGlzDQo+ID4gVEJUIG9yIGRp
+c2Nvbm5lY3RlZCBpdCB3aWxsIG5vdCBnZXQgdGhlIHBvd2VyIGRvbWFpbiB0byBleGl0IFRDIGNv
+bGQsDQo+ID4gd2hhdCBjb3VsZCBjYXNlIGludmFsaWQgcmVhZHMgb2YgcmVnaXN0ZXJzLg0KPiAN
+Cj4gSWYgdGhlIG1vZGUgbmVlZHMgdG8gYmUgY2hhbmdlZCwgbGlrZSBpbiB0aGUgYWJvdmUgY2Fz
+ZXMsIHRoZSBwb3dlcg0KPiBkb21haW4gcmVxdWlyZWQgdG8gZXhpdCBUQyBjb2xkIHdpbGwgYmUg
+dGFrZW4uDQoNCkhvdz8NCkkgc2VlIGF0IGxlYXN0IHRoaXMgMiBwcm9ibGVtYXRpYyBjYXNlcy4N
+Cg0KaW50ZWxfdGNfcG9ydF9zYW5pdGl6ZSgpDQoJdGNfY29sZF9ibG9jayhtb2RlPVRCVCkNCg0K
+CWRpZ19wb3J0LT50Y19tb2RlID0gaW50ZWxfdGNfcG9ydF9nZXRfY3VycmVudF9tb2RlKGRpZ19w
+b3J0KTsNCgkuLi4NCg0KCXRjX2NvbGRfdW5ibG9jayhkaWdfcG9ydCwgZG9tYWluLCB0Y19jb2xk
+X3dyZWYpOw0KDQpPdGhlciBjYXNlDQoNCmludGVsX3RjX3BvcnRfY29ubmVjdGVkKCkNCg0KCXRj
+X2NvbGRfYmxvY2sobW9kZT1UQlQpDQoNCglpc19jb25uZWN0ZWQgPSB0Y19wb3J0X2xpdmVfc3Rh
+dHVzX21hc2soZGlnX3BvcnQpICYNCgkJICAgICAgIEJJVChkaWdfcG9ydC0+dGNfbW9kZSk7DQoN
+Cgl0Y19jb2xkX3VuYmxvY2soZGlnX3BvcnQsIGRvbWFpbiwgdGNfY29sZF93cmVmKTsNCg0KDQo+
+IA0KPiA+IEZyb20gdGhlIG5leHQgcGF0Y2ggY29tbWl0IG1lc3NhZ2U6ICdGb3IgdGhlIEFETC1Q
+IFRCVCBtb2RlIHRoZSBzcGVjDQo+ID4gZG9lc24ndCByZXF1aXJlIGJsb2NraW5nIFRDLWNvbGQg
+YnkgdXNpbmcgdGhlIGxlZ2FjeSBBVVggcG93ZXINCj4gPiBkb21haW4nLg0KPiA+IA0KPiA+IEl0
+IGlzIG5vdCByZXF1aXJlZCBmb3IgVEJUIGJ1dCB3aGVuIHRoZXJlIGlzIG5vdGhpbmcgY29ubmVj
+dGVkLA0KPiA+IGhhcmR3YXJlIGlzIG5vdCBpbiBUQlQgbW9kZSBzbyBpdCBjYW4gc3RpbGwgZ2V0
+IGludG8gVEMgY29sZC4NCj4gDQo+IElmIHRoZXJlIGlzIG5vdGhpbmcgY29ubmVjdGVkIHRoZSBy
+ZXF1aXJlZCBwb3dlciBkb21haW4gd2lsbCBiZSB0YWtlbiB0bw0KPiBleGl0IFRDIGNvbGQuDQo+
+IA0KPiA+ID4gKw0KPiA+ID4gKwlyZXR1cm4gaW50ZWxfZGlzcGxheV9wb3dlcl9nZXQoaTkxNSwg
+KmRvbWFpbik7DQo+ID4gPiArfQ0KPiA+ID4gKw0KPiA+ID4gK3N0YXRpYyBpbnRlbF93YWtlcmVm
+X3QNCj4gPiA+ICt0Y19jb2xkX2Jsb2NrKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19w
+b3J0LCBlbnVtIGludGVsX2Rpc3BsYXlfcG93ZXJfZG9tYWluICpkb21haW4pDQo+ID4gPiArew0K
+PiA+ID4gKwlyZXR1cm4gdGNfY29sZF9ibG9ja19pbl9tb2RlKGRpZ19wb3J0LCBkaWdfcG9ydC0+
+dGNfbW9kZSwgZG9tYWluKTsNCj4gPiA+ICB9DQo+ID4gPiAgDQo+ID4gPiAgc3RhdGljIHZvaWQN
+Cj4gPiA+IC10Y19jb2xkX3VuYmxvY2soc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3Bv
+cnQsIGludGVsX3dha2VyZWZfdCB3YWtlcmVmKQ0KPiA+ID4gK3RjX2NvbGRfdW5ibG9jayhzdHJ1
+Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwgZW51bSBpbnRlbF9kaXNwbGF5X3Bvd2Vy
+X2RvbWFpbiBkb21haW4sDQo+ID4gPiArCQlpbnRlbF93YWtlcmVmX3Qgd2FrZXJlZikNCj4gPiA+
+ICB7DQo+ID4gPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9faTkxNShkaWdf
+cG9ydC0+YmFzZS5iYXNlLmRldik7DQo+ID4gPiAtCWVudW0gaW50ZWxfZGlzcGxheV9wb3dlcl9k
+b21haW4gZG9tYWluOw0KPiA+ID4gIA0KPiA+ID4gIAkvKg0KPiA+ID4gIAkgKiB3YWtlcmVmID09
+IC0xLCBtZWFucyBzb21lIGVycm9yIGhhcHBlbmVkIHNhdmluZyBzYXZlX2RlcG90X3N0YWNrIGJ1
+dA0KPiA+ID4gQEAgLTg0LDggKzk5LDcgQEAgdGNfY29sZF91bmJsb2NrKHN0cnVjdCBpbnRlbF9k
+aWdpdGFsX3BvcnQgKmRpZ19wb3J0LCBpbnRlbF93YWtlcmVmX3Qgd2FrZXJlZikNCj4gPiA+ICAJ
+aWYgKHdha2VyZWYgPT0gMCkNCj4gPiA+ICAJCXJldHVybjsNCj4gPiA+ICANCj4gPiA+IC0JZG9t
+YWluID0gdGNfY29sZF9nZXRfcG93ZXJfZG9tYWluKGRpZ19wb3J0KTsNCj4gPiA+IC0JaW50ZWxf
+ZGlzcGxheV9wb3dlcl9wdXRfYXN5bmMoaTkxNSwgZG9tYWluLCB3YWtlcmVmKTsNCj4gPiA+ICsJ
+aW50ZWxfZGlzcGxheV9wb3dlcl9wdXQoaTkxNSwgZG9tYWluLCB3YWtlcmVmKTsNCj4gPiA+ICB9
+DQo+ID4gPiAgDQo+ID4gPiAgc3RhdGljIHZvaWQNCj4gPiA+IEBAIC05OCw3ICsxMTIsOCBAQCBh
+c3NlcnRfdGNfY29sZF9ibG9ja2VkKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0
+KQ0KPiA+ID4gIAkJcmV0dXJuOw0KPiA+ID4gIA0KPiA+ID4gIAllbmFibGVkID0gaW50ZWxfZGlz
+cGxheV9wb3dlcl9pc19lbmFibGVkKGk5MTUsDQo+ID4gPiAtCQkJCQkJIHRjX2NvbGRfZ2V0X3Bv
+d2VyX2RvbWFpbihkaWdfcG9ydCkpOw0KPiA+ID4gKwkJCQkJCSB0Y19jb2xkX2dldF9wb3dlcl9k
+b21haW4oZGlnX3BvcnQsDQo+ID4gPiArCQkJCQkJCQkJICBkaWdfcG9ydC0+dGNfbW9kZSkpOw0K
+PiA+ID4gIAlkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLCAhZW5hYmxlZCk7DQo+ID4gPiAgfQ0KPiA+
+ID4gIA0KPiA+ID4gQEAgLTYzNCw3ICs2NDksOCBAQCB2b2lkIGludGVsX3RjX3BvcnRfc2FuaXRp
+emUoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ID4gPiAgDQo+ID4gPiAg
+CWRybV9XQVJOX09OKCZpOTE1LT5kcm0sIGRpZ19wb3J0LT50Y19tb2RlICE9IFRDX1BPUlRfRElT
+Q09OTkVDVEVEKTsNCj4gPiA+ICAJaWYgKGFjdGl2ZV9saW5rcykgew0KPiA+ID4gLQkJaW50ZWxf
+d2FrZXJlZl90IHRjX2NvbGRfd3JlZiA9IHRjX2NvbGRfYmxvY2soZGlnX3BvcnQpOw0KPiA+ID4g
+KwkJZW51bSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2RvbWFpbiBkb21haW47DQo+ID4gPiArCQlpbnRl
+bF93YWtlcmVmX3QgdGNfY29sZF93cmVmID0gdGNfY29sZF9ibG9jayhkaWdfcG9ydCwgJmRvbWFp
+bik7DQo+ID4gPiAgDQo+ID4gPiAgCQlkaWdfcG9ydC0+dGNfbW9kZSA9IGludGVsX3RjX3BvcnRf
+Z2V0X2N1cnJlbnRfbW9kZShkaWdfcG9ydCk7DQo+ID4gPiAgDQo+ID4gPiBAQCAtNjQ0LDcgKzY2
+MCw3IEBAIHZvaWQgaW50ZWxfdGNfcG9ydF9zYW5pdGl6ZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9w
+b3J0ICpkaWdfcG9ydCkNCj4gPiA+ICAJCQkJICAgIGRpZ19wb3J0LT50Y19wb3J0X25hbWUsIGFj
+dGl2ZV9saW5rcyk7DQo+ID4gPiAgCQlpbnRlbF90Y19wb3J0X2xpbmtfaW5pdF9yZWZjb3VudChk
+aWdfcG9ydCwgYWN0aXZlX2xpbmtzKTsNCj4gPiA+ICANCj4gPiA+IC0JCXRjX2NvbGRfdW5ibG9j
+ayhkaWdfcG9ydCwgdGNfY29sZF93cmVmKTsNCj4gPiA+ICsJCXRjX2NvbGRfdW5ibG9jayhkaWdf
+cG9ydCwgZG9tYWluLCB0Y19jb2xkX3dyZWYpOw0KPiA+ID4gIAl9DQo+ID4gPiAgDQo+ID4gPiAg
+CWRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJQb3J0ICVzOiBzYW5pdGl6ZSBtb2RlICglcylcbiIs
+DQo+ID4gPiBAQCAtNjczLDE1ICs2ODksMTYgQEAgYm9vbCBpbnRlbF90Y19wb3J0X2Nvbm5lY3Rl
+ZChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikNCj4gPiA+ICB7DQo+ID4gPiAgCXN0cnVj
+dCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gZW5jX3RvX2RpZ19wb3J0KGVuY29kZXIp
+Ow0KPiA+ID4gIAlib29sIGlzX2Nvbm5lY3RlZDsNCj4gPiA+ICsJZW51bSBpbnRlbF9kaXNwbGF5
+X3Bvd2VyX2RvbWFpbiBkb21haW47DQo+ID4gPiAgCWludGVsX3dha2VyZWZfdCB0Y19jb2xkX3dy
+ZWY7DQo+ID4gPiAgDQo+ID4gPiAgCWludGVsX3RjX3BvcnRfbG9jayhkaWdfcG9ydCk7DQo+ID4g
+PiAtCXRjX2NvbGRfd3JlZiA9IHRjX2NvbGRfYmxvY2soZGlnX3BvcnQpOw0KPiA+ID4gKwl0Y19j
+b2xkX3dyZWYgPSB0Y19jb2xkX2Jsb2NrKGRpZ19wb3J0LCAmZG9tYWluKTsNCj4gPiA+ICANCj4g
+PiA+ICAJaXNfY29ubmVjdGVkID0gdGNfcG9ydF9saXZlX3N0YXR1c19tYXNrKGRpZ19wb3J0KSAm
+DQo+ID4gPiAgCQkgICAgICAgQklUKGRpZ19wb3J0LT50Y19tb2RlKTsNCj4gPiA+ICANCj4gPiA+
+IC0JdGNfY29sZF91bmJsb2NrKGRpZ19wb3J0LCB0Y19jb2xkX3dyZWYpOw0KPiA+ID4gKwl0Y19j
+b2xkX3VuYmxvY2soZGlnX3BvcnQsIGRvbWFpbiwgdGNfY29sZF93cmVmKTsNCj4gPiA+ICAJaW50
+ZWxfdGNfcG9ydF91bmxvY2soZGlnX3BvcnQpOw0KPiA+ID4gIA0KPiA+ID4gIAlyZXR1cm4gaXNf
+Y29ubmVjdGVkOw0KPiA+ID4gQEAgLTY5OCwxNSArNzE1LDE2IEBAIHN0YXRpYyB2b2lkIF9faW50
+ZWxfdGNfcG9ydF9sb2NrKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LA0KPiA+
+ID4gIAltdXRleF9sb2NrKCZkaWdfcG9ydC0+dGNfbG9jayk7DQo+ID4gPiAgDQo+ID4gPiAgCWlm
+ICghZGlnX3BvcnQtPnRjX2xpbmtfcmVmY291bnQpIHsNCj4gPiA+ICsJCWVudW0gaW50ZWxfZGlz
+cGxheV9wb3dlcl9kb21haW4gZG9tYWluOw0KPiA+ID4gIAkJaW50ZWxfd2FrZXJlZl90IHRjX2Nv
+bGRfd3JlZjsNCj4gPiA+ICANCj4gPiA+IC0JCXRjX2NvbGRfd3JlZiA9IHRjX2NvbGRfYmxvY2so
+ZGlnX3BvcnQpOw0KPiA+ID4gKwkJdGNfY29sZF93cmVmID0gdGNfY29sZF9ibG9jayhkaWdfcG9y
+dCwgJmRvbWFpbik7DQo+ID4gPiAgDQo+ID4gPiAgCQlpZiAoZm9yY2VfZGlzY29ubmVjdCB8fCBp
+bnRlbF90Y19wb3J0X25lZWRzX3Jlc2V0KGRpZ19wb3J0KSkNCj4gPiA+ICAJCQlpbnRlbF90Y19w
+b3J0X3Jlc2V0X21vZGUoZGlnX3BvcnQsIHJlcXVpcmVkX2xhbmVzLA0KPiA+ID4gIAkJCQkJCSBm
+b3JjZV9kaXNjb25uZWN0KTsNCj4gPiA+ICANCj4gPiA+IC0JCXRjX2NvbGRfdW5ibG9jayhkaWdf
+cG9ydCwgdGNfY29sZF93cmVmKTsNCj4gPiA+ICsJCXRjX2NvbGRfdW5ibG9jayhkaWdfcG9ydCwg
+ZG9tYWluLCB0Y19jb2xkX3dyZWYpOw0KPiA+ID4gIAl9DQo+ID4gPiAgDQo+ID4gPiAgCWRybV9X
+QVJOX09OKCZpOTE1LT5kcm0sIGRpZ19wb3J0LT50Y19tb2RlID09IFRDX1BPUlRfRElTQ09OTkVD
+VEVEKTsNCj4gPiA+IEBAIC03NzUsNiArNzkzLDcgQEAgdm9pZCBpbnRlbF90Y19wb3J0X3B1dF9s
+aW5rKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQ0KPiA+ID4gIHN0YXRpYyBi
+b29sDQo+ID4gPiAgdGNfaGFzX21vZHVsYXJfZmlhKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
+OTE1LCBzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCkNCj4gPiA+ICB7DQo+ID4g
+PiArCWVudW0gaW50ZWxfZGlzcGxheV9wb3dlcl9kb21haW4gZG9tYWluOw0KPiA+ID4gIAlpbnRl
+bF93YWtlcmVmX3Qgd2FrZXJlZjsNCj4gPiA+ICAJdTMyIHZhbDsNCj4gPiA+ICANCj4gPiA+IEBA
+IC03ODIsOSArODAxLDkgQEAgdGNfaGFzX21vZHVsYXJfZmlhKHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICppOTE1LCBzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWcNCj4gPiA+ICAJCXJldHVy
+biBmYWxzZTsNCj4gPiA+ICANCj4gPiA+ICAJbXV0ZXhfbG9jaygmZGlnX3BvcnQtPnRjX2xvY2sp
+Ow0KPiA+ID4gLQl3YWtlcmVmID0gdGNfY29sZF9ibG9jayhkaWdfcG9ydCk7DQo+ID4gPiArCXdh
+a2VyZWYgPSB0Y19jb2xkX2Jsb2NrKGRpZ19wb3J0LCAmZG9tYWluKTsNCj4gPiA+ICAJdmFsID0g
+aW50ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwgUE9SVF9UWF9ERkxFWERQU1AoRklBMSkp
+Ow0KPiA+ID4gLQl0Y19jb2xkX3VuYmxvY2soZGlnX3BvcnQsIHdha2VyZWYpOw0KPiA+ID4gKwl0
+Y19jb2xkX3VuYmxvY2soZGlnX3BvcnQsIGRvbWFpbiwgd2FrZXJlZik7DQo+ID4gPiAgCW11dGV4
+X3VubG9jaygmZGlnX3BvcnQtPnRjX2xvY2spOw0KPiA+ID4gIA0KPiA+ID4gIAlkcm1fV0FSTl9P
+TigmaTkxNS0+ZHJtLCB2YWwgPT0gMHhmZmZmZmZmZik7DQo+ID4gPiBAQCAtODI5LDExICs4NDgs
+MyBAQCB2b2lkIGludGVsX3RjX3BvcnRfaW5pdChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpk
+aWdfcG9ydCwgYm9vbCBpc19sZWdhY3kpDQo+ID4gPiAgCWRpZ19wb3J0LT50Y19saW5rX3JlZmNv
+dW50ID0gMDsNCj4gPiA+ICAJdGNfcG9ydF9sb2FkX2ZpYV9wYXJhbXMoaTkxNSwgZGlnX3BvcnQp
+Ow0KPiA+ID4gIH0NCj4gPiA+IC0NCj4gPiA+IC1ib29sIGludGVsX3RjX2NvbGRfcmVxdWlyZXNf
+YXV4X3B3KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQ0KPiA+ID4gLXsNCj4g
+PiA+IC0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGRpZ19wb3J0LT5i
+YXNlLmJhc2UuZGV2KTsNCj4gPiA+IC0NCj4gPiA+IC0JcmV0dXJuIChESVNQTEFZX1ZFUihpOTE1
+KSA9PSAxMSAmJiBkaWdfcG9ydC0+dGNfbGVnYWN5X3BvcnQpIHx8DQo+ID4gPiAtCQlJU19BTERF
+UkxBS0VfUChpOTE1KTsNCj4gPiA+IC19DQo+ID4gDQoNCg==
