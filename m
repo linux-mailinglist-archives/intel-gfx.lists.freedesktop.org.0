@@ -2,68 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E348419693
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 16:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 582E7419762
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 17:10:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA8F289FBC;
-	Mon, 27 Sep 2021 14:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882706E831;
+	Mon, 27 Sep 2021 15:10:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com
- [IPv6:2607:f8b0:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85B6F89FBC
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 14:42:40 +0000 (UTC)
-Received: by mail-il1-x12b.google.com with SMTP id a11so8190646ilk.9
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 07:42:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qvtZBZ+cLSMTupAyX2ZKGNNGtfrOCy1D4m7ug1Iv9X0=;
- b=FoMhf7fbYbBHrVsX94BuI5a4xIeWR401smJ1jgv4AMdBDP7eETvTkECdzoAIfy84gR
- uEtEaHGmIkJ50ww2IBTfO31HvsgASAV5T9/IBhedUO+md2ElfKEb1ht1YMOyJs+b+O6z
- nw44azCCLeZ8Xsm5V4J0cx4XySUVHvNNX+zPw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qvtZBZ+cLSMTupAyX2ZKGNNGtfrOCy1D4m7ug1Iv9X0=;
- b=FqbcP7+5Z0UGhC6oVMUKex0Kxp7MkIiEgmU/mPLfJRceTMV75e2qWGKDLMJxw2osSO
- +BlOikWeRs2pXGsoswBj8vZHKtibno0WQmIVFSt1UkyNJcc5ds2YS87l1HfqgijFuQvG
- gMuOMxvD/EZROptiHqaqW8cJh6b5fEFAdY3rsP/c57pyQJrGLeHZTJnT8RaVPfJVKVOz
- IPqvXuE6AhJcaU/oPJTRAOD35EwLP9WMz/g6/7Atq6ovhs0tQIj/DK1l2XhmjbIHO29i
- rmW7MVOv0L2k1J5SutzCDtBS4Vz7Vq//U2NyYaU59qQ1pSg/QhPZOx8VpiW+9P3aUM5i
- R2Iw==
-X-Gm-Message-State: AOAM5320B8L76G68u9BaTaLl8+FksAj89DRJAFV21d0wn/qF3PWxLVdr
- ZQROzUIRN064Ni42p3fmWfU8iZanCMeRUw==
-X-Google-Smtp-Source: ABdhPJx/ByTSTfaozewk+vKdB+nL1DGc/F435+SkFeaculydLQ2BXoCovQaX3cDScrtLjuC4KXMuiw==
-X-Received: by 2002:a05:6e02:14d3:: with SMTP id
- o19mr320911ilk.156.1632753759592; 
- Mon, 27 Sep 2021 07:42:39 -0700 (PDT)
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com.
- [209.85.166.46])
- by smtp.gmail.com with ESMTPSA id a16sm9228291ili.64.2021.09.27.07.42.39
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 27 Sep 2021 07:42:39 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id q3so22911886iot.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 07:42:39 -0700 (PDT)
-X-Received: by 2002:a6b:f915:: with SMTP id j21mr81319iog.98.1632753758718;
- Mon, 27 Sep 2021 07:42:38 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49F6C89FC8;
+ Mon, 27 Sep 2021 15:10:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="222602170"
+X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="222602170"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2021 08:10:28 -0700
+X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="520068943"
+Received: from ekolpasx-mobl.ccr.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.80])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2021 08:10:26 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 27 Sep 2021 17:10:17 +0200
+Message-Id: <20210927151017.287414-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210927154422.605920fd@canb.auug.org.au>
-In-Reply-To: <20210927154422.605920fd@canb.auug.org.au>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 27 Sep 2021 07:42:26 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VrkmTDA-zLFW=1f1RAAVB_P=kJDQtAx+tng6+ZkhkCSA@mail.gmail.com>
-Message-ID: <CAD=FV=VrkmTDA-zLFW=1f1RAAVB_P=kJDQtAx+tng6+ZkhkCSA@mail.gmail.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, 
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-misc tree
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/ttm: Rework object initialization
+ slightly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,23 +50,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+We may end up in i915_ttm_bo_destroy() in an error path before the
+object is fully initialized. In that case it's not correct to call
+__i915_gem_free_object(), because that function
+a) Assumes the gem object refcount is 0, which it isn't.
+b) frees the placements which are owned by the caller until the
+init_object() region ops returns successfully. Fix this by providing
+a lightweight cleanup function i915_gem_object_fini() which is also
+called by __i915_gem_free_object().
 
-On Sun, Sep 26, 2021 at 10:44 PM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
->
-> Hi all,
->
-> After merging the drm-misc tree, today's linux-next build (htmldocs)
-> produced these warnings:
->
-> include/drm/drm_edid.h:530: warning: Function parameter or member 'vend_chr_1' not described in 'drm_edid_encode_panel_id'
-> include/drm/drm_edid.h:530: warning: Excess function parameter 'vend_chr_3' description in 'drm_edid_encode_panel_id'
->
->
-> Introduced by commit
->
->   7d1be0a09fa6 ("drm/edid: Fix EDID quirk compile error on older compilers")
+While doing this, also make sure we call dma_resv_fini() as part of
+ordinary object destruction and not from the RCU callback that frees
+the object. This will help track down bugs where the object is incorrectly
+locked from an RCU lookup.
 
-Thanks for the report! Fix posted.
+Finally, make sure the object isn't put on the region list until it's
+either locked or fully initialized in order to block list processing of
+partially initialized objects.
 
-https://lore.kernel.org/r/20210927074104.1.Ibf22f2a0b75287a5d636c0570c11498648bf61c6@changeid
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.c | 18 ++++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.h |  3 ++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 32 +++++++++++++---------
+ 3 files changed, 38 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 6fb9afb65034..244e555f9bba 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -89,6 +89,20 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 	mutex_init(&obj->mm.get_dma_page.lock);
+ }
+ 
++/**
++ * i915_gem_object_fini - Clean up a GEM object initialization
++ * @obj: The gem object cleanup
++ *
++ * This function cleans up gem object fields that are set up by
++ * drm_gem_private_object_init() and i915_gem_object_init().
++ */
++void i915_gem_object_fini(struct drm_i915_gem_object *obj)
++{
++	mutex_destroy(&obj->mm.get_page.lock);
++	mutex_destroy(&obj->mm.get_dma_page.lock);
++	dma_resv_fini(&obj->base._resv);
++}
++
+ /**
+  * Mark up the object's coherency levels for a given cache_level
+  * @obj: #drm_i915_gem_object
+@@ -174,7 +188,6 @@ void __i915_gem_free_object_rcu(struct rcu_head *head)
+ 		container_of(head, typeof(*obj), rcu);
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 
+-	dma_resv_fini(&obj->base._resv);
+ 	i915_gem_object_free(obj);
+ 
+ 	GEM_BUG_ON(!atomic_read(&i915->mm.free_count));
+@@ -223,7 +236,6 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
+ 						       obj_link))) {
+ 			GEM_BUG_ON(vma->obj != obj);
+ 			spin_unlock(&obj->vma.lock);
+-
+ 			__i915_vma_put(vma);
+ 
+ 			spin_lock(&obj->vma.lock);
+@@ -253,6 +265,8 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
+ 
+ 	if (obj->shares_resv_from)
+ 		i915_vm_resv_put(obj->shares_resv_from);
++
++	i915_gem_object_fini(obj);
+ }
+ 
+ static void __i915_gem_free_objects(struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 3043fcbd31bd..4f1af3b487d9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -58,6 +58,9 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 			  const struct drm_i915_gem_object_ops *ops,
+ 			  struct lock_class_key *key,
+ 			  unsigned alloc_flags);
++
++void i915_gem_object_fini(struct drm_i915_gem_object *obj);
++
+ struct drm_i915_gem_object *
+ i915_gem_object_create_shmem(struct drm_i915_private *i915,
+ 			     resource_size_t size);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index b94497989995..fbe143f34e85 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -813,12 +813,9 @@ static void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj)
+  */
+ static void i915_ttm_delayed_free(struct drm_i915_gem_object *obj)
+ {
+-	if (obj->ttm.created) {
+-		ttm_bo_put(i915_gem_to_ttm(obj));
+-	} else {
+-		__i915_gem_free_object(obj);
+-		call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
+-	}
++	GEM_BUG_ON(!obj->ttm.created);
++
++	ttm_bo_put(i915_gem_to_ttm(obj));
+ }
+ 
+ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+@@ -898,16 +895,19 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
+ {
+ 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+ 
+-	i915_ttm_backup_free(obj);
+-
+-	/* This releases all gem object bindings to the backend. */
+-	__i915_gem_free_object(obj);
+-
+ 	i915_gem_object_release_memory_region(obj);
+ 	mutex_destroy(&obj->ttm.get_io_page.lock);
+ 
+-	if (obj->ttm.created)
++	if (obj->ttm.created) {
++		i915_ttm_backup_free(obj);
++
++		/* This releases all gem object bindings to the backend. */
++		__i915_gem_free_object(obj);
++
+ 		call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
++	} else {
++		i915_gem_object_fini(obj);
++	}
+ }
+ 
+ /**
+@@ -936,7 +936,11 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 
+ 	drm_gem_private_object_init(&i915->drm, &obj->base, size);
+ 	i915_gem_object_init(obj, &i915_gem_ttm_obj_ops, &lock_class, flags);
+-	i915_gem_object_init_memory_region(obj, mem);
++
++	/* Don't put on a region list until we're either locked or fully initialized. */
++	obj->mm.region = intel_memory_region_get(mem);
++	INIT_LIST_HEAD(&obj->mm.region_link);
++
+ 	i915_gem_object_make_unshrinkable(obj);
+ 	INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL | __GFP_NOWARN);
+ 	mutex_init(&obj->ttm.get_io_page.lock);
+@@ -963,6 +967,8 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 		return i915_ttm_err_to_gem(ret);
+ 
+ 	obj->ttm.created = true;
++	i915_gem_object_release_memory_region(obj);
++	i915_gem_object_init_memory_region(obj, mem);
+ 	i915_ttm_adjust_domains_after_move(obj);
+ 	i915_ttm_adjust_gem_after_move(obj);
+ 	i915_gem_object_unlock(obj);
+-- 
+2.31.1
+
