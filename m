@@ -1,40 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3774191A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 11:39:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D704191B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 11:39:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4A166E838;
-	Mon, 27 Sep 2021 09:38:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E66E16E838;
+	Mon, 27 Sep 2021 09:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BF896E838
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 09:38:57 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10119"; a="221242380"
-X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="221242380"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 02:38:55 -0700
-X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="553127940"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 013816E83D;
+ Mon, 27 Sep 2021 09:39:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10119"; a="211529813"
+X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="211529813"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2021 02:39:42 -0700
+X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="561153172"
 Received: from susuale1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.36.178])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 02:38:53 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2021 02:39:39 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-In-Reply-To: <20210915054338.29869-1-vandita.kulkarni@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>,
+ Zhi Wang <zhi.a.wang@intel.com>, "Lv\, 
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan\, Hang" <hang.yuan@intel.com>
+In-Reply-To: <20210918071105.GY14689@zhen-hp.sh.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210915054338.29869-1-vandita.kulkarni@intel.com>
-Date: Mon, 27 Sep 2021 12:38:50 +0300
-Message-ID: <87fstqs6hh.fsf@intel.com>
+References: <20210918071105.GY14689@zhen-hp.sh.intel.com>
+Date: Mon, 27 Sep 2021 12:39:36 +0300
+Message-ID: <87czous6g7.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix the dsc check while
- selecting min_cdclk
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,45 +53,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Sep 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> The right parameter that selects second dsc engine is dsc_split.
-> Hence use dsc_split instead of slice_count while selecting the
-> cdclk in order to accommodate 1ppc limitaion of vdsc.
+On Sat, 18 Sep 2021, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> Hi,
 >
-> Fixes: fe01883fdcef ("drm/i915: Get proper min cdclk if vDSC enabled")
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Here's one ww lock fini fix from Zhi which resolved recent regression
+> with i915 change.
 
-Sorry for the delay!
+Thanks, pulled and pushed to drm-intel-fixes.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+BR,
+Jani.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 9aec17b33819..3a1cdb3937aa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2140,13 +2140,11 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
->  	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
->  
->  	/*
-> -	 * VDSC engine can process only 1 pixel per Cd clock.
-> -	 * In case VDSC is used and max slice count == 1,
-> -	 * max supported pixel clock should be 100% of CD clock.
-> -	 * Then do min_cdclk and pixel clock comparison to get cdclk.
-> +	 * When we decide to use only one VDSC engine, since
-> +	 * each VDSC operates with 1 ppc throughput, pixel clock
-> +	 * cannot be higher than the VDSC clock (cdclk)
->  	 */
-> -	if (crtc_state->dsc.compression_enable &&
-> -	    crtc_state->dsc.slice_count == 1)
-> +	if (crtc_state->dsc.compression_enable && !crtc_state->dsc.dsc_split)
->  		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
->  
->  	/*
+> Thanks
+> --
+> The following changes since commit 71de496cc489b6bae2f51f89da7f28849bf2836e:
+>
+>   drm/i915/dp: Drop redundant debug print (2021-08-26 07:31:52 -0400)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2021-09-18
+>
+> for you to fetch changes up to d168cd797982db9db617113644c87b8f5f3cf27e:
+>
+>   drm/i915/gvt: fix the usage of ww lock in gvt scheduler. (2021-09-13 21:59:31 +0800)
+>
+> ----------------------------------------------------------------
+> gvt-fixes-2021-09-18
+>
+> - ww locking fix from Zhi
+>
+> ----------------------------------------------------------------
+> Zhi A Wang (1):
+>       drm/i915/gvt: fix the usage of ww lock in gvt scheduler.
+>
+>  drivers/gpu/drm/i915/gvt/scheduler.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
