@@ -2,41 +2,131 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 890A1419397
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 13:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FDE419400
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 14:17:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B75A489A59;
-	Mon, 27 Sep 2021 11:49:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56C7589F6E;
+	Mon, 27 Sep 2021 12:17:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 484DC89A59
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 11:49:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10119"; a="211545517"
-X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="211545517"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 04:49:33 -0700
-X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="478020791"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 04:49:32 -0700
-Date: Mon, 27 Sep 2021 05:01:20 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210927120114.GA28419@labuser-Z97X-UD5H>
-References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
- <20210913144440.23008-14-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2041.outbound.protection.outlook.com [40.107.244.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80B0789C83;
+ Mon, 27 Sep 2021 12:17:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=agiqaOpuocXNn2VBHnrxJf1JY6DLxWs4kozlMSIR8SyBkzmO0x2blwz8KIni6eP3EbSS+JFCzjmdr4l1DLROD9SOh88cNdMuYWEvXfvOS5EpjtFuBt0FCCqdDHtap/rjNpotTJvg3qdKxKXgWT+8b0+wFvLAP6aZoHUeSSvFiI/9in46v0dmwPLbzP7FYGrQkVYmXaw6xECG0/npXpx+NnmoZb5q0bdPbjyB32xj8qCfxKDNZfkLo3Frc83UFDN8vlSuqcbELO5BPmBc3t33t3UuWbTNRz47Jun+RUTSEEY1rNMr9xHQtOzKBEKZht55AVO7Hi0uxXDdHnhQvwQE4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=W9m1z6xvN3k5+zHge28fDda3iAvvFB0YAk4Z5uEN8Jo=;
+ b=ey24yywDABUcFCSR8EhC11BTnAy3/ZBY2YjeMW3I2tJt8jjphSQx0Sl+vJxh0L0ion1PARm8I88tPEpVPhLz+/ChNbVQm5hYDRkKA3W6BsYjJb0gNApNV8fL52xUaq7OPCRvryRc4lLjndl+z5Av1vPtgtt/GDcEa8aYJz2NctPdTID3kPzkCNIx5FKREJbZoTMAtE3wHixfZ5ZwF4duIyJXBhBvC1dSVT2l0dzijy/STVdpSW/Caad1ViCiu5SfFwd1ZcK2DkNCNVft/r18862pcHS5ITPPULjUR/MOQpJqUNBLlVjhQllUaJPEA0MBbNSk+izgv70RyHJRKcYKaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W9m1z6xvN3k5+zHge28fDda3iAvvFB0YAk4Z5uEN8Jo=;
+ b=tDFfRXf2aDbTAMo3HQJVfnLAD1yag6U9LIHHwCyUz2v2azBAsOsPccpL9x73EYQBzz7NmS655SXkZVIFV/yGMAYKFQzYLoK4Pn1a1LkZ6N8W8FNbjRIlLANWGnTeCqY2BmEUIu41poPJjQkNFVoZa97x6rtLtsVZyIKHcXFemhjDyjUWgDHntENmszGRxO9fOO4aa8fY6BEnLk9V3hdvOZK8BiuGsdNAfZF1Z+MF2/ZUN7B87nb1JxqrzKaZhU5iDFm7c0KHErAqyAaGxlVC3ko/a1aLzcCRzRHhGp3Ovr3MTJbFMUdqQl9XcUkv0u/6BSQPFq/WNNMLbGeqPGRVng==
+Authentication-Results: linux.ibm.com; dkim=none (message not signed)
+ header.d=none;linux.ibm.com; dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
+ by BL1PR12MB5191.namprd12.prod.outlook.com (2603:10b6:208:318::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13; Mon, 27 Sep
+ 2021 12:17:23 +0000
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::e8af:232:915e:2f95]) by BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::e8af:232:915e:2f95%8]) with mapi id 15.20.4544.021; Mon, 27 Sep 2021
+ 12:17:23 +0000
+Date: Mon, 27 Sep 2021 09:17:22 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Eric Farman <farman@linux.ibm.com>
+Cc: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Cornelia Huck <cohuck@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ dri-devel@lists.freedesktop.org,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Jason Herne <jjherne@linux.ibm.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ kvm@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>, Christoph Hellwig <hch@lst.de>
+Message-ID: <20210927121722.GX964074@nvidia.com>
+References: <3-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
+ <9c1f3f9321f595e6d42dab1413637ad927b6bf2d.camel@linux.ibm.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210913144440.23008-14-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 13/16] drm/i915: Split PPS write from DSC
- enable
+In-Reply-To: <9c1f3f9321f595e6d42dab1413637ad927b6bf2d.camel@linux.ibm.com>
+X-ClientProxiedBy: MN2PR04CA0028.namprd04.prod.outlook.com
+ (2603:10b6:208:d4::41) To BL0PR12MB5506.namprd12.prod.outlook.com
+ (2603:10b6:208:1cb::22)
+MIME-Version: 1.0
+Received: from mlx.ziepe.ca (142.162.113.129) by
+ MN2PR04CA0028.namprd04.prod.outlook.com (2603:10b6:208:d4::41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4544.15 via Frontend Transport; Mon, 27 Sep 2021 12:17:23 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1mUpZS-006JTb-4t; Mon, 27 Sep 2021 09:17:22 -0300
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 85cb061c-2c0b-4d98-bb6e-08d981b0c2ee
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5191:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5191455014FD8C64340F31C0C2A79@BL1PR12MB5191.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PydL8Z43D7kRV1YnJvw5OsK8MVNMSkbwTqfIS2UtrK0dpYok/A7khynwjQWOWY+6MzFFdDVSQA3x9r/b38cP+iVewJeMmPR69VMtu96QcPC5VTMMF27/IOah0qPl/l8hN5khZOY84r3hDCpskXeAMd4NvRAp9lods8FnlMoyRve8kNActkKmrqJ/A5dn3S1KKJd+jZssfxPHbNM6FpE7hBm0iDJpgKo+lLh4UT+WQtZs5vZMfmPMQbVnRtMuGSoyPQa/4+j2wv/J1POIkeSw8YiOqwbrYxKCEzoLe1KfQ85uQ9poXEVbwSdY/+9r8Iiy+W8MaxRRBtVTd7mr4xajRcU2Kv72j2LAY5aQ9K5U4YlOGsBQwnZPw6dbCC1rZBpjmQQtmBrVxVGYkbtPyAUlAqblFadN9qzYVw1ZoWJ3dH80THBOLEw2nglqW8t7YwD9Yz0GciERBlcSS4cmzYyzbV4NxTmF1NtBmsP6G5O7TerIUUBbxxHgdtvt3SKXIdGCvdXV9SWmJV+tuXyXmQF6oiJOanEC4mH1E20QGkaai5NGc7y1VlYfOwP9RuGLhUMVGj/jSFtRgh8klJjxUtcK+URlIABuLNUu67IL0qf426aKM8DSQdzyTHe+dR4sfRl83MDQU4jQvyhcyzUJFbGOee023AC+izCCyhNha64d1vqsI3FCUpXyD5bcafAqJdZD
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(4326008)(2616005)(5660300002)(36756003)(8936002)(33656002)(8676002)(4744005)(508600001)(66946007)(426003)(1076003)(66476007)(66556008)(6916009)(186003)(86362001)(26005)(316002)(2906002)(9746002)(9786002)(38100700002)(7416002)(54906003)(27376004);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?g0wmhpp3IIh19Csj5jP8ziRWiWtLpnLmiovJqKF98JdrSXTLFGzKt2tfggax?=
+ =?us-ascii?Q?70+kcPj51dAwfvfeCe9lZInX7zfjxVwZVP5gOuK/tneSPOwg9PUfMIlWzND4?=
+ =?us-ascii?Q?xoXHf8bmDjD8iSiMCTS6V+3Fpsuw78iOL44PQ0PcaLgUjEzCIxWzB5gjm1PU?=
+ =?us-ascii?Q?IS8RMruHud0CGQhKEylmTVzicJN6GUNUha6mnf9nlbQ+GBWVq3WkfVzqXFFJ?=
+ =?us-ascii?Q?OAxhRBQwgn6ofVNoqreEs2CPA+k6dvUqi7MaFJ5yXjsKmieQhGEd7gEe1WLW?=
+ =?us-ascii?Q?c6hHllDt7jTbeo2kMWtD7J6l6WSmIevIgRzYvTHbz04hCvB1WeoXOBIDxl25?=
+ =?us-ascii?Q?m+CGYrtBKeBpb0yKYpE5JzcQASG94MAzIXq8bOiRHQazq6/NBCDuBM8SBs8X?=
+ =?us-ascii?Q?SgtnqVMcnA0aqxgDJKc3aQA6xXPOY9OjYvJ38tEqT6aJwpxG2jU6+Xw8VtWc?=
+ =?us-ascii?Q?WlLjIln1zRkCbViu9tLs6YEm9ao45SDggBKStl/CqE9z/BxXjka+yu7jNq0/?=
+ =?us-ascii?Q?cbycu+Ph66oB0KwTCOktKRcYt/eOJw0CSEPtU4RcqHKxq/io39bQO4I4QhZR?=
+ =?us-ascii?Q?qZNkurAeOueyS6sHxpRyBiuOu9IUSq/tBRRPiCqaPGo7nkygHqGYvhbvGIZB?=
+ =?us-ascii?Q?RZlBML9Mda85HUM3TpmS59kPOvGDehcfRvS3NuHP9sT9pYPeAhLU7ZWlNaPK?=
+ =?us-ascii?Q?bt+diP5UXaf//2sOF5lhX3bQO5HGV0nnPtjnePLBZrTJD23l0Le9idWUN0JR?=
+ =?us-ascii?Q?sziXbfP25yURQcJHfmh9cxP5lPNW70X2U78Rp9y/wKFqbr6EN4RKVVa1b269?=
+ =?us-ascii?Q?FeMOvLVrzJNmykoKYS5lTHDUT6Q9QvRzI5UAHfWBqISM5LvkYRJweCutxpVC?=
+ =?us-ascii?Q?zUoS0g3l7q/tvxjVJG9IAAxTsPEiNICNzPovR4rNGIaBf1h5g1nIAJmWShgG?=
+ =?us-ascii?Q?ksykAZjOPaHMfijMos8/HWAx/9TP8TiomQ1VsHKLulySmzfqmOZqn6AK/SiC?=
+ =?us-ascii?Q?DHdYMalBUyfaAwJkJ/9TnER/Y1EqXZRI0j0vk4mNKmU8suk5YgEIeOCt17Jv?=
+ =?us-ascii?Q?X1is/TKedMhk5XeYtMNiF9iVaf9KGKGEGWe7E1PEuf7lZOWXlf5f2qCa6PSC?=
+ =?us-ascii?Q?gnEJ/I69clXIjp/yhKISP+J92ZM0T6j3pkq0i/QmI1YpYFl/687HdRxpUuT+?=
+ =?us-ascii?Q?JQ7s7ddaXEdUkpdcvWccomjexOprBYGQiWjqQha/lxE4nciLarjnGj3H2o3v?=
+ =?us-ascii?Q?o3V+ot/uzSiQvnsmxPZ2WNApdhkdvvlDHQvMcuvO4udcwzsLw0YNmFEOetf7?=
+ =?us-ascii?Q?kB6JKW8Gpcu+ItDUK0aK1MYG?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85cb061c-2c0b-4d98-bb6e-08d981b0c2ee
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2021 12:17:23.7823 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YI6Wm4NByBe5XA5JY5yE4LhyA1LMaoEkYeX7WacJrElvanwBo7ciT4fAiVE9svOn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5191
+Subject: Re: [Intel-gfx] [PATCH v2 3/9] vfio/ccw: Convert to use
+ vfio_register_group_dev()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,243 +142,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 13, 2021 at 05:44:37PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Fri, Sep 24, 2021 at 04:37:43PM -0400, Eric Farman wrote:
+> > @@ -528,6 +534,7 @@ static int __init vfio_ccw_sch_init(void)
+> >  
+> >  static void __exit vfio_ccw_sch_exit(void)
+> >  {
+> > +	mdev_unregister_driver(&vfio_ccw_mdev_driver);
 > 
-> The PPS SDP is fed into the transcoder whereas the DSC
-> block is (or at least can be) per pipe. Let's split these
-> into two distinct operations in an effort to untagle the
-> bigjoiner mess where we have two pipes feeding a single
-> transcoder.
->
-
-Yes makes sense.
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-
-Manasi
- 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c       |  6 ++--
->  drivers/gpu/drm/i915/display/intel_ddi.c     | 14 +++++++--
->  drivers/gpu/drm/i915/display/intel_display.c |  5 ++-
->  drivers/gpu/drm/i915/display/intel_dp.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_vdsc.c    | 33 +++++++++-----------
->  drivers/gpu/drm/i915/display/intel_vdsc.h    | 10 +++---
->  6 files changed, 39 insertions(+), 31 deletions(-)
+> Wouldn't it be better to mirror the unwind-init case, such that the
+> above goes...
 > 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 060bc8fb0d30..070ad144ef83 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1246,7 +1246,9 @@ static void gen11_dsi_pre_enable(struct intel_atomic_state *state,
->  	/* step5: program and powerup panel */
->  	gen11_dsi_powerup_panel(encoder);
->  
-> -	intel_dsc_enable(encoder, pipe_config);
-> +	intel_dsc_dsi_pps_write(encoder, pipe_config);
-> +
-> +	intel_dsc_enable(pipe_config);
->  
->  	/* step6c: configure transcoder timings */
->  	gen11_dsi_set_transcoder_timings(encoder, pipe_config);
-> @@ -1636,7 +1638,7 @@ static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
->  	/* FIXME: initialize from VBT */
->  	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
->  
-> -	ret = intel_dsc_compute_params(encoder, crtc_state);
-> +	ret = intel_dsc_compute_params(crtc_state);
->  	if (ret)
->  		return ret;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 4fbffce501dc..f51c5d732d41 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2434,7 +2434,10 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  
->  	/* 5.k Configure and enable FEC if needed */
->  	intel_ddi_enable_fec(encoder, crtc_state);
-> -	intel_dsc_enable(encoder, crtc_state);
-> +
-> +	intel_dsc_dp_pps_write(encoder, crtc_state);
-> +
-> +	intel_dsc_enable(crtc_state);
->  }
->  
->  static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> @@ -2575,8 +2578,11 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  
->  	/* 7.l Configure and enable FEC if needed */
->  	intel_ddi_enable_fec(encoder, crtc_state);
-> +
-> +	intel_dsc_dp_pps_write(encoder, crtc_state);
-> +
->  	if (!crtc_state->bigjoiner)
-> -		intel_dsc_enable(encoder, crtc_state);
-> +		intel_dsc_enable(crtc_state);
->  }
->  
->  static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> @@ -2641,8 +2647,10 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	if (!is_mst)
->  		intel_ddi_enable_pipe_clock(encoder, crtc_state);
->  
-> +	intel_dsc_dp_pps_write(encoder, crtc_state);
-> +
->  	if (!crtc_state->bigjoiner)
-> -		intel_dsc_enable(encoder, crtc_state);
-> +		intel_dsc_enable(crtc_state);
->  }
->  
->  static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 5716085e15f5..4e659a103984 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3007,7 +3007,7 @@ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
->  
->  	if (!crtc_state->bigjoiner_slave) {
->  		/* need to enable VDSC, which we skipped in pre-enable */
-> -		intel_dsc_enable(encoder, crtc_state);
-> +		intel_dsc_enable(crtc_state);
->  	} else {
->  		/*
->  		 * Enable sequence steps 1-7 on bigjoiner master
-> @@ -3017,8 +3017,7 @@ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
->  			intel_enable_shared_dpll(master_crtc_state);
->  		intel_encoders_pre_enable(state, master_crtc);
->  
-> -		/* and DSC on slave */
-> -		intel_dsc_enable(NULL, crtc_state);
-> +		intel_dsc_enable(crtc_state);
->  	}
->  
->  	if (DISPLAY_VER(dev_priv) >= 13)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index e898834cc5f9..68ddd9a490e2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1260,7 +1260,7 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
->  	else
->  		vdsc_cfg->slice_height = 2;
->  
-> -	ret = intel_dsc_compute_params(encoder, crtc_state);
-> +	ret = intel_dsc_compute_params(crtc_state);
->  	if (ret)
->  		return ret;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index 2275f99ce9d7..fa84be609d5d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -442,10 +442,10 @@ calculate_rc_params(struct rc_parameters *rc,
->  	}
->  }
->  
-> -int intel_dsc_compute_params(struct intel_encoder *encoder,
-> -			     struct intel_crtc_state *pipe_config)
-> +int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
-> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	struct drm_dsc_config *vdsc_cfg = &pipe_config->dsc.config;
->  	u16 compressed_bpp = pipe_config->dsc.compressed_bpp;
->  	const struct rc_parameters *rc_params;
-> @@ -1055,8 +1055,8 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
->  	}
->  }
->  
-> -static void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
-> -				    const struct intel_crtc_state *crtc_state)
-> +void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
-> +			     const struct intel_crtc_state *crtc_state)
->  {
->  	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
->  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-> @@ -1064,6 +1064,9 @@ static void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
->  	struct drm_dsc_picture_parameter_set pps;
->  	enum port port;
->  
-> +	if (!crtc_state->dsc.compression_enable)
-> +		return;
-> +
->  	drm_dsc_pps_payload_pack(&pps, vdsc_cfg);
->  
->  	for_each_dsi_port(port, intel_dsi->ports) {
-> @@ -1074,14 +1077,16 @@ static void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
->  	}
->  }
->  
-> -static void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
-> -				   const struct intel_crtc_state *crtc_state)
-> +void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
-> +			    const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
->  	struct drm_dsc_pps_infoframe dp_dsc_pps_sdp;
->  
-> +	if (!crtc_state->dsc.compression_enable)
-> +		return;
-> +
->  	/* Prepare DP SDP PPS header as per DP 1.4 spec, Table 2-123 */
->  	drm_dsc_dp_pps_header_init(&dp_dsc_pps_sdp.pps_header);
->  
-> @@ -1142,8 +1147,7 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
->  	}
->  }
->  
-> -void intel_dsc_enable(struct intel_encoder *encoder,
-> -		      const struct intel_crtc_state *crtc_state)
-> +void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> @@ -1155,13 +1159,6 @@ void intel_dsc_enable(struct intel_encoder *encoder,
->  
->  	intel_dsc_pps_configure(crtc_state);
->  
-> -	if (!crtc_state->bigjoiner_slave) {
-> -		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-> -			intel_dsc_dsi_pps_write(encoder, crtc_state);
-> -		else
-> -			intel_dsc_dp_pps_write(encoder, crtc_state);
-> -	}
-> -
->  	dss_ctl2_val |= LEFT_BRANCH_VDSC_ENABLE;
->  	if (crtc_state->dsc.dsc_split) {
->  		dss_ctl2_val |= RIGHT_BRANCH_VDSC_ENABLE;
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
-> index 0c5d80a572da..4ec75f715986 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-> @@ -15,15 +15,17 @@ struct intel_encoder;
->  
->  bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state);
->  void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state);
-> -void intel_dsc_enable(struct intel_encoder *encoder,
-> -		      const struct intel_crtc_state *crtc_state);
-> +void intel_dsc_enable(const struct intel_crtc_state *crtc_state);
->  void intel_dsc_disable(const struct intel_crtc_state *crtc_state);
-> -int intel_dsc_compute_params(struct intel_encoder *encoder,
-> -			     struct intel_crtc_state *pipe_config);
-> +int intel_dsc_compute_params(struct intel_crtc_state *pipe_config);
->  void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state);
->  void intel_dsc_get_config(struct intel_crtc_state *crtc_state);
->  enum intel_display_power_domain
->  intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder cpu_transcoder);
->  struct intel_crtc *intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc);
-> +void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
-> +			     const struct intel_crtc_state *crtc_state);
-> +void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
-> +			    const struct intel_crtc_state *crtc_state);
->  
->  #endif /* __INTEL_VDSC_H__ */
-> -- 
-> 2.32.0
+> >  	css_driver_unregister(&vfio_ccw_sch_driver);
+> >  	isc_unregister(VFIO_CCW_ISC);
 > 
+> ...here?
+
+Yes, I switched it
+
+Thanks,
+Jason
