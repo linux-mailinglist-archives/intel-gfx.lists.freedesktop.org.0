@@ -2,47 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D295418ED2
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 07:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 385FD41912A
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Sep 2021 10:54:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C186E834;
-	Mon, 27 Sep 2021 05:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7662089F35;
+	Mon, 27 Sep 2021 08:54:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 558 seconds by postgrey-1.36 at gabe;
- Mon, 27 Sep 2021 05:53:49 UTC
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6998E6E826;
- Mon, 27 Sep 2021 05:53:49 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4HHs5j4NL1z4xbR;
- Mon, 27 Sep 2021 15:44:24 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1632721466;
- bh=DCtEvsg3hsgFmNRnoDHLNa8pY9MmGR9OS0ESIOqr/ZE=;
- h=Date:From:To:Cc:Subject:From;
- b=mPerCW3BRc0bILK/tVFzZ32X/Oqt2Qa9RQDgPY8JjQc2Gh/OBy3Vr2AEpomfgv8Ch
- lrIwnsWB+Zq64oHzfft8fBDEDoOHq8OPk0PLkn5hCdPAXXz9/ZqnxFhvLRG3U/NL69
- 01I9mjlzGXskhU7SWeMYur2vr5LFBkxvcBRYy8IZLSCA7oZ/xCQTQLvw62bMDdQSid
- h5DTmn1gOyVr4P6vTQQ7eQvvc5aeRXNPaJ4NXoupZ1q9/NdwsuUJeMMHyaNIkCq8ro
- ZVuhD61FobAFwZrATBRZTUyAvvo6B4WPNNCDzlMK7oJoJcCiLGpm1ruY5F7+5lYy6A
- Yi3VJYUjyqnnA==
-Date: Mon, 27 Sep 2021 15:44:22 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Cc: Douglas Anderson <dianders@chromium.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Message-ID: <20210927154422.605920fd@canb.auug.org.au>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D067F89F35
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 08:54:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10119"; a="288099656"
+X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="288099656"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2021 01:54:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,326,1624345200"; d="scan'208";a="518485405"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by fmsmga008.fm.intel.com with ESMTP; 27 Sep 2021 01:54:33 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Sep 2021 14:17:35 +0530
+Message-Id: <20210927084735.2520467-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/wMHWzMzTFiiQiKRnfentyY/";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: build warning after merge of the drm-misc
- tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH V5] drm/i915/gen11: Disable cursor clock gating
+ in HDR mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,43 +45,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/wMHWzMzTFiiQiKRnfentyY/
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Display underrun in HDR mode when cursor is enabled.
+RTL fix will be implemented CLKGATE_DIS_PSL_A bit 28-46520h.
+As per W/A 1604331009, Disable cursor clock gating in HDR mode.
 
-Hi all,
+Bspec : 33451
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced these warnings:
+Changes since V4:
+	- Added WA needed check - Ville
+	- Replace BIT with REG_BIT - Ville
+	- Add WA enable/disable support back which was added in V1 - Ville
+Changes since V3:
+        - Disable WA when not in HDR mode or cursor plane not active - Ville
+        - Extract required args from crtc_state - Ville
+        - Create HDR mode API using bdw_set_pipemisc ref - Ville
+        - Tested with HDR video as well full setmode, WA applies and disables
+Changes since V2:
+        - Made it general gen11 WA
+        - Removed WA needed check
+        - Added cursor plane active check
+        - Once WA enable, software will not disable
+Changes since V1:
+        - Modified way CLKGATE_DIS_PSL bit 28 was modified
 
-include/drm/drm_edid.h:530: warning: Function parameter or member 'vend_chr=
-_1' not described in 'drm_edid_encode_panel_id'
-include/drm/drm_edid.h:530: warning: Excess function parameter 'vend_chr_3'=
- description in 'drm_edid_encode_panel_id'
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 36 ++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h              |  1 +
+ 2 files changed, 37 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f27c294beb92..fef3e182c5e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -214,6 +214,19 @@ icl_wa_scalerclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
+ 		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);
+ }
+ 
++/* Wa_1604331009:icl,jsl,ehl */
++static void
++icl_wa_cursorclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
++		       bool enable)
++{
++	if (enable)
++		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
++			       intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | CURSOR_GATING_DIS);
++	else
++		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
++			       intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~CURSOR_GATING_DIS);
++}
++
+ static bool
+ is_trans_port_sync_slave(const struct intel_crtc_state *crtc_state)
+ {
+@@ -2356,6 +2369,19 @@ static bool needs_scalerclk_wa(const struct intel_crtc_state *crtc_state)
+ 	return false;
+ }
+ 
++static bool needs_cursorclk_wa(const struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
++
++	/* Wa_1604331009:icl,jsl,ehl */
++	if (is_hdr_mode(crtc_state) &&
++	    crtc_state->active_planes & BIT(PLANE_CURSOR) &&
++	    DISPLAY_VER(dev_priv) == 11)
++		return true;
++
++	return false;
++}
++
+ static bool planes_enabling(const struct intel_crtc_state *old_crtc_state,
+ 			    const struct intel_crtc_state *new_crtc_state)
+ {
+@@ -2398,6 +2424,11 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+ 	if (needs_scalerclk_wa(old_crtc_state) &&
+ 	    !needs_scalerclk_wa(new_crtc_state))
+ 		icl_wa_scalerclkgating(dev_priv, pipe, false);
++
++	if (needs_cursorclk_wa(old_crtc_state) &&
++	    !needs_cursorclk_wa(new_crtc_state))
++		icl_wa_cursorclkgating(dev_priv, pipe, false);
++
+ }
+ 
+ static void intel_crtc_enable_flip_done(struct intel_atomic_state *state,
+@@ -2494,6 +2525,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 	    needs_scalerclk_wa(new_crtc_state))
+ 		icl_wa_scalerclkgating(dev_priv, pipe, true);
+ 
++	/* Wa_1604331009:icl,jsl,ehl */
++	if (!needs_cursorclk_wa(old_crtc_state) &&
++	    needs_cursorclk_wa(new_crtc_state))
++		icl_wa_cursorclkgating(dev_priv, pipe, true);
++
+ 	/*
+ 	 * Vblank time updates from the shadow to live plane control register
+ 	 * are blocked if the memory self-refresh mode is active at that
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index ef594df039db..7b3eed5b4e42 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4272,6 +4272,7 @@ enum {
+ #define   DPF_GATING_DIS		(1 << 10)
+ #define   DPF_RAM_GATING_DIS		(1 << 9)
+ #define   DPFR_GATING_DIS		(1 << 8)
++#define   CURSOR_GATING_DIS		REG_BIT(28)
+ 
+ #define CLKGATE_DIS_PSL(pipe) \
+ 	_MMIO_PIPE(pipe, _CLKGATE_DIS_PSL_A, _CLKGATE_DIS_PSL_B)
+-- 
+2.31.1
 
-Introduced by commit
-
-  7d1be0a09fa6 ("drm/edid: Fix EDID quirk compile error on older compilers")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/wMHWzMzTFiiQiKRnfentyY/
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFRWjYACgkQAVBC80lX
-0Gy39gf/e568oOLEQAhDFPJCzNYA5T06zR9qmRx/veY0EC8OSxtvdtKukj/AzmV6
-vR1xWOtCLuS0nObNdtfODdkLWAxFMUDtESqJdrC7x5C7fRnViZkz07kEwHahZTxG
-MfX9a+Eph2t+YscLNPQlvDXlwCxOqFiT64nyp/AVz//BefJ9s3cDrBVNfiKRGoCu
-q9q5majl1FGlmn9BlmWUC9hdxdf0xKZyHldZ0+k3G5cTjvxgoN7VHYV1REKgwz9H
-O3H61Pcb6sA2k0gfogt+aFNRAmWPV63LtW7YwYY70uC+Dpwmys1Pl87hg17EYsMU
-q686aDT4PBbZWh2oLEytRxXlFLyhDg==
-=CoS0
------END PGP SIGNATURE-----
-
---Sig_/wMHWzMzTFiiQiKRnfentyY/--
