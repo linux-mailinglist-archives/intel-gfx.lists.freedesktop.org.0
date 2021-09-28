@@ -1,47 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDF441B874
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:39:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6787F41B897
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:48:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B27586E973;
-	Tue, 28 Sep 2021 20:39:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C3196E97F;
+	Tue, 28 Sep 2021 20:48:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E8D6E973
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:39:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="204288892"
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="204288892"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:39:03 -0700
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="562627264"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:39:02 -0700
-Date: Tue, 28 Sep 2021 23:38:59 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <20210928203859.GD2103381@ideak-desk.fi.intel.com>
-References: <20210921002313.1132357-8-imre.deak@intel.com>
- <689f485c910ca7cce9793fecaa53778950242892.camel@intel.com>
- <20210927214644.GA2043218@ideak-desk.fi.intel.com>
- <c0f746d643195d9f36e990a9489f48a74d2e5508.camel@intel.com>
- <20210928193408.GA2103381@ideak-desk.fi.intel.com>
- <cb65b5ec8453304853616eb52288921ae253cd19.camel@intel.com>
- <20210928195514.GB2103381@ideak-desk.fi.intel.com>
- <ed58f88653ccc788d70e2924eee1754cf7201280.camel@intel.com>
- <20210928200819.GC2103381@ideak-desk.fi.intel.com>
- <bbf4399a8f430b28f75eecbd58dcbd9db6ee882f.camel@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E83ED6E97F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:48:02 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="204951354"
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="204951354"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 13:47:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="437369482"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 28 Sep 2021 13:47:52 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 28 Sep 2021 23:47:51 +0300
+Date: Tue, 28 Sep 2021 23:47:51 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ jani.saarinen@intel.com, maarten.lankhorst@linux.intel.com
+Message-ID: <YVN/d9YRkht9Mqk7@intel.com>
+References: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
+ <YUyiJ1SFGULGHvmC@intel.com>
+ <20210927182335.GY3389343@mdroper-desk1.amr.corp.intel.com>
+ <YVINc1/ySKUw/KiH@intel.com>
+ <20210928052411.GD3389343@mdroper-desk1.amr.corp.intel.com>
+ <20210928124911.GA10399@intel.com> <YVNmymiuKRccLkoz@intel.com>
+ <20210928203651.GA16292@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <bbf4399a8f430b28f75eecbd58dcbd9db6ee882f.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 07/13] drm/i915/tc: Add a mode for the TypeC
- PHY's disconnected state
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210928203651.GA16292@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Tile F plane format support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,47 +58,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 28, 2021 at 11:29:49PM +0300, Souza, Jose wrote:
-> On Tue, 2021-09-28 at 23:08 +0300, Imre Deak wrote:
-> > On Tue, Sep 28, 2021 at 11:02:37PM +0300, Souza, Jose wrote:
-> > > On Tue, 2021-09-28 at 22:55 +0300, Imre Deak wrote:
-> > > > On Tue, Sep 28, 2021 at 10:45:50PM +0300, Souza, Jose wrote:
-> > > > > > > [...]
-> > > > > > > Would not be possible to use TC_PORT_DISCONNECTED when really
-> > > > > > > disconnected and dropping the use of TC_PORT_TBT_ALT for it?
+On Tue, Sep 28, 2021 at 11:36:51PM +0300, Lisovskiy, Stanislav wrote:
+> On Tue, Sep 28, 2021 at 10:02:34PM +0300, Ville Syrjälä wrote:
+> > On Tue, Sep 28, 2021 at 03:49:11PM +0300, Lisovskiy, Stanislav wrote:
+> > > On Mon, Sep 27, 2021 at 10:24:11PM -0700, Matt Roper wrote:
+> > > > On Mon, Sep 27, 2021 at 09:29:07PM +0300, Ville Syrjälä wrote:
+> > > > > On Mon, Sep 27, 2021 at 11:23:35AM -0700, Matt Roper wrote:
+> > > > > > On Thu, Sep 23, 2021 at 06:49:59PM +0300, Ville Syrjälä wrote:
+> > > > > > > On Thu, Sep 23, 2021 at 11:48:58AM +0300, Stanislav Lisovskiy wrote:
+> > > > > > > > TileF(Tile4 in bspec) format is 4K tile organized into
+> > > > > > > > 64B subtiles with same basic shape as for legacy TileY
+> > > > > > > > which will be supported by Display13.
+> > > > > > > 
+> > > > > > > Why we still haven't done the F->tile64 rename?
+> > > > > > >
+> > > > > > > This is the last chance to fix this before we bake 
+> > > > > > > this into the uapi and are stuck with a name that doesn't
+> > > > > > > match the spec and will just confuse everyone.
 > > > > > > 
-> > > > > > TC_PORT_DISCONNECTED is the state when the PHY ownership is not held and
-> > > > > > we don't hold any power domains.
+> > > > > > I think you're confusing the formats here.  The bspec uses both terms
+> > > > > > "TileF" and "Tile4" for the same format in different places.  There's a
+> > > > > > completely different format that's referred to as both "TileS" and
+> > > > > > "Tile64" in the bspec that we don't use at the moment.  So tile64
+> > > > > > wouldn't be a correct rename, but tile4 could be.
+> > > > > 
+> > > > > Right, tile64 is the macro tile variant I think. So like Ys
+> > > > > which we never bothered implementing, so I guess we''l not bother
+> > > > > with tile64 either.
+> > > > > 
 > > > > > > 
-> > > > > > TC_PORT_TBT_ALT is the state when the PHY ownership is not held (like
-> > > > > > above), and we hold the power domain needed to block TC-cold.
+> > > > > > In general Tile4 is much more common in the bspec than TileF is (TileF
+> > > > > > terminology is mostly found in the media sections).  And bspec 44917 is
+> > > > > > the most authoritative bspec page on the subject, and it refers to it as
+> > > > > > Tile4, so I agree that switching over "Tile4" would probably be a good
+> > > > > > move.
+> > > > > > 
+> > > > > > > 
+> > > > > > > > 
+> > > > > > ...
+> > > > > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > > > > > > index bde5860b3686..d7dc421c6134 100644
+> > > > > > > > --- a/include/uapi/drm/i915_drm.h
+> > > > > > > > +++ b/include/uapi/drm/i915_drm.h
+> > > > > > > > @@ -1522,7 +1522,8 @@ struct drm_i915_gem_caching {
+> > > > > > > >  #define I915_TILING_NONE	0
+> > > > > > > >  #define I915_TILING_X		1
+> > > > > > > >  #define I915_TILING_Y		2
+> > > > > > > > -#define I915_TILING_LAST	I915_TILING_Y
+> > > > > > > > +#define I915_TILING_F		3
+> > > > > > > > +#define I915_TILING_LAST	I915_TILING_F
+> > > > > > > 
+> > > > > > > fences...
+> > > > > > 
+> > > > > > Recognizing TileF/Tile4 separately from TileY is important to code
+> > > > > > outside of display as well.  There are blitter instructions that require
+> > > > > > different settings for TileY vs Tile4/F so if we drop the tracking of
+> > > > > > this as a unique tiling type, it will break the blitting/copying and
+> > > > > > some of the upcoming local memory support for Xe_HP-based platforms.
 > > > > > 
-> > > > > Swapping it would make modes names do what their names intend to.
-> > > > > 
-> > > > > Up to the point that we only had TBT, TC alt and legacy it was fine to
-> > > > > keep into TBT mode when disconnected but now with a disconnected state
-> > > > > it do not make sense to keep it in TBT mode when disconnected.
-> > > > > 
-> > > > > Or you rename it to TC_PORT_UNKNOWN, as it sets to
-> > > > > TC_PORT_DISCONNECTED mode during tc_init() and when going to suspend.
+> > > > > These are uapi definitions for set_tiling(). You are not meant to add
+> > > > > anything there. Just like we didn't add anything for Yf.
 > > > > 
-> > > > Not sure what you mean, because what you describe is what actually
-> > > > happens. From all states icl_tc_phy_disconnect() will change to
-> > > > the disconnected state, which is the state at init time and during
-> > > > suspend or after unloading the driver.
+> > > > Yeah, I think that's the real problem --- we define some values here in
+> > > > the uapi header, but we also wind up using the same set of values for
+> > > > driver-internal non-uapi purposes too rather than having a separate enum
+> > > > (containing a superset of the uapi values) that can be used for those
+> > > > other things.  Display code can use FB modifiers for some things, but
+> > > > core/lmem code needs a way to refer to Tile4 and such and doesn't have a
+> > > > good way to do that today.
+> > > > 
+> > > > I think most (all?) of the non-display code that's relying on a
+> > > > definition of I915_TILING_F is in various selftests that are still being
+> > > > prepared for upstreaming, so maybe there's a better way to handle the
+> > > > selection of possible formats specifically in the selftest code itself.
+> > > > That's really the only area of the kernel code that should need to be
+> > > > aware of the specific internal layout of various buffers.
 > > > 
-> > > I'm talking about the state when system is up without anything
-> > > connected to the port, after icl_tc_phy_disconnect() sets
-> > > dig_port->tc_mode = TC_PORT_DISCONNECTED, icl_tc_phy_connect() goes
-> > > and set it back to TC_PORT_TBT_ALT.
+> > > So I will proceed with the renaming at least.
+> > > 
+> > > Ville, suppose, I still need part of fencing related code?
 > > 
-> > Yes, when the port is locked we are in one of TBT-alt, DP-alt or legacy
-> > mode. These are the only modes that make sense for an AUX transfer or a
-> > modeset, for which the lock was taken.
+> > Nah. Just nuke it all. Someone will have to fix whatever self test is
+> > abusing the uapi definitions though.
+> > 
+> > A local #define should suffice if nothing else is deemed appropriate.
+> > IIRC igt also has a local definition like this for Yf. We should
+> > perhaps rename those to some igt specific namespace as well...
 > 
-> Okay at the end of the series mode goes to TC_PORT_DISCONNECTED if no
-> reference is held.
+> As Matt mentioned, removing I915_TILING_F completely is going to break
+> way more than selftest, but also blitter/copy and local mem support.
 
-Yes.
+No. The only non-fence use of I915_TILING_F I see is a blitter self test
+of some sort.
 
---Imre
+> In fact I remember, I had to add part of those in order to get some
+> tests working, another part was added by somebody else, so not even
+> sure how much other stuff its going to break.
+> 
+> Sounds like a bit too much for simple upstreaming of the patch, we
+> already had internally for more than a year, just wondering why 
+> this popped up only by now.
+
+Because someone tried to sneak in gem uapi additions under the
+cover of darkness? All gem changes must be cc:dri-devel btw,
+uapi doubly so. Oh, and drm_fourcc.h changes really need to go
+there too.
+
+-- 
+Ville Syrjälä
+Intel
