@@ -1,64 +1,94 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643F541B8C5
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:56:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4DE41B8F1
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 23:04:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58C5F89CB9;
-	Tue, 28 Sep 2021 20:56:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADAB36E99E;
+	Tue, 28 Sep 2021 21:04:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A74C89CB9
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:56:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="224459246"
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="224459246"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:56:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="562638131"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by fmsmga002.fm.intel.com with ESMTP; 28 Sep 2021 13:56:46 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 28 Sep 2021 21:56:44 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Tue, 28 Sep 2021 13:56:43 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 07/13] drm/i915/tc: Add a mode for the TypeC PHY's
- disconnected state
-Thread-Index: AQHXrn7mjM9prFOKd0GJlbH3sAKATKu44+kAgAAGxQCAAWqAAIAAAsgAgAAE4gCAAAEEAIAAA60A////+oCAAAefgIAAAPOAgAAGkYA=
-Date: Tue, 28 Sep 2021 20:56:43 +0000
-Message-ID: <5f5a0bda264ac226b49e6703747ac7a5b7de903a.camel@intel.com>
-References: <20210921002313.1132357-8-imre.deak@intel.com>
- <689f485c910ca7cce9793fecaa53778950242892.camel@intel.com>
- <20210927214644.GA2043218@ideak-desk.fi.intel.com>
- <c0f746d643195d9f36e990a9489f48a74d2e5508.camel@intel.com>
- <20210928193408.GA2103381@ideak-desk.fi.intel.com>
- <cb65b5ec8453304853616eb52288921ae253cd19.camel@intel.com>
- <20210928195514.GB2103381@ideak-desk.fi.intel.com>
- <ed58f88653ccc788d70e2924eee1754cf7201280.camel@intel.com>
- <20210928200819.GC2103381@ideak-desk.fi.intel.com>
- <bbf4399a8f430b28f75eecbd58dcbd9db6ee882f.camel@intel.com>
- <20210928203859.GD2103381@ideak-desk.fi.intel.com>
-In-Reply-To: <20210928203859.GD2103381@ideak-desk.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D4E3C2353A838A4D90BB95009EAE247F@intel.com>
-Content-Transfer-Encoding: base64
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB2526E99C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 21:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1632863062;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wr4pGocdlgbpHNQZjncQtWMxPCsDg6ua30ksGUh8IrE=;
+ b=K/2U1BpfIgihJhvBnb1Xho9aM6mrMU3+nKUv1l81/7FuSrhvzKL9VlG/89RQXiFdCjuYNp
+ uHO9aYTq1ChYftRcU8rKTEba1WAm91nJ5qWEfg+ZRni/wuTF7y/f0xQ2VJLEpz2zHkq7Vs
+ 5V8lLruWKbGbJo1Ws/yvvpM/LnIqK0U=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-461-8ySN70eeP4-Y3AFaF0t-tg-1; Tue, 28 Sep 2021 17:04:19 -0400
+X-MC-Unique: 8ySN70eeP4-Y3AFaF0t-tg-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ e8-20020a0cf348000000b0037a350958f2so396178qvm.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 14:04:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=wr4pGocdlgbpHNQZjncQtWMxPCsDg6ua30ksGUh8IrE=;
+ b=jbIHkZ63csZZ94DjWVTRJ+EhFYUQ8/rS6ofwAWipl2CB/LClqCj9HUcgKClQ9MxSr7
+ YDa16A8W74ab4tvktLKQbyk2EvJUZqBjFnd0pa/Q+TnRb/5rKy7p27uZBddqBsTcN3oP
+ R3oJDAXm6xxjSFVny/nFdwaob6oe1sNDkE7YMnwEB63ZRos+z068AZqiXZmVzP63yZMz
+ XfPtlO4okWUNLi3cmS6PxsImFBCwW/qbIGNoCiZ1p7qR9d6UJoE78SC3QjY18o6ok3Gu
+ drJIT4N/n1nVz4S0mvAsXz5OqdaDPiqLYYwQkxkphuhrqSLqDk5n2xgqOuCq+ILfJlVq
+ K4LQ==
+X-Gm-Message-State: AOAM531IXBW77Vgt4ipGo1FGCeUheYE64wKDn/cX4pNMYisggR5aE0Q6
+ +XvBweMR4PImk1XfGFTMlCSLTVKbbAqFhoJBdyl8Sm6OvlEKvPYThdDKzDgH7TjMJrGAyfZ6Rra
+ 9WlZ4WBUs+LXcxO2nV1vt5kKbR73H
+X-Received: by 2002:a05:622a:164b:: with SMTP id
+ y11mr8017225qtj.310.1632863058903; 
+ Tue, 28 Sep 2021 14:04:18 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxMqugv0AWsDrgkfAZii9ACpGK/1bgFIpz4wc6OcxKr+tsd/H/yJ7Xr/NdDBAdDi11PjOcp9w==
+X-Received: by 2002:a05:622a:164b:: with SMTP id
+ y11mr8017205qtj.310.1632863058670; 
+ Tue, 28 Sep 2021 14:04:18 -0700 (PDT)
+Received: from [192.168.8.206] (pool-96-230-249-157.bstnma.fios.verizon.net.
+ [96.230.249.157])
+ by smtp.gmail.com with ESMTPSA id d24sm223902qka.7.2021.09.28.14.04.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Sep 2021 14:04:18 -0700 (PDT)
+Message-ID: <dd2578c87323918e316cd7429b36b329542fd13f.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, dri-devel
+ <dri-devel@lists.freedesktop.org>, Rajeev Nandan <rajeevny@codeaurora.org>,
+ Satadru Pramanik <satadru@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, 
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Ben Skeggs <bskeggs@redhat.com>, Ville
+ =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,  Sean Paul
+ <seanpaul@chromium.org>, open list <linux-kernel@vger.kernel.org>, "open
+ list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>
+Date: Tue, 28 Sep 2021 17:04:16 -0400
+In-Reply-To: <CAD=FV=V00-z=zvh6oZVYt7Hw00o07zEYxCa4zMrCmgNKEzcBCw@mail.gmail.com>
+References: <20210927201206.682788-1-lyude@redhat.com>
+ <20210927201206.682788-3-lyude@redhat.com>
+ <CAD=FV=V00-z=zvh6oZVYt7Hw00o07zEYxCa4zMrCmgNKEzcBCw@mail.gmail.com>
+Organization: Red Hat
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 07/13] drm/i915/tc: Add a mode for the TypeC
- PHY's disconnected state
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/dp,
+ drm/i915: Add support for VESA backlights using PWM for brightness
+ control
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,46 +104,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTA5LTI4IGF0IDIzOjM4ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE9u
-IFR1ZSwgU2VwIDI4LCAyMDIxIGF0IDExOjI5OjQ5UE0gKzAzMDAsIFNvdXphLCBKb3NlIHdyb3Rl
-Og0KPiA+IE9uIFR1ZSwgMjAyMS0wOS0yOCBhdCAyMzowOCArMDMwMCwgSW1yZSBEZWFrIHdyb3Rl
-Og0KPiA+ID4gT24gVHVlLCBTZXAgMjgsIDIwMjEgYXQgMTE6MDI6MzdQTSArMDMwMCwgU291emEs
-IEpvc2Ugd3JvdGU6DQo+ID4gPiA+IE9uIFR1ZSwgMjAyMS0wOS0yOCBhdCAyMjo1NSArMDMwMCwg
-SW1yZSBEZWFrIHdyb3RlOg0KPiA+ID4gPiA+IE9uIFR1ZSwgU2VwIDI4LCAyMDIxIGF0IDEwOjQ1
-OjUwUE0gKzAzMDAsIFNvdXphLCBKb3NlIHdyb3RlOg0KPiA+ID4gPiA+ID4gPiA+IFsuLi5dDQo+
-ID4gPiA+ID4gPiA+ID4gV291bGQgbm90IGJlIHBvc3NpYmxlIHRvIHVzZSBUQ19QT1JUX0RJU0NP
-Tk5FQ1RFRCB3aGVuIHJlYWxseQ0KPiA+ID4gPiA+ID4gPiA+IGRpc2Nvbm5lY3RlZCBhbmQgZHJv
-cHBpbmcgdGhlIHVzZSBvZiBUQ19QT1JUX1RCVF9BTFQgZm9yIGl0Pw0KPiA+ID4gPiA+ID4gPiAN
-Cj4gPiA+ID4gPiA+ID4gVENfUE9SVF9ESVNDT05ORUNURUQgaXMgdGhlIHN0YXRlIHdoZW4gdGhl
-IFBIWSBvd25lcnNoaXAgaXMgbm90IGhlbGQgYW5kDQo+ID4gPiA+ID4gPiA+IHdlIGRvbid0IGhv
-bGQgYW55IHBvd2VyIGRvbWFpbnMuDQo+ID4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gPiBUQ19Q
-T1JUX1RCVF9BTFQgaXMgdGhlIHN0YXRlIHdoZW4gdGhlIFBIWSBvd25lcnNoaXAgaXMgbm90IGhl
-bGQgKGxpa2UNCj4gPiA+ID4gPiA+ID4gYWJvdmUpLCBhbmQgd2UgaG9sZCB0aGUgcG93ZXIgZG9t
-YWluIG5lZWRlZCB0byBibG9jayBUQy1jb2xkLg0KPiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiBT
-d2FwcGluZyBpdCB3b3VsZCBtYWtlIG1vZGVzIG5hbWVzIGRvIHdoYXQgdGhlaXIgbmFtZXMgaW50
-ZW5kIHRvLg0KPiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiBVcCB0byB0aGUgcG9pbnQgdGhhdCB3
-ZSBvbmx5IGhhZCBUQlQsIFRDIGFsdCBhbmQgbGVnYWN5IGl0IHdhcyBmaW5lIHRvDQo+ID4gPiA+
-ID4gPiBrZWVwIGludG8gVEJUIG1vZGUgd2hlbiBkaXNjb25uZWN0ZWQgYnV0IG5vdyB3aXRoIGEg
-ZGlzY29ubmVjdGVkIHN0YXRlDQo+ID4gPiA+ID4gPiBpdCBkbyBub3QgbWFrZSBzZW5zZSB0byBr
-ZWVwIGl0IGluIFRCVCBtb2RlIHdoZW4gZGlzY29ubmVjdGVkLg0KPiA+ID4gPiA+ID4gDQo+ID4g
-PiA+ID4gPiBPciB5b3UgcmVuYW1lIGl0IHRvIFRDX1BPUlRfVU5LTk9XTiwgYXMgaXQgc2V0cyB0
-bw0KPiA+ID4gPiA+ID4gVENfUE9SVF9ESVNDT05ORUNURUQgbW9kZSBkdXJpbmcgdGNfaW5pdCgp
-IGFuZCB3aGVuIGdvaW5nIHRvIHN1c3BlbmQuDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gTm90IHN1
-cmUgd2hhdCB5b3UgbWVhbiwgYmVjYXVzZSB3aGF0IHlvdSBkZXNjcmliZSBpcyB3aGF0IGFjdHVh
-bGx5DQo+ID4gPiA+ID4gaGFwcGVucy4gRnJvbSBhbGwgc3RhdGVzIGljbF90Y19waHlfZGlzY29u
-bmVjdCgpIHdpbGwgY2hhbmdlIHRvDQo+ID4gPiA+ID4gdGhlIGRpc2Nvbm5lY3RlZCBzdGF0ZSwg
-d2hpY2ggaXMgdGhlIHN0YXRlIGF0IGluaXQgdGltZSBhbmQgZHVyaW5nDQo+ID4gPiA+ID4gc3Vz
-cGVuZCBvciBhZnRlciB1bmxvYWRpbmcgdGhlIGRyaXZlci4NCj4gPiA+ID4gDQo+ID4gPiA+IEkn
-bSB0YWxraW5nIGFib3V0IHRoZSBzdGF0ZSB3aGVuIHN5c3RlbSBpcyB1cCB3aXRob3V0IGFueXRo
-aW5nDQo+ID4gPiA+IGNvbm5lY3RlZCB0byB0aGUgcG9ydCwgYWZ0ZXIgaWNsX3RjX3BoeV9kaXNj
-b25uZWN0KCkgc2V0cw0KPiA+ID4gPiBkaWdfcG9ydC0+dGNfbW9kZSA9IFRDX1BPUlRfRElTQ09O
-TkVDVEVELCBpY2xfdGNfcGh5X2Nvbm5lY3QoKSBnb2VzDQo+ID4gPiA+IGFuZCBzZXQgaXQgYmFj
-ayB0byBUQ19QT1JUX1RCVF9BTFQuDQo+ID4gPiANCj4gPiA+IFllcywgd2hlbiB0aGUgcG9ydCBp
-cyBsb2NrZWQgd2UgYXJlIGluIG9uZSBvZiBUQlQtYWx0LCBEUC1hbHQgb3IgbGVnYWN5DQo+ID4g
-PiBtb2RlLiBUaGVzZSBhcmUgdGhlIG9ubHkgbW9kZXMgdGhhdCBtYWtlIHNlbnNlIGZvciBhbiBB
-VVggdHJhbnNmZXIgb3IgYQ0KPiA+ID4gbW9kZXNldCwgZm9yIHdoaWNoIHRoZSBsb2NrIHdhcyB0
-YWtlbi4NCj4gPiANCj4gPiBPa2F5IGF0IHRoZSBlbmQgb2YgdGhlIHNlcmllcyBtb2RlIGdvZXMg
-dG8gVENfUE9SVF9ESVNDT05ORUNURUQgaWYgbm8NCj4gPiByZWZlcmVuY2UgaXMgaGVsZC4NCj4g
-DQo+IFllcy4NCg0KV2l0aCB0aGUgd2Fybl9vbiBmaXhlZDoNCg0KUmV2aWV3ZWQtYnk6IEpvc8Op
-IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IA0KPiAtLUltcmUN
-Cg0K
+On Tue, 2021-09-28 at 13:00 -0700, Doug Anderson wrote:
+> Hi,
+> 
+> 
+> I'm not sure I understand the comment above. You say "enabled/disabled
+> via PWM" and that doesn't make sense w/ my mental model. Normally I
+> think of a PWM allowing you to adjust the brightness and there being a
+> separate GPIO that's in charge of enable/disable. To some extent you
+
+Oops - you're completely right, it is a GPIO pin and I got myself
+confused since in i915 I'm the chipset-specific callbacks for turning
+the panel on are intertwined with the PWM callbacks.
+
+> could think of a PWM as being "disabled" when its duty cycle is 0%,
+> but usually there's separate "enable" logic that really has nothing to
+> do with the PWM itself.
+> 
+> In general, it seems like the options are:
+> 
+> 1. DPCD controls PWM and the "enable" logic.
+> 
+> 2. DPCD controls PWM but requires an external "enable" GPIO.
+> 
+> 3. We require an external PWM but DPCD controls the "enable" logic.
+> 
+> Maybe you need a second "capability" to describe whether the client of
+> your code knows how to control an enable GPIO? ...or perhaps better
+> you don't need a capability and you can just assume that if the client
+> needs to set an "enable" GPIO that it will do so. That would match how
+> things work today. AKA:
+> 
+> a) Client calls the AUX backlight code to "enable"
+> 
+> b) AUX backlight code will set the "enable" bit if supported.
+> 
+> c) Client will set the "enable" GPIO if it knows about one.
+> 
+> Presumably only one of b) or c) will actually do something. If neither
+> does something then this panel simply isn't compatible with this
+> board.
+
+I will definitely take note from this explanation and rewrite some of
+the helper docs I'm updating to reflect this, thank you!
+
+Being that I think panel drivers are basically the only other user of
+this driver, if you think this is the way to go I'm OK with this. My
+original reasoning for having a cap for this was worrying about the ARM
+drivers handling this, along with potentially changing backlight
+behavior in nouveau. I'm realizing now though that those are probably
+problems for nouveau and not the helper, and I could probably avoid
+hitting any issues by just adding some additional DPCD checks for GPIO
+enabling/PWM passthrough in nouveau itself.
+
+So I'll drop the cap in the next respin of this
+> 
+> 
+> > +/**
+> > + * drm_edp_backlight_supported() - Check an eDP DPCD for VESA backlight
+> > support
+> > + * @aux: The AUX channel, only used for debug logging
+> > + * @edp_dpcd: The DPCD to check
+> > + * @caps: The backlight capabilities this driver supports
+> > + *
+> > + * Returns: %True if @edp_dpcd indicates that VESA backlight controls are
+> > supported, %false
+> > + * otherwise
+> > + */
+> > +bool drm_edp_backlight_supported(struct drm_dp_aux *aux,
+> > +                                const u8
+> > edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE],
+> > +                                enum drm_edp_backlight_driver_caps caps)
+> > +{
+> > +       if (!(edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP))
+> > +               return false;
+> > +
+> > +       if (!(caps & DRM_EDP_BACKLIGHT_DRIVER_CAP_PWM) &&
+> > +           (!(edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP) ||
+> > +            !(edp_dpcd[2] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP))) {
+> 
+> Elsewhere you match DP_EDP_BACKLIGHT_AUX_ENABLE_CAP against
+> edp_dpcd[1]. Here you match against [2]. Are you sure that's correct?
+
+absolutely not! thank you for catching this
+
+> 
+> 
+> >  /*
+> >   * DisplayPort AUX channel
+> >   */
+> > @@ -2200,7 +2182,11 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc,
+> > enum drm_dp_quirk quirk)
+> >   * @pwm_freq_pre_divider: The PWM frequency pre-divider value being used
+> > for this backlight, if any
+> >   * @max: The maximum backlight level that may be set
+> >   * @lsb_reg_used: Do we also write values to the
+> > DP_EDP_BACKLIGHT_BRIGHTNESS_LSB register?
+> > - * @aux_enable: Does the panel support the AUX enable cap?
+> > + * @aux_enable: Does the panel support the AUX enable cap? Always %false
+> > when the driver doesn't
+> > + * support %DRM_EDP_BACKLIGHT_DRIVER_CAP_PWM
+> 
+> Why is aux_enable always false if it doesn't support
+> DRM_EDP_BACKLIGHT_DRIVER_CAP_PWM? It doesn't seem like the code
+> enforces this and I'm not sure why it would. Am I confused?
+
+This was mainly just to keep the behavior identical for drivers that
+didn't support controlling backlights like this, but re: the response I
+wrote up above I think we can just totally drop the caps.
+
+> 
+
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
+
