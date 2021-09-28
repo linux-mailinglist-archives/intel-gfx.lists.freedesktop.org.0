@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F238341BAAC
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 00:59:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3DAE41BAAD
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 00:59:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 327566E9D0;
-	Tue, 28 Sep 2021 22:59:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35B476E9C3;
+	Tue, 28 Sep 2021 22:59:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 609476E9D0
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 22:59:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="211905070"
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="211905070"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 15:59:40 -0700
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="456802912"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D5F16E9C3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 22:59:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="212074261"
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="212074261"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 15:59:46 -0700
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="438244183"
 Received: from pop-mobl1.ger.corp.intel.com (HELO localhost) ([10.249.36.249])
- by orsmga002-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2021 15:59:38 -0700
+ by orsmga003-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2021 15:59:44 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Dave Airlie <airlied@gmail.com>, jani.nikula@intel.com,
  Dave Airlie <airlied@redhat.com>
-Date: Wed, 29 Sep 2021 01:57:59 +0300
-Message-Id: <ec4687956f9b98024fea55b2f0ed1e192e244ff1.1632869550.git.jani.nikula@intel.com>
+Date: Wed, 29 Sep 2021 01:58:00 +0300
+Message-Id: <af229c1e8ec894f177b344ab77b90e32c33428de.1632869550.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1632869550.git.jani.nikula@intel.com>
 References: <cover.1632869550.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 15/24] drm/i915: constify fdi link training
- vtable
+Subject: [Intel-gfx] [PATCH 16/24] drm/i915: constify hotplug function
+ vtable.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,73 +52,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-Put the vtable into ro memory.
+Use a macro to avoid mistakes, this type of macro is only used
+in a couple of places.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fdi.c | 20 ++++++++++++++++----
- drivers/gpu/drm/i915/i915_drv.h          |  2 +-
- 2 files changed, 17 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hotplug.c |  4 +--
+ drivers/gpu/drm/i915/i915_drv.h              |  2 +-
+ drivers/gpu/drm/i915/i915_irq.c              | 28 +++++++++++++++-----
+ 3 files changed, 24 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index f828bebe8962..af01d1fa761e 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -15,7 +15,7 @@ void intel_fdi_link_train(struct intel_crtc *crtc,
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 05f76aba4f8a..3c1cec953b42 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -215,8 +215,8 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
+ 
+ static void intel_hpd_irq_setup(struct drm_i915_private *i915)
  {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
--	dev_priv->fdi_funcs.fdi_link_train(crtc, crtc_state);
-+	dev_priv->fdi_funcs->fdi_link_train(crtc, crtc_state);
+-	if (i915->display_irqs_enabled && i915->hotplug_funcs.hpd_irq_setup)
+-		i915->hotplug_funcs.hpd_irq_setup(i915);
++	if (i915->display_irqs_enabled && i915->hotplug_funcs->hpd_irq_setup)
++		i915->hotplug_funcs->hpd_irq_setup(i915);
  }
  
- /* units of 100MHz */
-@@ -1013,15 +1013,27 @@ void lpt_fdi_program_mphy(struct drm_i915_private *dev_priv)
- 	intel_sbi_write(dev_priv, 0x21EC, tmp, SBI_MPHY);
- }
- 
-+static const struct intel_fdi_funcs ilk_funcs = {
-+	.fdi_link_train = ilk_fdi_link_train,
-+};
-+
-+static const struct intel_fdi_funcs gen6_funcs = {
-+	.fdi_link_train = gen6_fdi_link_train,
-+};
-+
-+static const struct intel_fdi_funcs ivb_funcs = {
-+	.fdi_link_train = ivb_manual_fdi_link_train,
-+};
-+
- void
- intel_fdi_init_hook(struct drm_i915_private *dev_priv)
- {
- 	if (IS_IRONLAKE(dev_priv)) {
--		dev_priv->fdi_funcs.fdi_link_train = ilk_fdi_link_train;
-+		dev_priv->fdi_funcs = &ilk_funcs;
- 	} else if (IS_SANDYBRIDGE(dev_priv)) {
--		dev_priv->fdi_funcs.fdi_link_train = gen6_fdi_link_train;
-+		dev_priv->fdi_funcs = &gen6_funcs;
- 	} else if (IS_IVYBRIDGE(dev_priv)) {
- 		/* FIXME: detect B0+ stepping and use auto training */
--		dev_priv->fdi_funcs.fdi_link_train = ivb_manual_fdi_link_train;
-+		dev_priv->fdi_funcs = &ivb_funcs;
- 	}
- }
+ static void intel_hpd_irq_storm_reenable_work(struct work_struct *work)
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index ef62b2df0e82..cd0abc89b5dd 100644
+index cd0abc89b5dd..0e8592445804 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -991,7 +991,7 @@ struct drm_i915_private {
- 	struct intel_hotplug_funcs hotplug_funcs;
+@@ -988,7 +988,7 @@ struct drm_i915_private {
+ 	struct drm_i915_wm_disp_funcs wm_disp;
+ 
+ 	/* irq display functions */
+-	struct intel_hotplug_funcs hotplug_funcs;
++	const struct intel_hotplug_funcs *hotplug_funcs;
  
  	/* fdi display functions */
--	struct intel_fdi_funcs fdi_funcs;
-+	const struct intel_fdi_funcs *fdi_funcs;
+ 	const struct intel_fdi_funcs *fdi_funcs;
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index c35065f8f429..77680bca46ee 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -4345,6 +4345,20 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+ 	return ret;
+ }
  
- 	/* display pll funcs */
- 	struct intel_dpll_funcs dpll_funcs;
++#define HPD_FUNCS(platform)					 \
++static const struct intel_hotplug_funcs platform##_hpd_funcs = { \
++	.hpd_irq_setup = platform##_hpd_irq_setup,		 \
++}
++
++HPD_FUNCS(i915);
++HPD_FUNCS(dg1);
++HPD_FUNCS(gen11);
++HPD_FUNCS(bxt);
++HPD_FUNCS(icp);
++HPD_FUNCS(spt);
++HPD_FUNCS(ilk);
++#undef HPD_FUNCS
++
+ /**
+  * intel_irq_init - initializes irq support
+  * @dev_priv: i915 device instance
+@@ -4395,20 +4409,20 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
+ 
+ 	if (HAS_GMCH(dev_priv)) {
+ 		if (I915_HAS_HOTPLUG(dev_priv))
+-			dev_priv->hotplug_funcs.hpd_irq_setup = i915_hpd_irq_setup;
++			dev_priv->hotplug_funcs = &i915_hpd_funcs;
+ 	} else {
+ 		if (HAS_PCH_DG1(dev_priv))
+-			dev_priv->hotplug_funcs.hpd_irq_setup = dg1_hpd_irq_setup;
++			dev_priv->hotplug_funcs = &dg1_hpd_funcs;
+ 		else if (DISPLAY_VER(dev_priv) >= 11)
+-			dev_priv->hotplug_funcs.hpd_irq_setup = gen11_hpd_irq_setup;
++			dev_priv->hotplug_funcs = &gen11_hpd_funcs;
+ 		else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+-			dev_priv->hotplug_funcs.hpd_irq_setup = bxt_hpd_irq_setup;
++			dev_priv->hotplug_funcs = &bxt_hpd_funcs;
+ 		else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+-			dev_priv->hotplug_funcs.hpd_irq_setup = icp_hpd_irq_setup;
++			dev_priv->hotplug_funcs = &icp_hpd_funcs;
+ 		else if (INTEL_PCH_TYPE(dev_priv) >= PCH_SPT)
+-			dev_priv->hotplug_funcs.hpd_irq_setup = spt_hpd_irq_setup;
++			dev_priv->hotplug_funcs = &spt_hpd_funcs;
+ 		else
+-			dev_priv->hotplug_funcs.hpd_irq_setup = ilk_hpd_irq_setup;
++			dev_priv->hotplug_funcs = &ilk_hpd_funcs;
+ 	}
+ }
+ 
 -- 
 2.30.2
 
