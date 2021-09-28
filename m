@@ -1,68 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04D8F41B95A
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 23:35:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D31C41B99D
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 23:49:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 988F66E9C6;
-	Tue, 28 Sep 2021 21:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B2C6E06B;
+	Tue, 28 Sep 2021 21:48:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from m43-7.mailgun.net (m43-7.mailgun.net [69.72.43.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3576E9C4
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 21:35:12 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1632864912; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=gqOhI5jADGstwqzjRQSY8ghP7IVG/7u+nBzAhdJ3Btk=;
- b=jCDqn9QO06i7zYRa4Fi7P//qK7/boP1Z2vmXsEn76TcZnac/8ViMiG2czHR6BYbrwTC7okpK
- eWH5qvywSwgdxqSZkOhrRiyKv9L1dcpWqvoJsYrrgCov2+G2OshMspSD3gncc74PeCus/pu2
- iBwRUh17SQjjMjrkhOstTl+qGOY=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI5MzZmYyIsICJpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIiwgImJlOWU0YSJd
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 61538a8f519bd8dcf0041c08 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 28 Sep 2021 21:35:11
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 39893C43619; Tue, 28 Sep 2021 21:35:11 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
- aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
- autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: abhinavk)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 7285BC43460;
- Tue, 28 Sep 2021 21:35:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5D97F6E06B;
+ Tue, 28 Sep 2021 21:48:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5405CA47EB;
+ Tue, 28 Sep 2021 21:48:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0697401583492364428=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Tue, 28 Sep 2021 14:35:09 -0700
-From: abhinavk@codeaurora.org
-To: Sean Paul <sean@poorly.run>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, swboyd@chromium.org, Sean Paul
- <seanpaul@chromium.org>, Andy Gross <agross@kernel.org>, Bjorn Andersson
- <bjorn.andersson@linaro.org>, Rob Herring <robh+dt@kernel.org>, Rob Clark
- <robdclark@gmail.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
- <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20210928180219.GT2515@art_vandelay>
-References: <20210915203834.1439-1-sean@poorly.run>
- <20210915203834.1439-14-sean@poorly.run>
- <2486179cbd76c34a9c085dfff98448e5@codeaurora.org>
- <20210928180219.GT2515@art_vandelay>
-Message-ID: <48a284181bf6211b60f8318531051add@codeaurora.org>
-X-Sender: abhinavk@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
-Subject: Re: [Intel-gfx] [Freedreno] [PATCH v2 13/13] drm/msm: Implement
- HDCP 1.x using the new drm HDCP helpers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Harry Wentland" <harry.wentland@amd.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 Sep 2021 21:48:56 -0000
+Message-ID: <163286573631.3948.4450318800514942743@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210928203752.760237-1-harry.wentland@amd.com>
+In-Reply-To: <20210928203752.760237-1-harry.wentland@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/amd/display=3A_Only_define_DP_2=2E0_symbols_if_not_already_def?=
+ =?utf-8?q?ined_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,330 +42,258 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-09-28 11:02, Sean Paul wrote:
-> On Tue, Sep 21, 2021 at 07:25:41PM -0700, abhinavk@codeaurora.org 
-> wrote:
->> On 2021-09-15 13:38, Sean Paul wrote:
->> > From: Sean Paul <seanpaul@chromium.org>
->> >
->> > This patch adds HDCP 1.x support to msm DP connectors using the new HDCP
->> > helpers.
->> >
->> > Cc: Stephen Boyd <swboyd@chromium.org>
->> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
->> > Link:
->> > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run
->> > #v1
->> >
->> > Changes in v2:
->> > -Squash [1] into this patch with the following changes (Stephen)
->> >   -Update the sc7180 dtsi file
->> >   -Remove resource names and just use index (Stephen)
->> >
->> 
->> 
->> > [1]
->> > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-14-sean@poorly.run
->> > ---
-> 
-> /snip
-> 
->> > diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
->> > index 904535eda0c4..98731fd262d6 100644
->> > --- a/drivers/gpu/drm/msm/Makefile
->> > +++ b/drivers/gpu/drm/msm/Makefile
->> > @@ -109,6 +109,7 @@ msm-$(CONFIG_DRM_MSM_DP)+= dp/dp_aux.o \
->> >  	dp/dp_ctrl.o \
->> >  	dp/dp_display.o \
->> >  	dp/dp_drm.o \
->> > +	dp/dp_hdcp.o \
->> >  	dp/dp_hpd.o \
->> >  	dp/dp_link.o \
->> >  	dp/dp_panel.o \
->> > diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c
->> > b/drivers/gpu/drm/msm/dp/dp_debug.c
->> > index 2f6247e80e9d..de16fca8782a 100644
->> > --- a/drivers/gpu/drm/msm/dp/dp_debug.c
->> > +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
-> 
-> /snip
-> 
->> > +static ssize_t dp_hdcp_key_write(struct file *file, const char __user
->> > *ubuf,
->> > +				 size_t len, loff_t *offp)
->> > +{
->> > +	char *input_buffer;
->> > +	int ret = 0;
->> > +	struct dp_debug_private *debug = file->private_data;
->> > +	struct drm_device *dev;
->> > +
->> > +	dev = debug->drm_dev;
->> > +
->> > +	if (len != (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN))
->> > +		return -EINVAL;
->> > +
->> > +	if (!debug->hdcp)
->> > +		return -ENOENT;
->> > +
->> > +	input_buffer = memdup_user_nul(ubuf, len);
->> > +	if (IS_ERR(input_buffer))
->> > +		return PTR_ERR(input_buffer);
->> > +
->> > +	ret = dp_hdcp_ingest_key(debug->hdcp, input_buffer, len);
->> > +
->> > +	kfree(input_buffer);
->> > +	if (ret < 0) {
->> > +		DRM_ERROR("Could not ingest HDCP key, ret=%d\n", ret);
->> > +		return ret;
->> > +	}
->> > +
->> > +	*offp += len;
->> > +	return len;
->> > +}
->> 
->> It seems like the HDCP keys written using debugfs, just for my
->> understanding,
->> are you storing this in some secure partition and the usermode reads 
->> from it
->> and writes them here?
->> 
-> 
-> We have not sorted out the userspace side of HDCP enablement yet, so it 
-> remains
-> to be seen whether the keys will be injected via debugfs/firmware 
-> file/property.
-> 
-> /snip
-> 
->> > +static int dp_connector_atomic_check(struct drm_connector *connector,
->> > +				     struct drm_atomic_state *state)
->> > +{
->> > +	struct drm_connector_state *conn_state;
->> > +	struct dp_connector_state *dp_state;
->> > +
->> > +	conn_state = drm_atomic_get_new_connector_state(state, connector);
->> > +	dp_state = to_dp_connector_state(conn_state);
->> > +
->> > +	dp_state->hdcp_transition = drm_hdcp_atomic_check(connector, state);
->> 
->> I have a general question related to the transition flag and overall 
->> tying
->> the HDCP
->> enable and authentication to the commit.
->> So lets say there is a case where the driver needs to disable HDCP. It 
->> could
->> be due
->> to link integrity failure OR some other error condition which usermode 
->> is
->> not aware of.
->> In that case, we will set this hdcp_transition to true but in the next
->> commit we will
->> actually do the authentication. What if usermode doesnt issue a new 
->> frame?
->> This question arises because currently the link intergrity check is 
->> done
->> using SW polling
->> in the previous patchset. But as I had commented there, this occurs in 
->> HW
->> for us.
->> I dont see that isr itself in this patchset. So wanted to understand 
->> if
->> thats part of this
->> approach to still tie it with commit.
->> 
->> So if we go with the HW polling based approach which is the preferred
->> method, we need to
->> untie this from the commit.
->> 
-> 
-> In the case of error, the worker will detect it and try to 
-> re-authenticate. If
-> the re-authentication is successful, userspace will continue to be 
-> unaware and
-> everything will keep working. If re-authentication is unsuccessful, the 
-> worker
-> will update the property value and issue a uevent to userspace. So HDCP
-> enablement is only tied to commits when the property value is changing 
-> as a
-> result of userspace.
-> 
-> Regarding SW vs HW link checks, I don't think there's any difference in 
-> efficacy
-> between them. If HW can be relied on to issue an interrupt in failure 
-> cases, a
-> follow-up set allowing for this seems like a great idea.
-> 
+--===============0697401583492364428==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the explanation. Yes, from our experience it has been pretty 
-reliable to
-issue signal integrity failures. We already had the isr based approach 
-downstream
-and would prefer to keep it that way based on our experience of it 
-firing reliably.
-We can still keep the SW polling code but it should come into effect 
-only if HW polling
-is not supported / preferred.
+== Series Details ==
 
->> > +
->> > +	return 0;
->> > +}
-> 
-> /snip
-> 
->> > +static int dp_hdcp_load_keys(struct drm_connector *connector)
->> > +{
->> > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
->> > +	struct dp_hdcp_key *key;
->> > +	int i, ret = 0;
->> > +
->> > +	mutex_lock(&hdcp->key_lock);
->> > +
->> > +	key = hdcp->key;
->> > +
->> > +	if (!key->valid) {
->> > +		ret = -ENOENT;
->> > +		goto out;
->> > +	}
->> > +
->> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_SW_LOWER_AKSV, key->ksv.words[0]);
->> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_SW_UPPER_AKSV, key->ksv.words[1]);
->> > +
->> > +	for (i = 0; i < DP_HDCP_NUM_KEYS; i++) {
->> > +		dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_LSB(i),
->> > +				   key->keys[i].words[0]);
->> > +		dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_MSB(i),
->> > +				   key->keys[i].words[1]);
->> > +	}
->> > +
->> > +	dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_VALID, DP_HDCP_SW_KEY_VALID);
->> 
->> I think all of these are TZ_*** registers. So the separation of 
->> write_hdcp()
->> Vs write_hdcp_tz()
->> is not very clear to me.
->> Maybe change the write APIs to something like dp_hdcp_write_hdcp_tz() 
->> for
->> the first address space
->> and dp_hdcp_write_hdcp_tz_hlos() for the other one?
->> 
-> 
-> Will do in v3, thank you for the suggestion.
-> 
->> > +	wmb();
->> > +
->> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_ENTROPY_CTRL0, get_random_u32());
->> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_ENTROPY_CTRL1, get_random_u32());
->> > +	wmb();
->> > +
->> > +out:
->> > +	mutex_unlock(&hdcp->key_lock);
->> > +	return ret;
->> > +}
->> > +
->> > +static int dp_hdcp_hdcp2_capable(struct drm_connector *connector,
->> > bool *capable)
->> > +{
->> > +	*capable = false;
->> > +	return 0;
->> > +}
->> > +
->> > +static int dp_hdcp_hdcp1_read_an_aksv(struct drm_connector *connector,
->> > +				      u32 *an, u32 *aksv)
->> > +{
->> > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
->> > +	bool keys_valid;
->> > +	int ret;
->> > +	u32 val;
->> > +
->> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_CTRL, 1);
->> > +
->> > +	ret = read_poll_timeout(dp_hdcp_are_keys_valid, keys_valid,
->> > keys_valid,
->> > +				20 * 1000, 10 * 1000, false, connector);
->> > +	if (ret) {
->> > +		drm_err(hdcp->dev, "HDCP keys invalid %d\n", ret);
->> > +		return ret;
->> > +	}
->> > +
->> > +	/* Clear AInfo */
->> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_RCVPORT_DATA4, 0);
->> > +
->> > +	aksv[0] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA3);
->> > +	aksv[1] = GENMASK(7, 0) & dp_hdcp_read_dp(hdcp,
->> > DP_HDCP_RCVPORT_DATA4);
->> > +
->> > +	ret = read_poll_timeout(dp_hdcp_read_dp, val,
->> > +				(val & DP_HDCP_AN_READY_MASK) == DP_HDCP_AN_READY_MASK,
->> > +				100, 10 * 1000, false, hdcp, DP_HDCP_STATUS);
->> > +	if (ret) {
->> > +		drm_err(hdcp->dev, "AN failed to become ready %x/%d\n", val, ret);
->> > +		return ret;
->> > +	}
->> > +
->> > +	/*
->> > +	 * Get An from hardware, for unknown reasons we need to read the reg
->> > +	 * twice to get valid data.
->> > +	 */
->> > +	dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA5);
->> > +	an[0] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA5);
->> > +
->> > +	dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA6);
->> > +	an[1] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA6);
->> 
->> Yes its true, but we also have a 1 microsec delay between the first 
->> and
->> second one.
->> So I would certainly preserve that.
-> 
-> Will do in v3, thank you for the suggestion.
-> 
->> 
->> > +
->> > +	return 0;
->> > +}
->> > +
->> > +static int dp_hdcp_hdcp1_store_receiver_info(struct drm_connector
->> > *connector,
->> > +					     u32 *ksv, u32 status, u8 bcaps,
->> > +					     bool is_repeater)
->> > +{
->> > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
->> > +	u32 val;
->> > +
->> > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA0,
->> > +			 ksv[0]);
->> > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA1,
->> > +			 ksv[1]);
->> > +
->> > +	val = ((status & GENMASK(15, 0)) << 8) | (bcaps & GENMASK(7, 0));
->> > +
->> > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA12,
->> > val);
->> > +
->> 
->> Cant this entire API be skipped for non-repeater cases from the hdcp 
->> lib
->> layer?
->> You can write the bcaps to this earlier and write the bstatus only if 
->> its a
->> repeater.
-> 
-> Could you expand on the benefits of this?
+Series: drm/amd/display: Only define DP 2.0 symbols if not already defined (rev2)
+URL   : https://patchwork.freedesktop.org/series/95164/
+State : success
 
-We can avoid the call coming into the vendor driver hook itself as it 
-need not be called
-for non-repeater cases. So something like this can be done in the HDCP 
-lib?
+== Summary ==
 
-if ( repeater && ops->hdcp1_store_receiver_info )
-      ops->hdcp1_store_receiver_info(....);
+CI Bug Log - changes from CI_DRM_10655 -> Patchwork_21180
+====================================================
 
-> 
->> 
->> > +	return 0;
->> > +}
-> 
-> /snip
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21180 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-sdma:
+    - fi-kbl-7500u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886] / [i915#2291])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-7500u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#533])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [DMESG-FAIL][9] ([i915#2927] / [i915#3428]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [FAIL][11] ([i915#1161]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Warnings ####
+
+  * igt@kms_chamelium@vga-hpd-fast:
+    - fi-kbl-7500u:       [{ABORT}][13] ([i915#1814]) -> [SKIP][14] ([fdo#109271])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
+  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Participating hosts (45 -> 37)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10655 -> Patchwork_21180
+
+  CI-20190529: 20190529
+  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21180: 5ad853d0cb0d51c38ff1ac5936876e3158fe89ee @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5ad853d0cb0d drm/amd/display: Only define DP 2.0 symbols if not already defined
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/index.html
+
+--===============0697401583492364428==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/amd/display: Only define DP 2.0 symbols if not already defined (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95164/">https://patchwork.freedesktop.org/series/95164/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10655 -&gt; Patchwork_21180</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21180 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-sdma:</p>
+<ul>
+<li>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>
+<p>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_chamelium@vga-hpd-fast:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">{ABORT}</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21180/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 37)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10655 -&gt; Patchwork_21180</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21180: 5ad853d0cb0d51c38ff1ac5936876e3158fe89ee @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5ad853d0cb0d drm/amd/display: Only define DP 2.0 symbols if not already defined</p>
+
+</body>
+</html>
+
+--===============0697401583492364428==--
