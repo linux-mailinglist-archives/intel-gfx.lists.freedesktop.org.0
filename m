@@ -1,49 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DEE541AD4E
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 12:52:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92EB141AD52
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 12:52:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6817489B84;
-	Tue, 28 Sep 2021 10:52:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1B0F89B84;
+	Tue, 28 Sep 2021 10:52:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4E489B84;
- Tue, 28 Sep 2021 10:52:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="222778606"
-X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="222778606"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 03:51:46 -0700
-X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="553942040"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 03:51:44 -0700
-Date: Tue, 28 Sep 2021 13:45:01 +0300 (EEST)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Takashi Iwai <tiwai@suse.de>
-cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
- dri-devel@lists.freedesktop.org, gregkh@linuxfoundation.org, 
- alsa-devel@alsa-project.org, "Rafael J . Wysocki" <rafael@kernel.org>, 
- jani.nikula@intel.com, Imre Deak <imre.deak@intel.com>, 
- Russell King <rmk+kernel@armlinux.org.uk>, 
- Russell King <rmk+kernel@arm.linux.org.uk>, 
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <s5hh7e5ngnq.wl-tiwai@suse.de>
-Message-ID: <alpine.DEB.2.22.394.2109281335522.3554566@eliteleevi.tm.intel.com>
-References: <20210922085432.2776886-1-kai.vehmanen@linux.intel.com>
- <s5hh7e5ngnq.wl-tiwai@suse.de>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C674D89B84
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 10:52:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="204160593"
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="204160593"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 03:52:54 -0700
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="562183340"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 03:52:53 -0700
+Date: Tue, 28 Sep 2021 13:52:49 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Message-ID: <20210928105249.GA2069823@ideak-desk.fi.intel.com>
+References: <20210921002313.1132357-1-imre.deak@intel.com>
+ <20210921002313.1132357-11-imre.deak@intel.com>
+ <63811f47b365ba59c118ee855af7043ce55eb4ad.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- BOUNDARY="-318106570-1915050432-1632825702=:3554566"
-Content-ID: <alpine.DEB.2.22.394.2109281342020.3554566@eliteleevi.tm.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] component: do not leave master devres
- group open after bind
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <63811f47b365ba59c118ee855af7043ce55eb4ad.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 10/13] drm/i915/icl/tc: Remove the ICL
+ special casing during TC-cold blocking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,60 +51,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
----318106570-1915050432-1632825702=:3554566
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
-Content-ID: <alpine.DEB.2.22.394.2109281342021.3554566@eliteleevi.tm.intel.com>
-
-Hey,
-
-On Tue, 28 Sep 2021, Takashi Iwai wrote:
-
-> On Wed, 22 Sep 2021 10:54:32 +0200, Kai Vehmanen wrote:
-> > --- a/drivers/base/component.c
-> > +++ b/drivers/base/component.c
-> > @@ -246,7 +246,7 @@ static int try_to_bring_up_master(struct master *master,
-> >  		return 0;
-> >  	}
-> >  
-> > -	if (!devres_open_group(master->parent, NULL, GFP_KERNEL))
-> > +	if (!devres_open_group(master->parent, master, GFP_KERNEL))
-> >  		return -ENOMEM;
-> >  
-> >  	/* Found all components */
-> > @@ -258,6 +258,7 @@ static int try_to_bring_up_master(struct master *master,
-> >  		return ret;
-> >  	}
-> >  
-> > +	devres_close_group(master->parent, NULL);
+On Tue, Sep 28, 2021 at 01:02:21AM +0300, Souza, Jose wrote:
+> On Tue, 2021-09-21 at 03:23 +0300, Imre Deak wrote:
+> > While a TypeC port mode is locked a DISPLAY_CORE power domain reference
+> > is held, which implies a runtime PM ref. By removing the ICL !legacy
+> > port special casing, a TC_COLD_OFF power domain reference will be taken
+> > for such ports, which also translates to a runtime PM ref on that
+> > platform. A follow-up change will stop holding the DISPLAY_CORE power
+> > domain while the port is locked.
 > 
-> Just wondering whether we should pass master here instead of NULL,
-> too?
+> This should be squashed to 'drm/i915/tc: Refactor TC-cold
+> block/unblock helpers' otherwise domain is not initialized for this
+> case.
 
-I wondered about this as well. Functionally it should be equivalent as 
-passing NULL will apply the operation to the latest added group. I noted 
-the practise of passing NULL has been followed in the existing code when 
-referring to groups created within the same function. E.g.
+domain is always only valid with a non-zero wakeref, so no need to init
+domain if the returned wakeref is zero.
 
-»       if (!devres_open_group(component->dev, component, GFP_KERNEL)) {
-[...]
-»       ret = component->ops->bind(component->dev, master->parent, data);
-»       if (!ret) {
-»       »       component->bound = true;
-
-»       »       /*                                                                                                                                                          
-»       »        * Close the component device's group so that resources                                                                                                     
-»       »        * allocated in the binding are encapsulated for removal                                                                                                    
-»       »        * at unbind.  Remove the group on the DRM device as we                                                                                                     
-»       »        * can clean those resources up independently.                                                                                                              
-»       »        */
-»       »       devres_close_group(component->dev, NULL);
-
-... so I followed this existing practise. I can change and send a V3 if 
-the explicit parameter is preferred.
-
-Br, Kai
----318106570-1915050432-1632825702=:3554566--
+> > Cc: José Roberto de Souza <jose.souza@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_tc.c | 6 ------
+> >  1 file changed, 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> > index b2a3d297bfc19..8d799cf7ccefd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> > @@ -71,9 +71,6 @@ tc_cold_block_in_mode(struct intel_digital_port *dig_port, enum tc_port_mode mod
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> >  
+> > -	if (DISPLAY_VER(i915) == 11 && !dig_port->tc_legacy_port)
+> > -		return 0;
+> > -
+> >  	*domain = tc_cold_get_power_domain(dig_port, mode);
+> >  
+> >  	return intel_display_power_get(i915, *domain);
+> > @@ -108,9 +105,6 @@ assert_tc_cold_blocked(struct intel_digital_port *dig_port)
+> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> >  	bool enabled;
+> >  
+> > -	if (DISPLAY_VER(i915) == 11 && !dig_port->tc_legacy_port)
+> > -		return;
+> > -
+> >  	enabled = intel_display_power_is_enabled(i915,
+> >  						 tc_cold_get_power_domain(dig_port,
+> >  									  dig_port->tc_mode));
+> 
