@@ -2,53 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E701041B853
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3512041B869
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:36:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCDDA6E972;
-	Tue, 28 Sep 2021 20:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E27856E973;
+	Tue, 28 Sep 2021 20:36:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ECC06E972
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:31:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="211883289"
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="211883289"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:31:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="456767552"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by orsmga002.jf.intel.com with ESMTP; 28 Sep 2021 13:31:03 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 28 Sep 2021 21:31:02 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Tue, 28 Sep 2021 13:31:01 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH 09/13] drm/i915/tc: Avoid using legacy AUX PW in TBT mode
-Thread-Index: AQHXrn7nEXVkpmqKz0asahHYH2a1eau6aXiA
-Date: Tue, 28 Sep 2021 20:31:00 +0000
-Message-ID: <4a762e3b4057f54543d0d3331487b39a878f3099.camel@intel.com>
-References: <20210921002313.1132357-1-imre.deak@intel.com>
- <20210921002313.1132357-10-imre.deak@intel.com>
-In-Reply-To: <20210921002313.1132357-10-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1779B6ADE61E004F9902137FC8799019@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6466A6E973
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:35:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="310350108"
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="310350108"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 13:35:57 -0700
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="706827731"
+Received: from unknown (HELO intel.com) ([10.237.72.91])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 13:35:55 -0700
+Date: Tue, 28 Sep 2021 23:36:51 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ jani.saarinen@intel.com, maarten.lankhorst@linux.intel.com
+Message-ID: <20210928203651.GA16292@intel.com>
+References: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
+ <YUyiJ1SFGULGHvmC@intel.com>
+ <20210927182335.GY3389343@mdroper-desk1.amr.corp.intel.com>
+ <YVINc1/ySKUw/KiH@intel.com>
+ <20210928052411.GD3389343@mdroper-desk1.amr.corp.intel.com>
+ <20210928124911.GA10399@intel.com> <YVNmymiuKRccLkoz@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 09/13] drm/i915/tc: Avoid using legacy AUX
- PW in TBT mode
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YVNmymiuKRccLkoz@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Tile F plane format support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,82 +55,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTA5LTIxIGF0IDAzOjIzICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEZv
-ciB0aGUgQURMLVAgVEJUIG1vZGUgdGhlIHNwZWMgZG9lc24ndCByZXF1aXJlIGJsb2NraW5nIFRD
-LWNvbGQgYnkNCj4gdXNpbmcgdGhlIGxlZ2FjeSBBVVggcG93ZXIgZG9tYWluLiBUbyBhdm9pZCB0
-aGUgdGltZW91dHMgdGhhdCB0aGlzIHdvdWxkDQo+IGNhdXNlIGR1cmluZyBQSFkgZGlzY29ubmVj
-dC9yZWNvbm5lY3Qgc2VxdWVuY2VzICh3aGljaCB3aWxsIGJlIG1vcmUNCj4gZnJlcXVlbnQgYWZ0
-ZXIgYSBmb2xsb3ctdXAgY2hhbmdlKSB1c2UgdGhlIFRDX0NPTERfT0ZGIHBvd2VyIGRvbWFpbiBp
-bg0KPiBUQlQgbW9kZSBvbiBhbGwgcGxhdGZvcm1zLiBPbiBUR0wgdGhpcyBwb3dlciBkb21haW4g
-YmxvY2tzIFRDLWNvbGQgdmlhIGENCj4gUFVOSVQgY29tbWFuZCwgd2hpbGUgb24gb3RoZXIgcGxh
-dGZvcm1zIHRoZSBkb21haW4ganVzdCB0YWtlcyBhIHJ1bnRpbWUNCj4gUE0gcmVmZXJlbmNlLg0K
-PiANCj4gSWYgdGhlIEhQRCBsaXZlIHN0YXR1cyBpbmRpY2F0ZXMgdGhhdCB0aGUgcG9ydCBtb2Rl
-IG5lZWRzIHRvIGJlIHJlc2V0DQo+IC0gZm9yIGluc3RhbmNlIGFmdGVyIHN3aXRjaGluZyBmcm9t
-IFRCVCB0byBhIERQLWFsdCBzaW5rIC0gc3RpbGwgdGFrZQ0KPiB0aGUgQVVYIGRvbWFpbiwgc2lu
-Y2UgdGhlIElPTSBmaXJtd2FyZSBoYW5kc2hha2UgcmVxdWlyZXMgdGhpcy4NCg0KUmV2aWV3ZWQt
-Ynk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IA0K
-PiBDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IFNp
-Z25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4gLS0tDQo+ICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgfCA1NSArKysrKysrKysrKysr
-KysrLS0tLS0tLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMzYgaW5zZXJ0aW9ucygrKSwgMTkgZGVs
-ZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF90Yy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+
-IGluZGV4IDI0ZDJkYzJlMTlhN2QuLmIyYTNkMjk3YmZjMTkgMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMNCj4gQEAgLTU5LDEwICs1OSwxMCBAQCBib29sIGlu
-dGVsX3RjX2NvbGRfcmVxdWlyZXNfYXV4X3B3KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRp
-Z19wb3J0KQ0KPiAgc3RhdGljIGVudW0gaW50ZWxfZGlzcGxheV9wb3dlcl9kb21haW4NCj4gIHRj
-X2NvbGRfZ2V0X3Bvd2VyX2RvbWFpbihzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9y
-dCwgZW51bSB0Y19wb3J0X21vZGUgbW9kZSkNCj4gIHsNCj4gLQlpZiAoaW50ZWxfdGNfY29sZF9y
-ZXF1aXJlc19hdXhfcHcoZGlnX3BvcnQpKQ0KPiAtCQlyZXR1cm4gaW50ZWxfbGVnYWN5X2F1eF90
-b19wb3dlcl9kb21haW4oZGlnX3BvcnQtPmF1eF9jaCk7DQo+IC0JZWxzZQ0KPiArCWlmIChtb2Rl
-ID09IFRDX1BPUlRfVEJUX0FMVCB8fCAhaW50ZWxfdGNfY29sZF9yZXF1aXJlc19hdXhfcHcoZGln
-X3BvcnQpKQ0KPiAgCQlyZXR1cm4gUE9XRVJfRE9NQUlOX1RDX0NPTERfT0ZGOw0KPiArDQo+ICsJ
-cmV0dXJuIGludGVsX2xlZ2FjeV9hdXhfdG9fcG93ZXJfZG9tYWluKGRpZ19wb3J0LT5hdXhfY2gp
-Ow0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMgaW50ZWxfd2FrZXJlZl90DQo+IEBAIC02MjQsNiArNjI0
-LDM2IEBAIHN0YXRpYyB2b2lkIGludGVsX3RjX3BvcnRfcmVzZXRfbW9kZShzdHJ1Y3QgaW50ZWxf
-ZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwNCj4gIAkJICAgIHRjX3BvcnRfbW9kZV9uYW1lKGRpZ19w
-b3J0LT50Y19tb2RlKSk7DQo+ICB9DQo+ICANCj4gK3N0YXRpYyBib29sIGludGVsX3RjX3BvcnRf
-bmVlZHNfcmVzZXQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ICt7DQo+
-ICsJcmV0dXJuIGludGVsX3RjX3BvcnRfZ2V0X3RhcmdldF9tb2RlKGRpZ19wb3J0KSAhPSBkaWdf
-cG9ydC0+dGNfbW9kZTsNCj4gK30NCj4gKw0KPiArc3RhdGljIHZvaWQgaW50ZWxfdGNfcG9ydF91
-cGRhdGVfbW9kZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwNCj4gKwkJCQkg
-ICAgICBpbnQgcmVxdWlyZWRfbGFuZXMsIGJvb2wgZm9yY2VfZGlzY29ubmVjdCkNCj4gK3sNCj4g
-KwllbnVtIGludGVsX2Rpc3BsYXlfcG93ZXJfZG9tYWluIGRvbWFpbjsNCj4gKwlpbnRlbF93YWtl
-cmVmX3Qgd3JlZjsNCj4gKwlib29sIG5lZWRzX3Jlc2V0ID0gZm9yY2VfZGlzY29ubmVjdDsNCj4g
-Kw0KPiArCWlmICghbmVlZHNfcmVzZXQpIHsNCj4gKwkJLyogR2V0IHBvd2VyIGRvbWFpbiByZXF1
-aXJlZCB0byBjaGVjayB0aGUgaG90cGx1ZyBsaXZlIHN0YXR1cy4gKi8NCj4gKwkJd3JlZiA9IHRj
-X2NvbGRfYmxvY2soZGlnX3BvcnQsICZkb21haW4pOw0KPiArCQluZWVkc19yZXNldCA9IGludGVs
-X3RjX3BvcnRfbmVlZHNfcmVzZXQoZGlnX3BvcnQpOw0KPiArCQl0Y19jb2xkX3VuYmxvY2soZGln
-X3BvcnQsIGRvbWFpbiwgd3JlZik7DQo+ICsJfQ0KPiArDQo+ICsJaWYgKCFuZWVkc19yZXNldCkN
-Cj4gKwkJcmV0dXJuOw0KPiArDQo+ICsJLyogR2V0IHBvd2VyIGRvbWFpbiByZXF1aXJlZCBmb3Ig
-cmVzZXR0aW5nIHRoZSBtb2RlLiAqLw0KPiArCXdyZWYgPSB0Y19jb2xkX2Jsb2NrX2luX21vZGUo
-ZGlnX3BvcnQsIFRDX1BPUlRfRElTQ09OTkVDVEVELCAmZG9tYWluKTsNCj4gKw0KPiArCWludGVs
-X3RjX3BvcnRfcmVzZXRfbW9kZShkaWdfcG9ydCwgcmVxdWlyZWRfbGFuZXMsIGZvcmNlX2Rpc2Nv
-bm5lY3QpOw0KPiArDQo+ICsJdGNfY29sZF91bmJsb2NrKGRpZ19wb3J0LCBkb21haW4sIHdyZWYp
-Ow0KPiArfQ0KPiArDQo+ICBzdGF0aWMgdm9pZA0KPiAgaW50ZWxfdGNfcG9ydF9saW5rX2luaXRf
-cmVmY291bnQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQsDQo+ICAJCQkJIGlu
-dCByZWZjb3VudCkNCj4gQEAgLTY3MCwxMSArNzAwLDYgQEAgdm9pZCBpbnRlbF90Y19wb3J0X3Nh
-bml0aXplKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQ0KPiAgCW11dGV4X3Vu
-bG9jaygmZGlnX3BvcnQtPnRjX2xvY2spOw0KPiAgfQ0KPiAgDQo+IC1zdGF0aWMgYm9vbCBpbnRl
-bF90Y19wb3J0X25lZWRzX3Jlc2V0KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0
-KQ0KPiAtew0KPiAtCXJldHVybiBpbnRlbF90Y19wb3J0X2dldF90YXJnZXRfbW9kZShkaWdfcG9y
-dCkgIT0gZGlnX3BvcnQtPnRjX21vZGU7DQo+IC19DQo+IC0NCj4gIC8qDQo+ICAgKiBUaGUgdHlw
-ZS1DIHBvcnRzIGFyZSBkaWZmZXJlbnQgYmVjYXVzZSBldmVuIHdoZW4gdGhleSBhcmUgY29ubmVj
-dGVkLCB0aGV5IG1heQ0KPiAgICogbm90IGJlIGF2YWlsYWJsZS91c2FibGUgYnkgdGhlIGdyYXBo
-aWNzIGRyaXZlcjogc2VlIHRoZSBjb21tZW50IG9uDQo+IEBAIC03MTQsMTggKzczOSwxMCBAQCBz
-dGF0aWMgdm9pZCBfX2ludGVsX3RjX3BvcnRfbG9jayhzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0
-ICpkaWdfcG9ydCwNCj4gIA0KPiAgCW11dGV4X2xvY2soJmRpZ19wb3J0LT50Y19sb2NrKTsNCj4g
-IA0KPiAtCWlmICghZGlnX3BvcnQtPnRjX2xpbmtfcmVmY291bnQpIHsNCj4gLQkJZW51bSBpbnRl
-bF9kaXNwbGF5X3Bvd2VyX2RvbWFpbiBkb21haW47DQo+IC0JCWludGVsX3dha2VyZWZfdCB0Y19j
-b2xkX3dyZWY7DQo+ICANCj4gLQkJdGNfY29sZF93cmVmID0gdGNfY29sZF9ibG9jayhkaWdfcG9y
-dCwgJmRvbWFpbik7DQo+IC0NCj4gLQkJaWYgKGZvcmNlX2Rpc2Nvbm5lY3QgfHwgaW50ZWxfdGNf
-cG9ydF9uZWVkc19yZXNldChkaWdfcG9ydCkpDQo+IC0JCQlpbnRlbF90Y19wb3J0X3Jlc2V0X21v
-ZGUoZGlnX3BvcnQsIHJlcXVpcmVkX2xhbmVzLA0KPiAtCQkJCQkJIGZvcmNlX2Rpc2Nvbm5lY3Qp
-Ow0KPiAtDQo+IC0JCXRjX2NvbGRfdW5ibG9jayhkaWdfcG9ydCwgZG9tYWluLCB0Y19jb2xkX3dy
-ZWYpOw0KPiAtCX0NCj4gKwlpZiAoIWRpZ19wb3J0LT50Y19saW5rX3JlZmNvdW50KQ0KPiArCQlp
-bnRlbF90Y19wb3J0X3VwZGF0ZV9tb2RlKGRpZ19wb3J0LCByZXF1aXJlZF9sYW5lcywNCj4gKwkJ
-CQkJICBmb3JjZV9kaXNjb25uZWN0KTsNCj4gIA0KPiAgCWRybV9XQVJOX09OKCZpOTE1LT5kcm0s
-IGRpZ19wb3J0LT50Y19tb2RlID09IFRDX1BPUlRfRElTQ09OTkVDVEVEKTsNCj4gIAlkcm1fV0FS
-Tl9PTigmaTkxNS0+ZHJtLCBkaWdfcG9ydC0+dGNfbW9kZSAhPSBUQ19QT1JUX1RCVF9BTFQgJiYN
-Cg0K
+On Tue, Sep 28, 2021 at 10:02:34PM +0300, Ville Syrjälä wrote:
+> On Tue, Sep 28, 2021 at 03:49:11PM +0300, Lisovskiy, Stanislav wrote:
+> > On Mon, Sep 27, 2021 at 10:24:11PM -0700, Matt Roper wrote:
+> > > On Mon, Sep 27, 2021 at 09:29:07PM +0300, Ville Syrjälä wrote:
+> > > > On Mon, Sep 27, 2021 at 11:23:35AM -0700, Matt Roper wrote:
+> > > > > On Thu, Sep 23, 2021 at 06:49:59PM +0300, Ville Syrjälä wrote:
+> > > > > > On Thu, Sep 23, 2021 at 11:48:58AM +0300, Stanislav Lisovskiy wrote:
+> > > > > > > TileF(Tile4 in bspec) format is 4K tile organized into
+> > > > > > > 64B subtiles with same basic shape as for legacy TileY
+> > > > > > > which will be supported by Display13.
+> > > > > > 
+> > > > > > Why we still haven't done the F->tile64 rename?
+> > > > > >
+> > > > > > This is the last chance to fix this before we bake 
+> > > > > > this into the uapi and are stuck with a name that doesn't
+> > > > > > match the spec and will just confuse everyone.
+> > > > > 
+> > > > > I think you're confusing the formats here.  The bspec uses both terms
+> > > > > "TileF" and "Tile4" for the same format in different places.  There's a
+> > > > > completely different format that's referred to as both "TileS" and
+> > > > > "Tile64" in the bspec that we don't use at the moment.  So tile64
+> > > > > wouldn't be a correct rename, but tile4 could be.
+> > > > 
+> > > > Right, tile64 is the macro tile variant I think. So like Ys
+> > > > which we never bothered implementing, so I guess we''l not bother
+> > > > with tile64 either.
+> > > > 
+> > > > > 
+> > > > > In general Tile4 is much more common in the bspec than TileF is (TileF
+> > > > > terminology is mostly found in the media sections).  And bspec 44917 is
+> > > > > the most authoritative bspec page on the subject, and it refers to it as
+> > > > > Tile4, so I agree that switching over "Tile4" would probably be a good
+> > > > > move.
+> > > > > 
+> > > > > > 
+> > > > > > > 
+> > > > > ...
+> > > > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > > > > > index bde5860b3686..d7dc421c6134 100644
+> > > > > > > --- a/include/uapi/drm/i915_drm.h
+> > > > > > > +++ b/include/uapi/drm/i915_drm.h
+> > > > > > > @@ -1522,7 +1522,8 @@ struct drm_i915_gem_caching {
+> > > > > > >  #define I915_TILING_NONE	0
+> > > > > > >  #define I915_TILING_X		1
+> > > > > > >  #define I915_TILING_Y		2
+> > > > > > > -#define I915_TILING_LAST	I915_TILING_Y
+> > > > > > > +#define I915_TILING_F		3
+> > > > > > > +#define I915_TILING_LAST	I915_TILING_F
+> > > > > > 
+> > > > > > fences...
+> > > > > 
+> > > > > Recognizing TileF/Tile4 separately from TileY is important to code
+> > > > > outside of display as well.  There are blitter instructions that require
+> > > > > different settings for TileY vs Tile4/F so if we drop the tracking of
+> > > > > this as a unique tiling type, it will break the blitting/copying and
+> > > > > some of the upcoming local memory support for Xe_HP-based platforms.
+> > > > 
+> > > > These are uapi definitions for set_tiling(). You are not meant to add
+> > > > anything there. Just like we didn't add anything for Yf.
+> > > 
+> > > Yeah, I think that's the real problem --- we define some values here in
+> > > the uapi header, but we also wind up using the same set of values for
+> > > driver-internal non-uapi purposes too rather than having a separate enum
+> > > (containing a superset of the uapi values) that can be used for those
+> > > other things.  Display code can use FB modifiers for some things, but
+> > > core/lmem code needs a way to refer to Tile4 and such and doesn't have a
+> > > good way to do that today.
+> > > 
+> > > I think most (all?) of the non-display code that's relying on a
+> > > definition of I915_TILING_F is in various selftests that are still being
+> > > prepared for upstreaming, so maybe there's a better way to handle the
+> > > selection of possible formats specifically in the selftest code itself.
+> > > That's really the only area of the kernel code that should need to be
+> > > aware of the specific internal layout of various buffers.
+> > 
+> > So I will proceed with the renaming at least.
+> > 
+> > Ville, suppose, I still need part of fencing related code?
+> 
+> Nah. Just nuke it all. Someone will have to fix whatever self test is
+> abusing the uapi definitions though.
+> 
+> A local #define should suffice if nothing else is deemed appropriate.
+> IIRC igt also has a local definition like this for Yf. We should
+> perhaps rename those to some igt specific namespace as well...
+
+As Matt mentioned, removing I915_TILING_F completely is going to break
+way more than selftest, but also blitter/copy and local mem support.
+In fact I remember, I had to add part of those in order to get some
+tests working, another part was added by somebody else, so not even
+sure how much other stuff its going to break.
+
+Sounds like a bit too much for simple upstreaming of the patch, we
+already had internally for more than a year, just wondering why 
+this popped up only by now.
+
+Stan
+
+> 
+> -- 
+> Ville Syrjälä
+> Intel
