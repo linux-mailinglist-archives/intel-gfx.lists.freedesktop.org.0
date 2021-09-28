@@ -1,63 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E08841B17D
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 16:01:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05D2F41B1D6
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 16:15:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 282AF6E0E9;
-	Tue, 28 Sep 2021 14:01:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 129496E89C;
+	Tue, 28 Sep 2021 14:15:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B48289CD8;
- Tue, 28 Sep 2021 14:01:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:
- Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description;
- bh=ZGKJbIQb/oSd6eIGdR1+b3C/vnQiuZe8y66fqeUzRIk=; b=boDq/QONrhvi9N7rdCEcrwGnzY
- 9TR0lEcuIxCa2orVcE0Ws8pMcRfTKfls4O//YcbTw6Y8AeQ6jT6s3QbuiFPGSpb+sFx8XTiv4SJ6q
- MTk02RHah/tch+Rwvh54Vq/FbMthYRDJ1O0ByaPtHbUEbI5bLoLOjZE6d7a8IAwnVGI3UEZLTCz6h
- r2oQFrejRK27v6Bj6zRTBb899PpM1N/TqiUxgE1k9n9xuTvxe873f3dsRIEjSmKKvSXj4nGPnnR58
- elC5AA5U0rSxVQwdSkEBORaAw8eTyt269ICWQIly6btQubSArpvRXvS+5DM3iWcxKOwuiwJqYR2ni
- pP8ksZTg==;
-Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2
- (Red Hat Linux)) id 1mVDfE-007TNG-7U; Tue, 28 Sep 2021 14:00:56 +0000
-Date: Tue, 28 Sep 2021 07:00:56 -0700
-From: Luis Chamberlain <mcgrof@kernel.org>
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>, Jessica Yu <jeyu@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
- Jason Gunthorpe <jgg@nvidia.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Greg KH <gregkh@linuxfoundation.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "Nikula, Jani" <jani.nikula@intel.com>
-Message-ID: <YVMgGKk1K4gO8ls6@bombadil.infradead.org>
-References: <20210803143058.GA1721383@nvidia.com>
- <20210804052606.GG13928@zhen-hp.sh.intel.com>
- <20210816173458.GA9183@lst.de>
- <20210817010851.GW13928@zhen-hp.sh.intel.com>
- <20210817052203.GX13928@zhen-hp.sh.intel.com>
- <20210819082929.GB13928@zhen-hp.sh.intel.com>
- <20210820141724.GA29034@lst.de>
- <YSAI8pKAvvW/8S2O@bombadil.infradead.org>
- <20210826061219.GD9942@zhen-hp.sh.intel.com>
- <55c11f22-99e5-6109-3be3-a04b06b3336e@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 795A36E89C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 14:15:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="224772993"
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="224772993"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 07:15:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="616677241"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 28 Sep 2021 07:15:33 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 28 Sep 2021 17:15:32 +0300
+Date: Tue, 28 Sep 2021 17:15:32 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YVMjhOQ2TyCXI76b@intel.com>
+References: <20210927100240.2527555-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <55c11f22-99e5-6109-3be3-a04b06b3336e@intel.com>
-Subject: Re: [Intel-gfx] refactor the i915 GVT support
+In-Reply-To: <20210927100240.2527555-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH V6] drm/i915/gen11: Disable cursor clock
+ gating in HDR mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,180 +52,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 28, 2021 at 07:41:00AM +0000, Wang, Zhi A wrote:
-> Hey guys:
+On Mon, Sep 27, 2021 at 03:32:40PM +0530, Tejas Upadhyay wrote:
+> Display underrun in HDR mode when cursor is enabled.
+> RTL fix will be implemented CLKGATE_DIS_PSL_A bit 28-46520h.
+> As per W/A 1604331009, Disable cursor clock gating in HDR mode.
 > 
-> After some investigation, I found the root cause this problem ("i915" 
-> module loading will be stuck with Christoph's refactor patches), which 
-> can be reproduced by building both i915 and kvmgt as kernel module and 
-> the loading i915.
+> Bspec : 33451
+> 
+> Changes since V5:
+> 	- replace intel_de_read with intel_de_rmw - Jani
+> Changes since V4:
+>         - Added WA needed check - Ville
+>         - Replace BIT with REG_BIT - Ville
+>         - Add WA enable/disable support back which was added in V1 - Ville
+> Changes since V3:
+>         - Disable WA when not in HDR mode or cursor plane not active - Ville
+>         - Extract required args from crtc_state - Ville
+>         - Create HDR mode API using bdw_set_pipemisc ref - Ville
+>         - Tested with HDR video as well full setmode, WA applies and disables
+> Changes since V2:
+>         - Made it general gen11 WA
+>         - Removed WA needed check
+>         - Added cursor plane active check
+>         - Once WA enable, software will not disable
+> Changes since V1:
+>         - Modified way CLKGATE_DIS_PSL bit 28 was modified
+> 
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 31 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h              |  1 +
+>  2 files changed, 32 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index f27c294beb92..e6ccc986bf27 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -214,6 +214,14 @@ icl_wa_scalerclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
+>  		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);
+>  }
+>  
+> +/* Wa_1604331009:icl,jsl,ehl */
+> +static void
+> +icl_wa_cursorclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
+> +		       bool enable)
+> +{
+> +	intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe), CURSOR_GATING_DIS, enable ? CURSOR_GATING_DIS : 0);
 
-Thanks for looking into this!
+Checkapatch complained about the long line. Trivial to fix here.
 
-> The root cause is: in Linux kernel loading, before a kernel module 
-> loading is finished, its symbols can not be reached by other module when 
-> resolving the symbols (even they can be found in /proc/kallsyms). 
-> Because the status of the kernel module is MODULE_STATE_COMING and 
-> resolve_symbol() from another kernel module will check this and return a 
-> -EBUSY.
+> +}
+> +
+>  static bool
+>  is_trans_port_sync_slave(const struct intel_crtc_state *crtc_state)
+>  {
+> @@ -2356,6 +2364,19 @@ static bool needs_scalerclk_wa(const struct intel_crtc_state *crtc_state)
+>  	return false;
+>  }
+>  
+> +static bool needs_cursorclk_wa(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> +
+> +	/* Wa_1604331009:icl,jsl,ehl */
+> +	if (is_hdr_mode(crtc_state) &&
+> +	    crtc_state->active_planes & BIT(PLANE_CURSOR) &&
+> +	    DISPLAY_VER(dev_priv) == 11)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+>  static bool planes_enabling(const struct intel_crtc_state *old_crtc_state,
+>  			    const struct intel_crtc_state *new_crtc_state)
+>  {
+> @@ -2398,6 +2419,11 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+>  	if (needs_scalerclk_wa(old_crtc_state) &&
+>  	    !needs_scalerclk_wa(new_crtc_state))
+>  		icl_wa_scalerclkgating(dev_priv, pipe, false);
+> +
+> +	if (needs_cursorclk_wa(old_crtc_state) &&
+> +	    !needs_cursorclk_wa(new_crtc_state))
+> +		icl_wa_cursorclkgating(dev_priv, pipe, false);
+> +
 
-Well, it would seem that way but...
+Stray newline.
 
-> In this case, before i915 loading is finished, the requested module 
-> "kvmgt" cannot reach the symbols in module i915. Thus it kept waiting 
-> and left message like below in the dmesg:
-> 
-> [  644.152021] kvmgt: gave up waiting for init of module i915.
-> [  644.152039] kvmgt: Unknown symbol i915_gem_object_set_to_cpu_domain 
-> (err -16)
-> [  674.871409] kvmgt: gave up waiting for init of module i915.
-> [  674.871427] kvmgt: Unknown symbol intel_ring_begin (err -16)
-> [  705.590586] kvmgt: gave up waiting for init of module i915.
-> [  705.590604] kvmgt: Unknown symbol i915_vma_move_to_active (err -16)
-> [  736.310230] kvmgt: gave up waiting for init of module i915.
-> [  736.310248] kvmgt: Unknown symbol shmem_unpin_map (err -16)
-> ...
-> 
-> The error message is from execution path below:
-> 
-> kernel/module.c:
-> 
-> [i915 module loading] -> 
-> request_module("kvmgt")->[modprobe]->init_module("kvmgt")->load_module()->simplify_symbols()->resolve_symbol_wait():
-> 
-> static const struct kernel_symbol *
-> resolve_symbol_wait(struct module *mod,
->              const struct load_info *info,
->              const char *name)
-> {
->      const struct kernel_symbol *ksym;
->      char owner[MODULE_NAME_LEN];
-> 
->      if (wait_event_interruptible_timeout(module_wq,
->              !IS_ERR(ksym = resolve_symbol(mod, info, name, owner))
->              || PTR_ERR(ksym) != -EBUSY,
->                           30 * HZ) <= 0) {
->          pr_warn("%s: gave up waiting for init of module %s.\n",
->              mod->name, owner);
-> 
-> }
+>  }
+>  
+>  static void intel_crtc_enable_flip_done(struct intel_atomic_state *state,
+> @@ -2494,6 +2520,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+>  	    needs_scalerclk_wa(new_crtc_state))
+>  		icl_wa_scalerclkgating(dev_priv, pipe, true);
+>  
+> +	/* Wa_1604331009:icl,jsl,ehl */
+> +	if (!needs_cursorclk_wa(old_crtc_state) &&
+> +	    needs_cursorclk_wa(new_crtc_state))
+> +		icl_wa_cursorclkgating(dev_priv, pipe, true);
+> +
+>  	/*
+>  	 * Vblank time updates from the shadow to live plane control register
+>  	 * are blocked if the memory self-refresh mode is active at that
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index ef594df039db..7b3eed5b4e42 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -4272,6 +4272,7 @@ enum {
+>  #define   DPF_GATING_DIS		(1 << 10)
+>  #define   DPF_RAM_GATING_DIS		(1 << 9)
+>  #define   DPFR_GATING_DIS		(1 << 8)
+> +#define   CURSOR_GATING_DIS		REG_BIT(28)
 
-Commit 9bea7f23952d5 ("module: fix bne2 "gave up waiting for init of
-module libcrc32c") is worth reviewing. It dealt with a similar issue,
-and in particular it addressed the issue with -EBUSY being returned
-by ref_module().
+Please keep the bits in order.
 
-And so, in theory that case should be dealt with in resolve_symbol_wait()
-already. And so can you try this just to verify something:
+Otherwise lgtm
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-diff --git a/kernel/module.c b/kernel/module.c
-index 40ec9a030eec..98f87cbb37de 100644
---- a/kernel/module.c
-+++ b/kernel/module.c
-@@ -1459,7 +1459,7 @@ resolve_symbol_wait(struct module *mod,
- 	if (wait_event_interruptible_timeout(module_wq,
- 			!IS_ERR(ksym = resolve_symbol(mod, info, name, owner))
- 			|| PTR_ERR(ksym) != -EBUSY,
--					     30 * HZ) <= 0) {
-+					     160 * HZ) <= 0) {
- 		pr_warn("%s: gave up waiting for init of module %s.\n",
- 			mod->name, owner);
- 	}
+>  
+>  #define CLKGATE_DIS_PSL(pipe) \
+>  	_MMIO_PIPE(pipe, _CLKGATE_DIS_PSL_A, _CLKGATE_DIS_PSL_B)
+> -- 
+> 2.31.1
 
-> code: 
-> https://github.com/intel/gvt-linux/blob/bd950a66c7919d7121d2530f30984351534a96dc/kernel/module.c#L1452
-> 
-> In resolve_symbol_wait(), it calls resolve_symbol() to resolve the 
-> symbols in "i915". In resolve_symbol() -> ref_module() -> 
-> strong_try_module_get(), it will check the status of the module which 
-> owns the symbol.
-> 
-> static inline int strong_try_module_get(struct module *mod)
-> {
->      BUG_ON(mod && mod->state == MODULE_STATE_UNFORMED);
->      if (mod && mod->state == MODULE_STATE_COMING)
->          return -EBUSY;
->      if (try_module_get(mod))
->          return 0;
->      else
->          return -ENOENT;
-> }
-> 
-> code:https://github.com/intel/gvt-linux/blob/bd950a66c7919d7121d2530f30984351534a96dc/kernel/module.c#L318
-> 
-> But unfortunately, this execution path begins in i915 module loading, at 
-> this time, the status of kernel module "i915" is MODULE_STATE_COMING 
-> until loading of "kvmgt" is finished. Thus a -EBUSY is always returned 
-> when kernel is trying to resolve symbols for "kvmgt".
->
-> 
-> This patch below might need re-work:
-
-If the above test patch still fails, well.. that might be telling of
-another issue which is perhaps difficult to see at first glance. If
-resolve_symbol_wait() won't succeed until request_module("kvmgt")
-completes and if this means having kvmgt's init routine complete, that
-could end up in some longer chain or in the worst case a sort of
-circular dependency which is only implicated by module loading. It'd be
-really odd... but I cannot rule it out.
-
-This is one reason I hinted that you should strive to not do much on a
-module's init. If you can punt work off for later that's best.
-
-  Luis
-
-> 
-> Author: Christoph Hellwig <hch@lst.de>
-> Date:   Wed Jul 21 17:53:38 2021 +0200
-> 
->      drm/i915/gvt: move the gvt code into kvmgt.ko
-> 
->      Instead of having an option to build the gvt code into the main i915
->      module, just move it into the kvmgt.ko module.  This only requires
->      a new struct with three entries that the main i915 module needs to
->      request before enabling VGPU passthrough operations.
-> 
->      This also conveniently streamlines the GVT initialization and avoids
->      the need for the global device pointer.
-> 
->      Signed-off-by: Christoph Hellwig <hch@lst.de>
->      Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
->      Link: 
-> http://patchwork.freedesktop.org/patch/msgid/20210721155355.173183-5-hch@lst.de
->      Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-> 
-> On 8/26/21 6:12 AM, Zhenyu Wang wrote:
-> > On 2021.08.20 12:56:34 -0700, Luis Chamberlain wrote:
-> >> On Fri, Aug 20, 2021 at 04:17:24PM +0200, Christoph Hellwig wrote:
-> >>> On Thu, Aug 19, 2021 at 04:29:29PM +0800, Zhenyu Wang wrote:
-> >>>> I'm working on below patch to resolve this. But I met a weird issue in
-> >>>> case when building i915 as module and also kvmgt module, it caused
-> >>>> busy wait on request_module("kvmgt") when boot, it doesn't happen if
-> >>>> building i915 into kernel. I'm not sure what could be the reason?
-> >>> Luis, do you know if there is a problem with a request_module from
-> >>> a driver ->probe routine that is probably called by a module_init
-> >>> function itself?
-> >> Generally no, but you can easily foot yourself in the feet by creating
-> >> cross dependencies and not dealing with them properly. I'd make sure
-> >> to keep module initialization as simple as possible, and run whatever
-> >> takes more time asynchronously, then use a state machine to allow
-> >> you to verify where you are in the initialization phase or query it
-> >> or wait for a completion with a timeout.
-> >>
-> >> It seems the code in question is getting some spring cleaning, and its
-> >> unclear where the code is I can inspect. If there's a tree somewhere I
-> >> can take a peak I'd be happy to review possible oddities that may stick
-> >> out.
-> > I tried to put current patches under test here: https://github.com/intel/gvt-linux/tree/gvt-staging
-> > The issue can be produced with CONFIG_DRM_I915=m and CONFIG_DRM_I915_GVT_KVMGT=m.
-> >
-> >> My goto model for these sorts of problems is to abstract the issue
-> >> *outside* of the driver in question and implement new selftests to
-> >> try to reproduce. This serves two purposes, 1) helps with testing
-> >> 2) may allow you to see the problem more clearly.
-> >>
-> > I'll see if can abstract that.
-> >
-> > Thanks, Luis.
-> 
-> 
+-- 
+Ville Syrjälä
+Intel
