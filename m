@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4E341B7E7
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0159F41B81A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:08:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FBEF6E96C;
-	Tue, 28 Sep 2021 20:02:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AF116E973;
+	Tue, 28 Sep 2021 20:08:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F4C56E96C
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:02:43 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="310344391"
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="310344391"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:02:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="554283417"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by FMSMGA003.fm.intel.com with ESMTP; 28 Sep 2021 13:02:41 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 28 Sep 2021 21:02:39 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Tue, 28 Sep 2021 13:02:38 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 07/13] drm/i915/tc: Add a mode for the TypeC PHY's
- disconnected state
-Thread-Index: AQHXrn7mjM9prFOKd0GJlbH3sAKATKu44+kAgAAGxQCAAWqAAIAAAsgAgAAE4gCAAAEEAIAAA60A
-Date: Tue, 28 Sep 2021 20:02:37 +0000
-Message-ID: <ed58f88653ccc788d70e2924eee1754cf7201280.camel@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5315C6E976
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:08:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="288454450"
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="288454450"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 13:08:24 -0700
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="478878464"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 13:08:23 -0700
+Date: Tue, 28 Sep 2021 23:08:19 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Message-ID: <20210928200819.GC2103381@ideak-desk.fi.intel.com>
 References: <20210921002313.1132357-1-imre.deak@intel.com>
  <20210921002313.1132357-8-imre.deak@intel.com>
  <689f485c910ca7cce9793fecaa53778950242892.camel@intel.com>
@@ -44,16 +34,11 @@ References: <20210921002313.1132357-1-imre.deak@intel.com>
  <20210928193408.GA2103381@ideak-desk.fi.intel.com>
  <cb65b5ec8453304853616eb52288921ae253cd19.camel@intel.com>
  <20210928195514.GB2103381@ideak-desk.fi.intel.com>
-In-Reply-To: <20210928195514.GB2103381@ideak-desk.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3D33DC1D0DDF154B8E8C9930957B0328@intel.com>
-Content-Transfer-Encoding: base64
+ <ed58f88653ccc788d70e2924eee1754cf7201280.camel@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ed58f88653ccc788d70e2924eee1754cf7201280.camel@intel.com>
 Subject: Re: [Intel-gfx] [PATCH 07/13] drm/i915/tc: Add a mode for the TypeC
  PHY's disconnected state
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,30 +56,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTA5LTI4IGF0IDIyOjU1ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE9u
-IFR1ZSwgU2VwIDI4LCAyMDIxIGF0IDEwOjQ1OjUwUE0gKzAzMDAsIFNvdXphLCBKb3NlIHdyb3Rl
-Og0KPiA+ID4gPiBbLi4uXQ0KPiA+ID4gPiBXb3VsZCBub3QgYmUgcG9zc2libGUgdG8gdXNlIFRD
-X1BPUlRfRElTQ09OTkVDVEVEIHdoZW4gcmVhbGx5DQo+ID4gPiA+IGRpc2Nvbm5lY3RlZCBhbmQg
-ZHJvcHBpbmcgdGhlIHVzZSBvZiBUQ19QT1JUX1RCVF9BTFQgZm9yIGl0Pw0KPiA+ID4gDQo+ID4g
-PiBUQ19QT1JUX0RJU0NPTk5FQ1RFRCBpcyB0aGUgc3RhdGUgd2hlbiB0aGUgUEhZIG93bmVyc2hp
-cCBpcyBub3QgaGVsZCBhbmQNCj4gPiA+IHdlIGRvbid0IGhvbGQgYW55IHBvd2VyIGRvbWFpbnMu
-DQo+ID4gPiANCj4gPiA+IFRDX1BPUlRfVEJUX0FMVCBpcyB0aGUgc3RhdGUgd2hlbiB0aGUgUEhZ
-IG93bmVyc2hpcCBpcyBub3QgaGVsZCAobGlrZQ0KPiA+ID4gYWJvdmUpLCBhbmQgd2UgaG9sZCB0
-aGUgcG93ZXIgZG9tYWluIG5lZWRlZCB0byBibG9jayBUQy1jb2xkLg0KPiA+IA0KPiA+IFN3YXBw
-aW5nIGl0IHdvdWxkIG1ha2UgbW9kZXMgbmFtZXMgZG8gd2hhdCB0aGVpciBuYW1lcyBpbnRlbmQg
-dG8uDQo+ID4gDQo+ID4gVXAgdG8gdGhlIHBvaW50IHRoYXQgd2Ugb25seSBoYWQgVEJULCBUQyBh
-bHQgYW5kIGxlZ2FjeSBpdCB3YXMgZmluZSB0bw0KPiA+IGtlZXAgaW50byBUQlQgbW9kZSB3aGVu
-IGRpc2Nvbm5lY3RlZCBidXQgbm93IHdpdGggYSBkaXNjb25uZWN0ZWQgc3RhdGUNCj4gPiBpdCBk
-byBub3QgbWFrZSBzZW5zZSB0byBrZWVwIGl0IGluIFRCVCBtb2RlIHdoZW4gZGlzY29ubmVjdGVk
-Lg0KPiA+IA0KPiA+IE9yIHlvdSByZW5hbWUgaXQgdG8gVENfUE9SVF9VTktOT1dOLCBhcyBpdCBz
-ZXRzIHRvDQo+ID4gVENfUE9SVF9ESVNDT05ORUNURUQgbW9kZSBkdXJpbmcgdGNfaW5pdCgpIGFu
-ZCB3aGVuIGdvaW5nIHRvIHN1c3BlbmQuDQo+IA0KPiBOb3Qgc3VyZSB3aGF0IHlvdSBtZWFuLCBi
-ZWNhdXNlIHdoYXQgeW91IGRlc2NyaWJlIGlzIHdoYXQgYWN0dWFsbHkNCj4gaGFwcGVucy4gRnJv
-bSBhbGwgc3RhdGVzIGljbF90Y19waHlfZGlzY29ubmVjdCgpIHdpbGwgY2hhbmdlIHRvDQo+IHRo
-ZSBkaXNjb25uZWN0ZWQgc3RhdGUsIHdoaWNoIGlzIHRoZSBzdGF0ZSBhdCBpbml0IHRpbWUgYW5k
-IGR1cmluZw0KPiBzdXNwZW5kIG9yIGFmdGVyIHVubG9hZGluZyB0aGUgZHJpdmVyLg0KDQpJJ20g
-dGFsa2luZyBhYm91dCB0aGUgc3RhdGUgd2hlbiBzeXN0ZW0gaXMgdXAgd2l0aG91dCBhbnl0aGlu
-ZyBjb25uZWN0ZWQgdG8gdGhlIHBvcnQsIGFmdGVyIGljbF90Y19waHlfZGlzY29ubmVjdCgpIHNl
-dHMgZGlnX3BvcnQtPnRjX21vZGUgPQ0KVENfUE9SVF9ESVNDT05ORUNURUQsIGljbF90Y19waHlf
-Y29ubmVjdCgpIGdvZXMgYW5kIHNldCBpdCBiYWNrIHRvIFRDX1BPUlRfVEJUX0FMVC4NCg0KDQo+
-IA0KPiAtLUltcmUNCg0K
+On Tue, Sep 28, 2021 at 11:02:37PM +0300, Souza, Jose wrote:
+> On Tue, 2021-09-28 at 22:55 +0300, Imre Deak wrote:
+> > On Tue, Sep 28, 2021 at 10:45:50PM +0300, Souza, Jose wrote:
+> > > > > [...]
+> > > > > Would not be possible to use TC_PORT_DISCONNECTED when really
+> > > > > disconnected and dropping the use of TC_PORT_TBT_ALT for it?
+> > > > 
+> > > > TC_PORT_DISCONNECTED is the state when the PHY ownership is not held and
+> > > > we don't hold any power domains.
+> > > > 
+> > > > TC_PORT_TBT_ALT is the state when the PHY ownership is not held (like
+> > > > above), and we hold the power domain needed to block TC-cold.
+> > > 
+> > > Swapping it would make modes names do what their names intend to.
+> > > 
+> > > Up to the point that we only had TBT, TC alt and legacy it was fine to
+> > > keep into TBT mode when disconnected but now with a disconnected state
+> > > it do not make sense to keep it in TBT mode when disconnected.
+> > > 
+> > > Or you rename it to TC_PORT_UNKNOWN, as it sets to
+> > > TC_PORT_DISCONNECTED mode during tc_init() and when going to suspend.
+> > 
+> > Not sure what you mean, because what you describe is what actually
+> > happens. From all states icl_tc_phy_disconnect() will change to
+> > the disconnected state, which is the state at init time and during
+> > suspend or after unloading the driver.
+> 
+> I'm talking about the state when system is up without anything
+> connected to the port, after icl_tc_phy_disconnect() sets
+> dig_port->tc_mode = TC_PORT_DISCONNECTED, icl_tc_phy_connect() goes
+> and set it back to TC_PORT_TBT_ALT.
+
+Yes, when the port is locked we are in one of TBT-alt, DP-alt or legacy
+mode. These are the only modes that make sense for an AUX transfer or a
+modeset, for which the lock was taken.
+
+--Imre
