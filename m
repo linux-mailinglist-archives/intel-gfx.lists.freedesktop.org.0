@@ -1,107 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1F041AE9B
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 14:17:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11ACC41AE9D
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 14:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68B9C897BC;
-	Tue, 28 Sep 2021 12:16:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22E676E51A;
+	Tue, 28 Sep 2021 12:16:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF8B89C46;
- Mon, 27 Sep 2021 20:46:13 +0000 (UTC)
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18RIokti026875; 
- Mon, 27 Sep 2021 16:46:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=lwBg6ETHNmezOliV6uYm9wJHkponVlX6ZQYAIV/PAIw=;
- b=lneehF2swa0M0E9cllaE1fMIH4mEQLsOiLYDwh35MKczOPU7V6O6GiRt0yw+u3gJpZQT
- BI27BpxZSg9Gx/eV/G0VfjXpatjVNoCqZ3IkgAclpeMvRh07rbDnRH1lLjV/j446o6If
- rdaQBOYKoDGoXDwqFoeCTA6T4+8gFyEQaW8wTg6j8cWk8JllVVZk8+PQ5E+lY3yp6KhZ
- lkgSe7C2IDjFz7i4rSWyJXm0yxPZO/oiWoiDNxlX66vuZ95HAMPTIKauJnyxpMFCksfS
- LEM8DsHIttRoU2/o5srtXKyYu9ai/j+d72w+gUeCNpYGKRwf7p5KUJMerhpkfZd3Afb5 nw== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 3bagx55xp1-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 27 Sep 2021 16:46:08 -0400
-Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 18RJsJM4007485;
- Mon, 27 Sep 2021 16:46:07 -0400
-Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com
- [169.63.214.131])
- by mx0a-001b2d01.pphosted.com with ESMTP id 3bagx55xnq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 27 Sep 2021 16:46:07 -0400
-Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
- by ppma01dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18RKbMUk005939;
- Mon, 27 Sep 2021 20:46:06 GMT
-Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com
- [9.57.198.26]) by ppma01dal.us.ibm.com with ESMTP id 3b9udb7dkp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 27 Sep 2021 20:46:06 +0000
-Received: from b01ledav001.gho.pok.ibm.com (b01ledav001.gho.pok.ibm.com
- [9.57.199.106])
- by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 18RKk5up11142088
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 27 Sep 2021 20:46:05 GMT
-Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 8288B2805E;
- Mon, 27 Sep 2021 20:46:05 +0000 (GMT)
-Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id C892028058;
- Mon, 27 Sep 2021 20:45:58 +0000 (GMT)
-Received: from farman-thinkpad-t470p (unknown [9.163.16.42])
- by b01ledav001.gho.pok.ibm.com (Postfix) with ESMTP;
- Mon, 27 Sep 2021 20:45:58 +0000 (GMT)
-Message-ID: <f1b64606c967e9adf12f4e026cdfdf910ade554e.camel@linux.ibm.com>
-From: Eric Farman <farman@linux.ibm.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>, Christian Borntraeger
- <borntraeger@de.ibm.com>, Cornelia Huck <cohuck@redhat.com>, Daniel Vetter
- <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, Harald Freudenberger
- <freude@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens
- <hca@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Jason Herne <jjherne@linux.ibm.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org, Kirti
- Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org, Matthew
- Rosato <mjrosato@linux.ibm.com>, Peter Oberparleiter
- <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Vineeth Vijayan <vneethv@linux.ibm.com>, Zhenyu
- Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>, Christoph
- Hellwig <hch@lst.de>
-Date: Mon, 27 Sep 2021 16:45:56 -0400
-In-Reply-To: <20210927123253.GY964074@nvidia.com>
-References: <7-v2-7d3a384024cf+2060-ccw_mdev_jgg@nvidia.com>
- <f887a563e688057d6759e6de65d480326f502331.camel@linux.ibm.com>
- <20210927123253.GY964074@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-16.el8) 
-Mime-Version: 1.0
+Received: from m43-7.mailgun.net (m43-7.mailgun.net [69.72.43.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48A0B6E888
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 09:04:25 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1632819867; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=09C7+Iq0CKL2hGEdanYSFMJLK30HPDjpfQExa8Wp094=;
+ b=H8FJWUfe6IjMvSQmUJVNARTUoc3rrUKCXm6zWML00TG65aw4E3smPjwdUISsViNQ87W9eBuE
+ Gp7cC2noKl0ApA9hG4Ml57fKC4G+yGsHfnFPkydWVGzSyrCDKNmfnUCgPd/gKhjXDcrDkntI
+ mk7uenUedObAlij597JItHuIsWY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI5MzZmYyIsICJpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIiwgImJlOWU0YSJd
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 6152da839ffb413149952e5a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 28 Sep 2021 09:04:03
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 3ADDBC43617; Tue, 28 Sep 2021 09:04:02 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+ aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+ MISSING_DATE,MISSING_MID,SPF_FAIL autolearn=no autolearn_force=no
+ version=3.4.0
+Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 6E798C4338F;
+ Tue, 28 Sep 2021 09:03:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6E798C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: v0DgXAfibzUmo_LUs0sDhAmrtXJUoU0-
-X-Proofpoint-ORIG-GUID: w-2bKWgqbBr-1g7NEf-wxPVRrKgqRuob
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-27_07,2021-09-24_02,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=798 spamscore=0
- impostorscore=0 suspectscore=0 phishscore=0 priorityscore=1501
- lowpriorityscore=0 mlxscore=0 bulkscore=0 clxscore=1015 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109230001 definitions=main-2109270138
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20210322160253.4032422-5-arnd@kernel.org>
+References: <20210322160253.4032422-5-arnd@kernel.org>
+To: Arnd Bergmann <arnd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Martin Sebor <msebor@gcc.gnu.org>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, x86@kernel.org, Ning Sun <ning.sun@intel.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Simon Kelley <simon@thekelleys.org.uk>,
+ James Smart <james.smart@broadcom.com>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>, Anders Larsen <al@alarsen.net>,
+ Tejun Heo <tj@kernel.org>, Serge Hallyn <serge@hallyn.com>,
+ Imre Deak <imre.deak@intel.com>, linux-arm-kernel@lists.infradead.org,
+ tboot-devel@lists.sourceforge.net, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ linux-scsi@vger.kernel.org, cgroups@vger.kernel.org,
+ linux-security-module@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>,
+ Maharaja Kennadyrajan <mkenna@codeaurora.org>,
+ Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>,
+ Johannes Berg <johannes.berg@intel.com>,
+ Ritesh Singh <ritesi@codeaurora.org>,
+ Rajkumar Manoharan <rmanohar@codeaurora.org>,
+ Aloka Dixit <alokad@codeaurora.org>, Felix Fietkau <nbd@nbd.name>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-Id: <20210928090402.3ADDBC43617@smtp.codeaurora.org>
+Date: Tue, 28 Sep 2021 09:04:02 +0000 (UTC)
 X-Mailman-Approved-At: Tue, 28 Sep 2021 12:16:46 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 7/9] vfio/ccw: Remove private->mdev
+Subject: Re: [Intel-gfx] [PATCH 04/11] ath11: Wstringop-overread warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,57 +93,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2021-09-27 at 09:32 -0300, Jason Gunthorpe wrote:
-> On Fri, Sep 24, 2021 at 04:45:02PM -0400, Eric Farman wrote:
-> > On Thu, 2021-09-09 at 16:38 -0300, Jason Gunthorpe wrote:
-> > > Having a mdev pointer floating about in addition to a struct
-> > > vfio_device
-> > > is confusing. It is only used for three things:
-> > > 
-> > > - Getting the mdev 'struct device *' - this is the same as
-> > >      private->vdev.dev
-> > > 
-> > > - Printing the uuid of the mdev in logging. The uuid is also the
-> > > dev_name
-> > >   of the mdev so this is the same string as
-> > >      dev_name(private->vdev.dev)
-> > > 
-> > > - A weird attempt to fence the vfio_ccw_sch_io_todo() work. This
-> > > work
-> > > is
-> > >   only queued during states IDLE/PROCESSING/PENDING and flushed
-> > > when
-> > >   entering CLOSED. Thus the work already cannot run when the mdev
-> > > is
-> > > NULL.
-> > >   Remove it.
-> > > 
-> > > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> > >  drivers/s390/cio/vfio_ccw_drv.c     |  6 ++--
-> > >  drivers/s390/cio/vfio_ccw_fsm.c     | 48 +++++++++++++--------
-> > > ----
-> > >  drivers/s390/cio/vfio_ccw_ops.c     | 16 ++++------
-> > >  drivers/s390/cio/vfio_ccw_private.h |  2 --
-> > >  include/linux/mdev.h                |  4 ---
-> > >  5 files changed, 30 insertions(+), 46 deletions(-)
-> > 
-> > I like this patch. Unfortunately it depends on the removal of a
-> > hunk in
-> > patch 4, which sets the FSM state to different values based on
-> > whether
-> > private->mdev is NULL or not, so can't go on its own. Need to spend
-> > more time thinking about that patch.
+Arnd Bergmann <arnd@kernel.org> wrote:
+
+> gcc-11 with the kernel address sanitizer prints a warning for this
+> driver:
 > 
-> The FSM patch is important, really what is happening is the FSM logic
-> takes on the roles that was being split all over the place with other
-> logic, like this mdev stuff. To make that work we need a FSM that
-> makes sense..
-
-No argument from me about that. My point is that I could consume this
-patch easier than the FSM patch, and need to get back to that one.
-
-Eric
-
+> In function 'ath11k_peer_assoc_h_vht',
+>     inlined from 'ath11k_peer_assoc_prepare' at drivers/net/wireless/ath/ath11k/mac.c:1632:2:
+> drivers/net/wireless/ath/ath11k/mac.c:1164:13: error: 'ath11k_peer_assoc_h_vht_masked' reading 16 bytes from a region of size 4 [-Werror=stringop-overread]
+>  1164 |         if (ath11k_peer_assoc_h_vht_masked(vht_mcs_mask))
+>       |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_peer_assoc_prepare':
+> drivers/net/wireless/ath/ath11k/mac.c:1164:13: note: referencing argument 1 of type 'const u16 *' {aka 'const short unsigned int *'}
+> drivers/net/wireless/ath/ath11k/mac.c:969:1: note: in a call to function 'ath11k_peer_assoc_h_vht_masked'
+>   969 | ath11k_peer_assoc_h_vht_masked(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
+>       | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 > 
-> Jason
+> According to analysis from gcc developers, this is a glitch in the
+> way gcc tracks the size of struct members. This should really get
+> fixed in gcc, but it's also easy to work around this instance
+> by changing the function prototype to no include the length of
+> the array.
+> 
+> Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=99673
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+
+Patch applied to ath-next branch of ath.git, thanks.
+
+eb19efed836a ath11k: Wstringop-overread warning
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20210322160253.4032422-5-arnd@kernel.org/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
