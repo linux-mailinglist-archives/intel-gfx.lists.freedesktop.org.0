@@ -2,44 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCAA741AF54
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 14:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9482441AF74
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 14:55:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A466E898;
-	Tue, 28 Sep 2021 12:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9610A6E8AF;
+	Tue, 28 Sep 2021 12:55:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74FB66E898
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 12:48:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="211771969"
-X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="211771969"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 05:48:18 -0700
-X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="553980851"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 05:48:16 -0700
-Date: Tue, 28 Sep 2021 15:49:11 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com,
- maarten.lankhorst@linux.intel.com
-Message-ID: <20210928124911.GA10399@intel.com>
-References: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
- <YUyiJ1SFGULGHvmC@intel.com>
- <20210927182335.GY3389343@mdroper-desk1.amr.corp.intel.com>
- <YVINc1/ySKUw/KiH@intel.com>
- <20210928052411.GD3389343@mdroper-desk1.amr.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8CC916E8A4;
+ Tue, 28 Sep 2021 12:55:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 83525A0BCB;
+ Tue, 28 Sep 2021 12:55:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0492947189635396452=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210928052411.GD3389343@mdroper-desk1.amr.corp.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Tile F plane format support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Fangzhi Zuo" <jerry.zuo@amd.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 Sep 2021 12:55:20 -0000
+Message-ID: <163283372049.3951.17410849035397632693@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210927192324.5428-1-Jerry.Zuo@amd.com>
+In-Reply-To: <20210927192324.5428-1-Jerry.Zuo@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/dp=3A_Add_Additional_DP2_Headers_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,100 +41,277 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 27, 2021 at 10:24:11PM -0700, Matt Roper wrote:
-> On Mon, Sep 27, 2021 at 09:29:07PM +0300, Ville Syrjälä wrote:
-> > On Mon, Sep 27, 2021 at 11:23:35AM -0700, Matt Roper wrote:
-> > > On Thu, Sep 23, 2021 at 06:49:59PM +0300, Ville Syrjälä wrote:
-> > > > On Thu, Sep 23, 2021 at 11:48:58AM +0300, Stanislav Lisovskiy wrote:
-> > > > > TileF(Tile4 in bspec) format is 4K tile organized into
-> > > > > 64B subtiles with same basic shape as for legacy TileY
-> > > > > which will be supported by Display13.
-> > > > 
-> > > > Why we still haven't done the F->tile64 rename?
-> > > >
-> > > > This is the last chance to fix this before we bake 
-> > > > this into the uapi and are stuck with a name that doesn't
-> > > > match the spec and will just confuse everyone.
-> > > 
-> > > I think you're confusing the formats here.  The bspec uses both terms
-> > > "TileF" and "Tile4" for the same format in different places.  There's a
-> > > completely different format that's referred to as both "TileS" and
-> > > "Tile64" in the bspec that we don't use at the moment.  So tile64
-> > > wouldn't be a correct rename, but tile4 could be.
-> > 
-> > Right, tile64 is the macro tile variant I think. So like Ys
-> > which we never bothered implementing, so I guess we''l not bother
-> > with tile64 either.
-> > 
-> > > 
-> > > In general Tile4 is much more common in the bspec than TileF is (TileF
-> > > terminology is mostly found in the media sections).  And bspec 44917 is
-> > > the most authoritative bspec page on the subject, and it refers to it as
-> > > Tile4, so I agree that switching over "Tile4" would probably be a good
-> > > move.
-> > > 
-> > > > 
-> > > > > 
-> > > ...
-> > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> > > > > index bde5860b3686..d7dc421c6134 100644
-> > > > > --- a/include/uapi/drm/i915_drm.h
-> > > > > +++ b/include/uapi/drm/i915_drm.h
-> > > > > @@ -1522,7 +1522,8 @@ struct drm_i915_gem_caching {
-> > > > >  #define I915_TILING_NONE	0
-> > > > >  #define I915_TILING_X		1
-> > > > >  #define I915_TILING_Y		2
-> > > > > -#define I915_TILING_LAST	I915_TILING_Y
-> > > > > +#define I915_TILING_F		3
-> > > > > +#define I915_TILING_LAST	I915_TILING_F
-> > > > 
-> > > > fences...
-> > > 
-> > > Recognizing TileF/Tile4 separately from TileY is important to code
-> > > outside of display as well.  There are blitter instructions that require
-> > > different settings for TileY vs Tile4/F so if we drop the tracking of
-> > > this as a unique tiling type, it will break the blitting/copying and
-> > > some of the upcoming local memory support for Xe_HP-based platforms.
-> > 
-> > These are uapi definitions for set_tiling(). You are not meant to add
-> > anything there. Just like we didn't add anything for Yf.
-> 
-> Yeah, I think that's the real problem --- we define some values here in
-> the uapi header, but we also wind up using the same set of values for
-> driver-internal non-uapi purposes too rather than having a separate enum
-> (containing a superset of the uapi values) that can be used for those
-> other things.  Display code can use FB modifiers for some things, but
-> core/lmem code needs a way to refer to Tile4 and such and doesn't have a
-> good way to do that today.
-> 
-> I think most (all?) of the non-display code that's relying on a
-> definition of I915_TILING_F is in various selftests that are still being
-> prepared for upstreaming, so maybe there's a better way to handle the
-> selection of possible formats specifically in the selftest code itself.
-> That's really the only area of the kernel code that should need to be
-> aware of the specific internal layout of various buffers.
+--===============0492947189635396452==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-So I will proceed with the renaming at least.
+== Series Details ==
 
-Ville, suppose, I still need part of fencing related code?
+Series: drm/dp: Add Additional DP2 Headers (rev3)
+URL   : https://patchwork.freedesktop.org/series/95104/
+State : success
 
-Stan
+== Summary ==
 
-> 
-> 
-> Matt
-> 
-> > 
-> > -- 
-> > Ville Syrjälä
-> > Intel
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+CI Bug Log - changes from CI_DRM_10654 -> Patchwork_21175
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21175 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([i915#1155])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][4] ([i915#4006] / [i915#4193])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_addfb_basic@too-wide:
+    - fi-tgl-1115g4:      NOTRUN -> [DMESG-WARN][5] ([i915#4002]) +89 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_addfb_basic@too-wide.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([i915#4103]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([fdo#109285])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#1072]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#1072] / [i915#1385])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#3301])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-tgl-1115g4:      NOTRUN -> [FAIL][12] ([i915#2722] / [i915#4193])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][13] ([i915#3921]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10654/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1385]: https://gitlab.freedesktop.org/drm/intel/issues/1385
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4002]: https://gitlab.freedesktop.org/drm/intel/issues/4002
+  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4193]: https://gitlab.freedesktop.org/drm/intel/issues/4193
+
+
+Participating hosts (45 -> 35)
+------------------------------
+
+  Additional (1): fi-tgl-1115g4 
+  Missing    (11): fi-kbl-soraka fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-2 bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10654 -> Patchwork_21175
+
+  CI-20190529: 20190529
+  CI_DRM_10654: 7006e15e0a109ce092026c4b576fe8a206e8b756 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6224: 2f4e6430a97f04284d1cafb1479e7c1b0b2d596a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21175: 803095ab68fd39140515400ff655eee124f0d420 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+803095ab68fd drm/dp: Add Additional DP2 Headers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html
+
+--===============0492947189635396452==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/dp: Add Additional DP2 Headers (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95104/">https://patchwork.freedesktop.org/series/95104/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10654 -&gt; Patchwork_21175</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21175 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4193">i915#4193</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@too-wide:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_addfb_basic@too-wide.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) +89 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4193">i915#4193</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10654/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 35)</h2>
+<p>Additional (1): fi-tgl-1115g4 <br />
+  Missing    (11): fi-kbl-soraka fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-2 bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10654 -&gt; Patchwork_21175</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10654: 7006e15e0a109ce092026c4b576fe8a206e8b756 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6224: 2f4e6430a97f04284d1cafb1479e7c1b0b2d596a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21175: 803095ab68fd39140515400ff655eee124f0d420 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>803095ab68fd drm/dp: Add Additional DP2 Headers</p>
+
+</body>
+</html>
+
+--===============0492947189635396452==--
