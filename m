@@ -2,33 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B41B41BA48
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 00:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A761941BA71
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 00:32:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8D0B6E9BC;
-	Tue, 28 Sep 2021 22:23:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 405E76E9BC;
+	Tue, 28 Sep 2021 22:32:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1A11C6E9BB;
- Tue, 28 Sep 2021 22:23:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 115DAA47EA;
- Tue, 28 Sep 2021 22:23:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1365993531422960875=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28E2A6E9BC;
+ Tue, 28 Sep 2021 22:32:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="212071041"
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="212071041"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 15:32:50 -0700
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="554368128"
+Received: from pop-mobl1.ger.corp.intel.com (HELO localhost) ([10.249.36.249])
+ by fmsmga003-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2021 15:32:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
+ Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Date: Wed, 29 Sep 2021 01:32:41 +0300
+Message-Id: <20210928223241.22149-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Sep 2021 22:23:40 -0000
-Message-ID: <163286782005.3950.12891750930385559210@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_DP_per-lane_drive_settings_prep_work_=28rev2=29?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/locking: add backtrace for locking
+ contended locks without backoff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,274 +45,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1365993531422960875==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+If drm_modeset_lock() returns -EDEADLK, the caller is supposed to drop
+all currently held locks using drm_modeset_backoff(). Failing to do so
+will result in warnings and backtraces on the paths trying to lock a
+contended lock. Add support for optionally printing the backtrace on the
+path that hit the deadlock and didn't gracefully handle the situation.
 
-== Series Details ==
+For example, the patch [1] inadvertently dropped the return value check
+and error return on replacing calc_watermark_data() with
+intel_compute_global_watermarks(). The backtraces on the subsequent
+locking paths hitting WARN_ON(ctx->contended) were unhelpful, but adding
+the backtrace to the deadlock path produced this helpful printout:
 
-Series: drm/i915: DP per-lane drive settings prep work (rev2)
-URL   : https://patchwork.freedesktop.org/series/95122/
-State : success
+<7> [98.002465] drm_modeset_lock attempting to lock a contended lock without backoff:
+   drm_modeset_lock+0x107/0x130
+   drm_atomic_get_plane_state+0x76/0x150
+   skl_compute_wm+0x251d/0x2b20 [i915]
+   intel_atomic_check+0x1942/0x29e0 [i915]
+   drm_atomic_check_only+0x554/0x910
+   drm_atomic_nonblocking_commit+0xe/0x50
+   drm_mode_atomic_ioctl+0x8c2/0xab0
+   drm_ioctl_kernel+0xac/0x140
 
-== Summary ==
+Add new CONFIG_DRM_DEBUG_MODESET_LOCK to enable modeset lock debugging
+with stack depot and trace.
 
-CI Bug Log - changes from CI_DRM_10655 -> Patchwork_21181
-====================================================
+[1] https://lore.kernel.org/r/20210924114741.15940-4-jani.nikula@intel.com
 
-Summary
--------
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Dave Airlie <airlied@gmail.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/Kconfig            | 13 ++++++++
+ drivers/gpu/drm/drm_modeset_lock.c | 49 ++++++++++++++++++++++++++++--
+ include/drm/drm_modeset_lock.h     |  8 +++++
+ 3 files changed, 68 insertions(+), 2 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index b17e231ca6f7..7334975c788b 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -100,6 +100,19 @@ config DRM_DEBUG_DP_MST_TOPOLOGY_REFS
+           This has the potential to use a lot of memory and print some very
+           large kernel messages. If in doubt, say "N".
+ 
++config DRM_DEBUG_MODESET_LOCK
++	bool "Enable backtrace history for lock contention"
++	depends on STACKTRACE_SUPPORT
++	select STACKDEPOT
++	depends on EXPERT
++	help
++	  Enable debug tracing of failures to gracefully handle drm modeset lock
++	  contention. A history of each drm modeset lock path hitting -EDEADLK
++	  will be saved until gracefully handled, and the backtrace will be
++	  printed when attempting to lock a contended lock.
++
++	  If in doubt, say "N".
++
+ config DRM_FBDEV_EMULATION
+ 	bool "Enable legacy fbdev support for your modesetting driver"
+ 	depends on DRM
+diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+index bf8a6e823a15..4d32b61fa1fd 100644
+--- a/drivers/gpu/drm/drm_modeset_lock.c
++++ b/drivers/gpu/drm/drm_modeset_lock.c
+@@ -25,6 +25,7 @@
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_device.h>
+ #include <drm/drm_modeset_lock.h>
++#include <drm/drm_print.h>
+ 
+ /**
+  * DOC: kms locking
+@@ -77,6 +78,45 @@
+ 
+ static DEFINE_WW_CLASS(crtc_ww_class);
+ 
++#if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
++static noinline depot_stack_handle_t __stack_depot_save(void)
++{
++	unsigned long entries[8];
++	unsigned int n;
++
++	n = stack_trace_save(entries, ARRAY_SIZE(entries), 1);
++
++	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
++}
++
++static void __stack_depot_print(depot_stack_handle_t stack_depot)
++{
++	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
++	unsigned long *entries;
++	unsigned int nr_entries;
++	char *buf;
++
++	buf = kmalloc(PAGE_SIZE, GFP_NOWAIT | __GFP_NOWARN);
++	if (!buf)
++		return;
++
++	nr_entries = stack_depot_fetch(stack_depot, &entries);
++	stack_trace_snprint(buf, PAGE_SIZE, entries, nr_entries, 2);
++
++	drm_printf(&p, "attempting to lock a contended lock without backoff:\n%s", buf);
++
++	kfree(buf);
++}
++#else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
++static depot_stack_handle_t __stack_depot_save(void)
++{
++	return 0;
++}
++static void __stack_depot_print(depot_stack_handle_t stack_depot)
++{
++}
++#endif /* CONFIG_DRM_DEBUG_MODESET_LOCK */
++
+ /**
+  * drm_modeset_lock_all - take all modeset locks
+  * @dev: DRM device
+@@ -225,7 +265,9 @@ EXPORT_SYMBOL(drm_modeset_acquire_fini);
+  */
+ void drm_modeset_drop_locks(struct drm_modeset_acquire_ctx *ctx)
+ {
+-	WARN_ON(ctx->contended);
++	if (WARN_ON(ctx->contended))
++		__stack_depot_print(ctx->stack_depot);
++
+ 	while (!list_empty(&ctx->locked)) {
+ 		struct drm_modeset_lock *lock;
+ 
+@@ -243,7 +285,8 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+ {
+ 	int ret;
+ 
+-	WARN_ON(ctx->contended);
++	if (WARN_ON(ctx->contended))
++		__stack_depot_print(ctx->stack_depot);
+ 
+ 	if (ctx->trylock_only) {
+ 		lockdep_assert_held(&ctx->ww_ctx);
+@@ -274,6 +317,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+ 		ret = 0;
+ 	} else if (ret == -EDEADLK) {
+ 		ctx->contended = lock;
++		ctx->stack_depot = __stack_depot_save();
+ 	}
+ 
+ 	return ret;
+@@ -296,6 +340,7 @@ int drm_modeset_backoff(struct drm_modeset_acquire_ctx *ctx)
+ 	struct drm_modeset_lock *contended = ctx->contended;
+ 
+ 	ctx->contended = NULL;
++	ctx->stack_depot = 0;
+ 
+ 	if (WARN_ON(!contended))
+ 		return 0;
+diff --git a/include/drm/drm_modeset_lock.h b/include/drm/drm_modeset_lock.h
+index aafd07388eb7..b84693fbd2b5 100644
+--- a/include/drm/drm_modeset_lock.h
++++ b/include/drm/drm_modeset_lock.h
+@@ -24,6 +24,8 @@
+ #ifndef DRM_MODESET_LOCK_H_
+ #define DRM_MODESET_LOCK_H_
+ 
++#include <linux/types.h> /* stackdepot.h is not self-contained */
++#include <linux/stackdepot.h>
+ #include <linux/ww_mutex.h>
+ 
+ struct drm_modeset_lock;
+@@ -51,6 +53,12 @@ struct drm_modeset_acquire_ctx {
+ 	 */
+ 	struct drm_modeset_lock *contended;
+ 
++	/*
++	 * Stack depot for debugging when a contended lock was not backed off
++	 * from.
++	 */
++	depot_stack_handle_t stack_depot;
++
+ 	/*
+ 	 * list of held locks (drm_modeset_lock)
+ 	 */
+-- 
+2.30.2
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21181 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-sdma:
-    - fi-kbl-7500u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886] / [i915#2291])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-7500u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#533])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][9] ([i915#2927] / [i915#3428]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [FAIL][11] ([i915#1161]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@vga-hpd-fast:
-    - fi-kbl-7500u:       [{ABORT}][13] ([i915#1814]) -> [SKIP][14] ([fdo#109271])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (45 -> 37)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10655 -> Patchwork_21181
-
-  CI-20190529: 20190529
-  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21181: 9a8086f736c623ddda0622f2195b5fbff4bd629e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9a8086f736c6 drm/i915: Allow per-lane drive settings with LTTPRs
-c2a69b618c76 drm/i915: Prepare link training for per-lane drive settings
-21dff7c1cf74 drm/i915: Pass the lane to intel_ddi_level()
-4e0e5a259061 drm/i915: Nuke intel_ddi_hdmi_num_entries()
-e1c952fcbe3d drm/i915: Hoover the level>=n_entries WARN into intel_ddi_level()
-5d68ca04076a drm/i915: De-wrapper bxt_ddi_phy_set_signal_levels()
-f023061edeec drm/i915: Nuke usless .set_signal_levels() wrappers
-dd4dc5015d60 drm/i915: Generalize .set_signal_levels()
-be9a7b3627c4 drm/i915: s/ddi_translations/trans/
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/index.html
-
---===============1365993531422960875==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: DP per-lane drive settings prep work (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95122/">https://patchwork.freedesktop.org/series/95122/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10655 -&gt; Patchwork_21181</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21181 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-sdma:</p>
-<ul>
-<li>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>
-<p>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_chamelium@vga-hpd-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">{ABORT}</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21181/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 37)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10655 -&gt; Patchwork_21181</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21181: 9a8086f736c623ddda0622f2195b5fbff4bd629e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9a8086f736c6 drm/i915: Allow per-lane drive settings with LTTPRs<br />
-c2a69b618c76 drm/i915: Prepare link training for per-lane drive settings<br />
-21dff7c1cf74 drm/i915: Pass the lane to intel_ddi_level()<br />
-4e0e5a259061 drm/i915: Nuke intel_ddi_hdmi_num_entries()<br />
-e1c952fcbe3d drm/i915: Hoover the level&gt;=n_entries WARN into intel_ddi_level()<br />
-5d68ca04076a drm/i915: De-wrapper bxt_ddi_phy_set_signal_levels()<br />
-f023061edeec drm/i915: Nuke usless .set_signal_levels() wrappers<br />
-dd4dc5015d60 drm/i915: Generalize .set_signal_levels()<br />
-be9a7b3627c4 drm/i915: s/ddi_translations/trans/</p>
-
-</body>
-</html>
-
---===============1365993531422960875==--
