@@ -2,105 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA3141B4B5
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 19:08:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E25F541B52A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 19:33:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9FF889E7C;
-	Tue, 28 Sep 2021 17:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E687F6E905;
+	Tue, 28 Sep 2021 17:33:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA90D89E7C;
- Tue, 28 Sep 2021 17:08:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RTBUZdDHqrpgELogUzk5r/ycPW5vImpb0KgTN5UJ1kvSjPi7Zi5X7urYUMfxfVCxPtSTf90kBZj4nb7y58sm4srpWX75owHZcyzlK9484NTSlUaJITupeLkSBBqVOopZ1amPVIlyWZJ6R0wDREzxX7HnzvVrz3R3X3GzxQ4ZrrrvqYGCl3Ni6g5sN5ww6ws4aVwjIwRdpywlIMk4k9H7gsgkeSGvDj/nbqtsVRX+NEpwhxZv7D7KnfZLTa1xID3CjOf52uFTQt+lvQgKTszrewtcCb6/T6NzMuV4AhvumCtl0/aUS9U/KPcAUSzcVsgONg8xu9Ih1xsCVo6dBUe8rw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=BAiIH5O8RK9hSo6r/5vJeZkVh9JEMy+pTgxQmfncCWw=;
- b=BMpLFvGgei4YxJ18FxA9HwDlsiuk4T1J/uPrFQ64nY2GggJlCDzz/w/tHMskZ2Z3UpvL6gnqPIqKVbx/v8C9l7WFpnj5tEkWv01UZqTVYYsRXa7AXFoYvzadiToY4v/4B32q6gS5tC/yPjJAm9ypfFhmdaGryldVbWKhSkMTO69PgQ5lk3JbxUaDMk1MI7msECZ+f9a1GULWprrNhMy44jmrOMeqhAaQXFc8uR19sUREkOif3LuQfbpEUWoShbeFXUovlkIJjkdi3Xu1u9UwZrlsJc0fnrcYtRPu8VlsIXWppde1tF8xypnxLXBgtf8WSZbQoxHs6VacmOfDLeG9wQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BAiIH5O8RK9hSo6r/5vJeZkVh9JEMy+pTgxQmfncCWw=;
- b=AAD540yfsqIiCfz1fzZQc5ivG4gtP3E2FqkX7IDUPT1f0JrOKutTfX+S5XPmxFfY5RAmcKskraCcwfHTxBHL7fjZRy8550MBsM4abWqRFdOR3eCS5LJrSKejcVvkkesrxnyOEUn5e3ROCtfMsuab/h1CU4m4nlAssIIJ4gRTkT0=
-Received: from MWHPR1701CA0009.namprd17.prod.outlook.com
- (2603:10b6:301:14::19) by MN2PR12MB3375.namprd12.prod.outlook.com
- (2603:10b6:208:cc::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Tue, 28 Sep
- 2021 17:08:44 +0000
-Received: from CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
- (2603:10b6:301:14:cafe::a1) by MWHPR1701CA0009.outlook.office365.com
- (2603:10b6:301:14::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.13 via Frontend
- Transport; Tue, 28 Sep 2021 17:08:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT007.mail.protection.outlook.com (10.13.174.131) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4544.13 via Frontend Transport; Tue, 28 Sep 2021 17:08:43 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Tue, 28 Sep
- 2021 12:08:41 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Tue, 28 Sep
- 2021 10:08:41 -0700
-Received: from hwentlanryzen.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.8 via Frontend
- Transport; Tue, 28 Sep 2021 12:08:32 -0500
-From: Harry Wentland <harry.wentland@amd.com>
-To: <alexander.deucher@amd.com>, <amd-gfx@lists.freedesktop.org>,
- <jerry.zuo@amd.com>
-CC: <jani.nikula@intel.com>, <Sunpeng.Li@amd.com>, <nathan@kernel.org>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <ville.syrjala@linux.intel.com>, <manasi.d.navare@intel.com>,
- <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <sfr@canb.auug.org.au>,
- <linux-next@vger.kernel.org>, <airlied@gmail.com>, <daniel.vetter@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>
-Date: Tue, 28 Sep 2021 13:08:28 -0400
-Message-ID: <20210928170828.26452-1-harry.wentland@amd.com>
-X-Mailer: git-send-email 2.33.0
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA236E903
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 17:33:40 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id l13so20658371qtv.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 10:33:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=70n+XEY0HXO/+ZEBN/2DCJ2jjfSAY4lK7P8Bu+Zy0lM=;
+ b=H4mVcWCkVOWkXm86D/HGeaBkxcVm4u5kE81DMOfjtrWC1EjNtZB6VxDNfnVFKggAHk
+ jruVnCwHLEBXaYZvHjdbg6DG62uzIcynnyI/VO8Ew1r67/jHIT1xjK+4a3/Dq0EwgocT
+ YNmU3FuAimCn1q/VBLkbtLh7Q80SNmn75sO6ddgawNORGowgMu5NW7CiJIS9RUolCCM1
+ c5I/RtvRP1/d691qjF517b9FXz7tpsPKRXMJgy42cMp8wuHqy8Rn6F+ll7o0nGRgbQv+
+ NlzlCP8R8QyuYDmPt0ptPjKv/328NYVmJfonhNiMczyuBXpTrLffZ1TdFbZZikCHFFiE
+ QjOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=70n+XEY0HXO/+ZEBN/2DCJ2jjfSAY4lK7P8Bu+Zy0lM=;
+ b=hfalS7Q13wrro3coQcXKprdVPogPgmdmX+aa3aG+r3nRfThpD9moHJ4sk6X3HaZfs1
+ Qv5Cf2jIHACKx3zzTwQ8Qib8fGd5mQqVEjfxSKFqdikJLhUuM5IT6S0gcW1cjUetSfMF
+ qmFeGavJWIh37vJnKuP0xE80Qn7IF/5aNeLxmPw7aOSVbJeG3Y0YKxpnfwndqvvk3jjo
+ kcXR+KfXlI+CXroQppOfqL2TgNjyMlPebE/rz3it7w9x/5JJBvWNkPVlRrx9QOvhIz5W
+ iioq6o+7Xzw2eAOg8CUvBoQ9sqxuAKhnS+GVX/+WyVJz2QaLgQ7b8mi7LUSYiBRhQCmD
+ CK3w==
+X-Gm-Message-State: AOAM533eoZlJRy5qSDxcMeDRt704o1uz/d5+qXV8m4cuqeXw3jgaxBgG
+ m3N3USRwul7vc4xIHC7D22Gg5A==
+X-Google-Smtp-Source: ABdhPJwn/ZeI3JH9V7JmKqJAxkMxLajjAaVEvvmfZLty9Kr/S38GPlMk2tyu4OxjCTrRjbNS4HWlVA==
+X-Received: by 2002:ac8:13c4:: with SMTP id i4mr6871699qtj.350.1632850418520; 
+ Tue, 28 Sep 2021 10:33:38 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+ by smtp.gmail.com with ESMTPSA id u13sm14671502qki.38.2021.09.28.10.33.37
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 28 Sep 2021 10:33:37 -0700 (PDT)
+Date: Tue, 28 Sep 2021 13:33:36 -0400
+From: Sean Paul <sean@poorly.run>
+To: abhinavk@codeaurora.org
+Cc: Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ swboyd@chromium.org, Sean Paul <seanpaul@chromium.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20210928173336.GS2515@art_vandelay>
+References: <20210915203834.1439-1-sean@poorly.run>
+ <20210915203834.1439-5-sean@poorly.run>
+ <e96c4be49ef53fec4a81785a43ecb18f@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ea7f2e8c-76bc-4de3-1f4d-08d982a2a067
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3375:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB33750DCE42CDE4053A5339A58CA89@MN2PR12MB3375.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eMzRp0r1tpRdZhJnKUj7PwkJH/3hf16xVRmtU5Hbv6dyRA8tPSxsbstKar4iM5F4UQkhi3kaHVsrhcvIOVrHPUkgCq7IzJ5U1BXYdrtzKzW+qxlccP9//0bjco7/BsVE3FAQa1jOOgFeOrtqnUFah8jMiNvxKFAx59ToMePE4ReebtskE7NRJYICJrLf46RNhX0i4M/rJ8doJy4UhQtG/yXSXwhnwgI2icIf+D6hycSHQems2ix8aJ2YflGITUOF6bvRT/sicWbYmu+HF/MtBvooOmYsGJVtPnVvbrT276bD2rxGXmkuzhx6t1voQPdKHWA2SUkWOjqsjMHUddCYf1tRUoQUu99fpnZeZAcFC5csCBisc/ZGahGjDbH1xd45tzsq0hl/DKv94oDMngGRckiM2x7nYLd3//uvGKISeYWxb6Lylok5oVc1catP95l2rrY8aWPwTDkOHvXwOvwAkbAjbeq554Tm19MKA3Su/HOKceBm4tigkFYIlqfTxAMDJxSem8yMNK05dJlQPL4yYRNSYerohXy1oIRzdPfu9u+1x3DHb6IK3YGzc48BR/a/3Em2DjIv8tsexfLOM4whFPLq7SAM2nK85wTIv3x5k8qfpQOymnqUjNVglYsDyUIuboePD+EbQycfQPahJ9IL4Eaob8LXh550wtYFhUo4EK/+2fBojpEdpRDuRmSneQxlqQ73fAw4xzjdUB4NnHz6rNvTz1QTo8Pi/TAHa9q/wv1r3M6PV4Bq6UHnFyMQetbv
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(1076003)(81166007)(426003)(186003)(6636002)(508600001)(83380400001)(86362001)(36860700001)(7696005)(336012)(2616005)(36756003)(47076005)(2906002)(4326008)(82310400003)(5660300002)(44832011)(7416002)(316002)(110136005)(70586007)(356005)(54906003)(6666004)(26005)(70206006)(8676002)(8936002)(2101003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2021 17:08:43.5512 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea7f2e8c-76bc-4de3-1f4d-08d982a2a067
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3375
-Subject: [Intel-gfx] [PATCH v2] drm/amd/display: Only define DP 2.0 symbols
- if not already defined
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e96c4be49ef53fec4a81785a43ecb18f@codeaurora.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [Freedreno] [PATCH v2 04/13] drm/hdcp: Expand HDCP
+ helper library for enable/disable/check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,116 +81,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-For some reason we're defining DP 2.0 definitions inside our
-driver. Now that patches to introduce relevant definitions
-are slated to be merged into drm-next this is causing conflicts.
+On Tue, Sep 21, 2021 at 04:34:59PM -0700, abhinavk@codeaurora.org wrote:
+> On 2021-09-15 13:38, Sean Paul wrote:
+> > From: Sean Paul <seanpaul@chromium.org>
+> > 
+> > This patch expands upon the HDCP helper library to manage HDCP
+> > enable, disable, and check.
+> > 
+> > Previous to this patch, the majority of the state management and sink
+> > interaction is tucked inside the Intel driver with the understanding
+> > that once a new platform supported HDCP we could make good decisions
+> > about what should be centralized. With the addition of HDCP support
+> > for Qualcomm, it's time to migrate the protocol-specific bits of HDCP
+> > authentication, key exchange, and link checks to the HDCP helper.
+> > 
+> > In terms of functionality, this migration is 1:1 with the Intel driver,
+> > however things are laid out a bit differently than with intel_hdcp.c,
+> > which is why this is a separate patch from the i915 transition to the
+> > helper. On i915, the "shim" vtable is used to account for HDMI vs. DP
+> > vs. DP-MST differences whereas the helper library uses a LUT to
+> > account for the register offsets and a remote read function to route
+> > the messages. On i915, storing the sink information in the source is
+> > done inline whereas now we use the new drm_hdcp_helper_funcs vtable
+> > to store and fetch information to/from source hw. Finally, instead of
+> > calling enable/disable directly from the driver, we'll leave that
+> > decision to the helper and by calling drm_hdcp_helper_atomic_commit()
+> > from the driver. All told, this will centralize the protocol and state
+> > handling in the helper, ensuring we collect all of our bugs^Wlogic
+> > in one place.
+> > 
+> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > Link:
+> > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-5-sean@poorly.run
+> > #v1
+> > 
+> > Changes in v2:
+> > -Fixed set-but-unused variable identified by 0-day
+> > ---
+> >  drivers/gpu/drm/drm_hdcp.c | 1103 ++++++++++++++++++++++++++++++++++++
+> >  include/drm/drm_hdcp.h     |  191 +++++++
+> >  2 files changed, 1294 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
+> > index 742313ce8f6f..47c6e6923a76 100644
+> > --- a/drivers/gpu/drm/drm_hdcp.c
+> > +++ b/drivers/gpu/drm/drm_hdcp.c
 
-In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c:33:
-In file included from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:70:
-In file included from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_mode.h:36:
-./include/drm/drm_dp_helper.h:1322:9: error: 'DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER' macro redefined [-Werror,-Wmacro-redefined]
-        ^
-./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: note: previous definition is here
-        ^
-1 error generated.
+/snip
 
-v2: Add one missing endif
+> > +static void drm_hdcp_helper_check_work(struct work_struct *work)
+> > +{
+> > +	struct drm_hdcp_helper_data *data =
+> > container_of(to_delayed_work(work),
+> > +							 struct drm_hdcp_helper_data,
+> > +							 check_work);
+> > +	unsigned long check_link_interval;
+> > +
+> 
+> Does this SW polling for Ri' mismatch need to be done even if the HW is
+> capable of doing it
+> on its own?
+> MSM HDCP 1x HW can periodically check Ri' mismatches and issue an interrupt
+> if there is a mismatch.
+> In that case this SW polling is not needed. So maybe check if the HW
+> supports polling and if so
+> skip this SW polling?
+> 
 
-[How]
-Guard all display driver defines with #ifndef for now. Once we pull
-in the new definitions into amd-staging-drm-next we will follow
-up and drop definitions from our driver and provide follow-up
-header updates for any addition DP 2.0 definitions required
-by our driver.
+One could certainly change this to be HW driven. There is also an interrupt on
+Intel for DP links which [re]schedules link check in the interrupt handler,
+something similar could be done for msm. Note that even on these Intel links
+which support the CP interrupt, the worker still runs on the normal cadence. I
+haven't considered relying solely on the interrupt since I want to be sure we
+didn't miss anything.
 
-Signed-off-by: Harry Wentland <harry.wentland@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc_dp_types.h | 54 ++++++++++++++++++--
- 1 file changed, 49 insertions(+), 5 deletions(-)
+Sean
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-index a5e798b5da79..9de86ff5ef1b 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-@@ -860,28 +860,72 @@ struct psr_caps {
- };
- 
- #if defined(CONFIG_DRM_AMD_DC_DCN)
-+#ifndef DP_MAIN_LINK_CHANNEL_CODING_CAP
- #define DP_MAIN_LINK_CHANNEL_CODING_CAP			0x006
-+#endif
-+#ifndef DP_SINK_VIDEO_FALLBACK_FORMATS
- #define DP_SINK_VIDEO_FALLBACK_FORMATS			0x020
-+#endif
-+#ifndef DP_FEC_CAPABILITY_1
- #define DP_FEC_CAPABILITY_1				0x091
-+#endif
-+#ifndef DP_DFP_CAPABILITY_EXTENSION_SUPPORT
- #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT		0x0A3
-+#endif
-+#ifndef DP_DSC_CONFIGURATION
- #define DP_DSC_CONFIGURATION				0x161
-+#endif
-+#ifndef DP_PHY_SQUARE_PATTERN
- #define DP_PHY_SQUARE_PATTERN				0x249
-+#endif
-+#ifndef DP_128b_132b_SUPPORTED_LINK_RATES
- #define DP_128b_132b_SUPPORTED_LINK_RATES		0x2215
-+#endif
-+#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL
- #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL		0x2216
-+#endif
-+#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_7_0
- #define DP_TEST_264BIT_CUSTOM_PATTERN_7_0		0X2230
-+#endif
-+#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_263_256
- #define DP_TEST_264BIT_CUSTOM_PATTERN_263_256		0X2250
-+#endif
-+#ifndef DP_DSC_SUPPORT_AND_DECODER_COUNT
- #define DP_DSC_SUPPORT_AND_DECODER_COUNT		0x2260
-+#endif
-+#ifndef DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0
- #define DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0	0x2270
--# define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK	(1 << 0)
--# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK	(0b111 << 1)
--# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT	1
--# define DP_DSC_DECODER_COUNT_MASK			(0b111 << 5)
--# define DP_DSC_DECODER_COUNT_SHIFT			5
-+#endif
-+#ifndef DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK
-+#define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK	(1 << 0)
-+#endif
-+#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
-+#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK	(0b111 << 1)
-+#endif
-+#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT
-+#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT	1
-+#endif
-+#ifndef DP_DSC_DECODER_COUNT_MASK
-+#define DP_DSC_DECODER_COUNT_MASK			(0b111 << 5)
-+#endif
-+#ifndef DP_DSC_DECODER_COUNT_SHIFT
-+#define DP_DSC_DECODER_COUNT_SHIFT			5
-+#endif
-+#ifndef DP_MAIN_LINK_CHANNEL_CODING_SET
- #define DP_MAIN_LINK_CHANNEL_CODING_SET			0x108
-+#endif
-+#ifndef DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER
- #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER	0xF0006
-+#endif
-+#ifndef DP_PHY_REPEATER_128b_132b_RATES
- #define DP_PHY_REPEATER_128b_132b_RATES			0xF0007
-+#endif
-+#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1
- #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1	0xF0022
-+#endif
-+#ifndef DP_INTRA_HOP_AUX_REPLY_INDICATION
- #define DP_INTRA_HOP_AUX_REPLY_INDICATION		(1 << 3)
-+#endif
- /* TODO - Use DRM header to replace above once available */
- 
- union dp_main_line_channel_coding_cap {
+> > +	mutex_lock(&data->mutex);
+> > +	if (data->value != DRM_MODE_CONTENT_PROTECTION_ENABLED)
+> > +		goto out_data_mutex;
+> > +
+> > +	drm_hdcp_helper_driver_lock(data);
+> > +
+> > +	if (data->enabled_type == DRM_MODE_HDCP_CONTENT_TYPE1) {
+> > +		if (drm_hdcp_hdcp2_check_link(data))
+> > +			goto out;
+> > +		check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
+> > +	} else {
+> > +		if (drm_hdcp_hdcp1_check_link(data))
+> > +			goto out;
+> > +		check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
+> > +	}
+> > +	schedule_delayed_work(&data->check_work, check_link_interval);
+> > +
+> > +out:
+> > +	drm_hdcp_helper_driver_unlock(data);
+> > +out_data_mutex:
+> > +	mutex_unlock(&data->mutex);
+> > +}
+
+/snip
+
 -- 
-2.33.0
-
+Sean Paul, Software Engineer, Google / Chromium OS
