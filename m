@@ -2,33 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9482441AF74
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 14:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E08841B17D
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 16:01:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9610A6E8AF;
-	Tue, 28 Sep 2021 12:55:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 282AF6E0E9;
+	Tue, 28 Sep 2021 14:01:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8CC916E8A4;
- Tue, 28 Sep 2021 12:55:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83525A0BCB;
- Tue, 28 Sep 2021 12:55:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0492947189635396452=="
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B48289CD8;
+ Tue, 28 Sep 2021 14:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:
+ Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description;
+ bh=ZGKJbIQb/oSd6eIGdR1+b3C/vnQiuZe8y66fqeUzRIk=; b=boDq/QONrhvi9N7rdCEcrwGnzY
+ 9TR0lEcuIxCa2orVcE0Ws8pMcRfTKfls4O//YcbTw6Y8AeQ6jT6s3QbuiFPGSpb+sFx8XTiv4SJ6q
+ MTk02RHah/tch+Rwvh54Vq/FbMthYRDJ1O0ByaPtHbUEbI5bLoLOjZE6d7a8IAwnVGI3UEZLTCz6h
+ r2oQFrejRK27v6Bj6zRTBb899PpM1N/TqiUxgE1k9n9xuTvxe873f3dsRIEjSmKKvSXj4nGPnnR58
+ elC5AA5U0rSxVQwdSkEBORaAw8eTyt269ICWQIly6btQubSArpvRXvS+5DM3iWcxKOwuiwJqYR2ni
+ pP8ksZTg==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2
+ (Red Hat Linux)) id 1mVDfE-007TNG-7U; Tue, 28 Sep 2021 14:00:56 +0000
+Date: Tue, 28 Sep 2021 07:00:56 -0700
+From: Luis Chamberlain <mcgrof@kernel.org>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>, Jessica Yu <jeyu@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
+ Jason Gunthorpe <jgg@nvidia.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "Nikula, Jani" <jani.nikula@intel.com>
+Message-ID: <YVMgGKk1K4gO8ls6@bombadil.infradead.org>
+References: <20210803143058.GA1721383@nvidia.com>
+ <20210804052606.GG13928@zhen-hp.sh.intel.com>
+ <20210816173458.GA9183@lst.de>
+ <20210817010851.GW13928@zhen-hp.sh.intel.com>
+ <20210817052203.GX13928@zhen-hp.sh.intel.com>
+ <20210819082929.GB13928@zhen-hp.sh.intel.com>
+ <20210820141724.GA29034@lst.de>
+ <YSAI8pKAvvW/8S2O@bombadil.infradead.org>
+ <20210826061219.GD9942@zhen-hp.sh.intel.com>
+ <55c11f22-99e5-6109-3be3-a04b06b3336e@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Fangzhi Zuo" <jerry.zuo@amd.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Sep 2021 12:55:20 -0000
-Message-ID: <163283372049.3951.17410849035397632693@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210927192324.5428-1-Jerry.Zuo@amd.com>
-In-Reply-To: <20210927192324.5428-1-Jerry.Zuo@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/dp=3A_Add_Additional_DP2_Headers_=28rev3=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <55c11f22-99e5-6109-3be3-a04b06b3336e@intel.com>
+Subject: Re: [Intel-gfx] refactor the i915 GVT support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,277 +70,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0492947189635396452==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Sep 28, 2021 at 07:41:00AM +0000, Wang, Zhi A wrote:
+> Hey guys:
+> 
+> After some investigation, I found the root cause this problem ("i915" 
+> module loading will be stuck with Christoph's refactor patches), which 
+> can be reproduced by building both i915 and kvmgt as kernel module and 
+> the loading i915.
 
-== Series Details ==
+Thanks for looking into this!
 
-Series: drm/dp: Add Additional DP2 Headers (rev3)
-URL   : https://patchwork.freedesktop.org/series/95104/
-State : success
+> The root cause is: in Linux kernel loading, before a kernel module 
+> loading is finished, its symbols can not be reached by other module when 
+> resolving the symbols (even they can be found in /proc/kallsyms). 
+> Because the status of the kernel module is MODULE_STATE_COMING and 
+> resolve_symbol() from another kernel module will check this and return a 
+> -EBUSY.
 
-== Summary ==
+Well, it would seem that way but...
 
-CI Bug Log - changes from CI_DRM_10654 -> Patchwork_21175
-====================================================
+> In this case, before i915 loading is finished, the requested module 
+> "kvmgt" cannot reach the symbols in module i915. Thus it kept waiting 
+> and left message like below in the dmesg:
+> 
+> [  644.152021] kvmgt: gave up waiting for init of module i915.
+> [  644.152039] kvmgt: Unknown symbol i915_gem_object_set_to_cpu_domain 
+> (err -16)
+> [  674.871409] kvmgt: gave up waiting for init of module i915.
+> [  674.871427] kvmgt: Unknown symbol intel_ring_begin (err -16)
+> [  705.590586] kvmgt: gave up waiting for init of module i915.
+> [  705.590604] kvmgt: Unknown symbol i915_vma_move_to_active (err -16)
+> [  736.310230] kvmgt: gave up waiting for init of module i915.
+> [  736.310248] kvmgt: Unknown symbol shmem_unpin_map (err -16)
+> ...
+> 
+> The error message is from execution path below:
+> 
+> kernel/module.c:
+> 
+> [i915 module loading] -> 
+> request_module("kvmgt")->[modprobe]->init_module("kvmgt")->load_module()->simplify_symbols()->resolve_symbol_wait():
+> 
+> static const struct kernel_symbol *
+> resolve_symbol_wait(struct module *mod,
+>              const struct load_info *info,
+>              const char *name)
+> {
+>      const struct kernel_symbol *ksym;
+>      char owner[MODULE_NAME_LEN];
+> 
+>      if (wait_event_interruptible_timeout(module_wq,
+>              !IS_ERR(ksym = resolve_symbol(mod, info, name, owner))
+>              || PTR_ERR(ksym) != -EBUSY,
+>                           30 * HZ) <= 0) {
+>          pr_warn("%s: gave up waiting for init of module %s.\n",
+>              mod->name, owner);
+> 
+> }
 
-Summary
--------
+Commit 9bea7f23952d5 ("module: fix bne2 "gave up waiting for init of
+module libcrc32c") is worth reviewing. It dealt with a similar issue,
+and in particular it addressed the issue with -EBUSY being returned
+by ref_module().
 
-  **SUCCESS**
+And so, in theory that case should be dealt with in resolve_symbol_wait()
+already. And so can you try this just to verify something:
 
-  No regressions found.
+diff --git a/kernel/module.c b/kernel/module.c
+index 40ec9a030eec..98f87cbb37de 100644
+--- a/kernel/module.c
++++ b/kernel/module.c
+@@ -1459,7 +1459,7 @@ resolve_symbol_wait(struct module *mod,
+ 	if (wait_event_interruptible_timeout(module_wq,
+ 			!IS_ERR(ksym = resolve_symbol(mod, info, name, owner))
+ 			|| PTR_ERR(ksym) != -EBUSY,
+-					     30 * HZ) <= 0) {
++					     160 * HZ) <= 0) {
+ 		pr_warn("%s: gave up waiting for init of module %s.\n",
+ 			mod->name, owner);
+ 	}
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html
+> code: 
+> https://github.com/intel/gvt-linux/blob/bd950a66c7919d7121d2530f30984351534a96dc/kernel/module.c#L1452
+> 
+> In resolve_symbol_wait(), it calls resolve_symbol() to resolve the 
+> symbols in "i915". In resolve_symbol() -> ref_module() -> 
+> strong_try_module_get(), it will check the status of the module which 
+> owns the symbol.
+> 
+> static inline int strong_try_module_get(struct module *mod)
+> {
+>      BUG_ON(mod && mod->state == MODULE_STATE_UNFORMED);
+>      if (mod && mod->state == MODULE_STATE_COMING)
+>          return -EBUSY;
+>      if (try_module_get(mod))
+>          return 0;
+>      else
+>          return -ENOENT;
+> }
+> 
+> code:https://github.com/intel/gvt-linux/blob/bd950a66c7919d7121d2530f30984351534a96dc/kernel/module.c#L318
+> 
+> But unfortunately, this execution path begins in i915 module loading, at 
+> this time, the status of kernel module "i915" is MODULE_STATE_COMING 
+> until loading of "kvmgt" is finished. Thus a -EBUSY is always returned 
+> when kernel is trying to resolve symbols for "kvmgt".
+>
+> 
+> This patch below might need re-work:
 
-Known issues
-------------
+If the above test patch still fails, well.. that might be telling of
+another issue which is perhaps difficult to see at first glance. If
+resolve_symbol_wait() won't succeed until request_module("kvmgt")
+completes and if this means having kvmgt's init routine complete, that
+could end up in some longer chain or in the worst case a sort of
+circular dependency which is only implicated by module loading. It'd be
+really odd... but I cannot rule it out.
 
-  Here are the changes found in Patchwork_21175 that come from known issues:
+This is one reason I hinted that you should strive to not do much on a
+module's init. If you can punt work off for later that's best.
 
-### IGT changes ###
+  Luis
 
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([i915#1155])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][4] ([i915#4006] / [i915#4193])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_addfb_basic@too-wide:
-    - fi-tgl-1115g4:      NOTRUN -> [DMESG-WARN][5] ([i915#4002]) +89 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_addfb_basic@too-wide.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([i915#4103]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([fdo#109285])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#1072]) +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#1072] / [i915#1385])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#3301])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][12] ([i915#2722] / [i915#4193])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][13] ([i915#3921]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10654/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1385]: https://gitlab.freedesktop.org/drm/intel/issues/1385
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4002]: https://gitlab.freedesktop.org/drm/intel/issues/4002
-  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4193]: https://gitlab.freedesktop.org/drm/intel/issues/4193
-
-
-Participating hosts (45 -> 35)
-------------------------------
-
-  Additional (1): fi-tgl-1115g4 
-  Missing    (11): fi-kbl-soraka fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-2 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10654 -> Patchwork_21175
-
-  CI-20190529: 20190529
-  CI_DRM_10654: 7006e15e0a109ce092026c4b576fe8a206e8b756 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6224: 2f4e6430a97f04284d1cafb1479e7c1b0b2d596a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21175: 803095ab68fd39140515400ff655eee124f0d420 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-803095ab68fd drm/dp: Add Additional DP2 Headers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html
-
---===============0492947189635396452==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp: Add Additional DP2 Headers (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95104/">https://patchwork.freedesktop.org/series/95104/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10654 -&gt; Patchwork_21175</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21175 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4193">i915#4193</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@too-wide:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_addfb_basic@too-wide.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4002">i915#4002</a>) +89 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4193">i915#4193</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10654/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21175/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 35)</h2>
-<p>Additional (1): fi-tgl-1115g4 <br />
-  Missing    (11): fi-kbl-soraka fi-ilk-m540 bat-adls-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-2 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10654 -&gt; Patchwork_21175</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10654: 7006e15e0a109ce092026c4b576fe8a206e8b756 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6224: 2f4e6430a97f04284d1cafb1479e7c1b0b2d596a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21175: 803095ab68fd39140515400ff655eee124f0d420 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>803095ab68fd drm/dp: Add Additional DP2 Headers</p>
-
-</body>
-</html>
-
---===============0492947189635396452==--
+> 
+> Author: Christoph Hellwig <hch@lst.de>
+> Date:   Wed Jul 21 17:53:38 2021 +0200
+> 
+>      drm/i915/gvt: move the gvt code into kvmgt.ko
+> 
+>      Instead of having an option to build the gvt code into the main i915
+>      module, just move it into the kvmgt.ko module.  This only requires
+>      a new struct with three entries that the main i915 module needs to
+>      request before enabling VGPU passthrough operations.
+> 
+>      This also conveniently streamlines the GVT initialization and avoids
+>      the need for the global device pointer.
+> 
+>      Signed-off-by: Christoph Hellwig <hch@lst.de>
+>      Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+>      Link: 
+> http://patchwork.freedesktop.org/patch/msgid/20210721155355.173183-5-hch@lst.de
+>      Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+> 
+> On 8/26/21 6:12 AM, Zhenyu Wang wrote:
+> > On 2021.08.20 12:56:34 -0700, Luis Chamberlain wrote:
+> >> On Fri, Aug 20, 2021 at 04:17:24PM +0200, Christoph Hellwig wrote:
+> >>> On Thu, Aug 19, 2021 at 04:29:29PM +0800, Zhenyu Wang wrote:
+> >>>> I'm working on below patch to resolve this. But I met a weird issue in
+> >>>> case when building i915 as module and also kvmgt module, it caused
+> >>>> busy wait on request_module("kvmgt") when boot, it doesn't happen if
+> >>>> building i915 into kernel. I'm not sure what could be the reason?
+> >>> Luis, do you know if there is a problem with a request_module from
+> >>> a driver ->probe routine that is probably called by a module_init
+> >>> function itself?
+> >> Generally no, but you can easily foot yourself in the feet by creating
+> >> cross dependencies and not dealing with them properly. I'd make sure
+> >> to keep module initialization as simple as possible, and run whatever
+> >> takes more time asynchronously, then use a state machine to allow
+> >> you to verify where you are in the initialization phase or query it
+> >> or wait for a completion with a timeout.
+> >>
+> >> It seems the code in question is getting some spring cleaning, and its
+> >> unclear where the code is I can inspect. If there's a tree somewhere I
+> >> can take a peak I'd be happy to review possible oddities that may stick
+> >> out.
+> > I tried to put current patches under test here: https://github.com/intel/gvt-linux/tree/gvt-staging
+> > The issue can be produced with CONFIG_DRM_I915=m and CONFIG_DRM_I915_GVT_KVMGT=m.
+> >
+> >> My goto model for these sorts of problems is to abstract the issue
+> >> *outside* of the driver in question and implement new selftests to
+> >> try to reproduce. This serves two purposes, 1) helps with testing
+> >> 2) may allow you to see the problem more clearly.
+> >>
+> > I'll see if can abstract that.
+> >
+> > Thanks, Luis.
+> 
+> 
