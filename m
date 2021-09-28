@@ -2,44 +2,105 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3512041B869
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:36:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D0C41B86C
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 22:38:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E27856E973;
-	Tue, 28 Sep 2021 20:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DE5A6E0EC;
+	Tue, 28 Sep 2021 20:38:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6466A6E973
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Sep 2021 20:35:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="310350108"
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="310350108"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:35:57 -0700
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="706827731"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:35:55 -0700
-Date: Tue, 28 Sep 2021 23:36:51 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
- jani.saarinen@intel.com, maarten.lankhorst@linux.intel.com
-Message-ID: <20210928203651.GA16292@intel.com>
-References: <20210923084858.5480-1-stanislav.lisovskiy@intel.com>
- <YUyiJ1SFGULGHvmC@intel.com>
- <20210927182335.GY3389343@mdroper-desk1.amr.corp.intel.com>
- <YVINc1/ySKUw/KiH@intel.com>
- <20210928052411.GD3389343@mdroper-desk1.amr.corp.intel.com>
- <20210928124911.GA10399@intel.com> <YVNmymiuKRccLkoz@intel.com>
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam08on2047.outbound.protection.outlook.com [40.107.100.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 727CC6E0EC;
+ Tue, 28 Sep 2021 20:38:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J0rCvirL3rFs+xQhuPKer9EZsGlBnYyvR7hrykQC9Dt+tjHaWJi3FkerZv3ZP1EXGM8YM5MJ9X9gtJ8KqXJ6ekH3URam+7t08YTvi5aCNtMFkMAJ9F1MstuVHdXcJ9PzZ+IO+eapEzadKtw4kAZX0/ytXRNgH4wC5C1oElyA4EhF929/wAbP9me4VTqVLGoUI6LOJzgLKQuUZFeRlNRgKGpGUyrW+6u31ZSwqA1N5aX1naz1m2pTeY3FHqXYEr2IwGW74VWFtzLHlESL5hkYEcvveT8PP6yHotev8NZLiMghDUn1Ji+5C5faee5pvyRp8ez0fsNAEfzTfKpR+bDdUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=cEmjsHrxsXKlST15sl6o6mQ6LmEjStamEd8Jm01C8VY=;
+ b=H4JnFnf4ROPjZGbRlJb+a2MdCtxp7NCRMgymlNrN06L08x+CGGGMaM8+GFnc05oQ7Sob0LyoWIvcDeB2RXgLJ5kteyNKwTWevAv87uLlNVe6dCCscsFo+rPyphrUBidN1VAw2HKBqcBVIB7ijK6DT8VVfnb5X8nHghiKV+YPhoybZbaysn+t5TZ7H7dm253ilNerOcR2GT1QU684EWZePww2xnC01LhLzDjG0kviqER78Wyw40Sqvemr3C5mdFzWIyAggpnYXarvxbI1FWUG6aoRIf8+phRFJxR5jy4FJW9CJMacg7zlR7Bw61x/GcEBJutbqLM0Uj/uumxETzKhag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cEmjsHrxsXKlST15sl6o6mQ6LmEjStamEd8Jm01C8VY=;
+ b=wk9tBcDEpK0YFDm94VAaLrzOXMzFoviL0Br2jO3Dd2Imw3GUugY9WR5hbOp3iyN0YYkglSQo8ykROTqyT4TQaw+o4Zsm0o1o8JmNJPyqxzVEjls/uTjebU8pk9XGTt9d48Q0wv6xQBrOL0hP3OQ9p9Orw2Dhav1v2xAA9czHFnU=
+Received: from BN9PR03CA0330.namprd03.prod.outlook.com (2603:10b6:408:112::35)
+ by MW3PR12MB4473.namprd12.prod.outlook.com (2603:10b6:303:56::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Tue, 28 Sep
+ 2021 20:38:19 +0000
+Received: from BN8NAM11FT006.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:112:cafe::7) by BN9PR03CA0330.outlook.office365.com
+ (2603:10b6:408:112::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend
+ Transport; Tue, 28 Sep 2021 20:38:19 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT006.mail.protection.outlook.com (10.13.177.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4544.13 via Frontend Transport; Tue, 28 Sep 2021 20:38:19 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Tue, 28 Sep
+ 2021 15:38:18 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Tue, 28 Sep
+ 2021 13:38:17 -0700
+Received: from hwentlanryzen.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2308.8 via Frontend
+ Transport; Tue, 28 Sep 2021 15:38:02 -0500
+From: Harry Wentland <harry.wentland@amd.com>
+To: <alexander.deucher@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <jerry.zuo@amd.com>
+CC: <jani.nikula@intel.com>, <Sunpeng.Li@amd.com>, <nathan@kernel.org>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <ville.syrjala@linux.intel.com>, <manasi.d.navare@intel.com>,
+ <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <sfr@canb.auug.org.au>,
+ <linux-next@vger.kernel.org>, <airlied@gmail.com>, <daniel.vetter@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>
+Date: Tue, 28 Sep 2021 16:37:52 -0400
+Message-ID: <20210928203752.760237-1-harry.wentland@amd.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YVNmymiuKRccLkoz@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Tile F plane format support
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0f54533d-4916-4082-9103-08d982bfe7fd
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4473:
+X-Microsoft-Antispam-PRVS: <MW3PR12MB4473820E8DDB2F154AEF43708CA89@MW3PR12MB4473.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rYVhcEFtNIeRztChsQHOp9lsRfMMy3lLWh5GHEownpzptFapTnyYWL2HDljX9Ec0PKKZRkbX8Ytf1g/BYlyPC42Wzy+QRNthe6IyzUHeoMJx5an/lWrJNwyLfQVFYcyO/UkE+y/NHPjNXd2nzU9f8YbEL8OUqoAP9IqPUmG/r0g8BUpgg5nTUUHtzBAURqTur0R+5d5O46mJNrDwXF2vtdgxajAIPH9CYe/0R+vXkV8X3wPihsXiv8saUVivRcVS08q4zPBeVf8uhNgqOUlali+1r7cx0bpx+Ds5quLbopXOLposoZ+rj4zmGHqs7ONz6jKgv/GQaVjukKYL+9xmJJFGNUL+3r/X8S4HrmPPNjj8hhx5UHWSbghmdM5AgmVUQhcEmWcsYQBnBD4fcetZ2bzh8ou8EBeefrY2Wt+WlynOXDQVuM70LF4UrSHJHpAh9QyrjdfAb/F54C6Hsvqu5uVnQK1BpyEfdDzNiKTs0OGhOX22UVFjn3xewfuYDvH1e0zpEoMVxsPLbYk7DzNC/99KwbnqiJEOLubpF6FH3B1kUJRLLhxZx1RJimKg3SYhh+7m7ObUmkApPst1i3p0lh7qruS1voTDt62KReVczgOBeofMYJFyB7wCiealOOXZPTIXh485BRL+qinv1Yj7Mg0TUVrvUlYiduPIkv7Di1+pECQQs8dhRUyqHMILxxu4OtiQ9c31gWd03Y6W96Ke9wmo/sM/q/SwgZ2sjm4jiD95LwbGgnC9K4jnaXmPlv9L
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(508600001)(426003)(6636002)(7416002)(110136005)(8676002)(86362001)(2616005)(26005)(356005)(54906003)(81166007)(2906002)(8936002)(6666004)(5660300002)(336012)(1076003)(82310400003)(7696005)(83380400001)(316002)(186003)(36756003)(44832011)(36860700001)(70206006)(4326008)(47076005)(70586007)(2101003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2021 20:38:19.1735 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f54533d-4916-4082-9103-08d982bfe7fd
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT006.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4473
+Subject: [Intel-gfx] [PATCH v3] drm/amd/display: Only define DP 2.0 symbols
+ if not already defined
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,105 +116,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 28, 2021 at 10:02:34PM +0300, Ville Syrjälä wrote:
-> On Tue, Sep 28, 2021 at 03:49:11PM +0300, Lisovskiy, Stanislav wrote:
-> > On Mon, Sep 27, 2021 at 10:24:11PM -0700, Matt Roper wrote:
-> > > On Mon, Sep 27, 2021 at 09:29:07PM +0300, Ville Syrjälä wrote:
-> > > > On Mon, Sep 27, 2021 at 11:23:35AM -0700, Matt Roper wrote:
-> > > > > On Thu, Sep 23, 2021 at 06:49:59PM +0300, Ville Syrjälä wrote:
-> > > > > > On Thu, Sep 23, 2021 at 11:48:58AM +0300, Stanislav Lisovskiy wrote:
-> > > > > > > TileF(Tile4 in bspec) format is 4K tile organized into
-> > > > > > > 64B subtiles with same basic shape as for legacy TileY
-> > > > > > > which will be supported by Display13.
-> > > > > > 
-> > > > > > Why we still haven't done the F->tile64 rename?
-> > > > > >
-> > > > > > This is the last chance to fix this before we bake 
-> > > > > > this into the uapi and are stuck with a name that doesn't
-> > > > > > match the spec and will just confuse everyone.
-> > > > > 
-> > > > > I think you're confusing the formats here.  The bspec uses both terms
-> > > > > "TileF" and "Tile4" for the same format in different places.  There's a
-> > > > > completely different format that's referred to as both "TileS" and
-> > > > > "Tile64" in the bspec that we don't use at the moment.  So tile64
-> > > > > wouldn't be a correct rename, but tile4 could be.
-> > > > 
-> > > > Right, tile64 is the macro tile variant I think. So like Ys
-> > > > which we never bothered implementing, so I guess we''l not bother
-> > > > with tile64 either.
-> > > > 
-> > > > > 
-> > > > > In general Tile4 is much more common in the bspec than TileF is (TileF
-> > > > > terminology is mostly found in the media sections).  And bspec 44917 is
-> > > > > the most authoritative bspec page on the subject, and it refers to it as
-> > > > > Tile4, so I agree that switching over "Tile4" would probably be a good
-> > > > > move.
-> > > > > 
-> > > > > > 
-> > > > > > > 
-> > > > > ...
-> > > > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> > > > > > > index bde5860b3686..d7dc421c6134 100644
-> > > > > > > --- a/include/uapi/drm/i915_drm.h
-> > > > > > > +++ b/include/uapi/drm/i915_drm.h
-> > > > > > > @@ -1522,7 +1522,8 @@ struct drm_i915_gem_caching {
-> > > > > > >  #define I915_TILING_NONE	0
-> > > > > > >  #define I915_TILING_X		1
-> > > > > > >  #define I915_TILING_Y		2
-> > > > > > > -#define I915_TILING_LAST	I915_TILING_Y
-> > > > > > > +#define I915_TILING_F		3
-> > > > > > > +#define I915_TILING_LAST	I915_TILING_F
-> > > > > > 
-> > > > > > fences...
-> > > > > 
-> > > > > Recognizing TileF/Tile4 separately from TileY is important to code
-> > > > > outside of display as well.  There are blitter instructions that require
-> > > > > different settings for TileY vs Tile4/F so if we drop the tracking of
-> > > > > this as a unique tiling type, it will break the blitting/copying and
-> > > > > some of the upcoming local memory support for Xe_HP-based platforms.
-> > > > 
-> > > > These are uapi definitions for set_tiling(). You are not meant to add
-> > > > anything there. Just like we didn't add anything for Yf.
-> > > 
-> > > Yeah, I think that's the real problem --- we define some values here in
-> > > the uapi header, but we also wind up using the same set of values for
-> > > driver-internal non-uapi purposes too rather than having a separate enum
-> > > (containing a superset of the uapi values) that can be used for those
-> > > other things.  Display code can use FB modifiers for some things, but
-> > > core/lmem code needs a way to refer to Tile4 and such and doesn't have a
-> > > good way to do that today.
-> > > 
-> > > I think most (all?) of the non-display code that's relying on a
-> > > definition of I915_TILING_F is in various selftests that are still being
-> > > prepared for upstreaming, so maybe there's a better way to handle the
-> > > selection of possible formats specifically in the selftest code itself.
-> > > That's really the only area of the kernel code that should need to be
-> > > aware of the specific internal layout of various buffers.
-> > 
-> > So I will proceed with the renaming at least.
-> > 
-> > Ville, suppose, I still need part of fencing related code?
-> 
-> Nah. Just nuke it all. Someone will have to fix whatever self test is
-> abusing the uapi definitions though.
-> 
-> A local #define should suffice if nothing else is deemed appropriate.
-> IIRC igt also has a local definition like this for Yf. We should
-> perhaps rename those to some igt specific namespace as well...
+[Why]
+For some reason we're defining DP 2.0 definitions inside our
+driver. Now that patches to introduce relevant definitions
+are slated to be merged into drm-next this is causing conflicts.
 
-As Matt mentioned, removing I915_TILING_F completely is going to break
-way more than selftest, but also blitter/copy and local mem support.
-In fact I remember, I had to add part of those in order to get some
-tests working, another part was added by somebody else, so not even
-sure how much other stuff its going to break.
+In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c:33:
+In file included from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:70:
+In file included from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_mode.h:36:
+./include/drm/drm_dp_helper.h:1322:9: error: 'DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER' macro redefined [-Werror,-Wmacro-redefined]
+        ^
+./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: note: previous definition is here
+        ^
+1 error generated.
 
-Sounds like a bit too much for simple upstreaming of the patch, we
-already had internally for more than a year, just wondering why 
-this popped up only by now.
+[How]
+Guard all display driver defines with #ifndef for now. Once we pull
+in the new definitions into amd-staging-drm-next we will follow
+up and drop definitions from our driver and provide follow-up
+header updates for any addition DP 2.0 definitions required
+by our driver.
 
-Stan
+We also ensure drm_dp_helper.h is included before dc_dp_types.h.
 
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+v3: Ensure drm_dp_helper.h is included before dc_dp_types.h
+
+v2: Add one missing endif
+
+Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+Reviewed-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/dc_dp_types.h | 54 ++++++++++++++++++--
+ drivers/gpu/drm/amd/display/dc/os_types.h    |  1 +
+ 2 files changed, 50 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+index a5e798b5da79..9de86ff5ef1b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+@@ -860,28 +860,72 @@ struct psr_caps {
+ };
+ 
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
++#ifndef DP_MAIN_LINK_CHANNEL_CODING_CAP
+ #define DP_MAIN_LINK_CHANNEL_CODING_CAP			0x006
++#endif
++#ifndef DP_SINK_VIDEO_FALLBACK_FORMATS
+ #define DP_SINK_VIDEO_FALLBACK_FORMATS			0x020
++#endif
++#ifndef DP_FEC_CAPABILITY_1
+ #define DP_FEC_CAPABILITY_1				0x091
++#endif
++#ifndef DP_DFP_CAPABILITY_EXTENSION_SUPPORT
+ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT		0x0A3
++#endif
++#ifndef DP_DSC_CONFIGURATION
+ #define DP_DSC_CONFIGURATION				0x161
++#endif
++#ifndef DP_PHY_SQUARE_PATTERN
+ #define DP_PHY_SQUARE_PATTERN				0x249
++#endif
++#ifndef DP_128b_132b_SUPPORTED_LINK_RATES
+ #define DP_128b_132b_SUPPORTED_LINK_RATES		0x2215
++#endif
++#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL
+ #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL		0x2216
++#endif
++#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_7_0
+ #define DP_TEST_264BIT_CUSTOM_PATTERN_7_0		0X2230
++#endif
++#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_263_256
+ #define DP_TEST_264BIT_CUSTOM_PATTERN_263_256		0X2250
++#endif
++#ifndef DP_DSC_SUPPORT_AND_DECODER_COUNT
+ #define DP_DSC_SUPPORT_AND_DECODER_COUNT		0x2260
++#endif
++#ifndef DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0
+ #define DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0	0x2270
+-# define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK	(1 << 0)
+-# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK	(0b111 << 1)
+-# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT	1
+-# define DP_DSC_DECODER_COUNT_MASK			(0b111 << 5)
+-# define DP_DSC_DECODER_COUNT_SHIFT			5
++#endif
++#ifndef DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK
++#define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK	(1 << 0)
++#endif
++#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
++#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK	(0b111 << 1)
++#endif
++#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT
++#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT	1
++#endif
++#ifndef DP_DSC_DECODER_COUNT_MASK
++#define DP_DSC_DECODER_COUNT_MASK			(0b111 << 5)
++#endif
++#ifndef DP_DSC_DECODER_COUNT_SHIFT
++#define DP_DSC_DECODER_COUNT_SHIFT			5
++#endif
++#ifndef DP_MAIN_LINK_CHANNEL_CODING_SET
+ #define DP_MAIN_LINK_CHANNEL_CODING_SET			0x108
++#endif
++#ifndef DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER
+ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER	0xF0006
++#endif
++#ifndef DP_PHY_REPEATER_128b_132b_RATES
+ #define DP_PHY_REPEATER_128b_132b_RATES			0xF0007
++#endif
++#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1
+ #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1	0xF0022
++#endif
++#ifndef DP_INTRA_HOP_AUX_REPLY_INDICATION
+ #define DP_INTRA_HOP_AUX_REPLY_INDICATION		(1 << 3)
++#endif
+ /* TODO - Use DRM header to replace above once available */
+ 
+ union dp_main_line_channel_coding_cap {
+diff --git a/drivers/gpu/drm/amd/display/dc/os_types.h b/drivers/gpu/drm/amd/display/dc/os_types.h
+index f50cae252de4..34efb708ea12 100644
+--- a/drivers/gpu/drm/amd/display/dc/os_types.h
++++ b/drivers/gpu/drm/amd/display/dc/os_types.h
+@@ -35,6 +35,7 @@
+ #include <asm/byteorder.h>
+ 
+ #include <drm/drm_print.h>
++#include <drm/drm_dp_helper.h>
+ 
+ #include "cgs_common.h"
+ 
+-- 
+2.33.0
+
