@@ -1,43 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55CA141ACF8
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 12:30:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DEE541AD4E
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Sep 2021 12:52:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 269F86E118;
-	Tue, 28 Sep 2021 10:30:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6817489B84;
+	Tue, 28 Sep 2021 10:52:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20E0B6E0FE;
- Tue, 28 Sep 2021 10:30:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="285682285"
-X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="285682285"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4E489B84;
+ Tue, 28 Sep 2021 10:52:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="222778606"
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="222778606"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 03:30:49 -0700
-X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="553936688"
-Received: from ainunnax-mobl4.gar.corp.intel.com (HELO [10.214.171.82])
- ([10.214.171.82])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 03:51:46 -0700
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; d="scan'208";a="553942040"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 03:30:47 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com
-References: <20210927151017.287414-1-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <a3cdd992-6208-b0c9-72b1-191fd47c40a8@intel.com>
-Date: Tue, 28 Sep 2021 11:30:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ 28 Sep 2021 03:51:44 -0700
+Date: Tue, 28 Sep 2021 13:45:01 +0300 (EEST)
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+X-X-Sender: kvehmane@eliteleevi.tm.intel.com
+To: Takashi Iwai <tiwai@suse.de>
+cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org, gregkh@linuxfoundation.org, 
+ alsa-devel@alsa-project.org, "Rafael J . Wysocki" <rafael@kernel.org>, 
+ jani.nikula@intel.com, Imre Deak <imre.deak@intel.com>, 
+ Russell King <rmk+kernel@armlinux.org.uk>, 
+ Russell King <rmk+kernel@arm.linux.org.uk>, 
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <s5hh7e5ngnq.wl-tiwai@suse.de>
+Message-ID: <alpine.DEB.2.22.394.2109281335522.3554566@eliteleevi.tm.intel.com>
+References: <20210922085432.2776886-1-kai.vehmanen@linux.intel.com>
+ <s5hh7e5ngnq.wl-tiwai@suse.de>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
 MIME-Version: 1.0
-In-Reply-To: <20210927151017.287414-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: Rework object initialization
- slightly
+Content-Type: multipart/mixed;
+ BOUNDARY="-318106570-1915050432-1632825702=:3554566"
+Content-ID: <alpine.DEB.2.22.394.2109281342020.3554566@eliteleevi.tm.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] component: do not leave master devres
+ group open after bind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,76 +59,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 27/09/2021 16:10, Thomas Hellstr√∂m wrote:
-> We may end up in i915_ttm_bo_destroy() in an error path before the
-> object is fully initialized. In that case it's not correct to call
-> __i915_gem_free_object(), because that function
-> a) Assumes the gem object refcount is 0, which it isn't.
-> b) frees the placements which are owned by the caller until the
-> init_object() region ops returns successfully. Fix this by providing
-> a lightweight cleanup function i915_gem_object_fini() which is also
-> called by __i915_gem_free_object().
-> 
-> While doing this, also make sure we call dma_resv_fini() as part of
-> ordinary object destruction and not from the RCU callback that frees
-> the object. This will help track down bugs where the object is incorrectly
-> locked from an RCU lookup.
-> 
-> Finally, make sure the object isn't put on the region list until it's
-> either locked or fully initialized in order to block list processing of
-> partially initialized objects.
-> 
-> Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_object.c | 18 ++++++++++--
->   drivers/gpu/drm/i915/gem/i915_gem_object.h |  3 ++
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 32 +++++++++++++---------
->   3 files changed, 38 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 6fb9afb65034..244e555f9bba 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -89,6 +89,20 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
->   	mutex_init(&obj->mm.get_dma_page.lock);
->   }
->   
-> +/**
-> + * i915_gem_object_fini - Clean up a GEM object initialization
-> + * @obj: The gem object cleanup
-> + *
-> + * This function cleans up gem object fields that are set up by
-> + * drm_gem_private_object_init() and i915_gem_object_init().
-> + */
-> +void i915_gem_object_fini(struct drm_i915_gem_object *obj)
-> +{
-> +	mutex_destroy(&obj->mm.get_page.lock);
-> +	mutex_destroy(&obj->mm.get_dma_page.lock);
-> +	dma_resv_fini(&obj->base._resv);
-> +}
-> +
->   /**
->    * Mark up the object's coherency levels for a given cache_level
->    * @obj: #drm_i915_gem_object
-> @@ -174,7 +188,6 @@ void __i915_gem_free_object_rcu(struct rcu_head *head)
->   		container_of(head, typeof(*obj), rcu);
->   	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   
-> -	dma_resv_fini(&obj->base._resv);
->   	i915_gem_object_free(obj);
->   
->   	GEM_BUG_ON(!atomic_read(&i915->mm.free_count));
-> @@ -223,7 +236,6 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
->   						       obj_link))) {
->   			GEM_BUG_ON(vma->obj != obj);
->   			spin_unlock(&obj->vma.lock);
-> -
->   			__i915_vma_put(vma);
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Unrelated change?
+---318106570-1915050432-1632825702=:3554566
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+Content-ID: <alpine.DEB.2.22.394.2109281342021.3554566@eliteleevi.tm.intel.com>
 
-Not seeing any DG1 machines in CI currently, so assuming this was tested 
-locally,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Hey,
 
+On Tue, 28 Sep 2021, Takashi Iwai wrote:
 
+> On Wed, 22 Sep 2021 10:54:32 +0200, Kai Vehmanen wrote:
+> > --- a/drivers/base/component.c
+> > +++ b/drivers/base/component.c
+> > @@ -246,7 +246,7 @@ static int try_to_bring_up_master(struct master *master,
+> >  		return 0;
+> >  	}
+> >  
+> > -	if (!devres_open_group(master->parent, NULL, GFP_KERNEL))
+> > +	if (!devres_open_group(master->parent, master, GFP_KERNEL))
+> >  		return -ENOMEM;
+> >  
+> >  	/* Found all components */
+> > @@ -258,6 +258,7 @@ static int try_to_bring_up_master(struct master *master,
+> >  		return ret;
+> >  	}
+> >  
+> > +	devres_close_group(master->parent, NULL);
+> 
+> Just wondering whether we should pass master here instead of NULL,
+> too?
+
+I wondered about this as well. Functionally it should be equivalent as 
+passing NULL will apply the operation to the latest added group. I noted 
+the practise of passing NULL has been followed in the existing code when 
+referring to groups created within the same function. E.g.
+
+ª       if (!devres_open_group(component->dev, component, GFP_KERNEL)) {
+[...]
+ª       ret = component->ops->bind(component->dev, master->parent, data);
+ª       if (!ret) {
+ª       ª       component->bound = true;
+
+ª       ª       /*                                                                                                                                                          
+ª       ª        * Close the component device's group so that resources                                                                                                     
+ª       ª        * allocated in the binding are encapsulated for removal                                                                                                    
+ª       ª        * at unbind.  Remove the group on the DRM device as we                                                                                                     
+ª       ª        * can clean those resources up independently.                                                                                                              
+ª       ª        */
+ª       ª       devres_close_group(component->dev, NULL);
+
+... so I followed this existing practise. I can change and send a V3 if 
+the explicit parameter is preferred.
+
+Br, Kai
+---318106570-1915050432-1632825702=:3554566--
