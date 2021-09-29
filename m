@@ -1,34 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5948141BB9F
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 02:09:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC45D41BBB5
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 02:27:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7FA76E131;
-	Wed, 29 Sep 2021 00:09:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1E036E9DE;
+	Wed, 29 Sep 2021 00:27:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6925C6E131;
- Wed, 29 Sep 2021 00:09:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5F6EFA8836;
- Wed, 29 Sep 2021 00:09:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0465511584490525507=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D80D66E140;
+ Wed, 29 Sep 2021 00:27:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="285846324"
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="285846324"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 17:27:49 -0700
+X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="519424044"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 17:27:48 -0700
+Date: Tue, 28 Sep 2021 17:22:57 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@ffwll.ch, tony.ye@intel.com, zhengguo.xu@intel.com
+Message-ID: <20210929002257.GA10045@jons-linux-dev-box>
+References: <20210820224446.30620-1-matthew.brost@intel.com>
+ <20210820224446.30620-24-matthew.brost@intel.com>
+ <d5b15551-3849-1547-29c7-be593005a7e1@intel.com>
+ <20210928223353.GA32806@jons-linux-dev-box>
+ <2281cc6d-2e6e-f78c-a823-32f0a3d455ba@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 00:09:54 -0000
-Message-ID: <163287419435.27099.686533506102647501@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1632869550.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1632869550.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaTkx?=
- =?utf-8?q?5/display=3A_split_and_constify_vtable=2C_again?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2281cc6d-2e6e-f78c-a823-32f0a3d455ba@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 23/27] drm/i915/guc: Implement no mid batch
+ preemption for multi-lrc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,351 +52,544 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0465511584490525507==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Sep 28, 2021 at 04:33:24PM -0700, John Harrison wrote:
+> On 9/28/2021 15:33, Matthew Brost wrote:
+> > On Tue, Sep 28, 2021 at 03:20:42PM -0700, John Harrison wrote:
+> > > On 8/20/2021 15:44, Matthew Brost wrote:
+> > > > For some users of multi-lrc, e.g. split frame, it isn't safe to preempt
+> > > > mid BB. To safely enable preemption at the BB boundary, a handshake
+> > > > between to parent and child is needed. This is implemented via custom
+> > > > emit_bb_start & emit_fini_breadcrumb functions and enabled via by
+> > > via by -> by
+> > > 
+> > > > default if a context is configured by set parallel extension.
+> > > I tend to agree with Tvrtko that this should probably be an opt in change.
+> > > Is there a flags word passed in when creating the context?
+> > > 
+> > I don't disagree but the uAPI in this series is where we landed. It has
+> > been acked all by the relevant parties in the RFC, ported to our
+> > internal tree, and the media UMD has been updated / posted. Concerns
+> > with the uAPI should've been raised in the RFC phase, not now. I really
+> > don't feel like changing this uAPI another time.
+> The counter argument is that once a UAPI has been merged, it cannot be
+> changed. Ever. So it is worth taking the trouble to get it right first time.
+> 
+> The proposal isn't a major re-write of the interface. It is simply a request
+> to set an extra flag when creating the context.
+> 
 
-== Series Details ==
+We are basically just talking about the polarity of a flag at this
+point. Either by default you can't be preempted mid batch (current GPU /
+UMD requirement) or by default you can be preempted mid-batch (no
+current GPU / UMD can do this yet but add flags that everyone opts
+into). I think Daniel's opinion was just default to what the current GPU
+/ UMD wants and if future requirements arise we add flags to the
+interface. I understand both points of view for flag / not flag but in
+the end it doesn't really matter. Either way the interface works now and
+will in the future too.
 
-Series: i915/display: split and constify vtable, again
-URL   : https://patchwork.freedesktop.org/series/95184/
-State : success
+> 
+> > 
+> > > Also, it's not just a change in pre-emption behaviour but a change in
+> > > synchronisation too, right? Previously, if you had a whole bunch of back to
+> > > back submissions then one child could run ahead of another and/or the
+> > > parent. After this change, there is a forced regroup at the end of each
+> > > batch. So while one could end sooner/later than the others, they can't ever
+> > > get an entire batch (or more) ahead or behind. Or was that synchronisation
+> > > already in there through other means anyway?
+> > > 
+> > Yes, each parent / child sync at the of each batch - this is the only
+> > way safely insert preemption points. Without this the GuC could attempt
+> > a preemption and hang the batches.
+> To be clear, I'm not saying that this is wrong. I'm just saying that this
+> appears to be new behaviour with this patch but it is not explicitly called
+> out in the description of the patch.
+> 
 
-== Summary ==
+Will add some comments explaining this behavior (unless I already have
+them).
 
-CI Bug Log - changes from CI_DRM_10655 -> Patchwork_21183
-====================================================
+> 
+> > 
+> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > ---
+> > > >    drivers/gpu/drm/i915/gt/intel_context.c       |   2 +-
+> > > >    drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +
+> > > >    drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   2 +-
+> > > >    .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 283 +++++++++++++++++-
+> > > >    4 files changed, 287 insertions(+), 3 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > > > index 5615be32879c..2de62649e275 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > > > @@ -561,7 +561,7 @@ void intel_context_bind_parent_child(struct intel_context *parent,
+> > > >    	GEM_BUG_ON(intel_context_is_child(child));
+> > > >    	GEM_BUG_ON(intel_context_is_parent(child));
+> > > > -	parent->guc_number_children++;
+> > > > +	child->guc_child_index = parent->guc_number_children++;
+> > > >    	list_add_tail(&child->guc_child_link,
+> > > >    		      &parent->guc_child_list);
+> > > >    	child->parent = parent;
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > > > index 713d85b0b364..727f91e7f7c2 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > > > @@ -246,6 +246,9 @@ struct intel_context {
+> > > >    		/** @guc_number_children: number of children if parent */
+> > > >    		u8 guc_number_children;
+> > > > +		/** @guc_child_index: index into guc_child_list if child */
+> > > > +		u8 guc_child_index;
+> > > > +
+> > > >    		/**
+> > > >    		 * @parent_page: page in context used by parent for work queue,
+> > > >    		 * work queue descriptor
+> > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> > > > index 6cd26dc060d1..9f61cfa5566a 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> > > > @@ -188,7 +188,7 @@ struct guc_process_desc {
+> > > >    	u32 wq_status;
+> > > >    	u32 engine_presence;
+> > > >    	u32 priority;
+> > > > -	u32 reserved[30];
+> > > > +	u32 reserved[36];
+> > > What is this extra space for? All the extra storage is grabbed from after
+> > > the end of this structure, isn't it?
+> > > 
+> > This is the size of process descriptor in the GuC spec. Even though this
+> > is unused space we really don't want the child go / join memory using
+> > anything within the process descriptor.
+> Okay. So it's more that the code was previously broken and we just hadn't
+> hit a problem because of it? Again, worth adding a comment in the
+> description to call it out as a bug fix.
+>
 
-Summary
--------
+Sure.
+ 
+> > 
+> > > >    } __packed;
+> > > >    #define CONTEXT_REGISTRATION_FLAG_KMD	BIT(0)
+> > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > index 91330525330d..1a18f99bf12a 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > @@ -11,6 +11,7 @@
+> > > >    #include "gt/intel_context.h"
+> > > >    #include "gt/intel_engine_pm.h"
+> > > >    #include "gt/intel_engine_heartbeat.h"
+> > > > +#include "gt/intel_gpu_commands.h"
+> > > >    #include "gt/intel_gt.h"
+> > > >    #include "gt/intel_gt_irq.h"
+> > > >    #include "gt/intel_gt_pm.h"
+> > > > @@ -366,10 +367,14 @@ static struct i915_priolist *to_priolist(struct rb_node *rb)
+> > > >    /*
+> > > >     * When using multi-lrc submission an extra page in the context state is
+> > > > - * reserved for the process descriptor and work queue.
+> > > > + * reserved for the process descriptor, work queue, and preempt BB boundary
+> > > > + * handshake between the parent + childlren contexts.
+> > > >     *
+> > > >     * The layout of this page is below:
+> > > >     * 0						guc_process_desc
+> > > > + * + sizeof(struct guc_process_desc)		child go
+> > > > + * + CACHELINE_BYTES				child join ...
+> > > > + * + CACHELINE_BYTES ...
+> > > Would be better written as '[num_children]' instead of '...' to make it
+> > > clear it is a per child array.
+> > > 
+> > I think this description is pretty clear.
+> Evidently not because it confused me for a moment.
+> 
 
-  **SUCCESS**
+Ok, let me see if I can make this a bit more clear.
 
-  No regressions found.
+> > 
+> > > Also, maybe create a struct for this to get rid of the magic '+1's and
+> > > 'BYTES / sizeof' constructs in the functions below.
+> > > 
+> > Let me see if I can create a struct that describes the layout.
+> That would definitely make the code a lot clearer.
+> 
+> > 
+> > > >     * ...						unused
+> > > >     * PAGE_SIZE / 2				work queue start
+> > > >     * ...						work queue
+> > > > @@ -1785,6 +1790,30 @@ static int deregister_context(struct intel_context *ce, u32 guc_id, bool loop)
+> > > >    	return __guc_action_deregister_context(guc, guc_id, loop);
+> > > >    }
+> > > > +static inline void clear_children_join_go_memory(struct intel_context *ce)
+> > > > +{
+> > > > +	u32 *mem = (u32 *)(__get_process_desc(ce) + 1);
+> > > > +	u8 i;
+> > > > +
+> > > > +	for (i = 0; i < ce->guc_number_children + 1; ++i)
+> > > > +		mem[i * (CACHELINE_BYTES / sizeof(u32))] = 0;
+> > > > +}
+> > > > +
+> > > > +static inline u32 get_children_go_value(struct intel_context *ce)
+> > > > +{
+> > > > +	u32 *mem = (u32 *)(__get_process_desc(ce) + 1);
+> > > > +
+> > > > +	return mem[0];
+> > > > +}
+> > > > +
+> > > > +static inline u32 get_children_join_value(struct intel_context *ce,
+> > > > +					  u8 child_index)
+> > > > +{
+> > > > +	u32 *mem = (u32 *)(__get_process_desc(ce) + 1);
+> > > > +
+> > > > +	return mem[(child_index + 1) * (CACHELINE_BYTES / sizeof(u32))];
+> > > > +}
+> > > > +
+> > > >    static void guc_context_policy_init(struct intel_engine_cs *engine,
+> > > >    				    struct guc_lrc_desc *desc)
+> > > >    {
+> > > > @@ -1867,6 +1896,8 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+> > > >    			desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
+> > > >    			guc_context_policy_init(engine, desc);
+> > > >    		}
+> > > > +
+> > > > +		clear_children_join_go_memory(ce);
+> > > >    	}
+> > > >    	/*
+> > > > @@ -2943,6 +2974,31 @@ static const struct intel_context_ops virtual_child_context_ops = {
+> > > >    	.get_sibling = guc_virtual_get_sibling,
+> > > >    };
+> > > > +/*
+> > > > + * The below override of the breadcrumbs is enabled when the user configures a
+> > > > + * context for parallel submission (multi-lrc, parent-child).
+> > > > + *
+> > > > + * The overridden breadcrumbs implements an algorithm which allows the GuC to
+> > > > + * safely preempt all the hw contexts configured for parallel submission
+> > > > + * between each BB. The contract between the i915 and GuC is if the parent
+> > > > + * context can be preempted, all the children can be preempted, and the GuC will
+> > > > + * always try to preempt the parent before the children. A handshake between the
+> > > > + * parent / children breadcrumbs ensures the i915 holds up its end of the deal
+> > > > + * creating a window to preempt between each set of BBs.
+> > > > + */
+> > > > +static int emit_bb_start_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > > > +						     u64 offset, u32 len,
+> > > > +						     const unsigned int flags);
+> > > > +static int emit_bb_start_child_no_preempt_mid_batch(struct i915_request *rq,
+> > > > +						    u64 offset, u32 len,
+> > > > +						    const unsigned int flags);
+> > > > +static u32 *
+> > > > +emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > > > +						 u32 *cs);
+> > > > +static u32 *
+> > > > +emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq,
+> > > > +						u32 *cs);
+> > > > +
+> > > >    static struct intel_context *
+> > > >    guc_create_parallel(struct intel_engine_cs **engines,
+> > > >    		    unsigned int num_siblings,
+> > > > @@ -2978,6 +3034,20 @@ guc_create_parallel(struct intel_engine_cs **engines,
+> > > >    		}
+> > > >    	}
+> > > > +	parent->engine->emit_bb_start =
+> > > > +		emit_bb_start_parent_no_preempt_mid_batch;
+> > > > +	parent->engine->emit_fini_breadcrumb =
+> > > > +		emit_fini_breadcrumb_parent_no_preempt_mid_batch;
+> > > > +	parent->engine->emit_fini_breadcrumb_dw =
+> > > > +		12 + 4 * parent->guc_number_children;
+> > > > +	for_each_child(parent, ce) {
+> > > > +		ce->engine->emit_bb_start =
+> > > > +			emit_bb_start_child_no_preempt_mid_batch;
+> > > > +		ce->engine->emit_fini_breadcrumb =
+> > > > +			emit_fini_breadcrumb_child_no_preempt_mid_batch;
+> > > > +		ce->engine->emit_fini_breadcrumb_dw = 16;
+> > > > +	}
+> > > > +
+> > > >    	kfree(siblings);
+> > > >    	return parent;
+> > > > @@ -3362,6 +3432,204 @@ void intel_guc_submission_init_early(struct intel_guc *guc)
+> > > >    	guc->submission_selected = __guc_submission_selected(guc);
+> > > >    }
+> > > > +static inline u32 get_children_go_addr(struct intel_context *ce)
+> > > > +{
+> > > > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > > > +
+> > > > +	return i915_ggtt_offset(ce->state) +
+> > > > +		__get_process_desc_offset(ce) +
+> > > > +		sizeof(struct guc_process_desc);
+> > > > +}
+> > > > +
+> > > > +static inline u32 get_children_join_addr(struct intel_context *ce,
+> > > > +					 u8 child_index)
+> > > > +{
+> > > > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > > > +
+> > > > +	return get_children_go_addr(ce) + (child_index + 1) * CACHELINE_BYTES;
+> > > > +}
+> > > > +
+> > > > +#define PARENT_GO_BB			1
+> > > > +#define PARENT_GO_FINI_BREADCRUMB	0
+> > > > +#define CHILD_GO_BB			1
+> > > > +#define CHILD_GO_FINI_BREADCRUMB	0
+> > > > +static int emit_bb_start_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > > > +						     u64 offset, u32 len,
+> > > > +						     const unsigned int flags)
+> > > > +{
+> > > > +	struct intel_context *ce = rq->context;
+> > > > +	u32 *cs;
+> > > > +	u8 i;
+> > > > +
+> > > > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > > > +
+> > > > +	cs = intel_ring_begin(rq, 10 + 4 * ce->guc_number_children);
+> > > > +	if (IS_ERR(cs))
+> > > > +		return PTR_ERR(cs);
+> > > > +
+> > > > +	/* Wait on chidlren */
+> > > chidlren -> children
+> > > 
+> > Yep.
+> > > > +	for (i = 0; i < ce->guc_number_children; ++i) {
+> > > > +		*cs++ = (MI_SEMAPHORE_WAIT |
+> > > > +			 MI_SEMAPHORE_GLOBAL_GTT |
+> > > > +			 MI_SEMAPHORE_POLL |
+> > > > +			 MI_SEMAPHORE_SAD_EQ_SDD);
+> > > > +		*cs++ = PARENT_GO_BB;
+> > > > +		*cs++ = get_children_join_addr(ce, i);
+> > > > +		*cs++ = 0;
+> > > > +	}
+> > > > +
+> > > > +	/* Turn off preemption */
+> > > > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
+> > > > +	*cs++ = MI_NOOP;
+> > > > +
+> > > > +	/* Tell children go */
+> > > > +	cs = gen8_emit_ggtt_write(cs,
+> > > > +				  CHILD_GO_BB,
+> > > > +				  get_children_go_addr(ce),
+> > > > +				  0);
+> > > > +
+> > > > +	/* Jump to batch */
+> > > > +	*cs++ = MI_BATCH_BUFFER_START_GEN8 |
+> > > > +		(flags & I915_DISPATCH_SECURE ? 0 : BIT(8));
+> > > > +	*cs++ = lower_32_bits(offset);
+> > > > +	*cs++ = upper_32_bits(offset);
+> > > > +	*cs++ = MI_NOOP;
+> > > > +
+> > > > +	intel_ring_advance(rq, cs);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int emit_bb_start_child_no_preempt_mid_batch(struct i915_request *rq,
+> > > > +						    u64 offset, u32 len,
+> > > > +						    const unsigned int flags)
+> > > > +{
+> > > > +	struct intel_context *ce = rq->context;
+> > > > +	u32 *cs;
+> > > > +
+> > > > +	GEM_BUG_ON(!intel_context_is_child(ce));
+> > > > +
+> > > > +	cs = intel_ring_begin(rq, 12);
+> > > > +	if (IS_ERR(cs))
+> > > > +		return PTR_ERR(cs);
+> > > > +
+> > > > +	/* Signal parent */
+> > > > +	cs = gen8_emit_ggtt_write(cs,
+> > > > +				  PARENT_GO_BB,
+> > > > +				  get_children_join_addr(ce->parent,
+> > > > +							 ce->guc_child_index),
+> > > > +				  0);
+> > > > +
+> > > > +	/* Wait parent on for go */
+> > > parent on -> on parent
+> > > 
+> > Yep.
+> > > > +	*cs++ = (MI_SEMAPHORE_WAIT |
+> > > > +		 MI_SEMAPHORE_GLOBAL_GTT |
+> > > > +		 MI_SEMAPHORE_POLL |
+> > > > +		 MI_SEMAPHORE_SAD_EQ_SDD);
+> > > > +	*cs++ = CHILD_GO_BB;
+> > > > +	*cs++ = get_children_go_addr(ce->parent);
+> > > > +	*cs++ = 0;
+> > > > +
+> > > > +	/* Turn off preemption */
+> > > > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
+> > > > +
+> > > > +	/* Jump to batch */
+> > > > +	*cs++ = MI_BATCH_BUFFER_START_GEN8 |
+> > > > +		(flags & I915_DISPATCH_SECURE ? 0 : BIT(8));
+> > > > +	*cs++ = lower_32_bits(offset);
+> > > > +	*cs++ = upper_32_bits(offset);
+> > > > +
+> > > > +	intel_ring_advance(rq, cs);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static u32 *
+> > > > +emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > > > +						 u32 *cs)
+> > > > +{
+> > > > +	struct intel_context *ce = rq->context;
+> > > > +	u8 i;
+> > > > +
+> > > > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > > > +
+> > > > +	/* Wait on children */
+> > > > +	for (i = 0; i < ce->guc_number_children; ++i) {
+> > > > +		*cs++ = (MI_SEMAPHORE_WAIT |
+> > > > +			 MI_SEMAPHORE_GLOBAL_GTT |
+> > > > +			 MI_SEMAPHORE_POLL |
+> > > > +			 MI_SEMAPHORE_SAD_EQ_SDD);
+> > > > +		*cs++ = PARENT_GO_FINI_BREADCRUMB;
+> > > > +		*cs++ = get_children_join_addr(ce, i);
+> > > > +		*cs++ = 0;
+> > > > +	}
+> > > > +
+> > > > +	/* Turn on preemption */
+> > > > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+> > > > +	*cs++ = MI_NOOP;
+> > > > +
+> > > > +	/* Tell children go */
+> > > > +	cs = gen8_emit_ggtt_write(cs,
+> > > > +				  CHILD_GO_FINI_BREADCRUMB,
+> > > > +				  get_children_go_addr(ce),
+> > > > +				  0);
+> > > > +
+> > > > +	/* Emit fini breadcrumb */
+> > > > +	cs = gen8_emit_ggtt_write(cs,
+> > > > +				  rq->fence.seqno,
+> > > > +				  i915_request_active_timeline(rq)->hwsp_offset,
+> > > > +				  0);
+> > > > +
+> > > > +	/* User interrupt */
+> > > > +	*cs++ = MI_USER_INTERRUPT;
+> > > > +	*cs++ = MI_NOOP;
+> > > > +
+> > > > +	rq->tail = intel_ring_offset(rq, cs);
+> > > > +
+> > > > +	return cs;
+> > > > +}
+> > > > +
+> > > > +static u32 *
+> > > > +emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq, u32 *cs)
+> > > > +{
+> > > > +	struct intel_context *ce = rq->context;
+> > > > +
+> > > > +	GEM_BUG_ON(!intel_context_is_child(ce));
+> > > > +
+> > > > +	/* Turn on preemption */
+> > > > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+> > > > +	*cs++ = MI_NOOP;
+> > > > +
+> > > > +	/* Signal parent */
+> > > > +	cs = gen8_emit_ggtt_write(cs,
+> > > > +				  PARENT_GO_FINI_BREADCRUMB,
+> > > > +				  get_children_join_addr(ce->parent,
+> > > > +							 ce->guc_child_index),
+> > > > +				  0);
+> > > > +
+> > > This is backwards compared to the parent?
+> > > 
+> > > Parent: wait on children then enable pre-emption
+> > > Child: enable pre-emption then signal parent
+> > > 
+> > > Makes for a window where the parent is waiting in atomic context for a
+> > > signal from a child that has been pre-empted and might not get to run for
+> > > some time?
+> > > 
+> > No, this is correct. The rule is if the parent can be preempted all the
+> > children can be preempted, thus we can't enable preemption on the parent
+> > until all the children have preemption enabled, thus the parent waits
+> > for all the children to join before enabling its preemption.
+> > 
+> > Matt
+> But,
+> 
+> The write to PARENT_GO_FINI can't fail or stall, right? So if it happens
+> before the ARB_ON then the child is guaranteed to execute the ARB_ON once it
+> has signalled the parent. Indeed, by the time the parent context gets to see
+> the update memory value, the child is practically certain to have passed the
+> ARB_ON. So, by the time the parent becomes pre-emptible, the children will
+> all be pre-emptible. Even if the parent is superfast, the children are
+> guaranteed to become pre-emptible immediately - certainly before any
+> fail-to-preempt timeout could occur.
+>
+> Whereas, with the current ordering, it is possible for the child to be
+> preempted before it has issued the signal to the parent. So now you have a
+> non-preemptible parent hogging the hardware, waiting for a signal that isn't
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/index.html
+To be clear the parent is always preempted first by the GuC. The parent
+can't be running if the child preempt is attempted.
 
-Possible new issues
--------------------
+> going to come for an entire execution quantum. Indeed, it is actually quite
+> likely the child would be preempted before it can signal the parent because
+> any pre-emption request that was issued at any time during the child's
+> execution will take effect immediately on the ARB_ON instruction.
+> 
 
-  Here are the unknown changes that may have been introduced in Patchwork_21183:
+Looking at the code, I do think I have a bug though.
 
-### IGT changes ###
+I think I'm missing a MI_ARB_CHECK in the parent after turning on
+preemption before releasing the children, right?
 
-#### Suppressed ####
+This covers the case where the GuC issues a preemption to the parent
+while it is waiting on the children, all the children join, the parent
+turns on preemption and is preempted with the added MI_ARB_CHECK
+instruction, and the children all can be preempted waiting on the parent
+go semaphore. Does that sound correct?
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+Matt
 
-  * igt@i915_selftest@live@execlists:
-    - {fi-ehl-2}:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-ehl-2/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-ehl-2/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21183 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-sdma:
-    - fi-kbl-7500u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][4] ([fdo#109271]) +17 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][6] -> [FAIL][7] ([i915#1888])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][9] ([i915#1886] / [i915#2291])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-7500u:       NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#533])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#533])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][13] ([i915#2927] / [i915#3428]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [FAIL][15] ([i915#1161]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@vga-hpd-fast:
-    - fi-kbl-7500u:       [{ABORT}][17] ([i915#1814]) -> [SKIP][18] ([fdo#109271])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (45 -> 30)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (16): fi-ilk-m540 fi-bdw-5557u bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bdw-gvtdvm fi-bsw-cyan fi-snb-2520m bat-adlp-4 fi-ctg-p8600 fi-hsw-4770 fi-ivb-3770 fi-bdw-samus bat-jsl-2 bat-jsl-1 fi-snb-2600 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10655 -> Patchwork_21183
-
-  CI-20190529: 20190529
-  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21183: 3b9c79bb2e0a0e22541ebfaf832ac62127522226 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3b9c79bb2e0a drm/i915: constify display wm vtable
-19f4875109d1 drm/i915: constify clock gating init vtable.
-f29192572174 drm/i915: constify display function vtable
-b7681cd2bcf8 drm/i915: drop unused function ptr and comments.
-878a6d800e78 drm/i915: constify the cdclk vtable
-ddb35a2f7d67 drm/i915: constify the dpll clock vtable
-a78732944517 drm/i915: constify the audio function vtable
-096e5c68a7c4 drm/i915: constify color function vtable.
-6827900a4832 drm/i915: constify hotplug function vtable.
-d526b29f70d4 drm/i915: constify fdi link training vtable
-0395cf21d5df drm/i915: split the dpll clock compute out from display vtable.
-79b631289768 drm/i915: split fdi link training from display vtable.
-6e370e4bdfb0 drm/i915: split irq hotplug function from display vtable
-3ae5dbfc9499 drm/i915: split cdclk functions from display vtable.
-a81f8a74d4b1 drm/i915: split audio functions from display vtable
-80ba7c9dbea7 drm/i915: split color functions from display vtable
-8df3e5e24fe7 drm/i915: split watermark vfuncs from display vtable.
-9d3f3b043262 drm/i915: split clock gating init from display vtable
-c4b0939b010d drm/i915/display: add intel_fdi_link_train wrapper.
-d3c4c93bef02 drm/i915: add wrappers around cdclk vtable funcs.
-d4b95ca78a50 drm/i915/wm: provide wrappers around watermark vfuncs calls (v3)
-24df6bfbd0d7 drm/i915: make update_wm take a dev_priv.
-5f03d3269e3b drm/i915/pm: drop get_fifo_size vfunc.
-25d35099ae19 drm/i915/uncore: split the fw get function into separate vfunc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/index.html
-
---===============0465511584490525507==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>i915/display: split and constify vtable, again</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95184/">https://patchwork.freedesktop.org/series/95184/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10655 -&gt; Patchwork_21183</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21183:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-ehl-2/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-ehl-2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21183 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-sdma:</p>
-<ul>
-<li>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>
-<p>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_chamelium@vga-hpd-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">{ABORT}</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21183/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 30)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (16): fi-ilk-m540 fi-bdw-5557u bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bdw-gvtdvm fi-bsw-cyan fi-snb-2520m bat-adlp-4 fi-ctg-p8600 fi-hsw-4770 fi-ivb-3770 fi-bdw-samus bat-jsl-2 bat-jsl-1 fi-snb-2600 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10655 -&gt; Patchwork_21183</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21183: 3b9c79bb2e0a0e22541ebfaf832ac62127522226 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3b9c79bb2e0a drm/i915: constify display wm vtable<br />
-19f4875109d1 drm/i915: constify clock gating init vtable.<br />
-f29192572174 drm/i915: constify display function vtable<br />
-b7681cd2bcf8 drm/i915: drop unused function ptr and comments.<br />
-878a6d800e78 drm/i915: constify the cdclk vtable<br />
-ddb35a2f7d67 drm/i915: constify the dpll clock vtable<br />
-a78732944517 drm/i915: constify the audio function vtable<br />
-096e5c68a7c4 drm/i915: constify color function vtable.<br />
-6827900a4832 drm/i915: constify hotplug function vtable.<br />
-d526b29f70d4 drm/i915: constify fdi link training vtable<br />
-0395cf21d5df drm/i915: split the dpll clock compute out from display vtable.<br />
-79b631289768 drm/i915: split fdi link training from display vtable.<br />
-6e370e4bdfb0 drm/i915: split irq hotplug function from display vtable<br />
-3ae5dbfc9499 drm/i915: split cdclk functions from display vtable.<br />
-a81f8a74d4b1 drm/i915: split audio functions from display vtable<br />
-80ba7c9dbea7 drm/i915: split color functions from display vtable<br />
-8df3e5e24fe7 drm/i915: split watermark vfuncs from display vtable.<br />
-9d3f3b043262 drm/i915: split clock gating init from display vtable<br />
-c4b0939b010d drm/i915/display: add intel_fdi_link_train wrapper.<br />
-d3c4c93bef02 drm/i915: add wrappers around cdclk vtable funcs.<br />
-d4b95ca78a50 drm/i915/wm: provide wrappers around watermark vfuncs calls (v3)<br />
-24df6bfbd0d7 drm/i915: make update_wm take a dev_priv.<br />
-5f03d3269e3b drm/i915/pm: drop get_fifo_size vfunc.<br />
-25d35099ae19 drm/i915/uncore: split the fw get function into separate vfunc</p>
-
-</body>
-</html>
-
---===============0465511584490525507==--
+> John.
+> 
+> 
+> > > John.
+> > > 
+> > > 
+> > > > +	/* Wait parent on for go */
+> > > > +	*cs++ = (MI_SEMAPHORE_WAIT |
+> > > > +		 MI_SEMAPHORE_GLOBAL_GTT |
+> > > > +		 MI_SEMAPHORE_POLL |
+> > > > +		 MI_SEMAPHORE_SAD_EQ_SDD);
+> > > > +	*cs++ = CHILD_GO_FINI_BREADCRUMB;
+> > > > +	*cs++ = get_children_go_addr(ce->parent);
+> > > > +	*cs++ = 0;
+> > > > +
+> > > > +	/* Emit fini breadcrumb */
+> > > > +	cs = gen8_emit_ggtt_write(cs,
+> > > > +				  rq->fence.seqno,
+> > > > +				  i915_request_active_timeline(rq)->hwsp_offset,
+> > > > +				  0);
+> > > > +
+> > > > +	/* User interrupt */
+> > > > +	*cs++ = MI_USER_INTERRUPT;
+> > > > +	*cs++ = MI_NOOP;
+> > > > +
+> > > > +	rq->tail = intel_ring_offset(rq, cs);
+> > > > +
+> > > > +	return cs;
+> > > > +}
+> > > > +
+> > > >    static struct intel_context *
+> > > >    g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
+> > > >    {
+> > > > @@ -3807,6 +4075,19 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
+> > > >    			drm_printf(p, "\t\tWQI Status: %u\n\n",
+> > > >    				   READ_ONCE(desc->wq_status));
+> > > > +			drm_printf(p, "\t\tNumber Children: %u\n\n",
+> > > > +				   ce->guc_number_children);
+> > > > +			if (ce->engine->emit_bb_start ==
+> > > > +			    emit_bb_start_parent_no_preempt_mid_batch) {
+> > > > +				u8 i;
+> > > > +
+> > > > +				drm_printf(p, "\t\tChildren Go: %u\n\n",
+> > > > +					   get_children_go_value(ce));
+> > > > +				for (i = 0; i < ce->guc_number_children; ++i)
+> > > > +					drm_printf(p, "\t\tChildren Join: %u\n",
+> > > > +						   get_children_join_value(ce, i));
+> > > > +			}
+> > > > +
+> > > >    			for_each_child(ce, child)
+> > > >    				guc_log_context(p, child);
+> > > >    		}
+> 
