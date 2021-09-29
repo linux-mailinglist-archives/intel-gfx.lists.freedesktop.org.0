@@ -2,38 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA95341BF6D
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 08:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05DCB41C049
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 10:08:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50CFB89CB2;
-	Wed, 29 Sep 2021 06:59:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5601B6E193;
+	Wed, 29 Sep 2021 08:08:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D38E89CB2
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 06:59:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="288533472"
-X-IronPort-AV: E=Sophos;i="5.85,331,1624345200"; d="scan'208";a="288533472"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 23:59:23 -0700
-X-IronPort-AV: E=Sophos;i="5.85,331,1624345200"; d="scan'208";a="554513972"
-Received: from amelillo-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.221.121])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 23:59:21 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Dave Airlie <airlied@gmail.com>
-In-Reply-To: <cover.1632869550.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1632869550.git.jani.nikula@intel.com>
-Date: Wed, 29 Sep 2021 09:59:18 +0300
-Message-ID: <87bl4bx3y1.fsf@intel.com>
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com
+ [IPv6:2607:f8b0:4864:20::f35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A256B6E9E0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 08:08:20 +0000 (UTC)
+Received: by mail-qv1-xf35.google.com with SMTP id r18so971770qvy.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 01:08:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3aSeDJk4HUhcD/FwQx27gMq8FSufRQ2f7052YqfxwQk=;
+ b=Qn6yk7hivObTESFyFiOJqz0hUiNs5xy/arpH/Kg3lMCTc/vCyUluBIkjWQq8XUTLEY
+ CXaqlf6mOmNJdQdTVZlOjX01Ks/vGgwK9BAS9yOKtkHP0Xp+p4Oo40mcDFfKSOo3qz4C
+ 8VwlIZ85lJsBhjz2Wz4K6+xJ5sitWFfgo5AupdQm3uSYmBgb5xp5LuFUFO5Tbt1/4yBO
+ HoXxh3fWDClHcDgERU/n9PLLjQdK/d2OjXKXkBQCqbel6FHp4m+hORVveJM8z5IA5yyl
+ DRu6h3mYvb1K33Nt1A1YKFcF8EQ2IGmRdHmrVt4UlWflsuE8I29Q9HPiSSibGrGJ/v1A
+ euEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3aSeDJk4HUhcD/FwQx27gMq8FSufRQ2f7052YqfxwQk=;
+ b=VNHK5wuhBdofLpH8YPa5InHhCVhEO0t3UKhsCuQz9eqF2jE2iIzkCTFRDqN2rY1pLj
+ EkM1VTmuPqX3kbOaWFiWtkL5COq6LosO91xHSc2lm7rnYxQUJc5pru0igRlCd7cYqXfO
+ 2y8rgpOrN98IgPlF88hNEcdKuzpFq3UWEaxI2tXVLPI24MuvjP2vkIM6DM7XB2bk9waW
+ Bm00Qi/5aDqzqkNjUWnvTF9owfOR2LGzEG68gzvot7nPeLsSzznN8YqcQuwnN8NLaWmZ
+ I++fO142CJoZ66fkgTe+6LHWjECn0goAxyyQpq1E1EYEFr20b6vgTCyaw0x0tIwMC1LI
+ SZPQ==
+X-Gm-Message-State: AOAM532zcCx6Pjr5ayjREgDp3KiPopTZQo0XEA7BdZdAtl0Z2gbO35NV
+ Ry/L4ASMVtPX9d36GpxaTcjvoSBa4Qtj4uZ/MY8=
+X-Google-Smtp-Source: ABdhPJwrbN2OHxOeKVdXKeBFmQFYxYYw8H1aPrLo0/N1qlOVwMusSTIOND3oIIBqNxlEE4KwNVX/jpkmgRLmLMlpNeA=
+X-Received: by 2002:a0c:cb10:: with SMTP id o16mr10045524qvk.57.1632902899643; 
+ Wed, 29 Sep 2021 01:08:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 00/24] i915/display: split and constify
- vtable, again
+References: <20210830121006.2978297-1-maarten.lankhorst@linux.intel.com>
+ <20210830121006.2978297-5-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20210830121006.2978297-5-maarten.lankhorst@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 29 Sep 2021 09:07:51 +0100
+Message-ID: <CAM0jSHO1AyUhpiL1A_Jo7JQcPN7+6gDV=MQLi6WuOBRrYUmXNQ@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 04/19] drm/i915: Remove gen6_ppgtt_unpin_all
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,27 +66,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 Sep 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> I must have read the series several times over without spotting the
-> issue, but finally figured it out with the help of [1].
+On Mon, 30 Aug 2021 at 13:09, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
 >
-> Return value and check added to intel_compute_global_watermarks() in
-> patch 4, and a couple of patches rebased. Seems so obvious now...
+> gen6_ppgtt_unpin_all is unused, kill it.
 >
-> Fingers crossed.
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c | 11 -----------
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.h |  1 -
+>  2 files changed, 12 deletions(-)
 >
-> BR,
-> Jani.
+> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> index 1aee5e6b1b23..efc243f40d0f 100644
+> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> @@ -405,17 +405,6 @@ void gen6_ppgtt_unpin(struct i915_ppgtt *base)
+>                 i915_vma_unpin(ppgtt->vma);
+>  }
 >
-> [1] https://patchwork.freedesktop.org/patch/msgid/20210928223241.22149-1-jani.nikula@intel.com
-
-Yay, finally pushed the lot, thanks for the patches and patience.
-
-The lock debug patch seems like a worthwhile thing to have.
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> -void gen6_ppgtt_unpin_all(struct i915_ppgtt *base)
+> -{
+> -       struct gen6_ppgtt *ppgtt = to_gen6_ppgtt(base);
+> -
+> -       if (!atomic_read(&ppgtt->pin_count))
+> -               return;
+> -
+> -       i915_vma_unpin(ppgtt->vma);
+> -       atomic_set(&ppgtt->pin_count, 0);
+> -}
+> -
+>  struct i915_ppgtt *gen6_ppgtt_create(struct intel_gt *gt)
+>  {
+>         struct i915_ggtt * const ggtt = gt->ggtt;
+> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
+> index 6a61a5c3a85a..ab0eecb086dd 100644
+> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
+> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
+> @@ -71,7 +71,6 @@ static inline struct gen6_ppgtt *to_gen6_ppgtt(struct i915_ppgtt *base)
+>
+>  int gen6_ppgtt_pin(struct i915_ppgtt *base, struct i915_gem_ww_ctx *ww);
+>  void gen6_ppgtt_unpin(struct i915_ppgtt *base);
+> -void gen6_ppgtt_unpin_all(struct i915_ppgtt *base);
+>  void gen6_ppgtt_enable(struct intel_gt *gt);
+>  void gen7_ppgtt_enable(struct intel_gt *gt);
+>  struct i915_ppgtt *gen6_ppgtt_create(struct intel_gt *gt);
+> --
+> 2.32.0
+>
