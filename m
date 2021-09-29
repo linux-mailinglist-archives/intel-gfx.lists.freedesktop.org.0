@@ -2,33 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748B441BD8F
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 05:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 505D141BDD3
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 05:58:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E636E165;
-	Wed, 29 Sep 2021 03:39:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7F96E167;
+	Wed, 29 Sep 2021 03:58:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6E0DD6E160;
- Wed, 29 Sep 2021 03:39:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37F69AA917;
- Wed, 29 Sep 2021 03:39:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8141306515150525113=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D36CC6E160;
+ Wed, 29 Sep 2021 03:58:16 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="212109307"
+X-IronPort-AV: E=Sophos;i="5.85,331,1624345200"; d="scan'208";a="212109307"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2021 20:58:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,331,1624345200"; d="scan'208";a="707030719"
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
+ by fmsmga006.fm.intel.com with ESMTP; 28 Sep 2021 20:58:13 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 29 Sep 2021 04:58:11 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Tue, 28 Sep 2021 20:58:10 -0700
+From: "Navare, Manasi D" <manasi.d.navare@intel.com>
+To: "Zuo, Jerry" <Jerry.Zuo@amd.com>, "Wentland, Harry"
+ <Harry.Wentland@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Nikula, Jani" <jani.nikula@intel.com>, "Li, Sun peng (Leo)"
+ <Sunpeng.Li@amd.com>, "nathan@kernel.org" <nathan@kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "sfr@canb.auug.org.au" <sfr@canb.auug.org.au>, "linux-next@vger.kernel.org"
+ <linux-next@vger.kernel.org>, "airlied@gmail.com" <airlied@gmail.com>,
+ "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>, "Wentland, Harry"
+ <Harry.Wentland@amd.com>
+Thread-Topic: [PATCH v2] drm/amd/display: Only define DP 2.0 symbols if not
+ already defined
+Thread-Index: AQHXtIuAL0vs/jg+d0q0VwbXvyqk8Ku6LEQAgAA2mbA=
+Date: Wed, 29 Sep 2021 03:58:10 +0000
+Message-ID: <2c69ff90750f40ecad3cd4053bc46497@intel.com>
+References: <20210928170828.26452-1-harry.wentland@amd.com>
+ <DM6PR12MB49125AD4817D693AA3987B08E5A89@DM6PR12MB4912.namprd12.prod.outlook.com>
+In-Reply-To: <DM6PR12MB49125AD4817D693AA3987B08E5A89@DM6PR12MB4912.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+dlp-product: dlpe-windows
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=6d37b753-7317-49e9-b10f-7dd42dee753a;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
+ Only-AIP 2.0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-09-28T17:35:51Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 03:39:13 -0000
-Message-ID: <163288675318.27097.15124451463621485642@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210929024600.31587-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20210929024600.31587-1-radhakrishna.sripada@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Update_memory_bandwidth_formulae_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH v2] drm/amd/display: Only define DP 2.0
+ symbols if not already defined
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,306 +83,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8141306515150525113==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+We have merged such DRM definition dependencies previously through a topic =
+branch in order to avoid redefining inside the driver.
+But yes guarding this with ifdef is good.
 
-== Series Details ==
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-Series: drm/i915: Update memory bandwidth formulae (rev2)
-URL   : https://patchwork.freedesktop.org/series/95138/
-State : success
+Manasi
 
-== Summary ==
+-----Original Message-----
+From: Zuo, Jerry <Jerry.Zuo@amd.com>=20
+Sent: Tuesday, September 28, 2021 11:11 PM
+To: Wentland, Harry <Harry.Wentland@amd.com>; Deucher, Alexander <Alexander=
+.Deucher@amd.com>; amd-gfx@lists.freedesktop.org
+Cc: Nikula, Jani <jani.nikula@intel.com>; Li, Sun peng (Leo) <Sunpeng.Li@am=
+d.com>; nathan@kernel.org; intel-gfx@lists.freedesktop.org; dri-devel@lists=
+.freedesktop.org; ville.syrjala@linux.intel.com; Navare, Manasi D <manasi.d=
+.navare@intel.com>; Koenig, Christian <Christian.Koenig@amd.com>; Pan, Xinh=
+ui <Xinhui.Pan@amd.com>; sfr@canb.auug.org.au; linux-next@vger.kernel.org; =
+airlied@gmail.com; daniel.vetter@ffwll.ch; Wentland, Harry <Harry.Wentland@=
+amd.com>
+Subject: RE: [PATCH v2] drm/amd/display: Only define DP 2.0 symbols if not =
+already defined
 
-CI Bug Log - changes from CI_DRM_10655 -> Patchwork_21184
-====================================================
+[AMD Official Use Only]
 
-Summary
--------
+> -----Original Message-----
+> From: Harry Wentland <harry.wentland@amd.com>
+> Sent: September 28, 2021 1:08 PM
+> To: Deucher, Alexander <Alexander.Deucher@amd.com>; amd-=20
+> gfx@lists.freedesktop.org; Zuo, Jerry <Jerry.Zuo@amd.com>
+> Cc: jani.nikula@intel.com; Li, Sun peng (Leo) <Sunpeng.Li@amd.com>;=20
+> nathan@kernel.org; intel-gfx@lists.freedesktop.org; dri-=20
+> devel@lists.freedesktop.org; ville.syrjala@linux.intel.com;=20
+> manasi.d.navare@intel.com; Koenig, Christian=20
+> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>;=20
+> sfr@canb.auug.org.au; linux- next@vger.kernel.org; airlied@gmail.com;=20
+> daniel.vetter@ffwll.ch; Wentland, Harry <Harry.Wentland@amd.com>
+> Subject: [PATCH v2] drm/amd/display: Only define DP 2.0 symbols if not=20
+> already defined
+>
+> [Why]
+> For some reason we're defining DP 2.0 definitions inside our driver.=20
+> Now that patches to introduce relevant definitions are slated to be=20
+> merged into drm- next this is causing conflicts.
+>
+> In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c:33:
+> In file included
+> from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:70:
+> In file included
+> from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_mode.h:36:
+> ./include/drm/drm_dp_helper.h:1322:9: error:
+> 'DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER' macro redefined [-=20
+> Werror,-Wmacro-redefined]
+>         ^
+> ./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: note:
+> previous definition is here
+>         ^
+> 1 error generated.
+>
+> v2: Add one missing endif
+>
+> [How]
+> Guard all display driver defines with #ifndef for now. Once we pull in=20
+> the new definitions into amd-staging-drm-next we will follow up and=20
+> drop definitions from our driver and provide follow-up header updates=20
+> for any addition DP
+> 2.0 definitions required by our driver.
+>
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
 
-  **SUCCESS**
+Reviewed-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
 
-  No regressions found.
+> ---
+>  drivers/gpu/drm/amd/display/dc/dc_dp_types.h | 54
+> ++++++++++++++++++--
+>  1 file changed, 49 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+> b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+> index a5e798b5da79..9de86ff5ef1b 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+> @@ -860,28 +860,72 @@ struct psr_caps {  };
+>
+>  #if defined(CONFIG_DRM_AMD_DC_DCN)
+> +#ifndef DP_MAIN_LINK_CHANNEL_CODING_CAP
+>  #define DP_MAIN_LINK_CHANNEL_CODING_CAP                      0x006
+> +#endif
+> +#ifndef DP_SINK_VIDEO_FALLBACK_FORMATS
+>  #define DP_SINK_VIDEO_FALLBACK_FORMATS                       0x020
+> +#endif
+> +#ifndef DP_FEC_CAPABILITY_1
+>  #define DP_FEC_CAPABILITY_1                          0x091
+> +#endif
+> +#ifndef DP_DFP_CAPABILITY_EXTENSION_SUPPORT
+>  #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT          0x0A3
+> +#endif
+> +#ifndef DP_DSC_CONFIGURATION
+>  #define DP_DSC_CONFIGURATION                         0x161
+> +#endif
+> +#ifndef DP_PHY_SQUARE_PATTERN
+>  #define DP_PHY_SQUARE_PATTERN                                0x249
+> +#endif
+> +#ifndef DP_128b_132b_SUPPORTED_LINK_RATES
+>  #define DP_128b_132b_SUPPORTED_LINK_RATES            0x2215
+> +#endif
+> +#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL
+>  #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL
+>       0x2216
+> +#endif
+> +#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_7_0
+>  #define DP_TEST_264BIT_CUSTOM_PATTERN_7_0            0X2230
+> +#endif
+> +#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_263_256
+>  #define DP_TEST_264BIT_CUSTOM_PATTERN_263_256
+>       0X2250
+> +#endif
+> +#ifndef DP_DSC_SUPPORT_AND_DECODER_COUNT
+>  #define DP_DSC_SUPPORT_AND_DECODER_COUNT             0x2260
+> +#endif
+> +#ifndef DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0
+>  #define DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0
+>       0x2270
+> -# define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK   (1 <<
+> 0)
+> -# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
+>       (0b111 << 1)
+> -# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT  1
+> -# define DP_DSC_DECODER_COUNT_MASK                   (0b111 << 5)
+> -# define DP_DSC_DECODER_COUNT_SHIFT                  5
+> +#endif
+> +#ifndef DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK
+> +#define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK    (1 <<
+> 0)
+> +#endif
+> +#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
+> +#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
+>       (0b111 << 1)
+> +#endif
+> +#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT
+> +#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT   1
+> +#endif
+> +#ifndef DP_DSC_DECODER_COUNT_MASK
+> +#define DP_DSC_DECODER_COUNT_MASK                    (0b111 << 5)
+> +#endif
+> +#ifndef DP_DSC_DECODER_COUNT_SHIFT
+> +#define DP_DSC_DECODER_COUNT_SHIFT                   5
+> +#endif
+> +#ifndef DP_MAIN_LINK_CHANNEL_CODING_SET
+>  #define DP_MAIN_LINK_CHANNEL_CODING_SET                      0x108
+> +#endif
+> +#ifndef DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER
+>  #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xF0006
+> +#endif
+> +#ifndef DP_PHY_REPEATER_128b_132b_RATES
+>  #define DP_PHY_REPEATER_128b_132b_RATES
+>       0xF0007
+> +#endif
+> +#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1
+>  #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1
+>       0xF0022
+> +#endif
+> +#ifndef DP_INTRA_HOP_AUX_REPLY_INDICATION
+>  #define DP_INTRA_HOP_AUX_REPLY_INDICATION            (1 << 3)
+> +#endif
+>  /* TODO - Use DRM header to replace above once available */
+>
+>  union dp_main_line_channel_coding_cap {
+> --
+> 2.33.0
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21184:
-
-### CI changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * boot:
-    - {fi-jsl-1}:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-jsl-1/boot.html
-    - {fi-ehl-2}:         [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-ehl-2/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-ehl-2/boot.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21184 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-icl-y:           [PASS][5] -> [FAIL][6] ([i915#3521])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-icl-y/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-icl-y/boot.html
-    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([i915#3521])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-icl-u2/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-icl-u2/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-sdma:
-    - fi-kbl-7500u:       NOTRUN -> [SKIP][9] ([fdo#109271]) +27 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][10] ([fdo#109271]) +17 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][11] -> [FAIL][12] ([i915#1888])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-7500u:       NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#533])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][14] ([i915#1602] / [i915#2029])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][15] ([i915#2927] / [i915#3428]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [FAIL][17] ([i915#1161]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@vga-hpd-fast:
-    - fi-kbl-7500u:       [{ABORT}][19] ([i915#1814]) -> [SKIP][20] ([fdo#109271])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#3521]: https://gitlab.freedesktop.org/drm/intel/issues/3521
-  [i915#4136]: https://gitlab.freedesktop.org/drm/intel/issues/4136
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (45 -> 36)
-------------------------------
-
-  Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10655 -> Patchwork_21184
-
-  CI-20190529: 20190529
-  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21184: 3113ec8ae299f10a255c8129fb34b4a82ef459c9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3113ec8ae299 drm/i915: Update memory bandwidth formulae
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/index.html
-
---===============8141306515150525113==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Update memory bandwidth formulae (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95138/">https://patchwork.freedesktop.org/series/95138/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10655 -&gt; Patchwork_21184</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21184:</p>
-<h3>CI changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-jsl-1/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-ehl-2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-ehl-2/boot.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21184 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-icl-y/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-icl-y/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3521">i915#3521</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-icl-u2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-icl-u2/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3521">i915#3521</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-sdma:</p>
-<ul>
-<li>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_chamelium@vga-hpd-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10655/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">{ABORT}</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21184/fi-kbl-7500u/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 36)</h2>
-<p>Missing    (9): fi-ilk-m540 bat-adls-5 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10655 -&gt; Patchwork_21184</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10655: 88d6ecae86a7bb32e8bf2bd233f7f9f9c8bd7abc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6226: 18278534c085c35adcf62f158a8d5356e5496f8d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21184: 3113ec8ae299f10a255c8129fb34b4a82ef459c9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3113ec8ae299 drm/i915: Update memory bandwidth formulae</p>
-
-</body>
-</html>
-
---===============8141306515150525113==--
