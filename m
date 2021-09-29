@@ -2,39 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8837341CC83
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA2441CC88
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:19:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A78E26EADA;
-	Wed, 29 Sep 2021 19:18:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDC956EAD9;
+	Wed, 29 Sep 2021 19:19:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 119766EAD9
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 19:17:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="205167600"
-X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="205167600"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2021 12:17:58 -0700
-X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="479383764"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2021 12:17:56 -0700
-Date: Wed, 29 Sep 2021 22:17:52 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210929191752.GC2192289@ideak-desk.fi.intel.com>
-References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
- <20210927182455.27119-3-ville.syrjala@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8F186EAD9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 19:19:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="224678003"
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="224678003"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 12:19:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="554965546"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by FMSMGA003.fm.intel.com with ESMTP; 29 Sep 2021 12:19:32 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 29 Sep 2021 20:19:31 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Wed, 29 Sep 2021 12:19:30 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v2 01/13] drm/i915/tc: Fix TypeC port init/resume time
+ sanitization
+Thread-Index: AQHXtTXoN086y9ksBk6qaIW27s0PkKu72mSA
+Date: Wed, 29 Sep 2021 19:19:29 +0000
+Message-ID: <a52b6af2a1b45c835c541f5c66ed80e4bbd783c4.camel@intel.com>
+References: <20210921002313.1132357-2-imre.deak@intel.com>
+ <20210929132833.2253961-1-imre.deak@intel.com>
+In-Reply-To: <20210929132833.2253961-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A941129518DFC24C8E32A42B4FA6C6F8@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210927182455.27119-3-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Generalize
- .set_signal_levels()
+Subject: Re: [Intel-gfx] [PATCH v2 01/13] drm/i915/tc: Fix TypeC port
+ init/resume time sanitization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,449 +66,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 27, 2021 at 09:24:48PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Currently .set_signal_levels() is only used by encoders in DP mode.
-> For most modern platforms there is no essential difference between
-> DP and HDMI, and both codepaths just end up calling the same function
-> under the hood. Let's get remove the need for that extra indirection
-> by moving .set_signal_levels() into the encoder from intel_dp.
-> Since we already plumb the crtc_state/etc. into .set_signal_levels()
-> the code will do the right thing for both DP and HDMI.
-
-I wondered about the rational to add vfuncs to intel_digital_port or
-intel_encoder, I assume the latter needs less type casting.
-
-> HSW/BDW/SKL are the only platforms that need a bit of care on
-> account of having to preload the hardware buf_trans register
-> with the full set of values. So we must still remember to call
-> hsw_prepare_{dp,hdmi}_ddi_buffers() to do said preloading, and
-> .set_signal_levels() will just end up selecting the correct entry
-> for DP, and also setting up the iboost magic for both DP and HDMI.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/g4x_dp.c         |  33 +++---
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 108 +++++++++---------
->  .../drm/i915/display/intel_display_types.h    |   5 +-
->  .../drm/i915/display/intel_dp_link_training.c |   5 +-
->  4 files changed, 75 insertions(+), 76 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-> index 8e0620ae2ed1..e348f075a41d 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> @@ -813,10 +813,10 @@ static u8 intel_dp_preemph_max_3(struct intel_dp *intel_dp)
->  	return DP_TRAIN_PRE_EMPH_LEVEL_3;
->  }
->  
-> -static void vlv_set_signal_levels(struct intel_dp *intel_dp,
-> +static void vlv_set_signal_levels(struct intel_encoder *encoder,
->  				  const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	unsigned long demph_reg_value, preemph_reg_value,
->  		uniqtranscale_reg_value;
->  	u8 train_set = intel_dp->train_set[0];
-> @@ -899,10 +899,10 @@ static void vlv_set_signal_levels(struct intel_dp *intel_dp,
->  				 uniqtranscale_reg_value, 0);
->  }
->  
-> -static void chv_set_signal_levels(struct intel_dp *intel_dp,
-> +static void chv_set_signal_levels(struct intel_encoder *encoder,
->  				  const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	u32 deemph_reg_value, margin_reg_value;
->  	bool uniq_trans_scale = false;
->  	u8 train_set = intel_dp->train_set[0];
-> @@ -1020,10 +1020,11 @@ static u32 g4x_signal_levels(u8 train_set)
->  }
->  
->  static void
-> -g4x_set_signal_levels(struct intel_dp *intel_dp,
-> +g4x_set_signal_levels(struct intel_encoder *encoder,
->  		      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	u8 train_set = intel_dp->train_set[0];
->  	u32 signal_levels;
->  
-> @@ -1067,10 +1068,11 @@ static u32 snb_cpu_edp_signal_levels(u8 train_set)
->  }
->  
->  static void
-> -snb_cpu_edp_set_signal_levels(struct intel_dp *intel_dp,
-> +snb_cpu_edp_set_signal_levels(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	u8 train_set = intel_dp->train_set[0];
->  	u32 signal_levels;
->  
-> @@ -1118,10 +1120,11 @@ static u32 ivb_cpu_edp_signal_levels(u8 train_set)
->  }
->  
->  static void
-> -ivb_cpu_edp_set_signal_levels(struct intel_dp *intel_dp,
-> +ivb_cpu_edp_set_signal_levels(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	u8 train_set = intel_dp->train_set[0];
->  	u32 signal_levels;
->  
-> @@ -1364,15 +1367,15 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
->  		dig_port->dp.set_link_train = g4x_set_link_train;
->  
->  	if (IS_CHERRYVIEW(dev_priv))
-> -		dig_port->dp.set_signal_levels = chv_set_signal_levels;
-> +		intel_encoder->set_signal_levels = chv_set_signal_levels;
->  	else if (IS_VALLEYVIEW(dev_priv))
-> -		dig_port->dp.set_signal_levels = vlv_set_signal_levels;
-> +		intel_encoder->set_signal_levels = vlv_set_signal_levels;
-
-I suppose vlv,chv hdmi encoders could also use these, but that'd need deciphering
-the hard-coded values there.
-
->  	else if (IS_IVYBRIDGE(dev_priv) && port == PORT_A)
-> -		dig_port->dp.set_signal_levels = ivb_cpu_edp_set_signal_levels;
-> +		intel_encoder->set_signal_levels = ivb_cpu_edp_set_signal_levels;
->  	else if (IS_SANDYBRIDGE(dev_priv) && port == PORT_A)
-> -		dig_port->dp.set_signal_levels = snb_cpu_edp_set_signal_levels;
-> +		intel_encoder->set_signal_levels = snb_cpu_edp_set_signal_levels;
->  	else
-> -		dig_port->dp.set_signal_levels = g4x_set_signal_levels;
-> +		intel_encoder->set_signal_levels = g4x_set_signal_levels;
->  
->  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
->  	    (HAS_PCH_SPLIT(dev_priv) && port != PORT_A)) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 39bacef87ef2..4a22dcde66d9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -129,10 +129,10 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
->   * HDMI/DVI use cases.
->   */
->  static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
-> -					 const struct intel_crtc_state *crtc_state,
-> -					 int level)
-> +					 const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	int level = intel_ddi_hdmi_level(encoder, crtc_state);
->  	u32 iboost_bit = 0;
->  	int n_entries;
->  	enum port port = encoder->port;
-> @@ -1395,8 +1395,7 @@ static int translate_signal_level(struct intel_dp *intel_dp,
->  	return 0;
->  }
->  
-> -static int intel_ddi_dp_level(struct intel_dp *intel_dp,
-> -			      const struct intel_crtc_state *crtc_state)
-> +static int intel_ddi_dp_level(struct intel_dp *intel_dp)
->  {
->  	u8 train_set = intel_dp->train_set[0];
->  	u8 signal_levels = train_set & (DP_TRAIN_VOLTAGE_SWING_MASK |
-> @@ -1405,56 +1404,68 @@ static int intel_ddi_dp_level(struct intel_dp *intel_dp,
->  	return translate_signal_level(intel_dp, signal_levels);
->  }
->  
-> +static int intel_ddi_level(struct intel_encoder *encoder,
-> +			   const struct intel_crtc_state *crtc_state)
-> +{
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> +		return intel_ddi_hdmi_level(encoder, crtc_state);
-> +	else
-> +		return intel_ddi_dp_level(enc_to_intel_dp(encoder));
-> +}
-> +
->  static void
-> -dg2_set_signal_levels(struct intel_dp *intel_dp,
-> +dg2_set_signal_levels(struct intel_encoder *encoder,
->  		      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  
->  	intel_snps_phy_ddi_vswing_sequence(encoder, crtc_state, level);
->  }
->  
->  static void
-> -tgl_set_signal_levels(struct intel_dp *intel_dp,
-> +tgl_set_signal_levels(struct intel_encoder *encoder,
->  		      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  
->  	tgl_ddi_vswing_sequence(encoder, crtc_state, level);
->  }
->  
->  static void
-> -icl_set_signal_levels(struct intel_dp *intel_dp,
-> +icl_set_signal_levels(struct intel_encoder *encoder,
->  		      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  
->  	icl_ddi_vswing_sequence(encoder, crtc_state, level);
->  }
->  
->  static void
-> -bxt_set_signal_levels(struct intel_dp *intel_dp,
-> +bxt_set_signal_levels(struct intel_encoder *encoder,
->  		      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  
->  	bxt_ddi_vswing_sequence(encoder, crtc_state, level);
->  }
->  
->  static void
-> -hsw_set_signal_levels(struct intel_dp *intel_dp,
-> +hsw_set_signal_levels(struct intel_encoder *encoder,
->  		      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  	enum port port = encoder->port;
->  	u32 signal_levels;
->  
-> +	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
-> +		skl_ddi_set_iboost(encoder, crtc_state, level);
-> +
-> +	/* HDMI ignores the rest */
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> +		return;
-> +
->  	signal_levels = DDI_BUF_TRANS_SELECT(level);
->  
->  	drm_dbg_kms(&dev_priv->drm, "Using signal levels %08x\n",
-> @@ -1463,9 +1474,6 @@ hsw_set_signal_levels(struct intel_dp *intel_dp,
->  	intel_dp->DP &= ~DDI_BUF_EMP_MASK;
->  	intel_dp->DP |= signal_levels;
->  
-> -	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
-> -		skl_ddi_set_iboost(encoder, crtc_state, level);
-> -
->  	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
->  	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
->  }
-> @@ -2357,7 +2365,6 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
->  
->  	intel_dp_set_link_params(intel_dp, crtc_state->port_clock,
->  				 crtc_state->lane_count);
-> @@ -2417,7 +2424,7 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	 */
->  
->  	/* 5.e Configure voltage swing and related IO settings */
-> -	intel_snps_phy_ddi_vswing_sequence(encoder, crtc_state, level);
-> +	encoder->set_signal_levels(encoder, crtc_state);
->  
->  	/*
->  	 * 5.f Configure and enable DDI_BUF_CTL
-> @@ -2471,7 +2478,6 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
->  
->  	intel_dp_set_link_params(intel_dp,
->  				 crtc_state->port_clock,
-> @@ -2546,7 +2552,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	 */
->  
->  	/* 7.e Configure voltage swing and related IO settings */
-> -	tgl_ddi_vswing_sequence(encoder, crtc_state, level);
-> +	encoder->set_signal_levels(encoder, crtc_state);
->  
->  	/*
->  	 * 7.f Combo PHY: Configure PORT_CL_DW10 Static Power Down to power up
-> @@ -2614,7 +2620,6 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	enum phy phy = intel_port_to_phy(dev_priv, port);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
-> -	int level = intel_ddi_dp_level(intel_dp, crtc_state);
->  
->  	if (DISPLAY_VER(dev_priv) < 11)
->  		drm_WARN_ON(&dev_priv->drm,
-> @@ -2639,13 +2644,12 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  
->  	icl_program_mg_dp_mode(dig_port, crtc_state);
->  
-> -	if (DISPLAY_VER(dev_priv) >= 11)
-> -		icl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> -		bxt_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else
-> +	if ((DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv)) ||
-> +	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
-
-Could be DISPLAY_VER <= 9 && !IS_BXT ?
-
->  		hsw_prepare_dp_ddi_buffers(encoder, crtc_state);
->  
-> +	encoder->set_signal_levels(encoder, crtc_state);
-
-hsw_set_signal_levels() wasn't called before, but writing DDI_BUF_CTL
-w/o enabling it is ok I think. Maybe it's worth zeroing
-intel_dp->train_set already in intel_dp_set_link_params()?
-
-> +
->  	intel_ddi_power_up_lanes(encoder, crtc_state);
->  
->  	intel_ddi_init_dp_buf_reg(encoder, crtc_state);
-> @@ -3074,7 +3078,6 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_connector *connector = conn_state->connector;
-> -	int level = intel_ddi_hdmi_level(encoder, crtc_state);
->  	enum port port = encoder->port;
->  
->  	if (!intel_hdmi_handle_sink_scrambling(encoder, connector,
-> @@ -3084,19 +3087,11 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
->  			    "[CONNECTOR:%d:%s] Failed to configure sink scrambling/TMDS bit clock ratio\n",
->  			    connector->base.id, connector->name);
->  
-> -	if (IS_DG2(dev_priv))
-> -		intel_snps_phy_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else if (DISPLAY_VER(dev_priv) >= 12)
-> -		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else if (DISPLAY_VER(dev_priv) == 11)
-> -		icl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> -		bxt_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else
-> -		hsw_prepare_hdmi_ddi_buffers(encoder, crtc_state, level);
-> +	if ((DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv)) ||
-> +	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
-
-Here too could be DISPLAY_VER<=9 && !BXT.
-
-Regardless of the above nits, the patch looks ok:
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> +		hsw_prepare_hdmi_ddi_buffers(encoder, crtc_state);
->  
-> -	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
-> -		skl_ddi_set_iboost(encoder, crtc_state, level);
-> +	encoder->set_signal_levels(encoder, crtc_state);
->  
->  	/* Display WA #1143: skl,kbl,cfl */
->  	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv)) {
-> @@ -4047,7 +4042,6 @@ static const struct drm_encoder_funcs intel_ddi_funcs = {
->  static struct intel_connector *
->  intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  	struct intel_connector *connector;
->  	enum port port = dig_port->base.port;
->  
-> @@ -4060,17 +4054,6 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->  	dig_port->dp.set_link_train = intel_ddi_set_link_train;
->  	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
->  
-> -	if (IS_DG2(dev_priv))
-> -		dig_port->dp.set_signal_levels = dg2_set_signal_levels;
-> -	else if (DISPLAY_VER(dev_priv) >= 12)
-> -		dig_port->dp.set_signal_levels = tgl_set_signal_levels;
-> -	else if (DISPLAY_VER(dev_priv) >= 11)
-> -		dig_port->dp.set_signal_levels = icl_set_signal_levels;
-> -	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> -		dig_port->dp.set_signal_levels = bxt_set_signal_levels;
-> -	else
-> -		dig_port->dp.set_signal_levels = hsw_set_signal_levels;
-> -
->  	dig_port->dp.voltage_max = intel_ddi_dp_voltage_max;
->  	dig_port->dp.preemph_max = intel_ddi_dp_preemph_max;
->  
-> @@ -4642,6 +4625,17 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  		encoder->get_config = hsw_ddi_get_config;
->  	}
->  
-> +	if (IS_DG2(dev_priv))
-> +		encoder->set_signal_levels = dg2_set_signal_levels;
-> +	else if (DISPLAY_VER(dev_priv) >= 12)
-> +		encoder->set_signal_levels = tgl_set_signal_levels;
-> +	else if (DISPLAY_VER(dev_priv) >= 11)
-> +		encoder->set_signal_levels = icl_set_signal_levels;
-> +	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> +		encoder->set_signal_levels = bxt_set_signal_levels;
-> +	else
-> +		encoder->set_signal_levels = hsw_set_signal_levels;
-> +
->  	intel_ddi_buf_trans_init(encoder);
->  
->  	if (DISPLAY_VER(dev_priv) >= 13)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 9413ebae15f5..44e4eaa1ed8d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -269,6 +269,9 @@ struct intel_encoder {
->  	const struct intel_ddi_buf_trans *(*get_buf_trans)(struct intel_encoder *encoder,
->  							   const struct intel_crtc_state *crtc_state,
->  							   int *n_entries);
-> +	void (*set_signal_levels)(struct intel_encoder *encoder,
-> +				  const struct intel_crtc_state *crtc_state);
-> +
->  	enum hpd_pin hpd_pin;
->  	enum intel_display_power_domain power_domain;
->  	/* for communication with audio component; protected by av_mutex */
-> @@ -1601,8 +1604,6 @@ struct intel_dp {
->  			       u8 dp_train_pat);
->  	void (*set_idle_link_train)(struct intel_dp *intel_dp,
->  				    const struct intel_crtc_state *crtc_state);
-> -	void (*set_signal_levels)(struct intel_dp *intel_dp,
-> -				  const struct intel_crtc_state *crtc_state);
->  
->  	u8 (*preemph_max)(struct intel_dp *intel_dp);
->  	u8 (*voltage_max)(struct intel_dp *intel_dp,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 4f116cd32846..d52929855cd0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -398,7 +398,8 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
->  				const struct intel_crtc_state *crtc_state,
->  				enum drm_dp_phy dp_phy)
->  {
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	u8 train_set = intel_dp->train_set[0];
->  	char phy_name[10];
->  
-> @@ -412,7 +413,7 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
->  		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)));
->  
->  	if (intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy))
-> -		intel_dp->set_signal_levels(intel_dp, crtc_state);
-> +		encoder->set_signal_levels(encoder, crtc_state);
->  }
->  
->  static bool
-> -- 
-> 2.32.0
-> 
+T24gV2VkLCAyMDIxLTA5LTI5IGF0IDE2OjI4ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEF0
+bSBkdXJpbmcgZHJpdmVyIGxvYWRpbmcgYW5kIHN5c3RlbSByZXN1bWUgVHlwZUMgcG9ydHMgYXJl
+IGFjY2Vzc2VkDQo+IGJlZm9yZSB0aGVpciBIVy9TVyBzdGF0ZSBpcyBzeW5jZWQuIE1vdmUgdGhl
+IFR5cGVDIHBvcnQgc2FuaXRpemF0aW9uIHRvDQo+IHRoZSBlbmNvZGVyJ3Mgc3luY19zdGF0ZSBo
+b29rIHRvIGZpeCB0aGlzLg0KPiANCj4gdjI6IEhhbmRsZSB0aGUgZW5jb2RlciBkaXNhYmxlZCBj
+YXNlIGluIGdlbjExX2RzaV9zeW5jX3N0YXRlKCkgYXMgd2VsbA0KPiAgICAgKEpvc2UsIEphbmkp
+DQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVs
+LmNvbT4NCg0KPiANCj4gRml4ZXM6IGY5ZTc2YTZlNjhkMyAoImRybS9pOTE1OiBBZGQgYW4gZW5j
+b2RlciBob29rIHRvIHNhbml0aXplIGl0cyBzdGF0ZSBkdXJpbmcgaW5pdC9yZXN1bWUiKQ0KPiBD
+YzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IENjOiBW
+aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiBTaWduZWQt
+b2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMgICAgICAgfCAxMCArKysrKysrKy0tDQo+
+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICB8ICA4ICsrKysr
+KystDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDIw
+ICsrKysrLS0tLS0tLS0tLS0tLS0tDQo+ICAzIGZpbGVzIGNoYW5nZWQsIDIwIGluc2VydGlvbnMo
+KyksIDE4IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaWNsX2RzaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xf
+ZHNpLmMNCj4gaW5kZXggMDYwYmM4ZmIwZDMwNy4uYmQyMTAxNjZiMDc5MyAxMDA2NDQNCj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMNCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMNCj4gQEAgLTE1OTksOCArMTU5OSwxNCBA
+QCBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfc3luY19zdGF0ZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
+ZW5jb2RlciwNCj4gIAkJCQkgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
+dGUpDQo+ICB7DQo+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkx
+NShlbmNvZGVyLT5iYXNlLmRldik7DQo+IC0Jc3RydWN0IGludGVsX2NydGMgKmludGVsX2NydGMg
+PSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7DQo+IC0JZW51bSBwaXBlIHBp
+cGUgPSBpbnRlbF9jcnRjLT5waXBlOw0KPiArCXN0cnVjdCBpbnRlbF9jcnRjICppbnRlbF9jcnRj
+Ow0KPiArCWVudW0gcGlwZSBwaXBlOw0KPiArDQo+ICsJaWYgKCFjcnRjX3N0YXRlKQ0KPiArCQly
+ZXR1cm47DQo+ICsNCj4gKwlpbnRlbF9jcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0YXRlLT51
+YXBpLmNydGMpOw0KPiArCXBpcGUgPSBpbnRlbF9jcnRjLT5waXBlOw0KPiAgDQo+ICAJLyogd2Eg
+dmVyaWZ5IDE0MDkwNTQwNzY6aWNsLGpzbCxlaGwgKi8NCj4gIAlpZiAoRElTUExBWV9WRVIoZGV2
+X3ByaXYpID09IDExICYmIHBpcGUgPT0gUElQRV9CICYmDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBpbmRleCBhNDY2Nzc0MWQzNTQ4Li4wNDU3MmNlNjYzMGY5
+IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5j
+DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gQEAg
+LTM4MzgsNyArMzgzOCwxMyBAQCB2b2lkIGhzd19kZGlfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxf
+ZW5jb2RlciAqZW5jb2RlciwNCj4gIHN0YXRpYyB2b2lkIGludGVsX2RkaV9zeW5jX3N0YXRlKHN0
+cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiAgCQkJCSBjb25zdCBzdHJ1Y3QgaW50ZWxf
+Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gIHsNCj4gLQlpZiAoaW50ZWxfY3J0Y19oYXNfZHBf
+ZW5jb2RlcihjcnRjX3N0YXRlKSkNCj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9
+IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOw0KPiArCWVudW0gcGh5IHBoeSA9IGludGVsX3Bv
+cnRfdG9fcGh5KGk5MTUsIGVuY29kZXItPnBvcnQpOw0KPiArDQo+ICsJaWYgKGludGVsX3BoeV9p
+c190YyhpOTE1LCBwaHkpKQ0KPiArCQlpbnRlbF90Y19wb3J0X3Nhbml0aXplKGVuY190b19kaWdf
+cG9ydChlbmNvZGVyKSk7DQo+ICsNCj4gKwlpZiAoY3J0Y19zdGF0ZSAmJiBpbnRlbF9jcnRjX2hh
+c19kcF9lbmNvZGVyKGNydGNfc3RhdGUpKQ0KPiAgCQlpbnRlbF9kcF9zeW5jX3N0YXRlKGVuY29k
+ZXIsIGNydGNfc3RhdGUpOw0KPiAgfQ0KPiAgDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IGluZGV4IDllNDA3NzYwZTUxZjYuLjVmMjQxZTI0MTVj
+ZWEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eS5jDQo+IEBAIC0xMjI4NSwxOCArMTIyODUsMTYgQEAgc3RhdGljIHZvaWQgaW50ZWxfbW9kZXNl
+dF9yZWFkb3V0X2h3X3N0YXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpDQo+ICAJcmVhZG91dF9w
+bGFuZV9zdGF0ZShkZXZfcHJpdik7DQo+ICANCj4gIAlmb3JfZWFjaF9pbnRlbF9lbmNvZGVyKGRl
+diwgZW5jb2Rlcikgew0KPiArCQlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSA9
+IE5VTEw7DQo+ICsNCj4gIAkJcGlwZSA9IDA7DQo+ICANCj4gIAkJaWYgKGVuY29kZXItPmdldF9o
+d19zdGF0ZShlbmNvZGVyLCAmcGlwZSkpIHsNCj4gLQkJCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
+ICpjcnRjX3N0YXRlOw0KPiAtDQo+ICAJCQljcnRjID0gaW50ZWxfZ2V0X2NydGNfZm9yX3BpcGUo
+ZGV2X3ByaXYsIHBpcGUpOw0KPiAgCQkJY3J0Y19zdGF0ZSA9IHRvX2ludGVsX2NydGNfc3RhdGUo
+Y3J0Yy0+YmFzZS5zdGF0ZSk7DQo+ICANCj4gIAkJCWVuY29kZXItPmJhc2UuY3J0YyA9ICZjcnRj
+LT5iYXNlOw0KPiAgCQkJaW50ZWxfZW5jb2Rlcl9nZXRfY29uZmlnKGVuY29kZXIsIGNydGNfc3Rh
+dGUpOw0KPiAtCQkJaWYgKGVuY29kZXItPnN5bmNfc3RhdGUpDQo+IC0JCQkJZW5jb2Rlci0+c3lu
+Y19zdGF0ZShlbmNvZGVyLCBjcnRjX3N0YXRlKTsNCj4gIA0KPiAgCQkJLyogcmVhZCBvdXQgdG8g
+c2xhdmUgY3J0YyBhcyB3ZWxsIGZvciBiaWdqb2luZXIgKi8NCj4gIAkJCWlmIChjcnRjX3N0YXRl
+LT5iaWdqb2luZXIpIHsNCj4gQEAgLTEyMzExLDYgKzEyMzA5LDkgQEAgc3RhdGljIHZvaWQgaW50
+ZWxfbW9kZXNldF9yZWFkb3V0X2h3X3N0YXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpDQo+ICAJ
+CQllbmNvZGVyLT5iYXNlLmNydGMgPSBOVUxMOw0KPiAgCQl9DQo+ICANCj4gKwkJaWYgKGVuY29k
+ZXItPnN5bmNfc3RhdGUpDQo+ICsJCQllbmNvZGVyLT5zeW5jX3N0YXRlKGVuY29kZXIsIGNydGNf
+c3RhdGUpOw0KPiArDQo+ICAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLA0KPiAgCQkJICAg
+ICJbRU5DT0RFUjolZDolc10gaHcgc3RhdGUgcmVhZG91dDogJXMsIHBpcGUgJWNcbiIsDQo+ICAJ
+CQkgICAgZW5jb2Rlci0+YmFzZS5iYXNlLmlkLCBlbmNvZGVyLT5iYXNlLm5hbWUsDQo+IEBAIC0x
+MjU5MywxNyArMTI1OTQsNiBAQCBpbnRlbF9tb2Rlc2V0X3NldHVwX2h3X3N0YXRlKHN0cnVjdCBk
+cm1fZGV2aWNlICpkZXYsDQo+ICAJaW50ZWxfbW9kZXNldF9yZWFkb3V0X2h3X3N0YXRlKGRldik7
+DQo+ICANCj4gIAkvKiBIVyBzdGF0ZSBpcyByZWFkIG91dCwgbm93IHdlIG5lZWQgdG8gc2FuaXRp
+emUgdGhpcyBtZXNzLiAqLw0KPiAtDQo+IC0JLyogU2FuaXRpemUgdGhlIFR5cGVDIHBvcnQgbW9k
+ZSB1cGZyb250LCBlbmNvZGVycyBkZXBlbmQgb24gdGhpcyAqLw0KPiAtCWZvcl9lYWNoX2ludGVs
+X2VuY29kZXIoZGV2LCBlbmNvZGVyKSB7DQo+IC0JCWVudW0gcGh5IHBoeSA9IGludGVsX3BvcnRf
+dG9fcGh5KGRldl9wcml2LCBlbmNvZGVyLT5wb3J0KTsNCj4gLQ0KPiAtCQkvKiBXZSBuZWVkIHRv
+IHNhbml0aXplIG9ubHkgdGhlIE1TVCBwcmltYXJ5IHBvcnQuICovDQo+IC0JCWlmIChlbmNvZGVy
+LT50eXBlICE9IElOVEVMX09VVFBVVF9EUF9NU1QgJiYNCj4gLQkJICAgIGludGVsX3BoeV9pc190
+YyhkZXZfcHJpdiwgcGh5KSkNCj4gLQkJCWludGVsX3RjX3BvcnRfc2FuaXRpemUoZW5jX3RvX2Rp
+Z19wb3J0KGVuY29kZXIpKTsNCj4gLQl9DQo+IC0NCj4gIAlnZXRfZW5jb2Rlcl9wb3dlcl9kb21h
+aW5zKGRldl9wcml2KTsNCj4gIA0KPiAgCWlmIChIQVNfUENIX0lCWChkZXZfcHJpdikpDQoNCg==
