@@ -1,61 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8BBA41CB69
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 20:01:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EECDD41CB75
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 20:05:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F33076EAC3;
-	Wed, 29 Sep 2021 18:01:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22BC36EAC7;
+	Wed, 29 Sep 2021 18:05:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 351D86EAC2;
- Wed, 29 Sep 2021 18:01:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="225076743"
-X-IronPort-AV: E=Sophos;i="5.85,332,1624345200"; d="scan'208";a="225076743"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2021 11:01:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,332,1624345200"; d="scan'208";a="538941656"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga004.fm.intel.com with ESMTP; 29 Sep 2021 11:01:38 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 29 Sep 2021 11:01:38 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 29 Sep 2021 11:01:37 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Wed, 29 Sep 2021 11:01:37 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "lma@semihalf.com"
- <lma@semihalf.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "upstream@semihalf.com" <upstream@semihalf.com>
-Thread-Topic: [PATCH v2] drm/i915/bdb: Fix version check
-Thread-Index: AQHXsJslJKGByj7D8U+Chyb8uNmROqu7zdcA
-Date: Wed, 29 Sep 2021 18:01:37 +0000
-Message-ID: <63d01fefc3068267b9115513020a1cbd9e64a5e2.camel@intel.com>
-References: <20210923164927.55896-1-lma@semihalf.com>
-In-Reply-To: <20210923164927.55896-1-lma@semihalf.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <13ECAED0D08ADE43A601A3DD505FC4CD@intel.com>
-Content-Transfer-Encoding: base64
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 37F336EAC7;
+ Wed, 29 Sep 2021 18:05:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2FD80A8830;
+ Wed, 29 Sep 2021 18:05:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1159096069424635000=="
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/bdb: Fix version check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Sep 2021 18:05:37 -0000
+Message-ID: <163293873718.27098.9570344845874584925@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_DP_per-lane_drive_settings_prep_work_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,69 +41,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTA5LTIzIGF0IDE4OjQ5ICswMjAwLCBMdWthc3ogTWFqY3phayB3cm90ZToN
-Cj4gV2l0aCBwYXRjaCAiZHJtL2k5MTUvdmJ0OiBGaXggYmFja2xpZ2h0IHBhcnNpbmcgZm9yIFZC
-VCAyMzQrIg0KPiB0aGUgc2l6ZSBvZiBiZGJfbGZwX2JhY2tsaWdodF9kYXRhIHN0cnVjdHVyZSBo
-YXMgYmVlbiBpbmNyZWFzZWQsDQo+IGNhdXNpbmcgaWYtc3RhdGVtZW50IGluIHRoZSBwYXJzZV9s
-ZnBfYmFja2xpZ2h0IGZ1bmN0aW9uDQo+IHRoYXQgY29tYXByZXMgdGhpcyBzdHJ1Y3R1cmUgc2l6
-ZSB0byB0aGUgb25lIHJldHJpZXZlZCBmcm9tIEJEQiwNCj4gYWx3YXlzIHRvIGZhaWwgZm9yIG9s
-ZGVyIHJldmlzaW9ucy4NCj4gVGhpcyBwYXRjaCBjYWxjdWxhdGVzIGV4cGVjdGVkIHNpemUgb2Yg
-dGhlIHN0cnVjdHVyZSBmb3IgYSBnaXZlbg0KPiBCREIgdmVyc2lvbiBhbmQgY29tcGFyZXMgaXQg
-d2l0aCB0aGUgdmFsdWUgZ2F0aGVyZWQgZnJvbSBCREIuDQo+IFRlc3RlZCBvbiBDaHJvbWVib29r
-IFBpeGVsYm9vayAoTm9jdHVybmUpIChyZXBvcnRzIGJkYi0+dmVyc2lvbiA9IDIyMSkNCg0KRml4
-ZXM6IGQzODFiYWFkMjliNCAoImRybS9pOTE1L3ZidDogRml4IGJhY2tsaWdodCBwYXJzaW5nIGZv
-ciBWQlQgMjM0KyIpDQoNCj4gDQo+IFRlc3RlZC1ieTogTHVrYXN6IE1hamN6YWsgPGxtYUBzZW1p
-aGFsZi5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEx1a2FzeiBNYWpjemFrIDxsbWFAc2VtaWhhbGYu
-Y29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5j
-ICAgICB8IDExICsrKysrKysrKy0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX3ZidF9kZWZzLmggfCAgNSArKysrKw0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRp
-b25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9iaW9zLmMNCj4gaW5kZXggM2MyNTkyNjA5MmRlLi45MGVhZTZkYTEyZTAgMTAwNjQ0
-DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jDQo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jDQo+IEBAIC00Mjgs
-NiArNDI4LDcgQEAgcGFyc2VfbGZwX2JhY2tsaWdodChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSwNCj4gIAljb25zdCBzdHJ1Y3QgbGZwX2JhY2tsaWdodF9kYXRhX2VudHJ5ICplbnRyeTsN
-Cj4gIAlpbnQgcGFuZWxfdHlwZSA9IGk5MTUtPnZidC5wYW5lbF90eXBlOw0KPiAgCXUxNiBsZXZl
-bDsNCj4gKwlzaXplX3QgZXhwX3NpemU7DQo+ICANCj4gIAliYWNrbGlnaHRfZGF0YSA9IGZpbmRf
-c2VjdGlvbihiZGIsIEJEQl9MVkRTX0JBQ0tMSUdIVCk7DQo+ICAJaWYgKCFiYWNrbGlnaHRfZGF0
-YSkNCj4gQEAgLTQ1MCw5ICs0NTEsMTUgQEAgcGFyc2VfbGZwX2JhY2tsaWdodChzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gIAkJcmV0dXJuOw0KPiAgCX0NCj4gIA0KPiArCWlmIChi
-ZGItPnZlcnNpb24gPD0gMjM0KQ0KPiArCQlleHBfc2l6ZSA9IEVYUF9CREJfTEZQX0JMX0RBVEFf
-U0laRV9SRVZfMjM0Ow0KPiArCWVsc2UgaWYgKGJkYi0+dmVyc2lvbiA+IDIzNCAmJiBiZGItPnZl
-cnNpb24gPD0gMjM2KQ0KPiArCQlleHBfc2l6ZSA9IEVYUF9CREJfTEZQX0JMX0RBVEFfU0laRV9S
-RVZfMjM2Ow0KPiArCWVsc2UNCj4gKwkJZXhwX3NpemUgPSBzaXplb2Yoc3RydWN0IGJkYl9sZnBf
-YmFja2xpZ2h0X2RhdGEpOw0KDQpVc3VhbGx5IHdlIGdvIGJ5IHRoZSBuZXdlc3QoSVAgdmVyc2lv
-biwgcGxhdGZvcm0uLi4pIHRvIHRoZSBvbGRlc3Q6DQoNCg0KaWYgKGJkYi0+dmVyc2lvbiA+PSAy
-MzYpDQoJZXhwX3NpemUgPSBzaXplb2Yoc3RydWN0IGJkYl9sZnBfYmFja2xpZ2h0X2RhdGEpOw0K
-ZWxzZSBpZiAoYmRiLT52ZXJzaW9uID49IDIzNCkNCglleHBfc2l6ZSA9IG9mZnNldG9mKHN0cnVj
-dCBiZGJfbGZwX2JhY2tsaWdodF9kYXRhLCBicmlnaHRuZXNzX3ByZWNpc2lvbl9iaXRzKTsNCmVs
-c2UNCglleHBfc2l6ZSA9IG9mZnNldG9mKHN0cnVjdCBiZGJfbGZwX2JhY2tsaWdodF9kYXRhLCBi
-cmlnaHRuZXNzX2xldmVsKTsNCg0KDQpiYWNrbGlnaHRfY29udHJvbCB3YXMgYWRkZWQgaW4gdmVy
-c2lvbiAxOTEgc28gbm8gbmVlZCB0byBzZXQgZXhwX3NpemUgZm9yIG9sZGVyIHZlcnNpb25zLg0K
-DQo+ICsNCj4gIAlpOTE1LT52YnQuYmFja2xpZ2h0LnR5cGUgPSBJTlRFTF9CQUNLTElHSFRfRElT
-UExBWV9EREk7DQo+IC0JaWYgKGJkYi0+dmVyc2lvbiA+PSAxOTEgJiYNCj4gLQkgICAgZ2V0X2Js
-b2Nrc2l6ZShiYWNrbGlnaHRfZGF0YSkgPj0gc2l6ZW9mKCpiYWNrbGlnaHRfZGF0YSkpIHsNCj4g
-KwlpZiAoYmRiLT52ZXJzaW9uID49IDE5MSAgJiYgZ2V0X2Jsb2Nrc2l6ZShiYWNrbGlnaHRfZGF0
-YSkgPj0gZXhwX3NpemUpIHsNCj4gIAkJY29uc3Qgc3RydWN0IGxmcF9iYWNrbGlnaHRfY29udHJv
-bF9tZXRob2QgKm1ldGhvZDsNCj4gIA0KPiAgCQltZXRob2QgPSAmYmFja2xpZ2h0X2RhdGEtPmJh
-Y2tsaWdodF9jb250cm9sW3BhbmVsX3R5cGVdOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oDQo+IGluZGV4IDMzMDA3N2MyZTU4OC4uYmE5OTkwZTU5
-ODNjIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zi
-dF9kZWZzLmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRf
-ZGVmcy5oDQo+IEBAIC04MTQsNiArODE0LDExIEBAIHN0cnVjdCBsZnBfYnJpZ2h0bmVzc19sZXZl
-bCB7DQo+ICAJdTE2IHJlc2VydmVkOw0KPiAgfSBfX3BhY2tlZDsNCj4gIA0KPiArI2RlZmluZSBF
-WFBfQkRCX0xGUF9CTF9EQVRBX1NJWkVfUkVWXzIzNCBcDQo+ICsJb2Zmc2V0b2Yoc3RydWN0IGJk
-Yl9sZnBfYmFja2xpZ2h0X2RhdGEsIGJyaWdodG5lc3NfbGV2ZWwpDQoNCnZlcnNpb24gMjM0IHN0
-YXJ0cyBhdCBicmlnaHRuZXNzX2xldmVsIGJ1dCB0aGUgc2l6ZSBvZiAyMzQgZGF0YSBtdXN0IGJl
-IGluY2x1ZGVkIHRvIHRoZSBzaXplLCBzbyBpdCBzaG91bGQgYmU6DQpvZmZzZXRvZihzdHJ1Y3Qg
-YmRiX2xmcF9iYWNrbGlnaHRfZGF0YSwgYnJpZ2h0bmVzc19wcmVjaXNpb25fYml0cykuDQoNCj4g
-KyNkZWZpbmUgRVhQX0JEQl9MRlBfQkxfREFUQV9TSVpFX1JFVl8yMzYgXA0KPiArCW9mZnNldG9m
-KHN0cnVjdCBiZGJfbGZwX2JhY2tsaWdodF9kYXRhLCBicmlnaHRuZXNzX3ByZWNpc2lvbl9iaXRz
-KQ0KDQo+ICsNCj4gIHN0cnVjdCBiZGJfbGZwX2JhY2tsaWdodF9kYXRhIHsNCj4gIAl1OCBlbnRy
-eV9zaXplOw0KPiAgCXN0cnVjdCBsZnBfYmFja2xpZ2h0X2RhdGFfZW50cnkgZGF0YVsxNl07DQoN
-Cg==
+--===============1159096069424635000==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: DP per-lane drive settings prep work (rev4)
+URL   : https://patchwork.freedesktop.org/series/95122/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21192
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21192/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (33 -> 28)
+------------------------------
+
+  Missing    (5): bat-dg1-6 fi-tgl-u2 fi-bsw-cyan bat-adlp-4 bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10660 -> Patchwork_21192
+
+  CI-20190529: 20190529
+  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21192: def5bc2e3c93d986e7f69476bb0722ea7cbe0f11 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+def5bc2e3c93 drm/i915: Allow per-lane drive settings with LTTPRs
+24cdd73489e8 drm/i915: Prepare link training for per-lane drive settings
+68f42730e749 drm/i915: Pass the lane to intel_ddi_level()
+025b7bd7473d drm/i915: Nuke intel_ddi_hdmi_num_entries()
+40be81462b60 drm/i915: Hoover the level>=n_entries WARN into intel_ddi_level()
+96ccc8d77127 drm/i915: De-wrapper bxt_ddi_phy_set_signal_levels()
+148ee4908c2b drm/i915: Nuke usless .set_signal_levels() wrappers
+12af5655d6e9 drm/i915: Generalize .set_signal_levels()
+5ca7aed58062 drm/i915: s/ddi_translations/trans/
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21192/index.html
+
+--===============1159096069424635000==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: DP per-lane drive settings prep work (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95122/">https://patchwork.freedesktop.org/series/95122/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21192/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21192/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21192</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21192/index.html</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Participating hosts (33 -&gt; 28)</h2>
+<p>Missing    (5): bat-dg1-6 fi-tgl-u2 fi-bsw-cyan bat-adlp-4 bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10660 -&gt; Patchwork_21192</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21192: def5bc2e3c93d986e7f69476bb0722ea7cbe0f11 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>def5bc2e3c93 drm/i915: Allow per-lane drive settings with LTTPRs<br />
+24cdd73489e8 drm/i915: Prepare link training for per-lane drive settings<br />
+68f42730e749 drm/i915: Pass the lane to intel_ddi_level()<br />
+025b7bd7473d drm/i915: Nuke intel_ddi_hdmi_num_entries()<br />
+40be81462b60 drm/i915: Hoover the level&gt;=n_entries WARN into intel_ddi_level()<br />
+96ccc8d77127 drm/i915: De-wrapper bxt_ddi_phy_set_signal_levels()<br />
+148ee4908c2b drm/i915: Nuke usless .set_signal_levels() wrappers<br />
+12af5655d6e9 drm/i915: Generalize .set_signal_levels()<br />
+5ca7aed58062 drm/i915: s/ddi_translations/trans/</p>
+
+</body>
+</html>
+
+--===============1159096069424635000==--
