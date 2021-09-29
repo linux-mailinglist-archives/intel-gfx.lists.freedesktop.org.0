@@ -2,33 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6C9C41CACC
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 18:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82C7941CACD
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 18:59:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 051646E1D5;
-	Wed, 29 Sep 2021 16:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83CF86E1EC;
+	Wed, 29 Sep 2021 16:59:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 407956E1D5;
- Wed, 29 Sep 2021 16:58:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37D9BA008A;
- Wed, 29 Sep 2021 16:58:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2915392975408309505=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1DD6E1EC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 16:59:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="221784639"
+X-IronPort-AV: E=Sophos;i="5.85,332,1624345200"; d="scan'208";a="221784639"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 09:59:11 -0700
+X-IronPort-AV: E=Sophos;i="5.85,332,1624345200"; d="scan'208";a="563428435"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 09:59:10 -0700
+Date: Wed, 29 Sep 2021 19:59:06 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 16:58:46 -0000
-Message-ID: <163293472618.27097.4220388084850898506@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210921002313.1132357-1-imre.deak@intel.com>
-In-Reply-To: <20210921002313.1132357-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/tc=3A_Fix_TypeC_connect/disconnect_sequences_=28rev8=29?=
+Message-ID: <20210929165906.GB2192289@ideak-desk.fi.intel.com>
+References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+ <20210927182455.27119-2-ville.syrjala@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210927182455.27119-2-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: s/ddi_translations/trans/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,1130 +46,1824 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2915392975408309505==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/tc: Fix TypeC connect/disconnect sequences (rev8)
-URL   : https://patchwork.freedesktop.org/series/94878/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10660_full -> Patchwork_21189_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_21189_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21189_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21189_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@fbdev@unaligned-read:
-    - shard-glk:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk3/igt@fbdev@unaligned-read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk4/igt@fbdev@unaligned-read.html
-
-  * igt@gem_eio@reset-stress:
-    - shard-skl:          [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl1/igt@gem_eio@reset-stress.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl2/igt@gem_eio@reset-stress.html
-
-  * igt@kms_async_flips@crc:
-    - shard-skl:          NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl7/igt@kms_async_flips@crc.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21189_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_create@create-massive:
-    - shard-apl:          NOTRUN -> [DMESG-WARN][6] ([i915#3002])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@gem_create@create-massive.html
-
-  * igt@gem_ctx_sseu@mmap-args:
-    - shard-tglb:         NOTRUN -> [SKIP][7] ([i915#280])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb2/igt@gem_ctx_sseu@mmap-args.html
-
-  * igt@gem_eio@unwedge-stress:
-    - shard-iclb:         [PASS][8] -> [TIMEOUT][9] ([i915#2369] / [i915#2481] / [i915#3070])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb7/igt@gem_eio@unwedge-stress.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb3/igt@gem_eio@unwedge-stress.html
-
-  * igt@gem_exec_fair@basic-deadline:
-    - shard-glk:          [PASS][10] -> [FAIL][11] ([i915#2846])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk8/igt@gem_exec_fair@basic-deadline.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk1/igt@gem_exec_fair@basic-deadline.html
-
-  * igt@gem_exec_fair@basic-flow@rcs0:
-    - shard-skl:          NOTRUN -> [SKIP][12] ([fdo#109271]) +106 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@gem_exec_fair@basic-flow@rcs0.html
-
-  * igt@gem_exec_fair@basic-none-share@rcs0:
-    - shard-tglb:         [PASS][13] -> [FAIL][14] ([i915#2842]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb1/igt@gem_exec_fair@basic-none-share@rcs0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb6/igt@gem_exec_fair@basic-none-share@rcs0.html
-
-  * igt@gem_exec_fair@basic-none-vip@rcs0:
-    - shard-kbl:          [PASS][15] -> [FAIL][16] ([i915#2842])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl2/igt@gem_exec_fair@basic-none-vip@rcs0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl2/igt@gem_exec_fair@basic-none-vip@rcs0.html
-
-  * igt@gem_exec_fair@basic-none@vcs1:
-    - shard-iclb:         NOTRUN -> [FAIL][17] ([i915#2842])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb4/igt@gem_exec_fair@basic-none@vcs1.html
-
-  * igt@gem_exec_fair@basic-pace@rcs0:
-    - shard-iclb:         [PASS][18] -> [FAIL][19] ([i915#2842])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb1/igt@gem_exec_fair@basic-pace@rcs0.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@gem_exec_fair@basic-pace@rcs0.html
-
-  * igt@gem_exec_gttfill@basic:
-    - shard-glk:          [PASS][20] -> [DMESG-WARN][21] ([i915#118] / [i915#95]) +1 similar issue
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk1/igt@gem_exec_gttfill@basic.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk4/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_exec_params@no-blt:
-    - shard-tglb:         NOTRUN -> [SKIP][22] ([fdo#109283])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@gem_exec_params@no-blt.html
-
-  * igt@gem_exec_params@secure-non-master:
-    - shard-tglb:         NOTRUN -> [SKIP][23] ([fdo#112283])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@gem_exec_params@secure-non-master.html
-
-  * igt@gem_ppgtt@flink-and-close-vma-leak:
-    - shard-skl:          [PASS][24] -> [FAIL][25] ([i915#644])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl2/igt@gem_ppgtt@flink-and-close-vma-leak.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl3/igt@gem_ppgtt@flink-and-close-vma-leak.html
-
-  * igt@gen3_render_tiledy_blits:
-    - shard-tglb:         NOTRUN -> [SKIP][26] ([fdo#109289]) +2 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@gen3_render_tiledy_blits.html
-
-  * igt@gen9_exec_parse@unaligned-jump:
-    - shard-tglb:         NOTRUN -> [SKIP][27] ([i915#2856])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@gen9_exec_parse@unaligned-jump.html
-
-  * igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-dp:
-    - shard-apl:          NOTRUN -> [SKIP][28] ([fdo#109271] / [i915#1937])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-dp.html
-
-  * igt@i915_pm_rpm@gem-execbuf-stress-pc8:
-    - shard-tglb:         NOTRUN -> [SKIP][29] ([fdo#109506] / [i915#2411])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@i915_pm_rpm@gem-execbuf-stress-pc8.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - shard-tglb:         NOTRUN -> [DMESG-FAIL][30] ([i915#2373])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - shard-tglb:         NOTRUN -> [DMESG-FAIL][31] ([i915#1759] / [i915#2291])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_suspend@forcewake:
-    - shard-apl:          NOTRUN -> [DMESG-WARN][32] ([i915#180]) +1 similar issue
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@i915_suspend@forcewake.html
-
-  * igt@kms_big_fb@linear-16bpp-rotate-90:
-    - shard-apl:          NOTRUN -> [SKIP][33] ([fdo#109271]) +195 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@kms_big_fb@linear-16bpp-rotate-90.html
-
-  * igt@kms_big_fb@linear-32bpp-rotate-270:
-    - shard-tglb:         NOTRUN -> [SKIP][34] ([fdo#111614])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_big_fb@linear-32bpp-rotate-270.html
-
-  * igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip:
-    - shard-skl:          NOTRUN -> [FAIL][35] ([i915#3722]) +1 similar issue
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html
-
-  * igt@kms_big_fb@yf-tiled-8bpp-rotate-90:
-    - shard-tglb:         NOTRUN -> [SKIP][36] ([fdo#111615]) +1 similar issue
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_big_fb@yf-tiled-8bpp-rotate-90.html
-
-  * igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-0-hflip:
-    - shard-apl:          NOTRUN -> [SKIP][37] ([fdo#109271] / [i915#3777]) +2 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl3/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-0-hflip.html
-
-  * igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip:
-    - shard-kbl:          NOTRUN -> [SKIP][38] ([fdo#109271] / [i915#3777])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip.html
-    - shard-skl:          NOTRUN -> [SKIP][39] ([fdo#109271] / [i915#3777])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip.html
-
-  * igt@kms_ccs@pipe-a-ccs-on-another-bo-yf_tiled_ccs:
-    - shard-tglb:         NOTRUN -> [SKIP][40] ([i915#3689]) +3 similar issues
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_ccs@pipe-a-ccs-on-another-bo-yf_tiled_ccs.html
-
-  * igt@kms_ccs@pipe-b-ccs-on-another-bo-y_tiled_gen12_mc_ccs:
-    - shard-skl:          NOTRUN -> [SKIP][41] ([fdo#109271] / [i915#3886]) +5 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl9/igt@kms_ccs@pipe-b-ccs-on-another-bo-y_tiled_gen12_mc_ccs.html
-
-  * igt@kms_ccs@pipe-b-random-ccs-data-y_tiled_gen12_mc_ccs:
-    - shard-kbl:          NOTRUN -> [SKIP][42] ([fdo#109271] / [i915#3886]) +5 similar issues
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_ccs@pipe-b-random-ccs-data-y_tiled_gen12_mc_ccs.html
-
-  * igt@kms_ccs@pipe-c-ccs-on-another-bo-y_tiled_gen12_rc_ccs_cc:
-    - shard-apl:          NOTRUN -> [SKIP][43] ([fdo#109271] / [i915#3886]) +14 similar issues
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl3/igt@kms_ccs@pipe-c-ccs-on-another-bo-y_tiled_gen12_rc_ccs_cc.html
-
-  * igt@kms_ccs@pipe-c-missing-ccs-buffer-y_tiled_gen12_mc_ccs:
-    - shard-tglb:         NOTRUN -> [SKIP][44] ([i915#3689] / [i915#3886]) +1 similar issue
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_ccs@pipe-c-missing-ccs-buffer-y_tiled_gen12_mc_ccs.html
-
-  * igt@kms_chamelium@vga-hpd-after-suspend:
-    - shard-apl:          NOTRUN -> [SKIP][45] ([fdo#109271] / [fdo#111827]) +18 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl3/igt@kms_chamelium@vga-hpd-after-suspend.html
-
-  * igt@kms_color_chamelium@pipe-a-ctm-blue-to-red:
-    - shard-kbl:          NOTRUN -> [SKIP][46] ([fdo#109271] / [fdo#111827]) +5 similar issues
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_color_chamelium@pipe-a-ctm-blue-to-red.html
-
-  * igt@kms_color_chamelium@pipe-b-ctm-max:
-    - shard-skl:          NOTRUN -> [SKIP][47] ([fdo#109271] / [fdo#111827]) +6 similar issues
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl3/igt@kms_color_chamelium@pipe-b-ctm-max.html
-
-  * igt@kms_color_chamelium@pipe-c-ctm-red-to-blue:
-    - shard-tglb:         NOTRUN -> [SKIP][48] ([fdo#109284] / [fdo#111827]) +3 similar issues
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_color_chamelium@pipe-c-ctm-red-to-blue.html
-
-  * igt@kms_content_protection@lic:
-    - shard-apl:          NOTRUN -> [TIMEOUT][49] ([i915#1319]) +1 similar issue
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@kms_content_protection@lic.html
-
-  * igt@kms_content_protection@mei_interface:
-    - shard-tglb:         NOTRUN -> [SKIP][50] ([fdo#111828])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_content_protection@mei_interface.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x170-random:
-    - shard-tglb:         NOTRUN -> [SKIP][51] ([fdo#109279] / [i915#3359]) +1 similar issue
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_cursor_crc@pipe-a-cursor-512x170-random.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-skl:          NOTRUN -> [INCOMPLETE][52] ([i915#2828] / [i915#300])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl9/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-32x10-rapid-movement:
-    - shard-tglb:         NOTRUN -> [SKIP][53] ([i915#3359]) +3 similar issues
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_cursor_crc@pipe-c-cursor-32x10-rapid-movement.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-32x32-onscreen:
-    - shard-tglb:         NOTRUN -> [SKIP][54] ([i915#3319])
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_cursor_crc@pipe-c-cursor-32x32-onscreen.html
-
-  * igt@kms_cursor_crc@pipe-d-cursor-suspend:
-    - shard-kbl:          NOTRUN -> [SKIP][55] ([fdo#109271]) +79 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_cursor_crc@pipe-d-cursor-suspend.html
-    - shard-tglb:         [PASS][56] -> [INCOMPLETE][57] ([i915#4211])
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb2/igt@kms_cursor_crc@pipe-d-cursor-suspend.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb7/igt@kms_cursor_crc@pipe-d-cursor-suspend.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-skl:          [PASS][58] -> [FAIL][59] ([i915#2346])
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl2/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-
-  * igt@kms_cursor_legacy@pipe-d-single-bo:
-    - shard-kbl:          NOTRUN -> [SKIP][60] ([fdo#109271] / [i915#533]) +1 similar issue
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_cursor_legacy@pipe-d-single-bo.html
-
-  * igt@kms_flip@2x-plain-flip-ts-check:
-    - shard-tglb:         NOTRUN -> [SKIP][61] ([fdo#111825]) +12 similar issues
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_flip@2x-plain-flip-ts-check.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:
-    - shard-skl:          [PASS][62] -> [FAIL][63] ([i915#79])
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl7/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:
-    - shard-apl:          [PASS][64] -> [DMESG-WARN][65] ([i915#180])
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-apl3/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile:
-    - shard-iclb:         [PASS][66] -> [SKIP][67] ([i915#3701])
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb4/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile.html
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb2/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile:
-    - shard-tglb:         NOTRUN -> [SKIP][68] ([i915#2587])
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs:
-    - shard-apl:          NOTRUN -> [SKIP][69] ([fdo#109271] / [i915#2672])
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [PASS][70] -> [DMESG-WARN][71] ([i915#180]) +6 similar issues
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl4/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - shard-apl:          NOTRUN -> [SKIP][72] ([fdo#109271] / [i915#533]) +1 similar issue
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d:
-    - shard-skl:          NOTRUN -> [SKIP][73] ([fdo#109271] / [i915#533])
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb:
-    - shard-apl:          NOTRUN -> [FAIL][74] ([fdo#108145] / [i915#265]) +2 similar issues
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl1/igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
-    - shard-skl:          [PASS][75] -> [FAIL][76] ([fdo#108145] / [i915#265])
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl4/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-max:
-    - shard-kbl:          NOTRUN -> [FAIL][77] ([fdo#108145] / [i915#265])
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-max.html
-
-  * igt@kms_plane_lowres@pipe-b-tiling-x:
-    - shard-tglb:         NOTRUN -> [SKIP][78] ([i915#3536]) +1 similar issue
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_plane_lowres@pipe-b-tiling-x.html
-
-  * igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4:
-    - shard-kbl:          NOTRUN -> [SKIP][79] ([fdo#109271] / [i915#658]) +1 similar issue
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4.html
-
-  * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-4:
-    - shard-apl:          NOTRUN -> [SKIP][80] ([fdo#109271] / [i915#658]) +5 similar issues
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl1/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-4.html
-
-  * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1:
-    - shard-skl:          NOTRUN -> [SKIP][81] ([fdo#109271] / [i915#658]) +1 similar issue
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1.html
-
-  * igt@kms_psr@psr2_primary_mmap_gtt:
-    - shard-tglb:         NOTRUN -> [FAIL][82] ([i915#132] / [i915#3467]) +1 similar issue
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_psr@psr2_primary_mmap_gtt.html
-
-  * igt@kms_psr@psr2_sprite_blt:
-    - shard-iclb:         [PASS][83] -> [SKIP][84] ([fdo#109441]) +1 similar issue
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@kms_psr@psr2_sprite_blt.html
-
-  * igt@kms_sysfs_edid_timing:
-    - shard-kbl:          NOTRUN -> [FAIL][85] ([IGT#2])
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_sysfs_edid_timing.html
-    - shard-skl:          NOTRUN -> [FAIL][86] ([IGT#2])
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_sysfs_edid_timing.html
-
-  * igt@kms_vblank@pipe-d-ts-continuation-suspend:
-    - shard-tglb:         [PASS][87] -> [INCOMPLETE][88] ([i915#3896])
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb1/igt@kms_vblank@pipe-d-ts-continuation-suspend.html
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb7/igt@kms_vblank@pipe-d-ts-continuation-suspend.html
-
-  * igt@kms_writeback@writeback-check-output:
-    - shard-tglb:         NOTRUN -> [SKIP][89] ([i915#2437]) +1 similar issue
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_writeback@writeback-check-output.html
-
-  * igt@prime_nv_api@i915_self_import_to_different_fd:
-    - shard-tglb:         NOTRUN -> [SKIP][90] ([fdo#109291]) +1 similar issue
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@prime_nv_api@i915_self_import_to_different_fd.html
-
-  * igt@syncobj_basic@bad-destroy:
-    - shard-skl:          [PASS][91] -> [DMESG-WARN][92] ([i915#1982]) +1 similar issue
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl5/igt@syncobj_basic@bad-destroy.html
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl5/igt@syncobj_basic@bad-destroy.html
-
-  * igt@sysfs_clients@recycle-many:
-    - shard-apl:          NOTRUN -> [SKIP][93] ([fdo#109271] / [i915#2994]) +3 similar issues
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@sysfs_clients@recycle-many.html
-
-  * igt@sysfs_clients@sema-50:
-    - shard-kbl:          NOTRUN -> [SKIP][94] ([fdo#109271] / [i915#2994])
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@sysfs_clients@sema-50.html
-
-  * igt@sysfs_clients@split-25:
-    - shard-tglb:         NOTRUN -> [SKIP][95] ([i915#2994])
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@sysfs_clients@split-25.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fair@basic-none-share@rcs0:
-    - shard-iclb:         [FAIL][96] ([i915#2842]) -> [PASS][97]
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb2/igt@gem_exec_fair@basic-none-share@rcs0.html
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@gem_exec_fair@basic-none-share@rcs0.html
-
-  * igt@gem_exec_fair@basic-pace-solo@rcs0:
-    - shard-glk:          [FAIL][98] ([i915#2842]) -> [PASS][99]
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk8/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk9/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-
-  * igt@gem_exec_fair@basic-pace@rcs0:
-    - shard-tglb:         [FAIL][100] ([i915#2842]) -> [PASS][101]
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb5/igt@gem_exec_fair@basic-pace@rcs0.html
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb6/igt@gem_exec_fair@basic-pace@rcs0.html
-
-  * igt@gem_exec_fair@basic-pace@vcs1:
-    - shard-kbl:          [FAIL][102] ([i915#2842]) -> [PASS][103]
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl6/igt@gem_exec_fair@basic-pace@vcs1.html
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl2/igt@gem_exec_fair@basic-pace@vcs1.html
-
-  * igt@gem_exec_params@dr1-dirt:
-    - shard-skl:          [DMESG-WARN][104] ([i915#1982]) -> [PASS][105]
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl4/igt@gem_exec_params@dr1-dirt.html
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl5/igt@gem_exec_params@dr1-dirt.html
-
-  * igt@gem_ppgtt@flink-and-close-vma-leak:
-    - shard-glk:          [FAIL][106] ([i915#644]) -> [PASS][107]
-   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk6/igt@gem_ppgtt@flink-and-close-vma-leak.html
-   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk5/igt@gem_ppgtt@flink-and-close-vma-leak.html
-
-  * igt@gem_softpin@noreloc-s3:
-    - shard-kbl:          [DMESG-WARN][108] ([i915#180]) -> [PASS][109] +1 similar issue
-   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl1/igt@gem_softpin@noreloc-s3.html
-   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@gem_softpin@noreloc-s3.html
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-skl:          [INCOMPLETE][110] ([i915#198] / [i915#4173]) -> [PASS][111]
-   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl2/igt@gem_workarounds@suspend-resume-context.html
-   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@gen9_exec_parse@allowed-single:
-    - shard-skl:          [DMESG-WARN][112] ([i915#1436] / [i915#716]) -> [PASS][113]
-   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl9/igt@gen9_exec_parse@allowed-single.html
-   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@gen9_exec_parse@allowed-single.html
-
-  * igt@i915_pm_dc@dc6-dpms:
-    - shard-iclb:         [FAIL][114] ([i915#454]) -> [PASS][115]
-   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb3/igt@i915_pm_dc@dc6-dpms.html
-   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb4/igt@i915_pm_dc@dc6-dpms.html
-
-  * igt@kms_big_fb@x-tiled-32bpp-rotate-0:
-    - shard-glk:          [DMESG-WARN][116] ([i915#118] / [i915#95]) -> [PASS][117]
-   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk4/igt@kms_big_fb@x-tiled-32bpp-rotate-0.html
-   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk7/igt@kms_big_fb@x-tiled-32bpp-rotate-0.html
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1:
-    - shard-skl:          [FAIL][118] ([i915#2122]) -> [PASS][119]
-   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl6/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html
-   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html
-
-  * igt@kms_frontbuffer_tracking@psr-suspend:
-    - shard-tglb:         [INCOMPLETE][120] ([i915#2411] / [i915#456]) -> [PASS][121] +1 similar issue
-   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb7/igt@kms_frontbuffer_tracking@psr-suspend.html
-   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_frontbuffer_tracking@psr-suspend.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][122] ([i915#1188]) -> [PASS][123]
-   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl1/igt@kms_hdr@bpc-switch.html
-   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl2/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes:
-    - shard-apl:          [DMESG-WARN][124] ([i915#180]) -> [PASS][125]
-   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes.html
-   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl2/igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
-    - shard-skl:          [FAIL][126] ([fdo#108145] / [i915#265]) -> [PASS][127]
-   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-
-  * igt@kms_psr@psr2_cursor_mmap_cpu:
-    - shard-iclb:         [SKIP][128] ([fdo#109441]) -> [PASS][129] +2 similar issues
-   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb4/igt@kms_psr@psr2_cursor_mmap_cpu.html
-   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
-
-  * igt@perf@polling-parameterized:
-    - shard-skl:          [FAIL][130] ([i915#1542]) -> [PASS][131]
-   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl3/igt@perf@polling-parameterized.html
-   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@perf@polling-parameterized.html
-
-  
-#### Warnings ####
-
-  * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-2:
-    - shard-iclb:         [SKIP][132] ([i915#658]) -> [SKIP][133] ([i915#2920]) +1 similar issue
-   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb4/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-2.html
-   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-2.html
-
-  * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4:
-    - shard-iclb:         [SKIP][134] ([i915#2920]) -> [SKIP][135] ([i915#658]) +2 similar issues
-   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4.html
-   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4.html
-
-  * igt@runner@aborted:
-    - shard-kbl:          ([FAIL][136], [FAIL][137], [FAIL][138], [FAIL][139], [FAIL][140]) ([i915#180] / [i915#1814] / [i915#3002] / [i915#3363]) -> ([FAIL][141], [FAIL][142], [FAIL][143], [FAIL][144], [FAIL][145], [FAIL][146], [FAIL][147], [FAIL][148]) ([fdo#109271] / [i915#180] / [i915#1814] / [i915#3002] / [i915#3363] / [i915#602])
-   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl1/igt@runner@aborted.html
-   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl1/igt@runner@aborted.html
-   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl4/igt@runner@aborted.html
-   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl4/igt@runner@aborted.html
-   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl6/igt@runner@aborted.ht
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/index.html
-
---===============2915392975408309505==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/tc: Fix TypeC connect/disconnect sequences (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94878/">https://patchwork.freedesktop.org/series/94878/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10660_full -&gt; Patchwork_21189_full</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21189_full absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21189_full, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21189_full:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@fbdev@unaligned-read:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk3/igt@fbdev@unaligned-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk4/igt@fbdev@unaligned-read.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@reset-stress:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl1/igt@gem_eio@reset-stress.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl2/igt@gem_eio@reset-stress.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_async_flips@crc:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl7/igt@kms_async_flips@crc.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21189_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_create@create-massive:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@gem_create@create-massive.html">DMESG-WARN</a> ([i915#3002])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_sseu@mmap-args:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb2/igt@gem_ctx_sseu@mmap-args.html">SKIP</a> ([i915#280])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@unwedge-stress:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb7/igt@gem_eio@unwedge-stress.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb3/igt@gem_eio@unwedge-stress.html">TIMEOUT</a> ([i915#2369] / [i915#2481] / [i915#3070])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-deadline:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk8/igt@gem_exec_fair@basic-deadline.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk1/igt@gem_exec_fair@basic-deadline.html">FAIL</a> ([i915#2846])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-flow@rcs0:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@gem_exec_fair@basic-flow@rcs0.html">SKIP</a> ([fdo#109271]) +106 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none-share@rcs0:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb1/igt@gem_exec_fair@basic-none-share@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb6/igt@gem_exec_fair@basic-none-share@rcs0.html">FAIL</a> ([i915#2842]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none-vip@rcs0:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl2/igt@gem_exec_fair@basic-none-vip@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl2/igt@gem_exec_fair@basic-none-vip@rcs0.html">FAIL</a> ([i915#2842])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none@vcs1:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb4/igt@gem_exec_fair@basic-none@vcs1.html">FAIL</a> ([i915#2842])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@rcs0:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb1/igt@gem_exec_fair@basic-pace@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@gem_exec_fair@basic-pace@rcs0.html">FAIL</a> ([i915#2842])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk1/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk4/igt@gem_exec_gttfill@basic.html">DMESG-WARN</a> ([i915#118] / [i915#95]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_params@no-blt:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@gem_exec_params@no-blt.html">SKIP</a> ([fdo#109283])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_params@secure-non-master:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@gem_exec_params@secure-non-master.html">SKIP</a> ([fdo#112283])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ppgtt@flink-and-close-vma-leak:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl2/igt@gem_ppgtt@flink-and-close-vma-leak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl3/igt@gem_ppgtt@flink-and-close-vma-leak.html">FAIL</a> ([i915#644])</li>
-</ul>
-</li>
-<li>
-<p>igt@gen3_render_tiledy_blits:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@gen3_render_tiledy_blits.html">SKIP</a> ([fdo#109289]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@unaligned-jump:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@gen9_exec_parse@unaligned-jump.html">SKIP</a> ([i915#2856])</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-dp:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-dp.html">SKIP</a> ([fdo#109271] / [i915#1937])</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@gem-execbuf-stress-pc8:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@i915_pm_rpm@gem-execbuf-stress-pc8.html">SKIP</a> ([fdo#109506] / [i915#2411])</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> ([i915#2373])</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> ([i915#1759] / [i915#2291])</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@forcewake:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@i915_suspend@forcewake.html">DMESG-WARN</a> ([i915#180]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@linear-16bpp-rotate-90:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@kms_big_fb@linear-16bpp-rotate-90.html">SKIP</a> ([fdo#109271]) +195 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@linear-32bpp-rotate-270:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_big_fb@linear-32bpp-rotate-270.html">SKIP</a> ([fdo#111614])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html">FAIL</a> ([i915#3722]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-8bpp-rotate-90:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_big_fb@yf-tiled-8bpp-rotate-90.html">SKIP</a> ([fdo#111615]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-0-hflip:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl3/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-0-hflip.html">SKIP</a> ([fdo#109271] / [i915#3777]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip:</p>
-<ul>
-<li>
-<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip.html">SKIP</a> ([fdo#109271] / [i915#3777])</p>
-</li>
-<li>
-<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip.html">SKIP</a> ([fdo#109271] / [i915#3777])</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-a-ccs-on-another-bo-yf_tiled_ccs:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_ccs@pipe-a-ccs-on-another-bo-yf_tiled_ccs.html">SKIP</a> ([i915#3689]) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-b-ccs-on-another-bo-y_tiled_gen12_mc_ccs:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl9/igt@kms_ccs@pipe-b-ccs-on-another-bo-y_tiled_gen12_mc_ccs.html">SKIP</a> ([fdo#109271] / [i915#3886]) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-b-random-ccs-data-y_tiled_gen12_mc_ccs:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_ccs@pipe-b-random-ccs-data-y_tiled_gen12_mc_ccs.html">SKIP</a> ([fdo#109271] / [i915#3886]) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-c-ccs-on-another-bo-y_tiled_gen12_rc_ccs_cc:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl3/igt@kms_ccs@pipe-c-ccs-on-another-bo-y_tiled_gen12_rc_ccs_cc.html">SKIP</a> ([fdo#109271] / [i915#3886]) +14 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-c-missing-ccs-buffer-y_tiled_gen12_mc_ccs:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_ccs@pipe-c-missing-ccs-buffer-y_tiled_gen12_mc_ccs.html">SKIP</a> ([i915#3689] / [i915#3886]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-hpd-after-suspend:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl3/igt@kms_chamelium@vga-hpd-after-suspend.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +18 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-a-ctm-blue-to-red:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_color_chamelium@pipe-a-ctm-blue-to-red.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-b-ctm-max:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl3/igt@kms_color_chamelium@pipe-b-ctm-max.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-c-ctm-red-to-blue:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_color_chamelium@pipe-c-ctm-red-to-blue.html">SKIP</a> ([fdo#109284] / [fdo#111827]) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@lic:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@kms_content_protection@lic.html">TIMEOUT</a> ([i915#1319]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@mei_interface:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_content_protection@mei_interface.html">SKIP</a> ([fdo#111828])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-a-cursor-512x170-random:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_cursor_crc@pipe-a-cursor-512x170-random.html">SKIP</a> ([fdo#109279] / [i915#3359]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-a-cursor-suspend:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl9/igt@kms_cursor_crc@pipe-a-cursor-suspend.html">INCOMPLETE</a> ([i915#2828] / [i915#300])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-c-cursor-32x10-rapid-movement:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_cursor_crc@pipe-c-cursor-32x10-rapid-movement.html">SKIP</a> ([i915#3359]) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-c-cursor-32x32-onscreen:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_cursor_crc@pipe-c-cursor-32x32-onscreen.html">SKIP</a> ([i915#3319])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-d-cursor-suspend:</p>
-<ul>
-<li>
-<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_cursor_crc@pipe-d-cursor-suspend.html">SKIP</a> ([fdo#109271]) +79 similar issues</p>
-</li>
-<li>
-<p>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb2/igt@kms_cursor_crc@pipe-d-cursor-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb7/igt@kms_cursor_crc@pipe-d-cursor-suspend.html">INCOMPLETE</a> ([i915#4211])</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl2/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> ([i915#2346])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@pipe-d-single-bo:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_cursor_legacy@pipe-d-single-bo.html">SKIP</a> ([fdo#109271] / [i915#533]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-plain-flip-ts-check:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_flip@2x-plain-flip-ts-check.html">SKIP</a> ([fdo#111825]) +12 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl7/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">FAIL</a> ([i915#79])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-apl3/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html">DMESG-WARN</a> ([i915#180])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb4/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb2/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile.html">SKIP</a> ([i915#3701])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile.html">SKIP</a> ([i915#2587])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs.html">SKIP</a> ([fdo#109271] / [i915#2672])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-suspend:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl4/igt@kms_frontbuffer_tracking@fbc-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html">DMESG-WARN</a> ([i915#180]) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> ([fdo#109271] / [i915#533]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html">SKIP</a> ([fdo#109271] / [i915#533])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl1/igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb.html">FAIL</a> ([fdo#108145] / [i915#265]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl4/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html">FAIL</a> ([fdo#108145] / [i915#265])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-b-constant-alpha-max:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-max.html">FAIL</a> ([fdo#108145] / [i915#265])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@pipe-b-tiling-x:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_plane_lowres@pipe-b-tiling-x.html">SKIP</a> ([i915#3536]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4.html">SKIP</a> ([fdo#109271] / [i915#658]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-4:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl1/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-4.html">SKIP</a> ([fdo#109271] / [i915#658]) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1.html">SKIP</a> ([fdo#109271] / [i915#658]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_primary_mmap_gtt:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@kms_psr@psr2_primary_mmap_gtt.html">FAIL</a> ([i915#132] / [i915#3467]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_sprite_blt:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@kms_psr@psr2_sprite_blt.html">SKIP</a> ([fdo#109441]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_sysfs_edid_timing:</p>
-<ul>
-<li>
-<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl3/igt@kms_sysfs_edid_timing.html">FAIL</a> ([IGT#2])</p>
-</li>
-<li>
-<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@kms_sysfs_edid_timing.html">FAIL</a> ([IGT#2])</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-d-ts-continuation-suspend:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb1/igt@kms_vblank@pipe-d-ts-continuation-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb7/igt@kms_vblank@pipe-d-ts-continuation-suspend.html">INCOMPLETE</a> ([i915#3896])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_writeback@writeback-check-output:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_writeback@writeback-check-output.html">SKIP</a> ([i915#2437]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_nv_api@i915_self_import_to_different_fd:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb8/igt@prime_nv_api@i915_self_import_to_different_fd.html">SKIP</a> ([fdo#109291]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@syncobj_basic@bad-destroy:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl5/igt@syncobj_basic@bad-destroy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl5/igt@syncobj_basic@bad-destroy.html">DMESG-WARN</a> ([i915#1982]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@sysfs_clients@recycle-many:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl6/igt@sysfs_clients@recycle-many.html">SKIP</a> ([fdo#109271] / [i915#2994]) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@sysfs_clients@sema-50:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@sysfs_clients@sema-50.html">SKIP</a> ([fdo#109271] / [i915#2994])</li>
-</ul>
-</li>
-<li>
-<p>igt@sysfs_clients@split-25:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@sysfs_clients@split-25.html">SKIP</a> ([i915#2994])</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fair@basic-none-share@rcs0:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb2/igt@gem_exec_fair@basic-none-share@rcs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@gem_exec_fair@basic-none-share@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk8/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk9/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@rcs0:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb5/igt@gem_exec_fair@basic-pace@rcs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb6/igt@gem_exec_fair@basic-pace@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@vcs1:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl6/igt@gem_exec_fair@basic-pace@vcs1.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl2/igt@gem_exec_fair@basic-pace@vcs1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_params@dr1-dirt:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl4/igt@gem_exec_params@dr1-dirt.html">DMESG-WARN</a> ([i915#1982]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl5/igt@gem_exec_params@dr1-dirt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ppgtt@flink-and-close-vma-leak:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk6/igt@gem_ppgtt@flink-and-close-vma-leak.html">FAIL</a> ([i915#644]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk5/igt@gem_ppgtt@flink-and-close-vma-leak.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@noreloc-s3:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl1/igt@gem_softpin@noreloc-s3.html">DMESG-WARN</a> ([i915#180]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-kbl7/igt@gem_softpin@noreloc-s3.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_workarounds@suspend-resume-context:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl2/igt@gem_workarounds@suspend-resume-context.html">INCOMPLETE</a> ([i915#198] / [i915#4173]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@gem_workarounds@suspend-resume-context.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@allowed-single:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl9/igt@gen9_exec_parse@allowed-single.html">DMESG-WARN</a> ([i915#1436] / [i915#716]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@gen9_exec_parse@allowed-single.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_dc@dc6-dpms:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb3/igt@i915_pm_dc@dc6-dpms.html">FAIL</a> ([i915#454]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb4/igt@i915_pm_dc@dc6-dpms.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-32bpp-rotate-0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-glk4/igt@kms_big_fb@x-tiled-32bpp-rotate-0.html">DMESG-WARN</a> ([i915#118] / [i915#95]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-glk7/igt@kms_big_fb@x-tiled-32bpp-rotate-0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl6/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html">FAIL</a> ([i915#2122]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl1/igt@kms_flip@plain-flip-fb-recreate-interruptible@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-suspend:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-tglb7/igt@kms_frontbuffer_tracking@psr-suspend.html">INCOMPLETE</a> ([i915#2411] / [i915#456]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-tglb3/igt@kms_frontbuffer_tracking@psr-suspend.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl1/igt@kms_hdr@bpc-switch.html">FAIL</a> ([i915#1188]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl2/igt@kms_hdr@bpc-switch.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes.html">DMESG-WARN</a> ([i915#180]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-apl2/igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html">FAIL</a> ([fdo#108145] / [i915#265]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_cursor_mmap_cpu:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb4/igt@kms_psr@psr2_cursor_mmap_cpu.html">SKIP</a> ([fdo#109441]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@polling-parameterized:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-skl3/igt@perf@polling-parameterized.html">FAIL</a> ([i915#1542]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-skl8/igt@perf@polling-parameterized.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-2:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb4/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-2.html">SKIP</a> ([i915#658]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-2.html">SKIP</a> ([i915#2920]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-iclb2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4.html">SKIP</a> ([i915#2920]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21189/shard-iclb7/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4.html">SKIP</a> ([i915#658]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>shard-kbl:          (<a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl1/igt@runner@aborted.html">FAIL</a>, <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl1/igt@runner@aborted.html">FAIL</a>, <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl4/igt@runner@aborted.html">FAIL</a>, <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl4/igt@runner@aborted.html">FAIL</a>, <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/shard-kbl6/igt@runner@aborted.ht">FAIL</a>) ([i915#180] / [i915#1814] / [i915#3002] / [i915#3363]) -&gt; ([FAIL][141], [FAIL][142], [FAIL][143], [FAIL][144], [FAIL][145], [FAIL][146], [FAIL][147], [FAIL][148]) ([fdo#109271] / [i915#180] / [i915#1814] / [i915#3002] / [i915#3363] / [i915#602])</li>
-</ul>
-</li>
-</ul>
-
-</body>
-</html>
-
---===============2915392975408309505==--
+On Mon, Sep 27, 2021 at 09:24:47PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> "ddi_translations" is a bit too long, let's shorten it to just "trans".
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  92 +--
+>  .../drm/i915/display/intel_ddi_buf_trans.c    | 628 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c |  12 +-
+>  3 files changed, 366 insertions(+), 366 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index a4667741d354..39bacef87ef2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -104,10 +104,10 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+>  	u32 iboost_bit = 0;
+>  	int i, n_entries;
+>  	enum port port = encoder->port;
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  		return;
+>  
+>  	/* If we're boosting the current, set bit 31 of trans1 */
+> @@ -117,9 +117,9 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+>  
+>  	for (i = 0; i < n_entries; i++) {
+>  		intel_de_write(dev_priv, DDI_BUF_TRANS_LO(port, i),
+> -			       ddi_translations->entries[i].hsw.trans1 | iboost_bit);
+> +			       trans->entries[i].hsw.trans1 | iboost_bit);
+>  		intel_de_write(dev_priv, DDI_BUF_TRANS_HI(port, i),
+> -			       ddi_translations->entries[i].hsw.trans2);
+> +			       trans->entries[i].hsw.trans2);
+>  	}
+>  }
+>  
+> @@ -136,10 +136,10 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
+>  	u32 iboost_bit = 0;
+>  	int n_entries;
+>  	enum port port = encoder->port;
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  		return;
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+>  		level = n_entries - 1;
+> @@ -151,9 +151,9 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
+>  
+>  	/* Entry 9 is for HDMI: */
+>  	intel_de_write(dev_priv, DDI_BUF_TRANS_LO(port, 9),
+> -		       ddi_translations->entries[level].hsw.trans1 | iboost_bit);
+> +		       trans->entries[level].hsw.trans1 | iboost_bit);
+>  	intel_de_write(dev_priv, DDI_BUF_TRANS_HI(port, 9),
+> -		       ddi_translations->entries[level].hsw.trans2);
+> +		       trans->entries[level].hsw.trans2);
+>  }
+>  
+>  void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
+> @@ -971,16 +971,16 @@ static void skl_ddi_set_iboost(struct intel_encoder *encoder,
+>  		iboost = intel_bios_encoder_dp_boost_level(encoder->devdata);
+>  
+>  	if (iboost == 0) {
+> -		const struct intel_ddi_buf_trans *ddi_translations;
+> +		const struct intel_ddi_buf_trans *trans;
+>  		int n_entries;
+>  
+> -		ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -		if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +		trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +		if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  			return;
+>  		if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+>  			level = n_entries - 1;
+>  
+> -		iboost = ddi_translations->entries[level].hsw.i_boost;
+> +		iboost = trans->entries[level].hsw.i_boost;
+>  	}
+>  
+>  	/* Make sure that the requested I_boost is valid */
+> @@ -1000,21 +1000,21 @@ static void bxt_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  				    int level)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  	enum port port = encoder->port;
+>  	int n_entries;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  		return;
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+>  		level = n_entries - 1;
+>  
+>  	bxt_ddi_phy_set_signal_level(dev_priv, port,
+> -				     ddi_translations->entries[level].bxt.margin,
+> -				     ddi_translations->entries[level].bxt.scale,
+> -				     ddi_translations->entries[level].bxt.enable,
+> -				     ddi_translations->entries[level].bxt.deemphasis);
+> +				     trans->entries[level].bxt.margin,
+> +				     trans->entries[level].bxt.scale,
+> +				     trans->entries[level].bxt.enable,
+> +				     trans->entries[level].bxt.deemphasis);
+>  }
+>  
+>  static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp,
+> @@ -1051,13 +1051,13 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
+>  					 int level)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>  	int n_entries, ln;
+>  	u32 val;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  		return;
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+>  		level = n_entries - 1;
+> @@ -1066,7 +1066,7 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
+>  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+>  		val = EDP4K2K_MODE_OVRD_EN | EDP4K2K_MODE_OVRD_OPTIMIZED;
+> -		intel_dp->hobl_active = is_hobl_buf_trans(ddi_translations);
+> +		intel_dp->hobl_active = is_hobl_buf_trans(trans);
+>  		intel_de_rmw(dev_priv, ICL_PORT_CL_DW10(phy), val,
+>  			     intel_dp->hobl_active ? val : 0);
+>  	}
+> @@ -1084,8 +1084,8 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
+>  	val = intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN0(phy));
+>  	val &= ~(SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
+>  		 RCOMP_SCALAR_MASK);
+> -	val |= SWING_SEL_UPPER(ddi_translations->entries[level].icl.dw2_swing_sel);
+> -	val |= SWING_SEL_LOWER(ddi_translations->entries[level].icl.dw2_swing_sel);
+> +	val |= SWING_SEL_UPPER(trans->entries[level].icl.dw2_swing_sel);
+> +	val |= SWING_SEL_LOWER(trans->entries[level].icl.dw2_swing_sel);
+>  	/* Program Rcomp scalar for every table entry */
+>  	val |= RCOMP_SCALAR(0x98);
+>  	intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), val);
+> @@ -1096,16 +1096,16 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
+>  		val = intel_de_read(dev_priv, ICL_PORT_TX_DW4_LN(ln, phy));
+>  		val &= ~(POST_CURSOR_1_MASK | POST_CURSOR_2_MASK |
+>  			 CURSOR_COEFF_MASK);
+> -		val |= POST_CURSOR_1(ddi_translations->entries[level].icl.dw4_post_cursor_1);
+> -		val |= POST_CURSOR_2(ddi_translations->entries[level].icl.dw4_post_cursor_2);
+> -		val |= CURSOR_COEFF(ddi_translations->entries[level].icl.dw4_cursor_coeff);
+> +		val |= POST_CURSOR_1(trans->entries[level].icl.dw4_post_cursor_1);
+> +		val |= POST_CURSOR_2(trans->entries[level].icl.dw4_post_cursor_2);
+> +		val |= CURSOR_COEFF(trans->entries[level].icl.dw4_cursor_coeff);
+>  		intel_de_write(dev_priv, ICL_PORT_TX_DW4_LN(ln, phy), val);
+>  	}
+>  
+>  	/* Program PORT_TX_DW7 */
+>  	val = intel_de_read(dev_priv, ICL_PORT_TX_DW7_LN0(phy));
+>  	val &= ~N_SCALAR_MASK;
+> -	val |= N_SCALAR(ddi_translations->entries[level].icl.dw7_n_scalar);
+> +	val |= N_SCALAR(trans->entries[level].icl.dw7_n_scalar);
+>  	intel_de_write(dev_priv, ICL_PORT_TX_DW7_GRP(phy), val);
+>  }
+>  
+> @@ -1176,15 +1176,15 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  	int n_entries, ln;
+>  	u32 val;
+>  
+>  	if (enc_to_dig_port(encoder)->tc_mode == TC_PORT_TBT_ALT)
+>  		return;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  		return;
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+>  		level = n_entries - 1;
+> @@ -1205,13 +1205,13 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  		val = intel_de_read(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port));
+>  		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
+>  		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
+> -			ddi_translations->entries[level].mg.cri_txdeemph_override_17_12);
+> +			trans->entries[level].mg.cri_txdeemph_override_17_12);
+>  		intel_de_write(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port), val);
+>  
+>  		val = intel_de_read(dev_priv, MG_TX2_SWINGCTRL(ln, tc_port));
+>  		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
+>  		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
+> -			ddi_translations->entries[level].mg.cri_txdeemph_override_17_12);
+> +			trans->entries[level].mg.cri_txdeemph_override_17_12);
+>  		intel_de_write(dev_priv, MG_TX2_SWINGCTRL(ln, tc_port), val);
+>  	}
+>  
+> @@ -1221,9 +1221,9 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
+>  			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
+>  		val |= CRI_TXDEEMPH_OVERRIDE_5_0(
+> -			ddi_translations->entries[level].mg.cri_txdeemph_override_5_0) |
+> +			trans->entries[level].mg.cri_txdeemph_override_5_0) |
+>  			CRI_TXDEEMPH_OVERRIDE_11_6(
+> -				ddi_translations->entries[level].mg.cri_txdeemph_override_11_6) |
+> +				trans->entries[level].mg.cri_txdeemph_override_11_6) |
+>  			CRI_TXDEEMPH_OVERRIDE_EN;
+>  		intel_de_write(dev_priv, MG_TX1_DRVCTRL(ln, tc_port), val);
+>  
+> @@ -1231,9 +1231,9 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
+>  			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
+>  		val |= CRI_TXDEEMPH_OVERRIDE_5_0(
+> -			ddi_translations->entries[level].mg.cri_txdeemph_override_5_0) |
+> +			trans->entries[level].mg.cri_txdeemph_override_5_0) |
+>  			CRI_TXDEEMPH_OVERRIDE_11_6(
+> -				ddi_translations->entries[level].mg.cri_txdeemph_override_11_6) |
+> +				trans->entries[level].mg.cri_txdeemph_override_11_6) |
+>  			CRI_TXDEEMPH_OVERRIDE_EN;
+>  		intel_de_write(dev_priv, MG_TX2_DRVCTRL(ln, tc_port), val);
+>  
+> @@ -1313,15 +1313,15 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  	u32 val, dpcnt_mask, dpcnt_val;
+>  	int n_entries, ln;
+>  
+>  	if (enc_to_dig_port(encoder)->tc_mode == TC_PORT_TBT_ALT)
+>  		return;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  		return;
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+>  		level = n_entries - 1;
+> @@ -1329,9 +1329,9 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  	dpcnt_mask = (DKL_TX_PRESHOOT_COEFF_MASK |
+>  		      DKL_TX_DE_EMPAHSIS_COEFF_MASK |
+>  		      DKL_TX_VSWING_CONTROL_MASK);
+> -	dpcnt_val = DKL_TX_VSWING_CONTROL(ddi_translations->entries[level].dkl.dkl_vswing_control);
+> -	dpcnt_val |= DKL_TX_DE_EMPHASIS_COEFF(ddi_translations->entries[level].dkl.dkl_de_emphasis_control);
+> -	dpcnt_val |= DKL_TX_PRESHOOT_COEFF(ddi_translations->entries[level].dkl.dkl_preshoot_control);
+> +	dpcnt_val = DKL_TX_VSWING_CONTROL(trans->entries[level].dkl.dkl_vswing_control);
+> +	dpcnt_val |= DKL_TX_DE_EMPHASIS_COEFF(trans->entries[level].dkl.dkl_de_emphasis_control);
+> +	dpcnt_val |= DKL_TX_PRESHOOT_COEFF(trans->entries[level].dkl.dkl_preshoot_control);
+>  
+>  	for (ln = 0; ln < 2; ln++) {
+>  		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> index 796dd04eae01..449daba7afb3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> @@ -13,7 +13,7 @@
+>   * them for both DP and FDI transports, allowing those ports to
+>   * automatically adapt to HDMI connections as well
+>   */
+> -static const union intel_ddi_buf_trans_entry _hsw_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _hsw_trans_dp[] = {
+>  	{ .hsw = { 0x00FFFFFF, 0x0006000E, 0x0 } },
+>  	{ .hsw = { 0x00D75FFF, 0x0005000A, 0x0 } },
+>  	{ .hsw = { 0x00C30FFF, 0x00040006, 0x0 } },
+> @@ -25,12 +25,12 @@ static const union intel_ddi_buf_trans_entry _hsw_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80D75FFF, 0x000B0000, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans hsw_ddi_translations_dp = {
+> -	.entries = _hsw_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_hsw_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans hsw_trans_dp = {
+> +	.entries = _hsw_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_hsw_trans_dp),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _hsw_ddi_translations_fdi[] = {
+> +static const union intel_ddi_buf_trans_entry _hsw_trans_fdi[] = {
+>  	{ .hsw = { 0x00FFFFFF, 0x0007000E, 0x0 } },
+>  	{ .hsw = { 0x00D75FFF, 0x000F000A, 0x0 } },
+>  	{ .hsw = { 0x00C30FFF, 0x00060006, 0x0 } },
+> @@ -42,12 +42,12 @@ static const union intel_ddi_buf_trans_entry _hsw_ddi_translations_fdi[] = {
+>  	{ .hsw = { 0x00D75FFF, 0x001E0000, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans hsw_ddi_translations_fdi = {
+> -	.entries = _hsw_ddi_translations_fdi,
+> -	.num_entries = ARRAY_SIZE(_hsw_ddi_translations_fdi),
+> +static const struct intel_ddi_buf_trans hsw_trans_fdi = {
+> +	.entries = _hsw_trans_fdi,
+> +	.num_entries = ARRAY_SIZE(_hsw_trans_fdi),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _hsw_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _hsw_trans_hdmi[] = {
+>  							/* Idx	NT mV d	T mV d	db	*/
+>  	{ .hsw = { 0x00FFFFFF, 0x0006000E, 0x0 } },	/* 0:	400	400	0	*/
+>  	{ .hsw = { 0x00E79FFF, 0x000E000C, 0x0 } },	/* 1:	400	500	2	*/
+> @@ -63,13 +63,13 @@ static const union intel_ddi_buf_trans_entry _hsw_ddi_translations_hdmi[] = {
+>  	{ .hsw = { 0x80FFFFFF, 0x00030002, 0x0 } },	/* 11:	1000	1000	0	*/
+>  };
+>  
+> -static const struct intel_ddi_buf_trans hsw_ddi_translations_hdmi = {
+> -	.entries = _hsw_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_hsw_ddi_translations_hdmi),
+> +static const struct intel_ddi_buf_trans hsw_trans_hdmi = {
+> +	.entries = _hsw_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_hsw_trans_hdmi),
+>  	.hdmi_default_entry = 6,
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_edp[] = {
+> +static const union intel_ddi_buf_trans_entry _bdw_trans_edp[] = {
+>  	{ .hsw = { 0x00FFFFFF, 0x00000012, 0x0 } },
+>  	{ .hsw = { 0x00EBAFFF, 0x00020011, 0x0 } },
+>  	{ .hsw = { 0x00C71FFF, 0x0006000F, 0x0 } },
+> @@ -81,12 +81,12 @@ static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_edp[] = {
+>  	{ .hsw = { 0x00DB6FFF, 0x000A000C, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans bdw_ddi_translations_edp = {
+> -	.entries = _bdw_ddi_translations_edp,
+> -	.num_entries = ARRAY_SIZE(_bdw_ddi_translations_edp),
+> +static const struct intel_ddi_buf_trans bdw_trans_edp = {
+> +	.entries = _bdw_trans_edp,
+> +	.num_entries = ARRAY_SIZE(_bdw_trans_edp),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _bdw_trans_dp[] = {
+>  	{ .hsw = { 0x00FFFFFF, 0x0007000E, 0x0 } },
+>  	{ .hsw = { 0x00D75FFF, 0x000E000A, 0x0 } },
+>  	{ .hsw = { 0x00BEFFFF, 0x00140006, 0x0 } },
+> @@ -98,12 +98,12 @@ static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80D75FFF, 0x001B0002, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans bdw_ddi_translations_dp = {
+> -	.entries = _bdw_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_bdw_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans bdw_trans_dp = {
+> +	.entries = _bdw_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_bdw_trans_dp),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_fdi[] = {
+> +static const union intel_ddi_buf_trans_entry _bdw_trans_fdi[] = {
+>  	{ .hsw = { 0x00FFFFFF, 0x0001000E, 0x0 } },
+>  	{ .hsw = { 0x00D75FFF, 0x0004000A, 0x0 } },
+>  	{ .hsw = { 0x00C30FFF, 0x00070006, 0x0 } },
+> @@ -115,12 +115,12 @@ static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_fdi[] = {
+>  	{ .hsw = { 0x00D75FFF, 0x000C0000, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans bdw_ddi_translations_fdi = {
+> -	.entries = _bdw_ddi_translations_fdi,
+> -	.num_entries = ARRAY_SIZE(_bdw_ddi_translations_fdi),
+> +static const struct intel_ddi_buf_trans bdw_trans_fdi = {
+> +	.entries = _bdw_trans_fdi,
+> +	.num_entries = ARRAY_SIZE(_bdw_trans_fdi),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _bdw_trans_hdmi[] = {
+>  							/* Idx	NT mV d	T mV df	db	*/
+>  	{ .hsw = { 0x00FFFFFF, 0x0007000E, 0x0 } },	/* 0:	400	400	0	*/
+>  	{ .hsw = { 0x00D75FFF, 0x000E000A, 0x0 } },	/* 1:	400	600	3.5	*/
+> @@ -134,14 +134,14 @@ static const union intel_ddi_buf_trans_entry _bdw_ddi_translations_hdmi[] = {
+>  	{ .hsw = { 0x80FFFFFF, 0x001B0002, 0x0 } },	/* 9:	1000	1000	0	*/
+>  };
+>  
+> -static const struct intel_ddi_buf_trans bdw_ddi_translations_hdmi = {
+> -	.entries = _bdw_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_bdw_ddi_translations_hdmi),
+> +static const struct intel_ddi_buf_trans bdw_trans_hdmi = {
+> +	.entries = _bdw_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_bdw_trans_hdmi),
+>  	.hdmi_default_entry = 7,
+>  };
+>  
+>  /* Skylake H and S */
+> -static const union intel_ddi_buf_trans_entry _skl_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_trans_dp[] = {
+>  	{ .hsw = { 0x00002016, 0x000000A0, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x0000009B, 0x0 } },
+>  	{ .hsw = { 0x00007011, 0x00000088, 0x0 } },
+> @@ -153,13 +153,13 @@ static const union intel_ddi_buf_trans_entry _skl_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80005012, 0x000000C0, 0x1 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_ddi_translations_dp = {
+> -	.entries = _skl_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_skl_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans skl_trans_dp = {
+> +	.entries = _skl_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_skl_trans_dp),
+>  };
+>  
+>  /* Skylake U */
+> -static const union intel_ddi_buf_trans_entry _skl_u_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_u_trans_dp[] = {
+>  	{ .hsw = { 0x0000201B, 0x000000A2, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x00000088, 0x0 } },
+>  	{ .hsw = { 0x80007011, 0x000000CD, 0x1 } },
+> @@ -171,13 +171,13 @@ static const union intel_ddi_buf_trans_entry _skl_u_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80005012, 0x000000C0, 0x1 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_u_ddi_translations_dp = {
+> -	.entries = _skl_u_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_skl_u_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans skl_u_trans_dp = {
+> +	.entries = _skl_u_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_skl_u_trans_dp),
+>  };
+>  
+>  /* Skylake Y */
+> -static const union intel_ddi_buf_trans_entry _skl_y_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_y_trans_dp[] = {
+>  	{ .hsw = { 0x00000018, 0x000000A2, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x00000088, 0x0 } },
+>  	{ .hsw = { 0x80007011, 0x000000CD, 0x3 } },
+> @@ -189,13 +189,13 @@ static const union intel_ddi_buf_trans_entry _skl_y_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80005012, 0x000000C0, 0x3 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_y_ddi_translations_dp = {
+> -	.entries = _skl_y_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_skl_y_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans skl_y_trans_dp = {
+> +	.entries = _skl_y_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_skl_y_trans_dp),
+>  };
+>  
+>  /* Kabylake H and S */
+> -static const union intel_ddi_buf_trans_entry _kbl_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _kbl_trans_dp[] = {
+>  	{ .hsw = { 0x00002016, 0x000000A0, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x0000009B, 0x0 } },
+>  	{ .hsw = { 0x00007011, 0x00000088, 0x0 } },
+> @@ -207,13 +207,13 @@ static const union intel_ddi_buf_trans_entry _kbl_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80005012, 0x000000C0, 0x1 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans kbl_ddi_translations_dp = {
+> -	.entries = _kbl_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_kbl_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans kbl_trans_dp = {
+> +	.entries = _kbl_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_kbl_trans_dp),
+>  };
+>  
+>  /* Kabylake U */
+> -static const union intel_ddi_buf_trans_entry _kbl_u_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _kbl_u_trans_dp[] = {
+>  	{ .hsw = { 0x0000201B, 0x000000A1, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x00000088, 0x0 } },
+>  	{ .hsw = { 0x80007011, 0x000000CD, 0x3 } },
+> @@ -225,13 +225,13 @@ static const union intel_ddi_buf_trans_entry _kbl_u_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80005012, 0x000000C0, 0x3 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans kbl_u_ddi_translations_dp = {
+> -	.entries = _kbl_u_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_kbl_u_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans kbl_u_trans_dp = {
+> +	.entries = _kbl_u_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_kbl_u_trans_dp),
+>  };
+>  
+>  /* Kabylake Y */
+> -static const union intel_ddi_buf_trans_entry _kbl_y_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _kbl_y_trans_dp[] = {
+>  	{ .hsw = { 0x00001017, 0x000000A1, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x00000088, 0x0 } },
+>  	{ .hsw = { 0x80007011, 0x000000CD, 0x3 } },
+> @@ -243,16 +243,16 @@ static const union intel_ddi_buf_trans_entry _kbl_y_ddi_translations_dp[] = {
+>  	{ .hsw = { 0x80005012, 0x000000C0, 0x3 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans kbl_y_ddi_translations_dp = {
+> -	.entries = _kbl_y_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_kbl_y_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans kbl_y_trans_dp = {
+> +	.entries = _kbl_y_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_kbl_y_trans_dp),
+>  };
+>  
+>  /*
+>   * Skylake/Kabylake H and S
+>   * eDP 1.4 low vswing translation parameters
+>   */
+> -static const union intel_ddi_buf_trans_entry _skl_ddi_translations_edp[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_trans_edp[] = {
+>  	{ .hsw = { 0x00000018, 0x000000A8, 0x0 } },
+>  	{ .hsw = { 0x00004013, 0x000000A9, 0x0 } },
+>  	{ .hsw = { 0x00007011, 0x000000A2, 0x0 } },
+> @@ -265,16 +265,16 @@ static const union intel_ddi_buf_trans_entry _skl_ddi_translations_edp[] = {
+>  	{ .hsw = { 0x00000018, 0x000000DF, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_ddi_translations_edp = {
+> -	.entries = _skl_ddi_translations_edp,
+> -	.num_entries = ARRAY_SIZE(_skl_ddi_translations_edp),
+> +static const struct intel_ddi_buf_trans skl_trans_edp = {
+> +	.entries = _skl_trans_edp,
+> +	.num_entries = ARRAY_SIZE(_skl_trans_edp),
+>  };
+>  
+>  /*
+>   * Skylake/Kabylake U
+>   * eDP 1.4 low vswing translation parameters
+>   */
+> -static const union intel_ddi_buf_trans_entry _skl_u_ddi_translations_edp[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_u_trans_edp[] = {
+>  	{ .hsw = { 0x00000018, 0x000000A8, 0x0 } },
+>  	{ .hsw = { 0x00004013, 0x000000A9, 0x0 } },
+>  	{ .hsw = { 0x00007011, 0x000000A2, 0x0 } },
+> @@ -287,16 +287,16 @@ static const union intel_ddi_buf_trans_entry _skl_u_ddi_translations_edp[] = {
+>  	{ .hsw = { 0x00000018, 0x000000DF, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_u_ddi_translations_edp = {
+> -	.entries = _skl_u_ddi_translations_edp,
+> -	.num_entries = ARRAY_SIZE(_skl_u_ddi_translations_edp),
+> +static const struct intel_ddi_buf_trans skl_u_trans_edp = {
+> +	.entries = _skl_u_trans_edp,
+> +	.num_entries = ARRAY_SIZE(_skl_u_trans_edp),
+>  };
+>  
+>  /*
+>   * Skylake/Kabylake Y
+>   * eDP 1.4 low vswing translation parameters
+>   */
+> -static const union intel_ddi_buf_trans_entry _skl_y_ddi_translations_edp[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_y_trans_edp[] = {
+>  	{ .hsw = { 0x00000018, 0x000000A8, 0x0 } },
+>  	{ .hsw = { 0x00004013, 0x000000AB, 0x0 } },
+>  	{ .hsw = { 0x00007011, 0x000000A4, 0x0 } },
+> @@ -309,13 +309,13 @@ static const union intel_ddi_buf_trans_entry _skl_y_ddi_translations_edp[] = {
+>  	{ .hsw = { 0x00000018, 0x0000008A, 0x0 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_y_ddi_translations_edp = {
+> -	.entries = _skl_y_ddi_translations_edp,
+> -	.num_entries = ARRAY_SIZE(_skl_y_ddi_translations_edp),
+> +static const struct intel_ddi_buf_trans skl_y_trans_edp = {
+> +	.entries = _skl_y_trans_edp,
+> +	.num_entries = ARRAY_SIZE(_skl_y_trans_edp),
+>  };
+>  
+>  /* Skylake/Kabylake U, H and S */
+> -static const union intel_ddi_buf_trans_entry _skl_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_trans_hdmi[] = {
+>  	{ .hsw = { 0x00000018, 0x000000AC, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x0000009D, 0x0 } },
+>  	{ .hsw = { 0x00007011, 0x00000088, 0x0 } },
+> @@ -329,14 +329,14 @@ static const union intel_ddi_buf_trans_entry _skl_ddi_translations_hdmi[] = {
+>  	{ .hsw = { 0x80000018, 0x000000C0, 0x1 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_ddi_translations_hdmi = {
+> -	.entries = _skl_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_skl_ddi_translations_hdmi),
+> +static const struct intel_ddi_buf_trans skl_trans_hdmi = {
+> +	.entries = _skl_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_skl_trans_hdmi),
+>  	.hdmi_default_entry = 8,
+>  };
+>  
+>  /* Skylake/Kabylake Y */
+> -static const union intel_ddi_buf_trans_entry _skl_y_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _skl_y_trans_hdmi[] = {
+>  	{ .hsw = { 0x00000018, 0x000000A1, 0x0 } },
+>  	{ .hsw = { 0x00005012, 0x000000DF, 0x0 } },
+>  	{ .hsw = { 0x80007011, 0x000000CB, 0x3 } },
+> @@ -350,13 +350,13 @@ static const union intel_ddi_buf_trans_entry _skl_y_ddi_translations_hdmi[] = {
+>  	{ .hsw = { 0x80000018, 0x000000C0, 0x3 } },
+>  };
+>  
+> -static const struct intel_ddi_buf_trans skl_y_ddi_translations_hdmi = {
+> -	.entries = _skl_y_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_skl_y_ddi_translations_hdmi),
+> +static const struct intel_ddi_buf_trans skl_y_trans_hdmi = {
+> +	.entries = _skl_y_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_skl_y_trans_hdmi),
+>  	.hdmi_default_entry = 8,
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _bxt_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _bxt_trans_dp[] = {
+>  						/* Idx	NT mV diff	db  */
+>  	{ .bxt = { 52,  0x9A, 0, 128, } },	/* 0:	400		0   */
+>  	{ .bxt = { 78,  0x9A, 0, 85,  } },	/* 1:	400		3.5 */
+> @@ -370,12 +370,12 @@ static const union intel_ddi_buf_trans_entry _bxt_ddi_translations_dp[] = {
+>  	{ .bxt = { 154, 0x9A, 1, 128, } },	/* 9:	1200		0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans bxt_ddi_translations_dp = {
+> -	.entries = _bxt_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_bxt_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans bxt_trans_dp = {
+> +	.entries = _bxt_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_bxt_trans_dp),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _bxt_ddi_translations_edp[] = {
+> +static const union intel_ddi_buf_trans_entry _bxt_trans_edp[] = {
+>  					/* Idx	NT mV diff	db  */
+>  	{ .bxt = { 26, 0, 0, 128, } },	/* 0:	200		0   */
+>  	{ .bxt = { 38, 0, 0, 112, } },	/* 1:	200		1.5 */
+> @@ -389,15 +389,15 @@ static const union intel_ddi_buf_trans_entry _bxt_ddi_translations_edp[] = {
+>  	{ .bxt = { 48, 0, 0, 128, } },	/* 9:	300		0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans bxt_ddi_translations_edp = {
+> -	.entries = _bxt_ddi_translations_edp,
+> -	.num_entries = ARRAY_SIZE(_bxt_ddi_translations_edp),
+> +static const struct intel_ddi_buf_trans bxt_trans_edp = {
+> +	.entries = _bxt_trans_edp,
+> +	.num_entries = ARRAY_SIZE(_bxt_trans_edp),
+>  };
+>  
+>  /* BSpec has 2 recommended values - entries 0 and 8.
+>   * Using the entry with higher vswing.
+>   */
+> -static const union intel_ddi_buf_trans_entry _bxt_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _bxt_trans_hdmi[] = {
+>  						/* Idx	NT mV diff	db  */
+>  	{ .bxt = { 52,  0x9A, 0, 128, } },	/* 0:	400		0   */
+>  	{ .bxt = { 52,  0x9A, 0, 85,  } },	/* 1:	400		3.5 */
+> @@ -411,14 +411,14 @@ static const union intel_ddi_buf_trans_entry _bxt_ddi_translations_hdmi[] = {
+>  	{ .bxt = { 154, 0x9A, 1, 128, } },	/* 9:	1200		0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans bxt_ddi_translations_hdmi = {
+> -	.entries = _bxt_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_bxt_ddi_translations_hdmi),
+> -	.hdmi_default_entry = ARRAY_SIZE(_bxt_ddi_translations_hdmi) - 1,
+> +static const struct intel_ddi_buf_trans bxt_trans_hdmi = {
+> +	.entries = _bxt_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_bxt_trans_hdmi),
+> +	.hdmi_default_entry = ARRAY_SIZE(_bxt_trans_hdmi) - 1,
+>  };
+>  
+> -/* icl_combo_phy_ddi_translations */
+> -static const union intel_ddi_buf_trans_entry _icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3[] = {
+> +/* icl_combo_phy_trans */
+> +static const union intel_ddi_buf_trans_entry _icl_combo_phy_trans_dp_hbr2_edp_hbr3[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -432,12 +432,12 @@ static const union intel_ddi_buf_trans_entry _icl_combo_phy_ddi_translations_dp_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3 = {
+> -	.entries = _icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3,
+> -	.num_entries = ARRAY_SIZE(_icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3),
+> +static const struct intel_ddi_buf_trans icl_combo_phy_trans_dp_hbr2_edp_hbr3 = {
+> +	.entries = _icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+> +	.num_entries = ARRAY_SIZE(_icl_combo_phy_trans_dp_hbr2_edp_hbr3),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _icl_combo_phy_ddi_translations_edp_hbr2[] = {
+> +static const union intel_ddi_buf_trans_entry _icl_combo_phy_trans_edp_hbr2[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0x0, 0x7F, 0x3F, 0x00, 0x00 } },	/* 200   200      0.0   */
+>  	{ .icl = { 0x8, 0x7F, 0x38, 0x00, 0x07 } },	/* 200   250      1.9   */
+> @@ -451,12 +451,12 @@ static const union intel_ddi_buf_trans_entry _icl_combo_phy_ddi_translations_edp
+>  	{ .icl = { 0x9, 0x7F, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans icl_combo_phy_ddi_translations_edp_hbr2 = {
+> -	.entries = _icl_combo_phy_ddi_translations_edp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_icl_combo_phy_ddi_translations_edp_hbr2),
+> +static const struct intel_ddi_buf_trans icl_combo_phy_trans_edp_hbr2 = {
+> +	.entries = _icl_combo_phy_trans_edp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_icl_combo_phy_trans_edp_hbr2),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _icl_combo_phy_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _icl_combo_phy_trans_hdmi[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x60, 0x3F, 0x00, 0x00 } },	/* 450   450      0.0   */
+>  	{ .icl = { 0xB, 0x73, 0x36, 0x00, 0x09 } },	/* 450   650      3.2   */
+> @@ -467,13 +467,13 @@ static const union intel_ddi_buf_trans_entry _icl_combo_phy_ddi_translations_hdm
+>  	{ .icl = { 0x6, 0x7F, 0x35, 0x00, 0x0A } },	/* 600   850      3.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans icl_combo_phy_ddi_translations_hdmi = {
+> -	.entries = _icl_combo_phy_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_icl_combo_phy_ddi_translations_hdmi),
+> -	.hdmi_default_entry = ARRAY_SIZE(_icl_combo_phy_ddi_translations_hdmi) - 1,
+> +static const struct intel_ddi_buf_trans icl_combo_phy_trans_hdmi = {
+> +	.entries = _icl_combo_phy_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_icl_combo_phy_trans_hdmi),
+> +	.hdmi_default_entry = ARRAY_SIZE(_icl_combo_phy_trans_hdmi) - 1,
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _ehl_combo_phy_ddi_translations_dp[] = {
+> +static const union intel_ddi_buf_trans_entry _ehl_combo_phy_trans_dp[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x33, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x47, 0x36, 0x00, 0x09 } },	/* 350   500      3.1   */
+> @@ -487,12 +487,12 @@ static const union intel_ddi_buf_trans_entry _ehl_combo_phy_ddi_translations_dp[
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans ehl_combo_phy_ddi_translations_dp = {
+> -	.entries = _ehl_combo_phy_ddi_translations_dp,
+> -	.num_entries = ARRAY_SIZE(_ehl_combo_phy_ddi_translations_dp),
+> +static const struct intel_ddi_buf_trans ehl_combo_phy_trans_dp = {
+> +	.entries = _ehl_combo_phy_trans_dp,
+> +	.num_entries = ARRAY_SIZE(_ehl_combo_phy_trans_dp),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _ehl_combo_phy_ddi_translations_edp_hbr2[] = {
+> +static const union intel_ddi_buf_trans_entry _ehl_combo_phy_trans_edp_hbr2[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0x8, 0x7F, 0x3F, 0x00, 0x00 } },	/* 200   200      0.0   */
+>  	{ .icl = { 0x8, 0x7F, 0x3F, 0x00, 0x00 } },	/* 200   250      1.9   */
+> @@ -506,12 +506,12 @@ static const union intel_ddi_buf_trans_entry _ehl_combo_phy_ddi_translations_edp
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans ehl_combo_phy_ddi_translations_edp_hbr2 = {
+> -	.entries = _ehl_combo_phy_ddi_translations_edp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_ehl_combo_phy_ddi_translations_edp_hbr2),
+> +static const struct intel_ddi_buf_trans ehl_combo_phy_trans_edp_hbr2 = {
+> +	.entries = _ehl_combo_phy_trans_edp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_ehl_combo_phy_trans_edp_hbr2),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _jsl_combo_phy_ddi_translations_edp_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _jsl_combo_phy_trans_edp_hbr[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0x8, 0x7F, 0x3F, 0x00, 0x00 } },	/* 200   200      0.0   */
+>  	{ .icl = { 0x8, 0x7F, 0x38, 0x00, 0x07 } },	/* 200   250      1.9   */
+> @@ -525,12 +525,12 @@ static const union intel_ddi_buf_trans_entry _jsl_combo_phy_ddi_translations_edp
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans jsl_combo_phy_ddi_translations_edp_hbr = {
+> -	.entries = _jsl_combo_phy_ddi_translations_edp_hbr,
+> -	.num_entries = ARRAY_SIZE(_jsl_combo_phy_ddi_translations_edp_hbr),
+> +static const struct intel_ddi_buf_trans jsl_combo_phy_trans_edp_hbr = {
+> +	.entries = _jsl_combo_phy_trans_edp_hbr,
+> +	.num_entries = ARRAY_SIZE(_jsl_combo_phy_trans_edp_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _jsl_combo_phy_ddi_translations_edp_hbr2[] = {
+> +static const union intel_ddi_buf_trans_entry _jsl_combo_phy_trans_edp_hbr2[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0x8, 0x7F, 0x3F, 0x00, 0x00 } },	/* 200   200      0.0   */
+>  	{ .icl = { 0x8, 0x7F, 0x3F, 0x00, 0x00 } },	/* 200   250      1.9   */
+> @@ -544,12 +544,12 @@ static const union intel_ddi_buf_trans_entry _jsl_combo_phy_ddi_translations_edp
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans jsl_combo_phy_ddi_translations_edp_hbr2 = {
+> -	.entries = _jsl_combo_phy_ddi_translations_edp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_jsl_combo_phy_ddi_translations_edp_hbr2),
+> +static const struct intel_ddi_buf_trans jsl_combo_phy_trans_edp_hbr2 = {
+> +	.entries = _jsl_combo_phy_trans_edp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_jsl_combo_phy_trans_edp_hbr2),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _dg1_combo_phy_ddi_translations_dp_rbr_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _dg1_combo_phy_trans_dp_rbr_hbr[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x32, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x48, 0x35, 0x00, 0x0A } },	/* 350   500      3.1   */
+> @@ -563,12 +563,12 @@ static const union intel_ddi_buf_trans_entry _dg1_combo_phy_ddi_translations_dp_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans dg1_combo_phy_ddi_translations_dp_rbr_hbr = {
+> -	.entries = _dg1_combo_phy_ddi_translations_dp_rbr_hbr,
+> -	.num_entries = ARRAY_SIZE(_dg1_combo_phy_ddi_translations_dp_rbr_hbr),
+> +static const struct intel_ddi_buf_trans dg1_combo_phy_trans_dp_rbr_hbr = {
+> +	.entries = _dg1_combo_phy_trans_dp_rbr_hbr,
+> +	.num_entries = ARRAY_SIZE(_dg1_combo_phy_trans_dp_rbr_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _dg1_combo_phy_ddi_translations_dp_hbr2_hbr3[] = {
+> +static const union intel_ddi_buf_trans_entry _dg1_combo_phy_trans_dp_hbr2_hbr3[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x32, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x48, 0x35, 0x00, 0x0A } },	/* 350   500      3.1   */
+> @@ -582,12 +582,12 @@ static const union intel_ddi_buf_trans_entry _dg1_combo_phy_ddi_translations_dp_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans dg1_combo_phy_ddi_translations_dp_hbr2_hbr3 = {
+> -	.entries = _dg1_combo_phy_ddi_translations_dp_hbr2_hbr3,
+> -	.num_entries = ARRAY_SIZE(_dg1_combo_phy_ddi_translations_dp_hbr2_hbr3),
+> +static const struct intel_ddi_buf_trans dg1_combo_phy_trans_dp_hbr2_hbr3 = {
+> +	.entries = _dg1_combo_phy_trans_dp_hbr2_hbr3,
+> +	.num_entries = ARRAY_SIZE(_dg1_combo_phy_trans_dp_hbr2_hbr3),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _icl_mg_phy_ddi_translations_rbr_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _icl_mg_phy_trans_rbr_hbr[] = {
+>  					/* Voltage swing  pre-emphasis */
+>  	{ .mg = { 0x18, 0x00, 0x00 } },	/* 0              0   */
+>  	{ .mg = { 0x1D, 0x00, 0x05 } },	/* 0              1   */
+> @@ -601,12 +601,12 @@ static const union intel_ddi_buf_trans_entry _icl_mg_phy_ddi_translations_rbr_hb
+>  	{ .mg = { 0x3F, 0x00, 0x00 } },	/* 3              0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans icl_mg_phy_ddi_translations_rbr_hbr = {
+> -	.entries = _icl_mg_phy_ddi_translations_rbr_hbr,
+> -	.num_entries = ARRAY_SIZE(_icl_mg_phy_ddi_translations_rbr_hbr),
+> +static const struct intel_ddi_buf_trans icl_mg_phy_trans_rbr_hbr = {
+> +	.entries = _icl_mg_phy_trans_rbr_hbr,
+> +	.num_entries = ARRAY_SIZE(_icl_mg_phy_trans_rbr_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _icl_mg_phy_ddi_translations_hbr2_hbr3[] = {
+> +static const union intel_ddi_buf_trans_entry _icl_mg_phy_trans_hbr2_hbr3[] = {
+>  					/* Voltage swing  pre-emphasis */
+>  	{ .mg = { 0x18, 0x00, 0x00 } },	/* 0              0   */
+>  	{ .mg = { 0x1D, 0x00, 0x05 } },	/* 0              1   */
+> @@ -620,12 +620,12 @@ static const union intel_ddi_buf_trans_entry _icl_mg_phy_ddi_translations_hbr2_h
+>  	{ .mg = { 0x3F, 0x00, 0x00 } },	/* 3              0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans icl_mg_phy_ddi_translations_hbr2_hbr3 = {
+> -	.entries = _icl_mg_phy_ddi_translations_hbr2_hbr3,
+> -	.num_entries = ARRAY_SIZE(_icl_mg_phy_ddi_translations_hbr2_hbr3),
+> +static const struct intel_ddi_buf_trans icl_mg_phy_trans_hbr2_hbr3 = {
+> +	.entries = _icl_mg_phy_trans_hbr2_hbr3,
+> +	.num_entries = ARRAY_SIZE(_icl_mg_phy_trans_hbr2_hbr3),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _icl_mg_phy_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _icl_mg_phy_trans_hdmi[] = {
+>  					/* HDMI Preset	VS	Pre-emph */
+>  	{ .mg = { 0x1A, 0x0, 0x0 } },	/* 1		400mV	0dB */
+>  	{ .mg = { 0x20, 0x0, 0x0 } },	/* 2		500mV	0dB */
+> @@ -639,13 +639,13 @@ static const union intel_ddi_buf_trans_entry _icl_mg_phy_ddi_translations_hdmi[]
+>  	{ .mg = { 0x36, 0x0, 0x9 } },	/* 10		Full	-3 dB */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans icl_mg_phy_ddi_translations_hdmi = {
+> -	.entries = _icl_mg_phy_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_icl_mg_phy_ddi_translations_hdmi),
+> -	.hdmi_default_entry = ARRAY_SIZE(_icl_mg_phy_ddi_translations_hdmi) - 1,
+> +static const struct intel_ddi_buf_trans icl_mg_phy_trans_hdmi = {
+> +	.entries = _icl_mg_phy_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_icl_mg_phy_trans_hdmi),
+> +	.hdmi_default_entry = ARRAY_SIZE(_icl_mg_phy_trans_hdmi) - 1,
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_ddi_translations_dp_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_trans_dp_hbr[] = {
+>  					/* VS	pre-emp	Non-trans mV	Pre-emph dB */
+>  	{ .dkl = { 0x7, 0x0, 0x00 } },	/* 0	0	400mV		0 dB */
+>  	{ .dkl = { 0x5, 0x0, 0x05 } },	/* 0	1	400mV		3.5 dB */
+> @@ -659,12 +659,12 @@ static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_ddi_translations_dp_hb
+>  	{ .dkl = { 0x0, 0x0, 0x00 } },	/* 3	0	1200mV		0 dB HDMI default */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans tgl_dkl_phy_ddi_translations_dp_hbr = {
+> -	.entries = _tgl_dkl_phy_ddi_translations_dp_hbr,
+> -	.num_entries = ARRAY_SIZE(_tgl_dkl_phy_ddi_translations_dp_hbr),
+> +static const struct intel_ddi_buf_trans tgl_dkl_phy_trans_dp_hbr = {
+> +	.entries = _tgl_dkl_phy_trans_dp_hbr,
+> +	.num_entries = ARRAY_SIZE(_tgl_dkl_phy_trans_dp_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_ddi_translations_dp_hbr2[] = {
+> +static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_trans_dp_hbr2[] = {
+>  					/* VS	pre-emp	Non-trans mV	Pre-emph dB */
+>  	{ .dkl = { 0x7, 0x0, 0x00 } },	/* 0	0	400mV		0 dB */
+>  	{ .dkl = { 0x5, 0x0, 0x05 } },	/* 0	1	400mV		3.5 dB */
+> @@ -678,12 +678,12 @@ static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_ddi_translations_dp_hb
+>  	{ .dkl = { 0x0, 0x0, 0x00 } },	/* 3	0	1200mV		0 dB HDMI default */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans tgl_dkl_phy_ddi_translations_dp_hbr2 = {
+> -	.entries = _tgl_dkl_phy_ddi_translations_dp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_tgl_dkl_phy_ddi_translations_dp_hbr2),
+> +static const struct intel_ddi_buf_trans tgl_dkl_phy_trans_dp_hbr2 = {
+> +	.entries = _tgl_dkl_phy_trans_dp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_tgl_dkl_phy_trans_dp_hbr2),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_trans_hdmi[] = {
+>  					/* HDMI Preset	VS	Pre-emph */
+>  	{ .dkl = { 0x7, 0x0, 0x0 } },	/* 1		400mV	0dB */
+>  	{ .dkl = { 0x6, 0x0, 0x0 } },	/* 2		500mV	0dB */
+> @@ -697,13 +697,13 @@ static const union intel_ddi_buf_trans_entry _tgl_dkl_phy_ddi_translations_hdmi[
+>  	{ .dkl = { 0x0, 0x0, 0xA } },	/* 10		Full	-3 dB */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans tgl_dkl_phy_ddi_translations_hdmi = {
+> -	.entries = _tgl_dkl_phy_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_tgl_dkl_phy_ddi_translations_hdmi),
+> -	.hdmi_default_entry = ARRAY_SIZE(_tgl_dkl_phy_ddi_translations_hdmi) - 1,
+> +static const struct intel_ddi_buf_trans tgl_dkl_phy_trans_hdmi = {
+> +	.entries = _tgl_dkl_phy_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_tgl_dkl_phy_trans_hdmi),
+> +	.hdmi_default_entry = ARRAY_SIZE(_tgl_dkl_phy_trans_hdmi) - 1,
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _tgl_combo_phy_ddi_translations_dp_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _tgl_combo_phy_trans_dp_hbr[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x32, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -717,12 +717,12 @@ static const union intel_ddi_buf_trans_entry _tgl_combo_phy_ddi_translations_dp_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans tgl_combo_phy_ddi_translations_dp_hbr = {
+> -	.entries = _tgl_combo_phy_ddi_translations_dp_hbr,
+> -	.num_entries = ARRAY_SIZE(_tgl_combo_phy_ddi_translations_dp_hbr),
+> +static const struct intel_ddi_buf_trans tgl_combo_phy_trans_dp_hbr = {
+> +	.entries = _tgl_combo_phy_trans_dp_hbr,
+> +	.num_entries = ARRAY_SIZE(_tgl_combo_phy_trans_dp_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _tgl_combo_phy_ddi_translations_dp_hbr2[] = {
+> +static const union intel_ddi_buf_trans_entry _tgl_combo_phy_trans_dp_hbr2[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -736,12 +736,12 @@ static const union intel_ddi_buf_trans_entry _tgl_combo_phy_ddi_translations_dp_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans tgl_combo_phy_ddi_translations_dp_hbr2 = {
+> -	.entries = _tgl_combo_phy_ddi_translations_dp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_tgl_combo_phy_ddi_translations_dp_hbr2),
+> +static const struct intel_ddi_buf_trans tgl_combo_phy_trans_dp_hbr2 = {
+> +	.entries = _tgl_combo_phy_trans_dp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_tgl_combo_phy_trans_dp_hbr2),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _tgl_uy_combo_phy_ddi_translations_dp_hbr2[] = {
+> +static const union intel_ddi_buf_trans_entry _tgl_uy_combo_phy_trans_dp_hbr2[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x36, 0x00, 0x09 } },	/* 350   500      3.1   */
+> @@ -755,16 +755,16 @@ static const union intel_ddi_buf_trans_entry _tgl_uy_combo_phy_ddi_translations_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans tgl_uy_combo_phy_ddi_translations_dp_hbr2 = {
+> -	.entries = _tgl_uy_combo_phy_ddi_translations_dp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_tgl_uy_combo_phy_ddi_translations_dp_hbr2),
+> +static const struct intel_ddi_buf_trans tgl_uy_combo_phy_trans_dp_hbr2 = {
+> +	.entries = _tgl_uy_combo_phy_trans_dp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_tgl_uy_combo_phy_trans_dp_hbr2),
+>  };
+>  
+>  /*
+>   * Cloned the HOBL entry to comply with the voltage and pre-emphasis entries
+>   * that DisplayPort specification requires
+>   */
+> -static const union intel_ddi_buf_trans_entry _tgl_combo_phy_ddi_translations_edp_hbr2_hobl[] = {
+> +static const union intel_ddi_buf_trans_entry _tgl_combo_phy_trans_edp_hbr2_hobl[] = {
+>  							/* VS	pre-emp	*/
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 0	0	*/
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 0	1	*/
+> @@ -777,12 +777,12 @@ static const union intel_ddi_buf_trans_entry _tgl_combo_phy_ddi_translations_edp
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 2	1	*/
+>  };
+>  
+> -static const struct intel_ddi_buf_trans tgl_combo_phy_ddi_translations_edp_hbr2_hobl = {
+> -	.entries = _tgl_combo_phy_ddi_translations_edp_hbr2_hobl,
+> -	.num_entries = ARRAY_SIZE(_tgl_combo_phy_ddi_translations_edp_hbr2_hobl),
+> +static const struct intel_ddi_buf_trans tgl_combo_phy_trans_edp_hbr2_hobl = {
+> +	.entries = _tgl_combo_phy_trans_edp_hbr2_hobl,
+> +	.num_entries = ARRAY_SIZE(_tgl_combo_phy_trans_edp_hbr2_hobl),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _rkl_combo_phy_ddi_translations_dp_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _rkl_combo_phy_trans_dp_hbr[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x2F, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -796,12 +796,12 @@ static const union intel_ddi_buf_trans_entry _rkl_combo_phy_ddi_translations_dp_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans rkl_combo_phy_ddi_translations_dp_hbr = {
+> -	.entries = _rkl_combo_phy_ddi_translations_dp_hbr,
+> -	.num_entries = ARRAY_SIZE(_rkl_combo_phy_ddi_translations_dp_hbr),
+> +static const struct intel_ddi_buf_trans rkl_combo_phy_trans_dp_hbr = {
+> +	.entries = _rkl_combo_phy_trans_dp_hbr,
+> +	.num_entries = ARRAY_SIZE(_rkl_combo_phy_trans_dp_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _rkl_combo_phy_ddi_translations_dp_hbr2_hbr3[] = {
+> +static const union intel_ddi_buf_trans_entry _rkl_combo_phy_trans_dp_hbr2_hbr3[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x50, 0x38, 0x00, 0x07 } },	/* 350   500      3.1   */
+> @@ -815,12 +815,12 @@ static const union intel_ddi_buf_trans_entry _rkl_combo_phy_ddi_translations_dp_
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans rkl_combo_phy_ddi_translations_dp_hbr2_hbr3 = {
+> -	.entries = _rkl_combo_phy_ddi_translations_dp_hbr2_hbr3,
+> -	.num_entries = ARRAY_SIZE(_rkl_combo_phy_ddi_translations_dp_hbr2_hbr3),
+> +static const struct intel_ddi_buf_trans rkl_combo_phy_trans_dp_hbr2_hbr3 = {
+> +	.entries = _rkl_combo_phy_trans_dp_hbr2_hbr3,
+> +	.num_entries = ARRAY_SIZE(_rkl_combo_phy_trans_dp_hbr2_hbr3),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adls_combo_phy_ddi_translations_dp_hbr2_hbr3[] = {
+> +static const union intel_ddi_buf_trans_entry _adls_combo_phy_trans_dp_hbr2_hbr3[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -834,12 +834,12 @@ static const union intel_ddi_buf_trans_entry _adls_combo_phy_ddi_translations_dp
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adls_combo_phy_ddi_translations_dp_hbr2_hbr3 = {
+> -	.entries = _adls_combo_phy_ddi_translations_dp_hbr2_hbr3,
+> -	.num_entries = ARRAY_SIZE(_adls_combo_phy_ddi_translations_dp_hbr2_hbr3),
+> +static const struct intel_ddi_buf_trans adls_combo_phy_trans_dp_hbr2_hbr3 = {
+> +	.entries = _adls_combo_phy_trans_dp_hbr2_hbr3,
+> +	.num_entries = ARRAY_SIZE(_adls_combo_phy_trans_dp_hbr2_hbr3),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adls_combo_phy_ddi_translations_edp_hbr2[] = {
+> +static const union intel_ddi_buf_trans_entry _adls_combo_phy_trans_edp_hbr2[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0x9, 0x73, 0x3D, 0x00, 0x02 } },	/* 200   200      0.0   */
+>  	{ .icl = { 0x9, 0x7A, 0x3C, 0x00, 0x03 } },	/* 200   250      1.9   */
+> @@ -853,12 +853,12 @@ static const union intel_ddi_buf_trans_entry _adls_combo_phy_ddi_translations_ed
+>  	{ .icl = { 0x4, 0x6C, 0x3A, 0x00, 0x05 } },	/* 350   350      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adls_combo_phy_ddi_translations_edp_hbr2 = {
+> -	.entries = _adls_combo_phy_ddi_translations_edp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_adls_combo_phy_ddi_translations_edp_hbr2),
+> +static const struct intel_ddi_buf_trans adls_combo_phy_trans_edp_hbr2 = {
+> +	.entries = _adls_combo_phy_trans_edp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_adls_combo_phy_trans_edp_hbr2),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adls_combo_phy_ddi_translations_edp_hbr3[] = {
+> +static const union intel_ddi_buf_trans_entry _adls_combo_phy_trans_edp_hbr3[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -872,12 +872,12 @@ static const union intel_ddi_buf_trans_entry _adls_combo_phy_ddi_translations_ed
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adls_combo_phy_ddi_translations_edp_hbr3 = {
+> -	.entries = _adls_combo_phy_ddi_translations_edp_hbr3,
+> -	.num_entries = ARRAY_SIZE(_adls_combo_phy_ddi_translations_edp_hbr3),
+> +static const struct intel_ddi_buf_trans adls_combo_phy_trans_edp_hbr3 = {
+> +	.entries = _adls_combo_phy_trans_edp_hbr3,
+> +	.num_entries = ARRAY_SIZE(_adls_combo_phy_trans_edp_hbr3),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adlp_combo_phy_ddi_translations_hdmi[] = {
+> +static const union intel_ddi_buf_trans_entry _adlp_combo_phy_trans_hdmi[] = {
+>  							/* NT mV Trans mV    db   */
+>  	{ .icl = { 0x6, 0x60, 0x3F, 0x00, 0x00 } },	/*  400    400      0.0 */
+>  	{ .icl = { 0x6, 0x68, 0x3F, 0x00, 0x00 } },	/*  500    500      0.0 */
+> @@ -891,13 +891,13 @@ static const union intel_ddi_buf_trans_entry _adlp_combo_phy_ddi_translations_hd
+>  	{ .icl = { 0xB, 0x7F, 0x33, 0x00, 0x0C } },	/* Full    Red     -3.0 */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adlp_combo_phy_ddi_translations_hdmi = {
+> -	.entries = _adlp_combo_phy_ddi_translations_hdmi,
+> -	.num_entries = ARRAY_SIZE(_adlp_combo_phy_ddi_translations_hdmi),
+> -	.hdmi_default_entry = ARRAY_SIZE(_adlp_combo_phy_ddi_translations_hdmi) - 1,
+> +static const struct intel_ddi_buf_trans adlp_combo_phy_trans_hdmi = {
+> +	.entries = _adlp_combo_phy_trans_hdmi,
+> +	.num_entries = ARRAY_SIZE(_adlp_combo_phy_trans_hdmi),
+> +	.hdmi_default_entry = ARRAY_SIZE(_adlp_combo_phy_trans_hdmi) - 1,
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adlp_combo_phy_ddi_translations_dp_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _adlp_combo_phy_trans_dp_hbr[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -911,12 +911,12 @@ static const union intel_ddi_buf_trans_entry _adlp_combo_phy_ddi_translations_dp
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adlp_combo_phy_ddi_translations_dp_hbr = {
+> -	.entries = _adlp_combo_phy_ddi_translations_dp_hbr,
+> -	.num_entries = ARRAY_SIZE(_adlp_combo_phy_ddi_translations_dp_hbr),
+> +static const struct intel_ddi_buf_trans adlp_combo_phy_trans_dp_hbr = {
+> +	.entries = _adlp_combo_phy_trans_dp_hbr,
+> +	.num_entries = ARRAY_SIZE(_adlp_combo_phy_trans_dp_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adlp_combo_phy_ddi_translations_dp_hbr2_hbr3[] = {
+> +static const union intel_ddi_buf_trans_entry _adlp_combo_phy_trans_dp_hbr2_hbr3[] = {
+>  							/* NT mV Trans mV db    */
+>  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
+>  	{ .icl = { 0xA, 0x4F, 0x37, 0x00, 0x08 } },	/* 350   500      3.1   */
+> @@ -930,22 +930,22 @@ static const union intel_ddi_buf_trans_entry _adlp_combo_phy_ddi_translations_dp
+>  	{ .icl = { 0x6, 0x7F, 0x3F, 0x00, 0x00 } },	/* 900   900      0.0   */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adlp_combo_phy_ddi_translations_dp_hbr2_hbr3 = {
+> -	.entries = _adlp_combo_phy_ddi_translations_dp_hbr2_hbr3,
+> -	.num_entries = ARRAY_SIZE(_adlp_combo_phy_ddi_translations_dp_hbr2_hbr3),
+> +static const struct intel_ddi_buf_trans adlp_combo_phy_trans_dp_hbr2_hbr3 = {
+> +	.entries = _adlp_combo_phy_trans_dp_hbr2_hbr3,
+> +	.num_entries = ARRAY_SIZE(_adlp_combo_phy_trans_dp_hbr2_hbr3),
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adlp_combo_phy_ddi_translations_edp_hbr3 = {
+> -	.entries = _icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3,
+> -	.num_entries = ARRAY_SIZE(_icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3),
+> +static const struct intel_ddi_buf_trans adlp_combo_phy_trans_edp_hbr3 = {
+> +	.entries = _icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+> +	.num_entries = ARRAY_SIZE(_icl_combo_phy_trans_dp_hbr2_edp_hbr3),
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adlp_combo_phy_ddi_translations_edp_up_to_hbr2 = {
+> -	.entries = _icl_combo_phy_ddi_translations_edp_hbr2,
+> -	.num_entries = ARRAY_SIZE(_icl_combo_phy_ddi_translations_edp_hbr2),
+> +static const struct intel_ddi_buf_trans adlp_combo_phy_trans_edp_up_to_hbr2 = {
+> +	.entries = _icl_combo_phy_trans_edp_hbr2,
+> +	.num_entries = ARRAY_SIZE(_icl_combo_phy_trans_edp_hbr2),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adlp_dkl_phy_ddi_translations_dp_hbr[] = {
+> +static const union intel_ddi_buf_trans_entry _adlp_dkl_phy_trans_dp_hbr[] = {
+>  					/* VS	pre-emp	Non-trans mV	Pre-emph dB */
+>  	{ .dkl = { 0x7, 0x0, 0x01 } },	/* 0	0	400mV		0 dB */
+>  	{ .dkl = { 0x5, 0x0, 0x06 } },	/* 0	1	400mV		3.5 dB */
+> @@ -959,12 +959,12 @@ static const union intel_ddi_buf_trans_entry _adlp_dkl_phy_ddi_translations_dp_h
+>  	{ .dkl = { 0x0, 0x0, 0x00 } },	/* 3	0	1200mV		0 dB */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adlp_dkl_phy_ddi_translations_dp_hbr = {
+> -	.entries = _adlp_dkl_phy_ddi_translations_dp_hbr,
+> -	.num_entries = ARRAY_SIZE(_adlp_dkl_phy_ddi_translations_dp_hbr),
+> +static const struct intel_ddi_buf_trans adlp_dkl_phy_trans_dp_hbr = {
+> +	.entries = _adlp_dkl_phy_trans_dp_hbr,
+> +	.num_entries = ARRAY_SIZE(_adlp_dkl_phy_trans_dp_hbr),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _adlp_dkl_phy_ddi_translations_dp_hbr2_hbr3[] = {
+> +static const union intel_ddi_buf_trans_entry _adlp_dkl_phy_trans_dp_hbr2_hbr3[] = {
+>  					/* VS	pre-emp	Non-trans mV	Pre-emph dB */
+>  	{ .dkl = { 0x7, 0x0, 0x00 } },	/* 0	0	400mV		0 dB */
+>  	{ .dkl = { 0x5, 0x0, 0x04 } },	/* 0	1	400mV		3.5 dB */
+> @@ -978,12 +978,12 @@ static const union intel_ddi_buf_trans_entry _adlp_dkl_phy_ddi_translations_dp_h
+>  	{ .dkl = { 0x0, 0x0, 0x00 } },	/* 3	0	1200mV		0 dB */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans adlp_dkl_phy_ddi_translations_dp_hbr2_hbr3 = {
+> -	.entries = _adlp_dkl_phy_ddi_translations_dp_hbr2_hbr3,
+> -	.num_entries = ARRAY_SIZE(_adlp_dkl_phy_ddi_translations_dp_hbr2_hbr3),
+> +static const struct intel_ddi_buf_trans adlp_dkl_phy_trans_dp_hbr2_hbr3 = {
+> +	.entries = _adlp_dkl_phy_trans_dp_hbr2_hbr3,
+> +	.num_entries = ARRAY_SIZE(_adlp_dkl_phy_trans_dp_hbr2_hbr3),
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _dg2_snps_translations[] = {
+> +static const union intel_ddi_buf_trans_entry _dg2_snps_trans[] = {
+>  	{ .snps = { 26, 0, 0 } },	/* VS 0, pre-emph 0 */
+>  	{ .snps = { 33, 0, 6 } },	/* VS 0, pre-emph 1 */
+>  	{ .snps = { 38, 0, 12 } },	/* VS 0, pre-emph 2 */
+> @@ -996,13 +996,13 @@ static const union intel_ddi_buf_trans_entry _dg2_snps_translations[] = {
+>  	{ .snps = { 62, 0, 0 } },	/* VS 3, pre-emph 0 */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans dg2_snps_translations = {
+> -	.entries = _dg2_snps_translations,
+> -	.num_entries = ARRAY_SIZE(_dg2_snps_translations),
+> -	.hdmi_default_entry = ARRAY_SIZE(_dg2_snps_translations) - 1,
+> +static const struct intel_ddi_buf_trans dg2_snps_trans = {
+> +	.entries = _dg2_snps_trans,
+> +	.num_entries = ARRAY_SIZE(_dg2_snps_trans),
+> +	.hdmi_default_entry = ARRAY_SIZE(_dg2_snps_trans) - 1,
+>  };
+>  
+> -static const union intel_ddi_buf_trans_entry _dg2_snps_translations_uhbr[] = {
+> +static const union intel_ddi_buf_trans_entry _dg2_snps_trans_uhbr[] = {
+>  	{ .snps = { 62, 0, 0 } },	/* preset 0 */
+>  	{ .snps = { 56, 0, 6 } },	/* preset 1 */
+>  	{ .snps = { 51, 0, 11 } },	/* preset 2 */
+> @@ -1021,21 +1021,21 @@ static const union intel_ddi_buf_trans_entry _dg2_snps_translations_uhbr[] = {
+>  	{ .snps = { 56, 3, 3 } },	/* preset 15 */
+>  };
+>  
+> -static const struct intel_ddi_buf_trans dg2_snps_translations_uhbr = {
+> -	.entries = _dg2_snps_translations_uhbr,
+> -	.num_entries = ARRAY_SIZE(_dg2_snps_translations_uhbr),
+> +static const struct intel_ddi_buf_trans dg2_snps_trans_uhbr = {
+> +	.entries = _dg2_snps_trans_uhbr,
+> +	.num_entries = ARRAY_SIZE(_dg2_snps_trans_uhbr),
+>  };
+>  
+>  bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
+>  {
+> -	return table == &tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+> +	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> -intel_get_buf_trans(const struct intel_ddi_buf_trans *ddi_translations, int *num_entries)
+> +intel_get_buf_trans(const struct intel_ddi_buf_trans *trans, int *num_entries)
+>  {
+> -	*num_entries = ddi_translations->num_entries;
+> -	return ddi_translations;
+> +	*num_entries = trans->num_entries;
+> +	return trans;
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1044,11 +1044,11 @@ hsw_get_buf_trans(struct intel_encoder *encoder,
+>  		  int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_ANALOG))
+> -		return intel_get_buf_trans(&hsw_ddi_translations_fdi, n_entries);
+> +		return intel_get_buf_trans(&hsw_trans_fdi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&hsw_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&hsw_trans_hdmi, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&hsw_ddi_translations_dp, n_entries);
+> +		return intel_get_buf_trans(&hsw_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1059,14 +1059,14 @@ bdw_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_ANALOG))
+> -		return intel_get_buf_trans(&bdw_ddi_translations_fdi, n_entries);
+> +		return intel_get_buf_trans(&bdw_trans_fdi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&bdw_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&bdw_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return intel_get_buf_trans(&bdw_ddi_translations_edp, n_entries);
+> +		return intel_get_buf_trans(&bdw_trans_edp, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&bdw_ddi_translations_dp, n_entries);
+> +		return intel_get_buf_trans(&bdw_trans_dp, n_entries);
+>  }
+>  
+>  static int skl_buf_trans_num_entries(enum port port, int n_entries)
+> @@ -1080,12 +1080,12 @@ static int skl_buf_trans_num_entries(enum port port, int n_entries)
+>  
+>  static const struct intel_ddi_buf_trans *
+>  _skl_get_buf_trans_dp(struct intel_encoder *encoder,
+> -		      const struct intel_ddi_buf_trans *ddi_translations,
+> +		      const struct intel_ddi_buf_trans *trans,
+>  		      int *n_entries)
+>  {
+> -	ddi_translations = intel_get_buf_trans(ddi_translations, n_entries);
+> +	trans = intel_get_buf_trans(trans, n_entries);
+>  	*n_entries = skl_buf_trans_num_entries(encoder->port, *n_entries);
+> -	return ddi_translations;
+> +	return trans;
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1096,12 +1096,12 @@ skl_y_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&skl_y_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&skl_y_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return _skl_get_buf_trans_dp(encoder, &skl_y_ddi_translations_edp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_edp, n_entries);
+>  	else
+> -		return _skl_get_buf_trans_dp(encoder, &skl_y_ddi_translations_dp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1112,12 +1112,12 @@ skl_u_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&skl_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return _skl_get_buf_trans_dp(encoder, &skl_u_ddi_translations_edp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_edp, n_entries);
+>  	else
+> -		return _skl_get_buf_trans_dp(encoder, &skl_u_ddi_translations_dp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1128,12 +1128,12 @@ skl_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&skl_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return _skl_get_buf_trans_dp(encoder, &skl_ddi_translations_edp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_trans_edp, n_entries);
+>  	else
+> -		return _skl_get_buf_trans_dp(encoder, &skl_ddi_translations_dp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1144,12 +1144,12 @@ kbl_y_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&skl_y_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&skl_y_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return _skl_get_buf_trans_dp(encoder, &skl_y_ddi_translations_edp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_edp, n_entries);
+>  	else
+> -		return _skl_get_buf_trans_dp(encoder, &kbl_y_ddi_translations_dp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &kbl_y_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1160,12 +1160,12 @@ kbl_u_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&skl_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return _skl_get_buf_trans_dp(encoder, &skl_u_ddi_translations_edp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_edp, n_entries);
+>  	else
+> -		return _skl_get_buf_trans_dp(encoder, &kbl_u_ddi_translations_dp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &kbl_u_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1176,12 +1176,12 @@ kbl_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&skl_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return _skl_get_buf_trans_dp(encoder, &skl_ddi_translations_edp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &skl_trans_edp, n_entries);
+>  	else
+> -		return _skl_get_buf_trans_dp(encoder, &kbl_ddi_translations_dp, n_entries);
+> +		return _skl_get_buf_trans_dp(encoder, &kbl_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1192,12 +1192,12 @@ bxt_get_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&bxt_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&bxt_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 i915->vbt.edp.low_vswing)
+> -		return intel_get_buf_trans(&bxt_ddi_translations_edp, n_entries);
+> +		return intel_get_buf_trans(&bxt_trans_edp, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&bxt_ddi_translations_dp, n_entries);
+> +		return intel_get_buf_trans(&bxt_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1205,7 +1205,7 @@ icl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+>  			   const struct intel_crtc_state *crtc_state,
+>  			   int *n_entries)
+>  {
+> -	return intel_get_buf_trans(&icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3,
+> +	return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>  				   n_entries);
+>  }
+>  
+> @@ -1217,10 +1217,10 @@ icl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+>  	if (crtc_state->port_clock > 540000) {
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>  					   n_entries);
+>  	} else if (dev_priv->vbt.edp.low_vswing) {
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_edp_hbr2,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>  					   n_entries);
+>  	}
+>  
+> @@ -1233,7 +1233,7 @@ icl_get_combo_buf_trans(struct intel_encoder *encoder,
+>  			int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+>  		return icl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> @@ -1246,10 +1246,10 @@ icl_get_mg_buf_trans_dp(struct intel_encoder *encoder,
+>  			int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000) {
+> -		return intel_get_buf_trans(&icl_mg_phy_ddi_translations_hbr2_hbr3,
+> +		return intel_get_buf_trans(&icl_mg_phy_trans_hbr2_hbr3,
+>  					   n_entries);
+>  	} else {
+> -		return intel_get_buf_trans(&icl_mg_phy_ddi_translations_rbr_hbr,
+> +		return intel_get_buf_trans(&icl_mg_phy_trans_rbr_hbr,
+>  					   n_entries);
+>  	}
+>  }
+> @@ -1260,7 +1260,7 @@ icl_get_mg_buf_trans(struct intel_encoder *encoder,
+>  		     int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_mg_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_mg_phy_trans_hdmi, n_entries);
+>  	else
+>  		return icl_get_mg_buf_trans_dp(encoder, crtc_state, n_entries);
+>  }
+> @@ -1271,9 +1271,9 @@ ehl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  			    int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000)
+> -		return intel_get_buf_trans(&ehl_combo_phy_ddi_translations_edp_hbr2, n_entries);
+> +		return intel_get_buf_trans(&ehl_combo_phy_trans_edp_hbr2, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_edp_hbr2, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1284,12 +1284,12 @@ ehl_get_combo_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 dev_priv->vbt.edp.low_vswing)
+>  		return ehl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&ehl_combo_phy_ddi_translations_dp, n_entries);
+> +		return intel_get_buf_trans(&ehl_combo_phy_trans_dp, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1298,9 +1298,9 @@ jsl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  			    int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000)
+> -		return intel_get_buf_trans(&jsl_combo_phy_ddi_translations_edp_hbr2, n_entries);
+> +		return intel_get_buf_trans(&jsl_combo_phy_trans_edp_hbr2, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&jsl_combo_phy_ddi_translations_edp_hbr, n_entries);
+> +		return intel_get_buf_trans(&jsl_combo_phy_trans_edp_hbr, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1311,12 +1311,12 @@ jsl_get_combo_buf_trans(struct intel_encoder *encoder,
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>  		 dev_priv->vbt.edp.low_vswing)
+>  		return jsl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1328,14 +1328,14 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+>  
+>  	if (crtc_state->port_clock > 270000) {
+>  		if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
+> -			return intel_get_buf_trans(&tgl_uy_combo_phy_ddi_translations_dp_hbr2,
+> +			return intel_get_buf_trans(&tgl_uy_combo_phy_trans_dp_hbr2,
+>  						   n_entries);
+>  		} else {
+> -			return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_dp_hbr2,
+> +			return intel_get_buf_trans(&tgl_combo_phy_trans_dp_hbr2,
+>  						   n_entries);
+>  		}
+>  	} else {
+> -		return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_dp_hbr,
+> +		return intel_get_buf_trans(&tgl_combo_phy_trans_dp_hbr,
+>  					   n_entries);
+>  	}
+>  }
+> @@ -1349,13 +1349,13 @@ tgl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+>  	if (crtc_state->port_clock > 540000) {
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>  					   n_entries);
+>  	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
+> -		return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_edp_hbr2_hobl,
+> +		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>  					   n_entries);
+>  	} else if (dev_priv->vbt.edp.low_vswing) {
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_edp_hbr2,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>  					   n_entries);
+>  	}
+>  
+> @@ -1368,7 +1368,7 @@ tgl_get_combo_buf_trans(struct intel_encoder *encoder,
+>  			int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+>  		return tgl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> @@ -1381,10 +1381,10 @@ dg1_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+>  			   int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000)
+> -		return intel_get_buf_trans(&dg1_combo_phy_ddi_translations_dp_hbr2_hbr3,
+> +		return intel_get_buf_trans(&dg1_combo_phy_trans_dp_hbr2_hbr3,
+>  					   n_entries);
+>  	else
+> -		return intel_get_buf_trans(&dg1_combo_phy_ddi_translations_dp_rbr_hbr,
+> +		return intel_get_buf_trans(&dg1_combo_phy_trans_dp_rbr_hbr,
+>  					   n_entries);
+>  }
+>  
+> @@ -1397,13 +1397,13 @@ dg1_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+>  	if (crtc_state->port_clock > 540000)
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>  					   n_entries);
+>  	else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed)
+> -		return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_edp_hbr2_hobl,
+> +		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>  					   n_entries);
+>  	else if (dev_priv->vbt.edp.low_vswing)
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_edp_hbr2,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>  					   n_entries);
+>  	else
+>  		return dg1_get_combo_buf_trans_dp(encoder, crtc_state, n_entries);
+> @@ -1415,7 +1415,7 @@ dg1_get_combo_buf_trans(struct intel_encoder *encoder,
+>  			int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+>  		return dg1_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> @@ -1428,9 +1428,9 @@ rkl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+>  			   int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000)
+> -		return intel_get_buf_trans(&rkl_combo_phy_ddi_translations_dp_hbr2_hbr3, n_entries);
+> +		return intel_get_buf_trans(&rkl_combo_phy_trans_dp_hbr2_hbr3, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&rkl_combo_phy_ddi_translations_dp_hbr, n_entries);
+> +		return intel_get_buf_trans(&rkl_combo_phy_trans_dp_hbr, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1442,13 +1442,13 @@ rkl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+>  	if (crtc_state->port_clock > 540000) {
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_dp_hbr2_edp_hbr3,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>  					   n_entries);
+>  	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
+> -		return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_edp_hbr2_hobl,
+> +		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>  					   n_entries);
+>  	} else if (dev_priv->vbt.edp.low_vswing) {
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_edp_hbr2,
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>  					   n_entries);
+>  	}
+>  
+> @@ -1461,7 +1461,7 @@ rkl_get_combo_buf_trans(struct intel_encoder *encoder,
+>  			int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+>  		return rkl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> @@ -1474,9 +1474,9 @@ adls_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+>  			    int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000)
+> -		return intel_get_buf_trans(&adls_combo_phy_ddi_translations_dp_hbr2_hbr3, n_entries);
+> +		return intel_get_buf_trans(&adls_combo_phy_trans_dp_hbr2_hbr3, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_dp_hbr, n_entries);
+> +		return intel_get_buf_trans(&tgl_combo_phy_trans_dp_hbr, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1488,11 +1488,11 @@ adls_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+>  	if (crtc_state->port_clock > 540000)
+> -		return intel_get_buf_trans(&adls_combo_phy_ddi_translations_edp_hbr3, n_entries);
+> +		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr3, n_entries);
+>  	else if (i915->vbt.edp.hobl && !intel_dp->hobl_failed)
+> -		return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_edp_hbr2_hobl, n_entries);
+> +		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl, n_entries);
+>  	else if (i915->vbt.edp.low_vswing)
+> -		return intel_get_buf_trans(&adls_combo_phy_ddi_translations_edp_hbr2, n_entries);
+> +		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr2, n_entries);
+>  	else
+>  		return adls_get_combo_buf_trans_dp(encoder, crtc_state, n_entries);
+>  }
+> @@ -1503,7 +1503,7 @@ adls_get_combo_buf_trans(struct intel_encoder *encoder,
+>  			 int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&icl_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+>  		return adls_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> @@ -1516,9 +1516,9 @@ adlp_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+>  			    int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000)
+> -		return intel_get_buf_trans(&adlp_combo_phy_ddi_translations_dp_hbr2_hbr3, n_entries);
+> +		return intel_get_buf_trans(&adlp_combo_phy_trans_dp_hbr2_hbr3, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&adlp_combo_phy_ddi_translations_dp_hbr, n_entries);
+> +		return intel_get_buf_trans(&adlp_combo_phy_trans_dp_hbr, n_entries);
+>  }
+>  
+>  static const struct intel_ddi_buf_trans *
+> @@ -1530,13 +1530,13 @@ adlp_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+>  	if (crtc_state->port_clock > 540000) {
+> -		return intel_get_buf_trans(&adlp_combo_phy_ddi_translations_edp_hbr3,
+> +		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_hbr3,
+>  					   n_entries);
+>  	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
+> -		return intel_get_buf_trans(&tgl_combo_phy_ddi_translations_edp_hbr2_hobl,
+> +		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>  					   n_entries);
+>  	} else if (dev_priv->vbt.edp.low_vswing) {
+> -		return intel_get_buf_trans(&adlp_combo_phy_ddi_translations_edp_up_to_hbr2,
+> +		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_up_to_hbr2,
+>  					   n_entries);
+>  	}
+>  
+> @@ -1549,7 +1549,7 @@ adlp_get_combo_buf_trans(struct intel_encoder *encoder,
+>  			 int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&adlp_combo_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&adlp_combo_phy_trans_hdmi, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+>  		return adlp_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>  	else
+> @@ -1562,10 +1562,10 @@ tgl_get_dkl_buf_trans_dp(struct intel_encoder *encoder,
+>  			 int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000) {
+> -		return intel_get_buf_trans(&tgl_dkl_phy_ddi_translations_dp_hbr2,
+> +		return intel_get_buf_trans(&tgl_dkl_phy_trans_dp_hbr2,
+>  					   n_entries);
+>  	} else {
+> -		return intel_get_buf_trans(&tgl_dkl_phy_ddi_translations_dp_hbr,
+> +		return intel_get_buf_trans(&tgl_dkl_phy_trans_dp_hbr,
+>  					   n_entries);
+>  	}
+>  }
+> @@ -1576,7 +1576,7 @@ tgl_get_dkl_buf_trans(struct intel_encoder *encoder,
+>  		      int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&tgl_dkl_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&tgl_dkl_phy_trans_hdmi, n_entries);
+>  	else
+>  		return tgl_get_dkl_buf_trans_dp(encoder, crtc_state, n_entries);
+>  }
+> @@ -1587,10 +1587,10 @@ adlp_get_dkl_buf_trans_dp(struct intel_encoder *encoder,
+>  			  int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 270000) {
+> -		return intel_get_buf_trans(&adlp_dkl_phy_ddi_translations_dp_hbr2_hbr3,
+> +		return intel_get_buf_trans(&adlp_dkl_phy_trans_dp_hbr2_hbr3,
+>  					   n_entries);
+>  	} else {
+> -		return intel_get_buf_trans(&adlp_dkl_phy_ddi_translations_dp_hbr,
+> +		return intel_get_buf_trans(&adlp_dkl_phy_trans_dp_hbr,
+>  					   n_entries);
+>  	}
+>  }
+> @@ -1601,7 +1601,7 @@ adlp_get_dkl_buf_trans(struct intel_encoder *encoder,
+>  		       int *n_entries)
+>  {
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -		return intel_get_buf_trans(&tgl_dkl_phy_ddi_translations_hdmi, n_entries);
+> +		return intel_get_buf_trans(&tgl_dkl_phy_trans_hdmi, n_entries);
+>  	else
+>  		return adlp_get_dkl_buf_trans_dp(encoder, crtc_state, n_entries);
+>  }
+> @@ -1612,9 +1612,9 @@ dg2_get_snps_buf_trans(struct intel_encoder *encoder,
+>  		       int *n_entries)
+>  {
+>  	if (crtc_state->port_clock > 1000000)
+> -		return intel_get_buf_trans(&dg2_snps_translations_uhbr, n_entries);
+> +		return intel_get_buf_trans(&dg2_snps_trans_uhbr, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&dg2_snps_translations, n_entries);
+> +		return intel_get_buf_trans(&dg2_snps_trans, n_entries);
+>  }
+>  
+>  int intel_ddi_hdmi_num_entries(struct intel_encoder *encoder,
+> @@ -1622,17 +1622,17 @@ int intel_ddi_hdmi_num_entries(struct intel_encoder *encoder,
+>  			       int *default_entry)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  	int n_entries;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+>  
+> -	if (drm_WARN_ON(&dev_priv->drm, !ddi_translations)) {
+> +	if (drm_WARN_ON(&dev_priv->drm, !trans)) {
+>  		*default_entry = 0;
+>  		return 0;
+>  	}
+>  
+> -	*default_entry = ddi_translations->hdmi_default_entry;
+> +	*default_entry = trans->hdmi_default_entry;
+>  
+>  	return n_entries;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> index 2405f70d82de..3734e349f91d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> @@ -56,12 +56,12 @@ void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  					int level)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	const struct intel_ddi_buf_trans *ddi_translations;
+> +	const struct intel_ddi_buf_trans *trans;
+>  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>  	int n_entries, ln;
+>  
+> -	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+>  		return;
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, level < 0 || level >= n_entries))
+>  		level = n_entries - 1;
+> @@ -69,9 +69,9 @@ void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  	for (ln = 0; ln < 4; ln++) {
+>  		u32 val = 0;
+>  
+> -		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, ddi_translations->entries[level].snps.snps_vswing);
+> -		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_PRE, ddi_translations->entries[level].snps.snps_pre_cursor);
+> -		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, ddi_translations->entries[level].snps.snps_post_cursor);
+> +		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, trans->entries[level].snps.snps_vswing);
+> +		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_PRE, trans->entries[level].snps.snps_pre_cursor);
+> +		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, trans->entries[level].snps.snps_post_cursor);
+>  
+>  		intel_de_write(dev_priv, SNPS_PHY_TX_EQ(ln, phy), val);
+>  	}
+> -- 
+> 2.32.0
+> 
