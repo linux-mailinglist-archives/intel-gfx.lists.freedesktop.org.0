@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9FD41C5CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 15:38:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52E8441C5DE
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 15:42:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C0266EA6B;
-	Wed, 29 Sep 2021 13:38:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8E466EA6E;
+	Wed, 29 Sep 2021 13:42:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 98AA76EA6B;
- Wed, 29 Sep 2021 13:38:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B8666EA6B;
+ Wed, 29 Sep 2021 13:42:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8F97CAA914;
- Wed, 29 Sep 2021 13:38:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7776898330790197564=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0343BAA0ED;
+ Wed, 29 Sep 2021 13:42:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 13:38:11 -0000
-Message-ID: <163292269155.27097.11001818062823776481@emeril.freedesktop.org>
+Date: Wed, 29 Sep 2021 13:42:21 -0000
+Message-ID: <163292294198.27097.14743681465133170318@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210927151017.287414-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210927151017.287414-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ttm=3A_Rework_object_initialization_slightly_=28rev2=29?=
+References: <20210921002313.1132357-1-imre.deak@intel.com>
+In-Reply-To: <20210921002313.1132357-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/tc=3A_Fix_TypeC_connect/disconnect_sequences_=28re?=
+ =?utf-8?b?djgp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,113 +46,38 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7776898330790197564==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/ttm: Rework object initialization slightly (rev2)
-URL   : https://patchwork.freedesktop.org/series/95107/
-State : success
+Series: drm/i915/tc: Fix TypeC connect/disconnect sequences (rev8)
+URL   : https://patchwork.freedesktop.org/series/94878/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21187
-====================================================
+$ dim checkpatch origin/drm-tip
+7a1594f1ced8 drm/i915/tc: Fix TypeC port init/resume time sanitization
+c01091513a71 drm/i915/adlp/tc: Fix PHY connected check for Thunderbolt mode
+606f377a7dcc drm/i915/tc: Remove waiting for PHY complete during releasing ownership
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+commit ddec362724f9 ("drm/i915: Wait for TypeC PHY complete flag to clear in safe mode")
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+adb7ecaceb9b drm/i915/tc: Check for DP-alt, legacy sinks before taking PHY ownership
+03ba5a3c3391 drm/i915/tc: Add/use helpers to retrieve TypeC port properties
+560710f22702 drm/i915/tc: Don't keep legacy TypeC ports in connected state w/o a sink
+980d79eb09d2 drm/i915/tc: Add a mode for the TypeC PHY's disconnected state
+9868a17a5a37 drm/i915/tc: Refactor TC-cold block/unblock helpers
+43107536a80f drm/i915/tc: Avoid using legacy AUX PW in TBT mode
+aa72ab7dada7 drm/i915/icl/tc: Remove the ICL special casing during TC-cold blocking
+e39e52ba5422 drm/i915/tc: Fix TypeC PHY connect/disconnect logic on ADL-P
+-:139: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#139: FILE: drivers/gpu/drm/i915/display/intel_tc.c:773:
++	drm_WARN_ON(&i915->drm, dig_port->tc_mode != TC_PORT_TBT_ALT &&
++				!tc_phy_is_owned(dig_port));
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21187/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (33 -> 29)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10660 -> Patchwork_21187
-
-  CI-20190529: 20190529
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21187: 8d53292c0448f800c1f28b30015e53e602ce709f @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 0 errors, 0 warnings, 1 checks, 196 lines checked
+76ecfcf236e0 drm/i915/tc: Drop extra TC cold blocking from intel_tc_port_connected()
+6e3ad889b1c9 drm/i915/tc: Fix system hang on ADL-P during TypeC PHY disconnect
 
 
-== Linux commits ==
-
-8d53292c0448 drm/i915/ttm: Rework object initialization slightly
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21187/index.html
-
---===============7776898330790197564==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ttm: Rework object initialization slightly (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95107/">https://patchwork.freedesktop.org/series/95107/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21187/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21187/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21187</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21187/index.html</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (33 -&gt; 29)</h2>
-<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10660 -&gt; Patchwork_21187</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21187: 8d53292c0448f800c1f28b30015e53e602ce709f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8d53292c0448 drm/i915/ttm: Rework object initialization slightly</p>
-
-</body>
-</html>
-
---===============7776898330790197564==--
