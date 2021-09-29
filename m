@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB7141CD59
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 22:24:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEA9541CD79
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 22:38:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2CF6E213;
-	Wed, 29 Sep 2021 20:24:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E34C6E215;
+	Wed, 29 Sep 2021 20:38:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 64CDD6E212;
- Wed, 29 Sep 2021 20:24:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5A69AA363C;
- Wed, 29 Sep 2021 20:24:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3703898294261070097=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 472596E215
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 20:38:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="223149430"
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="223149430"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 13:26:07 -0700
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="479402164"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 13:26:05 -0700
+Date: Wed, 29 Sep 2021 23:26:02 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 20:24:27 -0000
-Message-ID: <163294706733.27098.2461591309400071494@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210929194052.469-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20210929194052.469-1-radhakrishna.sripada@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Update_memory_bandwidth_formulae_=28rev3=29?=
+Message-ID: <20210929202602.GJ2192289@ideak-desk.fi.intel.com>
+References: <20210927182455.27119-9-ville.syrjala@linux.intel.com>
+ <20210929165452.11283-1-ville.syrjala@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210929165452.11283-1-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 8/9] drm/i915: Prepare link training for
+ per-lane drive settings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,191 +47,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3703898294261070097==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Sep 29, 2021 at 07:54:52PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Adjust the link training code to accommodate per-lane drive settings,
+> if supported by the platform. Actually enabling this will involve
+> some changes to each platform's .set_signal_level() implementation,
+> so for the moment all supported platforms will keep using the current
+> codepath that just uses the same drive settings for all the lanes.
+> 
+> v2: Fix min() vs. max() fumble
+> v3: Compact the debug print to a single line
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 78 ++++++++++++++-----
+>  1 file changed, 60 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index d52929855cd0..f26c44a6b568 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -301,21 +301,33 @@ static u8 intel_dp_phy_preemph_max(struct intel_dp *intel_dp,
+>  	return preemph_max;
+>  }
+>  
+> -void
+> -intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+> -			  const struct intel_crtc_state *crtc_state,
+> -			  enum drm_dp_phy dp_phy,
+> -			  const u8 link_status[DP_LINK_STATUS_SIZE])
+> +static bool has_per_lane_signal_levels(struct intel_dp *intel_dp,
+> +				       enum drm_dp_phy dp_phy)
+> +{
+> +	return false;
+> +}
+> +
+> +static u8 intel_dp_get_lane_adjust_train(struct intel_dp *intel_dp,
+> +					 const struct intel_crtc_state *crtc_state,
+> +					 enum drm_dp_phy dp_phy,
+> +					 const u8 link_status[DP_LINK_STATUS_SIZE],
+> +					 int lane)
+>  {
+>  	u8 v = 0;
+>  	u8 p = 0;
+> -	int lane;
+>  	u8 voltage_max;
+>  	u8 preemph_max;
+>  
+> -	for (lane = 0; lane < crtc_state->lane_count; lane++) {
+> -		v = max(v, drm_dp_get_adjust_request_voltage(link_status, lane));
+> -		p = max(p, drm_dp_get_adjust_request_pre_emphasis(link_status, lane));
+> +	if (has_per_lane_signal_levels(intel_dp, dp_phy)) {
+> +		lane = min(lane, crtc_state->lane_count - 1);
+> +
+> +		v = drm_dp_get_adjust_request_voltage(link_status, lane);
+> +		p = drm_dp_get_adjust_request_pre_emphasis(link_status, lane);
+> +	} else {
+> +		for (lane = 0; lane < crtc_state->lane_count; lane++) {
+> +			v = max(v, drm_dp_get_adjust_request_voltage(link_status, lane));
+> +			p = max(p, drm_dp_get_adjust_request_pre_emphasis(link_status, lane));
+> +		}
+>  	}
+>  
+>  	preemph_max = intel_dp_phy_preemph_max(intel_dp, dp_phy);
+> @@ -328,8 +340,21 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+>  	if (v >= voltage_max)
+>  		v = voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+>  
+> +	return v | p;
+> +}
+> +
+> +void
+> +intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+> +			  const struct intel_crtc_state *crtc_state,
+> +			  enum drm_dp_phy dp_phy,
+> +			  const u8 link_status[DP_LINK_STATUS_SIZE])
+> +{
+> +	int lane;
+> +
+>  	for (lane = 0; lane < 4; lane++)
+> -		intel_dp->train_set[lane] = v | p;
+> +		intel_dp->train_set[lane] =
+> +			intel_dp_get_lane_adjust_train(intel_dp, crtc_state,
+> +						       dp_phy, link_status, lane);
+>  }
+>  
+>  static int intel_dp_training_pattern_set_reg(struct intel_dp *intel_dp,
+> @@ -394,22 +419,39 @@ intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+>  	intel_dp->set_link_train(intel_dp, crtc_state, dp_train_pat);
+>  }
+>  
+> +#define TRAIN_SET_FMT "%d%s/%d%s/%d%s/%d%s"
+> +#define _TRAIN_SET_VSWING_ARGS(train_set) \
+> +	((train_set) & DP_TRAIN_VOLTAGE_SWING_MASK) >> DP_TRAIN_VOLTAGE_SWING_SHIFT, \
+> +	(train_set) & DP_TRAIN_MAX_SWING_REACHED ? "(max)" : ""
+> +#define TRAIN_SET_VSWING_ARGS(train_set) \
+> +	_TRAIN_SET_VSWING_ARGS((train_set)[0]), \
+> +	_TRAIN_SET_VSWING_ARGS((train_set)[1]), \
+> +	_TRAIN_SET_VSWING_ARGS((train_set)[2]), \
+> +	_TRAIN_SET_VSWING_ARGS((train_set)[3])
+> +#define _TRAIN_SET_PREEMPH_ARGS(train_set) \
+> +	((train_set) & DP_TRAIN_PRE_EMPHASIS_MASK) >> DP_TRAIN_PRE_EMPHASIS_SHIFT, \
+> +	(train_set) & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ? "(max)" : ""
+> +#define TRAIN_SET_PREEMPH_ARGS(train_set) \
+> +	_TRAIN_SET_PREEMPH_ARGS((train_set)[0]), \
+> +	_TRAIN_SET_PREEMPH_ARGS((train_set)[1]), \
+> +	_TRAIN_SET_PREEMPH_ARGS((train_set)[2]), \
+> +	_TRAIN_SET_PREEMPH_ARGS((train_set)[3])
+> +
+>  void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+>  				const struct intel_crtc_state *crtc_state,
+>  				enum drm_dp_phy dp_phy)
+>  {
+>  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	u8 train_set = intel_dp->train_set[0];
+>  	char phy_name[10];
+>  
+> -	drm_dbg_kms(&dev_priv->drm, "Using vswing level %d%s, pre-emphasis level %d%s, at %s\n",
+> -		    train_set & DP_TRAIN_VOLTAGE_SWING_MASK,
+> -		    train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "",
+> -		    (train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+> -		    DP_TRAIN_PRE_EMPHASIS_SHIFT,
+> -		    train_set & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ?
+> -		    " (max)" : "",
+> +	drm_dbg_kms(&dev_priv->drm, "[ENCODER:%d:%s] lanes: %d, "
+> +		    "vswing levels: " TRAIN_SET_FMT ", "
+> +		    "pre-emphasis levels: " TRAIN_SET_FMT ", at %s\n",
+> +		    encoder->base.base.id, encoder->base.name,
+> +		    crtc_state->lane_count,
+> +		    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
+> +		    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set),
+>  		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)));
 
-== Series Details ==
+Could print the PHY name after [ENCODER:x:y].
 
-Series: drm/i915: Update memory bandwidth formulae (rev3)
-URL   : https://patchwork.freedesktop.org/series/95138/
-State : success
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21195
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21195:
-
-### CI changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * boot:
-    - {fi-jsl-1}:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-jsl-1/boot.html
-    - {fi-ehl-2}:         [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-ehl-2/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-ehl-2/boot.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21195 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-icl-y:           [PASS][5] -> [FAIL][6] ([i915#3521])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-icl-y/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-icl-y/boot.html
-    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([i915#3521])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-icl-u2/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-icl-u2/boot.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#3521]: https://gitlab.freedesktop.org/drm/intel/issues/3521
-
-
-Participating hosts (33 -> 29)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10660 -> Patchwork_21195
-
-  CI-20190529: 20190529
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21195: 326a2a72e268238642d6885d421b9139166b32ff @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-326a2a72e268 drm/i915: Update memory bandwidth formulae
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/index.html
-
---===============3703898294261070097==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Update memory bandwidth formulae (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95138/">https://patchwork.freedesktop.org/series/95138/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21195</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21195:</p>
-<h3>CI changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-jsl-1/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-ehl-2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-ehl-2/boot.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21195 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-icl-y/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-icl-y/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3521">i915#3521</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-icl-u2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21195/fi-icl-u2/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3521">i915#3521</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (33 -&gt; 29)</h2>
-<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10660 -&gt; Patchwork_21195</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21195: 326a2a72e268238642d6885d421b9139166b32ff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>326a2a72e268 drm/i915: Update memory bandwidth formulae</p>
-
-</body>
-</html>
-
---===============3703898294261070097==--
+>  
+>  	if (intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy))
+> -- 
+> 2.32.0
+> 
