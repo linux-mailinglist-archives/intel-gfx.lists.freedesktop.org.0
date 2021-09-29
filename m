@@ -1,35 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A2041CB16
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 19:29:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E14141CB19
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 19:34:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACC106E1F3;
-	Wed, 29 Sep 2021 17:29:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47BBB6E1ED;
+	Wed, 29 Sep 2021 17:34:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9181B6E1ED;
- Wed, 29 Sep 2021 17:29:02 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 510236E1ED;
+ Wed, 29 Sep 2021 17:34:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89A1CA8169;
- Wed, 29 Sep 2021 17:29:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6179562600352895996=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3A16BA363C;
+ Wed, 29 Sep 2021 17:34:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 17:29:02 -0000
-Message-ID: <163293654253.27096.3571166070166126291@emeril.freedesktop.org>
+Date: Wed, 29 Sep 2021 17:34:25 -0000
+Message-ID: <163293686520.27099.698335828379614624@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210319175720.5901-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210319175720.5901-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Enable_TPS3/4_on_all_platforms_that_support_them_=28re?=
- =?utf-8?b?djIp?=
+References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_DP_per-lane_drive_settings_prep_work_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,170 +45,77 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6179562600352895996==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Enable TPS3/4 on all platforms that support them (rev2)
-URL   : https://patchwork.freedesktop.org/series/88186/
-State : success
+Series: drm/i915: DP per-lane drive settings prep work (rev4)
+URL   : https://patchwork.freedesktop.org/series/95122/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21191
-====================================================
+$ dim checkpatch origin/drm-tip
+5ca7aed58062 drm/i915: s/ddi_translations/trans/
+-:1809: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1809: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:73:
++		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_PRE, trans->entries[level].snps.snps_pre_cursor);
 
-Summary
--------
+-:1810: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#1810: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:74:
++		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, trans->entries[level].snps.snps_post_cursor);
 
-  **SUCCESS**
+total: 0 errors, 2 warnings, 0 checks, 1677 lines checked
+12af5655d6e9 drm/i915: Generalize .set_signal_levels()
+148ee4908c2b drm/i915: Nuke usless .set_signal_levels() wrappers
+96ccc8d77127 drm/i915: De-wrapper bxt_ddi_phy_set_signal_levels()
+40be81462b60 drm/i915: Hoover the level>=n_entries WARN into intel_ddi_level()
+025b7bd7473d drm/i915: Nuke intel_ddi_hdmi_num_entries()
+68f42730e749 drm/i915: Pass the lane to intel_ddi_level()
+24cdd73489e8 drm/i915: Prepare link training for per-lane drive settings
+-:95: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'train_set' - possible side-effects?
+#95: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:423:
++#define _TRAIN_SET_VSWING_ARGS(train_set) \
++	((train_set) & DP_TRAIN_VOLTAGE_SWING_MASK) >> DP_TRAIN_VOLTAGE_SWING_SHIFT, \
++	(train_set) & DP_TRAIN_MAX_SWING_REACHED ? "(max)" : ""
 
-  No regressions found.
+-:98: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#98: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:426:
++#define TRAIN_SET_VSWING_ARGS(train_set) \
++	_TRAIN_SET_VSWING_ARGS((train_set)[0]), \
++	_TRAIN_SET_VSWING_ARGS((train_set)[1]), \
++	_TRAIN_SET_VSWING_ARGS((train_set)[2]), \
++	_TRAIN_SET_VSWING_ARGS((train_set)[3])
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/index.html
+-:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'train_set' - possible side-effects?
+#98: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:426:
++#define TRAIN_SET_VSWING_ARGS(train_set) \
++	_TRAIN_SET_VSWING_ARGS((train_set)[0]), \
++	_TRAIN_SET_VSWING_ARGS((train_set)[1]), \
++	_TRAIN_SET_VSWING_ARGS((train_set)[2]), \
++	_TRAIN_SET_VSWING_ARGS((train_set)[3])
 
-Known issues
-------------
+-:103: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'train_set' - possible side-effects?
+#103: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:431:
++#define _TRAIN_SET_PREEMPH_ARGS(train_set) \
++	((train_set) & DP_TRAIN_PRE_EMPHASIS_MASK) >> DP_TRAIN_PRE_EMPHASIS_SHIFT, \
++	(train_set) & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ? "(max)" : ""
 
-  Here are the changes found in Patchwork_21191 that come from known issues:
+-:106: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#106: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:434:
++#define TRAIN_SET_PREEMPH_ARGS(train_set) \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[0]), \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[1]), \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[2]), \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[3])
 
-### IGT changes ###
+-:106: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'train_set' - possible side-effects?
+#106: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:434:
++#define TRAIN_SET_PREEMPH_ARGS(train_set) \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[0]), \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[1]), \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[2]), \
++	_TRAIN_SET_PREEMPH_ARGS((train_set)[3])
 
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          [PASS][1] -> [INCOMPLETE][2] ([i915#4130])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - fi-kbl-soraka:      [PASS][5] -> [FAIL][6] ([i915#2122])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  * igt@runner@aborted:
-    - fi-tgl-u2:          NOTRUN -> [FAIL][7] ([i915#1602] / [i915#2722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-tgl-u2/igt@runner@aborted.html
-
-  
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#4130]: https://gitlab.freedesktop.org/drm/intel/issues/4130
-
-
-Participating hosts (33 -> 29)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10660 -> Patchwork_21191
-
-  CI-20190529: 20190529
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21191: 5fc40e2c64bb03117efa244ac68458e94d0ffb60 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5fc40e2c64bb drm/i915: Enable TPS3/4 on all platforms that support them
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/index.html
-
---===============6179562600352895996==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 2 errors, 0 warnings, 4 checks, 111 lines checked
+def5bc2e3c93 drm/i915: Allow per-lane drive settings with LTTPRs
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Enable TPS3/4 on all platforms that support them (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88186/">https://patchwork.freedesktop.org/series/88186/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21191</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21191 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21191/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (33 -&gt; 29)</h2>
-<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10660 -&gt; Patchwork_21191</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21191: 5fc40e2c64bb03117efa244ac68458e94d0ffb60 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>5fc40e2c64bb drm/i915: Enable TPS3/4 on all platforms that support them</p>
-
-</body>
-</html>
-
---===============6179562600352895996==--
