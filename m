@@ -1,35 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07AD241C721
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 16:46:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D560F41C73D
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 16:51:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62AAD6EA8F;
-	Wed, 29 Sep 2021 14:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D80D96EAA7;
+	Wed, 29 Sep 2021 14:51:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 61E496EA8F;
- Wed, 29 Sep 2021 14:46:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5DAFCA47EB;
- Wed, 29 Sep 2021 14:46:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6667335285186051297=="
+Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45DD86EAAE;
+ Wed, 29 Sep 2021 14:51:03 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id C0C9A3F36D;
+ Wed, 29 Sep 2021 16:51:00 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa3.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id D70mD4csObw8; Wed, 29 Sep 2021 16:50:59 +0200 (CEST)
+Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 40BA83F32D;
+ Wed, 29 Sep 2021 16:50:57 +0200 (CEST)
+Received: from [192.168.0.209] (unknown [192.198.151.53])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 0474F36011B;
+ Wed, 29 Sep 2021 16:50:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1632927057; bh=hVc1+hKMg11SzO2edsE5UMTFcbwpZX2YiDZoYUUWjho=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=cq0mrBg3jxesvGvYLPDCG34O0FcbDCrReWZYIIK6TvwFFXFT4OToXmc7G1eltR1Ca
+ Z6bw9PoImZ02ggSh16O7vOTeYq2tc5R0nf8V99exMLI2wGNG/nRgo8QBcQjq0Zcr1S
+ wewgy6zruzUjOXZhY/9PjZX/VPls8dylcEB309UA=
+Message-ID: <07332ad2-5a4d-90bc-47b0-069d292ccdad@shipmail.org>
+Date: Wed, 29 Sep 2021 16:50:55 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 14:46:13 -0000
-Message-ID: <163292677337.27098.5935356372898867213@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210929052442.2543054-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20210929052442.2543054-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gen11=3A_Disable_cursor_clock_gating_in_HDR_mode_=28rev7?=
- =?utf-8?q?=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Content-Language: en-US
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Julia Lawall <julia.lawall@lip6.fr>
+References: <20210929085950.3063191-1-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20210929085950.3063191-1-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add ww context to intel_dpt_pin,
+ v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,117 +67,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6667335285186051297==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 9/29/21 10:59, Maarten Lankhorst wrote:
+> Ensure i915_vma_pin_iomap and vma_unpin are done with dpt->obj lock held.
+>
+> I don't think there's much of a point in merging intel_dpt_pin() with
+> intel_pin_fb_obj_dpt(), they touch different objects.
+>
+> Changes since v1:
+> - Fix using the wrong pointer to retrieve error code (Julia)
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Julia Lawall <julia.lawall@lip6.fr>
 
-Series: drm/i915/gen11: Disable cursor clock gating in HDR mode (rev7)
-URL   : https://patchwork.freedesktop.org/series/91674/
-State : success
+LGTM.
 
-== Summary ==
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21190
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21190/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (33 -> 29)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10660 -> Patchwork_21190
-
-  CI-20190529: 20190529
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21190: f2837e9db771588f882bbc29f7f1efed0e123f49 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f2837e9db771 drm/i915/gen11: Disable cursor clock gating in HDR mode
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21190/index.html
-
---===============6667335285186051297==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gen11: Disable cursor clock gating in HDR mode (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91674/">https://patchwork.freedesktop.org/series/91674/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21190/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21190/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21190</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21190/index.html</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (33 -&gt; 29)</h2>
-<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10660 -&gt; Patchwork_21190</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21190: f2837e9db771588f882bbc29f7f1efed0e123f49 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f2837e9db771 drm/i915/gen11: Disable cursor clock gating in HDR mode</p>
-
-</body>
-</html>
-
---===============6667335285186051297==--
+> ---
+>   drivers/gpu/drm/i915/display/intel_dpt.c | 40 +++++++++++++++---------
+>   1 file changed, 25 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+> index de62bd77b15e..8f7b1f7534a4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> @@ -121,32 +121,42 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
+>   	intel_wakeref_t wakeref;
+>   	struct i915_vma *vma;
+>   	void __iomem *iomem;
+> +	struct i915_gem_ww_ctx ww;
+> +	int err;
+>   
+>   	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+>   	atomic_inc(&i915->gpu_error.pending_fb_pin);
+>   
+> -	vma = i915_gem_object_ggtt_pin(dpt->obj, NULL, 0, 4096,
+> -				       HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
+> -	if (IS_ERR(vma))
+> -		goto err;
+> +	for_i915_gem_ww(&ww, err, true) {
+> +		err = i915_gem_object_lock(dpt->obj, &ww);
+> +		if (err)
+> +			continue;
+>   
+> -	iomem = i915_vma_pin_iomap(vma);
+> -	i915_vma_unpin(vma);
+> -	if (IS_ERR(iomem)) {
+> -		vma = ERR_CAST(iomem);
+> -		goto err;
+> -	}
+> +		vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0, 4096,
+> +						  HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
+> +		if (IS_ERR(vma)) {
+> +			err = PTR_ERR(vma);
+> +			continue;
+> +		}
+> +
+> +		iomem = i915_vma_pin_iomap(vma);
+> +		i915_vma_unpin(vma);
+>   
+> -	dpt->vma = vma;
+> -	dpt->iomem = iomem;
+> +		if (IS_ERR(iomem)) {
+> +			err = PTR_ERR(iomem);
+> +			continue;
+> +		}
+>   
+> -	i915_vma_get(vma);
+> +		dpt->vma = vma;
+> +		dpt->iomem = iomem;
+> +
+> +		i915_vma_get(vma);
+> +	}
+>   
+> -err:
+>   	atomic_dec(&i915->gpu_error.pending_fb_pin);
+>   	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+>   
+> -	return vma;
+> +	return err ? ERR_PTR(err) : vma;
+>   }
+>   
+>   void intel_dpt_unpin(struct i915_address_space *vm)
