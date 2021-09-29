@@ -1,56 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA2441CC88
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:19:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DB941CCBF
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:41:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDC956EAD9;
-	Wed, 29 Sep 2021 19:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 061116E20E;
+	Wed, 29 Sep 2021 19:41:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8F186EAD9
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 19:19:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="224678003"
-X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="224678003"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2021 12:19:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="554965546"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by FMSMGA003.fm.intel.com with ESMTP; 29 Sep 2021 12:19:32 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 29 Sep 2021 20:19:31 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Wed, 29 Sep 2021 12:19:30 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH v2 01/13] drm/i915/tc: Fix TypeC port init/resume time
- sanitization
-Thread-Index: AQHXtTXoN086y9ksBk6qaIW27s0PkKu72mSA
-Date: Wed, 29 Sep 2021 19:19:29 +0000
-Message-ID: <a52b6af2a1b45c835c541f5c66ed80e4bbd783c4.camel@intel.com>
-References: <20210921002313.1132357-2-imre.deak@intel.com>
- <20210929132833.2253961-1-imre.deak@intel.com>
-In-Reply-To: <20210929132833.2253961-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A941129518DFC24C8E32A42B4FA6C6F8@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AE5E6EAD9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 19:41:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="204510801"
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="204510801"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 12:41:00 -0700
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="487040670"
+Received: from invictus.jf.intel.com ([10.165.21.205])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 12:41:00 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Sep 2021 12:40:52 -0700
+Message-Id: <20210929194052.469-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 01/13] drm/i915/tc: Fix TypeC port
- init/resume time sanitization
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915: Update memory bandwidth formulae
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,86 +45,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTA5LTI5IGF0IDE2OjI4ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEF0
-bSBkdXJpbmcgZHJpdmVyIGxvYWRpbmcgYW5kIHN5c3RlbSByZXN1bWUgVHlwZUMgcG9ydHMgYXJl
-IGFjY2Vzc2VkDQo+IGJlZm9yZSB0aGVpciBIVy9TVyBzdGF0ZSBpcyBzeW5jZWQuIE1vdmUgdGhl
-IFR5cGVDIHBvcnQgc2FuaXRpemF0aW9uIHRvDQo+IHRoZSBlbmNvZGVyJ3Mgc3luY19zdGF0ZSBo
-b29rIHRvIGZpeCB0aGlzLg0KPiANCj4gdjI6IEhhbmRsZSB0aGUgZW5jb2RlciBkaXNhYmxlZCBj
-YXNlIGluIGdlbjExX2RzaV9zeW5jX3N0YXRlKCkgYXMgd2VsbA0KPiAgICAgKEpvc2UsIEphbmkp
-DQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVs
-LmNvbT4NCg0KPiANCj4gRml4ZXM6IGY5ZTc2YTZlNjhkMyAoImRybS9pOTE1OiBBZGQgYW4gZW5j
-b2RlciBob29rIHRvIHNhbml0aXplIGl0cyBzdGF0ZSBkdXJpbmcgaW5pdC9yZXN1bWUiKQ0KPiBD
-YzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IENjOiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiBTaWduZWQt
-b2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMgICAgICAgfCAxMCArKysrKysrKy0tDQo+
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICB8ICA4ICsrKysr
-KystDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDIw
-ICsrKysrLS0tLS0tLS0tLS0tLS0tDQo+ICAzIGZpbGVzIGNoYW5nZWQsIDIwIGluc2VydGlvbnMo
-KyksIDE4IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaWNsX2RzaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xf
-ZHNpLmMNCj4gaW5kZXggMDYwYmM4ZmIwZDMwNy4uYmQyMTAxNjZiMDc5MyAxMDA2NDQNCj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMNCj4gQEAgLTE1OTksOCArMTU5OSwxNCBA
-QCBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfc3luY19zdGF0ZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
-ZW5jb2RlciwNCj4gIAkJCQkgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
-dGUpDQo+ICB7DQo+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkx
-NShlbmNvZGVyLT5iYXNlLmRldik7DQo+IC0Jc3RydWN0IGludGVsX2NydGMgKmludGVsX2NydGMg
-PSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7DQo+IC0JZW51bSBwaXBlIHBp
-cGUgPSBpbnRlbF9jcnRjLT5waXBlOw0KPiArCXN0cnVjdCBpbnRlbF9jcnRjICppbnRlbF9jcnRj
-Ow0KPiArCWVudW0gcGlwZSBwaXBlOw0KPiArDQo+ICsJaWYgKCFjcnRjX3N0YXRlKQ0KPiArCQly
-ZXR1cm47DQo+ICsNCj4gKwlpbnRlbF9jcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0YXRlLT51
-YXBpLmNydGMpOw0KPiArCXBpcGUgPSBpbnRlbF9jcnRjLT5waXBlOw0KPiAgDQo+ICAJLyogd2Eg
-dmVyaWZ5IDE0MDkwNTQwNzY6aWNsLGpzbCxlaGwgKi8NCj4gIAlpZiAoRElTUExBWV9WRVIoZGV2
-X3ByaXYpID09IDExICYmIHBpcGUgPT0gUElQRV9CICYmDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBpbmRleCBhNDY2Nzc0MWQzNTQ4Li4wNDU3MmNlNjYzMGY5
-IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5j
-DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gQEAg
-LTM4MzgsNyArMzgzOCwxMyBAQCB2b2lkIGhzd19kZGlfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxf
-ZW5jb2RlciAqZW5jb2RlciwNCj4gIHN0YXRpYyB2b2lkIGludGVsX2RkaV9zeW5jX3N0YXRlKHN0
-cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiAgCQkJCSBjb25zdCBzdHJ1Y3QgaW50ZWxf
-Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gIHsNCj4gLQlpZiAoaW50ZWxfY3J0Y19oYXNfZHBf
-ZW5jb2RlcihjcnRjX3N0YXRlKSkNCj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9
-IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOw0KPiArCWVudW0gcGh5IHBoeSA9IGludGVsX3Bv
-cnRfdG9fcGh5KGk5MTUsIGVuY29kZXItPnBvcnQpOw0KPiArDQo+ICsJaWYgKGludGVsX3BoeV9p
-c190YyhpOTE1LCBwaHkpKQ0KPiArCQlpbnRlbF90Y19wb3J0X3Nhbml0aXplKGVuY190b19kaWdf
-cG9ydChlbmNvZGVyKSk7DQo+ICsNCj4gKwlpZiAoY3J0Y19zdGF0ZSAmJiBpbnRlbF9jcnRjX2hh
-c19kcF9lbmNvZGVyKGNydGNfc3RhdGUpKQ0KPiAgCQlpbnRlbF9kcF9zeW5jX3N0YXRlKGVuY29k
-ZXIsIGNydGNfc3RhdGUpOw0KPiAgfQ0KPiAgDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IGluZGV4IDllNDA3NzYwZTUxZjYuLjVmMjQxZTI0MTVj
-ZWEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jDQo+IEBAIC0xMjI4NSwxOCArMTIyODUsMTYgQEAgc3RhdGljIHZvaWQgaW50ZWxfbW9kZXNl
-dF9yZWFkb3V0X2h3X3N0YXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpDQo+ICAJcmVhZG91dF9w
-bGFuZV9zdGF0ZShkZXZfcHJpdik7DQo+ICANCj4gIAlmb3JfZWFjaF9pbnRlbF9lbmNvZGVyKGRl
-diwgZW5jb2Rlcikgew0KPiArCQlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSA9
-IE5VTEw7DQo+ICsNCj4gIAkJcGlwZSA9IDA7DQo+ICANCj4gIAkJaWYgKGVuY29kZXItPmdldF9o
-d19zdGF0ZShlbmNvZGVyLCAmcGlwZSkpIHsNCj4gLQkJCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
-ICpjcnRjX3N0YXRlOw0KPiAtDQo+ICAJCQljcnRjID0gaW50ZWxfZ2V0X2NydGNfZm9yX3BpcGUo
-ZGV2X3ByaXYsIHBpcGUpOw0KPiAgCQkJY3J0Y19zdGF0ZSA9IHRvX2ludGVsX2NydGNfc3RhdGUo
-Y3J0Yy0+YmFzZS5zdGF0ZSk7DQo+ICANCj4gIAkJCWVuY29kZXItPmJhc2UuY3J0YyA9ICZjcnRj
-LT5iYXNlOw0KPiAgCQkJaW50ZWxfZW5jb2Rlcl9nZXRfY29uZmlnKGVuY29kZXIsIGNydGNfc3Rh
-dGUpOw0KPiAtCQkJaWYgKGVuY29kZXItPnN5bmNfc3RhdGUpDQo+IC0JCQkJZW5jb2Rlci0+c3lu
-Y19zdGF0ZShlbmNvZGVyLCBjcnRjX3N0YXRlKTsNCj4gIA0KPiAgCQkJLyogcmVhZCBvdXQgdG8g
-c2xhdmUgY3J0YyBhcyB3ZWxsIGZvciBiaWdqb2luZXIgKi8NCj4gIAkJCWlmIChjcnRjX3N0YXRl
-LT5iaWdqb2luZXIpIHsNCj4gQEAgLTEyMzExLDYgKzEyMzA5LDkgQEAgc3RhdGljIHZvaWQgaW50
-ZWxfbW9kZXNldF9yZWFkb3V0X2h3X3N0YXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpDQo+ICAJ
-CQllbmNvZGVyLT5iYXNlLmNydGMgPSBOVUxMOw0KPiAgCQl9DQo+ICANCj4gKwkJaWYgKGVuY29k
-ZXItPnN5bmNfc3RhdGUpDQo+ICsJCQllbmNvZGVyLT5zeW5jX3N0YXRlKGVuY29kZXIsIGNydGNf
-c3RhdGUpOw0KPiArDQo+ICAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLA0KPiAgCQkJICAg
-ICJbRU5DT0RFUjolZDolc10gaHcgc3RhdGUgcmVhZG91dDogJXMsIHBpcGUgJWNcbiIsDQo+ICAJ
-CQkgICAgZW5jb2Rlci0+YmFzZS5iYXNlLmlkLCBlbmNvZGVyLT5iYXNlLm5hbWUsDQo+IEBAIC0x
-MjU5MywxNyArMTI1OTQsNiBAQCBpbnRlbF9tb2Rlc2V0X3NldHVwX2h3X3N0YXRlKHN0cnVjdCBk
-cm1fZGV2aWNlICpkZXYsDQo+ICAJaW50ZWxfbW9kZXNldF9yZWFkb3V0X2h3X3N0YXRlKGRldik7
-DQo+ICANCj4gIAkvKiBIVyBzdGF0ZSBpcyByZWFkIG91dCwgbm93IHdlIG5lZWQgdG8gc2FuaXRp
-emUgdGhpcyBtZXNzLiAqLw0KPiAtDQo+IC0JLyogU2FuaXRpemUgdGhlIFR5cGVDIHBvcnQgbW9k
-ZSB1cGZyb250LCBlbmNvZGVycyBkZXBlbmQgb24gdGhpcyAqLw0KPiAtCWZvcl9lYWNoX2ludGVs
-X2VuY29kZXIoZGV2LCBlbmNvZGVyKSB7DQo+IC0JCWVudW0gcGh5IHBoeSA9IGludGVsX3BvcnRf
-dG9fcGh5KGRldl9wcml2LCBlbmNvZGVyLT5wb3J0KTsNCj4gLQ0KPiAtCQkvKiBXZSBuZWVkIHRv
-IHNhbml0aXplIG9ubHkgdGhlIE1TVCBwcmltYXJ5IHBvcnQuICovDQo+IC0JCWlmIChlbmNvZGVy
-LT50eXBlICE9IElOVEVMX09VVFBVVF9EUF9NU1QgJiYNCj4gLQkJICAgIGludGVsX3BoeV9pc190
-YyhkZXZfcHJpdiwgcGh5KSkNCj4gLQkJCWludGVsX3RjX3BvcnRfc2FuaXRpemUoZW5jX3RvX2Rp
-Z19wb3J0KGVuY29kZXIpKTsNCj4gLQl9DQo+IC0NCj4gIAlnZXRfZW5jb2Rlcl9wb3dlcl9kb21h
-aW5zKGRldl9wcml2KTsNCj4gIA0KPiAgCWlmIChIQVNfUENIX0lCWChkZXZfcHJpdikpDQoNCg==
+The formulae has been updated to include more variables. Make
+sure the code carries the same.
+
+Bspec: 64631
+
+v2: Make GEN11 follow the default route and fix calculation of
+    maxdebw(RK)
+v3: Fix div by zero on Gen11 and Correct indent for fallthrough(Jani)
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 69 ++++++++++++++++++++-----
+ 1 file changed, 56 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 4b94256d7319..d9de2a812b27 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -27,6 +27,9 @@ struct intel_qgv_info {
+ 	u8 num_points;
+ 	u8 num_psf_points;
+ 	u8 t_bl;
++	u8 max_numchannels;
++	u8 channel_width;
++	u8 deinterleave;
+ };
+ 
+ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
+@@ -137,6 +140,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+ {
+ 	const struct dram_info *dram_info = &dev_priv->dram_info;
+ 	int i, ret;
++	bool is_y_tile = true; /* assume y tile may be used */
+ 
+ 	qi->num_points = dram_info->num_qgv_points;
+ 	qi->num_psf_points = dram_info->num_psf_gv_points;
+@@ -144,13 +148,35 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+ 	if (DISPLAY_VER(dev_priv) == 12)
+ 		switch (dram_info->type) {
+ 		case INTEL_DRAM_DDR4:
+-			qi->t_bl = 4;
++			qi->t_bl = is_y_tile ? 8 : 4;
++			qi->max_numchannels = 2;
++			qi->channel_width = 64;
++			qi->deinterleave = is_y_tile ? 1 : 2;
+ 			break;
+ 		case INTEL_DRAM_DDR5:
+-			qi->t_bl = 8;
++			qi->t_bl = is_y_tile ? 16 : 8;
++			qi->max_numchannels = 4;
++			qi->channel_width = 32;
++			qi->deinterleave = is_y_tile ? 1 : 2;
++			break;
++		case INTEL_DRAM_LPDDR4:
++			if (IS_ROCKETLAKE(dev_priv)) {
++				qi->t_bl = 8;
++				qi->max_numchannels = 4;
++				qi->channel_width = 32;
++				qi->deinterleave = 2;
++				break;
++			}
++			fallthrough;
++		case INTEL_DRAM_LPDDR5:
++			qi->t_bl = 16;
++			qi->max_numchannels = 8;
++			qi->channel_width = 16;
++			qi->deinterleave = is_y_tile ? 2 : 4;
+ 			break;
+ 		default:
+ 			qi->t_bl = 16;
++			qi->max_numchannels = 1;
+ 			break;
+ 		}
+ 	else if (DISPLAY_VER(dev_priv) == 11)
+@@ -263,12 +289,13 @@ static const struct intel_sa_info adlp_sa_info = {
+ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
+ {
+ 	struct intel_qgv_info qi = {};
+-	bool is_y_tile = true; /* assume y tile may be used */
++	const struct dram_info *dram_info = &dev_priv->dram_info;
+ 	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
+-	int deinterleave;
+ 	int ipqdepth, ipqdepthpch;
+ 	int dclk_max;
+-	int maxdebw;
++	int maxdebw, peakbw;
++	int clperchgroup;
++	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
+ 	int i, ret;
+ 
+ 	ret = icl_get_qgv_points(dev_priv, &qi);
+@@ -278,22 +305,38 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 		return ret;
+ 	}
+ 
+-	deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+-	dclk_max = icl_sagv_max_dclk(&qi);
++	if (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5)
++		num_channels *= 2;
++
++	if (num_channels < qi.max_numchannels && DISPLAY_VER(dev_priv) >= 12)
++		qi.deinterleave = DIV_ROUND_UP(qi.deinterleave, 2);
++
++	num_channels = min_t(u8, num_channels, qi.max_numchannels);
++	dclk_max = icl_calc_bw(icl_sagv_max_dclk(&qi), 16, 1);
+ 
+ 	ipqdepthpch = 16;
+ 
+-	maxdebw = min(sa->deprogbwlimit * 1000,
+-		      icl_calc_bw(dclk_max, 16, 1) * 6 / 10); /* 60% */
++	peakbw = num_channels * DIV_ROUND_UP(qi.deinterleave, 8) * dclk_max;
++	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * 6 / 10); /* 60% */
+ 	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
++	/*
++	 * clperchgroup = 4kpagespermempage * clperchperblock,
++	 * clperchperblock = 8 /num_channels * interleave
++	 */
++	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
+ 
+-	for (i = 0; i < ARRAY_SIZE(dev_priv->max_bw); i++) {
++	for (i = 0; i < num_groups; i++) {
+ 		struct intel_bw_info *bi = &dev_priv->max_bw[i];
+ 		int clpchgroup;
+ 		int j;
+ 
+-		clpchgroup = (sa->deburst * deinterleave / num_channels) << i;
+-		bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
++		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
++
++		if ((i < num_groups - 1 && clpchgroup < clperchgroup) ||
++		    DISPLAY_VER(dev_priv) == 11)
++			bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
++		else
++			bi->num_planes = 0;
+ 
+ 		bi->num_qgv_points = qi.num_points;
+ 		bi->num_psf_gv_points = qi.num_psf_points;
+@@ -339,7 +382,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	 * SAGV point, but we can't send PCode commands to restrict it
+ 	 * as it will fail and pointless anyway.
+ 	 */
+-	if (qi.num_points == 1)
++	if (qi.num_points >= 1)
+ 		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
+ 	else
+ 		dev_priv->sagv_status = I915_SAGV_ENABLED;
+-- 
+2.20.1
+
