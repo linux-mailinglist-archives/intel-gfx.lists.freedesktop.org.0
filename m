@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67ACA41CCD9
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:48:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FE841CCDF
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:49:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 950CB6E218;
-	Wed, 29 Sep 2021 19:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D802D6E219;
+	Wed, 29 Sep 2021 19:48:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A8FB26E217;
- Wed, 29 Sep 2021 19:48:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A0A49A008A;
- Wed, 29 Sep 2021 19:48:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2878133769962584562=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAB876E219
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 19:48:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="205172456"
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="205172456"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 12:48:44 -0700
+X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="708490382"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 12:48:43 -0700
+Date: Wed, 29 Sep 2021 22:48:40 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 19:48:17 -0000
-Message-ID: <163294489762.27098.18363388135386010099@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Reject_bogus_modes_with_fixed_mode_panels_=28rev4=29?=
+Message-ID: <20210929194840.GF2192289@ideak-desk.fi.intel.com>
+References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+ <20210927182455.27119-5-ville.syrjala@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210927182455.27119-5-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915: De-wrapper
+ bxt_ddi_phy_set_signal_levels()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,146 +47,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2878133769962584562==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Sep 27, 2021 at 09:24:50PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Convert bxt_ddi_phy_set_signal_levels() to act as the full
+> .set_signal_levels() hook instead of going through a pointless wrapper.
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Series: drm/i915: Reject bogus modes with fixed mode panels (rev4)
-URL   : https://patchwork.freedesktop.org/series/95003/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21194
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21194 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-
-
-Participating hosts (33 -> 29)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10660 -> Patchwork_21194
-
-  CI-20190529: 20190529
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21194: 757c93b34f28fa06ae5d6d3e8df3890209ccc560 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-757c93b34f28 drm/i915: Drop pointless fixed_mode checks from dsi code
-3c1fa96c8f68 drm/i915: Reject user modes that don't match fixed mode's refresh rate
-f7cdd9e01604 drm/i915: Introduce intel_panel_compute_config()
-533507b364f4 drm/i915: Reject modes that don't match fixed_mode vrefresh
-d9423a841736 drm/i915: Use intel_panel_mode_valid() for DSI/LVDS/DVO
-1167de2f2bef drm/i915: Extract intel_panel_mode_valid()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html
-
---===============2878133769962584562==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Reject bogus modes with fixed mode panels (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95003/">https://patchwork.freedesktop.org/series/95003/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21194</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21194 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (33 -&gt; 29)</h2>
-<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10660 -&gt; Patchwork_21194</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21194: 757c93b34f28fa06ae5d6d3e8df3890209ccc560 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>757c93b34f28 drm/i915: Drop pointless fixed_mode checks from dsi code<br />
-3c1fa96c8f68 drm/i915: Reject user modes that don't match fixed mode's refresh rate<br />
-f7cdd9e01604 drm/i915: Introduce intel_panel_compute_config()<br />
-533507b364f4 drm/i915: Reject modes that don't match fixed_mode vrefresh<br />
-d9423a841736 drm/i915: Use intel_panel_mode_valid() for DSI/LVDS/DVO<br />
-1167de2f2bef drm/i915: Extract intel_panel_mode_valid()</p>
-
-</body>
-</html>
-
---===============2878133769962584562==--
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 24 +--------------
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.c | 30 +++++++++++++------
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.h |  5 ++--
+>  3 files changed, 24 insertions(+), 35 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 62ab57c391ef..970a796a4f52 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -995,28 +995,6 @@ static void skl_ddi_set_iboost(struct intel_encoder *encoder,
+>  		_skl_ddi_set_iboost(dev_priv, PORT_E, iboost);
+>  }
+>  
+> -static void bxt_set_signal_levels(struct intel_encoder *encoder,
+> -				  const struct intel_crtc_state *crtc_state)
+> -{
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	int level = intel_ddi_level(encoder, crtc_state);
+> -	const struct intel_ddi_buf_trans *trans;
+> -	enum port port = encoder->port;
+> -	int n_entries;
+> -
+> -	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+> -		return;
+> -	if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+> -		level = n_entries - 1;
+> -
+> -	bxt_ddi_phy_set_signal_level(dev_priv, port,
+> -				     trans->entries[level].bxt.margin,
+> -				     trans->entries[level].bxt.scale,
+> -				     trans->entries[level].bxt.enable,
+> -				     trans->entries[level].bxt.deemphasis);
+> -}
+> -
+>  static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp,
+>  				   const struct intel_crtc_state *crtc_state)
+>  {
+> @@ -4574,7 +4552,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  		else
+>  			encoder->set_signal_levels = icl_mg_phy_set_signal_levels;
+>  	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+> -		encoder->set_signal_levels = bxt_set_signal_levels;
+> +		encoder->set_signal_levels = bxt_ddi_phy_set_signal_levels;
+>  	} else {
+>  		encoder->set_signal_levels = hsw_set_signal_levels;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> index 48507ed79950..4d604e4cfa5d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> @@ -23,6 +23,8 @@
+>  
+>  #include "display/intel_dp.h"
+>  
+> +#include "intel_ddi.h"
+> +#include "intel_ddi_buf_trans.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dpio_phy.h"
+> @@ -266,15 +268,24 @@ void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
+>  	*ch = DPIO_CH0;
+>  }
+>  
+> -void bxt_ddi_phy_set_signal_level(struct drm_i915_private *dev_priv,
+> -				  enum port port, u32 margin, u32 scale,
+> -				  u32 enable, u32 deemphasis)
+> +void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
+> +				   const struct intel_crtc_state *crtc_state)
+>  {
+> -	u32 val;
+> -	enum dpio_phy phy;
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	int level = intel_ddi_level(encoder, crtc_state);
+> +	const struct intel_ddi_buf_trans *trans;
+>  	enum dpio_channel ch;
+> +	enum dpio_phy phy;
+> +	int n_entries;
+> +	u32 val;
+>  
+> -	bxt_port_to_phy_channel(dev_priv, port, &phy, &ch);
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
+> +		return;
+> +	if (drm_WARN_ON_ONCE(&dev_priv->drm, level >= n_entries))
+> +		level = n_entries - 1;
+> +
+> +	bxt_port_to_phy_channel(dev_priv, encoder->port, &phy, &ch);
+>  
+>  	/*
+>  	 * While we write to the group register to program all lanes at once we
+> @@ -286,12 +297,13 @@ void bxt_ddi_phy_set_signal_level(struct drm_i915_private *dev_priv,
+>  
+>  	val = intel_de_read(dev_priv, BXT_PORT_TX_DW2_LN0(phy, ch));
+>  	val &= ~(MARGIN_000 | UNIQ_TRANS_SCALE);
+> -	val |= margin << MARGIN_000_SHIFT | scale << UNIQ_TRANS_SCALE_SHIFT;
+> +	val |= trans->entries[level].bxt.margin << MARGIN_000_SHIFT |
+> +		trans->entries[level].bxt.scale << UNIQ_TRANS_SCALE_SHIFT;
+>  	intel_de_write(dev_priv, BXT_PORT_TX_DW2_GRP(phy, ch), val);
+>  
+>  	val = intel_de_read(dev_priv, BXT_PORT_TX_DW3_LN0(phy, ch));
+>  	val &= ~SCALE_DCOMP_METHOD;
+> -	if (enable)
+> +	if (trans->entries[level].bxt.enable)
+>  		val |= SCALE_DCOMP_METHOD;
+>  
+>  	if ((val & UNIQUE_TRANGE_EN_METHOD) && !(val & SCALE_DCOMP_METHOD))
+> @@ -302,7 +314,7 @@ void bxt_ddi_phy_set_signal_level(struct drm_i915_private *dev_priv,
+>  
+>  	val = intel_de_read(dev_priv, BXT_PORT_TX_DW4_LN0(phy, ch));
+>  	val &= ~DE_EMPHASIS;
+> -	val |= deemphasis << DEEMPH_SHIFT;
+> +	val |= trans->entries[level].bxt.deemphasis << DEEMPH_SHIFT;
+>  	intel_de_write(dev_priv, BXT_PORT_TX_DW4_GRP(phy, ch), val);
+>  
+>  	val = intel_de_read(dev_priv, BXT_PORT_PCS_DW10_LN01(phy, ch));
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.h b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
+> index 6473440e7457..9c3d008e8e1a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
+> @@ -17,9 +17,8 @@ struct intel_encoder;
+>  
+>  void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
+>  			     enum dpio_phy *phy, enum dpio_channel *ch);
+> -void bxt_ddi_phy_set_signal_level(struct drm_i915_private *dev_priv,
+> -				  enum port port, u32 margin, u32 scale,
+> -				  u32 enable, u32 deemphasis);
+> +void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
+> +				   const struct intel_crtc_state *crtc_state);
+>  void bxt_ddi_phy_init(struct drm_i915_private *dev_priv, enum dpio_phy phy);
+>  void bxt_ddi_phy_uninit(struct drm_i915_private *dev_priv, enum dpio_phy phy);
+>  bool bxt_ddi_phy_is_enabled(struct drm_i915_private *dev_priv,
+> -- 
+> 2.32.0
+> 
