@@ -1,60 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D560F41C73D
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 16:51:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 877BE41C752
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 16:52:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D80D96EAA7;
-	Wed, 29 Sep 2021 14:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18C796EAA5;
+	Wed, 29 Sep 2021 14:52:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45DD86EAAE;
- Wed, 29 Sep 2021 14:51:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id C0C9A3F36D;
- Wed, 29 Sep 2021 16:51:00 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa3.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id D70mD4csObw8; Wed, 29 Sep 2021 16:50:59 +0200 (CEST)
-Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 40BA83F32D;
- Wed, 29 Sep 2021 16:50:57 +0200 (CEST)
-Received: from [192.168.0.209] (unknown [192.198.151.53])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 0474F36011B;
- Wed, 29 Sep 2021 16:50:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1632927057; bh=hVc1+hKMg11SzO2edsE5UMTFcbwpZX2YiDZoYUUWjho=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=cq0mrBg3jxesvGvYLPDCG34O0FcbDCrReWZYIIK6TvwFFXFT4OToXmc7G1eltR1Ca
- Z6bw9PoImZ02ggSh16O7vOTeYq2tc5R0nf8V99exMLI2wGNG/nRgo8QBcQjq0Zcr1S
- wewgy6zruzUjOXZhY/9PjZX/VPls8dylcEB309UA=
-Message-ID: <07332ad2-5a4d-90bc-47b0-069d292ccdad@shipmail.org>
-Date: Wed, 29 Sep 2021 16:50:55 +0200
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
+ [IPv6:2607:f8b0:4864:20::82a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D716EAA5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 14:52:24 +0000 (UTC)
+Received: by mail-qt1-x82a.google.com with SMTP id c20so2545010qtb.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=7JUE3KnwhzODMFVKnxXssJhCx06ypOEtInaS9VOkBkc=;
+ b=fEPcDyJIUlgGINqrdGQWXxbylyFaK2FDZ+tEciqN1QqVHxIMoGNh01cy71i9hulBrb
+ Ecc7pqn9FQVSle5p2ib31pKYcFcSqKGUAw9fD/Rt9nu0snwFY1nEa/em0Ns1EHUEgWUY
+ +6lLX31R29/Q4STnRF5RkIQZqKLDrtYuhAHSZXscTv6ISV8k4RTz7pj/3T2bkLjWsBWr
+ tIYoNBMLBHIcsfd8YqNrY3P0urlD5femmNoTWhT3FWznuSpYrbg9svfyHncSXzewI/VU
+ y40kzfszbo6mXYwIoydOPnVsAL19hUGrqerQkdCpYI0j4xR3eJIBpLt6AOq+Tr2T6Jof
+ k8uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=7JUE3KnwhzODMFVKnxXssJhCx06ypOEtInaS9VOkBkc=;
+ b=v9nua+1rxSUlffQyHhFD1Vlem4LVbWiRaQIcihERyaIT8NSaS1xnC73cziKdnWnhZ6
+ aIsSHVXV2+WP0SgnKKJib0CVDFSHt7cH+cC3TUkEQ3+fRCONlz3s2GGMeUgbk21MaA63
+ yhkuoi3vpwEuosAauXYlSLD2tHtT6PMjxqbZBrOQM6H4nZwbhak2ymxsS3xNyzS0o0Fq
+ 8+nVplMrVENlYU8McITNCYixuGD9tNYvErBher7TTWddjEZMf6BAJwMMuWbu0E2qDxo5
+ tW9U/LXxYjOJWDZjH/eM5SjSII2puaP3CFtiAbc5Bw5Ar8YLhAFmJ/to8nvn5C4fLA9H
+ ++Bw==
+X-Gm-Message-State: AOAM531fgiwknY//YH4Yy+3Jmx2edHwAN/EdREBPk3ttz/sRLIskZYEw
+ KSyQ6we83Pjga7ymRhhAO6GfVg==
+X-Google-Smtp-Source: ABdhPJz2Dh587oAtNE+3dwmaLnKNyuoarrG+93H0oIr0lYSQ8p8duyHAHS/lBIVypGgw9ktyNvRQ2g==
+X-Received: by 2002:ac8:534b:: with SMTP id d11mr269756qto.167.1632927143089; 
+ Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+ by smtp.gmail.com with ESMTPSA id o21sm48055qtt.12.2021.09.29.07.52.22
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 29 Sep 2021 07:52:22 -0700 (PDT)
+Date: Wed, 29 Sep 2021 10:52:20 -0400
+From: Sean Paul <sean@poorly.run>
+To: abhinavk@codeaurora.org
+Cc: Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ swboyd@chromium.org, Sean Paul <seanpaul@chromium.org>,
+ Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Message-ID: <20210929145220.GV2515@art_vandelay>
+References: <20210915203834.1439-1-sean@poorly.run>
+ <20210915203834.1439-14-sean@poorly.run>
+ <2486179cbd76c34a9c085dfff98448e5@codeaurora.org>
+ <20210928180219.GT2515@art_vandelay>
+ <48a284181bf6211b60f8318531051add@codeaurora.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Julia Lawall <julia.lawall@lip6.fr>
-References: <20210929085950.3063191-1-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20210929085950.3063191-1-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add ww context to intel_dpt_pin,
- v2.
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48a284181bf6211b60f8318531051add@codeaurora.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [Freedreno] [PATCH v2 13/13] drm/msm: Implement
+ HDCP 1.x using the new drm HDCP helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,87 +84,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Sep 28, 2021 at 02:35:09PM -0700, abhinavk@codeaurora.org wrote:
+> On 2021-09-28 11:02, Sean Paul wrote:
+> > On Tue, Sep 21, 2021 at 07:25:41PM -0700, abhinavk@codeaurora.org wrote:
+> > > On 2021-09-15 13:38, Sean Paul wrote:
+> > > > From: Sean Paul <seanpaul@chromium.org>
+> > > >
+> > > > This patch adds HDCP 1.x support to msm DP connectors using the new HDCP
+> > > > helpers.
+> > > >
+> > > > Cc: Stephen Boyd <swboyd@chromium.org>
+> > > > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > > > Link:
+> > > > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run
+> > > > #v1
+> > > >
+> > > > Changes in v2:
+> > > > -Squash [1] into this patch with the following changes (Stephen)
+> > > >   -Update the sc7180 dtsi file
+> > > >   -Remove resource names and just use index (Stephen)
+> > > >
+> > > 
+> > > 
+> > > > [1]
+> > > > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-14-sean@poorly.run
+> > > > ---
+> > 
+> > /snip
+> > 
+> > > > diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
+> > > > index 904535eda0c4..98731fd262d6 100644
+> > > > --- a/drivers/gpu/drm/msm/Makefile
+> > > > +++ b/drivers/gpu/drm/msm/Makefile
+> > > > @@ -109,6 +109,7 @@ msm-$(CONFIG_DRM_MSM_DP)+= dp/dp_aux.o \
+> > > >  	dp/dp_ctrl.o \
+> > > >  	dp/dp_display.o \
+> > > >  	dp/dp_drm.o \
+> > > > +	dp/dp_hdcp.o \
+> > > >  	dp/dp_hpd.o \
+> > > >  	dp/dp_link.o \
+> > > >  	dp/dp_panel.o \
+> > > > diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c
+> > > > b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > > > index 2f6247e80e9d..de16fca8782a 100644
+> > > > --- a/drivers/gpu/drm/msm/dp/dp_debug.c
+> > > > +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > 
+> > /snip
+> > 
+> > > > +static ssize_t dp_hdcp_key_write(struct file *file, const char __user
+> > > > *ubuf,
+> > > > +				 size_t len, loff_t *offp)
+> > > > +{
+> > > > +	char *input_buffer;
+> > > > +	int ret = 0;
+> > > > +	struct dp_debug_private *debug = file->private_data;
+> > > > +	struct drm_device *dev;
+> > > > +
+> > > > +	dev = debug->drm_dev;
+> > > > +
+> > > > +	if (len != (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN))
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	if (!debug->hdcp)
+> > > > +		return -ENOENT;
+> > > > +
+> > > > +	input_buffer = memdup_user_nul(ubuf, len);
+> > > > +	if (IS_ERR(input_buffer))
+> > > > +		return PTR_ERR(input_buffer);
+> > > > +
+> > > > +	ret = dp_hdcp_ingest_key(debug->hdcp, input_buffer, len);
+> > > > +
+> > > > +	kfree(input_buffer);
+> > > > +	if (ret < 0) {
+> > > > +		DRM_ERROR("Could not ingest HDCP key, ret=%d\n", ret);
+> > > > +		return ret;
+> > > > +	}
+> > > > +
+> > > > +	*offp += len;
+> > > > +	return len;
+> > > > +}
+> > > 
+> > > It seems like the HDCP keys written using debugfs, just for my
+> > > understanding,
+> > > are you storing this in some secure partition and the usermode reads
+> > > from it
+> > > and writes them here?
+> > > 
+> > 
+> > We have not sorted out the userspace side of HDCP enablement yet, so it
+> > remains
+> > to be seen whether the keys will be injected via debugfs/firmware
+> > file/property.
+> > 
+> > /snip
+> > 
+> > > > +static int dp_connector_atomic_check(struct drm_connector *connector,
+> > > > +				     struct drm_atomic_state *state)
+> > > > +{
+> > > > +	struct drm_connector_state *conn_state;
+> > > > +	struct dp_connector_state *dp_state;
+> > > > +
+> > > > +	conn_state = drm_atomic_get_new_connector_state(state, connector);
+> > > > +	dp_state = to_dp_connector_state(conn_state);
+> > > > +
+> > > > +	dp_state->hdcp_transition = drm_hdcp_atomic_check(connector, state);
+> > > 
+> > > I have a general question related to the transition flag and overall
+> > > tying
+> > > the HDCP
+> > > enable and authentication to the commit.
+> > > So lets say there is a case where the driver needs to disable HDCP.
+> > > It could
+> > > be due
+> > > to link integrity failure OR some other error condition which
+> > > usermode is
+> > > not aware of.
+> > > In that case, we will set this hdcp_transition to true but in the next
+> > > commit we will
+> > > actually do the authentication. What if usermode doesnt issue a new
+> > > frame?
+> > > This question arises because currently the link intergrity check is
+> > > done
+> > > using SW polling
+> > > in the previous patchset. But as I had commented there, this occurs
+> > > in HW
+> > > for us.
+> > > I dont see that isr itself in this patchset. So wanted to understand
+> > > if
+> > > thats part of this
+> > > approach to still tie it with commit.
+> > > 
+> > > So if we go with the HW polling based approach which is the preferred
+> > > method, we need to
+> > > untie this from the commit.
+> > > 
+> > 
+> > In the case of error, the worker will detect it and try to
+> > re-authenticate. If
+> > the re-authentication is successful, userspace will continue to be
+> > unaware and
+> > everything will keep working. If re-authentication is unsuccessful, the
+> > worker
+> > will update the property value and issue a uevent to userspace. So HDCP
+> > enablement is only tied to commits when the property value is changing
+> > as a
+> > result of userspace.
+> > 
+> > Regarding SW vs HW link checks, I don't think there's any difference in
+> > efficacy
+> > between them. If HW can be relied on to issue an interrupt in failure
+> > cases, a
+> > follow-up set allowing for this seems like a great idea.
+> > 
+> 
+> Thanks for the explanation. Yes, from our experience it has been pretty
+> reliable to
+> issue signal integrity failures. We already had the isr based approach
+> downstream
+> and would prefer to keep it that way based on our experience of it firing
+> reliably.
+> We can still keep the SW polling code but it should come into effect only if
+> HW polling
+> is not supported / preferred.
 
-On 9/29/21 10:59, Maarten Lankhorst wrote:
-> Ensure i915_vma_pin_iomap and vma_unpin are done with dpt->obj lock held.
->
-> I don't think there's much of a point in merging intel_dpt_pin() with
-> intel_pin_fb_obj_dpt(), they touch different objects.
->
-> Changes since v1:
-> - Fix using the wrong pointer to retrieve error code (Julia)
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Julia Lawall <julia.lawall@lip6.fr>
+Ok, understood. Unfortunately I don't have access to a testing rig which could
+exercise the interrupt. Do you think you could post a follow-on patch to
+implement this?
 
-LGTM.
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> 
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > 
+> > /snip
+> > 
 
-> ---
->   drivers/gpu/drm/i915/display/intel_dpt.c | 40 +++++++++++++++---------
->   1 file changed, 25 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-> index de62bd77b15e..8f7b1f7534a4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-> @@ -121,32 +121,42 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
->   	intel_wakeref_t wakeref;
->   	struct i915_vma *vma;
->   	void __iomem *iomem;
-> +	struct i915_gem_ww_ctx ww;
-> +	int err;
->   
->   	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
->   	atomic_inc(&i915->gpu_error.pending_fb_pin);
->   
-> -	vma = i915_gem_object_ggtt_pin(dpt->obj, NULL, 0, 4096,
-> -				       HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
-> -	if (IS_ERR(vma))
-> -		goto err;
-> +	for_i915_gem_ww(&ww, err, true) {
-> +		err = i915_gem_object_lock(dpt->obj, &ww);
-> +		if (err)
-> +			continue;
->   
-> -	iomem = i915_vma_pin_iomap(vma);
-> -	i915_vma_unpin(vma);
-> -	if (IS_ERR(iomem)) {
-> -		vma = ERR_CAST(iomem);
-> -		goto err;
-> -	}
-> +		vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0, 4096,
-> +						  HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
-> +		if (IS_ERR(vma)) {
-> +			err = PTR_ERR(vma);
-> +			continue;
-> +		}
-> +
-> +		iomem = i915_vma_pin_iomap(vma);
-> +		i915_vma_unpin(vma);
->   
-> -	dpt->vma = vma;
-> -	dpt->iomem = iomem;
-> +		if (IS_ERR(iomem)) {
-> +			err = PTR_ERR(iomem);
-> +			continue;
-> +		}
->   
-> -	i915_vma_get(vma);
-> +		dpt->vma = vma;
-> +		dpt->iomem = iomem;
-> +
-> +		i915_vma_get(vma);
-> +	}
->   
-> -err:
->   	atomic_dec(&i915->gpu_error.pending_fb_pin);
->   	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
->   
-> -	return vma;
-> +	return err ? ERR_PTR(err) : vma;
->   }
->   
->   void intel_dpt_unpin(struct i915_address_space *vm)
+/snip
+
+> > > > +static int dp_hdcp_hdcp1_store_receiver_info(struct drm_connector
+> > > > *connector,
+> > > > +					     u32 *ksv, u32 status, u8 bcaps,
+> > > > +					     bool is_repeater)
+> > > > +{
+> > > > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
+> > > > +	u32 val;
+> > > > +
+> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA0,
+> > > > +			 ksv[0]);
+> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA1,
+> > > > +			 ksv[1]);
+> > > > +
+> > > > +	val = ((status & GENMASK(15, 0)) << 8) | (bcaps & GENMASK(7, 0));
+> > > > +
+> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA12,
+> > > > val);
+> > > > +
+> > > 
+> > > Cant this entire API be skipped for non-repeater cases from the hdcp
+> > > lib
+> > > layer?
+> > > You can write the bcaps to this earlier and write the bstatus only
+> > > if its a
+> > > repeater.
+> > 
+> > Could you expand on the benefits of this?
+> 
+> We can avoid the call coming into the vendor driver hook itself as it need
+> not be called
+> for non-repeater cases. So something like this can be done in the HDCP lib?
+> 
+> if ( repeater && ops->hdcp1_store_receiver_info )
+>      ops->hdcp1_store_receiver_info(....);
+> 
+
+Unfortunately this would break Intel's implementation.
+
+> > 
+> > > 
+> > > > +	return 0;
+> > > > +}
+> > 
+> > /snip
+
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
