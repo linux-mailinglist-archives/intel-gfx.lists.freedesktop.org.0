@@ -1,35 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620E941C5E4
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 15:43:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522D741C5ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 15:46:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59D256EA6B;
-	Wed, 29 Sep 2021 13:43:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9716F6EA6E;
+	Wed, 29 Sep 2021 13:46:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 791656EA6B;
- Wed, 29 Sep 2021 13:43:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 76111AA0ED;
- Wed, 29 Sep 2021 13:43:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com
+ [IPv6:2607:f8b0:4864:20::82f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C89756EA6B;
+ Wed, 29 Sep 2021 13:46:08 +0000 (UTC)
+Received: by mail-qt1-x82f.google.com with SMTP id r1so2269202qta.12;
+ Wed, 29 Sep 2021 06:46:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=uXBBSmNytQERdJDVGYF6Wc2AU2qPOQl0zWRjLsywPr8=;
+ b=jyq98TDI4/s6C5auFb0crdIDkkWmEpE9MqE3oURk2yVSvRQFoFigJXihdOPf7z+crf
+ 7hKpuoom48sXRcMQaYTxAsom7+8V/ZLYTWaCbszSrjpjdaN9ReemYdOVxAQ140jCF4eS
+ motiND06qS+Ib3PKGCcPhMgM91/Bj7ImhMBG11y1OfoB9vP1+kKfH7Fh2TLRgdT2x0X8
+ /mLkmzkE5wz0ta6a5Em4tLPGqjzdO5odpIIvvPmSDUnz95KXNYRxQF67yJ1svlFDYJvx
+ g3vqlEer7TYtCy6t4/2VPoZv8YP7qcCox3FblC6bQMjWjeyNm+xLzVl60UHqpOyDTpDA
+ dhEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=uXBBSmNytQERdJDVGYF6Wc2AU2qPOQl0zWRjLsywPr8=;
+ b=Mr9Crha5DsYIEjUsFo/VhSS6CAiNXRb8K1BF2NcvueRADSzF64zk55efqqu0wFOdGG
+ xEzHvVvZLxJrNqrDATclvQ4+1ehl+RxzfeLoUMkvU0Il1NtO1q9drWu0Tjm694gx6r31
+ EB+P/wHRAjQIvF8OfJMKF00laPDtnssIpkBmz/QAxqG5wupXiONqyrA3WkXnw9rVK8Ew
+ mDmOVrw1ajBRQ9s5Y9FbL1DZey7LVLZly+w5eVL8dQ1/n5IuCaF4rTomtAkkRPoo5cKL
+ z/p2BeAxdQp6qGaXwLjlfvgs9/fYeZP5rMC2aF4Ln0iPyz8h3WaopzzhigNC2Camn4vr
+ FCPw==
+X-Gm-Message-State: AOAM532w1ogWVD2yoDhBvHtftD7CJu3HNkK25l51O5raxb7RV3ypEyw0
+ b3nci/BM2ntTzA/IQmVTI5es1Vfwm1adQKJkUdg=
+X-Google-Smtp-Source: ABdhPJxEbHCyhTSmJ8HOjeapZrkB9XaxIJCuhqMOdkrUQblacCE+aBxZWW9WrmISXt5Dm8ABPZBK/0RNOTa93ENpUGM=
+X-Received: by 2002:a05:622a:178b:: with SMTP id
+ s11mr12670732qtk.13.1632923167917; 
+ Wed, 29 Sep 2021 06:46:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 13:43:48 -0000
-Message-ID: <163292302848.27097.7445603781919527084@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210921002313.1132357-1-imre.deak@intel.com>
-In-Reply-To: <20210921002313.1132357-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/tc=3A_Fix_TypeC_connect/disconnect_sequences_=28rev8?=
- =?utf-8?q?=29?=
+References: <20210927114114.152310-1-matthew.auld@intel.com>
+ <a0ff7b4a-2433-7ff4-a998-c2c286d3c497@amd.com>
+ <CAM0jSHMrYPM9Wb2WCw5ktLjhN=+0H-qD_1cQbrnPhQRg0_U2=Q@mail.gmail.com>
+ <c51bb1b9-5243-d14e-c5b1-df698d1172af@amd.com>
+In-Reply-To: <c51bb1b9-5243-d14e-c5b1-df698d1172af@amd.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 29 Sep 2021 14:45:39 +0100
+Message-ID: <CAM0jSHN-SA+DCaF2EsN-T-CAMN_wKPne0kLOGj_BKPff65YNOQ@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Matthew Auld <matthew.auld@intel.com>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ ML dri-devel <dri-devel@lists.freedesktop.org>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v5 01/13] drm/ttm: stop calling tt_swapin in
+ vm_access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +72,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 29 Sept 2021 at 13:01, Christian K=C3=B6nig <christian.koenig@amd.c=
+om> wrote:
+>
+> Am 27.09.21 um 18:14 schrieb Matthew Auld:
+> > On Mon, 27 Sept 2021 at 12:47, Christian K=C3=B6nig <christian.koenig@a=
+md.com> wrote:
+> >> Any objections that I just push patches 1-7 to drm-misc-next?
+> > Please go ahead Christian. Thanks.
+>
+> Well I've pushed patches #1-#4 because #5 won't apply on current
+> drm-misc-next (some conflict in i915).
+>
+> Could you rebase this an/or request backmerging of drm-next into
+> drm-misc-next when potential i915 prerequisites have landed there.
 
-Series: drm/i915/tc: Fix TypeC connect/disconnect sequences (rev8)
-URL   : https://patchwork.freedesktop.org/series/94878/
-State : warning
+Version which should apply to drm-misc-next:
+https://patchwork.freedesktop.org/series/95219/
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-
-
+>
+> Thanks,
+> Christian.
+>
+> >
+> >> Christian.
+> >>
+> >> Am 27.09.21 um 13:41 schrieb Matthew Auld:
+> >>> In commit:
+> >>>
+> >>> commit 09ac4fcb3f255e9225967c75f5893325c116cdbe
+> >>> Author: Felix Kuehling <Felix.Kuehling@amd.com>
+> >>> Date:   Thu Jul 13 17:01:16 2017 -0400
+> >>>
+> >>>       drm/ttm: Implement vm_operations_struct.access v2
+> >>>
+> >>> we added the vm_access hook, where we also directly call tt_swapin fo=
+r
+> >>> some reason. If something is swapped-out then the ttm_tt must also be
+> >>> unpopulated, and since access_kmap should also call tt_populate, if
+> >>> needed, then swapping-in will already be handled there.
+> >>>
+> >>> If anything, calling tt_swapin directly here would likely always fail
+> >>> since the tt->pages won't yet be populated, or worse since the tt->pa=
+ges
+> >>> array is never actually cleared in unpopulate this might lead to a na=
+sty
+> >>> uaf.
+> >>>
+> >>> Fixes: 09ac4fcb3f25 ("drm/ttm: Implement vm_operations_struct.access =
+v2")
+> >>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> >>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> >>> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> >>> Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> >>> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> >>> ---
+> >>>    drivers/gpu/drm/ttm/ttm_bo_vm.c | 5 -----
+> >>>    1 file changed, 5 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/tt=
+m_bo_vm.c
+> >>> index f56be5bc0861..5b9b7fd01a69 100644
+> >>> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> >>> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> >>> @@ -519,11 +519,6 @@ int ttm_bo_vm_access(struct vm_area_struct *vma,=
+ unsigned long addr,
+> >>>
+> >>>        switch (bo->resource->mem_type) {
+> >>>        case TTM_PL_SYSTEM:
+> >>> -             if (unlikely(bo->ttm->page_flags & TTM_PAGE_FLAG_SWAPPE=
+D)) {
+> >>> -                     ret =3D ttm_tt_swapin(bo->ttm);
+> >>> -                     if (unlikely(ret !=3D 0))
+> >>> -                             return ret;
+> >>> -             }
+> >>>                fallthrough;
+> >>>        case TTM_PL_TT:
+> >>>                ret =3D ttm_bo_vm_access_kmap(bo, offset, buf, len, wr=
+ite);
+>
