@@ -1,40 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7078141CCC5
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:43:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67ACA41CCD9
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Sep 2021 21:48:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ED806E210;
-	Wed, 29 Sep 2021 19:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 950CB6E218;
+	Wed, 29 Sep 2021 19:48:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 470126E20B
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 19:43:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="205171635"
-X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="205171635"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2021 12:43:43 -0700
-X-IronPort-AV: E=Sophos;i="5.85,334,1624345200"; d="scan'208";a="538972177"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2021 12:43:42 -0700
-Date: Wed, 29 Sep 2021 22:43:39 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210929194339.GE2192289@ideak-desk.fi.intel.com>
-References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
- <20210927182455.27119-4-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A8FB26E217;
+ Wed, 29 Sep 2021 19:48:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A0A49A008A;
+ Wed, 29 Sep 2021 19:48:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2878133769962584562=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210927182455.27119-4-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Nuke usless
- .set_signal_levels() wrappers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Sep 2021 19:48:17 -0000
+Message-ID: <163294489762.27098.18363388135386010099@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210923200109.4459-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Reject_bogus_modes_with_fixed_mode_panels_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,296 +41,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 27, 2021 at 09:24:49PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Now that .set_signal_levels() is used for HDMI as well, we can
-> remove the extra level of indirection and just plug the correct
-> stuff straight into .set_signal_levels().
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============2878133769962584562==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 119 +++++-------------
->  drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
->  drivers/gpu/drm/i915/display/intel_snps_phy.c |   7 +-
->  drivers/gpu/drm/i915/display/intel_snps_phy.h |   5 +-
->  4 files changed, 39 insertions(+), 98 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 4a22dcde66d9..62ab57c391ef 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -995,11 +995,11 @@ static void skl_ddi_set_iboost(struct intel_encoder *encoder,
->  		_skl_ddi_set_iboost(dev_priv, PORT_E, iboost);
->  }
->  
-> -static void bxt_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -				    const struct intel_crtc_state *crtc_state,
-> -				    int level)
-> +static void bxt_set_signal_levels(struct intel_encoder *encoder,
-> +				  const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  	const struct intel_ddi_buf_trans *trans;
->  	enum port port = encoder->port;
->  	int n_entries;
-> @@ -1047,10 +1047,10 @@ static u8 intel_ddi_dp_preemph_max(struct intel_dp *intel_dp)
->  }
->  
->  static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
-> -					 const struct intel_crtc_state *crtc_state,
-> -					 int level)
-> +					 const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  	const struct intel_ddi_buf_trans *trans;
->  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
->  	int n_entries, ln;
-> @@ -1109,9 +1109,8 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW7_GRP(phy), val);
->  }
->  
-> -static void icl_combo_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -					      const struct intel_crtc_state *crtc_state,
-> -					      int level)
-> +static void icl_combo_phy_set_signal_levels(struct intel_encoder *encoder,
-> +					    const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-> @@ -1162,7 +1161,7 @@ static void icl_combo_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), val);
->  
->  	/* 5. Program swing and de-emphasis */
-> -	icl_ddi_combo_vswing_program(encoder, crtc_state, level);
-> +	icl_ddi_combo_vswing_program(encoder, crtc_state);
->  
->  	/* 6. Set training enable to trigger update */
->  	val = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> @@ -1170,12 +1169,12 @@ static void icl_combo_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), val);
->  }
->  
-> -static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -					   const struct intel_crtc_state *crtc_state,
-> -					   int level)
-> +static void icl_mg_phy_set_signal_levels(struct intel_encoder *encoder,
-> +					 const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  	const struct intel_ddi_buf_trans *trans;
->  	int n_entries, ln;
->  	u32 val;
-> @@ -1293,26 +1292,12 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
->  	}
->  }
->  
-> -static void icl_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -				    const struct intel_crtc_state *crtc_state,
-> -				    int level)
-> -{
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-> -
-> -	if (intel_phy_is_combo(dev_priv, phy))
-> -		icl_combo_phy_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else
-> -		icl_mg_phy_ddi_vswing_sequence(encoder, crtc_state, level);
-> -}
-> -
-> -static void
-> -tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -				const struct intel_crtc_state *crtc_state,
-> -				int level)
-> +static void tgl_dkl_phy_set_signal_levels(struct intel_encoder *encoder,
-> +					  const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  	const struct intel_ddi_buf_trans *trans;
->  	u32 val, dpcnt_mask, dpcnt_val;
->  	int n_entries, ln;
-> @@ -1364,19 +1349,6 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
->  	}
->  }
->  
-> -static void tgl_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -				    const struct intel_crtc_state *crtc_state,
-> -				    int level)
-> -{
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-> -
-> -	if (intel_phy_is_combo(dev_priv, phy))
-> -		icl_combo_phy_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else
-> -		tgl_dkl_phy_ddi_vswing_sequence(encoder, crtc_state, level);
-> -}
-> -
->  static int translate_signal_level(struct intel_dp *intel_dp,
->  				  u8 signal_levels)
->  {
-> @@ -1404,8 +1376,8 @@ static int intel_ddi_dp_level(struct intel_dp *intel_dp)
->  	return translate_signal_level(intel_dp, signal_levels);
->  }
->  
-> -static int intel_ddi_level(struct intel_encoder *encoder,
-> -			   const struct intel_crtc_state *crtc_state)
-> +int intel_ddi_level(struct intel_encoder *encoder,
-> +		    const struct intel_crtc_state *crtc_state)
->  {
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->  		return intel_ddi_hdmi_level(encoder, crtc_state);
-> @@ -1413,42 +1385,6 @@ static int intel_ddi_level(struct intel_encoder *encoder,
->  		return intel_ddi_dp_level(enc_to_intel_dp(encoder));
->  }
->  
-> -static void
-> -dg2_set_signal_levels(struct intel_encoder *encoder,
-> -		      const struct intel_crtc_state *crtc_state)
-> -{
-> -	int level = intel_ddi_level(encoder, crtc_state);
-> -
-> -	intel_snps_phy_ddi_vswing_sequence(encoder, crtc_state, level);
-> -}
-> -
-> -static void
-> -tgl_set_signal_levels(struct intel_encoder *encoder,
-> -		      const struct intel_crtc_state *crtc_state)
-> -{
-> -	int level = intel_ddi_level(encoder, crtc_state);
-> -
-> -	tgl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -}
-> -
-> -static void
-> -icl_set_signal_levels(struct intel_encoder *encoder,
-> -		      const struct intel_crtc_state *crtc_state)
-> -{
-> -	int level = intel_ddi_level(encoder, crtc_state);
-> -
-> -	icl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -}
-> -
-> -static void
-> -bxt_set_signal_levels(struct intel_encoder *encoder,
-> -		      const struct intel_crtc_state *crtc_state)
-> -{
-> -	int level = intel_ddi_level(encoder, crtc_state);
-> -
-> -	bxt_ddi_vswing_sequence(encoder, crtc_state, level);
-> -}
-> -
->  static void
->  hsw_set_signal_levels(struct intel_encoder *encoder,
->  		      const struct intel_crtc_state *crtc_state)
-> @@ -4625,16 +4561,23 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  		encoder->get_config = hsw_ddi_get_config;
->  	}
->  
-> -	if (IS_DG2(dev_priv))
-> -		encoder->set_signal_levels = dg2_set_signal_levels;
-> -	else if (DISPLAY_VER(dev_priv) >= 12)
-> -		encoder->set_signal_levels = tgl_set_signal_levels;
-> -	else if (DISPLAY_VER(dev_priv) >= 11)
-> -		encoder->set_signal_levels = icl_set_signal_levels;
-> -	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> +	if (IS_DG2(dev_priv)) {
-> +		encoder->set_signal_levels = intel_snps_phy_set_signal_levels;
-> +	} else if (DISPLAY_VER(dev_priv) >= 12) {
-> +		if (intel_phy_is_combo(dev_priv, phy))
-> +			encoder->set_signal_levels = icl_combo_phy_set_signal_levels;
-> +		else
-> +			encoder->set_signal_levels = tgl_dkl_phy_set_signal_levels;
-> +	} else if (DISPLAY_VER(dev_priv) >= 11) {
-> +		if (intel_phy_is_combo(dev_priv, phy))
-> +			encoder->set_signal_levels = icl_combo_phy_set_signal_levels;
-> +		else
-> +			encoder->set_signal_levels = icl_mg_phy_set_signal_levels;
-> +	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
->  		encoder->set_signal_levels = bxt_set_signal_levels;
-> -	else
-> +	} else {
->  		encoder->set_signal_levels = hsw_set_signal_levels;
-> +	}
->  
->  	intel_ddi_buf_trans_init(encoder);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-> index 7d448485d887..d6947c06a455 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> @@ -59,13 +59,11 @@ void intel_ddi_set_vc_payload_alloc(const struct intel_crtc_state *crtc_state,
->  				    bool state);
->  void intel_ddi_compute_min_voltage_level(struct drm_i915_private *dev_priv,
->  					 struct intel_crtc_state *crtc_state);
-> -u32 bxt_signal_levels(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state);
-> -u32 ddi_signal_levels(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state);
->  int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
->  			       enum transcoder cpu_transcoder,
->  			       bool enable, u32 hdcp_mask);
->  void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
-> +int intel_ddi_level(struct intel_encoder *encoder,
-> +		    const struct intel_crtc_state *crtc_state);
->  
->  #endif /* __INTEL_DDI_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> index 3734e349f91d..f59cc320ce9c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> @@ -5,6 +5,7 @@
->  
->  #include <linux/util_macros.h>
->  
-> +#include "intel_ddi.h"
->  #include "intel_ddi_buf_trans.h"
->  #include "intel_de.h"
->  #include "intel_display_types.h"
-> @@ -51,13 +52,13 @@ void intel_snps_phy_update_psr_power_state(struct drm_i915_private *dev_priv,
->  			 SNPS_PHY_TX_REQ_LN_DIS_PWR_STATE_PSR, val);
->  }
->  
-> -void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -					const struct intel_crtc_state *crtc_state,
-> -					int level)
-> +void intel_snps_phy_set_signal_levels(struct intel_encoder *encoder,
-> +				      const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	const struct intel_ddi_buf_trans *trans;
->  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-> +	int level = intel_ddi_level(encoder, crtc_state);
->  	int n_entries, ln;
->  
->  	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.h b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-> index a68547a6fee5..11dcd6deb070 100644
-> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-> @@ -29,8 +29,7 @@ int intel_mpllb_calc_port_clock(struct intel_encoder *encoder,
->  				const struct intel_mpllb_state *pll_state);
->  
->  int intel_snps_phy_check_hdmi_link_rate(int clock);
-> -void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
-> -					const struct intel_crtc_state *crtc_state,
-> -					int level);
-> +void intel_snps_phy_set_signal_levels(struct intel_encoder *encoder,
-> +				      const struct intel_crtc_state *crtc_state);
->  
->  #endif /* __INTEL_SNPS_PHY_H__ */
-> -- 
-> 2.32.0
-> 
+Series: drm/i915: Reject bogus modes with fixed mode panels (rev4)
+URL   : https://patchwork.freedesktop.org/series/95003/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21194
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21194 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+
+
+Participating hosts (33 -> 29)
+------------------------------
+
+  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10660 -> Patchwork_21194
+
+  CI-20190529: 20190529
+  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21194: 757c93b34f28fa06ae5d6d3e8df3890209ccc560 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+757c93b34f28 drm/i915: Drop pointless fixed_mode checks from dsi code
+3c1fa96c8f68 drm/i915: Reject user modes that don't match fixed mode's refresh rate
+f7cdd9e01604 drm/i915: Introduce intel_panel_compute_config()
+533507b364f4 drm/i915: Reject modes that don't match fixed_mode vrefresh
+d9423a841736 drm/i915: Use intel_panel_mode_valid() for DSI/LVDS/DVO
+1167de2f2bef drm/i915: Extract intel_panel_mode_valid()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html
+
+--===============2878133769962584562==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Reject bogus modes with fixed mode panels (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95003/">https://patchwork.freedesktop.org/series/95003/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21194</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21194 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21194/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (33 -&gt; 29)</h2>
+<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10660 -&gt; Patchwork_21194</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21194: 757c93b34f28fa06ae5d6d3e8df3890209ccc560 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>757c93b34f28 drm/i915: Drop pointless fixed_mode checks from dsi code<br />
+3c1fa96c8f68 drm/i915: Reject user modes that don't match fixed mode's refresh rate<br />
+f7cdd9e01604 drm/i915: Introduce intel_panel_compute_config()<br />
+533507b364f4 drm/i915: Reject modes that don't match fixed_mode vrefresh<br />
+d9423a841736 drm/i915: Use intel_panel_mode_valid() for DSI/LVDS/DVO<br />
+1167de2f2bef drm/i915: Extract intel_panel_mode_valid()</p>
+
+</body>
+</html>
+
+--===============2878133769962584562==--
