@@ -1,150 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAEEE41D2C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 07:35:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 532F541D37B
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 08:35:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB4D56E2E3;
-	Thu, 30 Sep 2021 05:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46BD76E311;
+	Thu, 30 Sep 2021 06:35:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F88F6E2E3
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 05:35:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="221901757"
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="221901757"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2021 22:35:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="539288550"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga004.fm.intel.com with ESMTP; 29 Sep 2021 22:35:14 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 29 Sep 2021 22:35:14 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 29 Sep 2021 22:35:13 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Wed, 29 Sep 2021 22:35:13 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Wed, 29 Sep 2021 22:35:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MGNd8BEwVJlbF+KfsrllUgdIx+Nx/xuDUm7twoeX5BWwaKDzgQg0UMXu4U4UmvFOot4K+4LN5XOqOKEkgOEkCTJBHps631vERGaSsnKaUl1EOyeWjSWYGGA70GKkL8D096y88v62BqlCstO7mBUsa+9sQnf6PBErXbWoJay0dNePvf10O1K03OfRNYRqznxLzIXDRepYu/UZ1HfuZiXplzvKilu3UkCd47UvY+IE4ViK/Qgbz8x7LThAR50EbX0g0AqXE4DdXVmVgwU+QmCC2utJygzOghwq3dg/oarSkQdOiGlPFItPuRMhp0B+BH4f+WZ18hYu7hdr9SU7fbGwAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=AWcFprUvRKj5+CBrEq6BvvXRDJqMmpGMA2sES6zUMM4=;
- b=J83E7ioFSgYk0/iiC0RHBLzledrNsLQkgqaTbsMPBWB+9kFvUO+Eth+vHUOQU9SqcrYdhGubLjsAlvKPt6L06IUR+G90MMAxvqw68hY0IACi+z+EuJcCbARtWQncHGj4G4NW6GzfSF2ScMO/brI4sO0/Hqfd5gh33gLy8N0rxUhk3puB9nlwE5KlwFV05a1d/QmBFQYf9gTeJnxIilt3VSVU12NGU7QkFKtcIhDfJv2x8GXfo+lQkO2FDclGrmWJufWOa/9hmuErzuLQ/qFaOntZ0iK0TRcy7UJgDrgqdeJwGRt/Ev3kPOyM0Dsbywhtg4LUWzGnZyji8sYNGzLEHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AWcFprUvRKj5+CBrEq6BvvXRDJqMmpGMA2sES6zUMM4=;
- b=YzhNLlvhKI8zvZgoFyH9NHfWjEfaoQPEKCadK1apY+A2VsfFrChDFYIGkxn9rD9RmMaeik2ijbggJKrJEy2Jb+cYBylriU4fIccxgIwX/XkllPztUIcm7QDPIdGyPSVzlq7r2kuU/NowNXo3URlXcWID/tZgV0jqPjeVTeU27Uw=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5424.namprd11.prod.outlook.com (2603:10b6:5:39c::8) by
- DM5PR11MB2057.namprd11.prod.outlook.com (2603:10b6:3:d::14) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4544.15; Thu, 30 Sep 2021 05:35:12 +0000
-Received: from DM4PR11MB5424.namprd11.prod.outlook.com
- ([fe80::d5e2:ceac:b53e:351f]) by DM4PR11MB5424.namprd11.prod.outlook.com
- ([fe80::d5e2:ceac:b53e:351f%4]) with mapi id 15.20.4544.022; Thu, 30 Sep 2021
- 05:35:12 +0000
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20210923194617.69136-1-jose.souza@intel.com>
- <20210923194617.69136-4-jose.souza@intel.com>
- <5f2840af-93f9-3493-7e22-e6b88442d992@intel.com> <YVSucKOlmzx4Uj8G@intel.com>
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <defe58f1-41a7-7911-de9e-ea6ac5ce3c91@intel.com>
-Date: Thu, 30 Sep 2021 08:35:01 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-In-Reply-To: <YVSucKOlmzx4Uj8G@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DB6PR1001CA0006.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:4:b7::16) To DM4PR11MB5424.namprd11.prod.outlook.com
- (2603:10b6:5:39c::8)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9629D6E303;
+ Thu, 30 Sep 2021 06:35:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="204598112"
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="204598112"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 23:35:34 -0700
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="555466690"
+Received: from huynhhai-mobl1.ccr.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.243])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2021 23:35:32 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 30 Sep 2021 08:35:21 +0200
+Message-Id: <20210930063521.566982-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Received: from [10.237.72.199] (134.134.137.86) by
- DB6PR1001CA0006.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:4:b7::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4566.16 via Frontend Transport; Thu, 30 Sep 2021 05:35:09 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3299fe8c-b8f9-4109-990f-08d983d41291
-X-MS-TrafficTypeDiagnostic: DM5PR11MB2057:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR11MB2057B119DAC1ADF875E06F60B8AA9@DM5PR11MB2057.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A6lBvcL5mFaVbHBSRZm+6aXiPERfKGqKO8uIGjspUKHg5vSoNr1/6UlMSsX88NySlrIwSn2cYOieIawykEc+UC3wiWUHfMrCJXzcoLNftifnOyYcx5B7cE1pWyp1StF6oBRD/VXz86bEK8DSM/iBJQo7GVLCgP6/mrErqpg2U9vUz/7psGPdRAaUG/V8pGFUHdtUee+C8V9JePSUA6K0FLPVWpxBD8CTGF9i19Ku6Jum4Im+Q70Vir836F8DGhB6koRNVrs0lPf6wY16Xho4eotGlyZGLTf5JYoAKdwj0ssLVUi5+nrrx1s2u9KFTUZIxOBOU4oZtIZHz/nXLbVn9ERSRHA147cVYPlvdjBT7ycfTmTWc2lisg/WhzhPjH7e20tVWg1N7wXBTT9YB0t9lh0TzemjsNKgbV0C4xlA2DA/varq3JNRG9AoRnn9jPa5OUw9TH5NiMX+zip+v9OQ5DrOz9E/ugMxHS0ELTJcccUF64LzYnAVrGsg+C4PQcoH0vrimc4NXYHSEgM/ZkBvfX3rK3zNTg5ZD/gJ6YTENu7ZQDoDerkff/EWJBcXt6JlzBmWfkWyHjPhSv5/GIL8hZgFlzpfju9YggbQM/QS6BCPawMnAjEJHR4T1RCdWky2wpZhjX9xlQhSTGjbLEzjgaCDbRycR+RBdLMjFf9woJFnoo06UqjXzy0a7M8AyEMAk/HUevaAzR0CpzHSdkRXvg81hvOb/WdBt7M2ZBpb5ds=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5424.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(36756003)(53546011)(6916009)(6666004)(26005)(83380400001)(186003)(31696002)(31686004)(956004)(8936002)(5660300002)(316002)(16576012)(86362001)(2906002)(38100700002)(66946007)(4326008)(6486002)(508600001)(66476007)(66556008)(66574015)(2616005)(8676002)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGxkVEZlK0dhWWR4VG9LREtBUWsyOUV6Tm1VVVd6di9Oc21BQUU3N0RvcVh6?=
- =?utf-8?B?TDBQMGNLMnRCWFlkM2YxYlZzb2NJU2U4Nk45dzBaUGtnaUJrY256VXZIZEpl?=
- =?utf-8?B?NXNadWZXZGxCZ3I0THlMNlVlcVVWOXZtQVhXU2d6YzJZUWdscmNkN2pLRC9T?=
- =?utf-8?B?YkNMdndIbFBicDNCaFVuNTV3WktPQ0FGWTQxZDNDWTFHbUNRdEIxNWtvNXJG?=
- =?utf-8?B?R3NNMUFzZ2N0cVVuc2ZqaTVjL2J2NzJFdHpWc3dlTVlJZXJvbEowODU3OVFE?=
- =?utf-8?B?cG10UWNqR1B2QWlsbnpNckIwRG1wRFVyQS9Pell0VEhZRFkxYjM0MnZPa3dk?=
- =?utf-8?B?MDFoLzA0ZmVXanNoNDh3cTYrTzE5c2lnTzY5WW80OVVOS2hXZDV2K1dpODJ6?=
- =?utf-8?B?M0xmWWVmR1Bla2hDWFM2MzJEa2ZrM0syT3ZsTnRNcTh3czkvQW9sOGxZUmJD?=
- =?utf-8?B?U2hiTmFiYU5KT0lscXF6dktNQzhKc010Z1JBTFJmckcvV2VneFN5eTJnSHox?=
- =?utf-8?B?dFUrVmVnWXRoRTAxUU9TQWx3R1R0YjdWVFh1L3FCZ284RTFMSmRERlRadm5K?=
- =?utf-8?B?SElzeDFJR1UzRmpMV1Z2Qm1CaHZXZUF1QXRzUktQQUQweEh4THcxNnRiSUhZ?=
- =?utf-8?B?bVk2QURsM0NORVphMTAvSEtGV2pOVDFEampjcGtRbk4xT3p0MGQyVE9oT3dS?=
- =?utf-8?B?NTkyTTVVL3FObHM4dFQ1NmhqTUd6NUR4Vkx0bkw0SitGU0c2SU9jK1A5M1l3?=
- =?utf-8?B?ZTJwOTdJZ0ttMEd6eW56c25mRFFwS1BIamN3Tm9qYkloVUhKWll1Q1M1QkRE?=
- =?utf-8?B?Nmd0MXRaU1pnM1F3aVFKdmdhVnkyQmx6ZHdXcUhSWHMxaUdkOXNBWFJpUHBz?=
- =?utf-8?B?bHd6RHljWS9OSTdyOEFkM20yRHAvWTFIQkRBSVpHU2xkZUc1dDRzMlRuM2tr?=
- =?utf-8?B?MDVxbEpYV1lrZzU1V1Y5TW81UVh4ejBkTHNEUzliWjVaZWQ5VDFxZ0hpcXlW?=
- =?utf-8?B?NTBkUW1yeGh0a0MyK05oWnBaY2RoQ3dPK3IxTlgwVi96SVRVQWw3Si9KcUpa?=
- =?utf-8?B?YUUvejNNeHRWV0VOUVlhUm4vcmlGNVpRRHd0UzFQVmxqWW5VbW5Md21Odkkr?=
- =?utf-8?B?cFpPUVkyWG05S01YYk9QTnZQUG5pUGZ5a1djRy9Gbkw3Nk50MmNFWjNVeVNW?=
- =?utf-8?B?bTQxSmRGZklOV2VodjJPV1BFRXdnM1FTUHEwMGRIcXNtbk1tYXV5WVdwckFX?=
- =?utf-8?B?SXo3NSs2d1gvZXJ0aUZMQnNvdFJMUXBLNi9zUVdxRzAxWjdNckJodHovTVp2?=
- =?utf-8?B?QVNaK01uMjQrQ1RPRUozcEhZVVp4ZzVBSFlkSDY0M2xCMW54eWpJZ0l2bTlo?=
- =?utf-8?B?TkdQZ2R2c0d1Tk95R0g1TUJwR0d6eDRQVFk3M091RjFpM05PNExNVUZ0dHlF?=
- =?utf-8?B?MTVOMlptMFB1RXVlOW5WdmNGRHByQmtpM3JIdjJYZWRsKzE4UlZWL2VhSmh2?=
- =?utf-8?B?SkxnQkpQQkRvcEJaYnZDQWdkUFV5cjJPT2tPK2JoLytOR3FaLzZkUDRhL1Fp?=
- =?utf-8?B?UE50d3Jra3dhZ2lDc3QySzlCbFk2ZW5YdE0rRWQ0bW5SQk42TzdvRnMvVFRv?=
- =?utf-8?B?cXN3TkNHNHdWMWVrWGNocWd1OHU2S09kM1Y1YlBET0l2aE1uSW9YQlhpaXNF?=
- =?utf-8?B?YkpLaDhHY2sxZ0taV0lZUy9mQ05FUlkwS1FpUm84TE1GYWx4ODl0ZStqS1hI?=
- =?utf-8?Q?px0IQJKYWzV3gZDvC+Cz+kH/qylqolf39g7tI7B?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3299fe8c-b8f9-4109-990f-08d983d41291
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5424.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 05:35:12.1097 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kqQQqnBuDfk3Nh5xiTtR+fEoYGzahvHff04p1hTdIDPpAvZQAMiuLg5nW0HkBiXxLAS2z0BTmomafpvFmBhuZXMWH9znC6K1KLPlmwtSr3U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB2057
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/display/psr: Handle plane
- restrictions at every page flip
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/ttm: Rework object initialization
+ slightly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,128 +50,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We may end up in i915_ttm_bo_destroy() in an error path before the
+object is fully initialized. In that case it's not correct to call
+__i915_gem_free_object(), because that function
+a) Assumes the gem object refcount is 0, which it isn't.
+b) frees the placements which are owned by the caller until the
+init_object() region ops returns successfully. Fix this by providing
+a lightweight cleanup function __i915_gem_object_fini() which is also
+called by __i915_gem_free_object().
 
+While doing this, also make sure we call dma_resv_fini() as part of
+ordinary object destruction and not from the RCU callback that frees
+the object. This will help track down bugs where the object is incorrectly
+locked from an RCU lookup.
 
-On 9/29/21 9:20 PM, Ville Syrjälä wrote:
-> On Wed, Sep 29, 2021 at 08:50:12PM +0300, Gwan-gyeong Mun wrote:
->>
->>
->> On 9/23/21 10:46 PM, José Roberto de Souza wrote:
->>> PSR2 selective is not supported over rotated and scaled planes.
->>> We had the rotation check in intel_psr2_sel_fetch_config_valid()
->>> but that code path is only execute when a modeset is needed and
->>> change those plane parameters do not require a modeset.
->>>
->>> Also need to check those restricions in the second
->>> for_each_oldnew_intel_plane_in_state() loop because the state could
->>> only have a plane that is not affected by those restricitons but
->>> the damaged area intersect with planes that has those restrictions,
->>> so a full plane fetch is required.
->>>
->>> BSpec: 55229
->>> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->>> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_psr.c | 45 ++++++++++++++----------
->>>    1 file changed, 26 insertions(+), 19 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->>> index 1cc4130dec7b1..356e0e96abf4e 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->>> @@ -720,11 +720,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
->>>    static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
->>>    					      struct intel_crtc_state *crtc_state)
->>>    {
->>> -	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
->>>    	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>> -	struct intel_plane_state *plane_state;
->>> -	struct intel_plane *plane;
->>> -	int i;
->>>    
->>>    	if (!dev_priv->params.enable_psr2_sel_fetch &&
->>>    	    intel_dp->psr.debug != I915_PSR_DEBUG_ENABLE_SEL_FETCH) {
->>> @@ -739,14 +735,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
->>>    		return false;
->>>    	}
->>>    
->>> -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
->>> -		if (plane_state->uapi.rotation != DRM_MODE_ROTATE_0) {
->>> -			drm_dbg_kms(&dev_priv->drm,
->>> -				    "PSR2 sel fetch not enabled, plane rotated\n");
->>> -			return false;
->>> -		}
->>> -	}
->>> -
->>>    	/* Wa_14010254185 Wa_14010103792 */
->>>    	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
->>>    		drm_dbg_kms(&dev_priv->drm,
->>> @@ -1586,6 +1574,26 @@ static void cursor_area_workaround(const struct intel_plane_state *new_plane_sta
->>>    	clip_area_update(pipe_clip, damaged_area);
->>>    }
->>>    
->>> +/*
->>> + * TODO: Not clear how to handle planes with negative position,
->>> + * also planes are not updated if they have a negative X
->>> + * position so for now doing a full update in this cases
->>> + *
->>> + * Plane scaling and rotation is not supported by selective fetch and both
->>> + * properties can change without a modeset, so need to be check at every
->>> + * atomic commmit.
->>> + */
->>> +static bool psr2_sel_fetch_plane_state_supported(const struct intel_plane_state *plane_state)
->>> +{
->>> +	if (plane_state->uapi.dst.y1 < 0 ||
->>> +	    plane_state->uapi.dst.x1 < 0 ||
->> intel_atomic_plane_check_clipping() function makes
->> plane_state->uapi.dst.x1 and plane_state->uapi.dst.y1 non-negative
->> values, so there is no need to deal with negative positions here.
-> 
-> Cursor can have negative coordinates as it's hardware that will do the
-> clipping for us.
-> 
-Yes, you are right, thanks for pointing out it. The cursor plane's 
-CUR_POS register has X and Y Position Sign bits.
+Finally, make sure the object isn't put on the region list until it's
+either locked or fully initialized in order to block list processing of
+partially initialized objects.
 
-Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->>
->> And the rest of the changes look good to me.
->>> +	    plane_state->scaler_id >= 0 ||
->>> +	    plane_state->uapi.rotation != DRM_MODE_ROTATE_0)
->>> +		return false;
->>> +
->>> +	return true;
->>> +}
->>> +
->>>    int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    				struct intel_crtc *crtc)
->>>    {
->>> @@ -1618,13 +1626,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    		    !old_plane_state->uapi.visible)
->>>    			continue;
->>>    
->>> -		/*
->>> -		 * TODO: Not clear how to handle planes with negative position,
->>> -		 * also planes are not updated if they have a negative X
->>> -		 * position so for now doing a full update in this cases
->>> -		 */
->>> -		if (new_plane_state->uapi.dst.y1 < 0 ||
->>> -		    new_plane_state->uapi.dst.x1 < 0) {
->>> +		if (!psr2_sel_fetch_plane_state_supported(new_plane_state)) {
->>>    			full_update = true;
->>>    			break;
->>>    		}
->>> @@ -1703,6 +1705,11 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    		if (!drm_rect_intersect(&inter, &new_plane_state->uapi.dst))
->>>    			continue;
->>>    
->>> +		if (!psr2_sel_fetch_plane_state_supported(new_plane_state)) {
->>> +			full_update = true;
->>> +			break;
->>> +		}
->>> +
->>>    		sel_fetch_area = &new_plane_state->psr2_sel_fetch_area;
->>>    		sel_fetch_area->y1 = inter.y1 - new_plane_state->uapi.dst.y1;
->>>    		sel_fetch_area->y2 = inter.y2 - new_plane_state->uapi.dst.y1;
->>>
-> 
+v2:
+- The TTM object backend memory was freed before the gem pages were
+  put. Separate this functionality into __i915_gem_object_pages_fini()
+  and call it from the TTM delete_mem_notify() callback.
+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com> #v1
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.c | 45 ++++++++++++++++++----
+ drivers/gpu/drm/i915/gem/i915_gem_object.h |  5 +++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 36 ++++++++++-------
+ 3 files changed, 65 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 6fb9afb65034..3ea2702600ae 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -89,6 +89,22 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 	mutex_init(&obj->mm.get_dma_page.lock);
+ }
+ 
++/**
++ * i915_gem_object_fini - Clean up a GEM object initialization
++ * @obj: The gem object to cleanup
++ *
++ * This function cleans up gem object fields that are set up by
++ * drm_gem_private_object_init() and i915_gem_object_init().
++ * It's primarily intended as a helper for backends that need to
++ * clean up the gem object in separate steps.
++ */
++void __i915_gem_object_fini(struct drm_i915_gem_object *obj)
++{
++	mutex_destroy(&obj->mm.get_page.lock);
++	mutex_destroy(&obj->mm.get_dma_page.lock);
++	dma_resv_fini(&obj->base._resv);
++}
++
+ /**
+  * Mark up the object's coherency levels for a given cache_level
+  * @obj: #drm_i915_gem_object
+@@ -174,7 +190,6 @@ void __i915_gem_free_object_rcu(struct rcu_head *head)
+ 		container_of(head, typeof(*obj), rcu);
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 
+-	dma_resv_fini(&obj->base._resv);
+ 	i915_gem_object_free(obj);
+ 
+ 	GEM_BUG_ON(!atomic_read(&i915->mm.free_count));
+@@ -204,10 +219,17 @@ static void __i915_gem_object_free_mmaps(struct drm_i915_gem_object *obj)
+ 	}
+ }
+ 
+-void __i915_gem_free_object(struct drm_i915_gem_object *obj)
++/**
++ * __i915_gem_object_pages_fini - Clean up pages use of a gem object
++ * @obj: The gem object to clean up
++ *
++ * This function cleans up usage of the object mm.pages member. It
++ * is intended for backends that need to clean up a gem object in
++ * separate steps and needs to be called when the object is idle before
++ * the object's backing memory is freed.
++ */
++void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj)
+ {
+-	trace_i915_gem_object_destroy(obj);
+-
+ 	if (!list_empty(&obj->vma.list)) {
+ 		struct i915_vma *vma;
+ 
+@@ -231,13 +253,19 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
+ 		spin_unlock(&obj->vma.lock);
+ 	}
+ 
++	atomic_set(&obj->mm.pages_pin_count, 0);
++	__i915_gem_object_put_pages(obj);
++	GEM_BUG_ON(i915_gem_object_has_pages(obj));
++}
++
++void __i915_gem_free_object(struct drm_i915_gem_object *obj)
++{
++	trace_i915_gem_object_destroy(obj);
++
+ 	__i915_gem_object_free_mmaps(obj);
+ 
+ 	GEM_BUG_ON(!list_empty(&obj->lut_list));
+ 
+-	atomic_set(&obj->mm.pages_pin_count, 0);
+-	__i915_gem_object_put_pages(obj);
+-	GEM_BUG_ON(i915_gem_object_has_pages(obj));
+ 	bitmap_free(obj->bit_17);
+ 
+ 	if (obj->base.import_attach)
+@@ -253,6 +281,8 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
+ 
+ 	if (obj->shares_resv_from)
+ 		i915_vm_resv_put(obj->shares_resv_from);
++
++	__i915_gem_object_fini(obj);
+ }
+ 
+ static void __i915_gem_free_objects(struct drm_i915_private *i915,
+@@ -266,6 +296,7 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
+ 			obj->ops->delayed_free(obj);
+ 			continue;
+ 		}
++		__i915_gem_object_pages_fini(obj);
+ 		__i915_gem_free_object(obj);
+ 
+ 		/* But keep the pointer alive for RCU-protected lookups */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 3043fcbd31bd..7f9f2e5ba0ec 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -58,6 +58,9 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 			  const struct drm_i915_gem_object_ops *ops,
+ 			  struct lock_class_key *key,
+ 			  unsigned alloc_flags);
++
++void __i915_gem_object_fini(struct drm_i915_gem_object *obj);
++
+ struct drm_i915_gem_object *
+ i915_gem_object_create_shmem(struct drm_i915_private *i915,
+ 			     resource_size_t size);
+@@ -582,6 +585,8 @@ bool i915_gem_object_is_shmem(const struct drm_i915_gem_object *obj);
+ 
+ void __i915_gem_free_object_rcu(struct rcu_head *head);
+ 
++void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj);
++
+ void __i915_gem_free_object(struct drm_i915_gem_object *obj);
+ 
+ bool i915_gem_object_evictable(struct drm_i915_gem_object *obj);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index b94497989995..a0ab5c44627b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -367,8 +367,10 @@ static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
+ {
+ 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+ 
+-	if (likely(obj))
++	if (likely(obj)) {
++		__i915_gem_object_pages_fini(obj);
+ 		i915_ttm_free_cached_io_st(obj);
++	}
+ }
+ 
+ static struct intel_memory_region *
+@@ -813,12 +815,9 @@ static void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj)
+  */
+ static void i915_ttm_delayed_free(struct drm_i915_gem_object *obj)
+ {
+-	if (obj->ttm.created) {
+-		ttm_bo_put(i915_gem_to_ttm(obj));
+-	} else {
+-		__i915_gem_free_object(obj);
+-		call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
+-	}
++	GEM_BUG_ON(!obj->ttm.created);
++
++	ttm_bo_put(i915_gem_to_ttm(obj));
+ }
+ 
+ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+@@ -898,16 +897,19 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
+ {
+ 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+ 
+-	i915_ttm_backup_free(obj);
+-
+-	/* This releases all gem object bindings to the backend. */
+-	__i915_gem_free_object(obj);
+-
+ 	i915_gem_object_release_memory_region(obj);
+ 	mutex_destroy(&obj->ttm.get_io_page.lock);
+ 
+-	if (obj->ttm.created)
++	if (obj->ttm.created) {
++		i915_ttm_backup_free(obj);
++
++		/* This releases all gem object bindings to the backend. */
++		__i915_gem_free_object(obj);
++
+ 		call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
++	} else {
++		__i915_gem_object_fini(obj);
++	}
+ }
+ 
+ /**
+@@ -936,7 +938,11 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 
+ 	drm_gem_private_object_init(&i915->drm, &obj->base, size);
+ 	i915_gem_object_init(obj, &i915_gem_ttm_obj_ops, &lock_class, flags);
+-	i915_gem_object_init_memory_region(obj, mem);
++
++	/* Don't put on a region list until we're either locked or fully initialized. */
++	obj->mm.region = intel_memory_region_get(mem);
++	INIT_LIST_HEAD(&obj->mm.region_link);
++
+ 	i915_gem_object_make_unshrinkable(obj);
+ 	INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL | __GFP_NOWARN);
+ 	mutex_init(&obj->ttm.get_io_page.lock);
+@@ -963,6 +969,8 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 		return i915_ttm_err_to_gem(ret);
+ 
+ 	obj->ttm.created = true;
++	i915_gem_object_release_memory_region(obj);
++	i915_gem_object_init_memory_region(obj, mem);
+ 	i915_ttm_adjust_domains_after_move(obj);
+ 	i915_ttm_adjust_gem_after_move(obj);
+ 	i915_gem_object_unlock(obj);
+-- 
+2.31.1
+
