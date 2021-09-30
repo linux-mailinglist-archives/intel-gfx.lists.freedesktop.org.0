@@ -2,34 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8D741D0BC
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 02:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE2A41D10D
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 03:44:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92F226EB0F;
-	Thu, 30 Sep 2021 00:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 090066EB19;
+	Thu, 30 Sep 2021 01:44:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EDAB66EB0F;
- Thu, 30 Sep 2021 00:47:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E520FA0003;
- Thu, 30 Sep 2021 00:47:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6541351697450724828=="
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com
+ [IPv6:2607:f8b0:4864:20::d29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57BC76EB18;
+ Thu, 30 Sep 2021 01:44:40 +0000 (UTC)
+Received: by mail-io1-xd29.google.com with SMTP id e144so5578313iof.3;
+ Wed, 29 Sep 2021 18:44:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ag+4yNg3t4lDobvnoXDI3lx/G6JRcztPX349EfTrvys=;
+ b=XA15C3MS+Ru70z9K5PsYOaBwzptA+i62Y+vQntpRsUlukIjSnmeJDdPy2atqjE4DQR
+ upfKCZTzoypEmAcTBoDbVGcEycJBD/EsN9lwpZmGmbVzEshIauR/Th4Sg6ZyVkxKuGZx
+ oOq8Vk6++/nCq19t1N0DSSwrCudU9Ekp9hio0+CM4o9vwyxXn2HufWdP0VBIhzTJJja/
+ HjfYjviablg2wJeVWudVV0StGkDHDeAq7qRuWywrOcOcgaAEViNTpRhJTx7bj85adxQo
+ Flq1RK8Idpuec8A5BjLGPihMJ1cq2L31ryzrAtm+4gvFYUJsmSSshaOW4A778StHdkWL
+ 1toQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ag+4yNg3t4lDobvnoXDI3lx/G6JRcztPX349EfTrvys=;
+ b=CTIhZuRgUX4D3ZyWel3BQ5TSUcoSyf6bg/TX1VGRp0x5nNeuFJ41c9OiL6beM+i9NC
+ r6ziTysjqZpovbMHZza7pF6TgEQleGXR7NJb0rLBLeLp7ZBQZy++rS16WCrEMqQHQ2cR
+ EooARV8eLzOm7I2AY9C3q4UNbwhF3K6hRaIQwmFHdpdnI3o+bCtuv/Dfyc9dWljDpGcQ
+ IuxeXs3i+0dJNfg0q3mssbkcBTSS03VVA7+GPuR7bgr5Apxtp++eotMxPa/Wde11Wk0p
+ OWuyy+6AIYKEeeXVn2uPq+2bEaU2m6kQxLFxSNLluYLoW0KKoN5IbbiHo6GBNAO0Qu7/
+ +pGg==
+X-Gm-Message-State: AOAM531WqCkismmFgFbem1JG1IuKenCTunxFo3i5ktouPTeckpkxS7pO
+ xd0nkkVCDNO7rHuwJdKHr0FxVb3rPLQ=
+X-Google-Smtp-Source: ABdhPJw9+lHlgC4C0Iib/UIs9kg4hYI1KRlIi8BBpwfD2Erth25p4XAh09jmFmHvTdGWPRLhCLs9Aw==
+X-Received: by 2002:a5d:9145:: with SMTP id y5mr2010979ioq.200.1632966279194; 
+ Wed, 29 Sep 2021 18:44:39 -0700 (PDT)
+Received: from samwise.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
+ by smtp.googlemail.com with ESMTPSA id h23sm1155414ila.32.2021.09.29.18.44.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 Sep 2021 18:44:38 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jim Cromie <jim.cromie@gmail.com>
+Date: Wed, 29 Sep 2021 19:44:23 -0600
+Message-Id: <20210930014427.14239-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Sep 2021 00:47:22 -0000
-Message-ID: <163296284290.18250.8018555622572605474@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210930001409.254817-1-jose.souza@intel.com>
-In-Reply-To: <20210930001409.254817-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/9=5D_drm/i915/display/psr=3A_Handle?=
- =?utf-8?q?_plane_and_pipe_restrictions_at_every_page_flip?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/4] drm: maintenance patches for 5.15-rcX
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,152 +68,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6541351697450724828==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+hi drm folks,
 
-== Series Details ==
+Heres a small set of assorted patches which are IMO suitable for rcX;
+one doc fix, 2 patches folding multiple DBGs together, and a format
+string modification.
 
-Series: series starting with [v2,1/9] drm/i915/display/psr: Handle plane and pipe restrictions at every page flip
-URL   : https://patchwork.freedesktop.org/series/95242/
-State : success
+Jim Cromie (4):
+  drm: fix doc grammar error
+  amdgpu_ucode: reduce number of pr_debug calls
+  nouveau: fold multiple DRM_DEBUG_DRIVERs together
+  i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
 
-== Summary ==
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 293 ++++++++++++----------
+ drivers/gpu/drm/i915/gvt/debug.h          |  18 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c     |  36 ++-
+ include/drm/drm_drv.h                     |   2 +-
+ 4 files changed, 191 insertions(+), 158 deletions(-)
 
-CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21196
-====================================================
+-- 
+2.31.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21196/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21196 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21196/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (33 -> 29)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10660 -> Patchwork_21196
-
-  CI-20190529: 20190529
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21196: f3cfdbc6d4ef2f1fe0b89138c37b5755d63e6fbe @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f3cfdbc6d4ef drm/i915/display: Always wait vblank counter to increment when commit needs a modeset
-3132766222d7 drm/i915/display: Enable PSR2 selective fetch by default
-bd3464613f30 drm/i915/display/adlp: Allow PSR2 to be enabled
-3f505683303c drm/i915/display/adlp: Optimize PSR2 power-savings in corner cases
-fe3f60e72244 drm/i915/display: Fix glitches when moving cursor with PSR2 selective fetch enabled
-fb8e8d4957e1 drm/i915/display: Handle frontbuffer rendering when PSR2 selective fetch is enabled
-794af03d49be drm/i915/display: Drop unnecessary frontbuffer flushes
-61bc77a53598 drm/i915/display/psr: Do full fetch when handling multi-planar formats
-fe2f969d7158 drm/i915/display/psr: Handle plane and pipe restrictions at every page flip
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21196/index.html
-
---===============6541351697450724828==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/9] drm/i915/display/psr: Handle plane and pipe restrictions at every page flip</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95242/">https://patchwork.freedesktop.org/series/95242/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21196/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21196/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21196</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21196/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21196 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21196/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (33 -&gt; 29)</h2>
-<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10660 -&gt; Patchwork_21196</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21196: f3cfdbc6d4ef2f1fe0b89138c37b5755d63e6fbe @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f3cfdbc6d4ef drm/i915/display: Always wait vblank counter to increment when commit needs a modeset<br />
-3132766222d7 drm/i915/display: Enable PSR2 selective fetch by default<br />
-bd3464613f30 drm/i915/display/adlp: Allow PSR2 to be enabled<br />
-3f505683303c drm/i915/display/adlp: Optimize PSR2 power-savings in corner cases<br />
-fe3f60e72244 drm/i915/display: Fix glitches when moving cursor with PSR2 selective fetch enabled<br />
-fb8e8d4957e1 drm/i915/display: Handle frontbuffer rendering when PSR2 selective fetch is enabled<br />
-794af03d49be drm/i915/display: Drop unnecessary frontbuffer flushes<br />
-61bc77a53598 drm/i915/display/psr: Do full fetch when handling multi-planar formats<br />
-fe2f969d7158 drm/i915/display/psr: Handle plane and pipe restrictions at every page flip</p>
-
-</body>
-</html>
-
---===============6541351697450724828==--
