@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B457B41D152
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 04:16:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A3141D177
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 04:32:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24E2A6EB23;
-	Thu, 30 Sep 2021 02:16:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC5B089D64;
+	Thu, 30 Sep 2021 02:32:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 440 seconds by postgrey-1.36 at gabe;
- Thu, 30 Sep 2021 02:16:15 UTC
-Received: from smtprelay.hostedemail.com (smtprelay0219.hostedemail.com
- [216.40.44.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBB246EB22;
- Thu, 30 Sep 2021 02:16:15 +0000 (UTC)
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
- [10.5.19.251])
- by smtpgrave04.hostedemail.com (Postfix) with ESMTP id DFB6618113636;
- Thu, 30 Sep 2021 02:08:55 +0000 (UTC)
-Received: from omf10.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
- by smtprelay05.hostedemail.com (Postfix) with ESMTP id 7938418059B50;
- Thu, 30 Sep 2021 02:08:54 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
- omf10.hostedemail.com (Postfix) with ESMTPA id 7F78F2351F3; 
- Thu, 30 Sep 2021 02:08:53 +0000 (UTC)
-Message-ID: <a61f6bc2dc18397de92e4b7cdd9b37e2dff7e114.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: Jim Cromie <jim.cromie@gmail.com>, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Wed, 29 Sep 2021 19:08:51 -0700
-In-Reply-To: <20210930014427.14239-3-jim.cromie@gmail.com>
-References: <20210930014427.14239-1-jim.cromie@gmail.com>
- <20210930014427.14239-3-jim.cromie@gmail.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.40.0-1 
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7CAF889D64;
+ Thu, 30 Sep 2021 02:32:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 74B3FAA3D8;
+ Thu, 30 Sep 2021 02:32:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8294950608881291956=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Server: rspamout01
-X-Rspamd-Queue-Id: 7F78F2351F3
-X-Spam-Status: No, score=0.10
-X-Stat-Signature: anmt6jx4t6f7u5gh4einmjsx1txe8h6k
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX18kGVBu/5EFA7vPk09h4PPRUG51zMWAUwg=
-X-HE-Tag: 1632967733-854858
-Subject: Re: [Intel-gfx] [PATCH 2/4] amdgpu_ucode: reduce number of pr_debug
- calls
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Sep 2021 02:32:12 -0000
+Message-ID: <163296913247.18251.13818031023266994752@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210930014427.14239-1-jim.cromie@gmail.com>
+In-Reply-To: <20210930014427.14239-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_maintenance_patches_for_5=2E15-rcX?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,42 +41,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2021-09-29 at 19:44 -0600, Jim Cromie wrote:
-> There are blocks of DRM_DEBUG calls, consolidate their args into
-> single calls.  With dynamic-debug in use, each callsite consumes 56
-> bytes of callsite data, and this patch removes about 65 calls, so
-> it saves ~3.5kb.
-> 
-> no functional changes.
+--===============8294950608881291956==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No functional change, but an output logging content change.
+== Series Details ==
 
-> RFC: this creates multi-line log messages, does that break any syslog
-> conventions ?
+Series: drm: maintenance patches for 5.15-rcX
+URL   : https://patchwork.freedesktop.org/series/95245/
+State : success
 
-It does change the output as each individual DRM_DEBUG is a call to
-__drm_dbg which is effectively:
+== Summary ==
 
-	printk(KERN_DEBUG "[" DRM_NAME ":%ps] %pV",
-	       __builtin_return_address(0), &vaf);
+CI Bug Log - changes from CI_DRM_10660 -> Patchwork_21197
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21197/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21197 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21197/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
 
 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-[]
-> @@ -30,17 +30,26 @@
->  
-> 
->  static void amdgpu_ucode_print_common_hdr(const struct common_firmware_header *hdr)
->  {
-> -	DRM_DEBUG("size_bytes: %u\n", le32_to_cpu(hdr->size_bytes));
-> -	DRM_DEBUG("header_size_bytes: %u\n", le32_to_cpu(hdr->header_size_bytes));
-[]
-> +	DRM_DEBUG("size_bytes: %u\n"
-> +		  "header_size_bytes: %u\n"
+Participating hosts (33 -> 29)
+------------------------------
 
-etc...
+  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_10660 -> Patchwork_21197
+
+  CI-20190529: 20190529
+  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21197: 2a9ede0f30e77e023b0345de6955839fd36d4fb1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2a9ede0f30e7 i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
+a500c370c048 nouveau: fold multiple DRM_DEBUG_DRIVERs together
+6d6d36db1125 amdgpu_ucode: reduce number of pr_debug calls
+430b3f6c5763 drm: fix doc grammar error
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21197/index.html
+
+--===============8294950608881291956==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: maintenance patches for 5.15-rcX</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95245/">https://patchwork.freedesktop.org/series/95245/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21197/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21197/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10660 -&gt; Patchwork_21197</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21197/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21197 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10660/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21197/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (33 -&gt; 29)</h2>
+<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10660 -&gt; Patchwork_21197</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10660: 05888a7b7b4aec560d6692e5e9173adc7e76c0df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6227: 6ac2da7fd6b13f04f9aa0ec10f86b831d2756946 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21197: 2a9ede0f30e77e023b0345de6955839fd36d4fb1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>2a9ede0f30e7 i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes<br />
+a500c370c048 nouveau: fold multiple DRM_DEBUG_DRIVERs together<br />
+6d6d36db1125 amdgpu_ucode: reduce number of pr_debug calls<br />
+430b3f6c5763 drm: fix doc grammar error</p>
+
+</body>
+</html>
+
+--===============8294950608881291956==--
