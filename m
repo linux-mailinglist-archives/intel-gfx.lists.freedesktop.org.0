@@ -2,76 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D8741DC28
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 16:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5EA41DC5D
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 16:34:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C71596E418;
-	Thu, 30 Sep 2021 14:21:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 488A96E428;
+	Thu, 30 Sep 2021 14:34:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE8B6E417
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 14:21:43 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id q2so495715wrc.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 07:21:43 -0700 (PDT)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 763F36E425
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 14:34:15 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id m22so4990117wrb.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 07:34:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=adcjA7dIMST17WJJeH2/GVf0Hrs9qQolQ+sMQlwR8OY=;
- b=DbhbRxi24bSnwHaukwKGdLi8DlMuM2AXCx+3metmDdgeFYkDq6smeYzmdW1IZs27nW
- 7VwKPUToQ+jJiaZdlIwePPmoJl0SXWOrExBrWTNl3YKotZudshCBr19hrvqRPnzuIW5o
- ZwE7kO8YWmktGEhava+2X/IgdxL4vJiXOrjYo=
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=yCtlQxEOMqN+hEh8Q3Tpx4ZpTzLgfObAcorSWaX1RRY=;
+ b=ThMtQ0VeS+3GoyE9XNg6dOmK4xyy7lt3TJXSMZPEqvCTtdL1UyLEvdeazozhVyJbOy
+ mcVmQBAjpeW2cYhVwtcvdGaR6Qh7VvnLmxEk2GifHEkJkWPzyTi4MJ6aBYw0QlUU/F/t
+ C1QscVBWNJt7VtX0/5RRVk7O4j00fC453gdU0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=adcjA7dIMST17WJJeH2/GVf0Hrs9qQolQ+sMQlwR8OY=;
- b=s/5BUxbGOEOjSYJ7Ap7jroJZiMOeWBxq4gmNIoqpwM1g6WkKrIVdSHM3rRpbwrDZoZ
- JUhS6y7M+X3evUSxcESvNkcaUmJfVCOu3ldmcKwelPOSiGFLg9r3NpnWypJ9mCZ0o2yO
- +w+LxDe+QQ0ppAb5DTupOd/uzjcIh7psWxQVKhrCiN32WWjx1DfRitmVdjw17cEfDZJ8
- YVcN3uu5rzFhtegmgb59QuK5SbYKNBEVCwNchu2xl+kNb8nbrL1AzagzZgZywtJvd/yj
- D9Ltz4FP/plE8XOmkzug35ThRBTcLdj3KTVqk45uNCtfJCcElPT235qfIQxs+YuCX6jL
- rYVg==
-X-Gm-Message-State: AOAM532zU0QkT7bwzA5Bs/JV/kIwMGHrJPBXshH76lVgAfOkmFZ3pfWH
- d8VHVqCWOvjGg4Ot6YatiQx96w==
-X-Google-Smtp-Source: ABdhPJwIIZlGTXMMsEbKr2FekoPWSDi0u1of9ctmIy2tZ7mde7+Q8qgaFf1dNijIZkUcA7BO2jccKQ==
-X-Received: by 2002:a5d:4522:: with SMTP id j2mr6310035wra.212.1633011701799; 
- Thu, 30 Sep 2021 07:21:41 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=yCtlQxEOMqN+hEh8Q3Tpx4ZpTzLgfObAcorSWaX1RRY=;
+ b=6DDHsBOH+X78p4tYhrXpEphZKhfSxkqRcvXXG95oxGMlTWlrDj1db7Ne4PAszOtL6Z
+ KrdUPGosrklbR0pTp+16hBG3b6OqF5DkkZxaur4GiTg5vCtU0e9oo/uL63HN096CATyB
+ MNJtqkGbaDMp5d8zWUkvNp0pfKMOyJi7RAXOqUIXJi450e0zr3FnG9DuWpnEcDWMEHvS
+ AN0DeZysdiOTooQvKv1qqx5xODHJyauByEsOcrAj6WQDKbTCoYsNNdORZD+dyUnCDHBf
+ Od+pqaz3ecTePCRxX/tasbiz5162qdo7rdmVwtc6F+slbAj0ty+rKPISAZEAzQfuhZg1
+ HGuA==
+X-Gm-Message-State: AOAM530mLxBdJPeR4fGHybFcOuJ2O5pWESGEmpcQgb3v5hmLJyRnUuk1
+ 6CI6nJXprRpamig3t8fRs4DHSQ==
+X-Google-Smtp-Source: ABdhPJykZmpSIK32sytUGkYF5zil9KMYEhZsU3B11Pw57BQvfw6FGDN9tB3ZhQUWYGYq8Fp/zXNKfw==
+X-Received: by 2002:a5d:5221:: with SMTP id i1mr6810353wra.107.1633012453917; 
+ Thu, 30 Sep 2021 07:34:13 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z8sm3625361wrm.63.2021.09.30.07.21.40
+ by smtp.gmail.com with ESMTPSA id 61sm3089692wrl.94.2021.09.30.07.34.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Sep 2021 07:21:41 -0700 (PDT)
-Date: Thu, 30 Sep 2021 16:21:39 +0200
+ Thu, 30 Sep 2021 07:34:12 -0700 (PDT)
+Date: Thu, 30 Sep 2021 16:34:11 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Cai Huoqing <caihuoqing@baidu.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org
-Message-ID: <YVXH87Uw3urD6q5x@phenom.ffwll.local>
-Mail-Followup-To: Cai Huoqing <caihuoqing@baidu.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org
-References: <20210925124613.144-1-caihuoqing@baidu.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Message-ID: <YVXK45xQbbI7xUIB@phenom.ffwll.local>
+References: <20210928223241.22149-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210925124613.144-1-caihuoqing@baidu.com>
+In-Reply-To: <20210928223241.22149-1-jani.nikula@intel.com>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use direction definition
- DMA_BIDIRECTIONAL instead of PCI_DMA_BIDIRECTIONAL
+Subject: Re: [Intel-gfx] [PATCH] drm/locking: add backtrace for locking
+ contended locks without backoff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,168 +71,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Sep 25, 2021 at 08:46:12PM +0800, Cai Huoqing wrote:
-> Replace direction definition PCI_DMA_BIDIRECTIONAL
-> with DMA_BIDIRECTIONAL, because it helps to enhance readability
-> and avoid possible inconsistency.
+On Wed, Sep 29, 2021 at 01:32:41AM +0300, Jani Nikula wrote:
+> If drm_modeset_lock() returns -EDEADLK, the caller is supposed to drop
+> all currently held locks using drm_modeset_backoff(). Failing to do so
+> will result in warnings and backtraces on the paths trying to lock a
+> contended lock. Add support for optionally printing the backtrace on the
+> path that hit the deadlock and didn't gracefully handle the situation.
 > 
-> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+> For example, the patch [1] inadvertently dropped the return value check
+> and error return on replacing calc_watermark_data() with
+> intel_compute_global_watermarks(). The backtraces on the subsequent
+> locking paths hitting WARN_ON(ctx->contended) were unhelpful, but adding
+> the backtrace to the deadlock path produced this helpful printout:
+> 
+> <7> [98.002465] drm_modeset_lock attempting to lock a contended lock without backoff:
+>    drm_modeset_lock+0x107/0x130
+>    drm_atomic_get_plane_state+0x76/0x150
+>    skl_compute_wm+0x251d/0x2b20 [i915]
+>    intel_atomic_check+0x1942/0x29e0 [i915]
+>    drm_atomic_check_only+0x554/0x910
+>    drm_atomic_nonblocking_commit+0xe/0x50
+>    drm_mode_atomic_ioctl+0x8c2/0xab0
+>    drm_ioctl_kernel+0xac/0x140
+> 
+> Add new CONFIG_DRM_DEBUG_MODESET_LOCK to enable modeset lock debugging
+> with stack depot and trace.
+> 
+> [1] https://lore.kernel.org/r/20210924114741.15940-4-jani.nikula@intel.com
+> 
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Applied to drm-intel-gt-next, thanks for the patch.
--Daniel
+I wonder whether we shouldn't just enable this when lock debugging is
+enabled? Otherwise we need to make sure CI have this set or it's not very
+useful. Or at least a default y if CONFIG_DEBUG_WW_MUTEX_SLOWPATH or
+something like that.
+
+Either way: 
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
 > ---
->  drivers/gpu/drm/i915/gt/intel_region_lmem.c |  4 ++--
->  drivers/gpu/drm/i915/gvt/gtt.c              | 17 ++++++++---------
->  drivers/gpu/drm/i915/gvt/kvmgt.c            |  4 ++--
->  drivers/gpu/drm/i915/i915_gem_gtt.c         |  4 ++--
->  4 files changed, 14 insertions(+), 15 deletions(-)
+>  drivers/gpu/drm/Kconfig            | 13 ++++++++
+>  drivers/gpu/drm/drm_modeset_lock.c | 49 ++++++++++++++++++++++++++++--
+>  include/drm/drm_modeset_lock.h     |  8 +++++
+>  3 files changed, 68 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> index a74b72f50cc9..afb35d2e5c73 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> @@ -32,7 +32,7 @@ static int init_fake_lmem_bar(struct intel_memory_region *mem)
->  	mem->remap_addr = dma_map_resource(i915->drm.dev,
->  					   mem->region.start,
->  					   mem->fake_mappable.size,
-> -					   PCI_DMA_BIDIRECTIONAL,
-> +					   DMA_BIDIRECTIONAL,
->  					   DMA_ATTR_FORCE_CONTIGUOUS);
->  	if (dma_mapping_error(i915->drm.dev, mem->remap_addr)) {
->  		drm_mm_remove_node(&mem->fake_mappable);
-> @@ -62,7 +62,7 @@ static void release_fake_lmem_bar(struct intel_memory_region *mem)
->  	dma_unmap_resource(mem->i915->drm.dev,
->  			   mem->remap_addr,
->  			   mem->fake_mappable.size,
-> -			   PCI_DMA_BIDIRECTIONAL,
-> +			   DMA_BIDIRECTIONAL,
->  			   DMA_ATTR_FORCE_CONTIGUOUS);
->  }
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index b17e231ca6f7..7334975c788b 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -100,6 +100,19 @@ config DRM_DEBUG_DP_MST_TOPOLOGY_REFS
+>            This has the potential to use a lot of memory and print some very
+>            large kernel messages. If in doubt, say "N".
 >  
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-> index e5c2fdfc20e3..53d0cb327539 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -745,7 +745,7 @@ static void ppgtt_free_spt(struct intel_vgpu_ppgtt_spt *spt)
->  	trace_spt_free(spt->vgpu->id, spt, spt->guest_page.type);
->  
->  	dma_unmap_page(kdev, spt->shadow_page.mfn << I915_GTT_PAGE_SHIFT, 4096,
-> -		       PCI_DMA_BIDIRECTIONAL);
-> +		       DMA_BIDIRECTIONAL);
->  
->  	radix_tree_delete(&spt->vgpu->gtt.spt_tree, spt->shadow_page.mfn);
->  
-> @@ -849,7 +849,7 @@ static struct intel_vgpu_ppgtt_spt *ppgtt_alloc_spt(
->  	 */
->  	spt->shadow_page.type = type;
->  	daddr = dma_map_page(kdev, spt->shadow_page.page,
-> -			     0, 4096, PCI_DMA_BIDIRECTIONAL);
-> +			     0, 4096, DMA_BIDIRECTIONAL);
->  	if (dma_mapping_error(kdev, daddr)) {
->  		gvt_vgpu_err("fail to map dma addr\n");
->  		ret = -EINVAL;
-> @@ -865,7 +865,7 @@ static struct intel_vgpu_ppgtt_spt *ppgtt_alloc_spt(
->  	return spt;
->  
->  err_unmap_dma:
-> -	dma_unmap_page(kdev, daddr, PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
-> +	dma_unmap_page(kdev, daddr, PAGE_SIZE, DMA_BIDIRECTIONAL);
->  err_free_spt:
->  	free_spt(spt);
->  	return ERR_PTR(ret);
-> @@ -2409,8 +2409,7 @@ static int alloc_scratch_pages(struct intel_vgpu *vgpu,
->  		return -ENOMEM;
->  	}
->  
-> -	daddr = dma_map_page(dev, virt_to_page(scratch_pt), 0,
-> -			4096, PCI_DMA_BIDIRECTIONAL);
-> +	daddr = dma_map_page(dev, virt_to_page(scratch_pt), 0, 4096, DMA_BIDIRECTIONAL);
->  	if (dma_mapping_error(dev, daddr)) {
->  		gvt_vgpu_err("fail to dmamap scratch_pt\n");
->  		__free_page(virt_to_page(scratch_pt));
-> @@ -2461,7 +2460,7 @@ static int release_scratch_page_tree(struct intel_vgpu *vgpu)
->  		if (vgpu->gtt.scratch_pt[i].page != NULL) {
->  			daddr = (dma_addr_t)(vgpu->gtt.scratch_pt[i].page_mfn <<
->  					I915_GTT_PAGE_SHIFT);
-> -			dma_unmap_page(dev, daddr, 4096, PCI_DMA_BIDIRECTIONAL);
-> +			dma_unmap_page(dev, daddr, 4096, DMA_BIDIRECTIONAL);
->  			__free_page(vgpu->gtt.scratch_pt[i].page);
->  			vgpu->gtt.scratch_pt[i].page = NULL;
->  			vgpu->gtt.scratch_pt[i].page_mfn = 0;
-> @@ -2741,7 +2740,7 @@ int intel_gvt_init_gtt(struct intel_gvt *gvt)
->  	}
->  
->  	daddr = dma_map_page(dev, virt_to_page(page), 0,
-> -			4096, PCI_DMA_BIDIRECTIONAL);
-> +			4096, DMA_BIDIRECTIONAL);
->  	if (dma_mapping_error(dev, daddr)) {
->  		gvt_err("fail to dmamap scratch ggtt page\n");
->  		__free_page(virt_to_page(page));
-> @@ -2755,7 +2754,7 @@ int intel_gvt_init_gtt(struct intel_gvt *gvt)
->  		ret = setup_spt_oos(gvt);
->  		if (ret) {
->  			gvt_err("fail to initialize SPT oos\n");
-> -			dma_unmap_page(dev, daddr, 4096, PCI_DMA_BIDIRECTIONAL);
-> +			dma_unmap_page(dev, daddr, 4096, DMA_BIDIRECTIONAL);
->  			__free_page(gvt->gtt.scratch_page);
->  			return ret;
->  		}
-> @@ -2779,7 +2778,7 @@ void intel_gvt_clean_gtt(struct intel_gvt *gvt)
->  	dma_addr_t daddr = (dma_addr_t)(gvt->gtt.scratch_mfn <<
->  					I915_GTT_PAGE_SHIFT);
->  
-> -	dma_unmap_page(dev, daddr, 4096, PCI_DMA_BIDIRECTIONAL);
-> +	dma_unmap_page(dev, daddr, 4096, DMA_BIDIRECTIONAL);
->  
->  	__free_page(gvt->gtt.scratch_page);
->  
-> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> index 7efa386449d1..20b82fb036f8 100644
-> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> @@ -328,7 +328,7 @@ static int gvt_dma_map_page(struct intel_vgpu *vgpu, unsigned long gfn,
->  		return ret;
->  
->  	/* Setup DMA mapping. */
-> -	*dma_addr = dma_map_page(dev, page, 0, size, PCI_DMA_BIDIRECTIONAL);
-> +	*dma_addr = dma_map_page(dev, page, 0, size, DMA_BIDIRECTIONAL);
->  	if (dma_mapping_error(dev, *dma_addr)) {
->  		gvt_vgpu_err("DMA mapping failed for pfn 0x%lx, ret %d\n",
->  			     page_to_pfn(page), ret);
-> @@ -344,7 +344,7 @@ static void gvt_dma_unmap_page(struct intel_vgpu *vgpu, unsigned long gfn,
->  {
->  	struct device *dev = vgpu->gvt->gt->i915->drm.dev;
->  
-> -	dma_unmap_page(dev, dma_addr, size, PCI_DMA_BIDIRECTIONAL);
-> +	dma_unmap_page(dev, dma_addr, size, DMA_BIDIRECTIONAL);
->  	gvt_unpin_guest_page(vgpu, gfn, size);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> index 36489be4896b..cd5f2348a187 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> @@ -30,7 +30,7 @@ int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
->  	do {
->  		if (dma_map_sg_attrs(obj->base.dev->dev,
->  				     pages->sgl, pages->nents,
-> -				     PCI_DMA_BIDIRECTIONAL,
-> +				     DMA_BIDIRECTIONAL,
->  				     DMA_ATTR_SKIP_CPU_SYNC |
->  				     DMA_ATTR_NO_KERNEL_MAPPING |
->  				     DMA_ATTR_NO_WARN))
-> @@ -64,7 +64,7 @@ void i915_gem_gtt_finish_pages(struct drm_i915_gem_object *obj,
->  		usleep_range(100, 250);
->  
->  	dma_unmap_sg(i915->drm.dev, pages->sgl, pages->nents,
-> -		     PCI_DMA_BIDIRECTIONAL);
-> +		     DMA_BIDIRECTIONAL);
->  }
+> +config DRM_DEBUG_MODESET_LOCK
+> +	bool "Enable backtrace history for lock contention"
+> +	depends on STACKTRACE_SUPPORT
+> +	select STACKDEPOT
+> +	depends on EXPERT
+> +	help
+> +	  Enable debug tracing of failures to gracefully handle drm modeset lock
+> +	  contention. A history of each drm modeset lock path hitting -EDEADLK
+> +	  will be saved until gracefully handled, and the backtrace will be
+> +	  printed when attempting to lock a contended lock.
+> +
+> +	  If in doubt, say "N".
+> +
+>  config DRM_FBDEV_EMULATION
+>  	bool "Enable legacy fbdev support for your modesetting driver"
+>  	depends on DRM
+> diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+> index bf8a6e823a15..4d32b61fa1fd 100644
+> --- a/drivers/gpu/drm/drm_modeset_lock.c
+> +++ b/drivers/gpu/drm/drm_modeset_lock.c
+> @@ -25,6 +25,7 @@
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_modeset_lock.h>
+> +#include <drm/drm_print.h>
 >  
 >  /**
+>   * DOC: kms locking
+> @@ -77,6 +78,45 @@
+>  
+>  static DEFINE_WW_CLASS(crtc_ww_class);
+>  
+> +#if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
+> +static noinline depot_stack_handle_t __stack_depot_save(void)
+> +{
+> +	unsigned long entries[8];
+> +	unsigned int n;
+> +
+> +	n = stack_trace_save(entries, ARRAY_SIZE(entries), 1);
+> +
+> +	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
+> +}
+> +
+> +static void __stack_depot_print(depot_stack_handle_t stack_depot)
+> +{
+> +	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
+> +	unsigned long *entries;
+> +	unsigned int nr_entries;
+> +	char *buf;
+> +
+> +	buf = kmalloc(PAGE_SIZE, GFP_NOWAIT | __GFP_NOWARN);
+> +	if (!buf)
+> +		return;
+> +
+> +	nr_entries = stack_depot_fetch(stack_depot, &entries);
+> +	stack_trace_snprint(buf, PAGE_SIZE, entries, nr_entries, 2);
+> +
+> +	drm_printf(&p, "attempting to lock a contended lock without backoff:\n%s", buf);
+> +
+> +	kfree(buf);
+> +}
+> +#else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+> +static depot_stack_handle_t __stack_depot_save(void)
+> +{
+> +	return 0;
+> +}
+> +static void __stack_depot_print(depot_stack_handle_t stack_depot)
+> +{
+> +}
+> +#endif /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+> +
+>  /**
+>   * drm_modeset_lock_all - take all modeset locks
+>   * @dev: DRM device
+> @@ -225,7 +265,9 @@ EXPORT_SYMBOL(drm_modeset_acquire_fini);
+>   */
+>  void drm_modeset_drop_locks(struct drm_modeset_acquire_ctx *ctx)
+>  {
+> -	WARN_ON(ctx->contended);
+> +	if (WARN_ON(ctx->contended))
+> +		__stack_depot_print(ctx->stack_depot);
+> +
+>  	while (!list_empty(&ctx->locked)) {
+>  		struct drm_modeset_lock *lock;
+>  
+> @@ -243,7 +285,8 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+>  {
+>  	int ret;
+>  
+> -	WARN_ON(ctx->contended);
+> +	if (WARN_ON(ctx->contended))
+> +		__stack_depot_print(ctx->stack_depot);
+>  
+>  	if (ctx->trylock_only) {
+>  		lockdep_assert_held(&ctx->ww_ctx);
+> @@ -274,6 +317,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+>  		ret = 0;
+>  	} else if (ret == -EDEADLK) {
+>  		ctx->contended = lock;
+> +		ctx->stack_depot = __stack_depot_save();
+>  	}
+>  
+>  	return ret;
+> @@ -296,6 +340,7 @@ int drm_modeset_backoff(struct drm_modeset_acquire_ctx *ctx)
+>  	struct drm_modeset_lock *contended = ctx->contended;
+>  
+>  	ctx->contended = NULL;
+> +	ctx->stack_depot = 0;
+>  
+>  	if (WARN_ON(!contended))
+>  		return 0;
+> diff --git a/include/drm/drm_modeset_lock.h b/include/drm/drm_modeset_lock.h
+> index aafd07388eb7..b84693fbd2b5 100644
+> --- a/include/drm/drm_modeset_lock.h
+> +++ b/include/drm/drm_modeset_lock.h
+> @@ -24,6 +24,8 @@
+>  #ifndef DRM_MODESET_LOCK_H_
+>  #define DRM_MODESET_LOCK_H_
+>  
+> +#include <linux/types.h> /* stackdepot.h is not self-contained */
+> +#include <linux/stackdepot.h>
+>  #include <linux/ww_mutex.h>
+>  
+>  struct drm_modeset_lock;
+> @@ -51,6 +53,12 @@ struct drm_modeset_acquire_ctx {
+>  	 */
+>  	struct drm_modeset_lock *contended;
+>  
+> +	/*
+> +	 * Stack depot for debugging when a contended lock was not backed off
+> +	 * from.
+> +	 */
+> +	depot_stack_handle_t stack_depot;
+> +
+>  	/*
+>  	 * list of held locks (drm_modeset_lock)
+>  	 */
 > -- 
-> 2.25.1
+> 2.30.2
 > 
 
 -- 
