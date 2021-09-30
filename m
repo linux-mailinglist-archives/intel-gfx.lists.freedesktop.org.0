@@ -1,44 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5850F41D72F
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 12:06:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A7641D796
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 12:24:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68B81890E9;
-	Thu, 30 Sep 2021 10:06:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21F726EB61;
+	Thu, 30 Sep 2021 10:24:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA6F6EB55;
- Thu, 30 Sep 2021 10:06:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="310697215"
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="310697215"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C2D76EB61
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 10:24:18 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="310699817"
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="310699817"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 03:06:24 -0700
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="479811607"
-Received: from rmuntslx-mobl1.ger.corp.intel.com (HELO [10.252.37.149])
- ([10.252.37.149])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 03:06:19 -0700
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Message-ID: <f079a5d2-3095-1065-85c2-9d510260215b@linux.intel.com>
-Date: Thu, 30 Sep 2021 12:06:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.14.0
+ 30 Sep 2021 03:24:10 -0700
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="520298652"
+Received: from vmurthy-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.37.18])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 03:24:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+In-Reply-To: <YVWHB94gggUJ4aOB@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1632992608.git.jani.nikula@intel.com>
+ <427d27eb4e5daca208d496d6c2ffc91ed90ba714.1632992608.git.jani.nikula@intel.com>
+ <YVWHB94gggUJ4aOB@intel.com>
+Date: Thu, 30 Sep 2021 13:24:02 +0300
+Message-ID: <87ilyiuzst.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/fdi: move fdi modeset asserts
+ to intel_fdi.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,110 +52,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm-misc-fixes-2021-09-30:
-drm-misc-fixes for v5.15:
-- Not sure if drm-misc-fixes-2021-09-08 tag was pulled, assuming it is.
-- Power management fixes for vc4.
-- Compiler fix for vc4.
-- Cursor fix for nouveau.
-- Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
-- Small rockchip fixes.
-- Fix DT bindings indent for ili9341.
-- Fix y030xx067a init sequence to not get a yellow tint.
-- Kconfig fix for fb_simple vs simpledrm.
-The following changes since commit 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f:
+On Thu, 30 Sep 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Sep 30, 2021 at 12:22:58PM +0300, Jani Nikula wrote:
+> <snip>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/=
+i915/display/intel_fdi.c
+>> index af01d1fa761e..02d3294bad7b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+>> @@ -10,6 +10,97 @@
+>>  #include "intel_fdi.h"
+>>  #include "intel_sideband.h"
+>>=20=20
+>> +static void assert_fdi_tx(struct drm_i915_private *dev_priv,
+>> +			  enum pipe pipe, bool state)
+>> +{
+>> +	bool cur_state;
+>> +
+>> +	if (HAS_DDI(dev_priv)) {
+>> +		/*
+>> +		 * DDI does not have a specific FDI_TX register.
+>> +		 *
+>> +		 * FDI is never fed from EDP transcoder
+>> +		 * so pipe->transcoder cast is fine here.
+>> +		 */
+>> +		enum transcoder cpu_transcoder =3D (enum transcoder)pipe;
+>> +		cur_state =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcod=
+er)) & TRANS_DDI_FUNC_ENABLE;
+>> +	} else {
+>> +		cur_state =3D intel_de_read(dev_priv, FDI_TX_CTL(pipe)) & FDI_TX_ENAB=
+LE;
+>> +	}
+>> +	I915_STATE_WARN(cur_state !=3D state,
+>> +			"FDI TX state assertion failure (expected %s, current %s)\n",
+>> +			onoff(state), onoff(cur_state));
+>> +}
+>> +
+>> +void assert_fdi_tx_enabled(struct drm_i915_private *i915, enum pipe pip=
+e)
+>> +{
+>> +	assert_fdi_tx(i915, pipe, true);
+>> +}
+>> +
+>> +void assert_fdi_tx_disabled(struct drm_i915_private *i915, enum pipe pi=
+pe)
+>> +{
+>> +	assert_fdi_tx(i915, pipe, false);
+>> +}
+>
+> For these wrappers I could argue that static inlines would be less
+> loc overall, while still wouldn't need any extra struct definitions/etc.
+> in the header. But not performance sensitive so from that pov static
+> inline is pointless.
 
-  Linux 5.15-rc1 (2021-09-12 16:28:37 -0700)
+I didn't actually check the compiler output, but I think even
+performance wise it'll probably end up being just one function call
+either way. It's just a question which side of the call the logic
+is. But agreed, doesn't really matter.
 
-are available in the Git repository at:
+Anyway, the main argument I have for avoiding static inlines is to not
+set an example to cargo cult from. They should be the exception, not the
+rule. I think both the driver and the team have grown big enough to
+require a style that promotes better structure. Because let's face it,
+people look at what's there, copy the style, and not think of all the
+subtleties.
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-09-30
+> Anyways, this approach seems fine to me. For the series
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-for you to fetch changes up to fd09961dbb9ca6558d8ad318a3967c1048bdb090:
+Thanks,
+Jani.
 
-  fbdev: simplefb: fix Kconfig dependencies (2021-09-29 09:26:58 +0200)
 
-----------------------------------------------------------------
-drm-misc-fixes for v5.15:
-- Not sure if drm-misc-fixes-2021-09-08 tag was pulled, assuming it is.
-- Power management fixes for vc4.
-- Compiler fix for vc4.
-- Cursor fix for nouveau.
-- Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
-- Small rockchip fixes.
-- Fix DT bindings indent for ili9341.
-- Fix y030xx067a init sequence to not get a yellow tint.
-- Kconfig fix for fb_simple vs simpledrm.
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      fbdev: simplefb: fix Kconfig dependencies
-
-Ben Skeggs (3):
-      drm/nouveau/kms/tu102-: delay enabling cursor until after assign_windows
-      drm/nouveau/ga102-: support ttm buffer moves via copy engine
-      drm/nouveau/fifo/ga102: initialise chid on return from channel creation
-
-Chris Morgan (1):
-      drm/rockchip: Update crtc fixup to account for fractional clk change
-
-Christophe Branchereau (1):
-      drm/panel: abt-y030xx067a: yellow tint fix
-
-Edmund Dea (1):
-      drm/kmb: Enable alpha blended second plane
-
-Jernej Skrabec (1):
-      drm/sun4i: dw-hdmi: Fix HDMI PHY clock setup
-
-Krzysztof Kozlowski (1):
-      dt-bindings: panel: ili9341: correct indentation
-
-Maarten Lankhorst (1):
-      Merge drm/drm-fixes into drm-misc-fixes
-
-Maxime Ripard (7):
-      drm/vc4: select PM
-      drm/vc4: hdmi: Make sure the controller is powered up during bind
-      drm/vc4: hdmi: Rework the pre_crtc_configure error handling
-      drm/vc4: hdmi: Split the CEC disable / enable functions in two
-      drm/vc4: hdmi: Make sure the device is powered with CEC
-      drm/vc4: hdmi: Warn if we access the controller while disabled
-      drm/vc4: hdmi: Remove unused struct
-
-Palmer Dabbelt (1):
-      drm/rockchip: cdn-dp-core: Fix cdn_dp_resume unused warning
-
-xinhui pan (1):
-      drm/ttm: Fix a deadlock if the target BO is not idle during swap
-
- .../bindings/display/panel/ilitek,ili9341.yaml     |   2 +-
- drivers/gpu/drm/kmb/kmb_drv.c                      |   8 +-
- drivers/gpu/drm/kmb/kmb_drv.h                      |   5 +
- drivers/gpu/drm/kmb/kmb_plane.c                    |  81 +++++-
- drivers/gpu/drm/kmb/kmb_plane.h                    |   5 +-
- drivers/gpu/drm/kmb/kmb_regs.h                     |   3 +
- drivers/gpu/drm/nouveau/dispnv50/head.c            |   2 +-
- drivers/gpu/drm/nouveau/include/nvif/class.h       |   2 +
- drivers/gpu/drm/nouveau/include/nvkm/engine/fifo.h |   1 +
- drivers/gpu/drm/nouveau/nouveau_bo.c               |   1 +
- drivers/gpu/drm/nouveau/nouveau_chan.c             |   6 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c              |   4 +
- drivers/gpu/drm/nouveau/nv84_fence.c               |   2 +-
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  |   3 +
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/Kbuild    |   1 +
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c   | 311 +++++++++++++++++++++
- drivers/gpu/drm/nouveau/nvkm/subdev/top/ga100.c    |   7 +-
- drivers/gpu/drm/panel/panel-abt-y030xx067a.c       |   4 +-
- drivers/gpu/drm/rockchip/cdn-dp-core.c             |   2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |  26 +-
- drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |   7 +-
- drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h              |   4 +-
- drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c             |  97 ++++---
- drivers/gpu/drm/vc4/Kconfig                        |   1 +
- drivers/gpu/drm/vc4/vc4_hdmi.c                     | 133 +++++----
- drivers/gpu/drm/vc4/vc4_hdmi_regs.h                |   6 +
- drivers/of/base.c                                  |   1 +
- drivers/video/fbdev/Kconfig                        |   5 +-
- 28 files changed, 591 insertions(+), 139 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
+--=20
+Jani Nikula, Intel Open Source Graphics Center
