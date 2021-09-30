@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABEA741D63A
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 11:23:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B1C41D639
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 11:23:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB98D6E3C1;
-	Thu, 30 Sep 2021 09:23:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1771F6E3B7;
+	Thu, 30 Sep 2021 09:23:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C6456E3C1
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 09:23:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="225184539"
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="225184539"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 02:23:27 -0700
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="555648833"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 553C46E3B7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 09:23:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="223256122"
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="223256122"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 02:23:31 -0700
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="563979002"
 Received: from vmurthy-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.37.18])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 02:23:25 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 02:23:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Date: Thu, 30 Sep 2021 12:23:00 +0300
-Message-Id: <0229659fb8af6c91c774408c6f7bb8c4ff8735e3.1632992608.git.jani.nikula@intel.com>
+Date: Thu, 30 Sep 2021 12:23:01 +0300
+Message-Id: <0a5fa9b8d4d4615d4e6503b6bb33541c0bccffbb.1632992608.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1632992608.git.jani.nikula@intel.com>
 References: <cover.1632992608.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915/dpll: move dpll modeset asserts to
- intel_dpll.c
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915/dsi: move dsi pll modeset asserts
+ to vlv_dsi_pll.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,139 +55,111 @@ Keep the functionality and the assert code together.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c    |  1 +
- drivers/gpu/drm/i915/display/intel_display.c  | 14 ------------
- drivers/gpu/drm/i915/display/intel_display.h  |  4 ----
- .../drm/i915/display/intel_display_power.c    |  3 ++-
- drivers/gpu/drm/i915/display/intel_dpll.c     | 22 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dpll.h     |  3 +++
- drivers/gpu/drm/i915/display/intel_lvds.c     |  1 +
- 7 files changed, 29 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c | 16 --------------
+ drivers/gpu/drm/i915/display/intel_display.h |  3 ---
+ drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +++
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c   | 23 ++++++++++++++++++++
+ 5 files changed, 27 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index f5923f1c38bd..34463aeec25c 100644
+index 34463aeec25c..5359b7305a78 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -25,6 +25,7 @@
- #include "intel_color.h"
+@@ -26,6 +26,7 @@
  #include "intel_de.h"
  #include "intel_display_types.h"
-+#include "intel_dpll.h"
+ #include "intel_dpll.h"
++#include "intel_dsi.h"
  
  #define CTM_COEFF_SIGN	(1ULL << 63)
  
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 929f8a50b0e7..725562791a07 100644
+index 725562791a07..ef540a7835b7 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -398,20 +398,6 @@ intel_wait_for_pipe_off(const struct intel_crtc_state *old_crtc_state)
+@@ -398,22 +398,6 @@ intel_wait_for_pipe_off(const struct intel_crtc_state *old_crtc_state)
  	}
  }
  
--/* Only for pre-ILK configs */
--void assert_pll(struct drm_i915_private *dev_priv,
--		enum pipe pipe, bool state)
+-/* XXX: the dsi pll is shared between MIPI DSI ports */
+-void assert_dsi_pll(struct drm_i915_private *dev_priv, bool state)
 -{
 -	u32 val;
 -	bool cur_state;
 -
--	val = intel_de_read(dev_priv, DPLL(pipe));
--	cur_state = !!(val & DPLL_VCO_ENABLE);
+-	vlv_cck_get(dev_priv);
+-	val = vlv_cck_read(dev_priv, CCK_REG_DSI_PLL_CONTROL);
+-	vlv_cck_put(dev_priv);
+-
+-	cur_state = val & DSI_PLL_VCO_EN;
 -	I915_STATE_WARN(cur_state != state,
--	     "PLL state assertion failure (expected %s, current %s)\n",
+-	     "DSI PLL state assertion failure (expected %s, current %s)\n",
 -			onoff(state), onoff(cur_state));
 -}
 -
- /* XXX: the dsi pll is shared between MIPI DSI ports */
- void assert_dsi_pll(struct drm_i915_private *dev_priv, bool state)
+ void assert_transcoder(struct drm_i915_private *dev_priv,
+ 		       enum transcoder cpu_transcoder, bool state)
  {
 diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 5306d119b2c0..b3ccec541aa0 100644
+index b3ccec541aa0..3028072c2cf3 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -645,10 +645,6 @@ void intel_init_pch_refclk(struct drm_i915_private *dev_priv);
+@@ -645,9 +645,6 @@ void intel_init_pch_refclk(struct drm_i915_private *dev_priv);
  int intel_modeset_all_pipes(struct intel_atomic_state *state);
  
  /* modesetting asserts */
--void assert_pll(struct drm_i915_private *dev_priv,
--		enum pipe pipe, bool state);
--#define assert_pll_enabled(d, p) assert_pll(d, p, true)
--#define assert_pll_disabled(d, p) assert_pll(d, p, false)
- void assert_dsi_pll(struct drm_i915_private *dev_priv, bool state);
- #define assert_dsi_pll_enabled(d) assert_dsi_pll(d, true)
- #define assert_dsi_pll_disabled(d) assert_dsi_pll(d, false)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 2410c1a617ea..06e9879aedd7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -9,11 +9,12 @@
- #include "i915_irq.h"
- #include "intel_cdclk.h"
- #include "intel_combo_phy.h"
--#include "intel_display_power.h"
- #include "intel_de.h"
-+#include "intel_display_power.h"
- #include "intel_display_types.h"
- #include "intel_dmc.h"
- #include "intel_dpio_phy.h"
-+#include "intel_dpll.h"
- #include "intel_hotplug.h"
- #include "intel_pm.h"
- #include "intel_pps.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 66784204f6f7..b84ed4a1bd95 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1923,3 +1923,25 @@ void vlv_force_pll_off(struct drm_i915_private *dev_priv, enum pipe pipe)
- 	else
- 		vlv_disable_pll(dev_priv, pipe);
+-void assert_dsi_pll(struct drm_i915_private *dev_priv, bool state);
+-#define assert_dsi_pll_enabled(d) assert_dsi_pll(d, true)
+-#define assert_dsi_pll_disabled(d) assert_dsi_pll(d, false)
+ void assert_transcoder(struct drm_i915_private *dev_priv,
+ 		       enum transcoder cpu_transcoder, bool state);
+ #define assert_transcoder_enabled(d, t) assert_transcoder(d, t, true)
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
+index 50d6da0b2419..fbc40ffdc02e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi.h
++++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+@@ -207,6 +207,9 @@ u32 bxt_dsi_get_pclk(struct intel_encoder *encoder,
+ 		     struct intel_crtc_state *config);
+ void bxt_dsi_reset_clocks(struct intel_encoder *encoder, enum port port);
+ 
++void assert_dsi_pll_enabled(struct drm_i915_private *i915);
++void assert_dsi_pll_disabled(struct drm_i915_private *i915);
++
+ /* intel_dsi_vbt.c */
+ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
+ void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on);
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+index 90185b219447..0078973cd219 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+@@ -568,3 +568,26 @@ void bxt_dsi_reset_clocks(struct intel_encoder *encoder, enum port port)
+ 	}
+ 	intel_de_write(dev_priv, MIPI_EOT_DISABLE(port), CLOCKSTOP);
  }
 +
-+/* Only for pre-ILK configs */
-+static void assert_pll(struct drm_i915_private *dev_priv,
-+		       enum pipe pipe, bool state)
++static void assert_dsi_pll(struct drm_i915_private *i915, bool state)
 +{
 +	bool cur_state;
 +
-+	cur_state = intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENABLE;
++	vlv_cck_get(i915);
++	cur_state = vlv_cck_read(i915, CCK_REG_DSI_PLL_CONTROL) & DSI_PLL_VCO_EN;
++	vlv_cck_put(i915);
++
 +	I915_STATE_WARN(cur_state != state,
-+			"PLL state assertion failure (expected %s, current %s)\n",
++			"DSI PLL state assertion failure (expected %s, current %s)\n",
 +			onoff(state), onoff(cur_state));
 +}
 +
-+void assert_pll_enabled(struct drm_i915_private *i915, enum pipe pipe)
++void assert_dsi_pll_enabled(struct drm_i915_private *i915)
 +{
-+	assert_pll(i915, pipe, true);
++	assert_dsi_pll(i915, true);
 +}
 +
-+void assert_pll_disabled(struct drm_i915_private *i915, enum pipe pipe)
++void assert_dsi_pll_disabled(struct drm_i915_private *i915)
 +{
-+	assert_pll(i915, pipe, false);
++	assert_dsi_pll(i915, false);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.h b/drivers/gpu/drm/i915/display/intel_dpll.h
-index db396b3e1141..1af0ac43cca4 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.h
-@@ -36,4 +36,7 @@ bool bxt_find_best_dpll(struct intel_crtc_state *crtc_state,
- 			struct dpll *best_clock);
- int chv_calc_dpll_params(int refclk, struct dpll *pll_clock);
- 
-+void assert_pll_enabled(struct drm_i915_private *i915, enum pipe pipe);
-+void assert_pll_disabled(struct drm_i915_private *i915, enum pipe pipe);
-+
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 6520a8984651..0819b791e857 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -44,6 +44,7 @@
- #include "intel_connector.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-+#include "intel_dpll.h"
- #include "intel_fdi.h"
- #include "intel_gmbus.h"
- #include "intel_lvds.h"
 -- 
 2.30.2
 
