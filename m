@@ -2,43 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D5941D494
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 09:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 732C441D497
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 09:36:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE25E6E342;
-	Thu, 30 Sep 2021 07:33:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01D946E342;
+	Thu, 30 Sep 2021 07:36:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 850166E342
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 07:33:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="212204174"
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="212204174"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 00:33:31 -0700
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6BDD6E342
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 07:36:14 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="224782193"
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="224782193"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 00:36:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="555553166"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 30 Sep 2021 00:33:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 30 Sep 2021 10:33:26 +0300
-Date: Thu, 30 Sep 2021 10:33:26 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YVVoRsOGI/RoUMFf@intel.com>
-References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
- <20210927182455.27119-3-ville.syrjala@linux.intel.com>
- <20210929191752.GC2192289@ideak-desk.fi.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="707744241"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga006.fm.intel.com with ESMTP; 30 Sep 2021 00:36:14 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Thu, 30 Sep 2021 00:36:13 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Thu, 30 Sep 2021 00:36:13 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.12; Thu, 30 Sep 2021 00:36:13 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Gxu+hXztVrQOPLKAnpyfhzz0JBdrMMjIwyz9RP5X0KO4eGMl93/7HsuZhMByOaNuKP0jKvndmuLy64cI/gEgDJOeiNgZHPnBnzHgyyNr6EuqoCQ/no8jlFKnHyT5/JopkS6fJJT8wmQvIS7hxxibUE78TjPHsQhy6Fz4KkKMY1OOzfqCkUD+vL4sj1Q7M7+iX3fs0Kfk18Hoi3uRDA546ky7NF4bYaUHsf6qJpZO5jKZaMW82l8O+BOvG7HqXO9dCLQpzkJqWnrq8M/i8SQKVbr29nRkZhqPYTvzQ0AX/uPCo7xeRyRMv981n/5zuWhzYYtV7ygs0ZDTo1dcwBsx9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=8FjS/tzrltM7+N3pn//IMDtPrI3C52UFeFj6WJd7YYg=;
+ b=jiLkCzFKODlbmNAOiYhrzH0FnJL9UsrVvBt8v5vc33l6UM4rFLRt+MnhUTIfXj9st+TU7dR/ud8fzokq5Z5L+Y68SuzZ4JwT0Z8UzV8ebEAqZt6OIKH7vORtvn18BXD7DEMzqaAJw/Wjwnj/sVKxYM1NLCz4TpBLXS3gvDv9AKDl13Gadp2USUMCmOK+sNHDRtWBRF1tewlpyqLGG/65OPF/WdHAOS4T59xnWJ77Ftrzy+QP6g6z+GSgNQsWT/OQI5zvT7RWC16ZlvW71hnKeWzNG+h0aTBYKcZYxGaCOZw2i6YUHxD6P1l6oOWWe9HveCjNI8fFU3B1oJrcgAP3HQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8FjS/tzrltM7+N3pn//IMDtPrI3C52UFeFj6WJd7YYg=;
+ b=w8NLYo418FbVMxb7Cy8OUJs4Ac+lKySbUhUdyLpJgZW6f2oJekG/MSQbZvgtKajh7790TTjUlvVv6jiFUzAWCfJIzk7lFk2djc7CiST5JAo5DZ83K/Shc7RcaPWkL4boCwbArHqudFF1geyRWsPh8Li0MJvuInBa/puy+VojRRo=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
+ by CH2PR11MB4455.namprd11.prod.outlook.com (2603:10b6:610:46::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.15; Thu, 30 Sep
+ 2021 07:36:10 +0000
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::e489:fd80:6a3d:3633]) by CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::e489:fd80:6a3d:3633%4]) with mapi id 15.20.4566.017; Thu, 30 Sep 2021
+ 07:36:10 +0000
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20210930001409.254817-1-jose.souza@intel.com>
+ <20210930001409.254817-6-jose.souza@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Message-ID: <f9b00ea2-0c2f-6727-f870-0119f0da6499@intel.com>
+Date: Thu, 30 Sep 2021 10:35:59 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
+In-Reply-To: <20210930001409.254817-6-jose.souza@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210929191752.GC2192289@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Generalize
- .set_signal_levels()
+X-ClientProxiedBy: DB9PR02CA0030.eurprd02.prod.outlook.com
+ (2603:10a6:10:1d9::35) To CH0PR11MB5409.namprd11.prod.outlook.com
+ (2603:10b6:610:d0::7)
+MIME-Version: 1.0
+Received: from [10.237.72.199] (134.134.137.86) by
+ DB9PR02CA0030.eurprd02.prod.outlook.com (2603:10a6:10:1d9::35) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4566.13 via Frontend Transport; Thu, 30 Sep 2021 07:36:08 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 59cd4723-532e-490b-0fed-08d983e4f929
+X-MS-TrafficTypeDiagnostic: CH2PR11MB4455:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH2PR11MB4455175E2FD927AC69A6556BB8AA9@CH2PR11MB4455.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GoLToKEJU6Fpg01b2AhCahnVlJRloPmq+EYBbuSZRiM0nWa+7gNz1Wt6Dk1JSScS/EkwEXQTaWvS8LLJRlhtxfa7vCjq+TrXFFh/pg4PAnw3R5+Og6d9XVupTRyGKxFRq2h4/a62NU4gLgJmHneJei9SULSXa5nJ4Mw6XckSOrkGwARXZoV47wDjJm8DoE45JRxiKcXGjk1ODuCBK7oK5erNAn/AvSRnUHnI4owELLr9oo36uPuB4SyMLUVY72ojuf3XyLHLhyO1xxAVJTbFp30Zfjcp+2CZkR8zFOT3B9KGNc4lrO1lMWwlUcyGKR1XaN06WB/ARvwb8uimVWZ+d30R0zJGkvL1H13pBv9CbcKuSdrBk24HfiehIg/ufedDc2T5ar7tn68QHYbUsN8+9G6qQ6LDaGeykVuJ8fpnXQD4XM2GS3Z5AxgM4V0w9Y4fyEWCSHF9TWSSdSgnM88N8BLzQha6xoY0CHyuMGSKDNyF50++UIJ0b/AYcNrzTrS3Lp0D98Wq/F7FCAXkThkyZtsn8bE0ScvrWs4Oijlp/RxmGGKCqs/0jl2gBxFLsR05X7wnGOS3Iv15pQ43shXxHAUUbyQfnrs2kYPgku9vC8LzyWrgaS7CZQdBObkcRm8ou6xYT7NlWA9oNVyepgjcRthq3yq7cx7f+I73kAnKwSAntauaZh7n3QQrHbb5NzhvEB/NdMYgrLlRv+MC499uOuQQrKLv+AV4ArtIIMOsbLg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(31686004)(8676002)(86362001)(36756003)(66556008)(66946007)(66476007)(38100700002)(83380400001)(53546011)(316002)(26005)(8936002)(508600001)(186003)(6486002)(2906002)(6666004)(2616005)(16576012)(5660300002)(31696002)(956004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MkVHaXJ6UkI3aHJ1ZkhOL2JsTFdiMktUT1lQeGhZbEZ6L2lsR2hCR3ZRekRo?=
+ =?utf-8?B?cm9oSytQNThPWFZYREp4dEpXT0pkKzd5d2ltVzdob0ZBckgxRlRWSnhwUVJH?=
+ =?utf-8?B?QXJEKzZiWGVINTBDWjEzRjJJUTFBN0JQVm0ybElNTGJKN1NrME9LT3Z0UVdu?=
+ =?utf-8?B?bDRKQ3YvZXF0dkpKQk9FeldVblozVy9ZU3NSaXI3U0YvQmQ5MGVEVkNKS01T?=
+ =?utf-8?B?ekpUWlVoT1JVbGQrVElFM2dpRHN5ZG9MYnNLQ1VGRnlldXBYMVc3ZWg2L2sz?=
+ =?utf-8?B?UDR1bFRnMXJyWnA4a21lV2d5SUwyWmRlOXpaMTRkcmM1VE5yb3BVM0pVZUNY?=
+ =?utf-8?B?NWFqZERiTlZTRkZqQUU4dnQvMWtGVVplMlh6cDVFUk9JTGdvR2IxbEkrVEcz?=
+ =?utf-8?B?RDc4T01nNlRGRlRlN093YnZpUDVJSkQxMnl6eUdrd3hseVM5aUJhQ3M1MVRZ?=
+ =?utf-8?B?QTRwWXZPWDRmLzZZeENPd2FqRWxqQnl4UHVsby9CZDBVRlZmMTAxMDQ2L29K?=
+ =?utf-8?B?K3UxclpaeE1qSm16ZWFjTFRxOHMxZnFQNC93NENVczgxQWUveG5ZazY0VHFk?=
+ =?utf-8?B?YzU4eFd2cDBhY096WXc3a0RPVUUwMmcralRFaDZCQlUzWXpGRk4zZmMyNnJy?=
+ =?utf-8?B?bWZRazFrS3Y0NGh0N3BBdEh5aGtKUjlSbThUbktDdXh4TFJQMzVTMEhOa2Uv?=
+ =?utf-8?B?ZERndGNqSVE2ZStTaXNiRkxiVitDNFdjemkvbFdnUkhUMjlTbENGT1BZUWJv?=
+ =?utf-8?B?RlU5Q3kyUVN0bDR0Ui92dlYwVjh4Mnd2OVIxMVk1K3dEaXdvenFOVERKWmlP?=
+ =?utf-8?B?VThyQTAyZVdQcERVMzd1U1R6TUgrWnhyRStWdkxjMlEzT0VLRGtJbUlaNnRy?=
+ =?utf-8?B?ZSt2dHZTdzRyck15SEFOS2t0ZTlFNkFnaVZUTmY1aDM2VWluZDBidk9idUR3?=
+ =?utf-8?B?TjY2VjN0b1JEZXRpbTV5Vy83bXd0V2txQk5WdndYY1I3eVh3NHpBaHRncHdP?=
+ =?utf-8?B?UU13ZzdqTDJDcURkL3FxQXZQbGYwbkcyR2oxQW5aOXZKV1M4VTRuTzNyVFBs?=
+ =?utf-8?B?THBJdHg2WHExbzZRRHZZUWlKdGt4SGxGVWo3UFA3bVVySE5SQk5rcmx0K0pL?=
+ =?utf-8?B?MTNkQ2RpTkVVaHlIWXgyV0I0d01NSnhXdk5ZY0NZd0U5ZldaSWF0eERzZ09w?=
+ =?utf-8?B?LytXL041MkNoVkEvd0hlaEFsY1pvaU1sTGVWZTY2VWhqTVBLU1FaS25MSm5X?=
+ =?utf-8?B?YjYwbzBEMzVWQ2N4NSsreWFqSTA3bDRqT3lHeWcxT1ZGZlpoMVVJUUZ5NjNm?=
+ =?utf-8?B?NFkwck1nV2h4NHNCWW55d2F1Sm5RbWFHOUZkblFqcjB0UUh3RUc4S1FqNDJH?=
+ =?utf-8?B?bHVyc1pRR1FSZnlrWnk3cmNLZ1RSNkx6V2djeVNoN2lsakp4ck4xWUJ5cmxq?=
+ =?utf-8?B?bStmRlJQVnpETDJjNkFtekNlS0FkUEpSRCsxd0ZZNXBUa1VBUmI5WnNsL3pU?=
+ =?utf-8?B?M1FRelJsYVU5UEJWVnhKQkc1bG50UHIva2RmQ0FFd2ViNWh2Snk0Ky9Hckth?=
+ =?utf-8?B?QytMcmZuWTU0MEJoTlJiQkhlNitSU1ltbU9vRisrL3JDYThJNHFnZ3NSOE03?=
+ =?utf-8?B?ZVZkWVRhNktiNW5objBLZUVVOEFOTDJqVml6TFdRUnNHV0FWK1R3RGhtWVpI?=
+ =?utf-8?B?Sjl6T2RCL21BV0dvNDVtU0VpUG1JdEJkc2hDVVF3ekRwRkxLdUdhV1ZRYmVS?=
+ =?utf-8?Q?pTtmasmbNcO6kdWT1y2augH/u1t/pNGUir7GUVT?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59cd4723-532e-490b-0fed-08d983e4f929
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 07:36:10.7079 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Jl0xq789Xd5NwkKi8aXei7HyuHlhpaktxM76YcxKmsvTE0PXMAiCoR898aSky1xhfcfP+FvyySU615+XLFH0rsBVb+Fd7sNreQ3DgA5lfKI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB4455
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 6/9] drm/i915/display/adlp: Optimize PSR2
+ power-savings in corner cases
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,145 +154,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 29, 2021 at 10:17:52PM +0300, Imre Deak wrote:
-> On Mon, Sep 27, 2021 at 09:24:48PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > 
-> > Currently .set_signal_levels() is only used by encoders in DP mode.
-> > For most modern platforms there is no essential difference between
-> > DP and HDMI, and both codepaths just end up calling the same function
-> > under the hood. Let's get remove the need for that extra indirection
-> > by moving .set_signal_levels() into the encoder from intel_dp.
-> > Since we already plumb the crtc_state/etc. into .set_signal_levels()
-> > the code will do the right thing for both DP and HDMI.
+
+
+On 9/30/21 3:14 AM, Jos√© Roberto de Souza wrote:
+> The Wa_14014971508 is required to fix scanout when a feature that i915
+> do not support is enabled and this feature is not planned to be enabled
+> for adlp.
 > 
-> I wondered about the rational to add vfuncs to intel_digital_port or
-> intel_encoder, I assume the latter needs less type casting.
-
-I guess it's mostly been "do these make sense outside of HDMI/DP?".
-But considering those are all mostly what's left it's becoming 
-less importnat perhaps.
-
-I was actually pondering if we migth split these up in to
-a few different sets of vfuncs. So and encoder could have
-pointers to phy_funcs, hpd_funcs, clock_funcs, etc.
-
+> Keeping this workaround enabled can badly hurt power-savings when
+> a full frame fetch is required(see psr2_sel_fetch_plane_state_supported()
+> and psr2_sel_fetch_pipe_state_supported()).
 > 
-> > HSW/BDW/SKL are the only platforms that need a bit of care on
-> > account of having to preload the hardware buf_trans register
-> > with the full set of values. So we must still remember to call
-> > hsw_prepare_{dp,hdmi}_ddi_buffers() to do said preloading, and
-> > .set_signal_levels() will just end up selecting the correct entry
-> > for DP, and also setting up the iboost magic for both DP and HDMI.
-> > 
-> > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/g4x_dp.c         |  33 +++---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      | 108 +++++++++---------
-> >  .../drm/i915/display/intel_display_types.h    |   5 +-
-> >  .../drm/i915/display/intel_dp_link_training.c |   5 +-
-> >  4 files changed, 75 insertions(+), 76 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-> > index 8e0620ae2ed1..e348f075a41d 100644
-> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-<snip>
-> > @@ -1364,15 +1367,15 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
-> >  		dig_port->dp.set_link_train = g4x_set_link_train;
-> >  
-> >  	if (IS_CHERRYVIEW(dev_priv))
-> > -		dig_port->dp.set_signal_levels = chv_set_signal_levels;
-> > +		intel_encoder->set_signal_levels = chv_set_signal_levels;
-> >  	else if (IS_VALLEYVIEW(dev_priv))
-> > -		dig_port->dp.set_signal_levels = vlv_set_signal_levels;
-> > +		intel_encoder->set_signal_levels = vlv_set_signal_levels;
+> Here a example that could badly hurt power-savings, userspace does
+> a page flip to a rotated plane, so CONTINUOS_FULL_FRAME set.
+> But then for a whole 30 seconds nothing in the screen requires updates
+> but because CONTINUOS_FULL_FRAME is set, it will not go into DC5/DC6.
 > 
-> I suppose vlv,chv hdmi encoders could also use these, but that'd need deciphering
-> the hard-coded values there.
-
-My current plan is to extrct a buf_trans struct for each, and for now
-I just populate an array of those and pass the array to the phy code.
-In the future we might want to unify these with the rest of the
-buf_trans infrastructure.
-
-I was also pondering if we should just move the set_signal_level() funcs
-from intel_ddi.c to some phy specific files entirely. And could perhaps
-also move the related buf_trans tables there as well...
-
+> Reverting Wa_14014971508 fixes that, as only a single frame will be
+> sent and then display can go to DC5/DC6 for those 30 seconds of
+> idleness.
 > 
-> >  	else if (IS_IVYBRIDGE(dev_priv) && port == PORT_A)
-> > -		dig_port->dp.set_signal_levels = ivb_cpu_edp_set_signal_levels;
-> > +		intel_encoder->set_signal_levels = ivb_cpu_edp_set_signal_levels;
-> >  	else if (IS_SANDYBRIDGE(dev_priv) && port == PORT_A)
-> > -		dig_port->dp.set_signal_levels = snb_cpu_edp_set_signal_levels;
-> > +		intel_encoder->set_signal_levels = snb_cpu_edp_set_signal_levels;
-> >  	else
-> > -		dig_port->dp.set_signal_levels = g4x_set_signal_levels;
-> > +		intel_encoder->set_signal_levels = g4x_set_signal_levels;
-> >  
-> >  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
-> >  	    (HAS_PCH_SPLIT(dev_priv) && port != PORT_A)) {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 39bacef87ef2..4a22dcde66d9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-<snip>
-> > @@ -2639,13 +2644,12 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> >  
-> >  	icl_program_mg_dp_mode(dig_port, crtc_state);
-> >  
-> > -	if (DISPLAY_VER(dev_priv) >= 11)
-> > -		icl_ddi_vswing_sequence(encoder, crtc_state, level);
-> > -	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> > -		bxt_ddi_vswing_sequence(encoder, crtc_state, level);
-> > -	else
-> > +	if ((DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv)) ||
-> > +	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+And add a little more explanation here.
+DC6v is a power saving state where the display engine is powered off 
+when display enters PSR2 in the video playback.
+And the Wa_14014971508 related to DC6v.
+
+Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+
+> BSpec: 54369
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Signed-off-by: Jos√© Roberto de Souza <jose.souza@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_psr.c | 11 +++--------
+>   1 file changed, 3 insertions(+), 8 deletions(-)
 > 
-> Could be DISPLAY_VER <= 9 && !IS_BXT ?
-
-I guess I've become a bit partial to listing things a bit
-more explicitly. But I must admit that this is a bit ugly in my
-proposed form. So changing it might be a good idea.
-
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index e8af39591dfea..b37f123fe0c97 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1499,15 +1499,10 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+>   
+>   	if (full_update) {
+>   		/*
+> -		 * Wa_14014971508:adlp
+> -		 * SINGLE_FULL_FRAME bit is not hold in register so can not be
+> -		 * restored by DMC, so using CONTINUOS_FULL_FRAME to mimic that
+> +		 * Not applying Wa_14014971508:adlp as we do not support the
+> +		 * feature that requires this workaround.
+>   		 */
+> -		if (IS_ALDERLAKE_P(dev_priv))
+> -			val |= ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME;
+> -		else
+> -			val |= PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
+> -
+> +		val |= man_trk_ctl_single_full_frame_bit_get(dev_priv);
+>   		goto exit;
+>   	}
+>   
 > 
-> >  		hsw_prepare_dp_ddi_buffers(encoder, crtc_state);
-> >  
-> > +	encoder->set_signal_levels(encoder, crtc_state);
-> 
-> hsw_set_signal_levels() wasn't called before, but writing DDI_BUF_CTL
-> w/o enabling it is ok I think.
-
-Ah right. Hmm. We haven't yet called intel_ddi_init_dp_buf_reg() so
-this might go a bit wrong actually. So I think I need to reorder the
-calls a bit and nuke the DDI_BUF_CTL_ENABLE from
-intel_ddi_init_dp_buf_reg(). intel_ddi_prepare_link_retrain() already
-sets that bit so it should kick in properly during link training.
-But I'll have to double check the full flow to make sure I uderstand
-the order of things.
-
-> Maybe it's worth zeroing
-> intel_dp->train_set already in intel_dp_set_link_params()?
-
-I had a patch for that, but for some reason discarded it as
-"not needed". But now that I think about it again we should
-in fact do it because currently we only clear these at the
-start of training a link segment, and what we leave in there
-at the end will be the DPRX values. So the next modeset might
-do the initial set_signal_levels() with stale values that don't
-even make sense for our PHY (eg. if we had a case of LTTPR
-supporting vswing/preemph 3 and our PHY not supporting those).
-And considering we'll switch to vswing/preemph 0 anyway at
-the start of the link training might as well program the PHY
-accordingly from the start.
-
-If we wanted to optimize things and reuse the values from the
-last succesful link training I think we'd also have to store
-these separately for LTTPRs, and we'd have to adjust the link
-training code to not zero the stuff (unless there was a long 
-hpd/etc.).
-
--- 
-Ville Syrj‰l‰
-Intel
