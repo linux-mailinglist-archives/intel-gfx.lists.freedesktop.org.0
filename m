@@ -2,50 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B727641D762
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 12:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5850F41D72F
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 12:06:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6AC76EB60;
-	Thu, 30 Sep 2021 10:12:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68B81890E9;
+	Thu, 30 Sep 2021 10:06:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 506 seconds by postgrey-1.36 at gabe;
- Thu, 30 Sep 2021 10:12:29 UTC
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.180])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C9F66EB5C
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 10:12:29 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 2D63A20201B;
- Thu, 30 Sep 2021 12:04:03 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id JejvUw3w_5LC; Thu, 30 Sep 2021 12:04:02 +0200 (CEST)
-Received: from thor (24.99.2.85.dynamic.wline.res.cust.swisscom.ch
- [85.2.99.24])
- by netline-mail3.netline.ch (Postfix) with ESMTPA id B3A6120201A;
- Thu, 30 Sep 2021 12:04:02 +0200 (CEST)
-Received: from localhost ([127.0.0.1]) by thor with esmtp (Exim 4.95-RC2)
- (envelope-from <michel@daenzer.net>) id 1mVsv3-00040b-Gw;
- Thu, 30 Sep 2021 12:04:01 +0200
-Message-ID: <c73d99e5-267b-c396-2c19-9e5938d7ab6f@daenzer.net>
-Date: Thu, 30 Sep 2021 12:04:01 +0200
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA6F6EB55;
+ Thu, 30 Sep 2021 10:06:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="310697215"
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="310697215"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 03:06:24 -0700
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="479811607"
+Received: from rmuntslx-mobl1.ger.corp.intel.com (HELO [10.252.37.149])
+ ([10.252.37.149])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 03:06:19 -0700
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Message-ID: <f079a5d2-3095-1065-85c2-9d510260215b@linux.intel.com>
+Date: Thu, 30 Sep 2021 12:06:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.1
-Content-Language: en-CA
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20210927114114.152310-1-matthew.auld@intel.com>
- <20210927114114.152310-12-matthew.auld@intel.com>
- <6372b5a3ab5b8d5b640af59c9290cbe6da21a0f9.camel@linux.intel.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-In-Reply-To: <6372b5a3ab5b8d5b640af59c9290cbe6da21a0f9.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 12/13] drm/i915/ttm: use cached system
- pages when evicting lmem
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,51 +54,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-09-29 13:54, Thomas Hellström wrote:
-> On Mon, 2021-09-27 at 12:41 +0100, Matthew Auld wrote:
->> This should let us do an accelerated copy directly to the shmem pages
->> when temporarily moving lmem-only objects, where the i915-gem
->> shrinker
->> can later kick in to swap out the pages, if needed.
->>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index 194e5f1deda8..46d57541c0b2 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -134,11 +134,11 @@ static enum ttm_caching
->>  i915_ttm_select_tt_caching(const struct drm_i915_gem_object *obj)
->>  {
->>         /*
->> -        * Objects only allowed in system get cached cpu-mappings.
->> -        * Other objects get WC mapping for now. Even if in system.
->> +        * Objects only allowed in system get cached cpu-mappings, or
->> when
->> +        * evicting lmem-only buffers to system for swapping. Other
->> objects get
->> +        * WC mapping for now. Even if in system.
->>          */
->> -       if (obj->mm.region->type == INTEL_MEMORY_SYSTEM &&
->> -           obj->mm.n_placements <= 1)
->> +       if (obj->mm.n_placements <= 1)
->>                 return ttm_cached;
->>  
->>         return ttm_write_combined;
-> 
-> We should be aware that with TTM, even evicted bos can be mapped by
-> user-space while evicted, and this will appear to user-space like the
-> WC-mapped object suddenly became WB-mapped. But it appears like mesa
-> doesn't care about this as long as the mappings are fully coherent.
+drm-misc-fixes-2021-09-30:
+drm-misc-fixes for v5.15:
+- Not sure if drm-misc-fixes-2021-09-08 tag was pulled, assuming it is.
+- Power management fixes for vc4.
+- Compiler fix for vc4.
+- Cursor fix for nouveau.
+- Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
+- Small rockchip fixes.
+- Fix DT bindings indent for ili9341.
+- Fix y030xx067a init sequence to not get a yellow tint.
+- Kconfig fix for fb_simple vs simpledrm.
+The following changes since commit 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f:
 
-FWIW, the Mesa radeonsi driver avoids surprises due to this (e.g. some path which involves CPU access suddenly goes faster if the BO was evicted from VRAM) by asking for WC mapping of BOs intended to be in VRAM even while they're evicted (via the AMDGPU_GEM_CREATE_CPU_GTT_USWC flag).
+  Linux 5.15-rc1 (2021-09-12 16:28:37 -0700)
 
+are available in the Git repository at:
 
--- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-09-30
+
+for you to fetch changes up to fd09961dbb9ca6558d8ad318a3967c1048bdb090:
+
+  fbdev: simplefb: fix Kconfig dependencies (2021-09-29 09:26:58 +0200)
+
+----------------------------------------------------------------
+drm-misc-fixes for v5.15:
+- Not sure if drm-misc-fixes-2021-09-08 tag was pulled, assuming it is.
+- Power management fixes for vc4.
+- Compiler fix for vc4.
+- Cursor fix for nouveau.
+- Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
+- Small rockchip fixes.
+- Fix DT bindings indent for ili9341.
+- Fix y030xx067a init sequence to not get a yellow tint.
+- Kconfig fix for fb_simple vs simpledrm.
+
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      fbdev: simplefb: fix Kconfig dependencies
+
+Ben Skeggs (3):
+      drm/nouveau/kms/tu102-: delay enabling cursor until after assign_windows
+      drm/nouveau/ga102-: support ttm buffer moves via copy engine
+      drm/nouveau/fifo/ga102: initialise chid on return from channel creation
+
+Chris Morgan (1):
+      drm/rockchip: Update crtc fixup to account for fractional clk change
+
+Christophe Branchereau (1):
+      drm/panel: abt-y030xx067a: yellow tint fix
+
+Edmund Dea (1):
+      drm/kmb: Enable alpha blended second plane
+
+Jernej Skrabec (1):
+      drm/sun4i: dw-hdmi: Fix HDMI PHY clock setup
+
+Krzysztof Kozlowski (1):
+      dt-bindings: panel: ili9341: correct indentation
+
+Maarten Lankhorst (1):
+      Merge drm/drm-fixes into drm-misc-fixes
+
+Maxime Ripard (7):
+      drm/vc4: select PM
+      drm/vc4: hdmi: Make sure the controller is powered up during bind
+      drm/vc4: hdmi: Rework the pre_crtc_configure error handling
+      drm/vc4: hdmi: Split the CEC disable / enable functions in two
+      drm/vc4: hdmi: Make sure the device is powered with CEC
+      drm/vc4: hdmi: Warn if we access the controller while disabled
+      drm/vc4: hdmi: Remove unused struct
+
+Palmer Dabbelt (1):
+      drm/rockchip: cdn-dp-core: Fix cdn_dp_resume unused warning
+
+xinhui pan (1):
+      drm/ttm: Fix a deadlock if the target BO is not idle during swap
+
+ .../bindings/display/panel/ilitek,ili9341.yaml     |   2 +-
+ drivers/gpu/drm/kmb/kmb_drv.c                      |   8 +-
+ drivers/gpu/drm/kmb/kmb_drv.h                      |   5 +
+ drivers/gpu/drm/kmb/kmb_plane.c                    |  81 +++++-
+ drivers/gpu/drm/kmb/kmb_plane.h                    |   5 +-
+ drivers/gpu/drm/kmb/kmb_regs.h                     |   3 +
+ drivers/gpu/drm/nouveau/dispnv50/head.c            |   2 +-
+ drivers/gpu/drm/nouveau/include/nvif/class.h       |   2 +
+ drivers/gpu/drm/nouveau/include/nvkm/engine/fifo.h |   1 +
+ drivers/gpu/drm/nouveau/nouveau_bo.c               |   1 +
+ drivers/gpu/drm/nouveau/nouveau_chan.c             |   6 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |   4 +
+ drivers/gpu/drm/nouveau/nv84_fence.c               |   2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  |   3 +
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/Kbuild    |   1 +
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c   | 311 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nvkm/subdev/top/ga100.c    |   7 +-
+ drivers/gpu/drm/panel/panel-abt-y030xx067a.c       |   4 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |   2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |  26 +-
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |   7 +-
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h              |   4 +-
+ drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c             |  97 ++++---
+ drivers/gpu/drm/vc4/Kconfig                        |   1 +
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 133 +++++----
+ drivers/gpu/drm/vc4/vc4_hdmi_regs.h                |   6 +
+ drivers/of/base.c                                  |   1 +
+ drivers/video/fbdev/Kconfig                        |   5 +-
+ 28 files changed, 591 insertions(+), 139 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
