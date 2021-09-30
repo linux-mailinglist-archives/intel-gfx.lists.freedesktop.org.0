@@ -2,118 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D4D41D482
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 09:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D5941D494
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 09:33:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C93A76E32F;
-	Thu, 30 Sep 2021 07:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE25E6E342;
+	Thu, 30 Sep 2021 07:33:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2064.outbound.protection.outlook.com [40.107.94.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE8976E32F;
- Thu, 30 Sep 2021 07:28:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iycGdvnsPj7u0SxQEohSYg86tKSauY5Y1WeUeswaCniFKf7Asu/i3w+7bZVDKISqvk8JtowhJnxC9CP4ccZTg9bhmeISiCuvo1D2NGSiaapZ8BdlfsPnJdla9pAY6J/zptX09PbPyVUzgulsBb7YFkjN1lghD7Dz0UapqynZNhTMiV/L5OOkmcnp+bEEbJdc+juZ9Lab7sE7dVOasUwrQFKIzqy330pCMmgyAJqcHC2UceRUa7mnZYuZVjYiWlOLtnuUA2edEwUIO8A7+Ho1IFZ7DOhvD/sxbQks9m4yG0sHBIgsKQ94WYUUM9dBysl2Rk+HGe3xPFM96neu10RJbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=z1Ug5xfrElFAYLrooq7kYIz2JOj1Dowxmrlwi1dQvHA=;
- b=ndeIH4kkynxByAwA/EHBsVp5kbwMtb0O+ImPcio7m4JlzWqvyU504oZWxuWJ3n9PI1vSK0Trz4s5jKWGc42TZ1IAUjFh2bjcNVPD8GxIB1ZwVzf6DFw9KlIcb5kjLazBQo7Q/ontTadIFR/XPrBCtwzZOoFiHwzLWKWahee7P3iZ8UemE/lYA1RTkUwY3sCcTEvI7aQ/H8qa5TkbBAaC64NJ1WzHVV3XTjkpe3YdT7LT0/2U/5pYHVJttCJEEkSASixCHOh9kqmvXf//xEff9MBpI0O7SG/VtMConTG68gjPAhu4mxL92VvUYauyNFAKUCEfCm5jkRhR0g74xzv/tg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z1Ug5xfrElFAYLrooq7kYIz2JOj1Dowxmrlwi1dQvHA=;
- b=QPbB2sT8mAdIbcPMvysiXP1YpsBa/Rn9MPsubhLzwQ1b5vMyhgKEKa6OuvKu0pgmMbMcG0SAEWpbX4ihlB+W/x8r2Sy0a4Uri0/SzLnY+a7FkUIaw0PivKbVnii4Dv2E4tsc1e8gSRp2Gz3cUpSW1hQI1b+bZDkYHoNo/2MnVMc=
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
-Received: from CY4PR1201MB0181.namprd12.prod.outlook.com
- (2603:10b6:910:1f::11) by CY4PR12MB1127.namprd12.prod.outlook.com
- (2603:10b6:903:44::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Thu, 30 Sep
- 2021 07:28:29 +0000
-Received: from CY4PR1201MB0181.namprd12.prod.outlook.com
- ([fe80::f109:9a58:2e94:2e84]) by CY4PR1201MB0181.namprd12.prod.outlook.com
- ([fe80::f109:9a58:2e94:2e84%11]) with mapi id 15.20.4566.015; Thu, 30 Sep
- 2021 07:28:28 +0000
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-References: <20210929132629.353541-1-matthew.auld@intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <f6b4b843-55f8-62cb-ef1d-8e8935c6ad71@amd.com>
-Date: Thu, 30 Sep 2021 09:28:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <20210929132629.353541-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: AM9P192CA0012.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:20b:21d::17) To CY4PR1201MB0181.namprd12.prod.outlook.com
- (2603:10b6:910:1f::11)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 850166E342
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 07:33:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="212204174"
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="212204174"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 00:33:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="555553166"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 30 Sep 2021 00:33:28 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Sep 2021 10:33:26 +0300
+Date: Thu, 30 Sep 2021 10:33:26 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YVVoRsOGI/RoUMFf@intel.com>
+References: <20210927182455.27119-1-ville.syrjala@linux.intel.com>
+ <20210927182455.27119-3-ville.syrjala@linux.intel.com>
+ <20210929191752.GC2192289@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Received: from [192.168.178.21] (91.14.161.181) by
- AM9P192CA0012.EURP192.PROD.OUTLOOK.COM (2603:10a6:20b:21d::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4566.15 via Frontend Transport; Thu, 30 Sep 2021 07:28:26 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ca7621e-d71b-4303-6d29-08d983e3e536
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1127:
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1127FDC6CEF3AA2B33B4A4B283AA9@CY4PR12MB1127.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k+pHPL65T+ayAQ02U6UANPA76jJjKQQFdtyHRHFECRhkrHORsowPrSlXDfsVQPm4s86o6F3yhskO4tUScwfhhD+AqN2NdSk4H51NXki2aLZxPEaDrH8x9h+nw1IYDFzz/fsKADVQjFSylfuxH1moNg/7z//ylJYmTRmKhMJXS+HyOYiFawQhBXXd45ZXneVQ1ZtFVrfrqGVV6PkBHgvumUNkDHUDOezKryvX4lQjDdMEWNo8ZUFfcakixx7mDXku05loTH8gnfub9C+OGl2TUCI8h1eFCUFs7Nnm3OfCDkOo+kd9E+eONtvmo11OV9jlb6Wa8Kt/c2cL8KIMD0Na8BDRuCkMu19DW+pztkiFA8OtB//3KDGN3bv0gBGH4xjrtG2hWpFxvCjp2qVhA8y15/PBV/lPdu+FH7vDBGNSkv52+D6oLsz5xJFuik/lqocad/l+eBj500KjrM6qeVTf8iS/bYiG8MaqdwFMXU/W0kzPiEALYJXh3TrzGsyfCTSMcSo1jn6LtUtXIil/LZ8hJbUh0PwLGS+ZxpjJ5S3deEmI2kIpvlKoSdL5ACzAE1CIGa06uFOFvo8jk1CSRPE/I5vhyUJUjd7ZJj7TMZfrLFVMqISipiM4lpFm8HxvGgYkjEeHfBWhACHHbE0dBcdILbY5bpuHszkiRNHF1C1vAa2TOwvmeFS0lKcviRGUe/7IuPSijfz67BXiW6nxsBE7NFNPrgLh1ozmiiM0eHZzYNQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY4PR1201MB0181.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(316002)(508600001)(186003)(6486002)(16576012)(26005)(30864003)(6666004)(2906002)(4326008)(31686004)(66556008)(66476007)(66946007)(8676002)(38100700002)(5660300002)(83380400001)(8936002)(31696002)(86362001)(2616005)(956004)(36756003)(66574015)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R2hYN0RFd3FDR0kwYXAzdFV4TVFGQjcxckVaZ0RQazdlRmFxMUk2dHMvWmc5?=
- =?utf-8?B?MTVQeXhvTXBBRXo0YWFZZ0RVWlQvbUtHSEZ0TnIzSGtRaVpUTFlRRHpJUkRn?=
- =?utf-8?B?WVhQU3FHbXZId01DdDlrZ3dEYkNreVRoVnFmVWlNN0QvNEdKNkRMZEl6cUgr?=
- =?utf-8?B?czRXL2gxZmdKZnhYMEpBQnFUaFk3NTRGVDFFeDRCaXJvMzVkSVRNWWt2cFdM?=
- =?utf-8?B?R2cvd282RjdBaFFoT05YM04xMXZ3V3J2RzV3UHd0YS96TDBWTzUvVEwzSmto?=
- =?utf-8?B?QUlrQkxmditQVGoxcXJxTDZEWFQrTFl5aXkvSGlSRnduVWNiL0N3S1hVajd0?=
- =?utf-8?B?aytNWFp0aE9yQWJJQTA3dm5mZ0ozU1JveUJlM0V1QVdYS0NFRldPOXdOdnJo?=
- =?utf-8?B?T1hWbUxYaTY5V3p2VVhrVkt6a1lHQThwNUhlOU5heXlDbDVmMStWcmo0U3RQ?=
- =?utf-8?B?QlpiYlppNGsybmdrcHhwc0xQSFVFbmFVMml2dkp0eXUyWUtHRXd3ek1yRENY?=
- =?utf-8?B?SG83QjYxUXNCN0VRakpaVVkzSHB3MDZlSDlRQ1BESmY5QUdFeVYyT0hOQm1m?=
- =?utf-8?B?YXA1VTFZdUlkNC9Ib0ZmMlU1YVBYTlJmYzJEN0M4QTlkeEdnMDQ2VFZiQThr?=
- =?utf-8?B?RUFiUFhidDNtamcvMWtqSzdEVjNDbThlYndVSmNvSEZtcDQxa3g2TlE2UUtm?=
- =?utf-8?B?MDZneEZ5ZlF1eEFkTjFXM2pINCthL1B0UElCVnVRTWJmamdqR01UYnpReG1Z?=
- =?utf-8?B?aGdlTkNybExKN2FxVW9LRG9ENlN2VmozOU1KanpzYW4yZndIaDNnRjVGNWRH?=
- =?utf-8?B?aXdVcEJrMlRsWUl6SW14dWl5c3EzU0QrRnlPakRJMmMwa0dmdTVjRWNyNVVs?=
- =?utf-8?B?Q0RnWkdvWHltSDRuaXFIbWZHQlFSajJnSGFrVjB0STM5Nk9qOVliejZKYUJx?=
- =?utf-8?B?bk5objh0OGdjTTc2OE5FWWhSK05KUjZEL3FsVmVTOW5acHZDaUlXQmd2M3Jx?=
- =?utf-8?B?TGZVN0NoMmdzV0c3V2lkb29VbVJDdEhYc1R5bTZPbzBPLzJwbnlqb0lvL21Z?=
- =?utf-8?B?d1RGYkdoTlpVWGZqWEl5S3JVR1g0SGFDTXU0cnhMZDNxZUxTQnNBVFg5OGxX?=
- =?utf-8?B?UFhUSGl5aWpZY3l6Sk03N010K3FuL2pnL1FhSVZTMnJUNmgrUFVCNTRiaFk5?=
- =?utf-8?B?bXhhVkMxejNld1J0TnEwdDhxRzRIN0s2K0pJdU9tOU9PYk9TMTFCV1hPUWxo?=
- =?utf-8?B?NGsrOXIvODMrcHAydWlieGMwejhjR1EvRWMxVkZLRHVNUnlIZmVyQkVacUJI?=
- =?utf-8?B?MldZOElwN3ZUdURoWXpPbmtTZUk2QjJuUUZ3eDdqcnZSL0RhRHlrUjNLRU9F?=
- =?utf-8?B?eW9YYWdpSlFwb1VOaWJkL3VEQVB1Uk5VQ3QvMGxKVTJPTnpMQzVFdjdINXdC?=
- =?utf-8?B?UUNDR0dYVXkzem8xbTFjOWY0N0lPcjliVXU4cVNvVXdML2gzWjIzQjBjakF1?=
- =?utf-8?B?YnBzY2VIcS8wMU1UUkZ1aXB4M1dGYmtmV1dOc2l4NnRwSkFVSXc0OG9yUXlQ?=
- =?utf-8?B?d2RXYjhmMVc3YlA1Zk1PbXkrNHhmRVU0M2orY0JIYk5ncElRSGYrMkFiOE9j?=
- =?utf-8?B?Y1U0d3Q0VUlNaTdNeklwUDJZK0pjUU1SRFV1R3lJTXBKMFpwSmNaaVJYaFVU?=
- =?utf-8?B?SkI3SHdrT1RiemVZengyYUpGcUl3QU1nS3Y0NmJRbWlYK0NiMVdRMUFWME4v?=
- =?utf-8?Q?qbKY97IVP5VSB80EryIJPGiG3I93uRwUR1AXps/?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ca7621e-d71b-4303-6d29-08d983e3e536
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR1201MB0181.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 07:28:28.6505 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vZopADBaRXfTsRvnf6QjaJnyEdUYLEHMagwRZSxVrmp4nBjY5u/WwHsrFkdl0y51
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1127
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/ttm: s/FLAG_SG/FLAG_EXTERNAL/
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210929191752.GC2192289@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Generalize
+ .set_signal_levels()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,410 +54,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I pushed those to drm-misc-next and fixed the i915 merge fallout in drm-tip.
+On Wed, Sep 29, 2021 at 10:17:52PM +0300, Imre Deak wrote:
+> On Mon, Sep 27, 2021 at 09:24:48PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > 
+> > Currently .set_signal_levels() is only used by encoders in DP mode.
+> > For most modern platforms there is no essential difference between
+> > DP and HDMI, and both codepaths just end up calling the same function
+> > under the hood. Let's get remove the need for that extra indirection
+> > by moving .set_signal_levels() into the encoder from intel_dp.
+> > Since we already plumb the crtc_state/etc. into .set_signal_levels()
+> > the code will do the right thing for both DP and HDMI.
+> 
+> I wondered about the rational to add vfuncs to intel_digital_port or
+> intel_encoder, I assume the latter needs less type casting.
 
-Maybe take another look at the resolution in drm-tip if you have time.
+I guess it's mostly been "do these make sense outside of HDMI/DP?".
+But considering those are all mostly what's left it's becoming 
+less importnat perhaps.
 
-Christian.
+I was actually pondering if we migth split these up in to
+a few different sets of vfuncs. So and encoder could have
+pointers to phy_funcs, hpd_funcs, clock_funcs, etc.
 
-Am 29.09.21 um 15:26 schrieb Matthew Auld:
-> It covers more than just ttm_bo_type_sg usage, like with say dma-buf,
-> since one other user is userptr in amdgpu, and in the future we might
-> have some more. Hence EXTERNAL is likely a more suitable name.
->
-> v2(Christian):
->    - Rename these to TTM_TT_FLAGS_*
->    - Fix up all the holes in the flag values
->
-> Suggested-by: Christian K√∂nig <christian.koenig@amd.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-> Cc: Christian K√∂nig <christian.koenig@amd.com>
-> Acked-by: Christian K√∂nig <christian.koenig@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 10 +++++-----
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c |  6 +++---
->   drivers/gpu/drm/nouveau/nouveau_bo.c    |  4 ++--
->   drivers/gpu/drm/radeon/radeon_ttm.c     |  8 ++++----
->   drivers/gpu/drm/ttm/ttm_bo.c            |  4 ++--
->   drivers/gpu/drm/ttm/ttm_bo_util.c       |  4 ++--
->   drivers/gpu/drm/ttm/ttm_bo_vm.c         |  2 +-
->   drivers/gpu/drm/ttm/ttm_pool.c          |  2 +-
->   drivers/gpu/drm/ttm/ttm_tt.c            | 24 ++++++++++++------------
->   include/drm/ttm/ttm_device.h            |  2 +-
->   include/drm/ttm/ttm_tt.h                | 18 +++++++++---------
->   11 files changed, 42 insertions(+), 42 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> index 60b12bb55244..e8d70b6e6737 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -894,7 +894,7 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
->   			DRM_ERROR("failed to pin userptr\n");
->   			return r;
->   		}
-> -	} else if (ttm->page_flags & TTM_PAGE_FLAG_SG) {
-> +	} else if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL) {
->   		if (!ttm->sg) {
->   			struct dma_buf_attachment *attach;
->   			struct sg_table *sgt;
-> @@ -1130,7 +1130,7 @@ static int amdgpu_ttm_tt_populate(struct ttm_device *bdev,
->   		return 0;
->   	}
->   
-> -	if (ttm->page_flags & TTM_PAGE_FLAG_SG)
-> +	if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL)
->   		return 0;
->   
->   	ret = ttm_pool_alloc(&adev->mman.bdev.pool, ttm, ctx);
-> @@ -1165,7 +1165,7 @@ static void amdgpu_ttm_tt_unpopulate(struct ttm_device *bdev,
->   		return;
->   	}
->   
-> -	if (ttm->page_flags & TTM_PAGE_FLAG_SG)
-> +	if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL)
->   		return;
->   
->   	for (i = 0; i < ttm->num_pages; ++i)
-> @@ -1198,8 +1198,8 @@ int amdgpu_ttm_tt_set_userptr(struct ttm_buffer_object *bo,
->   			return -ENOMEM;
->   	}
->   
-> -	/* Set TTM_PAGE_FLAG_SG before populate but after create. */
-> -	bo->ttm->page_flags |= TTM_PAGE_FLAG_SG;
-> +	/* Set TTM_TT_FLAG_EXTERNAL before populate but after create. */
-> +	bo->ttm->page_flags |= TTM_TT_FLAG_EXTERNAL;
->   
->   	gtt = (void *)bo->ttm;
->   	gtt->userptr = addr;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index f0a61a9474fc..8beef57ba52b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -182,7 +182,7 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
->   
->   	if (obj->flags & I915_BO_ALLOC_CPU_CLEAR &&
->   	    man->use_tt)
-> -		page_flags |= TTM_PAGE_FLAG_ZERO_ALLOC;
-> +		page_flags |= TTM_TT_FLAG_ZERO_ALLOC;
->   
->   	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags,
->   			  i915_ttm_select_tt_caching(obj));
-> @@ -451,7 +451,7 @@ static int i915_ttm_accel_move(struct ttm_buffer_object *bo,
->   		if (bo->type == ttm_bo_type_kernel)
->   			return -EINVAL;
->   
-> -		if (ttm && !(ttm->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC))
-> +		if (ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC))
->   			return 0;
->   
->   		intel_engine_pm_get(i915->gt.migrate.context->engine);
-> @@ -525,7 +525,7 @@ static int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
->   
->   	/* Populate ttm with pages if needed. Typically system memory. */
->   	if (bo->ttm && (dst_man->use_tt ||
-> -			(bo->ttm->page_flags & TTM_PAGE_FLAG_SWAPPED))) {
-> +			(bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED))) {
->   		ret = ttm_tt_populate(bo->bdev, bo->ttm, ctx);
->   		if (ret)
->   			return ret;
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> index 33dca2565cca..b2c7e0802ac3 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> @@ -1249,7 +1249,7 @@ nouveau_ttm_tt_populate(struct ttm_device *bdev,
->   	struct ttm_tt *ttm_dma = (void *)ttm;
->   	struct nouveau_drm *drm;
->   	struct device *dev;
-> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
-> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
->   
->   	if (ttm_tt_is_populated(ttm))
->   		return 0;
-> @@ -1272,7 +1272,7 @@ nouveau_ttm_tt_unpopulate(struct ttm_device *bdev,
->   {
->   	struct nouveau_drm *drm;
->   	struct device *dev;
-> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
-> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
->   
->   	if (slave)
->   		return;
-> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
-> index 7793249bc549..11b21d605584 100644
-> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
-> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
-> @@ -545,14 +545,14 @@ static int radeon_ttm_tt_populate(struct ttm_device *bdev,
->   {
->   	struct radeon_device *rdev = radeon_get_rdev(bdev);
->   	struct radeon_ttm_tt *gtt = radeon_ttm_tt_to_gtt(rdev, ttm);
-> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
-> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
->   
->   	if (gtt && gtt->userptr) {
->   		ttm->sg = kzalloc(sizeof(struct sg_table), GFP_KERNEL);
->   		if (!ttm->sg)
->   			return -ENOMEM;
->   
-> -		ttm->page_flags |= TTM_PAGE_FLAG_SG;
-> +		ttm->page_flags |= TTM_TT_FLAG_EXTERNAL;
->   		return 0;
->   	}
->   
-> @@ -569,13 +569,13 @@ static void radeon_ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm
->   {
->   	struct radeon_device *rdev = radeon_get_rdev(bdev);
->   	struct radeon_ttm_tt *gtt = radeon_ttm_tt_to_gtt(rdev, ttm);
-> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
-> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
->   
->   	radeon_ttm_tt_unbind(bdev, ttm);
->   
->   	if (gtt && gtt->userptr) {
->   		kfree(ttm->sg);
-> -		ttm->page_flags &= ~TTM_PAGE_FLAG_SG;
-> +		ttm->page_flags &= ~TTM_TT_FLAG_EXTERNAL;
->   		return;
->   	}
->   
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index 3b22c0013dbf..d62b2013c367 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -1115,8 +1115,8 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
->   		return -EBUSY;
->   
->   	if (!bo->ttm || !ttm_tt_is_populated(bo->ttm) ||
-> -	    bo->ttm->page_flags & TTM_PAGE_FLAG_SG ||
-> -	    bo->ttm->page_flags & TTM_PAGE_FLAG_SWAPPED ||
-> +	    bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL ||
-> +	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED ||
->   	    !ttm_bo_get_unless_zero(bo)) {
->   		if (locked)
->   			dma_resv_unlock(bo->base.resv);
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index 1c5ffe2935af..82af095f6b81 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -103,7 +103,7 @@ void ttm_move_memcpy(struct ttm_buffer_object *bo,
->   
->   	/* Don't move nonexistent data. Clear destination instead. */
->   	if (src_ops->maps_tt && (!ttm || !ttm_tt_is_populated(ttm))) {
-> -		if (ttm && !(ttm->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC))
-> +		if (ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC))
->   			return;
->   
->   		for (i = 0; i < num_pages; ++i) {
-> @@ -150,7 +150,7 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
->   	struct ttm_kmap_iter *dst_iter, *src_iter;
->   	int ret = 0;
->   
-> -	if (ttm && ((ttm->page_flags & TTM_PAGE_FLAG_SWAPPED) ||
-> +	if (ttm && ((ttm->page_flags & TTM_TT_FLAG_SWAPPED) ||
->   		    dst_man->use_tt)) {
->   		ret = ttm_tt_populate(bdev, ttm, ctx);
->   		if (ret)
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> index 9a2119fe4bdd..950f4f132802 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> @@ -162,7 +162,7 @@ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
->   	 * Refuse to fault imported pages. This should be handled
->   	 * (if at all) by redirecting mmap to the exporter.
->   	 */
-> -	if (bo->ttm && (bo->ttm->page_flags & TTM_PAGE_FLAG_SG)) {
-> +	if (bo->ttm && (bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
->   		dma_resv_unlock(bo->base.resv);
->   		return VM_FAULT_SIGBUS;
->   	}
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> index c961a788b519..1bba0a0ed3f9 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -371,7 +371,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
->   	WARN_ON(!num_pages || ttm_tt_is_populated(tt));
->   	WARN_ON(dma_addr && !pool->dev);
->   
-> -	if (tt->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC)
-> +	if (tt->page_flags & TTM_TT_FLAG_ZERO_ALLOC)
->   		gfp_flags |= __GFP_ZERO;
->   
->   	if (ctx->gfp_retry_mayfail)
-> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-> index 980ecb079b2c..86f31fde6e35 100644
-> --- a/drivers/gpu/drm/ttm/ttm_tt.c
-> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
-> @@ -68,12 +68,12 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc)
->   	switch (bo->type) {
->   	case ttm_bo_type_device:
->   		if (zero_alloc)
-> -			page_flags |= TTM_PAGE_FLAG_ZERO_ALLOC;
-> +			page_flags |= TTM_TT_FLAG_ZERO_ALLOC;
->   		break;
->   	case ttm_bo_type_kernel:
->   		break;
->   	case ttm_bo_type_sg:
-> -		page_flags |= TTM_PAGE_FLAG_SG;
-> +		page_flags |= TTM_TT_FLAG_EXTERNAL;
->   		break;
->   	default:
->   		pr_err("Illegal buffer object type\n");
-> @@ -156,7 +156,7 @@ EXPORT_SYMBOL(ttm_tt_init);
->   
->   void ttm_tt_fini(struct ttm_tt *ttm)
->   {
-> -	WARN_ON(ttm->page_flags & TTM_PAGE_FLAG_PRIV_POPULATED);
-> +	WARN_ON(ttm->page_flags & TTM_TT_FLAG_PRIV_POPULATED);
->   
->   	if (ttm->swap_storage)
->   		fput(ttm->swap_storage);
-> @@ -178,7 +178,7 @@ int ttm_sg_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
->   
->   	ttm_tt_init_fields(ttm, bo, page_flags, caching);
->   
-> -	if (page_flags & TTM_PAGE_FLAG_SG)
-> +	if (page_flags & TTM_TT_FLAG_EXTERNAL)
->   		ret = ttm_sg_tt_alloc_page_directory(ttm);
->   	else
->   		ret = ttm_dma_tt_alloc_page_directory(ttm);
-> @@ -224,7 +224,7 @@ int ttm_tt_swapin(struct ttm_tt *ttm)
->   
->   	fput(swap_storage);
->   	ttm->swap_storage = NULL;
-> -	ttm->page_flags &= ~TTM_PAGE_FLAG_SWAPPED;
-> +	ttm->page_flags &= ~TTM_TT_FLAG_SWAPPED;
->   
->   	return 0;
->   
-> @@ -279,7 +279,7 @@ int ttm_tt_swapout(struct ttm_device *bdev, struct ttm_tt *ttm,
->   
->   	ttm_tt_unpopulate(bdev, ttm);
->   	ttm->swap_storage = swap_storage;
-> -	ttm->page_flags |= TTM_PAGE_FLAG_SWAPPED;
-> +	ttm->page_flags |= TTM_TT_FLAG_SWAPPED;
->   
->   	return ttm->num_pages;
->   
-> @@ -300,7 +300,7 @@ int ttm_tt_populate(struct ttm_device *bdev,
->   	if (ttm_tt_is_populated(ttm))
->   		return 0;
->   
-> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
-> +	if (!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
->   		atomic_long_add(ttm->num_pages, &ttm_pages_allocated);
->   		if (bdev->pool.use_dma32)
->   			atomic_long_add(ttm->num_pages,
-> @@ -325,8 +325,8 @@ int ttm_tt_populate(struct ttm_device *bdev,
->   	if (ret)
->   		goto error;
->   
-> -	ttm->page_flags |= TTM_PAGE_FLAG_PRIV_POPULATED;
-> -	if (unlikely(ttm->page_flags & TTM_PAGE_FLAG_SWAPPED)) {
-> +	ttm->page_flags |= TTM_TT_FLAG_PRIV_POPULATED;
-> +	if (unlikely(ttm->page_flags & TTM_TT_FLAG_SWAPPED)) {
->   		ret = ttm_tt_swapin(ttm);
->   		if (unlikely(ret != 0)) {
->   			ttm_tt_unpopulate(bdev, ttm);
-> @@ -337,7 +337,7 @@ int ttm_tt_populate(struct ttm_device *bdev,
->   	return 0;
->   
->   error:
-> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
-> +	if (!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
->   		atomic_long_sub(ttm->num_pages, &ttm_pages_allocated);
->   		if (bdev->pool.use_dma32)
->   			atomic_long_sub(ttm->num_pages,
-> @@ -357,14 +357,14 @@ void ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm)
->   	else
->   		ttm_pool_free(&bdev->pool, ttm);
->   
-> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
-> +	if (!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
->   		atomic_long_sub(ttm->num_pages, &ttm_pages_allocated);
->   		if (bdev->pool.use_dma32)
->   			atomic_long_sub(ttm->num_pages,
->   					&ttm_dma32_pages_allocated);
->   	}
->   
-> -	ttm->page_flags &= ~TTM_PAGE_FLAG_PRIV_POPULATED;
-> +	ttm->page_flags &= ~TTM_TT_FLAG_PRIV_POPULATED;
->   }
->   
->   #ifdef CONFIG_DEBUG_FS
-> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
-> index cbe03d45e883..0a4ddec78d8f 100644
-> --- a/include/drm/ttm/ttm_device.h
-> +++ b/include/drm/ttm/ttm_device.h
-> @@ -65,7 +65,7 @@ struct ttm_device_funcs {
->   	 * ttm_tt_create
->   	 *
->   	 * @bo: The buffer object to create the ttm for.
-> -	 * @page_flags: Page flags as identified by TTM_PAGE_FLAG_XX flags.
-> +	 * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
->   	 *
->   	 * Create a struct ttm_tt to back data with system memory pages.
->   	 * No pages are actually allocated.
-> diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-> index 842ce756213c..b023cd58ff38 100644
-> --- a/include/drm/ttm/ttm_tt.h
-> +++ b/include/drm/ttm/ttm_tt.h
-> @@ -38,17 +38,17 @@ struct ttm_resource;
->   struct ttm_buffer_object;
->   struct ttm_operation_ctx;
->   
-> -#define TTM_PAGE_FLAG_SWAPPED         (1 << 4)
-> -#define TTM_PAGE_FLAG_ZERO_ALLOC      (1 << 6)
-> -#define TTM_PAGE_FLAG_SG              (1 << 8)
-> +#define TTM_TT_FLAG_SWAPPED	(1 << 0)
-> +#define TTM_TT_FLAG_ZERO_ALLOC	(1 << 1)
-> +#define TTM_TT_FLAG_EXTERNAL	(1 << 2)
->   
-> -#define TTM_PAGE_FLAG_PRIV_POPULATED  (1 << 31)
-> +#define TTM_TT_FLAG_PRIV_POPULATED  (1 << 31)
->   
->   /**
->    * struct ttm_tt
->    *
->    * @pages: Array of pages backing the data.
-> - * @page_flags: see TTM_PAGE_FLAG_*
-> + * @page_flags: see TTM_TT_FLAG_*
->    * @num_pages: Number of pages in the page array.
->    * @sg: for SG objects via dma-buf
->    * @dma_address: The DMA (bus) addresses of the pages
-> @@ -84,7 +84,7 @@ struct ttm_kmap_iter_tt {
->   
->   static inline bool ttm_tt_is_populated(struct ttm_tt *tt)
->   {
-> -	return tt->page_flags & TTM_PAGE_FLAG_PRIV_POPULATED;
-> +	return tt->page_flags & TTM_TT_FLAG_PRIV_POPULATED;
->   }
->   
->   /**
-> @@ -103,7 +103,7 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
->    *
->    * @ttm: The struct ttm_tt.
->    * @bo: The buffer object we create the ttm for.
-> - * @page_flags: Page flags as identified by TTM_PAGE_FLAG_XX flags.
-> + * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
->    * @caching: the desired caching state of the pages
->    *
->    * Create a struct ttm_tt to back data with system memory pages.
-> @@ -178,7 +178,7 @@ void ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm);
->    */
->   static inline void ttm_tt_mark_for_clear(struct ttm_tt *ttm)
->   {
-> -	ttm->page_flags |= TTM_PAGE_FLAG_ZERO_ALLOC;
-> +	ttm->page_flags |= TTM_TT_FLAG_ZERO_ALLOC;
->   }
->   
->   void ttm_tt_mgr_init(unsigned long num_pages, unsigned long num_dma32_pages);
-> @@ -194,7 +194,7 @@ struct ttm_kmap_iter *ttm_kmap_iter_tt_init(struct ttm_kmap_iter_tt *iter_tt,
->    *
->    * @bo: Buffer object we allocate the ttm for.
->    * @bridge: The agp bridge this device is sitting on.
-> - * @page_flags: Page flags as identified by TTM_PAGE_FLAG_XX flags.
-> + * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
->    *
->    *
->    * Create a TTM backend that uses the indicated AGP bridge as an aperture
+> 
+> > HSW/BDW/SKL are the only platforms that need a bit of care on
+> > account of having to preload the hardware buf_trans register
+> > with the full set of values. So we must still remember to call
+> > hsw_prepare_{dp,hdmi}_ddi_buffers() to do said preloading, and
+> > .set_signal_levels() will just end up selecting the correct entry
+> > for DP, and also setting up the iboost magic for both DP and HDMI.
+> > 
+> > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/g4x_dp.c         |  33 +++---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c      | 108 +++++++++---------
+> >  .../drm/i915/display/intel_display_types.h    |   5 +-
+> >  .../drm/i915/display/intel_dp_link_training.c |   5 +-
+> >  4 files changed, 75 insertions(+), 76 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> > index 8e0620ae2ed1..e348f075a41d 100644
+> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+<snip>
+> > @@ -1364,15 +1367,15 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
+> >  		dig_port->dp.set_link_train = g4x_set_link_train;
+> >  
+> >  	if (IS_CHERRYVIEW(dev_priv))
+> > -		dig_port->dp.set_signal_levels = chv_set_signal_levels;
+> > +		intel_encoder->set_signal_levels = chv_set_signal_levels;
+> >  	else if (IS_VALLEYVIEW(dev_priv))
+> > -		dig_port->dp.set_signal_levels = vlv_set_signal_levels;
+> > +		intel_encoder->set_signal_levels = vlv_set_signal_levels;
+> 
+> I suppose vlv,chv hdmi encoders could also use these, but that'd need deciphering
+> the hard-coded values there.
 
+My current plan is to extrct a buf_trans struct for each, and for now
+I just populate an array of those and pass the array to the phy code.
+In the future we might want to unify these with the rest of the
+buf_trans infrastructure.
+
+I was also pondering if we should just move the set_signal_level() funcs
+from intel_ddi.c to some phy specific files entirely. And could perhaps
+also move the related buf_trans tables there as well...
+
+> 
+> >  	else if (IS_IVYBRIDGE(dev_priv) && port == PORT_A)
+> > -		dig_port->dp.set_signal_levels = ivb_cpu_edp_set_signal_levels;
+> > +		intel_encoder->set_signal_levels = ivb_cpu_edp_set_signal_levels;
+> >  	else if (IS_SANDYBRIDGE(dev_priv) && port == PORT_A)
+> > -		dig_port->dp.set_signal_levels = snb_cpu_edp_set_signal_levels;
+> > +		intel_encoder->set_signal_levels = snb_cpu_edp_set_signal_levels;
+> >  	else
+> > -		dig_port->dp.set_signal_levels = g4x_set_signal_levels;
+> > +		intel_encoder->set_signal_levels = g4x_set_signal_levels;
+> >  
+> >  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
+> >  	    (HAS_PCH_SPLIT(dev_priv) && port != PORT_A)) {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 39bacef87ef2..4a22dcde66d9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+<snip>
+> > @@ -2639,13 +2644,12 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> >  
+> >  	icl_program_mg_dp_mode(dig_port, crtc_state);
+> >  
+> > -	if (DISPLAY_VER(dev_priv) >= 11)
+> > -		icl_ddi_vswing_sequence(encoder, crtc_state, level);
+> > -	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+> > -		bxt_ddi_vswing_sequence(encoder, crtc_state, level);
+> > -	else
+> > +	if ((DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv)) ||
+> > +	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> 
+> Could be DISPLAY_VER <= 9 && !IS_BXT ?
+
+I guess I've become a bit partial to listing things a bit
+more explicitly. But I must admit that this is a bit ugly in my
+proposed form. So changing it might be a good idea.
+
+> 
+> >  		hsw_prepare_dp_ddi_buffers(encoder, crtc_state);
+> >  
+> > +	encoder->set_signal_levels(encoder, crtc_state);
+> 
+> hsw_set_signal_levels() wasn't called before, but writing DDI_BUF_CTL
+> w/o enabling it is ok I think.
+
+Ah right. Hmm. We haven't yet called intel_ddi_init_dp_buf_reg() so
+this might go a bit wrong actually. So I think I need to reorder the
+calls a bit and nuke the DDI_BUF_CTL_ENABLE from
+intel_ddi_init_dp_buf_reg(). intel_ddi_prepare_link_retrain() already
+sets that bit so it should kick in properly during link training.
+But I'll have to double check the full flow to make sure I uderstand
+the order of things.
+
+> Maybe it's worth zeroing
+> intel_dp->train_set already in intel_dp_set_link_params()?
+
+I had a patch for that, but for some reason discarded it as
+"not needed". But now that I think about it again we should
+in fact do it because currently we only clear these at the
+start of training a link segment, and what we leave in there
+at the end will be the DPRX values. So the next modeset might
+do the initial set_signal_levels() with stale values that don't
+even make sense for our PHY (eg. if we had a case of LTTPR
+supporting vswing/preemph 3 and our PHY not supporting those).
+And considering we'll switch to vswing/preemph 0 anyway at
+the start of the link training might as well program the PHY
+accordingly from the start.
+
+If we wanted to optimize things and reuse the values from the
+last succesful link training I think we'd also have to store
+these separately for LTTPRs, and we'd have to adjust the link
+training code to not zero the stuff (unless there was a long 
+hpd/etc.).
+
+-- 
+Ville Syrj‰l‰
+Intel
