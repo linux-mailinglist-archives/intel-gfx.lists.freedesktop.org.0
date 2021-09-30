@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C34241DE27
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 17:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6021341DEBA
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 18:18:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B29DF6EB9B;
-	Thu, 30 Sep 2021 15:55:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3267F6EC06;
+	Thu, 30 Sep 2021 16:18:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86FCB6EB9B;
- Thu, 30 Sep 2021 15:55:48 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="204701547"
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="204701547"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 08:55:47 -0700
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="457485570"
-Received: from kjepstei-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.192.243])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 08:55:47 -0700
-Date: Thu, 30 Sep 2021 08:55:47 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Message-ID: <20210930155547.rtz6pdae42gqvm6p@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210929183357.1490204-1-lucas.demarchi@intel.com>
- <20210929183357.1490204-4-lucas.demarchi@intel.com>
- <CAK7LNAQ765CBjg83Kpt8XdOjqPw8Xuv--_bcTvd3udZ=tsgMdA@mail.gmail.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F29616EC06
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 16:18:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="247766103"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="247766103"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 09:09:08 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="564262322"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 09:09:07 -0700
+Date: Thu, 30 Sep 2021 19:09:03 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <20210930160903.GE2418125@ideak-desk.fi.intel.com>
+References: <20210930134310.31669-1-ville.syrjala@linux.intel.com>
+ <20210930134310.31669-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <CAK7LNAQ765CBjg83Kpt8XdOjqPw8Xuv--_bcTvd3udZ=tsgMdA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] Move IS_CONFIG_NONZERO() to kconfig.h
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210930134310.31669-3-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Remove DP_PORT_EN stuff from
+ link training code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,60 +50,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 30, 2021 at 11:01:36PM +0900, Masahiro Yamada wrote:
->On Thu, Sep 30, 2021 at 3:34 AM Lucas De Marchi
-><lucas.demarchi@intel.com> wrote:
->>
->> The check for config value doesn't really belong to i915_utils.h - we
->> are trying to eliminate that utils helper and share them when possible
->> with other drivers and subsystems.
->>
->> Rationale for having such macro is in commit
->> babaab2f4738 ("drm/i915: Encapsulate kconfig constant values inside boolean predicates")
->> whereas later it is improved to not break the build if used with
->> undefined configs. The caveat is detailed in the documentation: unlike
->> IS_ENABLED(): it's not preprocessor-only logic so can't be used for
->> things like `#if IS_CONFIG_NONZERO(...)`
->>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
->
->Hypothetical "it would be nice to have ..." is really unneeded.
->
->       if (context && CONFIG_DRM_I915_FENCE_TIMEOUT > 0)
->                     return
->msecs_to_jiffies_timeout(CONFIG_DRM_I915_FENCE_TIMEOUT);
->
->
->is enough, and much cleaner.
->
->
->
->This warning is shown only when a constant is used
->together with '&&'.
->
->Most of IS_ACTIVE can go away.
->
->Given that, there are not many places where the IS_ACTIVE macro
->is useful, even in the i915 driver.
->
->For a few sources of the warnings,
->replacing it with  != 0 or > 0 is just fine.
+On Thu, Sep 30, 2021 at 04:43:09PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Setting DP_PORT_EN in intel_dp->DP is already handled by
+> intel_dp_enable_port() so there is no point in setting it also
+> from the link training code.
+> 
+> For DDI platforms a bit with that name doesn't even exist. The
+> counterpart is DDI_BUF_CTL_ENABLE, which is already set up by
+> intel_ddi_prepare_link_retrain(). Fortunately it is the same bit
+> so there was no harm in doing this from the platform independent
+> code as well. But it's just confusing when platform independent
+> code sets platform specific bits in intel_dp->DP. Just get rid
+> of it.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-humn... maybe. Let me do a conversion in that direction and see what is
-the outcome.
+Reviewed-by: Imre Deak <imre.deak.intel.com>
 
-My original intention was to make IS_ENABLED() even uglier to cover the
-int case, but after some tries it seems impossible to do on preprocessor
-context, so I thought maybe it would be ok as a separate one.
+On pre-DDI platforms intel_dp_enable_port() may not be called before
+short HPD/link-retraining, but the init/resume time HW readout will
+set DP_PORT_EN for that case.
 
->
->Of course, such an ugly macro is not worth being moved to <linux/kconfig.h>
-
-if we don't handle the undefined case and only worry about encapsulating
-it inside a boolean predicate, the macro would be very simple. Would
-that be worth having in kconfig.h maybe?
-
-
-thanks
-Lucas De Marchi
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 449499a5c4c1..053ed9302cda 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -499,8 +499,6 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
+>  		DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+>  	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
+>  
+> -	intel_dp->DP |= DP_PORT_EN;
+> -
+>  	return true;
+>  }
+>  
+> -- 
+> 2.32.0
+> 
