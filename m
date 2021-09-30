@@ -1,43 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E20F41D9AF
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 14:21:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB92E41D9C6
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 14:27:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C19D6E3F4;
-	Thu, 30 Sep 2021 12:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356846E3F4;
+	Thu, 30 Sep 2021 12:27:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B30D66E3F4
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 12:21:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="225213988"
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="225213988"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 05:21:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="487304669"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 30 Sep 2021 05:21:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 30 Sep 2021 15:21:35 +0300
-Date: Thu, 30 Sep 2021 15:21:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YVWrz/hS3K/2orF9@intel.com>
-References: <cover.1633000838.git.jani.nikula@intel.com>
- <e2f79220ed2558f615c051e2533275a5dae1a04f.1633000838.git.jani.nikula@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C10B6E3F4;
+ Thu, 30 Sep 2021 12:27:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="212430963"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="212430963"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 05:27:28 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="520359747"
+Received: from dclinto1-mobl1.ger.corp.intel.com (HELO [10.252.21.182])
+ ([10.252.21.182])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 05:27:27 -0700
+To: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20210927114114.152310-1-matthew.auld@intel.com>
+ <20210927114114.152310-12-matthew.auld@intel.com>
+ <6372b5a3ab5b8d5b640af59c9290cbe6da21a0f9.camel@linux.intel.com>
+ <c73d99e5-267b-c396-2c19-9e5938d7ab6f@daenzer.net>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <40845c09-c219-800d-5fc8-0b2d68702142@intel.com>
+Date: Thu, 30 Sep 2021 13:27:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <c73d99e5-267b-c396-2c19-9e5938d7ab6f@daenzer.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e2f79220ed2558f615c051e2533275a5dae1a04f.1633000838.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dram: return -ENOENT instead
- of -1
+Subject: Re: [Intel-gfx] [PATCH v5 12/13] drm/i915/ttm: use cached system
+ pages when evicting lmem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,49 +56,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 30, 2021 at 02:24:36PM +0300, Jani Nikula wrote:
-> Avoid using the incidental -EPERM.
+On 30/09/2021 11:04, Michel Dänzer wrote:
+> On 2021-09-29 13:54, Thomas Hellström wrote:
+>> On Mon, 2021-09-27 at 12:41 +0100, Matthew Auld wrote:
+>>> This should let us do an accelerated copy directly to the shmem pages
+>>> when temporarily moving lmem-only objects, where the i915-gem
+>>> shrinker
+>>> can later kick in to swap out the pages, if needed.
+>>>
+>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 8 ++++----
+>>>   1 file changed, 4 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>> index 194e5f1deda8..46d57541c0b2 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>> @@ -134,11 +134,11 @@ static enum ttm_caching
+>>>   i915_ttm_select_tt_caching(const struct drm_i915_gem_object *obj)
+>>>   {
+>>>          /*
+>>> -        * Objects only allowed in system get cached cpu-mappings.
+>>> -        * Other objects get WC mapping for now. Even if in system.
+>>> +        * Objects only allowed in system get cached cpu-mappings, or
+>>> when
+>>> +        * evicting lmem-only buffers to system for swapping. Other
+>>> objects get
+>>> +        * WC mapping for now. Even if in system.
+>>>           */
+>>> -       if (obj->mm.region->type == INTEL_MEMORY_SYSTEM &&
+>>> -           obj->mm.n_placements <= 1)
+>>> +       if (obj->mm.n_placements <= 1)
+>>>                  return ttm_cached;
+>>>   
+>>>          return ttm_write_combined;
+>>
+>> We should be aware that with TTM, even evicted bos can be mapped by
+>> user-space while evicted, and this will appear to user-space like the
+>> WC-mapped object suddenly became WB-mapped. But it appears like mesa
+>> doesn't care about this as long as the mappings are fully coherent.
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_dram.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> FWIW, the Mesa radeonsi driver avoids surprises due to this (e.g. some path which involves CPU access suddenly goes faster if the BO was evicted from VRAM) by asking for WC mapping of BOs intended to be in VRAM even while they're evicted (via the AMDGPU_GEM_CREATE_CPU_GTT_USWC flag).
 > 
-> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-> index 91866520c173..a506a2196de4 100644
-> --- a/drivers/gpu/drm/i915/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/intel_dram.c
-> @@ -444,7 +444,7 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
->  			break;
->  		default:
->  			MISSING_CASE(val & 0xf);
-> -			return -1;
-> +			return -ENOENT;
 
-Everything else is -EINVAL in that file. So maybe just stick to 
-that? I guess for a bunch of these maybe something different
-might make sense to indicate that it's the hw telling us nonsense
-(or the driver is actually missing some necessaty stuff).
-But boesn't really matter since it's just a bogus value.
+Ok, so amdgpu just defaults to cached system memory, even for evicted 
+VRAM, unless userspace requests USWC, in which case it will use WC?
 
-Series is
-Reviewed-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-
->  		}
->  	} else {
->  		switch (val & 0xf) {
-> @@ -462,7 +462,7 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
->  			break;
->  		default:
->  			MISSING_CASE(val & 0xf);
-> -			return -1;
-> +			return -ENOENT;
->  		}
->  	}
->  
-> -- 
-> 2.30.2
-
--- 
-Ville Syrj�l�
-Intel
+> 
