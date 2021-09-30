@@ -1,148 +1,119 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4CCE41D45F
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 09:17:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D4D41D482
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 09:28:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AFB56E34B;
-	Thu, 30 Sep 2021 07:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C93A76E32F;
+	Thu, 30 Sep 2021 07:28:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB9586E323
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 07:17:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="310668431"
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="310668431"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 00:17:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,335,1624345200"; d="scan'208";a="708895363"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by fmsmga005.fm.intel.com with ESMTP; 30 Sep 2021 00:17:46 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 30 Sep 2021 00:17:45 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 30 Sep 2021 00:17:45 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Thu, 30 Sep 2021 00:17:45 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Thu, 30 Sep 2021 00:17:45 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2064.outbound.protection.outlook.com [40.107.94.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE8976E32F;
+ Thu, 30 Sep 2021 07:28:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JCP72/z9MiqeMO0OqIhNtByPECWTcohPXrFbz7toFpMFZNqJmwiEEMg7nnUOpfdY0vFy307Wf1FCxx8psZ+sD81K5GoCJWMAhoVOLHerJvm0YmHQsEtIxa9CJOH3vRb/FUHyl5pjtDSbH0y7P1si9C8Xmk1dKHpshRZMlDFWfOKs2hC3jXcWcpCFn8p3SLmbFrRMe6u84k8O4KzWc/jSOuqGcc8nDb6CTOyDR//kptcSYWlXcvkzgh3Ov6HUBkjaSTANFRdjxxtIvmFO7ga7dDE37DfJ4c3/SYSBXqZaP/XSRVXQwspMvaNkl+rkGttSVkPQtkLjH0YX9Cyzr5zkKg==
+ b=iycGdvnsPj7u0SxQEohSYg86tKSauY5Y1WeUeswaCniFKf7Asu/i3w+7bZVDKISqvk8JtowhJnxC9CP4ccZTg9bhmeISiCuvo1D2NGSiaapZ8BdlfsPnJdla9pAY6J/zptX09PbPyVUzgulsBb7YFkjN1lghD7Dz0UapqynZNhTMiV/L5OOkmcnp+bEEbJdc+juZ9Lab7sE7dVOasUwrQFKIzqy330pCMmgyAJqcHC2UceRUa7mnZYuZVjYiWlOLtnuUA2edEwUIO8A7+Ho1IFZ7DOhvD/sxbQks9m4yG0sHBIgsKQ94WYUUM9dBysl2Rk+HGe3xPFM96neu10RJbg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=SNLbyCwrIi32R+Q+UxPcdgdo5PE3ekA5JnDEIdFN5/E=;
- b=j8mejSliBNHNZDj2T9pmqQJqx8KiKe0TpMywVniE3N3ODeyTMDh6HwoxoXU0ZumfsWHbyqLvDL7h9kCyFK2Yp39KpPR5HcWRsMjJ0CHOvbOPtCKLH8o6v3NtcV2ijmhwkbap8/HmowEWyPU44lAD3diK5lC4yBDglflUF97jSCgKcm0JH3NJbGQAp/7xK6vpuettmP1z5NaRhqoaLH+69dsytu2YtRZmWLs/+Waw3m/dNGXCr6y//pAYlABuy4r4gocZSclBBhVXu1C5BRtLAUfKFFu6QO9XbJeUukBTuQRcwqB5f95RQ76Lq1IPGspw3F91x+szSJkrQc8uNHSmZA==
+ bh=z1Ug5xfrElFAYLrooq7kYIz2JOj1Dowxmrlwi1dQvHA=;
+ b=ndeIH4kkynxByAwA/EHBsVp5kbwMtb0O+ImPcio7m4JlzWqvyU504oZWxuWJ3n9PI1vSK0Trz4s5jKWGc42TZ1IAUjFh2bjcNVPD8GxIB1ZwVzf6DFw9KlIcb5kjLazBQo7Q/ontTadIFR/XPrBCtwzZOoFiHwzLWKWahee7P3iZ8UemE/lYA1RTkUwY3sCcTEvI7aQ/H8qa5TkbBAaC64NJ1WzHVV3XTjkpe3YdT7LT0/2U/5pYHVJttCJEEkSASixCHOh9kqmvXf//xEff9MBpI0O7SG/VtMConTG68gjPAhu4mxL92VvUYauyNFAKUCEfCm5jkRhR0g74xzv/tg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SNLbyCwrIi32R+Q+UxPcdgdo5PE3ekA5JnDEIdFN5/E=;
- b=PY8hphlOhmzDcPB/zUs6I5TiLOgWHRymH0sYZ+THXHmBtRS64cy3nvd6EJWgu7u7Hhj45bMMZqf5BnjZSIy4EILzWQpcGw/VTD/uHWhSlfBYjY3IzDB/it0oFpPcrD604IHU+FPQ9aiXgt771K7A0wTazX1WesM7+Pa7vaUa7X8=
+ bh=z1Ug5xfrElFAYLrooq7kYIz2JOj1Dowxmrlwi1dQvHA=;
+ b=QPbB2sT8mAdIbcPMvysiXP1YpsBa/Rn9MPsubhLzwQ1b5vMyhgKEKa6OuvKu0pgmMbMcG0SAEWpbX4ihlB+W/x8r2Sy0a4Uri0/SzLnY+a7FkUIaw0PivKbVnii4Dv2E4tsc1e8gSRp2Gz3cUpSW1hQI1b+bZDkYHoNo/2MnVMc=
 Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
- by CH0PR11MB5505.namprd11.prod.outlook.com (2603:10b6:610:d4::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14; Thu, 30 Sep
- 2021 07:17:43 +0000
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::e489:fd80:6a3d:3633]) by CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::e489:fd80:6a3d:3633%4]) with mapi id 15.20.4566.017; Thu, 30 Sep 2021
- 07:17:43 +0000
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20210930001409.254817-1-jose.souza@intel.com>
- <20210930001409.254817-4-jose.souza@intel.com>
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <7ce77c14-fd7a-95bb-c2aa-f1690fcb4d05@intel.com>
-Date: Thu, 30 Sep 2021 10:17:32 +0300
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
+Received: from CY4PR1201MB0181.namprd12.prod.outlook.com
+ (2603:10b6:910:1f::11) by CY4PR12MB1127.namprd12.prod.outlook.com
+ (2603:10b6:903:44::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Thu, 30 Sep
+ 2021 07:28:29 +0000
+Received: from CY4PR1201MB0181.namprd12.prod.outlook.com
+ ([fe80::f109:9a58:2e94:2e84]) by CY4PR1201MB0181.namprd12.prod.outlook.com
+ ([fe80::f109:9a58:2e94:2e84%11]) with mapi id 15.20.4566.015; Thu, 30 Sep
+ 2021 07:28:28 +0000
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+References: <20210929132629.353541-1-matthew.auld@intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <f6b4b843-55f8-62cb-ef1d-8e8935c6ad71@amd.com>
+Date: Thu, 30 Sep 2021 09:28:21 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-In-Reply-To: <20210930001409.254817-4-jose.souza@intel.com>
+ Thunderbird/78.13.0
+In-Reply-To: <20210929132629.353541-1-matthew.auld@intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DB7PR05CA0051.eurprd05.prod.outlook.com
- (2603:10a6:10:2e::28) To CH0PR11MB5409.namprd11.prod.outlook.com
- (2603:10b6:610:d0::7)
+Content-Language: en-US
+X-ClientProxiedBy: AM9P192CA0012.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21d::17) To CY4PR1201MB0181.namprd12.prod.outlook.com
+ (2603:10b6:910:1f::11)
 MIME-Version: 1.0
-Received: from [10.237.72.199] (134.134.137.86) by
- DB7PR05CA0051.eurprd05.prod.outlook.com (2603:10a6:10:2e::28) with Microsoft
+Received: from [192.168.178.21] (91.14.161.181) by
+ AM9P192CA0012.EURP192.PROD.OUTLOOK.COM (2603:10a6:20b:21d::17) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4566.16 via Frontend Transport; Thu, 30 Sep 2021 07:17:41 +0000
+ 15.20.4566.15 via Frontend Transport; Thu, 30 Sep 2021 07:28:26 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3f0e0405-0aa3-4529-068e-08d983e2656c
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5505:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH0PR11MB55057E7E1B306F2F94BBC5B4B8AA9@CH0PR11MB5505.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Office365-Filtering-Correlation-Id: 5ca7621e-d71b-4303-6d29-08d983e3e536
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1127:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1127FDC6CEF3AA2B33B4A4B283AA9@CY4PR12MB1127.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IO0x6XdetaIllZmyj4yuoPEQwQH420QJJnIbA0WNEsOekyBcDDZBSFQuSQ4pOngbKWuQcXAPzFWZU1aExPanu+k9y4YACtocv/ANeYiDqz7ZXSznm/M6aGQmgJQ4qmd/Wim/agNPC3J50q/xbIuAdJtSKNj0rITQxWMYNMk42z5g3ck9kaS1PrSbu5twGcL8jP0SNckm7CDk7mJSEFqfWYtvxeDpRjs2eJVBIoF3PlQ0ufTI6X7cCpa1K9YlFARquejGbbuG4PwadHTDQ183umaoYDjl+DJXeexslI+5XOu13/GF/8kTGoSjmTDtmELV53K0tj1erQHCeWGmWtzVL/dxhI1mEBnSTKaqJjEtJtJMfFU1Bs7aFyEtKDqOeRgRpKB9R9eAd7+1rSwkrI4RnXJ0Qasj38YydNNz4YtNo5Ku2DFx46vRCClDhQZkxtswzwpoijHVf6qCv7AFXVQ9dBy00w+0AoQ+bFNdKOrBgItXwuKxHoomXTTtRpeRZdj62cDSXIfWFFgUPIuzkAgwRGii/Ll4OnzPTYOKcbGoSGVpM2JBgMJAYbB1SwGIvjT74wSCzIGfTbgQG//UGshufqRRcIfDJqWykuxJBviYGz3w8prnN8J2AkpH6rQYayD0o8tBxfnkfCI+NaQLEPYgwec74J49KMc0bFdecUesACpCKGDOI+9Wv7fIJV8ZJGIbuOMcYznPBAhSEDMdqn7L/qkMhFjOm3NKOGzlFduosXA=
+X-Microsoft-Antispam-Message-Info: k+pHPL65T+ayAQ02U6UANPA76jJjKQQFdtyHRHFECRhkrHORsowPrSlXDfsVQPm4s86o6F3yhskO4tUScwfhhD+AqN2NdSk4H51NXki2aLZxPEaDrH8x9h+nw1IYDFzz/fsKADVQjFSylfuxH1moNg/7z//ylJYmTRmKhMJXS+HyOYiFawQhBXXd45ZXneVQ1ZtFVrfrqGVV6PkBHgvumUNkDHUDOezKryvX4lQjDdMEWNo8ZUFfcakixx7mDXku05loTH8gnfub9C+OGl2TUCI8h1eFCUFs7Nnm3OfCDkOo+kd9E+eONtvmo11OV9jlb6Wa8Kt/c2cL8KIMD0Na8BDRuCkMu19DW+pztkiFA8OtB//3KDGN3bv0gBGH4xjrtG2hWpFxvCjp2qVhA8y15/PBV/lPdu+FH7vDBGNSkv52+D6oLsz5xJFuik/lqocad/l+eBj500KjrM6qeVTf8iS/bYiG8MaqdwFMXU/W0kzPiEALYJXh3TrzGsyfCTSMcSo1jn6LtUtXIil/LZ8hJbUh0PwLGS+ZxpjJ5S3deEmI2kIpvlKoSdL5ACzAE1CIGa06uFOFvo8jk1CSRPE/I5vhyUJUjd7ZJj7TMZfrLFVMqISipiM4lpFm8HxvGgYkjEeHfBWhACHHbE0dBcdILbY5bpuHszkiRNHF1C1vAa2TOwvmeFS0lKcviRGUe/7IuPSijfz67BXiW6nxsBE7NFNPrgLh1ozmiiM0eHZzYNQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(508600001)(4326008)(8936002)(38100700002)(66574015)(2616005)(83380400001)(956004)(6486002)(316002)(66556008)(66476007)(66946007)(86362001)(36756003)(186003)(16576012)(5660300002)(8676002)(26005)(6666004)(31686004)(2906002)(53546011)(31696002)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:CY4PR1201MB0181.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(316002)(508600001)(186003)(6486002)(16576012)(26005)(30864003)(6666004)(2906002)(4326008)(31686004)(66556008)(66476007)(66946007)(8676002)(38100700002)(5660300002)(83380400001)(8936002)(31696002)(86362001)(2616005)(956004)(36756003)(66574015)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SGhqbVhmVkkxRHVoOWNYTU1mUXZyZkxVYXZ1dHBKdHd6YUZoeDVJM2tZRG4y?=
- =?utf-8?B?Y29iemdaV2loWm1OcURkVEIvMUoxdGZ6cDhSems0TnMxWUNWZm42dnZqLzdu?=
- =?utf-8?B?cEdreTdoWWJKTytUTWR2b3dFZVIrRDZtbkRLZ21UWGV2YnNQcWExaTVrVFRC?=
- =?utf-8?B?eFZJSE5SWnNwSUoyaUhTQ3VMMUpKS3dnTnNhUzRtRkl2eUVxNGNncjlSMTFm?=
- =?utf-8?B?aDJYMExndjJmbDhkT0M5bjR4QWFiWU5rVFU4N3hRK0poRE45MjdrcFVSeDhh?=
- =?utf-8?B?cmVGcnF1R282emVyQ0FkY1ZkdGRtV1VBbzNXMDBaUS9BM2NnMEhPa1dKRk5O?=
- =?utf-8?B?VnhEYzdBOGZtcmlsOGYxbkpkNWpJNXlYblo1VEhlU29TL3N2WExkSE93bjA0?=
- =?utf-8?B?LzRpZE1DSlE2MXdmeEtCWFUzaSs2OTdZMURZT3dXai8yMU5CSkFPWDFja1cx?=
- =?utf-8?B?cnA1RCszMUVFRjlrUWZmT2JQOThOcHVyL0pjNm9VK3ZlNWVqWG5jSjlXbFBP?=
- =?utf-8?B?Q0RnZTBjcHFNQ3JsRGNpVFlMdG9IRzhXYzF3a0JEcVJMWks3V255ZE4yWEUz?=
- =?utf-8?B?L1UzdDRSbjAvbm8wTEROa1dWWWY0cWRYNTRTSE9XMVVQUEhhcCt3ekRxQ25M?=
- =?utf-8?B?cjNIOVdDTUpHVVhsYkJsSW5CZERKZHNyNnQ4V3NYWW1PdjYxU3JJbUZhc1NG?=
- =?utf-8?B?SmMrUm9FNFpNdy93MHVVMjFZMEw5NmhGNVErdnZSbENoRjlRd0NLbDdRc1BV?=
- =?utf-8?B?eFJzYXVMWi8zN0ZZWnR3OXFJdGpINGRxVUFjRVRVRmNUaXhFNGZmMTZ2TW54?=
- =?utf-8?B?aU5IQ2F4Vlk4dU4waVRNdSttdHMvMzhsWU80OW1tcWdVKzN1cmtNbGFNSHd6?=
- =?utf-8?B?TWFLd3U5UE96VU5uMW5ic0x1aE5FTXdVSkRZQitnVWJpbTJvQThWRnhFa3VH?=
- =?utf-8?B?UHJwU0xXTXR5N2xHVEE5WU1zdTJSOWptc0g2eHlKVTNjbUl0aGRTOEo3NDEx?=
- =?utf-8?B?cGErS2RmandBYVBYMHNUUHVoMHB4dHBIQ0NqR3dzNzU0L09KdVEzY2JTSXBh?=
- =?utf-8?B?WEVacldSVlI2eTA5emdTc2JxSXVaSG1BaWNGeDcwZ1FXZmdRK0NiNEJiNHFB?=
- =?utf-8?B?VzV5T01kT3pzT1o5NWF2Ri93TURaQlE5cTRTbmpaUStIVTRadEplVXc0NTl4?=
- =?utf-8?B?MkwxVXlLZnVCa0p0L3dIRGh0OS84TjU4d0J6MFlPRWE4SHBVbWlSNy9FS2Fy?=
- =?utf-8?B?c2ZqN0FDQ1ZKR3J5eVcwMlU3RVNRR1J0VlprVitjY21FN3RFQndaV2dXT01h?=
- =?utf-8?B?d2wyTXgwYnJjMVp3Tm5odWZ5b1VXYzdjRmlydXZDUTU5ZEFXaDhuTnFVNGNG?=
- =?utf-8?B?ejFtd3lweDIyWEU2Vk1hM0F5QVB4anR2SjJPY1U3ZEF4Szg0WUljeG43amt0?=
- =?utf-8?B?enlLOHJEQTZRSFF1bXZDdG9kcW5MbFB0bjJOamRlczYwL1lVeFVnLzRSeW1F?=
- =?utf-8?B?bTl2c2VrM2NLbDJ2OWExK1hiRHdxZ1hJTDdGK1NiVkN4Z0xXWlJvamI5NHp1?=
- =?utf-8?B?d25kNFF3c1RmUWVnc3ZtdlFaa1F0dE02anFwWEREYXBTcDhCMktrbzlBSGV4?=
- =?utf-8?B?Ym5UakpkSHpwQXJ6Z21Raml2VHBNR011Z2RWald2ZFg5R1FyYjhtOE1RcEx5?=
- =?utf-8?B?U2Q2N01LaTlXN3ExM0hMcVNkMUo3S1FQYW5NYUJvR25yYk9NQzloek5taEs3?=
- =?utf-8?Q?fsnXF4xLogMHfrjs1Pzyxw33f39u60nhb4phk7F?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f0e0405-0aa3-4529-068e-08d983e2656c
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R2hYN0RFd3FDR0kwYXAzdFV4TVFGQjcxckVaZ0RQazdlRmFxMUk2dHMvWmc5?=
+ =?utf-8?B?MTVQeXhvTXBBRXo0YWFZZ0RVWlQvbUtHSEZ0TnIzSGtRaVpUTFlRRHpJUkRn?=
+ =?utf-8?B?WVhQU3FHbXZId01DdDlrZ3dEYkNreVRoVnFmVWlNN0QvNEdKNkRMZEl6cUgr?=
+ =?utf-8?B?czRXL2gxZmdKZnhYMEpBQnFUaFk3NTRGVDFFeDRCaXJvMzVkSVRNWWt2cFdM?=
+ =?utf-8?B?R2cvd282RjdBaFFoT05YM04xMXZ3V3J2RzV3UHd0YS96TDBWTzUvVEwzSmto?=
+ =?utf-8?B?QUlrQkxmditQVGoxcXJxTDZEWFQrTFl5aXkvSGlSRnduVWNiL0N3S1hVajd0?=
+ =?utf-8?B?aytNWFp0aE9yQWJJQTA3dm5mZ0ozU1JveUJlM0V1QVdYS0NFRldPOXdOdnJo?=
+ =?utf-8?B?T1hWbUxYaTY5V3p2VVhrVkt6a1lHQThwNUhlOU5heXlDbDVmMStWcmo0U3RQ?=
+ =?utf-8?B?QlpiYlppNGsybmdrcHhwc0xQSFVFbmFVMml2dkp0eXUyWUtHRXd3ek1yRENY?=
+ =?utf-8?B?SG83QjYxUXNCN0VRakpaVVkzSHB3MDZlSDlRQ1BESmY5QUdFeVYyT0hOQm1m?=
+ =?utf-8?B?YXA1VTFZdUlkNC9Ib0ZmMlU1YVBYTlJmYzJEN0M4QTlkeEdnMDQ2VFZiQThr?=
+ =?utf-8?B?RUFiUFhidDNtamcvMWtqSzdEVjNDbThlYndVSmNvSEZtcDQxa3g2TlE2UUtm?=
+ =?utf-8?B?MDZneEZ5ZlF1eEFkTjFXM2pINCthL1B0UElCVnVRTWJmamdqR01UYnpReG1Z?=
+ =?utf-8?B?aGdlTkNybExKN2FxVW9LRG9ENlN2VmozOU1KanpzYW4yZndIaDNnRjVGNWRH?=
+ =?utf-8?B?aXdVcEJrMlRsWUl6SW14dWl5c3EzU0QrRnlPakRJMmMwa0dmdTVjRWNyNVVs?=
+ =?utf-8?B?Q0RnWkdvWHltSDRuaXFIbWZHQlFSajJnSGFrVjB0STM5Nk9qOVliejZKYUJx?=
+ =?utf-8?B?bk5objh0OGdjTTc2OE5FWWhSK05KUjZEL3FsVmVTOW5acHZDaUlXQmd2M3Jx?=
+ =?utf-8?B?TGZVN0NoMmdzV0c3V2lkb29VbVJDdEhYc1R5bTZPbzBPLzJwbnlqb0lvL21Z?=
+ =?utf-8?B?d1RGYkdoTlpVWGZqWEl5S3JVR1g0SGFDTXU0cnhMZDNxZUxTQnNBVFg5OGxX?=
+ =?utf-8?B?UFhUSGl5aWpZY3l6Sk03N010K3FuL2pnL1FhSVZTMnJUNmgrUFVCNTRiaFk5?=
+ =?utf-8?B?bXhhVkMxejNld1J0TnEwdDhxRzRIN0s2K0pJdU9tOU9PYk9TMTFCV1hPUWxo?=
+ =?utf-8?B?NGsrOXIvODMrcHAydWlieGMwejhjR1EvRWMxVkZLRHVNUnlIZmVyQkVacUJI?=
+ =?utf-8?B?MldZOElwN3ZUdURoWXpPbmtTZUk2QjJuUUZ3eDdqcnZSL0RhRHlrUjNLRU9F?=
+ =?utf-8?B?eW9YYWdpSlFwb1VOaWJkL3VEQVB1Uk5VQ3QvMGxKVTJPTnpMQzVFdjdINXdC?=
+ =?utf-8?B?UUNDR0dYVXkzem8xbTFjOWY0N0lPcjliVXU4cVNvVXdML2gzWjIzQjBjakF1?=
+ =?utf-8?B?YnBzY2VIcS8wMU1UUkZ1aXB4M1dGYmtmV1dOc2l4NnRwSkFVSXc0OG9yUXlQ?=
+ =?utf-8?B?d2RXYjhmMVc3YlA1Zk1PbXkrNHhmRVU0M2orY0JIYk5ncElRSGYrMkFiOE9j?=
+ =?utf-8?B?Y1U0d3Q0VUlNaTdNeklwUDJZK0pjUU1SRFV1R3lJTXBKMFpwSmNaaVJYaFVU?=
+ =?utf-8?B?SkI3SHdrT1RiemVZengyYUpGcUl3QU1nS3Y0NmJRbWlYK0NiMVdRMUFWME4v?=
+ =?utf-8?Q?qbKY97IVP5VSB80EryIJPGiG3I93uRwUR1AXps/?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ca7621e-d71b-4303-6d29-08d983e3e536
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR1201MB0181.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 07:17:43.8684 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 07:28:28.6505 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mXU3cndFmit2g0AcEU/Sw9n6FDo72pY0yvwhq6C8ov2CHqgKDDUW48+0Lgt1bJc9zHh7kf/QljuM+SdzD0oaPas0bLZQcoGSL5LBpwycGCw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5505
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 4/9] drm/i915/display: Handle frontbuffer
- rendering when PSR2 selective fetch is enabled
+X-MS-Exchange-CrossTenant-UserPrincipalName: vZopADBaRXfTsRvnf6QjaJnyEdUYLEHMagwRZSxVrmp4nBjY5u/WwHsrFkdl0y51
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1127
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/ttm: s/FLAG_SG/FLAG_EXTERNAL/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,74 +129,410 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+I pushed those to drm-misc-next and fixed the i915 merge fallout in drm-tip.
 
+Maybe take another look at the resolution in drm-tip if you have time.
 
-On 9/30/21 3:14 AM, José Roberto de Souza wrote:
-> When PSR2 selective fetch is enabled writes to CURSURFLIVE alone do
-> not causes the panel to be updated when doing frontbuffer rendering.
-> 
->  From what I was able to figure from experiments the writes to
-> CURSURFLIVE takes PSR2 from deep sleep but panel is not updated
-> because PSR2_MAN_TRK_CTL has no start and end region set.
-> 
-> As we don't have the dirt area from current flush and invalidate API
-> and even if we did userspace could do several draws to frontbuffer and
-> we would need a way to append all the damaged areas of all the draws
-> that need to be part of next frame.
-> 
-> So here only programing PSR2_MAN_TRK_CTL to do a single full frame
-> fetch.
-> 
-> It is a safe approach as if scanout is in the visible area
-> the single full frame will only be visible for hardware in the next
-> frame because of the double buffering, and if scanout is in vblank
-> area it will be draw in the current frame.
-> 
-> No need to disable PSR and wait a few miliseconds to enable it again.
-> 
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Christian.
+
+Am 29.09.21 um 15:26 schrieb Matthew Auld:
+> It covers more than just ttm_bo_type_sg usage, like with say dma-buf,
+> since one other user is userptr in amdgpu, and in the future we might
+> have some more. Hence EXTERNAL is likely a more suitable name.
+>
+> v2(Christian):
+>    - Rename these to TTM_TT_FLAGS_*
+>    - Fix up all the holes in the flag values
+>
+> Suggested-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Acked-by: Christian König <christian.koenig@amd.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 8534cbb0d5144..7185801d5deff 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1397,10 +1397,22 @@ void intel_psr_resume(struct intel_dp *intel_dp)
->   	mutex_unlock(&psr->lock);
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 10 +++++-----
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c |  6 +++---
+>   drivers/gpu/drm/nouveau/nouveau_bo.c    |  4 ++--
+>   drivers/gpu/drm/radeon/radeon_ttm.c     |  8 ++++----
+>   drivers/gpu/drm/ttm/ttm_bo.c            |  4 ++--
+>   drivers/gpu/drm/ttm/ttm_bo_util.c       |  4 ++--
+>   drivers/gpu/drm/ttm/ttm_bo_vm.c         |  2 +-
+>   drivers/gpu/drm/ttm/ttm_pool.c          |  2 +-
+>   drivers/gpu/drm/ttm/ttm_tt.c            | 24 ++++++++++++------------
+>   include/drm/ttm/ttm_device.h            |  2 +-
+>   include/drm/ttm/ttm_tt.h                | 18 +++++++++---------
+>   11 files changed, 42 insertions(+), 42 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 60b12bb55244..e8d70b6e6737 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -894,7 +894,7 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
+>   			DRM_ERROR("failed to pin userptr\n");
+>   			return r;
+>   		}
+> -	} else if (ttm->page_flags & TTM_PAGE_FLAG_SG) {
+> +	} else if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL) {
+>   		if (!ttm->sg) {
+>   			struct dma_buf_attachment *attach;
+>   			struct sg_table *sgt;
+> @@ -1130,7 +1130,7 @@ static int amdgpu_ttm_tt_populate(struct ttm_device *bdev,
+>   		return 0;
+>   	}
+>   
+> -	if (ttm->page_flags & TTM_PAGE_FLAG_SG)
+> +	if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL)
+>   		return 0;
+>   
+>   	ret = ttm_pool_alloc(&adev->mman.bdev.pool, ttm, ctx);
+> @@ -1165,7 +1165,7 @@ static void amdgpu_ttm_tt_unpopulate(struct ttm_device *bdev,
+>   		return;
+>   	}
+>   
+> -	if (ttm->page_flags & TTM_PAGE_FLAG_SG)
+> +	if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL)
+>   		return;
+>   
+>   	for (i = 0; i < ttm->num_pages; ++i)
+> @@ -1198,8 +1198,8 @@ int amdgpu_ttm_tt_set_userptr(struct ttm_buffer_object *bo,
+>   			return -ENOMEM;
+>   	}
+>   
+> -	/* Set TTM_PAGE_FLAG_SG before populate but after create. */
+> -	bo->ttm->page_flags |= TTM_PAGE_FLAG_SG;
+> +	/* Set TTM_TT_FLAG_EXTERNAL before populate but after create. */
+> +	bo->ttm->page_flags |= TTM_TT_FLAG_EXTERNAL;
+>   
+>   	gtt = (void *)bo->ttm;
+>   	gtt->userptr = addr;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index f0a61a9474fc..8beef57ba52b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -182,7 +182,7 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
+>   
+>   	if (obj->flags & I915_BO_ALLOC_CPU_CLEAR &&
+>   	    man->use_tt)
+> -		page_flags |= TTM_PAGE_FLAG_ZERO_ALLOC;
+> +		page_flags |= TTM_TT_FLAG_ZERO_ALLOC;
+>   
+>   	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags,
+>   			  i915_ttm_select_tt_caching(obj));
+> @@ -451,7 +451,7 @@ static int i915_ttm_accel_move(struct ttm_buffer_object *bo,
+>   		if (bo->type == ttm_bo_type_kernel)
+>   			return -EINVAL;
+>   
+> -		if (ttm && !(ttm->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC))
+> +		if (ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC))
+>   			return 0;
+>   
+>   		intel_engine_pm_get(i915->gt.migrate.context->engine);
+> @@ -525,7 +525,7 @@ static int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+>   
+>   	/* Populate ttm with pages if needed. Typically system memory. */
+>   	if (bo->ttm && (dst_man->use_tt ||
+> -			(bo->ttm->page_flags & TTM_PAGE_FLAG_SWAPPED))) {
+> +			(bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED))) {
+>   		ret = ttm_tt_populate(bo->bdev, bo->ttm, ctx);
+>   		if (ret)
+>   			return ret;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> index 33dca2565cca..b2c7e0802ac3 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> @@ -1249,7 +1249,7 @@ nouveau_ttm_tt_populate(struct ttm_device *bdev,
+>   	struct ttm_tt *ttm_dma = (void *)ttm;
+>   	struct nouveau_drm *drm;
+>   	struct device *dev;
+> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
+>   
+>   	if (ttm_tt_is_populated(ttm))
+>   		return 0;
+> @@ -1272,7 +1272,7 @@ nouveau_ttm_tt_unpopulate(struct ttm_device *bdev,
+>   {
+>   	struct nouveau_drm *drm;
+>   	struct device *dev;
+> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
+>   
+>   	if (slave)
+>   		return;
+> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+> index 7793249bc549..11b21d605584 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+> @@ -545,14 +545,14 @@ static int radeon_ttm_tt_populate(struct ttm_device *bdev,
+>   {
+>   	struct radeon_device *rdev = radeon_get_rdev(bdev);
+>   	struct radeon_ttm_tt *gtt = radeon_ttm_tt_to_gtt(rdev, ttm);
+> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
+>   
+>   	if (gtt && gtt->userptr) {
+>   		ttm->sg = kzalloc(sizeof(struct sg_table), GFP_KERNEL);
+>   		if (!ttm->sg)
+>   			return -ENOMEM;
+>   
+> -		ttm->page_flags |= TTM_PAGE_FLAG_SG;
+> +		ttm->page_flags |= TTM_TT_FLAG_EXTERNAL;
+>   		return 0;
+>   	}
+>   
+> @@ -569,13 +569,13 @@ static void radeon_ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm
+>   {
+>   	struct radeon_device *rdev = radeon_get_rdev(bdev);
+>   	struct radeon_ttm_tt *gtt = radeon_ttm_tt_to_gtt(rdev, ttm);
+> -	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+> +	bool slave = !!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL);
+>   
+>   	radeon_ttm_tt_unbind(bdev, ttm);
+>   
+>   	if (gtt && gtt->userptr) {
+>   		kfree(ttm->sg);
+> -		ttm->page_flags &= ~TTM_PAGE_FLAG_SG;
+> +		ttm->page_flags &= ~TTM_TT_FLAG_EXTERNAL;
+>   		return;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 3b22c0013dbf..d62b2013c367 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -1115,8 +1115,8 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+>   		return -EBUSY;
+>   
+>   	if (!bo->ttm || !ttm_tt_is_populated(bo->ttm) ||
+> -	    bo->ttm->page_flags & TTM_PAGE_FLAG_SG ||
+> -	    bo->ttm->page_flags & TTM_PAGE_FLAG_SWAPPED ||
+> +	    bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL ||
+> +	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED ||
+>   	    !ttm_bo_get_unless_zero(bo)) {
+>   		if (locked)
+>   			dma_resv_unlock(bo->base.resv);
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index 1c5ffe2935af..82af095f6b81 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -103,7 +103,7 @@ void ttm_move_memcpy(struct ttm_buffer_object *bo,
+>   
+>   	/* Don't move nonexistent data. Clear destination instead. */
+>   	if (src_ops->maps_tt && (!ttm || !ttm_tt_is_populated(ttm))) {
+> -		if (ttm && !(ttm->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC))
+> +		if (ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC))
+>   			return;
+>   
+>   		for (i = 0; i < num_pages; ++i) {
+> @@ -150,7 +150,7 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
+>   	struct ttm_kmap_iter *dst_iter, *src_iter;
+>   	int ret = 0;
+>   
+> -	if (ttm && ((ttm->page_flags & TTM_PAGE_FLAG_SWAPPED) ||
+> +	if (ttm && ((ttm->page_flags & TTM_TT_FLAG_SWAPPED) ||
+>   		    dst_man->use_tt)) {
+>   		ret = ttm_tt_populate(bdev, ttm, ctx);
+>   		if (ret)
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> index 9a2119fe4bdd..950f4f132802 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> @@ -162,7 +162,7 @@ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+>   	 * Refuse to fault imported pages. This should be handled
+>   	 * (if at all) by redirecting mmap to the exporter.
+>   	 */
+> -	if (bo->ttm && (bo->ttm->page_flags & TTM_PAGE_FLAG_SG)) {
+> +	if (bo->ttm && (bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
+>   		dma_resv_unlock(bo->base.resv);
+>   		return VM_FAULT_SIGBUS;
+>   	}
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index c961a788b519..1bba0a0ed3f9 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -371,7 +371,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>   	WARN_ON(!num_pages || ttm_tt_is_populated(tt));
+>   	WARN_ON(dma_addr && !pool->dev);
+>   
+> -	if (tt->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC)
+> +	if (tt->page_flags & TTM_TT_FLAG_ZERO_ALLOC)
+>   		gfp_flags |= __GFP_ZERO;
+>   
+>   	if (ctx->gfp_retry_mayfail)
+> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+> index 980ecb079b2c..86f31fde6e35 100644
+> --- a/drivers/gpu/drm/ttm/ttm_tt.c
+> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
+> @@ -68,12 +68,12 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc)
+>   	switch (bo->type) {
+>   	case ttm_bo_type_device:
+>   		if (zero_alloc)
+> -			page_flags |= TTM_PAGE_FLAG_ZERO_ALLOC;
+> +			page_flags |= TTM_TT_FLAG_ZERO_ALLOC;
+>   		break;
+>   	case ttm_bo_type_kernel:
+>   		break;
+>   	case ttm_bo_type_sg:
+> -		page_flags |= TTM_PAGE_FLAG_SG;
+> +		page_flags |= TTM_TT_FLAG_EXTERNAL;
+>   		break;
+>   	default:
+>   		pr_err("Illegal buffer object type\n");
+> @@ -156,7 +156,7 @@ EXPORT_SYMBOL(ttm_tt_init);
+>   
+>   void ttm_tt_fini(struct ttm_tt *ttm)
+>   {
+> -	WARN_ON(ttm->page_flags & TTM_PAGE_FLAG_PRIV_POPULATED);
+> +	WARN_ON(ttm->page_flags & TTM_TT_FLAG_PRIV_POPULATED);
+>   
+>   	if (ttm->swap_storage)
+>   		fput(ttm->swap_storage);
+> @@ -178,7 +178,7 @@ int ttm_sg_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+>   
+>   	ttm_tt_init_fields(ttm, bo, page_flags, caching);
+>   
+> -	if (page_flags & TTM_PAGE_FLAG_SG)
+> +	if (page_flags & TTM_TT_FLAG_EXTERNAL)
+>   		ret = ttm_sg_tt_alloc_page_directory(ttm);
+>   	else
+>   		ret = ttm_dma_tt_alloc_page_directory(ttm);
+> @@ -224,7 +224,7 @@ int ttm_tt_swapin(struct ttm_tt *ttm)
+>   
+>   	fput(swap_storage);
+>   	ttm->swap_storage = NULL;
+> -	ttm->page_flags &= ~TTM_PAGE_FLAG_SWAPPED;
+> +	ttm->page_flags &= ~TTM_TT_FLAG_SWAPPED;
+>   
+>   	return 0;
+>   
+> @@ -279,7 +279,7 @@ int ttm_tt_swapout(struct ttm_device *bdev, struct ttm_tt *ttm,
+>   
+>   	ttm_tt_unpopulate(bdev, ttm);
+>   	ttm->swap_storage = swap_storage;
+> -	ttm->page_flags |= TTM_PAGE_FLAG_SWAPPED;
+> +	ttm->page_flags |= TTM_TT_FLAG_SWAPPED;
+>   
+>   	return ttm->num_pages;
+>   
+> @@ -300,7 +300,7 @@ int ttm_tt_populate(struct ttm_device *bdev,
+>   	if (ttm_tt_is_populated(ttm))
+>   		return 0;
+>   
+> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
+> +	if (!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
+>   		atomic_long_add(ttm->num_pages, &ttm_pages_allocated);
+>   		if (bdev->pool.use_dma32)
+>   			atomic_long_add(ttm->num_pages,
+> @@ -325,8 +325,8 @@ int ttm_tt_populate(struct ttm_device *bdev,
+>   	if (ret)
+>   		goto error;
+>   
+> -	ttm->page_flags |= TTM_PAGE_FLAG_PRIV_POPULATED;
+> -	if (unlikely(ttm->page_flags & TTM_PAGE_FLAG_SWAPPED)) {
+> +	ttm->page_flags |= TTM_TT_FLAG_PRIV_POPULATED;
+> +	if (unlikely(ttm->page_flags & TTM_TT_FLAG_SWAPPED)) {
+>   		ret = ttm_tt_swapin(ttm);
+>   		if (unlikely(ret != 0)) {
+>   			ttm_tt_unpopulate(bdev, ttm);
+> @@ -337,7 +337,7 @@ int ttm_tt_populate(struct ttm_device *bdev,
+>   	return 0;
+>   
+>   error:
+> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
+> +	if (!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
+>   		atomic_long_sub(ttm->num_pages, &ttm_pages_allocated);
+>   		if (bdev->pool.use_dma32)
+>   			atomic_long_sub(ttm->num_pages,
+> @@ -357,14 +357,14 @@ void ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm)
+>   	else
+>   		ttm_pool_free(&bdev->pool, ttm);
+>   
+> -	if (!(ttm->page_flags & TTM_PAGE_FLAG_SG)) {
+> +	if (!(ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
+>   		atomic_long_sub(ttm->num_pages, &ttm_pages_allocated);
+>   		if (bdev->pool.use_dma32)
+>   			atomic_long_sub(ttm->num_pages,
+>   					&ttm_dma32_pages_allocated);
+>   	}
+>   
+> -	ttm->page_flags &= ~TTM_PAGE_FLAG_PRIV_POPULATED;
+> +	ttm->page_flags &= ~TTM_TT_FLAG_PRIV_POPULATED;
 >   }
 >   
-> +static inline u32 man_trk_ctl_single_full_frame_bit_get(struct drm_i915_private *dev_priv)
-> +{
-> +	return IS_ALDERLAKE_P(dev_priv) ?
-> +	       ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME :
-> +	       PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
-> +}
-> +
->   static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
->   {
->   	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>   #ifdef CONFIG_DEBUG_FS
+> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
+> index cbe03d45e883..0a4ddec78d8f 100644
+> --- a/include/drm/ttm/ttm_device.h
+> +++ b/include/drm/ttm/ttm_device.h
+> @@ -65,7 +65,7 @@ struct ttm_device_funcs {
+>   	 * ttm_tt_create
+>   	 *
+>   	 * @bo: The buffer object to create the ttm for.
+> -	 * @page_flags: Page flags as identified by TTM_PAGE_FLAG_XX flags.
+> +	 * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
+>   	 *
+>   	 * Create a struct ttm_tt to back data with system memory pages.
+>   	 * No pages are actually allocated.
+> diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+> index 842ce756213c..b023cd58ff38 100644
+> --- a/include/drm/ttm/ttm_tt.h
+> +++ b/include/drm/ttm/ttm_tt.h
+> @@ -38,17 +38,17 @@ struct ttm_resource;
+>   struct ttm_buffer_object;
+>   struct ttm_operation_ctx;
 >   
-> +	if (intel_dp->psr.psr2_sel_fetch_enabled)
-> +		intel_de_rmw(dev_priv,
-> +			     PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder), 0,
-> +			     man_trk_ctl_single_full_frame_bit_get(dev_priv));
-> +
->   	/*
->   	 * Display WA #0884: skl+
-The following details is described in the description related to Display 
-WA #0884, so I think it matches the commit message described above.
-  : Driver to issue a flip whenever a host modify occurs. This ensures 
-PSR exits its sleep state during a host modify event.
+> -#define TTM_PAGE_FLAG_SWAPPED         (1 << 4)
+> -#define TTM_PAGE_FLAG_ZERO_ALLOC      (1 << 6)
+> -#define TTM_PAGE_FLAG_SG              (1 << 8)
+> +#define TTM_TT_FLAG_SWAPPED	(1 << 0)
+> +#define TTM_TT_FLAG_ZERO_ALLOC	(1 << 1)
+> +#define TTM_TT_FLAG_EXTERNAL	(1 << 2)
+>   
+> -#define TTM_PAGE_FLAG_PRIV_POPULATED  (1 << 31)
+> +#define TTM_TT_FLAG_PRIV_POPULATED  (1 << 31)
+>   
+>   /**
+>    * struct ttm_tt
+>    *
+>    * @pages: Array of pages backing the data.
+> - * @page_flags: see TTM_PAGE_FLAG_*
+> + * @page_flags: see TTM_TT_FLAG_*
+>    * @num_pages: Number of pages in the page array.
+>    * @sg: for SG objects via dma-buf
+>    * @dma_address: The DMA (bus) addresses of the pages
+> @@ -84,7 +84,7 @@ struct ttm_kmap_iter_tt {
+>   
+>   static inline bool ttm_tt_is_populated(struct ttm_tt *tt)
+>   {
+> -	return tt->page_flags & TTM_PAGE_FLAG_PRIV_POPULATED;
+> +	return tt->page_flags & TTM_TT_FLAG_PRIV_POPULATED;
+>   }
+>   
+>   /**
+> @@ -103,7 +103,7 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
+>    *
+>    * @ttm: The struct ttm_tt.
+>    * @bo: The buffer object we create the ttm for.
+> - * @page_flags: Page flags as identified by TTM_PAGE_FLAG_XX flags.
+> + * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
+>    * @caching: the desired caching state of the pages
+>    *
+>    * Create a struct ttm_tt to back data with system memory pages.
+> @@ -178,7 +178,7 @@ void ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm);
+>    */
+>   static inline void ttm_tt_mark_for_clear(struct ttm_tt *ttm)
+>   {
+> -	ttm->page_flags |= TTM_PAGE_FLAG_ZERO_ALLOC;
+> +	ttm->page_flags |= TTM_TT_FLAG_ZERO_ALLOC;
+>   }
+>   
+>   void ttm_tt_mgr_init(unsigned long num_pages, unsigned long num_dma32_pages);
+> @@ -194,7 +194,7 @@ struct ttm_kmap_iter *ttm_kmap_iter_tt_init(struct ttm_kmap_iter_tt *iter_tt,
+>    *
+>    * @bo: Buffer object we allocate the ttm for.
+>    * @bridge: The agp bridge this device is sitting on.
+> - * @page_flags: Page flags as identified by TTM_PAGE_FLAG_XX flags.
+> + * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
+>    *
+>    *
+>    * Create a TTM backend that uses the indicated AGP bridge as an aperture
 
-However, it is not clearly stated whether this WA# will also affect 
-GEN12+. Since there is a possibility that it may not work normally in HW 
-that will be released later, if you don't mind could you please leave a 
-comment that this operation has been confirmed in ADLP?
-
-Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->   	 * This documented WA for bxt can be safely applied
-> 
