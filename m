@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A163D41DEF1
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 18:25:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E27DD41DF8F
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 18:50:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CB916EC0E;
-	Thu, 30 Sep 2021 16:25:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50CED6EC0E;
+	Thu, 30 Sep 2021 16:50:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C30C66EC12
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 16:25:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="222023768"
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="222023768"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 09:21:12 -0700
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="555835986"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 09:21:11 -0700
-Date: Thu, 30 Sep 2021 19:21:07 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210930162107.GH2418125@ideak-desk.fi.intel.com>
-References: <20210930134310.31669-1-ville.syrjala@linux.intel.com>
- <20210930134310.31669-3-ville.syrjala@linux.intel.com>
- <20210930160903.GE2418125@ideak-desk.fi.intel.com>
- <YVXiyl86FHr1eL/v@intel.com>
- <20210930161900.GG2418125@ideak-desk.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 92DB36EC0E;
+ Thu, 30 Sep 2021 16:50:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8A2EEA47EA;
+ Thu, 30 Sep 2021 16:50:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8424552335224914878=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210930161900.GG2418125@ideak-desk.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Remove DP_PORT_EN stuff from
- link training code
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lukasz Majczak" <lma@semihalf.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Sep 2021 16:50:31 -0000
+Message-ID: <163302063153.18252.17698372013078995155@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210930134606.227234-1-lma@semihalf.com>
+In-Reply-To: <20210930134606.227234-1-lma@semihalf.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/bdb=3A_Fix_version_check_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,69 +41,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 30, 2021 at 07:19:06PM +0300, Imre Deak wrote:
-> On Thu, Sep 30, 2021 at 07:16:10PM +0300, Ville Syrjälä wrote:
-> > On Thu, Sep 30, 2021 at 07:09:03PM +0300, Imre Deak wrote:
-> > > On Thu, Sep 30, 2021 at 04:43:09PM +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > 
-> > > > Setting DP_PORT_EN in intel_dp->DP is already handled by
-> > > > intel_dp_enable_port() so there is no point in setting it also
-> > > > from the link training code.
-> > > > 
-> > > > For DDI platforms a bit with that name doesn't even exist. The
-> > > > counterpart is DDI_BUF_CTL_ENABLE, which is already set up by
-> > > > intel_ddi_prepare_link_retrain(). Fortunately it is the same bit
-> > > > so there was no harm in doing this from the platform independent
-> > > > code as well. But it's just confusing when platform independent
-> > > > code sets platform specific bits in intel_dp->DP. Just get rid
-> > > > of it.
-> > > > 
-> > > > Cc: Imre Deak <imre.deak@intel.com>
-> > > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > Reviewed-by: Imre Deak <imre.deak.intel.com>
-> > > 
-> > > On pre-DDI platforms intel_dp_enable_port() may not be called before
-> > > short HPD/link-retraining, but the init/resume time HW readout will
-> > > set DP_PORT_EN for that case.
-> > 
-> > I actually wonder what happens on DDI platforms. We don't do the resume
-> > readout there AFAICS, so if link retraining happens before any modesets
-> > are we just screwed atm?
-> 
-> Yea.
+--===============8424552335224914878==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It's unlikely to cause a problem though, since resume mostly happens
-with disabled outputs?
+== Series Details ==
 
-> 
-> > 
-> > > 
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 --
-> > > >  1 file changed, 2 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > > > index 449499a5c4c1..053ed9302cda 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > > > @@ -499,8 +499,6 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
-> > > >  		DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
-> > > >  	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
-> > > >  
-> > > > -	intel_dp->DP |= DP_PORT_EN;
-> > > > -
-> > > >  	return true;
-> > > >  }
-> > > >  
-> > > > -- 
-> > > > 2.32.0
-> > > > 
-> > 
-> > -- 
-> > Ville Syrjälä
-> > Intel
+Series: drm/i915/bdb: Fix version check (rev3)
+URL   : https://patchwork.freedesktop.org/series/94871/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10666 -> Patchwork_21205
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21205 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          [INCOMPLETE][5] ([i915#4130]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [INCOMPLETE][7] ([i915#2940]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][9] ([i915#541]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#4130]: https://gitlab.freedesktop.org/drm/intel/issues/4130
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (33 -> 29)
+------------------------------
+
+  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10666 -> Patchwork_21205
+
+  CI-20190529: 20190529
+  CI_DRM_10666: fb718bc531fbe5ccecf5a100280860ce07c25476 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21205: 653189ec24398d88a5fe18b76d6be1972037e6d7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+653189ec2439 drm/i915/bdb: Fix version check
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/index.html
+
+--===============8424552335224914878==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bdb: Fix version check (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94871/">https://patchwork.freedesktop.org/series/94871/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10666 -&gt; Patchwork_21205</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21205 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4130">i915#4130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21205/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (33 -&gt; 29)</h2>
+<p>Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10666 -&gt; Patchwork_21205</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10666: fb718bc531fbe5ccecf5a100280860ce07c25476 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21205: 653189ec24398d88a5fe18b76d6be1972037e6d7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>653189ec2439 drm/i915/bdb: Fix version check</p>
+
+</body>
+</html>
+
+--===============8424552335224914878==--
