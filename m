@@ -2,50 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 469DF41DA53
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 14:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6691941DA63
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 14:58:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 960F46E3F0;
-	Thu, 30 Sep 2021 12:55:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26D746E3F0;
+	Thu, 30 Sep 2021 12:58:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.180])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2ACA46E3F0;
- Thu, 30 Sep 2021 12:55:19 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 0C0D220201B;
- Thu, 30 Sep 2021 14:55:18 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id KfgxfhavTqkF; Thu, 30 Sep 2021 14:55:17 +0200 (CEST)
-Received: from thor (24.99.2.85.dynamic.wline.res.cust.swisscom.ch
- [85.2.99.24])
- by netline-mail3.netline.ch (Postfix) with ESMTPA id ABD1620201A;
- Thu, 30 Sep 2021 14:55:17 +0200 (CEST)
-Received: from localhost ([127.0.0.1]) by thor with esmtp (Exim 4.95-RC2)
- (envelope-from <michel@daenzer.net>) id 1mVvan-00051k-9D;
- Thu, 30 Sep 2021 14:55:17 +0200
-Message-ID: <1e21b577-3b8b-b5c4-6ccb-0059b2ad0921@daenzer.net>
-Date: Thu, 30 Sep 2021 14:55:17 +0200
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 909246E3F0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 12:58:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="224833553"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="224833553"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 05:58:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="521203633"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 30 Sep 2021 05:58:44 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Sep 2021 15:58:43 +0300
+Date: Thu, 30 Sep 2021 15:58:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Message-ID: <YVW0gyVk2/5j1Xmv@intel.com>
+References: <20210930001409.254817-1-jose.souza@intel.com>
+ <20210930001409.254817-2-jose.souza@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.1
-Content-Language: en-CA
-To: Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20210927114114.152310-1-matthew.auld@intel.com>
- <20210927114114.152310-12-matthew.auld@intel.com>
- <6372b5a3ab5b8d5b640af59c9290cbe6da21a0f9.camel@linux.intel.com>
- <c73d99e5-267b-c396-2c19-9e5938d7ab6f@daenzer.net>
- <40845c09-c219-800d-5fc8-0b2d68702142@intel.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-In-Reply-To: <40845c09-c219-800d-5fc8-0b2d68702142@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 12/13] drm/i915/ttm: use cached system
- pages when evicting lmem
+In-Reply-To: <20210930001409.254817-2-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 2/9] drm/i915/display/psr: Do full fetch
+ when handling multi-planar formats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,57 +54,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-09-30 14:27, Matthew Auld wrote:
-> On 30/09/2021 11:04, Michel Dänzer wrote:
->> On 2021-09-29 13:54, Thomas Hellström wrote:
->>> On Mon, 2021-09-27 at 12:41 +0100, Matthew Auld wrote:
->>>> This should let us do an accelerated copy directly to the shmem pages
->>>> when temporarily moving lmem-only objects, where the i915-gem
->>>> shrinker
->>>> can later kick in to swap out the pages, if needed.
->>>>
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 8 ++++----
->>>>   1 file changed, 4 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>> index 194e5f1deda8..46d57541c0b2 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>> @@ -134,11 +134,11 @@ static enum ttm_caching
->>>>   i915_ttm_select_tt_caching(const struct drm_i915_gem_object *obj)
->>>>   {
->>>>          /*
->>>> -        * Objects only allowed in system get cached cpu-mappings.
->>>> -        * Other objects get WC mapping for now. Even if in system.
->>>> +        * Objects only allowed in system get cached cpu-mappings, or
->>>> when
->>>> +        * evicting lmem-only buffers to system for swapping. Other
->>>> objects get
->>>> +        * WC mapping for now. Even if in system.
->>>>           */
->>>> -       if (obj->mm.region->type == INTEL_MEMORY_SYSTEM &&
->>>> -           obj->mm.n_placements <= 1)
->>>> +       if (obj->mm.n_placements <= 1)
->>>>                  return ttm_cached;
->>>>            return ttm_write_combined;
->>>
->>> We should be aware that with TTM, even evicted bos can be mapped by
->>> user-space while evicted, and this will appear to user-space like the
->>> WC-mapped object suddenly became WB-mapped. But it appears like mesa
->>> doesn't care about this as long as the mappings are fully coherent.
->>
->> FWIW, the Mesa radeonsi driver avoids surprises due to this (e.g. some path which involves CPU access suddenly goes faster if the BO was evicted from VRAM) by asking for WC mapping of BOs intended to be in VRAM even while they're evicted (via the AMDGPU_GEM_CREATE_CPU_GTT_USWC flag).
->>
+On Wed, Sep 29, 2021 at 05:14:02PM -0700, Jos� Roberto de Souza wrote:
+> From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 > 
-> Ok, so amdgpu just defaults to cached system memory, even for evicted VRAM, unless userspace requests USWC, in which case it will use WC?
+> We are still missing the PSR2 selective fetch handling of multi-planar
+> formats but until proper handle is added we can workaround it by
+> doing full frames fetch when state has such formats.
+> 
+> Cc: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index e3af1dc358bd2..8534cbb0d5144 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1573,6 +1573,9 @@ static void cursor_area_workaround(const struct intel_plane_state *new_plane_sta
+>   * also planes are not updated if they have a negative X
+>   * position so for now doing a full update in this cases
+>   *
+> + * TODO: We are missing multi-planar formats handling, until it is
+> + * implemented it will send full frame updates.
+> + *
+>   * Plane scaling and rotation is not supported by selective fetch and both
+>   * properties can change without a modeset, so need to be check at every
+>   * atomic commmit.
+> @@ -1582,6 +1585,7 @@ static bool psr2_sel_fetch_plane_state_supported(const struct intel_plane_state
+>  	if (plane_state->uapi.dst.y1 < 0 ||
+>  	    plane_state->uapi.dst.x1 < 0 ||
+>  	    plane_state->scaler_id >= 0 ||
+> +	    plane_state->hw.fb->format->num_planes > 1 ||
 
-Right.
+This also catches ccs forrmats, but I guess for the moment that's what
+we want if we haven't thought about AUX_DIST and whatnot in relation to
+selective fetch.
 
+Reviewed-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+
+>  	    plane_state->uapi.rotation != DRM_MODE_ROTATE_0)
+>  		return false;
+>  
+> -- 
+> 2.33.0
 
 -- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+Ville Syrj�l�
+Intel
