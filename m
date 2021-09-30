@@ -2,75 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B31541D8C6
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 13:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 450E541D8D0
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 13:32:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE5E6EB75;
-	Thu, 30 Sep 2021 11:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8226EB7B;
+	Thu, 30 Sep 2021 11:32:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6EE6EB75;
- Thu, 30 Sep 2021 11:27:40 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 3816A2B00428;
- Thu, 30 Sep 2021 07:27:37 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Thu, 30 Sep 2021 07:27:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=iXgj+XdWCTmhVdz1HLAhOYRBscuRXvoJCsyFGjXf9Ds=; b=ZbVcOXGA
- hOu4fHhWk/GATyT4LnRnzNiPZ2sTztOb6HA1lAF8whHFgr2cbjfH6pi/99m6aWPi
- QFnhiwq4uG21l/V8gLhtMIwCfJLB1w/WHfPMyGJvISng0g9yKnWvmEomTSKewB3i
- 77edP4UmNoLnuAkopNO7ITg24sZL/BWLqi3Lx39/u8dobtw64Ah4ZhQNsscPAbZL
- EnhZxPR9mfsmGMHzqAYdAksAv3Fs2rzptyY5wEGDm/UfwqoiEjP3xT39cPvtywD2
- qDCMrcYW6JZIcBIZc9bGTxJr1+h+bRUtAOqFnpQIDepQajioOVrjmVx1q6nGP297
- xAyboqikQHv7Xw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm3; bh=iXgj+XdWCTmhVdz1HLAhOYRBscuRX
- voJCsyFGjXf9Ds=; b=fi5PuEVCXX7Al5Wlku/pfIkWO/NFwlfB1I50G5pGllx5f
- 6BxsEIJ2Oh2Ta10aFaRzBcBBo3X09a89r2LqaXDk6LpyHphWxKsHPGUTNvwyFkCo
- UON/YuZ8Lfyf2690X6YMtwtGS3zQ/82K88tRcTLq6aordfaYgD0Upg7wnMiwcbBQ
- mfSFqukGFQiJe7eAMVOdy2IH0LSWVk3VqwDimzeKZaip0m/lbMMBKewgdAEJSeXh
- /Y1eFabtfWaglpIr9iRb+FFYJomNXGb4ZI2IvyBetXrbGFiWqHcyueLZQaN9+Zg2
- N5t8HcGch1ih7GW3f+HIYzCa+lTS03mmyNHSI+ANA==
-X-ME-Sender: <xms:KJ9VYWe4lX19cwS8pWYJWGNUgGApc9TRNL0pzw6kPSFvj2S_ybKHQw>
- <xme:KJ9VYQMqVpXXBBwpYMrle3syJfbUEO0RZ7ZUScWdJ0pLa6-Lacv-SpjTAFU81Wicj
- 5eboMYY0lBoT8uXfkw>
-X-ME-Received: <xmr:KJ9VYXjtkktaLIFqaHRgqinBHdY9aMW-diVsTIN0hKIA13--eC4QhaQ4pq-h0v1QO1WkNHFXD9coDN73BijW2U2UJDJGeIsxfMjHehiY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudekgedgfeelucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggusehgtderredttddunecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhephfehtefggeekteffueeileekfeegteetfffggfekleehkeffvedvgedtieetvddu
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
- iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
- vggthh
-X-ME-Proxy: <xmx:KJ9VYT9YbG4Ol87kmxDxzzPv2fOfYsbp5Zs9ZhGI2ZRG-nf7GnJcxw>
- <xmx:KJ9VYSvxwZM16gzttwfTBTZI3Uq-jRSprRBdIFaUNsnWLlSofvQnnw>
- <xmx:KJ9VYaHtykYq9fDiCUJ3cLCY76p5-imrxK4SHfZcYixrXEU6Jl2pdA>
- <xmx:KJ9VYcIG1JtCiN4CCvtaC_v6DNdPP9ZOBTgZXT5iSRqMCk9GJtzNmcbLgjw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 30 Sep 2021 07:27:36 -0400 (EDT)
-Date: Thu, 30 Sep 2021 13:27:34 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Message-ID: <20210930112734.dcwnibbxstdieg7g@gilmour>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6CCF6EB79;
+ Thu, 30 Sep 2021 11:32:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="212242624"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="212242624"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 04:32:46 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="564039551"
+Received: from nguyenv1-mobl.ccr.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.150])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 04:32:44 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 30 Sep 2021 13:32:36 +0200
+Message-Id: <20210930113236.583531-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="awryl5cewamo54na"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/ttm: Rework object initialization
+ slightly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,243 +50,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We may end up in i915_ttm_bo_destroy() in an error path before the
+object is fully initialized. In that case it's not correct to call
+__i915_gem_free_object(), because that function
+a) Assumes the gem object refcount is 0, which it isn't.
+b) frees the placements which are owned by the caller until the
+init_object() region ops returns successfully. Fix this by providing
+a lightweight cleanup function __i915_gem_object_fini() which is also
+called by __i915_gem_free_object().
 
---awryl5cewamo54na
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+While doing this, also make sure we call dma_resv_fini() as part of
+ordinary object destruction and not from the RCU callback that frees
+the object. This will help track down bugs where the object is incorrectly
+locked from an RCU lookup.
 
-Hi Daniel, Dave,
+Finally, make sure the object isn't put on the region list until it's
+either locked or fully initialized in order to block list processing of
+partially initialized objects.
 
-Here's this week PR for drm-misc-next
+v2:
+- The TTM object backend memory was freed before the gem pages were
+  put. Separate this functionality into __i915_gem_object_pages_fini()
+  and call it from the TTM delete_mem_notify() callback.
+v3:
+- Include i915_gem_object_free_mmaps() in __i915_gem_object_pages_fini()
+  to make sure we don't inadvertedly introduce a race.
 
-Maxime
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com> #v1
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.c | 43 +++++++++++++++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_object.h |  5 +++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 36 +++++++++++-------
+ 3 files changed, 64 insertions(+), 20 deletions(-)
 
-drm-misc-next-2021-09-30:
-drm-misc-next for 5.16:
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 6fb9afb65034..b88b121e244a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -89,6 +89,22 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 	mutex_init(&obj->mm.get_dma_page.lock);
+ }
+ 
++/**
++ * i915_gem_object_fini - Clean up a GEM object initialization
++ * @obj: The gem object to cleanup
++ *
++ * This function cleans up gem object fields that are set up by
++ * drm_gem_private_object_init() and i915_gem_object_init().
++ * It's primarily intended as a helper for backends that need to
++ * clean up the gem object in separate steps.
++ */
++void __i915_gem_object_fini(struct drm_i915_gem_object *obj)
++{
++	mutex_destroy(&obj->mm.get_page.lock);
++	mutex_destroy(&obj->mm.get_dma_page.lock);
++	dma_resv_fini(&obj->base._resv);
++}
++
+ /**
+  * Mark up the object's coherency levels for a given cache_level
+  * @obj: #drm_i915_gem_object
+@@ -174,7 +190,6 @@ void __i915_gem_free_object_rcu(struct rcu_head *head)
+ 		container_of(head, typeof(*obj), rcu);
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 
+-	dma_resv_fini(&obj->base._resv);
+ 	i915_gem_object_free(obj);
+ 
+ 	GEM_BUG_ON(!atomic_read(&i915->mm.free_count));
+@@ -204,10 +219,17 @@ static void __i915_gem_object_free_mmaps(struct drm_i915_gem_object *obj)
+ 	}
+ }
+ 
+-void __i915_gem_free_object(struct drm_i915_gem_object *obj)
++/**
++ * __i915_gem_object_pages_fini - Clean up pages use of a gem object
++ * @obj: The gem object to clean up
++ *
++ * This function cleans up usage of the object mm.pages member. It
++ * is intended for backends that need to clean up a gem object in
++ * separate steps and needs to be called when the object is idle before
++ * the object's backing memory is freed.
++ */
++void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj)
+ {
+-	trace_i915_gem_object_destroy(obj);
+-
+ 	if (!list_empty(&obj->vma.list)) {
+ 		struct i915_vma *vma;
+ 
+@@ -233,11 +255,17 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
+ 
+ 	__i915_gem_object_free_mmaps(obj);
+ 
+-	GEM_BUG_ON(!list_empty(&obj->lut_list));
+-
+ 	atomic_set(&obj->mm.pages_pin_count, 0);
+ 	__i915_gem_object_put_pages(obj);
+ 	GEM_BUG_ON(i915_gem_object_has_pages(obj));
++}
++
++void __i915_gem_free_object(struct drm_i915_gem_object *obj)
++{
++	trace_i915_gem_object_destroy(obj);
++
++	GEM_BUG_ON(!list_empty(&obj->lut_list));
++
+ 	bitmap_free(obj->bit_17);
+ 
+ 	if (obj->base.import_attach)
+@@ -253,6 +281,8 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
+ 
+ 	if (obj->shares_resv_from)
+ 		i915_vm_resv_put(obj->shares_resv_from);
++
++	__i915_gem_object_fini(obj);
+ }
+ 
+ static void __i915_gem_free_objects(struct drm_i915_private *i915,
+@@ -266,6 +296,7 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
+ 			obj->ops->delayed_free(obj);
+ 			continue;
+ 		}
++		__i915_gem_object_pages_fini(obj);
+ 		__i915_gem_free_object(obj);
+ 
+ 		/* But keep the pointer alive for RCU-protected lookups */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 3043fcbd31bd..7f9f2e5ba0ec 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -58,6 +58,9 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 			  const struct drm_i915_gem_object_ops *ops,
+ 			  struct lock_class_key *key,
+ 			  unsigned alloc_flags);
++
++void __i915_gem_object_fini(struct drm_i915_gem_object *obj);
++
+ struct drm_i915_gem_object *
+ i915_gem_object_create_shmem(struct drm_i915_private *i915,
+ 			     resource_size_t size);
+@@ -582,6 +585,8 @@ bool i915_gem_object_is_shmem(const struct drm_i915_gem_object *obj);
+ 
+ void __i915_gem_free_object_rcu(struct rcu_head *head);
+ 
++void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj);
++
+ void __i915_gem_free_object(struct drm_i915_gem_object *obj);
+ 
+ bool i915_gem_object_evictable(struct drm_i915_gem_object *obj);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index b94497989995..a0ab5c44627b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -367,8 +367,10 @@ static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
+ {
+ 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+ 
+-	if (likely(obj))
++	if (likely(obj)) {
++		__i915_gem_object_pages_fini(obj);
+ 		i915_ttm_free_cached_io_st(obj);
++	}
+ }
+ 
+ static struct intel_memory_region *
+@@ -813,12 +815,9 @@ static void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj)
+  */
+ static void i915_ttm_delayed_free(struct drm_i915_gem_object *obj)
+ {
+-	if (obj->ttm.created) {
+-		ttm_bo_put(i915_gem_to_ttm(obj));
+-	} else {
+-		__i915_gem_free_object(obj);
+-		call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
+-	}
++	GEM_BUG_ON(!obj->ttm.created);
++
++	ttm_bo_put(i915_gem_to_ttm(obj));
+ }
+ 
+ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+@@ -898,16 +897,19 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
+ {
+ 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+ 
+-	i915_ttm_backup_free(obj);
+-
+-	/* This releases all gem object bindings to the backend. */
+-	__i915_gem_free_object(obj);
+-
+ 	i915_gem_object_release_memory_region(obj);
+ 	mutex_destroy(&obj->ttm.get_io_page.lock);
+ 
+-	if (obj->ttm.created)
++	if (obj->ttm.created) {
++		i915_ttm_backup_free(obj);
++
++		/* This releases all gem object bindings to the backend. */
++		__i915_gem_free_object(obj);
++
+ 		call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
++	} else {
++		__i915_gem_object_fini(obj);
++	}
+ }
+ 
+ /**
+@@ -936,7 +938,11 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 
+ 	drm_gem_private_object_init(&i915->drm, &obj->base, size);
+ 	i915_gem_object_init(obj, &i915_gem_ttm_obj_ops, &lock_class, flags);
+-	i915_gem_object_init_memory_region(obj, mem);
++
++	/* Don't put on a region list until we're either locked or fully initialized. */
++	obj->mm.region = intel_memory_region_get(mem);
++	INIT_LIST_HEAD(&obj->mm.region_link);
++
+ 	i915_gem_object_make_unshrinkable(obj);
+ 	INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL | __GFP_NOWARN);
+ 	mutex_init(&obj->ttm.get_io_page.lock);
+@@ -963,6 +969,8 @@ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 		return i915_ttm_err_to_gem(ret);
+ 
+ 	obj->ttm.created = true;
++	i915_gem_object_release_memory_region(obj);
++	i915_gem_object_init_memory_region(obj, mem);
+ 	i915_ttm_adjust_domains_after_move(obj);
+ 	i915_ttm_adjust_gem_after_move(obj);
+ 	i915_gem_object_unlock(obj);
+-- 
+2.31.1
 
-UAPI Changes:
-  - virtio: UAPI additions to support context init
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - bridge: documentation improvements
-  - mipi-dsi: new devm_mipi_dsi_device_register_full and
-    devm_mipi_dsi_attach functions
-  - probe-helper: New HPD helper for devices with per-connector
-    interrupts
-  - ttm: ttm_tt improvements, flags documentation improvements
-
-Driver Changes:
-  - Convertion to devm_arch_phys_wc_add and
-    devm_arch_io_reserve_memtype_wc
-  - gma500: Cleanups
-  - vc4: Fix for hotplug reporting
-  - virtio: Implement Context Init
-
-  - bridge: Suport DP-AUX in ps8640
-  - panel: Support for Boe TV110C9M-LL3, Innolux HJ110IZ-01A
-The following changes since commit 9c2fce137852e6434ca0c6fe3d75e00feb168c07:
-
-  drm: Fix scaling_mode docs (2021-09-22 22:11:53 +0300)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2021-09-30
-
-for you to fetch changes up to 49e7f76fc514cecf2cad1303fa74d99be7e5d9a6:
-
-  drm/ttm: add TTM_TT_FLAG_EXTERNAL_MAPPABLE (2021-09-29 16:18:43 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for 5.16:
-
-UAPI Changes:
-  - virtio: UAPI additions to support context init
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - bridge: documentation improvements
-  - mipi-dsi: new devm_mipi_dsi_device_register_full and
-    devm_mipi_dsi_attach functions
-  - probe-helper: New HPD helper for devices with per-connector
-    interrupts
-  - ttm: ttm_tt improvements, flags documentation improvements
-
-Driver Changes:
-  - Convertion to devm_arch_phys_wc_add and
-    devm_arch_io_reserve_memtype_wc
-  - gma500: Cleanups
-  - vc4: Fix for hotplug reporting
-  - virtio: Implement Context Init
-
-  - bridge: Suport DP-AUX in ps8640
-  - panel: Support for Boe TV110C9M-LL3, Innolux HJ110IZ-01A
-
-----------------------------------------------------------------
-Anthoine Bourgeois (2):
-      drm/virtio: implement context init: probe for feature
-      drm/virtio: implement context init: support init ioctl
-
-Christian K=F6nig (1):
-      drm/msm: allow compile_test on !ARM
-
-Douglas Anderson (3):
-      drm/edid: Fix EDID quirk compile error on older compilers
-      drm/print: Add deprecation notes to DRM_...() functions
-      drm/edid: Fix drm_edid_encode_panel_id() kerneldoc warning
-
-Gurchetan Singh (10):
-      virtio-gpu api: multiple context types with explicit initialization
-      drm/virtgpu api: create context init feature
-      drm/virtio: implement context init: track valid capabilities in a mask
-      drm/virtio: implement context init: track {ring_idx, emit_fence_info}=
- in virtio_gpu_fence
-      drm/virtio: implement context init: plumb {base_fence_ctx, ring_idx} =
-to virtio_gpu_fence_alloc
-      drm/virtio: implement context init: stop using drv->context when crea=
-ting fence
-      drm/virtio: implement context init: allocate an array of fence contex=
-ts
-      drm/virtio: implement context init: handle VIRTGPU_CONTEXT_PARAM_POLL=
-_RINGS_MASK
-      drm/virtio: implement context init: add virtio_gpu_fence_event
-      drm/virtio: implement context init: advertise feature to userspace
-
-Matthew Auld (7):
-      drm/ttm: stop calling tt_swapin in vm_access
-      drm/ttm: stop setting page->index for the ttm_tt
-      drm/ttm: move ttm_tt_{add, clear}_mapping into amdgpu
-      drm/ttm: remove TTM_PAGE_FLAG_NO_RETRY
-      drm/ttm: s/FLAG_SG/FLAG_EXTERNAL/
-      drm/ttm: add some kernel-doc for TTM_TT_FLAG_*
-      drm/ttm: add TTM_TT_FLAG_EXTERNAL_MAPPABLE
-
-Maxime Ripard (7):
-      drm/bridge: Add documentation sections
-      drm/bridge: Document the probe issue with MIPI-DSI bridges
-      drm/mipi-dsi: Create devm device registration
-      drm/mipi-dsi: Create devm device attachment
-      drm/probe-helper: Document drm_helper_hpd_irq_event() return value
-      drm/probe-helper: Create a HPD IRQ event helper for a single connector
-      drm/vc4: hdmi: Actually check for the connector status in hotplug
-
-Philip Chen (2):
-      drm/bridge: parade-ps8640: Use regmap APIs
-      drm/bridge: parade-ps8640: Add support for AUX channel
-
-Thomas Zimmermann (10):
-      lib: devres: Add managed arch_phys_wc_add()
-      lib: devres: Add managed arch_io_reserve_memtype_wc()
-      drm/ast: Use managed interfaces for framebuffer write combining
-      drm/mgag200: Use managed interfaces for framebuffer write combining
-      drm/vboxvideo: Use managed interfaces for framebuffer write combining
-      drm/gma500: Replace references to dev_private with helper function
-      drm/gma500: Disable PCI device during shutdown
-      drm/gma500: Embed struct drm_device in struct drm_psb_private
-      drm/gma500: Remove dev_priv branch from unload function
-      drm/gma500: Managed device release
-
-Yang Yingliang (1):
-      drm/gma500: Fix wrong pointer passed to PTR_ERR()
-
-yangcong (4):
-      dt-bindings: drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
-      drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
-      dt-bindings: boe, tv101wum-n16: Add compatible for boe tv110c9m-ll3 a=
-nd inx hj110iz-01a
-      drm/panel: support for BOE and INX video mode panel
-
- .../bindings/display/panel/boe,tv101wum-nl6.yaml   |   7 +
- Documentation/gpu/drm-kms-helpers.rst              |  12 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |  25 +-
- drivers/gpu/drm/ast/ast_drv.h                      |   2 -
- drivers/gpu/drm/ast/ast_mm.c                       |  27 +-
- drivers/gpu/drm/bridge/parade-ps8640.c             | 274 +++++++-
- drivers/gpu/drm/drm_bridge.c                       |  69 +-
- drivers/gpu/drm/drm_edid.c                         | 121 ++--
- drivers/gpu/drm/drm_mipi_dsi.c                     |  81 +++
- drivers/gpu/drm/drm_probe_helper.c                 | 119 +++-
- drivers/gpu/drm/gma500/backlight.c                 |  12 +-
- drivers/gpu/drm/gma500/cdv_device.c                |  24 +-
- drivers/gpu/drm/gma500/cdv_intel_display.c         |  10 +-
- drivers/gpu/drm/gma500/cdv_intel_dp.c              |  12 +-
- drivers/gpu/drm/gma500/cdv_intel_lvds.c            |  22 +-
- drivers/gpu/drm/gma500/framebuffer.c               |  16 +-
- drivers/gpu/drm/gma500/gem.c                       |   2 +-
- drivers/gpu/drm/gma500/gma_device.c                |   2 +-
- drivers/gpu/drm/gma500/gma_display.c               |  14 +-
- drivers/gpu/drm/gma500/gtt.c                       |  18 +-
- drivers/gpu/drm/gma500/intel_bios.c                |  10 +-
- drivers/gpu/drm/gma500/intel_gmbus.c               |  12 +-
- drivers/gpu/drm/gma500/mid_bios.c                  |  11 +-
- drivers/gpu/drm/gma500/mmu.c                       |  12 +-
- drivers/gpu/drm/gma500/oaktrail_crtc.c             |   8 +-
- drivers/gpu/drm/gma500/oaktrail_device.c           |  20 +-
- drivers/gpu/drm/gma500/oaktrail_hdmi.c             |  18 +-
- drivers/gpu/drm/gma500/oaktrail_lvds.c             |  14 +-
- drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c         |   2 +-
- drivers/gpu/drm/gma500/opregion.c                  |  14 +-
- drivers/gpu/drm/gma500/power.c                     |  20 +-
- drivers/gpu/drm/gma500/psb_device.c                |  16 +-
- drivers/gpu/drm/gma500/psb_drv.c                   | 145 ++--
- drivers/gpu/drm/gma500/psb_drv.h                   |  24 +-
- drivers/gpu/drm/gma500/psb_intel_display.c         |  10 +-
- drivers/gpu/drm/gma500/psb_intel_lvds.c            |  31 +-
- drivers/gpu/drm/gma500/psb_intel_sdvo.c            |  10 +-
- drivers/gpu/drm/gma500/psb_irq.c                   |  26 +-
- drivers/gpu/drm/gma500/psb_lid.c                   |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |   6 +-
- drivers/gpu/drm/mgag200/mgag200_drv.h              |   2 -
- drivers/gpu/drm/mgag200/mgag200_mm.c               |  35 +-
- drivers/gpu/drm/msm/Kconfig                        |   4 +-
- drivers/gpu/drm/msm/msm_gem.c                      |   2 +-
- drivers/gpu/drm/nouveau/nouveau_bo.c               |   4 +-
- drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c     | 743 +++++++++++++++++=
-+++-
- drivers/gpu/drm/panel/panel-edp.c                  |  23 +-
- drivers/gpu/drm/radeon/radeon_ttm.c                |   8 +-
- drivers/gpu/drm/ttm/ttm_bo.c                       |   4 +-
- drivers/gpu/drm/ttm/ttm_bo_util.c                  |   4 +-
- drivers/gpu/drm/ttm/ttm_bo_vm.c                    |  15 +-
- drivers/gpu/drm/ttm/ttm_pool.c                     |   2 +-
- drivers/gpu/drm/ttm/ttm_tt.c                       |  54 +-
- drivers/gpu/drm/vboxvideo/vbox_drv.c               |   5 +-
- drivers/gpu/drm/vboxvideo/vbox_drv.h               |   1 -
- drivers/gpu/drm/vboxvideo/vbox_ttm.c               |  17 +-
- drivers/gpu/drm/vc4/vc4_hdmi.c                     |   5 +-
- drivers/gpu/drm/virtio/virtgpu_debugfs.c           |   1 +
- drivers/gpu/drm/virtio/virtgpu_drv.c               |  44 +-
- drivers/gpu/drm/virtio/virtgpu_drv.h               |  28 +-
- drivers/gpu/drm/virtio/virtgpu_fence.c             |  30 +-
- drivers/gpu/drm/virtio/virtgpu_ioctl.c             | 199 +++++-
- drivers/gpu/drm/virtio/virtgpu_kms.c               |  26 +-
- drivers/gpu/drm/virtio/virtgpu_plane.c             |   3 +-
- drivers/gpu/drm/virtio/virtgpu_vq.c                |  19 +-
- include/drm/drm_bridge.h                           |  10 +-
- include/drm/drm_edid.h                             |  14 +-
- include/drm/drm_mipi_dsi.h                         |   4 +
- include/drm/drm_print.h                            |  30 +
- include/drm/drm_probe_helper.h                     |   1 +
- include/drm/ttm/ttm_device.h                       |   2 +-
- include/drm/ttm/ttm_tt.h                           |  82 ++-
- include/linux/io.h                                 |   5 +
- include/uapi/drm/virtgpu_drm.h                     |  27 +
- include/uapi/linux/virtio_gpu.h                    |  18 +-
- lib/devres.c                                       |  82 +++
- 76 files changed, 2210 insertions(+), 623 deletions(-)
-
---awryl5cewamo54na
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYVWfJgAKCRDj7w1vZxhR
-xT1wAQDxH72Nqx1iQRim1PVue2zV3epSIvAD5hpnIZau0rHRBQEA0Feu8zDj6gSe
-0okXke7elUNiktZWke66kDxV1NNrygw=
-=r1eY
------END PGP SIGNATURE-----
-
---awryl5cewamo54na--
