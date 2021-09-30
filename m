@@ -2,34 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF7E141DFA2
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 18:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A56141DFE3
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 19:17:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFE2B6E441;
-	Thu, 30 Sep 2021 16:57:09 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 084086E441;
- Thu, 30 Sep 2021 16:57:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 00111AADD8;
- Thu, 30 Sep 2021 16:57:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF2636EC16;
+	Thu, 30 Sep 2021 17:17:08 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6E2C89AB6;
+ Thu, 30 Sep 2021 17:17:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="247788928"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="247788928"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 10:16:20 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="520489378"
+Received: from dboland-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.223.141])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 10:16:17 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Ingo Molnar <mingo@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>
+Date: Thu, 30 Sep 2021 18:15:46 +0100
+Message-Id: <20210930171552.501553-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Sep 2021 16:57:08 -0000
-Message-ID: <163302102896.18251.8740807454048096525@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210930001409.254817-1-jose.souza@intel.com>
-In-Reply-To: <20210930001409.254817-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv2=2C1/9=5D_drm/i915/display/psr=3A_Han?=
- =?utf-8?q?dle_plane_and_pipe_restrictions_at_every_page_flip_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC 0/6] CPU + GPU synchronised priority scheduling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +46,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Series: series starting with [v2,1/9] drm/i915/display/psr: Handle plane and pipe restrictions at every page flip (rev2)
-URL   : https://patchwork.freedesktop.org/series/95242/
-State : warning
+This is a somewhat early sketch of one of my ideas intended for early feedback
+from the core scheduler experts. First and last two patches in the series are
+the most interesting ones for people outside of i915. (Note I did not copy
+everyone on all patches but just the cover letter for context and the rest
+should be available from the mailing list.)
 
-== Summary ==
+General idea is that current processing landscape seems to be more and more
+composed of pipelines where computations are done on multiple hardware devices.
+Furthermore some of the non-CPU devices, like in this case many GPUs supported
+by the i915 driver, actually support priority based scheduling which is
+currently rather inaccesible to the user (in terms of being able to control it
+from the outside).
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
+From these two statements a question arises on how to allow for a simple,
+effective and consolidated user experience. In other words why user would not be
+able to do something like:
 
+ $ nice ffmmpeg ...transcode my videos...
+ $ my-favourite-game
+
+And have the nice hint apply to GPU parts of the transcode pipeline as well?
+
+Another reason why I started thinking about this is that I noticed Chrome
+browser for instance uses nice to de-prioritise background tabs. So again,
+having that decision propagate to the GPU rendering pipeline sounds like a big
+plus to the overall user experience.
+
+This RFC implements this idea with the hairy part being the notifier chain I
+added to enable dynamic adjustments. It is a global notifier which raises a few
+questions so I am very curious what experts will think here. Please see the
+opens in the first patch for more on this. And also the last two patches are the
+ones which implement a hash table in i915 so it can associate the notifier call-
+back with the correct GPU rendering contexts.
+
+On a more positive note the thing seems to even work as is. For instance I
+roughly simulated the above scenario by running a GPU hog at three nice levels
+and a GfxBench TRex in parallel (as a game proxy). This is what I got:
+
+   GPU hog nice	|   TRex fps
+  ------------------------------
+        0	|	34.8
+       10	|	38.0
+      -10	|	30.8
+
+So it is visible the feature can improve the user experience. Question is just
+if people are happy with this method of implementing it.
+
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Juri Lelli <juri.lelli@redhat.com>
+Cc: Vincent Guittot <vincent.guittot@linaro.org>
+
+Tvrtko Ursulin (6):
+  sched: Add nice value change notifier
+  drm/i915: Explicitly track DRM clients
+  drm/i915: Make GEM contexts track DRM clients
+  drm/i915: Track all user contexts per client
+  drm/i915: Keep track of registered clients indexed by task struct
+  drm/i915: Connect task and GPU scheduling priorities
+
+ drivers/gpu/drm/i915/Makefile                 |   5 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  20 +++
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   6 +
+ .../drm/i915/gt/intel_execlists_submission.c  |   2 +-
+ drivers/gpu/drm/i915/i915_drm_client.c        | 129 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.h        |  71 ++++++++++
+ drivers/gpu/drm/i915/i915_drv.c               |   6 +
+ drivers/gpu/drm/i915/i915_drv.h               |   5 +
+ drivers/gpu/drm/i915/i915_gem.c               |  21 ++-
+ drivers/gpu/drm/i915/i915_request.c           |   2 +-
+ drivers/gpu/drm/i915/i915_request.h           |   5 +
+ drivers/gpu/drm/i915/i915_scheduler.c         |   3 +-
+ drivers/gpu/drm/i915/i915_scheduler.h         |  14 ++
+ drivers/gpu/drm/i915/i915_scheduler_types.h   |   8 ++
+ include/linux/sched.h                         |   5 +
+ kernel/sched/core.c                           |  37 ++++-
+ 16 files changed, 330 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_drm_client.c
+ create mode 100644 drivers/gpu/drm/i915/i915_drm_client.h
+
+-- 
+2.30.2
 
