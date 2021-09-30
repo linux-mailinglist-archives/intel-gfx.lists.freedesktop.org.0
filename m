@@ -1,39 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C710141DD66
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 17:25:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A305C41DDDA
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 17:43:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A4CA6E42C;
-	Thu, 30 Sep 2021 15:25:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 219156E433;
+	Thu, 30 Sep 2021 15:43:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 651596E42D
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 15:25:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="212467856"
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="212467856"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 08:25:23 -0700
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="708066406"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2021 08:25:22 -0700
-Date: Thu, 30 Sep 2021 18:25:18 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210930152518.GC2418125@ideak-desk.fi.intel.com>
-References: <20210930134310.31669-1-ville.syrjala@linux.intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 778AF6E431;
+ Thu, 30 Sep 2021 15:43:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="205365780"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="205365780"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 08:43:16 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="709134016"
+Received: from kjepstei-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.192.243])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 08:43:15 -0700
+Date: Thu, 30 Sep 2021 08:43:15 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Steven Price <steven.price@arm.com>
+Cc: intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ dri-devel@lists.freedesktop.org, Masahiro Yamada <masahiroy@kernel.org>,
+ linux-kernel@vger.kernel.org, Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20210930154315.xb43gowfhmxucsm4@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210929183357.1490204-1-lucas.demarchi@intel.com>
+ <20210929183357.1490204-3-lucas.demarchi@intel.com>
+ <2dd723c8-6aed-857c-23f3-d0381fcb52c2@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210930134310.31669-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Clear leftover DP
- vswing/preemphasis values before modeset
+In-Reply-To: <2dd723c8-6aed-857c-23f3-d0381fcb52c2@arm.com>
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/utils: do not depend on
+ config being defined
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,45 +54,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 30, 2021 at 04:43:07PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Currently we clear the leftover vswing/preemphasis values only
-> at the start of link training. That means the initial vswing
-> programming performed during modeset is going to use stale values
-> left over from the previous link training sequence, and then at
-> the start of link training we're going to reset the levels back
-> to 0. Seems much better to make sure we start with level 0 from
-> the get go.
-> 
-> Additionally if LTTPRs are present the leftover vswing/preemphasis
-> values are those of the last link in the chain, so not the values
-> that our PHY is even using after a successful link training sequence.
-> 
-> So let's make sure everything is cleared up before we start
-> programming anything.
-> 
-> Suggested-by: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, Sep 30, 2021 at 11:00:06AM +0100, Steven Price wrote:
+>On 29/09/2021 19:33, Lucas De Marchi wrote:
+>> Like the IS_ENABLED() counterpart, we can make IS_CONFIG_NONZERO() to
+>> return the right thing when the config is not defined rather than a
+>> build error, with the limitation that it can't be used on preprocessor
+>> context.
+>>
+>> The trick here is that macro names can't start with a number or dash, so
+>> we stringify the argument and check that the first char is a number != 0
+>> (or starting with a dash to cover negative numbers). Except for -O0
+>> builds the strings are all eliminated.
+>>
+>> Taking CONFIG_DRM_I915_REQUEST_TIMEOUT in
+>> drivers/gpu/drm/i915/gem/i915_gem_context.c as example, we have the
+>> following output of the preprocessor:
+>>
+>> old:
+>>  if (((20000) != 0) &&
+>> new:
+>>  if (( ("20000"[0] > '0' && "20000"[0] < '9') || "20000"[0] == '-' ) &&
+>>
+>> New one looks worse, but is also eliminated from the object:
+>>
+>> $ size drivers/gpu/drm/i915/gem/i915_gem_context.o.*
+>>    text    data     bss     dec     hex filename
+>>   52021    1070     232   53323    d04b drivers/gpu/drm/i915/gem/i915_gem_context.o.new
+>>   52021    1070     232   53323    d04b drivers/gpu/drm/i915/gem/i915_gem_context.o.old
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_utils.h | 6 +++++-
+>>  1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+>> index 02bbfa4d68d3..436ce612c46a 100644
+>> --- a/drivers/gpu/drm/i915/i915_utils.h
+>> +++ b/drivers/gpu/drm/i915/i915_utils.h
+>> @@ -28,6 +28,7 @@
+>>  #include <linux/list.h>
+>>  #include <linux/overflow.h>
+>>  #include <linux/sched.h>
+>> +#include <linux/stringify.h>
+>>  #include <linux/types.h>
+>>  #include <linux/workqueue.h>
+>>
+>> @@ -469,6 +470,9 @@ static inline bool timer_expired(const struct timer_list *t)
+>>   *
+>>   * Returns 0 if @config is 0, 1 if set to any value.
+>>   */
+>> -#define IS_CONFIG_NONZERO(config) ((config) != 0)
+>> +#define IS_CONFIG_NONZERO(config) (						\
+>> +	(__stringify_1(config)[0] > '0' && __stringify_1(config)[0] < '9') ||	\
+>
+>Shouldn't this be "<= '9'". Otherwise numbers starting with a 9 are not
+>"non zero".
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+yes! thanks for catching it. However from the other discussion it seems
+we can either
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 8f5a935b72b6..74a657ae131a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1835,6 +1835,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->  void intel_dp_set_link_params(struct intel_dp *intel_dp,
->  			      int link_rate, int lane_count)
->  {
-> +	memset(intel_dp->train_set, 0, sizeof(intel_dp->train_set));
->  	intel_dp->link_trained = false;
->  	intel_dp->link_rate = link_rate;
->  	intel_dp->lane_count = lane_count;
-> -- 
-> 2.32.0
-> 
+a) just remove the macro, or
+b) use the simpler version that doesn't cover undefined values
+
+I will investigate those options.
+
+Lucas De Marchi
