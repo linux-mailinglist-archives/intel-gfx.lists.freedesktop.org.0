@@ -2,34 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8500041DEA3
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 18:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C1A41DEB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 18:18:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF9796EC00;
-	Thu, 30 Sep 2021 16:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD0B76EC05;
+	Thu, 30 Sep 2021 16:18:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0EFCD6EC00;
- Thu, 30 Sep 2021 16:15:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 04455A47EB;
- Thu, 30 Sep 2021 16:15:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2035573159215171720=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFFB76EC05
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 16:18:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="204708833"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="204708833"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 09:16:02 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="555833727"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 09:16:00 -0700
+Date: Thu, 30 Sep 2021 19:15:51 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Sep 2021 16:15:49 -0000
-Message-ID: <163301854901.18250.9253381070098330563@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Message-ID: <20210930161551.GF2418125@ideak-desk.fi.intel.com>
 References: <20210930134310.31669-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210930134310.31669-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Clear_leftover_DP_vswin?=
- =?utf-8?q?g/preemphasis_values_before_modeset?=
+ <20210930134310.31669-4-ville.syrjala@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210930134310.31669-4-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Nuke local copies/pointers of
+ intel_dp->DP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,212 +47,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2035573159215171720==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 30, 2021 at 04:43:10PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Get rid of the local copies and pointers of intel_dp->DP and
+> instead just poke at it directly. Makes it much easier to see
+> where it actually gets used/modified.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Series: series starting with [1/4] drm/i915: Clear leftover DP vswing/preemphasis values before modeset
-URL   : https://patchwork.freedesktop.org/series/95275/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10666 -> Patchwork_21204
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21204 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_cs_nop@sync-gfx0:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@c-dp1:
-    - fi-cfl-8109u:       [PASS][3] -> [FAIL][4] ([i915#4165]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#295]) +18 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [INCOMPLETE][7] ([i915#2940]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - {fi-tgl-dsi}:       [DMESG-FAIL][9] ([i915#541]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (33 -> 28)
-------------------------------
-
-  Missing    (5): bat-dg1-6 fi-tgl-u2 fi-bsw-cyan bat-adlp-4 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10666 -> Patchwork_21204
-
-  CI-20190529: 20190529
-  CI_DRM_10666: fb718bc531fbe5ccecf5a100280860ce07c25476 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21204: 733bf06f5a89702b70a21d22d4d8296d444b8534 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-733bf06f5a89 drm/i915: Nuke local copies/pointers of intel_dp->DP
-ce730375e50f drm/i915: Remove DP_PORT_EN stuff from link training code
-df98c6bae80b drm/i915: Call intel_ddi_init_dp_buf_reg() earlier
-2637b8567fa3 drm/i915: Clear leftover DP vswing/preemphasis values before modeset
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/index.html
-
---===============2035573159215171720==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915: Clear leftover DP vswing/preemphasis values before modeset</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95275/">https://patchwork.freedesktop.org/series/95275/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10666 -&gt; Patchwork_21204</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21204 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@c-dp1:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +18 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10666/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21204/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (33 -&gt; 28)</h2>
-<p>Missing    (5): bat-dg1-6 fi-tgl-u2 fi-bsw-cyan bat-adlp-4 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10666 -&gt; Patchwork_21204</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10666: fb718bc531fbe5ccecf5a100280860ce07c25476 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21204: 733bf06f5a89702b70a21d22d4d8296d444b8534 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>733bf06f5a89 drm/i915: Nuke local copies/pointers of intel_dp-&gt;DP<br />
-ce730375e50f drm/i915: Remove DP_PORT_EN stuff from link training code<br />
-df98c6bae80b drm/i915: Call intel_ddi_init_dp_buf_reg() earlier<br />
-2637b8567fa3 drm/i915: Clear leftover DP vswing/preemphasis values before modeset</p>
-
-</body>
-</html>
-
---===============2035573159215171720==--
+> ---
+>  drivers/gpu/drm/i915/display/g4x_dp.c | 45 ++++++++++++---------------
+>  1 file changed, 20 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> index 8e0620ae2ed1..69a2e5ad2317 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> @@ -426,7 +426,6 @@ intel_dp_link_down(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+>  	enum port port = encoder->port;
+> -	u32 DP = intel_dp->DP;
+>  
+>  	if (drm_WARN_ON(&dev_priv->drm,
+>  			(intel_de_read(dev_priv, intel_dp->output_reg) &
+> @@ -437,17 +436,17 @@ intel_dp_link_down(struct intel_encoder *encoder,
+>  
+>  	if ((IS_IVYBRIDGE(dev_priv) && port == PORT_A) ||
+>  	    (HAS_PCH_CPT(dev_priv) && port != PORT_A)) {
+> -		DP &= ~DP_LINK_TRAIN_MASK_CPT;
+> -		DP |= DP_LINK_TRAIN_PAT_IDLE_CPT;
+> +		intel_dp->DP &= ~DP_LINK_TRAIN_MASK_CPT;
+> +		intel_dp->DP |= DP_LINK_TRAIN_PAT_IDLE_CPT;
+>  	} else {
+> -		DP &= ~DP_LINK_TRAIN_MASK;
+> -		DP |= DP_LINK_TRAIN_PAT_IDLE;
+> +		intel_dp->DP &= ~DP_LINK_TRAIN_MASK;
+> +		intel_dp->DP |= DP_LINK_TRAIN_PAT_IDLE;
+>  	}
+> -	intel_de_write(dev_priv, intel_dp->output_reg, DP);
+> +	intel_de_write(dev_priv, intel_dp->output_reg, intel_dp->DP);
+>  	intel_de_posting_read(dev_priv, intel_dp->output_reg);
+>  
+> -	DP &= ~(DP_PORT_EN | DP_AUDIO_OUTPUT_ENABLE);
+> -	intel_de_write(dev_priv, intel_dp->output_reg, DP);
+> +	intel_dp->DP &= ~(DP_PORT_EN | DP_AUDIO_OUTPUT_ENABLE);
+> +	intel_de_write(dev_priv, intel_dp->output_reg, intel_dp->DP);
+>  	intel_de_posting_read(dev_priv, intel_dp->output_reg);
+>  
+>  	/*
+> @@ -464,14 +463,14 @@ intel_dp_link_down(struct intel_encoder *encoder,
+>  		intel_set_pch_fifo_underrun_reporting(dev_priv, PIPE_A, false);
+>  
+>  		/* always enable with pattern 1 (as per spec) */
+> -		DP &= ~(DP_PIPE_SEL_MASK | DP_LINK_TRAIN_MASK);
+> -		DP |= DP_PORT_EN | DP_PIPE_SEL(PIPE_A) |
+> +		intel_dp->DP &= ~(DP_PIPE_SEL_MASK | DP_LINK_TRAIN_MASK);
+> +		intel_dp->DP |= DP_PORT_EN | DP_PIPE_SEL(PIPE_A) |
+>  			DP_LINK_TRAIN_PAT_1;
+> -		intel_de_write(dev_priv, intel_dp->output_reg, DP);
+> +		intel_de_write(dev_priv, intel_dp->output_reg, intel_dp->DP);
+>  		intel_de_posting_read(dev_priv, intel_dp->output_reg);
+>  
+> -		DP &= ~DP_PORT_EN;
+> -		intel_de_write(dev_priv, intel_dp->output_reg, DP);
+> +		intel_dp->DP &= ~DP_PORT_EN;
+> +		intel_de_write(dev_priv, intel_dp->output_reg, intel_dp->DP);
+>  		intel_de_posting_read(dev_priv, intel_dp->output_reg);
+>  
+>  		intel_wait_for_vblank_if_active(dev_priv, PIPE_A);
+> @@ -481,8 +480,6 @@ intel_dp_link_down(struct intel_encoder *encoder,
+>  
+>  	msleep(intel_dp->pps.panel_power_down_delay);
+>  
+> -	intel_dp->DP = DP;
+> -
+>  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+>  		intel_wakeref_t wakeref;
+>  
+> @@ -582,19 +579,18 @@ cpt_set_link_train(struct intel_dp *intel_dp,
+>  		   u8 dp_train_pat)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> -	u32 *DP = &intel_dp->DP;
+>  
+> -	*DP &= ~DP_LINK_TRAIN_MASK_CPT;
+> +	intel_dp->DP &= ~DP_LINK_TRAIN_MASK_CPT;
+>  
+>  	switch (intel_dp_training_pattern_symbol(dp_train_pat)) {
+>  	case DP_TRAINING_PATTERN_DISABLE:
+> -		*DP |= DP_LINK_TRAIN_OFF_CPT;
+> +		intel_dp->DP |= DP_LINK_TRAIN_OFF_CPT;
+>  		break;
+>  	case DP_TRAINING_PATTERN_1:
+> -		*DP |= DP_LINK_TRAIN_PAT_1_CPT;
+> +		intel_dp->DP |= DP_LINK_TRAIN_PAT_1_CPT;
+>  		break;
+>  	case DP_TRAINING_PATTERN_2:
+> -		*DP |= DP_LINK_TRAIN_PAT_2_CPT;
+> +		intel_dp->DP |= DP_LINK_TRAIN_PAT_2_CPT;
+>  		break;
+>  	default:
+>  		MISSING_CASE(intel_dp_training_pattern_symbol(dp_train_pat));
+> @@ -611,19 +607,18 @@ g4x_set_link_train(struct intel_dp *intel_dp,
+>  		   u8 dp_train_pat)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> -	u32 *DP = &intel_dp->DP;
+>  
+> -	*DP &= ~DP_LINK_TRAIN_MASK;
+> +	intel_dp->DP &= ~DP_LINK_TRAIN_MASK;
+>  
+>  	switch (intel_dp_training_pattern_symbol(dp_train_pat)) {
+>  	case DP_TRAINING_PATTERN_DISABLE:
+> -		*DP |= DP_LINK_TRAIN_OFF;
+> +		intel_dp->DP |= DP_LINK_TRAIN_OFF;
+>  		break;
+>  	case DP_TRAINING_PATTERN_1:
+> -		*DP |= DP_LINK_TRAIN_PAT_1;
+> +		intel_dp->DP |= DP_LINK_TRAIN_PAT_1;
+>  		break;
+>  	case DP_TRAINING_PATTERN_2:
+> -		*DP |= DP_LINK_TRAIN_PAT_2;
+> +		intel_dp->DP |= DP_LINK_TRAIN_PAT_2;
+>  		break;
+>  	default:
+>  		MISSING_CASE(intel_dp_training_pattern_symbol(dp_train_pat));
+> -- 
+> 2.32.0
+> 
