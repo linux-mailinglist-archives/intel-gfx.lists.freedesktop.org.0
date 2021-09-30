@@ -1,47 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3605641DB3E
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 15:37:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13E841DB5A
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 15:43:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32DB76EB93;
-	Thu, 30 Sep 2021 13:37:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA386EB95;
+	Thu, 30 Sep 2021 13:43:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F4C6EB93
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 13:37:54 +0000 (UTC)
-Date: Thu, 30 Sep 2021 15:37:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1633009072;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3VOnQCFEBMv/EIrcibNy4TfUctKwhmyDT6Flu7VJBlA=;
- b=vIDYEsCazl0FCUyF7KYkzhPYd7sDauHLD8KpXFXoo9Ng2mScnOjYyqbLwUdoyzp6KSDxVu
- Os5iIHCDNSZILNwlz+uSYGeTx6va/+DdbXwznhwzVtwI1mKiHP0Z2++fAsPfxhUYTUKnzy
- zz0VEXYwLFW2INxl/C99JrHzFb7AlXwLkt9kGtISwcVg3C4SDGyEJ+EjnPpaE4iCKiR3OK
- mBIC0luq6qGuLGpsv5Hv339JcouCcASr9WHKoobze2s+h+57Vsitsl2FSqARsPDrY5MnDn
- tUxaO0xVI/PG+Surfo/laidJSJYCVjfN1YS930s9W+Hb/c6IRvW4mpzvSc0u3w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1633009072;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3VOnQCFEBMv/EIrcibNy4TfUctKwhmyDT6Flu7VJBlA=;
- b=dQDKqJFg3pNEWytqMpFkJ8O0yFXmXNx/tMchr3ym/PjhRE8lXmdwNHcZ7vFO4wj4CC7c9y
- cBI769zASHOq1rAw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Anton Lundin <glance@acc.umu.se>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20210930133751.pouqnfklay4etup2@linutronix.de>
-References: <20210929160659.GI108031@montezuma.acc.umu.se>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F9336EB93
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 13:43:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="247727641"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="247727641"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2021 06:43:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; d="scan'208";a="476994382"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 30 Sep 2021 06:43:11 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Sep 2021 16:43:10 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@intel.com>
+Date: Thu, 30 Sep 2021 16:43:07 +0300
+Message-Id: <20210930134310.31669-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210929160659.GI108031@montezuma.acc.umu.se>
-Subject: Re: [Intel-gfx] Picture stutter on i915 Graphics P630]
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Clear leftover DP
+ vswing/preemphasis values before modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,30 +49,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-09-29 18:07:00 [+0200], Anton Lundin wrote:
-> Hi.
-Hi,
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> While I was chasing some other bugs I tested 5.15-rc3-rt5 and noted your
-> code e446c2038b58 ("drm/i915/gt: Use spin_lock_irq() instead of
-> local_irq_disable() + spin_lock()") and noted that this patch created a
-> lot of visual glitches, freeze-frames for about 0.5s every couple of
-> seconds.
-> 
-> The card identifies itself as: (if that matters)
-> Intel Corporation CoffeeLake-S GT2 [UHD Graphics P630] [8086:3e96]
-> 
-> Reverting that patch resolved quite a lot of the glitches but there are
-> still a couple of minor ones left, that I'm trying to chase down.
-> 
-> 
-> None of those glitches are there on the same workload on a regular
-> 5.15-rc3 kernel.
+Currently we clear the leftover vswing/preemphasis values only
+at the start of link training. That means the initial vswing
+programming performed during modeset is going to use stale values
+left over from the previous link training sequence, and then at
+the start of link training we're going to reset the levels back
+to 0. Seems much better to make sure we start with level 0 from
+the get go.
 
-You are talking about that commit and 5.15-rc3-rt5 with PREEMPT_RT
-enabled?
+Additionally if LTTPRs are present the leftover vswing/preemphasis
+values are those of the last link in the chain, so not the values
+that our PHY is even using after a successful link training sequence.
 
-> 
-> //Anton
+So let's make sure everything is cleared up before we start
+programming anything.
 
-Sebastian
+Suggested-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 8f5a935b72b6..74a657ae131a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1835,6 +1835,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ void intel_dp_set_link_params(struct intel_dp *intel_dp,
+ 			      int link_rate, int lane_count)
+ {
++	memset(intel_dp->train_set, 0, sizeof(intel_dp->train_set));
+ 	intel_dp->link_trained = false;
+ 	intel_dp->link_rate = link_rate;
+ 	intel_dp->lane_count = lane_count;
+-- 
+2.32.0
+
