@@ -1,65 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D742441D122
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 03:45:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 755B541D13A
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Sep 2021 04:04:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2D846EB22;
-	Thu, 30 Sep 2021 01:44:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83C396EB22;
+	Thu, 30 Sep 2021 02:03:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com
- [IPv6:2607:f8b0:4864:20::12d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC0BA6EB2C;
- Thu, 30 Sep 2021 01:44:44 +0000 (UTC)
-Received: by mail-il1-x12d.google.com with SMTP id j15so5048916ila.6;
- Wed, 29 Sep 2021 18:44:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=BS9AKALGwmUgSOoK9p/66v+O3ZFmjWbjDLsxZcHUoJA=;
- b=fU0NeOS1NtLCMt52jV0EfRi2a0pN/3WfUwz7w8A0SqcTCwLwwh8Jwbpwjjf+NDNY4p
- kc90+gpm54vP8jiU4K7PsrdYQ4G0EUCNI+KGkIN/4kKYldWSJNzOdJITQ2HKng9eTp9S
- cM9nHjEt0en9ngHFjAZ2ehpg59Oa9p625q2myEfYm1B+MrlP0gw8sSXlntTXcJwcJmWH
- XbHYv9C+WBT6409mZfvVM9+NfluAzV3gYi6BH1mxTPK8ZiToHAmERCdJlATjHAgHKsfb
- QAArWWJB3myyFhIGX3ZIwnsnJbdlz8Wme81eaPNgnuBt/zfiCaXhqngEnjiBD8reDxaw
- y0ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=BS9AKALGwmUgSOoK9p/66v+O3ZFmjWbjDLsxZcHUoJA=;
- b=L+VrX1V262dLnBvQiQFoMQ8rIS1Kn24GO0xpaxK/D/OUBCbN4vzaFMmFnfPeadPNPb
- J4GItg/T/3YNxDms52F660SSP/FzNhnuRcm4VwrRMoe6viYXZFucFLFJ21tGEUZN+HAs
- k65Es0j8x/on6WMtuSuXJXpZ4EGuu2SIQ+hSvif+qllPFwgU4z1KWP9FoigonjalyVNf
- eXPR1sp77pnhozPlpDPMncoLsSsZyx6DuzdT6YpgV03h4toxk2AqgAD6GLKmLyEqXcmE
- i45Zb0tev0khhHACY0SkUJHcM7Jbrm08/otSG2zBdp+5MYZFRCQvvhzl1HB4vXy3S2qW
- r/Yg==
-X-Gm-Message-State: AOAM531dsoSoE8PK06lmFRQ6RpKFGrJXOITp5vbgbPkHc5MYlN9hdFHP
- qXJYk8YgTh/fNb5NfY7mwbkIZCJ6iFo=
-X-Google-Smtp-Source: ABdhPJwIMOyZMp7li4n1RDRWM997P9y9iKcB3MDGaziXeFE33j31hN+snrmkiubYIYsOPT7z5Ndr3g==
-X-Received: by 2002:a05:6e02:1985:: with SMTP id
- g5mr2197498ilf.311.1632966283321; 
- Wed, 29 Sep 2021 18:44:43 -0700 (PDT)
-Received: from samwise.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
- by smtp.googlemail.com with ESMTPSA id h23sm1155414ila.32.2021.09.29.18.44.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Sep 2021 18:44:42 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Jim Cromie <jim.cromie@gmail.com>
-Date: Wed, 29 Sep 2021 19:44:27 -0600
-Message-Id: <20210930014427.14239-5-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210930014427.14239-1-jim.cromie@gmail.com>
-References: <20210930014427.14239-1-jim.cromie@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5E33F6EB22;
+ Thu, 30 Sep 2021 02:03:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 55D98A363C;
+ Thu, 30 Sep 2021 02:03:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] i915/gvt: remove spaces in pr_debug "gvt:
- core:" etc prefixes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Sep 2021 02:03:57 -0000
+Message-ID: <163296743734.18251.5481597554984172185@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210930014427.14239-1-jim.cromie@gmail.com>
+In-Reply-To: <20210930014427.14239-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm=3A_maintenance_patches_for_5=2E15-rcX?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,87 +41,397 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Taking embedded spaces out of existing prefixes makes them better
-class-prefixes; simplifying the extra quoting needed otherwise:
+== Series Details ==
 
-  $> echo format "^gvt: core:" +p >control
-vs
-  $> echo format ^gvt:core: +p >control
+Series: drm: maintenance patches for 5.15-rcX
+URL   : https://patchwork.freedesktop.org/series/95245/
+State : warning
 
-Dropping the internal spaces means that quotes are only needed when
-the trailing space is required; they more distinctively signal that
-requirement.
+== Summary ==
 
-Consider a generic drm-debug example:
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER 0xF0006
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++ #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xf0006 /* 2.0 */
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:354:16: error: incompatible types in comparison expression (different type sizes):
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:354:16:    unsigned long *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:354:16:    unsigned long long *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4494:31: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4494:31:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4494:31:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4496:33: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4496:33:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4496:33:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:294:25: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:294:25:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:294:25:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:295:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:295:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:295:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:344:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:344:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:344:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:314:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:318:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: this was the original definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881: note: this is the location of the previous definition
++drivers/gpu/drm/drm_drv.c:425:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
++drivers/gpu/drm/selftests/test-drm_damage_helper.c:101:30: warning: symbol 'fb' was not declared. Should it be static?
++drivers/gpu/drm/selftests/test-drm_damage_helper.c:14:19: warning: symbol 'mock_driver' was not declared. Should it be static?
++drivers/gpu/drm/selftests/test-drm_damage_helper.c:259:23: warning: Using plain integer as NULL pointer
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:40:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:40:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c:42:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c:42:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:40:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:40:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c:36:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c:36:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c:38:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c:38:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c:29:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c:29:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:66,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu.h:70,
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:52:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:52:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_job.c:30:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_job.c:30:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c:29:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c:29:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:29:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:29:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c:37:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c:37:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c:34:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c:34:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c:32:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c:32:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:36:
++                 from drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:36:
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from ./drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
++                 from drivers/gpu/drm/amd/amdgpu/psp_v11_0.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/psp_v11_0.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c:28:
++                 from drivers/gpu/drm/amd/amdgpu/vce_v4_0.c:30:
++                 from drivers/gpu/drm/amd/amdgpu/vce_v4_0.c:30:
++                 from drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c:27:
++                 from drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c:27:
++                 from drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c:27:
++                 from drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c:27:
++                 from drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c:25:
++                 from drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c:25:
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322:9: warning: preprocessor token DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER redefined
++./include/drm/drm_dp_helper.h:1322: warning: "DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER" redefined
++./include/drm/drm_dp_helper.h:1322: warning: "DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER" redefined
++./include/drm/drm_dp_helper.h:1322: warning: "DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER" redefined
++./include/drm/drm_dp_helper.h:1322: warning: "DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER" redefined
++./include/drm/drm_dp_helper.h:1322: warning: "DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER" redefined
++./include/drm/drm_dp_helper.h:1322: warning: "DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER" redefined
++./include/drm/drm_dp_helper.h:1322: warning: "DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER" redefined
++./include/
 
-  # turn off ATOMIC reports
-  echo format "^drm:atomic: " -p > control
-
-  # turn off all ATOMIC:* reports, including any sub-categories
-  echo format "^drm:atomic:" -p > control
-
-  # turn on ATOMIC:FAIL: reports
-  echo format "^drm:atomic:fail: " +p > control
-
-Removing embedded spaces in the class-prefixes simplifies the
-corresponding match-prefix.  This means that "quoted" match-prefixes
-are only needed when the trailing space is desired, in order to
-exclude explicitly sub-categorized pr-debugs; in this example,
-"drm:atomic:fail:".
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
----
- drivers/gpu/drm/i915/gvt/debug.h | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gvt/debug.h b/drivers/gpu/drm/i915/gvt/debug.h
-index c6027125c1ec..bbecc279e077 100644
---- a/drivers/gpu/drm/i915/gvt/debug.h
-+++ b/drivers/gpu/drm/i915/gvt/debug.h
-@@ -36,30 +36,30 @@ do {									\
- } while (0)
- 
- #define gvt_dbg_core(fmt, args...) \
--	pr_debug("gvt: core: "fmt, ##args)
-+	pr_debug("gvt:core: " fmt, ##args)
- 
- #define gvt_dbg_irq(fmt, args...) \
--	pr_debug("gvt: irq: "fmt, ##args)
-+	pr_debug("gvt:irq: " fmt, ##args)
- 
- #define gvt_dbg_mm(fmt, args...) \
--	pr_debug("gvt: mm: "fmt, ##args)
-+	pr_debug("gvt:mm: " fmt, ##args)
- 
- #define gvt_dbg_mmio(fmt, args...) \
--	pr_debug("gvt: mmio: "fmt, ##args)
-+	pr_debug("gvt:mmio: " fmt, ##args)
- 
- #define gvt_dbg_dpy(fmt, args...) \
--	pr_debug("gvt: dpy: "fmt, ##args)
-+	pr_debug("gvt:dpy: " fmt, ##args)
- 
- #define gvt_dbg_el(fmt, args...) \
--	pr_debug("gvt: el: "fmt, ##args)
-+	pr_debug("gvt:el: " fmt, ##args)
- 
- #define gvt_dbg_sched(fmt, args...) \
--	pr_debug("gvt: sched: "fmt, ##args)
-+	pr_debug("gvt:sched: " fmt, ##args)
- 
- #define gvt_dbg_render(fmt, args...) \
--	pr_debug("gvt: render: "fmt, ##args)
-+	pr_debug("gvt:render: " fmt, ##args)
- 
- #define gvt_dbg_cmd(fmt, args...) \
--	pr_debug("gvt: cmd: "fmt, ##args)
-+	pr_debug("gvt:cmd: " fmt, ##args)
- 
- #endif
--- 
-2.31.1
 
