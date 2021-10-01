@@ -1,34 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5626741E96D
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 11:11:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91E141E975
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 11:15:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E21B46ED7D;
-	Fri,  1 Oct 2021 09:11:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2346A6ED7D;
+	Fri,  1 Oct 2021 09:14:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EC5576ED7C;
- Fri,  1 Oct 2021 09:11:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E2786A363C;
- Fri,  1 Oct 2021 09:11:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9177746316121172143=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CEE76ED7C;
+ Fri,  1 Oct 2021 09:14:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="222178976"
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="222178976"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 02:14:51 -0700
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="618930263"
+Received: from kdoertel-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.222.34])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 02:14:48 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+	dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Fri,  1 Oct 2021 12:14:44 +0300
+Message-Id: <20211001091444.8177-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210928223241.22149-1-jani.nikula@intel.com>
+References: <20210928223241.22149-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 01 Oct 2021 09:11:41 -0000
-Message-ID: <163307950189.25585.5476355541178740283@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211001074041.2076538-1-lucas.demarchi@intel.com>
-In-Reply-To: <20211001074041.2076538-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_remove_IS=5FACTIVE?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/locking: add backtrace for locking
+ contended locks without backoff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,246 +49,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9177746316121172143==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+If drm_modeset_lock() returns -EDEADLK, the caller is supposed to drop
+all currently held locks using drm_modeset_backoff(). Failing to do so
+will result in warnings and backtraces on the paths trying to lock a
+contended lock. Add support for optionally printing the backtrace on the
+path that hit the deadlock and didn't gracefully handle the situation.
 
-== Series Details ==
+For example, the patch [1] inadvertently dropped the return value check
+and error return on replacing calc_watermark_data() with
+intel_compute_global_watermarks(). The backtraces on the subsequent
+locking paths hitting WARN_ON(ctx->contended) were unhelpful, but adding
+the backtrace to the deadlock path produced this helpful printout:
 
-Series: drm/i915: remove IS_ACTIVE
-URL   : https://patchwork.freedesktop.org/series/95312/
-State : success
+<7> [98.002465] drm_modeset_lock attempting to lock a contended lock without backoff:
+   drm_modeset_lock+0x107/0x130
+   drm_atomic_get_plane_state+0x76/0x150
+   skl_compute_wm+0x251d/0x2b20 [i915]
+   intel_atomic_check+0x1942/0x29e0 [i915]
+   drm_atomic_check_only+0x554/0x910
+   drm_atomic_nonblocking_commit+0xe/0x50
+   drm_mode_atomic_ioctl+0x8c2/0xab0
+   drm_ioctl_kernel+0xac/0x140
 
-== Summary ==
+Add new CONFIG_DRM_DEBUG_MODESET_LOCK to enable modeset lock debugging
+with stack depot and trace.
 
-CI Bug Log - changes from CI_DRM_10671 -> Patchwork_21214
-====================================================
+[1] https://lore.kernel.org/r/20210924114741.15940-4-jani.nikula@intel.com
 
-Summary
--------
+v2:
+- default y if DEBUG_WW_MUTEX_SLOWPATH (Daniel)
+- depends on DEBUG_KERNEL
 
-  **SUCCESS**
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Dave Airlie <airlied@gmail.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/Kconfig            | 15 +++++++++
+ drivers/gpu/drm/drm_modeset_lock.c | 49 ++++++++++++++++++++++++++++--
+ include/drm/drm_modeset_lock.h     |  8 +++++
+ 3 files changed, 70 insertions(+), 2 deletions(-)
 
-  No regressions found.
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 2a926d0de423..a4c020a9a0eb 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -100,6 +100,21 @@ config DRM_DEBUG_DP_MST_TOPOLOGY_REFS
+           This has the potential to use a lot of memory and print some very
+           large kernel messages. If in doubt, say "N".
+ 
++config DRM_DEBUG_MODESET_LOCK
++	bool "Enable backtrace history for lock contention"
++	depends on STACKTRACE_SUPPORT
++	depends on DEBUG_KERNEL
++	depends on EXPERT
++	select STACKDEPOT
++	default y if DEBUG_WW_MUTEX_SLOWPATH
++	help
++	  Enable debug tracing of failures to gracefully handle drm modeset lock
++	  contention. A history of each drm modeset lock path hitting -EDEADLK
++	  will be saved until gracefully handled, and the backtrace will be
++	  printed when attempting to lock a contended lock.
++
++	  If in doubt, say "N".
++
+ config DRM_FBDEV_EMULATION
+ 	bool "Enable legacy fbdev support for your modesetting driver"
+ 	depends on DRM
+diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+index bf8a6e823a15..4d32b61fa1fd 100644
+--- a/drivers/gpu/drm/drm_modeset_lock.c
++++ b/drivers/gpu/drm/drm_modeset_lock.c
+@@ -25,6 +25,7 @@
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_device.h>
+ #include <drm/drm_modeset_lock.h>
++#include <drm/drm_print.h>
+ 
+ /**
+  * DOC: kms locking
+@@ -77,6 +78,45 @@
+ 
+ static DEFINE_WW_CLASS(crtc_ww_class);
+ 
++#if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
++static noinline depot_stack_handle_t __stack_depot_save(void)
++{
++	unsigned long entries[8];
++	unsigned int n;
++
++	n = stack_trace_save(entries, ARRAY_SIZE(entries), 1);
++
++	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
++}
++
++static void __stack_depot_print(depot_stack_handle_t stack_depot)
++{
++	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
++	unsigned long *entries;
++	unsigned int nr_entries;
++	char *buf;
++
++	buf = kmalloc(PAGE_SIZE, GFP_NOWAIT | __GFP_NOWARN);
++	if (!buf)
++		return;
++
++	nr_entries = stack_depot_fetch(stack_depot, &entries);
++	stack_trace_snprint(buf, PAGE_SIZE, entries, nr_entries, 2);
++
++	drm_printf(&p, "attempting to lock a contended lock without backoff:\n%s", buf);
++
++	kfree(buf);
++}
++#else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
++static depot_stack_handle_t __stack_depot_save(void)
++{
++	return 0;
++}
++static void __stack_depot_print(depot_stack_handle_t stack_depot)
++{
++}
++#endif /* CONFIG_DRM_DEBUG_MODESET_LOCK */
++
+ /**
+  * drm_modeset_lock_all - take all modeset locks
+  * @dev: DRM device
+@@ -225,7 +265,9 @@ EXPORT_SYMBOL(drm_modeset_acquire_fini);
+  */
+ void drm_modeset_drop_locks(struct drm_modeset_acquire_ctx *ctx)
+ {
+-	WARN_ON(ctx->contended);
++	if (WARN_ON(ctx->contended))
++		__stack_depot_print(ctx->stack_depot);
++
+ 	while (!list_empty(&ctx->locked)) {
+ 		struct drm_modeset_lock *lock;
+ 
+@@ -243,7 +285,8 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+ {
+ 	int ret;
+ 
+-	WARN_ON(ctx->contended);
++	if (WARN_ON(ctx->contended))
++		__stack_depot_print(ctx->stack_depot);
+ 
+ 	if (ctx->trylock_only) {
+ 		lockdep_assert_held(&ctx->ww_ctx);
+@@ -274,6 +317,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+ 		ret = 0;
+ 	} else if (ret == -EDEADLK) {
+ 		ctx->contended = lock;
++		ctx->stack_depot = __stack_depot_save();
+ 	}
+ 
+ 	return ret;
+@@ -296,6 +340,7 @@ int drm_modeset_backoff(struct drm_modeset_acquire_ctx *ctx)
+ 	struct drm_modeset_lock *contended = ctx->contended;
+ 
+ 	ctx->contended = NULL;
++	ctx->stack_depot = 0;
+ 
+ 	if (WARN_ON(!contended))
+ 		return 0;
+diff --git a/include/drm/drm_modeset_lock.h b/include/drm/drm_modeset_lock.h
+index aafd07388eb7..b84693fbd2b5 100644
+--- a/include/drm/drm_modeset_lock.h
++++ b/include/drm/drm_modeset_lock.h
+@@ -24,6 +24,8 @@
+ #ifndef DRM_MODESET_LOCK_H_
+ #define DRM_MODESET_LOCK_H_
+ 
++#include <linux/types.h> /* stackdepot.h is not self-contained */
++#include <linux/stackdepot.h>
+ #include <linux/ww_mutex.h>
+ 
+ struct drm_modeset_lock;
+@@ -51,6 +53,12 @@ struct drm_modeset_acquire_ctx {
+ 	 */
+ 	struct drm_modeset_lock *contended;
+ 
++	/*
++	 * Stack depot for debugging when a contended lock was not backed off
++	 * from.
++	 */
++	depot_stack_handle_t stack_depot;
++
+ 	/*
+ 	 * list of held locks (drm_modeset_lock)
+ 	 */
+-- 
+2.30.2
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21214 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([fdo#109315])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_cs_nop@nop-gfx0:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +16 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][4] ([i915#1888])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#1155])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#4103]) +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([fdo#109285])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#1072]) +3 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#3301])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-
-
-Participating hosts (31 -> 28)
-------------------------------
-
-  Additional (1): fi-tgl-1115g4 
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10671 -> Patchwork_21214
-
-  CI-20190529: 20190529
-  CI_DRM_10671: 0c56a95d6dcf174353231175cb56dfbead9aa287 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21214: acba9196789a9bd61f33432e9ba9847b58c678d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-acba9196789a drm/i915: remove IS_ACTIVE
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/index.html
-
---===============9177746316121172143==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: remove IS_ACTIVE</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95312/">https://patchwork.freedesktop.org/series/95312/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10671 -&gt; Patchwork_21214</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21214 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21214/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (31 -&gt; 28)</h2>
-<p>Additional (1): fi-tgl-1115g4 <br />
-  Missing    (4): fi-bsw-cyan bat-jsl-1 bat-dg1-6 bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10671 -&gt; Patchwork_21214</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10671: 0c56a95d6dcf174353231175cb56dfbead9aa287 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21214: acba9196789a9bd61f33432e9ba9847b58c678d8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>acba9196789a drm/i915: remove IS_ACTIVE</p>
-
-</body>
-</html>
-
---===============9177746316121172143==--
