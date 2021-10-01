@@ -2,33 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6B141F1F4
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 18:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5793341F222
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 18:28:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B64E86EE5B;
-	Fri,  1 Oct 2021 16:15:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A45276EE5F;
+	Fri,  1 Oct 2021 16:28:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 921A96EE44;
- Fri,  1 Oct 2021 16:15:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 872B2A363C;
- Fri,  1 Oct 2021 16:15:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C82E46EE5F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 16:28:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10124"; a="311027973"
+X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="311027973"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 09:16:36 -0700
+X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="521178612"
+Received: from invictus.jf.intel.com ([10.165.21.205])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 09:16:35 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  1 Oct 2021 09:16:26 -0700
+Message-Id: <20211001161626.18954-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 01 Oct 2021 16:15:20 -0000
-Message-ID: <163310492051.25584.15461453620003191068@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211001100316.26441-1-jani.nikula@intel.com>
-In-Reply-To: <20211001100316.26441-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/reg=3A_add_AUD=5FTCA=5FDP=5F2DOT0=5FCTRL_registers?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5] drm/i915: Update memory bandwidth formulae
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,24 +42,176 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The formulae has been updated to include more variables. Make
+sure the code carries the same.
 
-Series: drm/i915/reg: add AUD_TCA_DP_2DOT0_CTRL registers
-URL   : https://patchwork.freedesktop.org/series/95316/
-State : warning
+Bspec: 64631
 
-== Summary ==
+v2: Make GEN11 follow the default route and fix calculation of
+    maxdebw(RK)
+v3: Fix div by zero on default case
+    Correct indent for fallthrough(Jani)
+v4: Fix div by zero on gen11.
+v5: Fix 0 max_numchannels case
 
-$ dim checkpatch origin/drm-tip
-2e6ff8d7426c drm/i915/reg: add AUD_TCA_DP_2DOT0_CTRL registers
--:25: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#25: FILE: drivers/gpu/drm/i915/i915_reg.h:9768:
-+#define AUD_DP_2DOT0_CTRL(trans)	_MMIO_TRANS(trans, _AUD_TCA_DP_2DOT0_CTRL, _AUD_TCB_DP_2DOT0_CTRL)
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 80 ++++++++++++++++++++-----
+ 1 file changed, 65 insertions(+), 15 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 4b94256d7319..a3c0a282aaad 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -27,6 +27,9 @@ struct intel_qgv_info {
+ 	u8 num_points;
+ 	u8 num_psf_points;
+ 	u8 t_bl;
++	u8 max_numchannels;
++	u8 channel_width;
++	u8 deinterleave;
+ };
+ 
+ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
+@@ -133,7 +136,8 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+ }
+ 
+ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+-			      struct intel_qgv_info *qi)
++			      struct intel_qgv_info *qi,
++			      bool is_y_tile)
+ {
+ 	const struct dram_info *dram_info = &dev_priv->dram_info;
+ 	int i, ret;
+@@ -144,17 +148,41 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+ 	if (DISPLAY_VER(dev_priv) == 12)
+ 		switch (dram_info->type) {
+ 		case INTEL_DRAM_DDR4:
+-			qi->t_bl = 4;
++			qi->t_bl = is_y_tile ? 8 : 4;
++			qi->max_numchannels = 2;
++			qi->channel_width = 64;
++			qi->deinterleave = is_y_tile ? 1 : 2;
+ 			break;
+ 		case INTEL_DRAM_DDR5:
+-			qi->t_bl = 8;
++			qi->t_bl = is_y_tile ? 16 : 8;
++			qi->max_numchannels = 4;
++			qi->channel_width = 32;
++			qi->deinterleave = is_y_tile ? 1 : 2;
++			break;
++		case INTEL_DRAM_LPDDR4:
++			if (IS_ROCKETLAKE(dev_priv)) {
++				qi->t_bl = 8;
++				qi->max_numchannels = 4;
++				qi->channel_width = 32;
++				qi->deinterleave = 2;
++				break;
++			}
++			fallthrough;
++		case INTEL_DRAM_LPDDR5:
++			qi->t_bl = 16;
++			qi->max_numchannels = 8;
++			qi->channel_width = 16;
++			qi->deinterleave = is_y_tile ? 2 : 4;
+ 			break;
+ 		default:
+ 			qi->t_bl = 16;
++			qi->max_numchannels = 1;
+ 			break;
+ 		}
+-	else if (DISPLAY_VER(dev_priv) == 11)
++	else if (DISPLAY_VER(dev_priv) == 11) {
+ 		qi->t_bl = dev_priv->dram_info.type == INTEL_DRAM_DDR4 ? 4 : 8;
++		qi->max_numchannels = 1;
++	}
+ 
+ 	if (drm_WARN_ON(&dev_priv->drm,
+ 			qi->num_points > ARRAY_SIZE(qi->points)))
+@@ -263,37 +291,59 @@ static const struct intel_sa_info adlp_sa_info = {
+ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
+ {
+ 	struct intel_qgv_info qi = {};
++	const struct dram_info *dram_info = &dev_priv->dram_info;
+ 	bool is_y_tile = true; /* assume y tile may be used */
+ 	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
+-	int deinterleave;
+ 	int ipqdepth, ipqdepthpch;
+ 	int dclk_max;
+-	int maxdebw;
++	int maxdebw, peakbw;
++	int clperchgroup;
++	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
+ 	int i, ret;
+ 
+-	ret = icl_get_qgv_points(dev_priv, &qi);
++	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+ 	if (ret) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+ 		return ret;
+ 	}
+ 
+-	deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+-	dclk_max = icl_sagv_max_dclk(&qi);
++	if (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5)
++		num_channels *= 2;
++
++	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
++
++	if (num_channels < qi.max_numchannels && DISPLAY_VER(dev_priv) >= 12)
++		qi.deinterleave = DIV_ROUND_UP(qi.deinterleave, 2);
++
++	if (qi.max_numchannels != 0)
++		num_channels = min_t(u8, num_channels, qi.max_numchannels);
++
++	dclk_max = icl_calc_bw(icl_sagv_max_dclk(&qi), 16, 1);
+ 
+ 	ipqdepthpch = 16;
+ 
+-	maxdebw = min(sa->deprogbwlimit * 1000,
+-		      icl_calc_bw(dclk_max, 16, 1) * 6 / 10); /* 60% */
++	peakbw = num_channels * DIV_ROUND_UP(qi.deinterleave, 8) * dclk_max;
++	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * 6 / 10); /* 60% */
+ 	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
++	/*
++	 * clperchgroup = 4kpagespermempage * clperchperblock,
++	 * clperchperblock = 8 / num_channels * interleave
++	 */
++	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
+ 
+-	for (i = 0; i < ARRAY_SIZE(dev_priv->max_bw); i++) {
++	for (i = 0; i < num_groups; i++) {
+ 		struct intel_bw_info *bi = &dev_priv->max_bw[i];
+ 		int clpchgroup;
+ 		int j;
+ 
+-		clpchgroup = (sa->deburst * deinterleave / num_channels) << i;
+-		bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
++		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
++
++		if ((i < num_groups - 1 && clpchgroup < clperchgroup) ||
++		    DISPLAY_VER(dev_priv) == 11)
++			bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
++		else
++			bi->num_planes = 0;
+ 
+ 		bi->num_qgv_points = qi.num_points;
+ 		bi->num_psf_gv_points = qi.num_psf_points;
+@@ -339,7 +389,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	 * SAGV point, but we can't send PCode commands to restrict it
+ 	 * as it will fail and pointless anyway.
+ 	 */
+-	if (qi.num_points == 1)
++	if (qi.num_points >= 1)
+ 		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
+ 	else
+ 		dev_priv->sagv_status = I915_SAGV_ENABLED;
+-- 
+2.20.1
 
