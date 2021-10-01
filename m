@@ -2,43 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5101741E929
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 10:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A857B41E92E
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 10:50:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101FC6ED64;
-	Fri,  1 Oct 2021 08:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 528376E44A;
+	Fri,  1 Oct 2021 08:49:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC1346ED20;
- Fri,  1 Oct 2021 08:40:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="212633674"
-X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="212633674"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 01:40:22 -0700
-X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="520879667"
-Received: from howells-mobl.ger.corp.intel.com (HELO [10.213.208.92])
- ([10.213.208.92])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 01:40:21 -0700
-To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Cc: jason@jlekstrand.net, Daniel Vetter <daniel@ffwll.ch>
-References: <20210922194333.8956-1-matthew.brost@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <ecb916eb-7755-2c19-4f4f-389580f9acd6@linux.intel.com>
-Date: Fri, 1 Oct 2021 09:40:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B05C6E44A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 08:49:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="247932362"
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="247932362"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 01:49:57 -0700
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="556196753"
+Received: from kdoertel-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.222.34])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 01:49:56 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+In-Reply-To: <87ilyiuzst.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1632992608.git.jani.nikula@intel.com>
+ <427d27eb4e5daca208d496d6c2ffc91ed90ba714.1632992608.git.jani.nikula@intel.com>
+ <YVWHB94gggUJ4aOB@intel.com> <87ilyiuzst.fsf@intel.com>
+Date: Fri, 01 Oct 2021 11:49:54 +0300
+Message-ID: <87tui1t9hp.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210922194333.8956-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix bug in user proto-context
- creation that leaked contexts
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/fdi: move fdi modeset asserts
+ to intel_fdi.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,69 +52,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 30 Sep 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Thu, 30 Sep 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
+om> wrote:
+>> On Thu, Sep 30, 2021 at 12:22:58PM +0300, Jani Nikula wrote:
+>> <snip>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm=
+/i915/display/intel_fdi.c
+>>> index af01d1fa761e..02d3294bad7b 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+>>> @@ -10,6 +10,97 @@
+>>>  #include "intel_fdi.h"
+>>>  #include "intel_sideband.h"
+>>>=20=20
+>>> +static void assert_fdi_tx(struct drm_i915_private *dev_priv,
+>>> +			  enum pipe pipe, bool state)
+>>> +{
+>>> +	bool cur_state;
+>>> +
+>>> +	if (HAS_DDI(dev_priv)) {
+>>> +		/*
+>>> +		 * DDI does not have a specific FDI_TX register.
+>>> +		 *
+>>> +		 * FDI is never fed from EDP transcoder
+>>> +		 * so pipe->transcoder cast is fine here.
+>>> +		 */
+>>> +		enum transcoder cpu_transcoder =3D (enum transcoder)pipe;
+>>> +		cur_state =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transco=
+der)) & TRANS_DDI_FUNC_ENABLE;
+>>> +	} else {
+>>> +		cur_state =3D intel_de_read(dev_priv, FDI_TX_CTL(pipe)) & FDI_TX_ENA=
+BLE;
+>>> +	}
+>>> +	I915_STATE_WARN(cur_state !=3D state,
+>>> +			"FDI TX state assertion failure (expected %s, current %s)\n",
+>>> +			onoff(state), onoff(cur_state));
+>>> +}
+>>> +
+>>> +void assert_fdi_tx_enabled(struct drm_i915_private *i915, enum pipe pi=
+pe)
+>>> +{
+>>> +	assert_fdi_tx(i915, pipe, true);
+>>> +}
+>>> +
+>>> +void assert_fdi_tx_disabled(struct drm_i915_private *i915, enum pipe p=
+ipe)
+>>> +{
+>>> +	assert_fdi_tx(i915, pipe, false);
+>>> +}
+>>
+>> For these wrappers I could argue that static inlines would be less
+>> loc overall, while still wouldn't need any extra struct definitions/etc.
+>> in the header. But not performance sensitive so from that pov static
+>> inline is pointless.
+>
+> I didn't actually check the compiler output, but I think even
+> performance wise it'll probably end up being just one function call
+> either way. It's just a question which side of the call the logic
+> is. But agreed, doesn't really matter.
+>
+> Anyway, the main argument I have for avoiding static inlines is to not
+> set an example to cargo cult from. They should be the exception, not the
+> rule. I think both the driver and the team have grown big enough to
+> require a style that promotes better structure. Because let's face it,
+> people look at what's there, copy the style, and not think of all the
+> subtleties.
+>
+>> Anyways, this approach seems fine to me. For the series
+>> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Thanks,
+> Jani.
 
-+ Daniel as reviewer and maybe merge, avoid falling through cracks at least.
+And pushed.
 
-On 22/09/2021 20:43, Matthew Brost wrote:
-> Set number of engines before attempting to create contexts so the
-> function free_engines can clean up properly. Also check return of
-> alloc_engines for NULL.
-> 
-> v2:
->   (Tvrtko)
->    - Send as stand alone patch
->   (John Harrison)
->    - Check for alloc_engines returning NULL
-> 
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> Fixes: d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle create parameters (v5)")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Cc: <stable@vger.kernel.org>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_context.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index c2ab0e22db0a..9627c7aac6a3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -898,6 +898,11 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
->   	unsigned int n;
->   
->   	e = alloc_engines(num_engines);
-> +	if (!e) {
-> +		return ERR_PTR(-ENOMEM);
-> +	}
+BR,
+Jani.
 
-Ideally remove the braces and respin.
 
-> +	e->num_engines = num_engines;
-
-Theoretically you could have put it next to "e->engines[n] = ce" 
-assignment so the pattern is the same as in default_engines(). Kind of 
-makes more sense that the number is not set before anything is created, 
-but as it doesn't really matter since free_engines handles sparse arrays 
-so there is argument to have a simpler single assignment as well.
-
-> +
->   	for (n = 0; n < num_engines; n++) {
->   		struct intel_context *ce;
->   		int ret;
-> @@ -931,7 +936,6 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
->   			goto free_engines;
->   		}
->   	}
-> -	e->num_engines = num_engines;
->   
->   	return e;
->   
-> 
-
-Fix looks good to me. I did not want to butt in but since more than a 
-week has passed without it getting noticed:
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel Open Source Graphics Center
