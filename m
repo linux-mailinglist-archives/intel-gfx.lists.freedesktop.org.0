@@ -1,47 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCF0341EB52
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 13:04:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708C141EB7C
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 13:11:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01EE06E519;
-	Fri,  1 Oct 2021 11:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 038116E519;
+	Fri,  1 Oct 2021 11:11:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BFAE6E519
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 11:04:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="205555880"
-X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="205555880"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 04:04:11 -0700
-X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="709734709"
-Received: from kdoertel-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.222.34])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 04:04:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, kernel test robot <lkp@intel.com>
-Cc: Max Gurtovoy <mgurtovoy@nvidia.com>,
- "llvm\@lists.linux.dev" <llvm@lists.linux.dev>,
- "kbuild-all\@lists.01.org" <kbuild-all@lists.01.org>,
- "kvm\@vger.kernel.org" <kvm@vger.kernel.org>,
- Alex Williamson <alex.williamson@redhat.com>,
- Yishai Hadas <yishaih@nvidia.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210827153409.GV1721383@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210827153409.GV1721383@nvidia.com>
-Date: Fri, 01 Oct 2021 14:04:04 +0300
-Message-ID: <878rzdt3a3.fsf@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF786E519
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 11:11:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="247960262"
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="247960262"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 04:11:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="520989392"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 01 Oct 2021 04:11:44 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 01 Oct 2021 14:11:43 +0300
+Date: Fri, 1 Oct 2021 14:11:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YVbs71EKg3PklL8T@intel.com>
+References: <20211001100316.26441-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [vfio:next 33/38]
- drivers/gpu/drm/i915/i915_pci.c:975:2: warning: missing field
- 'override_only' initializer
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211001100316.26441-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/reg: add AUD_TCA_DP_2DOT0_CTRL
+ registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,69 +52,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 27 Aug 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> On Fri, Aug 27, 2021 at 03:12:36PM +0000, kernel test robot wrote:
->> tree:   https://github.com/awilliam/linux-vfio.git next
->> head:   ea870730d83fc13a5fa2bd0e175176d7ac8a400a
->> commit: 343b7258687ecfbb363bfda8833a7cf641aac524 [33/38] PCI: Add 'override_only' field to struct pci_device_id
->> config: i386-randconfig-a004-20210827 (attached as .config)
->> compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 1076082a0d97bd5c16a25ee7cf3dbb6ee4b5a9fe)
->> reproduce (this is a W=1 build):
->>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->>         chmod +x ~/bin/make.cross
->>         # https://github.com/awilliam/linux-vfio/commit/343b7258687ecfbb363bfda8833a7cf641aac524
->>         git remote add vfio https://github.com/awilliam/linux-vfio.git
->>         git fetch --no-tags vfio next
->>         git checkout 343b7258687ecfbb363bfda8833a7cf641aac524
->>         # save the attached .config to linux build tree
->>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=i386 
->> 
->> If you fix the issue, kindly add following tag as appropriate
->> Reported-by: kernel test robot <lkp@intel.com>
->
-> Ugh, this is due to this code:
->
-> #define INTEL_VGA_DEVICE(id, info) {		\
-> 	0x8086,	id,				\
-> 	~0, ~0,					\
-> 	0x030000, 0xff0000,			\
-> 	(unsigned long) info }
->
-> #define INTEL_QUANTA_VGA_DEVICE(info) {		\
-> 	0x8086,	0x16a,				\
-> 	0x152d,	0x8990,				\
-> 	0x030000, 0xff0000,			\
-> 	(unsigned long) info }
->
->
-> Which really should be using the normal pattern for defining these
-> structs:
->
-> #define PCI_DEVICE_CLASS(dev_class,dev_class_mask) \
->         .class = (dev_class), .class_mask = (dev_class_mask), \
->         .vendor = PCI_ANY_ID, .device = PCI_ANY_ID, \
->         .subvendor = PCI_ANY_ID, .subdevice = PCI_ANY_ID
->
-> The warning is also not a real issue, just clang being overzealous.
+On Fri, Oct 01, 2021 at 01:03:16PM +0300, Jani Nikula wrote:
+> For controlling the audio SDP split.
+> 
+> Bspec: 63837
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 3a20a55d2512..0d2d89ea376b 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9763,6 +9763,11 @@ enum {
+>  #define   AUDIO_CP_READY(trans)		((1 << 1) << ((trans) * 4))
+>  #define   AUDIO_ELD_VALID(trans)	((1 << 0) << ((trans) * 4))
+>  
+> +#define _AUD_TCA_DP_2DOT0_CTRL		0x650bc
+> +#define _AUD_TCB_DP_2DOT0_CTRL		0x651bc
+> +#define AUD_DP_2DOT0_CTRL(trans)	_MMIO_TRANS(trans, _AUD_TCA_DP_2DOT0_CTRL, _AUD_TCB_DP_2DOT0_CTRL)
+> +#define  AUD_ENABLE_SDP_SPLIT		REG_BIT(31)
 
-Stumbled upon this old report, sorry for the delayed response.
+Don't need the other bits? Most of the do say we don't need to
+program then. But the hblank guardband thing looks like maybe
+we might need it in some cases?
 
-The reason it's not using designated initializers is that the same file
-gets synced to some userspace projects (at least libdrm and
-igt-gpu-tools) which use the macros to initialize slightly different
-structs. For example, igt uses struct pci_id_match from libpciaccess-dev
-(/usr/include/pciaccess.h) and can't easily adapt to different member
-names.
+Either way, what you have here matches my spec so
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Anyway, we've got
-
-subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
-subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
-
-in drivers/gpu/drm/i915/Makefile, so I wonder why they're not respected.
-
-BR,
-Jani.
+> +
+>  #define HSW_AUD_CHICKENBIT			_MMIO(0x65f10)
+>  #define   SKL_AUD_CODEC_WAKE_SIGNAL		(1 << 15)
+>  
+> -- 
+> 2.30.2
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
