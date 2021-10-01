@@ -2,65 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1890641F024
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 16:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B666241F0B1
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 17:11:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE0F6EE13;
-	Fri,  1 Oct 2021 14:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F3EC6EE1D;
+	Fri,  1 Oct 2021 15:11:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50A6A6EE12
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 14:59:06 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id v127so7421668wme.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 01 Oct 2021 07:59:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=jJY3uvVzN0+VKIpmed9vmKmw2VVI6RacX8HsYm/goNY=;
- b=f5QVKtGJ5k9YZXEPvvvDUeHpDPpJckx+aesGc+HHJD4Mt/L2+BvFkCXq8ZB++QSFBD
- wnFyRdRgp1Ynhb9SEmyFJ2WX3ipOeM4sJpUS6cBY3RpS5XAYEg3fJcIoXY27Gw2vwXeQ
- G+TXvF3/LVWYhq7q28zee5nPlRkVvtSofUwz4=
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
+ [IPv6:2607:f8b0:4864:20::730])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18C246EE17
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 15:11:48 +0000 (UTC)
+Received: by mail-qk1-x730.google.com with SMTP id b65so9393725qkc.13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 01 Oct 2021 08:11:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=vO4kdfgb1Vqm16KV8C3Aqdmf3t7Gzo/RmQdEN5wFY60=;
+ b=VJRrSY9iWkJWJ/5a+JVkfwODfI51U+/aWi00HW/kLhOPuKSpqa2R6LUoVWPbDD+DSh
+ Fa8zFEdMfFke3Q279tW6o0ysYjUfA0gHjo5b7kY44vMe/AF8O0ysMX/XWynFWFa/wv5O
+ b17QfT7V0B9GfuHAJ0eBdC50ykfRYr1xDezUC9QKCp1PjmDN2DeKtOmlPcBwE98aHaIP
+ O+am3R/YcZscSTJ5BQcETa30+KhnJsU5D+Uu8jubsY9lMf7AU80/0Uo9zZpT/S130SQi
+ 9Mdq3tnlJJemUjN1/kVMN8Iwy6j56nJRfq0uKu7hbk7E62GgW8bLL2IFvq0C8vcm+vgL
+ iYEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=jJY3uvVzN0+VKIpmed9vmKmw2VVI6RacX8HsYm/goNY=;
- b=6bQTcqjPKXVm6rT6tfbWURt3C+2o8BlhZDkjE9IQMwWdOOe7JvnxRq0nMkxQU0sq9v
- uNTe5rXVtCqgCrEedfTdjlsJvDDZyT/FUeh+HafVvWNa8ESc5twFu2SsM+oF91+B/Qda
- +5UR9fXrXaj7yNqWvEzaHFBTSwRAdKR0RapF/do3yXq5Id+32tiPSPpW7nk6PSjLoqyr
- UhVC8nNvHnLdFNUNERJOvlFsZc8Ksa0pakfH4gnU3+2T/w1krn04Ijec+OyjnYvp1dlX
- vPRWt/BsyxikJx2K1Da08DCCd9tjzCriDMtUxwtmdDYq6abWdIPFvJS0w7mRmVPJo4Ga
- KYqg==
-X-Gm-Message-State: AOAM533/4dcktO+dyvjpFROJtWcL1wR5Cn4Ms342esUxuuF6qwu+OTBE
- IgeHrR3uMmBsm0hRw9JzgVID/w==
-X-Google-Smtp-Source: ABdhPJzwJRUp2ynFM0uvvs3tHsF6rU4Eus0M8GsESjG+LJMbs4tweVrKyqVAFlHgjzPUYLH7gYFcow==
-X-Received: by 2002:a05:600c:4293:: with SMTP id
- v19mr5093862wmc.113.1633100344627; 
- Fri, 01 Oct 2021 07:59:04 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y23sm8226866wmi.16.2021.10.01.07.59.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Oct 2021 07:59:04 -0700 (PDT)
-Date: Fri, 1 Oct 2021 16:59:02 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Message-ID: <YVciNsllheJM6bom@phenom.ffwll.local>
-References: <87lf3ev44z.fsf@intel.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=vO4kdfgb1Vqm16KV8C3Aqdmf3t7Gzo/RmQdEN5wFY60=;
+ b=yNmS8lLZKuA5KbdjVHHnx9bAj3r9FRcyI41SME8REqNqpC/duCfcLBYtchqK8P7DNy
+ zYVe4ZUYWnXX+knLE9S6GTADYYrpHzauILhVJ6nkrPtCcJToLHWoyhu08JXFsJhHqScd
+ np53yrIPD5QTXkRGQAbx/sCZNMpojEk0gpzMY+/krRA2LDONbxGxRPLrFXSWj5BpqjEp
+ 5GBhwTh+XuD+khPM+e57haObsStDr2iLAxCTb51w2NghsvEKl0IgLc+kbueN0CnaSuTk
+ 03EgXn6jEUA62KtITlfVgvcy/l/fbBRQxjmgQAqpXL5bTqhwizC8qOyQBQC1rm5XZ/HR
+ PmWQ==
+X-Gm-Message-State: AOAM530Qew/gG51JXM2qaabdQ9T2es+PNM/6yOciQRGSPzi8lApw/FZx
+ wfRyHj4Gg/Dz57f4k4hYbZKohw==
+X-Google-Smtp-Source: ABdhPJyQShcqCbAPqx87hf2IYX8GhsB4C9aqH9k6ABojR8BqxynALNIn8HAyqsKuzAU4+7Q+fXH9aQ==
+X-Received: by 2002:a37:a2c5:: with SMTP id l188mr9594572qke.268.1633101107068; 
+ Fri, 01 Oct 2021 08:11:47 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+ by smtp.gmail.com with ESMTPSA id p12sm3169783qkj.54.2021.10.01.08.11.46
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 01 Oct 2021 08:11:46 -0700 (PDT)
+From: Sean Paul <sean@poorly.run>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
+Cc: swboyd@chromium.org, jani.nikula@linux.intel.com,
+ Sean Paul <seanpaul@chromium.org>
+Date: Fri,  1 Oct 2021 11:11:29 -0400
+Message-Id: <20211001151145.55916-1-sean@poorly.run>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87lf3ev44z.fsf@intel.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 00/14] drm/hdcp: Pull HDCP
+ auth/exchange/check into helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,71 +72,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 30, 2021 at 11:50:20AM +0300, Jani Nikula wrote:
-> 
-> Hi Dave & Daniel -
-> 
-> drm-intel-fixes-2021-09-30:
-> drm/i915 fixes for v5.15-rc4:
-> - Fix GVT scheduler ww lock usage
-> - Fix pdfdocs documentation build
-> - Fix request early tracepoints
-> - Fix an invalid warning from rps worker
-> 
-> BR,
-> Jani.
-> 
-> The following changes since commit 5816b3e6577eaa676ceb00a848f0fd65fe2adc29:
-> 
->   Linux 5.15-rc3 (2021-09-26 14:08:19 -0700)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-09-30
-> 
-> for you to fetch changes up to 4b8bcaf8a6d6ab5db51e30865def5cb694eb2966:
-> 
->   drm/i915: Remove warning from the rps worker (2021-09-27 12:46:40 +0300)
+From: Sean Paul <seanpaul@chromium.org>
 
-Merged into drm-fixes, apologies for being a bit late, I was held up in a
-drm-misc-fixes chaos.
--Daniel
+Hello again,
+Here is v3 of the patch series. Notable changes include incorporating
+review feedback involving:
+ - Changed dt-bindings to introduce new compatible string
+ - Code changes in msm driver as suggested by Stephen & Abhinav
+ - Fixed issues found by 0-day
 
-> 
-> ----------------------------------------------------------------
-> drm/i915 fixes for v5.15-rc4:
-> - Fix GVT scheduler ww lock usage
-> - Fix pdfdocs documentation build
-> - Fix request early tracepoints
-> - Fix an invalid warning from rps worker
-> 
-> ----------------------------------------------------------------
-> Akira Yokosawa (1):
->       drm/i915/guc, docs: Fix pdfdocs build error by removing nested grid
-> 
-> Jani Nikula (1):
->       Merge tag 'gvt-fixes-2021-09-18' of https://github.com/intel/gvt-linux into drm-intel-fixes
-> 
-> Matthew Auld (1):
->       drm/i915/request: fix early tracepoints
-> 
-> Tejas Upadhyay (1):
->       drm/i915: Remove warning from the rps worker
-> 
-> Zhi A Wang (1):
->       drm/i915/gvt: fix the usage of ww lock in gvt scheduler.
-> 
->  drivers/gpu/drm/i915/gt/intel_rps.c                         |  2 --
->  drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h  | 10 +++++-----
->  drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h | 10 +++++-----
->  drivers/gpu/drm/i915/gvt/scheduler.c                        |  4 ++--
->  drivers/gpu/drm/i915/i915_request.c                         | 11 ++---------
->  5 files changed, 14 insertions(+), 23 deletions(-)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Thank you to the reviewers for their feedback thus far!
+
+Please take a look,
+
+Sean
+
+Link: https://patchwork.freedesktop.org/series/94623/ #v1
+Link: https://patchwork.freedesktop.org/series/94713/ #v2
+
+Sean Paul (14):
+  drm/hdcp: Add drm_hdcp_atomic_check()
+  drm/hdcp: Avoid changing crtc state in hdcp atomic check
+  drm/hdcp: Update property value on content type and user changes
+  drm/hdcp: Expand HDCP helper library for enable/disable/check
+  drm/i915/hdcp: Consolidate HDCP setup/state cache
+  drm/i915/hdcp: Retain hdcp_capable return codes
+  drm/i915/hdcp: Use HDCP helpers for i915
+  drm/msm/dpu_kms: Re-order dpu includes
+  drm/msm/dpu: Remove useless checks in dpu_encoder
+  drm/msm/dpu: Remove encoder->enable() hack
+  drm/msm/dp: Re-order dp_audio_put in deinit_sub_modules
+  dt-bindings: msm/dp: Add bindings for HDCP registers
+  arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
+  drm/msm: Implement HDCP 1.x using the new drm HDCP helpers
+
+ .../bindings/display/msm/dp-controller.yaml   |   34 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |    6 +-
+ drivers/gpu/drm/drm_hdcp.c                    | 1197 ++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_atomic.c   |    7 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   29 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   11 +-
+ .../drm/i915/display/intel_display_types.h    |   58 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  345 ++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   17 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 1011 +++-----------
+ drivers/gpu/drm/i915/display/intel_hdcp.h     |   36 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  256 ++--
+ drivers/gpu/drm/msm/Makefile                  |    1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c   |   17 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   30 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h       |    2 -
+ drivers/gpu/drm/msm/disp/dpu1/dpu_trace.h     |    4 -
+ drivers/gpu/drm/msm/dp/dp_debug.c             |   46 +-
+ drivers/gpu/drm/msm/dp/dp_debug.h             |    6 +-
+ drivers/gpu/drm/msm/dp/dp_display.c           |   49 +-
+ drivers/gpu/drm/msm/dp/dp_display.h           |    5 +
+ drivers/gpu/drm/msm/dp/dp_drm.c               |   68 +-
+ drivers/gpu/drm/msm/dp/dp_drm.h               |    5 +
+ drivers/gpu/drm/msm/dp/dp_hdcp.c              |  445 ++++++
+ drivers/gpu/drm/msm/dp/dp_hdcp.h              |   27 +
+ drivers/gpu/drm/msm/dp/dp_parser.c            |   23 +-
+ drivers/gpu/drm/msm/dp/dp_parser.h            |    4 +
+ drivers/gpu/drm/msm/dp/dp_reg.h               |   44 +-
+ drivers/gpu/drm/msm/msm_atomic.c              |   15 +
+ include/drm/drm_hdcp.h                        |  194 +++
+ 30 files changed, 2600 insertions(+), 1392 deletions(-)
+ create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.c
+ create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.h
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Sean Paul, Software Engineer, Google / Chromium OS
+
