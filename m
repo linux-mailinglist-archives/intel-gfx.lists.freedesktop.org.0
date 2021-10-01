@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A857B41E92E
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 10:50:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6A4541E930
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 10:50:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 528376E44A;
-	Fri,  1 Oct 2021 08:49:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 232396E44A;
+	Fri,  1 Oct 2021 08:50:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B05C6E44A
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 08:49:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="247932362"
-X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="247932362"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 01:49:57 -0700
-X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="556196753"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3527E6E44A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 08:50:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="225455390"
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="225455390"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 01:50:55 -0700
+X-IronPort-AV: E=Sophos;i="5.85,337,1624345200"; d="scan'208";a="564835572"
 Received: from kdoertel-mobl.ger.corp.intel.com (HELO localhost)
  ([10.251.222.34])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 01:49:56 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 01:50:53 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-In-Reply-To: <87ilyiuzst.fsf@intel.com>
+In-Reply-To: <YVWrz/hS3K/2orF9@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1632992608.git.jani.nikula@intel.com>
- <427d27eb4e5daca208d496d6c2ffc91ed90ba714.1632992608.git.jani.nikula@intel.com>
- <YVWHB94gggUJ4aOB@intel.com> <87ilyiuzst.fsf@intel.com>
-Date: Fri, 01 Oct 2021 11:49:54 +0300
-Message-ID: <87tui1t9hp.fsf@intel.com>
+References: <cover.1633000838.git.jani.nikula@intel.com>
+ <e2f79220ed2558f615c051e2533275a5dae1a04f.1633000838.git.jani.nikula@intel.com>
+ <YVWrz/hS3K/2orF9@intel.com>
+Date: Fri, 01 Oct 2021 11:50:49 +0300
+Message-ID: <87r1d5t9g6.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/fdi: move fdi modeset asserts
- to intel_fdi.c
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dram: return -ENOENT instead
+ of -1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,84 +52,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 30 Sep 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Thu, 30 Sep 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om> wrote:
->> On Thu, Sep 30, 2021 at 12:22:58PM +0300, Jani Nikula wrote:
->> <snip>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm=
-/i915/display/intel_fdi.c
->>> index af01d1fa761e..02d3294bad7b 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
->>> @@ -10,6 +10,97 @@
->>>  #include "intel_fdi.h"
->>>  #include "intel_sideband.h"
->>>=20=20
->>> +static void assert_fdi_tx(struct drm_i915_private *dev_priv,
->>> +			  enum pipe pipe, bool state)
->>> +{
->>> +	bool cur_state;
->>> +
->>> +	if (HAS_DDI(dev_priv)) {
->>> +		/*
->>> +		 * DDI does not have a specific FDI_TX register.
->>> +		 *
->>> +		 * FDI is never fed from EDP transcoder
->>> +		 * so pipe->transcoder cast is fine here.
->>> +		 */
->>> +		enum transcoder cpu_transcoder =3D (enum transcoder)pipe;
->>> +		cur_state =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transco=
-der)) & TRANS_DDI_FUNC_ENABLE;
->>> +	} else {
->>> +		cur_state =3D intel_de_read(dev_priv, FDI_TX_CTL(pipe)) & FDI_TX_ENA=
-BLE;
->>> +	}
->>> +	I915_STATE_WARN(cur_state !=3D state,
->>> +			"FDI TX state assertion failure (expected %s, current %s)\n",
->>> +			onoff(state), onoff(cur_state));
->>> +}
->>> +
->>> +void assert_fdi_tx_enabled(struct drm_i915_private *i915, enum pipe pi=
-pe)
->>> +{
->>> +	assert_fdi_tx(i915, pipe, true);
->>> +}
->>> +
->>> +void assert_fdi_tx_disabled(struct drm_i915_private *i915, enum pipe p=
-ipe)
->>> +{
->>> +	assert_fdi_tx(i915, pipe, false);
->>> +}
->>
->> For these wrappers I could argue that static inlines would be less
->> loc overall, while still wouldn't need any extra struct definitions/etc.
->> in the header. But not performance sensitive so from that pov static
->> inline is pointless.
+On Thu, 30 Sep 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Sep 30, 2021 at 02:24:36PM +0300, Jani Nikula wrote:
+>> Avoid using the incidental -EPERM.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/intel_dram.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/in=
+tel_dram.c
+>> index 91866520c173..a506a2196de4 100644
+>> --- a/drivers/gpu/drm/i915/intel_dram.c
+>> +++ b/drivers/gpu/drm/i915/intel_dram.c
+>> @@ -444,7 +444,7 @@ static int icl_pcode_read_mem_global_info(struct drm=
+_i915_private *dev_priv)
+>>  			break;
+>>  		default:
+>>  			MISSING_CASE(val & 0xf);
+>> -			return -1;
+>> +			return -ENOENT;
 >
-> I didn't actually check the compiler output, but I think even
-> performance wise it'll probably end up being just one function call
-> either way. It's just a question which side of the call the logic
-> is. But agreed, doesn't really matter.
->
-> Anyway, the main argument I have for avoiding static inlines is to not
-> set an example to cargo cult from. They should be the exception, not the
-> rule. I think both the driver and the team have grown big enough to
-> require a style that promotes better structure. Because let's face it,
-> people look at what's there, copy the style, and not think of all the
-> subtleties.
->
->> Anyways, this approach seems fine to me. For the series
->> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Thanks,
-> Jani.
+> Everything else is -EINVAL in that file. So maybe just stick to=20
+> that? I guess for a bunch of these maybe something different
+> might make sense to indicate that it's the hw telling us nonsense
+> (or the driver is actually missing some necessaty stuff).
+> But boesn't really matter since it's just a bogus value.
 
-And pushed.
+Exceptionally fixed this while pushing.
+
+>
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Thanks, pushed.
 
 BR,
 Jani.
 
+>
+>>  		}
+>>  	} else {
+>>  		switch (val & 0xf) {
+>> @@ -462,7 +462,7 @@ static int icl_pcode_read_mem_global_info(struct drm=
+_i915_private *dev_priv)
+>>  			break;
+>>  		default:
+>>  			MISSING_CASE(val & 0xf);
+>> -			return -1;
+>> +			return -ENOENT;
+>>  		}
+>>  	}
+>>=20=20
+>> --=20
+>> 2.30.2
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
