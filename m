@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A48D41F416
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 19:58:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE85441F434
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 19:59:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A98EA6EEA4;
-	Fri,  1 Oct 2021 17:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A47E6EEB8;
+	Fri,  1 Oct 2021 17:59:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C1A1C6EEA4;
- Fri,  1 Oct 2021 17:58:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D871B6EEB8;
+ Fri,  1 Oct 2021 17:59:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BA2A8AA916;
- Fri,  1 Oct 2021 17:58:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3254647176887086473=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D4E5CAA917;
+ Fri,  1 Oct 2021 17:59:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 01 Oct 2021 17:58:02 -0000
-Message-ID: <163311108275.25584.4346945898566445030@emeril.freedesktop.org>
+Date: Fri, 01 Oct 2021 17:59:23 -0000
+Message-ID: <163311116386.25582.3008468512398268640@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211001100247.26185-1-jani.nikula@intel.com>
-In-Reply-To: <20211001100247.26185-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dg2=3A_update_link_training_for_128b/132b?=
+References: <20211001100610.2899-1-christian.koenig@amd.com>
+In-Reply-To: <20211001100610.2899-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/28=5D_dma-buf=3A_add_dma=5Fresv?=
+ =?utf-8?q?=5Ffor=5Feach=5Ffence=5Funlocked_v7?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,225 +46,174 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3254647176887086473==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dg2: update link training for 128b/132b
-URL   : https://patchwork.freedesktop.org/series/95317/
-State : success
+Series: series starting with [01/28] dma-buf: add dma_resv_for_each_fence_unlocked v7
+URL   : https://patchwork.freedesktop.org/series/95322/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10679 -> Patchwork_21217
-====================================================
+$ dim checkpatch origin/drm-tip
+245f2aaae8e7 dma-buf: add dma_resv_for_each_fence_unlocked v7
+-:23: WARNING:TYPO_SPELLING: 'superflous' may be misspelled - perhaps 'superfluous'?
+#23: 
+v4: fix NULL deref when no explicit fence exists, drop superflous
+                                                       ^^^^^^^^^^
 
-Summary
--------
+-:244: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cursor' - possible side-effects?
+#244: FILE: include/linux/dma-resv.h:243:
++#define dma_resv_for_each_fence_unlocked(cursor, fence)			\
++	for (fence = dma_resv_iter_first_unlocked(cursor);		\
++	     fence; fence = dma_resv_iter_next_unlocked(cursor))
 
-  **SUCCESS**
+-:244: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fence' - possible side-effects?
+#244: FILE: include/linux/dma-resv.h:243:
++#define dma_resv_for_each_fence_unlocked(cursor, fence)			\
++	for (fence = dma_resv_iter_first_unlocked(cursor);		\
++	     fence; fence = dma_resv_iter_next_unlocked(cursor))
 
-  No regressions found.
+-:250: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/index.html
+total: 0 errors, 2 warnings, 2 checks, 207 lines checked
+56320331defb dma-buf: add dma_resv_for_each_fence
+-:100: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cursor' - possible side-effects?
+#100: FILE: include/linux/dma-resv.h:261:
++#define dma_resv_for_each_fence(cursor, obj, all_fences, fence)	\
++	for (dma_resv_iter_begin(cursor, obj, all_fences),	\
++	     fence = dma_resv_iter_first(cursor); fence;	\
++	     fence = dma_resv_iter_next(cursor))
 
-Possible new issues
--------------------
+-:100: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fence' - possible side-effects?
+#100: FILE: include/linux/dma-resv.h:261:
++#define dma_resv_for_each_fence(cursor, obj, all_fences, fence)	\
++	for (dma_resv_iter_begin(cursor, obj, all_fences),	\
++	     fence = dma_resv_iter_first(cursor); fence;	\
++	     fence = dma_resv_iter_next(cursor))
 
-  Here are the unknown changes that may have been introduced in Patchwork_21217:
+-:107: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 2 checks, 83 lines checked
+06863461ba7e dma-buf: add dma_resv selftest
+-:37: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#37: 
+new file mode 100644
 
-#### Suppressed ####
+-:42: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/dma-buf/st-dma-resv.c', please use '//' instead
+#42: FILE: drivers/dma-buf/st-dma-resv.c:1:
++/* SPDX-License-Identifier: MIT */
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+-:42: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#42: FILE: drivers/dma-buf/st-dma-resv.c:1:
++/* SPDX-License-Identifier: MIT */
 
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-jsl-1}:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
+-:45: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#45: FILE: drivers/dma-buf/st-dma-resv.c:4:
++/*
++* Copyright © 2019 Intel Corporation
 
-  
-Known issues
-------------
+-:205: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  Here are the changes found in Patchwork_21217 that come from known issues:
+total: 0 errors, 5 warnings, 0 checks, 176 lines checked
+de846c1ce1c4 dma-buf: use new iterator in dma_resv_copy_fences
+-:125: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 106 lines checked
+03e7391693c8 dma-buf: use new iterator in dma_resv_get_fences v3
+-:156: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 0 checks, 134 lines checked
+a09667855551 dma-buf: use new iterator in dma_resv_wait_timeout
+-:101: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [PASS][3] -> [DMESG-FAIL][4] ([i915#3987])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
+total: 0 errors, 1 warnings, 0 checks, 82 lines checked
+6b08ff66c608 dma-buf: use new iterator in dma_resv_test_signaled
+-:92: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#165]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+f1e8f9f01608 dma-buf: use the new iterator in dma_buf_debug_show
+-:55: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8] ([i915#165] / [i915#295]) +13 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+cc517c68e55e dma-buf: use the new iterator in dma_resv_poll
+-:84: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  
-#### Possible fixes ####
+total: 0 errors, 1 warnings, 0 checks, 64 lines checked
+029b51ce7daa drm/ttm: use the new iterator in ttm_bo_flush_all_fences
+-:46: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  * igt@i915_module_load@reload:
-    - {fi-tgl-dsi}:       [DMESG-WARN][9] ([i915#1982] / [i915#4136]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-tgl-dsi/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-tgl-dsi/igt@i915_module_load@reload.html
+total: 0 errors, 1 warnings, 0 checks, 27 lines checked
+96ea00a5bf91 drm/amdgpu: use the new iterator in amdgpu_sync_resv
+-:72: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][11] ([i915#95]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+total: 0 errors, 1 warnings, 0 checks, 55 lines checked
+64168de2b5b7 drm/amdgpu: use new iterator in amdgpu_ttm_bo_eviction_valuable
+-:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+4047e3c04716 drm/amdgpu: use new iterator in amdgpu_vm_prt_fini
+-:52: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3970]: https://gitlab.freedesktop.org/drm/intel/issues/3970
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4136]: https://gitlab.freedesktop.org/drm/intel/issues/4136
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
+f39c4f1c1e7a drm/msm: use new iterator in msm_gem_describe
+-:55: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+e7221520c5b1 drm/radeon: use new iterator in radeon_sync_resv
+-:53: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-Participating hosts (34 -> 28)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+e4b9579cf42b drm/scheduler: use new iterator in drm_sched_job_add_implicit_dependencies v2
+-:57: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  Missing    (6): bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 bat-jsl-2 bat-jsl-1 
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+e1a495ad7023 drm/i915: use the new iterator in i915_gem_busy_ioctl v2
+-:69: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
+total: 0 errors, 1 warnings, 0 checks, 49 lines checked
+1caa54e479b4 drm/i915: use the new iterator in i915_sw_fence_await_reservation v3
+-:89: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-Build changes
--------------
+total: 0 errors, 1 warnings, 0 checks, 67 lines checked
+6df794ac0370 drm/i915: use the new iterator in i915_request_await_object v2
+-:65: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  * Linux: CI_DRM_10679 -> Patchwork_21217
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+8eac2458a6b8 drm/i915: use new iterator in i915_gem_object_wait_reservation
+-:82: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  CI-20190529: 20190529
-  CI_DRM_10679: 54b158b325c6f7e7898c3dadc8b40d888c797e9e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21217: a29a3e413068e177563f9f254cf5f0a6b869b7bd @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 0 errors, 1 warnings, 0 checks, 64 lines checked
+4307f1f29fca drm/i915: use new iterator in i915_gem_object_wait_priority
+-:55: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+fdf197d59566 drm/i915: use new cursor in intel_prepare_plane_fb
+-:40: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-== Linux commits ==
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+70793eb0432e drm: use new iterator in drm_gem_fence_array_add_implicit v3
+-:56: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-a29a3e413068 drm/i915/dg2: update link training for 128b/132b
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+188bb80a44ba drm: use new iterator in drm_gem_plane_helper_prepare_fb
+-:45: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-== Logs ==
+total: 0 errors, 1 warnings, 0 checks, 26 lines checked
+4edb3418f2c7 drm/nouveau: use the new iterator in nouveau_fence_sync
+-:96: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/index.html
+total: 0 errors, 1 warnings, 0 checks, 77 lines checked
+f876fe18a0a6 drm/nouveau: use the new interator in nv50_wndw_prepare_fb
+-:41: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
---===============3254647176887086473==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+48d9574b53bb drm/etnaviv: use new iterator in etnaviv_gem_describe
+-:69: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
+300544a79d8b drm/etnaviv: replace dma_resv_get_excl_unlocked
+-:25: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: update link training for 128b/132b</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95317/">https://patchwork.freedesktop.org/series/95317/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
-    <h1>CI Bug Log - changes from CI_DRM_10679 -&gt; Patchwork_21217</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21217:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21217 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +13 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-tgl-dsi/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4136">i915#4136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-tgl-dsi/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10679/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21217/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (34 -&gt; 28)</h2>
-<p>Missing    (6): bat-adls-5 bat-dg1-6 fi-bsw-cyan bat-adlp-4 bat-jsl-2 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10679 -&gt; Patchwork_21217</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10679: 54b158b325c6f7e7898c3dadc8b40d888c797e9e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21217: a29a3e413068e177563f9f254cf5f0a6b869b7bd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a29a3e413068 drm/i915/dg2: update link training for 128b/132b</p>
-
-</body>
-</html>
-
---===============3254647176887086473==--
