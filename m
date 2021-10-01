@@ -1,42 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8DE41EF53
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 16:20:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E5441EFEF
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 16:46:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E36CD6ECF4;
-	Fri,  1 Oct 2021 14:20:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C752E6EDAA;
+	Fri,  1 Oct 2021 14:46:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2941B6ECF4
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 14:20:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="222246968"
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="222246968"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 07:20:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="521083536"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 01 Oct 2021 07:20:18 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 01 Oct 2021 17:20:17 +0300
-Date: Fri, 1 Oct 2021 17:20:17 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: imre.deak@intel.com, intel-gfx@lists.freedesktop.org
-Message-ID: <YVcZIYZLZaPhXvm6@intel.com>
-References: <20211001132535.GA7930@kili>
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A6F06EDA7
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 14:46:19 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id d6so15825702wrc.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 01 Oct 2021 07:46:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=DeKM/glQH1OST7hI85kU7s7231VCn/y2isG1tUK7Ir0=;
+ b=M4ag6i3gm93WRjWENtKbZH051fks8wpKb0SfvhEA7HQGdGA1FSUPRdgu8F+hbEG5zB
+ u6VTglWErZt4Xalf4kMdC/MvuGZP8QAQIeO5Oyfv9aidFRTNfNeovHL+fHpDeKKAAyEv
+ zqA0fh0xPp3om/oLi36TZ3lYKr/nToqDOdbFI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=DeKM/glQH1OST7hI85kU7s7231VCn/y2isG1tUK7Ir0=;
+ b=Oui6+pyRunkRZbHgckX1pT6/JcIsX+NsiCMlTP6IUn0DCBJcEcREQD8gztAvAiMYtz
+ K1oNZGdXUP9DoiimUlc5zwNEEar0G02bLQsZ0E51cpBPDve9VlnuTpcXW9lyDSA/CVMS
+ G+isC0mQyClDTdu33OPZlXovGX/E/tH/11iGdS7R6+qu4FBr3oeRwta+qi/fxZA9J/w8
+ pS67zzA1J89wo1IXp8chvo/H9qNGLmjGgJxQ3XRq7Fb3PtZWbrmAJhy/HIaRKMn6Zf1l
+ VfYMDlch/t6GoacLRvZcZSWN/6M5iQrHMVRT5GNzV5OdSqILajTad5G71RST9t8FPtJ1
+ oyeg==
+X-Gm-Message-State: AOAM530JVKMGfEV7Xx5B830IVZuqa4iI5jrFHJXjWKlLuCgmWYAisrrF
+ u3EoBpSx6HfqdkG9TA8X6xMgWg==
+X-Google-Smtp-Source: ABdhPJzykEQbyUPRkXyhqkDipVTH6/M/0MxCt1oDUgo/ZvB6C2gtIYyWX7znf6uM+569qUKP5nL3mg==
+X-Received: by 2002:adf:e94d:: with SMTP id m13mr13277806wrn.28.1633099577457; 
+ Fri, 01 Oct 2021 07:46:17 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id y197sm9135278wmc.18.2021.10.01.07.46.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 01 Oct 2021 07:46:16 -0700 (PDT)
+Date: Fri, 1 Oct 2021 16:46:15 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Message-ID: <YVcfN701HE9tuIsx@phenom.ffwll.local>
+References: <f079a5d2-3095-1065-85c2-9d510260215b@linux.intel.com>
+ <YVbZ/P3FA4KuL2/w@phenom.ffwll.local>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211001132535.GA7930@kili>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [bug report] drm/i915/tc: Fix TypeC PHY
- connect/disconnect logic on ADL-P
+In-Reply-To: <YVbZ/P3FA4KuL2/w@phenom.ffwll.local>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,44 +75,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 01, 2021 at 04:25:35PM +0300, Dan Carpenter wrote:
-> Hello Imre Deak,
-> 
-> This is a semi-automatic email about new static checker warnings.
-> 
-> The patch 3e0abc7661c8: "drm/i915/tc: Fix TypeC PHY 
-> connect/disconnect logic on ADL-P" from Sep 29, 2021, leads to the 
-> following Smatch complaint:
-> 
->     drivers/gpu/drm/i915/display/intel_ddi.c:4028 intel_ddi_encoder_destroy()
->     warn: variable dereferenced before check 'dig_port' (see line 4020)
-> 
-> drivers/gpu/drm/i915/display/intel_ddi.c
->   4019		struct intel_digital_port *dig_port = enc_to_dig_port(to_intel_encoder(encoder));
->   4020		enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
->                                                        ^^^^^^^^^^^^^^^^^^^
-> The patch adds a new unchecked dereference.
-> 
->   4021	
->   4022		intel_dp_encoder_flush_work(encoder);
->   4023		if (intel_phy_is_tc(i915, phy))
->   4024			intel_tc_port_flush_work(dig_port);
->   4025		intel_display_power_flush_work(i915);
->   4026	
->   4027		drm_encoder_cleanup(encoder);
->   4028		if (dig_port)
->                     ^^^^^^^^
-> But the existing code checked for NULL.
+On Fri, Oct 01, 2021 at 11:50:52AM +0200, Daniel Vetter wrote:
+> On Thu, Sep 30, 2021 at 12:06:21PM +0200, Maarten Lankhorst wrote:
+> > drm-misc-fixes-2021-09-30:
+> > drm-misc-fixes for v5.15:
+> > - Not sure if drm-misc-fixes-2021-09-08 tag was pulled, assuming it is.
+> > - Power management fixes for vc4.
+> > - Compiler fix for vc4.
+> > - Cursor fix for nouveau.
+> > - Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
+> > - Small rockchip fixes.
+> > - Fix DT bindings indent for ili9341.
+> > - Fix y030xx067a init sequence to not get a yellow tint.
+> > - Kconfig fix for fb_simple vs simpledrm.
+> > The following changes since commit 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f:
+> > 
+> >   Linux 5.15-rc1 (2021-09-12 16:28:37 -0700)
+> > 
+> > are available in the Git repository at:
+> > 
+> >   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-09-30
+> > 
+> > for you to fetch changes up to fd09961dbb9ca6558d8ad318a3967c1048bdb090:
+> > 
+> >   fbdev: simplefb: fix Kconfig dependencies (2021-09-29 09:26:58 +0200)
+> > 
+> > ----------------------------------------------------------------
+> > drm-misc-fixes for v5.15:
+> > - Not sure if drm-misc-fixes-2021-09-08 tag was pulled, assuming it is.
 
-That check is nonsense. Feel free to nuke it.
+Dave said he won't pull it and just cherry-picked the ttm fix, and asked
+for a rebase of the remaining bits.
 
+> > - Power management fixes for vc4.
+> > - Compiler fix for vc4.
+> > - Cursor fix for nouveau.
+> > - Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
+> > - Small rockchip fixes.
+> > - Fix DT bindings indent for ili9341.
+> > - Fix y030xx067a init sequence to not get a yellow tint.
+> > - Kconfig fix for fb_simple vs simpledrm.
 > 
->   4029			kfree(dig_port->hdcp_port_data.streams);
->   4030		kfree(dig_port);
+> I can't pull this, because it conflicts with vc4 reverts in -rc2. There's
+> a completely busted merge resolution in drm-tip, which doesn't even
+> compile.
 > 
-> regards,
-> dan carpenter
+> Please
+> - drop all vc4 patches
+> - rebase onto -rc3 or -rc4 if it's too late
+> 
+> I'll do the pull to Linus this afternoon, would be good to get the other
+> fixes in.
+
+I didn't see anything, so I guess it's going to be rebase onto -rc4 next
+week. Please don't fumble this for another week, the kmb fix is almost a
+month old by now because it keeps falling through cracks. drm-misc is
+supposed to be worry-free, not "where is my drm-misc-fixes" pull request
+land ...
+-Daniel
+
+> -Daniel
+> 
+> > 
+> > ----------------------------------------------------------------
+> > Arnd Bergmann (1):
+> >       fbdev: simplefb: fix Kconfig dependencies
+> > 
+> > Ben Skeggs (3):
+> >       drm/nouveau/kms/tu102-: delay enabling cursor until after assign_windows
+> >       drm/nouveau/ga102-: support ttm buffer moves via copy engine
+> >       drm/nouveau/fifo/ga102: initialise chid on return from channel creation
+> > 
+> > Chris Morgan (1):
+> >       drm/rockchip: Update crtc fixup to account for fractional clk change
+> > 
+> > Christophe Branchereau (1):
+> >       drm/panel: abt-y030xx067a: yellow tint fix
+> > 
+> > Edmund Dea (1):
+> >       drm/kmb: Enable alpha blended second plane
+> > 
+> > Jernej Skrabec (1):
+> >       drm/sun4i: dw-hdmi: Fix HDMI PHY clock setup
+> > 
+> > Krzysztof Kozlowski (1):
+> >       dt-bindings: panel: ili9341: correct indentation
+> > 
+> > Maarten Lankhorst (1):
+> >       Merge drm/drm-fixes into drm-misc-fixes
+> > 
+> > Maxime Ripard (7):
+> >       drm/vc4: select PM
+> >       drm/vc4: hdmi: Make sure the controller is powered up during bind
+> >       drm/vc4: hdmi: Rework the pre_crtc_configure error handling
+> >       drm/vc4: hdmi: Split the CEC disable / enable functions in two
+> >       drm/vc4: hdmi: Make sure the device is powered with CEC
+> >       drm/vc4: hdmi: Warn if we access the controller while disabled
+> >       drm/vc4: hdmi: Remove unused struct
+> > 
+> > Palmer Dabbelt (1):
+> >       drm/rockchip: cdn-dp-core: Fix cdn_dp_resume unused warning
+> > 
+> > xinhui pan (1):
+> >       drm/ttm: Fix a deadlock if the target BO is not idle during swap
+> > 
+> >  .../bindings/display/panel/ilitek,ili9341.yaml     |   2 +-
+> >  drivers/gpu/drm/kmb/kmb_drv.c                      |   8 +-
+> >  drivers/gpu/drm/kmb/kmb_drv.h                      |   5 +
+> >  drivers/gpu/drm/kmb/kmb_plane.c                    |  81 +++++-
+> >  drivers/gpu/drm/kmb/kmb_plane.h                    |   5 +-
+> >  drivers/gpu/drm/kmb/kmb_regs.h                     |   3 +
+> >  drivers/gpu/drm/nouveau/dispnv50/head.c            |   2 +-
+> >  drivers/gpu/drm/nouveau/include/nvif/class.h       |   2 +
+> >  drivers/gpu/drm/nouveau/include/nvkm/engine/fifo.h |   1 +
+> >  drivers/gpu/drm/nouveau/nouveau_bo.c               |   1 +
+> >  drivers/gpu/drm/nouveau/nouveau_chan.c             |   6 +-
+> >  drivers/gpu/drm/nouveau/nouveau_drm.c              |   4 +
+> >  drivers/gpu/drm/nouveau/nv84_fence.c               |   2 +-
+> >  drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  |   3 +
+> >  drivers/gpu/drm/nouveau/nvkm/engine/fifo/Kbuild    |   1 +
+> >  drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c   | 311 +++++++++++++++++++++
+> >  drivers/gpu/drm/nouveau/nvkm/subdev/top/ga100.c    |   7 +-
+> >  drivers/gpu/drm/panel/panel-abt-y030xx067a.c       |   4 +-
+> >  drivers/gpu/drm/rockchip/cdn-dp-core.c             |   2 +-
+> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |  26 +-
+> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |   7 +-
+> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h              |   4 +-
+> >  drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c             |  97 ++++---
+> >  drivers/gpu/drm/vc4/Kconfig                        |   1 +
+> >  drivers/gpu/drm/vc4/vc4_hdmi.c                     | 133 +++++----
+> >  drivers/gpu/drm/vc4/vc4_hdmi_regs.h                |   6 +
+> >  drivers/of/base.c                                  |   1 +
+> >  drivers/video/fbdev/Kconfig                        |   5 +-
+> >  28 files changed, 591 insertions(+), 139 deletions(-)
+> >  create mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 
 -- 
-Ville Syrjälä
-Intel
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
