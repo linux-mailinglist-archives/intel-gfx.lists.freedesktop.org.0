@@ -2,39 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D452D41F203
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 18:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6B141F1F4
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 18:15:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18B786EE44;
-	Fri,  1 Oct 2021 16:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B64E86EE5B;
+	Fri,  1 Oct 2021 16:15:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBE526EE44
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 16:18:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10124"; a="204965387"
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="204965387"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 09:08:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="521174540"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 01 Oct 2021 09:08:27 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 01 Oct 2021 19:08:26 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>,
-	Jani Nikula <jani.nikula@intel.com>
-Date: Fri,  1 Oct 2021 19:08:26 +0300
-Message-Id: <20211001160826.17080-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 921A96EE44;
+ Fri,  1 Oct 2021 16:15:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 872B2A363C;
+ Fri,  1 Oct 2021 16:15:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix DP clock recovery "voltage_tries"
- handling
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 01 Oct 2021 16:15:20 -0000
+Message-ID: <163310492051.25584.15461453620003191068@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211001100316.26441-1-jani.nikula@intel.com>
+In-Reply-To: <20211001100316.26441-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/reg=3A_add_AUD=5FTCA=5FDP=5F2DOT0=5FCTRL_registers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,97 +41,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-The DP spec says:
-"If the receiver keeps the same value in the ADJUST_REQUEST_LANEx_y
- register(s) while the LANEx_CR_DONE bits remain unset, the transmitter
- must loop four times with the same voltage swing. On the fifth time,
- the transmitter must down-shift to the lower bit rate and must repeat
- the CR-lock training sequence as described below."
+Series: drm/i915/reg: add AUD_TCA_DP_2DOT0_CTRL registers
+URL   : https://patchwork.freedesktop.org/series/95316/
+State : warning
 
-Lets fix the code to follow that instead of terminating after five
-times of transmitting the same signal levels. The text in spec feels
-a little bit ambiguous still, but this is my best guess at its meaning.
+== Summary ==
 
-As a bonus this also gets rid of the train_set[0] stuff which
-would not work for per-lane drive settings anyway.
+$ dim checkpatch origin/drm-tip
+2e6ff8d7426c drm/i915/reg: add AUD_TCA_DP_2DOT0_CTRL registers
+-:25: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/i915/i915_reg.h:9768:
++#define AUD_DP_2DOT0_CTRL(trans)	_MMIO_TRANS(trans, _AUD_TCA_DP_2DOT0_CTRL, _AUD_TCB_DP_2DOT0_CTRL)
 
-Cc: Imre Deak <imre.deak@intel.com>
-CC: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../drm/i915/display/intel_dp_link_training.c | 29 +++++++++++++++----
- 1 file changed, 24 insertions(+), 5 deletions(-)
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 053ed9302cda..73a823f1ec22 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -511,6 +511,25 @@ static void intel_dp_link_training_clock_recovery_delay(struct intel_dp *intel_d
- 		drm_dp_lttpr_link_train_clock_recovery_delay();
- }
- 
-+static bool intel_dp_adjust_request_changed(int lane_count,
-+					    const u8 old_link_status[DP_LINK_STATUS_SIZE],
-+					    const u8 new_link_status[DP_LINK_STATUS_SIZE])
-+{
-+	int lane;
-+
-+	for (lane = 0; lane < lane_count; lane++) {
-+		u8 old = drm_dp_get_adjust_request_voltage(old_link_status, lane) |
-+			drm_dp_get_adjust_request_pre_emphasis(old_link_status, lane);
-+		u8 new = drm_dp_get_adjust_request_voltage(new_link_status, lane) |
-+			drm_dp_get_adjust_request_pre_emphasis(new_link_status, lane);
-+
-+		if (old != new)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- /*
-  * Perform the link training clock recovery phase on the given DP PHY using
-  * training pattern 1.
-@@ -521,7 +540,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 				      enum drm_dp_phy dp_phy)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
--	u8 voltage;
-+	u8 old_link_status[DP_LINK_STATUS_SIZE] = {};
- 	int voltage_tries, cr_tries, max_cr_tries;
- 	bool max_vswing_reached = false;
- 
-@@ -574,8 +593,6 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 			return false;
- 		}
- 
--		voltage = intel_dp->train_set[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
--
- 		/* Update training set as requested by target */
- 		intel_dp_get_adjust_train(intel_dp, crtc_state, dp_phy,
- 					  link_status);
-@@ -585,12 +602,14 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 			return false;
- 		}
- 
--		if ((intel_dp->train_set[0] & DP_TRAIN_VOLTAGE_SWING_MASK) ==
--		    voltage)
-+		if (!intel_dp_adjust_request_changed(crtc_state->lane_count,
-+						     old_link_status, link_status))
- 			++voltage_tries;
- 		else
- 			voltage_tries = 1;
- 
-+		memcpy(old_link_status, link_status, sizeof(link_status));
-+
- 		if (intel_dp_link_max_vswing_reached(intel_dp, crtc_state))
- 			max_vswing_reached = true;
- 
--- 
-2.32.0
 
