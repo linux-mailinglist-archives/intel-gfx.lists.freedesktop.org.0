@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7644F41EE0E
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 15:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8880B41EE0A
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Oct 2021 15:01:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 969F36ECE4;
-	Fri,  1 Oct 2021 13:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A125D6ECB5;
+	Fri,  1 Oct 2021 13:01:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C63E6E505
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 13:01:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="223525164"
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="223525164"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2021 06:01:10 -0700
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 772836ECB5
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 13:01:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="225083558"
+X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="225083558"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2021 06:01:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="480439093"
+X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; d="scan'208";a="564939870"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga007.fm.intel.com with SMTP; 01 Oct 2021 06:01:08 -0700
+ by fmsmga002.fm.intel.com with SMTP; 01 Oct 2021 06:01:11 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 01 Oct 2021 16:01:07 +0300
+ Fri, 01 Oct 2021 16:01:10 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 Oct 2021 16:00:57 +0300
-Message-Id: <20211001130107.1746-1-ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Date: Fri,  1 Oct 2021 16:00:58 +0300
+Message-Id: <20211001130107.1746-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211001130107.1746-1-ville.syrjala@linux.intel.com>
+References: <20211001130107.1746-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 00/10] drm/i915: DP per-lane drive settings
- prep work
+Subject: [Intel-gfx] [PATCH v2 01/10] drm/i915: Introduce has_iboost()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,38 +52,66 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Revised set after I fixed the DDI_BUF_CTL stuff Imre
-pointed out. Also pushed the first s/ddi_translation/trans/
-rename patch already.
+Suck the "do we have iboost?" platform checks into a small helper.
 
-There are two new patches at the start of the series to
-refactor some platform checks into a more sensible form.
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-Ville Syrjälä (10):
-  drm/i915: Introduce has_iboost()
-  drm/i915: Introduce has_buf_trans_select()
-  drm/i915: Generalize .set_signal_levels()
-  drm/i915: Nuke useless .set_signal_levels() wrappers
-  drm/i915: De-wrapper bxt_ddi_phy_set_signal_levels()
-  drm/i915: Hoover the level>=n_entries WARN into intel_ddi_level()
-  drm/i915: Nuke intel_ddi_hdmi_num_entries()
-  drm/i915: Pass the lane to intel_ddi_level()
-  drm/i915: Prepare link training for per-lane drive settings
-  drm/i915: Allow per-lane drive settings with LTTPRs
-
- drivers/gpu/drm/i915/display/g4x_dp.c         |  33 +--
- drivers/gpu/drm/i915/display/intel_ddi.c      | 244 ++++++------------
- drivers/gpu/drm/i915/display/intel_ddi.h      |   7 +-
- .../drm/i915/display/intel_ddi_buf_trans.c    |  20 --
- .../drm/i915/display/intel_ddi_buf_trans.h    |   4 -
- .../drm/i915/display/intel_display_types.h    |   5 +-
- .../drm/i915/display/intel_dp_link_training.c |  83 ++++--
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |  28 +-
- drivers/gpu/drm/i915/display/intel_dpio_phy.h |   5 +-
- drivers/gpu/drm/i915/display/intel_snps_phy.c |   9 +-
- drivers/gpu/drm/i915/display/intel_snps_phy.h |   5 +-
- 11 files changed, 196 insertions(+), 247 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 51cd0420e00e..f6429114ce7c 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -92,6 +92,11 @@ static int intel_ddi_hdmi_level(struct intel_encoder *encoder,
+ 	return level;
+ }
+ 
++static bool has_iboost(struct drm_i915_private *i915)
++{
++	return DISPLAY_VER(i915) == 9 && !IS_BROXTON(i915);
++}
++
+ /*
+  * Starting with Haswell, DDI port buffers must be programmed with correct
+  * values in advance. This function programs the correct values for
+@@ -111,7 +116,7 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+ 		return;
+ 
+ 	/* If we're boosting the current, set bit 31 of trans1 */
+-	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv) &&
++	if (has_iboost(dev_priv) &&
+ 	    intel_bios_encoder_dp_boost_level(encoder->devdata))
+ 		iboost_bit = DDI_BUF_BALANCE_LEG_ENABLE;
+ 
+@@ -145,7 +150,7 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
+ 		level = n_entries - 1;
+ 
+ 	/* If we're boosting the current, set bit 31 of trans1 */
+-	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv) &&
++	if (has_iboost(dev_priv) &&
+ 	    intel_bios_encoder_hdmi_boost_level(encoder->devdata))
+ 		iboost_bit = DDI_BUF_BALANCE_LEG_ENABLE;
+ 
+@@ -1463,7 +1468,7 @@ hsw_set_signal_levels(struct intel_dp *intel_dp,
+ 	intel_dp->DP &= ~DDI_BUF_EMP_MASK;
+ 	intel_dp->DP |= signal_levels;
+ 
+-	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
++	if (has_iboost(dev_priv))
+ 		skl_ddi_set_iboost(encoder, crtc_state, level);
+ 
+ 	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+@@ -3084,7 +3089,7 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+ 	else
+ 		hsw_prepare_hdmi_ddi_buffers(encoder, crtc_state, level);
+ 
+-	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
++	if (has_iboost(dev_priv))
+ 		skl_ddi_set_iboost(encoder, crtc_state, level);
+ 
+ 	/* Display WA #1143: skl,kbl,cfl */
 -- 
 2.32.0
 
