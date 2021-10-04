@@ -2,34 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C374212FF
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 17:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B98FA421372
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 18:02:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4EC26EA44;
-	Mon,  4 Oct 2021 15:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9934C6EA43;
+	Mon,  4 Oct 2021 16:02:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5D5C16E1BB;
- Mon,  4 Oct 2021 15:46:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 590CAA9A42;
- Mon,  4 Oct 2021 15:46:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6075476058112471616=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 244926EA44
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Oct 2021 16:02:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1633363346;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=7pRNqi+qB5v6kiBNHusaNSqIWepIPyAOWTzotrPTKOc=;
+ b=AJOIdB2A96TBeMpBBD8OF+wE7LYQJTNoBiBufR34mqNi8EpeOO8HrEuRrHXXRAuxExpITu
+ L7SfS4tAg2JsbHaNtO4zfHho9sBjrB+bcTEP3FJ+wuhsy09U1Z8UkkqSwMPZ0pcX9X+5Gd
+ lf91lgUtPLJ3HB2pgGnu8ezUAeGVGWA=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-246-eq1ukK6lOImCm7Y5To4jVg-1; Mon, 04 Oct 2021 12:02:24 -0400
+X-MC-Unique: eq1ukK6lOImCm7Y5To4jVg-1
+Received: by mail-ed1-f69.google.com with SMTP id
+ d11-20020a50cd4b000000b003da63711a8aso17591375edj.20
+ for <intel-gfx@lists.freedesktop.org>; Mon, 04 Oct 2021 09:02:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=7pRNqi+qB5v6kiBNHusaNSqIWepIPyAOWTzotrPTKOc=;
+ b=y/TKYV+pCP6NIgr2ggkDZrq0o+ydPWJ5eIQbJT/wQv0j/2zhyNHRt0V6zA3vpySZFG
+ d0v4B7D7cT7kAZUAoHVFCEoynqZa4FluVAFvYamOg/QPYhhiPnN3MEhYH12HO244916U
+ UIv5nzflvrkzQicOWeBlxeKPWWBWMWgxjk83MDew/P+lUlXLj0voXOc4+3W+/DEHlQ8K
+ KmYYQHArCpw8t2u5bD8lSeRnqRatBwxSlqYOaL5oTfJ/28nTtO0fmWqbGtANSocTaxjE
+ 8FWxmPeXDkm7EarIDD7A7CgXEgsrirwRULfZyHQCyH2lL2g8TFMJXmHviQQ1U9wTy9tY
+ +0+w==
+X-Gm-Message-State: AOAM530Ze2J9iE/hlpDCqdY+OBqSl0f06vSFNflFbfz4m12/r0wikGKy
+ 6078I300Zw6WtDDZlhnYo8jTcq2I7F9PxX/gIGDUBrg6cHEc233iMiJYJJcVQffjeS/7qDqDaxA
+ kXwrV/3KFwApWAG40p4tLN1XKyXtm
+X-Received: by 2002:a05:6402:19ba:: with SMTP id
+ o26mr19133735edz.1.1633363343004; 
+ Mon, 04 Oct 2021 09:02:23 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzCNvcl810W+pcs1T0NxPjJhcR3RyujjlOORxOA3tFBbSocDrsBkVd6ZqPxZPVflwg7KVWKWw==
+X-Received: by 2002:a05:6402:19ba:: with SMTP id
+ o26mr19133688edz.1.1633363342664; 
+ Mon, 04 Oct 2021 09:02:22 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id u6sm7376548edt.30.2021.10.04.09.02.21
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 04 Oct 2021 09:02:22 -0700 (PDT)
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rajat Jain <rajatja@google.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Lyude <lyude@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Gross <markgross@kernel.org>,
+ Andy Shevchenko <andy@infradead.org>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Mario Limonciello <mario.limonciello@outlook.com>,
+ Mark Pearson <markpearson@lenovo.com>, Sebastien Bacher <seb128@ubuntu.com>,
+ Marco Trevisan <marco.trevisan@canonical.com>,
+ Emil Velikov <emil.l.velikov@gmail.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
+References: <20211002163618.99175-1-hdegoede@redhat.com>
+ <20211002163618.99175-11-hdegoede@redhat.com> <YVsfwmQjYOnIrxzl@intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <ac1b7f4a-42f6-5f07-9733-e8945fb65179@redhat.com>
+Date: Mon, 4 Oct 2021 18:02:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 04 Oct 2021 15:46:11 -0000
-Message-ID: <163336237135.1479.3194140341060514132@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211004115913.23889-1-manasi.d.navare@intel.com>
-In-Reply-To: <20211004115913.23889-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/atomic=3A_Add_the_crtc_to_affected_crtc_only_if_uapi=2Eenable_?=
- =?utf-8?q?=3D_true_=28rev3=29?=
+In-Reply-To: <YVsfwmQjYOnIrxzl@intel.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 10/10] drm/i915: Add privacy-screen support
+ (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,317 +103,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6075476058112471616==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On 10/4/21 5:37 PM, Ville Syrjälä wrote:
+> On Sat, Oct 02, 2021 at 06:36:18PM +0200, Hans de Goede wrote:
+>> Add support for eDP panels with a built-in privacy screen using the
+>> new drm_privacy_screen class.
+>>
+>> Changes in v2:
+>> - Call drm_connector_update_privacy_screen() from
+>>   intel_enable_ddi_dp() / intel_ddi_update_pipe_dp() instead of adding a
+>>   for_each_new_connector_in_state() loop to intel_atomic_commit_tail()
+>> - Move the probe-deferral check to the intel_modeset_probe_defer() helper
+>>
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_atomic.c  |  1 +
+>>  drivers/gpu/drm/i915/display/intel_ddi.c     |  3 +++
+>>  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+>>  drivers/gpu/drm/i915/display/intel_dp.c      | 10 ++++++++++
+>>  4 files changed, 24 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+>> index b4e7ac51aa31..a62550711e98 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+>> @@ -139,6 +139,7 @@ int intel_digital_connector_atomic_check(struct drm_connector *conn,
+>>  	    new_conn_state->base.picture_aspect_ratio != old_conn_state->base.picture_aspect_ratio ||
+>>  	    new_conn_state->base.content_type != old_conn_state->base.content_type ||
+>>  	    new_conn_state->base.scaling_mode != old_conn_state->base.scaling_mode ||
+>> +	    new_conn_state->base.privacy_screen_sw_state != old_conn_state->base.privacy_screen_sw_state ||
+>>  	    !drm_connector_atomic_hdr_metadata_equal(old_state, new_state))
+>>  		crtc_state->mode_changed = true;
+>>  
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 51cd0420e00e..e4496c830a35 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -25,6 +25,7 @@
+>>   *
+>>   */
+>>  
+>> +#include <drm/drm_privacy_screen_consumer.h>
+>>  #include <drm/drm_scdc_helper.h>
+>>  
+>>  #include "i915_drv.h"
+>> @@ -3022,6 +3023,7 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
+>>  	if (port == PORT_A && DISPLAY_VER(dev_priv) < 9)
+>>  		intel_dp_stop_link_train(intel_dp, crtc_state);
+>>  
+>> +	drm_connector_update_privacy_screen(conn_state);
+>>  	intel_edp_backlight_on(crtc_state, conn_state);
+>>  
+>>  	if (!dig_port->lspcon.active || dig_port->dp.has_hdmi_sink)
+>> @@ -3247,6 +3249,7 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
+>>  	intel_drrs_update(intel_dp, crtc_state);
+>>  
+>>  	intel_backlight_update(state, encoder, crtc_state, conn_state);
+>> +	drm_connector_update_privacy_screen(conn_state);
+>>  }
+>>  
+>>  void intel_ddi_update_pipe(struct intel_atomic_state *state,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index e67f3207ba54..9a5dbe51458d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -42,6 +42,7 @@
+>>  #include <drm/drm_edid.h>
+>>  #include <drm/drm_fourcc.h>
+>>  #include <drm/drm_plane_helper.h>
+>> +#include <drm/drm_privacy_screen_consumer.h>
+>>  #include <drm/drm_probe_helper.h>
+>>  #include <drm/drm_rect.h>
+>>  #include <drm/drm_drv.h>
+>> @@ -12693,6 +12694,8 @@ void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
+>>  
+>>  bool intel_modeset_probe_defer(struct pci_dev *pdev)
+>>  {
+>> +	struct drm_privacy_screen *privacy_screen;
+>> +
+>>  	/*
+>>  	 * apple-gmux is needed on dual GPU MacBook Pro
+>>  	 * to probe the panel if we're the inactive GPU.
+>> @@ -12700,6 +12703,13 @@ bool intel_modeset_probe_defer(struct pci_dev *pdev)
+>>  	if (vga_switcheroo_client_probe_defer(pdev))
+>>  		return true;
+>>  
+>> +	/* If the LCD panel has a privacy-screen, wait for it */
+>> +	privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
+>> +	if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
+>> +		return true;
+>> +
+>> +	drm_privacy_screen_put(privacy_screen);
+>> +
+>>  	return false;
+>>  }
+>>  
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 74a657ae131a..91207310dc0d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -37,6 +37,7 @@
+>>  #include <drm/drm_crtc.h>
+>>  #include <drm/drm_dp_helper.h>
+>>  #include <drm/drm_edid.h>
+>> +#include <drm/drm_privacy_screen_consumer.h>
+>>  #include <drm/drm_probe_helper.h>
+>>  
+>>  #include "g4x_dp.h"
+>> @@ -4808,6 +4809,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>>  	struct drm_connector *connector = &intel_connector->base;
+>>  	struct drm_display_mode *fixed_mode = NULL;
+>>  	struct drm_display_mode *downclock_mode = NULL;
+>> +	struct drm_privacy_screen *privacy_screen;
+>>  	bool has_dpcd;
+>>  	enum pipe pipe = INVALID_PIPE;
+>>  	struct edid *edid;
+>> @@ -4902,6 +4904,14 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>>  				fixed_mode->hdisplay, fixed_mode->vdisplay);
+>>  	}
+>>  
+>> +	privacy_screen = drm_privacy_screen_get(dev->dev, NULL);
+>> +	if (!IS_ERR(privacy_screen)) {
+>> +		drm_connector_attach_privacy_screen_provider(connector,
+>> +							     privacy_screen);
+>> +	} else if (PTR_ERR(privacy_screen) != -ENODEV) {
+>> +		drm_warn(&dev_priv->drm, "Error getting privacy-screen\n");
+>> +	}
+> 
+> I'm thinking this should go into intel_ddi_init_dp_connector()
+> on account of only the ddi codepaths having the
+> drm_connector_update_privacy_screen() calls.
 
-Series: drm/atomic: Add the crtc to affected crtc only if uapi.enable = true (rev3)
-URL   : https://patchwork.freedesktop.org/series/87555/
-State : success
+This should only be done in case of intel_dp_is_edp(intel_dp) returning
+true. We don't have a mapping which connector has the privacy screen
+(hence the NULL argument as second parameter to drm_privacy_screen_get()),
+so if there are multiple DP connectors we want this to only happen on
+the eDP one.
 
-== Summary ==
+Yes this assumes that devices with a builtin privacy-screen have only
+one eDP connector. For now this holds true, if this becomes not true in
+the future then that is something to figure out at that point in time
+(with a lot of luck the privacy-screen will be controlled through DP
+by then and not through some random ACPI interface).
 
-CI Bug Log - changes from CI_DRM_10681 -> Patchwork_21235
-====================================================
+So I traced the call-graph and I see that we can also end up in
+intel_edp_init_connector() from g4x_dp_init(), which I assume is
+your main reason for requesting this change. But unless someone
+retro-fits an electronic privacy-screen to the old hw supported
+by g4x_dp_init() then drm_privacy_screen_get() will always
+return -ENODEV, so in that case this is a no-op.
 
-Summary
--------
+> Otherwise seems ok.
 
-  **SUCCESS**
+Thanks, note if you still want me to move this please let me know,
+this does mean adding a intel_dp_is_edp() check to intel_ddi.c
+which so far is free of these kinda checks.
 
-  No regressions found.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/index.html
+Hans
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21235 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([fdo#109315])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +27 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@nop-gfx0:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +16 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#3718])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-apl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#2190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][7] ([i915#1610])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#1155])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][10] -> [FAIL][11] ([i915#1372])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10681/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([i915#4103]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][14] ([fdo#109285])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][15] ([i915#1072]) +3 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][16] ([i915#3301])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-apl-guc:         NOTRUN -> [FAIL][17] ([i915#2426] / [i915#3363])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-apl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [DMESG-WARN][18] ([i915#295]) -> [PASS][19] +12 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10681/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-
-
-Participating hosts (36 -> 33)
-------------------------------
-
-  Additional (2): fi-tgl-1115g4 fi-apl-guc 
-  Missing    (5): bat-dg1-6 fi-bsw-cyan bat-adlp-4 bat-jsl-2 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10681 -> Patchwork_21235
-
-  CI-20190529: 20190529
-  CI_DRM_10681: fe9b639a95a08713c8ee4ef110ce6a6388c9f9f2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21235: 658485c7066a589135a26c3455390f11e72da884 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-658485c7066a drm/atomic: Add the crtc to affected crtc only if uapi.enable = true
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/index.html
-
---===============6075476058112471616==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/atomic: Add the crtc to affected crtc only if uapi.enable = true (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87555/">https://patchwork.freedesktop.org/series/87555/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10681 -&gt; Patchwork_21235</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21235 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10681/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10681/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21235/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +12 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (36 -&gt; 33)</h2>
-<p>Additional (2): fi-tgl-1115g4 fi-apl-guc <br />
-  Missing    (5): bat-dg1-6 fi-bsw-cyan bat-adlp-4 bat-jsl-2 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10681 -&gt; Patchwork_21235</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10681: fe9b639a95a08713c8ee4ef110ce6a6388c9f9f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6228: 22643ce4014a0b2dc52ce7916b2f657e2a7757c3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21235: 658485c7066a589135a26c3455390f11e72da884 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>658485c7066a drm/atomic: Add the crtc to affected crtc only if uapi.enable = true</p>
-
-</body>
-</html>
-
---===============6075476058112471616==--
