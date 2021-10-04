@@ -2,39 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830CE421196
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 16:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1CBB421239
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 17:03:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9226E9D6;
-	Mon,  4 Oct 2021 14:39:54 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C806E6E9D3;
- Mon,  4 Oct 2021 14:39:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10126"; a="224221471"
-X-IronPort-AV: E=Sophos;i="5.85,346,1624345200"; d="scan'208";a="224221471"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2021 07:37:24 -0700
-X-IronPort-AV: E=Sophos;i="5.85,346,1624345200"; d="scan'208";a="622303735"
-Received: from shearne-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.208.122])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2021 07:37:23 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Date: Mon,  4 Oct 2021 15:36:50 +0100
-Message-Id: <20211004143650.699120-9-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211004143650.699120-1-tvrtko.ursulin@linux.intel.com>
-References: <20211004143650.699120-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 579306EA0C;
+	Mon,  4 Oct 2021 15:03:57 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B24306EA0C;
+ Mon,  4 Oct 2021 15:03:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AA5E1A8169;
+ Mon,  4 Oct 2021 15:03:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 8/8] drm/i915: Connect with the process nice
- change notifier
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 04 Oct 2021 15:03:55 -0000
+Message-ID: <163335983569.1480.11439803718987161778@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211004112306.28544-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211004112306.28544-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Improve_DP_link_training_further?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,108 +41,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Connect i915 with the process nice change notifier so that our scheduling
-can react to runtime adjustments, on top of previously added nice value
-inheritance at context create time.
+Series: drm/i915: Improve DP link training further
+URL   : https://patchwork.freedesktop.org/series/95405/
+State : failure
 
-To achieve this we use the previously added map of clients per owning
-tasks in combination with the list of GEM contexts per client.
+== Summary ==
 
-To avoid possibly unnecessary complications the updated context nice value
-will only apply to future submissions against the context.
+Applying: drm/i915: Tweak the DP "max vswing reached?" condition
+Applying: drm/i915: Show LTTPR in the TPS debug print
+Applying: drm/i915: Print the DP vswing adjustment request
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_dp_link_training.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0003 drm/i915: Print the DP vswing adjustment request
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_drm_client.c | 31 ++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_drm_client.h |  3 +++
- 2 files changed, 34 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 82b9636482ef..e34c1228f65b 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -7,10 +7,35 @@
- #include <linux/slab.h>
- #include <linux/types.h>
- 
-+#include "gem/i915_gem_context.h"
- #include "i915_drm_client.h"
- #include "i915_gem.h"
- #include "i915_utils.h"
- 
-+static int
-+clients_notify(struct notifier_block *nb, unsigned long val, void *ptr)
-+{
-+	struct i915_drm_clients *clients =
-+		container_of(nb, typeof(*clients), prio_notifier);
-+	struct i915_drm_client *client;
-+
-+	rcu_read_lock();
-+	read_lock(&clients->lock);
-+	hash_for_each_possible(clients->tasks, client, node, (uintptr_t)ptr) {
-+		struct i915_gem_context *ctx;
-+
-+		if (client->owner != ptr)
-+			continue;
-+
-+		list_for_each_entry_rcu(ctx, &client->ctx_list, client_link)
-+			ctx->sched.nice = (int)val;
-+	}
-+	read_unlock(&clients->lock);
-+	rcu_read_unlock();
-+
-+	return NOTIFY_DONE;
-+}
-+
- void i915_drm_clients_init(struct i915_drm_clients *clients,
- 			   struct drm_i915_private *i915)
- {
-@@ -21,6 +46,10 @@ void i915_drm_clients_init(struct i915_drm_clients *clients,
- 
- 	rwlock_init(&clients->lock);
- 	hash_init(clients->tasks);
-+
-+	memset(&clients->prio_notifier, 0, sizeof(clients->prio_notifier));
-+	clients->prio_notifier.notifier_call = clients_notify;
-+	register_user_nice_notifier(&clients->prio_notifier);
- }
- 
- struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients)
-@@ -75,6 +104,8 @@ void __i915_drm_client_free(struct kref *kref)
- 
- void i915_drm_clients_fini(struct i915_drm_clients *clients)
- {
-+	unregister_user_nice_notifier(&clients->prio_notifier);
-+
- 	GEM_BUG_ON(!xa_empty(&clients->xarray));
- 	xa_destroy(&clients->xarray);
- }
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-index 42fd79f0558a..dda26aa42ac9 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.h
-+++ b/drivers/gpu/drm/i915/i915_drm_client.h
-@@ -9,6 +9,7 @@
- #include <linux/hashtable.h>
- #include <linux/kref.h>
- #include <linux/list.h>
-+#include <linux/notifier.h>
- #include <linux/rwlock.h>
- #include <linux/sched.h>
- #include <linux/spinlock.h>
-@@ -24,6 +25,8 @@ struct i915_drm_clients {
- 
- 	rwlock_t lock;
- 	DECLARE_HASHTABLE(tasks, 6);
-+
-+	struct notifier_block prio_notifier;
- };
- 
- struct i915_drm_client {
--- 
-2.30.2
 
