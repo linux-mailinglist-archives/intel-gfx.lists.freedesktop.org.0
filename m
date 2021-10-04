@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C003421821
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 22:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3901421822
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 22:04:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84DA76E187;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64AD26E0B8;
 	Mon,  4 Oct 2021 20:04:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
- [IPv6:2607:f8b0:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06DB26E1AA
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Oct 2021 19:58:45 +0000 (UTC)
-Received: by mail-ot1-x333.google.com with SMTP id
- c26-20020a056830349a00b0054d96d25c1eso23086405otu.9
- for <intel-gfx@lists.freedesktop.org>; Mon, 04 Oct 2021 12:58:44 -0700 (PDT)
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
+ [IPv6:2607:f8b0:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8AC56E1FB
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Oct 2021 20:00:57 +0000 (UTC)
+Received: by mail-ot1-x330.google.com with SMTP id
+ o59-20020a9d2241000000b0054745f28c69so23048823ota.13
+ for <intel-gfx@lists.freedesktop.org>; Mon, 04 Oct 2021 13:00:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=g/yzddU3WVCKb8sDEoiCgKCNa1rqIwKAtvo70nJX4IU=;
- b=gfPKM3FjHdGBAhwt4uL+abGKcsFiQiGRM2hJ5cjclU1VruXjJd4Tj+wiXt43GCdYBJ
- n8XeX4r2eNjq39whRMoOnsfaxS25PS4KibNTNCBtamqzC4ERN3+1bj1ej0Bt2nzkjUuV
- 2LoFbizg2jY/IkkRpJlsvltaw1UFHNhG7DDlDi7rR1CI+tsFO9nPLy7zKX5Ptwet/Fr8
- cXlenkWqm4cHBywcT6Z9LPnD8W4kSZ+sBZsxYw4Xi8viQVjiZX1x5uT2KMtB3Wm5bXIC
- U7neIcxze8C/9DZYxYMuQ8KFx7iKENpL4xvglowYrbQHMcv5rQgL1aRIrXcel49IEY6V
- D1mg==
+ bh=J/N5xXP3XszcLimjb3V0HTC1MVBpgM9ZA1sK5TjSsuA=;
+ b=fb1ynP6sdAZcOAKPf6k0RP4Z/fnaQKYx7e04HillspFj6WBenAjxlvclyFWB1u2TZ9
+ 7Rtsh8/fQRbD5ApkZsPyqQ37XTRuI7F/kS0OahUBHXC2YvMGVYPgHCo+xWLMiRTczbKM
+ JxF+o1KgtYXMwpDvUg5xEbyNIOnrMtY/lc30PehqZbXMQ2+yBNucEIS78+2oWiqJcDTf
+ vRG7+zhoSPdMOuv5l77jMhPvyoGJR9j2QnhrZXR7uvc/UE8GrmY5AWSYG8+VCU2kzqCg
+ qFqzD3u+nI/nvPFOmCbwc+wTR3RKxZ8LRqtWOERt+yCpkBEP2M/a1nlSUTzDH79CeeZ1
+ 68Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=g/yzddU3WVCKb8sDEoiCgKCNa1rqIwKAtvo70nJX4IU=;
- b=UA8bfVaIpecPLqoTgW450s7JOTX8X3lznFaUwGLfBqMus5u5BbY3mu1oHqDtNscQxX
- jiCpXsOBEwdqA6fUI/6woC5kF0UmYXHrc9ItVPhd7ZRo70MgtAlQicgi81mcLMyr8hcp
- MdBeZL/r0tAQYI5qMQUqgU0q+XBlGPIWFFx63mrbQJ/oZiemydA8y6MJVvTVTbxWZJYV
- iXvn3BB8NdlwG7O6lZVvADtZ/h20wejU1+Vk3AhDGRNNy2B62ro4UIxMtNOo1av3kpbR
- C/zXBKNeocgDjobfsA5J38qUtSpNYstnvznfwvLaHCtx0BP9i9uNPdZAJVNRKAkxSn8F
- AmPg==
-X-Gm-Message-State: AOAM532Ne9dIBnjE9yoHxLuPIwmoGzVhYw2PY4UQsvxbZ98MkA5wl7b8
- gOoKIPstyL7amnsTrVvXUFUTAw==
-X-Google-Smtp-Source: ABdhPJzYq4RED8G0SFOdF37jr9RVat/1OP+E44y/iGgXH9Gx2Xe/pW5QFihZ7IYmev2/tGszgXYxaA==
-X-Received: by 2002:a9d:458b:: with SMTP id x11mr10939775ote.313.1633377524110; 
- Mon, 04 Oct 2021 12:58:44 -0700 (PDT)
+ bh=J/N5xXP3XszcLimjb3V0HTC1MVBpgM9ZA1sK5TjSsuA=;
+ b=BNChvQQleUI8zq+eDFTuqG+QJdWX+YT6s9HjJbKVISA4cnNzekciskoIHcz/oQ65QY
+ QHDEcgw0g3+d3SQHBfMTLpfqDDXKNoBHOtgxxTkP/nT6n+v8S1pQtD4eL2QZ2OBWZvZx
+ CG/fTHbgO46XxDIJ76R6nJsVAx5mXPD8hZDiblpdGeSA9SYHMMriCNSKOaVDxruTD4Bn
+ y9SMhKX2d+UDscK21xZAvCpXfzjowj2EaL06HGQLDyvgVfReOz51v/8wPLySXPGyqRvA
+ /ggjmUSOWiCdhwAGlq6Fdj6nQPBTzDiyoBe+Ad4wxjj9K+32OuubeSRahWQ73Tk+jgQq
+ kZLg==
+X-Gm-Message-State: AOAM533qYy6gqjoUrzy0qGovHC8AYY/lIl9epVDce/aPFiClvVWHfWg7
+ gZRavOJWyQv8VsONnhIXHK3pGw==
+X-Google-Smtp-Source: ABdhPJwuV9CjiGCB4paZPKDuSfcGCVQJII2+BskiX5DRJsygA14pmy/OLbebzffWeLf1NgXHPzxkuw==
+X-Received: by 2002:a9d:458b:: with SMTP id x11mr10945333ote.313.1633377656946; 
+ Mon, 04 Oct 2021 13:00:56 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
- by smtp.gmail.com with ESMTPSA id p16sm2786526ood.37.2021.10.04.12.58.43
+ by smtp.gmail.com with ESMTPSA id c5sm3052476otb.35.2021.10.04.13.00.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Oct 2021 12:58:43 -0700 (PDT)
-Date: Mon, 4 Oct 2021 14:58:41 -0500
+ Mon, 04 Oct 2021 13:00:56 -0700 (PDT)
+Date: Mon, 4 Oct 2021 15:00:54 -0500
 From: Bjorn Andersson <bjorn.andersson@linaro.org>
 To: Sean Paul <sean@poorly.run>
 Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
@@ -57,7 +57,7 @@ Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Rob Herring <robh+dt@kernel.org>,
  Kuogee Hsieh <khsieh@codeaurora.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org
-Message-ID: <YVtc8ROAWAy1ja27@builder.lan>
+Message-ID: <YVtddoe6Ty841Kra@builder.lan>
 References: <20211001151145.55916-1-sean@poorly.run>
  <20211001151145.55916-13-sean@poorly.run>
 MIME-Version: 1.0
@@ -93,21 +93,6 @@ On Fri 01 Oct 10:11 CDT 2021, Sean Paul wrote:
 > 
 > We'll use a new compatible string for this since the fields are optional.
 > 
-
-I don't think you need a new compatible, in particular since I presume
-we should use the hdcp compatible in all platforms? Or is there a reason
-for not picking that one?
-
-Instead I suggest that you simply do minItems: 1, maxItems: 3 and detect
-which of the two cases you have in the driver.
-
-PS. I hope to get
-https://lore.kernel.org/linux-arm-msm/20211001174400.981707-1-bjorn.andersson@linaro.org/
-landed before we add these new optional regions...
-
-Regards,
-Bjorn
-
 > Cc: Rob Herring <robh@kernel.org>
 > Cc: Stephen Boyd <swboyd@chromium.org>
 > Signed-off-by: Sean Paul <seanpaul@chromium.org>
@@ -189,6 +174,14 @@ Bjorn
 > +        reg = <0 0x0ae90000 0 0x1400>,
 > +              <0 0x0aed1000 0 0x174>,
 > +              <0 0x0aee1000 0 0x2c>;
+
+Forgot to mention, #address-cells = #size-cells = <1> in the example
+"environment", so you have to omit the lone 0s in the example to make it
+pass the tests.
+
+Regards,
+Bjorn
+
 >          interrupt-parent = <&mdss>;
 >          interrupts = <12>;
 >          clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
