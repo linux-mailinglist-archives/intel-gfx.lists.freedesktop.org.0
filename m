@@ -1,47 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D089A420489
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 02:31:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21EA342048A
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 02:33:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24BE16E12D;
-	Mon,  4 Oct 2021 00:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E8D76E131;
+	Mon,  4 Oct 2021 00:33:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C81B6E8C1
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Oct 2021 00:31:49 +0000 (UTC)
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-163-HxW4DUJTNgK-R3gcSrTfaA-1; Sun, 03 Oct 2021 20:31:44 -0400
-X-MC-Unique: HxW4DUJTNgK-R3gcSrTfaA-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
- [10.5.11.11])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C29951006AA2;
- Mon,  4 Oct 2021 00:31:43 +0000 (UTC)
-Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id BD77160657;
- Mon,  4 Oct 2021 00:31:38 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- Dave Airlie <airlied@redhat.com>
-Date: Mon,  4 Oct 2021 10:31:33 +1000
-Message-Id: <20211004003133.2279446-1-airlied@gmail.com>
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC2276E131
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Oct 2021 00:33:14 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id p13so29960638edw.0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 03 Oct 2021 17:33:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=86EIGb7xO0zSl69k1atfHFzpfvXSg75aoVbR83VtBsg=;
+ b=mZYifjEIuBJ2Cc213Uw8eg5+IZgTvJZLL+lyGr6S9gveSnESZPBgNUQcP1F+CT0kjh
+ 8Y7a1wb2u/uoIblMMDDbAL0weW5BVZ0HMuwUgYvQiuDpVZQcGsYaEi8irX/XihdF+8L1
+ Tsj/xCDueHRQxc6T7myilIAa8nzL4BZ5+tscHT2yrAqAki2NZucgWTv7d9gcmD8rCnlg
+ Eosimxwo805A0jvsTukqm0PcALS/WN/jE+7wlgokIi0tJH+epiVmTCAl1a0bO/BCy2k2
+ FEFoU3r6WqXmczuy1jIW9MEia6dLoABUSkKMq2POG2pxNrhhhHXnNAhDRXdTLKI1S2iB
+ NKRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=86EIGb7xO0zSl69k1atfHFzpfvXSg75aoVbR83VtBsg=;
+ b=PudVCGalkpfvFooXUanYld4l6YWv83gw/ANtBgrVo2CECtTVzoger8RSVg6ZnplNVa
+ hnjMnY8RhLIJ55mlbBL+GsYkQPWMNwwut/oXlzuyfhQLEEiO6bDkFzz32s50XXUoFITF
+ rbTD6A6lqWNs1+G1zIkzv9QMHwvyVwQyR5Vw2v3oms2YHIgjDj+zqtHc/6ESJwnkaLqB
+ TPXo842APdBLywvKo/xrC6VJ4UezX3RUpNQMq+jVz/187OdHLb+KVeUuSOEIoppv3L6r
+ W6ZIEvYLGJtppx7SdtTDaVCboudgSqJZzZ63UdxReaMkOoNH+VmOrVTCORjgpC9ogw+k
+ y7NQ==
+X-Gm-Message-State: AOAM532OEmuysOMl1dacJMp+W7K6IZ1iPhbLiqpvmhXWymJpdZhp2E3c
+ HZFI3QUwWxJw+7wTJWNHAcI5JTElcj1IGQX35dI=
+X-Google-Smtp-Source: ABdhPJyZNrCMJ8J9aI0ZqedkmWVXElvuP4Mab2EyQP6MwYGrWIbwzmd3w+4q/OF+ZTR5gCMjZjq3VPpCl26d8MNrq84=
+X-Received: by 2002:a50:d94c:: with SMTP id u12mr14311925edj.371.1633307593240; 
+ Sun, 03 Oct 2021 17:33:13 -0700 (PDT)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=airlied@gmail.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: gmail.com
+References: <cover.1632869550.git.jani.nikula@intel.com>
+ <41c3e1896162fc08e22e40b00642791365a8c00e.1632869550.git.jani.nikula@intel.com>
+ <YViykYGH9KG1B2f/@intel.com>
+In-Reply-To: <YViykYGH9KG1B2f/@intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Mon, 4 Oct 2021 10:33:01 +1000
+Message-ID: <CAPM=9txVSOfScH9LZZsYCdcFqikA=EN=y7aJ3BKk0Qtq1PxxJw@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Dave Airlie <airlied@redhat.com>, 
+ "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH] drm/i915: fix regression with uncore
- refactoring.
+Subject: Re: [Intel-gfx] [PATCH 01/24] drm/i915/uncore: split the fw get
+ function into separate vfunc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,32 +73,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Sun, 3 Oct 2021 at 05:27, Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Wed, Sep 29, 2021 at 01:57:45AM +0300, Jani Nikula wrote:
+> > From: Dave Airlie <airlied@redhat.com>
+> >
+> > constify it while here. drop the put function since it was never
+> > overloaded and always has done the same thing, no point in
+> > indirecting it for show.
+> >
+> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> > Signed-off-by: Dave Airlie <airlied@redhat.com>
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> This has totally broken snb and ivb machines. Total death
+> ensues somewhere in uncore init after some backtraces fly by.
+> Didn't get any logs out to disk unfortunately. Please revert.
+>
+> Sadly CI is still afraid to report when machines disappear.
+> For the bat report you at least get a list of machines that
+> were awol, but the shard run seems to not even mention that
+> all snbs suddenly vanished.
+>
+> I've said it before and I'll say it again. We really should
+> *not* be loading i915 when the machine boots. That way we'd
+> at least get the machine up and running and can report that
+> loading i915 is the thing that killed it...
 
-This was causing infinite recursion on snb/ivb.
+That is frustrating, I've sent a oneline fix that should fix it up.
+hopefully CI will pick it up.
 
-Fixes: 5716c8c6f4b6 ("drm/i915/uncore: split the fw get function into separ=
-ate vfunc")
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/i915/intel_uncore.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/int=
-el_uncore.c
-index 2dac69d92c1b..f1b816ebcdf6 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -346,7 +346,7 @@ static void __gen6_gt_wait_for_thread_c0(struct intel_u=
-ncore *uncore)
- static void fw_domains_get_with_thread_status(struct intel_uncore *uncore,
- =09=09=09=09=09      enum forcewake_domains fw_domains)
- {
--=09fw_domains_get(uncore, fw_domains);
-+=09fw_domains_get_normal(uncore, fw_domains);
-=20
- =09/* WaRsForcewakeWaitTC0:snb,ivb,hsw,bdw,vlv */
- =09__gen6_gt_wait_for_thread_c0(uncore);
---=20
-2.25.4
-
+Dave.
