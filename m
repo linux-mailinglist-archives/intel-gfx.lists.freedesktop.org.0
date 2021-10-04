@@ -1,40 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE12420A04
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 13:23:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABBDE420A06
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 13:24:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F8CF6E9D3;
-	Mon,  4 Oct 2021 11:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 371456E9D6;
+	Mon,  4 Oct 2021 11:24:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8453A6E9D2
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Oct 2021 11:23:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10126"; a="225705412"
-X-IronPort-AV: E=Sophos;i="5.85,345,1624345200"; d="scan'208";a="225705412"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47C416E9DE;
+ Mon,  4 Oct 2021 11:24:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10126"; a="225705692"
+X-IronPort-AV: E=Sophos;i="5.85,345,1624345200"; d="scan'208";a="225705692"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2021 04:23:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,345,1624345200"; d="scan'208";a="558376182"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 04 Oct 2021 04:23:21 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 04 Oct 2021 14:23:20 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 Oct 2021 14:23:06 +0300
-Message-Id: <20211004112306.28544-6-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211004112306.28544-1-ville.syrjala@linux.intel.com>
-References: <20211004112306.28544-1-ville.syrjala@linux.intel.com>
+ 04 Oct 2021 04:24:48 -0700
+X-IronPort-AV: E=Sophos;i="5.85,345,1624345200"; d="scan'208";a="713101010"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 04 Oct 2021 04:24:47 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Manasi Navare <manasi.d.navare@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Simon Ser <contact@emersion.fr>,
+ Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
+ Daniel Stone <daniels@collabora.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Date: Mon,  4 Oct 2021 04:36:29 -0700
+Message-Id: <20211004113629.23715-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Call intel_dp_dump_link_status()
- for CR failures
+Subject: [Intel-gfx] [PATCH v2] drm/atomic: Add the crtc to affected crtc
+ only if uapi.enable = true
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,62 +53,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+In case of a modeset where a mode gets split across mutiple CRTCs
+in the driver specific implementation (bigjoiner in i915) we wrongly count
+the affected CRTCs based on the drm_crtc_mask and indicate the stolen CRTC as
+an affected CRTC in atomic_check_only().
+This triggers a warning since affected CRTCs doent match requested CRTC.
 
-I suppose intel_dp_dump_link_status() might be useful for diagnosing
-link training failures. Hoever we only call from the channel EQ phase
-currently. Let's call it from the CR phase as well.
+To fix this in such bigjoiner configurations, we should only
+increment affected crtcs if that CRTC is enabled in UAPI not
+if it is just used internally in the driver to split the mode.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+There is no way we can adjust requested_crtc calculation as suggested
+in review comments because the crtc gets stolen only after the atomic_check call.
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+Cc: Daniel Stone <daniels@collabora.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 6 ++++--
+ drivers/gpu/drm/drm_atomic.c | 6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 18f4b469766e..c92044710012 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -649,6 +649,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	u8 old_link_status[DP_LINK_STATUS_SIZE] = {};
- 	int voltage_tries, cr_tries, max_cr_tries;
-+	u8 link_status[DP_LINK_STATUS_SIZE];
- 	bool max_vswing_reached = false;
- 	char phy_name[10];
- 
-@@ -678,8 +679,6 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 
- 	voltage_tries = 1;
- 	for (cr_tries = 0; cr_tries < max_cr_tries; ++cr_tries) {
--		u8 link_status[DP_LINK_STATUS_SIZE];
--
- 		intel_dp_link_training_clock_recovery_delay(intel_dp, dp_phy);
- 
- 		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
-@@ -697,6 +696,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+index ff1416cd609a..44e7ebf43a2a 100644
+--- a/drivers/gpu/drm/drm_atomic.c
++++ b/drivers/gpu/drm/drm_atomic.c
+@@ -1360,8 +1360,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
  		}
- 
- 		if (voltage_tries == 5) {
-+			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
- 			drm_dbg_kms(&i915->drm,
- 				    "[ENCODER:%d:%s][%s] Same voltage tried 5 times\n",
- 				    encoder->base.base.id, encoder->base.name, phy_name);
-@@ -704,6 +704,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 		}
- 
- 		if (max_vswing_reached) {
-+			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
- 			drm_dbg_kms(&i915->drm,
- 				    "[ENCODER:%d:%s][%s] Max Voltage Swing reached\n",
- 				    encoder->base.base.id, encoder->base.name, phy_name);
-@@ -732,6 +733,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 			max_vswing_reached = true;
  	}
  
-+	intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
- 	drm_err(&i915->drm,
- 		"[ENCODER:%d:%s][%s] Failed clock recovery %d times, giving up!\n",
- 		encoder->base.base.id, encoder->base.name, phy_name, max_cr_tries);
+-	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+-		affected_crtc |= drm_crtc_mask(crtc);
++	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
++		if (new_crtc_state->enable)
++			affected_crtc |= drm_crtc_mask(crtc);
++	}
+ 
+ 	/*
+ 	 * For commits that allow modesets drivers can add other CRTCs to the
 -- 
-2.32.0
+2.19.1
 
