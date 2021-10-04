@@ -2,41 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD121421749
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 21:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C391421746
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Oct 2021 21:20:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95E5E6E1F9;
-	Mon,  4 Oct 2021 19:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C82BE6E02B;
+	Mon,  4 Oct 2021 19:20:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 245D46E1B8;
- Mon,  4 Oct 2021 19:21:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="248818986"
-X-IronPort-AV: E=Sophos;i="5.85,346,1624345200"; d="scan'208";a="248818986"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2021 10:44:18 -0700
-X-IronPort-AV: E=Sophos;i="5.85,346,1624345200"; d="scan'208";a="477275904"
-Received: from pmittal1-mobl.gar.corp.intel.com (HELO localhost)
- ([10.251.223.27])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2021 10:43:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nathan Chancellor <nathan@kernel.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Nick Desaulniers <ndesaulniers@google.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- llvm@lists.linux.dev, Nathan Chancellor <nathan@kernel.org>
-In-Reply-To: <20210914194944.4004260-1-nathan@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210914194944.4004260-1-nathan@kernel.org>
-Date: Mon, 04 Oct 2021 20:43:41 +0300
-Message-ID: <87v92c1y9e.fsf@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC36B6E02B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Oct 2021 19:20:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="205675001"
+X-IronPort-AV: E=Sophos;i="5.85,346,1624345200"; d="scan'208";a="205675001"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2021 11:38:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,346,1624345200"; d="scan'208";a="521530295"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 04 Oct 2021 11:38:48 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 04 Oct 2021 21:38:47 +0300
+Date: Mon, 4 Oct 2021 21:38:47 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Sean Paul <seanpaul@chromium.org>,
+ "C, Ramalingam" <ramalingam.c@intel.com>,
+ "B S, Karthik" <karthik.b.s@intel.com>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <YVtKN2GRw5T3tSSw@intel.com>
+References: <YVrctgdJ8EYdW9i0@intel.com>
+ <9078bb70f03e41738043771fb1d89ff3@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Clean up disabled warnings
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9078bb70f03e41738043771fb1d89ff3@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] i915 MST HDCP code looks broken
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,93 +56,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Sep 2021, Nathan Chancellor <nathan@kernel.org> wrote:
-> i915 enables a wider set of warnings with '-Wall -Wextra' then disables
-> several with cc-disable-warning. If an unknown flag gets added to
-> KBUILD_CFLAGS when building with clang, all subsequent calls to
-> cc-{disable-warning,option} will fail, meaning that all of these
-> warnings do not get disabled [1].
->
-> A separate series will address the root cause of the issue by not adding
-> these flags when building with clang [2]; however, the symptom of these
-> extra warnings appearing can be addressed separately by just removing
-> the calls to cc-disable-warning, which makes the build ever so slightly
-> faster because the compiler does not need to be called as much before
-> building.
->
-> The following warnings are supported by GCC 4.9 and clang 10.0.1, which
-> are the minimum supported versions of these compilers so the call to
-> cc-disable-warning is not necessary. Masahiro cleaned this up for the
-> reset of the kernel in commit 4c8dd95a723d ("kbuild: add some extra
-> warning flags unconditionally").
->
-> * -Wmissing-field-initializers
-> * -Wsign-compare
-> * -Wtype-limits
-> * -Wunused-parameter
->
-> -Wunused-but-set-variable was implemented in clang 13.0.0 and
-> -Wframe-address was implemented in clang 12.0.0 so the
-> cc-disable-warning calls are kept for these two warnings.
->
-> Lastly, -Winitializer-overrides is clang's version of -Woverride-init,
-> which is disabled for the specific files that are problematic. clang
-> added a compatibility alias in clang 8.0.0 so -Winitializer-overrides
-> can be removed.
->
-> [1]: https://lore.kernel.org/r/202108210311.CBtcgoUL-lkp@intel.com/
-> [2]: https://lore.kernel.org/r/20210824022640.2170859-1-nathan@kernel.org/
->
-> Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
-> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+On Mon, Oct 04, 2021 at 03:04:01PM +0000, Gupta, Anshuman wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Monday, October 4, 2021 4:22 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: Sean Paul <seanpaul@chromium.org>; Gupta, Anshuman
+> > <anshuman.gupta@intel.com>; C, Ramalingam <ramalingam.c@intel.com>; B S,
+> > Karthik <karthik.b.s@intel.com>
+> > Subject: i915 MST HDCP code looks broken
+> > 
+> > Hi,
+> > 
+> > I took a quick peek at intel_dp_add_mst_connector() the other day and noticed
+> > that it calls intel_dp_hdcp_init() and passes in the SST dig_port. And digging in a
+> > bit further that seems to clobber all kinds of things in dig_port->hdcp_port_data.
+> > This looks rather broken to me.
+> > 
+> > So has anyone actually thought what happens if you first use MST on the port,
+> > and then later switch to SST on the same port?
+> AFAIU there shouldn't be , when the last connector of MST topology get destroyed  and it switches to SST mode on same port.
+> The base static connector of same dig_port should get connected and will call  intel_dp_init_connector()->intel_dp_hdcp_init().
 
-Thanks for the patch, and sorry for the delay.
-
-Exceptionally pushed to drm-intel-gt-next instead of drm-intel-next
-because some of the dependencies such as 43192617f781 ("drm/i915: Enable
--Wsometimes-uninitialized") were queued there too.
-
-
-BR,
-Jani.
-
-
-> ---
->
-> v1 -> v2: https://lore.kernel.org/r/20210824232237.2085342-1-nathan@kernel.org/
->
-> * Rebase on drm-intel-gt-next now that the prerequisite patch series has
->   been merged: https://lore.kernel.org/r/87wnnj13t5.fsf@intel.com/
->
-> * Add Nick's reviewed-by tag.
->
->  drivers/gpu/drm/i915/Makefile | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index c584188aa15a..fd99374583d5 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -13,13 +13,11 @@
->  # will most likely get a sudden build breakage... Hopefully we will fix
->  # new warnings before CI updates!
->  subdir-ccflags-y := -Wall -Wextra
-> -subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
-> -subdir-ccflags-y += $(call cc-disable-warning, type-limits)
-> -subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
-> +subdir-ccflags-y += -Wno-unused-parameter
-> +subdir-ccflags-y += -Wno-type-limits
-> +subdir-ccflags-y += -Wno-missing-field-initializers
-> +subdir-ccflags-y += -Wno-sign-compare
->  subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
-> -# clang warnings
-> -subdir-ccflags-y += $(call cc-disable-warning, sign-compare)
-> -subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
->  subdir-ccflags-y += $(call cc-disable-warning, frame-address)
->  subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
->  
->
-> base-commit: 43192617f7816bb74584c1df06f57363afd15337
+SST conectors are static. They are created exactly once when the driver
+loads.
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
