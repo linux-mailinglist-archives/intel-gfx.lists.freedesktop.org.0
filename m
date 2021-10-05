@@ -2,33 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7732421F9E
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 09:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE5A421FA5
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 09:48:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25CAA6E33F;
-	Tue,  5 Oct 2021 07:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC356E334;
+	Tue,  5 Oct 2021 07:48:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 78E2B6E334;
- Tue,  5 Oct 2021 07:46:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 710F8A66C8;
- Tue,  5 Oct 2021 07:46:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7E096E334;
+ Tue,  5 Oct 2021 07:48:21 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="225620467"
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="225620467"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 00:48:21 -0700
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="487921719"
+Received: from tbarret1-mobl.ger.corp.intel.com (HELO [10.213.238.194])
+ ([10.213.238.194])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 00:48:19 -0700
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: daniel@ffwll.ch
+References: <20211001100610.2899-1-christian.koenig@amd.com>
+ <20211001100610.2899-24-christian.koenig@amd.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <2caa3933-2e29-1b86-a20e-82225d266710@linux.intel.com>
+Date: Tue, 5 Oct 2021 08:48:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 05 Oct 2021 07:46:47 -0000
-Message-ID: <163342000743.19283.11220330533768983686@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211005065151.828922-1-bigeasy@linutronix.de>
-In-Reply-To: <20211005065151.828922-1-bigeasy@linutronix.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_Increase_DRM=5FOBJECT=5FMAX=5FPROPERTY_by_18=2E?=
+In-Reply-To: <20211001100610.2899-24-christian.koenig@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 23/28] drm: use new iterator in
+ drm_gem_fence_array_add_implicit v3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,24 +53,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm: Increase DRM_OBJECT_MAX_PROPERTY by 18.
-URL   : https://patchwork.freedesktop.org/series/95440/
-State : warning
+On 01/10/2021 11:06, Christian König wrote:
+> Simplifying the code a bit.
+> 
+> v2: add missing rcu_read_lock()/unlock()
+> v3: switch to locked version
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> ---
+>   drivers/gpu/drm/drm_gem.c | 26 +++++---------------------
+>   1 file changed, 5 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 09c820045859..4dcdec6487bb 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -1340,31 +1340,15 @@ int drm_gem_fence_array_add_implicit(struct xarray *fence_array,
+>   				     struct drm_gem_object *obj,
+>   				     bool write)
+>   {
+> -	int ret;
+> -	struct dma_fence **fences;
+> -	unsigned int i, fence_count;
+> -
+> -	if (!write) {
+> -		struct dma_fence *fence =
+> -			dma_resv_get_excl_unlocked(obj->resv);
+> -
+> -		return drm_gem_fence_array_add(fence_array, fence);
+> -	}
+> +	struct dma_resv_iter cursor;
+> +	struct dma_fence *fence;
+> +	int ret = 0;
+>   
+> -	ret = dma_resv_get_fences(obj->resv, NULL,
+> -						&fence_count, &fences);
+> -	if (ret || !fence_count)
+> -		return ret;
+> -
+> -	for (i = 0; i < fence_count; i++) {
+> -		ret = drm_gem_fence_array_add(fence_array, fences[i]);
+> +	dma_resv_for_each_fence(&cursor, obj->resv, write, fence) {
+> +		ret = drm_gem_fence_array_add(fence_array, fence);
+>   		if (ret)
+>   			break;
+>   	}
+> -
+> -	for (; i < fence_count; i++)
+> -		dma_fence_put(fences[i]);
+> -	kfree(fences);
+>   	return ret;
+>   }
+>   EXPORT_SYMBOL(drm_gem_fence_array_add_implicit);
+> 
 
-== Summary ==
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-$ dim checkpatch origin/drm-tip
-275051930b84 drm: Increase DRM_OBJECT_MAX_PROPERTY by 18.
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-   2f425cf5242a0 ("drm: Fix oops in damage self-tests by mocking damage property")
+Regards,
 
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-
-
+Tvrtko
