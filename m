@@ -2,45 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D424422003
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 09:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC8BD422013
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 10:04:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02A696F5AB;
-	Tue,  5 Oct 2021 07:59:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05D6D6E364;
+	Tue,  5 Oct 2021 08:04:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B471F6F5AB;
- Tue,  5 Oct 2021 07:59:47 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4HNqk73Tmdz4xbC;
- Tue,  5 Oct 2021 18:59:42 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1633420785;
- bh=wfeXA7dMbbU3zv2UjIpe4e0tS5IB1hPNSHNMLRMmit0=;
- h=Date:From:To:Cc:Subject:From;
- b=uSvqMIZ9QTCXc/u82OEuuMkVqDfJreRQ0jmrC1bS2ankHyCq8l2sDdMuHU8WXr9/Q
- /iVY2/IFrCLunSKHnPjVSMLSl/lawhO78oS4l2HzRu9C0VJs0BZyoyFscVRgDKRw4B
- j1StM8W3TEQTj7J/DOHc/XfPJ2jtrS354VkKVAKdOSpMLBQxrmSq7L+FGHKPq2ZG6v
- 3Vv/fuZ8Q0MWSRGrOu5YphBqQ5YdfDABUA2wSeAE59MVbd2JzNt0BgM1zBYwmkswrM
- XEHfxYEHkiW46Bu/RQLXQWIULy5nW/b3NGzwU2c6qeOLGGCO1LE5i2sjk9tH9AZnsw
- OiZIMiOyiF1Zg==
-Date: Tue, 5 Oct 2021 18:59:40 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Cc: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Linux Kernel
- Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Message-ID: <20211005185940.382720e7@canb.auug.org.au>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 618246E364
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Oct 2021 08:04:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="223097863"
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="223097863"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 01:04:07 -0700
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="438604340"
+Received: from gionascu-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.40.237])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 01:04:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com, animesh.manna@intel.com
+In-Reply-To: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
+Date: Tue, 05 Oct 2021 11:04:02 +0300
+Message-ID: <87lf3728zx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/DzN9LhCaJE=kJIITRXpYg2U";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: build warning after merge of the drm-misc
- tree
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Remove check for low
+ voltage sku for max dp source rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,42 +50,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/DzN9LhCaJE=kJIITRXpYg2U
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, 05 Oct 2021, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> The low voltage sku check can be ignored as OEMs need to consider that
+> when designing the board and then put any limits in VBT.
 
-Hi all,
+"can" or "must"?
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced this warning:
+VBT has been notoriously buggy over the years, and we need to safeguard
+against that. Are there any cases where having these checks are wrong?
 
-include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_in' =
-not described in 'dma_buf'
-include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_out'=
- not described in 'dma_buf'
+BR,
+Jani.
 
-Introduced by commit
+> Same is now changed in Bspec (53720).
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 32 +++----------------------
+>  1 file changed, 3 insertions(+), 29 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 74a657ae131a..75c364c3c88e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -297,23 +297,13 @@ static int dg2_max_source_rate(struct intel_dp *intel_dp)
+>  	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
+>  }
+>  
+> -static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
+> -{
+> -	u32 voltage;
+> -
+> -	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
+> -
+> -	return voltage == VOLTAGE_INFO_0_85V;
+> -}
+> -
+>  static int icl_max_source_rate(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>  	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+>  	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+>  
+> -	if (intel_phy_is_combo(dev_priv, phy) &&
+> -	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
+> +	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(intel_dp))
+>  		return 540000;
+>  
+>  	return 810000;
+> @@ -321,23 +311,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+>  
+>  static int ehl_max_source_rate(struct intel_dp *intel_dp)
+>  {
+> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> -	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+> -	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+> -
+> -	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
+> -		return 540000;
+> -
+> -	return 810000;
+> -}
+> -
+> -static int dg1_max_source_rate(struct intel_dp *intel_dp)
+> -{
+> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+> -
+> -	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
+> +	if (intel_dp_is_edp(intel_dp))
+>  		return 540000;
+>  
+>  	return 810000;
+> @@ -380,7 +354,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+>  			max_rate = dg2_max_source_rate(intel_dp);
+>  		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
+>  			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+> -			max_rate = dg1_max_source_rate(intel_dp);
+> +			max_rate = 810000;
+>  		else if (IS_JSL_EHL(dev_priv))
+>  			max_rate = ehl_max_source_rate(intel_dp);
+>  		else
 
-  6b51b02a3a0a ("dma-buf: fix and rework dma_buf_poll v7")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/DzN9LhCaJE=kJIITRXpYg2U
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFcBewACgkQAVBC80lX
-0Gz87Qf/ejwjqlHJAHNP2eNsQJh+/0/HggBItJofeqDAXd9uPH2oap2ZHo85ot2P
-CIn/vLl4N290pS+YVWc+D8rnWiytgb+ASFjCBVaSnIIqzN2SIMvTOHfHtTvZuGTF
-owhBNWD9TkdZwJqUemERiHB3J9aHoH5RyHqhMu+drFivhTAIn/YR7suHlTuw4ogU
-m1G01RjLJkkEGx23S9uFV+Dz7/zt7gYe70Y7Q3/I5xj0Od5sm4JCz/sUJjMoOMpH
-UnETNYkC5tzh4ojcQz9LnoXhPIzPRuB6R+jFBD3nzCqG7zjDbAWmSbMFY9RHYfVr
-+ZsCqKnBkjVOFXdQFXAltDt3piqAGQ==
-=13EE
------END PGP SIGNATURE-----
-
---Sig_/DzN9LhCaJE=kJIITRXpYg2U--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
