@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA2F34220FF
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 10:41:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A2442218E
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 11:01:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A08716EB22;
-	Tue,  5 Oct 2021 08:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC836EB15;
+	Tue,  5 Oct 2021 09:01:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31C0E6EB1F;
- Tue,  5 Oct 2021 08:41:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="212621580"
-X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="212621580"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2021 01:41:40 -0700
-X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="487942524"
-Received: from tbarret1-mobl.ger.corp.intel.com (HELO [10.213.238.194])
- ([10.213.238.194])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2021 01:41:39 -0700
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
-Cc: daniel@ffwll.ch
-References: <20211001100610.2899-1-christian.koenig@amd.com>
- <20211001100610.2899-10-christian.koenig@amd.com>
- <ef650439-a418-979b-56fb-4cf10f91747e@linux.intel.com>
- <e43bc3f9-60be-0f7f-b1a7-3cd2fe1a6289@amd.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <afa865d8-9d95-1540-016a-f94d80f12950@linux.intel.com>
-Date: Tue, 5 Oct 2021 09:41:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5BD6E3F9
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Oct 2021 09:01:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="225633405"
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="225633405"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 02:01:07 -0700
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="477590236"
+Received: from gionascu-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.40.237])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 02:01:02 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: kernel test robot <lkp@intel.com>, Max Gurtovoy <mgurtovoy@nvidia.com>,
+ "llvm\@lists.linux.dev" <llvm@lists.linux.dev>,
+ "kbuild-all\@lists.01.org" <kbuild-all@lists.01.org>,
+ "kvm\@vger.kernel.org" <kvm@vger.kernel.org>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Yishai Hadas <yishaih@nvidia.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211001115137.GJ964074@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210827153409.GV1721383@nvidia.com> <878rzdt3a3.fsf@intel.com>
+ <20211001115137.GJ964074@nvidia.com>
+Date: Tue, 05 Oct 2021 12:00:59 +0300
+Message-ID: <87fstf26d0.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <e43bc3f9-60be-0f7f-b1a7-3cd2fe1a6289@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 09/28] dma-buf: use the new iterator in
- dma_resv_poll
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [vfio:next 33/38]
+ drivers/gpu/drm/i915/i915_pci.c:975:2: warning: missing field
+ 'override_only' initializer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,118 +58,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 01 Oct 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
+> On Fri, Oct 01, 2021 at 02:04:04PM +0300, Jani Nikula wrote:
+>> On Fri, 27 Aug 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
+>> > On Fri, Aug 27, 2021 at 03:12:36PM +0000, kernel test robot wrote:
+>> >> tree:   https://github.com/awilliam/linux-vfio.git next
+>> >> head:   ea870730d83fc13a5fa2bd0e175176d7ac8a400a
+>> >> commit: 343b7258687ecfbb363bfda8833a7cf641aac524 [33/38] PCI: Add 'override_only' field to struct pci_device_id
+>> >> config: i386-randconfig-a004-20210827 (attached as .config)
+>> >> compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 1076082a0d97bd5c16a25ee7cf3dbb6ee4b5a9fe)
+>> >> reproduce (this is a W=1 build):
+>> >>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>> >>         chmod +x ~/bin/make.cross
+>> >>         # https://github.com/awilliam/linux-vfio/commit/343b7258687ecfbb363bfda8833a7cf641aac524
+>> >>         git remote add vfio https://github.com/awilliam/linux-vfio.git
+>> >>         git fetch --no-tags vfio next
+>> >>         git checkout 343b7258687ecfbb363bfda8833a7cf641aac524
+>> >>         # save the attached .config to linux build tree
+>> >>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=i386 
+>> >> 
+>> >> If you fix the issue, kindly add following tag as appropriate
+>> >> Reported-by: kernel test robot <lkp@intel.com>
+>> >
+>> > Ugh, this is due to this code:
+>> >
+>> > #define INTEL_VGA_DEVICE(id, info) {		\
+>> > 	0x8086,	id,				\
+>> > 	~0, ~0,					\
+>> > 	0x030000, 0xff0000,			\
+>> > 	(unsigned long) info }
+>> >
+>> > #define INTEL_QUANTA_VGA_DEVICE(info) {		\
+>> > 	0x8086,	0x16a,				\
+>> > 	0x152d,	0x8990,				\
+>> > 	0x030000, 0xff0000,			\
+>> > 	(unsigned long) info }
+>> >
+>> >
+>> > Which really should be using the normal pattern for defining these
+>> > structs:
+>> >
+>> > #define PCI_DEVICE_CLASS(dev_class,dev_class_mask) \
+>> >         .class = (dev_class), .class_mask = (dev_class_mask), \
+>> >         .vendor = PCI_ANY_ID, .device = PCI_ANY_ID, \
+>> >         .subvendor = PCI_ANY_ID, .subdevice = PCI_ANY_ID
+>> >
+>> > The warning is also not a real issue, just clang being overzealous.
+>> 
+>> Stumbled upon this old report, sorry for the delayed response.
+>> 
+>> The reason it's not using designated initializers is that the same file
+>> gets synced to some userspace projects (at least libdrm and
+>> igt-gpu-tools) which use the macros to initialize slightly different
+>> structs. For example, igt uses struct pci_id_match from libpciaccess-dev
+>> (/usr/include/pciaccess.h) and can't easily adapt to different member
+>> names.
+>
+> Do it like this:
+>
+>
+> #ifdef __KERNEL__
+> #define INTEL_VGA_DEVICE(..)
+> #endif
+>
+>
+> And userspace does
+>
+> #define INTEL_VGA_DEVICE(..)
+> #include <foo.h>
 
-On 05/10/2021 09:16, Christian König wrote:
-> Am 05.10.21 um 09:44 schrieb Tvrtko Ursulin:
->>
->> On 01/10/2021 11:05, Christian König wrote:
->>> Simplify the code a bit.
->>>
->>> Signed-off-by: Christian König <christian.koenig@amd.com>
->>> ---
->>>   drivers/dma-buf/dma-buf.c | 36 ++++++------------------------------
->>>   1 file changed, 6 insertions(+), 30 deletions(-)
->>>
->>> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
->>> index 8242b5d9baeb..beb504a92d60 100644
->>> --- a/drivers/dma-buf/dma-buf.c
->>> +++ b/drivers/dma-buf/dma-buf.c
->>> @@ -209,19 +209,14 @@ static void dma_buf_poll_cb(struct dma_fence 
->>> *fence, struct dma_fence_cb *cb)
->>>       dma_fence_put(fence);
->>>   }
->>>   -static bool dma_buf_poll_shared(struct dma_resv *resv,
->>> +static bool dma_buf_poll_add_cb(struct dma_resv *resv, bool write,
->>>                   struct dma_buf_poll_cb_t *dcb)
->>>   {
->>> -    struct dma_resv_list *fobj = dma_resv_shared_list(resv);
->>> +    struct dma_resv_iter cursor;
->>>       struct dma_fence *fence;
->>> -    int i, r;
->>> -
->>> -    if (!fobj)
->>> -        return false;
->>> +    int r;
->>>   -    for (i = 0; i < fobj->shared_count; ++i) {
->>> -        fence = rcu_dereference_protected(fobj->shared[i],
->>> -                          dma_resv_held(resv));
->>> +    dma_resv_for_each_fence(&cursor, resv, write, fence) {
->>>           dma_fence_get(fence);
->>>           r = dma_fence_add_callback(fence, &dcb->cb, dma_buf_poll_cb);
->>>           if (!r)
->>
->> It is unchanged with this patch, but are the semantics supposed to be 
->> like this? Signal poll event if _any_ of the shared fences has been 
->> signaled?
-> 
-> That had Daniel and me confused for a moment as well.
-> 
-> We don't signal the poll when any of the shared fences has signaled, but 
-> rather install a callback on the first not-signaled fence.
-> 
-> This callback then issues a re-test of the poll and only if we can't 
-> find any more fence the poll is considered signaled (at least that's the 
-> idea, the coding could as well be broken).
+Sure.
 
-You are right, one too many boolean inversions for me not to get confused.
+>> Anyway, we've got
+>> 
+>> subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
+>> subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
+>> 
+>> in drivers/gpu/drm/i915/Makefile, so I wonder why they're not respected.
+>
+> Disabling kernel warnings because some userspace wants to copy a
+> kernel header is horrific, don't do that.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+We've disabled some warnings because those lines are preceded by
 
-Regards,
+subdir-ccflags-y := -Wall -Wextra
 
-Tvrtko
+enabling more warnings than the kernel build generally does.
 
-> 
-> Christian.
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> @@ -232,24 +227,6 @@ static bool dma_buf_poll_shared(struct dma_resv 
->>> *resv,
->>>       return false;
->>>   }
->>>   -static bool dma_buf_poll_excl(struct dma_resv *resv,
->>> -                  struct dma_buf_poll_cb_t *dcb)
->>> -{
->>> -    struct dma_fence *fence = dma_resv_excl_fence(resv);
->>> -    int r;
->>> -
->>> -    if (!fence)
->>> -        return false;
->>> -
->>> -    dma_fence_get(fence);
->>> -    r = dma_fence_add_callback(fence, &dcb->cb, dma_buf_poll_cb);
->>> -    if (!r)
->>> -        return true;
->>> -    dma_fence_put(fence);
->>> -
->>> -    return false;
->>> -}
->>> -
->>>   static __poll_t dma_buf_poll(struct file *file, poll_table *poll)
->>>   {
->>>       struct dma_buf *dmabuf;
->>> @@ -282,8 +259,7 @@ static __poll_t dma_buf_poll(struct file *file, 
->>> poll_table *poll)
->>>           spin_unlock_irq(&dmabuf->poll.lock);
->>>             if (events & EPOLLOUT) {
->>> -            if (!dma_buf_poll_shared(resv, dcb) &&
->>> -                !dma_buf_poll_excl(resv, dcb))
->>> +            if (!dma_buf_poll_add_cb(resv, true, dcb))
->>>                   /* No callback queued, wake up any other waiters */
->>>                   dma_buf_poll_cb(NULL, &dcb->cb);
->>>               else
->>> @@ -303,7 +279,7 @@ static __poll_t dma_buf_poll(struct file *file, 
->>> poll_table *poll)
->>>           spin_unlock_irq(&dmabuf->poll.lock);
->>>             if (events & EPOLLIN) {
->>> -            if (!dma_buf_poll_excl(resv, dcb))
->>> +            if (!dma_buf_poll_add_cb(resv, false, dcb))
->>>                   /* No callback queued, wake up any other waiters */
->>>                   dma_buf_poll_cb(NULL, &dcb->cb);
->>>               else
->>>
-> 
+
+BR,
+Jani.
+
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
