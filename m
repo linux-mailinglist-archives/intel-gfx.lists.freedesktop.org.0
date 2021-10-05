@@ -2,47 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A2442218E
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 11:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5279E422245
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 11:26:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC836EB15;
-	Tue,  5 Oct 2021 09:01:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A96296EB34;
+	Tue,  5 Oct 2021 09:26:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5BD6E3F9
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Oct 2021 09:01:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="225633405"
-X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="225633405"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2021 02:01:07 -0700
-X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="477590236"
-Received: from gionascu-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.249.40.237])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2021 02:01:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: kernel test robot <lkp@intel.com>, Max Gurtovoy <mgurtovoy@nvidia.com>,
- "llvm\@lists.linux.dev" <llvm@lists.linux.dev>,
- "kbuild-all\@lists.01.org" <kbuild-all@lists.01.org>,
- "kvm\@vger.kernel.org" <kvm@vger.kernel.org>,
- Alex Williamson <alex.williamson@redhat.com>,
- Yishai Hadas <yishaih@nvidia.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211001115137.GJ964074@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210827153409.GV1721383@nvidia.com> <878rzdt3a3.fsf@intel.com>
- <20211001115137.GJ964074@nvidia.com>
-Date: Tue, 05 Oct 2021 12:00:59 +0300
-Message-ID: <87fstf26d0.fsf@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0D9C6EB34;
+ Tue,  5 Oct 2021 09:26:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="286574212"
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="286574212"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 02:26:01 -0700
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="438629351"
+Received: from tbarret1-mobl.ger.corp.intel.com (HELO [10.213.238.194])
+ ([10.213.238.194])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 02:26:00 -0700
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ jason@jlekstrand.net, Daniel Vetter <daniel@ffwll.ch>
+References: <20210922194333.8956-1-matthew.brost@intel.com>
+ <ecb916eb-7755-2c19-4f4f-389580f9acd6@linux.intel.com>
+ <20211001154859.GA5892@jons-linux-dev-box>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <3ce7b650-ef10-66e1-1370-99b0522909d4@linux.intel.com>
+Date: Tue, 5 Oct 2021 10:25:53 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [vfio:next 33/38]
- drivers/gpu/drm/i915/i915_pci.c:975:2: warning: missing field
- 'override_only' initializer
+In-Reply-To: <20211001154859.GA5892@jons-linux-dev-box>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix bug in user proto-context
+ creation that leaked contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,98 +56,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 01 Oct 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> On Fri, Oct 01, 2021 at 02:04:04PM +0300, Jani Nikula wrote:
->> On Fri, 27 Aug 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
->> > On Fri, Aug 27, 2021 at 03:12:36PM +0000, kernel test robot wrote:
->> >> tree:   https://github.com/awilliam/linux-vfio.git next
->> >> head:   ea870730d83fc13a5fa2bd0e175176d7ac8a400a
->> >> commit: 343b7258687ecfbb363bfda8833a7cf641aac524 [33/38] PCI: Add 'override_only' field to struct pci_device_id
->> >> config: i386-randconfig-a004-20210827 (attached as .config)
->> >> compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 1076082a0d97bd5c16a25ee7cf3dbb6ee4b5a9fe)
->> >> reproduce (this is a W=1 build):
->> >>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->> >>         chmod +x ~/bin/make.cross
->> >>         # https://github.com/awilliam/linux-vfio/commit/343b7258687ecfbb363bfda8833a7cf641aac524
->> >>         git remote add vfio https://github.com/awilliam/linux-vfio.git
->> >>         git fetch --no-tags vfio next
->> >>         git checkout 343b7258687ecfbb363bfda8833a7cf641aac524
->> >>         # save the attached .config to linux build tree
->> >>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=i386 
->> >> 
->> >> If you fix the issue, kindly add following tag as appropriate
->> >> Reported-by: kernel test robot <lkp@intel.com>
->> >
->> > Ugh, this is due to this code:
->> >
->> > #define INTEL_VGA_DEVICE(id, info) {		\
->> > 	0x8086,	id,				\
->> > 	~0, ~0,					\
->> > 	0x030000, 0xff0000,			\
->> > 	(unsigned long) info }
->> >
->> > #define INTEL_QUANTA_VGA_DEVICE(info) {		\
->> > 	0x8086,	0x16a,				\
->> > 	0x152d,	0x8990,				\
->> > 	0x030000, 0xff0000,			\
->> > 	(unsigned long) info }
->> >
->> >
->> > Which really should be using the normal pattern for defining these
->> > structs:
->> >
->> > #define PCI_DEVICE_CLASS(dev_class,dev_class_mask) \
->> >         .class = (dev_class), .class_mask = (dev_class_mask), \
->> >         .vendor = PCI_ANY_ID, .device = PCI_ANY_ID, \
->> >         .subvendor = PCI_ANY_ID, .subdevice = PCI_ANY_ID
->> >
->> > The warning is also not a real issue, just clang being overzealous.
->> 
->> Stumbled upon this old report, sorry for the delayed response.
->> 
->> The reason it's not using designated initializers is that the same file
->> gets synced to some userspace projects (at least libdrm and
->> igt-gpu-tools) which use the macros to initialize slightly different
->> structs. For example, igt uses struct pci_id_match from libpciaccess-dev
->> (/usr/include/pciaccess.h) and can't easily adapt to different member
->> names.
->
-> Do it like this:
->
->
-> #ifdef __KERNEL__
-> #define INTEL_VGA_DEVICE(..)
-> #endif
->
->
-> And userspace does
->
-> #define INTEL_VGA_DEVICE(..)
-> #include <foo.h>
 
-Sure.
+On 01/10/2021 16:48, Matthew Brost wrote:
+> On Fri, Oct 01, 2021 at 09:40:19AM +0100, Tvrtko Ursulin wrote:
+>>
+>> + Daniel as reviewer and maybe merge, avoid falling through cracks at least.
+>>
+> 
+> Ty, working on push rights myself.
 
->> Anyway, we've got
->> 
->> subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
->> subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
->> 
->> in drivers/gpu/drm/i915/Makefile, so I wonder why they're not respected.
->
-> Disabling kernel warnings because some userspace wants to copy a
-> kernel header is horrific, don't do that.
+I ended up pushing it myself to avoid having a potential crash in the 
+driver for too long. Hope people will not mind.
 
-We've disabled some warnings because those lines are preceded by
+Regards,
 
-subdir-ccflags-y := -Wall -Wextra
+Tvrtko
 
-enabling more warnings than the kernel build generally does.
-
-
-BR,
-Jani.
-
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>> On 22/09/2021 20:43, Matthew Brost wrote:
+>>> Set number of engines before attempting to create contexts so the
+>>> function free_engines can clean up properly. Also check return of
+>>> alloc_engines for NULL.
+>>>
+>>> v2:
+>>>    (Tvrtko)
+>>>     - Send as stand alone patch
+>>>    (John Harrison)
+>>>     - Check for alloc_engines returning NULL
+>>>
+>>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+>>> Fixes: d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle create parameters (v5)")
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: <stable@vger.kernel.org>
+>>> ---
+>>>    drivers/gpu/drm/i915/gem/i915_gem_context.c | 6 +++++-
+>>>    1 file changed, 5 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> index c2ab0e22db0a..9627c7aac6a3 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> @@ -898,6 +898,11 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+>>>    	unsigned int n;
+>>>    	e = alloc_engines(num_engines);
+>>> +	if (!e) {
+>>> +		return ERR_PTR(-ENOMEM);
+>>> +	}
+>>
+>> Ideally remove the braces and respin.
+>>
+> 
+> Yep, checkpatch didn't like this. Will respin.
+>   
+>>> +	e->num_engines = num_engines;
+>>
+>> Theoretically you could have put it next to "e->engines[n] = ce" assignment
+>> so the pattern is the same as in default_engines(). Kind of makes more sense
+>> that the number is not set before anything is created, but as it doesn't
+>> really matter since free_engines handles sparse arrays so there is argument
+>> to have a simpler single assignment as well.
+>>
+> 
+> I like a single assignment, let's not overthink this.
+>   
+>>> +
+>>>    	for (n = 0; n < num_engines; n++) {
+>>>    		struct intel_context *ce;
+>>>    		int ret;
+>>> @@ -931,7 +936,6 @@ static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
+>>>    			goto free_engines;
+>>>    		}
+>>>    	}
+>>> -	e->num_engines = num_engines;
+>>>    	return e;
+>>>
+>>
+>> Fix looks good to me. I did not want to butt in but since more than a week
+>> has passed without it getting noticed:
+>>
+> 
+> Again, ty.
+> 
+> Matt
+> 
+>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Regards,
+>>
+>> Tvrtko
