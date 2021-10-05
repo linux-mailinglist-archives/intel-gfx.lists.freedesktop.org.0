@@ -1,53 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485C9421F18
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 08:52:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A94421F3E
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 09:07:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E67B6E2DF;
-	Tue,  5 Oct 2021 06:51:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDDB36E2F2;
+	Tue,  5 Oct 2021 07:07:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de
  [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACB9B6E2DF;
- Tue,  5 Oct 2021 06:51:58 +0000 (UTC)
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 097A36E2E6;
+ Tue,  5 Oct 2021 07:06:59 +0000 (UTC)
+Date: Tue, 5 Oct 2021 09:06:56 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1633416715;
+ s=2020; t=1633417617;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=gia7rDZsepYWedc3tB5iiMNpDT1qzajEGVwArNWFmlA=;
- b=eMCHt19i7ek8k2IUmX+bjsicNtWIu/FbLWufCHWnKsDBegazSN5q7U9liCHg8PRxk83lWA
- UAUMi8pPPaTCzNOqe8DwCHkpQB5xzgcDrqS2YYbFhIHbxGJTZW2IXY6lNQTrNmskxyHPJP
- P1h0UhZlf3Bgzc5/dbLjBVaztc4tuPaaW4dHFwdWbHXlOJ5niuCJC19JY9ZAy3bqgFvZcf
- PAZk1E5ylEo+zoMrAaLcROKmOIoh6vXWOJTzvMYFgSiHWSLUJbGhyAVaDk922IONAXRTL1
- nrz5EHAHmFW6x8e5lwOk6ZbPoe4ZueHY9k+XH83V3jOiCDUhSiaY8uFDJYLxOQ==
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ErA+FMQ6eKB3vV9Xcub5nS1R+oPyIK29BJzJ17LvooM=;
+ b=TKyOeNadxK+YbpVRbnTobRx+hlY0jvXQLsCZqQ1NJfLHLcqXPv5Frfgf16XT0GmwF30aCP
+ EkBtm5O0A43yp2IJOPdyFqyDCDO8NVjVyl9bksS+9F7okGmui5SD7IKsPVeT9RK7SCHMqW
+ yXnPd6b4HSMagJxKWk/EuSpF9+d1FjUE9iO0bOZmjLhjuKi5unG4fr9LwAvTviq7LBDjXx
+ /gKre7uXmmjv4R22cxLqj7/7OjF2EnBftggnC1k2DZbvJNUxaYqECQ0//YrZuxAsKYQxqn
+ bjjK1yK2H4teOwQHBJR1ir0OWlNs7K2BPwUtV0IX+t2p4oZmRj3plJxoTvti/g==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1633416715;
+ s=2020e; t=1633417617;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=gia7rDZsepYWedc3tB5iiMNpDT1qzajEGVwArNWFmlA=;
- b=FqRKijl2PDI5oEIQXDDoS9qX3ZLDXZdQHljrgwC7rs6p+Cf0KnlMQGXB6ZAeLQLc211WCm
- VpuC4yP52DkJEMAg==
-To: dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Date: Tue,  5 Oct 2021 08:51:51 +0200
-Message-Id: <20211005065151.828922-1-bigeasy@linutronix.de>
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ErA+FMQ6eKB3vV9Xcub5nS1R+oPyIK29BJzJ17LvooM=;
+ b=htwemY/lmJQUqDOfw1kdfEC67q6oq0hYMl7wVlXISV/FSnRRtUhCntLVMLoD6R/KEprLNV
+ 6XOgBwt9yptZwSCw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ john.c.harrison@intel.com, Thomas Gleixner <tglx@linutronix.de>
+Message-ID: <20211005070656.25xszayci52wqe7h@linutronix.de>
+References: <20210727002348.97202-1-matthew.brost@intel.com>
+ <20210727002348.97202-26-matthew.brost@intel.com>
+ <2a417f11-050a-2445-d5e9-38fe354402f2@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [RFC PATCH] drm: Increase DRM_OBJECT_MAX_PROPERTY by 18.
+In-Reply-To: <2a417f11-050a-2445-d5e9-38fe354402f2@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 25/33] drm/i915/guc: Support request
+ cancellation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,36 +66,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The warning poped up, it says it increase it by the number of occurrence.
-I saw it 18 times so here it is.
-It started to up since commit
-   2f425cf5242a0 ("drm: Fix oops in damage self-tests by mocking damage pro=
-perty")
+On 2021-07-27 12:15:59 [-0700], Daniele Ceraolo Spurio wrote:
+> On 7/26/2021 5:23 PM, Matthew Brost wrote:
+> > This adds GuC backend support for i915_request_cancel(), which in turn
+> > makes CONFIG_DRM_I915_REQUEST_TIMEOUT work.
+> >=20
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Increase DRM_OBJECT_MAX_PROPERTY by 18.
+I have a few instances of ODEBUG warnings since this commit
+   62eaf0ae217d4 ("drm/i915/guc: Support request cancellation")
 
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+like:
+
+| ------------[ cut here ]------------
+| ODEBUG: init destroyed (active state 0) object type: i915_sw_fence hint: =
+sw_fence_dummy_notify+0x0/0x10
+| WARNING: CPU: 0 PID: 987 at lib/debugobjects.c:505 debug_print_object+0x6=
+e/0x90
+| Modules linked in:
+| CPU: 0 PID: 987 Comm: Xorg Not tainted 5.15.0-rc4+ #67
+| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
+BIOS P2.10 04/24/2012
+| RIP: 0010:debug_print_object+0x6e/0x90
+=E2=80=A6
+| Call Trace:
+|  i915_sw_fence_reinit+0x10/0x40
+|  intel_context_init+0x185/0x1e0
+|  intel_context_create+0x2e/0x100
+|  default_engines+0x9d/0x120
+|  i915_gem_create_context+0x40a/0x5d0
+|  ? trace_kmalloc+0x29/0xd0
+|  ? kmem_cache_alloc_trace+0xdd/0x190
+|  i915_gem_context_open+0x140/0x1c0
+|  i915_gem_open+0x70/0xa0
+|  drm_file_alloc+0x1af/0x270
+|  drm_open+0xdc/0x270
+|  drm_stub_open+0xa6/0x130
+|  chrdev_open+0xbe/0x250
+|  ? cdev_device_add+0x80/0x80
+|  do_dentry_open+0x15e/0x390
+|  path_openat+0x76b/0xa60
+|  do_filp_open+0xa4/0x150
+|  ? lock_release+0x149/0x2f0
+|  ? _raw_spin_unlock+0x24/0x40
+|  do_sys_openat2+0x92/0x160
+|  __x64_sys_openat+0x4f/0x90
+|  do_syscall_64+0x3b/0xc0
+|  entry_SYSCALL_64_after_hwframe+0x44/0xae
+| RIP: 0033:0x7f91b5cfdf07
+
+and:
+| ODEBUG: activate destroyed (active state 0) object type: i915_sw_fence hi=
+nt: sw_fence_dummy_notify+0x0/0x10
+| WARNING: CPU: 0 PID: 987 at lib/debugobjects.c:505 debug_print_object+0x6=
+e/0x90
+|=20
+| Call Trace:
+|  debug_object_activate+0x174/0x200
+|  i915_sw_fence_commit+0x10/0x20
+|  intel_context_init+0x18d/0x1e0
+|  intel_context_create+0x2e/0x100
+|  default_engines+0x9d/0x120
+
 ---
 
-I have no idea whether this is correct or just a symptom of another
-problem. This has been observed with i915 and full debug.
+| ODEBUG: active_state destroyed (active state 0) object type: i915_sw_fenc=
+e hint: sw_fence_dummy_notify+0x0/0x10
+| WARNING: CPU: 0 PID: 987 at lib/debugobjects.c:505 debug_print_object+0x6=
+e/0x90
+| Call Trace:
+|  __i915_sw_fence_complete+0x6f/0x280
+|  intel_context_init+0x18d/0x1e0
+|  intel_context_create+0x2e/0x100
+|  default_engines+0x9d/0x120
 
- include/drm/drm_mode_object.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Is this known? This is yesterday's -rc4, I first noticed it in -rc3.
 
-diff --git a/include/drm/drm_mode_object.h b/include/drm/drm_mode_object.h
-index c34a3e8030e12..1e5399e47c3a5 100644
---- a/include/drm/drm_mode_object.h
-+++ b/include/drm/drm_mode_object.h
-@@ -60,7 +60,7 @@ struct drm_mode_object {
- 	void (*free_cb)(struct kref *kref);
- };
-=20
--#define DRM_OBJECT_MAX_PROPERTY 24
-+#define DRM_OBJECT_MAX_PROPERTY 42
- /**
-  * struct drm_object_properties - property tracking for &drm_mode_object
-  */
---=20
-2.33.0
+> Daniele
 
+Sebastian
