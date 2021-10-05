@@ -2,47 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9297A421F4C
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 09:13:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C08D421F6C
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 09:27:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E85D6E2EF;
-	Tue,  5 Oct 2021 07:13:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A626D6E314;
+	Tue,  5 Oct 2021 07:27:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A91B56E2EF;
- Tue,  5 Oct 2021 07:13:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="223087210"
-X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="223087210"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2021 00:13:44 -0700
-X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="713967759"
-Received: from jstleger-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.157.147])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2021 00:13:43 -0700
-Date: Tue, 5 Oct 2021 00:13:43 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org,
- Masahiro Yamada <masahiroy@kernel.org>,
- Steven Price <steven.price@arm.com>, Andrzej Hajda <a.hajda@samsung.com>,
- intel-gfx@lists.freedesktop.org,
- "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>
-Message-ID: <20211005071343.nufuh3fx3vnxrzro@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20211001074041.2076538-1-lucas.demarchi@intel.com>
- <163308055415.8412.14215483004176995847@build.alporthouse.com>
- <87bl49t6di.fsf@intel.com>
- <20211004205227.xpx67yawrs23gzr2@ldmartin-desk2>
- <20211005061939.GF2083@kadam>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6779A6E314
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Oct 2021 07:27:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="212607577"
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="212607577"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 00:27:52 -0700
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200"; d="scan'208";a="559236306"
+Received: from linux-z370-aorus-gaming-5.iind.intel.com ([10.223.34.160])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 00:27:51 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com,
+	jani.nikula@intel.com,
+	animesh.manna@intel.com
+Date: Tue,  5 Oct 2021 12:45:31 +0530
+Message-Id: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20211005061939.GF2083@kadam>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: remove IS_ACTIVE
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Remove check for low voltage
+ sku for max dp source rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,95 +48,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 05, 2021 at 09:19:39AM +0300, Dan Carpenter wrote:
->On Mon, Oct 04, 2021 at 01:52:27PM -0700, Lucas De Marchi wrote:
->> Cc'ing Dan Carpenter
->>
->> On Fri, Oct 01, 2021 at 12:57:13PM +0300, Jani Nikula wrote:
->> > On Fri, 01 Oct 2021, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->> > > Quoting Lucas De Marchi (2021-10-01 08:40:41)
->> > > > When trying to bring IS_ACTIVE to linux/kconfig.h I thought it wouldn't
->> > > > provide much value just encapsulating it in a boolean context. So I also
->> > > > added the support for handling undefined macros as the IS_ENABLED()
->> > > > counterpart. However the feedback received from Masahiro Yamada was that
->> > > > it is too ugly, not providing much value. And just wrapping in a boolean
->> > > > context is too dumb - we could simply open code it.
->> > > >
->> > > > As detailed in commit babaab2f4738 ("drm/i915: Encapsulate kconfig
->> > > > constant values inside boolean predicates"), the IS_ACTIVE macro was
->> > > > added to workaround a compilation warning. However after checking again
->> > > > our current uses of IS_ACTIVE it turned out there is only
->> > > > 1 case in which it would potentially trigger a warning. All the others
->> > > >   can simply use the shorter version, without wrapping it in any macro.
->> > > > And even that single one didn't trigger any warning in gcc 10.3.
->> > > >
->> > > > So here I'm dialing all the way back to simply removing the macro. If it
->> > > > triggers warnings in future we may change the few cases to check for > 0
->> > > > or != 0. Another possibility would be to use the great "not not
->> > > > operator" for all positive checks, which would allow us to maintain
->> > > > consistency.  However let's try first the simplest form though, hopefully
->> > > > we don't hit broken compilers spitting a warning:
->> > >
->> > > You didn't prevent the compilation warning this re-introduces.
->> > >
->> > > drivers/gpu/drm/i915/i915_config.c:11 i915_fence_context_timeout() warn: should this be a bitwise op?
->> > > drivers/gpu/drm/i915/i915_request.c:1679 i915_request_wait() warn: should this be a bitwise op?
->> >
->> > Looks like that's a Smatch warning. The immediate fix would be to just
->> > add the != 0 in the relevant places. But this is stuff that's just going
->> > to get broken again unless we add Smatch to CI. Most people aren't
->> > running it on a regular basis.
->
->I would really prefer that instead of ensuring that code doesn't
->generate Smatch warnings, people just look over the warnings and then
->mass mark them all as false positives and never look at them again.
->
->It let's us warn about more complicated things without worrying so much
->about being perfect.  When code is fresh in your head then warnings are
->not a big deal to review and you want to warn about every possible issue
->After a year then they take forever and so you really want them to be
->correct or it's a huge waste of time.  I'd prefer Smatch live in the
->space where people run it when the code is fresh.
->
->You would have received some automated emails about this Smatch warning
->but I look over the zero day output and filter the results.
->
->>
->> clang gives a warning only in drivers/gpu/drm/i915/i915_config.c and the
->> warning is gone if the condition swapped:
->>
->> -	if (context && CONFIG_DRM_I915_FENCE_TIMEOUT)
->> +	if (CONFIG_DRM_I915_FENCE_TIMEOUT && context)
->
->I like this rule that when the constant is on the left it's not a mask.
->That makes sense.  I will add that.
+The low voltage sku check can be ignored as OEMs need to consider that
+when designing the board and then put any limits in VBT.
 
-thanks, that would be great, so we can really get rid of the macro by
-sticking this rule since it works for smatch and clang (and gcc doesn't
-give this warning).
+Same is now changed in Bspec (53720).
 
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 32 +++----------------------
+ 1 file changed, 3 insertions(+), 29 deletions(-)
 
-thanks
-Lucas De Marchi
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 74a657ae131a..75c364c3c88e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -297,23 +297,13 @@ static int dg2_max_source_rate(struct intel_dp *intel_dp)
+ 	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
+ }
+ 
+-static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
+-{
+-	u32 voltage;
+-
+-	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
+-
+-	return voltage == VOLTAGE_INFO_0_85V;
+-}
+-
+ static int icl_max_source_rate(struct intel_dp *intel_dp)
+ {
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+ 	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+ 
+-	if (intel_phy_is_combo(dev_priv, phy) &&
+-	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
++	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(intel_dp))
+ 		return 540000;
+ 
+ 	return 810000;
+@@ -321,23 +311,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+ 
+ static int ehl_max_source_rate(struct intel_dp *intel_dp)
+ {
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+-	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+-
+-	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
+-		return 540000;
+-
+-	return 810000;
+-}
+-
+-static int dg1_max_source_rate(struct intel_dp *intel_dp)
+-{
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+-	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+-
+-	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
++	if (intel_dp_is_edp(intel_dp))
+ 		return 540000;
+ 
+ 	return 810000;
+@@ -380,7 +354,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+ 			max_rate = dg2_max_source_rate(intel_dp);
+ 		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
+ 			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+-			max_rate = dg1_max_source_rate(intel_dp);
++			max_rate = 810000;
+ 		else if (IS_JSL_EHL(dev_priv))
+ 			max_rate = ehl_max_source_rate(intel_dp);
+ 		else
+-- 
+2.25.1
 
-
->
->>
->> which would make sense if we think about shortcutting the if condition.
->> However smatch still reports the warning and an additional one
->> in drivers/gpu/drm/i915/i915_request.c. The ways I found to stop the
->> false positives with smatch are:
->>
->> if (context && CONFIG_DRM_I915_FENCE_TIMEOUT != 0)
->> or
->> if (context && !!CONFIG_DRM_I915_FENCE_TIMEOUT)
->> or
->> if (context && CONFIG_DRM_I915_FENCE_TIMEOUT > 0)
->>
->
->I guess I prefer the first and third but I'll add the rule that Clang
->uses to silence the warning.
->
->regards,
->dan carpenter
->
