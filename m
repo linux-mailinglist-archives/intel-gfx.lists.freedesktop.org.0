@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C644234B5
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 01:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 007314234B6
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 01:57:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E08666E486;
-	Tue,  5 Oct 2021 23:56:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 469006E47B;
+	Tue,  5 Oct 2021 23:57:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 89FA26E486;
- Tue,  5 Oct 2021 23:55:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 05D626E47B;
+ Tue,  5 Oct 2021 23:57:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 826C0AA916;
- Tue,  5 Oct 2021 23:55:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 01D3CAA916;
+ Tue,  5 Oct 2021 23:57:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 05 Oct 2021 23:55:59 -0000
-Message-ID: <163347815949.19282.11983476195885748037@emeril.freedesktop.org>
+Date: Tue, 05 Oct 2021 23:57:26 -0000
+Message-ID: <163347824600.19283.16933406963618441398@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211005182405.915100-1-matthew.auld@intel.com>
 In-Reply-To: <20211005182405.915100-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv6=2C1/8=5D_drm/i915/gem=3A_Break_o?=
- =?utf-8?q?ut_some_shmem_backend_utils?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5Bv6=2C1/8=5D_drm/i915/gem=3A_Break_out_s?=
+ =?utf-8?q?ome_shmem_backend_utils?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,24 +54,34 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-605eef61ebf9 drm/i915/gem: Break out some shmem backend utils
-b116a99cc04e drm/i915/ttm: add tt shmem backend
--:16: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#16: 
-    dropping the shrinker LRU lock and acquiring the object lock it could for
-
-total: 0 errors, 1 warnings, 0 checks, 486 lines checked
-14f612b9093f drm/i915/gtt: drop unneeded make_unshrinkable
-32c05a4de159 drm/i915: drop unneeded make_unshrinkable in free_object
-0999a655bf2a drm/i915: add some kernel-doc for shrink_pin and friends
-c6e18e36eb58 drm/i915/ttm: move shrinker management into adjust_lru
--:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#19: 
-     an object. Importantly this covers the case where TTM moves something from
-
-total: 0 errors, 1 warnings, 0 checks, 264 lines checked
-df1f7fa12f7b drm/i915/ttm: use cached system pages when evicting lmem
-fc764587e539 drm/i915/ttm: enable shmem tt backend
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
 
 
