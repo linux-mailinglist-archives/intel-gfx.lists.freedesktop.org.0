@@ -1,145 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB3E421BDA
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 03:29:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7741421C2D
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Oct 2021 03:49:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D17D6F4CA;
-	Tue,  5 Oct 2021 01:29:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5296F4F8;
+	Tue,  5 Oct 2021 01:49:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DE2E6F4CA
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Oct 2021 01:29:02 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="225526848"
-X-IronPort-AV: E=Sophos;i="5.85,347,1624345200"; d="scan'208";a="225526848"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2021 18:29:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,347,1624345200"; d="scan'208";a="438490238"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by orsmga006.jf.intel.com with ESMTP; 04 Oct 2021 18:29:00 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 4 Oct 2021 18:29:00 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 4 Oct 2021 18:28:59 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Mon, 4 Oct 2021 18:28:59 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.103)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Mon, 4 Oct 2021 18:28:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C36wwMc0X0h5S9Fyw2POaJtFxzOUQ8j2LoZsOKNsNetAKJ2AobRURXirO77/Ra1u9g67uj0y1d6vkkVXbRwJFCLe/4xIYamD4HulfPVV9ga7/HwVzGWyOZR0hUOjFHu9w6Ff8A1S+wF70h5x3F2RQt0C4LTigItw4UwO5XJdDAg1MCVEcUl8hXgmiiCybBvvaSvtNj+Jzp31ay/x0oAos68XSkkeJpc0wrP4MSMKd076CFMGwNrPTxstomdGrS6E53jQd2j2y8cQ2WP4FV9ZGEO7ZtB6H2anESVtAlyOVs9W7GNMFZFNyh+a3Pj6mvgmwwVdUddpoHeWke982ArwpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2apgWyg7v+bllN735J83ufHlzSCFulI/nw/Q+BAAsEM=;
- b=fA7P6afNVwIIlapSFMiYFBquAwRURoZ+khuBGlvHmCV8DxlK4hE0l58im92tExKQssYy5eaDLPu5+AMLzrZwTxvjlLF/tBqJ6B7XhLxHEQdipeBs8qji8v4Olqfy9W33FoSHC6gEFuKOqxa5xfFXmrFyaSAMKeY2DiOwUaAHA38j7VO8d/dUGm/c0vIiTuvy6ib6TJK+6pFn3Fx/9pg0AS/UDiFm8LUWeSx2ZG2+4tT1x0yF0eAxNNohO6qlFvomeb1vsuJF9UrCnIKwaCZZDA4DwX6qQNDdR+OMcH+eD02/FGK4lropXYSzB5yp6q3aeFXiqjJEAYYbN+mWWGOEUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2apgWyg7v+bllN735J83ufHlzSCFulI/nw/Q+BAAsEM=;
- b=Le1pUXWx7AhOKpT9ArHczbbwnf8WifocdY9nMFR3U9yOOEK0TmepI3dHFu6DkkHGTitFqFMzvbf7344MDyYhGDlPsXleAlJdY/RPJ9NoeWmakAOtiRDzCQyZHLblLqB0gqxR6xsSFDF+jJbwZbSSGBLac3vf7TsgVN5z/I/YPMA=
-Received: from CO6PR11MB5651.namprd11.prod.outlook.com (2603:10b6:5:356::20)
- by CO6PR11MB5667.namprd11.prod.outlook.com (2603:10b6:5:35b::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.19; Tue, 5 Oct
- 2021 01:28:54 +0000
-Received: from CO6PR11MB5651.namprd11.prod.outlook.com
- ([fe80::cd51:d5db:1c0:d274]) by CO6PR11MB5651.namprd11.prod.outlook.com
- ([fe80::cd51:d5db:1c0:d274%6]) with mapi id 15.20.4566.022; Tue, 5 Oct 2021
- 01:28:54 +0000
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, "Kulkarni, Vandita"
- <vandita.kulkarni@intel.com>, "Chiou, Cooper" <cooper.chiou@intel.com>,
- "Tseng, William" <william.tseng@intel.com>,
- =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [v4] drm/i915/dsi: do not register gmbus if it was reserved for
- MIPI display
-Thread-Index: AQHXsCK5WUj78PDmGEmARfgniyJpsavDrzXw
-Date: Tue, 5 Oct 2021 01:28:54 +0000
-Message-ID: <CO6PR11MB5651F70187C5EC143745DF03A3AF9@CO6PR11MB5651.namprd11.prod.outlook.com>
-References: <20210916102118.17356-1-shawn.c.lee@intel.com>
- <20210923023316.17905-1-shawn.c.lee@intel.com>
-In-Reply-To: <20210923023316.17905-1-shawn.c.lee@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 99b542e4-a108-4f02-bf4e-08d9879f7ef7
-x-ms-traffictypediagnostic: CO6PR11MB5667:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO6PR11MB5667F06D2620FF8A6858A416A3AF9@CO6PR11MB5667.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MphUD9vkTjwK6SwMH720Da5WoAxnGBlHQG6wicAUZj4pYf5oUqdQJ3pl/j8EctPpzuGLoGdmC+otdFgJ1cY/XB3aOtMJh/d/+VPJKYF5UViTyxKK1zF6Zlna2XXn8LF/9WJznqtJhXbaDLg/m9JLg0xxLVocmZxSMPbKhosPXeMo2sM7aTshXYqGx0BhNqpUcA1LAHxxxN3aB2/1lLc4iI1zUfqODHbBN12QAHTlq7m4QUcilNli9nQunXtKAQsCLNLa3QXmFYuQ4G1K9vT70secAOMmnemL46A68uNREgEVfc+FUzbT4h+ZrfnJeeUxyZCGjYnNAk9ZNNpwASE7wO2ASDNwE+7RvYlxnRnXOIivPu5NY066JJIw6tlFpm8ASMtLs5LzSSP7LcrQuiGGtG4LvBzNMzjAAoWRMytsPKvN7bdY+RWm05yI6DT5NK+4LaMUB2FjUY6GY7twptmnyB0qNS6y9tVjnShUIJoMBjdfvZriPoHVSYwOy+x6oQB5gMGsbmNNeXcmDugWcpIBZXaLLD6ILKyY1N+VbxvZwq8ZL9G8EbOJHlblxLWy2FDpSnsz2W0mqcqyk+F25/nS+jaDU5EI4MNWfS7c6teAf+oW5Hf7M1jZrXAMOxcmj9WJL+L6Pp1DEjfzrm9rpa9yty04XQYhaip713+KNSmAEuvE1SzcP/5DVUFcpvZzrX1VL/aqA8MIFubfZMvWiwNswA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR11MB5651.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(508600001)(122000001)(55016002)(71200400001)(38070700005)(55236004)(6506007)(8676002)(66446008)(66556008)(64756008)(9686003)(83380400001)(26005)(66476007)(66946007)(76116006)(186003)(7696005)(8796002)(8936002)(38100700002)(86362001)(52536014)(6916009)(54906003)(5660300002)(4326008)(2906002)(33656002)(316002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?8a5vdH0z2XTHgtHPMImpYVGvKPhHoSojvDWuDqcaLI10S8YNHMRDmk5mv3?=
- =?iso-8859-1?Q?jg9G4tCPtdUiqnUJ18B6m9+syzV7o0I0lKdJkQSmzX8JISIui2dC9LEbhd?=
- =?iso-8859-1?Q?x5GmDZdVkgQG4PMZJMx82VB38dCH8yjQX4NEXr4aDpNGF7Fng7XiSB7tbl?=
- =?iso-8859-1?Q?7pI74zM0FqTkD4Ji/Rcn93xaUlbG27fJ2GZHn6JCe8PGngyK9y46Z6QBW1?=
- =?iso-8859-1?Q?4XQlTee++QiP/AgEjNoMjgenmD7FmtNinAc5U9zWPGkyxecG1zFtNfcZhP?=
- =?iso-8859-1?Q?ugPxIELQXhgLoyKDxARsiEHk3oA64jEVUlGPAvFFz9RfItku9CcD9u/rZe?=
- =?iso-8859-1?Q?ARape80tOUg3pJ3Fsf2x/gLRl/rEBwX6ZsvFMml5GWLCSf5oRwZqhMGRrW?=
- =?iso-8859-1?Q?CRtYJlXCopPV5hdCY0UlwBlECOpfgzZSS5h6QL+yGxVU2e3lf4Srt9dQPV?=
- =?iso-8859-1?Q?QT/XKvZvdREBE7s9FPYmyg/ZwFAldFIXTs0UrnHVu8lZxTAgwL4O8Nwlap?=
- =?iso-8859-1?Q?uZ8k0/pEAG4GsxD3s8KW5mkqo8RRk2FhckcC5fSgankaEhes6T/GcUkXkr?=
- =?iso-8859-1?Q?KxKmKofJ4qQvfPbEngL1/aBEO0aaMgRgeak6FAfrQybB0orOzc6+zzHIir?=
- =?iso-8859-1?Q?3JmYNbgTL2VV6p5Ns3tOOeFIuXleP9HeiGtQBnabl/VJswNxU0IEuLVCYM?=
- =?iso-8859-1?Q?XDrrKamW9MeXLJzbb5/63kZDTNtJZH6pWpts2gTXq7PcMg4TgVdybGs/76?=
- =?iso-8859-1?Q?/ajgDXJsSZJW4NB6uko0qSlXux+qUoY+dTAAZYnuQOhQr39co/QEowi43I?=
- =?iso-8859-1?Q?UsECEEfVH0T0aegA9byzs9lClUT6Ng/whqx68xJNd2KzMWjUR7Zk9WuYus?=
- =?iso-8859-1?Q?Osaxr4uI3ifsuuTTH+d05TAFpVT2z0HxzfDUC1IepN8FwDJWLiyP6/CX0A?=
- =?iso-8859-1?Q?XLB0qIt9sMNX7RaM2mipxX+f7eB9vldtH7lAWvAuWDNQaClxEEIKGGESdz?=
- =?iso-8859-1?Q?qEZ2dHUIjOFZY6RGuqtfNEWYZ5iRiCnJIl5Sz4yjii7X7yLJ3Fc84pIXQ/?=
- =?iso-8859-1?Q?aqvKoW4rPRPx4rs+o+fiLiau4ONDEof6VFYN4eosoBGZB7q5s8887jPl6x?=
- =?iso-8859-1?Q?ZmMA5YjFYuKrqgtATyIeBzR53VGJ8ghlyUW3wRkhI1dEa9lzUpkuNz3VLv?=
- =?iso-8859-1?Q?sbt6LGFC8tUrKL6aPvv9L/US+wN4R/Tg2QQiz/49Ej5GiW6fPvGozWe9+8?=
- =?iso-8859-1?Q?pcND2tNMW3ztUiCy/80Nmik76LmglfuhRsmk3aEAjH1MsRO8z/T9lbSU6j?=
- =?iso-8859-1?Q?NDXGrtBFwJlF0ucLAGWWhbl8foejLoPzFSVYfUOklyczbAyUgDwFWLiaLi?=
- =?iso-8859-1?Q?duWHWFdpBp?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A69AD6F4CD;
+ Tue,  5 Oct 2021 01:49:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9E11AAA0EA;
+ Tue,  5 Oct 2021 01:49:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5651.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99b542e4-a108-4f02-bf4e-08d9879f7ef7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2021 01:28:54.8166 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HopHVBiO6COeRweWrKZLzvWXAhJ3rFyYvOakc2X7jndrQd0aiAaJC3ntrBxZOZH7nkngFYyqmtqX5jd37nIcKQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5667
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [v4] drm/i915/dsi: do not register gmbus if it was
- reserved for MIPI display
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 05 Oct 2021 01:49:27 -0000
+Message-ID: <163339856761.19282.4508910717219115967@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211004220637.14746-1-matthew.brost@intel.com>
+In-Reply-To: <20211004220637.14746-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Parallel_submission_aka_multi-bb_execbuf_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,83 +41,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "20210923023316.17905-1-shawn.c.lee@intel.com"
- <20210923023316.17905-1-shawn.c.lee@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi all, could you please share your comments for the latest patch? Thanks!
+Series: Parallel submission aka multi-bb execbuf (rev5)
+URL   : https://patchwork.freedesktop.org/series/92789/
+State : warning
 
-Best regards,
-Shawn
+== Summary ==
 
->
->Gmbus driver would setup all Intel i2c GMBuses. But DDC bus may configured=
- as gpio and reserved for MIPI driver to control panel power on/off sequenc=
-e.
->
->Using i2c tool to communicate to peripherals via i2c interface reversed fo=
-r gmbus(DDC). There will be some high/low pulse appear on DDC SCL and SDA (=
-might be host sent out i2c slave address). MIPI panel would be impacted due=
- to unexpected signal then caused abnormal display or shut down issue.
->
->v2: gmbus driver should not add i2c adapter for DDC interface
->    if LFP display was configured to support MIPI panel.
->v3: fix sparse warning
->v4: before gmbus driver add/delete/access i2c adapter would
->    call intel_gmbus_is_valid_pin() to know target adapter
->    is available or not. Avoid to access unexisting adapter.
->    Driver should check DSI status and pin's availability in
->    intel_gmbus_is_valid_pin().
->
->Cc: Jani Nikula <jani.nikula@linux.intel.com>
->Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
->Cc: Cooper Chiou <cooper.chiou@intel.com>
->Cc: William Tseng <william.tseng@intel.com>
->Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_gmbus.c | 18 ++++++++++++++++++
-> 1 file changed, 18 insertions(+)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/=
-i915/display/intel_gmbus.c
->index ceb1bf8a8c3c..852e499e2e8c 100644
->--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
->+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
->@@ -118,11 +118,29 @@ static const struct gmbus_pin *get_gmbus_pin(struct =
-drm_i915_private *dev_priv,
-> 		return &gmbus_pins[pin];
-> }
->=20
->+static bool intel_gmbus_ddc_reserve_for_mipi_dsi(struct drm_i915_private =
-*dev_priv,
->+					     unsigned int pin)
->+{
->+	if (intel_bios_is_dsi_present(dev_priv, NULL)) {
->+		if (DISPLAY_VER(dev_priv) >=3D 11) {
->+			if ((pin =3D=3D GMBUS_PIN_2_BXT && dev_priv->vbt.dsi.config->dual_link=
-) ||
->+			     pin =3D=3D GMBUS_PIN_1_BXT) {
->+				return true;
->+			}
->+		}
->+	}
->+
->+	return false;
->+}
->+
-> bool intel_gmbus_is_valid_pin(struct drm_i915_private *dev_priv,
-> 			      unsigned int pin)
-> {
-> 	unsigned int size;
->=20
->+	if (intel_gmbus_ddc_reserve_for_mipi_dsi(dev_priv, pin))
->+		return false;
->+
-> 	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1)
-> 		size =3D ARRAY_SIZE(gmbus_pins_dg1);
-> 	else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
->--
->2.17.1
->
+$ dim checkpatch origin/drm-tip
+fc9c9fb6630a drm/i915/guc: Move GuC guc_id allocation under submission state sub-struct
+fa11631fe33a drm/i915/guc: Take GT PM ref when deregistering context
+-:79: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#79: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:44:
++#define with_intel_gt_pm(gt, tmp) \
++	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
++	     intel_gt_pm_put(gt), tmp = 0)
+
+-:79: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tmp' - possible side-effects?
+#79: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:44:
++#define with_intel_gt_pm(gt, tmp) \
++	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
++	     intel_gt_pm_put(gt), tmp = 0)
+
+total: 0 errors, 0 warnings, 2 checks, 290 lines checked
+f26913441370 drm/i915/guc: Take engine PM when a context is pinned with GuC submission
+00cd343ff096 drm/i915/guc: Don't call switch_to_kernel_context with GuC submission
+b94a2d8dd4a6 drm/i915: Add logical engine mapping
+a352b3260782 drm/i915: Expose logical engine instance to user
+b00df96b3c7a drm/i915/guc: Introduce context parent-child relationship
+4a15247fee14 drm/i915/guc: Add multi-lrc context registration
+d99a9b87a2b4 drm/i915/guc: Ensure GuC schedule operations do not operate on child contexts
+94fb468f6a15 drm/i915/guc: Assign contexts in parent-child relationship consecutive guc_ids
+4fefc07d9141 drm/i915/guc: Implement parallel context pin / unpin functions
+cce8ed09d2b3 drm/i915/guc: Implement multi-lrc submission
+-:364: CHECK:SPACING: spaces preferred around that '*' (ctx:ExV)
+#364: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:771:
++		*wqi++ = child->ring->tail / sizeof(u64);
+ 		^
+
+total: 0 errors, 0 warnings, 1 checks, 570 lines checked
+1327655fea5c drm/i915/guc: Insert submit fences between requests in parent-child relationship
+faaaa22df6f9 drm/i915/guc: Implement multi-lrc reset
+45f5266f4bc8 drm/i915/guc: Update debugfs for GuC multi-lrc
+-:23: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#23: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3707:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 67 lines checked
+4121bd97a8b5 drm/i915: Fix bug in user proto-context creation that leaked contexts
+1a690133eb25 drm/i915/guc: Connect UAPI to GuC multi-lrc interface
+2f9e9c7755e0 drm/i915/doc: Update parallel submit doc to point to i915_drm.h
+-:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#13: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+77f007a50c5c drm/i915/guc: Add basic GuC multi-lrc selftest
+-:22: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#22: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 190 lines checked
+12e50491ae0d drm/i915/guc: Implement no mid batch preemption for multi-lrc
+a2d809b95c10 drm/i915: Multi-BB execbuf
+-:369: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#369: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1854:
++#define for_each_batch_create_order(_eb, _i) \
++	for (_i = 0; _i < (_eb)->num_batches; ++_i)
+
+-:371: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#371: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1856:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for (_i = (_eb)->num_batches - 1; _i >= 0; --_i)
+
+-:371: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#371: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1856:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for (_i = (_eb)->num_batches - 1; _i >= 0; --_i)
+
+total: 1 errors, 0 warnings, 2 checks, 1298 lines checked
+c45d7a15a6cc drm/i915/guc: Handle errors in multi-lrc requests
+31ff5626db61 drm/i915: Make request conflict tracking understand parallel submits
+b73b105b6c29 drm/i915: Update I915_GEM_BUSY IOCTL to understand composite fences
+54ef99f9936c drm/i915: Enable multi-bb execbuf
+aef348f7f8e8 drm/i915/execlists: Weak parallel submission support for execlists
+
+
