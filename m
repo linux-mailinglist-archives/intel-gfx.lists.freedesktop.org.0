@@ -1,34 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3AE423EED
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 15:26:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20AF8423F8F
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 15:44:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 041C66E49F;
-	Wed,  6 Oct 2021 13:26:21 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6948B6E49F;
- Wed,  6 Oct 2021 13:26:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 60AD4A47DF;
- Wed,  6 Oct 2021 13:26:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 204BE6E505;
+	Wed,  6 Oct 2021 13:44:26 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8576C6E491;
+ Wed,  6 Oct 2021 13:44:24 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="224766915"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="224766915"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 06:44:16 -0700
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="589769972"
+Received: from ccronin-mobl.ger.corp.intel.com (HELO [10.213.247.242])
+ ([10.213.247.242])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 06:44:13 -0700
+To: Barry Song <21cnbao@gmail.com>, "Wanghui (John)" <john.wanghui@huawei.com>
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Ingo Molnar <mingo@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>
+References: <20211004143650.699120-1-tvrtko.ursulin@linux.intel.com>
+ <20211004143650.699120-2-tvrtko.ursulin@linux.intel.com>
+ <562d45e1-4a27-3252-f615-3ab1ef531f2b@huawei.com>
+ <CAGsJ_4w5Y4=v93YmTrXJ6hDgjKshxiAZ-ox-Nz_7uRwe4ECtdw@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <8381e87d-ef7f-4759-569b-f6dabeb02939@linux.intel.com>
+Date: Wed, 6 Oct 2021 14:44:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Oct 2021 13:26:19 -0000
-Message-ID: <163352677936.5958.14725917445969532722@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211006103906.444643-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211006103906.444643-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_HAX=3A_drm/i915=3A_Disable_GuC_submission_by_default=2E?=
+In-Reply-To: <CAGsJ_4w5Y4=v93YmTrXJ6hDgjKshxiAZ-ox-Nz_7uRwe4ECtdw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC 1/8] sched: Add nice value change notifier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,24 +56,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: HAX: drm/i915: Disable GuC submission by default.
-URL   : https://patchwork.freedesktop.org/series/95507/
-State : warning
+Hi,
 
-== Summary ==
+On 06/10/2021 08:58, Barry Song wrote:
+> On Wed, Oct 6, 2021 at 5:15 PM Wanghui (John) <john.wanghui@huawei.com> wrote:
+>>
+>> HI Tvrtko
+>>
+>> On 2021/10/4 22:36, Tvrtko Ursulin wrote:
+>>>    void set_user_nice(struct task_struct *p, long nice)
+>>>    {
+>>>        bool queued, running;
+>>> -     int old_prio;
+>>> +     int old_prio, ret;
+>>>        struct rq_flags rf;
+>>>        struct rq *rq;
+>>>
+>>> @@ -6915,6 +6947,9 @@ void set_user_nice(struct task_struct *p, long nice)
+>>>
+>>>    out_unlock:
+>>>        task_rq_unlock(rq, p, &rf);
+>>> +
+>>> +     ret = atomic_notifier_call_chain(&user_nice_notifier_list, nice, p);
+>>> +     WARN_ON_ONCE(ret != NOTIFY_DONE);
+>>>    }
+>> How about adding a new "io_nice" to task_struct，and move the call chain to
+>> sched_setattr/getattr, there are two benefits:
+> 
+> We already have an ionice for block io scheduler. hardly can this new io_nice
+> be generic to all I/O. it seems the patchset is trying to link
+> process' nice with
+> GPU's scheduler, to some extent, it makes more senses than having a
+> common ionice because we have a lot of IO devices in the systems, we don't
+> know which I/O the ionice of task_struct should be applied to.
+> 
+> Maybe we could have an ionice dedicated for GPU just like ionice for CFQ
+> of bio/request scheduler.
 
-$ dim checkpatch origin/drm-tip
-84ffb0236665 HAX: drm/i915: Disable GuC submission by default.
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-No need for review. Submitting to test if this affects the DG1-6 selftest hang.
+Thought crossed my mind but I couldn't see the practicality of a 3rd 
+nice concept. I mean even to start with I struggle a bit with the 
+usefulness of existing ionice vs nice. Like coming up with practical 
+examples of usecases where it makes sense to decouple the two priorities.
 
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+ From a different angle I did think inheriting CPU nice makes sense for 
+GPU workloads. This is because today, and more so in the future, 
+computations on a same data set do flow from one to the other.
 
+Like maybe a simple example of batch image processing where CPU decodes, 
+GPU does a transform and then CPU encodes. Or a different mix, doesn't 
+really matter, since the main point it is one computing pipeline from 
+users point of view.
 
+In this example perhaps everything could be handled in userspace so 
+that's another argument to be had. Userspace could query the current 
+scheduling attributes before submitting work to the processing pipeline 
+and adjust using respective uapi.
+
+Downside would be inability to react to changes after the work is 
+already running which may not be too serious limitation outside the 
+world of multi-minute compute workloads. And latter are probably special 
+case enough that would be configured explicitly.
+
+>>
+>> 1. Decoupled with fair scheduelr. In our use case, high priority tasks often
+>>      use rt scheduler.
+> 
+> Is it possible to tell GPU RT as we are telling them CFS nice?
+
+Yes of course. We could create a common notification "data packet" which 
+would be sent from both entry points and provide more data than just the 
+nice value. Consumers (of the notifier chain) could then decide for 
+themselves what they want to do with the data.
+
+Regards,
+
+Tvrtko
+
+> 
+>> 2. The range of value don't need to be bound to -20~19 or 0~139
+>>
+> 
+> could build a mapping between the priorities of process and GPU. It seems
+> not a big deal.
+> 
+> Thanks
+> barry
+> 
