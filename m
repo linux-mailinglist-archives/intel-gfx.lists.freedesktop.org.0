@@ -1,44 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6E13423E3F
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 14:54:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81AA6423E62
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 15:05:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 647E56ECAB;
-	Wed,  6 Oct 2021 12:54:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE0436E508;
+	Wed,  6 Oct 2021 13:05:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4130D6E52F;
- Wed,  6 Oct 2021 12:54:28 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="225875761"
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="225875761"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 05:54:27 -0700
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="589742927"
-Received: from ccronin-mobl.ger.corp.intel.com (HELO [10.213.247.242])
- ([10.213.247.242])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 05:54:26 -0700
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org, daniel@ffwll.ch
-References: <20211006123609.2026-1-christian.koenig@amd.com>
- <20211006123609.2026-2-christian.koenig@amd.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <79a184a2-051c-580d-c444-13cbd894c7d9@linux.intel.com>
-Date: Wed, 6 Oct 2021 13:54:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B9C96E508
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 13:05:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="226298582"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="226298582"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 06:05:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="478110017"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 06 Oct 2021 06:05:44 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 06 Oct 2021 16:05:43 +0300
+Date: Wed, 6 Oct 2021 16:05:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YV2fJzuK/eQNPBrF@intel.com>
+References: <20211006101618.22066-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20211006123609.2026-2-christian.koenig@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] dma-buf: add dma_resv selftest v3
+In-Reply-To: <20211006101618.22066-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: abstract
+ intel_dp_mst_source_support()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,349 +52,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 06/10/2021 13:36, Christian KÃ¶nig wrote:
-> Just exercising a very minor subset of the functionality, but already
-> proven useful.
+On Wed, Oct 06, 2021 at 01:16:18PM +0300, Jani Nikula wrote:
+> Add a function for checking source MST support. Drop intel_dp->can_mst
+> and use intel_dp->mst_mgr.cbs to indicate the same. It's the single
+> point of truth without additional state variables. In code, "source
+> support" is also self-documenting as opposed to the vague "can mst".
 > 
-> v2: add missing locking
-> v3: some more cleanup and consolidation, add unlocked test as well
-> 
-> Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->   drivers/dma-buf/Makefile      |   3 +-
->   drivers/dma-buf/selftests.h   |   1 +
->   drivers/dma-buf/st-dma-resv.c | 282 ++++++++++++++++++++++++++++++++++
->   3 files changed, 285 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/dma-buf/st-dma-resv.c
+>  .../gpu/drm/i915/display/intel_display_debugfs.c  |  5 +++--
+>  .../gpu/drm/i915/display/intel_display_types.h    |  1 -
+>  drivers/gpu/drm/i915/display/intel_dp.c           | 10 +++++-----
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c       | 15 +++++++++++----
+>  drivers/gpu/drm/i915/display/intel_dp_mst.h       |  4 +++-
+>  5 files changed, 22 insertions(+), 13 deletions(-)
 > 
-> diff --git a/drivers/dma-buf/Makefile b/drivers/dma-buf/Makefile
-> index 1ef021273a06..511805dbeb75 100644
-> --- a/drivers/dma-buf/Makefile
-> +++ b/drivers/dma-buf/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_DMABUF_SYSFS_STATS) += dma-buf-sysfs-stats.o
->   dmabuf_selftests-y := \
->   	selftest.o \
->   	st-dma-fence.o \
-> -	st-dma-fence-chain.o
-> +	st-dma-fence-chain.o \
-> +	st-dma-resv.o
->   
->   obj-$(CONFIG_DMABUF_SELFTESTS)	+= dmabuf_selftests.o
-> diff --git a/drivers/dma-buf/selftests.h b/drivers/dma-buf/selftests.h
-> index bc8cea67bf1e..97d73aaa31da 100644
-> --- a/drivers/dma-buf/selftests.h
-> +++ b/drivers/dma-buf/selftests.h
-> @@ -12,3 +12,4 @@
->   selftest(sanitycheck, __sanitycheck__) /* keep first (igt selfcheck) */
->   selftest(dma_fence, dma_fence)
->   selftest(dma_fence_chain, dma_fence_chain)
-> +selftest(dma_resv, dma_resv)
-> diff --git a/drivers/dma-buf/st-dma-resv.c b/drivers/dma-buf/st-dma-resv.c
-> new file mode 100644
-> index 000000000000..50d3791ccb8c
-> --- /dev/null
-> +++ b/drivers/dma-buf/st-dma-resv.c
-> @@ -0,0 +1,282 @@
-> +/* SPDX-License-Identifier: MIT */
-> +
-> +/*
-> +* Copyright Â© 2019 Intel Corporation
-> +* Copyright Â© 2021 Advanced Micro Devices, Inc.
-> +*/
-> +
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/dma-resv.h>
-> +
-> +#include "selftest.h"
-> +
-> +static struct spinlock fence_lock;
-> +
-> +static const char *fence_name(struct dma_fence *f)
-> +{
-> +	return "selftest";
-> +}
-> +
-> +static const struct dma_fence_ops fence_ops = {
-> +	.get_driver_name = fence_name,
-> +	.get_timeline_name = fence_name,
-> +};
-> +
-> +static struct dma_fence *alloc_fence(void)
-> +{
-> +	struct dma_fence *f;
-> +
-> +	f = kmalloc(sizeof(*f), GFP_KERNEL);
-> +	if (!f)
-> +		return NULL;
-> +
-> +	dma_fence_init(f, &fence_ops, &fence_lock, 0, 0);
-> +	return f;
-> +}
-> +
-> +static int sanitycheck(void *arg)
-> +{
-> +	struct dma_resv resv;
-> +	struct dma_fence *f;
-> +	int r;
-> +
-> +	f = alloc_fence();
-> +	if (!f)
-> +		return -ENOMEM;
-> +
-> +	dma_fence_signal(f);
-> +	dma_fence_put(f);
-> +
-> +	dma_resv_init(&resv);
-> +	r = dma_resv_lock(&resv, NULL);
-> +	if (r)
-> +		pr_err("Resv locking failed\n");
-> +	else
-> +		dma_resv_unlock(&resv);
-> +	dma_resv_fini(&resv);
-> +	return r;
-> +}
-> +
-> +static int test_signaling(void *arg, bool shared)
-> +{
-> +	struct dma_resv resv;
-> +	struct dma_fence *f;
-> +	int r;
-> +
-> +	f = alloc_fence();
-> +	if (!f)
-> +		return -ENOMEM;
-> +
-> +	dma_resv_init(&resv);
-> +	r = dma_resv_lock(&resv, NULL);
-> +	if (r) {
-> +		pr_err("Resv locking failed\n");
-> +		goto err_free;
-> +	}
-> +
-> +	if (shared) {
-> +		r = dma_resv_reserve_shared(&resv, 1);
-> +		if (r) {
-> +			pr_err("Resv shared slot allocation failed\n");
-> +			goto err_unlock;
-> +		}
-> +
-> +		dma_resv_add_shared_fence(&resv, f);
-> +	} else {
-> +		dma_resv_add_excl_fence(&resv, f);
-> +	}
-> +
-> +	if (dma_resv_test_signaled(&resv, shared)) {
-> +		pr_err("Resv unexpectedly signaled\n");
-> +		r = -EINVAL;
-> +		goto err_unlock;
-> +	}
-> +	dma_fence_signal(f);
-> +	if (!dma_resv_test_signaled(&resv, shared)) {
-> +		pr_err("Resv not reporting signaled\n");
-> +		r = -EINVAL;
-> +		goto err_unlock;
-> +	}
-> +err_unlock:
-> +	dma_resv_unlock(&resv);
-> +err_free:
-> +	dma_resv_fini(&resv);
-> +	dma_fence_put(f);
-> +	return r;
-> +}
-> +
-> +static int test_excl_signaling(void *arg)
-> +{
-> +	return test_signaling(arg, false);
-> +}
-> +
-> +static int test_shared_signaling(void *arg)
-> +{
-> +	return test_signaling(arg, true);
-> +}
-> +
-> +static int test_for_each(void *arg, bool shared)
-> +{
-> +	struct dma_resv_iter cursor;
-> +	struct dma_fence *f, *fence;
-> +	struct dma_resv resv;
-> +	int r;
-> +
-> +	f = alloc_fence();
-> +	if (!f)
-> +		return -ENOMEM;
-> +
-> +	dma_resv_init(&resv);
-> +	r = dma_resv_lock(&resv, NULL);
-> +	if (r) {
-> +		pr_err("Resv locking failed\n");
-> +		goto err_free;
-> +	}
-> +
-> +	if (shared) {
-> +		r = dma_resv_reserve_shared(&resv, 1);
-> +		if (r) {
-> +			pr_err("Resv shared slot allocation failed\n");
-> +			goto err_unlock;
-> +		}
-> +
-> +		dma_resv_add_shared_fence(&resv, f);
-> +	} else {
-> +		dma_resv_add_excl_fence(&resv, f);
-> +	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 309d74fd86ce..bc5113589f0a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -7,12 +7,13 @@
+>  #include <drm/drm_fourcc.h>
+>  
+>  #include "i915_debugfs.h"
+> +#include "intel_de.h"
+>  #include "intel_display_debugfs.h"
+>  #include "intel_display_power.h"
+> -#include "intel_de.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dmc.h"
+>  #include "intel_dp.h"
+> +#include "intel_dp_mst.h"
+>  #include "intel_drrs.h"
+>  #include "intel_fbc.h"
+>  #include "intel_hdcp.h"
+> @@ -1379,7 +1380,7 @@ static int i915_dp_mst_info(struct seq_file *m, void *unused)
+>  			continue;
+>  
+>  		dig_port = enc_to_dig_port(intel_encoder);
+> -		if (!dig_port->dp.can_mst)
+> +		if (!intel_dp_mst_source_support(&dig_port->dp))
+>  			continue;
+>  
+>  		seq_printf(m, "MST Source Port [ENCODER:%d:%s]\n",
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 21ce8bccc645..39e11eaec1a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1580,7 +1580,6 @@ struct intel_dp {
+>  
+>  	struct intel_pps pps;
+>  
+> -	bool can_mst; /* this port supports mst */
+>  	bool is_mst;
+>  	int active_mst_links;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 74a657ae131a..ee733fb24a76 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2649,7 +2649,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  
+>  	return i915->params.enable_dp_mst &&
+> -		intel_dp->can_mst &&
+> +		intel_dp_mst_source_support(intel_dp) &&
+>  		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+>  }
+>  
+> @@ -2664,10 +2664,10 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
+>  	drm_dbg_kms(&i915->drm,
+>  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
+>  		    encoder->base.base.id, encoder->base.name,
+> -		    yesno(intel_dp->can_mst), yesno(sink_can_mst),
+> +		    yesno(intel_dp_mst_source_support(intel_dp)), yesno(sink_can_mst),
+>  		    yesno(i915->params.enable_dp_mst));
+>  
+> -	if (!intel_dp->can_mst)
+> +	if (!intel_dp_mst_source_support(intel_dp))
+>  		return;
+>  
+>  	intel_dp->is_mst = sink_can_mst &&
+> @@ -5067,7 +5067,7 @@ void intel_dp_mst_suspend(struct drm_i915_private *dev_priv)
+>  
+>  		intel_dp = enc_to_intel_dp(encoder);
+>  
+> -		if (!intel_dp->can_mst)
+> +		if (!intel_dp_mst_source_support(intel_dp))
+>  			continue;
+>  
+>  		if (intel_dp->is_mst)
+> @@ -5091,7 +5091,7 @@ void intel_dp_mst_resume(struct drm_i915_private *dev_priv)
+>  
+>  		intel_dp = enc_to_intel_dp(encoder);
+>  
+> -		if (!intel_dp->can_mst)
+> +		if (!intel_dp_mst_source_support(intel_dp))
+>  			continue;
+>  
+>  		ret = drm_dp_mst_topology_mgr_resume(&intel_dp->mst_mgr,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index fd0a31bc3dcd..0de0b4ff4d73 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -977,24 +977,31 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+>  					   dig_port->max_lanes,
+>  					   max_source_rate,
+>  					   conn_base_id);
+> -	if (ret)
+> +	if (ret) {
+> +		intel_dp->mst_mgr.cbs = NULL;
 
-This block repeates three times so could be consolidated but it doesn't 
-matter hugely.
+This is a bit ugly, but apart from that the idea seems good.
+It *looks* like drm_dp_mst_topology_mgr_init() doesn't yet
+invoke any of the callbacks so we could do the assignment after.
+But that is a bit sketchy as well. Cleanest approach might be
+to pass the callbacks to drm_dp_mst_topology_mgr_init() and let
+it make sure things are mostly clear on failure. Also not
+entirely sure we want to rely on that when the topology mgr
+code has been historically following this "mutate, then do
+stuff, and mutate back on failure" pattern. It might just
+forget the last part.
 
-> +
-> +	r = -ENOENT;
-> +	dma_resv_for_each_fence(&cursor, &resv, shared, fence) {
-> +		if (!r) {
-> +			pr_err("More than one fence found\n");
-> +			r = -EINVAL;
-> +			goto err_unlock;
-> +		}
-> +		if (f != fence) {
-> +			pr_err("Unexpected fence\n");
-> +			r = -EINVAL;
-> +			goto err_unlock;
-> +		}
-> +		if (dma_resv_iter_is_exclusive(&cursor) != !shared) {
-> +			pr_err("Unexpected fence usage\n");
-> +			r = -EINVAL;
-> +			goto err_unlock;
-> +		}
-> +		r = 0;
+But not really important so
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  		return ret;
+> -
+> -	intel_dp->can_mst = true;
 > +	}
-> +	if (r) {
-> +		pr_err("No fence found\n");
-> +		goto err_unlock;
-> +	}
-> +	dma_fence_signal(f);
-
-This would warn if the loop jumps to err_unlock but I guess there are 
-bigger problems in that case.
-
-> +err_unlock:
-> +	dma_resv_unlock(&resv);
-> +err_free:
-> +	dma_resv_fini(&resv);
-> +	dma_fence_put(f);
-> +	return r;
-> +}
-> +
-> +static int test_excl_for_each(void *arg)
+>  
+>  	return 0;
+>  }
+>  
+> +bool intel_dp_mst_source_support(struct intel_dp *intel_dp)
 > +{
-> +	return test_for_each(arg, false);
+> +	return intel_dp->mst_mgr.cbs;
 > +}
 > +
-> +static int test_shared_for_each(void *arg)
-> +{
-> +	return test_for_each(arg, false);
+>  void
+>  intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port)
+>  {
+>  	struct intel_dp *intel_dp = &dig_port->dp;
+>  
+> -	if (!intel_dp->can_mst)
+> +	if (!intel_dp_mst_source_support(intel_dp))
+>  		return;
+>  
+>  	drm_dp_mst_topology_mgr_destroy(&intel_dp->mst_mgr);
+>  	/* encoders will get killed by normal cleanup */
+> +
+> +	intel_dp->mst_mgr.cbs = NULL;
+>  }
+>  
+>  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> index 6afda4e86b3c..f7301de6cdfb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> @@ -8,13 +8,15 @@
+>  
+>  #include <linux/types.h>
+>  
+> -struct intel_digital_port;
+>  struct intel_crtc_state;
+> +struct intel_digital_port;
+> +struct intel_dp;
+>  
+>  int intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_id);
+>  void intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port);
+>  int intel_dp_mst_encoder_active_links(struct intel_digital_port *dig_port);
+>  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state);
+>  bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state);
+> +bool intel_dp_mst_source_support(struct intel_dp *intel_dp);
+>  
+>  #endif /* __INTEL_DP_MST_H__ */
+> -- 
+> 2.30.2
 
-true
-
-With that:
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
-> +}
-> +
-> +static int test_for_each_unlocked(void *arg, bool shared)
-> +{
-> +	struct dma_resv_iter cursor;
-> +	struct dma_fence *f, *fence;
-> +	struct dma_resv resv;
-> +	int r;
-> +
-> +	f = alloc_fence();
-> +	if (!f)
-> +		return -ENOMEM;
-> +
-> +	dma_resv_init(&resv);
-> +	r = dma_resv_lock(&resv, NULL);
-> +	if (r) {
-> +		pr_err("Resv locking failed\n");
-> +		goto err_free;
-> +	}
-> +
-> +	if (shared) {
-> +		r = dma_resv_reserve_shared(&resv, 1);
-> +		if (r) {
-> +			pr_err("Resv shared slot allocation failed\n");
-> +			dma_resv_unlock(&resv);
-> +			goto err_free;
-> +		}
-> +
-> +		dma_resv_add_shared_fence(&resv, f);
-> +	} else {
-> +		dma_resv_add_excl_fence(&resv, f);
-> +	}
-> +	dma_resv_unlock(&resv);
-> +
-> +	r = -ENOENT;
-> +	dma_resv_iter_begin(&cursor, &resv, shared);
-> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		if (!r) {
-> +			dma_resv_iter_end(&cursor);
-> +			pr_err("More than one fence found\n");
-> +			r = -EINVAL;
-> +			goto err_free;
-> +		}
-> +		if (f != fence) {
-> +			dma_resv_iter_end(&cursor);
-> +			pr_err("Unexpected fence\n");
-> +			r = -EINVAL;
-> +			goto err_free;
-> +		}
-> +		if (dma_resv_iter_is_exclusive(&cursor) != !shared) {
-> +			dma_resv_iter_end(&cursor);
-> +			pr_err("Unexpected fence usage\n");
-> +			r = -EINVAL;
-> +			goto err_free;
-> +		}
-> +		r = 0;
-> +	}
-> +	dma_resv_iter_end(&cursor);
-> +	if (r) {
-> +		pr_err("No fence found\n");
-> +		goto err_free;
-> +	}
-> +	dma_fence_signal(f);
-> +err_free:
-> +	dma_resv_fini(&resv);
-> +	dma_fence_put(f);
-> +	return r;
-> +}
-> +
-> +static int test_excl_for_each_unlocked(void *arg)
-> +{
-> +	return test_for_each_unlocked(arg, false);
-> +}
-> +
-> +static int test_shared_for_each_unlocked(void *arg)
-> +{
-> +	return test_for_each_unlocked(arg, true);
-> +}
-> +
-> +int dma_resv(void)
-> +{
-> +	static const struct subtest tests[] = {
-> +		SUBTEST(sanitycheck),
-> +		SUBTEST(test_excl_signaling),
-> +		SUBTEST(test_shared_signaling),
-> +		SUBTEST(test_excl_for_each),
-> +		SUBTEST(test_shared_for_each),
-> +		SUBTEST(test_excl_for_each_unlocked),
-> +		SUBTEST(test_shared_for_each_unlocked),
-> +	};
-> +
-> +	spin_lock_init(&fence_lock);
-> +	return subtests(tests, NULL);
-> +}
-> 
+-- 
+Ville Syrjälä
+Intel
