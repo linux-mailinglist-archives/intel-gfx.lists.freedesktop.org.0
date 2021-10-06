@@ -2,64 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62BFB4239AE
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 10:23:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60445423953
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 10:02:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 830886EDA1;
-	Wed,  6 Oct 2021 08:23:24 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
- [IPv6:2a00:1450:4864:20::532])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C59F6E507;
- Wed,  6 Oct 2021 07:58:28 +0000 (UTC)
-Received: by mail-ed1-x532.google.com with SMTP id r18so6370845edv.12;
- Wed, 06 Oct 2021 00:58:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=XQWQgm5VcZfwx8EzNe7mxtfcL9BKDaqUq1fkeXHfikM=;
- b=go2U0cZ/aA/3NlaoPZZ6FEAxyPlr7Aag5bsPxBltHNCGKtsLteGuw3p0Zm0tpT6nDg
- LVfkjy3shRzmwvTA1cpZYw6dwe2DiZOxoYOjxFL0ahoYDvRMk5bKKx00bQOq/4bk8+5z
- OwVLwtxs/1Cwsb8tqqDuoq4cbU+tHuIDRhNwcXCYIKWvL/NhvK0JKeGIUs3bsFKq+vG3
- DjOXpLRTOMv4lj57RyY/J2DwfZlONcbFfzb9dDYCWXZY1acpXIhuGBd4plNXejMKtpUf
- Zh5hCdzayuLXMmXN5fvMdgRUn+wDH/U/qC0hj85S6xmLCVVnbZljjFGOH68U2iIdcAFS
- jMQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=XQWQgm5VcZfwx8EzNe7mxtfcL9BKDaqUq1fkeXHfikM=;
- b=GQ/nSLSl7yeacaNQ1gt0gnJ7xeU9JGFwKmERuIGrtXSkx3nDvYCKUHdS5pL3eRIaQP
- N/kzVYTPJwi9+pUL/b1YJUUmzKQ1/WzqvTaQabKGAwDxWXJvi+wr6zeUc2j8ot38lf+j
- q2/Yol+k+AGPIBwCS3s5sGJQK6GuBkEVkwkPPKFjDhXFDt45hJMJ9ccox3ympyoTJvyV
- eTVwIrQNQZxIW++1RZWsHtiB1CDYweVXnRBvjkRIX8Yan3y0j0Yi6Cz8ewNM62WZZOi7
- MBXBjUAy6lnFvnxJuUZVNFLsd80+L+YpoeSBVYx52H6DH53L28Qv37uAuv2ff1kH7RWm
- cyvQ==
-X-Gm-Message-State: AOAM531dll/GgiBKSPX2GsTLv/wnefUoWYnJR479H0DbRMFbX7UBoORe
- hL5HmhDsPZc54qMtxd0PVKaGGnfgyBU0njRODOc=
-X-Google-Smtp-Source: ABdhPJywczBI9jhEPZFGmv+cCh3Y4y0E1Q5f7f64/ji6b1R1/AHKHuAeI+tOuJbvNj3FJdtxuUAPLUMgj3BjWxJnVlE=
-X-Received: by 2002:a50:dacf:: with SMTP id s15mr32715768edj.385.1633507107111; 
- Wed, 06 Oct 2021 00:58:27 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B61F06E50B;
+	Wed,  6 Oct 2021 08:02:49 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60FF86E50B;
+ Wed,  6 Oct 2021 08:02:48 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="225887435"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="225887435"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 01:02:47 -0700
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="714699944"
+Received: from jpferrer-mobl1.ger.corp.intel.com (HELO [10.249.254.79])
+ ([10.249.254.79])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 01:02:42 -0700
+Message-ID: <2310ad7d-7edf-c012-389e-4201072c65ee@linux.intel.com>
+Date: Wed, 6 Oct 2021 10:02:39 +0200
 MIME-Version: 1.0
-References: <20211004143650.699120-1-tvrtko.ursulin@linux.intel.com>
- <20211004143650.699120-2-tvrtko.ursulin@linux.intel.com>
- <562d45e1-4a27-3252-f615-3ab1ef531f2b@huawei.com>
-In-Reply-To: <562d45e1-4a27-3252-f615-3ab1ef531f2b@huawei.com>
-From: Barry Song <21cnbao@gmail.com>
-Date: Wed, 6 Oct 2021 20:58:15 +1300
-Message-ID: <CAGsJ_4w5Y4=v93YmTrXJ6hDgjKshxiAZ-ox-Nz_7uRwe4ECtdw@mail.gmail.com>
-To: "Wanghui (John)" <john.wanghui@huawei.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Ingo Molnar <mingo@redhat.com>, 
- Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>, 
- Vincent Guittot <vincent.guittot@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 06 Oct 2021 08:23:22 +0000
-Subject: Re: [Intel-gfx] [RFC 1/8] sched: Add nice value change notifier
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+References: <20211005182405.915100-1-matthew.auld@intel.com>
+ <20211005182405.915100-3-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211005182405.915100-3-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v6 3/8] drm/i915/gtt: drop unneeded
+ make_unshrinkable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,57 +53,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 6, 2021 at 5:15 PM Wanghui (John) <john.wanghui@huawei.com> wro=
-te:
->
-> HI Tvrtko
->
-> On 2021/10/4 22:36, Tvrtko Ursulin wrote:
-> >   void set_user_nice(struct task_struct *p, long nice)
-> >   {
-> >       bool queued, running;
-> > -     int old_prio;
-> > +     int old_prio, ret;
-> >       struct rq_flags rf;
-> >       struct rq *rq;
-> >
-> > @@ -6915,6 +6947,9 @@ void set_user_nice(struct task_struct *p, long ni=
-ce)
-> >
-> >   out_unlock:
-> >       task_rq_unlock(rq, p, &rf);
-> > +
-> > +     ret =3D atomic_notifier_call_chain(&user_nice_notifier_list, nice=
-, p);
-> > +     WARN_ON_ONCE(ret !=3D NOTIFY_DONE);
-> >   }
-> How about adding a new "io_nice" to task_struct=EF=BC=8Cand move the call=
- chain to
-> sched_setattr/getattr, there are two benefits:
 
-We already have an ionice for block io scheduler. hardly can this new io_ni=
-ce
-be generic to all I/O. it seems the patchset is trying to link
-process' nice with
-GPU's scheduler, to some extent, it makes more senses than having a
-common ionice because we have a lot of IO devices in the systems, we don't
-know which I/O the ionice of task_struct should be applied to.
+On 10/5/21 20:24, Matthew Auld wrote:
+> We already do this when mapping the pages.
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/gen6_ppgtt.c | 1 -
+>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 1 -
+>   2 files changed, 2 deletions(-)
 
-Maybe we could have an ionice dedicated for GPU just like ionice for CFQ
-of bio/request scheduler.
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
 
 >
-> 1. Decoupled with fair scheduelr. In our use case, high priority tasks of=
-ten
->     use rt scheduler.
-
-Is it possible to tell GPU RT as we are telling them CFS nice?
-
-> 2. The range of value don't need to be bound to -20~19 or 0~139
->
-
-could build a mapping between the priorities of process and GPU. It seems
-not a big deal.
-
-Thanks
-barry
+> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> index 890191f286e3..baea9770200a 100644
+> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> @@ -185,7 +185,6 @@ static void gen6_alloc_va_range(struct i915_address_space *vm,
+>   
+>   			pt = stash->pt[0];
+>   			__i915_gem_object_pin_pages(pt->base);
+> -			i915_gem_object_make_unshrinkable(pt->base);
+>   
+>   			fill32_px(pt, vm->scratch[0]->encode);
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> index 037a9a6e4889..8af2f709571c 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> @@ -301,7 +301,6 @@ static void __gen8_ppgtt_alloc(struct i915_address_space * const vm,
+>   
+>   			pt = stash->pt[!!lvl];
+>   			__i915_gem_object_pin_pages(pt->base);
+> -			i915_gem_object_make_unshrinkable(pt->base);
+>   
+>   			fill_px(pt, vm->scratch[lvl]->encode);
+>   
