@@ -1,56 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33E46423870
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 08:59:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD2D4238BF
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 09:21:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13AE96ECEF;
-	Wed,  6 Oct 2021 06:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 349A66F62C;
+	Wed,  6 Oct 2021 07:21:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 411246ECEF;
- Wed,  6 Oct 2021 06:59:02 +0000 (UTC)
-Date: Wed, 6 Oct 2021 08:58:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1633503539;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Ba2hRwTEZXOF3lXWJl+7TEsx8ujSR2pepYAfUtQNjTk=;
- b=kQCWAxQJ8vHl8Qi3bTBc2Tc4jMd/BSjnzfiI9trNsCd/ei3WdVdP+8fRHyOvoXgj1JgXJ9
- xPzyockVvZHhZSNZBCoPfEcJAoXKvSGuH8wBXuxot1Uit9AfqVGEcADYHW6IXZ5U+O0ERq
- UI7ImkXz8A/az8QmqC4mTHlPYcHrpMVMBicR13zoYe3jL4udrnbe00oxb5xXnKTOU9puDk
- FbWc0QBAS2FM6kxGaNxgWozF0U9m7REtHzQhUt/75eXrVt0dtXWTfJDzv7W9qrq6u5BXcc
- zEn1KtbWN0PCe7vwzf7i/K52rwMx02ymhXED5aukazyIHxXelntOE8QT/oHPDQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1633503539;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Ba2hRwTEZXOF3lXWJl+7TEsx8ujSR2pepYAfUtQNjTk=;
- b=fttLzOA+fG8yU71L6C5gI9sAhisfbW4zUOeTl16tREKylLLkr9lUnzt9/uMJ073wKPNkH3
- L81CmD6mW01uYyBg==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Gleixner <tglx@linutronix.de>
-Message-ID: <20211006065857.6hpopr4agp4cjlor@linutronix.de>
-References: <20211005150046.1000285-1-bigeasy@linutronix.de>
- <20211005150046.1000285-9-bigeasy@linutronix.de>
- <20211005191617.GA174703@worktop.programming.kicks-ass.net>
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 561926F62B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 07:21:04 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4HPQpv135dz4xbC;
+ Wed,  6 Oct 2021 18:20:53 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1633504857;
+ bh=5xLfVkrTGqN/HJjioq+vxTiY7Z/CCJV7NwAHksIQlwo=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Ap4KEyNJxlqFppjTdHI9ntGJz2X9R7/2EpBdM+G1YRpkBDnKCtDBEGtNsd4lPjlWP
+ RKxIVvRy5d/ALyz3HNs6JE2rV7Df0O8QgoaTwxcnGBPSS64Ny+FVan8MN+P2tm6KLU
+ kxhltuYM1WDq3qGNZvCrL/pKRXSg6kexsTcPBwkaBV9tFln+3ziK8wkzixRZ7ytCkR
+ 3n95lHlHyq/mVifnvxkMElaGLxzV8/fcIh/NNfMge6tO7YPbAd3L5r+t0/4CD8JaxP
+ 6Ty39mdTPD9zaOwc96hZJaQA6RRMy34hH9lmEYoLxRZqb2Qv90pXWM0n/8CW2aQk0g
+ Qv7WL8Unf71lg==
+Date: Wed, 6 Oct 2021 18:20:52 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: akpm@linux-foundation.org, broonie@kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, linux-next@vger.kernel.org, mhocko@suse.cz,
+ mm-commits@vger.kernel.org, Rob Clark <robdclark@gmail.com>, Sean Paul
+ <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel
+ Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20211006182052.6ecc17cf@canb.auug.org.au>
+In-Reply-To: <58fbf2ff-b367-2137-aa77-fcde6c46bbb7@infradead.org>
+References: <20211006025350.a5PczFZP4%akpm@linux-foundation.org>
+ <58fbf2ff-b367-2137-aa77-fcde6c46bbb7@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211005191617.GA174703@worktop.programming.kicks-ass.net>
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915: Don't disable interrupts and
- pretend a lock as been acquired in __timeline_mark_lock().
+Content-Type: multipart/signed; boundary="Sig_/8lmLGN7R8.LIgbOOVm06hk1";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] mmotm 2021-10-05-19-53 uploaded
+ (drivers/gpu/drm/msm/hdmi/hdmi_phy.o)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,28 +64,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-10-05 21:16:17 [+0200], Peter Zijlstra wrote:
-> > -static inline void intel_context_mark_active(struct intel_context *ce)
-> > +static inline void intel_context_mark_active(struct intel_context *ce,
-> > +					     bool timeline_mutex_needed)
-> >  {
-> > -	lockdep_assert_held(&ce->timeline->mutex);
-> > +	if (timeline_mutex_needed)
-> > +		lockdep_assert_held(&ce->timeline->mutex);
-> >  	++ce->active_count;
-> >  }
-> 
-> Chris, might it be possible to write that something like:
-> 
-> 	lockdep_assert(lockdep_is_held(&ce->timeline->mutex) ||
-> 		       engine_is_parked(ce));
-> 
-> instead?
+--Sig_/8lmLGN7R8.LIgbOOVm06hk1
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-This looks indeed way better given Torvald's yelling in similar cases.
+Hi Randy,
 
-> Otherwise,
-> 
-> Acked-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+On Tue, 5 Oct 2021 22:48:03 -0700 Randy Dunlap <rdunlap@infradead.org> wrot=
+e:
+>
+> on i386:
+>=20
+> ld: drivers/gpu/drm/msm/hdmi/hdmi_phy.o:(.rodata+0x3f0): undefined refere=
+nce to `msm_hdmi_phy_8996_cfg'
+>=20
+>=20
+> Full randconfig fle is attached.
 
-Sebastian
+This would be because CONFIG_DRM_MSM is set but CONFIG_COMMON_CLOCK is
+not and has been exposed by commit
+
+  b3ed524f84f5 ("drm/msm: allow compile_test on !ARM")
+
+from the drm-misc tree.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/8lmLGN7R8.LIgbOOVm06hk1
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFdTlQACgkQAVBC80lX
+0GxFqggAoHnUDKXJzMXUDWJ9VVsg/j6q0XdAv2bkB5kFOB2Ze0YDuQfPouTmgW2j
+JXMPeBswphq91GNUCjHi9/rzSgugDJ3Z9RY5NJU090Ldx+8BJ2fasHwMqwDUIO/K
+JRAeSffxlfunKiGfjVmtkTtTYV/ejVP6DXJLw3aeToop3xJSaDwBDp/tZxZFFfnl
+77hBxteurp1EDJKsyTWUbjXL2swhd0ekMh8ZK2xlL7wzb6IBGSSNyQdluOaBQxJg
+uH97ebQ7gbSXYIGrKrOAKtttwNKSqvDl2BB4M9gwi6uoiGixf0NmBEls+iZoW265
+3nOiKtVNsnBGjQZ+d9fFM8CyFtBToQ==
+=XhpG
+-----END PGP SIGNATURE-----
+
+--Sig_/8lmLGN7R8.LIgbOOVm06hk1--
