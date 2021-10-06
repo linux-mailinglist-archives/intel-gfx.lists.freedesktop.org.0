@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C9DE4234EB
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 02:27:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369B6423502
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 02:30:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 006836E492;
-	Wed,  6 Oct 2021 00:27:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7936E492;
+	Wed,  6 Oct 2021 00:30:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B03D76E48E;
- Wed,  6 Oct 2021 00:27:49 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 33EDD6E48E;
+ Wed,  6 Oct 2021 00:30:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A757EAA0EA;
- Wed,  6 Oct 2021 00:27:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7357572644347827974=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 19BA0A7E03;
+ Wed,  6 Oct 2021 00:30:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
+To: "Hans de Goede" <hdegoede@redhat.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Oct 2021 00:27:49 -0000
-Message-ID: <163348006965.5961.11926320938167019975@emeril.freedesktop.org>
+Date: Wed, 06 Oct 2021 00:30:53 -0000
+Message-ID: <163348025310.5958.808676844980442014@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211005182405.915100-1-matthew.auld@intel.com>
-In-Reply-To: <20211005182405.915100-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv6=2C1/8=5D_drm/i915/gem=3A_Break_out_some?=
- =?utf-8?q?_shmem_backend_utils?=
+References: <20211005202322.700909-1-hdegoede@redhat.com>
+In-Reply-To: <20211005202322.700909-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Add_privacy-screen_class_and_connector_properties_?=
+ =?utf-8?b?KHJldjYp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,297 +46,153 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7357572644347827974==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [v6,1/8] drm/i915/gem: Break out some shmem backend utils
-URL   : https://patchwork.freedesktop.org/series/95476/
-State : success
+Series: drm: Add privacy-screen class and connector properties (rev6)
+URL   : https://patchwork.freedesktop.org/series/79259/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10685 -> Patchwork_21257
-====================================================
+$ dim checkpatch origin/drm-tip
+81c0ef8541bc drm/connector: Add support for privacy-screen properties (v4)
+-:151: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#151: FILE: drivers/gpu/drm/drm_connector.c:2408:
++		drm_property_create_enum(connector->dev, DRM_MODE_PROP_ENUM,
++				"privacy-screen sw-state",
 
-Summary
--------
+-:156: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#156: FILE: drivers/gpu/drm/drm_connector.c:2413:
++		drm_property_create_enum(connector->dev,
++				DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_ENUM,
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 2 checks, 205 lines checked
+ef63d9d95cb2 drm: Add privacy-screen class (v4)
+-:136: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#136: 
+new file mode 100644
 
-  No regressions found.
+-:173: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev' - possible side-effects?
+#173: FILE: drivers/gpu/drm/drm_privacy_screen.c:33:
++#define to_drm_privacy_screen(dev) \
++	container_of(dev, struct drm_privacy_screen, dev)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/index.html
+-:221: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#221: FILE: drivers/gpu/drm/drm_privacy_screen.c:81:
++static struct drm_privacy_screen *drm_privacy_screen_get_by_name(
 
-Known issues
-------------
+-:424: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#424: FILE: drivers/gpu/drm/drm_privacy_screen.c:284:
++}
++/*
 
-  Here are the changes found in Patchwork_21257 that come from known issues:
+-:486: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#486: FILE: drivers/gpu/drm/drm_privacy_screen.c:346:
++struct drm_privacy_screen *drm_privacy_screen_register(
 
-### IGT changes ###
+-:582: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#582: FILE: include/drm/drm_privacy_screen_consumer.h:33:
++}
++static inline void drm_privacy_screen_put(struct drm_privacy_screen *priv)
 
-#### Issues hit ####
+-:585: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#585: FILE: include/drm/drm_privacy_screen_consumer.h:36:
++}
++static inline int drm_privacy_screen_set_sw_state(struct drm_privacy_screen *priv,
 
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +21 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+-:590: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#590: FILE: include/drm/drm_privacy_screen_consumer.h:41:
++}
++static inline void drm_privacy_screen_get_state(struct drm_privacy_screen *priv,
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-soraka:      [PASS][2] -> [DMESG-WARN][3] ([i915#1982] / [i915#262])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
+-:681: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#681: FILE: include/drm/drm_privacy_screen_driver.h:76:
++struct drm_privacy_screen *drm_privacy_screen_register(
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][4] -> [FAIL][5] ([i915#1888])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+-:728: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#728: FILE: include/drm/drm_privacy_screen_machine.h:37:
++}
++static inline void drm_privacy_screen_lookup_exit(void)
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+total: 0 errors, 1 warnings, 9 checks, 642 lines checked
+3bf5d3a76db4 drm/privacy-screen: Add X86 specific arch init code
+-:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#31: 
+new file mode 100644
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][7] ([i915#1886] / [i915#2291])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+total: 0 errors, 1 warnings, 0 checks, 110 lines checked
+a4870de0bdc9 drm/privacy-screen: Add notifier support (v2)
+-:126: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#126: FILE: include/drm/drm_privacy_screen_consumer.h:53:
+ }
++static inline int drm_privacy_screen_register_notifier(struct drm_privacy_screen *priv,
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
+-:131: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#131: FILE: include/drm/drm_privacy_screen_consumer.h:58:
++}
++static inline int drm_privacy_screen_unregister_notifier(struct drm_privacy_screen *priv,
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#295]) +17 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+total: 0 errors, 0 warnings, 2 checks, 120 lines checked
+52d7f973ab68 drm/connector: Add a drm_connector privacy-screen helper functions (v2)
+-:58: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#58: FILE: drivers/gpu/drm/drm_connector.c:554:
++		drm_privacy_screen_register_notifier(connector->privacy_screen,
++					   &connector->privacy_screen_notifier);
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#533])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+-:68: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#68: FILE: drivers/gpu/drm/drm_connector.c:592:
++		drm_privacy_screen_unregister_notifier(
 
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][12] ([i915#1602] / [i915#2029])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-bdw-5557u/igt@runner@aborted.html
+-:79: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#79: FILE: drivers/gpu/drm/drm_connector.c:2460:
++static void drm_connector_update_privacy_screen_properties(
 
-  
-#### Possible fixes ####
+-:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#90: FILE: drivers/gpu/drm/drm_connector.c:2471:
++	drm_object_property_set_value(&connector->base,
++			connector->privacy_screen_hw_state_property, hw_state);
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+-:93: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#93: FILE: drivers/gpu/drm/drm_connector.c:2474:
++static int drm_connector_privacy_screen_notifier(
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-soraka:      [INCOMPLETE][15] ([i915#155]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
+-:105: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#105: FILE: drivers/gpu/drm/drm_connector.c:2486:
++	drm_sysfs_connector_status_event(connector,
++				connector->privacy_screen_sw_state_property);
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][17] ([i915#1888]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+-:107: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#107: FILE: drivers/gpu/drm/drm_connector.c:2488:
++	drm_sysfs_connector_status_event(connector,
++				connector->privacy_screen_hw_state_property);
 
-  
-#### Warnings ####
+-:124: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#124: FILE: drivers/gpu/drm/drm_connector.c:2505:
++void drm_connector_attach_privacy_screen_provider(
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [FAIL][19] ([i915#2546]) -> [DMESG-WARN][20] ([i915#295])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+-:206: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#206: FILE: include/drm/drm_connector.h:1799:
++void drm_connector_attach_privacy_screen_provider(
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2546]: https://gitlab.freedesktop.org/drm/intel/issues/2546
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+total: 0 errors, 0 warnings, 9 checks, 167 lines checked
+48ded31ddb4b platform/x86: thinkpad_acpi: Add hotkey_notify_extended_hotkey() helper
+726b77f777f3 platform/x86: thinkpad_acpi: Get privacy-screen / lcdshadow ACPI handles only once
+ccac86b9b3d1 platform/x86: thinkpad_acpi: Register a privacy-screen device
+-:91: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#91: FILE: drivers/platform/x86/thinkpad_acpi.c:9845:
++	priv->hw_state = priv->sw_state = state;
 
+-:108: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#108: FILE: drivers/platform/x86/thinkpad_acpi.c:9856:
++	priv->hw_state = priv->sw_state = output & 0x1;
 
-Participating hosts (41 -> 34)
-------------------------------
+total: 0 errors, 0 warnings, 2 checks, 189 lines checked
+a54b6d7073d6 drm/i915: Add intel_modeset_probe_defer() helper
+88441fb93781 drm/i915: Add privacy-screen support (v3)
+-:28: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#28: FILE: drivers/gpu/drm/i915/display/intel_atomic.c:142:
++	    new_conn_state->base.privacy_screen_sw_state != old_conn_state->base.privacy_screen_sw_state ||
 
-  Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10685 -> Patchwork_21257
-
-  CI-20190529: 20190529
-  CI_DRM_10685: 36c3656c997b07f326d6b967efb1b75e01713773 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6232: effad6af5678be711a2c3e58e182319de784de54 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21257: fc764587e539a0720d5501e4b3ab5fe4bcdf3bed @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fc764587e539 drm/i915/ttm: enable shmem tt backend
-df1f7fa12f7b drm/i915/ttm: use cached system pages when evicting lmem
-c6e18e36eb58 drm/i915/ttm: move shrinker management into adjust_lru
-0999a655bf2a drm/i915: add some kernel-doc for shrink_pin and friends
-32c05a4de159 drm/i915: drop unneeded make_unshrinkable in free_object
-14f612b9093f drm/i915/gtt: drop unneeded make_unshrinkable
-b116a99cc04e drm/i915/ttm: add tt shmem backend
-605eef61ebf9 drm/i915/gem: Break out some shmem backend utils
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/index.html
-
---===============7357572644347827974==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v6,1/8] drm/i915/gem: Break out some shmem backend utils</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95476/">https://patchwork.freedesktop.org/series/95476/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10685 -&gt; Patchwork_21257</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21257 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10685/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2546">i915#2546</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21257/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 34)</h2>
-<p>Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10685 -&gt; Patchwork_21257</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10685: 36c3656c997b07f326d6b967efb1b75e01713773 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6232: effad6af5678be711a2c3e58e182319de784de54 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21257: fc764587e539a0720d5501e4b3ab5fe4bcdf3bed @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fc764587e539 drm/i915/ttm: enable shmem tt backend<br />
-df1f7fa12f7b drm/i915/ttm: use cached system pages when evicting lmem<br />
-c6e18e36eb58 drm/i915/ttm: move shrinker management into adjust_lru<br />
-0999a655bf2a drm/i915: add some kernel-doc for shrink_pin and friends<br />
-32c05a4de159 drm/i915: drop unneeded make_unshrinkable in free_object<br />
-14f612b9093f drm/i915/gtt: drop unneeded make_unshrinkable<br />
-b116a99cc04e drm/i915/ttm: add tt shmem backend<br />
-605eef61ebf9 drm/i915/gem: Break out some shmem backend utils</p>
-
-</body>
-</html>
-
---===============7357572644347827974==--
