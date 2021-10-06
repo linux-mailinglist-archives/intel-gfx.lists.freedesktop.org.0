@@ -1,40 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EDD2423A67
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 11:17:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 834E6423A6A
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 11:17:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8381A6F646;
-	Wed,  6 Oct 2021 09:16:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1993E6F64A;
+	Wed,  6 Oct 2021 09:16:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 183C06F645;
- Wed,  6 Oct 2021 09:16:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="225843510"
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="225843510"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 02:16:46 -0700
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="589690813"
-Received: from dcharle1-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.19.138])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 02:16:45 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed,  6 Oct 2021 10:16:13 +0100
-Message-Id: <20211006091614.970596-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20211006091614.970596-1-matthew.auld@intel.com>
-References: <20211006091614.970596-1-matthew.auld@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 713C66F648;
+ Wed,  6 Oct 2021 09:16:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="206072292"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="206072292"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 02:16:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="560120672"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 06 Oct 2021 02:16:46 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 06 Oct 2021 12:16:45 +0300
+Date: Wed, 6 Oct 2021 12:16:45 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Mike Galbraith <umgwanakikbuti@gmail.com>
+Message-ID: <YV1pfUZlbGYfe7d9@intel.com>
+References: <20211005150046.1000285-1-bigeasy@linutronix.de>
+ <20211005150046.1000285-3-bigeasy@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 8/8] drm/i915/ttm: enable shmem tt backend
+In-Reply-To: <20211005150046.1000285-3-bigeasy@linutronix.de>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915: Don't disable interrupts on
+ PREEMPT_RT during atomic updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,29 +59,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Turn on the shmem tt backend, and enable shrinking.
+On Tue, Oct 05, 2021 at 05:00:40PM +0200, Sebastian Andrzej Siewior wrote:
+> From: Mike Galbraith <umgwanakikbuti@gmail.com>
+> 
+> Commit
+>    8d7849db3eab7 ("drm/i915: Make sprite updates atomic")
+> 
+> started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
+> because within this section the code attempt to acquire spinlock_t locks which
+> are sleeping locks on PREEMPT_RT.
+> 
+> According to the comment the interrupts are disabled to avoid random delays and
+> not required for protection or synchronisation.
+> If this needs to happen with disabled interrupts on PREEMPT_RT, and the
+> whole section is restricted to register access then all sleeping locks
+> need to be acquired before interrupts are disabled and some function
+> maybe moved after enabling interrupts again.
+> This includes:
+> - prepare_to_wait() + finish_wait() due its wake queue.
+> - drm_crtc_vblank_put() -> vblank_disable_fn() drm_device::vbl_lock.
+> - skl_pfit_enable(), intel_update_plane(), vlv_atomic_update_fifo() and
+>   maybe others due to intel_uncore::lock
+> - drm_crtc_arm_vblank_event() due to drm_device::event_lock and
+>   drm_device::vblank_time_lock.
+> 
+> Don't disable interrupts on PREEMPT_RT during atomic updates.
+> 
+> [bigeasy: drop local locks, commit message]
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I have my doubts about meething the deadlines here.
+CONFIG_DRM_I915_DEBUG_VBLANK_EVADE should scream a bunch if it
+looks like we're missing it.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 0006ab35cd4d..c889beb7696e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -1094,7 +1094,8 @@ static u64 i915_ttm_mmap_offset(struct drm_i915_gem_object *obj)
- 
- static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops = {
- 	.name = "i915_gem_object_ttm",
--	.flags = I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
-+	.flags = I915_GEM_OBJECT_IS_SHRINKABLE |
-+		 I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
- 
- 	.get_pages = i915_ttm_get_pages,
- 	.put_pages = i915_ttm_put_pages,
+That said, we already miss the deadline sometimes, esp. with
+lockdep and whatnot enabled which makes the locking very expensive.
+
+Also some ideas how to reduce the overhead:
+- Try to make the mmio accesses lockless as much s possible
+- Reduce the amount of work we do in the critical section
+
+Anyways, RT hasn't really been on anyone's radar so no one
+has yet spent significant amount of brain cells on this.
+
+> 
+> Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
+> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c | 15 ++++++++++-----
+>  1 file changed, 10 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index 254e67141a776..7a39029b083f4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -425,7 +425,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
+>  	 */
+>  	intel_psr_wait_for_idle(new_crtc_state);
+>  
+> -	local_irq_disable();
+> +	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
+> +		local_irq_disable();
+>  
+>  	crtc->debug.min_vbl = min;
+>  	crtc->debug.max_vbl = max;
+> @@ -450,11 +451,13 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
+>  			break;
+>  		}
+>  
+> -		local_irq_enable();
+> +		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
+> +			local_irq_enable();
+>  
+>  		timeout = schedule_timeout(timeout);
+>  
+> -		local_irq_disable();
+> +		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
+> +			local_irq_disable();
+>  	}
+>  
+>  	finish_wait(wq, &wait);
+> @@ -487,7 +490,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
+>  	return;
+>  
+>  irq_disable:
+> -	local_irq_disable();
+> +	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
+> +		local_irq_disable();
+>  }
+>  
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
+> @@ -566,7 +570,8 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
+>  		new_crtc_state->uapi.event = NULL;
+>  	}
+>  
+> -	local_irq_enable();
+> +	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
+> +		local_irq_enable();
+>  
+>  	/* Send VRR Push to terminate Vblank */
+>  	intel_vrr_send_push(new_crtc_state);
+> -- 
+> 2.33.0
+
 -- 
-2.26.3
-
+Ville Syrj‰l‰
+Intel
