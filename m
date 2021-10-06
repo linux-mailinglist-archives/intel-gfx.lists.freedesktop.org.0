@@ -1,49 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 834E6423A6A
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 11:17:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC1E0423A74
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 11:21:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1993E6F64A;
-	Wed,  6 Oct 2021 09:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F696F645;
+	Wed,  6 Oct 2021 09:21:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 713C66F648;
- Wed,  6 Oct 2021 09:16:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="206072292"
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="206072292"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 02:16:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="560120672"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 06 Oct 2021 02:16:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 Oct 2021 12:16:45 +0300
-Date: Wed, 6 Oct 2021 12:16:45 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEB616F63A;
+ Wed,  6 Oct 2021 09:21:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="212890987"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="212890987"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 02:21:27 -0700
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="478043790"
+Received: from alebede1-mobl1.ccr.corp.intel.com (HELO [10.252.38.139])
+ ([10.252.38.139])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 02:21:24 -0700
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Gleixner <tglx@linutronix.de>,
- Mike Galbraith <umgwanakikbuti@gmail.com>
-Message-ID: <YV1pfUZlbGYfe7d9@intel.com>
-References: <20211005150046.1000285-1-bigeasy@linutronix.de>
- <20211005150046.1000285-3-bigeasy@linutronix.de>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Message-ID: <3272bf72-2c37-31eb-404e-cf7edd485c7d@linux.intel.com>
+Date: Wed, 6 Oct 2021 11:21:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211005150046.1000285-3-bigeasy@linutronix.de>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915: Don't disable interrupts on
- PREEMPT_RT during atomic updates
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,108 +54,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 05, 2021 at 05:00:40PM +0200, Sebastian Andrzej Siewior wrote:
-> From: Mike Galbraith <umgwanakikbuti@gmail.com>
-> 
-> Commit
->    8d7849db3eab7 ("drm/i915: Make sprite updates atomic")
-> 
-> started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
-> because within this section the code attempt to acquire spinlock_t locks which
-> are sleeping locks on PREEMPT_RT.
-> 
-> According to the comment the interrupts are disabled to avoid random delays and
-> not required for protection or synchronisation.
-> If this needs to happen with disabled interrupts on PREEMPT_RT, and the
-> whole section is restricted to register access then all sleeping locks
-> need to be acquired before interrupts are disabled and some function
-> maybe moved after enabling interrupts again.
-> This includes:
-> - prepare_to_wait() + finish_wait() due its wake queue.
-> - drm_crtc_vblank_put() -> vblank_disable_fn() drm_device::vbl_lock.
-> - skl_pfit_enable(), intel_update_plane(), vlv_atomic_update_fifo() and
->   maybe others due to intel_uncore::lock
-> - drm_crtc_arm_vblank_event() due to drm_device::event_lock and
->   drm_device::vblank_time_lock.
-> 
-> Don't disable interrupts on PREEMPT_RT during atomic updates.
-> 
-> [bigeasy: drop local locks, commit message]
+Hi Dave, Daniel,
 
-I have my doubts about meething the deadlines here.
-CONFIG_DRM_I915_DEBUG_VBLANK_EVADE should scream a bunch if it
-looks like we're missing it.
+I've rebased the patches and dropped the vc4 changes. I kept the compiler fix, as it appeared to be unrelated to the clock changes.
 
-That said, we already miss the deadline sometimes, esp. with
-lockdep and whatnot enabled which makes the locking very expensive.
+drm-misc-fixes-2021-10-06:
+Rebased drm-misc-fixes for v5.15-rc5:
+- Dropped vc4 patches.
+- Compiler fix for vc4.
+- Cursor fix for nouveau.
+- Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
+- Small rockchip fixes.
+- Fix DT bindings indent for ili9341.
+- Fix y030xx067a init sequence to not get a yellow tint.
+- Kconfig fix for fb_simple vs simpledrm.
+- Assorted nouvaeu memory leaks.
+- Fix gbefb when built with COMPILE_TEST.
+The following changes since commit 9e1ff307c779ce1f0f810c7ecce3d95bbae40896:
 
-Also some ideas how to reduce the overhead:
-- Try to make the mmio accesses lockless as much s possible
-- Reduce the amount of work we do in the critical section
+  Linux 5.15-rc4 (2021-10-03 14:08:47 -0700)
 
-Anyways, RT hasn't really been on anyone's radar so no one
-has yet spent significant amount of brain cells on this.
+are available in the Git repository at:
 
-> 
-> Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
-> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> ---
->  drivers/gpu/drm/i915/display/intel_crtc.c | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 254e67141a776..7a39029b083f4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -425,7 +425,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
->  	 */
->  	intel_psr_wait_for_idle(new_crtc_state);
->  
-> -	local_irq_disable();
-> +	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-> +		local_irq_disable();
->  
->  	crtc->debug.min_vbl = min;
->  	crtc->debug.max_vbl = max;
-> @@ -450,11 +451,13 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
->  			break;
->  		}
->  
-> -		local_irq_enable();
-> +		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-> +			local_irq_enable();
->  
->  		timeout = schedule_timeout(timeout);
->  
-> -		local_irq_disable();
-> +		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-> +			local_irq_disable();
->  	}
->  
->  	finish_wait(wq, &wait);
-> @@ -487,7 +490,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
->  	return;
->  
->  irq_disable:
-> -	local_irq_disable();
-> +	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-> +		local_irq_disable();
->  }
->  
->  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
-> @@ -566,7 +570,8 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
->  		new_crtc_state->uapi.event = NULL;
->  	}
->  
-> -	local_irq_enable();
-> +	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-> +		local_irq_enable();
->  
->  	/* Send VRR Push to terminate Vblank */
->  	intel_vrr_send_push(new_crtc_state);
-> -- 
-> 2.33.0
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-10-06
 
--- 
-Ville Syrjälä
-Intel
+for you to fetch changes up to f5a8703a9c418c6fc54eb772712dfe7641e3991c:
+
+  drm/nouveau/debugfs: fix file release memory leak (2021-10-06 11:12:29 +0200)
+
+----------------------------------------------------------------
+Rebased drm-misc-fixes for v5.15-rc5:
+- Dropped vc4 patches.
+- Compiler fix for vc4.
+- Cursor fix for nouveau.
+- Fix ttm buffer moves for ampere gpu's by adding minimal acceleration support.
+- Small rockchip fixes.
+- Fix DT bindings indent for ili9341.
+- Fix y030xx067a init sequence to not get a yellow tint.
+- Kconfig fix for fb_simple vs simpledrm.
+- Assorted nouvaeu memory leaks.
+- Fix gbefb when built with COMPILE_TEST.
+
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      fbdev: simplefb: fix Kconfig dependencies
+
+Ben Skeggs (3):
+      drm/nouveau/kms/tu102-: delay enabling cursor until after assign_windows
+      drm/nouveau/ga102-: support ttm buffer moves via copy engine
+      drm/nouveau/fifo/ga102: initialise chid on return from channel creation
+
+Chris Morgan (1):
+      drm/rockchip: Update crtc fixup to account for fractional clk change
+
+Christophe Branchereau (1):
+      drm/panel: abt-y030xx067a: yellow tint fix
+
+Edmund Dea (1):
+      drm/kmb: Enable alpha blended second plane
+
+Jeremy Cline (1):
+      drm/nouveau: avoid a use-after-free when BO init fails
+
+Jernej Skrabec (1):
+      drm/sun4i: dw-hdmi: Fix HDMI PHY clock setup
+
+Krzysztof Kozlowski (1):
+      dt-bindings: panel: ili9341: correct indentation
+
+Mark Brown (1):
+      video: fbdev: gbefb: Only instantiate device when built for IP32
+
+Maxime Ripard (1):
+      drm/vc4: hdmi: Remove unused struct
+
+Randy Dunlap (1):
+      DRM: delete DRM IRQ legacy midlayer docs
+
+Yang Yingliang (2):
+      drm/nouveau/kms/nv50-: fix file release memory leak
+      drm/nouveau/debugfs: fix file release memory leak
+
+ .../bindings/display/panel/ilitek,ili9341.yaml     |   2 +-
+ Documentation/gpu/drm-internals.rst                |   9 -
+ drivers/gpu/drm/kmb/kmb_drv.c                      |   8 +-
+ drivers/gpu/drm/kmb/kmb_drv.h                      |   5 +
+ drivers/gpu/drm/kmb/kmb_plane.c                    |  81 +++++-
+ drivers/gpu/drm/kmb/kmb_plane.h                    |   5 +-
+ drivers/gpu/drm/kmb/kmb_regs.h                     |   3 +
+ drivers/gpu/drm/nouveau/dispnv50/crc.c             |   1 +
+ drivers/gpu/drm/nouveau/dispnv50/head.c            |   2 +-
+ drivers/gpu/drm/nouveau/include/nvif/class.h       |   2 +
+ drivers/gpu/drm/nouveau/include/nvkm/engine/fifo.h |   1 +
+ drivers/gpu/drm/nouveau/nouveau_bo.c               |   1 +
+ drivers/gpu/drm/nouveau/nouveau_chan.c             |   6 +-
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c          |   1 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |   4 +
+ drivers/gpu/drm/nouveau/nouveau_gem.c              |   4 +-
+ drivers/gpu/drm/nouveau/nv84_fence.c               |   2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  |   3 +
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/Kbuild    |   1 +
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c   | 311 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nvkm/subdev/top/ga100.c    |   7 +-
+ drivers/gpu/drm/panel/panel-abt-y030xx067a.c       |   4 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |  26 +-
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |   7 +-
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h              |   4 +-
+ drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c             |  97 ++++---
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |   8 -
+ drivers/of/base.c                                  |   1 +
+ drivers/video/fbdev/Kconfig                        |   5 +-
+ drivers/video/fbdev/gbefb.c                        |   2 +-
+ 30 files changed, 504 insertions(+), 109 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
