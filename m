@@ -2,46 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78647423FA7
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 15:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D552423F98
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 15:49:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7470C6E514;
-	Wed,  6 Oct 2021 13:55:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1A6F6E4F3;
+	Wed,  6 Oct 2021 13:49:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B08196E4F3;
- Wed,  6 Oct 2021 13:55:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="224768783"
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="224768783"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 06:54:56 -0700
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="522241719"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 06:54:52 -0700
-Date: Wed, 6 Oct 2021 16:47:57 +0300 (EEST)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Greg KH <gregkh@linuxfoundation.org>
-cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
- dri-devel@lists.freedesktop.org, Takashi Iwai <tiwai@suse.de>, 
- alsa-devel@alsa-project.org, jani.nikula@intel.com, 
- Imre Deak <imre.deak@intel.com>, 
- Russell King <rmk+kernel@arm.linux.org.uk>, 
- "Rafael J . Wysocki" <rafael@kernel.org>, intel-gfx@lists.freedesktop.org, 
- Russell King <rmk+kernel@armlinux.org.uk>
-In-Reply-To: <YVxiyzNrKG8S1GDb@kroah.com>
-Message-ID: <alpine.DEB.2.22.394.2110061613520.3554566@eliteleevi.tm.intel.com>
-References: <20210922085432.2776886-1-kai.vehmanen@linux.intel.com>
- <YVxiyzNrKG8S1GDb@kroah.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D096E4F3
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 13:49:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="225885790"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="225885790"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 06:49:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="439121288"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 06 Oct 2021 06:49:34 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 06 Oct 2021 16:49:33 +0300
+Date: Wed, 6 Oct 2021 16:49:33 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, uma.shankar@intel.com,
+ jani.nikula@intel.com
+Message-ID: <YV2pbdFxdGfZkQ3B@intel.com>
+References: <20210913164004.3999218-1-kai.vehmanen@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Subject: Re: [Intel-gfx] [PATCH v2] component: do not leave master devres
- group open after bind
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210913164004.3999218-1-kai.vehmanen@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: program audio CDCLK-TS
+ for keepalives
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,43 +53,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On Tue, 5 Oct 2021, Greg KH wrote:
-
-> On Wed, Sep 22, 2021 at 11:54:32AM +0300, Kai Vehmanen wrote:
-> > In current code, the devres group for aggregate master is left open
-> > after call to component_master_add_*(). This leads to problems when the
-> > master does further managed allocations on its own. When any
-> > participating driver calls component_del(), this leads to immediate
-> > release of resources.
-[...]
-> > the devres group, and by closing the devres group after
-> > the master->ops->bind() call is done. This allows devres allocations
-> > done by the driver acting as master to be isolated from the binding state
-> > of the aggregate driver. This modifies the logic originally introduced in
-> > commit 9e1ccb4a7700 ("drivers/base: fix devres handling for master device")
-> > 
-> > BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/4136
-> > Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> > Acked-by: Imre Deak <imre.deak@intel.com>
-> > Acked-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+On Mon, Sep 13, 2021 at 07:40:04PM +0300, Kai Vehmanen wrote:
+> XE_LPD display adds support for display audio codec keepalive feature.
+> This feature works also when display codec is in D3 state and the audio
+> link is off (BCLK off). To enable this functionality, display driver
+> must update the AUD_TS_CDCLK_M/N registers whenever CDCLK is changed.
+> Actual timestamps are generated only when the audio codec driver
+> specifically enables the KeepAlive (KAE) feature.
 > 
-> What commit does this "fix:"?  And does it need to go to stable
-> kernel(s)?
+> This patch adds new hooks to intel_set_cdclk() in order to inform
+> display audio driver when CDCLK change is started and when it is
+> complete.
+> 
+> Bspec: 53679
+> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c | 37 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_audio.h |  2 ++
+>  drivers/gpu/drm/i915/display/intel_cdclk.c |  5 +++
+>  drivers/gpu/drm/i915/i915_reg.h            |  4 +++
+>  4 files changed, 48 insertions(+)
+> 
+> Changes V1->V2:
+>  - addressed review comments Jani Nikula (Sep 10)
+>  - added an initial call to intel_audio_cdclk_change_post() so 
+>    that AUD_CDCLK initial configuration is always performance
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index 532237588511..ff74dc4dc121 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -936,6 +936,40 @@ void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
+>  	}
+>  }
+>  
+> +struct aud_ts_cdclk_m_n {
+> +	u8 m;
+> +	u16 n;
+> +};
+> +
+> +void intel_audio_cdclk_change_pre(struct drm_i915_private *i915)
+> +{
+> +	if (DISPLAY_VER(i915) >= 13)
+> +		intel_de_rmw(i915, AUD_TS_CDCLK_M, AUD_TS_CDCLK_M_EN, 0);
+> +}
+> +
+> +static void get_aud_ts_cdclk_m_n(int refclk, int cdclk, struct aud_ts_cdclk_m_n *aud_ts)
+> +{
+> +	if (refclk == 24000)
+> +		aud_ts->m = 12;
 
-I didn't put a "Fixes" on the original commit 9e1ccb4a7700 
-("drivers/base: fix devres handling for master device") as it alone
-didn't cause problems. It did open the door for possible devres issues
-for anybody calling component_master_add_().
+Wasn't there a single exception to this rule? Ie. should this be 
+if (refclk == 24000 && cdclk != something) ?
 
-On audio side, this surfaced with the more recent commit 3fcaf24e5dce 
-("ALSA: hda: Allocate resources with device-managed APIs"). In theory one 
-could have hit issues already before, but this made it very easy to hit
-on actual systems.
+> +	else
+> +		aud_ts->m = 15;
+> +
+> +	aud_ts->n = cdclk * aud_ts->m / 24000;
+> +}
+> +
+> +void intel_audio_cdclk_change_post(struct drm_i915_private *i915)
+> +{
+> +	struct aud_ts_cdclk_m_n aud_ts;
+> +
+> +	if (DISPLAY_VER(i915) >= 13) {
+> +		get_aud_ts_cdclk_m_n(i915->cdclk.hw.ref, i915->cdclk.hw.cdclk, &aud_ts);
+> +
+> +		intel_de_write(i915, AUD_TS_CDCLK_N, aud_ts.n);
+> +		intel_de_write(i915, AUD_TS_CDCLK_M, aud_ts.m | AUD_TS_CDCLK_M_EN);
+> +		drm_dbg_kms(&i915->drm, "aud_ts_cdclk set to M=%u, N=%u\n", aud_ts.m, aud_ts.n);
+> +	}
+> +}
+> +
+>  static int glk_force_audio_cdclk_commit(struct intel_atomic_state *state,
+>  					struct intel_crtc *crtc,
+>  					bool enable)
+> @@ -1318,6 +1352,9 @@ static void i915_audio_component_init(struct drm_i915_private *dev_priv)
+>  		dev_priv->audio_freq_cntrl = aud_freq;
+>  	}
+>  
+> +	/* init with current cdclk */
+> +	intel_audio_cdclk_change_post(dev_priv);
+> +
+>  	dev_priv->audio_component_registered = true;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
+> index a3657c7a7ba2..dcb259dd2da7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.h
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.h
+> @@ -18,6 +18,8 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+>  void intel_audio_codec_disable(struct intel_encoder *encoder,
+>  			       const struct intel_crtc_state *old_crtc_state,
+>  			       const struct drm_connector_state *old_conn_state);
+> +void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv);
+> +void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv);
+>  void intel_audio_init(struct drm_i915_private *dev_priv);
+>  void intel_audio_deinit(struct drm_i915_private *dev_priv);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 9aec17b33819..a1365f31142d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -24,6 +24,7 @@
+>  #include <linux/time.h>
+>  
+>  #include "intel_atomic.h"
+> +#include "intel_audio.h"
+>  #include "intel_bw.h"
+>  #include "intel_cdclk.h"
+>  #include "intel_de.h"
+> @@ -1943,6 +1944,8 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+>  		intel_psr_pause(intel_dp);
+>  	}
+>  
+> +	intel_audio_cdclk_change_pre(dev_priv);
+> +
+>  	/*
+>  	 * Lock aux/gmbus while we change cdclk in case those
+>  	 * functions use cdclk. Not all platforms/ports do,
+> @@ -1971,6 +1974,8 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+>  		intel_psr_resume(intel_dp);
+>  	}
+>  
+> +	intel_audio_cdclk_change_post(dev_priv);
+> +
+>  	if (drm_WARN(&dev_priv->drm,
+>  		     intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config),
+>  		     "cdclk state doesn't match!\n")) {
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index bd63760207b0..795775c9e2eb 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9734,6 +9734,10 @@ enum {
+>  #define AUD_PIN_BUF_CTL		_MMIO(0x48414)
+>  #define   AUD_PIN_BUF_ENABLE		REG_BIT(31)
+>  
+> +#define AUD_TS_CDCLK_M			_MMIO(0x65ea0)
+> +#define   AUD_TS_CDCLK_M_EN		REG_BIT(31)
+> +#define AUD_TS_CDCLK_N			_MMIO(0x65ea4)
+> +
+>  /* Display Audio Config Reg */
+>  #define AUD_CONFIG_BE			_MMIO(0x65ef0)
+>  #define HBLANK_EARLY_ENABLE_ICL(pipe)		(0x1 << (20 - (pipe)))
+> -- 
+> 2.32.0
 
-If I'd have to pick one, it would be 9e1ccb4a7700 ("drivers/base: fix 
-devres handling for master device"). And yes, given comments on this 
-thread, I'd say this needs to go to stable kernels.
-
-Br, Kai
+-- 
+Ville Syrjälä
+Intel
