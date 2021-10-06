@@ -2,58 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F4A423B4E
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 12:15:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B75B1423B56
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 12:16:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8D3B6ED99;
-	Wed,  6 Oct 2021 10:15:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 028666F877;
+	Wed,  6 Oct 2021 10:16:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D95116ED99;
- Wed,  6 Oct 2021 10:15:22 +0000 (UTC)
-Date: Wed, 6 Oct 2021 12:15:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1633515321;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PzhOopOiQjVdHREVS6WWzBcImsM1l4/BHgs/eCC4K8A=;
- b=INKg+7W3lD/dz477LrSHOsCpgAkDmDnXH2Mi+sKCBhlDyySVVpm6yV+VdMdsGQuX7IG6aV
- 9VxaR+JwXShyfkhJZIez5dglkRIaB6tnZLxaTiclIrUzpTe9wX2Ah7o4jGJp4pwDayLWmn
- yr/ZTeStOZZ3bt34FRkIDtSAjyOj2vbK12Kcqwi4Z2JMWR775+temRALJ3l6NR1RJFlV06
- KXiWe4maPrxnUevd/Qa7jMRufDIZsdDXMs/cKXULxIhIFCj4QrMAtY4hc9myMeN+/iE+jq
- oXItle6E1byo/TsTY5zz0S9dOA4zrh/gmeYN8Ikz1WzhxxDmfq/VxiofHc3gLw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1633515321;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PzhOopOiQjVdHREVS6WWzBcImsM1l4/BHgs/eCC4K8A=;
- b=RuA3eqShVPUdwFcnCCvOUdpNpIb4II+09MBd70YnFE5PMLmXdRBu0IY/dhLr9pde+ahyIc
- jFe0WRRIQjbaOIAA==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Gleixner <tglx@linutronix.de>, Luca Abeni <lucabe72@gmail.com>,
- Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <20211006101519.ffwg7u7epzl7dedl@linutronix.de>
-References: <20211005150046.1000285-1-bigeasy@linutronix.de>
- <20211005150046.1000285-4-bigeasy@linutronix.de>
- <YV1tm8bNEBbPeU6/@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE9CA6ED99
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 10:16:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="206771512"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="206771512"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 03:16:24 -0700
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="488434835"
+Received: from roliveir-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.41.10])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2021 03:16:23 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Date: Wed,  6 Oct 2021 13:16:18 +0300
+Message-Id: <20211006101618.22066-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YV1tm8bNEBbPeU6/@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915: Disable tracing points on
- PREEMPT_RT
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/mst: abstract
+ intel_dp_mst_source_support()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,11 +48,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-10-06 12:34:19 [+0300], Ville Syrj=C3=A4l=C3=A4 wrote:
-> I think the correct answer is to make uncore.lock a raw_spinlock.
-> Without the tracepoints deubgging any of this is stuff pretty much
-> impossible. We also take that lock a lot.
+Add a function for checking source MST support. Drop intel_dp->can_mst
+and use intel_dp->mst_mgr.cbs to indicate the same. It's the single
+point of truth without additional state variables. In code, "source
+support" is also self-documenting as opposed to the vague "can mst".
 
-Let me check if that works.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../gpu/drm/i915/display/intel_display_debugfs.c  |  5 +++--
+ .../gpu/drm/i915/display/intel_display_types.h    |  1 -
+ drivers/gpu/drm/i915/display/intel_dp.c           | 10 +++++-----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c       | 15 +++++++++++----
+ drivers/gpu/drm/i915/display/intel_dp_mst.h       |  4 +++-
+ 5 files changed, 22 insertions(+), 13 deletions(-)
 
-Sebastian
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 309d74fd86ce..bc5113589f0a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -7,12 +7,13 @@
+ #include <drm/drm_fourcc.h>
+ 
+ #include "i915_debugfs.h"
++#include "intel_de.h"
+ #include "intel_display_debugfs.h"
+ #include "intel_display_power.h"
+-#include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
++#include "intel_dp_mst.h"
+ #include "intel_drrs.h"
+ #include "intel_fbc.h"
+ #include "intel_hdcp.h"
+@@ -1379,7 +1380,7 @@ static int i915_dp_mst_info(struct seq_file *m, void *unused)
+ 			continue;
+ 
+ 		dig_port = enc_to_dig_port(intel_encoder);
+-		if (!dig_port->dp.can_mst)
++		if (!intel_dp_mst_source_support(&dig_port->dp))
+ 			continue;
+ 
+ 		seq_printf(m, "MST Source Port [ENCODER:%d:%s]\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 21ce8bccc645..39e11eaec1a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1580,7 +1580,6 @@ struct intel_dp {
+ 
+ 	struct intel_pps pps;
+ 
+-	bool can_mst; /* this port supports mst */
+ 	bool is_mst;
+ 	int active_mst_links;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 74a657ae131a..ee733fb24a76 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2649,7 +2649,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 
+ 	return i915->params.enable_dp_mst &&
+-		intel_dp->can_mst &&
++		intel_dp_mst_source_support(intel_dp) &&
+ 		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+ }
+ 
+@@ -2664,10 +2664,10 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
+ 	drm_dbg_kms(&i915->drm,
+ 		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
+ 		    encoder->base.base.id, encoder->base.name,
+-		    yesno(intel_dp->can_mst), yesno(sink_can_mst),
++		    yesno(intel_dp_mst_source_support(intel_dp)), yesno(sink_can_mst),
+ 		    yesno(i915->params.enable_dp_mst));
+ 
+-	if (!intel_dp->can_mst)
++	if (!intel_dp_mst_source_support(intel_dp))
+ 		return;
+ 
+ 	intel_dp->is_mst = sink_can_mst &&
+@@ -5067,7 +5067,7 @@ void intel_dp_mst_suspend(struct drm_i915_private *dev_priv)
+ 
+ 		intel_dp = enc_to_intel_dp(encoder);
+ 
+-		if (!intel_dp->can_mst)
++		if (!intel_dp_mst_source_support(intel_dp))
+ 			continue;
+ 
+ 		if (intel_dp->is_mst)
+@@ -5091,7 +5091,7 @@ void intel_dp_mst_resume(struct drm_i915_private *dev_priv)
+ 
+ 		intel_dp = enc_to_intel_dp(encoder);
+ 
+-		if (!intel_dp->can_mst)
++		if (!intel_dp_mst_source_support(intel_dp))
+ 			continue;
+ 
+ 		ret = drm_dp_mst_topology_mgr_resume(&intel_dp->mst_mgr,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index fd0a31bc3dcd..0de0b4ff4d73 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -977,24 +977,31 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+ 					   dig_port->max_lanes,
+ 					   max_source_rate,
+ 					   conn_base_id);
+-	if (ret)
++	if (ret) {
++		intel_dp->mst_mgr.cbs = NULL;
+ 		return ret;
+-
+-	intel_dp->can_mst = true;
++	}
+ 
+ 	return 0;
+ }
+ 
++bool intel_dp_mst_source_support(struct intel_dp *intel_dp)
++{
++	return intel_dp->mst_mgr.cbs;
++}
++
+ void
+ intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port)
+ {
+ 	struct intel_dp *intel_dp = &dig_port->dp;
+ 
+-	if (!intel_dp->can_mst)
++	if (!intel_dp_mst_source_support(intel_dp))
+ 		return;
+ 
+ 	drm_dp_mst_topology_mgr_destroy(&intel_dp->mst_mgr);
+ 	/* encoders will get killed by normal cleanup */
++
++	intel_dp->mst_mgr.cbs = NULL;
+ }
+ 
+ bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+index 6afda4e86b3c..f7301de6cdfb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+@@ -8,13 +8,15 @@
+ 
+ #include <linux/types.h>
+ 
+-struct intel_digital_port;
+ struct intel_crtc_state;
++struct intel_digital_port;
++struct intel_dp;
+ 
+ int intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_id);
+ void intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port);
+ int intel_dp_mst_encoder_active_links(struct intel_digital_port *dig_port);
+ bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state);
+ bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state);
++bool intel_dp_mst_source_support(struct intel_dp *intel_dp);
+ 
+ #endif /* __INTEL_DP_MST_H__ */
+-- 
+2.30.2
+
