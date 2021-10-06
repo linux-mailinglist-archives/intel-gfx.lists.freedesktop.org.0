@@ -1,42 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81AA6423E62
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 15:05:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B19A0423E9B
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 15:23:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE0436E508;
-	Wed,  6 Oct 2021 13:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2B196E505;
+	Wed,  6 Oct 2021 13:23:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B9C96E508
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 13:05:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="226298582"
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="226298582"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2021 06:05:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; d="scan'208";a="478110017"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 06 Oct 2021 06:05:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 Oct 2021 16:05:43 +0300
-Date: Wed, 6 Oct 2021 16:05:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YV2fJzuK/eQNPBrF@intel.com>
-References: <20211006101618.22066-1-jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6BFEE6E508;
+ Wed,  6 Oct 2021 13:23:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 63A3EA8836;
+ Wed,  6 Oct 2021 13:23:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3860102919262889081=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Oct 2021 13:23:04 -0000
+Message-ID: <163352658438.5960.299146134877516800@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211006101618.22066-1-jani.nikula@intel.com>
 In-Reply-To: <20211006101618.22066-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: abstract
- intel_dp_mst_source_support()
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mst=3A_abstract_intel=5Fdp=5Fmst=5Fsource=5Fsupport=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,187 +41,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 06, 2021 at 01:16:18PM +0300, Jani Nikula wrote:
-> Add a function for checking source MST support. Drop intel_dp->can_mst
-> and use intel_dp->mst_mgr.cbs to indicate the same. It's the single
-> point of truth without additional state variables. In code, "source
-> support" is also self-documenting as opposed to the vague "can mst".
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_debugfs.c  |  5 +++--
->  .../gpu/drm/i915/display/intel_display_types.h    |  1 -
->  drivers/gpu/drm/i915/display/intel_dp.c           | 10 +++++-----
->  drivers/gpu/drm/i915/display/intel_dp_mst.c       | 15 +++++++++++----
->  drivers/gpu/drm/i915/display/intel_dp_mst.h       |  4 +++-
->  5 files changed, 22 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 309d74fd86ce..bc5113589f0a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -7,12 +7,13 @@
->  #include <drm/drm_fourcc.h>
->  
->  #include "i915_debugfs.h"
-> +#include "intel_de.h"
->  #include "intel_display_debugfs.h"
->  #include "intel_display_power.h"
-> -#include "intel_de.h"
->  #include "intel_display_types.h"
->  #include "intel_dmc.h"
->  #include "intel_dp.h"
-> +#include "intel_dp_mst.h"
->  #include "intel_drrs.h"
->  #include "intel_fbc.h"
->  #include "intel_hdcp.h"
-> @@ -1379,7 +1380,7 @@ static int i915_dp_mst_info(struct seq_file *m, void *unused)
->  			continue;
->  
->  		dig_port = enc_to_dig_port(intel_encoder);
-> -		if (!dig_port->dp.can_mst)
-> +		if (!intel_dp_mst_source_support(&dig_port->dp))
->  			continue;
->  
->  		seq_printf(m, "MST Source Port [ENCODER:%d:%s]\n",
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 21ce8bccc645..39e11eaec1a3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1580,7 +1580,6 @@ struct intel_dp {
->  
->  	struct intel_pps pps;
->  
-> -	bool can_mst; /* this port supports mst */
->  	bool is_mst;
->  	int active_mst_links;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 74a657ae131a..ee733fb24a76 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2649,7 +2649,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  
->  	return i915->params.enable_dp_mst &&
-> -		intel_dp->can_mst &&
-> +		intel_dp_mst_source_support(intel_dp) &&
->  		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
->  }
->  
-> @@ -2664,10 +2664,10 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
->  	drm_dbg_kms(&i915->drm,
->  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
->  		    encoder->base.base.id, encoder->base.name,
-> -		    yesno(intel_dp->can_mst), yesno(sink_can_mst),
-> +		    yesno(intel_dp_mst_source_support(intel_dp)), yesno(sink_can_mst),
->  		    yesno(i915->params.enable_dp_mst));
->  
-> -	if (!intel_dp->can_mst)
-> +	if (!intel_dp_mst_source_support(intel_dp))
->  		return;
->  
->  	intel_dp->is_mst = sink_can_mst &&
-> @@ -5067,7 +5067,7 @@ void intel_dp_mst_suspend(struct drm_i915_private *dev_priv)
->  
->  		intel_dp = enc_to_intel_dp(encoder);
->  
-> -		if (!intel_dp->can_mst)
-> +		if (!intel_dp_mst_source_support(intel_dp))
->  			continue;
->  
->  		if (intel_dp->is_mst)
-> @@ -5091,7 +5091,7 @@ void intel_dp_mst_resume(struct drm_i915_private *dev_priv)
->  
->  		intel_dp = enc_to_intel_dp(encoder);
->  
-> -		if (!intel_dp->can_mst)
-> +		if (!intel_dp_mst_source_support(intel_dp))
->  			continue;
->  
->  		ret = drm_dp_mst_topology_mgr_resume(&intel_dp->mst_mgr,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index fd0a31bc3dcd..0de0b4ff4d73 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -977,24 +977,31 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
->  					   dig_port->max_lanes,
->  					   max_source_rate,
->  					   conn_base_id);
-> -	if (ret)
-> +	if (ret) {
-> +		intel_dp->mst_mgr.cbs = NULL;
+--===============3860102919262889081==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This is a bit ugly, but apart from that the idea seems good.
-It *looks* like drm_dp_mst_topology_mgr_init() doesn't yet
-invoke any of the callbacks so we could do the assignment after.
-But that is a bit sketchy as well. Cleanest approach might be
-to pass the callbacks to drm_dp_mst_topology_mgr_init() and let
-it make sure things are mostly clear on failure. Also not
-entirely sure we want to rely on that when the topology mgr
-code has been historically following this "mutate, then do
-stuff, and mutate back on failure" pattern. It might just
-forget the last part.
+== Series Details ==
 
-But not really important so
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/i915/mst: abstract intel_dp_mst_source_support()
+URL   : https://patchwork.freedesktop.org/series/95506/
+State : success
 
->  		return ret;
-> -
-> -	intel_dp->can_mst = true;
-> +	}
->  
->  	return 0;
->  }
->  
-> +bool intel_dp_mst_source_support(struct intel_dp *intel_dp)
-> +{
-> +	return intel_dp->mst_mgr.cbs;
-> +}
-> +
->  void
->  intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port)
->  {
->  	struct intel_dp *intel_dp = &dig_port->dp;
->  
-> -	if (!intel_dp->can_mst)
-> +	if (!intel_dp_mst_source_support(intel_dp))
->  		return;
->  
->  	drm_dp_mst_topology_mgr_destroy(&intel_dp->mst_mgr);
->  	/* encoders will get killed by normal cleanup */
-> +
-> +	intel_dp->mst_mgr.cbs = NULL;
->  }
->  
->  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> index 6afda4e86b3c..f7301de6cdfb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> @@ -8,13 +8,15 @@
->  
->  #include <linux/types.h>
->  
-> -struct intel_digital_port;
->  struct intel_crtc_state;
-> +struct intel_digital_port;
-> +struct intel_dp;
->  
->  int intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_id);
->  void intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port);
->  int intel_dp_mst_encoder_active_links(struct intel_digital_port *dig_port);
->  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state);
->  bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state);
-> +bool intel_dp_mst_source_support(struct intel_dp *intel_dp);
->  
->  #endif /* __INTEL_DP_MST_H__ */
-> -- 
-> 2.30.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from CI_DRM_10689 -> Patchwork_21265
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21265 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@kms_flip@basic-plain-flip@c-dp1:
+    - fi-cfl-8109u:       [PASS][2] -> [FAIL][3] ([i915#4165])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [PASS][4] -> [DMESG-WARN][5] ([i915#295]) +14 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][6] ([i915#1602] / [i915#2029])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][7] ([i915#2940]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][9] ([i915#1372]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][11] ([i915#95]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3970]: https://gitlab.freedesktop.org/drm/intel/issues/3970
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 bat-dg1-6 fi-tgl-u2 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10689 -> Patchwork_21265
+
+  CI-20190529: 20190529
+  CI_DRM_10689: 6e9dcd4e975288c683c9299de5abb64c5e96215f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6233: a2e7a4583f0f68218c53cfe7b0ea8cc34b49cae9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21265: 73541ea5eb0bcab9554ec8154c7b954048d346bc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+73541ea5eb0b drm/i915/mst: abstract intel_dp_mst_source_support()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/index.html
+
+--===============3860102919262889081==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mst: abstract intel_dp_mst_source_support()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95506/">https://patchwork.freedesktop.org/series/95506/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10689 -&gt; Patchwork_21265</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21265 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +14 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10689/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21265/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 37)</h2>
+<p>Missing    (7): fi-ilk-m540 bat-dg1-6 fi-tgl-u2 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10689 -&gt; Patchwork_21265</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10689: 6e9dcd4e975288c683c9299de5abb64c5e96215f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6233: a2e7a4583f0f68218c53cfe7b0ea8cc34b49cae9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21265: 73541ea5eb0bcab9554ec8154c7b954048d346bc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>73541ea5eb0b drm/i915/mst: abstract intel_dp_mst_source_support()</p>
+
+</body>
+</html>
+
+--===============3860102919262889081==--
