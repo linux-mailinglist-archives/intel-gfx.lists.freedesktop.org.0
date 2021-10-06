@@ -1,66 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D30F4239AF
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 10:23:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BFB4239AE
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Oct 2021 10:23:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5533C6EDB5;
-	Wed,  6 Oct 2021 08:23:27 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
- [IPv6:2607:f8b0:4864:20::102d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3B156F5F7
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 04:33:13 +0000 (UTC)
-Received: by mail-pj1-x102d.google.com with SMTP id
- d13-20020a17090ad3cd00b0019e746f7bd4so3592039pjw.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 05 Oct 2021 21:33:13 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 830886EDA1;
+	Wed,  6 Oct 2021 08:23:24 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C59F6E507;
+ Wed,  6 Oct 2021 07:58:28 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id r18so6370845edv.12;
+ Wed, 06 Oct 2021 00:58:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Vzt25WKen5yxoB6+zFmyoOUcCazC0GoTv9qeublHMvo=;
- b=qkWdHv8kvKQKMOmJl/5ZZKmjGRIfAHZK6JvQ0+3QOWAJYv6Tgs9K91GjBSVa/bhMPE
- /5+XbljEVjOfzQWG3X++h8cCo64f9YaOVRQTdUncv8cYZvy5H+N58TN9W6f6N07D7WZw
- bakh01K+Kxvp9W+Kr52b0VkQhjSyQo4zBGlCb/jQOY4VruPXh+5Rdv8JQVqGGQnijhzG
- USPP3GsnQbh+PQq2FxtLv/+it05Zs2rL1KMYaV2bjqdPcleQwesaHh0mbSmSFZzpPj8a
- 8zkxmzlG/BVuW44vWZ2JmiEMNGisSuwXlJMT9WLbYmPFEMlbzwe9iTHPEClbV3eCIzF0
- P9Aw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=XQWQgm5VcZfwx8EzNe7mxtfcL9BKDaqUq1fkeXHfikM=;
+ b=go2U0cZ/aA/3NlaoPZZ6FEAxyPlr7Aag5bsPxBltHNCGKtsLteGuw3p0Zm0tpT6nDg
+ LVfkjy3shRzmwvTA1cpZYw6dwe2DiZOxoYOjxFL0ahoYDvRMk5bKKx00bQOq/4bk8+5z
+ OwVLwtxs/1Cwsb8tqqDuoq4cbU+tHuIDRhNwcXCYIKWvL/NhvK0JKeGIUs3bsFKq+vG3
+ DjOXpLRTOMv4lj57RyY/J2DwfZlONcbFfzb9dDYCWXZY1acpXIhuGBd4plNXejMKtpUf
+ Zh5hCdzayuLXMmXN5fvMdgRUn+wDH/U/qC0hj85S6xmLCVVnbZljjFGOH68U2iIdcAFS
+ jMQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Vzt25WKen5yxoB6+zFmyoOUcCazC0GoTv9qeublHMvo=;
- b=3jHYyT05sMM9In7hIiTV3vDMSZBuvzkqVdWoTlo5UD0KTjlFoUuNx93nR7fQUzz3Ev
- tKBgwKCXi3LwIytzhd/IzJ9JVV/NTx4vyGjuBc22PpJT4ltVlp7En3n3/U39i+I2xK7d
- 2H06zwKmaF7gak998sf0a6eI0ZfwvTjl5zsEm2GXBsFDQ+CSUinJfIx+d4b72RjxdbLI
- IbcyaKSrV7BujneKB1Oz6MR6XRMcqpsx3Ct7icpt0bJ01cy4pTkGQ4YiAhwMbE31+Vf6
- VU3kgRaWxbQUxK0HENva+3bghlXNSuYZnUwlnrEJa0LB7SHQtGVtnRwjr+4FkDTbzpsy
- 6Asg==
-X-Gm-Message-State: AOAM5311isOLsr1i7wXOxD+wMM6+UbZej1WYFe7ZAAENY+aDhpB1GwiV
- ffvRAdE43I8HJxEPAD6qtI8sTKa78AYVJQ==
-X-Google-Smtp-Source: ABdhPJygw/DStCng3OduJ4tLfbDWcrfr1yf/Vq5Cknd47TAb1oRuITo8OHzc29kZZPpOy6LLgYhstw==
-X-Received: by 2002:a17:90b:224e:: with SMTP id
- hk14mr8406018pjb.224.1633494793443; 
- Tue, 05 Oct 2021 21:33:13 -0700 (PDT)
-Received: from localhost.localdomain (cpe-172-112-234-200.socal.res.rr.com.
- [172.112.234.200])
- by smtp.gmail.com with ESMTPSA id z9sm19369387pfr.124.2021.10.05.21.33.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Oct 2021 21:33:13 -0700 (PDT)
-From: lindsey.stanpoor@gmail.com
-To: intel-gfx@lists.freedesktop.org,
-	linux-usb@vger.kernel.org
-Cc: hdegoede@redhat.com, heikki.krogerus@linux.intel.com,
- gregkh@linuxfoundation.org, cnemo@tutanota.com
-Date: Tue,  5 Oct 2021 21:32:57 -0700
-Message-Id: <20211006043257.23242-1-lindsey.stanpoor@gmail.com>
-X-Mailer: git-send-email 2.33.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=XQWQgm5VcZfwx8EzNe7mxtfcL9BKDaqUq1fkeXHfikM=;
+ b=GQ/nSLSl7yeacaNQ1gt0gnJ7xeU9JGFwKmERuIGrtXSkx3nDvYCKUHdS5pL3eRIaQP
+ N/kzVYTPJwi9+pUL/b1YJUUmzKQ1/WzqvTaQabKGAwDxWXJvi+wr6zeUc2j8ot38lf+j
+ q2/Yol+k+AGPIBwCS3s5sGJQK6GuBkEVkwkPPKFjDhXFDt45hJMJ9ccox3ympyoTJvyV
+ eTVwIrQNQZxIW++1RZWsHtiB1CDYweVXnRBvjkRIX8Yan3y0j0Yi6Cz8ewNM62WZZOi7
+ MBXBjUAy6lnFvnxJuUZVNFLsd80+L+YpoeSBVYx52H6DH53L28Qv37uAuv2ff1kH7RWm
+ cyvQ==
+X-Gm-Message-State: AOAM531dll/GgiBKSPX2GsTLv/wnefUoWYnJR479H0DbRMFbX7UBoORe
+ hL5HmhDsPZc54qMtxd0PVKaGGnfgyBU0njRODOc=
+X-Google-Smtp-Source: ABdhPJywczBI9jhEPZFGmv+cCh3Y4y0E1Q5f7f64/ji6b1R1/AHKHuAeI+tOuJbvNj3FJdtxuUAPLUMgj3BjWxJnVlE=
+X-Received: by 2002:a50:dacf:: with SMTP id s15mr32715768edj.385.1633507107111; 
+ Wed, 06 Oct 2021 00:58:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211004143650.699120-1-tvrtko.ursulin@linux.intel.com>
+ <20211004143650.699120-2-tvrtko.ursulin@linux.intel.com>
+ <562d45e1-4a27-3252-f615-3ab1ef531f2b@huawei.com>
+In-Reply-To: <562d45e1-4a27-3252-f615-3ab1ef531f2b@huawei.com>
+From: Barry Song <21cnbao@gmail.com>
+Date: Wed, 6 Oct 2021 20:58:15 +1300
+Message-ID: <CAGsJ_4w5Y4=v93YmTrXJ6hDgjKshxiAZ-ox-Nz_7uRwe4ECtdw@mail.gmail.com>
+To: "Wanghui (John)" <john.wanghui@huawei.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Ingo Molnar <mingo@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>, 
+ Vincent Guittot <vincent.guittot@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 06 Oct 2021 08:23:22 +0000
-Subject: [Intel-gfx] [PATCH 1/1] usb: typec: altmodes/displayport: reorder
- dp_altmode_configured()
+Subject: Re: [Intel-gfx] [RFC 1/8] sched: Add nice value change notifier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,43 +75,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Cameron Nemo <cnemo@tutanota.com>
+On Wed, Oct 6, 2021 at 5:15 PM Wanghui (John) <john.wanghui@huawei.com> wro=
+te:
+>
+> HI Tvrtko
+>
+> On 2021/10/4 22:36, Tvrtko Ursulin wrote:
+> >   void set_user_nice(struct task_struct *p, long nice)
+> >   {
+> >       bool queued, running;
+> > -     int old_prio;
+> > +     int old_prio, ret;
+> >       struct rq_flags rf;
+> >       struct rq *rq;
+> >
+> > @@ -6915,6 +6947,9 @@ void set_user_nice(struct task_struct *p, long ni=
+ce)
+> >
+> >   out_unlock:
+> >       task_rq_unlock(rq, p, &rf);
+> > +
+> > +     ret =3D atomic_notifier_call_chain(&user_nice_notifier_list, nice=
+, p);
+> > +     WARN_ON_ONCE(ret !=3D NOTIFY_DONE);
+> >   }
+> How about adding a new "io_nice" to task_struct=EF=BC=8Cand move the call=
+ chain to
+> sched_setattr/getattr, there are two benefits:
 
-A recent commit [1] introduced an unintended behavioral change by
-reordering certain function calls. The sysfs_notify call for
-pin_assignment should only be invoked when the dp_altmode_notify call
-returns 0, and in the dp->data.conf == 0 case.
+We already have an ionice for block io scheduler. hardly can this new io_ni=
+ce
+be generic to all I/O. it seems the patchset is trying to link
+process' nice with
+GPU's scheduler, to some extent, it makes more senses than having a
+common ionice because we have a lot of IO devices in the systems, we don't
+know which I/O the ionice of task_struct should be applied to.
 
-[1] https://lore.kernel.org/r/20210817215201.795062-8-hdegoede@redhat.com
+Maybe we could have an ionice dedicated for GPU just like ionice for CFQ
+of bio/request scheduler.
 
-Signed-off-by: Cameron Nemo <cnemo@tutanota.com>
----
- drivers/usb/typec/altmodes/displayport.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+>
+> 1. Decoupled with fair scheduelr. In our use case, high priority tasks of=
+ten
+>     use rt scheduler.
 
-diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
-index c1d8c23baa39..a15ae78066e3 100644
---- a/drivers/usb/typec/altmodes/displayport.c
-+++ b/drivers/usb/typec/altmodes/displayport.c
-@@ -154,10 +154,17 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
- 
- static int dp_altmode_configured(struct dp_altmode *dp)
- {
-+	int ret;
-+
- 	sysfs_notify(&dp->alt->dev.kobj, "displayport", "configuration");
-+
-+	ret = dp_altmode_notify(dp);
-+	if (ret || !dp->data.conf)
-+		return ret;
-+
- 	sysfs_notify(&dp->alt->dev.kobj, "displayport", "pin_assignment");
- 
--	return dp_altmode_notify(dp);
-+	return 0;
- }
- 
- static int dp_altmode_configure_vdm(struct dp_altmode *dp, u32 conf)
--- 
-2.33.0
+Is it possible to tell GPU RT as we are telling them CFS nice?
 
+> 2. The range of value don't need to be bound to -20~19 or 0~139
+>
+
+could build a mapping between the priorities of process and GPU. It seems
+not a big deal.
+
+Thanks
+barry
