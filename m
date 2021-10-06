@@ -1,68 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45CB425310
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 14:30:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C225E42530A
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 14:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 666C76F461;
-	Thu,  7 Oct 2021 12:29:50 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E05FF89024;
- Wed,  6 Oct 2021 12:36:13 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id r18so8402155wrg.6;
- Wed, 06 Oct 2021 05:36:13 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C126F45A;
+	Thu,  7 Oct 2021 12:29:49 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
+ [IPv6:2a00:1450:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAB96EE65;
+ Wed,  6 Oct 2021 20:22:06 +0000 (UTC)
+Received: by mail-ed1-x530.google.com with SMTP id g8so14339283edt.7;
+ Wed, 06 Oct 2021 13:22:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=89OOgwIjAdHEsJJAQ88awEfVzr+pvOl73kjL6eCX7Ww=;
- b=qh84H34U5hLSCDUP73mzuGZ0fIEmj0EMWOyrmqZPfZpFuaBbuwm4HGTDuZ+J/aAyxN
- TmM68rbq2cGiZuCBAulHC/qv2Cems1obpGqeS4b8AiXCaWQOLCsp5l7XXQK6irbFf96B
- wSuLfLujm6L3zDv8bw/l3sMw31PwlHl4LlsFUAHKzDGIw9m2FjAq7aS79VgjyOPH5qxv
- wOnL6trGQMsigOMISYeThR/rnlezJccu9fpeM0OM/K0DEpzx19TZWTVUS9ITrsCwiH+D
- LLDy0/O/Td1qVPYC5socDBsIhmLRFdSM5FVM/P8AWVGVusT/ex6+csso6BRdk0xVrZsB
- qX5g==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=eDub8eH+T0FGGXCo6yfeGfJ6YqWnTRGI/yA4UgLkRz8=;
+ b=kzpaV5LuhHsG8wpdKws61cbnBXVnLeSVOdVO+kinpV9VcvNbKc1kr224zlvq9LVQj+
+ Sx6cBexDIALtWv+0V2OAFlQCA+Mn9T0lOWa75wNlioAtOn7t3tsBKseu9nTnM2up1OmR
+ qhXpgwFTCtYaEqXEGlMT4UOYnwOb4MGXcGniqrWo+5E8I0MNShqTovYZYTsuba14eT1/
+ N+4EbUjRY1Z3r17bRRBgOvF15jqWG1a2yQfsnIxfBmedfdBKBh+qCU8uJkc1tra/lwqX
+ NzS+wiOcu0awQdrHJbdc2JAuKJqmiJjoW9QNdafUX1JNVh6oTJl0EQ/+KBEaTcTX3LlG
+ aOPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=89OOgwIjAdHEsJJAQ88awEfVzr+pvOl73kjL6eCX7Ww=;
- b=n+ziANIs+bxWoAq20QJ4zn/By7bdNJ49nogXY8WXW7yXrjL1S5SFrJhz6SCXVvrHwy
- 249DASRFje9vF4026lcsYjDl5TTShN+hr7sJfiZPsyoD2Ljm7FFJhW/kGNKnPW7M1ljS
- s3doecTUeeTMoV9zNZzkWZZ6XKTZSfIOA/gZ0TFhYKQd3v2KMxWTaeh9CiEcgiVtVJa7
- KIcQVbytR60Cu3AG+ZhuTmV+Zb1b+hf6OTroXpS/Em043ytc1pcEC1mwnQHXrC1vryuM
- NXIU3OK81r3z8jolRYlUdUkTbhKsK7DCa0aukOUFKUXZYDKXEjjA0/sMnDX/9YLyR66d
- skMg==
-X-Gm-Message-State: AOAM533dMd7rYUHOEQT0Le5QcVI1E8Q1uzgDiyO6oorS0Nw5epOel4fu
- moVONjAdDmfPy8DJabLCqqpOS2hQQ9I=
-X-Google-Smtp-Source: ABdhPJzSJnI5oyhF4GY/Mg9pp/fHbN3cI0NXNZ0vDmZgpFuyWCgu+twOsdBPRFrH3we+AaP5BJAYqg==
-X-Received: by 2002:a1c:ac03:: with SMTP id v3mr9951186wme.127.1633523772342; 
- Wed, 06 Oct 2021 05:36:12 -0700 (PDT)
-Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
- by smtp.gmail.com with ESMTPSA id
- l124sm5194770wml.8.2021.10.06.05.36.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Oct 2021 05:36:11 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- daniel@ffwll.ch
-Cc: tvrtko.ursulin@linux.intel.com
-Date: Wed,  6 Oct 2021 14:36:09 +0200
-Message-Id: <20211006123609.2026-2-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211006123609.2026-1-christian.koenig@amd.com>
-References: <20211006123609.2026-1-christian.koenig@amd.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=eDub8eH+T0FGGXCo6yfeGfJ6YqWnTRGI/yA4UgLkRz8=;
+ b=rCRZ8wvd0EMHfkSuXJANs89bQjDwNjQjFLQrAYB0aZqiLEAcxweNeya7wNFe0jX50w
+ SBePsJB4C/97MA8UXOktgutKWPWDz99Rmgy7Vk+b4tJwSppA6aTtarxu8EH8LKhNnWQk
+ wOIfA5Va/uZm/0TSi0FaSCuu/fKy/CE7pUOshAQVIyFwPZXeAHUoqZf3HXnc2lJsoHqq
+ knXxJ7FMmS+yZejkDxkTkAMIL4dD8S078Z8Ycza1tH1Keu4URhUR12Kg86BA1PUCGq51
+ hJM4GsyRsNaMADjYxnaXOi78Zvo/FhqY1o1bADVgty7NLGMa+n9fUjj4PoQ6wutdJ+TB
+ AsjA==
+X-Gm-Message-State: AOAM533W8sKRvqDMgtzAN6u8S0w6dLfDjzNqoreiLdENKsOs8pjDWa2o
+ EKDQCgvwN/08NBGIvKSuQyishDhMbFg0vLxNlQQ=
+X-Google-Smtp-Source: ABdhPJxgPXZl9MwohSbQf1ii3BbLP5RORN2+VhjeZXA3IwsjTiPAzL7sGdva5j0+lrnyga/D7BnEgxYJx6AefoCmDVk=
+X-Received: by 2002:a17:906:713:: with SMTP id
+ y19mr374790ejb.506.1633551725020; 
+ Wed, 06 Oct 2021 13:22:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20211004143650.699120-1-tvrtko.ursulin@linux.intel.com>
+ <20211004143650.699120-2-tvrtko.ursulin@linux.intel.com>
+ <562d45e1-4a27-3252-f615-3ab1ef531f2b@huawei.com>
+ <CAGsJ_4w5Y4=v93YmTrXJ6hDgjKshxiAZ-ox-Nz_7uRwe4ECtdw@mail.gmail.com>
+ <8381e87d-ef7f-4759-569b-f6dabeb02939@linux.intel.com>
+In-Reply-To: <8381e87d-ef7f-4759-569b-f6dabeb02939@linux.intel.com>
+From: Barry Song <21cnbao@gmail.com>
+Date: Thu, 7 Oct 2021 09:21:53 +1300
+Message-ID: <CAGsJ_4wF1SmDL6eoEXRB-NwGLALkwhj9wLC5JKaQJpaQx1=5ZA@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: "Wanghui (John)" <john.wanghui@huawei.com>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Ingo Molnar <mingo@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>, 
+ Vincent Guittot <vincent.guittot@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 07 Oct 2021 12:29:48 +0000
-Subject: [Intel-gfx] [PATCH 2/2] dma-buf: add dma_resv selftest v3
+Subject: Re: [Intel-gfx] [RFC 1/8] sched: Add nice value change notifier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,330 +77,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Just exercising a very minor subset of the functionality, but already
-proven useful.
+On Thu, Oct 7, 2021 at 2:44 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> Hi,
+>
+> On 06/10/2021 08:58, Barry Song wrote:
+> > On Wed, Oct 6, 2021 at 5:15 PM Wanghui (John) <john.wanghui@huawei.com>=
+ wrote:
+> >>
+> >> HI Tvrtko
+> >>
+> >> On 2021/10/4 22:36, Tvrtko Ursulin wrote:
+> >>>    void set_user_nice(struct task_struct *p, long nice)
+> >>>    {
+> >>>        bool queued, running;
+> >>> -     int old_prio;
+> >>> +     int old_prio, ret;
+> >>>        struct rq_flags rf;
+> >>>        struct rq *rq;
+> >>>
+> >>> @@ -6915,6 +6947,9 @@ void set_user_nice(struct task_struct *p, long =
+nice)
+> >>>
+> >>>    out_unlock:
+> >>>        task_rq_unlock(rq, p, &rf);
+> >>> +
+> >>> +     ret =3D atomic_notifier_call_chain(&user_nice_notifier_list, ni=
+ce, p);
+> >>> +     WARN_ON_ONCE(ret !=3D NOTIFY_DONE);
+> >>>    }
+> >> How about adding a new "io_nice" to task_struct=EF=BC=8Cand move the c=
+all chain to
+> >> sched_setattr/getattr, there are two benefits:
+> >
+> > We already have an ionice for block io scheduler. hardly can this new i=
+o_nice
+> > be generic to all I/O. it seems the patchset is trying to link
+> > process' nice with
+> > GPU's scheduler, to some extent, it makes more senses than having a
+> > common ionice because we have a lot of IO devices in the systems, we do=
+n't
+> > know which I/O the ionice of task_struct should be applied to.
+> >
+> > Maybe we could have an ionice dedicated for GPU just like ionice for CF=
+Q
+> > of bio/request scheduler.
+>
+> Thought crossed my mind but I couldn't see the practicality of a 3rd
+> nice concept. I mean even to start with I struggle a bit with the
+> usefulness of existing ionice vs nice. Like coming up with practical
+> examples of usecases where it makes sense to decouple the two priorities.
+>
+>  From a different angle I did think inheriting CPU nice makes sense for
+> GPU workloads. This is because today, and more so in the future,
+> computations on a same data set do flow from one to the other.
+>
+> Like maybe a simple example of batch image processing where CPU decodes,
+> GPU does a transform and then CPU encodes. Or a different mix, doesn't
+> really matter, since the main point it is one computing pipeline from
+> users point of view.
+>
 
-v2: add missing locking
-v3: some more cleanup and consolidation, add unlocked test as well
+I am on it. but I am also seeing two problems here:
+1. nice is not global in linux. For example, if you have two cgroups, cgrou=
+p A
+has more quota then cgroup B. Tasks in B won't win even if it has a lower n=
+ice.
+cgroups will run proportional-weight time-based division of CPU.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/dma-buf/Makefile      |   3 +-
- drivers/dma-buf/selftests.h   |   1 +
- drivers/dma-buf/st-dma-resv.c | 282 ++++++++++++++++++++++++++++++++++
- 3 files changed, 285 insertions(+), 1 deletion(-)
- create mode 100644 drivers/dma-buf/st-dma-resv.c
+2. Historically, we had dynamic nice which was adjusted based on the averag=
+e
+sleep/running time; right now, we don't have dynamic nice, but virtual time
+still make tasks which sleep more preempt other tasks with the same nice
+or even lower nice.
+virtual time +=3D physical time/weight by nice
+so, static nice number doesn't always make sense to decide preemption.
 
-diff --git a/drivers/dma-buf/Makefile b/drivers/dma-buf/Makefile
-index 1ef021273a06..511805dbeb75 100644
---- a/drivers/dma-buf/Makefile
-+++ b/drivers/dma-buf/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_DMABUF_SYSFS_STATS) += dma-buf-sysfs-stats.o
- dmabuf_selftests-y := \
- 	selftest.o \
- 	st-dma-fence.o \
--	st-dma-fence-chain.o
-+	st-dma-fence-chain.o \
-+	st-dma-resv.o
- 
- obj-$(CONFIG_DMABUF_SELFTESTS)	+= dmabuf_selftests.o
-diff --git a/drivers/dma-buf/selftests.h b/drivers/dma-buf/selftests.h
-index bc8cea67bf1e..97d73aaa31da 100644
---- a/drivers/dma-buf/selftests.h
-+++ b/drivers/dma-buf/selftests.h
-@@ -12,3 +12,4 @@
- selftest(sanitycheck, __sanitycheck__) /* keep first (igt selfcheck) */
- selftest(dma_fence, dma_fence)
- selftest(dma_fence_chain, dma_fence_chain)
-+selftest(dma_resv, dma_resv)
-diff --git a/drivers/dma-buf/st-dma-resv.c b/drivers/dma-buf/st-dma-resv.c
-new file mode 100644
-index 000000000000..50d3791ccb8c
---- /dev/null
-+++ b/drivers/dma-buf/st-dma-resv.c
-@@ -0,0 +1,282 @@
-+/* SPDX-License-Identifier: MIT */
-+
-+/*
-+* Copyright © 2019 Intel Corporation
-+* Copyright © 2021 Advanced Micro Devices, Inc.
-+*/
-+
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+#include <linux/dma-resv.h>
-+
-+#include "selftest.h"
-+
-+static struct spinlock fence_lock;
-+
-+static const char *fence_name(struct dma_fence *f)
-+{
-+	return "selftest";
-+}
-+
-+static const struct dma_fence_ops fence_ops = {
-+	.get_driver_name = fence_name,
-+	.get_timeline_name = fence_name,
-+};
-+
-+static struct dma_fence *alloc_fence(void)
-+{
-+	struct dma_fence *f;
-+
-+	f = kmalloc(sizeof(*f), GFP_KERNEL);
-+	if (!f)
-+		return NULL;
-+
-+	dma_fence_init(f, &fence_ops, &fence_lock, 0, 0);
-+	return f;
-+}
-+
-+static int sanitycheck(void *arg)
-+{
-+	struct dma_resv resv;
-+	struct dma_fence *f;
-+	int r;
-+
-+	f = alloc_fence();
-+	if (!f)
-+		return -ENOMEM;
-+
-+	dma_fence_signal(f);
-+	dma_fence_put(f);
-+
-+	dma_resv_init(&resv);
-+	r = dma_resv_lock(&resv, NULL);
-+	if (r)
-+		pr_err("Resv locking failed\n");
-+	else
-+		dma_resv_unlock(&resv);
-+	dma_resv_fini(&resv);
-+	return r;
-+}
-+
-+static int test_signaling(void *arg, bool shared)
-+{
-+	struct dma_resv resv;
-+	struct dma_fence *f;
-+	int r;
-+
-+	f = alloc_fence();
-+	if (!f)
-+		return -ENOMEM;
-+
-+	dma_resv_init(&resv);
-+	r = dma_resv_lock(&resv, NULL);
-+	if (r) {
-+		pr_err("Resv locking failed\n");
-+		goto err_free;
-+	}
-+
-+	if (shared) {
-+		r = dma_resv_reserve_shared(&resv, 1);
-+		if (r) {
-+			pr_err("Resv shared slot allocation failed\n");
-+			goto err_unlock;
-+		}
-+
-+		dma_resv_add_shared_fence(&resv, f);
-+	} else {
-+		dma_resv_add_excl_fence(&resv, f);
-+	}
-+
-+	if (dma_resv_test_signaled(&resv, shared)) {
-+		pr_err("Resv unexpectedly signaled\n");
-+		r = -EINVAL;
-+		goto err_unlock;
-+	}
-+	dma_fence_signal(f);
-+	if (!dma_resv_test_signaled(&resv, shared)) {
-+		pr_err("Resv not reporting signaled\n");
-+		r = -EINVAL;
-+		goto err_unlock;
-+	}
-+err_unlock:
-+	dma_resv_unlock(&resv);
-+err_free:
-+	dma_resv_fini(&resv);
-+	dma_fence_put(f);
-+	return r;
-+}
-+
-+static int test_excl_signaling(void *arg)
-+{
-+	return test_signaling(arg, false);
-+}
-+
-+static int test_shared_signaling(void *arg)
-+{
-+	return test_signaling(arg, true);
-+}
-+
-+static int test_for_each(void *arg, bool shared)
-+{
-+	struct dma_resv_iter cursor;
-+	struct dma_fence *f, *fence;
-+	struct dma_resv resv;
-+	int r;
-+
-+	f = alloc_fence();
-+	if (!f)
-+		return -ENOMEM;
-+
-+	dma_resv_init(&resv);
-+	r = dma_resv_lock(&resv, NULL);
-+	if (r) {
-+		pr_err("Resv locking failed\n");
-+		goto err_free;
-+	}
-+
-+	if (shared) {
-+		r = dma_resv_reserve_shared(&resv, 1);
-+		if (r) {
-+			pr_err("Resv shared slot allocation failed\n");
-+			goto err_unlock;
-+		}
-+
-+		dma_resv_add_shared_fence(&resv, f);
-+	} else {
-+		dma_resv_add_excl_fence(&resv, f);
-+	}
-+
-+	r = -ENOENT;
-+	dma_resv_for_each_fence(&cursor, &resv, shared, fence) {
-+		if (!r) {
-+			pr_err("More than one fence found\n");
-+			r = -EINVAL;
-+			goto err_unlock;
-+		}
-+		if (f != fence) {
-+			pr_err("Unexpected fence\n");
-+			r = -EINVAL;
-+			goto err_unlock;
-+		}
-+		if (dma_resv_iter_is_exclusive(&cursor) != !shared) {
-+			pr_err("Unexpected fence usage\n");
-+			r = -EINVAL;
-+			goto err_unlock;
-+		}
-+		r = 0;
-+	}
-+	if (r) {
-+		pr_err("No fence found\n");
-+		goto err_unlock;
-+	}
-+	dma_fence_signal(f);
-+err_unlock:
-+	dma_resv_unlock(&resv);
-+err_free:
-+	dma_resv_fini(&resv);
-+	dma_fence_put(f);
-+	return r;
-+}
-+
-+static int test_excl_for_each(void *arg)
-+{
-+	return test_for_each(arg, false);
-+}
-+
-+static int test_shared_for_each(void *arg)
-+{
-+	return test_for_each(arg, false);
-+}
-+
-+static int test_for_each_unlocked(void *arg, bool shared)
-+{
-+	struct dma_resv_iter cursor;
-+	struct dma_fence *f, *fence;
-+	struct dma_resv resv;
-+	int r;
-+
-+	f = alloc_fence();
-+	if (!f)
-+		return -ENOMEM;
-+
-+	dma_resv_init(&resv);
-+	r = dma_resv_lock(&resv, NULL);
-+	if (r) {
-+		pr_err("Resv locking failed\n");
-+		goto err_free;
-+	}
-+
-+	if (shared) {
-+		r = dma_resv_reserve_shared(&resv, 1);
-+		if (r) {
-+			pr_err("Resv shared slot allocation failed\n");
-+			dma_resv_unlock(&resv);
-+			goto err_free;
-+		}
-+
-+		dma_resv_add_shared_fence(&resv, f);
-+	} else {
-+		dma_resv_add_excl_fence(&resv, f);
-+	}
-+	dma_resv_unlock(&resv);
-+
-+	r = -ENOENT;
-+	dma_resv_iter_begin(&cursor, &resv, shared);
-+	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-+		if (!r) {
-+			dma_resv_iter_end(&cursor);
-+			pr_err("More than one fence found\n");
-+			r = -EINVAL;
-+			goto err_free;
-+		}
-+		if (f != fence) {
-+			dma_resv_iter_end(&cursor);
-+			pr_err("Unexpected fence\n");
-+			r = -EINVAL;
-+			goto err_free;
-+		}
-+		if (dma_resv_iter_is_exclusive(&cursor) != !shared) {
-+			dma_resv_iter_end(&cursor);
-+			pr_err("Unexpected fence usage\n");
-+			r = -EINVAL;
-+			goto err_free;
-+		}
-+		r = 0;
-+	}
-+	dma_resv_iter_end(&cursor);
-+	if (r) {
-+		pr_err("No fence found\n");
-+		goto err_free;
-+	}
-+	dma_fence_signal(f);
-+err_free:
-+	dma_resv_fini(&resv);
-+	dma_fence_put(f);
-+	return r;
-+}
-+
-+static int test_excl_for_each_unlocked(void *arg)
-+{
-+	return test_for_each_unlocked(arg, false);
-+}
-+
-+static int test_shared_for_each_unlocked(void *arg)
-+{
-+	return test_for_each_unlocked(arg, true);
-+}
-+
-+int dma_resv(void)
-+{
-+	static const struct subtest tests[] = {
-+		SUBTEST(sanitycheck),
-+		SUBTEST(test_excl_signaling),
-+		SUBTEST(test_shared_signaling),
-+		SUBTEST(test_excl_for_each),
-+		SUBTEST(test_shared_for_each),
-+		SUBTEST(test_excl_for_each_unlocked),
-+		SUBTEST(test_shared_for_each_unlocked),
-+	};
-+
-+	spin_lock_init(&fence_lock);
-+	return subtests(tests, NULL);
-+}
--- 
-2.25.1
+So it seems your patch only works under some simple situation for example
+no cgroups, tasks have similar sleep/running time.
 
+> In this example perhaps everything could be handled in userspace so
+> that's another argument to be had. Userspace could query the current
+> scheduling attributes before submitting work to the processing pipeline
+> and adjust using respective uapi.
+>
+> Downside would be inability to react to changes after the work is
+> already running which may not be too serious limitation outside the
+> world of multi-minute compute workloads. And latter are probably special
+> case enough that would be configured explicitly.
+>
+> >>
+> >> 1. Decoupled with fair scheduelr. In our use case, high priority tasks=
+ often
+> >>      use rt scheduler.
+> >
+> > Is it possible to tell GPU RT as we are telling them CFS nice?
+>
+> Yes of course. We could create a common notification "data packet" which
+> would be sent from both entry points and provide more data than just the
+> nice value. Consumers (of the notifier chain) could then decide for
+> themselves what they want to do with the data.
+
+RT should have the same problem with CFS once we have cgroups.
+
+>
+> Regards,
+>
+> Tvrtko
+>
+> >
+> >> 2. The range of value don't need to be bound to -20~19 or 0~139
+> >>
+> >
+> > could build a mapping between the priorities of process and GPU. It see=
+ms
+> > not a big deal.
+> >
+> > Thanks
+> > barry
+> >
+
+Thanks
+barry
