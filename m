@@ -2,33 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C5A425E62
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 23:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A992425E6F
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 23:10:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 111806F4D4;
-	Thu,  7 Oct 2021 21:01:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C61C46F4D4;
+	Thu,  7 Oct 2021 21:10:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 34E366E03C;
- Thu,  7 Oct 2021 21:01:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2CD03A363C;
- Thu,  7 Oct 2021 21:01:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Fernando Ramos" <greenfoo@u92.eu>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A21AA6E03C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 21:10:03 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="287245814"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="287245814"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 14:10:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="489175229"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 07 Oct 2021 14:10:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Oct 2021 00:10:00 +0300
+Date: Fri, 8 Oct 2021 00:10:00 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 07 Oct 2021 21:01:48 -0000
-Message-ID: <163364050815.5186.4268812458613280009@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211007193755.29579-1-greenfoo@u92.eu>
-In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm=3A_cleanup=3A_Use_DRM=5FMODESET=5FLOCK=5FALL=5F*_helpers?=
+Message-ID: <YV9iKCRLsskhN4iw@intel.com>
+References: <20211007203517.3364336-1-imre.deak@intel.com>
+ <20211007203517.3364336-2-imre.deak@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211007203517.3364336-2-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915: Add a table with a
+ descriptor for all i915 modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,44 +50,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Oct 07, 2021 at 11:35:07PM +0300, Imre Deak wrote:
+> Add a table describing all the framebuffer modifiers used by i915 at one
+> place. This has the benefit of deduplicating the listing of supported
+> modifiers for each platform and checking the support of these modifiers
+> on a given plane. This also simplifies in a similar way getting some
+> attribute for a modifier, for instance checking if the modifier is a
+> CCS modifier type.
+> 
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cursor.c   |  19 +-
+>  .../drm/i915/display/intel_display_types.h    |   1 -
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 178 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fb.h       |   8 +
+>  drivers/gpu/drm/i915/display/intel_sprite.c   |  35 +---
+>  drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+>  .../drm/i915/display/skl_universal_plane.c    | 137 +-------------
+>  drivers/gpu/drm/i915/i915_drv.h               |   3 +
+>  8 files changed, 218 insertions(+), 164 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index f6dcb5aa63f64..bcd44ff30ce5b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -28,11 +28,6 @@ static const u32 intel_cursor_formats[] = {
+>  	DRM_FORMAT_ARGB8888,
+>  };
+>  
+> -static const u64 cursor_format_modifiers[] = {
+> -	DRM_FORMAT_MOD_LINEAR,
+> -	DRM_FORMAT_MOD_INVALID
+> -};
+> -
+>  static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+>  {
+>  	struct drm_i915_private *dev_priv =
+> @@ -605,8 +600,10 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
+>  static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+>  					      u32 format, u64 modifier)
+>  {
+> -	return modifier == DRM_FORMAT_MOD_LINEAR &&
+> -		format == DRM_FORMAT_ARGB8888;
+> +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> +		return false;
+> +
+> +	return format == DRM_FORMAT_ARGB8888;
+>  }
+>  
+>  static int
+> @@ -754,6 +751,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+>  {
+>  	struct intel_plane *cursor;
+>  	int ret, zpos;
+> +	u64 *modifiers;
+>  
+>  	cursor = intel_plane_alloc();
+>  	if (IS_ERR(cursor))
+> @@ -784,13 +782,18 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+>  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
+>  		cursor->cursor.size = ~0;
+>  
+> +	modifiers = intel_fb_plane_get_modifiers(dev_priv, pipe, cursor->id);
+> +
+>  	ret = drm_universal_plane_init(&dev_priv->drm, &cursor->base,
+>  				       0, &intel_cursor_plane_funcs,
+>  				       intel_cursor_formats,
+>  				       ARRAY_SIZE(intel_cursor_formats),
+> -				       cursor_format_modifiers,
+> +				       modifiers,
+>  				       DRM_PLANE_TYPE_CURSOR,
+>  				       "cursor %c", pipe_name(pipe));
+> +
+> +	kfree(modifiers);
+> +
+>  	if (ret)
+>  		goto fail;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 21ce8bccc645a..bb53b01f07aee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1336,7 +1336,6 @@ struct intel_plane {
+>  	enum plane_id id;
+>  	enum pipe pipe;
+>  	bool has_fbc;
+> -	bool has_ccs;
+>  	bool need_async_flip_disable_wa;
+>  	u32 frontbuffer_bit;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index fa1f375e696bf..aefae988b620b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -13,6 +13,184 @@
+>  
+>  #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
+>  
+> +const struct intel_modifier_desc {
+> +	u64 id;
+> +	u64 display_versions;
+> +
+> +	struct {
+> +#define INTEL_CCS_RC		BIT(0)
+> +#define INTEL_CCS_RC_CC		BIT(1)
+> +#define INTEL_CCS_MC		BIT(2)
+> +
+> +#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
+> +		u8 type:3;
+> +	} ccs;
+> +} intel_modifiers[] = {
+> +	{
+> +		.id = DRM_FORMAT_MOD_LINEAR,
+> +		.display_versions = DISPLAY_VER_MASK_ALL,
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_X_TILED,
+> +		.display_versions = DISPLAY_VER_MASK_ALL,
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_Y_TILED,
+> +		.display_versions = DISPLAY_VER_MASK(9, 13),
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_Yf_TILED,
+> +		.display_versions = DISPLAY_VER_MASK(9, 11),
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_Y_TILED_CCS,
+> +		.display_versions = DISPLAY_VER_MASK(9, 11),
+> +
+> +		.ccs.type = INTEL_CCS_RC,
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_Yf_TILED_CCS,
+> +		.display_versions = DISPLAY_VER_MASK(9, 11),
+> +
+> +		.ccs.type = INTEL_CCS_RC,
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> +		.display_versions = DISPLAY_VER_MASK(12, 13),
+> +
+> +		.ccs.type = INTEL_CCS_RC,
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+> +		.display_versions = DISPLAY_VER_MASK(12, 13),
+> +
+> +		.ccs.type = INTEL_CCS_RC_CC,
+> +	},
+> +	{
+> +		.id = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+> +		.display_versions = DISPLAY_VER_MASK(12, 13),
+> +
+> +		.ccs.type = INTEL_CCS_MC,
+> +	},
+> +};
+> +
+> +static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_type)
+> +{
+> +	return md->ccs.type & ccs_type;
+> +}
+> +
+> +static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+> +				 enum pipe pipe, enum plane_id plane_id)
+> +{
+> +	if (plane_id == PLANE_CURSOR)
+> +		return false;
+> +
+> +	/* Wa_22011186057 */
+> +	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+> +		return false;
+> +
+> +	if (DISPLAY_VER(i915) >= 11)
+> +		return true;
+> +
+> +	if (IS_GEMINILAKE(i915))
+> +		return pipe != PIPE_C;
+> +
+> +	return pipe != PIPE_C &&
+> +		(plane_id == PLANE_PRIMARY ||
+> +		 plane_id == PLANE_SPRITE0);
+> +}
 
-Series: drm: cleanup: Use DRM_MODESET_LOCK_ALL_* helpers
-URL   : https://patchwork.freedesktop.org/series/95578/
-State : warning
+This part I don't really like. IMO the plane capabilities should
+be listed in the plane code, not anywhere else.
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:28:
--                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:28:
--                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:28:
--                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:28:
--                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:28:
-+                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:30:
-+                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:30:
-+                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:30:
-+                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c:30:
-
-
+-- 
+Ville Syrjälä
+Intel
