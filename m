@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69AA74258B1
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 18:59:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4D94258FE
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 19:13:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B418C89EA6;
-	Thu,  7 Oct 2021 16:59:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82E3A6E852;
+	Thu,  7 Oct 2021 17:13:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C29EF89EA6
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 16:59:28 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="289809035"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="289809035"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 09:59:28 -0700
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="489086489"
-Received: from roliveir-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.41.10])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 09:59:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Animesh
- Manna <animesh.manna@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, gwan-gyeong.mun@intel.com,
- mika.kahola@intel.com, manasi.d.navare@intel.com, jose.souza@intel.com
-In-Reply-To: <YV8iyeS0eVnnoUAM@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211007155729.27812-1-animesh.manna@intel.com>
- <20211007155729.27812-2-animesh.manna@intel.com> <YV8iyeS0eVnnoUAM@intel.com>
-Date: Thu, 07 Oct 2021 19:59:21 +0300
-Message-ID: <87tuhsydna.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F2FB36E852;
+ Thu,  7 Oct 2021 17:13:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E93EFA00C9;
+ Thu,  7 Oct 2021 17:13:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1959899948604757779=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915/panelreplay: HAS_PR() macro
- added for panel replay
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 Oct 2021 17:13:00 -0000
+Message-ID: <163362678092.5186.10170594508169316022@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211007155729.27812-1-animesh.manna@intel.com>
+In-Reply-To: <20211007155729.27812-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUGFu?=
+ =?utf-8?q?el_replay_phase1_implementation_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,52 +41,288 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 07 Oct 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Oct 07, 2021 at 09:27:26PM +0530, Animesh Manna wrote:
->> Platforms having Display 13 and above will support panel
->> replay feature of DP 2.0 monitor. Added a HAS_PR() macro
->> to check for panel replay capability.
->>=20
->> v1: Initial version.
->> v2: DISPLAY_VER macro used instead of has_pr flag. [Jose]
->>=20
->> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->> ---
->>  drivers/gpu/drm/i915/i915_drv.h | 1 +
->>  1 file changed, 1 insertion(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
-_drv.h
->> index 12256218634f..8db0626337e3 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -1693,6 +1693,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->>  #define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
->>  #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display=
-.has_fpga_dbg)
->>  #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
->> +#define HAS_PR(dev_priv)		 (DISPLAY_VER(dev_priv) >=3D 13)
->
-> Public relations?
+--===============1959899948604757779==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, HAS_PANEL_REPLAY() sounds more like it. Also wondering why this
-doesn't depend on HAS_DP20() which is what effectively gets done in
-patch 2. Sure, it's more restrictive at the moment, but IIUC that's the
-dependency.
+== Series Details ==
 
-BR,
-Jani.
+Series: Panel replay phase1 implementation (rev2)
+URL   : https://patchwork.freedesktop.org/series/94470/
+State : failure
 
->
->>  #define HAS_PSR_HW_TRACKING(dev_priv) \
->>  	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
->>  #define HAS_PSR2_SEL_FETCH(dev_priv)	 (GRAPHICS_VER(dev_priv) >=3D 12)
->> --=20
->> 2.29.0
+== Summary ==
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+CI Bug Log - changes from CI_DRM_10695 -> Patchwork_21280
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_21280 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21280, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21280:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10695/fi-icl-u2/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-icl-u2/igt@debugfs_test@read_all_entries.html
+
+  * igt@runner@aborted:
+    - fi-tgl-u2:          NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-tgl-u2/igt@runner@aborted.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-jsl-1}:         NOTRUN -> [FAIL][4]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-jsl-1/igt@runner@aborted.html
+    - {fi-ehl-2}:         NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-ehl-2/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21280 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-kbl-r:           [PASS][6] -> [DMESG-WARN][7] ([i915#262])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10695/fi-kbl-r/igt@debugfs_test@read_all_entries.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-kbl-r/igt@debugfs_test@read_all_entries.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][8] -> [INCOMPLETE][9] ([i915#2940])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10695/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][10] ([i915#3363])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-skl-6600u/igt@runner@aborted.html
+    - fi-icl-u2:          NOTRUN -> [FAIL][11] ([i915#1814] / [i915#3363])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-icl-u2/igt@runner@aborted.html
+    - fi-bsw-nick:        NOTRUN -> [FAIL][12] ([fdo#109271] / [i915#1436] / [i915#3428])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-bsw-nick/igt@runner@aborted.html
+    - fi-kbl-r:           NOTRUN -> [FAIL][13] ([i915#1814] / [i915#3363])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-kbl-r/igt@runner@aborted.html
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][14] ([i915#1602] / [i915#2029])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-kbl-soraka:      NOTRUN -> [FAIL][15] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-kbl-soraka/igt@runner@aborted.html
+    - fi-cml-u2:          NOTRUN -> [FAIL][16] ([i915#3363])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-cml-u2/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10695 -> Patchwork_21280
+
+  CI-20190529: 20190529
+  CI_DRM_10695: aca2978a75f0c9c55d0d5c1f98ecd659d3e6cee9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6235: 65dd7d484d5d09de196def254afebf41dfde1052 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21280: f2df1988637134c898cf6b553820a61a784ecfdf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f2df19886371 drm/i915/panelreplay: Added state checker for panel replay state
+f333185d8137 drm/i915/panelreplay: enable/disable panel replay
+023c444261e9 drm/i915/panelreplay: Initializaton and compute config for panel replay
+5ffd348d0e67 drm/i915/panelreplay: HAS_PR() macro added for panel replay
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/index.html
+
+--===============1959899948604757779==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Panel replay phase1 implementation (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94470/">https://patchwork.freedesktop.org/series/94470/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10695 -&gt; Patchwork_21280</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21280 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21280, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21280:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10695/fi-icl-u2/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-icl-u2/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-tgl-u2/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-jsl-1/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>{fi-ehl-2}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-ehl-2/igt@runner@aborted.html">FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21280 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10695/fi-kbl-r/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-kbl-r/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10695/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>)</p>
+</li>
+<li>
+<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21280/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 37)</h2>
+<p>Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10695 -&gt; Patchwork_21280</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10695: aca2978a75f0c9c55d0d5c1f98ecd659d3e6cee9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6235: 65dd7d484d5d09de196def254afebf41dfde1052 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21280: f2df1988637134c898cf6b553820a61a784ecfdf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f2df19886371 drm/i915/panelreplay: Added state checker for panel replay state<br />
+f333185d8137 drm/i915/panelreplay: enable/disable panel replay<br />
+023c444261e9 drm/i915/panelreplay: Initializaton and compute config for panel replay<br />
+5ffd348d0e67 drm/i915/panelreplay: HAS_PR() macro added for panel replay</p>
+
+</body>
+</html>
+
+--===============1959899948604757779==--
