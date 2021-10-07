@@ -1,46 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35026424FDE
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 11:15:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B93425010
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 11:28:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF3336F3D6;
-	Thu,  7 Oct 2021 09:15:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED4A6F3F2;
+	Thu,  7 Oct 2021 09:28:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C8126F3D6
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 09:15:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10129"; a="207016286"
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="207016286"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 02:15:50 -0700
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="657319109"
-Received: from cleane-mobl.ger.corp.intel.com (HELO [10.213.249.175])
- ([10.213.249.175])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 02:15:49 -0700
-To: intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20211006091614.970596-1-matthew.auld@intel.com>
- <163353397200.5959.9158572900274841139@emeril.freedesktop.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <d50b2987-6343-fc87-e197-1cc8ac2c4f93@linux.intel.com>
-Date: Thu, 7 Oct 2021 10:15:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com
+ [209.85.221.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E056F3E8;
+ Thu,  7 Oct 2021 09:28:19 +0000 (UTC)
+Received: by mail-vk1-f176.google.com with SMTP id bb12so421903vkb.5;
+ Thu, 07 Oct 2021 02:28:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=hzHW72Ay3gWV8fEJFQ+iu6g37baZLnF8PQ8Ot4oxoaI=;
+ b=tOJ9Zo8CdOc9pOAjAQi/tpIdfhrXLUW8JbtJKNo0Fr7Wc6mkTepwxpCiRakSJ+zpVo
+ 2oiQBT820NZVLf5X3bDZ2fTVAcd+3/SaCSdtiVBlQ/F+oliGDVHhDckr9jBpp7Yd/uS0
+ rqRhOvncq+F2ZbbKJ0aQnBaT+sOkMTYsqlb9rkWqybI89S391O+AwM1tnxbMJaxC/wD2
+ 8JynPb90B7dxAOoBD9XSEDkEh2F5b9AtyGdSg7YWdUgHBXh9LheuR17YF/lFdoBU9VJc
+ 0RpNrjr0Uu5OFgFNYUmIzOw8mM8QKC1yYpWeu6LsvKNAV+0/00O1H4TMpYGC8dokasqd
+ gyrw==
+X-Gm-Message-State: AOAM532Y/y8QY54C3fvfi6XHZYpmlFtenNat7OigczzQZas5I6nei0fQ
+ JO3NrAQhlkDu4sFJ+veaCcb38ba75Cnwb5xyGhzrrpPXT7k=
+X-Google-Smtp-Source: ABdhPJxa3fwE1gntWrjljDsvFH6UlsS62TRi8FeltjZ+YAQFTMpawuIEL6cDelrBaNePH9pbfBWO3F+KAs1dSlBCJEY=
+X-Received: by 2002:a1f:3a4b:: with SMTP id h72mr2286297vka.19.1633598898975; 
+ Thu, 07 Oct 2021 02:28:18 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <163353397200.5959.9158572900274841139@emeril.freedesktop.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv7=2C1/8=5D_drm/i915/gem=3A_Break_out_some?=
- =?utf-8?q?_shmem_backend_utils?=
+References: <20211006025350.a5PczFZP4%akpm@linux-foundation.org>
+ <58fbf2ff-b367-2137-aa77-fcde6c46bbb7@infradead.org>
+ <20211006182052.6ecc17cf@canb.auug.org.au>
+ <f877a1c9-1898-23f3-bba3-3442dc1f3979@amd.com>
+In-Reply-To: <f877a1c9-1898-23f3-bba3-3442dc1f3979@amd.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 7 Oct 2021 11:28:07 +0200
+Message-ID: <CAMuHMdV3eMchpgUasU6BBHrDQyjCc2TrqJ+zJgFhgAySpqVGfw@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Randy Dunlap <rdunlap@infradead.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, Mark Brown <broonie@kernel.org>, 
+ Linux FS Devel <linux-fsdevel@vger.kernel.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux MM <linux-mm@kvack.org>, 
+ Linux-Next <linux-next@vger.kernel.org>, Michal Hocko <mhocko@suse.cz>,
+ mm-commits@vger.kernel.org, 
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>, freedreno@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, 
+ DRI <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] mmotm 2021-10-05-19-53 uploaded
+ (drivers/gpu/drm/msm/hdmi/hdmi_phy.o)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,90 +73,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Christian,
 
+On Wed, Oct 6, 2021 at 9:28 AM Christian K=C3=B6nig <christian.koenig@amd.c=
+om> wrote:
+> Am 06.10.21 um 09:20 schrieb Stephen Rothwell:
+> > On Tue, 5 Oct 2021 22:48:03 -0700 Randy Dunlap <rdunlap@infradead.org> =
+wrote:
+> >> on i386:
+> >>
+> >> ld: drivers/gpu/drm/msm/hdmi/hdmi_phy.o:(.rodata+0x3f0): undefined ref=
+erence to `msm_hdmi_phy_8996_cfg'
+> >>
+> >>
+> >> Full randconfig fle is attached.
+> > This would be because CONFIG_DRM_MSM is set but CONFIG_COMMON_CLOCK is
+> > not and has been exposed by commit
+> >
+> >    b3ed524f84f5 ("drm/msm: allow compile_test on !ARM")
+> >
+> > from the drm-misc tree.
+>
+> Good point, how about this change:
+>
+> diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
+> index 5879f67bc88c..d9879b011fb0 100644
+> --- a/drivers/gpu/drm/msm/Kconfig
+> +++ b/drivers/gpu/drm/msm/Kconfig
+> @@ -5,7 +5,7 @@ config DRM_MSM
+>          depends on DRM
+>          depends on ARCH_QCOM || SOC_IMX5 || COMPILE_TEST
+>          depends on IOMMU_SUPPORT
+> -       depends on (OF && COMMON_CLK) || COMPILE_TEST
+> +       depends on (OF || COMPILE_TEST) && COMMON_CLK
 
-Hi,
+I'd make that:
 
-On 06/10/2021 16:26, Patchwork wrote:
-> *Patch Details*
-> *Series:*	series starting with [v7,1/8] drm/i915/gem: Break out some 
-> shmem backend utils
-> *URL:*	https://patchwork.freedesktop.org/series/95501/ 
-> <https://patchwork.freedesktop.org/series/95501/>
-> *State:*	failure
-> *Details:* 
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.html 
-> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.html>
-> 
-> 
->   CI Bug Log - changes from CI_DRM_10688_full -> Patchwork_21264_full
-> 
-> 
->     Summary
-> 
-> *FAILURE*
-> 
-> Serious unknown changes coming with Patchwork_21264_full absolutely need 
-> to be
-> verified manually.
-> 
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_21264_full, please notify your bug team to allow 
-> them
-> to document this new failure mode, which will reduce false positives in CI.
-> 
-> 
->     Possible new issues
-> 
-> Here are the unknown changes that may have been introduced in 
-> Patchwork_21264_full:
-> 
-> 
->       IGT changes
-> 
-> 
->         Possible regressions
-> 
->   *
-> 
->     igt@gem_sync@basic-many-each:
-> 
->       o shard-apl: NOTRUN -> INCOMPLETE
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/shard-apl7/igt@gem_sync@basic-many-each.html>
-Something still fishy in the unlocked iterator? Or dma_resv_get_fences using it?
+    -        depends on DRM
+    +       depends on COMMON_CLK && DRM && IOMMU_SUPPORT
+            depends on ARCH_QCOM || SOC_IMX5 || COMPILE_TEST
+    -        depends on IOMMU_SUPPORT
+    -       depends on (OF && COMMON_CLK) || COMPILE_TEST
+    +       depends on OF || COMPILE_TEST
 
-<6> [187.551235] [IGT] gem_sync: starting subtest basic-many-each
-<1> [188.935462] BUG: kernel NULL pointer dereference, address: 0000000000000010
-<1> [188.935485] #PF: supervisor write access in kernel mode
-<1> [188.935495] #PF: error_code(0x0002) - not-present page
-<6> [188.935504] PGD 0 P4D 0
-<4> [188.935512] Oops: 0002 [#1] PREEMPT SMP NOPTI
-<4> [188.935521] CPU: 2 PID: 1467 Comm: gem_sync Not tainted 5.15.0-rc4-CI-Patchwork_21264+ #1
-<4> [188.935535] Hardware name:  /NUC6CAYB, BIOS AYAPLCEL.86A.0049.2018.0508.1356 05/08/2018
-<4> [188.935546] RIP: 0010:dma_resv_get_fences+0x116/0x2d0
-<4> [188.935560] Code: 10 85 c0 7f c9 be 03 00 00 00 e8 15 8b df ff eb bd e8 8e c6 ff ff eb b6 41 8b 04 24 49 8b 55 00 48 89 e7 8d 48 01 41 89 0c 24 <4c> 89 34 c2 e8 41 f2 ff ff 49 89 c6 48 85 c0 75 8c 48 8b 44 24 10
-<4> [188.935583] RSP: 0018:ffffc900011dbcc8 EFLAGS: 00010202
-<4> [188.935593] RAX: 0000000000000000 RBX: 00000000ffffffff RCX: 0000000000000001
-<4> [188.935603] RDX: 0000000000000010 RSI: ffffffff822e343c RDI: ffffc900011dbcc8
-<4> [188.935613] RBP: ffffc900011dbd48 R08: ffff88812d255bb8 R09: 00000000fffffffe
-<4> [188.935623] R10: 0000000000000001 R11: 0000000000000000 R12: ffffc900011dbd44
-<4> [188.935633] R13: ffffc900011dbd50 R14: ffff888113d29cc0 R15: 0000000000000000
-<4> [188.935643] FS:  00007f68d17e9700(0000) GS:ffff888277900000(0000) knlGS:0000000000000000
-<4> [188.935655] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [188.935665] CR2: 0000000000000010 CR3: 000000012d0a4000 CR4: 00000000003506e0
-<4> [188.935676] Call Trace:
-<4> [188.935685]  i915_gem_object_wait+0x1ff/0x410 [i915]
-<4> [188.935988]  i915_gem_wait_ioctl+0xf2/0x2a0 [i915]
-<4> [188.936272]  ? i915_gem_object_wait+0x410/0x410 [i915]
-<4> [188.936533]  drm_ioctl_kernel+0xae/0x140
-<4> [188.936546]  drm_ioctl+0x201/0x3d0
-<4> [188.936555]  ? i915_gem_object_wait+0x410/0x410 [i915]
-<4> [188.936820]  ? __fget_files+0xc2/0x1c0
-<4> [188.936830]  ? __fget_files+0xda/0x1c0
-<4> [188.936839]  __x64_sys_ioctl+0x6d/0xa0
-<4> [188.936848]  do_syscall_64+0x3a/0xb0
-<4> [188.936859]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+to keep a better separation between hard and soft dependencies.
 
-Regards,
+Note that the "depends on OF || COMPILE_TEST" can even be
+deleted, as the dependency on ARCH_QCOM || SOC_IMX5 implies OF.
 
-Tvrtko
+>          depends on QCOM_OCMEM || QCOM_OCMEM=3Dn
+>          depends on QCOM_LLCC || QCOM_LLCC=3Dn
+>          depends on QCOM_COMMAND_DB || QCOM_COMMAND_DB=3Dn
+>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
