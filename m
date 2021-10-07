@@ -1,53 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8684242530B
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 14:29:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB67E425312
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 14:30:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A53396F45D;
-	Thu,  7 Oct 2021 12:29:49 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C6F6F3E2;
- Thu,  7 Oct 2021 09:21:23 +0000 (UTC)
-Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.55])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4HQ5Pf4n9xz1DHR5;
- Thu,  7 Oct 2021 17:19:50 +0800 (CST)
-Received: from dggema764-chm.china.huawei.com (10.1.198.206) by
- dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.1.2308.8; Thu, 7 Oct 2021 17:21:20 +0800
-Received: from [10.174.185.179] (10.174.185.179) by
- dggema764-chm.china.huawei.com (10.1.198.206) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.8; Thu, 7 Oct 2021 17:21:18 +0800
-To: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>
-CC: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
- <ville.syrjala@linux.intel.com>, <tiwai@suse.de>,
- <wanghaibin.wang@huawei.com>, Kai-Heng Feng <kai.heng.feng@canonical.com>,
- <linux-acpi@vger.kernel.org>
-References: <20210906033541.862-1-yuzenghui@huawei.com>
-From: Zenghui Yu <yuzenghui@huawei.com>
-Message-ID: <3ae85963-beab-17d2-05f1-5a490cee1296@huawei.com>
-Date: Thu, 7 Oct 2021 17:21:18 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A776F46F;
+	Thu,  7 Oct 2021 12:29:53 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B65356E86A;
+ Thu,  7 Oct 2021 10:00:28 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id dj4so20934362edb.5;
+ Thu, 07 Oct 2021 03:00:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=NhTwke3cjte7Q3JaE9315Dm9DORgiyRheed7dlQcA5k=;
+ b=YEvw3uf0kuSFOYZXk/LhkZId/z8jm7kiMEyq8Hsjs8jEdsRu8N17mjVwUl01DQNQSW
+ 2LQXFr7cTVmbPPetCmESbNPv4IrHmUSJADoAqW/PVx5YYvY2SjDCAiOC9WKeKXBJsn+m
+ vncyO7Tgq5gzaU4sSd4MgaVDdAtzKSrT6+XyFuGxkxAKFlPYweWtSHvwWwV0cwKRaZU2
+ zzXlMw+AXt2ok4gZZi3ky1eghYnVLij9phuiZGAF7e3aLYYV1XdSFQ+UH2sRHnP9hPEH
+ 1wiGbcMJDwK0eBkFFUDsAXFtcxgguEbEMOB8Yu+cg13Y5SYe52o39o56t3xGu1qx7Z01
+ o8Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=NhTwke3cjte7Q3JaE9315Dm9DORgiyRheed7dlQcA5k=;
+ b=1lxGHwK7uhkYpMF6AeWg+Gl20Pv0kD6xrMjb0BrOo7Y6Z8rAxl2F9xSAIDB6RFoWkH
+ RFErJ0a8miy8P5g7dD5OQb1/P5Crjahd6pYLXC2uA0c5G2bIwKt+E/pjPwebXhB25FLr
+ KGrALbJJK2rRwUdIq1J0DY00yhz4NfKVJlAqxs85onFgba1PNn3Wj8VSHXw+QUeVITV8
+ sIHP+MwMHighCo5/vlCjMAf3p9o650AYy+WZ3KAeQEMA14P6YytbO+viSlJ/rl0jjicX
+ +lU698wm9FFFrjDKdwIJkyIWj8CBI1XFxEPkj4YmMr0v56cj/XRS4nZg29cac5u+Vd6c
+ DSYg==
+X-Gm-Message-State: AOAM531qXxLFuz6edr6IxMMAvF9GQHlfJ2P1mS5/vGu5Qb7KDUq7R+JC
+ DKN8a1r0Moi9oVCFsJJq1T6qqbgXS5SEhkT66CDtju8Z6Rsi/A==
+X-Google-Smtp-Source: ABdhPJy3fEYEnFVIoHwOYfSV4ZicID4dTC0aDt6NA0cHi71Cx6Nk5betWseW3wPPuggsizOS1YwDJSlM/crjwUXRsTk=
+X-Received: by 2002:a17:906:7c4:: with SMTP id
+ m4mr4503713ejc.553.1633600827094; 
+ Thu, 07 Oct 2021 03:00:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210906033541.862-1-yuzenghui@huawei.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.185.179]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggema764-chm.china.huawei.com (10.1.198.206)
-X-CFilter-Loop: Reflected
+References: <20211004143650.699120-1-tvrtko.ursulin@linux.intel.com>
+ <20211004143650.699120-2-tvrtko.ursulin@linux.intel.com>
+ <562d45e1-4a27-3252-f615-3ab1ef531f2b@huawei.com>
+ <CAGsJ_4w5Y4=v93YmTrXJ6hDgjKshxiAZ-ox-Nz_7uRwe4ECtdw@mail.gmail.com>
+ <8381e87d-ef7f-4759-569b-f6dabeb02939@linux.intel.com>
+ <CAGsJ_4wF1SmDL6eoEXRB-NwGLALkwhj9wLC5JKaQJpaQx1=5ZA@mail.gmail.com>
+ <382a4bd5-bb74-5928-be67-afbdc7aa3663@linux.intel.com>
+ <6818e34e-d41c-67b7-85dd-76d2e47bc078@linux.intel.com>
+In-Reply-To: <6818e34e-d41c-67b7-85dd-76d2e47bc078@linux.intel.com>
+From: Barry Song <21cnbao@gmail.com>
+Date: Thu, 7 Oct 2021 23:00:15 +1300
+Message-ID: <CAGsJ_4zr7JAMCqgw7PqvRzc=haCzDVpsi7cyWXKHRG2H4MdPfw@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: "Wanghui (John)" <john.wanghui@huawei.com>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Ingo Molnar <mingo@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>, 
+ Vincent Guittot <vincent.guittot@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 07 Oct 2021 12:29:48 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Free the returned object of
- acpi_evaluate_dsm()
+Subject: Re: [Intel-gfx] [RFC 1/8] sched: Add nice value change notifier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,48 +80,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[+linux-acpi]
+On Thu, Oct 7, 2021 at 10:09 PM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 07/10/2021 09:50, Tvrtko Ursulin wrote:
+> >
+> > On 06/10/2021 21:21, Barry Song wrote:
+> >> On Thu, Oct 7, 2021 at 2:44 AM Tvrtko Ursulin
+> >> <tvrtko.ursulin@linux.intel.com> wrote:
+> >>>
+> >>>
+> >>> Hi,
+> >>>
+> >>> On 06/10/2021 08:58, Barry Song wrote:
+> >>>> On Wed, Oct 6, 2021 at 5:15 PM Wanghui (John)
+> >>>> <john.wanghui@huawei.com> wrote:
+> >>>>>
+> >>>>> HI Tvrtko
+> >>>>>
+> >>>>> On 2021/10/4 22:36, Tvrtko Ursulin wrote:
+> >>>>>>     void set_user_nice(struct task_struct *p, long nice)
+> >>>>>>     {
+> >>>>>>         bool queued, running;
+> >>>>>> -     int old_prio;
+> >>>>>> +     int old_prio, ret;
+> >>>>>>         struct rq_flags rf;
+> >>>>>>         struct rq *rq;
+> >>>>>>
+> >>>>>> @@ -6915,6 +6947,9 @@ void set_user_nice(struct task_struct *p,
+> >>>>>> long nice)
+> >>>>>>
+> >>>>>>     out_unlock:
+> >>>>>>         task_rq_unlock(rq, p, &rf);
+> >>>>>> +
+> >>>>>> +     ret =3D atomic_notifier_call_chain(&user_nice_notifier_list,
+> >>>>>> nice, p);
+> >>>>>> +     WARN_ON_ONCE(ret !=3D NOTIFY_DONE);
+> >>>>>>     }
+> >>>>> How about adding a new "io_nice" to task_struct=EF=BC=8Cand move th=
+e call
+> >>>>> chain to
+> >>>>> sched_setattr/getattr, there are two benefits:
+> >>>>
+> >>>> We already have an ionice for block io scheduler. hardly can this
+> >>>> new io_nice
+> >>>> be generic to all I/O. it seems the patchset is trying to link
+> >>>> process' nice with
+> >>>> GPU's scheduler, to some extent, it makes more senses than having a
+> >>>> common ionice because we have a lot of IO devices in the systems, we
+> >>>> don't
+> >>>> know which I/O the ionice of task_struct should be applied to.
+> >>>>
+> >>>> Maybe we could have an ionice dedicated for GPU just like ionice for
+> >>>> CFQ
+> >>>> of bio/request scheduler.
+> >>>
+> >>> Thought crossed my mind but I couldn't see the practicality of a 3rd
+> >>> nice concept. I mean even to start with I struggle a bit with the
+> >>> usefulness of existing ionice vs nice. Like coming up with practical
+> >>> examples of usecases where it makes sense to decouple the two
+> >>> priorities.
+> >>>
+> >>>   From a different angle I did think inheriting CPU nice makes sense =
+for
+> >>> GPU workloads. This is because today, and more so in the future,
+> >>> computations on a same data set do flow from one to the other.
+> >>>
+> >>> Like maybe a simple example of batch image processing where CPU decod=
+es,
+> >>> GPU does a transform and then CPU encodes. Or a different mix, doesn'=
+t
+> >>> really matter, since the main point it is one computing pipeline from
+> >>> users point of view.
+> >>>
+> >>
+> >> I am on it. but I am also seeing two problems here:
+> >> 1. nice is not global in linux. For example, if you have two cgroups,
+> >> cgroup A
+> >> has more quota then cgroup B. Tasks in B won't win even if it has a
+> >> lower nice.
+> >> cgroups will run proportional-weight time-based division of CPU.
+> >>
+> >> 2. Historically, we had dynamic nice which was adjusted based on the
+> >> average
+> >> sleep/running time; right now, we don't have dynamic nice, but virtual
+> >> time
+> >> still make tasks which sleep more preempt other tasks with the same ni=
+ce
+> >> or even lower nice.
+> >> virtual time +=3D physical time/weight by nice
+> >> so, static nice number doesn't always make sense to decide preemption.
+> >>
+> >> So it seems your patch only works under some simple situation for exam=
+ple
+> >> no cgroups, tasks have similar sleep/running time.
+> >
+> > Yes, I broadly agree with your assessment. Although there are plans for
+> > adding cgroup support to i915 scheduling, I doubt as fine grained
+> > control and exact semantics as there are on the CPU side will happen.
+> >
+> > Mostly because the drive seems to be for more micro-controller managed
+> > scheduling which adds further challenges in connecting the two sides
+> > together.
+> >
+> > But when you say it is a problem, I would characterize it more a
+> > weakness in terms of being only a subset of possible control. It is
+> > still richer (better?) than what currently exists and as demonstrated
+> > with benchmarks in my cover letter it can deliver improvements in user
+> > experience. If in the mid term future we can extend it with cgroup
+> > support then the concept should still apply and get closer to how you
+> > described nice works in the CPU world.
+> >
+> > Main question in my mind is whether the idea of adding the
+> > sched_attr/priority notifier to the kernel can be justified. Because as
+> > mentioned before, everything apart from adjusting currently running GPU
+> > jobs could be done purely in userspace. Stack changes would be quite
+> > extensive and all, but that is not usually a good enough reason to put
+> > something in the kernel. That's why it is an RFC an invitation to discu=
+ss.
+> >
+> > Even ionice inherits from nice (see task_nice_ioprio()) so I think
+> > argument can be made for drivers as well.
+>
+> Now that I wrote this, I had a little bit of a light bulb moment. If I
+> abandon the idea of adjusting the priority of already submitted work
+> items, then I can do much of what I want purely from within the confines
+> of i915.
+>
+> I simply add code to inherit from current task nice on every new work
+> item submission. This should probably bring the majority of the benefit
+> I measured.
 
-ping
+I think the idea makes sense to link the process's priority with the GPU's
+scheduler. I have no doubt about this.
+My question is more of what is the best way to implement this.
 
-On 2021/9/6 11:35, Zenghui Yu wrote:
-> As per the comment on top of acpi_evaluate_dsm():
-> 
-> | * Evaluate device's _DSM method with specified GUID, revision id and
-> | * function number. Caller needs to free the returned object.
-> 
-> We should free the returned object of acpi_evaluate_dsm() to avoid memory
-> leakage. Otherwise the kmemleak splat will be triggered at boot time (if we
-> compile kernel with CONFIG_DEBUG_TEST_DRIVER_REMOVE=y).
-> 
-> Fixes: 8e55f99c510f ("drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops")
-> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> Signed-off-by: Zenghui Yu <yuzenghui@huawei.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_acpi.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> index 7cfe91fc05f2..68abeaf2d7d4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> @@ -186,13 +186,16 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
->  {
->  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->  	acpi_handle dhandle;
-> +	union acpi_object *obj;
->  
->  	dhandle = ACPI_HANDLE(&pdev->dev);
->  	if (!dhandle)
->  		return;
->  
-> -	acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
-> -			  INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> +	obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
-> +				INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> +	if (obj)
-> +		ACPI_FREE(obj);
->  }
->  
->  /*
-> 
+Android has bg_non_interactive cgroup with much lower weight for
+background processes. interactive tasks, on the other hand, are placed
+in another cgroup with much higer weight. So Android depends on
+cgroup to improve user experience.
+
+Chrome browser in your cover-letter uses nice to de-prioritise background
+tabs.  this works perfectly as the whole chrome should be in the same
+cgroup, so changing nice will improve/decrease the resource gotten by
+tasks in this cgroup. But once we have two cgroups,  bringing this nice
+belonging to the cgroup  to the global scheduler of GPU will somehow
+break the aim.
+
+For example, if we have two cgroup A and B
+/sys/fs/cgroup/cpu$ sudo sh -c 'echo 4096 > A/cpu.shares'
+/sys/fs/cgroup/cpu$ sudo sh -c 'echo 512 > B/cpu.shares'
+
+task in B with lower nice will get more GPU than task in A. But actually A =
+group
+has 8X weight of B. So the result seems wrong. especially real users like
+Android does depend on cgroup.
+I don't know how to overcome this "weakness", it seems not easy.
+
+>
+> Regards,
+>
+> Tvrtko
+
+Thanks
+barry
