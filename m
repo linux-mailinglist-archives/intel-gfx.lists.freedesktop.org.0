@@ -2,143 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E651425C98
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 21:50:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98BB7425D2D
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 22:24:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0BE66E5AB;
-	Thu,  7 Oct 2021 19:50:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311056F4CC;
+	Thu,  7 Oct 2021 20:23:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECD176E57A;
- Thu,  7 Oct 2021 19:50:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="207155018"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="207155018"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A34D6F4C2;
+ Thu,  7 Oct 2021 20:23:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="207161261"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="207161261"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 12:50:34 -0700
+ 07 Oct 2021 13:23:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="545855635"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by fmsmga004.fm.intel.com with ESMTP; 07 Oct 2021 12:50:33 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="624392065"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga001.fm.intel.com with ESMTP; 07 Oct 2021 13:23:55 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 7 Oct 2021 12:50:33 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2242.12; Thu, 7 Oct 2021 13:23:55 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Thu, 7 Oct 2021 12:50:33 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2242.12; Thu, 7 Oct 2021 13:23:54 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Thu, 7 Oct 2021 13:23:54 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Thu, 7 Oct 2021 12:50:33 -0700
+ 15.1.2242.12; Thu, 7 Oct 2021 13:23:54 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aubarqcsgzqMhCd4C9KxsJdtCfbsb03iz/UJju+kKbzrC7g0pBj3g9LYKbIQ9N6LtU1D3xU71RkQcD1WfqT4u9+K6KkcklbW89gfnWEkHoRz/7Gh97oLwEDfEXAWowVQ/14fqWo00rVIu4ZNj9KldtbZbqQJuVrG7UiI5CQZEknE9oln7l85fYRdoO4wuV5f3Zr54H1fJ2qZhV1ZBHJZ3iGGxPc9qUYQKefkLgHwqNK4TNb5RQ44CgFXsjSddkdSrjC/dUoD81XT/x3nUNSkm/DTEo2KwwAjparfYLcmLeJ4YHf5s5yFj+lVYlaIUd65ufX+h0zwNAl+S90wy/xKpA==
+ b=F6PKDqNCxfO957DIEYch5RFMUreK7FoLOFA78zG2vf+5TqrqTRyEVEFySZgI1R49BTHE4G1jccdP4KrNNjuFoeukmHfjMMInicic7zdahQpPCNKHTQoRocvsz+5U+W/U4qDgnNDx+ix65ySgvpttaBWbBO18FA60FkFt0Oqo8wEjSPGojeEDkOg7Q4rENhbGLp+hhsFzDtF0wUbkcENGrFpL40cfjDmzU0gS7FDjLypfq1/fLqOgazorCNg+xHlsK43T82Bkzas6KQGtV4vjAVaPhTWTjCeOkguY+ltzplSt3kMoKoOTOpMJq9BcwEaIuARA7+sSfcpe+RzYmDcpGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=07+wGAHW1P2XU3jR3BmY7iYjdADIS1LoenVbSIMasvs=;
- b=hK7celYMuF159ZUUH5DbK7u2A29FZthEZrMn60jcCH46GxTcma8raIxxS/V+eha4bib5cZhzdv6H+wDpaP6mu4BCGS5K4nfbfGnKG8Df6hSXSh1USmFtOXt3B7UZzyEx7kbMQ9k+mG5dJdx9gddJuNvNWzHo34b0z3TiwX6KuP+syGbTYFwG+nYBhNPnUz0U2Hnc7oaqfINM8EZeM/kPFgHgZYkahn5vmT+kaMpF+eIWS8Fomr8u5xHk+B7wENr3b1YUoYPpnpikuYQXRMBqv8Dib2Kk+56FfzxqJK2jpMMC3Ft6acxP1p3k/wDKvwBNNe6+rFfJGbkWPOXJK7hO2Q==
+ bh=4Bi8j8tQVdRCo8lBv3zIAFynssHzArQUITqJWlIOwlY=;
+ b=Hsi02YL7ZCRWejoMXNDR75rMVl5Z8GLzKapwSn+4gpjtzhd4/7GhkicVe43KU1c+KCFD/84WDqJKLbgk3KeHyUb5s+kqRuxhdQ5BKzUW/Mis5CKfjS7wKmwvYQPkAfaAVPxRQp4Xp6qZd+K+M8S4NEBIbnBelxaj/4GB0gTmmNL+3Gz5cY3NQhJFr5CfOV/2vowCcqJrSjEXRWA3lC+p66E5RToSgFCY7oI0U7sGzI2jfGw1O1EXoDMm/qOSKwWtem2Ob7uuc/XN0QYyRHSa6Cu8f8ex5+8vA0GEgO3Kfmiv7Y3+E2XtTkA8h/3g/lnRtennO+d5r7wiEBm3T4j+0A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
  s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=07+wGAHW1P2XU3jR3BmY7iYjdADIS1LoenVbSIMasvs=;
- b=KlJP74agWqs48GEipg6HSR/eN7Ys5R7PwDoOGs+Er8p/5mODoja2Oed+9PCR3VvyjDsPrDjvxSiS6PlNDlwXq06bTuzpCsEVb5K+X3/kNnRxZNXDFb2nN2GVx3IsC/y7pchHf4EriPMFKcfy8VqvwOA9VQOuQtbQZGkuosUA8l0=
+ bh=4Bi8j8tQVdRCo8lBv3zIAFynssHzArQUITqJWlIOwlY=;
+ b=h5z3HKUSZYygXPbhAzrDh1GnIZEll20PSgIJW4L97ilm1V7Cu+4m/ND2SiWDpKl9dyfQJLzRxgdbuZuXVhk0Acr2Bo4fGv3Y/Megn878qOoiqzdZJLM6gPddI7YPLyVUMs4rPLIlamzGdTnwk7lGCtkJQUflk1yqMJcO1uCpgXg=
 Authentication-Results: intel.com; dkim=none (message not signed)
  header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
 Received: from PH0PR11MB5642.namprd11.prod.outlook.com (2603:10b6:510:e5::13)
- by PH0PR11MB5643.namprd11.prod.outlook.com (2603:10b6:510:d5::21)
+ by PH0PR11MB5595.namprd11.prod.outlook.com (2603:10b6:510:e5::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Thu, 7 Oct
- 2021 19:50:31 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18; Thu, 7 Oct
+ 2021 20:23:53 +0000
 Received: from PH0PR11MB5642.namprd11.prod.outlook.com
  ([fe80::880d:1a54:ca07:738a]) by PH0PR11MB5642.namprd11.prod.outlook.com
  ([fe80::880d:1a54:ca07:738a%8]) with mapi id 15.20.4587.020; Thu, 7 Oct 2021
- 19:50:31 +0000
+ 20:23:53 +0000
 To: Matthew Brost <matthew.brost@intel.com>,
  <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
 CC: <daniele.ceraolospurio@intel.com>
 References: <20211004220637.14746-1-matthew.brost@intel.com>
- <20211004220637.14746-9-matthew.brost@intel.com>
+ <20211004220637.14746-10-matthew.brost@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-Message-ID: <f03536a0-2ffe-ed40-041e-0f277960a60d@intel.com>
-Date: Thu, 7 Oct 2021 12:50:28 -0700
+Message-ID: <fa167231-7708-4734-e039-7e05bb26a220@intel.com>
+Date: Thu, 7 Oct 2021 13:23:50 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.14.0
-In-Reply-To: <20211004220637.14746-9-matthew.brost@intel.com>
+In-Reply-To: <20211004220637.14746-10-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-GB
-X-ClientProxiedBy: BYAPR05CA0093.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::34) To PH0PR11MB5642.namprd11.prod.outlook.com
+X-ClientProxiedBy: BYAPR05CA0029.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::42) To PH0PR11MB5642.namprd11.prod.outlook.com
  (2603:10b6:510:e5::13)
 MIME-Version: 1.0
 Received: from [192.168.1.106] (73.157.192.58) by
- BYAPR05CA0093.namprd05.prod.outlook.com (2603:10b6:a03:e0::34) with Microsoft
+ BYAPR05CA0029.namprd05.prod.outlook.com (2603:10b6:a03:c0::42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4608.4 via Frontend Transport; Thu, 7 Oct 2021 19:50:30 +0000
+ 15.20.4608.4 via Frontend Transport; Thu, 7 Oct 2021 20:23:52 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e6529b87-36ce-4978-72f4-08d989cbb817
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5643:
+X-MS-Office365-Filtering-Correlation-Id: 23409de3-b8e8-4e7d-4ced-08d989d0611f
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5595:
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <PH0PR11MB56434DD2C13DD72A8FF975A3BDB19@PH0PR11MB5643.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Microsoft-Antispam-PRVS: <PH0PR11MB55957F25F9DEDB275F0ACA25BDB19@PH0PR11MB5595.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1728;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DrUv931ma6o6NBp+kRTan8/hIDkG02nnvvvVUyrW69sRHdIZS5CpKucB4TuhJF3gaSXcvh5HKWMVPmOqb3deoQ9BtUaRhyXA6lSnhtYQZBKoSX9YF2oHAQf+2N3asjamJVSpg+1p+rkJ1VSLSwWeRbn1P7eiBvPBvfAElPoTBbJIV40uVMcg1xykDn+FSAgiZ9D+HfjTXed2dhiIgOvde5kFdUvggD7KwVz+OJR3RjClsWIWNuTNTp5Ek1NRRVcVw7lrQ3UcgZXMxcWyifgGE5nbHeGV//yrNU7BwTMcD9RgQp9NOQRt+oWYz8V2uWxWkEIm/HCzfnKLQ9lG7CnQPfabecUIWpPc1/fDSvDYZf3plECtcw3P4h/tWDISjWUjc3pUu+TBezvclg9O5eZLy/v7WYotjbY3u/QiEsHMFQ9rRXANNbXRslOCtFWsTC2frRcOxSobKjc8aCSRJp5/b9bhkr5/c/YbvHZzAINdTI5Q0uUeef0y2oMICoKRFQM9qM7cb3c/T44JQPnWIkohOPxvmVwSizkQqo/32QcsmIcMujL+0XOAAe1t7X1zg9CCbn895L2siMWMLQ/A8j+tO4fwXN2e5fv0WaCyxae3q3vQnQ/jKrsaoMAGOvbvtHn2pcw8EbqVHQewM1A8yh7+BY/nopFlr60zmvGErN3Q91QrAvn3RbRCFICwql+Pel6eWZeAtstBIBJk6GdC1rlB02ztqxicrNLFHIytohGScGWq4e0F2zufPHsbmASL7taJ
+X-Microsoft-Antispam-Message-Info: Y7otV6efSxqIH+v56wZqYm+WIvVd+8WyjxWmAMNu/DQfOjOO005njdMh8BjHihY9817mX43XPry229pTGWdtp/aQSgfR5D0hfbkyTalD71j5IreS5RkT9tbVxGYn1GJVztn/z5IxEAvxq7KCgFS5L9D2YTUNh+T6d+SB9pIxBfoQ8zTjBx7+qgo4XAb/Vj1b+w5XiRtVrAa/qT/kbkvLu4zsme4aYFMf+8ABVi0F/6nBQ3vFnIyQVWR5P9nWsTEZKACXvpJTX2lgJNg2tqBzp7klkY9U6Bhfiro6eT5H+EmZ5OWi+RUQLM5sO2wuZ+nTBp20B11NceTjrESOO6oih9yz7IgldIqRRNhsoFA0p6UkVXwEu5Y5HqHd76KfwgmQrvn2qP5oawd7bEuZ0VgDEuRBkKvFVD2hap4gG7FFW2Udwob+vBN4xeRQ4t4p59nQtulFU+K/PbZR1MrRNLJjQftEgoNGClq5Xpg9uZbopXpzeNMR4cx8XolqkzWw/tMHFqiXQbfmfHCQSyomOYq7B4aXZKVoIw+tolJaObYkcSIcEOo+fAqatGZ17P2WlVaJ7z+3NblnPmzm0wDp81EoPaZuvl5jURYwp64nS6IRY5+P4m7tauxxwfsoOYeATV1u8ZGnKHDGM2uKN+1EvbUYBmHlZ6RX93K3STGOw/qh4h6vsCDaRyRJioEkwxK2Hu8APe2B9igk6X72XSj4wbWl5PMxLVGh2RE82EfUenUA08A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH0PR11MB5642.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(8676002)(26005)(107886003)(4326008)(66946007)(31686004)(8936002)(450100002)(6486002)(5660300002)(38100700002)(956004)(2616005)(66556008)(66476007)(316002)(36756003)(31696002)(2906002)(86362001)(186003)(508600001)(16576012)(53546011)(83380400001)(45980500001)(43740500002);
+ SFS:(4636009)(366004)(450100002)(8676002)(83380400001)(86362001)(16576012)(956004)(2616005)(4326008)(66476007)(8936002)(66556008)(31696002)(31686004)(66946007)(6486002)(36756003)(5660300002)(107886003)(186003)(508600001)(38100700002)(316002)(53546011)(26005)(2906002)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDBjNDlKL3VjN3JtY201RGRiblBoNmdXeTA1MFVyZEJjSG1iZ1pKZFBPdzdq?=
- =?utf-8?B?V2FocytmTHdwWndtM21VcUFzU09xRFc4RTF1YzV5VVBwbHFrV3RvRzkyZHJy?=
- =?utf-8?B?M2JId25IWmR5ZkFTNktkYVJkc2lRZVZwTk91V2ttT0hBRUZOQnl3RGVqT3dS?=
- =?utf-8?B?dFd1K1BsdVdTVHppa0t3QUtvdGdYVVFNMlVqUkJKVllVTnM4d05Rd2gyb2x6?=
- =?utf-8?B?UWVOTW5vNUIyNlJwL09yM2FvVHBQYTcyYWExM0R6QTMzV2ZyVGtTWmI2aFBF?=
- =?utf-8?B?V1N1bmc5Y0djd1BQQzhQTi9yTSs5VkhrblFDRjJYUnQrTE5FUXF6SXNqb0RF?=
- =?utf-8?B?ZXArR0l4OC8ybW14U2tWSnlHajVyUkxwY0xIbmtmc294N25oZWJNODFleHlu?=
- =?utf-8?B?SDI3cFhtbjZjc2VmdVJRbmJpOGJGWVZqZkp3Ti91Q0hEMUpGWDFWTm1RcXZH?=
- =?utf-8?B?WFFRYndWN2pSTHJpVTZOS0dRYXJESjdsUWtjNTljN2dFOUozdEVKNzN1WHNn?=
- =?utf-8?B?YzVueEc1QnZUZVdvSFgvd3FRR3d5ckJON0s2TnlOQi9zTmNOQ0dQdDFIL3ZP?=
- =?utf-8?B?VHRmR0hMakVsNERaTjJjSTEwdkRYME5Mbm1GR243MStxUFFLd2xQdWdkK1pU?=
- =?utf-8?B?Rmk4eUdyZ1VCRkI5a0d2bzA0c0Nkd0JoQi9UOUZqOVg0dXcvR1FnOXZSRjZx?=
- =?utf-8?B?YzJkczZKcDdPK3dxMi8wRHg3T3k5Ri9KUEFRT1RZaUxScGF0bnZZYnNnWG4r?=
- =?utf-8?B?NFdVTWJxRlJUaEo2MzBDSUY5eUVwQmRIb05Kd29SNWdNUEM3eDUxekRhVUs3?=
- =?utf-8?B?bmdIN09nc0lpNFI0UUV5M2pHb1NuaUpKNSs5eGd3ejlLYmF3WVV2emJoSlJy?=
- =?utf-8?B?U05seFViTC8xM2tHdGtSdEJDQ0ptRWQ2THQ4eVNHQTBxenAwcjEzTUZ6c0Zx?=
- =?utf-8?B?R1plY2RMeXd6SVE4YmFvSzJMRFlsZ3JYc3l6cjNPaFBROURlRVA3UkxYZ3hL?=
- =?utf-8?B?Vm5vMm9lOUFESS9tMVJHVW91amtYRzh4ZTNrMHlFbHo3b3JVenUwNFJ3UzBi?=
- =?utf-8?B?WDl4SXRhamUxVWU0Z281QmxEOURVczBkMHg1LzhVVDB1bHd4dVR1N2E1RFp0?=
- =?utf-8?B?UXlrQnB6TCt1OTRkWlE0dTd5OW8reEpCQTlmbHpmQ045RzJGZkprSVB6cDdM?=
- =?utf-8?B?cktKNWh4dWkvNi9Uc0piK0MwZFJudnNMWEY5cXUxaEhZQ0M4aVlPTSt3UGps?=
- =?utf-8?B?QVZKalM5RmF2andjNDdGdExkY2szNWpmWHBaSjJ2eVZxRTRBYmxTdXloUXJq?=
- =?utf-8?B?ZnEzWkY2bGNWVk0vSFdjSzQyNXVIeVBZYkdvalA5MHB6NkxoYW1UMVVxelZ1?=
- =?utf-8?B?eFUwdFBsbEJFcUxjR3lKRkVGbWs4ZWdPcVlHOEw4eXBKRXdZdlRKZE9ZYlJz?=
- =?utf-8?B?ZWhybEJlMllIeGNnKzFNV2F5RHZwK0RGS3N5czVFS2tKckJROEc4US9QMXRz?=
- =?utf-8?B?Vk1rRHFyVnNNZFQ1aTQ5MDRhbkE3SGhRK3ZsS0RyK3ZSYXRnUWRkRVRyZk41?=
- =?utf-8?B?NjVaazdqby9qdm4yQjJBbGVuQS81MWlOR2pDQmNuRldPSElRZ2x2aGJJMy9t?=
- =?utf-8?B?SXM1dDN5T1IxRkVPMzVhVnBkRk1kdFBxV0FLb0pNWjNnZndSNmUyRVVBOWJm?=
- =?utf-8?B?MmVPYTY2WE1SUTBQR0JOdzhVamxOZ0x0QkxhVFlJQTZWc043cFFJcFNwcXVF?=
- =?utf-8?Q?F7gmWFyYeeXK1JNyen+hKdKdp59mu/GY/idESvh?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6529b87-36ce-4978-72f4-08d989cbb817
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y1Z0cmNUT0YzSE12SXgwY2tEWU9GSkVKZFlLcjQ4dUNpaEhqdlN1VjJrcWNG?=
+ =?utf-8?B?M2MvT1dSMWx0VmExZm93cXc5NmJJakhEMW1BZTJjUEtUeUlsVVFhQWZKUEZR?=
+ =?utf-8?B?ZFZWR0V1cTVqODhwaEVHb1J0WFcyZXVYV0xYbFNScXVjQ0tQcmZ4OTNpWXNo?=
+ =?utf-8?B?Z1hWbktod2IybmovSTJ5QUkxdEJIcFdrcG15VElFQVBsU1ZBeHB4dlFCRU1Q?=
+ =?utf-8?B?Tk8zemlkVEhwMTk0ajZPNVVUckplV1RPdEV1Ky9OanF2c213VWtCM2xiS1Jo?=
+ =?utf-8?B?bXZkSm5YTUpkODNXUkFNYytkSTJFcWNZaGg3VnVUeFI3NEZLTWo5LzdOU3BM?=
+ =?utf-8?B?akJvNFhTY1REREJmRzdkeTYwTFAwMU1SeUtwL0RMNW1UcHN5OHZQNXlsM0tp?=
+ =?utf-8?B?K0xrOWwzRVhpYkxqVlBVU09hQnRwWjJzNjZXcjljQktoRnpORExsS3g5aHZL?=
+ =?utf-8?B?ekdyYzR5OEVycktHQmNjVjNXU0JrNW1xcittdVpwL3lPQkt6YUNzWVV4WndC?=
+ =?utf-8?B?K2JXaTBpdzcza3Vqd1BuUEpnVnByazkvdTZCZW9QRzlQWFdxQUFQUGMvOUJB?=
+ =?utf-8?B?OUk3bHltU0xoWWNTais4bzMxbmFaZjU5eFErb0pSNStKZzNRQklXRzlEWWZM?=
+ =?utf-8?B?M3RGK3JSL2tFN2Fabnl6SnVVNDkyc3hwU3BBWHl6Si9PcW9XeFNsd01RY0xW?=
+ =?utf-8?B?elNJdjFETmI1eVRhQUt4dXJCOW5VenlTc1JRYytEa0wrK3ZoRTE5YWxkRTN5?=
+ =?utf-8?B?di9oTXNubHJTNDQrcjd6azMvVWw2SkQ0MDVZQlVqMDVyckZjdmxZZldta1Vy?=
+ =?utf-8?B?UlQ5R3NKR0ZmRnZLYUwwbDhkd043VklGNU03N2RWWDFScEZTUktZd0RnV0VM?=
+ =?utf-8?B?eWdVOUo1UE5LM2pMV1FVeUhPSHFEbzBkR2g1aURVQ0Y4L0FsdmZlZENodW0y?=
+ =?utf-8?B?amhuemk0aC9xaGV2Y0VSU2hJcGtiWXNyZHdjZFdxbjY3MS9PUkFLZnI3YzlD?=
+ =?utf-8?B?cjhBUjdKRUd6ekNtTlJTN2k1NWUrUFJFWHppb0g5d0M3TlpFeFh1VWFlMmNZ?=
+ =?utf-8?B?VDhBSk5XVEVIWTNuZmxjYnZrdGtLRldyUjZaM1cvR2drWUdiK1hmdTRFcnpW?=
+ =?utf-8?B?dzJuQldxU0N0d2g1SFFEY2wvVzNyUnprRHdOSm55eEFnQlgyODhtSytOMjR4?=
+ =?utf-8?B?dTcxVTFUVy9KUHFpY1NMUEl2Rld5S240WXkwRUVuNEovNFdpb05XQzRTeFIv?=
+ =?utf-8?B?MjFlbVVrZkhCdXV1WVdzY1JEUERPVWNtME15Mk9MVTJrM2s4di9yT3pGN3hE?=
+ =?utf-8?B?K3FoOTRLV0thSS9nbktOK3hhTHFrSW5sSE8wc25rOGJiOXpGWktvellCUkdO?=
+ =?utf-8?B?QXBJbGZqK1BUd0tCblFMTEFQL3lMOWU5d0phRDdyejBjaEVIWXZDVmwzbkYz?=
+ =?utf-8?B?blpXNFFRTDN3d3FPMTZUNmJndTVVOEhnU3J5alVvMEJ4NUw4RmdZN25XaERV?=
+ =?utf-8?B?KzQzUEdIcE5uMDdWdHRpRS91ZGxjY2xHaEdMbnNKYzFEM1o2UVlVSmR6KzhF?=
+ =?utf-8?B?Mld2V3NFU1JiWitmTlA3Z240Ly9EWWsvY1M3Zm44VjNJeWNsdGRPSmFPRFh4?=
+ =?utf-8?B?U3IvY3dsUXZXMjVXbTQza3dFYlNTVzA0eTVVbUV5b2VyVmd2OEJPZ1ZWeXkx?=
+ =?utf-8?B?d0t5eG5QRU1OYTk1UnhSRVA0WGNRcVgzRzM1R1pRTVFGMlNKSnFsOXJXeFVX?=
+ =?utf-8?Q?PeewiQaskeODdXA2gtG/43s9nwCRJlbLr5AImA6?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23409de3-b8e8-4e7d-4ced-08d989d0611f
 X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5642.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2021 19:50:31.2702 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2021 20:23:52.9252 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mc+/86gwM7xrmMLucyq9dW7CHRGJ+TFPTN+/qlfsdDqACTmLsKXIFXv200iXuIzqEIGxcz/CZkoHRLnLw1MpWYM0Yf4ULRx8o7B+q+nkCME=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5643
+X-MS-Exchange-CrossTenant-UserPrincipalName: MYu73twYuL1tjAdFAMyyqO0VQONGPVrmi4ZSL8JWp6ei/Ih9xG64+30M1OROPZG/7JGXdLRF1zKilVABtSzsp/I78Nsa//kPufaFLnLzr+c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5595
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 08/26] drm/i915/guc: Add multi-lrc context
- registration
+Subject: Re: [Intel-gfx] [PATCH 09/26] drm/i915/guc: Ensure GuC schedule
+ operations do not operate on child contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,266 +159,66 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 10/4/2021 15:06, Matthew Brost wrote:
-> Add multi-lrc context registration H2G. In addition a workqueue and
-> process descriptor are setup during multi-lrc context registration as
-> these data structures are needed for multi-lrc submission.
->
-> v2:
->   (John Harrison)
->    - Move GuC specific fields into sub-struct
->    - Clean up WQ defines
->    - Add comment explaining math to derive WQ / PD address
+> In GuC parent-child contexts the parent context controls the scheduling,
+> ensure only the parent does the scheduling operations.
 >
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
 > ---
->   drivers/gpu/drm/i915/gt/intel_context_types.h |  12 ++
->   drivers/gpu/drm/i915/gt/intel_lrc.c           |   5 +
->   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   1 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   2 -
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 114 +++++++++++++++++-
->   5 files changed, 131 insertions(+), 3 deletions(-)
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 13 ++++++++++++-
+>   1 file changed, 12 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index 76dfca57cb45..48decb5ee954 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> @@ -239,6 +239,18 @@ struct intel_context {
->   		struct intel_context *parent;
->   		/** @number_children: number of children if parent */
->   		u8 number_children;
-> +		/** @guc: GuC specific members for parallel submission */
-> +		struct {
-> +			/** @wqi_head: head pointer in work queue */
-> +			u16 wqi_head;
-> +			/** @wqi_tail: tail pointer in work queue */
-> +			u16 wqi_tail;
-> +			/**
-> +			 * @parent_page: page in context state (ce->state) used
-> +			 * by parent for work queue, process descriptor
-> +			 */
-> +			u8 parent_page;
-> +		} guc;
->   	} parallel;
->   
->   #ifdef CONFIG_DRM_I915_SELFTEST
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 3ef9eaf8c50e..57339d5c1fc8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -942,6 +942,11 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
->   		context_size += PAGE_SIZE;
->   	}
->   
-> +	if (intel_context_is_parent(ce) && intel_engine_uses_guc(engine)) {
-> +		ce->parallel.guc.parent_page = context_size / PAGE_SIZE;
-> +		context_size += PAGE_SIZE;
-> +	}
-> +
->   	obj = i915_gem_object_create_lmem(engine->i915, context_size,
->   					  I915_BO_ALLOC_PM_VOLATILE);
->   	if (IS_ERR(obj))
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> index 8ff582222aff..ba10bd374cee 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> @@ -142,6 +142,7 @@ enum intel_guc_action {
->   	INTEL_GUC_ACTION_REGISTER_COMMAND_TRANSPORT_BUFFER = 0x4505,
->   	INTEL_GUC_ACTION_DEREGISTER_COMMAND_TRANSPORT_BUFFER = 0x4506,
->   	INTEL_GUC_ACTION_DEREGISTER_CONTEXT_DONE = 0x4600,
-> +	INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
->   	INTEL_GUC_ACTION_RESET_CLIENT = 0x5507,
->   	INTEL_GUC_ACTION_LIMIT
->   };
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> index fa4be13c8854..0eeb2a9feeed 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> @@ -52,8 +52,6 @@
->   
->   #define GUC_DOORBELL_INVALID		256
->   
-> -#define GUC_WQ_SIZE			(PAGE_SIZE * 2)
-> -
->   /* Work queue item header definitions */
->   #define WQ_STATUS_ACTIVE		1
->   #define WQ_STATUS_SUSPENDED		2
 > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 451d9ae861a6..ab6d7fc1b0b1 100644
+> index ab6d7fc1b0b1..1f2809187513 100644
 > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -344,6 +344,45 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
->   	return rb_entry(rb, struct i915_priolist, node);
+> @@ -324,6 +324,12 @@ static inline void decr_context_committed_requests(struct intel_context *ce)
+>   	GEM_BUG_ON(ce->guc_state.number_committed_requests < 0);
 >   }
 >   
-> +/*
-> + * When using multi-lrc submission an extra page in the context state is
-> + * reserved for the process descriptor and work queue.
-> + *
-> + * The layout of this page is below:
-> + * 0						guc_process_desc
-> + * ...						unused
-> + * PAGE_SIZE / 2				work queue start
-> + * ...						work queue
-> + * PAGE_SIZE - 1				work queue end
-> + */
-> +#define WQ_SIZE			(PAGE_SIZE / 2)
-> +#define WQ_OFFSET		(PAGE_SIZE - WQ_SIZE)
-I thought you were going with '#define PARENT_SCRATCH SIZE PAGE_SIZE' 
-and then using that everywhere else? Unless there is a fundamental 
-reason why the above must be exactly a page in size then I think the 
-size should be defined once and re-used rather than assumed in multiple 
-places (including in the description comment).
-
-> +static u32 __get_process_desc_offset(struct intel_context *ce)
+> +static struct intel_context *
+> +request_to_scheduling_context(struct i915_request *rq)
 > +{
-> +	GEM_BUG_ON(!ce->parallel.guc.parent_page);
-> +
-> +	return ce->parallel.guc.parent_page * PAGE_SIZE;
+> +	return intel_context_to_parent(rq->context);
 > +}
 > +
-> +static u32 __get_wq_offset(struct intel_context *ce)
-> +{
-> +	return __get_process_desc_offset(ce) + WQ_OFFSET;
-> +}
-> +
-> +static struct guc_process_desc *
-> +__get_process_desc(struct intel_context *ce)
-> +{
-> +	/*
-> +	 * Need to subtract LRC_STATE_OFFSET here as the
-> +	 * parallel.guc.parent_page is the offset into ce->state while
-> +	 * ce->lrc_reg_reg is ce->state + LRC_STATE_OFFSET.
-> +	 */
-> +	return (struct guc_process_desc *)
-> +		(ce->lrc_reg_state +
-> +		 ((__get_process_desc_offset(ce) -
-> +		   LRC_STATE_OFFSET) / sizeof(u32)));
-> +}
-> +
->   static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
+>   static inline bool context_guc_id_invalid(struct intel_context *ce)
 >   {
->   	struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
-> @@ -1365,6 +1404,30 @@ static void unpin_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
->   }
+>   	return ce->guc_id.id == GUC_INVALID_LRC_ID;
+> @@ -1710,6 +1716,7 @@ static void __guc_context_sched_disable(struct intel_guc *guc,
 >   
-> +static int __guc_action_register_multi_lrc(struct intel_guc *guc,
-> +					   struct intel_context *ce,
-> +					   u32 guc_id,
-> +					   u32 offset,
-> +					   bool loop)
-> +{
-> +	struct intel_context *child;
-> +	u32 action[4 + MAX_ENGINE_INSTANCE];
-> +	int len = 0;
-> +
-> +	GEM_BUG_ON(ce->parallel.number_children > MAX_ENGINE_INSTANCE);
-> +
-> +	action[len++] = INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC;
-> +	action[len++] = guc_id;
-> +	action[len++] = ce->parallel.number_children + 1;
-> +	action[len++] = offset;
-> +	for_each_child(ce, child) {
-> +		offset += sizeof(struct guc_lrc_desc);
-> +		action[len++] = offset;
-> +	}
-> +
-> +	return guc_submission_send_busy_loop(guc, action, len, 0, loop);
-> +}
-> +
->   static int __guc_action_register_context(struct intel_guc *guc,
->   					 u32 guc_id,
->   					 u32 offset,
-> @@ -1387,9 +1450,15 @@ static int register_context(struct intel_context *ce, bool loop)
->   		ce->guc_id.id * sizeof(struct guc_lrc_desc);
->   	int ret;
+>   	GEM_BUG_ON(guc_id == GUC_INVALID_LRC_ID);
 >   
 > +	GEM_BUG_ON(intel_context_is_child(ce));
->   	trace_intel_context_register(ce);
+>   	trace_intel_context_sched_disable(ce);
 >   
-> -	ret = __guc_action_register_context(guc, ce->guc_id.id, offset, loop);
-> +	if (intel_context_is_parent(ce))
-> +		ret = __guc_action_register_multi_lrc(guc, ce, ce->guc_id.id,
-> +						      offset, loop);
-> +	else
-> +		ret = __guc_action_register_context(guc, ce->guc_id.id, offset,
-> +						    loop);
->   	if (likely(!ret)) {
->   		unsigned long flags;
->   
-> @@ -1418,6 +1487,7 @@ static int deregister_context(struct intel_context *ce, u32 guc_id)
->   {
->   	struct intel_guc *guc = ce_to_guc(ce);
->   
-> +	GEM_BUG_ON(intel_context_is_child(ce));
->   	trace_intel_context_deregister(ce);
->   
->   	return __guc_action_deregister_context(guc, guc_id);
-> @@ -1445,6 +1515,7 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
->   	struct guc_lrc_desc *desc;
->   	bool context_registered;
+>   	guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> @@ -1935,6 +1942,8 @@ static void guc_context_sched_disable(struct intel_context *ce)
 >   	intel_wakeref_t wakeref;
-> +	struct intel_context *child;
->   	int ret = 0;
+>   	u16 guc_id;
 >   
->   	GEM_BUG_ON(!engine->mask);
-> @@ -1470,6 +1541,41 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
->   	desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
->   	guc_context_policy_init(engine, desc);
+> +	GEM_BUG_ON(intel_context_is_child(ce));
+> +
+>   	spin_lock_irqsave(&ce->guc_state.lock, flags);
 >   
-> +	/*
-> +	 * Context is a parent, we need to register a process descriptor
-> +	 * describing a work queue and register all child contexts.
-> +	 */
-This was now meant to say 'If the context is a parent...'?
-
-John.
-
-> +	if (intel_context_is_parent(ce)) {
-> +		struct guc_process_desc *pdesc;
-> +
-> +		ce->parallel.guc.wqi_tail = 0;
-> +		ce->parallel.guc.wqi_head = 0;
-> +
-> +		desc->process_desc = i915_ggtt_offset(ce->state) +
-> +			__get_process_desc_offset(ce);
-> +		desc->wq_addr = i915_ggtt_offset(ce->state) +
-> +			__get_wq_offset(ce);
-> +		desc->wq_size = WQ_SIZE;
-> +
-> +		pdesc = __get_process_desc(ce);
-> +		memset(pdesc, 0, sizeof(*(pdesc)));
-> +		pdesc->stage_id = ce->guc_id.id;
-> +		pdesc->wq_base_addr = desc->wq_addr;
-> +		pdesc->wq_size_bytes = desc->wq_size;
-> +		pdesc->wq_status = WQ_STATUS_ACTIVE;
-> +
-> +		for_each_child(ce, child) {
-> +			desc = __get_lrc_desc(guc, child->guc_id.id);
-> +
-> +			desc->engine_class =
-> +				engine_class_to_guc_class(engine->class);
-> +			desc->hw_context_desc = child->lrc.lrca;
-> +			desc->priority = ce->guc_state.prio;
-> +			desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
-> +			guc_context_policy_init(engine, desc);
-> +		}
-> +	}
-> +
 >   	/*
->   	 * The context_lookup xarray is used to determine if the hardware
->   	 * context is currently registered. There are two cases in which it
-> @@ -2804,6 +2910,12 @@ g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
->   		return NULL;
->   	}
+> @@ -2303,6 +2312,8 @@ static void guc_signal_context_fence(struct intel_context *ce)
+>   {
+>   	unsigned long flags;
 >   
-> +	if (unlikely(intel_context_is_child(ce))) {
-> +		drm_err(&guc_to_gt(guc)->i915->drm,
-> +			"Context is child, desc_idx %u", desc_idx);
-> +		return NULL;
-> +	}
+> +	GEM_BUG_ON(intel_context_is_child(ce));
 > +
->   	return ce;
->   }
+>   	spin_lock_irqsave(&ce->guc_state.lock, flags);
+>   	clr_context_wait_for_deregister_to_register(ce);
+>   	__guc_signal_context_fence(ce);
+> @@ -2333,7 +2344,7 @@ static void guc_context_init(struct intel_context *ce)
 >   
+>   static int guc_request_alloc(struct i915_request *rq)
+>   {
+> -	struct intel_context *ce = rq->context;
+> +	struct intel_context *ce = request_to_scheduling_context(rq);
+>   	struct intel_guc *guc = ce_to_guc(ce);
+>   	unsigned long flags;
+>   	int ret;
 
