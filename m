@@ -2,65 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96E642567C
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 17:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7419D425688
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 17:24:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA8A6E848;
-	Thu,  7 Oct 2021 15:19:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B40376E841;
+	Thu,  7 Oct 2021 15:24:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A41536E848
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 15:19:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226176572"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="226176572"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3DA6E841;
+ Thu,  7 Oct 2021 15:24:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226178025"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="226178025"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 08:18:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="484553670"
-Received: from kmsmsx602.gar.corp.intel.com ([172.21.219.142])
- by fmsmga007.fm.intel.com with ESMTP; 07 Oct 2021 08:18:56 -0700
-Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
- kmsmsx602.gar.corp.intel.com (172.21.219.142) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 7 Oct 2021 23:18:55 +0800
-Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
- pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2242.012;
- Thu, 7 Oct 2021 23:18:55 +0800
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <ckoenig.leichtzumerken@gmail.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2VyaWVz?=
- =?utf-8?B?IHN0YXJ0aW5nIHdpdGggW3Y3LDEvOF0gZHJtL2k5MTUvZ2VtOiBCcmVhayBv?=
- =?utf-8?Q?ut_some_shmem_backend_utils?=
-Thread-Index: AQHXu4D1zxiC44DbykmUqegJK1zt96vHm0qg
-Date: Thu, 7 Oct 2021 15:18:55 +0000
-Message-ID: <37de5d6f8af149d2be998a3991c8ef4d@intel.com>
-References: <20211006091614.970596-1-matthew.auld@intel.com>
- <163353397200.5959.9158572900274841139@emeril.freedesktop.org>
- <d50b2987-6343-fc87-e197-1cc8ac2c4f93@linux.intel.com>
- <cb93ee61-9ac1-587e-0182-6c6ba6671d79@gmail.com>
- <ae2222c4-7167-9047-2430-1d59b9b1fa32@linux.intel.com>
- <c022d4eb-b831-a4ae-6127-01bc526fc9c1@gmail.com>
- <d7c12c69-46a2-9305-0a0d-1848253808ed@linux.intel.com>
-In-Reply-To: <d7c12c69-46a2-9305-0a0d-1848253808ed@linux.intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 07 Oct 2021 08:24:34 -0700
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="590181318"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 08:24:34 -0700
+Date: Thu, 7 Oct 2021 08:19:47 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniele.ceraolospurio@intel.com
+Message-ID: <20211007151947.GA27846@jons-linux-dev-box>
+References: <20211004220637.14746-1-matthew.brost@intel.com>
+ <20211004220637.14746-4-matthew.brost@intel.com>
+ <a2d5377a-ec8e-40ec-d0cf-c91aa51bba48@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv7=2C1/8=5D_drm/i915/gem=3A_Break_out_some?=
- =?utf-8?q?_shmem_backend_utils?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a2d5377a-ec8e-40ec-d0cf-c91aa51bba48@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 03/26] drm/i915/guc: Take engine PM when a
+ context is pinned with GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,114 +53,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBUdnJ0a28gVXJzdWxpbiA8dHZy
-dGtvLnVyc3VsaW5AbGludXguaW50ZWwuY29tPiANClNlbnQ6IFRodXJzZGF5LCBPY3RvYmVyIDcs
-IDIwMjEgNjo0MSBBTQ0KVG86IENocmlzdGlhbiBLw7ZuaWcgPGNrb2VuaWcubGVpY2h0enVtZXJr
-ZW5AZ21haWwuY29tPjsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KQ2M6IFZ1ZHVt
-LCBMYWtzaG1pbmFyYXlhbmEgPGxha3NobWluYXJheWFuYS52dWR1bUBpbnRlbC5jb20+DQpTdWJq
-ZWN0OiBSZTogW0ludGVsLWdmeF0g4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2VyaWVzIHN0
-YXJ0aW5nIHdpdGggW3Y3LDEvOF0gZHJtL2k5MTUvZ2VtOiBCcmVhayBvdXQgc29tZSBzaG1lbSBi
-YWNrZW5kIHV0aWxzDQoNCg0KT24gMDcvMTAvMjAyMSAxMzo1NywgQ2hyaXN0aWFuIEvDtm5pZyB3
-cm90ZToNCj4gQW0gMDcuMTAuMjEgdW0gMTI6NTEgc2NocmllYiBUdnJ0a28gVXJzdWxpbjoNCj4+
-DQo+PiBPbiAwNy8xMC8yMDIxIDEwOjE5LCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOg0KPj4+IEFt
-IDA3LjEwLjIxIHVtIDExOjE1IHNjaHJpZWIgVHZydGtvIFVyc3VsaW46DQo+Pj4+IEhpLA0KPj4+
-Pg0KPj4+PiBPbiAwNi8xMC8yMDIxIDE2OjI2LCBQYXRjaHdvcmsgd3JvdGU6DQo+Pj4+PiAqUGF0
-Y2ggRGV0YWlscyoNCj4+Pj4+ICpTZXJpZXM6KsKgwqDCoCBzZXJpZXMgc3RhcnRpbmcgd2l0aCBb
-djcsMS84XSBkcm0vaTkxNS9nZW06IEJyZWFrIG91dCANCj4+Pj4+IHNvbWUgc2htZW0gYmFja2Vu
-ZCB1dGlscw0KPj4+Pj4gKlVSTDoqwqDCoMKgIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9w
-Lm9yZy9zZXJpZXMvOTU1MDEvDQo+Pj4+PiA8aHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
-b3JnL3Nlcmllcy85NTUwMS8+DQo+Pj4+PiAqU3RhdGU6KsKgwqDCoCBmYWlsdXJlDQo+Pj4+PiAq
-RGV0YWlsczoqDQo+Pj4+PiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
-L1BhdGNod29ya18yMTI2NC9pbmRleC5odG0NCj4+Pj4+IGwgDQo+Pj4+PiA8aHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjEyNjQvaW5kZXguaHQNCj4+
-Pj4+IG1sPg0KPj4+Pj4NCj4+Pj4+DQo+Pj4+PiDCoCBDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9t
-IENJX0RSTV8xMDY4OF9mdWxsIC0+IA0KPj4+Pj4gUGF0Y2h3b3JrXzIxMjY0X2Z1bGwNCj4+Pj4+
-DQo+Pj4+Pg0KPj4+Pj4gwqDCoMKgIFN1bW1hcnkNCj4+Pj4+DQo+Pj4+PiAqRkFJTFVSRSoNCj4+
-Pj4+DQo+Pj4+PiBTZXJpb3VzIHVua25vd24gY2hhbmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtf
-MjEyNjRfZnVsbCANCj4+Pj4+IGFic29sdXRlbHkgbmVlZCB0byBiZSB2ZXJpZmllZCBtYW51YWxs
-eS4NCj4+Pj4+DQo+Pj4+PiBJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5nZXMgaGF2ZSBu
-b3RoaW5nIHRvIGRvIHdpdGggdGhlIA0KPj4+Pj4gY2hhbmdlcyBpbnRyb2R1Y2VkIGluIFBhdGNo
-d29ya18yMTI2NF9mdWxsLCBwbGVhc2Ugbm90aWZ5IHlvdXIgYnVnIA0KPj4+Pj4gdGVhbSB0byBh
-bGxvdyB0aGVtIHRvIGRvY3VtZW50IHRoaXMgbmV3IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2lsbCAN
-Cj4+Pj4+IHJlZHVjZSBmYWxzZSBwb3NpdGl2ZXMgaW4gQ0kuDQo+Pj4+Pg0KPj4+Pj4NCj4+Pj4+
-IMKgwqDCoCBQb3NzaWJsZSBuZXcgaXNzdWVzDQo+Pj4+Pg0KPj4+Pj4gSGVyZSBhcmUgdGhlIHVu
-a25vd24gY2hhbmdlcyB0aGF0IG1heSBoYXZlIGJlZW4gaW50cm9kdWNlZCBpbg0KPj4+Pj4gUGF0
-Y2h3b3JrXzIxMjY0X2Z1bGw6DQo+Pj4+Pg0KPj4+Pj4NCj4+Pj4+IMKgwqDCoMKgwqAgSUdUIGNo
-YW5nZXMNCj4+Pj4+DQo+Pj4+Pg0KPj4+Pj4gwqDCoMKgwqDCoMKgwqAgUG9zc2libGUgcmVncmVz
-c2lvbnMNCj4+Pj4+DQo+Pj4+PiDCoCAqDQo+Pj4+Pg0KPj4+Pj4gwqDCoMKgIGlndEBnZW1fc3lu
-Y0BiYXNpYy1tYW55LWVhY2g6DQo+Pj4+Pg0KPj4+Pj4gwqDCoMKgwqDCoCBvIHNoYXJkLWFwbDog
-Tk9UUlVOIC0+IElOQ09NUExFVEUgDQo+Pj4+PiA8aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjEyNjQvc2hhcmQtYXANCj4+Pj4+IGw3L2lndEBnZW1f
-c3luY0BiYXNpYy1tYW55LWVhY2guaHRtbD4NCj4+Pj4+DQo+Pj4+IFNvbWV0aGluZyBzdGlsbCBm
-aXNoeSBpbiB0aGUgdW5sb2NrZWQgaXRlcmF0b3I/IE9yIA0KPj4+PiBkbWFfcmVzdl9nZXRfZmVu
-Y2VzIHVzaW5nIGl0Pw0KPj4+DQo+Pj4gUHJvYmFibHkgdGhlIGxhdGVyLiBJJ20gZ29pbmcgdG8g
-dGFrZSBhIGxvb2suDQo+Pj4NCj4+PiBUaGFua3MgZm9yIHRoZSBub3RpY2UsDQo+Pj4gQ2hyaXN0
-aWFuLg0KPj4+DQo+Pj4+DQo+Pj4+IDw2PiBbMTg3LjU1MTIzNV0gW0lHVF0gZ2VtX3N5bmM6IHN0
-YXJ0aW5nIHN1YnRlc3QgYmFzaWMtbWFueS1lYWNoIA0KPj4+PiA8MT4gWzE4OC45MzU0NjJdIEJV
-Rzoga2VybmVsIE5VTEwgcG9pbnRlciBkZXJlZmVyZW5jZSwgYWRkcmVzczoNCj4+Pj4gMDAwMDAw
-MDAwMDAwMDAxMA0KPj4+PiA8MT4gWzE4OC45MzU0ODVdICNQRjogc3VwZXJ2aXNvciB3cml0ZSBh
-Y2Nlc3MgaW4ga2VybmVsIG1vZGUgPDE+IA0KPj4+PiBbMTg4LjkzNTQ5NV0gI1BGOiBlcnJvcl9j
-b2RlKDB4MDAwMikgLSBub3QtcHJlc2VudCBwYWdlIDw2PiANCj4+Pj4gWzE4OC45MzU1MDRdIFBH
-RCAwIFA0RCAwIDw0PiBbMTg4LjkzNTUxMl0gT29wczogMDAwMiBbIzFdIFBSRUVNUFQgDQo+Pj4+
-IFNNUCBOT1BUSSA8ND4gWzE4OC45MzU1MjFdIENQVTogMiBQSUQ6IDE0NjcgQ29tbTogZ2VtX3N5
-bmMgTm90IA0KPj4+PiB0YWludGVkIDUuMTUuMC1yYzQtQ0ktUGF0Y2h3b3JrXzIxMjY0KyAjMSA8
-ND4gWzE4OC45MzU1MzVdIEhhcmR3YXJlIA0KPj4+PiBuYW1lOsKgIC9OVUM2Q0FZQiwgQklPUw0K
-Pj4+PiBBWUFQTENFTC44NkEuMDA0OS4yMDE4LjA1MDguMTM1NiAwNS8wOC8yMDE4IDw0PiBbMTg4
-LjkzNTU0Nl0gUklQOiANCj4+Pj4gMDAxMDpkbWFfcmVzdl9nZXRfZmVuY2VzKzB4MTE2LzB4MmQw
-DQo+Pj4+IDw0PiBbMTg4LjkzNTU2MF0gQ29kZTogMTAgODUgYzAgN2YgYzkgYmUgMDMgMDAgMDAg
-MDAgZTggMTUgOGIgZGYgZmYgDQo+Pj4+IGViIGJkIGU4IDhlIGM2IGZmIGZmIGViIGI2IDQxIDhi
-IDA0IDI0IDQ5IDhiIDU1IDAwIDQ4IDg5IGU3IDhkIDQ4IA0KPj4+PiAwMQ0KPj4+PiA0MSA4OSAw
-YyAyNCA8NGM+IDg5IDM0IGMyIGU4IDQxIGYyIGZmIGZmIDQ5IDg5IGM2IDQ4IDg1IGMwIDc1IDhj
-IDQ4IA0KPj4+PiA4YiA0NCAyNCAxMCA8ND4gWzE4OC45MzU1ODNdIFJTUDogMDAxODpmZmZmYzkw
-MDAxMWRiY2M4IEVGTEFHUzogDQo+Pj4+IDAwMDEwMjAyIDw0PiBbMTg4LjkzNTU5M10gUkFYOiAw
-MDAwMDAwMDAwMDAwMDAwIFJCWDogDQo+Pj4+IDAwMDAwMDAwZmZmZmZmZmYgUkNYOg0KPj4+PiAw
-MDAwMDAwMDAwMDAwMDAxDQo+Pj4+IDw0PiBbMTg4LjkzNTYwM10gUkRYOiAwMDAwMDAwMDAwMDAw
-MDEwIFJTSTogZmZmZmZmZmY4MjJlMzQzYyBSREk6IA0KPj4+PiBmZmZmYzkwMDAxMWRiY2M4DQo+
-Pj4+IDw0PiBbMTg4LjkzNTYxM10gUkJQOiBmZmZmYzkwMDAxMWRiZDQ4IFIwODogZmZmZjg4ODEy
-ZDI1NWJiOCBSMDk6IA0KPj4+PiAwMDAwMDAwMGZmZmZmZmZlDQo+Pj4+IDw0PiBbMTg4LjkzNTYy
-M10gUjEwOiAwMDAwMDAwMDAwMDAwMDAxIFIxMTogMDAwMDAwMDAwMDAwMDAwMCBSMTI6IA0KPj4+
-PiBmZmZmYzkwMDAxMWRiZDQ0DQo+Pj4+IDw0PiBbMTg4LjkzNTYzM10gUjEzOiBmZmZmYzkwMDAx
-MWRiZDUwIFIxNDogZmZmZjg4ODExM2QyOWNjMCBSMTU6IA0KPj4+PiAwMDAwMDAwMDAwMDAwMDAw
-DQo+Pj4+IDw0PiBbMTg4LjkzNTY0M10gRlM6wqAgMDAwMDdmNjhkMTdlOTcwMCgwMDAwKQ0KPj4+
-PiBHUzpmZmZmODg4Mjc3OTAwMDAwKDAwMDApIGtubEdTOjAwMDAwMDAwMDAwMDAwMDAgPDQ+IFsx
-ODguOTM1NjU1XSANCj4+Pj4gQ1M6wqAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAw
-MDAwODAwNTAwMzMgPDQ+IFsxODguOTM1NjY1XSANCj4+Pj4gQ1IyOiAwMDAwMDAwMDAwMDAwMDEw
-IENSMzogMDAwMDAwMDEyZDBhNDAwMCBDUjQ6DQo+Pj4+IDAwMDAwMDAwMDAzNTA2ZTANCj4+Pj4g
-PDQ+IFsxODguOTM1Njc2XSBDYWxsIFRyYWNlOg0KPj4+PiA8ND4gWzE4OC45MzU2ODVdwqAgaTkx
-NV9nZW1fb2JqZWN0X3dhaXQrMHgxZmYvMHg0MTAgW2k5MTVdIDw0PiANCj4+Pj4gWzE4OC45MzU5
-ODhdwqAgaTkxNV9nZW1fd2FpdF9pb2N0bCsweGYyLzB4MmEwIFtpOTE1XSA8ND4gDQo+Pj4+IFsx
-ODguOTM2MjcyXcKgID8gaTkxNV9nZW1fb2JqZWN0X3dhaXQrMHg0MTAvMHg0MTAgW2k5MTVdIDw0
-PiANCj4+Pj4gWzE4OC45MzY1MzNdwqAgZHJtX2lvY3RsX2tlcm5lbCsweGFlLzB4MTQwIDw0PiBb
-MTg4LjkzNjU0Nl3CoCANCj4+Pj4gZHJtX2lvY3RsKzB4MjAxLzB4M2QwIDw0PiBbMTg4LjkzNjU1
-NV3CoCA/IA0KPj4+PiBpOTE1X2dlbV9vYmplY3Rfd2FpdCsweDQxMC8weDQxMCBbaTkxNV0gPDQ+
-IFsxODguOTM2ODIwXcKgID8gDQo+Pj4+IF9fZmdldF9maWxlcysweGMyLzB4MWMwIDw0PiBbMTg4
-LjkzNjgzMF3CoCA/IF9fZmdldF9maWxlcysweGRhLzB4MWMwIA0KPj4+PiA8ND4gWzE4OC45MzY4
-MzldwqAgX194NjRfc3lzX2lvY3RsKzB4NmQvMHhhMCA8ND4gWzE4OC45MzY4NDhdwqAgDQo+Pj4+
-IGRvX3N5c2NhbGxfNjQrMHgzYS8weGIwIDw0PiBbMTg4LjkzNjg1OV0gDQo+Pj4+IGVudHJ5X1NZ
-U0NBTExfNjRfYWZ0ZXJfaHdmcmFtZSsweDQ0LzB4YWUNCj4+DQo+PiBGV0lXIGlmIHlvdSBkaXNh
-c3NlbWJsZSB0aGUgY29kZSBpdCBzZWVtcyB0byBiZSBjcmFzaGluZyBpbjoNCj4+DQo+PiDCoCAo
-KnNoYXJlZClbKCpzaGFyZWRfY291bnQpKytdID0gZmVuY2U7IC8vIG1vdiAlcjE0LCAoJXJkeCwg
-JXJheCwgOCkNCj4+DQo+PiBSRFggaXMgKnNoYXJlZCwgUkFYIGlzICpzaGFyZWRfY291bnQsIFJD
-WCBpcyAqc2hhcmVkX2NvdW50KysgKGZvciB0aGUgDQo+PiBuZXh0IGl0ZXJhdGlvbi4gUjEzIGlz
-IHNoYXJlIGFuZCBSMTIgc2hhcmVkX2NvdW50Lg0KPj4NCj4+IFRoYXQgKnNoYXJlZCBjYW4gY29u
-dGFpbiAwMDAwMDAwMDAwMDAwMDEwIG1ha2VzIG5vIHNlbnNlIHRvIG1lLiBBdCANCj4+IGxlYXN0
-IHlldC4gOikNCj4gDQo+IFllYWgsIG1lIG5laXRoZXIuIEkndmUgZ29uZSBvdmVyIHRoZSB3aG9s
-ZSBjb2RlIG11bHRpcGxlIHRpbWUgbm93IGFuZCANCj4gYWJzb2x1dGVseSBkb24ndCBnZXQgd2hh
-dCdzIGhhcHBlbmluZyBoZXJlLg0KPiANCj4gQWRkaW5nIHNvbWUgbW9yZSBzZWxmdGVzdHMgZGlk
-bid0IGhlbHBlZCBlaXRoZXIuIEFzIGZhciBhcyBJIGNhbiBzZWUgDQo+IHRoZSBjb2RlIHdvcmtz
-IGFzIGludGVuZGVkLg0KPiANCj4gRG8gd2UgaGF2ZSBhbnkgb3RoZXIgcmVwb3J0cyBvZiBjcmFz
-aGVzPw0KDQpZZXMsIHNwb3JhZGljIGJ1dCBwcmVzZW50IGFjcm9zcyBkaWZmZXJlbnQgcGxhdGZv
-cm1zIHNpbmNlIHRoZSBjaGFuZ2Ugd2VudCBpdDogDQpodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL2lndEBnZW1fc3luY0BiYXNpYy1tYW55LWVhY2guaHRtbC4gDQpTbyBp
-c3N1ZSBpcyBwcm9iYWJseSByZWFsLg0KDQpEaWQgbm90IGZpbmQgYW55IG90aGVyIHRlc3RzIGZh
-aWxpbmcgd2l0aCB0aGUgc2FtZSBzaWduYXR1cmUuIExha3NobWkgYXJlIHlvdSBwZXJoYXBzIGFi
-bGUgdG8gc2VhcmNoIGZvciB0aGUgc2FtZSBvciBzaW1pbGFyIHNpZ25hdHVyZSBhY3Jvc3MgdGhl
-IHdob2xlIHNldCBvZiByZWNlbnQgcmVzdWx0cz8NCg0KW0xha3NobWldIEJvdGggdGhlIHJlZ3Jl
-c3Npb25zIGZhaWx1cmVzIGFyZSBuZXcuIEkgZmlsZWQgYmVsb3cgaXNzdWVzIGFuZCByZXBvcnRl
-ZC4NCmh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvNDI3
-NQ0KaWd0QGk5MTVfcG1fZGNAZGM5LWRwbXMgLSBmYWlsIC0gRmFpbGVkIGFzc2VydGlvbjogZGM5
-X3dhaXRfZW50cnkoZGF0YS0+ZGVidWdmc19mZCwgZGNfdGFyZ2V0LCBwcmV2X2RjLCAzMDAwKSwg
-REM5IHN0YXRlIGlzIG5vdCBhY2hpZXZlZA0KDQpodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5v
-cmcvZHJtL2ludGVsLy0vaXNzdWVzLzQyNzQNCmlndEBnZW1fc3luY0BiYXNpYy1tYW55LWVhY2gg
-LSBpbmNvbXBsZXRlIC0gUklQOiAwMDEwOmRtYV9yZXN2X2dldF9mZW5jZXMNCg0KUmVnYXJkcywN
-Cg0KVHZydGtvDQo=
+On Wed, Oct 06, 2021 at 08:45:42PM -0700, John Harrison wrote:
+> On 10/4/2021 15:06, Matthew Brost wrote:
+> > Taking a PM reference to prevent intel_gt_wait_for_idle from short
+> > circuiting while a scheduling of user context could be enabled.
+> I'm not sure what 'while a scheduling of user context could be enabled'
+> means.
+>
+
+Not really sure how this isn't clear.
+
+It means if a user context has scheduling enabled this function cannot
+short circuit returning idle.
+
+Matt
+ 
+> John.
+> 
+> > Returning GT idle when it is not can cause all sorts of issues
+> > throughout the stack.
+> > 
+> > v2:
+> >   (Daniel Vetter)
+> >    - Add might_lock annotations to pin / unpin function
+> > v3:
+> >   (CI)
+> >    - Drop intel_engine_pm_might_put from unpin path as an async put is
+> >      used
+> > v4:
+> >   (John Harrison)
+> >    - Make intel_engine_pm_might_get/put work with GuC virtual engines
+> >    - Update commit message
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_context.c       |  2 ++
+> >   drivers/gpu/drm/i915/gt/intel_engine_pm.h     | 32 +++++++++++++++++
+> >   drivers/gpu/drm/i915/gt/intel_gt_pm.h         | 10 ++++++
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 36 +++++++++++++++++--
+> >   drivers/gpu/drm/i915/intel_wakeref.h          | 12 +++++++
+> >   5 files changed, 89 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > index 1076066f41e0..f601323b939f 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > @@ -240,6 +240,8 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+> >   	if (err)
+> >   		goto err_post_unpin;
+> > +	intel_engine_pm_might_get(ce->engine);
+> > +
+> >   	if (unlikely(intel_context_is_closed(ce))) {
+> >   		err = -ENOENT;
+> >   		goto err_unlock;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.h b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > index 6fdeae668e6e..d68675925b79 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > @@ -6,9 +6,11 @@
+> >   #ifndef INTEL_ENGINE_PM_H
+> >   #define INTEL_ENGINE_PM_H
+> > +#include "i915_drv.h"
+> >   #include "i915_request.h"
+> >   #include "intel_engine_types.h"
+> >   #include "intel_wakeref.h"
+> > +#include "intel_gt_pm.h"
+> >   static inline bool
+> >   intel_engine_pm_is_awake(const struct intel_engine_cs *engine)
+> > @@ -31,6 +33,21 @@ static inline bool intel_engine_pm_get_if_awake(struct intel_engine_cs *engine)
+> >   	return intel_wakeref_get_if_active(&engine->wakeref);
+> >   }
+> > +static inline void intel_engine_pm_might_get(struct intel_engine_cs *engine)
+> > +{
+> > +	if (!intel_engine_is_virtual(engine)) {
+> > +		intel_wakeref_might_get(&engine->wakeref);
+> > +	} else {
+> > +		struct intel_gt *gt = engine->gt;
+> > +		struct intel_engine_cs *tengine;
+> > +		intel_engine_mask_t tmp, mask = engine->mask;
+> > +
+> > +		for_each_engine_masked(tengine, gt, mask, tmp)
+> > +			intel_wakeref_might_get(&tengine->wakeref);
+> > +	}
+> > +	intel_gt_pm_might_get(engine->gt);
+> > +}
+> > +
+> >   static inline void intel_engine_pm_put(struct intel_engine_cs *engine)
+> >   {
+> >   	intel_wakeref_put(&engine->wakeref);
+> > @@ -52,6 +69,21 @@ static inline void intel_engine_pm_flush(struct intel_engine_cs *engine)
+> >   	intel_wakeref_unlock_wait(&engine->wakeref);
+> >   }
+> > +static inline void intel_engine_pm_might_put(struct intel_engine_cs *engine)
+> > +{
+> > +	if (!intel_engine_is_virtual(engine)) {
+> > +		intel_wakeref_might_put(&engine->wakeref);
+> > +	} else {
+> > +		struct intel_gt *gt = engine->gt;
+> > +		struct intel_engine_cs *tengine;
+> > +		intel_engine_mask_t tmp, mask = engine->mask;
+> > +
+> > +		for_each_engine_masked(tengine, gt, mask, tmp)
+> > +			intel_wakeref_might_put(&tengine->wakeref);
+> > +	}
+> > +	intel_gt_pm_might_put(engine->gt);
+> > +}
+> > +
+> >   static inline struct i915_request *
+> >   intel_engine_create_kernel_request(struct intel_engine_cs *engine)
+> >   {
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > index 05de6c1af25b..bc898df7a48c 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > @@ -31,6 +31,11 @@ static inline bool intel_gt_pm_get_if_awake(struct intel_gt *gt)
+> >   	return intel_wakeref_get_if_active(&gt->wakeref);
+> >   }
+> > +static inline void intel_gt_pm_might_get(struct intel_gt *gt)
+> > +{
+> > +	intel_wakeref_might_get(&gt->wakeref);
+> > +}
+> > +
+> >   static inline void intel_gt_pm_put(struct intel_gt *gt)
+> >   {
+> >   	intel_wakeref_put(&gt->wakeref);
+> > @@ -41,6 +46,11 @@ static inline void intel_gt_pm_put_async(struct intel_gt *gt)
+> >   	intel_wakeref_put_async(&gt->wakeref);
+> >   }
+> > +static inline void intel_gt_pm_might_put(struct intel_gt *gt)
+> > +{
+> > +	intel_wakeref_might_put(&gt->wakeref);
+> > +}
+> > +
+> >   #define with_intel_gt_pm(gt, tmp) \
+> >   	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
+> >   	     intel_gt_pm_put(gt), tmp = 0)
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 17da2fea1bff..8b82da50c2bc 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -1571,7 +1571,12 @@ static int guc_context_pre_pin(struct intel_context *ce,
+> >   static int guc_context_pin(struct intel_context *ce, void *vaddr)
+> >   {
+> > -	return __guc_context_pin(ce, ce->engine, vaddr);
+> > +	int ret = __guc_context_pin(ce, ce->engine, vaddr);
+> > +
+> > +	if (likely(!ret && !intel_context_is_barrier(ce)))
+> > +		intel_engine_pm_get(ce->engine);
+> > +
+> > +	return ret;
+> >   }
+> >   static void guc_context_unpin(struct intel_context *ce)
+> > @@ -1580,6 +1585,9 @@ static void guc_context_unpin(struct intel_context *ce)
+> >   	unpin_guc_id(guc, ce);
+> >   	lrc_unpin(ce);
+> > +
+> > +	if (likely(!intel_context_is_barrier(ce)))
+> > +		intel_engine_pm_put_async(ce->engine);
+> >   }
+> >   static void guc_context_post_unpin(struct intel_context *ce)
+> > @@ -2341,8 +2349,30 @@ static int guc_virtual_context_pre_pin(struct intel_context *ce,
+> >   static int guc_virtual_context_pin(struct intel_context *ce, void *vaddr)
+> >   {
+> >   	struct intel_engine_cs *engine = guc_virtual_get_sibling(ce->engine, 0);
+> > +	int ret = __guc_context_pin(ce, engine, vaddr);
+> > +	intel_engine_mask_t tmp, mask = ce->engine->mask;
+> > +
+> > +	if (likely(!ret))
+> > +		for_each_engine_masked(engine, ce->engine->gt, mask, tmp)
+> > +			intel_engine_pm_get(engine);
+> > -	return __guc_context_pin(ce, engine, vaddr);
+> > +	return ret;
+> > +}
+> > +
+> > +static void guc_virtual_context_unpin(struct intel_context *ce)
+> > +{
+> > +	intel_engine_mask_t tmp, mask = ce->engine->mask;
+> > +	struct intel_engine_cs *engine;
+> > +	struct intel_guc *guc = ce_to_guc(ce);
+> > +
+> > +	GEM_BUG_ON(context_enabled(ce));
+> > +	GEM_BUG_ON(intel_context_is_barrier(ce));
+> > +
+> > +	unpin_guc_id(guc, ce);
+> > +	lrc_unpin(ce);
+> > +
+> > +	for_each_engine_masked(engine, ce->engine->gt, mask, tmp)
+> > +		intel_engine_pm_put_async(engine);
+> >   }
+> >   static void guc_virtual_context_enter(struct intel_context *ce)
+> > @@ -2379,7 +2409,7 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+> >   	.pre_pin = guc_virtual_context_pre_pin,
+> >   	.pin = guc_virtual_context_pin,
+> > -	.unpin = guc_context_unpin,
+> > +	.unpin = guc_virtual_context_unpin,
+> >   	.post_unpin = guc_context_post_unpin,
+> >   	.ban = guc_context_ban,
+> > diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
+> > index 545c8f277c46..4f4c2e15e736 100644
+> > --- a/drivers/gpu/drm/i915/intel_wakeref.h
+> > +++ b/drivers/gpu/drm/i915/intel_wakeref.h
+> > @@ -123,6 +123,12 @@ enum {
+> >   	__INTEL_WAKEREF_PUT_LAST_BIT__
+> >   };
+> > +static inline void
+> > +intel_wakeref_might_get(struct intel_wakeref *wf)
+> > +{
+> > +	might_lock(&wf->mutex);
+> > +}
+> > +
+> >   /**
+> >    * intel_wakeref_put_flags: Release the wakeref
+> >    * @wf: the wakeref
+> > @@ -170,6 +176,12 @@ intel_wakeref_put_delay(struct intel_wakeref *wf, unsigned long delay)
+> >   			    FIELD_PREP(INTEL_WAKEREF_PUT_DELAY, delay));
+> >   }
+> > +static inline void
+> > +intel_wakeref_might_put(struct intel_wakeref *wf)
+> > +{
+> > +	might_lock(&wf->mutex);
+> > +}
+> > +
+> >   /**
+> >    * intel_wakeref_lock: Lock the wakeref (mutex)
+> >    * @wf: the wakeref
+> 
