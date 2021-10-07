@@ -1,41 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6614259FD
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 19:52:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF80425AA9
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 20:24:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04A146F37F;
-	Thu,  7 Oct 2021 17:52:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02C426F402;
+	Thu,  7 Oct 2021 18:24:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D28D06F37F
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 17:52:14 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226274086"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="226274086"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 10:52:13 -0700
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="489105674"
-Received: from roliveir-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.41.10])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 10:52:09 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: gwan-gyeong.mun@intel.com, mika.kahola@intel.com, manasi.d.navare@intel.com,
- jose.souza@intel.com, Animesh Manna <animesh.manna@intel.com>
-In-Reply-To: <20211007155729.27812-5-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211007155729.27812-1-animesh.manna@intel.com>
- <20211007155729.27812-5-animesh.manna@intel.com>
-Date: Thu, 07 Oct 2021 20:52:05 +0300
-Message-ID: <87ily8yb7e.fsf@intel.com>
+Received: from conssluserg-06.nifty.com (conssluserg-06.nifty.com
+ [210.131.2.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A36216E84E;
+ Thu,  7 Oct 2021 15:50:49 +0000 (UTC)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48]) (authenticated)
+ by conssluserg-06.nifty.com with ESMTP id 197FoMK3025660;
+ Fri, 8 Oct 2021 00:50:23 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-06.nifty.com 197FoMK3025660
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+ s=dec2015msa; t=1633621823;
+ bh=2ictrqXAcs0/Jf+501IU2xn9Ag6+SYGQ2GB1JSMdfsk=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=XMZHChvUbi0/x64LrjBMjBDD8xRAZzR0gb9nQmJ4eBWHB+eJXeRdTWOM7lOGE2Pbk
+ o+ybVG6MvojCUYxmsOrO94dutpJ4TF5r27EIaAkutr5R3xWYp8zutrKW4eVr2BHbXe
+ mP5ktpD991UXujzbHoZ6Ra21/WrPvbgBxukVk2oyt8XoQSh9g2pKYyi0DJlsJzuGHt
+ 0bxzEgLKc3uBh/UYnUCmgBcQm6nt585LAM+9mMvnvVTghIR6ziEIvqTz3mtKrKI0ZI
+ LW/ME6rITE8b9ySgQKetVBIGyjHa14nmpY4LAdpDrwxkCxPfJDynCs04O1B6pkhPsD
+ qxfwCnglWwjSQ==
+X-Nifty-SrcIP: [209.85.216.48]
+Received: by mail-pj1-f48.google.com with SMTP id
+ g13-20020a17090a3c8d00b00196286963b9so7206685pjc.3; 
+ Thu, 07 Oct 2021 08:50:23 -0700 (PDT)
+X-Gm-Message-State: AOAM532SHH6TSsRbvbYfjIeO3+yPt/FkZGr4fT/OVOaX/yG3zCHMeEHS
+ wPo90swcJ+KBFXTg4QN2SJRb9saahaFQ/e6Jbcc=
+X-Google-Smtp-Source: ABdhPJzGjr0g3OMZKs7rwCvM6PfYXgPw2KXHF9cvejM0rXE06zKWYrhO1bS2++snMAc8G6LVr00CozT0DNarzLxE4sk=
+X-Received: by 2002:a17:90a:4414:: with SMTP id
+ s20mr5636167pjg.144.1633621822196; 
+ Thu, 07 Oct 2021 08:50:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/panelreplay: Added state
- checker for panel replay state
+References: <20211005171728.3147094-1-lucas.demarchi@intel.com>
+In-Reply-To: <20211005171728.3147094-1-lucas.demarchi@intel.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Fri, 8 Oct 2021 00:49:44 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARbNQHPxHHp4=oLOsJLpaCv0c3NRHGSs6hAKnP3N4DHKQ@mail.gmail.com>
+Message-ID: <CAK7LNARbNQHPxHHp4=oLOsJLpaCv0c3NRHGSs6hAKnP3N4DHKQ@mail.gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Steven Price <steven.price@arm.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Andrzej Hajda <a.hajda@samsung.com>, Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Thu, 07 Oct 2021 18:24:08 +0000
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: remove IS_ACTIVE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,48 +71,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 07 Oct 2021, Animesh Manna <animesh.manna@intel.com> wrote:
-> has_panel_replay flag is used to check panel replay state
-> which is part of crtc_state structure.
+On Wed, Oct 6, 2021 at 2:21 AM Lucas De Marchi <lucas.demarchi@intel.com> wrote:
 >
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 1 +
->  drivers/gpu/drm/i915/display/intel_psr.c     | 2 ++
->  2 files changed, 3 insertions(+)
+> When trying to bring IS_ACTIVE to linux/kconfig.h I thought it wouldn't
+> provide much value just encapsulating it in a boolean context. So I also
+> added the support for handling undefined macros as the IS_ENABLED()
+> counterpart. However the feedback received from Masahiro Yamada was that
+> it is too ugly, not providing much value. And just wrapping in a boolean
+> context is too dumb - we could simply open code it.
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 4f0badb11bbb..a30b6fe87dfc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8136,6 +8136,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->  			PIPE_CONF_CHECK_BOOL(has_psr);
->  			PIPE_CONF_CHECK_BOOL(has_psr2);
->  			PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
-> +			PIPE_CONF_CHECK_BOOL(has_panel_replay);
->  			PIPE_CONF_CHECK_I(dc3co_exitline);
->  		}
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 197cab7551c6..756f3c775e71 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1050,6 +1050,8 @@ void intel_psr_get_config(struct intel_encoder *encoder,
->  	 */
->  	pipe_config->has_psr = true;
->  	pipe_config->has_psr2 = intel_dp->psr.psr2_enabled;
-> +	pipe_config->has_panel_replay = intel_dp->psr.enabled &&
-> +					intel_dp_is_edp(intel_dp);
+> As detailed in commit babaab2f4738 ("drm/i915: Encapsulate kconfig
+> constant values inside boolean predicates"), the IS_ACTIVE macro was
+> added to workaround a compilation warning. However after checking again
+> our current uses of IS_ACTIVE it turned out there is only
+> 1 case in which it triggers a warning in clang (due
+> -Wconstant-logical-operand) and 2 in smatch. All the others
+> can simply use the shorter version, without wrapping it in any macro.
+>
+> So here I'm dialing all the way back to simply removing the macro. That
+> single case hit by clang can be changed to make the constant come first,
+> so it doesn't think it's mask:
+>
+>         -       if (context && CONFIG_DRM_I915_FENCE_TIMEOUT)
+>         +       if (CONFIG_DRM_I915_FENCE_TIMEOUT && context)
+>
+> As talked with Dan Carpenter, that logic will be added in smatch as
+> well, so it will also stop warning about it.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Get config is supposed to read the config from hardware, and then the
-state checker compares sw and hw states. This seems off.
+Reviewed-by: Masahiro Yamada <masahiroy@kernel.org>
 
-BR,
-Jani.
 
->  	pipe_config->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
->  
->  	if (!intel_dp->psr.psr2_enabled)
+
+
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Best Regards
+Masahiro Yamada
