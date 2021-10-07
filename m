@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00BBD424C2E
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 05:17:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD23B424C2F
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 05:17:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B592C6E82A;
-	Thu,  7 Oct 2021 03:17:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADCFA6E82C;
+	Thu,  7 Oct 2021 03:17:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15F066E82C
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 03:17:03 +0000 (UTC)
+ (us-smtp-delivery-44.mimecast.com [205.139.111.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 204C06E82C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 03:17:06 +0000 (UTC)
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-285-9x_9Wg4BMEiPW7a2FM0xeA-1; Wed, 06 Oct 2021 23:16:59 -0400
-X-MC-Unique: 9x_9Wg4BMEiPW7a2FM0xeA-1
+ us-mta-32-9c_3YJ-_OLSs1ism_smjxQ-1; Wed, 06 Oct 2021 23:17:01 -0400
+X-MC-Unique: 9c_3YJ-_OLSs1ism_smjxQ-1
 Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
  [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A560E180830C;
- Thu,  7 Oct 2021 03:16:58 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B6C801084681;
+ Thu,  7 Oct 2021 03:17:00 +0000 (UTC)
 Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 22F3C5D9C6;
- Thu,  7 Oct 2021 03:16:56 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2951C5D9C6;
+ Thu,  7 Oct 2021 03:16:58 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Dave Airlie <airlied@redhat.com>
-Date: Thu,  7 Oct 2021 13:13:16 +1000
-Message-Id: <20211007031318.3088987-7-airlied@gmail.com>
+Date: Thu,  7 Oct 2021 13:13:17 +1000
+Message-Id: <20211007031318.3088987-8-airlied@gmail.com>
 In-Reply-To: <20211007031318.3088987-1-airlied@gmail.com>
 References: <20211007031318.3088987-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -42,8 +42,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 6/8] drm/i915/display: refactor fbdev pin/unpin
- out into functions.
+Subject: [Intel-gfx] [PATCH 7/8] drm/i915/display: move fbdev pin code into
+ fb_pin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,25 +61,49 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-This just cleans up the calls a bit.
+This moves the fbdev pin code over and moves the internal
+interfaces to static.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c | 64 +++++++++++++---------
- 1 file changed, 38 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb_pin.c | 34 +++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_fb_pin.h | 15 ++++-----
+ drivers/gpu/drm/i915/display/intel_fbdev.c  | 29 ------------------
+ 3 files changed, 38 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i=
-915/display/intel_fbdev.c
-index adc3a81be9f7..7ac9348d20c5 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -171,6 +171,35 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
- =09return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/=
+i915/display/intel_fb_pin.c
+index c5f6dd1aab80..760436b99a34 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -71,7 +71,7 @@ intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
+ =09return vma;
  }
 =20
-+static int intel_fbdev_pin_and_fence(struct drm_i915_private *dev_priv,
-+=09=09=09=09     struct intel_fbdev *ifbdev,
-+=09=09=09=09     void **vaddr)
+-struct i915_vma *
++static struct i915_vma *
+ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+ =09=09=09   bool phys_cursor,
+ =09=09=09   const struct i915_ggtt_view *view,
+@@ -199,7 +199,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+ =09return vma;
+ }
+=20
+-void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
++static void
++intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+ {
+ =09if (flags & PLANE_HAS_FENCE)
+ =09=09i915_vma_unpin_fence(vma);
+@@ -272,3 +273,32 @@ void intel_plane_unpin_fb(struct intel_plane_state *ol=
+d_plane_state)
+ =09=09=09intel_dpt_unpin(intel_fb->dpt_vm);
+ =09}
+ }
++
++int intel_fbdev_pin_and_fence(struct drm_i915_private *dev_priv,
++=09=09=09      struct intel_fbdev *ifbdev,
++=09=09=09      void **vaddr)
 +{
 +=09const struct i915_ggtt_view view =3D {
 +=09=09.type =3D I915_GGTT_VIEW_NORMAL,
@@ -100,108 +124,85 @@ index adc3a81be9f7..7ac9348d20c5 100644
 +=09return 0;
 +}
 +
-+static void intel_fbdev_unpin(struct intel_fbdev *ifbdev)
++void intel_fbdev_unpin(struct intel_fbdev *ifbdev)
 +{
 +=09if (ifbdev->vma)
 +=09=09intel_unpin_fb_vma(ifbdev->vma, ifbdev->vma_flags);
 +}
-+
- static int intelfb_create(struct drm_fb_helper *helper,
- =09=09=09  struct drm_fb_helper_surface_size *sizes)
- {
-@@ -181,13 +210,8 @@ static int intelfb_create(struct drm_fb_helper *helper=
-,
- =09struct drm_i915_private *dev_priv =3D to_i915(dev);
- =09struct pci_dev *pdev =3D to_pci_dev(dev_priv->drm.dev);
- =09struct i915_ggtt *ggtt =3D &dev_priv->ggtt;
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/=
+i915/display/intel_fb_pin.h
+index e4fcd0218d9d..88d736264348 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -8,21 +8,18 @@
+=20
+ #include <linux/types.h>
+=20
++struct drm_i915_private;
+ struct drm_framebuffer;
++struct intel_fbdev;
+ struct i915_vma;
+ struct intel_plane_state;
+ struct i915_ggtt_view;
+=20
+-struct i915_vma *
+-intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+-=09=09=09   bool phys_cursor,
+-=09=09=09   const struct i915_ggtt_view *view,
+-=09=09=09   bool uses_fence,
+-=09=09=09   unsigned long *out_flags);
+-
+-void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
+-
+ int intel_plane_pin_fb(struct intel_plane_state *plane_state);
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
+=20
++int intel_fbdev_pin_and_fence(struct drm_i915_private *dev_priv,
++=09=09=09      struct intel_fbdev *ifbdev,
++=09=09=09      void **vaddr);
++void intel_fbdev_unpin(struct intel_fbdev *ifbdev);
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i=
+915/display/intel_fbdev.c
+index 7ac9348d20c5..cee85fcc2085 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -171,35 +171,6 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+ =09return 0;
+ }
+=20
+-static int intel_fbdev_pin_and_fence(struct drm_i915_private *dev_priv,
+-=09=09=09=09     struct intel_fbdev *ifbdev,
+-=09=09=09=09     void **vaddr)
+-{
 -=09const struct i915_ggtt_view view =3D {
 -=09=09.type =3D I915_GGTT_VIEW_NORMAL,
 -=09};
- =09intel_wakeref_t wakeref;
- =09struct fb_info *info;
--=09struct i915_vma *vma;
--=09unsigned long flags =3D 0;
- =09bool prealloc =3D false;
- =09void __iomem *vaddr;
- =09struct drm_i915_gem_object *obj;
-@@ -224,10 +248,8 @@ static int intelfb_create(struct drm_fb_helper *helper=
-,
- =09 * This also validates that any existing fb inherited from the
- =09 * BIOS is suitable for own access.
- =09 */
--=09vma =3D intel_pin_and_fence_fb_obj(&ifbdev->fb->base, false,
--=09=09=09=09=09 &view, false, &flags);
--=09if (IS_ERR(vma)) {
--=09=09ret =3D PTR_ERR(vma);
-+=09ret =3D intel_fbdev_pin_and_fence(dev_priv, ifbdev, &vaddr);
-+=09if (ret) {
- =09=09goto out_unlock;
- =09}
-=20
-@@ -261,19 +283,12 @@ static int intelfb_create(struct drm_fb_helper *helpe=
-r,
-=20
- =09=09/* Our framebuffer is the entirety of fbdev's system memory */
- =09=09info->fix.smem_start =3D
--=09=09=09(unsigned long)(ggtt->gmadr.start + vma->node.start);
--=09=09info->fix.smem_len =3D vma->node.size;
-+=09=09=09(unsigned long)(ggtt->gmadr.start + ifbdev->vma->node.start);
-+=09=09info->fix.smem_len =3D ifbdev->vma->node.size;
- =09}
-=20
--=09vaddr =3D i915_vma_pin_iomap(vma);
--=09if (IS_ERR(vaddr)) {
+-=09ifbdev->vma =3D intel_pin_and_fence_fb_obj(&ifbdev->fb->base, false,
+-=09=09=09=09=09=09 &view, false, &ifbdev->vma_flags);
+-
+-=09if (IS_ERR(ifbdev->vma)) {
+-=09=09return PTR_ERR(ifbdev->vma);
+-=09}
+-
+-=09*vaddr =3D i915_vma_pin_iomap(ifbdev->vma);
+-=09if (IS_ERR(*vaddr)) {
 -=09=09drm_err(&dev_priv->drm,
 -=09=09=09"Failed to remap framebuffer into virtual memory\n");
--=09=09ret =3D PTR_ERR(vaddr);
--=09=09goto out_unpin;
+-=09=09return PTR_ERR(vaddr);
 -=09}
- =09info->screen_base =3D vaddr;
--=09info->screen_size =3D vma->node.size;
-+=09info->screen_size =3D ifbdev->vma->node.size;
-=20
- =09drm_fb_helper_fill_info(info, &ifbdev->helper, sizes);
-=20
-@@ -281,23 +296,21 @@ static int intelfb_create(struct drm_fb_helper *helpe=
-r,
- =09 * If the object is stolen however, it will be full of whatever
- =09 * garbage was left in there.
- =09 */
--=09if (!i915_gem_object_is_shmem(vma->obj) && !prealloc)
-+=09if (!i915_gem_object_is_shmem(ifbdev->vma->obj) && !prealloc)
- =09=09memset_io(info->screen_base, 0, info->screen_size);
-=20
- =09/* Use default scratch pixmap (info->pixmap.flags =3D FB_PIXMAP_SYSTEM)=
- */
-=20
- =09drm_dbg_kms(&dev_priv->drm, "allocated %dx%d fb: 0x%08x\n",
- =09=09    ifbdev->fb->base.width, ifbdev->fb->base.height,
--=09=09    i915_ggtt_offset(vma));
--=09ifbdev->vma =3D vma;
--=09ifbdev->vma_flags =3D flags;
-+=09=09    i915_ggtt_offset(ifbdev->vma));
-=20
- =09intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
- =09vga_switcheroo_client_fb_set(pdev, info);
- =09return 0;
-=20
- out_unpin:
--=09intel_unpin_fb_vma(vma, flags);
-+=09intel_fbdev_unpin(ifbdev);
- out_unlock:
- =09intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
- =09return ret;
-@@ -316,8 +329,7 @@ static void intel_fbdev_destroy(struct intel_fbdev *ifb=
-dev)
-=20
- =09drm_fb_helper_fini(&ifbdev->helper);
-=20
+-=09return 0;
+-}
+-
+-static void intel_fbdev_unpin(struct intel_fbdev *ifbdev)
+-{
 -=09if (ifbdev->vma)
 -=09=09intel_unpin_fb_vma(ifbdev->vma, ifbdev->vma_flags);
-+=09intel_fbdev_unpin(ifbdev);
-=20
- =09if (ifbdev->fb)
- =09=09drm_framebuffer_remove(&ifbdev->fb->base);
+-}
+-
+ static int intelfb_create(struct drm_fb_helper *helper,
+ =09=09=09  struct drm_fb_helper_surface_size *sizes)
+ {
 --=20
 2.25.4
 
