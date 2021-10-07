@@ -1,42 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E754250BA
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 12:08:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25D84250C5
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 12:10:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B626F3E4;
-	Thu,  7 Oct 2021 10:08:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC906F3EA;
+	Thu,  7 Oct 2021 10:10:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BF466F3DA;
- Thu,  7 Oct 2021 10:08:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10129"; a="226112830"
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="226112830"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 03:08:39 -0700
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="488909643"
-Received: from roliveir-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.41.10])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 03:08:30 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org, 
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 07 Oct 2021 13:08:27 +0300
-Message-ID: <87k0ipywo4.fsf@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 343F46F3DA;
+ Thu,  7 Oct 2021 10:10:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10129"; a="207025283"
+X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="207025283"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 03:10:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="560517398"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 07 Oct 2021 03:10:34 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 07 Oct 2021 13:10:32 +0300
+Date: Thu, 7 Oct 2021 13:10:32 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Zenghui Yu <yuzenghui@huawei.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ airlied@linux.ie, daniel@ffwll.ch, tiwai@suse.de,
+ wanghaibin.wang@huawei.com, Kai-Heng Feng <kai.heng.feng@canonical.com>
+Message-ID: <YV7HmF3J6RI9L40u@intel.com>
+References: <20210906033541.862-1-yuzenghui@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210906033541.862-1-yuzenghui@huawei.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Free the returned object of
+ acpi_evaluate_dsm()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,68 +56,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Sep 06, 2021 at 11:35:41AM +0800, Zenghui Yu wrote:
+> As per the comment on top of acpi_evaluate_dsm():
+> 
+> | * Evaluate device's _DSM method with specified GUID, revision id and
+> | * function number. Caller needs to free the returned object.
+> 
+> We should free the returned object of acpi_evaluate_dsm() to avoid memory
+> leakage. Otherwise the kmemleak splat will be triggered at boot time (if we
+> compile kernel with CONFIG_DEBUG_TEST_DRIVER_REMOVE=y).
+> 
+> Fixes: 8e55f99c510f ("drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops")
+> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Signed-off-by: Zenghui Yu <yuzenghui@huawei.com>
 
-Hi Dave & Daniel -
+Applied to drm-intel-next. Thanks, and sorry for the lag.
 
-drm-intel-fixes-2021-10-07:
-drm/i915 fixes for v5.15-rc5:
-- Fix RKL HDMI audio
-- Fix runtime pm imbalance on i915_gem_shrink() error path
-- Fix Type-C port access before hw/sw state sync
-- Fix VBT backlight struct version/size check
-- Fix VT-d async flip on SKL/BXT with plane stretch workaround
+> ---
+>  drivers/gpu/drm/i915/display/intel_acpi.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
+> index 7cfe91fc05f2..68abeaf2d7d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
+> @@ -186,13 +186,16 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+>  	acpi_handle dhandle;
+> +	union acpi_object *obj;
+>  
+>  	dhandle = ACPI_HANDLE(&pdev->dev);
+>  	if (!dhandle)
+>  		return;
+>  
+> -	acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
+> -			  INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
+> +	obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
+> +				INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
+> +	if (obj)
+> +		ACPI_FREE(obj);
+>  }
+>  
+>  /*
+> -- 
+> 2.19.1
 
-BR,
-Jani.
-
-The following changes since commit 9e1ff307c779ce1f0f810c7ecce3d95bbae40896:
-
-  Linux 5.15-rc4 (2021-10-03 14:08:47 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-10-=
-07
-
-for you to fetch changes up to b2d73debfdc16b742e64948dc4461876af3f8c10:
-
-  drm/i915: Extend the async flip VT-d w/a to skl/bxt (2021-10-05 11:52:48 =
-+0300)
-
-----------------------------------------------------------------
-drm/i915 fixes for v5.15-rc5:
-- Fix RKL HDMI audio
-- Fix runtime pm imbalance on i915_gem_shrink() error path
-- Fix Type-C port access before hw/sw state sync
-- Fix VBT backlight struct version/size check
-- Fix VT-d async flip on SKL/BXT with plane stretch workaround
-
-----------------------------------------------------------------
-Imre Deak (1):
-      drm/i915/tc: Fix TypeC port init/resume time sanitization
-
-Kai-Heng Feng (1):
-      drm/i915/audio: Use BIOS provided value for RKL HDA link
-
-Lukasz Majczak (1):
-      drm/i915/bdb: Fix version check
-
-Maarten Lankhorst (1):
-      drm/i915: Fix runtime pm handling in i915_gem_shrink
-
-Ville Syrj=C3=A4l=C3=A4 (1):
-      drm/i915: Extend the async flip VT-d w/a to skl/bxt
-
- drivers/gpu/drm/i915/display/icl_dsi.c        | 10 ++++++++--
- drivers/gpu/drm/i915/display/intel_audio.c    |  5 +++--
- drivers/gpu/drm/i915/display/intel_bios.c     | 22 ++++++++++++++++------
- drivers/gpu/drm/i915/display/intel_ddi.c      |  8 +++++++-
- drivers/gpu/drm/i915/display/intel_display.c  | 20 +++++---------------
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  5 +++++
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  7 +++++--
- drivers/gpu/drm/i915/i915_reg.h               |  5 +++++
- drivers/gpu/drm/i915/intel_pm.c               | 12 ++++++++++++
- 9 files changed, 66 insertions(+), 28 deletions(-)
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
