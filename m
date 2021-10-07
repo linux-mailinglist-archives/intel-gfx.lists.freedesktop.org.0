@@ -1,77 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6822142530D
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 14:29:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9534425297
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 14:08:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F17AB6F45B;
-	Thu,  7 Oct 2021 12:29:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 149F56F45A;
+	Thu,  7 Oct 2021 12:08:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7C736F404
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 11:01:59 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id v17so17786040wrv.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Oct 2021 04:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=NJgOSqoCCgXqOknLz7AdQYpr89OwA0jzXUySVyR80Xs=;
- b=M7iUMKBa9OdQuivKHhVb7u/+Q7iX2KCFCBHWKvWjQ40ubCMP3Fqw/TEwd+sRZ8pZw5
- C44lLGOhyw6JXYdO0nULsRQFxS7qPtDTX1C8Q0G8Q9HcH5Kli5EMS1wScn0mA899ja5h
- QewOHemIzJmWooZX9DaYRBVCNW5wxn0Ds1FM9CsvfyOPbyKF9xtjjN9QqqYketJ3WeHj
- P7LAJuiw0Y72L7p3Gl0K+elu1PHzC11Dz45zjpkh9XO9k1i3Wzzg7JbayVbvMCbGDQiq
- bnEoYoRy5+b30rOA+1/3aAjuYLH6mIy23leaFq2ckQCUoY+hc3Ke9GuU/Jfh14THLIk3
- N0Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=NJgOSqoCCgXqOknLz7AdQYpr89OwA0jzXUySVyR80Xs=;
- b=jksRubMvprJh0gqqq+J+Ufv8wz/J2EOKjmsapxbCXCMnOb8GMn25fV2QbFdvUiG5gy
- SfemJ03eXCs9Zhjcw8V9DBplK4dQHJ2bye8DRJXUsLelzgwEM53c5SI9QMVmKLaVu+6v
- 4IKbMdh+JBbBxSFEsQ91TKuTANQYRAfu9iL6MyfLy9cVJBILHRapMEm/Qrw4f74QJ9Ek
- df76Dm/Zv9q0zcOKXtbxOgxH9r6+JOv9/N/Vybj/Z3ZBLlBJy1HfWlxMzDtYPOrxl3wr
- w0srEKDqjNKA4a+xb4N4SUiNOVJDHq1PaJEQNZag3nVCOWC6WbNtHCPiX14DZA+I264v
- QxLQ==
-X-Gm-Message-State: AOAM530KGqxCmZ0+Xs85e6DpQPCme6fu+Cj/h73+9edPGK6gV7+qhN3n
- 5rxNiffLze1FtWmlz4jae8Pu4nFS7syz4w==
-X-Google-Smtp-Source: ABdhPJxNZ3GZnwKRx3cEfL0sobv2ozaQ3OzXMKIBQI9jkD1YsD2fOajFBkhLkC09EyiLBtdLx1KUIg==
-X-Received: by 2002:a7b:c5d8:: with SMTP id n24mr3990455wmk.51.1633604517859; 
- Thu, 07 Oct 2021 04:01:57 -0700 (PDT)
-Received: from elver.google.com ([2a00:79e0:15:13:aedf:c006:6996:1a79])
- by smtp.gmail.com with ESMTPSA id c185sm8441412wma.8.2021.10.07.04.01.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Oct 2021 04:01:56 -0700 (PDT)
-Date: Thu, 7 Oct 2021 13:01:51 +0200
-From: Marco Elver <elver@google.com>
-To: Vlastimil Babka <vbabka@suse.cz>
-Cc: Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, kasan-dev@googlegroups.com,
- Vijayanand Jitta <vjitta@codeaurora.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Andrey Ryabinin <ryabinin.a.a@gmail.com>,
- Alexander Potapenko <glider@google.com>,
- Andrey Konovalov <andreyknvl@gmail.com>,
- Dmitry Vyukov <dvyukov@google.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Oliver Glitta <glittao@gmail.com>, Imran Khan <imran.f.khan@oracle.com>
-Message-ID: <YV7TnygBLdHJjmRW@elver.google.com>
-References: <20211007095815.3563-1-vbabka@suse.cz>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 906916F45A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 12:08:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10129"; a="249550389"
+X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="249550389"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 05:08:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="478538190"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 07 Oct 2021 05:08:41 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 07 Oct 2021 15:08:40 +0300
+Date: Thu, 7 Oct 2021 15:08:40 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YV7jSPCIROxnh4HJ@intel.com>
+References: <20211007115629.4531-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211007095815.3563-1-vbabka@suse.cz>
-User-Agent: Mutt/2.0.5 (2021-01-21)
-X-Mailman-Approved-At: Thu, 07 Oct 2021 12:29:48 +0000
-Subject: Re: [Intel-gfx] [PATCH] lib/stackdepot: allow optional init and
- stack_table allocation by kvmalloc()
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211007115629.4531-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: fix snps buf trans for uhbr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,191 +51,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 07, 2021 at 11:58AM +0200, Vlastimil Babka wrote:
-[...] 
-> - Add a CONFIG_STACKDEPOT_ALWAYS_INIT flag to keep using the current
->   well-defined point of allocation as part of mem_init(). Make CONFIG_KASAN
->   select this flag.
-> - Other users have to call stack_depot_init() as part of their own init when
->   it's determined that stack depot will actually be used. This may depend on
->   both config and runtime conditions. Convert current users which are
->   page_owner and several in the DRM subsystem. Same will be done for SLUB
->   later.
-> - Because the init might now be called after the boot-time memblock allocation
->   has given all memory to the buddy allocator, change stack_depot_init() to
->   allocate stack_table with kvmalloc() when memblock is no longer available.
->   Also handle allocation failure by disabling stackdepot (could have
->   theoretically happened even with memblock allocation previously), and don't
->   unnecessarily align the memblock allocation to its own size anymore.
-...
-> Hi, I'd appreciate review of the DRM parts - namely that I've got correctly
-> that stack_depot_init() is called from the proper init functions and iff
-> stack_depot_save() is going to be used later. Thanks!
-
-For ease of review between stackdepot and DRM changes, I thought it'd be
-nice to split into 2 patches, but not sure it'll work, because you're
-changing the semantics of the normal STACKDEPOT.
-
-One option would be to flip it around, and instead have
-STACKDEPOT_LAZY_INIT, but that seems counter-intuitive if the majority
-of STACKDEPOT users are LAZY_INIT users.
-
-On the other hand, the lazy initialization mode you're introducing
-requires an explicit stack_depot_init() call somewhere and isn't as
-straightforward as before.
-
-Not sure what is best. My intuition tells me STACKDEPOT_LAZY_INIT would
-be safer as it's a deliberate opt-in to the lazy initialization
-behaviour.
-
-Preferences?
-
-[...]
-> --- a/drivers/gpu/drm/drm_mm.c
-> +++ b/drivers/gpu/drm/drm_mm.c
-> @@ -980,6 +980,10 @@ void drm_mm_init(struct drm_mm *mm, u64 start, u64 size)
->  	add_hole(&mm->head_node);
+On Thu, Oct 07, 2021 at 02:56:29PM +0300, Jani Nikula wrote:
+> The UHBR check was using > instead of >=. Use the helper instead to
+> avoid mistakes. Also always use the non-UHBR values for HDMI.
+> 
+> Fixes: 2817efaeb608 ("drm/i915/dg2: add SNPS PHY translations for UHBR link rates")
+> Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> index a2d39131ea53..a87a688d8475 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> @@ -8,6 +8,7 @@
+>  #include "intel_ddi_buf_trans.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+> +#include "intel_dp.h"
 >  
->  	mm->scan_active = 0;
-> +
-> +#ifdef CONFIG_DRM_DEBUG_MM
-> +	stack_depot_init();
-> +#endif
-
-DRM_DEBUG_MM implies STACKDEPOT. Not sure what is more readable to drm
-maintainers, but perhaps it'd be nicer to avoid the #ifdef here, and
-instead just keep the no-op version of stack_depot_init() in
-<linux/stackdepot.h>. I don't have a strong preference.
-
->  }
->  EXPORT_SYMBOL(drm_mm_init);
->  
-> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> index 0d85f3c5c526..806c32ab410b 100644
-> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> @@ -68,6 +68,9 @@ static noinline depot_stack_handle_t __save_depot_stack(void)
->  static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
+>  /* HDMI/DVI modes ignore everything but the last 2 items. So we share
+>   * them for both DP and FDI transports, allowing those ports to
+> @@ -1611,10 +1612,11 @@ dg2_get_snps_buf_trans(struct intel_encoder *encoder,
+>  		       const struct intel_crtc_state *crtc_state,
+>  		       int *n_entries)
 >  {
->  	spin_lock_init(&rpm->debug.lock);
-> +
-> +	if (rpm->available)
-> +		stack_depot_init();
+> -	if (crtc_state->port_clock > 1000000)
+> -		return intel_get_buf_trans(&dg2_snps_trans_uhbr, n_entries);
+> -	else
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) ||
+> +	    !intel_dp_is_uhbr(crtc_state))
+
+Might be more clear flipped around to 'has_dp_encoder && is_uhbr'?
+
+Either way
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  		return intel_get_buf_trans(&dg2_snps_trans, n_entries);
+> +	else
+> +		return intel_get_buf_trans(&dg2_snps_trans_uhbr, n_entries);
 >  }
 >  
->  static noinline depot_stack_handle_t
-> diff --git a/include/linux/stackdepot.h b/include/linux/stackdepot.h
-> index c34b55a6e554..60ba99a43745 100644
-> --- a/include/linux/stackdepot.h
-> +++ b/include/linux/stackdepot.h
-> @@ -15,6 +15,16 @@
->  
->  typedef u32 depot_stack_handle_t;
->  
-> +/*
-> + * Every user of stack depot has to call this during its own init when it's
-> + * decided that it will be calling stack_depot_save() later.
-> + *
-> + * The alternative is to select STACKDEPOT_ALWAYS_INIT to have stack depot
-> + * enabled as part of mm_init(), for subsystems where it's known at compile time
-> + * that stack depot will be used.
-> + */
-> +int stack_depot_init(void);
-> +
->  depot_stack_handle_t __stack_depot_save(unsigned long *entries,
->  					unsigned int nr_entries,
->  					gfp_t gfp_flags, bool can_alloc);
-> @@ -30,13 +40,4 @@ int stack_depot_snprint(depot_stack_handle_t handle, char *buf, size_t size,
->  
->  void stack_depot_print(depot_stack_handle_t stack);
->  
-> -#ifdef CONFIG_STACKDEPOT
-> -int stack_depot_init(void);
-> -#else
-> -static inline int stack_depot_init(void)
-> -{
-> -	return 0;
-> -}
-> -#endif	/* CONFIG_STACKDEPOT */
-> -
+>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+> -- 
+> 2.30.2
 
-Could we avoid the IS_ENABLED() in init/main.c by adding a wrapper here:
-
-+#ifdef CONFIG_STACKDEPOT_ALWAYS_INIT
-+static inline int stack_depot_early_init(void)	{ return stack_depot_init(); }
-+#else
-+static inline int stack_depot_early_init(void)	{ return 0; }
-+#endif	/* CONFIG_STACKDEPOT_ALWAYS_INIT */
-
->  #endif
-> diff --git a/init/main.c b/init/main.c
-> index ee4d3e1b3eb9..b6a5833d98f5 100644
-> --- a/init/main.c
-> +++ b/init/main.c
-> @@ -844,7 +844,8 @@ static void __init mm_init(void)
->  	init_mem_debugging_and_hardening();
->  	kfence_alloc_pool();
->  	report_meminit();
-> -	stack_depot_init();
-> +	if (IS_ENABLED(CONFIG_STACKDEPOT_ALWAYS_INIT))
-> +		stack_depot_init();
-
-I'd push the decision of when to call this into <linux/stackdepot.h> via
-wrapper stack_depot_early_init().
-
->  	mem_init();
->  	mem_init_print_info();
->  	/* page_owner must be initialized after buddy is ready */
-> diff --git a/lib/Kconfig b/lib/Kconfig
-> index 5e7165e6a346..df6bcf0a4cc3 100644
-> --- a/lib/Kconfig
-> +++ b/lib/Kconfig
-> @@ -671,6 +671,9 @@ config STACKDEPOT
->  	bool
->  	select STACKTRACE
->  
-> +config STACKDEPOT_ALWAYS_INIT
-> +	bool
-
-It looks like every users of STACKDEPOT_ALWAYS_INIT will also select
-STACKDEPOT, so we could just make this:
-
-+config STACKDEPOT_ALWAYS_INIT
-+	bool
-+	select STACKDEPOT
-
-And remove the redundant 'select STACKDEPOT' in Kconfig.kasan.
-
->  config STACK_HASH_ORDER
->  	int "stack depot hash size (12 => 4KB, 20 => 1024KB)"
->  	range 12 20
-> diff --git a/lib/Kconfig.kasan b/lib/Kconfig.kasan
-> index cdc842d090db..695deb603c66 100644
-> --- a/lib/Kconfig.kasan
-> +++ b/lib/Kconfig.kasan
-> @@ -39,6 +39,7 @@ menuconfig KASAN
->  		   HAVE_ARCH_KASAN_HW_TAGS
->  	depends on (SLUB && SYSFS) || (SLAB && !DEBUG_SLAB)
->  	select STACKDEPOT
-> +	select STACKDEPOT_ALWAYS_INIT
-
-[...]
->  
-> -int __init stack_depot_init(void)
-> +/*
-> + * __ref because of memblock_alloc(), which will not be actually called after
-> + * the __init code is gone
-
-The reason is that after __init code is gone, slab_is_available() will
-be true (might be worth adding to the comment).
-
-> + */
-> +__ref int stack_depot_init(void)
->  {
-> -	if (!stack_depot_disable) {
-> +	mutex_lock(&stack_depot_init_mutex);
-> +	if (!stack_depot_disable && stack_table == NULL) {
->  		size_t size = (STACK_HASH_SIZE * sizeof(struct stack_record *));
-
-Thanks,
--- Marco
+-- 
+Ville Syrjälä
+Intel
