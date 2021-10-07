@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15992424B0B
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 02:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C4A5424B0E
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 02:20:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 653736F384;
-	Thu,  7 Oct 2021 00:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819A36F384;
+	Thu,  7 Oct 2021 00:20:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F0D7E6F384;
- Thu,  7 Oct 2021 00:18:42 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2ECE16F384;
+ Thu,  7 Oct 2021 00:20:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ECB97AA914;
- Thu,  7 Oct 2021 00:18:42 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2B125A0169;
+ Thu,  7 Oct 2021 00:20:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 07 Oct 2021 00:18:42 -0000
-Message-ID: <163356592296.5189.11097062371955385905@emeril.freedesktop.org>
+Date: Thu, 07 Oct 2021 00:20:11 -0000
+Message-ID: <163356601117.5189.6812098358916587614@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211006204937.30774-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20211006204937.30774-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_DP_per-lane_drive_settings_for_icl+?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_DP_per-lane_drive_settings_for_icl+?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,109 +53,34 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-284e669a57b2 drm/i915: Remove pointless extra namespace from dkl/snps buf trans structs
-0f71d656b29b drm/i915: Shrink {icl_mg, tgl_dkl}_phy_ddi_buf_trans
-04357f3b75ae drm/i915: Use standard form terminating condition for lane for loops
-b82774efb2b1 drm/i915: Add all per-lane register definitions for icl combo phy
-1d228306b7da drm/i915: Remove dead DKL_TX_LOADGEN_SHARING_PMD_DISABLE stuff
-47e546461be6 drm/i915: Extract icl_combo_phy_loadgen_select()
-7af002c94e9e drm/i915: Stop using group access when progrmming icl combo phy TX
-d97a7168e4e8 drm/i915: Query the vswing levels per-lane for icl combo phy
-ef435d41c784 drm/i915: Query the vswing levels per-lane for icl mg phy
--:35: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#35: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1192:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
- 		                                              ^
-
--:35: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#35: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1192:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
- 		                                                 ^
-
--:43: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#43: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1200:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
- 		                                              ^
-
--:43: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#43: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1200:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
- 		                                                 ^
-
--:54: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#54: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1213:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
- 		                                              ^
-
--:54: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#54: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1213:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
- 		                                                 ^
-
--:63: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#63: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1225:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
- 		                                              ^
-
--:63: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#63: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1225:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
- 		                                                 ^
-
-total: 0 errors, 0 warnings, 8 checks, 43 lines checked
-bf9f565f3d25 drm/i915: Query the vswing levels per-lane for tgl dkl phy
--:55: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#55: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1317:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
- 		                                              ^
-
--:55: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#55: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1317:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
- 		                                                 ^
-
--:68: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#68: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1328:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
- 		                                              ^
-
--:68: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#68: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1328:
-+		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
- 		                                                 ^
-
-total: 0 errors, 0 warnings, 4 checks, 56 lines checked
-ae736094e5c7 drm/i915: Query the vswing levels per-lane for snps phy
-026b4eacb6c2 drm/i915: Enable per-lane drive settings for icl+
-720aa864e834 drm/i915: Use intel_de_rmw() for tgl dkl phy programming
-c09c9f245da1 drm/i915: Use intel_de_rmw() for icl mg phy programming
--:56: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#56: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1191:
-+			     CRI_TXDEEMPH_OVERRIDE_17_12(trans->entries[level].mg.cri_txdeemph_override_17_12));
-
--:67: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#67: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1197:
-+			     CRI_TXDEEMPH_OVERRIDE_17_12(trans->entries[level].mg.cri_txdeemph_override_17_12));
-
--:87: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#87: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1209:
-+			     CRI_TXDEEMPH_OVERRIDE_5_0(trans->entries[level].mg.cri_txdeemph_override_5_0) |
-
--:88: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#88: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1210:
-+			     CRI_TXDEEMPH_OVERRIDE_11_6(trans->entries[level].mg.cri_txdeemph_override_11_6) |
-
--:105: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#105: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1218:
-+			     CRI_TXDEEMPH_OVERRIDE_5_0(trans->entries[level].mg.cri_txdeemph_override_5_0) |
-
--:106: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#106: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1219:
-+			     CRI_TXDEEMPH_OVERRIDE_11_6(trans->entries[level].mg.cri_txdeemph_override_11_6) |
-
-total: 0 errors, 6 warnings, 0 checks, 158 lines checked
-b6b8bd4a06e4 drm/i915: Use intel_de_rmw() for icl combo phy programming
-9c1b9c51ad06 drm/i915: Fix icl+ combo phy static lane power down setup
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
 
 
