@@ -2,45 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B25D84250C5
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 12:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC36425114
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 12:31:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC906F3EA;
-	Thu,  7 Oct 2021 10:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB2666F3ED;
+	Thu,  7 Oct 2021 10:31:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 343F46F3DA;
- Thu,  7 Oct 2021 10:10:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10129"; a="207025283"
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="207025283"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 03:10:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="560517398"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 07 Oct 2021 03:10:34 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Oct 2021 13:10:32 +0300
-Date: Thu, 7 Oct 2021 13:10:32 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Zenghui Yu <yuzenghui@huawei.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- airlied@linux.ie, daniel@ffwll.ch, tiwai@suse.de,
- wanghaibin.wang@huawei.com, Kai-Heng Feng <kai.heng.feng@canonical.com>
-Message-ID: <YV7HmF3J6RI9L40u@intel.com>
-References: <20210906033541.862-1-yuzenghui@huawei.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 761A76F3ED
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 10:31:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10129"; a="249533260"
+X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="249533260"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 03:31:16 -0700
+X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; d="scan'208";a="488918948"
+Received: from roliveir-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.41.10])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 03:31:14 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Thu,  7 Oct 2021 13:31:08 +0300
+Message-Id: <20211007103108.7707-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210906033541.862-1-yuzenghui@huawei.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Free the returned object of
- acpi_evaluate_dsm()
+Subject: [Intel-gfx] [PATCH] drm/i915/dg2: update link training for 128b/132b
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,52 +49,248 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 06, 2021 at 11:35:41AM +0800, Zenghui Yu wrote:
-> As per the comment on top of acpi_evaluate_dsm():
-> 
-> | * Evaluate device's _DSM method with specified GUID, revision id and
-> | * function number. Caller needs to free the returned object.
-> 
-> We should free the returned object of acpi_evaluate_dsm() to avoid memory
-> leakage. Otherwise the kmemleak splat will be triggered at boot time (if we
-> compile kernel with CONFIG_DEBUG_TEST_DRIVER_REMOVE=y).
-> 
-> Fixes: 8e55f99c510f ("drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops")
-> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> Signed-off-by: Zenghui Yu <yuzenghui@huawei.com>
+The 128b/132b channel coding link training uses more straightforward TX
+FFE preset values. Reuse voltage tries and max vswing for retry logic.
 
-Applied to drm-intel-next. Thanks, and sorry for the lag.
+The delays for 128b/132b are still all wrong, but this is regardless a
+step forward.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_acpi.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> index 7cfe91fc05f2..68abeaf2d7d4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> @@ -186,13 +186,16 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
->  {
->  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->  	acpi_handle dhandle;
-> +	union acpi_object *obj;
->  
->  	dhandle = ACPI_HANDLE(&pdev->dev);
->  	if (!dhandle)
->  		return;
->  
-> -	acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
-> -			  INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> +	obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
-> +				INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> +	if (obj)
-> +		ACPI_FREE(obj);
->  }
->  
->  /*
-> -- 
-> 2.19.1
+v2: Fix UHBR rate checks, use intel_dp_is_uhbr() helper
 
+v3:
+- Rebase
+- Modify intel_dp_adjust_request_changed() and
+  intel_dp_link_max_vswing_reached() to take 128b/132b into
+  account. (Ville)
+
+Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  18 ++-
+ .../drm/i915/display/intel_dp_link_training.c | 124 +++++++++++++-----
+ 2 files changed, 106 insertions(+), 36 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 3f7bbeb3e3cd..59428ce4f8c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -1338,13 +1338,20 @@ static int translate_signal_level(struct intel_dp *intel_dp,
+ 	return 0;
+ }
+ 
+-static int intel_ddi_dp_level(struct intel_dp *intel_dp, int lane)
++static int intel_ddi_dp_level(struct intel_dp *intel_dp,
++			      const struct intel_crtc_state *crtc_state,
++			      int lane)
+ {
+ 	u8 train_set = intel_dp->train_set[lane];
+-	u8 signal_levels = train_set & (DP_TRAIN_VOLTAGE_SWING_MASK |
+-					DP_TRAIN_PRE_EMPHASIS_MASK);
+ 
+-	return translate_signal_level(intel_dp, signal_levels);
++	if (intel_dp_is_uhbr(crtc_state)) {
++		return train_set & DP_TX_FFE_PRESET_VALUE_MASK;
++	} else {
++		u8 signal_levels = train_set & (DP_TRAIN_VOLTAGE_SWING_MASK |
++						DP_TRAIN_PRE_EMPHASIS_MASK);
++
++		return translate_signal_level(intel_dp, signal_levels);
++	}
+ }
+ 
+ int intel_ddi_level(struct intel_encoder *encoder,
+@@ -1362,7 +1369,8 @@ int intel_ddi_level(struct intel_encoder *encoder,
+ 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+ 		level = intel_ddi_hdmi_level(encoder, trans);
+ 	else
+-		level = intel_ddi_dp_level(enc_to_intel_dp(encoder), lane);
++		level = intel_ddi_dp_level(enc_to_intel_dp(encoder), crtc_state,
++					   lane);
+ 
+ 	if (drm_WARN_ON_ONCE(&i915->drm, level >= n_entries))
+ 		level = n_entries - 1;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 1a943ae38a6b..c54b7df56c9f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -304,11 +304,31 @@ static bool has_per_lane_signal_levels(struct intel_dp *intel_dp,
+ 	return !intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy);
+ }
+ 
+-static u8 intel_dp_get_lane_adjust_train(struct intel_dp *intel_dp,
+-					 const struct intel_crtc_state *crtc_state,
+-					 enum drm_dp_phy dp_phy,
+-					 const u8 link_status[DP_LINK_STATUS_SIZE],
+-					 int lane)
++
++static u8 intel_dp_get_lane_adjust_train_128b132b(struct intel_dp *intel_dp,
++						  const struct intel_crtc_state *crtc_state,
++						  enum drm_dp_phy dp_phy,
++						  const u8 link_status[DP_LINK_STATUS_SIZE],
++						  int lane)
++{
++	u8 tx_ffe = 0;
++
++	if (has_per_lane_signal_levels(intel_dp, dp_phy)) {
++		lane = min(lane, crtc_state->lane_count - 1);
++		tx_ffe = drm_dp_get_adjust_tx_ffe_preset(link_status, lane);
++	} else {
++		for (lane = 0; lane < crtc_state->lane_count; lane++)
++			tx_ffe = max(tx_ffe, drm_dp_get_adjust_tx_ffe_preset(link_status, lane));
++	}
++
++	return tx_ffe;
++}
++
++static u8 intel_dp_get_lane_adjust_train_8b10b(struct intel_dp *intel_dp,
++					       const struct intel_crtc_state *crtc_state,
++					       enum drm_dp_phy dp_phy,
++					       const u8 link_status[DP_LINK_STATUS_SIZE],
++					       int lane)
+ {
+ 	u8 v = 0;
+ 	u8 p = 0;
+@@ -340,6 +360,20 @@ static u8 intel_dp_get_lane_adjust_train(struct intel_dp *intel_dp,
+ 	return v | p;
+ }
+ 
++static u8 intel_dp_get_lane_adjust_train(struct intel_dp *intel_dp,
++					 const struct intel_crtc_state *crtc_state,
++					 enum drm_dp_phy dp_phy,
++					 const u8 link_status[DP_LINK_STATUS_SIZE],
++					 int lane)
++{
++	if (intel_dp_is_uhbr(crtc_state))
++		return intel_dp_get_lane_adjust_train_128b132b(intel_dp, crtc_state,
++							       dp_phy, link_status, lane);
++	else
++		return intel_dp_get_lane_adjust_train_8b10b(intel_dp, crtc_state,
++							    dp_phy, link_status, lane);
++}
++
+ #define TRAIN_REQ_FMT "%d/%d/%d/%d"
+ #define _TRAIN_REQ_VSWING_ARGS(link_status, lane) \
+ 	(drm_dp_get_adjust_request_voltage((link_status), (lane)) >> DP_TRAIN_VOLTAGE_SWING_SHIFT)
+@@ -464,6 +498,13 @@ intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+ 	_TRAIN_SET_PREEMPH_ARGS((train_set)[1]), \
+ 	_TRAIN_SET_PREEMPH_ARGS((train_set)[2]), \
+ 	_TRAIN_SET_PREEMPH_ARGS((train_set)[3])
++#define _TRAIN_SET_TX_FFE_ARGS(train_set) \
++	((train_set) & DP_TX_FFE_PRESET_VALUE_MASK), ""
++#define TRAIN_SET_TX_FFE_ARGS(train_set) \
++	_TRAIN_SET_TX_FFE_ARGS((train_set)[0]), \
++	_TRAIN_SET_TX_FFE_ARGS((train_set)[1]), \
++	_TRAIN_SET_TX_FFE_ARGS((train_set)[2]), \
++	_TRAIN_SET_TX_FFE_ARGS((train_set)[3])
+ 
+ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+ 				const struct intel_crtc_state *crtc_state,
+@@ -473,14 +514,23 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	char phy_name[10];
+ 
+-	drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] lanes: %d, "
+-		    "vswing levels: " TRAIN_SET_FMT ", "
+-		    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
+-		    encoder->base.base.id, encoder->base.name,
+-		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
+-		    crtc_state->lane_count,
+-		    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
+-		    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
++	if (intel_dp_is_uhbr(crtc_state)) {
++		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] lanes: %d, "
++			    "128b/132b TX FFE presets: " TRAIN_SET_FMT "\n",
++			    encoder->base.base.id, encoder->base.name,
++			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    crtc_state->lane_count,
++			    TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
++	} else {
++		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] lanes: %d, "
++			    "vswing levels: " TRAIN_SET_FMT ", "
++			    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
++			    encoder->base.base.id, encoder->base.name,
++			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    crtc_state->lane_count,
++			    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
++			    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
++	}
+ 
+ 	if (intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy))
+ 		encoder->set_signal_levels(encoder, crtc_state);
+@@ -529,16 +579,22 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+ 	 * 2+1 or 3+0 depending on whether vswing level 3 is supported or not.
+ 	 */
+ 	for (lane = 0; lane < crtc_state->lane_count; lane++) {
+-		u8 v = (intel_dp->train_set[lane] & DP_TRAIN_VOLTAGE_SWING_MASK) >>
+-			DP_TRAIN_VOLTAGE_SWING_SHIFT;
+-		u8 p = (intel_dp->train_set[lane] & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+-			DP_TRAIN_PRE_EMPHASIS_SHIFT;
+-
+-		if ((intel_dp->train_set[lane] & DP_TRAIN_MAX_SWING_REACHED) == 0)
+-			return false;
+-
+-		if (v + p != 3)
+-			return false;
++		if (intel_dp_is_uhbr(crtc_state)) {
++			if ((intel_dp->train_set[lane] & DP_TX_FFE_PRESET_VALUE_MASK) !=
++			    DP_TX_FFE_PRESET_VALUE_MASK)
++				return false;
++		} else {
++			u8 v = (intel_dp->train_set[lane] & DP_TRAIN_VOLTAGE_SWING_MASK) >>
++				DP_TRAIN_VOLTAGE_SWING_SHIFT;
++			u8 p = (intel_dp->train_set[lane] & DP_TRAIN_PRE_EMPHASIS_MASK) >>
++				DP_TRAIN_PRE_EMPHASIS_SHIFT;
++
++			if ((intel_dp->train_set[lane] & DP_TRAIN_MAX_SWING_REACHED) == 0)
++				return false;
++
++			if (v + p != 3)
++				return false;
++		}
+ 	}
+ 
+ 	return true;
+@@ -601,17 +657,24 @@ static void intel_dp_link_training_clock_recovery_delay(struct intel_dp *intel_d
+ 		drm_dp_lttpr_link_train_clock_recovery_delay();
+ }
+ 
+-static bool intel_dp_adjust_request_changed(int lane_count,
++static bool intel_dp_adjust_request_changed(const struct intel_crtc_state *crtc_state,
+ 					    const u8 old_link_status[DP_LINK_STATUS_SIZE],
+ 					    const u8 new_link_status[DP_LINK_STATUS_SIZE])
+ {
+ 	int lane;
+ 
+-	for (lane = 0; lane < lane_count; lane++) {
+-		u8 old = drm_dp_get_adjust_request_voltage(old_link_status, lane) |
+-			drm_dp_get_adjust_request_pre_emphasis(old_link_status, lane);
+-		u8 new = drm_dp_get_adjust_request_voltage(new_link_status, lane) |
+-			drm_dp_get_adjust_request_pre_emphasis(new_link_status, lane);
++	for (lane = 0; lane < crtc_state->lane_count; lane++) {
++		u8 old, new;
++
++		if (intel_dp_is_uhbr(crtc_state)) {
++			old = drm_dp_get_adjust_tx_ffe_preset(old_link_status, lane);
++			new = drm_dp_get_adjust_tx_ffe_preset(new_link_status, lane);
++		} else {
++			old = drm_dp_get_adjust_request_voltage(old_link_status, lane) |
++				drm_dp_get_adjust_request_pre_emphasis(old_link_status, lane);
++			new = drm_dp_get_adjust_request_voltage(new_link_status, lane) |
++				drm_dp_get_adjust_request_pre_emphasis(new_link_status, lane);
++		}
+ 
+ 		if (old != new)
+ 			return true;
+@@ -721,8 +784,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 			return false;
+ 		}
+ 
+-		if (!intel_dp_adjust_request_changed(crtc_state->lane_count,
+-						     old_link_status, link_status))
++		if (!intel_dp_adjust_request_changed(crtc_state, old_link_status, link_status))
+ 			++voltage_tries;
+ 		else
+ 			voltage_tries = 1;
 -- 
-Ville Syrj‰l‰
-Intel
+2.30.2
+
