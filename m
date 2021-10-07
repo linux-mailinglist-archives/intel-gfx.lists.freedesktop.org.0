@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0D55426064
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 01:32:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 983864260CC
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 01:57:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88F566E863;
-	Thu,  7 Oct 2021 23:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4C9D6E85C;
+	Thu,  7 Oct 2021 23:57:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6CB56E44D
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 23:32:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="312589896"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="312589896"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 16:32:22 -0700
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="624439144"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 16:32:22 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Oct 2021 16:32:12 -0700
-Message-Id: <20211007233212.3896460-4-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007233212.3896460-1-lucas.demarchi@intel.com>
-References: <20211007233212.3896460-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 628FA6E04E;
+ Thu,  7 Oct 2021 23:57:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 534FAA47EB;
+ Thu,  7 Oct 2021 23:57:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6677003685813040431=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/display: remove unused intel-mid.h
- include
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 Oct 2021 23:57:03 -0000
+Message-ID: <163365102330.5187.1189326857815352294@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211007225547.30997-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20211007225547.30997-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/pmu=3A_Add_a_name_to_the_e?=
+ =?utf-8?q?xeclists_stats?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,29 +42,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Nothing from intel-mid.h and this is only available on x86, so remove it
-as we prepare support for other architectures.
+--===============6677003685813040431==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 1 -
- 1 file changed, 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index c2a2cd1f84dc..61c2ef6a4b8c 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -31,7 +31,6 @@
- #include <linux/pinctrl/machine.h>
- #include <linux/slab.h>
- 
--#include <asm/intel-mid.h>
- #include <asm/unaligned.h>
- 
- #include <drm/drm_crtc.h>
--- 
-2.33.0
+Series: series starting with [1/2] drm/i915/pmu: Add a name to the execlists stats
+URL   : https://patchwork.freedesktop.org/series/95586/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10696 -> Patchwork_21285
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_21285 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21285, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21285:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_engines:
+    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10696/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21285 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@runner@aborted:
+    - fi-rkl-guc:         NOTRUN -> [FAIL][3] ([i915#3928])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/fi-rkl-guc/igt@runner@aborted.html
+
+  
+  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
+
+
+Participating hosts (44 -> 1)
+------------------------------
+
+  ERROR: It appears as if the changes made in Patchwork_21285 prevented too many machines from booting.
+
+  Missing    (43): fi-kbl-soraka fi-rkl-11600 bat-dg1-6 fi-bdw-gvtdvm fi-icl-u2 fi-apl-guc fi-snb-2520m fi-pnv-d510 fi-icl-y fi-skl-6600u fi-snb-2600 fi-cml-u2 fi-bxt-dsi fi-bdw-5557u fi-bsw-n3050 fi-tgl-u2 fi-glk-dsi fi-bwr-2160 fi-kbl-7500u fi-ctg-p8600 fi-hsw-4770 fi-ivb-3770 fi-elk-e7500 fi-bsw-nick fi-skl-6700k2 fi-kbl-r fi-kbl-7567u fi-ilk-m540 fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-ehl-2 bat-jsl-1 fi-hsw-gt1 fi-jsl-1 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-cfl-guc fi-kbl-guc fi-cfl-8109u fi-kbl-8809g fi-bsw-kefka 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10696 -> Patchwork_21285
+
+  CI-20190529: 20190529
+  CI_DRM_10696: 58a206ae5bf2f81a11e4408d10a3e1b445d6eebb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6237: 910b5caac6625d2bf0b6c1dde502451431bd0159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21285: 03bcbfdbe47d5b10a8eb3440cbeee39bd2efd3e8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+03bcbfdbe47d drm/i915/pmu: Connect engine busyness stats from GuC to pmu
+ffc67cf0919d drm/i915/pmu: Add a name to the execlists stats
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/index.html
+
+--===============6677003685813040431==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/pmu: Add a name to the execlists stats</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95586/">https://patchwork.freedesktop.org/series/95586/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10696 -&gt; Patchwork_21285</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21285 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21285, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21285:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_engines:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10696/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21285 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21285/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 1)</h2>
+<p>ERROR: It appears as if the changes made in Patchwork_21285 prevented too many machines from booting.</p>
+<p>Missing    (43): fi-kbl-soraka fi-rkl-11600 bat-dg1-6 fi-bdw-gvtdvm fi-icl-u2 fi-apl-guc fi-snb-2520m fi-pnv-d510 fi-icl-y fi-skl-6600u fi-snb-2600 fi-cml-u2 fi-bxt-dsi fi-bdw-5557u fi-bsw-n3050 fi-tgl-u2 fi-glk-dsi fi-bwr-2160 fi-kbl-7500u fi-ctg-p8600 fi-hsw-4770 fi-ivb-3770 fi-elk-e7500 fi-bsw-nick fi-skl-6700k2 fi-kbl-r fi-kbl-7567u fi-ilk-m540 fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-ehl-2 bat-jsl-1 fi-hsw-gt1 fi-jsl-1 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-cfl-guc fi-kbl-guc fi-cfl-8109u fi-kbl-8809g fi-bsw-kefka </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10696 -&gt; Patchwork_21285</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10696: 58a206ae5bf2f81a11e4408d10a3e1b445d6eebb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6237: 910b5caac6625d2bf0b6c1dde502451431bd0159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21285: 03bcbfdbe47d5b10a8eb3440cbeee39bd2efd3e8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>03bcbfdbe47d drm/i915/pmu: Connect engine busyness stats from GuC to pmu<br />
+ffc67cf0919d drm/i915/pmu: Add a name to the execlists stats</p>
+
+</body>
+</html>
+
+--===============6677003685813040431==--
