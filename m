@@ -1,47 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646D4424C30
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 05:17:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A564B424C3C
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 05:36:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98FBB6E828;
-	Thu,  7 Oct 2021 03:17:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C84F56E81D;
+	Thu,  7 Oct 2021 03:36:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FAF36E82E
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 03:17:08 +0000 (UTC)
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-369-vY48yk2fM26fvagF5McYPw-1; Wed, 06 Oct 2021 23:17:03 -0400
-X-MC-Unique: vY48yk2fM26fvagF5McYPw-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
- [10.5.11.14])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C7758824FA7;
- Thu,  7 Oct 2021 03:17:02 +0000 (UTC)
-Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 3AA2E5D9C6;
- Thu,  7 Oct 2021 03:17:00 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- Dave Airlie <airlied@redhat.com>
-Date: Thu,  7 Oct 2021 13:13:18 +1000
-Message-Id: <20211007031318.3088987-9-airlied@gmail.com>
-In-Reply-To: <20211007031318.3088987-1-airlied@gmail.com>
-References: <20211007031318.3088987-1-airlied@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBD7A6E81D;
+ Thu,  7 Oct 2021 03:36:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D2D99A47DF;
+ Thu,  7 Oct 2021 03:36:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915/display: drop unused parameter to
- dpt pin
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dave Airlie" <airlied@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 Oct 2021 03:36:31 -0000
+Message-ID: <163357779181.5189.6762110635497052101@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211007031318.3088987-1-airlied@gmail.com>
+In-Reply-To: <20211007031318.3088987-1-airlied@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_refactor_plane_config_+_pin_out?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,41 +41,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+== Series Details ==
 
-The uses_fence isn't used.
+Series: drm/i915/display: refactor plane config + pin out
+URL   : https://patchwork.freedesktop.org/series/95541/
+State : warning
 
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_fb_pin.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/=
-i915/display/intel_fb_pin.c
-index 760436b99a34..fac94e1fec8b 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -18,7 +18,6 @@
- static struct i915_vma *
- intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
- =09=09     const struct i915_ggtt_view *view,
--=09=09     bool uses_fence,
- =09=09     unsigned long *out_flags,
- =09=09     struct i915_address_space *vm)
- {
-@@ -236,7 +235,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_=
-state)
-=20
- =09=09plane_state->ggtt_vma =3D vma;
-=20
--=09=09vma =3D intel_pin_fb_obj_dpt(fb, &plane_state->view.gtt, false,
-+=09=09vma =3D intel_pin_fb_obj_dpt(fb, &plane_state->view.gtt,
- =09=09=09=09=09   &plane_state->flags, intel_fb->dpt_vm);
- =09=09if (IS_ERR(vma)) {
- =09=09=09intel_dpt_unpin(intel_fb->dpt_vm);
---=20
-2.25.4
+$ dim checkpatch origin/drm-tip
+366ca42bffbf drm/i915/display: move plane prepare/cleanup to intel_atomic_plane.c
+-:38: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#38: FILE: drivers/gpu/drm/i915/display/intel_atomic_plane.c:613:
++			unsigned mode, int sync, void *key)
+
+-:157: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#157: FILE: drivers/gpu/drm/i915/display/intel_atomic_plane.c:732:
++
++
+
+total: 0 errors, 1 warnings, 1 checks, 456 lines checked
+c9bb7cb0d997 drm/i915/display: move intel_plane_uses_fence to inline.
+7f7279334e75 drm/i915/display: refactor out initial plane config for crtcs
+093d68752076 drm/i915/display: refactor initial plane config to a separate file
+-:363: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#363: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 626 lines checked
+7d766a9f68b6 drm/i915/display: move pin/unpin fb/plane code to a new file.
+-:351: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#351: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 621 lines checked
+bf4c2b0ecc98 drm/i915/display: refactor fbdev pin/unpin out into functions.
+-:29: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#29: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:184:
++	if (IS_ERR(ifbdev->vma)) {
++		return PTR_ERR(ifbdev->vma);
++	}
+
+-:74: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#74: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:252:
++	if (ret) {
+ 		goto out_unlock;
+ 	}
+
+total: 0 errors, 2 warnings, 0 checks, 117 lines checked
+0e6166bdb495 drm/i915/display: move fbdev pin code into fb_pin
+-:49: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#49: FILE: drivers/gpu/drm/i915/display/intel_fb_pin.c:287:
++	if (IS_ERR(ifbdev->vma)) {
++		return PTR_ERR(ifbdev->vma);
++	}
+
+total: 0 errors, 1 warnings, 0 checks, 111 lines checked
+60156ef4b61e drm/i915/display: drop unused parameter to dpt pin
+
 
