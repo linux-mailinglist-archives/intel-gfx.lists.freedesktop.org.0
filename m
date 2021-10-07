@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46B574259AE
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 19:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A83DA4259AF
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 19:41:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 962186ED64;
-	Thu,  7 Oct 2021 17:41:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCD8B6F37F;
+	Thu,  7 Oct 2021 17:41:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 463826ED64
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 17:41:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="249640359"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="249640359"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 10:41:21 -0700
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="489101714"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 389E46F37F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 17:41:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="223720107"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="223720107"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 10:41:55 -0700
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="478658669"
 Received: from roliveir-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.41.10])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 10:41:17 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 10:41:51 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
 Cc: gwan-gyeong.mun@intel.com, mika.kahola@intel.com, manasi.d.navare@intel.com,
@@ -30,8 +30,8 @@ In-Reply-To: <20211007155729.27812-3-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20211007155729.27812-1-animesh.manna@intel.com>
  <20211007155729.27812-3-animesh.manna@intel.com>
-Date: Thu, 07 Oct 2021 20:41:13 +0300
-Message-ID: <87r1cwybpi.fsf@intel.com>
+Date: Thu, 07 Oct 2021 20:41:48 +0300
+Message-ID: <87o880yboj.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915/panelreplay: Initializaton
@@ -84,6 +84,9 @@ On Thu, 07 Oct 2021, Animesh Manna <animesh.manna@intel.com> wrote:
 >  	u16 su_w_granularity;
 >  	u16 su_y_granularity;
 > +	bool sink_pr_support;
+
+Maybe spell out panel_replay here too, pr is just too short IMO.
+
 >  	u32 dc3co_exitline;
 >  	u32 dc3co_exit_delay;
 >  	struct delayed_work dc3co_work;
@@ -133,10 +136,6 @@ On Thu, 07 Oct 2021, Animesh Manna <animesh.manna@intel.com> wrote:
 > +		} else {
 > +			/*
 > +			 * [PR, -Colorimetry]
-
-I don't understand the comment format here and above. Plain English,
-please.
-
 > +			 * Prepare VSC Header for SU as per DP 2.0 spec, Table 2-223
 > +			 * VSC SDP supporting 3D stereo + PR (applies to eDP v1.3 or
 > +			 * higher).
@@ -152,12 +151,6 @@ please.
 >  	intel_vrr_compute_config(pipe_config, conn_state);
 >  	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
 > +	intel_panel_replay_compute_config(intel_dp, pipe_config);
-
-Are there any cases where we'd actually need to keep
-intel_psr_compute_config and intel_panel_replay_compute_config separate?
-Could you just call intel_panel_replay_compute_config from within
-intel_psr_compute_config to not clutter this?
-
 >  	intel_drrs_compute_config(intel_dp, pipe_config, output_bpp,
 >  				  constant_n);
 >  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
@@ -181,9 +174,6 @@ intel_psr_compute_config to not clutter this?
 >  
 > +	intel_panel_replay_init(intel_dp);
 > +
-
-Ditto here, why not just call intel_panel_replay_init in intel_psr_init?
-
 >  	return true;
 >  
 >  fail:
@@ -199,10 +189,6 @@ Ditto here, why not just call intel_panel_replay_init in intel_psr_init?
 > +				       struct intel_crtc_state *crtc_state)
 > +{
 > +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-
-Please use i915 local variable name instead of dev_priv whenever
-possible for new code.
-
 > +
 > +	if (!intel_dp->psr.sink_pr_support)
 > +		return;
@@ -239,23 +225,10 @@ possible for new code.
 > +
 > +	drm_dp_dpcd_read(&intel_dp->aux, DP_PANEL_REPLAY_SUPPORT, &pr_dpcd,
 > +			 sizeof(pr_dpcd));
-
-drm_dp_dpcd_readb is for 1-byte reads.
-
-If the read fails, pr_dpcd might be uninitialized. Either initialize
-pr_dpcd = 0 or check the return value.
-
 > +
 > +	if (!(pr_dpcd & PANEL_REPLAY_SUPPORT)) {
 > +		drm_dbg_kms(&dev_priv->drm,
 > +			    "Panel replay is not supported by panel\n");
-
-So I'd rather see debug log when panel replay *is* supported.
-
-Or both is and isn't supported.
-
-But really not this asymmetric not supported alone.
-
 > +		return;
 > +	}
 > +
@@ -296,13 +269,6 @@ But really not this asymmetric not supported alone.
 > +#define DP_PANEL_REPLAY_SUPPORT             0x0b0
 > +# define PANEL_REPLAY_SUPPORT               (1 << 0)
 > +
-
-Often easier and better to split out drm helper changes to separate
-patches for all kinds of reasons.
-
-BR,
-Jani.
-
 >  /* Link Configuration */
 >  #define	DP_LINK_BW_SET		            0x100
 >  # define DP_LINK_RATE_TABLE		    0x00    /* eDP 1.4 */
