@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DE3425DA6
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 22:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8562C425DA8
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 22:35:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 894066F4DE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4FB6F4DD;
 	Thu,  7 Oct 2021 20:35:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE1F36F4D7
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 20:35:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="213303816"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="213303816"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C448E6F4DD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 20:35:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="213303820"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="213303820"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 13:35:27 -0700
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="458926556"
+ 07 Oct 2021 13:35:28 -0700
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="458926562"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 13:35:26 -0700
+ 07 Oct 2021 13:35:27 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Oct 2021 23:35:12 +0300
-Message-Id: <20211007203517.3364336-7-imre.deak@intel.com>
+Date: Thu,  7 Oct 2021 23:35:13 +0300
+Message-Id: <20211007203517.3364336-8-imre.deak@intel.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20211007203517.3364336-1-imre.deak@intel.com>
 References: <20211007203517.3364336-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 06/11] drm/i915: Move
- intel_format_info_is_yuv_semiplanar() to intel_fb.c
+Subject: [Intel-gfx] [PATCH 07/11] drm/i915: Add a platform independent way
+ to get the RC CCS CC plane
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,135 +47,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move intel_format_info_is_yuv_semiplanar() to intel_fb.c . The number of
-planes for YUV semiplanar formats using CCS modifiers will change on
-future platforms. We can use the modifier descriptors to simplify
-getting the plane numbers for all modifiers, prepare for that here.
+On future platforms the index of the color-clear plane will change from
+the one used by the GEN12 RC CCS CC modifier, so add a way to retrieve
+the index independently of the platform/modifier.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c |  1 +
- drivers/gpu/drm/i915/display/intel_display.c  |  8 -----
- drivers/gpu/drm/i915/display/intel_display.h  |  4 ---
- drivers/gpu/drm/i915/display/intel_fb.c       | 30 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_fb.h       |  4 +++
- drivers/gpu/drm/i915/intel_pm.c               |  1 +
- 6 files changed, 36 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 +++++---
+ drivers/gpu/drm/i915/display/intel_fb.c      | 25 ++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_fb.h      |  2 ++
+ 3 files changed, 32 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 47234d8985490..0eb7323717d30 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -39,6 +39,7 @@
- #include "intel_atomic_plane.h"
- #include "intel_cdclk.h"
- #include "intel_display_types.h"
-+#include "intel_fb.h"
- #include "intel_pm.h"
- #include "intel_sprite.h"
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 90802d16fbf91..8043a9fd665a5 100644
+index 8043a9fd665a5..bfb9120cb31ed 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -821,14 +821,6 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
- 		intel_wait_for_pipe_off(old_crtc_state);
- }
+@@ -10031,10 +10031,14 @@ static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *s
  
--bool
--intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
--				    u64 modifier)
--{
--	return info->is_yuv &&
--	       info->num_planes == (is_ccs_modifier(modifier) ? 4 : 2);
--}
--
- unsigned int intel_rotation_info_size(const struct intel_rotation_info *rot_info)
- {
- 	unsigned int size = 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 3028072c2cf35..84ae8b555ea0f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -619,10 +619,6 @@ void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state);
- int bdw_get_pipemisc_bpp(struct intel_crtc *crtc);
- unsigned int intel_plane_fence_y_offset(const struct intel_plane_state *plane_state);
+ 	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+ 		struct drm_framebuffer *fb = plane_state->hw.fb;
++		int cc_plane;
+ 		int ret;
  
--bool
--intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
--				    u64 modifier);
--
- int intel_plane_pin_fb(struct intel_plane_state *plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
- struct intel_encoder *
+-		if (!fb ||
+-		    fb->modifier != I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC)
++		if (!fb)
++			continue;
++
++		cc_plane = intel_fb_rc_ccs_cc_plane(fb);
++		if (cc_plane < 0)
+ 			continue;
+ 
+ 		/*
+@@ -10051,7 +10055,7 @@ static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *s
+ 		 * GPU write on it.
+ 		 */
+ 		ret = i915_gem_object_read_from_page(intel_fb_obj(fb),
+-						     fb->offsets[2] + 16,
++						     fb->offsets[cc_plane] + 16,
+ 						     &plane_state->ccval,
+ 						     sizeof(plane_state->ccval));
+ 		/* The above could only fail if the FB obj has an unexpected backing store type. */
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 19aa99375502a..f0d8c848b23e1 100644
+index f0d8c848b23e1..f18fab9c3b941 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -353,6 +353,36 @@ bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier)
- 	return false;
+@@ -124,6 +124,7 @@ const struct intel_modifier_desc {
+ 
+ #define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
+ 		u8 type:3;
++		u8 cc_planes:3;
+ 	} ccs;
+ } intel_modifiers[] = {
+ 	{
+@@ -176,6 +177,7 @@ const struct intel_modifier_desc {
+ 		.tiling = I915_TILING_Y,
+ 
+ 		.ccs.type = INTEL_CCS_RC_CC,
++		.ccs.cc_planes = BIT(2),
+ 
+ 		FORMAT_OVERRIDE(gen12_ccs_cc_formats),
+ 	},
+@@ -396,10 +398,29 @@ bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane)
+ 	return is_gen12_ccs_modifier(fb->modifier) && is_ccs_plane(fb, plane);
  }
  
-+static bool format_is_yuv_semiplanar(const struct intel_modifier_desc *md,
-+				     const struct drm_format_info *info)
-+{
-+	int yuv_planes;
-+
-+	if (!info->is_yuv)
-+		return false;
-+
-+	if (is_ccs_type_modifier(md, INTEL_CCS_ANY))
-+		yuv_planes = 4;
-+	else
-+		yuv_planes = 2;
-+
-+	return info->num_planes == yuv_planes;
-+}
-+
 +/**
-+ * intel_format_info_is_yuv_semiplanar: Check if the given format is YUV semiplanar
-+ * @info: format to check
-+ * @modifier: modifier used with the format
++ * intel_fb_rc_ccs_cc_plane: Get the CCS CC color plane index for a framebuffer
++ * @fb: Framebuffer
 + *
 + * Returns:
-+ * %true if @info / @modifier is YUV semiplanar.
++ * Returns the index of the color clear plane for @fb, or -1 if @fb is not a
++ * framebuffer using a render compression/color clear modifier.
 + */
-+bool intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
-+					 u64 modifier)
++int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb)
 +{
-+	return format_is_yuv_semiplanar(lookup_modifier(modifier), info);
++	const struct intel_modifier_desc *md = lookup_modifier(fb->modifier);
++
++	if (!md->ccs.cc_planes)
++		return -1;
++
++	drm_WARN_ON_ONCE(fb->dev, hweight8(md->ccs.cc_planes) > 1);
++
++	return ilog2((int)md->ccs.cc_planes);
 +}
 +
- bool is_ccs_plane(const struct drm_framebuffer *fb, int plane)
+ bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane)
  {
- 	if (!is_ccs_modifier(fb->modifier))
+-	return fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC &&
+-	       plane == 2;
++	return intel_fb_rc_ccs_cc_plane(fb) == plane;
+ }
+ 
+ static bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane)
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-index a198914c0088b..d9693fc767c54 100644
+index d9693fc767c54..5affcc834e045 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.h
 +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-@@ -33,6 +33,10 @@ bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
- const struct drm_format_info *
- intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
+@@ -26,6 +26,8 @@ bool is_ccs_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane);
  
-+bool
-+intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
-+				    u64 modifier);
++int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
 +
- bool is_surface_linear(const struct drm_framebuffer *fb, int color_plane);
- 
- int main_to_ccs_plane(const struct drm_framebuffer *fb, int main_plane);
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 8dbf8ec0d8905..bafcac58ac096 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -37,6 +37,7 @@
- #include "display/intel_bw.h"
- #include "display/intel_de.h"
- #include "display/intel_display_types.h"
-+#include "display/intel_fb.h"
- #include "display/intel_fbc.h"
- #include "display/intel_sprite.h"
- #include "display/skl_universal_plane.h"
+ u64 *intel_fb_plane_get_modifiers(struct drm_i915_private *i915,
+ 				  enum pipe pipe, enum plane_id plane_id);
+ bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
 -- 
 2.27.0
 
