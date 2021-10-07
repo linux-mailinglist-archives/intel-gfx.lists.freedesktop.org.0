@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636554257C1
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 18:20:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B87ED4257C2
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 18:20:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21AE06F89B;
-	Thu,  7 Oct 2021 16:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFFF76F89C;
+	Thu,  7 Oct 2021 16:20:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B97696F89B
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 16:20:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="249614629"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="249614629"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 143376F89C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 16:20:45 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="249614650"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="249614650"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 09:20:41 -0700
+ 07 Oct 2021 09:20:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="524723199"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="524723221"
 Received: from amanna.iind.intel.com ([10.223.74.76])
- by fmsmga008.fm.intel.com with ESMTP; 07 Oct 2021 09:20:39 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 07 Oct 2021 09:20:42 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: gwan-gyeong.mun@intel.com, mika.kahola@intel.com, jani.nikula@intel.com,
  manasi.d.navare@intel.com, jose.souza@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Date: Thu,  7 Oct 2021 21:27:27 +0530
-Message-Id: <20211007155729.27812-3-animesh.manna@intel.com>
+Date: Thu,  7 Oct 2021 21:27:28 +0530
+Message-Id: <20211007155729.27812-4-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20211007155729.27812-1-animesh.manna@intel.com>
 References: <20211007155729.27812-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915/panelreplay: Initializaton and
- compute config for panel replay
+Subject: [Intel-gfx] [PATCH v2 3/4] drm/i915/panelreplay: enable/disable
+ panel replay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,223 +50,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As panel replay feature similar to PSR feature of EDP panel, so currently
-utilized existing psr framework for panel replay.
-
-v1: RFC version.
-v2: optimized code, pr_enabled and pr_dpcd variable removed. [Jose]
+TRANS_DP2_CTL register is programmed to enable panel replay from source
+and sink is enabled through panel replay dpcd configuration address.
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_dp.c       | 47 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_psr.c      | 43 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_psr.h      |  3 ++
- include/drm/drm_dp_helper.h                   |  3 ++
- 5 files changed, 89 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 30 ++++++++++++++++++++----
+ drivers/gpu/drm/i915/i915_reg.h          |  1 +
+ include/drm/drm_dp_helper.h              |  3 +++
+ 3 files changed, 30 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 21ce8bccc645..b32d9529feef 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1070,6 +1070,7 @@ struct intel_crtc_state {
- 	bool req_psr2_sdp_prior_scanline;
- 	u32 dc3co_exitline;
- 	u16 su_y_granularity;
-+	bool has_panel_replay;
- 	struct drm_dp_vsc_sdp psr_vsc;
- 
- 	/*
-@@ -1531,6 +1532,7 @@ struct intel_psr {
- 	bool irq_aux_error;
- 	u16 su_w_granularity;
- 	u16 su_y_granularity;
-+	bool sink_pr_support;
- 	u32 dc3co_exitline;
- 	u32 dc3co_exit_delay;
- 	struct delayed_work dc3co_work;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 74a657ae131a..45181692e3b0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1569,12 +1569,22 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
--	/*
--	 * Prepare VSC Header for SU as per DP 1.4 spec, Table 2-118
--	 * VSC SDP supporting 3D stereo, PSR2, and Pixel Encoding/
--	 * Colorimetry Format indication.
--	 */
--	vsc->revision = 0x5;
-+	if (crtc_state->has_panel_replay) {
-+		/*
-+		 * Prepare VSC Header for SU as per DP 2.0 spec, Table 2-223
-+		 * VSC SDP supporting 3D stereo, Panel Replay, and Pixel
-+		 * Encoding/Colorimetry Format indication.
-+		 */
-+		vsc->revision = 0x7;
-+	} else {
-+		/*
-+		 * Prepare VSC Header for SU as per DP 1.4 spec, Table 2-118
-+		 * VSC SDP supporting 3D stereo, PSR2, and Pixel Encoding/
-+		 * Colorimetry Format indication.
-+		 */
-+		vsc->revision = 0x5;
-+	}
-+
- 	vsc->length = 0x13;
- 
- 	/* DP 1.4a spec, Table 2-120 */
-@@ -1683,6 +1693,22 @@ void intel_dp_compute_psr_vsc_sdp(struct intel_dp *intel_dp,
- 			vsc->revision = 0x4;
- 			vsc->length = 0xe;
- 		}
-+	} else if (intel_dp->psr.enabled && !intel_dp_is_edp(intel_dp)) {
-+		if (intel_dp->psr.colorimetry_support &&
-+		    intel_dp_needs_vsc_sdp(crtc_state, conn_state)) {
-+			/* [PR, +Colorimetry] */
-+			intel_dp_compute_vsc_colorimetry(crtc_state, conn_state,
-+							 vsc);
-+		} else {
-+			/*
-+			 * [PR, -Colorimetry]
-+			 * Prepare VSC Header for SU as per DP 2.0 spec, Table 2-223
-+			 * VSC SDP supporting 3D stereo + PR (applies to eDP v1.3 or
-+			 * higher).
-+			 */
-+			vsc->revision = 0x6;
-+			vsc->length = 0x10;
-+		}
- 	} else {
- 		/*
- 		 * [PSR1]
-@@ -1824,6 +1850,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 
- 	intel_vrr_compute_config(pipe_config, conn_state);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
-+	intel_panel_replay_compute_config(intel_dp, pipe_config);
- 	intel_drrs_compute_config(intel_dp, pipe_config, output_bpp,
- 				  constant_n);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-@@ -2731,10 +2758,10 @@ static ssize_t intel_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
- 	sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
- 
- 	/*
--	 * Only revision 0x5 supports Pixel Encoding/Colorimetry Format as
--	 * per DP 1.4a spec.
-+	 * Revision 0x5 and 0x7 supports Pixel Encoding/Colorimetry Format as
-+	 * per DP 1.4a spec and DP 2.0 spec respectively.
- 	 */
--	if (vsc->revision != 0x5)
-+	if (vsc->revision != 0x5 || vsc->revision != 0x7)
- 		goto out;
- 
- 	/* VSC SDP Payload for DB16 through DB18 */
-@@ -5044,6 +5071,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 
- 	intel_psr_init(intel_dp);
- 
-+	intel_panel_replay_init(intel_dp);
-+
- 	return true;
- 
- fail:
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 7a205fd5023b..935ea1c434ac 100644
+index 935ea1c434ac..197cab7551c6 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -933,6 +933,21 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 	return true;
- }
+@@ -370,8 +370,14 @@ static void intel_psr_enable_sink(struct intel_dp *intel_dp)
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	u8 dpcd_val = DP_PSR_ENABLE;
  
-+void intel_panel_replay_compute_config(struct intel_dp *intel_dp,
-+				       struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+
-+	if (!intel_dp->psr.sink_pr_support)
-+		return;
-+
-+	crtc_state->has_panel_replay = true;
-+	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
-+
-+	if (HAS_PSR2_SEL_FETCH(dev_priv))
-+		intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state);
-+}
-+
- void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state)
-@@ -2170,6 +2185,34 @@ void intel_psr_flush(struct drm_i915_private *dev_priv,
- 	}
- }
- 
-+/**
-+ * intel_panel_replay_init - Check for sink and source capability.
-+ * @intel_dp: Intel DP
-+ *
-+ * This function is called after the initializing connector.
-+ * (the initializing of connector treats the handling of connector capabilities)
-+ * And it initializes basic panel replay stuff for each DP Encoder.
-+ */
-+void intel_panel_replay_init(struct intel_dp *intel_dp)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+	u8 pr_dpcd;
-+
-+	if (!(HAS_DP20(dev_priv) && HAS_PR(dev_priv)))
-+		return;
-+
-+	drm_dp_dpcd_read(&intel_dp->aux, DP_PANEL_REPLAY_SUPPORT, &pr_dpcd,
-+			 sizeof(pr_dpcd));
-+
-+	if (!(pr_dpcd & PANEL_REPLAY_SUPPORT)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Panel replay is not supported by panel\n");
+-	/* Enable ALPM at sink for psr2 */
++	if (intel_dp->psr.enabled && !intel_dp_is_edp(intel_dp)) {
++		drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG,
++				   PANEL_REPLAY_ENABLE);
 +		return;
 +	}
 +
-+	intel_dp->psr.sink_pr_support = true;
+ 	if (intel_dp->psr.psr2_enabled) {
++		/* Enable ALPM at sink for psr2 */
+ 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG,
+ 				   DP_ALPM_ENABLE |
+ 				   DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE);
+@@ -498,6 +504,17 @@ static u32 intel_psr2_get_tp_time(struct intel_dp *intel_dp)
+ 	return val;
+ }
+ 
++static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	intel_de_write(dev_priv, PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder),
++		       ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE);
++
++	intel_de_rmw(dev_priv, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
++		     TRANS_DP2_PANEL_REPLAY_ENABLE);
 +}
 +
- /**
-  * intel_psr_init - Init basic PSR work and mutex.
-  * @intel_dp: Intel DP
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index facffbacd357..c9d1c1f0b470 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -32,6 +32,7 @@ void intel_psr_flush(struct drm_i915_private *dev_priv,
- 		     unsigned frontbuffer_bits,
- 		     enum fb_op_origin origin);
- void intel_psr_init(struct intel_dp *intel_dp);
-+void intel_panel_replay_init(struct intel_dp *intel_dp);
- void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state);
-@@ -52,5 +53,7 @@ void intel_psr2_disable_plane_sel_fetch(struct intel_plane *plane,
- 					const struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
-+void intel_panel_replay_compute_config(struct intel_dp *intel_dp,
-+				       struct intel_crtc_state *crtc_state);
+ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+@@ -1067,8 +1084,10 @@ static void intel_psr_activate(struct intel_dp *intel_dp)
+ 	drm_WARN_ON(&dev_priv->drm, intel_dp->psr.active);
+ 	lockdep_assert_held(&intel_dp->psr.lock);
  
- #endif /* __INTEL_PSR_H__ */
+-	/* psr1 and psr2 are mutually exclusive.*/
+-	if (intel_dp->psr.psr2_enabled)
++	/* psr1, psr2 and panel-replay are mutually exclusive.*/
++	if (intel_dp->psr.enabled && !intel_dp_is_edp(intel_dp))
++		dg2_activate_panel_replay(intel_dp);
++	else if (intel_dp->psr.psr2_enabled)
+ 		hsw_activate_psr2(intel_dp);
+ 	else
+ 		hsw_activate_psr1(intel_dp);
+@@ -1241,7 +1260,10 @@ static void intel_psr_exit(struct intel_dp *intel_dp)
+ 		return;
+ 	}
+ 
+-	if (intel_dp->psr.psr2_enabled) {
++	if (intel_dp->psr.enabled && !intel_dp_is_edp(intel_dp)) {
++		intel_de_rmw(dev_priv, TRANS_DP2_CTL(intel_dp->psr.transcoder),
++			     TRANS_DP2_PANEL_REPLAY_ENABLE, 0);
++	} else if (intel_dp->psr.psr2_enabled) {
+ 		tgl_disallow_dc3co_on_psr2_exit(intel_dp);
+ 		val = intel_de_read(dev_priv,
+ 				    EDP_PSR2_CTL(intel_dp->psr.transcoder));
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index a897f4abea0c..6cc6ebcd3bdb 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4725,6 +4725,7 @@ enum {
+ #define  PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME			REG_BIT(3)
+ #define  PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME		REG_BIT(2)
+ #define  PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE		REG_BIT(1)
++#define  ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE		REG_BIT(31)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK	REG_GENMASK(28, 16)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(val)	REG_FIELD_PREP(ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK, val)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK		REG_GENMASK(12, 0)
 diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index b52df4db3e8f..d18340cbf8ac 100644
+index d18340cbf8ac..4b95289e6edf 100644
 --- a/include/drm/drm_dp_helper.h
 +++ b/include/drm/drm_dp_helper.h
-@@ -541,6 +541,9 @@ struct drm_panel;
- /* DFP Capability Extension */
- #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT	0x0a3	/* 2.0 */
+@@ -712,6 +712,9 @@ struct drm_panel;
+ #define DP_BRANCH_DEVICE_CTRL		    0x1a1
+ # define DP_BRANCH_DEVICE_IRQ_HPD	    (1 << 0)
  
-+#define DP_PANEL_REPLAY_SUPPORT             0x0b0
-+# define PANEL_REPLAY_SUPPORT               (1 << 0)
++#define PANEL_REPLAY_CONFIG                 0x1b0
++# define PANEL_REPLAY_ENABLE                (1 << 0)
 +
- /* Link Configuration */
- #define	DP_LINK_BW_SET		            0x100
- # define DP_LINK_RATE_TABLE		    0x00    /* eDP 1.4 */
+ #define DP_PAYLOAD_ALLOCATE_SET		    0x1c0
+ #define DP_PAYLOAD_ALLOCATE_START_TIME_SLOT 0x1c1
+ #define DP_PAYLOAD_ALLOCATE_TIME_SLOT_COUNT 0x1c2
 -- 
 2.29.0
 
