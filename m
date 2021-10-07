@@ -2,45 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92064256D2
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 17:42:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21DAA4256F6
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Oct 2021 17:46:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD1D06E84E;
-	Thu,  7 Oct 2021 15:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10B296E84E;
+	Thu,  7 Oct 2021 15:46:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D133E6E84C;
- Thu,  7 Oct 2021 15:42:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="206404746"
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="206404746"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 08:42:34 -0700
-X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="458835173"
-Received: from unerlige-ril-10.jf.intel.com (HELO unerlige-ril-10.165.21.208)
- ([10.165.21.208])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 08:42:33 -0700
-Date: Thu, 7 Oct 2021 08:42:33 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- john.c.harrison@intel.com, daniel.vetter@ffwll.ch,
- Matthew Brost <matthew.brost@intel.com>
-Message-ID: <20211007154233.GJ4467@unerlige-ril-10.165.21.208>
-References: <20211005174711.55618-1-umesh.nerlige.ramappa@intel.com>
- <73824dba-142a-1022-252e-ce56de1227fa@linux.intel.com>
- <20211006204552.GI4467@unerlige-ril-10.165.21.208>
- <ae1570ac-4af1-bb3e-7a97-9b56e2242441@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6496E84E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 15:46:00 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="223683893"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="223683893"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 08:45:57 -0700
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="524709162"
+Received: from jadiaz2-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.28.252])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 08:45:57 -0700
+Date: Thu, 7 Oct 2021 08:45:56 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <20211007154556.zzf2xjr4cvorozne@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20211005171728.3147094-1-lucas.demarchi@intel.com>
+ <163347577450.19283.9746136297993346850@emeril.freedesktop.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ae1570ac-4af1-bb3e-7a97-9b56e2242441@linux.intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Connect engine busyness stats
- from GuC to pmu
+In-Reply-To: <163347577450.19283.9746136297993346850@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_remove_IS=5FACTIVE_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,60 +51,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 07, 2021 at 09:17:34AM +0100, Tvrtko Ursulin wrote:
+On Tue, Oct 05, 2021 at 11:16:14PM +0000, Patchwork wrote:
+>== Series Details ==
 >
->On 06/10/2021 21:45, Umesh Nerlige Ramappa wrote:
->>On Wed, Oct 06, 2021 at 10:11:58AM +0100, Tvrtko Ursulin wrote:
+>Series: drm/i915: remove IS_ACTIVE (rev3)
+>URL   : https://patchwork.freedesktop.org/series/95312/
+>State : failure
 >
->[snip]
+>== Summary ==
 >
->>>>@@ -762,12 +764,25 @@ submission_disabled(struct intel_guc *guc)
->>>> static void disable_submission(struct intel_guc *guc)
->>>> {
->>>>     struct i915_sched_engine * const sched_engine = guc->sched_engine;
->>>>+    struct intel_gt *gt = guc_to_gt(guc);
->>>>+    struct intel_engine_cs *engine;
->>>>+    enum intel_engine_id id;
->>>>+    unsigned long flags;
->>>>     if (__tasklet_is_enabled(&sched_engine->tasklet)) {
->>>>         GEM_BUG_ON(!guc->ct.enabled);
->>>>         __tasklet_disable_sync_once(&sched_engine->tasklet);
->>>>         sched_engine->tasklet.callback = NULL;
->>>>     }
->>>>+
->>>>+    cancel_delayed_work(&guc->timestamp.work);
->>>
->>>I am not sure when disable_submission gets called so a question - 
->>>could it be important to call cancel_delayed_work_sync here to 
->>>ensure if the worker was running it had exited before proceeding?
->>
->>disable_submission is called in the reset_prepare path for uc 
->>resets. I see this happening only with busy-hang test which does a 
->>global gt reset. The counterpart for this is the 
->>guc_init_engine_stats which is called post reset in the path to 
->>initialize GuC.
->>
->>I tried cancel_delayed_work_sync both here and in park. Seems to 
->>work fine, so will change the calls to _sync versions.
+>CI Bug Log - changes from CI_DRM_10683_full -> Patchwork_21253_full
+>====================================================
 >
->From park is not allowed to sleep so can't do sync from there. It 
->might have been my question which put you on a wrong path, sorry. Now 
->I think question remains what happens if the ping worker happens to be 
->sampling GuC state as GuC is being reset? Do you need some sort of a 
->lock to protect that, or make sure worker skips if reset in progress?
+>Summary
+>-------
 >
+>  **FAILURE**
+>
+>  Serious unknown changes coming with Patchwork_21253_full absolutely need to be
+>  verified manually.
+>
+>  If you think the reported changes have nothing to do with the changes
+>  introduced in Patchwork_21253_full, please notify your bug team to allow them
+>  to document this new failure mode, which will reduce false positives in CI.
+>
+>
+>
+>Possible new issues
+>-------------------
+>
+>  Here are the unknown changes that may have been introduced in Patchwork_21253_full:
+>
+>### IGT changes ###
+>
+>#### Possible regressions ####
+>
+>  * igt@gem_exec_schedule@pi-common@vecs0:
+>    - shard-skl:          [PASS][1] -> [FAIL][2]
+>   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10683/shard-skl8/igt@gem_exec_schedule@pi-common@vecs0.html
+>   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21253/shard-skl6/igt@gem_exec_schedule@pi-common@vecs0.html
 
-If ping ran after the actual gt reset, we should be okay. If it ran 
-after we reset prev_total and before gt reset, then we have bad 
-busyness. At the same time, skipping ping risks timestamp overflow. I am 
-thinking skip ping, but update all stats in the reset_prepare path.  
-reset_prepare is running with pm runtime.
 
-On a different note, during reset, we need to store now-start into the 
-total_gt_clks also because we may lose that information in the next pmu 
-query or ping (post reset). Maybe I will store active_clks instead of 
-running in the stats to do that.
+can't really be: doesn't even change anything in the final .ko
 
-Thanks,
-Umesh
+$ ls -l drivers/gpu/drm/i915/i915.ko{,.old}
+-rw-rw-r-- 1 lucas lucas 35297704 Oct  7 08:44 drivers/gpu/drm/i915/i915.ko
+-rw-rw-r-- 1 lucas lucas 35297704 Oct  7 08:44 drivers/gpu/drm/i915/i915.ko.old
+$ git diff --no-index drivers/gpu/drm/i915/i915.ko{,.old}
+$
 
+Lucas De Marchi
