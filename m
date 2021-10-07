@@ -2,34 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFD1426060
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 01:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA2B426062
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 01:32:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 018236E44D;
-	Thu,  7 Oct 2021 23:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFEF16E044;
+	Thu,  7 Oct 2021 23:32:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D31346E044;
- Thu,  7 Oct 2021 23:29:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CA6C2A47DF;
- Thu,  7 Oct 2021 23:29:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65A586E44D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Oct 2021 23:32:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="312589894"
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="312589894"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 16:32:22 -0700
+X-IronPort-AV: E=Sophos;i="5.85,355,1624345200"; d="scan'208";a="624439140"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 16:32:22 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  7 Oct 2021 16:32:09 -0700
+Message-Id: <20211007233212.3896460-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 07 Oct 2021 23:29:57 -0000
-Message-ID: <163364939778.5186.17957848708740316194@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211007225547.30997-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20211007225547.30997-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
- =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/i915/pmu=3A_Add_a_name_to_the_?=
- =?utf-8?q?execlists_stats?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] Fixup header includes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,19 +41,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Some low hanging fruits to start supporting other architectures.
+Let's make sure we include what we use, particularly when the header is
+arch-dependent.
 
-Series: series starting with [1/2] drm/i915/pmu: Add a name to the execlists stats
-URL   : https://patchwork.freedesktop.org/series/95586/
-State : warning
+Lucas De Marchi (3):
+  drm/i915/gt: include tsc.h where used
+  drm/i915/gt: add asm/cacheflush.h for use of clflush()
+  drm/i915/display: remove unused intel-mid.h include
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 1 -
+ drivers/gpu/drm/i915/gt/intel_engine.h       | 1 +
+ drivers/gpu/drm/i915/gt/intel_llc.c          | 1 +
+ 3 files changed, 2 insertions(+), 1 deletion(-)
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/gt/uc/intel_guc.h:167: warning: Function parameter or member 'timestamp' not described in 'intel_guc'
-
+-- 
+2.33.0
 
