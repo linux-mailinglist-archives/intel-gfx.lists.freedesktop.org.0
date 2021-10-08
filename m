@@ -2,122 +2,127 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8405B426A6B
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 14:08:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0AD8426A99
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 14:20:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BAC66F49C;
-	Fri,  8 Oct 2021 12:08:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2045.outbound.protection.outlook.com [40.107.96.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA846F4F7;
- Fri,  8 Oct 2021 12:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91DCD6E0E5;
+	Fri,  8 Oct 2021 12:20:09 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA2046E0DC;
+ Fri,  8 Oct 2021 12:20:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F47ZEfbHIhAD5XzvBykXyImLYt1EDAlrkrYqVyt1sm8Dg45EklQ9yqo08b8lccRsjouF47VI7i9kOwZTV2MXHMI7r7b6yTYNkxy/mjEfCg+zOeXTm5ifUlDGyg70w04zMGqrgpIv9X7NuN2xuFL7WU5rmG1EE6O4scd4csmFJ7qahoo8vvbPyV18VVw+txE3NzYSBTY515bF2Qc/mZE269dKYGz2T/FaDkXw93vYpXpfveGEiGm8QpOhudy4a0GZAd0AMQkleWl/WkeXRQtEBaHLNxM/yUrpBb9GmW04UZ0PqZguMq79qE/BCY4PhuTew2Y8QKNiuph/XPxNXacKEg==
+ b=fbXvFAWYMcbfV57OTq3B1ohZUfhWc752erIPg0tlWpn1fXROVgD6EVILl8FBrvmPI4I7yVE7lhjc0yEbg4MPFKK/TGULsD/bSqT6NxjZrKWfXaeb0cccu8z3v/86HNvWX3kaW9SWVsZ841b2thUN0gBrsAf0IfUETNSreyeXnF/6DI3op1M42rDPsZl8uk614BExkcwwst6N/eRf9kLZltzttlNMJ8SY69JASYbVWAoW/6pN1TS93N3SF4RSEcOFIMJq2+uuq8Jxom7fGNEJ4rKAnQ7Ml3+t3f23vi8pApS9RkUIFggC9wdVLdHVafKlRvifrOexgpZzvnSMoLv93g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QFII85LxzxX/7RGqoZqG8OBNYCSjoXsK1UCYhjd6Y48=;
- b=RWKSGFOUh2pgBwCGXFygGCk5+JcCA3nuzB13jE0y2t5fAHzj/ZI+C0Xu4DI3f7Op1lA8ZKHOvKibTLNdLolSd9mNdNKb8IsWBwu3U1FJRKo0ya+2krtzAoCfiDG1Sb4pfnVtGKYPk2UOm3UDjki73Xbvw7qvsnuvwqEqJiMyZrb4c7bOIGnO7NzqBPcEmr9Whn6jaIt20lOWlwTUghAh/wPw4lscU5t7c1dvAgWD+qespJeMS/D5JZS1W9+BypX2xhcRvyQP4rvM/hHthdLfGKF7RU1SNabxjGGK0AaNR3Z8sqrmhZFPWrvIFXlMQn9U+e+K3hlkQIV1HU86FrInuw==
+ bh=bX5MuWXnnzyayzwyW609MgbvzV6ytEW4o8xUcuZHuDA=;
+ b=jf58PjQrQv+0La5pCdVnZGtKJRMG7l+AsDru7sItb4Rfa4a3X8mvMNlO/532s/dx7ygrMjsMlOquW715s//dezQ+B+88dDU1ygDUh7DcFvi8dn+3oymOckuG0ikhWQKLi5NsaB7TQtBDDWg89k9+wbBdWSDZfH55wes7oM40fASmCvQqF53Daj/ylv6Rs88zSCWMNjc0/ZDs2EUB5K0De0TxzYToDWL6bDLI7q9P7ZJ5KQAwhi3XNst3Ab1d5p86eRHx6CNRu6WXnCjTHE6mTE6MXZhBaTsL/LfoIzw/25aRh8JT9al11BBK26kcOU/ORBQVz6ZKnrC8rmeuHVbSHQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QFII85LxzxX/7RGqoZqG8OBNYCSjoXsK1UCYhjd6Y48=;
- b=junTtzcxmF5p+jhrc3R3chhSvYKIKho54r7Ni64yRtWBkzgjGIiV0W7e22+IK4b2w6f3d4Zk+ZSXqsM24ttuWLJAgBs8cDeRKYJzGPj6wSPOv+U5hu0jljpYuZdruaM369bVa+AmlJnumibUXmNnPC+E2wpdMTETXpFuoFc77i4=
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com (2603:10b6:5:393::23)
- by DM8PR12MB5477.namprd12.prod.outlook.com (2603:10b6:8:35::10) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=bX5MuWXnnzyayzwyW609MgbvzV6ytEW4o8xUcuZHuDA=;
+ b=obmeV30cnw5eoicc79RXPO5AT1DBEbQF69Y6qcns/6j1dQqwc1SOzAlL9U379v6uEjU7Nmc77lOb4bWogsa3hhPtjZbWfQ4+IWMEdNTKIyKgD3CPJICrm8gZPZyDrZOmrgAggBFjNXQYWh3DlQE2WIJtA1QBuTdGu75qHKGW5VQ=
+Authentication-Results: lists.linaro.org; dkim=none (message not signed)
+ header.d=none;lists.linaro.org; dmarc=none action=none header.from=amd.com;
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14) by MWHPR12MB1279.namprd12.prod.outlook.com
+ (2603:10b6:300:d::9) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18; Fri, 8 Oct
- 2021 12:08:50 +0000
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::555a:2980:a5c2:8d29]) by DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::555a:2980:a5c2:8d29%8]) with mapi id 15.20.4587.022; Fri, 8 Oct 2021
- 12:08:50 +0000
-From: "Das, Nirmoy" <Nirmoy.Das@amd.com>
-To: Greg KH <gregkh@linuxfoundation.org>, Jani Nikula
- <jani.nikula@linux.intel.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Thread-Topic: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error handling
-Thread-Index: AQHXvCVOX+r98BpL20ibYh87C1bzDKvI2NmAgAAYK4CAAAxFEQ==
-Date: Fri, 8 Oct 2021 12:08:50 +0000
-Message-ID: <DM4PR12MB5136620C3B013850D11F44868BB29@DM4PR12MB5136.namprd12.prod.outlook.com>
-References: <20211008091704.27094-1-nirmoy.das@amd.com>
- <87a6jjyhuo.fsf@intel.com> <YWAmZdRwnAt6wh9B@kroah.com>
-In-Reply-To: <YWAmZdRwnAt6wh9B@kroah.com>
-Accept-Language: en-US
+ 2021 12:20:05 +0000
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::55c7:6fc9:b2b1:1e6a]) by MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::55c7:6fc9:b2b1:1e6a%10]) with mapi id 15.20.4587.022; Fri, 8 Oct 2021
+ 12:20:04 +0000
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Tvrtko Ursulin
+ <tvrtko.ursulin@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org
+References: <20211008095007.972693-1-tvrtko.ursulin@linux.intel.com>
+ <9eca89ab-f954-8b2a-7af5-b4a63b90eed0@amd.com>
+ <67f413c4-b654-c7ea-bc4f-6b42418c7486@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <85489b72-6001-98d8-d66a-395e05cd3d01@amd.com>
+Date: Fri, 8 Oct 2021 14:19:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <67f413c4-b654-c7ea-bc4f-6b42418c7486@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-10-08T12:08:49.915Z;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD
- Official Use
- Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
-suggested_attachment_session_id: 22cc0c61-7022-8a3b-531f-7027cd394c50
-authentication-results: linuxfoundation.org; dkim=none (message not signed)
- header.d=none;linuxfoundation.org; dmarc=none action=none
- header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a96f527c-8594-472e-7c6e-08d98a5463ae
-x-ms-traffictypediagnostic: DM8PR12MB5477:
-x-microsoft-antispam-prvs: <DM8PR12MB54771A539BA2F45911A1406C8BB29@DM8PR12MB5477.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1MGpKd2v4Rw7V4AqAq+B4XdXKKupD5X5uI+tvMu/l40I+7fy4h2xfAdoXtyn8wnppK+eXbO3llxoiqSuMUK7IVW9/xHalXBeQ31gOmzyXHL64gwws9nQjNZTohZYjV/q2PNzEG4Uq7W0g7U3dILWIc5CqGBP2ieuKDO/iKfO8iHnr1w8uhb6PCCuhmxa7AJvqUZvflneZ+ABhOmJ1hWM/EfsgAmGs4P1TARk7VbNxw81ifEvURoUoBte/ke0BDEULplJfjpMu84NGuvjtAH1TUhhlDj7PIkJqUp5EEvXd/KsFusVOiR1mmPPMxe2SPvnN4JLYZoUajZy4Y0xHuh76f1lU7y0X3bLpxEmJd6SxjCpX99Jrewj4V1IA4fE1SH2Lw9iSemiK2mQ0IoP8AoDklCnPOq8osO/xNSohVbCn8j7Ib6WsceeV2JPV37av+G8pFmISVBFnVXwf8d1Gi7ZZFJ4IrXB4M3jrUBo8UZD3l8GPgKBTbh7fi4h18lu4rf4V66rnKobqUPI524dQmRX++v0vvPf3Fk8Q7J42+4NTOGTpnz1ZgSnnllyBFvIq5cWUZ5u0ikxYxcOu4+A9ip68gXiC+dQaye+NkQHccYyNn++aN971+Ts2DrRffJ9Ok3OGKI8b7Un45q19goGWzLViVKaXRRa5G17u0VmDmTLNLrGgOtEUBTgx8s94VCulfU9tHqhyYs/Vs6PN4bP/0wq8w==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5136.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(508600001)(316002)(33656002)(86362001)(122000001)(53546011)(91956017)(66446008)(8936002)(64756008)(66556008)(66476007)(55016002)(186003)(2906002)(110136005)(54906003)(38100700002)(9686003)(7696005)(8676002)(38070700005)(52536014)(19627405001)(66946007)(26005)(76116006)(4326008)(5660300002)(6506007)(71200400001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?up9KVVjHdEnMCu6KZ50m8jTWnjdESoWnqzeveWkGzvQ3HTM/T61vjRhRS9OW?=
- =?us-ascii?Q?SryXoWh1CqDmGpf5/w2Ph817rq8Rvlpg8vTdghNKeUY5hLYIeyX1OsDCDQVE?=
- =?us-ascii?Q?bOL3WhwS7VMh7VKd3qi93x1Pkqt8dEiIELAbjZtgG0Ls1RjaS6mTtieSzFrz?=
- =?us-ascii?Q?5IjLDP9axKXK2H86TOGghZdm0sw8XWtvSXk+SvMWOfhJLA7HzZ3rXE4Dwnzu?=
- =?us-ascii?Q?OVn1Qj8r7ziolgyJ7QwXH3jb5C0nPw6WupB2wS/wUiLY8krJ/EX29/BEeWCP?=
- =?us-ascii?Q?mj6PwfdQS7xl7TT2VsGNR/j9kYYTwgPlQEbgiOr2bDUMhr0Oj3k0aL6LVj3C?=
- =?us-ascii?Q?yqxNsSVDe+AzMseGFwBLV395X+zy2Vsj/H5cs8Bc/GvMSnxBddqYnBCtmvl6?=
- =?us-ascii?Q?Q6nMipcw9TDGx9TOES2LQEuS3dBExCXZZIT5J6+3hhSVZzqUG2gcBVF5BoPO?=
- =?us-ascii?Q?MwwSVIB2FfoVWvLpbxlbg17aJBLVn6aj2kYnkfoIqTKU5TLLeFA8zAYaNFYF?=
- =?us-ascii?Q?TgR8/q1DfnzxLn4JO50w0iSus/cYcoT6mnoRgBxq8VPUNZh49Rff4wuuuSvb?=
- =?us-ascii?Q?X/G89PHQS9ITo3yFQkDwbcVmTkXBkb9DZQMHCSUf02dy2isoTvjOkBHjqk2t?=
- =?us-ascii?Q?L7eHQf3mJrDFgO3kGBHIDjEzynKEx1zUXhh7FzWf4GVrQPWWk4eAGyulCKcq?=
- =?us-ascii?Q?PZ1NKevH14eLOwRhaakLAp1gU6HK4Pe0Ex+M0rCCuT04zgqUKmyRO+HGMoyR?=
- =?us-ascii?Q?hObFJyPts2e/Xvg5sMCQmQfmekzkwREWVme53S0QZionIsZwyksWx4sXi6q3?=
- =?us-ascii?Q?VqyRxmfgh7vEKb8A0k3onnw40E68iGcTdXw8tjm9fhQ660XueEFnmkxiCTsu?=
- =?us-ascii?Q?iKnZ0vbGNodyk2HS61Db95z63X5MciVIluApgk5KZdnT6K7CLuis+eJK6KQo?=
- =?us-ascii?Q?gJqX+EYZkjmuLVXq+MscCvCfz9/GTHzCXfttxf0DyFEg7RNqHueIi25KBJI7?=
- =?us-ascii?Q?+Iz+29PexaHFl4YXONIoh73LsD29bTKEBP8CeiL+HKjJdvJy/ZUNwav0mJP5?=
- =?us-ascii?Q?yZu+6Opo+aJcSQbIDlL4GN2MYiU8ACqtXf+FniTvGlNNOymNY5wemevJSSjv?=
- =?us-ascii?Q?dx0uDJJOn1T7M0JktQicnHjqmoAu0gpWxPoqMfMLQPnc1gOhxVRqLh5eAmm9?=
- =?us-ascii?Q?sYEcg4v557b3DunBNTOakXuyQVjbSVsdJgCPVPlRiyCI729XlN3CXECevJVD?=
- =?us-ascii?Q?WWAJRySTT7SQLMSqOFHucEw1P9cxnx9bvKNlQonHzmTX4KQ75xSXCBpj8QB4?=
- =?us-ascii?Q?wOo=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: multipart/alternative;
- boundary="_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_"
+X-ClientProxiedBy: AM6P192CA0095.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:209:8d::36) To MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14)
 MIME-Version: 1.0
+Received: from [IPv6:2a02:908:1252:fb60:efac:61bc:bb73:d6b5]
+ (2a02:908:1252:fb60:efac:61bc:bb73:d6b5) by
+ AM6P192CA0095.EURP192.PROD.OUTLOOK.COM (2603:10a6:209:8d::36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4566.14 via Frontend Transport; Fri, 8 Oct 2021 12:20:02 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e602628a-0893-412d-c1f0-08d98a55f572
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1279:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB12793FFC9F55AF399C9CDBE883B29@MWHPR12MB1279.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sJmnkm+i+bkhcMiJ3tWJshWyn0QRxkutfYGTauE1kk4pKTB+QRu3t3l+vyFPYyW8We/sHEZFuZlQvt+ZzMupuIe2utMhCtuertKVBDYdIaksH1a/W8FiXd705GI+oOmclAZePjfg0rbKXEAwGjPoKhDXLRKK+Yc7eOldpP0r8t9jvaHtULalk/H4GUWV7UALJ5ST2lV7I0jERnH2PGkRCrAx60kGp+9RPK/PIXMswuoRX3A1rKgL2U4ipNcMbrwxRLwUzVYNylMhETNeTkmXjd610Dxd9inzQWNxsobRWLh9FUnOTfKrfLw1uMunyW9mVg394aOrq4/OdXyXgszyka9eoKC6LJGHVwpawxd4B9i0CvJuHmvjnYBuCmysxvWlwoqBWhJbs/ghRu4d8VebvFJ6t0LyOYv3WmSaKJNzkXSvM8Tnxu7Ov4ze/awKzARihZal5zD2i/VpXn6y9rhGUyoHuyl3FR+Ii+BlPtCxj1OrwhawgM/iyNP3OjrDQ492REJth68/DgrwZcVjIdzgymRDa9Jq4CAz93g5ZYwPuAGtCevyWogPW0E9hoj+1Yi1oC5Vmqv9yvsLgGiUYusPYLLrpWbJjmcvbeVolUL5C72DgpPtjU2hDBqb5Oa8TLMMKRJaeVb51e1jCATU+UgYs8SAKQnnD/Jq3HwgmvOtHqcaGwDjm7rvn1JQjfpg2DetlKTJ3tBdn7luMR3ZYHy8rS2U8dsHIj9rDAS6Jti5tFGL1K6wtBLP8go/vk09ibG8
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(8936002)(316002)(54906003)(6666004)(66476007)(31686004)(66574015)(186003)(66946007)(36756003)(66556008)(53546011)(8676002)(6486002)(45080400002)(86362001)(966005)(5660300002)(2616005)(508600001)(38100700002)(4326008)(31696002)(2906002)(83380400001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WVBSUisxOU9xN1cxdTU2ZGFFeU1mQWNoaVdhSHhuYmdHSVAvWVMrUThFSWNs?=
+ =?utf-8?B?UENveCtKRjlvMmhwazJoTkYydXFXUmpQOTlZWjJWVjVmUG9seGJFSUdQSjhp?=
+ =?utf-8?B?dU41OEVOVlF1UHVNVThEaEcyQUNEaEdTRWV0clFoQlhCOGJUVWVPZ1p2dVM0?=
+ =?utf-8?B?M1hMTVJIU2k5QTFUbnNIYWF1UzFNZUt5QVp4eWRBQytvV0xKeko2TlhET3JV?=
+ =?utf-8?B?bTdCLzJWNW5ZTmhlRzVyRVBiVjFKVDBwMy9tT0VyL21Qd1d4UVZvMnJzSGM0?=
+ =?utf-8?B?Y0ZFVTl5N01BWGY0OTRpNUtHTjBvWEt1NWg2VksybFJsYVo0STE4L0FOU1B6?=
+ =?utf-8?B?Z2swbkNMejlFd2JjYWRmWVNGT1ROVVlxa0ZWTDBFR21IaUNOWWxIQXh2S01B?=
+ =?utf-8?B?WUg2VWdlWG9CZCtBQWN6UVpHcHFPWGhRanZQb1FqamVkTmhLUWVJdU9wbGl6?=
+ =?utf-8?B?ZzhhcEd4OU90Q2VITTZxQUNQZkYzdXM4amN3TVRqVFQrMXVLNlZXcXE4UW13?=
+ =?utf-8?B?aTNlRkZhOVNPcW9vUVRuYUpKeEVaWlhBZU03QVFhd1crT1A2ZURWTytRYzYx?=
+ =?utf-8?B?ZXo5WVR6NGN2YUliWnlVYitUQlZQV2VKQzNDMDNTOUVzR3dJZkMvQ3FlU1Bn?=
+ =?utf-8?B?ekFrb0dHd3g3TmpkN0ZJc0NIR2JXVHJIYUhYWEREMDhxdHZwSktkV0JHQURN?=
+ =?utf-8?B?SUNVekYzV2ZFb0plR0NCaXo4R1E1R3RORlVtelhSdVB1QmdSL1kwZnlGbXFT?=
+ =?utf-8?B?bTF2bzRKYlNtQ1RKS3lRTUNVc1RjbFdiODZudklVNXhBNGM2S1plR3hOb2Ew?=
+ =?utf-8?B?N3JmR0hlV296REtyT0cyNFRvQlBtRjlaQXljVmtUcnRhRkpDMUhyOFdGYXJi?=
+ =?utf-8?B?dGVZcmtOSmZRVmZWRkw1UjUvVUNFRi9Qcy8vWTlTV0hMOXNzd2F3UzU4L0pK?=
+ =?utf-8?B?NG0xcWF0Q0JkcktuTW45eDZDWHN6ZXp6QUl1RjYyWFpVTmxoYVdRTVVodlc5?=
+ =?utf-8?B?VEx6cERMT1A0T01CalY3RVZWQ09IUE4yTXVHZ3hBU1R5NVlSSFZzWFR3L05K?=
+ =?utf-8?B?WndVa0ZEQmpMNlowNmhqUVc1M1RNRjJyeVExbjJDckVCaUtKTGFQSWZBajJz?=
+ =?utf-8?B?elBOcnNXMGRuNmhyeEc0MDRYUHczRTEzaUs5S1U2MjUrcThSaVc5bkFJUHNZ?=
+ =?utf-8?B?L3dFSlZxZWYwMGdJSGViR1BpWVNqVzF2V3ZCdU50QVM4RUliaVJENi93K1RK?=
+ =?utf-8?B?d1N4Uk9pQk5aQkdpREVTaXBqVE94WHhORlg5cWhnS09WQkhBdFRBNzlJMHJv?=
+ =?utf-8?B?bjQwZ3hjZURqR3ZDdmc4SjhNYTV0ck9aZ0xuaXhHWTI3d3pxY25hWXFRRkd3?=
+ =?utf-8?B?b2lLa1kyZE93ZzBNc2ZRZE13K0pYZlhQTmNhbXcvVlBqRVhaeWZVdDg1S3FJ?=
+ =?utf-8?B?VjVJejY0K2Y5NlVJQ1JidzhVWWlQQXBnMXJyT0JhUnVoN0xUd24xUVVBckMz?=
+ =?utf-8?B?bzRibmZqY2NoM21seWNUNkxCYjV3WDhxZU5hVW1xNUV3NEhHd2E4S2ZnNFZB?=
+ =?utf-8?B?S09wbkRCbU1QbzduWTVUNzAwWU9MKytUKzU1aUVIUFRScjZ5K08vVmxScjZI?=
+ =?utf-8?B?SEhxSTBHN1JLQWVIY3ZTbkgyL3lhOXZKRGVMZTdOc3FNazA5UUp1cTN3RmdW?=
+ =?utf-8?B?QTJQbHFaTk92cW9lbG9pTXRGS2E1dnphdkd5L3ovdGN0MngvWDB6MFR3aUlo?=
+ =?utf-8?B?c3EveFRxQXYrZDFIOEo4cFBUTXpEUTRSNGFzUllBV3J1THpZR1ZoaWlYbnlZ?=
+ =?utf-8?B?eXZmait1UDRFblpBMHJON01ZeEJmVEY3akczUGtsa05QdXR0NjVKY05pa2wv?=
+ =?utf-8?Q?yAvioFPIj1oKh?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e602628a-0893-412d-c1f0-08d98a55f572
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5136.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a96f527c-8594-472e-7c6e-08d98a5463ae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2021 12:08:50.2507 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sYYsXyCN0utD5wZXgu1MFlyxTZZKPQQclTQdZjqlKUn38VQ9wqoxXu9WO7xcrnZNn576VEapWam1cbkS38n2nQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5477
-Subject: Re: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error handling
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2021 12:20:04.7446 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CYO0kUpQbcjZEk0YH31a0uyl/2FKT2iYJ7ZclMiaaBHkhS3tIfQYONDleViKdpky
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1279
+Subject: Re: [Intel-gfx] [PATCH] dma-resv: Fix dma_resv_get_fences and
+ dma_resv_copy_fences after conversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,156 +138,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Official Use Only]
-
-Thanks, Greg and Jani. So I have to do the exact opposite.
-
-We do have some NULL dentry check in the drm code. I will remove those inst=
-ead.
-
-Regards,
-Nirmoy
-________________________________
-From: Greg KH <gregkh@linuxfoundation.org>
-Sent: Friday, October 8, 2021 1:07 PM
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Das, Nirmoy <Nirmoy.Das@amd.com>; dri-devel@lists.freedesktop.org <dri-=
-devel@lists.freedesktop.org>; intel-gfx@lists.freedesktop.org <intel-gfx@li=
-sts.freedesktop.org>; Maarten Lankhorst <maarten.lankhorst@linux.intel.com>=
-; Maxime Ripard <mripard@kernel.org>; Thomas Zimmermann <tzimmermann@suse.d=
-e>; David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error handling
-
-On Fri, Oct 08, 2021 at 12:40:47PM +0300, Jani Nikula wrote:
-> On Fri, 08 Oct 2021, Nirmoy Das <nirmoy.das@amd.com> wrote:
-> > Debugfs API returns encoded error instead of NULL.
-> > This patch cleanups drm debugfs error handling to
-> > properly set dri and its minor's root dentry to NULL.
-> >
-> > Also do not error out if dri/minor debugfs directory
-> > creation fails as a debugfs error is not a fatal error.
+Am 08.10.21 um 12:49 schrieb Tvrtko Ursulin:
 >
-> Cc: Greg
+> On 08/10/2021 11:21, Christian König wrote:
+>> Am 08.10.21 um 11:50 schrieb Tvrtko Ursulin:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> Cache the count of shared fences in the iterator to avoid dereferencing
+>>> the dma_resv_object outside the RCU protection. Otherwise iterator 
+>>> and its
+>>> users can observe an incosistent state which makes it impossible to use
+>>> safely.
+>>
+>> Ah, of course! I've been staring at the code the whole morning and 
+>> couldn't see it.
+>>
+>> Going to write a testcase to cover that.
+>>
+>>> Such as:
+>>>
+>>> <6> [187.517041] [IGT] gem_sync: executing
+>>> <7> [187.536343] i915 0000:00:02.0: 
+>>> [drm:i915_gem_context_create_ioctl [i915]] HW context 1 created
+>>> <7> [187.536793] i915 0000:00:02.0: 
+>>> [drm:i915_gem_context_create_ioctl [i915]] HW context 1 created
+>>> <6> [187.551235] [IGT] gem_sync: starting subtest basic-many-each
+>>> <1> [188.935462] BUG: kernel NULL pointer dereference, address: 
+>>> 0000000000000010
+>>> <1> [188.935485] #PF: supervisor write access in kernel mode
+>>> <1> [188.935495] #PF: error_code(0x0002) - not-present page
+>>> <6> [188.935504] PGD 0 P4D 0
+>>> <4> [188.935512] Oops: 0002 [#1] PREEMPT SMP NOPTI
+>>> <4> [188.935521] CPU: 2 PID: 1467 Comm: gem_sync Not tainted 
+>>> 5.15.0-rc4-CI-Patchwork_21264+ #1
+>>> <4> [188.935535] Hardware name:  /NUC6CAYB, BIOS 
+>>> AYAPLCEL.86A.0049.2018.0508.1356 05/08/2018
+>>> <4> [188.935546] RIP: 0010:dma_resv_get_fences+0x116/0x2d0
+>>> <4> [188.935560] Code: 10 85 c0 7f c9 be 03 00 00 00 e8 15 8b df ff 
+>>> eb bd e8 8e c6 ff ff eb b6 41 8b 04 24 49 8b 55 00 48 89 e7 8d 48 01 
+>>> 41 89 0c 24 <4c> 89 34 c2 e8 41 f2 ff ff 49 89 c6 48 85 c0 75 8c 48 
+>>> 8b 44 24 10
+>>> <4> [188.935583] RSP: 0018:ffffc900011dbcc8 EFLAGS: 00010202
+>>> <4> [188.935593] RAX: 0000000000000000 RBX: 00000000ffffffff RCX: 
+>>> 0000000000000001
+>>> <4> [188.935603] RDX: 0000000000000010 RSI: ffffffff822e343c RDI: 
+>>> ffffc900011dbcc8
+>>> <4> [188.935613] RBP: ffffc900011dbd48 R08: ffff88812d255bb8 R09: 
+>>> 00000000fffffffe
+>>> <4> [188.935623] R10: 0000000000000001 R11: 0000000000000000 R12: 
+>>> ffffc900011dbd44
+>>> <4> [188.935633] R13: ffffc900011dbd50 R14: ffff888113d29cc0 R15: 
+>>> 0000000000000000
+>>> <4> [188.935643] FS:  00007f68d17e9700(0000) 
+>>> GS:ffff888277900000(0000) knlGS:0000000000000000
+>>> <4> [188.935655] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>>> <4> [188.935665] CR2: 0000000000000010 CR3: 000000012d0a4000 CR4: 
+>>> 00000000003506e0
+>>> <4> [188.935676] Call Trace:
+>>> <4> [188.935685]  i915_gem_object_wait+0x1ff/0x410 [i915]
+>>> <4> [188.935988]  i915_gem_wait_ioctl+0xf2/0x2a0 [i915]
+>>> <4> [188.936272]  ? i915_gem_object_wait+0x410/0x410 [i915]
+>>> <4> [188.936533]  drm_ioctl_kernel+0xae/0x140
+>>> <4> [188.936546]  drm_ioctl+0x201/0x3d0
+>>> <4> [188.936555]  ? i915_gem_object_wait+0x410/0x410 [i915]
+>>> <4> [188.936820]  ? __fget_files+0xc2/0x1c0
+>>> <4> [188.936830]  ? __fget_files+0xda/0x1c0
+>>> <4> [188.936839]  __x64_sys_ioctl+0x6d/0xa0
+>>> <4> [188.936848]  do_syscall_64+0x3a/0xb0
+>>> <4> [188.936859] entry_SYSCALL_64_after_hwframe+0x44/0xae
+>>>
+>>> If the shared object has changed during the RCU unlocked period
+>>> callers will correctly handle the restart on the next iteration.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Fixes: 96601e8a4755 ("dma-buf: use new iterator in 
+>>> dma_resv_copy_fences")
+>>> Fixes: d3c80698c9f5 ("dma-buf: use new iterator in 
+>>> dma_resv_get_fences v3")
+>>> Closes: 
+>>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fdrm%2Fintel%2F-%2Fissues%2F4274&amp;data=04%7C01%7Cchristian.koenig%40amd.com%7Cc22feea06a3f4285cdac08d98a495984%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637692870805160909%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=6oPR30sWnJe04I4GlhhvJWX3QvwKFIOMW1uOIyWZFOE%3D&amp;reserved=0 
+>>>
+>>> Cc: Christian König <christian.koenig@amd.com>
+>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+>>> Cc: linux-media@vger.kernel.org
+>>> Cc: dri-devel@lists.freedesktop.org
+>>> Cc: linaro-mm-sig@lists.linaro.org
+>>
+>> Maybe we should remove cursor->fences altogether, but either way the 
+>> patch is Reviewed-by: Christian König <christian.koenig@amd.com>
+>>
+>> Please push to drm-misc-next ASAP.
 >
-> I thought this is the opposite of what Greg's been telling everyone to
-> do with debugfs.
+> Not sure I can or if my push permissions are limited to Intel 
+> branches. I can try once CI gives a green light.
 
-Yes, that is not good.
+If it doesn't work just ping me and I will push it.
 
-You should never care about the result of a debugfs_create* call.  Just
-take the result, and if it is a directory, save it off to use it for
-creating a file, no need to check anything.
+Thanks,
+Christian.
 
-And then throw it away, later, when you want to remove the directory,
-look it up with a call to debugfs_lookup() and pass that to
-debugfs_remove() (which does so recursively).
-
-There should never be a need to save, or check, the result of any
-debugfs call.  If so, odds are it is being used incorrectly.
-
-thanks,
-
-greg k-h
-
---_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;" ali=
-gn=3D"Left">
-[AMD Official Use Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Thanks, Greg and Jani. So I have to do the exact opposite.&nbsp;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-We do have some NULL dentry check in the drm code. I will remove those inst=
-ead.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Regards,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Nirmoy</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Greg KH &lt;gregkh@li=
-nuxfoundation.org&gt;<br>
-<b>Sent:</b> Friday, October 8, 2021 1:07 PM<br>
-<b>To:</b> Jani Nikula &lt;jani.nikula@linux.intel.com&gt;<br>
-<b>Cc:</b> Das, Nirmoy &lt;Nirmoy.Das@amd.com&gt;; dri-devel@lists.freedesk=
-top.org &lt;dri-devel@lists.freedesktop.org&gt;; intel-gfx@lists.freedeskto=
-p.org &lt;intel-gfx@lists.freedesktop.org&gt;; Maarten Lankhorst &lt;maarte=
-n.lankhorst@linux.intel.com&gt;; Maxime Ripard &lt;mripard@kernel.org&gt;;
- Thomas Zimmermann &lt;tzimmermann@suse.de&gt;; David Airlie &lt;airlied@li=
-nux.ie&gt;; Daniel Vetter &lt;daniel@ffwll.ch&gt;<br>
-<b>Subject:</b> Re: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error hand=
-ling</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">On Fri, Oct 08, 2021 at 12:40:47PM +0300, Jani Nik=
-ula wrote:<br>
-&gt; On Fri, 08 Oct 2021, Nirmoy Das &lt;nirmoy.das@amd.com&gt; wrote:<br>
-&gt; &gt; Debugfs API returns encoded error instead of NULL.<br>
-&gt; &gt; This patch cleanups drm debugfs error handling to<br>
-&gt; &gt; properly set dri and its minor's root dentry to NULL.<br>
-&gt; &gt;<br>
-&gt; &gt; Also do not error out if dri/minor debugfs directory<br>
-&gt; &gt; creation fails as a debugfs error is not a fatal error.<br>
-&gt; <br>
-&gt; Cc: Greg<br>
-&gt; <br>
-&gt; I thought this is the opposite of what Greg's been telling everyone to=
-<br>
-&gt; do with debugfs.<br>
-<br>
-Yes, that is not good.<br>
-<br>
-You should never care about the result of a debugfs_create* call.&nbsp; Jus=
-t<br>
-take the result, and if it is a directory, save it off to use it for<br>
-creating a file, no need to check anything.<br>
-<br>
-And then throw it away, later, when you want to remove the directory,<br>
-look it up with a call to debugfs_lookup() and pass that to<br>
-debugfs_remove() (which does so recursively).<br>
-<br>
-There should never be a need to save, or check, the result of any<br>
-debugfs call.&nbsp; If so, odds are it is being used incorrectly.<br>
-<br>
-thanks,<br>
-<br>
-greg k-h<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
+> Regards,
+>
+> Tvrtko
+>
+>>
+>> Thanks,
+>> Christian.
+>>
+>>> ---
+>>>   drivers/dma-buf/dma-resv.c | 18 ++++++++++--------
+>>>   include/linux/dma-resv.h   |  5 ++++-
+>>>   2 files changed, 14 insertions(+), 9 deletions(-)
+>>>
+>>> diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
+>>> index a480af9581bd..7b6d881c8904 100644
+>>> --- a/drivers/dma-buf/dma-resv.c
+>>> +++ b/drivers/dma-buf/dma-resv.c
+>>> @@ -333,10 +333,14 @@ static void 
+>>> dma_resv_iter_restart_unlocked(struct dma_resv_iter *cursor)
+>>>   {
+>>>       cursor->seq = read_seqcount_begin(&cursor->obj->seq);
+>>>       cursor->index = -1;
+>>> -    if (cursor->all_fences)
+>>> +    cursor->shared_count = 0;
+>>> +    if (cursor->all_fences) {
+>>>           cursor->fences = dma_resv_shared_list(cursor->obj);
+>>> -    else
+>>> +        if (cursor->fences)
+>>> +            cursor->shared_count = cursor->fences->shared_count;
+>>> +    } else {
+>>>           cursor->fences = NULL;
+>>> +    }
+>>>       cursor->is_restarted = true;
+>>>   }
+>>> @@ -363,7 +367,7 @@ static void dma_resv_iter_walk_unlocked(struct 
+>>> dma_resv_iter *cursor)
+>>>                   continue;
+>>>           } else if (!cursor->fences ||
+>>> -               cursor->index >= cursor->fences->shared_count) {
+>>> +               cursor->index >= cursor->shared_count) {
+>>>               cursor->fence = NULL;
+>>>               break;
+>>> @@ -448,10 +452,8 @@ int dma_resv_copy_fences(struct dma_resv *dst, 
+>>> struct dma_resv *src)
+>>>               dma_resv_list_free(list);
+>>>               dma_fence_put(excl);
+>>> -            if (cursor.fences) {
+>>> -                unsigned int cnt = cursor.fences->shared_count;
+>>> -
+>>> -                list = dma_resv_list_alloc(cnt);
+>>> +            if (cursor.shared_count) {
+>>> +                list = dma_resv_list_alloc(cursor.shared_count);
+>>>                   if (!list) {
+>>>                       dma_resv_iter_end(&cursor);
+>>>                       return -ENOMEM;
+>>> @@ -522,7 +524,7 @@ int dma_resv_get_fences(struct dma_resv *obj, 
+>>> struct dma_fence **fence_excl,
+>>>               if (fence_excl)
+>>>                   dma_fence_put(*fence_excl);
+>>> -            count = cursor.fences ? cursor.fences->shared_count : 0;
+>>> +            count = cursor.shared_count;
+>>>               count += fence_excl ? 0 : 1;
+>>>               /* Eventually re-allocate the array */
+>>> diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
+>>> index 8b6c20636a79..3e1bff147428 100644
+>>> --- a/include/linux/dma-resv.h
+>>> +++ b/include/linux/dma-resv.h
+>>> @@ -170,9 +170,12 @@ struct dma_resv_iter {
+>>>       /** @index: index into the shared fences */
+>>>       unsigned int index;
+>>> -    /** @fences: the shared fences */
+>>> +    /** @fences: the shared fences; private, *MUST* not 
+>>> dereference  */
+>>>       struct dma_resv_list *fences;
+>>> +    /** @shared_count: number of shared fences */
+>>> +    unsigned int shared_count;
+>>> +
+>>>       /** @is_restarted: true if this is the first returned fence */
+>>>       bool is_restarted;
+>>>   };
+>>
 
---_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_--
