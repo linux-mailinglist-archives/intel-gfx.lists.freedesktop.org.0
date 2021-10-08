@@ -1,45 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B124A426205
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 03:28:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 316E0426212
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 03:33:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5490B6E061;
-	Fri,  8 Oct 2021 01:28:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6F326E067;
+	Fri,  8 Oct 2021 01:33:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFF866E061;
- Fri,  8 Oct 2021 01:28:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226311163"
-X-IronPort-AV: E=Sophos;i="5.85,356,1624345200"; d="scan'208";a="226311163"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D16C6E067;
+ Fri,  8 Oct 2021 01:32:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226363311"
+X-IronPort-AV: E=Sophos;i="5.85,356,1624345200"; d="scan'208";a="226363311"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 18:28:44 -0700
-X-IronPort-AV: E=Sophos;i="5.85,356,1624345200"; d="scan'208";a="484849549"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2021 18:32:58 -0700
+X-IronPort-AV: E=Sophos;i="5.85,356,1624345200"; d="scan'208";a="484850235"
 Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
  ([10.1.27.20])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2021 18:28:45 -0700
-Date: Thu, 7 Oct 2021 18:23:58 -0700
+ 07 Oct 2021 18:32:58 -0700
+Date: Thu, 7 Oct 2021 18:28:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: John Harrison <john.c.harrison@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  daniele.ceraolospurio@intel.com
-Message-ID: <20211008012358.GA30078@jons-linux-dev-box>
+Message-ID: <20211008012811.GA32386@jons-linux-dev-box>
 References: <20211004220637.14746-1-matthew.brost@intel.com>
- <20211004220637.14746-4-matthew.brost@intel.com>
- <a2d5377a-ec8e-40ec-d0cf-c91aa51bba48@intel.com>
- <20211007151947.GA27846@jons-linux-dev-box>
- <6b47737d-9708-1055-197a-de9609ca5481@intel.com>
+ <20211004220637.14746-3-matthew.brost@intel.com>
+ <c2d4b2f9-741e-3454-baae-6cc1d2845b5e@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6b47737d-9708-1055-197a-de9609ca5481@intel.com>
+In-Reply-To: <c2d4b2f9-741e-3454-baae-6cc1d2845b5e@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 03/26] drm/i915/guc: Take engine PM when a
- context is pinned with GuC submission
+Subject: Re: [Intel-gfx] [PATCH 02/26] drm/i915/guc: Take GT PM ref when
+ deregistering context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,240 +53,366 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 07, 2021 at 11:15:51AM -0700, John Harrison wrote:
-> On 10/7/2021 08:19, Matthew Brost wrote:
-> > On Wed, Oct 06, 2021 at 08:45:42PM -0700, John Harrison wrote:
-> > > On 10/4/2021 15:06, Matthew Brost wrote:
-> > > > Taking a PM reference to prevent intel_gt_wait_for_idle from short
-> > > > circuiting while a scheduling of user context could be enabled.
-> > > I'm not sure what 'while a scheduling of user context could be enabled'
-> > > means.
-> > > 
-> > Not really sure how this isn't clear.
+On Wed, Oct 06, 2021 at 08:37:03PM -0700, John Harrison wrote:
+> On 10/4/2021 15:06, Matthew Brost wrote:
+> > Taking a PM reference to prevent intel_gt_wait_for_idle from short
+> > circuiting while a deregister context H2G is in flight. To do this must
+> > issue the deregister H2G from a worker as context can be destroyed from
+> > an atomic context and taking GT PM ref blows up. Previously we took a
+> > runtime PM from this atomic context which worked but will stop working
+> > once runtime pm autosuspend in enabled.
 > > 
-> > It means if a user context has scheduling enabled this function cannot
-> > short circuit returning idle.
+> > So this patch is two fold, stop intel_gt_wait_for_idle from short
+> > circuting and fix runtime pm autosuspend.
 > > 
-> > Matt
-> Okay. The 'a scheduling' was throwing me off. And I was reading 'could be
-> enabled' as saying something that might happen in the future. English is
-> great at being ambiguous ;). Maybe 'while any user context has scheduling
-> enabled' would be simpler?
+> > v2:
+> >   (John Harrison)
+> >    - Split structure changes out in different patch
+> >   (Tvrtko)
+> >    - Don't drop lock in deregister_destroyed_contexts
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_context.c       |   2 +
+> >   drivers/gpu/drm/i915/gt/intel_context_types.h |   7 +
+> >   drivers/gpu/drm/i915/gt/intel_engine_pm.h     |   5 +
+> >   drivers/gpu/drm/i915/gt/intel_gt_pm.h         |   4 +
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  11 ++
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 146 +++++++++++-------
+> >   6 files changed, 121 insertions(+), 54 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > index e9a0cad5c34d..1076066f41e0 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > @@ -399,6 +399,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+> >   	ce->guc_id.id = GUC_INVALID_LRC_ID;
+> >   	INIT_LIST_HEAD(&ce->guc_id.link);
+> > +	INIT_LIST_HEAD(&ce->destroyed_link);
+> > +
+> >   	/*
+> >   	 * Initialize fence to be complete as this is expected to be complete
+> >   	 * unless there is a pending schedule disable outstanding.
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > index e7e3984aab78..4613d027cbc3 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > @@ -213,6 +213,13 @@ struct intel_context {
+> >   		struct list_head link;
+> >   	} guc_id;
+> > +	/**
+> > +	 * @destroyed_link: link in guc->submission_state.destroyed_contexts, in
+> > +	 * list when context is pending to be destroyed (deregistered with the
+> > +	 * GuC), protected by guc->submission_state.lock
+> > +	 */
+> > +	struct list_head destroyed_link;
+> > +
+> >   #ifdef CONFIG_DRM_I915_SELFTEST
+> >   	/**
+> >   	 * @drop_schedule_enable: Force drop of schedule enable G2H for selftest
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.h b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > index 8520c595f5e1..6fdeae668e6e 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
+> > @@ -16,6 +16,11 @@ intel_engine_pm_is_awake(const struct intel_engine_cs *engine)
+> >   	return intel_wakeref_is_active(&engine->wakeref);
+> >   }
+> > +static inline void __intel_engine_pm_get(struct intel_engine_cs *engine)
+> > +{
+> > +	__intel_wakeref_get(&engine->wakeref);
+> > +}
+> > +
+> >   static inline void intel_engine_pm_get(struct intel_engine_cs *engine)
+> >   {
+> >   	intel_wakeref_get(&engine->wakeref);
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > index d0588d8aaa44..05de6c1af25b 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> > @@ -41,6 +41,10 @@ static inline void intel_gt_pm_put_async(struct intel_gt *gt)
+> >   	intel_wakeref_put_async(&gt->wakeref);
+> >   }
+> > +#define with_intel_gt_pm(gt, tmp) \
+> > +	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
+> > +	     intel_gt_pm_put(gt), tmp = 0)
+> > +
+> >   static inline int intel_gt_pm_wait_for_idle(struct intel_gt *gt)
+> >   {
+> >   	return intel_wakeref_wait_for_idle(&gt->wakeref);
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > index 65b5e8eeef96..25a598e2b6e8 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > @@ -84,6 +84,17 @@ struct intel_guc {
+> >   		 * refs
+> >   		 */
+> >   		struct list_head guc_id_list;
+> > +		/**
+> > +		 * @destroyed_contexts: list of contexts waiting to be destroyed
+> > +		 * (deregistered with the GuC)
+> > +		 */
+> > +		struct list_head destroyed_contexts;
+> > +		/**
+> > +		 * @destroyed_worker: worker to deregister contexts, need as we
+> > +		 * need to take a GT PM reference and can't from destroy
+> > +		 * function as it might be in an atomic context (no sleeping)
+> > +		 */
+> > +		struct work_struct destroyed_worker;
+> >   	} submission_state;
+> >   	/**
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index ad5c18119d92..17da2fea1bff 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -90,8 +90,8 @@
+> >    * used for all of GuC submission but that could change in the future.
+> >    *
+> >    * guc->submission_state.lock
+> > - * Protects guc_id allocation for the given GuC, i.e. only one context can be
+> > - * doing guc_id allocation operations at a time for each GuC in the system.
+> > + * Global lock for GuC submission state. Protects guc_ids and destroyed contexts
+> > + * list.
+> Feels like this should not be removing explanations, only adding to them.
+> The patch itself is only adding new features not removing them. Either the
+> details about id allocation are not worth mentioning and should not have
+> been added in the previous patch. Or they are and should be kept rather than
+> removed in this patch. Either way works for me. The comment was valid
+> information but does maybe count as obvious from the guc_id member (and
+> friends) are within a per GuC instance structure.
 > 
 
-Sure.
+The comment before this patch is already in drm-tip merged in a patch
+prior to this series. Prior to this patch, this lock was very specific
+to guc_id allocation now it is a generic global submission lock. The
+explaination has been updated to reflect that.
 
-Matt
+Matt 
 
+> >    *
+> >    * ce->guc_state.lock
+> >    * Protects everything under ce->guc_state. Ensures that a context is in the
+> > @@ -719,6 +719,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+> >   			if (deregister)
+> >   				guc_signal_context_fence(ce);
+> >   			if (destroyed) {
+> > +				intel_gt_pm_put_async(guc_to_gt(guc));
+> >   				release_guc_id(guc, ce);
+> >   				__guc_context_destroy(ce);
+> >   			}
+> > @@ -797,6 +798,8 @@ static void guc_flush_submissions(struct intel_guc *guc)
+> >   	spin_unlock_irqrestore(&sched_engine->lock, flags);
+> >   }
+> > +static void guc_flush_destroyed_contexts(struct intel_guc *guc);
+> > +
+> >   void intel_guc_submission_reset_prepare(struct intel_guc *guc)
+> >   {
+> >   	int i;
+> > @@ -815,6 +818,7 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
+> >   	spin_unlock_irq(&guc_to_gt(guc)->irq_lock);
+> >   	guc_flush_submissions(guc);
+> > +	guc_flush_destroyed_contexts(guc);
+> >   	/*
+> >   	 * Handle any outstanding G2Hs before reset. Call IRQ handler directly
+> > @@ -1126,6 +1130,8 @@ void intel_guc_submission_reset_finish(struct intel_guc *guc)
+> >   	intel_gt_unpark_heartbeats(guc_to_gt(guc));
+> >   }
+> > +static void destroyed_worker_func(struct work_struct *w);
+> > +
+> >   /*
+> >    * Set up the memory resources to be shared with the GuC (via the GGTT)
+> >    * at firmware loading time.
+> > @@ -1151,6 +1157,9 @@ int intel_guc_submission_init(struct intel_guc *guc)
+> >   	spin_lock_init(&guc->submission_state.lock);
+> >   	INIT_LIST_HEAD(&guc->submission_state.guc_id_list);
+> >   	ida_init(&guc->submission_state.guc_ids);
+> > +	INIT_LIST_HEAD(&guc->submission_state.destroyed_contexts);
+> > +	INIT_WORK(&guc->submission_state.destroyed_worker,
+> > +		  destroyed_worker_func);
+> >   	return 0;
+> >   }
+> > @@ -1161,6 +1170,7 @@ void intel_guc_submission_fini(struct intel_guc *guc)
+> >   		return;
+> >   	guc_lrc_desc_pool_destroy(guc);
+> > +	guc_flush_destroyed_contexts(guc);
+> Seems like these lines should be reversed. We should destroy the higher
+> level constructs before the lower level ones that they could be built on.
+> 
+> >   	i915_sched_engine_put(guc->sched_engine);
+> >   }
+> > @@ -1859,11 +1869,30 @@ static void guc_context_sched_disable(struct intel_context *ce)
+> >   static inline void guc_lrc_desc_unpin(struct intel_context *ce)
+> >   {
+> >   	struct intel_guc *guc = ce_to_guc(ce);
+> > +	struct intel_gt *gt = guc_to_gt(guc);
+> > +	unsigned long flags;
+> > +	bool disabled;
+> > +	GEM_BUG_ON(!intel_gt_pm_is_awake(gt));
+> >   	GEM_BUG_ON(!lrc_desc_registered(guc, ce->guc_id.id));
+> >   	GEM_BUG_ON(ce != __get_context(guc, ce->guc_id.id));
+> >   	GEM_BUG_ON(context_enabled(ce));
+> > +	/* Seal race with Reset */
+> > +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> > +	disabled = submission_disabled(guc);
+> > +	if (likely(!disabled)) {
+> > +		__intel_gt_pm_get(gt);
+> > +		set_context_destroyed(ce);
+> > +		clr_context_registered(ce);
+> > +	}
+> > +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> > +	if (unlikely(disabled)) {
+> > +		release_guc_id(guc, ce);
+> > +		__guc_context_destroy(ce);
+> > +		return;
+> > +	}
+> > +
+> >   	deregister_context(ce, ce->guc_id.id);
+> >   }
+> > @@ -1891,78 +1920,86 @@ static void __guc_context_destroy(struct intel_context *ce)
+> >   	}
+> >   }
+> > +static void guc_flush_destroyed_contexts(struct intel_guc *guc)
+> > +{
+> > +	struct intel_context *ce, *cn;
+> > +	unsigned long flags;
+> > +
+> > +	GEM_BUG_ON(!submission_disabled(guc) &&
+> > +		   guc_submission_initialized(guc));
+> > +
+> > +	spin_lock_irqsave(&guc->submission_state.lock, flags);
+> > +	list_for_each_entry_safe(ce, cn,
+> > +				 &guc->submission_state.destroyed_contexts,
+> > +				 destroyed_link) {
+> > +		list_del_init(&ce->destroyed_link);
+> > +		__release_guc_id(guc, ce);
+> > +		__guc_context_destroy(ce);
+> > +	}
+> > +	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> > +}
+> > +
+> > +static void deregister_destroyed_contexts(struct intel_guc *guc)
+> > +{
+> > +	struct intel_context *ce, *cn;
+> > +	unsigned long flags;
+> > +
+> > +	spin_lock_irqsave(&guc->submission_state.lock, flags);
+> > +	list_for_each_entry_safe(ce, cn,
+> > +				 &guc->submission_state.destroyed_contexts,
+> > +				 destroyed_link) {
+> > +		list_del_init(&ce->destroyed_link);
+> > +		guc_lrc_desc_unpin(ce);
+> > +	}
+> > +	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> > +}
+> > +
+> > +static void destroyed_worker_func(struct work_struct *w)
+> > +{
+> > +	struct intel_guc *guc = container_of(w, struct intel_guc,
+> > +					     submission_state.destroyed_worker);
+> > +	struct intel_gt *gt = guc_to_gt(guc);
+> > +	int tmp;
+> > +
+> > +	with_intel_gt_pm(gt, tmp)
+> > +		deregister_destroyed_contexts(guc);
+> > +}
+> > +
+> >   static void guc_context_destroy(struct kref *kref)
+> >   {
+> >   	struct intel_context *ce = container_of(kref, typeof(*ce), ref);
+> > -	struct intel_runtime_pm *runtime_pm = ce->engine->uncore->rpm;
+> >   	struct intel_guc *guc = ce_to_guc(ce);
+> > -	intel_wakeref_t wakeref;
+> >   	unsigned long flags;
+> > -	bool disabled;
+> > +	bool destroy;
+> >   	/*
+> >   	 * If the guc_id is invalid this context has been stolen and we can free
+> >   	 * it immediately. Also can be freed immediately if the context is not
+> >   	 * registered with the GuC or the GuC is in the middle of a reset.
+> >   	 */
+> > -	if (context_guc_id_invalid(ce)) {
+> > -		__guc_context_destroy(ce);
+> > -		return;
+> > -	} else if (submission_disabled(guc) ||
+> > -		   !lrc_desc_registered(guc, ce->guc_id.id)) {
+> > -		release_guc_id(guc, ce);
+> > -		__guc_context_destroy(ce);
+> > -		return;
+> > -	}
+> > -
+> > -	/*
+> > -	 * We have to acquire the context spinlock and check guc_id again, if it
+> > -	 * is valid it hasn't been stolen and needs to be deregistered. We
+> > -	 * delete this context from the list of unpinned guc_id available to
+> > -	 * steal to seal a race with guc_lrc_desc_pin(). When the G2H CTB
+> > -	 * returns indicating this context has been deregistered the guc_id is
+> > -	 * returned to the pool of available guc_id.
+> > -	 */
+> >   	spin_lock_irqsave(&guc->submission_state.lock, flags);
+> > -	if (context_guc_id_invalid(ce)) {
+> > -		spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> > -		__guc_context_destroy(ce);
+> > -		return;
+> > +	destroy = submission_disabled(guc) || context_guc_id_invalid(ce) ||
+> > +		!lrc_desc_registered(guc, ce->guc_id.id);
+> > +	if (likely(!destroy)) {
+> > +		if (!list_empty(&ce->guc_id.link))
+> > +			list_del_init(&ce->guc_id.link);
+> > +		list_add_tail(&ce->destroyed_link,
+> > +			      &guc->submission_state.destroyed_contexts);
+> > +	} else {
+> > +		__release_guc_id(guc, ce);
+> 'destroy' can be true if the guc_id is invalid. Is it good to call release
+> on an invalid id?
+> 
 > John.
 > 
-> > > John.
-> > > 
-> > > > Returning GT idle when it is not can cause all sorts of issues
-> > > > throughout the stack.
-> > > > 
-> > > > v2:
-> > > >    (Daniel Vetter)
-> > > >     - Add might_lock annotations to pin / unpin function
-> > > > v3:
-> > > >    (CI)
-> > > >     - Drop intel_engine_pm_might_put from unpin path as an async put is
-> > > >       used
-> > > > v4:
-> > > >    (John Harrison)
-> > > >     - Make intel_engine_pm_might_get/put work with GuC virtual engines
-> > > >     - Update commit message
-> > > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/i915/gt/intel_context.c       |  2 ++
-> > > >    drivers/gpu/drm/i915/gt/intel_engine_pm.h     | 32 +++++++++++++++++
-> > > >    drivers/gpu/drm/i915/gt/intel_gt_pm.h         | 10 ++++++
-> > > >    .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 36 +++++++++++++++++--
-> > > >    drivers/gpu/drm/i915/intel_wakeref.h          | 12 +++++++
-> > > >    5 files changed, 89 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > index 1076066f41e0..f601323b939f 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > @@ -240,6 +240,8 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
-> > > >    	if (err)
-> > > >    		goto err_post_unpin;
-> > > > +	intel_engine_pm_might_get(ce->engine);
-> > > > +
-> > > >    	if (unlikely(intel_context_is_closed(ce))) {
-> > > >    		err = -ENOENT;
-> > > >    		goto err_unlock;
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.h b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
-> > > > index 6fdeae668e6e..d68675925b79 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.h
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
-> > > > @@ -6,9 +6,11 @@
-> > > >    #ifndef INTEL_ENGINE_PM_H
-> > > >    #define INTEL_ENGINE_PM_H
-> > > > +#include "i915_drv.h"
-> > > >    #include "i915_request.h"
-> > > >    #include "intel_engine_types.h"
-> > > >    #include "intel_wakeref.h"
-> > > > +#include "intel_gt_pm.h"
-> > > >    static inline bool
-> > > >    intel_engine_pm_is_awake(const struct intel_engine_cs *engine)
-> > > > @@ -31,6 +33,21 @@ static inline bool intel_engine_pm_get_if_awake(struct intel_engine_cs *engine)
-> > > >    	return intel_wakeref_get_if_active(&engine->wakeref);
-> > > >    }
-> > > > +static inline void intel_engine_pm_might_get(struct intel_engine_cs *engine)
-> > > > +{
-> > > > +	if (!intel_engine_is_virtual(engine)) {
-> > > > +		intel_wakeref_might_get(&engine->wakeref);
-> > > > +	} else {
-> > > > +		struct intel_gt *gt = engine->gt;
-> > > > +		struct intel_engine_cs *tengine;
-> > > > +		intel_engine_mask_t tmp, mask = engine->mask;
-> > > > +
-> > > > +		for_each_engine_masked(tengine, gt, mask, tmp)
-> > > > +			intel_wakeref_might_get(&tengine->wakeref);
-> > > > +	}
-> > > > +	intel_gt_pm_might_get(engine->gt);
-> > > > +}
-> > > > +
-> > > >    static inline void intel_engine_pm_put(struct intel_engine_cs *engine)
-> > > >    {
-> > > >    	intel_wakeref_put(&engine->wakeref);
-> > > > @@ -52,6 +69,21 @@ static inline void intel_engine_pm_flush(struct intel_engine_cs *engine)
-> > > >    	intel_wakeref_unlock_wait(&engine->wakeref);
-> > > >    }
-> > > > +static inline void intel_engine_pm_might_put(struct intel_engine_cs *engine)
-> > > > +{
-> > > > +	if (!intel_engine_is_virtual(engine)) {
-> > > > +		intel_wakeref_might_put(&engine->wakeref);
-> > > > +	} else {
-> > > > +		struct intel_gt *gt = engine->gt;
-> > > > +		struct intel_engine_cs *tengine;
-> > > > +		intel_engine_mask_t tmp, mask = engine->mask;
-> > > > +
-> > > > +		for_each_engine_masked(tengine, gt, mask, tmp)
-> > > > +			intel_wakeref_might_put(&tengine->wakeref);
-> > > > +	}
-> > > > +	intel_gt_pm_might_put(engine->gt);
-> > > > +}
-> > > > +
-> > > >    static inline struct i915_request *
-> > > >    intel_engine_create_kernel_request(struct intel_engine_cs *engine)
-> > > >    {
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> > > > index 05de6c1af25b..bc898df7a48c 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> > > > @@ -31,6 +31,11 @@ static inline bool intel_gt_pm_get_if_awake(struct intel_gt *gt)
-> > > >    	return intel_wakeref_get_if_active(&gt->wakeref);
-> > > >    }
-> > > > +static inline void intel_gt_pm_might_get(struct intel_gt *gt)
-> > > > +{
-> > > > +	intel_wakeref_might_get(&gt->wakeref);
-> > > > +}
-> > > > +
-> > > >    static inline void intel_gt_pm_put(struct intel_gt *gt)
-> > > >    {
-> > > >    	intel_wakeref_put(&gt->wakeref);
-> > > > @@ -41,6 +46,11 @@ static inline void intel_gt_pm_put_async(struct intel_gt *gt)
-> > > >    	intel_wakeref_put_async(&gt->wakeref);
-> > > >    }
-> > > > +static inline void intel_gt_pm_might_put(struct intel_gt *gt)
-> > > > +{
-> > > > +	intel_wakeref_might_put(&gt->wakeref);
-> > > > +}
-> > > > +
-> > > >    #define with_intel_gt_pm(gt, tmp) \
-> > > >    	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
-> > > >    	     intel_gt_pm_put(gt), tmp = 0)
-> > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > index 17da2fea1bff..8b82da50c2bc 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > @@ -1571,7 +1571,12 @@ static int guc_context_pre_pin(struct intel_context *ce,
-> > > >    static int guc_context_pin(struct intel_context *ce, void *vaddr)
-> > > >    {
-> > > > -	return __guc_context_pin(ce, ce->engine, vaddr);
-> > > > +	int ret = __guc_context_pin(ce, ce->engine, vaddr);
-> > > > +
-> > > > +	if (likely(!ret && !intel_context_is_barrier(ce)))
-> > > > +		intel_engine_pm_get(ce->engine);
-> > > > +
-> > > > +	return ret;
-> > > >    }
-> > > >    static void guc_context_unpin(struct intel_context *ce)
-> > > > @@ -1580,6 +1585,9 @@ static void guc_context_unpin(struct intel_context *ce)
-> > > >    	unpin_guc_id(guc, ce);
-> > > >    	lrc_unpin(ce);
-> > > > +
-> > > > +	if (likely(!intel_context_is_barrier(ce)))
-> > > > +		intel_engine_pm_put_async(ce->engine);
-> > > >    }
-> > > >    static void guc_context_post_unpin(struct intel_context *ce)
-> > > > @@ -2341,8 +2349,30 @@ static int guc_virtual_context_pre_pin(struct intel_context *ce,
-> > > >    static int guc_virtual_context_pin(struct intel_context *ce, void *vaddr)
-> > > >    {
-> > > >    	struct intel_engine_cs *engine = guc_virtual_get_sibling(ce->engine, 0);
-> > > > +	int ret = __guc_context_pin(ce, engine, vaddr);
-> > > > +	intel_engine_mask_t tmp, mask = ce->engine->mask;
-> > > > +
-> > > > +	if (likely(!ret))
-> > > > +		for_each_engine_masked(engine, ce->engine->gt, mask, tmp)
-> > > > +			intel_engine_pm_get(engine);
-> > > > -	return __guc_context_pin(ce, engine, vaddr);
-> > > > +	return ret;
-> > > > +}
-> > > > +
-> > > > +static void guc_virtual_context_unpin(struct intel_context *ce)
-> > > > +{
-> > > > +	intel_engine_mask_t tmp, mask = ce->engine->mask;
-> > > > +	struct intel_engine_cs *engine;
-> > > > +	struct intel_guc *guc = ce_to_guc(ce);
-> > > > +
-> > > > +	GEM_BUG_ON(context_enabled(ce));
-> > > > +	GEM_BUG_ON(intel_context_is_barrier(ce));
-> > > > +
-> > > > +	unpin_guc_id(guc, ce);
-> > > > +	lrc_unpin(ce);
-> > > > +
-> > > > +	for_each_engine_masked(engine, ce->engine->gt, mask, tmp)
-> > > > +		intel_engine_pm_put_async(engine);
-> > > >    }
-> > > >    static void guc_virtual_context_enter(struct intel_context *ce)
-> > > > @@ -2379,7 +2409,7 @@ static const struct intel_context_ops virtual_guc_context_ops = {
-> > > >    	.pre_pin = guc_virtual_context_pre_pin,
-> > > >    	.pin = guc_virtual_context_pin,
-> > > > -	.unpin = guc_context_unpin,
-> > > > +	.unpin = guc_virtual_context_unpin,
-> > > >    	.post_unpin = guc_context_post_unpin,
-> > > >    	.ban = guc_context_ban,
-> > > > diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-> > > > index 545c8f277c46..4f4c2e15e736 100644
-> > > > --- a/drivers/gpu/drm/i915/intel_wakeref.h
-> > > > +++ b/drivers/gpu/drm/i915/intel_wakeref.h
-> > > > @@ -123,6 +123,12 @@ enum {
-> > > >    	__INTEL_WAKEREF_PUT_LAST_BIT__
-> > > >    };
-> > > > +static inline void
-> > > > +intel_wakeref_might_get(struct intel_wakeref *wf)
-> > > > +{
-> > > > +	might_lock(&wf->mutex);
-> > > > +}
-> > > > +
-> > > >    /**
-> > > >     * intel_wakeref_put_flags: Release the wakeref
-> > > >     * @wf: the wakeref
-> > > > @@ -170,6 +176,12 @@ intel_wakeref_put_delay(struct intel_wakeref *wf, unsigned long delay)
-> > > >    			    FIELD_PREP(INTEL_WAKEREF_PUT_DELAY, delay));
-> > > >    }
-> > > > +static inline void
-> > > > +intel_wakeref_might_put(struct intel_wakeref *wf)
-> > > > +{
-> > > > +	might_lock(&wf->mutex);
-> > > > +}
-> > > > +
-> > > >    /**
-> > > >     * intel_wakeref_lock: Lock the wakeref (mutex)
-> > > >     * @wf: the wakeref
+> >   	}
+> > -
+> > -	if (!list_empty(&ce->guc_id.link))
+> > -		list_del_init(&ce->guc_id.link);
+> >   	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> > -
+> > -	/* Seal race with Reset */
+> > -	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> > -	disabled = submission_disabled(guc);
+> > -	if (likely(!disabled)) {
+> > -		set_context_destroyed(ce);
+> > -		clr_context_registered(ce);
+> > -	}
+> > -	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> > -	if (unlikely(disabled)) {
+> > -		release_guc_id(guc, ce);
+> > +	if (unlikely(destroy)) {
+> >   		__guc_context_destroy(ce);
+> >   		return;
+> >   	}
+> >   	/*
+> > -	 * We defer GuC context deregistration until the context is destroyed
+> > -	 * in order to save on CTBs. With this optimization ideally we only need
+> > -	 * 1 CTB to register the context during the first pin and 1 CTB to
+> > -	 * deregister the context when the context is destroyed. Without this
+> > -	 * optimization, a CTB would be needed every pin & unpin.
+> > -	 *
+> > -	 * XXX: Need to acqiure the runtime wakeref as this can be triggered
+> > -	 * from context_free_worker when runtime wakeref is not held.
+> > -	 * guc_lrc_desc_unpin requires the runtime as a GuC register is written
+> > -	 * in H2G CTB to deregister the context. A future patch may defer this
+> > -	 * H2G CTB if the runtime wakeref is zero.
+> > +	 * We use a worker to issue the H2G to deregister the context as we can
+> > +	 * take the GT PM for the first time which isn't allowed from an atomic
+> > +	 * context.
+> >   	 */
+> > -	with_intel_runtime_pm(runtime_pm, wakeref)
+> > -		guc_lrc_desc_unpin(ce);
+> > +	queue_work(system_unbound_wq, &guc->submission_state.destroyed_worker);
+> >   }
+> >   static int guc_context_alloc(struct intel_context *ce)
+> > @@ -2798,6 +2835,7 @@ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
+> >   		intel_context_put(ce);
+> >   	} else if (context_destroyed(ce)) {
+> >   		/* Context has been destroyed */
+> > +		intel_gt_pm_put_async(guc_to_gt(guc));
+> >   		release_guc_id(guc, ce);
+> >   		__guc_context_destroy(ce);
+> >   	}
 > 
