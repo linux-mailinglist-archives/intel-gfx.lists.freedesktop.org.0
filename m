@@ -2,54 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DBE242732E
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 23:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D91427334
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 23:49:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 753BB6E877;
-	Fri,  8 Oct 2021 21:47:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1CA96E87A;
+	Fri,  8 Oct 2021 21:49:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E99A6E877
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 21:47:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10131"; a="226548402"
-X-IronPort-AV: E=Sophos;i="5.85,358,1624345200"; d="scan'208";a="226548402"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 14:47:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,358,1624345200"; d="scan'208";a="713926024"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga006.fm.intel.com with ESMTP; 08 Oct 2021 14:47:23 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 8 Oct 2021 14:47:23 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 8 Oct 2021 14:47:22 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Fri, 8 Oct 2021 14:47:22 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915/icl: Fix read of memory frequency
-Thread-Index: AQHXvIZ8tSqHiA/TekCMS0N7X9FxBqvKGhwA
-Date: Fri, 8 Oct 2021 21:47:22 +0000
-Message-ID: <f05f6e3097b6d70b61180ef425396c646b0cea92.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3ACF36E878;
+ Fri,  8 Oct 2021 21:49:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30D5BA9A42;
+ Fri,  8 Oct 2021 21:49:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3265524922055521178=="
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 08 Oct 2021 21:49:16 -0000
+Message-ID: <163372975616.16850.7819094518832368940@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20211008205855.36778-1-jose.souza@intel.com>
 In-Reply-To: <20211008205855.36778-1-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FBF5D001DDD21449B2B9C573052AFD92@intel.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl: Fix read of memory frequency
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/icl=3A_Fix_read_of_memory_frequency?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,45 +41,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIxLTEwLTA4IGF0IDEzOjU4IC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBBbGwgZGlzcGxheSA5IGFuZCBkaXNwbGF5IDEwIHBsYXRmb3JtcyBoYXMgb25s
-eSA0IGJpdHMgZm9yIHRoZSBtZW1vcnkNCj4gZnJlcXVlbmN5IGJ1dCBkaXNwbGF5IDExIHBsYXRm
-b3JtcyBpdCBjaGFuZ2VzIHRvIDggYml0cy4NCj4gDQo+IERpc3BsYXkgOSBwbGF0Zm9ybXMgaGFz
-IGFub3RoZXIgcmVnaXN0ZXIgaW4gYml0cyA3OjQgdGhhdCBwcmV2ZW50cyB1cw0KPiB0byBoYXZl
-IGEgc2luZ2xlIG1hc2suDQo+IEFsc28gYWRkaW5nIG5ldyBtYXNrIHdpdGggdGhlIGN1cnJlbnQg
-bmFtZSBpbiBDUldlYlZpZXdlciwgbm90DQo+IHN1cmUgd2h5IGN1cnJlbnQgbWFzayBpcyBuYW1l
-ZCBsaWtlIHRoaXMuDQo+IA0KPiBGaXhlczogZjgxMTJjYjk1NzRiICgiZHJtL2k5MTUvZ2VuMTEr
-OiBPbmx5IGxvYWQgRFJBTSBpbmZvcm1hdGlvbiBmcm9tIHBjb2RlIikNCg0KT3BzIGhhc2ggc2hv
-dWxkIGJlOiA1ZDBjOTM4ZWM5Y2MNCldpbGwgZml4IGluIHRoZSBuZXh0IHZlcnNpb24gb3Igd2hl
-biBhcHBseWluZy4NCg0KPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
-b3NlLnNvdXphQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3JlZy5oICAgfCAxICsNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RyYW0uYyB8IDcg
-KysrKystLQ0KPiAgMiBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25z
-KC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gaW5kZXggYTg5N2Y0YWJlYTBjMy4u
-MDQxZjdkYzllMGQ5NCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9y
-ZWcuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+IEBAIC0xMTE0
-OCw2ICsxMTE0OCw3IEBAIGVudW0gc2tsX3Bvd2VyX2dhdGUgew0KPiAgI2RlZmluZSBTS0xfTUVN
-T1JZX0ZSRVFfTVVMVElQTElFUl9IWgkJMjY2NjY2NjY2DQo+ICAjZGVmaW5lIFNLTF9NQ19CSU9T
-X0RBVEFfMF8wXzBfTUNIQkFSX1BDVQlfTU1JTyhNQ0hCQVJfTUlSUk9SX0JBU0VfU05CICsgMHg1
-RTA0KQ0KPiAgI2RlZmluZSAgU0tMX1JFUV9EQVRBX01BU0sJCQkoMHhGIDw8IDApDQo+ICsjZGVm
-aW5lICBJQ0xfRlJFUV9NQVNLCQkJCSgweEZGIDw8IDApDQo+ICAjZGVmaW5lICBERzFfR0VBUl9U
-WVBFCQkJCVJFR19CSVQoMTYpDQo+ICANCj4gICNkZWZpbmUgU0tMX01BRF9JTlRFUl9DSEFOTkVM
-XzBfMF8wX01DSEJBUl9NQ01BSU4gX01NSU8oTUNIQkFSX01JUlJPUl9CQVNFX1NOQiArIDB4NTAw
-MCkNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RyYW0uYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RyYW0uYw0KPiBpbmRleCAzMGEwY2FiNWVmZjQ2Li41
-NTg1ODliMTIwMmQ2IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
-cmFtLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJhbS5jDQo+IEBAIC0y
-NTcsOCArMjU3LDExIEBAIHNrbF9nZXRfZHJhbV9pbmZvKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICppOTE1KQ0KPiAgDQo+ICAJdmFsID0gaW50ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwN
-Cj4gIAkJCQlTS0xfTUNfQklPU19EQVRBXzBfMF8wX01DSEJBUl9QQ1UpOw0KPiAtCW1lbV9mcmVx
-X2toeiA9IERJVl9ST1VORF9VUCgodmFsICYgU0tMX1JFUV9EQVRBX01BU0spICoNCj4gLQkJCQkg
-ICAgU0tMX01FTU9SWV9GUkVRX01VTFRJUExJRVJfSFosIDEwMDApOw0KPiArCWlmIChESVNQTEFZ
-X1ZFUihpOTE1KSA9PSAxMSkNCj4gKwkJdmFsICY9IElDTF9GUkVRX01BU0s7DQo+ICsJZWxzZQ0K
-PiArCQl2YWwgJj0gU0tMX1JFUV9EQVRBX01BU0s7DQo+ICsJbWVtX2ZyZXFfa2h6ID0gRElWX1JP
-VU5EX1VQKHZhbCAqIFNLTF9NRU1PUllfRlJFUV9NVUxUSVBMSUVSX0haLCAxMDAwKTsNCj4gIA0K
-PiAgCWlmIChkcmFtX2luZm8tPm51bV9jaGFubmVscyAqIG1lbV9mcmVxX2toeiA9PSAwKSB7DQo+
-ICAJCWRybV9pbmZvKCZpOTE1LT5kcm0sDQoNCg==
+--===============3265524922055521178==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/icl: Fix read of memory frequency
+URL   : https://patchwork.freedesktop.org/series/95627/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10700 -> Patchwork_21295
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21295 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp1:
+    - fi-cfl-8109u:       [PASS][1] -> [FAIL][2] ([i915#4165]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#4269])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#295]) +18 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a:
+    - {fi-tgl-dsi}:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10700 -> Patchwork_21295
+
+  CI-20190529: 20190529
+  CI_DRM_10700: 6ecdd5e29c83cd8fc191f8cce5c283eefb53c97e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6240: b232a092b9e1b10a8be13601acaa440903b226bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21295: fe3148c5e2cea9b6f99d1e034361122eedad8c45 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fe3148c5e2ce drm/i915/icl: Fix read of memory frequency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/index.html
+
+--===============3265524922055521178==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/icl: Fix read of memory frequency</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95627/">https://patchwork.freedesktop.org/series/95627/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10700 -&gt; Patchwork_21295</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21295 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +18 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21295/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10700 -&gt; Patchwork_21295</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10700: 6ecdd5e29c83cd8fc191f8cce5c283eefb53c97e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6240: b232a092b9e1b10a8be13601acaa440903b226bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21295: fe3148c5e2cea9b6f99d1e034361122eedad8c45 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>fe3148c5e2ce drm/i915/icl: Fix read of memory frequency</p>
+
+</body>
+</html>
+
+--===============3265524922055521178==--
