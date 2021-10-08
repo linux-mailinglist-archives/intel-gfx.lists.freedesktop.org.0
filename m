@@ -2,99 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CF242668D
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F51C426693
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:17:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B9EA6F464;
-	Fri,  8 Oct 2021 09:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C372F6F466;
+	Fri,  8 Oct 2021 09:17:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7284D6F41C;
- Fri,  8 Oct 2021 09:17:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eH31UFubL3zwSwctdiPuXfC3ZMKRoLtM/V1zbVrwazd+JuV9+DzDZvg9eGHyKsMVq1ac382/WpFEo2bQoF3hZonxJoqh5Cs9cf8ASwUvXFvu+uY2F4KCDAEkSt+O2b4gKr7US6uw6KLrp4CqysOBtRYabEYUVdEE+sxpXQlYXrIXf25eWAQ0pTblefBbtHRPfkbWin84fu5spF4zEPHv91b/2i0gSMUp9cxN9tkKlBC4ACIMFoEZSvk9f+hU93iNIlBIOgTH7pXsOjLKWPmnFTa2RMvPFL4M8Cm3iR22/PBvNAD2YrS6IC9GsAk0WEuiLyHBAN4Q6DYJcWntvsPkeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9ELd+NLVY+PiXPNN8OXyDZYbp5CdVhjzfdlUUHK0QlM=;
- b=U6PmzHyAI+o+HinHGJmiW6bQWgiDugIFpqyUqL9ltDXus9UM1hFlNbDuDzRDIrxw22OszM2XC/heku/58/uNvihR0fox0yn6bMu5PbhndpyFCzhECxYtTV47/ZzE/7pSTgDzuooCJMaQ36J2XKM+uILOUahX55YNAhueHvJY2zkde/Q1ohDyqGFOhV5DZxGg5ZysQbvkraL2eUur55HGFqCNfSUJ+vKf8KGuRcFbbt3MuSxXLAjkVexWpFAAGYlQuXaJC2hv5u4y5gJp8f+jM4KL04JlwdlnC8WxIlzTjcpfK675Emv0A6Y3iaAduoGFFo4/fby+CrhXAWKRCCVh3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9ELd+NLVY+PiXPNN8OXyDZYbp5CdVhjzfdlUUHK0QlM=;
- b=MzokpLt1ADenGoW0CDOO/ljOOB1LCzuk+pSghZbAM+ixy973IO2x4xy8c7f71pSHliykq9WHyiHvbK57ebLGE7GR3/P7jXNYrGQJZ3m9G++ole4c+GEFCkru5ch2yT854kVbrby6MO8awm+yeMExEQ3UT97lrbYaEHbwRIkMtQU=
-Received: from DM5PR17CA0065.namprd17.prod.outlook.com (2603:10b6:3:13f::27)
- by MW3PR12MB4474.namprd12.prod.outlook.com (2603:10b6:303:2e::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.22; Fri, 8 Oct
- 2021 09:17:26 +0000
-Received: from DM6NAM11FT053.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:13f:cafe::33) by DM5PR17CA0065.outlook.office365.com
- (2603:10b6:3:13f::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18 via Frontend
- Transport; Fri, 8 Oct 2021 09:17:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT053.mail.protection.outlook.com (10.13.173.74) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4587.18 via Frontend Transport; Fri, 8 Oct 2021 09:17:26 +0000
-Received: from brihaspati.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Fri, 8 Oct 2021
- 04:17:24 -0500
-From: Nirmoy Das <nirmoy.das@amd.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <intel-gfx@lists.freedesktop.org>, Nirmoy Das <nirmoy.das@amd.com>,
- Thierry Reding <thierry.reding@gmail.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>
-Date: Fri, 8 Oct 2021 11:17:04 +0200
-Message-ID: <20211008091704.27094-5-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211008091704.27094-1-nirmoy.das@amd.com>
-References: <20211008091704.27094-1-nirmoy.das@amd.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 902296F466
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 09:17:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226370567"
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="226370567"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2021 02:17:51 -0700
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="489388617"
+Received: from tocallag-mobl2.ger.corp.intel.com (HELO [10.213.250.80])
+ ([10.213.250.80])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2021 02:17:50 -0700
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20211006091614.970596-1-matthew.auld@intel.com>
+ <163353397200.5959.9158572900274841139@emeril.freedesktop.org>
+ <d50b2987-6343-fc87-e197-1cc8ac2c4f93@linux.intel.com>
+ <cb93ee61-9ac1-587e-0182-6c6ba6671d79@gmail.com>
+ <ae2222c4-7167-9047-2430-1d59b9b1fa32@linux.intel.com>
+ <c022d4eb-b831-a4ae-6127-01bc526fc9c1@gmail.com>
+ <d7c12c69-46a2-9305-0a0d-1848253808ed@linux.intel.com>
+ <37de5d6f8af149d2be998a3991c8ef4d@intel.com>
+ <64167c40-1d54-735e-89cf-4df9d95d5a97@linux.intel.com>
+ <9bcbf976-532c-29fc-6292-281de8cea1ba@gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <8a6f1685-3f77-e71f-d760-283a88eff6d4@linux.intel.com>
+Date: Fri, 8 Oct 2021 10:17:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <9bcbf976-532c-29fc-6292-281de8cea1ba@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 43f9dc84-4ad9-4ae7-2e7b-08d98a3c71e8
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4474:
-X-Microsoft-Antispam-PRVS: <MW3PR12MB44740BE5E61EB59EBA73A2818BB29@MW3PR12MB4474.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:366;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: m1trmWtWYd01qWzrMuiO7hUkiy0EKXXKM0PXzjWI3fswGfulWAQLvJcUhcEGkAONHKkTP3gkbxGMrRd69M6ePE5lpVG3n9/tOhOAWWt2bLvnlfri97/qT4m3t/9iNsI3BQaA1jY0dA4hjWfsMGCDECTZoUOQhA9CF4ho8tXjedNo886kDvIS4VUTrf9AHkQ5VhCVy3wwhg+fOLJarB4jF/dd+hJuKP7SitEsyXKHv7CcUXgDtqoIU+ytmMUeX/S0op/DAkc1GfRnUoYPr0RA8nUHj+ue+NvnUfiBNQHhrxyOyzBadwW2ehmz6ztuutz0VC8JEDgwzclWzs9k0W1wyOJRklXu1+Dt5dvNwboAcn8SDuyRJd0gbHKQ7Bb8XMPJq3xhiA7cMbxq6azecp3IWYlUh4FWwHfxx9+uhLLEZbSrcd23PJkuU1/VObhpJDqfvjH5OKyRE5T+oFytkzA64yYjWjYpt0elINZ6BH2mK2bSpMmu0cWhy7f1ZtgB7ooQrzNa1H1OUYWoDSUh8fACSmenm1EsQJYqI0Uq4FAZdZuzxfdZySa50L5wdS95/e5aHlPW+xs4wjHYCzbb8OGvb4keH6DB9c73m6tunlKfX82CvR9ivqecYuJbFEtYInpPAIdliWl2xbJkrqfhGV6alL0XBjmulEKV/fsWmHmbcMMcQXzVn+rEgtfv/MZTBbPr82emGDfWPU+j1lQPkz8bImKxCZC6qnmV9dvFdfCQc44=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(7696005)(54906003)(316002)(44832011)(36860700001)(508600001)(8676002)(6666004)(26005)(70206006)(86362001)(36756003)(186003)(16526019)(1076003)(70586007)(82310400003)(2906002)(4326008)(5660300002)(8936002)(47076005)(426003)(336012)(6916009)(2616005)(356005)(81166007)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2021 09:17:26.1889 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43f9dc84-4ad9-4ae7-2e7b-08d98a3c71e8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT053.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4474
-Subject: [Intel-gfx] [PATCH 5/5] drm/tegra: check root dentry before debugfs
- init
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv7=2C1/8=5D_drm/i915/gem=3A_Break_out_some?=
+ =?utf-8?q?_shmem_backend_utils?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,83 +65,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Return early if crtc or connector's debugfs root dentries are NULL.
 
-CC: Thierry Reding <thierry.reding@gmail.com>
-CC: David Airlie <airlied@linux.ie>
-CC: Daniel Vetter <daniel@ffwll.ch>
-CC: Jonathan Hunter <jonathanh@nvidia.com>
+On 07/10/2021 19:18, Christian König wrote:
+> Am 07.10.21 um 17:53 schrieb Tvrtko Ursulin:
+>>
+>> On 07/10/2021 16:18, Vudum, Lakshminarayana wrote:
+>>> -----Original Message-----
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>> Sent: Thursday, October 7, 2021 6:41 AM
+>>> To: Christian König <ckoenig.leichtzumerken@gmail.com>; 
+>>> intel-gfx@lists.freedesktop.org
+>>> Cc: Vudum, Lakshminarayana <lakshminarayana.vudum@intel.com>
+>>> Subject: Re: [Intel-gfx] ✗ Fi.CI.IGT: failure for series starting 
+>>> with [v7,1/8] drm/i915/gem: Break out some shmem backend utils
+>>>
+>>>
+>>> On 07/10/2021 13:57, Christian König wrote:
+>>>> Am 07.10.21 um 12:51 schrieb Tvrtko Ursulin:
+>>>>>
+>>>>> On 07/10/2021 10:19, Christian König wrote:
+>>>>>> Am 07.10.21 um 11:15 schrieb Tvrtko Ursulin:
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> On 06/10/2021 16:26, Patchwork wrote:
+>>>>>>>> *Patch Details*
+>>>>>>>> *Series:*    series starting with [v7,1/8] drm/i915/gem: Break out
+>>>>>>>> some shmem backend utils
+>>>>>>>> *URL:* https://patchwork.freedesktop.org/series/95501/
+>>>>>>>> <https://patchwork.freedesktop.org/series/95501/>
+>>>>>>>> *State:*    failure
+>>>>>>>> *Details:*
+>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.htm
+>>>>>>>> l
+>>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.ht
+>>>>>>>> ml>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>    CI Bug Log - changes from CI_DRM_10688_full ->
+>>>>>>>> Patchwork_21264_full
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>      Summary
+>>>>>>>>
+>>>>>>>> *FAILURE*
+>>>>>>>>
+>>>>>>>> Serious unknown changes coming with Patchwork_21264_full
+>>>>>>>> absolutely need to be verified manually.
+>>>>>>>>
+>>>>>>>> If you think the reported changes have nothing to do with the
+>>>>>>>> changes introduced in Patchwork_21264_full, please notify your bug
+>>>>>>>> team to allow them to document this new failure mode, which will
+>>>>>>>> reduce false positives in CI.
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>      Possible new issues
+>>>>>>>>
+>>>>>>>> Here are the unknown changes that may have been introduced in
+>>>>>>>> Patchwork_21264_full:
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>        IGT changes
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>          Possible regressions
+>>>>>>>>
+>>>>>>>>    *
+>>>>>>>>
+>>>>>>>>      igt@gem_sync@basic-many-each:
+>>>>>>>>
+>>>>>>>>        o shard-apl: NOTRUN -> INCOMPLETE
+>>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/shard-ap
+>>>>>>>> l7/igt@gem_sync@basic-many-each.html>
+>>>>>>>>
+>>>>>>> Something still fishy in the unlocked iterator? Or
+>>>>>>> dma_resv_get_fences using it?
+>>>>>>
+>>>>>> Probably the later. I'm going to take a look.
+>>>>>>
+>>>>>> Thanks for the notice,
+>>>>>> Christian.
+>>>>>>
+>>>>>>>
+>>>>>>> <6> [187.551235] [IGT] gem_sync: starting subtest basic-many-each
+>>>>>>> <1> [188.935462] BUG: kernel NULL pointer dereference, address:
+>>>>>>> 0000000000000010
+>>>>>>> <1> [188.935485] #PF: supervisor write access in kernel mode <1>
+>>>>>>> [188.935495] #PF: error_code(0x0002) - not-present page <6>
+>>>>>>> [188.935504] PGD 0 P4D 0 <4> [188.935512] Oops: 0002 [#1] PREEMPT
+>>>>>>> SMP NOPTI <4> [188.935521] CPU: 2 PID: 1467 Comm: gem_sync Not
+>>>>>>> tainted 5.15.0-rc4-CI-Patchwork_21264+ #1 <4> [188.935535] Hardware
+>>>>>>> name:  /NUC6CAYB, BIOS
+>>>>>>> AYAPLCEL.86A.0049.2018.0508.1356 05/08/2018 <4> [188.935546] RIP:
+>>>>>>> 0010:dma_resv_get_fences+0x116/0x2d0
+>>>>>>> <4> [188.935560] Code: 10 85 c0 7f c9 be 03 00 00 00 e8 15 8b df ff
+>>>>>>> eb bd e8 8e c6 ff ff eb b6 41 8b 04 24 49 8b 55 00 48 89 e7 8d 48
+>>>>>>> 01
+>>>>>>> 41 89 0c 24 <4c> 89 34 c2 e8 41 f2 ff ff 49 89 c6 48 85 c0 75 8c 48
+>>>>>>> 8b 44 24 10 <4> [188.935583] RSP: 0018:ffffc900011dbcc8 EFLAGS:
+>>>>>>> 00010202 <4> [188.935593] RAX: 0000000000000000 RBX:
+>>>>>>> 00000000ffffffff RCX:
+>>>>>>> 0000000000000001
+>>>>>>> <4> [188.935603] RDX: 0000000000000010 RSI: ffffffff822e343c RDI:
+>>>>>>> ffffc900011dbcc8
+>>>>>>> <4> [188.935613] RBP: ffffc900011dbd48 R08: ffff88812d255bb8 R09:
+>>>>>>> 00000000fffffffe
+>>>>>>> <4> [188.935623] R10: 0000000000000001 R11: 0000000000000000 R12:
+>>>>>>> ffffc900011dbd44
+>>>>>>> <4> [188.935633] R13: ffffc900011dbd50 R14: ffff888113d29cc0 R15:
+>>>>>>> 0000000000000000
+>>>>>>> <4> [188.935643] FS:  00007f68d17e9700(0000)
+>>>>>>> GS:ffff888277900000(0000) knlGS:0000000000000000 <4> [188.935655]
+>>>>>>> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033 <4> [188.935665]
+>>>>>>> CR2: 0000000000000010 CR3: 000000012d0a4000 CR4:
+>>>>>>> 00000000003506e0
+>>>>>>> <4> [188.935676] Call Trace:
+>>>>>>> <4> [188.935685]  i915_gem_object_wait+0x1ff/0x410 [i915] <4>
+>>>>>>> [188.935988]  i915_gem_wait_ioctl+0xf2/0x2a0 [i915] <4>
+>>>>>>> [188.936272]  ? i915_gem_object_wait+0x410/0x410 [i915] <4>
+>>>>>>> [188.936533]  drm_ioctl_kernel+0xae/0x140 <4> [188.936546]
+>>>>>>> drm_ioctl+0x201/0x3d0 <4> [188.936555]  ?
+>>>>>>> i915_gem_object_wait+0x410/0x410 [i915] <4> [188.936820]  ?
+>>>>>>> __fget_files+0xc2/0x1c0 <4> [188.936830]  ? __fget_files+0xda/0x1c0
+>>>>>>> <4> [188.936839]  __x64_sys_ioctl+0x6d/0xa0 <4> [188.936848]
+>>>>>>> do_syscall_64+0x3a/0xb0 <4> [188.936859]
+>>>>>>> entry_SYSCALL_64_after_hwframe+0x44/0xae
+>>>>>
+>>>>> FWIW if you disassemble the code it seems to be crashing in:
+>>>>>
+>>>>>    (*shared)[(*shared_count)++] = fence; // mov %r14, (%rdx, %rax, 8)
+>>>>>
+>>>>> RDX is *shared, RAX is *shared_count, RCX is *shared_count++ (for the
+>>>>> next iteration. R13 is share and R12 shared_count.
+>>>>>
+>>>>> That *shared can contain 0000000000000010 makes no sense to me. At
+>>>>> least yet. :)
+>>>>
+>>>> Yeah, me neither. I've gone over the whole code multiple time now and
+>>>> absolutely don't get what's happening here.
+>>>>
+>>>> Adding some more selftests didn't helped either. As far as I can see
+>>>> the code works as intended.
+>>>>
+>>>> Do we have any other reports of crashes?
+>>>
+>>> Yes, sporadic but present across different platforms since the change 
+>>> went it:
+>>> https://intel-gfx-ci.01.org/tree/drm-tip/igt@gem_sync@basic-many-each.html. 
+>>>
+>>> So issue is probably real.
+>>>
+>>> Did not find any other tests failing with the same signature. Lakshmi 
+>>> are you perhaps able to search for the same or similar signature 
+>>> across the whole set of recent results?
+>>>
+>>> [Lakshmi] Both the regressions failures are new. I filed below issues 
+>>> and reported.
+>>
+>>
+>> Thanks Lakshmi!
+>>
+>> Christian, maybe revert for now since it looks tricky to figure out? I 
+>> at least couldn't spent much time looking at it today. Or try to find 
+>> a third set of eyes to look at it quickly in case we are not seeing 
+>> something.
+>>
+>> Looks like a good selftest will be needed here for robustness. 
+>> Including threads to trigger restarts and external manipulation to hit 
+>> the refcount zero.
+> 
+> Yeah, agree. Already working on that.
+> 
+> Going to send out the revert for dma_resv_get_fences() tomorrow.
 
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
----
- drivers/gpu/drm/tegra/dc.c   | 5 +++++
- drivers/gpu/drm/tegra/dsi.c  | 4 ++++
- drivers/gpu/drm/tegra/hdmi.c | 5 +++++
- drivers/gpu/drm/tegra/sor.c  | 4 ++++
- 4 files changed, 18 insertions(+)
+Looks like the issue is actually in the unlocked iterator.
 
-diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
-index 16c7aabb94d3..87eeda68d231 100644
---- a/drivers/gpu/drm/tegra/dc.c
-+++ b/drivers/gpu/drm/tegra/dc.c
-@@ -1623,6 +1623,11 @@ static int tegra_dc_late_register(struct drm_crtc *crtc)
- 	struct dentry *root;
- 	struct tegra_dc *dc = to_tegra_dc(crtc);
+What happens in practice when it crashes is that the fence count in the 
+shared fences object is zero, which means no space gets allocated in 
+dma_resv_get_fences. But clearly shared_count was not zero in 
+dma_resv_iter_walk_unlocked, otherwise the loop in dma_resv_get_fences 
+wouldn't run.
 
-+	if (!crtc->debugfs_entry) {
-+		dc->debugfs_files = NULL;
-+		return 0;
-+	}
-+
- #ifdef CONFIG_DEBUG_FS
- 	root = crtc->debugfs_entry;
- #else
-diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
-index f46d377f0c30..f0263165e261 100644
---- a/drivers/gpu/drm/tegra/dsi.c
-+++ b/drivers/gpu/drm/tegra/dsi.c
-@@ -236,6 +236,10 @@ static int tegra_dsi_late_register(struct drm_connector *connector)
- 	struct dentry *root = connector->debugfs_entry;
- 	struct tegra_dsi *dsi = to_dsi(output);
+I suspect it is not safe to drop the RCU lock having peeking at the 
+dma_resv_shared_list.
 
-+	if (!root) {
-+		dsi->debugfs_files = NULL;
-+		return 0;
-+	}
- 	dsi->debugfs_files = kmemdup(debugfs_files, sizeof(debugfs_files),
- 				     GFP_KERNEL);
- 	if (!dsi->debugfs_files)
-diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdmi.c
-index e5d2a4026028..400319db0afc 100644
---- a/drivers/gpu/drm/tegra/hdmi.c
-+++ b/drivers/gpu/drm/tegra/hdmi.c
-@@ -1065,6 +1065,11 @@ static int tegra_hdmi_late_register(struct drm_connector *connector)
- 	struct dentry *root = connector->debugfs_entry;
- 	struct tegra_hdmi *hdmi = to_hdmi(output);
+Regards,
 
-+	if (!root) {
-+		hdmi->debugfs_files = NULL;
-+		return 0;
-+	}
-+
- 	hdmi->debugfs_files = kmemdup(debugfs_files, sizeof(debugfs_files),
- 				      GFP_KERNEL);
- 	if (!hdmi->debugfs_files)
-diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
-index 0ea320c1092b..a8a3b0a587d9 100644
---- a/drivers/gpu/drm/tegra/sor.c
-+++ b/drivers/gpu/drm/tegra/sor.c
-@@ -1687,6 +1687,10 @@ static int tegra_sor_late_register(struct drm_connector *connector)
- 	struct dentry *root = connector->debugfs_entry;
- 	struct tegra_sor *sor = to_sor(output);
+Tvrtko
 
-+	if (!root) {
-+		sor->debugfs_files = NULL;
-+		return 0;
-+	}
- 	sor->debugfs_files = kmemdup(debugfs_files, sizeof(debugfs_files),
- 				     GFP_KERNEL);
- 	if (!sor->debugfs_files)
---
-2.32.0
+
+
 
