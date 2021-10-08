@@ -1,41 +1,126 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96C74267AF
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 12:21:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F50F4267B4
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 12:23:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 176676E0D8;
-	Fri,  8 Oct 2021 10:21:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 760F36F415;
+	Fri,  8 Oct 2021 10:23:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9D626E0D8
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 10:21:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="206597657"
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="206597657"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 03:21:47 -0700
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="489408678"
-Received: from ssedpiaz-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.40.186])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 03:21:45 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211006204937.30774-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211006204937.30774-1-ville.syrjala@linux.intel.com>
- <20211006204937.30774-5-ville.syrjala@linux.intel.com>
-Date: Fri, 08 Oct 2021 13:21:42 +0300
-Message-ID: <87y273x1e1.fsf@intel.com>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BDE26E0D6;
+ Fri,  8 Oct 2021 10:23:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=exEF3EZChuk7DDhZbovqhdREXthr5tmfQZVb+B9+J6wRTPtB2Y8THpey8NWyYwEdAQSHNZU+4ptHJrbB2lFQ5elC6m/7BlHi7/mMlCPcB48E4PbhRr+kJDe8m6e2OCHC5/ApdDIcKk3y8ERW38xQkSPMT4P99WFPQ6k0KHIVDqx/b3j9kwV5OiJzEUT4vt7lYFkb/h/1uhUxUy/GC9PP5M8HbqZxs8oJrPm5TKpXBm4oO5+mKGMy+eVp4nDAWuhd/7EwrdYIfaSPlwG+R43FueK//sBn0S1H+eYh/LZY1gAfU9VENhtKPNRp5lzrqVBI0U3VSJgmUNrz+PgiPONg8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ejfqVAbzAkQpPdjb2xtz1+xitV5/K5CvkYcT12ekrfg=;
+ b=OnzZMt63jzFuecg/zPBFObKj27nZYT6JDSwcLEjPNw3mdL6VtnjnpxETEN7UkUktVVNIb/H/x+8+k3WHBemjB4Qic20RglgcEsazvSHJ+POXf/N2nhFJHGRbRlQtHmpfnqt1ij3pi4GrwAAUpStKvhJSg/dDsGLyAsjoC16zYrbhYd8Q1YhQefvonAeZauaad/RFjbYkiRIrDwJCQqXvNTMn0b8IZ8h/h1022Hexs/85CxQ61Gqu21TciSc90mSjsDKHH2dqQroRnCmHeGNC1EJkcjvtzgWUmJOjo92t3vVi4Lz+xmPi0ioxvrbMUGmr1nxOTUvjUXLLwNS1y2ow6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ejfqVAbzAkQpPdjb2xtz1+xitV5/K5CvkYcT12ekrfg=;
+ b=LFmPadzYIrXs2eE03+zZ7N+v3pzYKTIRrRBLUJSF2wceMJvo45EUZW8wnrlOUawY/JWsavWko6EyPt3jbiYNNuk9UCsrhcWuXoGCnMV6pWI2Totzv3dRgmpTtdpkq+BoAWFKuBdktesodCRMrJZ0n3xVgORCSuTWNPsJinYh4eY=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14) by MW3PR12MB4457.namprd12.prod.outlook.com
+ (2603:10b6:303:2e::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.20; Fri, 8 Oct
+ 2021 10:23:19 +0000
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::55c7:6fc9:b2b1:1e6a]) by MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::55c7:6fc9:b2b1:1e6a%10]) with mapi id 15.20.4587.022; Fri, 8 Oct 2021
+ 10:23:19 +0000
+To: Nirmoy Das <nirmoy.das@amd.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Alex Deucher
+ <alexander.deucher@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>
+References: <20211008091704.27094-1-nirmoy.das@amd.com>
+ <20211008091704.27094-3-nirmoy.das@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <221c5237-6e7d-11d2-1de4-39e77c539663@amd.com>
+Date: Fri, 8 Oct 2021 12:23:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <20211008091704.27094-3-nirmoy.das@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-ClientProxiedBy: AM5PR0201CA0017.eurprd02.prod.outlook.com
+ (2603:10a6:203:3d::27) To MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 04/16] drm/i915: Add all per-lane register
- definitions for icl combo phy
+Received: from [IPv6:2a02:908:1252:fb60:efac:61bc:bb73:d6b5]
+ (2a02:908:1252:fb60:efac:61bc:bb73:d6b5) by
+ AM5PR0201CA0017.eurprd02.prod.outlook.com (2603:10a6:203:3d::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18 via Frontend
+ Transport; Fri, 8 Oct 2021 10:23:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 20e37e46-6ae5-49d9-12c4-08d98a45a60d
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4457:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MW3PR12MB445797EDC255F3DE6D7124A583B29@MW3PR12MB4457.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vM9gUmip5pjN0Yeun7sG7ZqDq0ZZreVVtAEX7ofh1QsNxb5e1Bo5e9kqJyPVibk/TOdb4NJmlx0lA9Cj+QgmjHcForRAad+xNtPgdIvWVL8WNEv0+dRto14e25Ylg17T1rr6PCKGENDirLZ6EM4kx6eEavi7V6ELYRHOPE6/UAeHuNI0XsOUddnkuKvIDExX0NLZXv1KlYv0szOlcZQxtfbMBXb2dKXZaAFtLFpMlsVdUeiHGwVvmDrllEnFW5I+Au+OYCVleQvoFh6F9dsHfQQlshhZRNHJ2lanfu/icGG7dGN9OguAbzzMbNFnc3AZYlqNedy03eccUTxxPeGGYgkasgBXZmHm1zn65ugPFUXQJO1qf7BK4yvDrjB7y39y45qlvpb9hJNa/io/eAJUXttXgJ4VXZgITw6i1L7+CaGx0/6Rc/+glKAaUtwpW8VBYKTQBHryiELVw+kmQRfP5RG35HNTLh+Qy5N2hF5YLxwjfrcBweNaU9QkB6oBe0hGoEoxL4lfSKArH8A10RIg8EJVwCxAZXD53ZcO2G2muim7jEKzsvIGHbjr/+z63xcDqW3GcmBWGD1/mmVV/QFIaCPMM8UHz3t6eYseES5aLpfe9XNO0xRnBMWXib6/AgJKdQB3jQR43ghlPTFFn4QySDgaKpGdQJKB/jswWB6PZTGWLfDg5wy3AUo+AgdEEEJgTws0DgBhIKI9/Ly2nzzaZiSA4AkucPKX0fUuZS6tYyb/UpoFsNrIgThjEGehMUjF
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(508600001)(31686004)(8936002)(2616005)(38100700002)(450100002)(66476007)(4326008)(66946007)(5660300002)(36756003)(54906003)(83380400001)(31696002)(6486002)(66556008)(86362001)(6666004)(66574015)(186003)(2906002)(8676002)(316002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SVJBNWxSNGRRYk1NdlY5eWQ5UDhLeW5rbDBGZFlOcitBcjFPS0Nnb25PVjNL?=
+ =?utf-8?B?YWwxa0luajdLQW5OYmN0eTl5bGlOamQydGZlQ0pFU2N1bGxGTjBQNEI1NHJs?=
+ =?utf-8?B?UGEyaDdaWVByRCt6VHpXalh1OXd3VFRUMHBNVmhTRDJwQUkvaEJCRzZ0bkdS?=
+ =?utf-8?B?Vmd0TUlhT083RUVxTWpDMHZIK0tDZlJhZGFOcWp3TThlRDVYU2FVTDZPeU9Y?=
+ =?utf-8?B?YnVVZTdNemlRWGt4NW1nWk5xMUs3ZnBVUWVabTVRRU50aUZEMFJ1UkFtNWhG?=
+ =?utf-8?B?d1JDOEZYcXNZbHV1SkQ0WUt6eGpveXV0WjgvaWF1R1BsZnZqa2hoZ0tCUXFm?=
+ =?utf-8?B?bmh5L1A1R3FpYVV3Z0tORTNxb2pPR3Q1czVSVXovNytIMHh4T05aQ0I5V1Ix?=
+ =?utf-8?B?QUwwaW9HVHFSK29BcXU5SldJTXh1RUlabWUzTzd0Wmc5UENhaGxtR3VlNVdB?=
+ =?utf-8?B?bE9VeW9FL2VDWU9BemFHV1Vua3BvYklCR3k0SVF4QUhWUHhJbFR6eVpqZU5Z?=
+ =?utf-8?B?TnpOcE1ZYlJIZHRWRVFYZzZFU00yazRVMGl2VVZOTi94R0VqL0xUU05CbXdm?=
+ =?utf-8?B?VXNoY0ErNUJYbmVod2RqNE1pZmNieUNPTUk2SXNyVE1Mc3prU0lOWnl6UGU0?=
+ =?utf-8?B?cGdIOG1aamFWMEliNlJzRmFWRUxiYmlVTnlkeVNTQk5HeDVQdDZWY2UxcHc2?=
+ =?utf-8?B?RVVsV1YxMmc0eFdvcll2U1Bocjl5REtZK1p2aUV2R2hadWlYektnbGlZZ285?=
+ =?utf-8?B?azRzalhKTUpqTmdJOHJLSmhLMzBEeVNOaEZua0NuT2lRY002RDRQWVM3MWhn?=
+ =?utf-8?B?VFhqMDJkUnZheFdZWklHMlAyeTNMNkxuUkZFREJscHcwTERlS2dpN1FLK1or?=
+ =?utf-8?B?bW1YbzFDcVRwaVJEbFh4Y2xSOFE0bW1JcHQ0TzIxRGlUVkswQkpqdVV4bGYw?=
+ =?utf-8?B?KzNDMFZQenoyUUw5anltRkNrelNlVk1KRi9wTTAzZkQ4QnBybjQ2dFdzVzNl?=
+ =?utf-8?B?VlBDRDdzZGI5RlhyN3RWUmkxd3FpQmcwNHdrMjFTT29hcmhXdXFKVjZCd2RY?=
+ =?utf-8?B?RVRpT3JFNVpsbHJISis2QlN1aGEzcnpoWFhKeituK2s1NW5Bc0JwWS9rWXVl?=
+ =?utf-8?B?VFQ2S2xGcmpPZ2JGallOVWVrUXk1Z0hhaTZwd3pTcWR2TllEMFlVMmdsU1dL?=
+ =?utf-8?B?UHVwSzNPT05Yb1YwSVpFZ2p2UkVLOEY3U2VOSXlvSDR1ZllqWGl6OGJYbjVV?=
+ =?utf-8?B?MEdBVHVQZVZwM205Z1AvRzhFc3pZYUF0Sk43eTdybEwwSGF2cjg4RnZsWDZw?=
+ =?utf-8?B?eGhKL2JWNGtCUE5STDB4S2xwYzBSSTlJVXRZMFNPWnh4anFVZk5PVGZiOVJv?=
+ =?utf-8?B?Zmd2UEpFdHdkaGJKSzVBeFI5bTRsRkxDRHpxMTAyK0xFb1o4aFYvT1RST2c1?=
+ =?utf-8?B?OTBIeXdrZitDZDk0cDBsa09Eek1YaytuTllNS1ptSUlIRjVMcTEvMU5XWlIr?=
+ =?utf-8?B?N09HR0dIWGF4VEZ0cWRDSFVoc2VVK05JeGRnVDloN25tdXZCUlU0ckdCUldM?=
+ =?utf-8?B?b2phSEUxdUhmTTR3eTUzWmp2VmdaOWZURXkyZmJzTmxVQ1MwRGhDaVhSTUxU?=
+ =?utf-8?B?QzBCOGFINlUvelRzeGJIV1E0bnczWnZ6MTlpS1RyeDJCSFlIT2MySmhpMzVv?=
+ =?utf-8?B?eGhoUHZJeGk3eEpVRCs0UEZ2SllqL3NXOVZvQ3VmQ01pVlBHbUxaZmZQZ0t0?=
+ =?utf-8?B?aFZwbDkxV1lOMXNuSmlZdUo3ZzRXaUp5VHNNNGlDU1FwYVhZeTE1YXNScm84?=
+ =?utf-8?B?QzhNREpraldGMlMxamRMK2JRdmxaVVB5Z29OdGRMR09iSTBwbnFYWVA0dzRv?=
+ =?utf-8?Q?Y7F8gQ27Gk2+C?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20e37e46-6ae5-49d9-12c4-08d98a45a60d
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2021 10:23:19.5465 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FJfiX+TwDZln/6VU3hrXf5vAZj1SydNylyjNEMpb8HN4UPde9kRn/DNEK4mXDFW8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4457
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/radeon: check dri root before
+ debugfs init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,280 +136,241 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Oct 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Am 08.10.21 um 11:17 schrieb Nirmoy Das:
+> Return early if dri minor root dentry is NULL.
 >
-> Add the FOO_LN() register macros for all the icl combo phy registers.
-> Also get rid of the semi-pointless FOO_LN0() variants and just use
-> the parametrized version.
+> CC: Alex Deucher <alexander.deucher@amd.com>
+> CC: "Christian König" <christian.koenig@amd.com>
+> CC: "Pan, Xinhui" <Xinhui.Pan@amd.com>
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
 
-Might argue the phy should be before lane, but that's another
-conversation.
+Acked-by: Christian König <christian.koenig@amd.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Where are the other patches from the series?
+
+Thanks,
+Christian.
 
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c         | 14 +++++++-------
->  drivers/gpu/drm/i915/display/intel_combo_phy.c |  8 ++++----
->  drivers/gpu/drm/i915/display/intel_ddi.c       | 14 +++++++-------
->  drivers/gpu/drm/i915/i915_reg.h                | 10 ++++------
->  4 files changed, 22 insertions(+), 24 deletions(-)
+>   drivers/gpu/drm/radeon/r100.c          | 9 +++++++++
+>   drivers/gpu/drm/radeon/r300.c          | 3 +++
+>   drivers/gpu/drm/radeon/r420.c          | 3 +++
+>   drivers/gpu/drm/radeon/r600.c          | 3 +++
+>   drivers/gpu/drm/radeon/radeon_dp_mst.c | 3 +++
+>   drivers/gpu/drm/radeon/radeon_fence.c  | 3 +++
+>   drivers/gpu/drm/radeon/radeon_gem.c    | 3 +++
+>   drivers/gpu/drm/radeon/radeon_ib.c     | 3 +++
+>   drivers/gpu/drm/radeon/radeon_pm.c     | 5 ++++-
+>   drivers/gpu/drm/radeon/radeon_ring.c   | 3 +++
+>   drivers/gpu/drm/radeon/radeon_ttm.c    | 3 +++
+>   drivers/gpu/drm/radeon/rs400.c         | 3 +++
+>   drivers/gpu/drm/radeon/rv515.c         | 3 +++
+>   13 files changed, 46 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
-5/display/icl_dsi.c
-> index 9ee62707ec72..168c84a74d30 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -233,7 +233,7 @@ static void dsi_program_swing_and_deemphasis(struct i=
-ntel_encoder *encoder)
->  		 * Program voltage swing and pre-emphasis level values as per
->  		 * table in BSPEC under DDI buffer programing
->  		 */
-> -		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> +		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
->  		tmp &=3D ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK);
->  		tmp |=3D SCALING_MODE_SEL(0x2);
->  		tmp |=3D TAP2_DISABLE | TAP3_DISABLE;
-> @@ -247,7 +247,7 @@ static void dsi_program_swing_and_deemphasis(struct i=
-ntel_encoder *encoder)
->  		tmp |=3D RTERM_SELECT(0x6);
->  		intel_de_write(dev_priv, ICL_PORT_TX_DW5_AUX(phy), tmp);
->=20=20
-> -		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN0(phy));
-> +		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN(0, phy));
->  		tmp &=3D ~(SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
->  			 RCOMP_SCALAR_MASK);
->  		tmp |=3D SWING_SEL_UPPER(0x2);
-> @@ -455,7 +455,7 @@ static void gen11_dsi_config_phy_lanes_sequence(struc=
-t intel_encoder *encoder)
->  		tmp &=3D ~FRC_LATENCY_OPTIM_MASK;
->  		tmp |=3D FRC_LATENCY_OPTIM_VAL(0x5);
->  		intel_de_write(dev_priv, ICL_PORT_TX_DW2_AUX(phy), tmp);
-> -		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN0(phy));
-> +		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN(0, phy));
->  		tmp &=3D ~FRC_LATENCY_OPTIM_MASK;
->  		tmp |=3D FRC_LATENCY_OPTIM_VAL(0x5);
->  		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
-> @@ -470,7 +470,7 @@ static void gen11_dsi_config_phy_lanes_sequence(struc=
-t intel_encoder *encoder)
->  				       tmp);
->=20=20
->  			tmp =3D intel_de_read(dev_priv,
-> -					    ICL_PORT_PCS_DW1_LN0(phy));
-> +					    ICL_PORT_PCS_DW1_LN(0, phy));
->  			tmp &=3D ~LATENCY_OPTIM_MASK;
->  			tmp |=3D LATENCY_OPTIM_VAL(0x1);
->  			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy),
-> @@ -489,7 +489,7 @@ static void gen11_dsi_voltage_swing_program_seq(struc=
-t intel_encoder *encoder)
->=20=20
->  	/* clear common keeper enable bit */
->  	for_each_dsi_phy(phy, intel_dsi->phys) {
-> -		tmp =3D intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN0(phy));
-> +		tmp =3D intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN(0, phy));
->  		tmp &=3D ~COMMON_KEEPER_EN;
->  		intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy), tmp);
->  		tmp =3D intel_de_read(dev_priv, ICL_PORT_PCS_DW1_AUX(phy));
-> @@ -510,7 +510,7 @@ static void gen11_dsi_voltage_swing_program_seq(struc=
-t intel_encoder *encoder)
->=20=20
->  	/* Clear training enable to change swing values */
->  	for_each_dsi_phy(phy, intel_dsi->phys) {
-> -		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> +		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
->  		tmp &=3D ~TX_TRAINING_EN;
->  		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
->  		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
-> @@ -523,7 +523,7 @@ static void gen11_dsi_voltage_swing_program_seq(struc=
-t intel_encoder *encoder)
->=20=20
->  	/* Set training enable to trigger update */
->  	for_each_dsi_phy(phy, intel_dsi->phys) {
-> -		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> +		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
->  		tmp |=3D TX_TRAINING_EN;
->  		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
->  		tmp =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
-> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu=
-/drm/i915/display/intel_combo_phy.c
-> index bacdf8a16bcb..634e8d449457 100644
-> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> @@ -220,13 +220,13 @@ static bool icl_combo_phy_verify_state(struct drm_i=
-915_private *dev_priv,
->  		return false;
->=20=20
->  	if (DISPLAY_VER(dev_priv) >=3D 12) {
-> -		ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_TX_DW8_LN0(phy),
-> +		ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_TX_DW8_LN(0, phy),
->  				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
->  				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK,
->  				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
->  				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2);
->=20=20
-> -		ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_PCS_DW1_LN0(phy),
-> +		ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_PCS_DW1_LN(0, phy),
->  				     DCC_MODE_SELECT_MASK,
->  				     DCC_MODE_SELECT_CONTINUOSLY);
->  	}
-> @@ -343,13 +343,13 @@ static void icl_combo_phys_init(struct drm_i915_pri=
-vate *dev_priv)
->=20=20
->  skip_phy_misc:
->  		if (DISPLAY_VER(dev_priv) >=3D 12) {
-> -			val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW8_LN0(phy));
-> +			val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW8_LN(0, phy));
->  			val &=3D ~ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK;
->  			val |=3D ICL_PORT_TX_DW8_ODCC_CLK_SEL;
->  			val |=3D ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2;
->  			intel_de_write(dev_priv, ICL_PORT_TX_DW8_GRP(phy), val);
->=20=20
-> -			val =3D intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN0(phy));
-> +			val =3D intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN(0, phy));
->  			val &=3D ~DCC_MODE_SELECT_MASK;
->  			val |=3D DCC_MODE_SELECT_CONTINUOSLY;
->  			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy), val);
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index b0bd50383d57..0c9ed705af47 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -1047,7 +1047,7 @@ static void icl_ddi_combo_vswing_program(struct int=
-el_encoder *encoder,
->  	}
->=20=20
->  	/* Set PORT_TX_DW5 */
-> -	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> +	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
->  	val &=3D ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK |
->  		  TAP2_DISABLE | TAP3_DISABLE);
->  	val |=3D SCALING_MODE_SEL(0x2);
-> @@ -1056,7 +1056,7 @@ static void icl_ddi_combo_vswing_program(struct int=
-el_encoder *encoder,
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), val);
->=20=20
->  	/* Program PORT_TX_DW2 */
-> -	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN0(phy));
-> +	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN(0, phy));
->  	val &=3D ~(SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
->  		 RCOMP_SCALAR_MASK);
->  	val |=3D SWING_SEL_UPPER(trans->entries[level].icl.dw2_swing_sel);
-> @@ -1078,7 +1078,7 @@ static void icl_ddi_combo_vswing_program(struct int=
-el_encoder *encoder,
->  	}
->=20=20
->  	/* Program PORT_TX_DW7 */
-> -	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW7_LN0(phy));
-> +	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW7_LN(0, phy));
->  	val &=3D ~N_SCALAR_MASK;
->  	val |=3D N_SCALAR(trans->entries[level].icl.dw7_n_scalar);
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW7_GRP(phy), val);
-> @@ -1100,7 +1100,7 @@ static void icl_combo_phy_set_signal_levels(struct =
-intel_encoder *encoder,
->  	 * set PORT_PCS_DW1 cmnkeeper_enable to 1b,
->  	 * else clear to 0b.
->  	 */
-> -	val =3D intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN0(phy));
-> +	val =3D intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN(0, phy));
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->  		val &=3D ~COMMON_KEEPER_EN;
->  	else
-> @@ -1109,7 +1109,7 @@ static void icl_combo_phy_set_signal_levels(struct =
-intel_encoder *encoder,
->=20=20
->  	/* 2. Program loadgen select */
->  	/*
-> -	 * Program PORT_TX_DW4_LN depending on Bit rate and used lanes
-> +	 * Program PORT_TX_DW4 depending on Bit rate and used lanes
->  	 * <=3D 6 GHz and 4 lanes (LN0=3D0, LN1=3D1, LN2=3D1, LN3=3D1)
->  	 * <=3D 6 GHz and 1,2 lanes (LN0=3D0, LN1=3D1, LN2=3D1, LN3=3D0)
->  	 * > 6 GHz (LN0=3D0, LN1=3D0, LN2=3D0, LN3=3D0)
-> @@ -1131,7 +1131,7 @@ static void icl_combo_phy_set_signal_levels(struct =
-intel_encoder *encoder,
->  	intel_de_write(dev_priv, ICL_PORT_CL_DW5(phy), val);
->=20=20
->  	/* 4. Clear training enable to change swing values */
-> -	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> +	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
->  	val &=3D ~TX_TRAINING_EN;
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), val);
->=20=20
-> @@ -1139,7 +1139,7 @@ static void icl_combo_phy_set_signal_levels(struct =
-intel_encoder *encoder,
->  	icl_ddi_combo_vswing_program(encoder, crtc_state);
->=20=20
->  	/* 6. Set training enable to trigger update */
-> -	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> +	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
->  	val |=3D TX_TRAINING_EN;
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), val);
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index a897f4abea0c..5e7a55e6ef50 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1968,7 +1968,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
-eg)
->  					  _ICL_PORT_PCS_LN(ln) + 4 * (dw))
->  #define ICL_PORT_PCS_DW1_AUX(phy)	_MMIO(_ICL_PORT_PCS_DW_AUX(1, phy))
->  #define ICL_PORT_PCS_DW1_GRP(phy)	_MMIO(_ICL_PORT_PCS_DW_GRP(1, phy))
-> -#define ICL_PORT_PCS_DW1_LN0(phy)	_MMIO(_ICL_PORT_PCS_DW_LN(1, 0, phy))
-> +#define ICL_PORT_PCS_DW1_LN(ln, phy)	_MMIO(_ICL_PORT_PCS_DW_LN(1, ln, ph=
-y))
->  #define   DCC_MODE_SELECT_MASK		(0x3 << 20)
->  #define   DCC_MODE_SELECT_CONTINUOSLY	(0x3 << 20)
->  #define   COMMON_KEEPER_EN		(1 << 26)
-> @@ -1989,7 +1989,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
-eg)
->=20=20
->  #define ICL_PORT_TX_DW2_AUX(phy)	_MMIO(_ICL_PORT_TX_DW_AUX(2, phy))
->  #define ICL_PORT_TX_DW2_GRP(phy)	_MMIO(_ICL_PORT_TX_DW_GRP(2, phy))
-> -#define ICL_PORT_TX_DW2_LN0(phy)	_MMIO(_ICL_PORT_TX_DW_LN(2, 0, phy))
-> +#define ICL_PORT_TX_DW2_LN(ln, phy)	_MMIO(_ICL_PORT_TX_DW_LN(2, ln, phy))
->  #define   SWING_SEL_UPPER(x)		(((x) >> 3) << 15)
->  #define   SWING_SEL_UPPER_MASK		(1 << 15)
->  #define   SWING_SEL_LOWER(x)		(((x) & 0x7) << 11)
-> @@ -2001,7 +2001,6 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
-eg)
->=20=20
->  #define ICL_PORT_TX_DW4_AUX(phy)	_MMIO(_ICL_PORT_TX_DW_AUX(4, phy))
->  #define ICL_PORT_TX_DW4_GRP(phy)	_MMIO(_ICL_PORT_TX_DW_GRP(4, phy))
-> -#define ICL_PORT_TX_DW4_LN0(phy)	_MMIO(_ICL_PORT_TX_DW_LN(4, 0, phy))
->  #define ICL_PORT_TX_DW4_LN(ln, phy)	_MMIO(_ICL_PORT_TX_DW_LN(4, ln, phy))
->  #define   LOADGEN_SELECT		(1 << 31)
->  #define   POST_CURSOR_1(x)		((x) << 12)
-> @@ -2013,7 +2012,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
-eg)
->=20=20
->  #define ICL_PORT_TX_DW5_AUX(phy)	_MMIO(_ICL_PORT_TX_DW_AUX(5, phy))
->  #define ICL_PORT_TX_DW5_GRP(phy)	_MMIO(_ICL_PORT_TX_DW_GRP(5, phy))
-> -#define ICL_PORT_TX_DW5_LN0(phy)	_MMIO(_ICL_PORT_TX_DW_LN(5, 0, phy))
-> +#define ICL_PORT_TX_DW5_LN(ln, phy)	_MMIO(_ICL_PORT_TX_DW_LN(5, ln, phy))
->  #define   TX_TRAINING_EN		(1 << 31)
->  #define   TAP2_DISABLE			(1 << 30)
->  #define   TAP3_DISABLE			(1 << 29)
-> @@ -2024,14 +2023,13 @@ static inline bool i915_mmio_reg_valid(i915_reg_t=
- reg)
->=20=20
->  #define ICL_PORT_TX_DW7_AUX(phy)	_MMIO(_ICL_PORT_TX_DW_AUX(7, phy))
->  #define ICL_PORT_TX_DW7_GRP(phy)	_MMIO(_ICL_PORT_TX_DW_GRP(7, phy))
-> -#define ICL_PORT_TX_DW7_LN0(phy)	_MMIO(_ICL_PORT_TX_DW_LN(7, 0, phy))
->  #define ICL_PORT_TX_DW7_LN(ln, phy)	_MMIO(_ICL_PORT_TX_DW_LN(7, ln, phy))
->  #define   N_SCALAR(x)			((x) << 24)
->  #define   N_SCALAR_MASK			(0x7F << 24)
->=20=20
->  #define ICL_PORT_TX_DW8_AUX(phy)		_MMIO(_ICL_PORT_TX_DW_AUX(8, phy))
->  #define ICL_PORT_TX_DW8_GRP(phy)		_MMIO(_ICL_PORT_TX_DW_GRP(8, phy))
-> -#define ICL_PORT_TX_DW8_LN0(phy)		_MMIO(_ICL_PORT_TX_DW_LN(8, 0, phy))
-> +#define ICL_PORT_TX_DW8_LN(ln, phy)		_MMIO(_ICL_PORT_TX_DW_LN(8, ln, phy=
-))
->  #define   ICL_PORT_TX_DW8_ODCC_CLK_SEL		REG_BIT(31)
->  #define   ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK	REG_GENMASK(30, 29)
->  #define   ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2	REG_FIELD_PREP(ICL_PORT_=
-TX_DW8_ODCC_CLK_DIV_SEL_MASK, 0x1)
+> diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
+> index 2dd85ba1faa2..ae6c95b34013 100644
+> --- a/drivers/gpu/drm/radeon/r100.c
+> +++ b/drivers/gpu/drm/radeon/r100.c
+> @@ -3059,6 +3059,9 @@ void  r100_debugfs_rbbm_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("r100_rbbm_info", 0444, root, rdev,
+>   			    &r100_debugfs_rbbm_info_fops);
+>   #endif
+> @@ -3069,6 +3072,9 @@ void r100_debugfs_cp_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("r100_cp_ring_info", 0444, root, rdev,
+>   			    &r100_debugfs_cp_ring_info_fops);
+>   	debugfs_create_file("r100_cp_csq_fifo", 0444, root, rdev,
+> @@ -3081,6 +3087,9 @@ void  r100_debugfs_mc_info_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("r100_mc_info", 0444, root, rdev,
+>   			    &r100_debugfs_mc_info_fops);
+>   #endif
+> diff --git a/drivers/gpu/drm/radeon/r300.c b/drivers/gpu/drm/radeon/r300.c
+> index 621ff174dff3..b22969e2394f 100644
+> --- a/drivers/gpu/drm/radeon/r300.c
+> +++ b/drivers/gpu/drm/radeon/r300.c
+> @@ -618,6 +618,9 @@ static void rv370_debugfs_pcie_gart_info_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("rv370_pcie_gart_info", 0444, root, rdev,
+>   			    &rv370_debugfs_pcie_gart_info_fops);
+>   #endif
+> diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.c
+> index 7e6320e8c6a0..cdb4ac3e346b 100644
+> --- a/drivers/gpu/drm/radeon/r420.c
+> +++ b/drivers/gpu/drm/radeon/r420.c
+> @@ -494,6 +494,9 @@ void r420_debugfs_pipes_info_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("r420_pipes_info", 0444, root, rdev,
+>   			    &r420_debugfs_pipes_info_fops);
+>   #endif
+> diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
+> index ca3fcae2adb5..d8f525cf0c3b 100644
+> --- a/drivers/gpu/drm/radeon/r600.c
+> +++ b/drivers/gpu/drm/radeon/r600.c
+> @@ -4360,6 +4360,9 @@ static void r600_debugfs_mc_info_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("r600_mc_info", 0444, root, rdev,
+>   			    &r600_debugfs_mc_info_fops);
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_dp_mst.c b/drivers/gpu/drm/radeon/radeon_dp_mst.c
+> index ec867fa880a4..cf06da89bb7c 100644
+> --- a/drivers/gpu/drm/radeon/radeon_dp_mst.c
+> +++ b/drivers/gpu/drm/radeon/radeon_dp_mst.c
+> @@ -771,6 +771,9 @@ void radeon_mst_debugfs_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("radeon_mst_info", 0444, root, rdev,
+>   			    &radeon_debugfs_mst_info_fops);
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
+> index 73e3117420bf..11f30349de46 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fence.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fence.c
+> @@ -1006,6 +1006,9 @@ void radeon_debugfs_fence_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("radeon_gpu_reset", 0444, root, rdev,
+>   			    &radeon_debugfs_gpu_reset_fops);
+>   	debugfs_create_file("radeon_fence_info", 0444, root, rdev,
+> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+> index 458f92a70887..e6df1451af37 100644
+> --- a/drivers/gpu/drm/radeon/radeon_gem.c
+> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
+> @@ -890,6 +890,9 @@ void radeon_gem_debugfs_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("radeon_gem_info", 0444, root, rdev,
+>   			    &radeon_debugfs_gem_info_fops);
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/radeon_ib.c
+> index 62b116727b4f..28316eb4fd49 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ib.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ib.c
+> @@ -311,6 +311,9 @@ static void radeon_debugfs_sa_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("radeon_sa_info", 0444, root, rdev,
+>   			    &radeon_debugfs_sa_info_fops);
+>   #endif
+> diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
+> index c67b6ddb29a4..c09e574d04f0 100644
+> --- a/drivers/gpu/drm/radeon/radeon_pm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_pm.c
+> @@ -1958,6 +1958,9 @@ static void radeon_debugfs_pm_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("radeon_pm_info", 0444, root, rdev,
+>   			    &radeon_debugfs_pm_info_fops);
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
+> index 7e207276df37..31a5b1ebf7c9 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ring.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ring.c
+> @@ -550,6 +550,9 @@ static void radeon_debugfs_ring_init(struct radeon_device *rdev, struct radeon_r
+>   	const char *ring_name = radeon_debugfs_ring_idx_to_name(ring->idx);
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	if (ring_name)
+>   		debugfs_create_file(ring_name, 0444, root, ring,
+>   				    &radeon_debugfs_ring_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+> index 11b21d605584..2e18ec93768d 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+> @@ -942,6 +942,9 @@ static void radeon_ttm_debugfs_init(struct radeon_device *rdev)
+>   	struct drm_minor *minor = rdev->ddev->primary;
+>   	struct dentry *root = minor->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("radeon_vram", 0444, root, rdev,
+>   			    &radeon_ttm_vram_fops);
+>
+> diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs400.c
+> index 6383f7a34bd8..b41a903a29c3 100644
+> --- a/drivers/gpu/drm/radeon/rs400.c
+> +++ b/drivers/gpu/drm/radeon/rs400.c
+> @@ -380,6 +380,9 @@ static void rs400_debugfs_pcie_gart_info_init(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("rs400_gart_info", 0444, root, rdev,
+>   			    &rs400_debugfs_gart_info_fops);
+>   #endif
+> diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv515.c
+> index 63fb06e8e2d7..f39b6ab554f2 100644
+> --- a/drivers/gpu/drm/radeon/rv515.c
+> +++ b/drivers/gpu/drm/radeon/rv515.c
+> @@ -257,6 +257,9 @@ void rv515_debugfs(struct radeon_device *rdev)
+>   #if defined(CONFIG_DEBUG_FS)
+>   	struct dentry *root = rdev->ddev->primary->debugfs_root;
+>
+> +	if (!root)
+> +		return;
+> +
+>   	debugfs_create_file("rv515_pipes_info", 0444, root, rdev,
+>   			    &rv515_debugfs_pipes_info_fops);
+>   	debugfs_create_file("rv515_ga_info", 0444, root, rdev,
+> --
+> 2.32.0
+>
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
