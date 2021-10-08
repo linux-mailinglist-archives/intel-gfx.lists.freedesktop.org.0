@@ -1,56 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A28C42669E
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:22:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CD84266D0
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:27:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D78446E0BE;
-	Fri,  8 Oct 2021 09:22:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 308DF6E0C8;
+	Fri,  8 Oct 2021 09:27:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEA1D6E0BE
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 09:22:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="249830552"
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="249830552"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29A4F6E0BE;
+ Fri,  8 Oct 2021 09:27:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="249831232"
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="249831232"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 02:22:15 -0700
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="489390062"
-Received: from tocallag-mobl2.ger.corp.intel.com (HELO [10.213.250.80])
- ([10.213.250.80])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 02:22:14 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20211006091614.970596-1-matthew.auld@intel.com>
- <163353397200.5959.9158572900274841139@emeril.freedesktop.org>
- <d50b2987-6343-fc87-e197-1cc8ac2c4f93@linux.intel.com>
- <cb93ee61-9ac1-587e-0182-6c6ba6671d79@gmail.com>
- <ae2222c4-7167-9047-2430-1d59b9b1fa32@linux.intel.com>
- <c022d4eb-b831-a4ae-6127-01bc526fc9c1@gmail.com>
- <d7c12c69-46a2-9305-0a0d-1848253808ed@linux.intel.com>
- <37de5d6f8af149d2be998a3991c8ef4d@intel.com>
- <64167c40-1d54-735e-89cf-4df9d95d5a97@linux.intel.com>
- <9bcbf976-532c-29fc-6292-281de8cea1ba@gmail.com>
- <8a6f1685-3f77-e71f-d760-283a88eff6d4@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <7c2dc94d-f8b2-2727-19e1-b84618c3444b@linux.intel.com>
-Date: Fri, 8 Oct 2021 10:22:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ 08 Oct 2021 02:27:22 -0700
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="459107076"
+Received: from sorenthe-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.254.96])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2021 02:27:18 -0700
+Date: Fri, 8 Oct 2021 12:27:15 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Message-ID: <YWAO80MB2eyToYoy@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <8a6f1685-3f77-e71f-d760-283a88eff6d4@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv7=2C1/8=5D_drm/i915/gem=3A_Break_out_some?=
- =?utf-8?q?_shmem_backend_utils?=
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,196 +52,657 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Dave & Daniel,
 
-On 08/10/2021 10:17, Tvrtko Ursulin wrote:
-> 
-> On 07/10/2021 19:18, Christian König wrote:
->> Am 07.10.21 um 17:53 schrieb Tvrtko Ursulin:
->>>
->>> On 07/10/2021 16:18, Vudum, Lakshminarayana wrote:
->>>> -----Original Message-----
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->>>> Sent: Thursday, October 7, 2021 6:41 AM
->>>> To: Christian König <ckoenig.leichtzumerken@gmail.com>; 
->>>> intel-gfx@lists.freedesktop.org
->>>> Cc: Vudum, Lakshminarayana <lakshminarayana.vudum@intel.com>
->>>> Subject: Re: [Intel-gfx] ✗ Fi.CI.IGT: failure for series starting 
->>>> with [v7,1/8] drm/i915/gem: Break out some shmem backend utils
->>>>
->>>>
->>>> On 07/10/2021 13:57, Christian König wrote:
->>>>> Am 07.10.21 um 12:51 schrieb Tvrtko Ursulin:
->>>>>>
->>>>>> On 07/10/2021 10:19, Christian König wrote:
->>>>>>> Am 07.10.21 um 11:15 schrieb Tvrtko Ursulin:
->>>>>>>> Hi,
->>>>>>>>
->>>>>>>> On 06/10/2021 16:26, Patchwork wrote:
->>>>>>>>> *Patch Details*
->>>>>>>>> *Series:*    series starting with [v7,1/8] drm/i915/gem: Break out
->>>>>>>>> some shmem backend utils
->>>>>>>>> *URL:* https://patchwork.freedesktop.org/series/95501/
->>>>>>>>> <https://patchwork.freedesktop.org/series/95501/>
->>>>>>>>> *State:*    failure
->>>>>>>>> *Details:*
->>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.htm
->>>>>>>>> l
->>>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.ht
->>>>>>>>> ml>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>    CI Bug Log - changes from CI_DRM_10688_full ->
->>>>>>>>> Patchwork_21264_full
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>      Summary
->>>>>>>>>
->>>>>>>>> *FAILURE*
->>>>>>>>>
->>>>>>>>> Serious unknown changes coming with Patchwork_21264_full
->>>>>>>>> absolutely need to be verified manually.
->>>>>>>>>
->>>>>>>>> If you think the reported changes have nothing to do with the
->>>>>>>>> changes introduced in Patchwork_21264_full, please notify your bug
->>>>>>>>> team to allow them to document this new failure mode, which will
->>>>>>>>> reduce false positives in CI.
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>      Possible new issues
->>>>>>>>>
->>>>>>>>> Here are the unknown changes that may have been introduced in
->>>>>>>>> Patchwork_21264_full:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>        IGT changes
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>          Possible regressions
->>>>>>>>>
->>>>>>>>>    *
->>>>>>>>>
->>>>>>>>>      igt@gem_sync@basic-many-each:
->>>>>>>>>
->>>>>>>>>        o shard-apl: NOTRUN -> INCOMPLETE
->>>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/shard-ap
->>>>>>>>> l7/igt@gem_sync@basic-many-each.html>
->>>>>>>>>
->>>>>>>> Something still fishy in the unlocked iterator? Or
->>>>>>>> dma_resv_get_fences using it?
->>>>>>>
->>>>>>> Probably the later. I'm going to take a look.
->>>>>>>
->>>>>>> Thanks for the notice,
->>>>>>> Christian.
->>>>>>>
->>>>>>>>
->>>>>>>> <6> [187.551235] [IGT] gem_sync: starting subtest basic-many-each
->>>>>>>> <1> [188.935462] BUG: kernel NULL pointer dereference, address:
->>>>>>>> 0000000000000010
->>>>>>>> <1> [188.935485] #PF: supervisor write access in kernel mode <1>
->>>>>>>> [188.935495] #PF: error_code(0x0002) - not-present page <6>
->>>>>>>> [188.935504] PGD 0 P4D 0 <4> [188.935512] Oops: 0002 [#1] PREEMPT
->>>>>>>> SMP NOPTI <4> [188.935521] CPU: 2 PID: 1467 Comm: gem_sync Not
->>>>>>>> tainted 5.15.0-rc4-CI-Patchwork_21264+ #1 <4> [188.935535] Hardware
->>>>>>>> name:  /NUC6CAYB, BIOS
->>>>>>>> AYAPLCEL.86A.0049.2018.0508.1356 05/08/2018 <4> [188.935546] RIP:
->>>>>>>> 0010:dma_resv_get_fences+0x116/0x2d0
->>>>>>>> <4> [188.935560] Code: 10 85 c0 7f c9 be 03 00 00 00 e8 15 8b df ff
->>>>>>>> eb bd e8 8e c6 ff ff eb b6 41 8b 04 24 49 8b 55 00 48 89 e7 8d 48
->>>>>>>> 01
->>>>>>>> 41 89 0c 24 <4c> 89 34 c2 e8 41 f2 ff ff 49 89 c6 48 85 c0 75 8c 48
->>>>>>>> 8b 44 24 10 <4> [188.935583] RSP: 0018:ffffc900011dbcc8 EFLAGS:
->>>>>>>> 00010202 <4> [188.935593] RAX: 0000000000000000 RBX:
->>>>>>>> 00000000ffffffff RCX:
->>>>>>>> 0000000000000001
->>>>>>>> <4> [188.935603] RDX: 0000000000000010 RSI: ffffffff822e343c RDI:
->>>>>>>> ffffc900011dbcc8
->>>>>>>> <4> [188.935613] RBP: ffffc900011dbd48 R08: ffff88812d255bb8 R09:
->>>>>>>> 00000000fffffffe
->>>>>>>> <4> [188.935623] R10: 0000000000000001 R11: 0000000000000000 R12:
->>>>>>>> ffffc900011dbd44
->>>>>>>> <4> [188.935633] R13: ffffc900011dbd50 R14: ffff888113d29cc0 R15:
->>>>>>>> 0000000000000000
->>>>>>>> <4> [188.935643] FS:  00007f68d17e9700(0000)
->>>>>>>> GS:ffff888277900000(0000) knlGS:0000000000000000 <4> [188.935655]
->>>>>>>> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033 <4> [188.935665]
->>>>>>>> CR2: 0000000000000010 CR3: 000000012d0a4000 CR4:
->>>>>>>> 00000000003506e0
->>>>>>>> <4> [188.935676] Call Trace:
->>>>>>>> <4> [188.935685]  i915_gem_object_wait+0x1ff/0x410 [i915] <4>
->>>>>>>> [188.935988]  i915_gem_wait_ioctl+0xf2/0x2a0 [i915] <4>
->>>>>>>> [188.936272]  ? i915_gem_object_wait+0x410/0x410 [i915] <4>
->>>>>>>> [188.936533]  drm_ioctl_kernel+0xae/0x140 <4> [188.936546]
->>>>>>>> drm_ioctl+0x201/0x3d0 <4> [188.936555]  ?
->>>>>>>> i915_gem_object_wait+0x410/0x410 [i915] <4> [188.936820]  ?
->>>>>>>> __fget_files+0xc2/0x1c0 <4> [188.936830]  ? __fget_files+0xda/0x1c0
->>>>>>>> <4> [188.936839]  __x64_sys_ioctl+0x6d/0xa0 <4> [188.936848]
->>>>>>>> do_syscall_64+0x3a/0xb0 <4> [188.936859]
->>>>>>>> entry_SYSCALL_64_after_hwframe+0x44/0xae
->>>>>>
->>>>>> FWIW if you disassemble the code it seems to be crashing in:
->>>>>>
->>>>>>    (*shared)[(*shared_count)++] = fence; // mov %r14, (%rdx, %rax, 8)
->>>>>>
->>>>>> RDX is *shared, RAX is *shared_count, RCX is *shared_count++ (for the
->>>>>> next iteration. R13 is share and R12 shared_count.
->>>>>>
->>>>>> That *shared can contain 0000000000000010 makes no sense to me. At
->>>>>> least yet. :)
->>>>>
->>>>> Yeah, me neither. I've gone over the whole code multiple time now and
->>>>> absolutely don't get what's happening here.
->>>>>
->>>>> Adding some more selftests didn't helped either. As far as I can see
->>>>> the code works as intended.
->>>>>
->>>>> Do we have any other reports of crashes?
->>>>
->>>> Yes, sporadic but present across different platforms since the 
->>>> change went it:
->>>> https://intel-gfx-ci.01.org/tree/drm-tip/igt@gem_sync@basic-many-each.html. 
->>>>
->>>> So issue is probably real.
->>>>
->>>> Did not find any other tests failing with the same signature. 
->>>> Lakshmi are you perhaps able to search for the same or similar 
->>>> signature across the whole set of recent results?
->>>>
->>>> [Lakshmi] Both the regressions failures are new. I filed below 
->>>> issues and reported.
->>>
->>>
->>> Thanks Lakshmi!
->>>
->>> Christian, maybe revert for now since it looks tricky to figure out? 
->>> I at least couldn't spent much time looking at it today. Or try to 
->>> find a third set of eyes to look at it quickly in case we are not 
->>> seeing something.
->>>
->>> Looks like a good selftest will be needed here for robustness. 
->>> Including threads to trigger restarts and external manipulation to 
->>> hit the refcount zero.
->>
->> Yeah, agree. Already working on that.
->>
->> Going to send out the revert for dma_resv_get_fences() tomorrow.
-> 
-> Looks like the issue is actually in the unlocked iterator.
-> 
-> What happens in practice when it crashes is that the fence count in the 
-> shared fences object is zero, which means no space gets allocated in 
-> dma_resv_get_fences. But clearly shared_count was not zero in 
-> dma_resv_iter_walk_unlocked, otherwise the loop in dma_resv_get_fences 
-> wouldn't run.
-> 
-> I suspect it is not safe to drop the RCU lock having peeking at the 
-> dma_resv_shared_list.
+Here goes the first PR towards 5.16.
 
-It may work to cache cursor.fences->shared_count into 
-cursor.shared_count at restart time, so dma_resv_get_fences could use it 
-to guarantee consistent view and allocated space correctly. Then 
-dma_resv_iter_next_unlocked would notice restart and cause unwind.
+As for the big things, this adds encrypted PXP (Protected Xe Path)
+support for Gen12 integrated. Take a look at the "drm/i915/pxp: add
+PXP documentation" for further details and the Mesa changes for how
+the uAPI will look like.
 
-Regards,
+Then adds DG1 PCI IDs (GuC is enabled by default) still behind
+force_probe, but not anymore behind the FAKE_LMEM compile time
+protection. There is of course immensive amount of rework and new
+code that lead to this.
 
-Tvrtko
+Suspend timeout is increased by factor of 2.5 to account for GuC
+submission added overhead. Ultimately this should lead to simpler
+kernel scheduler code that will converge towards drm/sched.
+
+Then there are the many of the other changes that trade previously made
+code (micro-)optimizations for code simplicity, so some performance
+regressions are expected.
+
+Removes ADL-S force_probe protection. Enables transparent hugepages when
+IOMMU is enabled (and then only), to offset the perf hit caused by
+IOMMU. That is greater than some of the perf hit from THP itself. Keeps
+adding support for Xe HP/Xe HP SDV.
+
+Backmerges drm-next at 5.15-rc1 and merges the tip/locking/wwmutex branch.
+Also includes patches for the MEI subsystem that go together with the PXP
+changes.
+
+Regards, Joonas
+
+***
+
+drm-intel-gt-next-2021-10-08:
+
+UAPI Changes:
+
+- Add uAPI for using PXP protected objects
+
+  Mesa changes: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/8064
+
+- Add PCI IDs and LMEM discovery/placement uAPI for DG1
+
+  Mesa changes: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11584
+
+- Disable engine bonding on Gen12+ except TGL, RKL and ADL-S
+
+Cross-subsystem Changes:
+
+- Merges 'tip/locking/wwmutex' branch (core kernel tip)
+- "mei: pxp: export pavp client to me client bus"
+
+Core Changes:
+
+- Update ttm_move_memcpy for async use (Thomas)
+
+Driver Changes:
+
+- Add PXP (Protected Xe Path) support for Gen12 integrated (Daniele,
+  Sean, Anshuman)
+  See "drm/i915/pxp: add PXP documentation" for details!
+- Enable GuC submission by default on DG1 (Matt B)
+- Remove force_probe protection for ADL-S (Raviteja)
+- Add base support for XeHP/XeHP SDV (Matt R, Stuart, Lucas)
+- Handle DRI_PRIME=1 on Intel igfx + Intel dgfx hybrid graphics setup (Tvrtko)
+- Use Transparent Hugepages when IOMMU is enabled (Tvrtko, Chris)
+- Implement LMEM backup and restore for suspend / resume (Thomas)
+- Report INSTDONE_GEOM values in error state for DG2 (Matt R)
+- Add DG2-specific shadow register table (Matt R)
+- Update Gen11/Gen12/XeHP shadow register tables (Matt R)
+- Maintain backward-compatible nested batch behavior on TGL+ (Matt R)
+- Add new LRI reg offsets for DG2 (Akeem)
+- Initialize unused MOCS entries to device specific values (Ayaz)
+- Track and use the correct UC MOCS index on Gen12 (Ayaz)
+- Add separate MOCS table for Gen12 devices other than TGL/RKL (Ayaz)
+- Simplify the locking and eliminate some RCU usage (Daniel)
+- Add some flushing for the 64K GTT path (Matt A)
+- Mark GPU wedging on driver unregister unrecoverable (Janusz)
+
+- Major rework in the GuC codebase, simplify locking and add docs (Matt B)
+- Add DG1 GuC/HuC firmwares (Daniele, Matt B)
+- Remember to call i915_sw_fence_fini on guc_state.blocked (Matt A)
+- Use "gt" forcewake domain name for error messages instead of "blitter" (Matt R)
+- Drop now duplicate LMEM uAPI RFC kerneldoc section (Daniel)
+- Fix early tracepoints for requests (Matt A)
+- Use locked access to ctx->engines in set_priority (Daniel)
+- Convert gen6/gen7/gen8 read operations to fwtable (Matt R)
+- Drop gen11/gen12 specific mmio write handlers (Matt R)
+- Drop gen11 specific mmio read handlers (Matt R)
+- Use designated initializers for init/exit table (Kees)
+- Fix syncmap memory leak (Matt B)
+- Add pretty printing for buddy allocator state debug (Matt A)
+- Fix potential error pointer dereference in pinned_context() (Dan)
+- Remove IS_ACTIVE macro (Lucas)
+- Static code checker fixes (Nathan)
+- Clean up disabled warnings (Nathan)
+- Increase timeout in i915_gem_contexts selftests 5x for GuC submission (Matt B)
+- Ensure wa_init_finish() is called for ctx workaround list (Matt R)
+- Initialize L3CC table in mocs init (Sreedhar, Ayaz, Ram)
+- Get PM ref before accessing HW register (Vinay)
+- Move __i915_gem_free_object to ttm_bo_destroy (Maarten)
+- Deduplicate frequency dump on debugfs (Lucas)
+- Make wa list per-gt (Venkata)
+- Do not define dummy vma in stack (Venkata)
+- Take pinning into account in __i915_gem_object_is_lmem (Matt B, Thomas)
+- Do not report currently active engine when describing objects (Tvrtko)
+- Fix pdfdocs build error by removing nested grid from GuC docs (Akira)
+- Remove false warning from the rps worker (Tejas)
+- Flush buffer pools on driver remove (Janusz)
+- Fix runtime pm handling in i915_gem_shrink (Maarten)
+- Rework TTM object initialization slightly (Thomas)
+- Use fixed offset for PTEs location (Michal Wa)
+- Verify result from CTB (de)register action and improve error messages (Michal Wa)
+- Fix bug in user proto-context creation that leaked contexts (Matt B)
+
+- Re-use Gen11 forcewake read functions on Gen12 (Matt R)
+- Make shadow tables range-based (Matt R)
+- Ditch the i915_gem_ww_ctx loop member (Thomas, Maarten)
+- Use NULL instead of 0 where appropriate (Ville)
+- Rename pci/debugfs functions to respect file prefix (Jani, Lucas)
+- Drop guc_communication_enabled (Daniele)
+- Selftest fixes (Thomas, Daniel, Matt A, Maarten)
+- Clean up inconsistent indenting (Colin)
+- Use direction definition DMA_BIDIRECTIONAL instead of
+  PCI_DMA_BIDIRECTIONAL (Cai)
+- Add "intel_" as prefix in set_mocs_index() (Ayaz)
+
+The following changes since commit 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f:
+
+  Linux 5.15-rc1 (2021-09-12 16:28:37 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2021-10-08
+
+for you to fetch changes up to 1a839e016e4964b5c8384e5d82e5e5ac02a23f52:
+
+  drm/i915: remove IS_ACTIVE (2021-10-07 11:04:05 -0700)
+
+----------------------------------------------------------------
+UAPI Changes:
+
+- Add uAPI for using PXP protected objects
+
+  Mesa changes: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/8064
+
+- Add PCI IDs and LMEM discovery/placement uAPI for DG1
+
+  Mesa changes: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11584
+
+- Disable engine bonding on Gen12+ except TGL, RKL and ADL-S
+
+Cross-subsystem Changes:
+
+- Merges 'tip/locking/wwmutex' branch (core kernel tip)
+- "mei: pxp: export pavp client to me client bus"
+
+Core Changes:
+
+- Update ttm_move_memcpy for async use (Thomas)
+
+Driver Changes:
+
+- Enable GuC submission by default on DG1 (Matt B)
+- Add PXP (Protected Xe Path) support for Gen12 integrated (Daniele,
+  Sean, Anshuman)
+  See "drm/i915/pxp: add PXP documentation" for details!
+- Remove force_probe protection for ADL-S (Raviteja)
+- Add base support for XeHP/XeHP SDV (Matt R, Stuart, Lucas)
+- Handle DRI_PRIME=1 on Intel igfx + Intel dgfx hybrid graphics setup (Tvrtko)
+- Use Transparent Hugepages when IOMMU is enabled (Tvrtko, Chris)
+- Implement LMEM backup and restore for suspend / resume (Thomas)
+- Report INSTDONE_GEOM values in error state for DG2 (Matt R)
+- Add DG2-specific shadow register table (Matt R)
+- Update Gen11/Gen12/XeHP shadow register tables (Matt R)
+- Maintain backward-compatible nested batch behavior on TGL+ (Matt R)
+- Add new LRI reg offsets for DG2 (Akeem)
+- Initialize unused MOCS entries to device specific values (Ayaz)
+- Track and use the correct UC MOCS index on Gen12 (Ayaz)
+- Add separate MOCS table for Gen12 devices other than TGL/RKL (Ayaz)
+- Simplify the locking and eliminate some RCU usage (Daniel)
+- Add some flushing for the 64K GTT path (Matt A)
+- Mark GPU wedging on driver unregister unrecoverable (Janusz)
+
+- Major rework in the GuC codebase, simplify locking and add docs (Matt B)
+- Add DG1 GuC/HuC firmwares (Daniele, Matt B)
+- Remember to call i915_sw_fence_fini on guc_state.blocked (Matt A)
+- Use "gt" forcewake domain name for error messages instead of "blitter" (Matt R)
+- Drop now duplicate LMEM uAPI RFC kerneldoc section (Daniel)
+- Fix early tracepoints for requests (Matt A)
+- Use locked access to ctx->engines in set_priority (Daniel)
+- Convert gen6/gen7/gen8 read operations to fwtable (Matt R)
+- Drop gen11/gen12 specific mmio write handlers (Matt R)
+- Drop gen11 specific mmio read handlers (Matt R)
+- Use designated initializers for init/exit table (Kees)
+- Fix syncmap memory leak (Matt B)
+- Add pretty printing for buddy allocator state debug (Matt A)
+- Fix potential error pointer dereference in pinned_context() (Dan)
+- Remove IS_ACTIVE macro (Lucas)
+- Static code checker fixes (Nathan)
+- Clean up disabled warnings (Nathan)
+- Increase timeout in i915_gem_contexts selftests 5x for GuC submission (Matt B)
+- Ensure wa_init_finish() is called for ctx workaround list (Matt R)
+- Initialize L3CC table in mocs init (Sreedhar, Ayaz, Ram)
+- Get PM ref before accessing HW register (Vinay)
+- Move __i915_gem_free_object to ttm_bo_destroy (Maarten)
+- Deduplicate frequency dump on debugfs (Lucas)
+- Make wa list per-gt (Venkata)
+- Do not define dummy vma in stack (Venkata)
+- Take pinning into account in __i915_gem_object_is_lmem (Matt B, Thomas)
+- Do not report currently active engine when describing objects (Tvrtko)
+- Fix pdfdocs build error by removing nested grid from GuC docs (Akira)
+- Remove false warning from the rps worker (Tejas)
+- Flush buffer pools on driver remove (Janusz)
+- Fix runtime pm handling in i915_gem_shrink (Maarten)
+- Rework TTM object initialization slightly (Thomas)
+- Use fixed offset for PTEs location (Michal Wa)
+- Verify result from CTB (de)register action and improve error messages (Michal Wa)
+- Fix bug in user proto-context creation that leaked contexts (Matt B)
+
+- Re-use Gen11 forcewake read functions on Gen12 (Matt R)
+- Make shadow tables range-based (Matt R)
+- Ditch the i915_gem_ww_ctx loop member (Thomas, Maarten)
+- Use NULL instead of 0 where appropriate (Ville)
+- Rename pci/debugfs functions to respect file prefix (Jani, Lucas)
+- Drop guc_communication_enabled (Daniele)
+- Selftest fixes (Thomas, Daniel, Matt A, Maarten)
+- Clean up inconsistent indenting (Colin)
+- Use direction definition DMA_BIDIRECTIONAL instead of
+  PCI_DMA_BIDIRECTIONAL (Cai)
+- Add "intel_" as prefix in set_mocs_index() (Ayaz)
+
+----------------------------------------------------------------
+Akeem G Abodunrin (1):
+      drm/i915/dg2: Add new LRI reg offsets
+
+Akira Yokosawa (1):
+      drm/i915/guc, docs: Fix pdfdocs build error by removing nested grid
+
+Anshuman Gupta (2):
+      drm/i915/pxp: Add plane decryption support
+      drm/i915/pxp: black pixels on pxp disabled
+
+Ayaz A Siddiqui (6):
+      drm/i915/gt: Add support of mocs propagation
+      drm/i915/gt: Set CMD_CCTL to UC for Gen12 Onward
+      drm/i915/gt: Set BLIT_CCTL reg to un-cached
+      drm/i915/gt: Initialize unused MOCS entries with device specific values
+      drm/i915/gt: Add separate MOCS table for Gen12 devices other than TGL/RKL
+      drm/i915/gt: Add "intel_" as prefix in set_mocs_index()
+
+Cai Huoqing (1):
+      drm/i915: Use direction definition DMA_BIDIRECTIONAL instead of PCI_DMA_BIDIRECTIONAL
+
+Colin Ian King (1):
+      drm/i915: clean up inconsistent indenting
+
+Dan Carpenter (1):
+      drm/i915/gt: Potential error pointer dereference in pinned_context()
+
+Daniel Vetter (14):
+      drm/doc/rfc: drop lmem uapi section
+      drm/i915: Use locked access to ctx->engines in set_priority
+      drm/i915: Actually delete gpu reloc selftests
+      drm/i915: Release i915_gem_context from a worker
+      drm/i915: Release ctx->syncobj on final put, not on ctx close
+      drm/i915: Keep gem ctx->vm alive until the final put
+      drm/i915: Drop code to handle set-vm races from execbuf
+      drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
+      drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam
+      drm/i915: Add i915_gem_context_is_full_ppgtt
+      drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem
+      drm/i915: Drop __rcu from gem_context->vm
+      drm/i915: use xa_lock/unlock for fpriv->vm_xa lookups
+      drm/i915: Stop rcu support for i915_address_space
+
+Daniele Ceraolo Spurio (12):
+      drm/i915/guc: drop guc_communication_enabled
+      drm/i915/guc: put all guc objects in lmem when available
+      drm/i915/guc: Add DG1 GuC / HuC firmware defs
+      drm/i915/pxp: Define PXP component interface
+      drm/i915/pxp: define PXP device flag and kconfig
+      drm/i915/pxp: allocate a vcs context for pxp usage
+      drm/i915/pxp: set KCR reg init
+      drm/i915/pxp: interfaces for using protected objects
+      drm/i915/pxp: start the arb session on demand
+      drm/i915/pxp: add pxp debugfs
+      drm/i915/pxp: add PXP documentation
+      drm/i915/pxp: enable PXP for integrated Gen12
+
+Huang, Sean Z (5):
+      drm/i915/pxp: Implement funcs to create the TEE channel
+      drm/i915/pxp: Create the arbitrary session after boot
+      drm/i915/pxp: Implement arb session teardown
+      drm/i915/pxp: Implement PXP irq handler
+      drm/i915/pxp: Enable PXP power management
+
+Jani Nikula (1):
+      drm/i915/pci: rename functions to have i915_pci prefix
+
+Janusz Krzysztofik (2):
+      drm/i915: Mark GPU wedging on driver unregister unrecoverable
+      drm/i915: Flush buffer pools on driver remove
+
+Joonas Lahtinen (2):
+      Merge drm/drm-next into drm-intel-gt-next
+      Merge remote-tracking branch 'tip/locking/wwmutex' into drm-intel-gt-next
+
+Kees Cook (1):
+      drm/i915: Use designated initializers for init/exit table
+
+Lucas De Marchi (8):
+      drm/i915/xehpsdv: factor out function to read RP_STATE_CAP
+      drm/i915/dg1: remove __maybe_unused leftover
+      drm/i915/xehpsdv: Define MOCS table for XeHP SDV
+      drm/i915: rename debugfs_gt files
+      drm/i915: rename debugfs_engines files
+      drm/i915: rename debugfs_gt_pm files
+      drm/i915: deduplicate frequency dump on debugfs
+      drm/i915: remove IS_ACTIVE
+
+Maarten Lankhorst (5):
+      drm/i915: Add pci ids and uapi for DG1
+      drm/i915: Add mmap lock around vma_lookup() in the mman selftest.
+      drm/i915: Move __i915_gem_free_object to ttm_bo_destroy
+      kernel/locking: Add context to ww_mutex_trylock()
+      drm/i915: Fix runtime pm handling in i915_gem_shrink
+
+Matt Roper (21):
+      drm/i915: correct name of GT forcewake domain in error messages
+      drm/i915: Re-use gen11 forcewake read functions on gen12
+      drm/i915: Make shadow tables range-based
+      drm/i915/gen11: Update shadowed register table
+      drm/i915/gen12: Update shadowed register table
+      drm/i915/xehp: Xe_HP shadowed registers are a strict superset of gen12
+      drm/i915/xehp: Loop over all gslices for INSTDONE processing
+      drm/i915/dg2: Report INSTDONE_GEOM values in error state
+      drm/i915/xehpsdv: Read correct RP_STATE_CAP register
+      drm/i915/dg2: Maintain backward-compatible nested batch behavior
+      drm/i915: Ensure wa_init_finish() is called for ctx workaround list
+      drm/i915/dg2: Define MOCS table for DG2
+      drm/i915/xehp: Check new fuse bits for SFC availability
+      drm/i915: Check SFC fusing before recording/dumping SFC_DONE
+      drm/i915/uncore: Convert gen6/gen7 read operations to fwtable
+      drm/i915/uncore: Associate shadow table with uncore
+      drm/i915/uncore: Replace gen8 write functions with general fwtable
+      drm/i915/uncore: Drop gen11/gen12 mmio write handlers
+      drm/i915/uncore: Drop gen11 mmio read handlers
+      drm/i915/dg2: Add DG2-specific shadow register table
+      drm/i915/uncore: fwtable read handlers are now used on all forcewake platforms
+
+Matthew Auld (7):
+      drm/i915/buddy: add some pretty printing
+      drm/i915/debugfs: hook up ttm_resource_manager_debug
+      drm/i915/gtt: add some flushing for the 64K GTT path
+      drm/i915/selftests: fixup igt_shrink_thp
+      drm/i915/request: fix early tracepoints
+      drm/i915/selftests: exercise shmem_writeback with THP
+      drm/i915: remember to call i915_sw_fence_fini
+
+Matthew Brost (29):
+      drm/i915: Disable bonding on gen12+ platforms
+      drm/i915: Fix syncmap memory leak
+      drm/i915/selftests: Increase timeout in i915_gem_contexts selftests
+      drm/i915/guc: Fix blocked context accounting
+      drm/i915/guc: Fix outstanding G2H accounting
+      drm/i915/guc: Unwind context requests in reverse order
+      drm/i915/guc: Don't drop ce->guc_active.lock when unwinding context
+      drm/i915/guc: Process all G2H message at once in work queue
+      drm/i915/guc: Workaround reset G2H is received after schedule done G2H
+      Revert "drm/i915/gt: Propagate change in error status to children on unhold"
+      drm/i915/guc: Kick tasklet after queuing a request
+      drm/i915/guc: Don't enable scheduling on a banned context, guc_id invalid, not registered
+      drm/i915/guc: Copy whole golden context, set engine state size of subset
+      drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H
+      drm/i915/guc: Take context ref when cancelling request
+      drm/i915/guc: Don't touch guc_state.sched_state without a lock
+      drm/i915/guc: Reset LRC descriptor if register returns -ENODEV
+      drm/i915/guc: Release submit fence from an irq_work
+      drm/i915/guc: Move guc_blocked fence to struct guc_state
+      drm/i915/guc: Rework and simplify locking
+      drm/i915/guc: Proper xarray usage for contexts_lookup
+      drm/i915/guc: Drop pin count check trick between sched_disable and re-pin
+      drm/i915/guc: Move GuC priority fields in context under guc_active
+      drm/i915/guc: Move fields protected by guc->contexts_lock into sub structure
+      drm/i915/guc: Drop guc_active move everything into guc_state
+      drm/i915/guc: Add GuC kernel doc
+      drm/i915/guc: Enable GuC submission by default on DG1
+      drm/i915: Take pinning into account in __i915_gem_object_is_lmem
+      drm/i915: Fix bug in user proto-context creation that leaked contexts
+
+Michal Wajdeczko (5):
+      drm/i915: Use fixed offset for PTEs location
+      drm/i915/guc: Verify result from CTB (de)register action
+      drm/i915/guc: Print error name on CTB (de)registration failure
+      drm/i915/guc: Print error name on CTB send failure
+      drm/i915/guc: Move and improve error message for missed CTB reply
+
+Nathan Chancellor (5):
+      drm/i915/selftest: Fix use of err in igt_reset_{fail, nop}_engine()
+      drm/i915/selftests: Do not use import_obj uninitialized
+      drm/i915/selftests: Always initialize err in igt_dmabuf_import_same_driver_lmem()
+      drm/i915: Enable -Wsometimes-uninitialized
+      drm/i915: Clean up disabled warnings
+
+Sreedhar Telukuntla (1):
+      drm/i915/gt: Initialize L3CC table in mocs init
+
+Stuart Summers (1):
+      drm/i915/xehpsdv: Add compute DSS type
+
+Tejas Upadhyay (1):
+      drm/i915: Remove warning from the rps worker
+
+Thomas Hellstr�m (13):
+      drm/i915: Ditch the i915_gem_ww_ctx loop member
+      drm/i915/ttm: Reorganize the ttm move code somewhat
+      drm/ttm, drm/i915: Update ttm_move_memcpy for async use
+      drm/i915/gem: Fix the mman selftest
+      drm/i915/gem: Fix a lockdep warning the __i915_gem_is_lmem() function
+      drm/i915/ttm: Implement a function to copy the contents of two TTM-based objects
+      drm/i915/gem: Implement a function to process all gem objects of a region
+      drm/i915/gt: Increase suspend timeout
+      drm/i915 Implement LMEM backup and restore for suspend / resume
+      drm/i915/gt: Register the migrate contexts with their engines
+      drm/i915: Don't back up pinned LMEM context images and rings during suspend
+      drm/i915: Reduce the number of objects subject to memcpy recover
+      drm/i915/ttm: Rework object initialization slightly
+
+Tvrtko Ursulin (3):
+      drm/i915: Use Transparent Hugepages when IOMMU is enabled
+      drm/i915/debugfs: Do not report currently active engine when describing objects
+      drm/i915: Handle Intel igfx + Intel dgfx hybrid graphics setup
+
+Venkata Sandeep Dhanalakota (2):
+      drm/i915: Make wa list per-gt
+      drm/i915: Do not define vma on stack
+
+Ville Syrj�l� (1):
+      drm/i915: s/0/NULL/
+
+Vinay Belgaumkar (1):
+      drm/i915: Get PM ref before accessing HW register
+
+Vitaly Lubart (1):
+      mei: pxp: export pavp client to me client bus
+
+ravitejax (1):
+      drm/i915/adl_s: Remove require_force_probe protection
+
+ Documentation/gpu/i915.rst                         |  10 +
+ drivers/gpu/drm/drm_modeset_lock.c                 |   2 +-
+ drivers/gpu/drm/i915/Kconfig                       |  11 +
+ drivers/gpu/drm/i915/Makefile                      |  28 +-
+ drivers/gpu/drm/i915/display/intel_display.c       |  34 +
+ drivers/gpu/drm/i915/display/intel_display_types.h |   6 +
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  49 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        | 298 +++----
+ drivers/gpu/drm/i915/gem/i915_gem_context.h        |  19 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h  |  42 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c         |  75 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  26 +-
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.c           |  33 +-
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.h           |   4 +
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c           |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |  44 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h         |  28 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  30 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c             |  91 ++
+ drivers/gpu/drm/i915/gem/i915_gem_pm.h             |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_region.c         |  70 ++
+ drivers/gpu/drm/i915/gem/i915_gem_region.h         |  37 +
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       |   7 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c            | 195 +++--
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h            |  14 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c         | 206 +++++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.h         |  26 +
+ drivers/gpu/drm/i915/gem/i915_gemfs.c              |  22 +-
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |  41 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |  36 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c   |   7 +-
+ .../drm/i915/gem/selftests/i915_gem_execbuffer.c   | 190 -----
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  28 +-
+ drivers/gpu/drm/i915/gem/selftests/mock_context.c  |   5 +-
+ drivers/gpu/drm/i915/gt/debugfs_engines.h          |  14 -
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.h            |  14 -
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |   2 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |   7 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.h               |   4 +-
+ drivers/gpu/drm/i915/gt/intel_context.c            |  20 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h      |  88 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h             |   6 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |  84 +-
+ drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c   |   2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c          |  23 +
+ drivers/gpu/drm/i915/gt/intel_engine_pm.h          |   2 +
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |  24 +-
+ .../gpu/drm/i915/gt/intel_execlists_submission.c   |  10 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               |  23 +-
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h       |  22 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                 |  22 +-
+ drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c     |   2 -
+ .../i915/gt/{debugfs_gt.c => intel_gt_debugfs.c}   |  18 +-
+ .../i915/gt/{debugfs_gt.h => intel_gt_debugfs.h}   |  14 +-
+ ...ebugfs_engines.c => intel_gt_engines_debugfs.c} |  10 +-
+ drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.h |  14 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c             |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c              |  22 +-
+ .../gt/{debugfs_gt_pm.c => intel_gt_pm_debugfs.c}  | 153 ++--
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h      |  16 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h           |  12 +
+ drivers/gpu/drm/i915/gt/intel_gtt.c                |   9 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.h                |  11 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |  88 +-
+ drivers/gpu/drm/i915/gt/intel_migrate.c            |   2 +-
+ drivers/gpu/drm/i915/gt/intel_mocs.c               | 176 +++-
+ drivers/gpu/drm/i915/gt/intel_mocs.h               |   1 +
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c              |  13 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c        |   4 +-
+ drivers/gpu/drm/i915/gt/intel_ring.c               |   3 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c    |   5 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c                |  29 +-
+ drivers/gpu/drm/i915/gt/intel_rps.h                |   1 +
+ drivers/gpu/drm/i915/gt/intel_sseu.c               |  65 +-
+ drivers/gpu/drm/i915/gt/intel_sseu.h               |  11 +-
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c       |  10 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        | 262 ++++--
+ drivers/gpu/drm/i915/gt/intel_workarounds.h        |   2 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c              |   2 +
+ .../gpu/drm/i915/gt/selftest_engine_heartbeat.c    |   4 +-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c       |  16 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c       |  10 +-
+ drivers/gpu/drm/i915/gt/selftest_workarounds.c     |   2 +-
+ .../drm/i915/gt/uc/abi/guc_communication_ctb_abi.h |  10 +-
+ .../i915/gt/uc/abi/guc_communication_mmio_abi.h    |  10 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c             |  10 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h             |  75 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         |  26 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c          |  36 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c     |  18 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 916 +++++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             |  14 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.c     |   6 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c      |   6 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           |  93 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h           |   9 +
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c          | 127 +++
+ drivers/gpu/drm/i915/gvt/gtt.c                     |  17 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c                   |   4 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c               |   2 +-
+ drivers/gpu/drm/i915/i915_buddy.c                  |  45 +
+ drivers/gpu/drm/i915/i915_buddy.h                  |   8 +
+ drivers/gpu/drm/i915/i915_config.c                 |   2 +-
+ drivers/gpu/drm/i915/i915_debugfs.c                | 242 +-----
+ drivers/gpu/drm/i915/i915_drv.c                    |   8 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |  13 +-
+ drivers/gpu/drm/i915/i915_gem.c                    |   2 -
+ drivers/gpu/drm/i915/i915_gem_gtt.c                |   4 +-
+ drivers/gpu/drm/i915/i915_gem_ww.h                 |  25 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c              |  42 +-
+ drivers/gpu/drm/i915/i915_module.c                 |   4 +-
+ drivers/gpu/drm/i915/i915_pci.c                    |  10 +-
+ drivers/gpu/drm/i915/i915_pci.h                    |  12 +-
+ drivers/gpu/drm/i915/i915_query.c                  |   3 -
+ drivers/gpu/drm/i915/i915_reg.h                    |  84 +-
+ drivers/gpu/drm/i915/i915_request.c                |  25 +-
+ drivers/gpu/drm/i915/i915_request.h                |  26 +-
+ drivers/gpu/drm/i915/i915_trace.h                  |  14 +-
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c      |  20 +-
+ drivers/gpu/drm/i915/i915_utils.h                  |  13 -
+ drivers/gpu/drm/i915/intel_device_info.h           |   1 +
+ drivers/gpu/drm/i915/intel_memory_region.c         |  12 +
+ drivers/gpu/drm/i915/intel_memory_region.h         |   4 +
+ drivers/gpu/drm/i915/intel_uncore.c                | 375 ++++-----
+ drivers/gpu/drm/i915/intel_uncore.h                |  13 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c               | 299 +++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h               |  64 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c           | 141 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h           |  15 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c       |  78 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h       |  21 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c           | 101 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.h           |  32 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c            |  46 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h            |  24 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c       | 175 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.h       |  15 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c           | 172 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h           |  17 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h |  36 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h         |  83 ++
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   8 +-
+ .../gpu/drm/i915/selftests/i915_live_selftests.h   |   1 +
+ drivers/gpu/drm/i915/selftests/i915_vma.c          |   4 +-
+ .../drm/i915/selftests/intel_scheduler_helpers.c   |  12 +
+ .../drm/i915/selftests/intel_scheduler_helpers.h   |   2 +
+ drivers/gpu/drm/i915/selftests/intel_uncore.c      |  34 +-
+ drivers/gpu/drm/ttm/ttm_bo_util.c                  |  19 +-
+ drivers/misc/mei/Kconfig                           |   2 +
+ drivers/misc/mei/Makefile                          |   1 +
+ drivers/misc/mei/pxp/Kconfig                       |  13 +
+ drivers/misc/mei/pxp/Makefile                      |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                     | 229 ++++++
+ drivers/misc/mei/pxp/mei_pxp.h                     |  18 +
+ drivers/regulator/core.c                           |   2 +-
+ include/drm/i915_component.h                       |   1 +
+ include/drm/i915_pxp_tee_interface.h               |  42 +
+ include/drm/ttm/ttm_bo_driver.h                    |   2 +-
+ include/linux/dma-resv.h                           |   2 +-
+ include/linux/ww_mutex.h                           |  15 +-
+ include/uapi/drm/i915_drm.h                        |  97 +++
+ kernel/locking/mutex.c                             |  41 +
+ kernel/locking/test-ww_mutex.c                     |  86 +-
+ kernel/locking/ww_rt_mutex.c                       |  25 +
+ lib/locking-selftest.c                             |   2 +-
+ 168 files changed, 5515 insertions(+), 1967 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.h
+ delete mode 100644 drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+ delete mode 100644 drivers/gpu/drm/i915/gt/debugfs_engines.h
+ delete mode 100644 drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
+ rename drivers/gpu/drm/i915/gt/{debugfs_gt.c => intel_gt_debugfs.c} (67%)
+ rename drivers/gpu/drm/i915/gt/{debugfs_gt.h => intel_gt_debugfs.h} (71%)
+ rename drivers/gpu/drm/i915/gt/{debugfs_engines.c => intel_gt_engines_debugfs.c} (70%)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.h
+ rename drivers/gpu/drm/i915/gt/{debugfs_gt_pm.c => intel_gt_pm_debugfs.c} (83%)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
