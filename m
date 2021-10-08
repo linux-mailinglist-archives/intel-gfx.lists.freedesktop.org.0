@@ -2,46 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43BFB426F3B
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 18:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6965426F4C
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 18:55:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB0F56E0E7;
-	Fri,  8 Oct 2021 16:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4108B6E0E9;
+	Fri,  8 Oct 2021 16:55:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9C96E0E7;
- Fri,  8 Oct 2021 16:42:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10131"; a="213492430"
-X-IronPort-AV: E=Sophos;i="5.85,358,1624345200"; d="scan'208";a="213492430"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 09:42:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,358,1624345200"; d="scan'208";a="569089740"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 08 Oct 2021 09:42:32 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 08 Oct 2021 19:42:32 +0300
-Date: Fri, 8 Oct 2021 19:42:32 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andi Shyti <andi@etezian.org>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Andi Shyti <andi.shyti@intel.com>
-Message-ID: <YWB0+Bls9kvUUk9z@intel.com>
-References: <20211008112733.3600-1-andi@etezian.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C30366E0AB;
+ Fri,  8 Oct 2021 16:55:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B279FA7DFC;
+ Fri,  8 Oct 2021 16:55:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0849517773843521227=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi@etezian.org>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 08 Oct 2021 16:55:06 -0000
+Message-ID: <163371210672.16847.17091876764320591595@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211008112733.3600-1-andi@etezian.org>
 In-Reply-To: <20211008112733.3600-1-andi@etezian.org>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/gt: move remaining debugfs
- interfaces into gt
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_move_remaining_debugfs_interfaces_into_gt_=28rev10?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,362 +42,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 08, 2021 at 01:27:33PM +0200, Andi Shyti wrote:
-> +
-> +	if (IS_CHERRYVIEW(i915)) {
-> +		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN8_MASTER_IRQ));
-> +
-> +		for (i = 0; i < 4; i++) {
-> +			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IMR(i)));
-> +			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IIR(i)));
-> +			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IER(i)));
-> +		}
-> +
+--===============0849517773843521227==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Why does chv get its own block? Looks identical to the bdw block.
+== Series Details ==
 
-> +	} else if (GRAPHICS_VER(i915) >= 11) {
-> +		seq_printf(m, "Master Interrupt Control:  %08x\n",
-> +			   intel_uncore_read(uncore, GEN11_GFX_MSTR_IRQ));
-> +
-> +		seq_printf(m, "Render/Copy Intr Enable:   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_RENDER_COPY_INTR_ENABLE));
-> +		seq_printf(m, "VCS/VECS Intr Enable:      %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VCS_VECS_INTR_ENABLE));
-> +		seq_printf(m, "GUC/SG Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUC_SG_INTR_ENABLE));
-> +		seq_printf(m, "GPM/WGBOXPERF Intr Enable: %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GPM_WGBOXPERF_INTR_ENABLE));
-> +		seq_printf(m, "Crypto Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_CRYPTO_RSVD_INTR_ENABLE));
-> +		seq_printf(m, "GUnit/CSME Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUNIT_CSME_INTR_ENABLE));
-> +
-> +	} else if (GRAPHICS_VER(i915) >= 8) {
-> +		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN8_MASTER_IRQ));
-> +
-> +		for (i = 0; i < 4; i++) {
-> +			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IMR(i)));
-> +			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IIR(i)));
-> +			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IER(i)));
-> +		}
-> +
-> +	} else if (IS_VALLEYVIEW(i915)) {
-> +		seq_printf(m, "Master IER:\t%08x\n",
-> +			   intel_uncore_read(uncore, VLV_MASTER_IER));
-> +
-> +		seq_printf(m, "Render IER:\t%08x\n",
-> +			   intel_uncore_read(uncore, GTIER));
-> +		seq_printf(m, "Render IIR:\t%08x\n",
-> +			   intel_uncore_read(uncore, GTIIR));
-> +		seq_printf(m, "Render IMR:\t%08x\n",
-> +			   intel_uncore_read(uncore, GTIMR));
-> +
-> +		seq_printf(m, "PM IER:\t\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN6_PMIER));
-> +		seq_printf(m, "PM IIR:\t\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN6_PMIIR));
-> +		seq_printf(m, "PM IMR:\t\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN6_PMIMR));
-> +
-> +	} else if (!HAS_PCH_SPLIT(i915)) {
+Series: drm/i915/gt: move remaining debugfs interfaces into gt (rev10)
+URL   : https://patchwork.freedesktop.org/series/75333/
+State : success
 
-HAS_PCH_SPLIT in gt code looks a bit out of place.
+== Summary ==
 
-> +		seq_printf(m, "Interrupt enable:    %08x\n",
-> +			   intel_uncore_read(uncore, GEN2_IER));
-> +		seq_printf(m, "Interrupt identity:  %08x\n",
-> +			   intel_uncore_read(uncore, GEN2_IIR));
-> +		seq_printf(m, "Interrupt mask:      %08x\n",
-> +			   intel_uncore_read(uncore, GEN2_IMR));
+CI Bug Log - changes from CI_DRM_10700 -> Patchwork_21292
+====================================================
 
-Technically on gen2 these are 16 bits, on gen3+ 32 bits. I don't
-quite remember now what happens when you read them as 32bit on gen2.
-Might be the msbs just come out all zeroes.
+Summary
+-------
 
-> +	} else {
-> +		seq_printf(m, "Graphics Interrupt enable:		%08x\n",
-> +			   intel_uncore_read(uncore, GTIER));
-> +		seq_printf(m, "Graphics Interrupt identity:		%08x\n",
-> +			   intel_uncore_read(uncore, GTIIR));
-> +		seq_printf(m, "Graphics Interrupt mask:		%08x\n",
-> +			   intel_uncore_read(uncore, GTIMR));
+  **SUCCESS**
 
-Probably this should be before the previous block to keep things in
-order. Also missing GEN6_PM stuff for snb+, and the master interrupt
-stuff for ilk+.
+  No regressions found.
 
-> +	}
-> +
-> +	if (GRAPHICS_VER(i915) >= 11) {
-> +		seq_printf(m, "RCS Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_RCS0_RSVD_INTR_MASK));
-> +		seq_printf(m, "BCS Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_BCS_RSVD_INTR_MASK));
-> +		seq_printf(m, "VCS0/VCS1 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VCS0_VCS1_INTR_MASK));
-> +		seq_printf(m, "VCS2/VCS3 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VCS2_VCS3_INTR_MASK));
-> +
-> +		if (HAS_ENGINE(gt, VCS4) || HAS_ENGINE(gt, VCS5))
-> +			seq_printf(m, "VCS4/VCS5 Intr Mask:\t %08x\n",
-> +				   intel_uncore_read(uncore,
-> +						GEN12_VCS4_VCS5_INTR_MASK));
-> +		if (HAS_ENGINE(gt, VCS6) || HAS_ENGINE(gt, VCS7))
-> +			seq_printf(m, "VCS6/VCS7 Intr Mask:\t %08x\n",
-> +				   intel_uncore_read(uncore,
-> +						GEN12_VCS6_VCS7_INTR_MASK));
-> +
-> +		seq_printf(m, "VECS0/VECS1 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VECS0_VECS1_INTR_MASK));
-> +
-> +		if (HAS_ENGINE(gt, VECS2) || HAS_ENGINE(gt, VECS3))
-> +			seq_printf(m, "VECS2/VECS3 Intr Mask:\t %08x\n",
-> +				   intel_uncore_read(uncore,
-> +						GEN12_VECS2_VECS3_INTR_MASK));
-> +
-> +		seq_printf(m, "GUC/SG Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUC_SG_INTR_MASK));
-> +		seq_printf(m, "GPM/WGBOXPERF Intr Mask: %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GPM_WGBOXPERF_INTR_MASK));
-> +		seq_printf(m, "Crypto Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_CRYPTO_RSVD_INTR_MASK));
-> +		seq_printf(m, "Gunit/CSME Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUNIT_CSME_INTR_MASK));
-> +
-> +	} else if (GRAPHICS_VER(i915) >= 6) {
-> +		for_each_engine(engine, gt, id) {
-> +			seq_printf(m,
-> +				   "Graphics Interrupt mask (%s):	%08x\n",
-> +				   engine->name, ENGINE_READ(engine, RING_IMR));
-> +		}
-> +	}
-> +
-> +	intel_runtime_pm_put(uncore->rpm, wakeref);
-> +
-> +	return 0;
-> +}
-> +DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(interrupt_info);
-> +
-> +void intel_gt_irq_debugfs_register(struct intel_gt *gt, struct dentry *root)
-> +{
-> +	static const struct intel_gt_debugfs_file files[] = {
-> +		{ "interrupt_info", &interrupt_info_fops, NULL },
-> +	};
-> +
-> +	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.h
-> new file mode 100644
-> index 000000000000..95e519705001
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: MIT */
-> +
-> +/*
-> + * Copyright © 2020 Intel Corporation
-> + */
-> +
-> +#ifndef INTEL_GT_IRQ_DEBUGFS_H
-> +#define INTEL_GT_IRQ_DEBUGFS_H
-> +
-> +struct intel_gt;
-> +struct dentry;
-> +
-> +void intel_gt_irq_debugfs_register(struct intel_gt *gt, struct dentry *root);
-> +
-> +#endif /* INTEL_GT_IRQ_DEBUGFS_H */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> index 5f84ad602642..712c91d588eb 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> @@ -19,6 +19,46 @@
->  #include "intel_sideband.h"
->  #include "intel_uncore.h"
->  
-> +int __forcewake_user_open(struct intel_gt *gt)
-> +{
-> +	atomic_inc(&gt->user_wakeref);
-> +	intel_gt_pm_get(gt);
-> +	if (GRAPHICS_VER(gt->i915) >= 6)
-> +		intel_uncore_forcewake_user_get(gt->uncore);
-> +
-> +	return 0;
-> +}
-> +
-> +int __forcewake_user_release(struct intel_gt *gt)
-> +{
-> +	if (GRAPHICS_VER(gt->i915) >= 6)
-> +		intel_uncore_forcewake_user_put(gt->uncore);
-> +	intel_gt_pm_put(gt);
-> +	atomic_dec(&gt->user_wakeref);
-> +
-> +	return 0;
-> +}
-> +
-> +static int forcewake_user_open(struct inode *inode, struct file *file)
-> +{
-> +	struct intel_gt *gt = inode->i_private;
-> +
-> +	return __forcewake_user_open(gt);
-> +}
-> +
-> +static int forcewake_user_release(struct inode *inode, struct file *file)
-> +{
-> +	struct intel_gt *gt = inode->i_private;
-> +
-> +	return __forcewake_user_release(gt);
-> +}
-> +
-> +static const struct file_operations forcewake_user_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = forcewake_user_open,
-> +	.release = forcewake_user_release,
-> +};
-> +
->  static int fw_domains_show(struct seq_file *m, void *data)
->  {
->  	struct intel_gt *gt = m->private;
-> @@ -627,6 +667,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
->  		{ "drpc", &drpc_fops, NULL },
->  		{ "frequency", &frequency_fops, NULL },
->  		{ "forcewake", &fw_domains_fops, NULL },
-> +		{ "forcewake_user", &forcewake_user_fops, NULL},
->  		{ "llc", &llc_fops, llc_eval },
->  		{ "rps_boost", &rps_boost_fops, rps_eval },
->  	};
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> index 2b824289582b..fe306412b996 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> @@ -13,4 +13,8 @@ struct drm_printer;
->  void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root);
->  void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *m);
->  
-> +/* functions that need to be accessed by the upper level non-gt interfaces */
-> +int __forcewake_user_open(struct intel_gt *gt);
-> +int __forcewake_user_release(struct intel_gt *gt);
-> +
->  #endif /* INTEL_GT_PM_DEBUGFS_H */
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index fdbd46ff59e0..fd7f5bd5f304 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -35,6 +35,7 @@
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_buffer_pool.h"
->  #include "gt/intel_gt_clock_utils.h"
-> +#include "gt/intel_gt_debugfs.h"
->  #include "gt/intel_gt_pm.h"
->  #include "gt/intel_gt_pm_debugfs.h"
->  #include "gt/intel_gt_requests.h"
-> @@ -554,36 +555,18 @@ static int i915_wa_registers(struct seq_file *m, void *unused)
->  	return 0;
->  }
->  
-> -static int
-> -i915_wedged_get(void *data, u64 *val)
-> +static int i915_wedged_get(void *data, u64 *val)
->  {
->  	struct drm_i915_private *i915 = data;
-> -	int ret = intel_gt_terminally_wedged(&i915->gt);
->  
-> -	switch (ret) {
-> -	case -EIO:
-> -		*val = 1;
-> -		return 0;
-> -	case 0:
-> -		*val = 0;
-> -		return 0;
-> -	default:
-> -		return ret;
-> -	}
-> +	return reset_show(&i915->gt, val);
->  }
->  
-> -static int
-> -i915_wedged_set(void *data, u64 val)
-> +static int i915_wedged_set(void *data, u64 val)
->  {
->  	struct drm_i915_private *i915 = data;
->  
-> -	/* Flush any previous reset before applying for a new one */
-> -	wait_event(i915->gt.reset.queue,
-> -		   !test_bit(I915_RESET_BACKOFF, &i915->gt.reset.flags));
-> -
-> -	intel_gt_handle_error(&i915->gt, val, I915_ERROR_CAPTURE,
-> -			      "Manually set wedged engine mask = %llx", val);
-> -	return 0;
-> +	return reset_store(&i915->gt, val);
->  }
->  
->  DEFINE_SIMPLE_ATTRIBUTE(i915_wedged_fops,
-> @@ -728,27 +711,15 @@ static int i915_sseu_status(struct seq_file *m, void *unused)
->  static int i915_forcewake_open(struct inode *inode, struct file *file)
->  {
->  	struct drm_i915_private *i915 = inode->i_private;
-> -	struct intel_gt *gt = &i915->gt;
-> -
-> -	atomic_inc(&gt->user_wakeref);
-> -	intel_gt_pm_get(gt);
-> -	if (GRAPHICS_VER(i915) >= 6)
-> -		intel_uncore_forcewake_user_get(gt->uncore);
->  
-> -	return 0;
-> +	return __forcewake_user_open(&i915->gt);
->  }
->  
->  static int i915_forcewake_release(struct inode *inode, struct file *file)
->  {
->  	struct drm_i915_private *i915 = inode->i_private;
-> -	struct intel_gt *gt = &i915->gt;
->  
-> -	if (GRAPHICS_VER(i915) >= 6)
-> -		intel_uncore_forcewake_user_put(&i915->uncore);
-> -	intel_gt_pm_put(gt);
-> -	atomic_dec(&gt->user_wakeref);
-> -
-> -	return 0;
-> +	return __forcewake_user_release(&i915->gt);
->  }
->  
->  static const struct file_operations i915_forcewake_fops = {
-> -- 
-> 2.27.0
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/index.html
 
--- 
-Ville Syrjälä
-Intel
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21292 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-skl-6600u:       [PASS][4] -> [FAIL][5] ([i915#3239])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-cfl-guc:         [PASS][6] -> [DMESG-FAIL][7] ([i915#541])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][8] ([i915#3921]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a:
+    - {fi-tgl-dsi}:       [DMESG-WARN][10] ([i915#1982]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#3239]: https://gitlab.freedesktop.org/drm/intel/issues/3239
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10700 -> Patchwork_21292
+
+  CI-20190529: 20190529
+  CI_DRM_10700: 6ecdd5e29c83cd8fc191f8cce5c283eefb53c97e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6240: b232a092b9e1b10a8be13601acaa440903b226bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21292: 997777b302f7d8af14c5640e6d9c73cabddd273b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+997777b302f7 drm/i915/gt: move remaining debugfs interfaces into gt
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/index.html
+
+--===============0849517773843521227==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: move remaining debugfs interfaces into gt (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/75333/">https://patchwork.freedesktop.org/series/75333/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10700 -&gt; Patchwork_21292</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21292 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3239">i915#3239</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21292/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10700 -&gt; Patchwork_21292</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10700: 6ecdd5e29c83cd8fc191f8cce5c283eefb53c97e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6240: b232a092b9e1b10a8be13601acaa440903b226bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21292: 997777b302f7d8af14c5640e6d9c73cabddd273b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>997777b302f7 drm/i915/gt: move remaining debugfs interfaces into gt</p>
+
+</body>
+</html>
+
+--===============0849517773843521227==--
