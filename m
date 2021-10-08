@@ -1,45 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB77426F9F
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 19:34:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3891A426F8C
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 19:29:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 264666E0F5;
-	Fri,  8 Oct 2021 17:34:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1A1A6E0EF;
+	Fri,  8 Oct 2021 17:29:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04D546F519;
- Fri,  8 Oct 2021 17:34:14 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10131"; a="223963678"
-X-IronPort-AV: E=Sophos;i="5.85,358,1624345200"; d="scan'208";a="223963678"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 10:34:09 -0700
-X-IronPort-AV: E=Sophos;i="5.85,358,1624345200"; d="scan'208";a="523053696"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 10:34:08 -0700
-Date: Fri, 8 Oct 2021 10:29:21 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniele.ceraolospurio@intel.com
-Message-ID: <20211008172921.GA429@jons-linux-dev-box>
-References: <20211004220637.14746-1-matthew.brost@intel.com>
- <20211004220637.14746-9-matthew.brost@intel.com>
- <f03536a0-2ffe-ed40-041e-0f277960a60d@intel.com>
- <0042b6c3-137d-83cf-dd48-eeffff61046a@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 871EF6E0EF;
+ Fri,  8 Oct 2021 17:29:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7F54DA0169;
+ Fri,  8 Oct 2021 17:29:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1099812147450318613=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0042b6c3-137d-83cf-dd48-eeffff61046a@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 08/26] drm/i915/guc: Add multi-lrc context
- registration
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 08 Oct 2021 17:29:39 -0000
+Message-ID: <163371417948.16850.5504491890745251120@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211008133530.664509-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211008133530.664509-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Failsafe_migration_blits?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,292 +41,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 08, 2021 at 10:20:16AM -0700, John Harrison wrote:
-> On 10/7/2021 12:50, John Harrison wrote:
-> > On 10/4/2021 15:06, Matthew Brost wrote:
-> > > Add multi-lrc context registration H2G. In addition a workqueue and
-> > > process descriptor are setup during multi-lrc context registration as
-> > > these data structures are needed for multi-lrc submission.
-> > > 
-> > > v2:
-> > >   (John Harrison)
-> > >    - Move GuC specific fields into sub-struct
-> > >    - Clean up WQ defines
-> > >    - Add comment explaining math to derive WQ / PD address
-> > > 
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/gt/intel_context_types.h |  12 ++
-> > >   drivers/gpu/drm/i915/gt/intel_lrc.c           |   5 +
-> > >   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   1 +
-> > >   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   2 -
-> > >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 114 +++++++++++++++++-
-> > >   5 files changed, 131 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > index 76dfca57cb45..48decb5ee954 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > @@ -239,6 +239,18 @@ struct intel_context {
-> > >           struct intel_context *parent;
-> > >           /** @number_children: number of children if parent */
-> > >           u8 number_children;
-> > > +        /** @guc: GuC specific members for parallel submission */
-> > > +        struct {
-> > > +            /** @wqi_head: head pointer in work queue */
-> > > +            u16 wqi_head;
-> > > +            /** @wqi_tail: tail pointer in work queue */
-> > > +            u16 wqi_tail;
-> PS: As per comments on previous rev, something somewhere needs to explicitly
-> state what WQI means. One suggestion was to do that here, ideally with maybe
-> a brief description of what the queue is, how it is used, etc. Although
-> probably it would be better kept in a GuC specific file. E.g. added to
-> guc_fwif.h in patch #12.
-> 
+--===============1099812147450318613==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think this should just be in the main GuC kernel doc. I can include an
-update to the kernel DoC in a patch at the end of the next rev of the
-series. That patch doesn't necessarily have to included in the initial
-merge of parallel submission if it takes a bit more time to review.
+== Series Details ==
 
-Matt 
+Series: drm/i915: Failsafe migration blits
+URL   : https://patchwork.freedesktop.org/series/95617/
+State : success
 
-> John.
-> 
-> > > +            /**
-> > > +             * @parent_page: page in context state (ce->state) used
-> > > +             * by parent for work queue, process descriptor
-> > > +             */
-> > > +            u8 parent_page;
-> > > +        } guc;
-> > >       } parallel;
-> > >     #ifdef CONFIG_DRM_I915_SELFTEST
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > > b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > > index 3ef9eaf8c50e..57339d5c1fc8 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > > @@ -942,6 +942,11 @@ __lrc_alloc_state(struct intel_context *ce,
-> > > struct intel_engine_cs *engine)
-> > >           context_size += PAGE_SIZE;
-> > >       }
-> > >   +    if (intel_context_is_parent(ce) &&
-> > > intel_engine_uses_guc(engine)) {
-> > > +        ce->parallel.guc.parent_page = context_size / PAGE_SIZE;
-> > > +        context_size += PAGE_SIZE;
-> > > +    }
-> > > +
-> > >       obj = i915_gem_object_create_lmem(engine->i915, context_size,
-> > >                         I915_BO_ALLOC_PM_VOLATILE);
-> > >       if (IS_ERR(obj))
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> > > b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> > > index 8ff582222aff..ba10bd374cee 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> > > @@ -142,6 +142,7 @@ enum intel_guc_action {
-> > >       INTEL_GUC_ACTION_REGISTER_COMMAND_TRANSPORT_BUFFER = 0x4505,
-> > >       INTEL_GUC_ACTION_DEREGISTER_COMMAND_TRANSPORT_BUFFER = 0x4506,
-> > >       INTEL_GUC_ACTION_DEREGISTER_CONTEXT_DONE = 0x4600,
-> > > +    INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
-> > >       INTEL_GUC_ACTION_RESET_CLIENT = 0x5507,
-> > >       INTEL_GUC_ACTION_LIMIT
-> > >   };
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> > > b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> > > index fa4be13c8854..0eeb2a9feeed 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> > > @@ -52,8 +52,6 @@
-> > >     #define GUC_DOORBELL_INVALID        256
-> > >   -#define GUC_WQ_SIZE            (PAGE_SIZE * 2)
-> > > -
-> > >   /* Work queue item header definitions */
-> > >   #define WQ_STATUS_ACTIVE        1
-> > >   #define WQ_STATUS_SUSPENDED        2
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > index 451d9ae861a6..ab6d7fc1b0b1 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > @@ -344,6 +344,45 @@ static inline struct i915_priolist
-> > > *to_priolist(struct rb_node *rb)
-> > >       return rb_entry(rb, struct i915_priolist, node);
-> > >   }
-> > >   +/*
-> > > + * When using multi-lrc submission an extra page in the context
-> > > state is
-> > > + * reserved for the process descriptor and work queue.
-> > > + *
-> > > + * The layout of this page is below:
-> > > + * 0                        guc_process_desc
-> > > + * ...                        unused
-> > > + * PAGE_SIZE / 2                work queue start
-> > > + * ...                        work queue
-> > > + * PAGE_SIZE - 1                work queue end
-> > > + */
-> > > +#define WQ_SIZE            (PAGE_SIZE / 2)
-> > > +#define WQ_OFFSET        (PAGE_SIZE - WQ_SIZE)
-> > I thought you were going with '#define PARENT_SCRATCH SIZE PAGE_SIZE'
-> > and then using that everywhere else? Unless there is a fundamental
-> > reason why the above must be exactly a page in size then I think the
-> > size should be defined once and re-used rather than assumed in multiple
-> > places (including in the description comment).
-> > 
-> > > +static u32 __get_process_desc_offset(struct intel_context *ce)
-> > > +{
-> > > +    GEM_BUG_ON(!ce->parallel.guc.parent_page);
-> > > +
-> > > +    return ce->parallel.guc.parent_page * PAGE_SIZE;
-> > > +}
-> > > +
-> > > +static u32 __get_wq_offset(struct intel_context *ce)
-> > > +{
-> > > +    return __get_process_desc_offset(ce) + WQ_OFFSET;
-> > > +}
-> > > +
-> > > +static struct guc_process_desc *
-> > > +__get_process_desc(struct intel_context *ce)
-> > > +{
-> > > +    /*
-> > > +     * Need to subtract LRC_STATE_OFFSET here as the
-> > > +     * parallel.guc.parent_page is the offset into ce->state while
-> > > +     * ce->lrc_reg_reg is ce->state + LRC_STATE_OFFSET.
-> > > +     */
-> > > +    return (struct guc_process_desc *)
-> > > +        (ce->lrc_reg_state +
-> > > +         ((__get_process_desc_offset(ce) -
-> > > +           LRC_STATE_OFFSET) / sizeof(u32)));
-> > > +}
-> > > +
-> > >   static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc,
-> > > u32 index)
-> > >   {
-> > >       struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
-> > > @@ -1365,6 +1404,30 @@ static void unpin_guc_id(struct intel_guc
-> > > *guc, struct intel_context *ce)
-> > >       spin_unlock_irqrestore(&guc->submission_state.lock, flags);
-> > >   }
-> > >   +static int __guc_action_register_multi_lrc(struct intel_guc *guc,
-> > > +                       struct intel_context *ce,
-> > > +                       u32 guc_id,
-> > > +                       u32 offset,
-> > > +                       bool loop)
-> > > +{
-> > > +    struct intel_context *child;
-> > > +    u32 action[4 + MAX_ENGINE_INSTANCE];
-> > > +    int len = 0;
-> > > +
-> > > +    GEM_BUG_ON(ce->parallel.number_children > MAX_ENGINE_INSTANCE);
-> > > +
-> > > +    action[len++] = INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC;
-> > > +    action[len++] = guc_id;
-> > > +    action[len++] = ce->parallel.number_children + 1;
-> > > +    action[len++] = offset;
-> > > +    for_each_child(ce, child) {
-> > > +        offset += sizeof(struct guc_lrc_desc);
-> > > +        action[len++] = offset;
-> > > +    }
-> > > +
-> > > +    return guc_submission_send_busy_loop(guc, action, len, 0, loop);
-> > > +}
-> > > +
-> > >   static int __guc_action_register_context(struct intel_guc *guc,
-> > >                        u32 guc_id,
-> > >                        u32 offset,
-> > > @@ -1387,9 +1450,15 @@ static int register_context(struct
-> > > intel_context *ce, bool loop)
-> > >           ce->guc_id.id * sizeof(struct guc_lrc_desc);
-> > >       int ret;
-> > >   +    GEM_BUG_ON(intel_context_is_child(ce));
-> > >       trace_intel_context_register(ce);
-> > >   -    ret = __guc_action_register_context(guc, ce->guc_id.id,
-> > > offset, loop);
-> > > +    if (intel_context_is_parent(ce))
-> > > +        ret = __guc_action_register_multi_lrc(guc, ce, ce->guc_id.id,
-> > > +                              offset, loop);
-> > > +    else
-> > > +        ret = __guc_action_register_context(guc, ce->guc_id.id, offset,
-> > > +                            loop);
-> > >       if (likely(!ret)) {
-> > >           unsigned long flags;
-> > >   @@ -1418,6 +1487,7 @@ static int deregister_context(struct
-> > > intel_context *ce, u32 guc_id)
-> > >   {
-> > >       struct intel_guc *guc = ce_to_guc(ce);
-> > >   +    GEM_BUG_ON(intel_context_is_child(ce));
-> > >       trace_intel_context_deregister(ce);
-> > >         return __guc_action_deregister_context(guc, guc_id);
-> > > @@ -1445,6 +1515,7 @@ static int guc_lrc_desc_pin(struct
-> > > intel_context *ce, bool loop)
-> > >       struct guc_lrc_desc *desc;
-> > >       bool context_registered;
-> > >       intel_wakeref_t wakeref;
-> > > +    struct intel_context *child;
-> > >       int ret = 0;
-> > >         GEM_BUG_ON(!engine->mask);
-> > > @@ -1470,6 +1541,41 @@ static int guc_lrc_desc_pin(struct
-> > > intel_context *ce, bool loop)
-> > >       desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
-> > >       guc_context_policy_init(engine, desc);
-> > >   +    /*
-> > > +     * Context is a parent, we need to register a process descriptor
-> > > +     * describing a work queue and register all child contexts.
-> > > +     */
-> > This was now meant to say 'If the context is a parent...'?
-> > 
-> > John.
-> > 
-> > > +    if (intel_context_is_parent(ce)) {
-> > > +        struct guc_process_desc *pdesc;
-> > > +
-> > > +        ce->parallel.guc.wqi_tail = 0;
-> > > +        ce->parallel.guc.wqi_head = 0;
-> > > +
-> > > +        desc->process_desc = i915_ggtt_offset(ce->state) +
-> > > +            __get_process_desc_offset(ce);
-> > > +        desc->wq_addr = i915_ggtt_offset(ce->state) +
-> > > +            __get_wq_offset(ce);
-> > > +        desc->wq_size = WQ_SIZE;
-> > > +
-> > > +        pdesc = __get_process_desc(ce);
-> > > +        memset(pdesc, 0, sizeof(*(pdesc)));
-> > > +        pdesc->stage_id = ce->guc_id.id;
-> > > +        pdesc->wq_base_addr = desc->wq_addr;
-> > > +        pdesc->wq_size_bytes = desc->wq_size;
-> > > +        pdesc->wq_status = WQ_STATUS_ACTIVE;
-> > > +
-> > > +        for_each_child(ce, child) {
-> > > +            desc = __get_lrc_desc(guc, child->guc_id.id);
-> > > +
-> > > +            desc->engine_class =
-> > > +                engine_class_to_guc_class(engine->class);
-> > > +            desc->hw_context_desc = child->lrc.lrca;
-> > > +            desc->priority = ce->guc_state.prio;
-> > > +            desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
-> > > +            guc_context_policy_init(engine, desc);
-> > > +        }
-> > > +    }
-> > > +
-> > >       /*
-> > >        * The context_lookup xarray is used to determine if the hardware
-> > >        * context is currently registered. There are two cases in
-> > > which it
-> > > @@ -2804,6 +2910,12 @@ g2h_context_lookup(struct intel_guc *guc, u32
-> > > desc_idx)
-> > >           return NULL;
-> > >       }
-> > >   +    if (unlikely(intel_context_is_child(ce))) {
-> > > +        drm_err(&guc_to_gt(guc)->i915->drm,
-> > > +            "Context is child, desc_idx %u", desc_idx);
-> > > +        return NULL;
-> > > +    }
-> > > +
-> > >       return ce;
-> > >   }
-> > 
-> 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10700 -> Patchwork_21293
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21293 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][1] ([i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][2] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][3] ([i915#4103]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][4] ([fdo#109285])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#4269])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][7] ([i915#3301])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][8] ([i915#1602] / [i915#2029])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a:
+    - {fi-tgl-dsi}:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+
+
+Participating hosts (40 -> 38)
+------------------------------
+
+  Additional (1): fi-tgl-u2 
+  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10700 -> Patchwork_21293
+
+  CI-20190529: 20190529
+  CI_DRM_10700: 6ecdd5e29c83cd8fc191f8cce5c283eefb53c97e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6240: b232a092b9e1b10a8be13601acaa440903b226bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21293: c5653fd415d13fb18f1941ee25d8d17bd84fa232 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c5653fd415d1 drm/i915: Use irq work for coalescing-only dma-fence-work
+d38939721ed8 drm/i915/ttm: Attach the migration fence to a region timeline on eviction
+dfed5050f265 drm/i915: Add a struct dma_fence_work timeline
+67524b4cd58a drm/i915/ttm: Failsafe migration blits
+7b60ee40dcf3 drm/i915: Introduce refcounted sg-tables
+1d852143d213 drm/i915: Update dma_fence_work
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/index.html
+
+--===============1099812147450318613==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Failsafe migration blits</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95617/">https://patchwork.freedesktop.org/series/95617/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10700 -&gt; Patchwork_21293</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21293 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10700/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21293/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (40 -&gt; 38)</h2>
+<p>Additional (1): fi-tgl-u2 <br />
+  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10700 -&gt; Patchwork_21293</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10700: 6ecdd5e29c83cd8fc191f8cce5c283eefb53c97e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6240: b232a092b9e1b10a8be13601acaa440903b226bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21293: c5653fd415d13fb18f1941ee25d8d17bd84fa232 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c5653fd415d1 drm/i915: Use irq work for coalescing-only dma-fence-work<br />
+d38939721ed8 drm/i915/ttm: Attach the migration fence to a region timeline on eviction<br />
+dfed5050f265 drm/i915: Add a struct dma_fence_work timeline<br />
+67524b4cd58a drm/i915/ttm: Failsafe migration blits<br />
+7b60ee40dcf3 drm/i915: Introduce refcounted sg-tables<br />
+1d852143d213 drm/i915: Update dma_fence_work</p>
+
+</body>
+</html>
+
+--===============1099812147450318613==--
