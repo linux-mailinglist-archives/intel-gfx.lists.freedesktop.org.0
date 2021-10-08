@@ -1,53 +1,123 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65CA8426A63
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 14:05:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8405B426A6B
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 14:08:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD1E6F496;
-	Fri,  8 Oct 2021 12:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BAC66F49C;
+	Fri,  8 Oct 2021 12:08:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1200 seconds by postgrey-1.36 at gabe;
- Fri, 08 Oct 2021 12:05:30 UTC
-Received: from 8.mo179.mail-out.ovh.net (8.mo179.mail-out.ovh.net
- [46.105.75.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5C66F496
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 12:05:30 +0000 (UTC)
-Received: from player690.ha.ovh.net (unknown [10.110.115.195])
- by mo179.mail-out.ovh.net (Postfix) with ESMTP id 2E3001AF3A8
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 13:27:19 +0200 (CEST)
-Received: from etezian.org (unknown [31.22.59.2])
- (Authenticated sender: andi@etezian.org)
- by player690.ha.ovh.net (Postfix) with ESMTPSA id B1E3122E4C337;
- Fri,  8 Oct 2021 11:27:12 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass
- (GARM-104R0052cb276a8-c06f-4c55-adde-53c50eed83b9,
- 8790DCEDFF6AD8C831A06EBEA49B55E03DAFB6BE) smtp.auth=andi@etezian.org
-X-OVh-ClientIp: 31.22.59.2
-Date: Fri, 8 Oct 2021 13:27:11 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Andi Shyti <andi@etezian.org>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Andi Shyti <andi.shyti@intel.com>
-Message-ID: <YWArDwerCvmd8WH9@jack.zhora.eu>
-References: <20211008112248.3499-1-andi@etezian.org>
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2045.outbound.protection.outlook.com [40.107.96.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA846F4F7;
+ Fri,  8 Oct 2021 12:08:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F47ZEfbHIhAD5XzvBykXyImLYt1EDAlrkrYqVyt1sm8Dg45EklQ9yqo08b8lccRsjouF47VI7i9kOwZTV2MXHMI7r7b6yTYNkxy/mjEfCg+zOeXTm5ifUlDGyg70w04zMGqrgpIv9X7NuN2xuFL7WU5rmG1EE6O4scd4csmFJ7qahoo8vvbPyV18VVw+txE3NzYSBTY515bF2Qc/mZE269dKYGz2T/FaDkXw93vYpXpfveGEiGm8QpOhudy4a0GZAd0AMQkleWl/WkeXRQtEBaHLNxM/yUrpBb9GmW04UZ0PqZguMq79qE/BCY4PhuTew2Y8QKNiuph/XPxNXacKEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QFII85LxzxX/7RGqoZqG8OBNYCSjoXsK1UCYhjd6Y48=;
+ b=RWKSGFOUh2pgBwCGXFygGCk5+JcCA3nuzB13jE0y2t5fAHzj/ZI+C0Xu4DI3f7Op1lA8ZKHOvKibTLNdLolSd9mNdNKb8IsWBwu3U1FJRKo0ya+2krtzAoCfiDG1Sb4pfnVtGKYPk2UOm3UDjki73Xbvw7qvsnuvwqEqJiMyZrb4c7bOIGnO7NzqBPcEmr9Whn6jaIt20lOWlwTUghAh/wPw4lscU5t7c1dvAgWD+qespJeMS/D5JZS1W9+BypX2xhcRvyQP4rvM/hHthdLfGKF7RU1SNabxjGGK0AaNR3Z8sqrmhZFPWrvIFXlMQn9U+e+K3hlkQIV1HU86FrInuw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QFII85LxzxX/7RGqoZqG8OBNYCSjoXsK1UCYhjd6Y48=;
+ b=junTtzcxmF5p+jhrc3R3chhSvYKIKho54r7Ni64yRtWBkzgjGIiV0W7e22+IK4b2w6f3d4Zk+ZSXqsM24ttuWLJAgBs8cDeRKYJzGPj6wSPOv+U5hu0jljpYuZdruaM369bVa+AmlJnumibUXmNnPC+E2wpdMTETXpFuoFc77i4=
+Received: from DM4PR12MB5136.namprd12.prod.outlook.com (2603:10b6:5:393::23)
+ by DM8PR12MB5477.namprd12.prod.outlook.com (2603:10b6:8:35::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18; Fri, 8 Oct
+ 2021 12:08:50 +0000
+Received: from DM4PR12MB5136.namprd12.prod.outlook.com
+ ([fe80::555a:2980:a5c2:8d29]) by DM4PR12MB5136.namprd12.prod.outlook.com
+ ([fe80::555a:2980:a5c2:8d29%8]) with mapi id 15.20.4587.022; Fri, 8 Oct 2021
+ 12:08:50 +0000
+From: "Das, Nirmoy" <Nirmoy.Das@amd.com>
+To: Greg KH <gregkh@linuxfoundation.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Thread-Topic: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error handling
+Thread-Index: AQHXvCVOX+r98BpL20ibYh87C1bzDKvI2NmAgAAYK4CAAAxFEQ==
+Date: Fri, 8 Oct 2021 12:08:50 +0000
+Message-ID: <DM4PR12MB5136620C3B013850D11F44868BB29@DM4PR12MB5136.namprd12.prod.outlook.com>
+References: <20211008091704.27094-1-nirmoy.das@amd.com>
+ <87a6jjyhuo.fsf@intel.com> <YWAmZdRwnAt6wh9B@kroah.com>
+In-Reply-To: <YWAmZdRwnAt6wh9B@kroah.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-10-08T12:08:49.915Z;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD
+ Official Use
+ Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
+suggested_attachment_session_id: 22cc0c61-7022-8a3b-531f-7027cd394c50
+authentication-results: linuxfoundation.org; dkim=none (message not signed)
+ header.d=none;linuxfoundation.org; dmarc=none action=none
+ header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a96f527c-8594-472e-7c6e-08d98a5463ae
+x-ms-traffictypediagnostic: DM8PR12MB5477:
+x-microsoft-antispam-prvs: <DM8PR12MB54771A539BA2F45911A1406C8BB29@DM8PR12MB5477.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 1MGpKd2v4Rw7V4AqAq+B4XdXKKupD5X5uI+tvMu/l40I+7fy4h2xfAdoXtyn8wnppK+eXbO3llxoiqSuMUK7IVW9/xHalXBeQ31gOmzyXHL64gwws9nQjNZTohZYjV/q2PNzEG4Uq7W0g7U3dILWIc5CqGBP2ieuKDO/iKfO8iHnr1w8uhb6PCCuhmxa7AJvqUZvflneZ+ABhOmJ1hWM/EfsgAmGs4P1TARk7VbNxw81ifEvURoUoBte/ke0BDEULplJfjpMu84NGuvjtAH1TUhhlDj7PIkJqUp5EEvXd/KsFusVOiR1mmPPMxe2SPvnN4JLYZoUajZy4Y0xHuh76f1lU7y0X3bLpxEmJd6SxjCpX99Jrewj4V1IA4fE1SH2Lw9iSemiK2mQ0IoP8AoDklCnPOq8osO/xNSohVbCn8j7Ib6WsceeV2JPV37av+G8pFmISVBFnVXwf8d1Gi7ZZFJ4IrXB4M3jrUBo8UZD3l8GPgKBTbh7fi4h18lu4rf4V66rnKobqUPI524dQmRX++v0vvPf3Fk8Q7J42+4NTOGTpnz1ZgSnnllyBFvIq5cWUZ5u0ikxYxcOu4+A9ip68gXiC+dQaye+NkQHccYyNn++aN971+Ts2DrRffJ9Ok3OGKI8b7Un45q19goGWzLViVKaXRRa5G17u0VmDmTLNLrGgOtEUBTgx8s94VCulfU9tHqhyYs/Vs6PN4bP/0wq8w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5136.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(508600001)(316002)(33656002)(86362001)(122000001)(53546011)(91956017)(66446008)(8936002)(64756008)(66556008)(66476007)(55016002)(186003)(2906002)(110136005)(54906003)(38100700002)(9686003)(7696005)(8676002)(38070700005)(52536014)(19627405001)(66946007)(26005)(76116006)(4326008)(5660300002)(6506007)(71200400001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?up9KVVjHdEnMCu6KZ50m8jTWnjdESoWnqzeveWkGzvQ3HTM/T61vjRhRS9OW?=
+ =?us-ascii?Q?SryXoWh1CqDmGpf5/w2Ph817rq8Rvlpg8vTdghNKeUY5hLYIeyX1OsDCDQVE?=
+ =?us-ascii?Q?bOL3WhwS7VMh7VKd3qi93x1Pkqt8dEiIELAbjZtgG0Ls1RjaS6mTtieSzFrz?=
+ =?us-ascii?Q?5IjLDP9axKXK2H86TOGghZdm0sw8XWtvSXk+SvMWOfhJLA7HzZ3rXE4Dwnzu?=
+ =?us-ascii?Q?OVn1Qj8r7ziolgyJ7QwXH3jb5C0nPw6WupB2wS/wUiLY8krJ/EX29/BEeWCP?=
+ =?us-ascii?Q?mj6PwfdQS7xl7TT2VsGNR/j9kYYTwgPlQEbgiOr2bDUMhr0Oj3k0aL6LVj3C?=
+ =?us-ascii?Q?yqxNsSVDe+AzMseGFwBLV395X+zy2Vsj/H5cs8Bc/GvMSnxBddqYnBCtmvl6?=
+ =?us-ascii?Q?Q6nMipcw9TDGx9TOES2LQEuS3dBExCXZZIT5J6+3hhSVZzqUG2gcBVF5BoPO?=
+ =?us-ascii?Q?MwwSVIB2FfoVWvLpbxlbg17aJBLVn6aj2kYnkfoIqTKU5TLLeFA8zAYaNFYF?=
+ =?us-ascii?Q?TgR8/q1DfnzxLn4JO50w0iSus/cYcoT6mnoRgBxq8VPUNZh49Rff4wuuuSvb?=
+ =?us-ascii?Q?X/G89PHQS9ITo3yFQkDwbcVmTkXBkb9DZQMHCSUf02dy2isoTvjOkBHjqk2t?=
+ =?us-ascii?Q?L7eHQf3mJrDFgO3kGBHIDjEzynKEx1zUXhh7FzWf4GVrQPWWk4eAGyulCKcq?=
+ =?us-ascii?Q?PZ1NKevH14eLOwRhaakLAp1gU6HK4Pe0Ex+M0rCCuT04zgqUKmyRO+HGMoyR?=
+ =?us-ascii?Q?hObFJyPts2e/Xvg5sMCQmQfmekzkwREWVme53S0QZionIsZwyksWx4sXi6q3?=
+ =?us-ascii?Q?VqyRxmfgh7vEKb8A0k3onnw40E68iGcTdXw8tjm9fhQ660XueEFnmkxiCTsu?=
+ =?us-ascii?Q?iKnZ0vbGNodyk2HS61Db95z63X5MciVIluApgk5KZdnT6K7CLuis+eJK6KQo?=
+ =?us-ascii?Q?gJqX+EYZkjmuLVXq+MscCvCfz9/GTHzCXfttxf0DyFEg7RNqHueIi25KBJI7?=
+ =?us-ascii?Q?+Iz+29PexaHFl4YXONIoh73LsD29bTKEBP8CeiL+HKjJdvJy/ZUNwav0mJP5?=
+ =?us-ascii?Q?yZu+6Opo+aJcSQbIDlL4GN2MYiU8ACqtXf+FniTvGlNNOymNY5wemevJSSjv?=
+ =?us-ascii?Q?dx0uDJJOn1T7M0JktQicnHjqmoAu0gpWxPoqMfMLQPnc1gOhxVRqLh5eAmm9?=
+ =?us-ascii?Q?sYEcg4v557b3DunBNTOakXuyQVjbSVsdJgCPVPlRiyCI729XlN3CXECevJVD?=
+ =?us-ascii?Q?WWAJRySTT7SQLMSqOFHucEw1P9cxnx9bvKNlQonHzmTX4KQ75xSXCBpj8QB4?=
+ =?us-ascii?Q?wOo=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: multipart/alternative;
+ boundary="_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211008112248.3499-1-andi@etezian.org>
-X-Ovh-Tracer-Id: 3104950469877172800
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -85
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvtddrvddttddgfeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnegoteeftdduqddtudculdduhedmnecujfgurhepfffhvffukfhfgggtugfgjgesthekredttddtleenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpeeiffelgeekieejjeekteeuvefgfeeiheehffeftddvhedvveekvdeljeefheffueenucfkpheptddrtddrtddrtddpfedurddvvddrheelrddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieeltddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: move remaining debugfs
- interfaces into gt
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5136.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a96f527c-8594-472e-7c6e-08d98a5463ae
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2021 12:08:50.2507 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sYYsXyCN0utD5wZXgu1MFlyxTZZKPQQclTQdZjqlKUn38VQ9wqoxXu9WO7xcrnZNn576VEapWam1cbkS38n2nQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5477
+Subject: Re: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,431 +133,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-please ignore! I run the command from the history and forgot that
-I had to update the patch file. :)
+[AMD Official Use Only]
 
-V3 of this patch is coming soon.
+Thanks, Greg and Jani. So I have to do the exact opposite.
 
-Andi
+We do have some NULL dentry check in the drm code. I will remove those inst=
+ead.
 
-On Fri, Oct 08, 2021 at 01:22:48PM +0200, Andi Shyti wrote:
-> From: Andi Shyti <andi.shyti@intel.com>
-> 
-> The following interfaces:
-> 
->   i915_wedged
->   i915_forcewake_user
->   i915_gem_interrupt
-> 
-> are dependent on gt values. Put them inside gt/ and drop the
-> "i915_" prefix name. This would be the new structure:
-> 
->   dri/0/gt
->   |
->   +-- forcewake_user
->   |
->   +-- interrupt_info
->   |
->   \-- reset
-> 
-> For backwards compatibility with existing igt (and the slight
-> semantic difference between operating on the i915 abi entry
-> points and the deep gt info):
-> 
->   dri/0
->   |
->   +-- i915_wedged
->   |
->   \-- i915_forcewake_user
-> 
-> remain at the top level.
-> 
-> Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
-> Hi,
-> 
-> I am reproposing this patch exactly as it was proposed initially
-> where the original interfaces are kept where they have been
-> originally placed. It might generate some duplicated code but,
-> well, it's debugfs and I don't see any issue. In the future we
-> can transform the upper interfaces to act upon all the GTs and
-> provide information from all the GTs. This is, for example, how
-> the sysfs interfaces will act.
-> 
-> The reason I removed them in V1 is because igt as only user is
-> not a strong reason to keep duplicated code, but as Chris
-> suggested offline:
-> 
-> "It's debugfs, igt is the primary consumer. CI has to be bridged over
-> changes to the interfaces it is using in any case, as you want
-> comparable results before/after the patches land.
-> 
-> For i915_forcewake_user, it's not just igt testing, but part of the
-> tools/ packaged up by distro. That makes it a very strong candidate to be
-> moved out of debugfs into sysfs/gt."
-> 
-> I, therefore, repropose this patch with the idea of improving the
-> behavior of the upper level interfaces as described above.
-> 
-> Thanks,
-> Andi
-> 
-> Changelog:
-> ----------
-> v1 -> v2:
->  * keep the original interfaces intact (thanks Chris).
-> 
->  drivers/gpu/drm/i915/Makefile                 |   1 +
->  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    |  47 ++++-
->  .../gpu/drm/i915/gt/intel_gt_irq_debugfs.c    | 178 ++++++++++++++++++
->  .../gpu/drm/i915/gt/intel_gt_irq_debugfs.h    |  15 ++
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  31 +++
->  5 files changed, 271 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.c
->  create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.h
-> 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index cdc244bbbfc1..e92984954ba8 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -98,6 +98,7 @@ gt-y += \
->  	gt/intel_gt_debugfs.o \
->  	gt/intel_gt_engines_debugfs.o \
->  	gt/intel_gt_irq.o \
-> +	gt/intel_gt_irq_debugfs.o \
->  	gt/intel_gt_pm.o \
->  	gt/intel_gt_pm_debugfs.o \
->  	gt/intel_gt_pm_irq.o \
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> index 1fe19ccd2794..d3075c138585 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> @@ -8,11 +8,54 @@
->  #include "i915_drv.h"
->  #include "intel_gt_debugfs.h"
->  #include "intel_gt_engines_debugfs.h"
-> +#include "intel_gt_irq_debugfs.h"
-> +#include "intel_gt_pm.h"
->  #include "intel_gt_pm_debugfs.h"
-> +#include "intel_gt_requests.h"
->  #include "intel_sseu_debugfs.h"
->  #include "pxp/intel_pxp_debugfs.h"
->  #include "uc/intel_uc_debugfs.h"
->  
-> +static int reset_show(void *data, u64 *val)
-> +{
-> +	struct intel_gt *gt = data;
-> +	int ret = intel_gt_terminally_wedged(gt);
-> +
-> +	switch (ret) {
-> +	case -EIO:
-> +		*val = 1;
-> +		return 0;
-> +	case 0:
-> +		*val = 0;
-> +		return 0;
-> +	default:
-> +		return ret;
-> +	}
-> +}
-> +
-> +static int reset_store(void *data, u64 val)
-> +{
-> +	struct intel_gt *gt = data;
-> +
-> +	/* Flush any previous reset before applying for a new one */
-> +	wait_event(gt->reset.queue,
-> +		   !test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
-> +
-> +	intel_gt_handle_error(gt, val, I915_ERROR_CAPTURE,
-> +			      "Manually reset engine mask to %llx", val);
-> +	return 0;
-> +}
-> +DEFINE_SIMPLE_ATTRIBUTE(reset_fops, reset_show, reset_store, "%llu\n");
-> +
-> +static void gt_debugfs_register(struct intel_gt *gt, struct dentry *root)
-> +{
-> +	static const struct intel_gt_debugfs_file files[] = {
-> +		{ "reset", &reset_fops, NULL },
-> +	};
-> +
-> +	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
-> +}
-> +
->  void intel_gt_debugfs_register(struct intel_gt *gt)
->  {
->  	struct dentry *root;
-> @@ -24,10 +67,12 @@ void intel_gt_debugfs_register(struct intel_gt *gt)
->  	if (IS_ERR(root))
->  		return;
->  
-> +	gt_debugfs_register(gt, root);
-> +
->  	intel_gt_engines_debugfs_register(gt, root);
->  	intel_gt_pm_debugfs_register(gt, root);
-> +	intel_gt_irq_debugfs_register(gt, root);
->  	intel_sseu_debugfs_register(gt, root);
-> -
->  	intel_uc_debugfs_register(&gt->uc, root);
->  	intel_pxp_debugfs_register(&gt->pxp, root);
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.c
-> new file mode 100644
-> index 000000000000..3cf9ae8437e5
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.c
-> @@ -0,0 +1,178 @@
-> +// SPDX-License-Identifier: MIT
-> +
-> +/*
-> + * Copyright © 2020 Intel Corporation
-> + */
-> +
-> +#include "i915_drv.h"
-> +#include "intel_gt_debugfs.h"
-> +#include "intel_gt_irq_debugfs.h"
-> +
-> +static int interrupt_info_show(struct seq_file *m, void *data)
-> +{
-> +	struct intel_gt *gt = m->private;
-> +	struct drm_i915_private *i915 = gt->i915;
-> +	struct intel_uncore *uncore = gt->uncore;
-> +	struct intel_engine_cs *engine;
-> +	enum intel_engine_id id;
-> +	intel_wakeref_t wakeref;
-> +	int i;
-> +
-> +	wakeref = intel_runtime_pm_get(uncore->rpm);
-> +
-> +	if (IS_CHERRYVIEW(i915)) {
-> +		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN8_MASTER_IRQ));
-> +
-> +		for (i = 0; i < 4; i++) {
-> +			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IMR(i)));
-> +			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IIR(i)));
-> +			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IER(i)));
-> +		}
-> +
-> +	} else if (GRAPHICS_VER(i915) >= 11) {
-> +		seq_printf(m, "Master Interrupt Control:  %08x\n",
-> +			   intel_uncore_read(uncore, GEN11_GFX_MSTR_IRQ));
-> +
-> +		seq_printf(m, "Render/Copy Intr Enable:   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_RENDER_COPY_INTR_ENABLE));
-> +		seq_printf(m, "VCS/VECS Intr Enable:      %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VCS_VECS_INTR_ENABLE));
-> +		seq_printf(m, "GUC/SG Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUC_SG_INTR_ENABLE));
-> +		seq_printf(m, "GPM/WGBOXPERF Intr Enable: %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GPM_WGBOXPERF_INTR_ENABLE));
-> +		seq_printf(m, "Crypto Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_CRYPTO_RSVD_INTR_ENABLE));
-> +		seq_printf(m, "GUnit/CSME Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUNIT_CSME_INTR_ENABLE));
-> +
-> +	} else if (GRAPHICS_VER(i915) >= 8) {
-> +		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN8_MASTER_IRQ));
-> +
-> +		for (i = 0; i < 4; i++) {
-> +			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IMR(i)));
-> +			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IIR(i)));
-> +			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> +				   i, intel_uncore_read(uncore,
-> +							GEN8_GT_IER(i)));
-> +		}
-> +
-> +	} else if (IS_VALLEYVIEW(i915)) {
-> +		seq_printf(m, "Master IER:\t%08x\n",
-> +			   intel_uncore_read(uncore, VLV_MASTER_IER));
-> +
-> +		seq_printf(m, "Render IER:\t%08x\n",
-> +			   intel_uncore_read(uncore, GTIER));
-> +		seq_printf(m, "Render IIR:\t%08x\n",
-> +			   intel_uncore_read(uncore, GTIIR));
-> +		seq_printf(m, "Render IMR:\t%08x\n",
-> +			   intel_uncore_read(uncore, GTIMR));
-> +
-> +		seq_printf(m, "PM IER:\t\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN6_PMIER));
-> +		seq_printf(m, "PM IIR:\t\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN6_PMIIR));
-> +		seq_printf(m, "PM IMR:\t\t%08x\n",
-> +			   intel_uncore_read(uncore, GEN6_PMIMR));
-> +
-> +	} else if (!HAS_PCH_SPLIT(i915)) {
-> +		seq_printf(m, "Interrupt enable:    %08x\n",
-> +			   intel_uncore_read(uncore, GEN2_IER));
-> +		seq_printf(m, "Interrupt identity:  %08x\n",
-> +			   intel_uncore_read(uncore, GEN2_IIR));
-> +		seq_printf(m, "Interrupt mask:      %08x\n",
-> +			   intel_uncore_read(uncore, GEN2_IMR));
-> +	} else {
-> +		seq_printf(m, "Graphics Interrupt enable:		%08x\n",
-> +			   intel_uncore_read(uncore, GTIER));
-> +		seq_printf(m, "Graphics Interrupt identity:		%08x\n",
-> +			   intel_uncore_read(uncore, GTIIR));
-> +		seq_printf(m, "Graphics Interrupt mask:		%08x\n",
-> +			   intel_uncore_read(uncore, GTIMR));
-> +	}
-> +
-> +	if (GRAPHICS_VER(i915) >= 11) {
-> +		seq_printf(m, "RCS Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_RCS0_RSVD_INTR_MASK));
-> +		seq_printf(m, "BCS Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_BCS_RSVD_INTR_MASK));
-> +		seq_printf(m, "VCS0/VCS1 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VCS0_VCS1_INTR_MASK));
-> +		seq_printf(m, "VCS2/VCS3 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VCS2_VCS3_INTR_MASK));
-> +
-> +		if (HAS_ENGINE(gt, VCS4) || HAS_ENGINE(gt, VCS5))
-> +			seq_printf(m, "VCS4/VCS5 Intr Mask:\t %08x\n",
-> +				   intel_uncore_read(uncore,
-> +						GEN12_VCS4_VCS5_INTR_MASK));
-> +		if (HAS_ENGINE(gt, VCS6) || HAS_ENGINE(gt, VCS7))
-> +			seq_printf(m, "VCS6/VCS7 Intr Mask:\t %08x\n",
-> +				   intel_uncore_read(uncore,
-> +						GEN12_VCS6_VCS7_INTR_MASK));
-> +
-> +		seq_printf(m, "VECS0/VECS1 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_VECS0_VECS1_INTR_MASK));
-> +
-> +		if (HAS_ENGINE(gt, VECS2) || HAS_ENGINE(gt, VECS3))
-> +			seq_printf(m, "VECS2/VECS3 Intr Mask:\t %08x\n",
-> +				   intel_uncore_read(uncore,
-> +						GEN12_VECS2_VECS3_INTR_MASK));
-> +
-> +		seq_printf(m, "GUC/SG Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUC_SG_INTR_MASK));
-> +		seq_printf(m, "GPM/WGBOXPERF Intr Mask: %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GPM_WGBOXPERF_INTR_MASK));
-> +		seq_printf(m, "Crypto Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_CRYPTO_RSVD_INTR_MASK));
-> +		seq_printf(m, "Gunit/CSME Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(uncore,
-> +					     GEN11_GUNIT_CSME_INTR_MASK));
-> +
-> +	} else if (GRAPHICS_VER(i915) >= 6) {
-> +		for_each_engine(engine, gt, id) {
-> +			seq_printf(m,
-> +				   "Graphics Interrupt mask (%s):	%08x\n",
-> +				   engine->name, ENGINE_READ(engine, RING_IMR));
-> +		}
-> +	}
-> +
-> +	intel_runtime_pm_put(uncore->rpm, wakeref);
-> +
-> +	return 0;
-> +}
-> +DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(interrupt_info);
-> +
-> +void intel_gt_irq_debugfs_register(struct intel_gt *gt, struct dentry *root)
-> +{
-> +	static const struct intel_gt_debugfs_file files[] = {
-> +		{ "interrupt_info", &interrupt_info_fops, NULL },
-> +	};
-> +
-> +	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.h
-> new file mode 100644
-> index 000000000000..95e519705001
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq_debugfs.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: MIT */
-> +
-> +/*
-> + * Copyright © 2020 Intel Corporation
-> + */
-> +
-> +#ifndef INTEL_GT_IRQ_DEBUGFS_H
-> +#define INTEL_GT_IRQ_DEBUGFS_H
-> +
-> +struct intel_gt;
-> +struct dentry;
-> +
-> +void intel_gt_irq_debugfs_register(struct intel_gt *gt, struct dentry *root);
-> +
-> +#endif /* INTEL_GT_IRQ_DEBUGFS_H */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> index 5f84ad602642..c75af6f97e7e 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> @@ -19,6 +19,36 @@
->  #include "intel_sideband.h"
->  #include "intel_uncore.h"
->  
-> +static int forcewake_user_open(struct inode *inode, struct file *file)
-> +{
-> +	struct intel_gt *gt = inode->i_private;
-> +
-> +	atomic_inc(&gt->user_wakeref);
-> +	intel_gt_pm_get(gt);
-> +	if (GRAPHICS_VER(gt->i915) >= 6)
-> +		intel_uncore_forcewake_user_get(gt->uncore);
-> +
-> +	return 0;
-> +}
-> +
-> +static int forcewake_user_release(struct inode *inode, struct file *file)
-> +{
-> +	struct intel_gt *gt = inode->i_private;
-> +
-> +	if (GRAPHICS_VER(gt->i915) >= 6)
-> +		intel_uncore_forcewake_user_put(gt->uncore);
-> +	intel_gt_pm_put(gt);
-> +	atomic_dec(&gt->user_wakeref);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct file_operations forcewake_user_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = forcewake_user_open,
-> +	.release = forcewake_user_release,
-> +};
-> +
->  static int fw_domains_show(struct seq_file *m, void *data)
->  {
->  	struct intel_gt *gt = m->private;
-> @@ -627,6 +657,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
->  		{ "drpc", &drpc_fops, NULL },
->  		{ "frequency", &frequency_fops, NULL },
->  		{ "forcewake", &fw_domains_fops, NULL },
-> +		{ "forcewake_user", &forcewake_user_fops, NULL},
->  		{ "llc", &llc_fops, llc_eval },
->  		{ "rps_boost", &rps_boost_fops, rps_eval },
->  	};
-> -- 
-> 2.27.0
+Regards,
+Nirmoy
+________________________________
+From: Greg KH <gregkh@linuxfoundation.org>
+Sent: Friday, October 8, 2021 1:07 PM
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Das, Nirmoy <Nirmoy.Das@amd.com>; dri-devel@lists.freedesktop.org <dri-=
+devel@lists.freedesktop.org>; intel-gfx@lists.freedesktop.org <intel-gfx@li=
+sts.freedesktop.org>; Maarten Lankhorst <maarten.lankhorst@linux.intel.com>=
+; Maxime Ripard <mripard@kernel.org>; Thomas Zimmermann <tzimmermann@suse.d=
+e>; David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error handling
+
+On Fri, Oct 08, 2021 at 12:40:47PM +0300, Jani Nikula wrote:
+> On Fri, 08 Oct 2021, Nirmoy Das <nirmoy.das@amd.com> wrote:
+> > Debugfs API returns encoded error instead of NULL.
+> > This patch cleanups drm debugfs error handling to
+> > properly set dri and its minor's root dentry to NULL.
+> >
+> > Also do not error out if dri/minor debugfs directory
+> > creation fails as a debugfs error is not a fatal error.
+>
+> Cc: Greg
+>
+> I thought this is the opposite of what Greg's been telling everyone to
+> do with debugfs.
+
+Yes, that is not good.
+
+You should never care about the result of a debugfs_create* call.  Just
+take the result, and if it is a directory, save it off to use it for
+creating a file, no need to check anything.
+
+And then throw it away, later, when you want to remove the directory,
+look it up with a call to debugfs_lookup() and pass that to
+debugfs_remove() (which does so recursively).
+
+There should never be a need to save, or check, the result of any
+debugfs call.  If so, odds are it is being used incorrectly.
+
+thanks,
+
+greg k-h
+
+--_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;" ali=
+gn=3D"Left">
+[AMD Official Use Only]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Thanks, Greg and Jani. So I have to do the exact opposite.&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+We do have some NULL dentry check in the drm code. I will remove those inst=
+ead.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Nirmoy</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Greg KH &lt;gregkh@li=
+nuxfoundation.org&gt;<br>
+<b>Sent:</b> Friday, October 8, 2021 1:07 PM<br>
+<b>To:</b> Jani Nikula &lt;jani.nikula@linux.intel.com&gt;<br>
+<b>Cc:</b> Das, Nirmoy &lt;Nirmoy.Das@amd.com&gt;; dri-devel@lists.freedesk=
+top.org &lt;dri-devel@lists.freedesktop.org&gt;; intel-gfx@lists.freedeskto=
+p.org &lt;intel-gfx@lists.freedesktop.org&gt;; Maarten Lankhorst &lt;maarte=
+n.lankhorst@linux.intel.com&gt;; Maxime Ripard &lt;mripard@kernel.org&gt;;
+ Thomas Zimmermann &lt;tzimmermann@suse.de&gt;; David Airlie &lt;airlied@li=
+nux.ie&gt;; Daniel Vetter &lt;daniel@ffwll.ch&gt;<br>
+<b>Subject:</b> Re: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error hand=
+ling</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">On Fri, Oct 08, 2021 at 12:40:47PM +0300, Jani Nik=
+ula wrote:<br>
+&gt; On Fri, 08 Oct 2021, Nirmoy Das &lt;nirmoy.das@amd.com&gt; wrote:<br>
+&gt; &gt; Debugfs API returns encoded error instead of NULL.<br>
+&gt; &gt; This patch cleanups drm debugfs error handling to<br>
+&gt; &gt; properly set dri and its minor's root dentry to NULL.<br>
+&gt; &gt;<br>
+&gt; &gt; Also do not error out if dri/minor debugfs directory<br>
+&gt; &gt; creation fails as a debugfs error is not a fatal error.<br>
+&gt; <br>
+&gt; Cc: Greg<br>
+&gt; <br>
+&gt; I thought this is the opposite of what Greg's been telling everyone to=
+<br>
+&gt; do with debugfs.<br>
+<br>
+Yes, that is not good.<br>
+<br>
+You should never care about the result of a debugfs_create* call.&nbsp; Jus=
+t<br>
+take the result, and if it is a directory, save it off to use it for<br>
+creating a file, no need to check anything.<br>
+<br>
+And then throw it away, later, when you want to remove the directory,<br>
+look it up with a call to debugfs_lookup() and pass that to<br>
+debugfs_remove() (which does so recursively).<br>
+<br>
+There should never be a need to save, or check, the result of any<br>
+debugfs call.&nbsp; If so, odds are it is being used incorrectly.<br>
+<br>
+thanks,<br>
+<br>
+greg k-h<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_DM4PR12MB5136620C3B013850D11F44868BB29DM4PR12MB5136namp_--
