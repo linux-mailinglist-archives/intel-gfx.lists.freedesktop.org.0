@@ -1,42 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2540426708
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:40:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B9042670A
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:41:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B9D16E0C4;
-	Fri,  8 Oct 2021 09:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E5576E0CE;
+	Fri,  8 Oct 2021 09:41:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2F1E6E0C4;
- Fri,  8 Oct 2021 09:40:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226761956"
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="226761956"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 02:40:55 -0700
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="489396522"
-Received: from ssedpiaz-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.40.186])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 02:40:51 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@amd.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Greg KH <gregkh@linuxfoundation.org>
-In-Reply-To: <20211008091704.27094-1-nirmoy.das@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211008091704.27094-1-nirmoy.das@amd.com>
-Date: Fri, 08 Oct 2021 12:40:47 +0300
-Message-ID: <87a6jjyhuo.fsf@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77B5A6E0CE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 09:41:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="206592915"
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="206592915"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2021 02:41:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="439876811"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 08 Oct 2021 02:41:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Oct 2021 12:41:23 +0300
+Date: Fri, 8 Oct 2021 12:41:23 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YWASQ+s8K2CD8w4o@intel.com>
+References: <20211007203517.3364336-1-imre.deak@intel.com>
+ <20211007203517.3364336-2-imre.deak@intel.com>
+ <YV9iKCRLsskhN4iw@intel.com>
+ <20211007212611.GD3322158@ideak-desk.fi.intel.com>
+ <YV9niXLx3Qfkhga0@intel.com>
+ <20211007220006.GE3322158@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/5] dri: cleanup debugfs error handling
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211007220006.GE3322158@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915: Add a table with a
+ descriptor for all i915 modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,172 +57,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 08 Oct 2021, Nirmoy Das <nirmoy.das@amd.com> wrote:
-> Debugfs API returns encoded error instead of NULL.
-> This patch cleanups drm debugfs error handling to
-> properly set dri and its minor's root dentry to NULL.
->
-> Also do not error out if dri/minor debugfs directory
-> creation fails as a debugfs error is not a fatal error.
+On Fri, Oct 08, 2021 at 01:00:06AM +0300, Imre Deak wrote:
+> On Fri, Oct 08, 2021 at 12:32:57AM +0300, Ville Syrjälä wrote:
+> > On Fri, Oct 08, 2021 at 12:26:11AM +0300, Imre Deak wrote:
+> > > On Fri, Oct 08, 2021 at 12:10:00AM +0300, Ville Syrjälä wrote:
+> > > > On Thu, Oct 07, 2021 at 11:35:07PM +0300, Imre Deak wrote:
+> > > > > Add a table describing all the framebuffer modifiers used by i915 at one
+> > > > > place. This has the benefit of deduplicating the listing of supported
+> > > > > modifiers for each platform and checking the support of these modifiers
+> > > > > on a given plane. This also simplifies in a similar way getting some
+> > > > > attribute for a modifier, for instance checking if the modifier is a
+> > > > > CCS modifier type.
+> > > > > 
+> > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_cursor.c   |  19 +-
+> > > > >  .../drm/i915/display/intel_display_types.h    |   1 -
+> > > > >  drivers/gpu/drm/i915/display/intel_fb.c       | 178 ++++++++++++++++++
+> > > > >  drivers/gpu/drm/i915/display/intel_fb.h       |   8 +
+> > > > >  drivers/gpu/drm/i915/display/intel_sprite.c   |  35 +---
+> > > > >  drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+> > > > >  .../drm/i915/display/skl_universal_plane.c    | 137 +-------------
+> > > > >  drivers/gpu/drm/i915/i915_drv.h               |   3 +
+> > > > >  8 files changed, 218 insertions(+), 164 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > > > > index f6dcb5aa63f64..bcd44ff30ce5b 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > > > > @@ -28,11 +28,6 @@ static const u32 intel_cursor_formats[] = {
+> > > > >  	DRM_FORMAT_ARGB8888,
+> > > > >  };
+> > > > >  
+> > > > > -static const u64 cursor_format_modifiers[] = {
+> > > > > -	DRM_FORMAT_MOD_LINEAR,
+> > > > > -	DRM_FORMAT_MOD_INVALID
+> > > > > -};
+> > > > > -
+> > > > >  static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+> > > > >  {
+> > > > >  	struct drm_i915_private *dev_priv =
+> > > > > @@ -605,8 +600,10 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
+> > > > >  static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+> > > > >  					      u32 format, u64 modifier)
+> > > > >  {
+> > > > > -	return modifier == DRM_FORMAT_MOD_LINEAR &&
+> > > > > -		format == DRM_FORMAT_ARGB8888;
+> > > > > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> > > > > +		return false;
+> > > > > +
+> > > > > +	return format == DRM_FORMAT_ARGB8888;
+> > > > >  }
+> > > > >  
+> > > > >  static int
+> > > > > @@ -754,6 +751,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> > > > >  {
+> > > > >  	struct intel_plane *cursor;
+> > > > >  	int ret, zpos;
+> > > > > +	u64 *modifiers;
+> > > > >  
+> > > > >  	cursor = intel_plane_alloc();
+> > > > >  	if (IS_ERR(cursor))
+> > > > > @@ -784,13 +782,18 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> > > > >  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
+> > > > >  		cursor->cursor.size = ~0;
+> > > > >  
+> > > > > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, pipe, cursor->id);
+> > > > > +
+> > > > >  	ret = drm_universal_plane_init(&dev_priv->drm, &cursor->base,
+> > > > >  				       0, &intel_cursor_plane_funcs,
+> > > > >  				       intel_cursor_formats,
+> > > > >  				       ARRAY_SIZE(intel_cursor_formats),
+> > > > > -				       cursor_format_modifiers,
+> > > > > +				       modifiers,
+> > > > >  				       DRM_PLANE_TYPE_CURSOR,
+> > > > >  				       "cursor %c", pipe_name(pipe));
+> > > > > +
+> > > > > +	kfree(modifiers);
+> > > > > +
+> > > > >  	if (ret)
+> > > > >  		goto fail;
+> > > > >  
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > index 21ce8bccc645a..bb53b01f07aee 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > @@ -1336,7 +1336,6 @@ struct intel_plane {
+> > > > >  	enum plane_id id;
+> > > > >  	enum pipe pipe;
+> > > > >  	bool has_fbc;
+> > > > > -	bool has_ccs;
+> > > > >  	bool need_async_flip_disable_wa;
+> > > > >  	u32 frontbuffer_bit;
+> > > > >  
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> > > > > index fa1f375e696bf..aefae988b620b 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > > > > @@ -13,6 +13,184 @@
+> > > > >  
+> > > > >  #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
+> > > > >  
+> > > > > +const struct intel_modifier_desc {
+> > > > > +	u64 id;
+> > > > > +	u64 display_versions;
+> > > > > +
+> > > > > +	struct {
+> > > > > +#define INTEL_CCS_RC		BIT(0)
+> > > > > +#define INTEL_CCS_RC_CC		BIT(1)
+> > > > > +#define INTEL_CCS_MC		BIT(2)
+> > > > > +
+> > > > > +#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
+> > > > > +		u8 type:3;
+> > > > > +	} ccs;
+> > > > > +} intel_modifiers[] = {
+> > > > > +	{
+> > > > > +		.id = DRM_FORMAT_MOD_LINEAR,
+> > > > > +		.display_versions = DISPLAY_VER_MASK_ALL,
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_X_TILED,
+> > > > > +		.display_versions = DISPLAY_VER_MASK_ALL,
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_Y_TILED,
+> > > > > +		.display_versions = DISPLAY_VER_MASK(9, 13),
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_Yf_TILED,
+> > > > > +		.display_versions = DISPLAY_VER_MASK(9, 11),
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_Y_TILED_CCS,
+> > > > > +		.display_versions = DISPLAY_VER_MASK(9, 11),
+> > > > > +
+> > > > > +		.ccs.type = INTEL_CCS_RC,
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_Yf_TILED_CCS,
+> > > > > +		.display_versions = DISPLAY_VER_MASK(9, 11),
+> > > > > +
+> > > > > +		.ccs.type = INTEL_CCS_RC,
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> > > > > +		.display_versions = DISPLAY_VER_MASK(12, 13),
+> > > > > +
+> > > > > +		.ccs.type = INTEL_CCS_RC,
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+> > > > > +		.display_versions = DISPLAY_VER_MASK(12, 13),
+> > > > > +
+> > > > > +		.ccs.type = INTEL_CCS_RC_CC,
+> > > > > +	},
+> > > > > +	{
+> > > > > +		.id = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+> > > > > +		.display_versions = DISPLAY_VER_MASK(12, 13),
+> > > > > +
+> > > > > +		.ccs.type = INTEL_CCS_MC,
+> > > > > +	},
+> > > > > +};
+> > > > > +
+> > > > > +static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_type)
+> > > > > +{
+> > > > > +	return md->ccs.type & ccs_type;
+> > > > > +}
+> > > > > +
+> > > > > +static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+> > > > > +				 enum pipe pipe, enum plane_id plane_id)
+> > > > > +{
+> > > > > +	if (plane_id == PLANE_CURSOR)
+> > > > > +		return false;
+> > > > > +
+> > > > > +	/* Wa_22011186057 */
+> > > > > +	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+> > > > > +		return false;
+> > > > > +
+> > > > > +	if (DISPLAY_VER(i915) >= 11)
+> > > > > +		return true;
+> > > > > +
+> > > > > +	if (IS_GEMINILAKE(i915))
+> > > > > +		return pipe != PIPE_C;
+> > > > > +
+> > > > > +	return pipe != PIPE_C &&
+> > > > > +		(plane_id == PLANE_PRIMARY ||
+> > > > > +		 plane_id == PLANE_SPRITE0);
+> > > > > +}
+> > > > 
+> > > > This part I don't really like. IMO the plane capabilities should
+> > > > be listed in the plane code, not anywhere else.
+> > > 
+> > > Ok. How about adding back plane->has_rc_ccs and also adding
+> > > plane->has_mc_ccs and initing these before calling 
+> > > intel_fb_plane_get_modifiers() (as before)?
+> > 
+> > Yeah, maybe something like that. Ie. basically reduce the full list
+> > of modifiers to a set of higher level classes, which each plane could
+> > declare in a more compact form. I guess we could have some kind of small
+> > plane_caps structure for it this even?
+> 
+> So also including the cursor case below something like a plane_caps enum
+> with bitfields for PLANE_HAS_CCS_RC (applying to both RC and RC_CC since
+> no point to differentiate even on SKL for this), PLANE_HAS_CCS_MC and
+> PLANE_HAS_TILING? This enum could be just passed then to
+> intel_fb_plane_get_modifiers() instead of pipe and plane_id.
 
-Cc: Greg
+I was thinking it could be a struct in case there's a need for more
+than bools. Or could just stick those in the plane itself, but then
+we have to pass that around before it's fully initialized. Not sure
+if that's a good idea. But a bitmask would work I suppose if we don't
+need anything but yes/no type of stuff.
 
-I thought this is the opposite of what Greg's been telling everyone to
-do with debugfs.
+> > We would lose the direct info in the plane code for eg. "is Yf
+> > supported?",
+> 
+> If becomes an issue could this be a new cap?
+> 
+> > but since that's a platform wide thing I don't think
+> > it's a problem. Just the info about the individual planes and their
+> > special little exceptions I'd really would want in the plane code.
+> > 
+> > > What about the 
+> > > plane_id == PLANE_CURSOR && md->id != DRM_FORMAT_MOD_LINEAR
+> > > check in plane_has_modifier()?
+> > 
+> > Maybe we reduce that to .has_tiling or something?
+> 
+> So the above PLANE_HAS_TILING and to keep initialization simple an
+> .linear field in intel_modifier_desc?
 
-BR,
-Jani.
-
->
-> CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> CC: Maxime Ripard <mripard@kernel.org>
-> CC: Thomas Zimmermann <tzimmermann@suse.de>
-> CC: David Airlie <airlied@linux.ie>
-> CC: Daniel Vetter <daniel@ffwll.ch>
-> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
-> ---
->  drivers/gpu/drm/drm_debugfs.c  | 25 +++++++++++++++++++++++--
->  drivers/gpu/drm/drm_drv.c      | 16 ++++++++++------
->  drivers/gpu/drm/drm_internal.h |  7 +++----
->  3 files changed, 36 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
-> index b0a826489488..af275a0c09b4 100644
-> --- a/drivers/gpu/drm/drm_debugfs.c
-> +++ b/drivers/gpu/drm/drm_debugfs.c
-> @@ -180,6 +180,9 @@ void drm_debugfs_create_files(const struct drm_info_list *files, int count,
->  	struct drm_info_node *tmp;
->  	int i;
->
-> +	if (!minor->debugfs_root)
-> +		return;
-> +
->  	for (i = 0; i < count; i++) {
->  		u32 features = files[i].driver_features;
->
-> @@ -203,7 +206,7 @@ void drm_debugfs_create_files(const struct drm_info_list *files, int count,
->  }
->  EXPORT_SYMBOL(drm_debugfs_create_files);
->
-> -int drm_debugfs_init(struct drm_minor *minor, int minor_id,
-> +void drm_debugfs_init(struct drm_minor *minor, int minor_id,
->  		     struct dentry *root)
->  {
->  	struct drm_device *dev = minor->dev;
-> @@ -212,8 +215,16 @@ int drm_debugfs_init(struct drm_minor *minor, int minor_id,
->  	INIT_LIST_HEAD(&minor->debugfs_list);
->  	mutex_init(&minor->debugfs_lock);
->  	sprintf(name, "%d", minor_id);
-> +
-> +	if (!root)
-> +		goto error;
-> +
->  	minor->debugfs_root = debugfs_create_dir(name, root);
->
-> +	if (IS_ERR(minor->debugfs_root))
-> +		goto error;
-> +
-> +
->  	drm_debugfs_create_files(drm_debugfs_list, DRM_DEBUGFS_ENTRIES,
->  				 minor->debugfs_root, minor);
->
-> @@ -230,7 +241,11 @@ int drm_debugfs_init(struct drm_minor *minor, int minor_id,
->  	if (dev->driver->debugfs_init)
->  		dev->driver->debugfs_init(minor);
->
-> -	return 0;
-> +	return;
-> +
-> +error:
-> +	minor->debugfs_root = NULL;
-> +	return;
->  }
->
->
-> @@ -241,6 +256,9 @@ int drm_debugfs_remove_files(const struct drm_info_list *files, int count,
->  	struct drm_info_node *tmp;
->  	int i;
->
-> +	if (!minor->debugfs_root)
-> +		return 0;
-> +
->  	mutex_lock(&minor->debugfs_lock);
->  	for (i = 0; i < count; i++) {
->  		list_for_each_safe(pos, q, &minor->debugfs_list) {
-> @@ -261,6 +279,9 @@ static void drm_debugfs_remove_all_files(struct drm_minor *minor)
->  {
->  	struct drm_info_node *node, *tmp;
->
-> +	if (!minor->debugfs_root)
-> +		return;
-> +
->  	mutex_lock(&minor->debugfs_lock);
->  	list_for_each_entry_safe(node, tmp, &minor->debugfs_list, list) {
->  		debugfs_remove(node->dent);
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 7a5097467ba5..fa57ec2d49bf 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -160,11 +160,7 @@ static int drm_minor_register(struct drm_device *dev, unsigned int type)
->  	if (!minor)
->  		return 0;
->
-> -	ret = drm_debugfs_init(minor, minor->index, drm_debugfs_root);
-> -	if (ret) {
-> -		DRM_ERROR("DRM: Failed to initialize /sys/kernel/debug/dri.\n");
-> -		goto err_debugfs;
-> -	}
-> +	drm_debugfs_init(minor, minor->index, drm_debugfs_root);
->
->  	ret = device_add(minor->kdev);
->  	if (ret)
-> @@ -1050,7 +1046,15 @@ static int __init drm_core_init(void)
->  		goto error;
->  	}
->
-> -	drm_debugfs_root = debugfs_create_dir("dri", NULL);
-> +	if (!debugfs_initialized()) {
-> +		drm_debugfs_root = NULL;
-> +	} else {
-> +		drm_debugfs_root = debugfs_create_dir("dri", NULL);
-> +		if (IS_ERR(drm_debugfs_root)) {
-> +			DRM_WARN("DRM: Failed to initialize /sys/kernel/debug/dri.\n");
-> +			drm_debugfs_root = NULL;
-> +		}
-> +	}
->
->  	ret = register_chrdev(DRM_MAJOR, "drm", &drm_stub_fops);
->  	if (ret < 0)
-> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-> index 17f3548c8ed2..e27a40166178 100644
-> --- a/drivers/gpu/drm/drm_internal.h
-> +++ b/drivers/gpu/drm/drm_internal.h
-> @@ -182,8 +182,8 @@ int drm_gem_dumb_destroy(struct drm_file *file, struct drm_device *dev,
->
->  /* drm_debugfs.c drm_debugfs_crc.c */
->  #if defined(CONFIG_DEBUG_FS)
-> -int drm_debugfs_init(struct drm_minor *minor, int minor_id,
-> -		     struct dentry *root);
-> +void drm_debugfs_init(struct drm_minor *minor, int minor_id,
-> +		      struct dentry *root);
->  void drm_debugfs_cleanup(struct drm_minor *minor);
->  void drm_debugfs_connector_add(struct drm_connector *connector);
->  void drm_debugfs_connector_remove(struct drm_connector *connector);
-> @@ -191,10 +191,9 @@ void drm_debugfs_crtc_add(struct drm_crtc *crtc);
->  void drm_debugfs_crtc_remove(struct drm_crtc *crtc);
->  void drm_debugfs_crtc_crc_add(struct drm_crtc *crtc);
->  #else
-> -static inline int drm_debugfs_init(struct drm_minor *minor, int minor_id,
-> +static inline void drm_debugfs_init(struct drm_minor *minor, int minor_id,
->  				   struct dentry *root)
->  {
-> -	return 0;
->  }
->
->  static inline void drm_debugfs_cleanup(struct drm_minor *minor)
-> --
-> 2.32.0
->
+Yeah maybe. I probably have to see it to know if I like it
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
