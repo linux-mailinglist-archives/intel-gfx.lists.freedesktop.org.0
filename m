@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86F8426508
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 09:08:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B90B42659F
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 10:09:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D98036E0AA;
-	Fri,  8 Oct 2021 07:08:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB4B66E861;
+	Fri,  8 Oct 2021 08:09:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A67C76E0AA;
- Fri,  8 Oct 2021 07:08:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="287332827"
-X-IronPort-AV: E=Sophos;i="5.85,356,1624345200"; d="scan'208";a="287332827"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 00:08:53 -0700
-X-IronPort-AV: E=Sophos;i="5.85,356,1624345200"; d="scan'208";a="484913901"
-Received: from lenovo-x280.ger.corp.intel.com (HELO [10.249.254.98])
- ([10.249.254.98])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 00:08:51 -0700
-Message-ID: <5b8767c6-74f3-b35c-ca98-25ecfcec031a@linux.intel.com>
-Date: Fri, 8 Oct 2021 09:08:49 +0200
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48EB66E861
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 08:09:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="223869186"
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="223869186"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2021 01:09:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="624660408"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+ by fmsmga001.fm.intel.com with SMTP; 08 Oct 2021 01:09:36 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
+ Fri, 08 Oct 2021 11:09:35 +0300
+Date: Fri, 8 Oct 2021 11:09:35 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: lindsey.stanpoor@gmail.com
+Cc: intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
+ hdegoede@redhat.com, gregkh@linuxfoundation.org, cnemo@tutanota.com
+Message-ID: <YV/8v2FFcfamJoOI@kuha.fi.intel.com>
+References: <20211006043257.23242-1-lindsey.stanpoor@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] Interface additions to dma_fence_array?
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211006043257.23242-1-lindsey.stanpoor@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 1/1] usb: typec: altmodes/displayport:
+ reorder dp_altmode_configured()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,23 +51,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Christian,
+On Tue, Oct 05, 2021 at 09:32:57PM -0700, lindsey.stanpoor@gmail.com wrote:
+> From: Cameron Nemo <cnemo@tutanota.com>
+> 
+> A recent commit [1] introduced an unintended behavioral change by
+> reordering certain function calls. The sysfs_notify call for
+> pin_assignment should only be invoked when the dp_altmode_notify call
+> returns 0, and in the dp->data.conf == 0 case.
+> 
+> [1] https://lore.kernel.org/r/20210817215201.795062-8-hdegoede@redhat.com
 
-We have a use-case in i915 with async evictions where we'd like to use 
-dma-fence-array in the following way
+You should refer the commit, not the mail. I think you could also use
+the Fixes tag in this case, but then I guess Hans should pick this:
 
-*Create in commit mode
-*Add context and seqno,
-*Publish (signaling critical section starts)
-*Add fence pointers to the arrary
-*Commit (signaling critical section ends, fence can now signal)
+Fixes: fc27e04630e9 ("usb: typec: altmodes/displayport: Make dp_altmode_notify() more generic")
 
-With a patch series I have, we use the i915 data structure 
-dma_fence_work for this, but it'd be better to use dma_fence_array for 
-various reasons. Would it be OK to add interfaces to dma-fence-array to 
-facilitate this? Basic idea would be to defer the actions done by 
-enable_signaling until commit is called.
+Either way, this is OK by me, so once you have cleaned the commit
+message, please feel free to include my:
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-Thanks,
-/Thomas
+> Signed-off-by: Cameron Nemo <cnemo@tutanota.com>
+> ---
+>  drivers/usb/typec/altmodes/displayport.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
+> index c1d8c23baa39..a15ae78066e3 100644
+> --- a/drivers/usb/typec/altmodes/displayport.c
+> +++ b/drivers/usb/typec/altmodes/displayport.c
+> @@ -154,10 +154,17 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
+>  
+>  static int dp_altmode_configured(struct dp_altmode *dp)
+>  {
+> +	int ret;
+> +
+>  	sysfs_notify(&dp->alt->dev.kobj, "displayport", "configuration");
+> +
+> +	ret = dp_altmode_notify(dp);
+> +	if (ret || !dp->data.conf)
+> +		return ret;
+> +
+>  	sysfs_notify(&dp->alt->dev.kobj, "displayport", "pin_assignment");
+>  
+> -	return dp_altmode_notify(dp);
+> +	return 0;
+>  }
+>  
+>  static int dp_altmode_configure_vdm(struct dp_altmode *dp, u32 conf)
+> -- 
+> 2.33.0
 
+-- 
+heikki
