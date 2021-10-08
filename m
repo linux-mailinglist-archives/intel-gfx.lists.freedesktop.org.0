@@ -1,64 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8AA426694
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:18:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A28C42669E
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Oct 2021 11:22:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 289CE6E86C;
-	Fri,  8 Oct 2021 09:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D78446E0BE;
+	Fri,  8 Oct 2021 09:22:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8336E86C
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 09:18:11 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="226370610"
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="226370610"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEA1D6E0BE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Oct 2021 09:22:16 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10130"; a="249830552"
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="249830552"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2021 02:18:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="489388750"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP; 08 Oct 2021 02:18:10 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 8 Oct 2021 02:18:10 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 8 Oct 2021 02:18:08 -0700
-Received: from bgsmsx606.gar.corp.intel.com ([10.67.234.8]) by
- BGSMSX606.gar.corp.intel.com ([10.67.234.8]) with mapi id 15.01.2242.012;
- Fri, 8 Oct 2021 14:48:06 +0530
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>, "Kahola, Mika"
- <mika.kahola@intel.com>, "Navare, Manasi D" <manasi.d.navare@intel.com>,
- "Souza, Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH v2 2/4] drm/i915/panelreplay: Initializaton and compute
- config for panel replay
-Thread-Index: AQHXu5dHd+OhHuxRnUKaKj6fiE22k6vHcamAgAFTodA=
-Date: Fri, 8 Oct 2021 09:18:06 +0000
-Message-ID: <ae2704d64e2b4ccc8b9f5388db74b7bb@intel.com>
-References: <20211007155729.27812-1-animesh.manna@intel.com>
- <20211007155729.27812-3-animesh.manna@intel.com> <87r1cwybpi.fsf@intel.com>
-In-Reply-To: <87r1cwybpi.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2021 02:22:15 -0700
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; d="scan'208";a="489390062"
+Received: from tocallag-mobl2.ger.corp.intel.com (HELO [10.213.250.80])
+ ([10.213.250.80])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2021 02:22:14 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20211006091614.970596-1-matthew.auld@intel.com>
+ <163353397200.5959.9158572900274841139@emeril.freedesktop.org>
+ <d50b2987-6343-fc87-e197-1cc8ac2c4f93@linux.intel.com>
+ <cb93ee61-9ac1-587e-0182-6c6ba6671d79@gmail.com>
+ <ae2222c4-7167-9047-2430-1d59b9b1fa32@linux.intel.com>
+ <c022d4eb-b831-a4ae-6127-01bc526fc9c1@gmail.com>
+ <d7c12c69-46a2-9305-0a0d-1848253808ed@linux.intel.com>
+ <37de5d6f8af149d2be998a3991c8ef4d@intel.com>
+ <64167c40-1d54-735e-89cf-4df9d95d5a97@linux.intel.com>
+ <9bcbf976-532c-29fc-6292-281de8cea1ba@gmail.com>
+ <8a6f1685-3f77-e71f-d760-283a88eff6d4@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <7c2dc94d-f8b2-2727-19e1-b84618c3444b@linux.intel.com>
+Date: Fri, 8 Oct 2021 10:22:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915/panelreplay: Initializaton
- and compute config for panel replay
+In-Reply-To: <8a6f1685-3f77-e71f-d760-283a88eff6d4@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv7=2C1/8=5D_drm/i915/gem=3A_Break_out_some?=
+ =?utf-8?q?_shmem_backend_utils?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,323 +67,195 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 08/10/2021 10:17, Tvrtko Ursulin wrote:
+> 
+> On 07/10/2021 19:18, Christian König wrote:
+>> Am 07.10.21 um 17:53 schrieb Tvrtko Ursulin:
+>>>
+>>> On 07/10/2021 16:18, Vudum, Lakshminarayana wrote:
+>>>> -----Original Message-----
+>>>> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>>> Sent: Thursday, October 7, 2021 6:41 AM
+>>>> To: Christian König <ckoenig.leichtzumerken@gmail.com>; 
+>>>> intel-gfx@lists.freedesktop.org
+>>>> Cc: Vudum, Lakshminarayana <lakshminarayana.vudum@intel.com>
+>>>> Subject: Re: [Intel-gfx] ✗ Fi.CI.IGT: failure for series starting 
+>>>> with [v7,1/8] drm/i915/gem: Break out some shmem backend utils
+>>>>
+>>>>
+>>>> On 07/10/2021 13:57, Christian König wrote:
+>>>>> Am 07.10.21 um 12:51 schrieb Tvrtko Ursulin:
+>>>>>>
+>>>>>> On 07/10/2021 10:19, Christian König wrote:
+>>>>>>> Am 07.10.21 um 11:15 schrieb Tvrtko Ursulin:
+>>>>>>>> Hi,
+>>>>>>>>
+>>>>>>>> On 06/10/2021 16:26, Patchwork wrote:
+>>>>>>>>> *Patch Details*
+>>>>>>>>> *Series:*    series starting with [v7,1/8] drm/i915/gem: Break out
+>>>>>>>>> some shmem backend utils
+>>>>>>>>> *URL:* https://patchwork.freedesktop.org/series/95501/
+>>>>>>>>> <https://patchwork.freedesktop.org/series/95501/>
+>>>>>>>>> *State:*    failure
+>>>>>>>>> *Details:*
+>>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.htm
+>>>>>>>>> l
+>>>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/index.ht
+>>>>>>>>> ml>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>    CI Bug Log - changes from CI_DRM_10688_full ->
+>>>>>>>>> Patchwork_21264_full
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>      Summary
+>>>>>>>>>
+>>>>>>>>> *FAILURE*
+>>>>>>>>>
+>>>>>>>>> Serious unknown changes coming with Patchwork_21264_full
+>>>>>>>>> absolutely need to be verified manually.
+>>>>>>>>>
+>>>>>>>>> If you think the reported changes have nothing to do with the
+>>>>>>>>> changes introduced in Patchwork_21264_full, please notify your bug
+>>>>>>>>> team to allow them to document this new failure mode, which will
+>>>>>>>>> reduce false positives in CI.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>      Possible new issues
+>>>>>>>>>
+>>>>>>>>> Here are the unknown changes that may have been introduced in
+>>>>>>>>> Patchwork_21264_full:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>        IGT changes
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>          Possible regressions
+>>>>>>>>>
+>>>>>>>>>    *
+>>>>>>>>>
+>>>>>>>>>      igt@gem_sync@basic-many-each:
+>>>>>>>>>
+>>>>>>>>>        o shard-apl: NOTRUN -> INCOMPLETE
+>>>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21264/shard-ap
+>>>>>>>>> l7/igt@gem_sync@basic-many-each.html>
+>>>>>>>>>
+>>>>>>>> Something still fishy in the unlocked iterator? Or
+>>>>>>>> dma_resv_get_fences using it?
+>>>>>>>
+>>>>>>> Probably the later. I'm going to take a look.
+>>>>>>>
+>>>>>>> Thanks for the notice,
+>>>>>>> Christian.
+>>>>>>>
+>>>>>>>>
+>>>>>>>> <6> [187.551235] [IGT] gem_sync: starting subtest basic-many-each
+>>>>>>>> <1> [188.935462] BUG: kernel NULL pointer dereference, address:
+>>>>>>>> 0000000000000010
+>>>>>>>> <1> [188.935485] #PF: supervisor write access in kernel mode <1>
+>>>>>>>> [188.935495] #PF: error_code(0x0002) - not-present page <6>
+>>>>>>>> [188.935504] PGD 0 P4D 0 <4> [188.935512] Oops: 0002 [#1] PREEMPT
+>>>>>>>> SMP NOPTI <4> [188.935521] CPU: 2 PID: 1467 Comm: gem_sync Not
+>>>>>>>> tainted 5.15.0-rc4-CI-Patchwork_21264+ #1 <4> [188.935535] Hardware
+>>>>>>>> name:  /NUC6CAYB, BIOS
+>>>>>>>> AYAPLCEL.86A.0049.2018.0508.1356 05/08/2018 <4> [188.935546] RIP:
+>>>>>>>> 0010:dma_resv_get_fences+0x116/0x2d0
+>>>>>>>> <4> [188.935560] Code: 10 85 c0 7f c9 be 03 00 00 00 e8 15 8b df ff
+>>>>>>>> eb bd e8 8e c6 ff ff eb b6 41 8b 04 24 49 8b 55 00 48 89 e7 8d 48
+>>>>>>>> 01
+>>>>>>>> 41 89 0c 24 <4c> 89 34 c2 e8 41 f2 ff ff 49 89 c6 48 85 c0 75 8c 48
+>>>>>>>> 8b 44 24 10 <4> [188.935583] RSP: 0018:ffffc900011dbcc8 EFLAGS:
+>>>>>>>> 00010202 <4> [188.935593] RAX: 0000000000000000 RBX:
+>>>>>>>> 00000000ffffffff RCX:
+>>>>>>>> 0000000000000001
+>>>>>>>> <4> [188.935603] RDX: 0000000000000010 RSI: ffffffff822e343c RDI:
+>>>>>>>> ffffc900011dbcc8
+>>>>>>>> <4> [188.935613] RBP: ffffc900011dbd48 R08: ffff88812d255bb8 R09:
+>>>>>>>> 00000000fffffffe
+>>>>>>>> <4> [188.935623] R10: 0000000000000001 R11: 0000000000000000 R12:
+>>>>>>>> ffffc900011dbd44
+>>>>>>>> <4> [188.935633] R13: ffffc900011dbd50 R14: ffff888113d29cc0 R15:
+>>>>>>>> 0000000000000000
+>>>>>>>> <4> [188.935643] FS:  00007f68d17e9700(0000)
+>>>>>>>> GS:ffff888277900000(0000) knlGS:0000000000000000 <4> [188.935655]
+>>>>>>>> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033 <4> [188.935665]
+>>>>>>>> CR2: 0000000000000010 CR3: 000000012d0a4000 CR4:
+>>>>>>>> 00000000003506e0
+>>>>>>>> <4> [188.935676] Call Trace:
+>>>>>>>> <4> [188.935685]  i915_gem_object_wait+0x1ff/0x410 [i915] <4>
+>>>>>>>> [188.935988]  i915_gem_wait_ioctl+0xf2/0x2a0 [i915] <4>
+>>>>>>>> [188.936272]  ? i915_gem_object_wait+0x410/0x410 [i915] <4>
+>>>>>>>> [188.936533]  drm_ioctl_kernel+0xae/0x140 <4> [188.936546]
+>>>>>>>> drm_ioctl+0x201/0x3d0 <4> [188.936555]  ?
+>>>>>>>> i915_gem_object_wait+0x410/0x410 [i915] <4> [188.936820]  ?
+>>>>>>>> __fget_files+0xc2/0x1c0 <4> [188.936830]  ? __fget_files+0xda/0x1c0
+>>>>>>>> <4> [188.936839]  __x64_sys_ioctl+0x6d/0xa0 <4> [188.936848]
+>>>>>>>> do_syscall_64+0x3a/0xb0 <4> [188.936859]
+>>>>>>>> entry_SYSCALL_64_after_hwframe+0x44/0xae
+>>>>>>
+>>>>>> FWIW if you disassemble the code it seems to be crashing in:
+>>>>>>
+>>>>>>    (*shared)[(*shared_count)++] = fence; // mov %r14, (%rdx, %rax, 8)
+>>>>>>
+>>>>>> RDX is *shared, RAX is *shared_count, RCX is *shared_count++ (for the
+>>>>>> next iteration. R13 is share and R12 shared_count.
+>>>>>>
+>>>>>> That *shared can contain 0000000000000010 makes no sense to me. At
+>>>>>> least yet. :)
+>>>>>
+>>>>> Yeah, me neither. I've gone over the whole code multiple time now and
+>>>>> absolutely don't get what's happening here.
+>>>>>
+>>>>> Adding some more selftests didn't helped either. As far as I can see
+>>>>> the code works as intended.
+>>>>>
+>>>>> Do we have any other reports of crashes?
+>>>>
+>>>> Yes, sporadic but present across different platforms since the 
+>>>> change went it:
+>>>> https://intel-gfx-ci.01.org/tree/drm-tip/igt@gem_sync@basic-many-each.html. 
+>>>>
+>>>> So issue is probably real.
+>>>>
+>>>> Did not find any other tests failing with the same signature. 
+>>>> Lakshmi are you perhaps able to search for the same or similar 
+>>>> signature across the whole set of recent results?
+>>>>
+>>>> [Lakshmi] Both the regressions failures are new. I filed below 
+>>>> issues and reported.
+>>>
+>>>
+>>> Thanks Lakshmi!
+>>>
+>>> Christian, maybe revert for now since it looks tricky to figure out? 
+>>> I at least couldn't spent much time looking at it today. Or try to 
+>>> find a third set of eyes to look at it quickly in case we are not 
+>>> seeing something.
+>>>
+>>> Looks like a good selftest will be needed here for robustness. 
+>>> Including threads to trigger restarts and external manipulation to 
+>>> hit the refcount zero.
+>>
+>> Yeah, agree. Already working on that.
+>>
+>> Going to send out the revert for dma_resv_get_fences() tomorrow.
+> 
+> Looks like the issue is actually in the unlocked iterator.
+> 
+> What happens in practice when it crashes is that the fence count in the 
+> shared fences object is zero, which means no space gets allocated in 
+> dma_resv_get_fences. But clearly shared_count was not zero in 
+> dma_resv_iter_walk_unlocked, otherwise the loop in dma_resv_get_fences 
+> wouldn't run.
+> 
+> I suspect it is not safe to drop the RCU lock having peeking at the 
+> dma_resv_shared_list.
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Thursday, October 7, 2021 11:11 PM
-> To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: Mun, Gwan-gyeong <gwan-gyeong.mun@intel.com>; Kahola, Mika
-> <mika.kahola@intel.com>; Navare, Manasi D <manasi.d.navare@intel.com>;
-> Souza, Jose <jose.souza@intel.com>; Manna, Animesh
-> <animesh.manna@intel.com>
-> Subject: Re: [PATCH v2 2/4] drm/i915/panelreplay: Initializaton and compu=
-te
-> config for panel replay
->=20
-> On Thu, 07 Oct 2021, Animesh Manna <animesh.manna@intel.com> wrote:
-> > As panel replay feature similar to PSR feature of EDP panel, so
-> > currently utilized existing psr framework for panel replay.
-> >
-> > v1: RFC version.
-> > v2: optimized code, pr_enabled and pr_dpcd variable removed. [Jose]
-> >
-> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_display_types.h    |  2 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c       | 47 +++++++++++++++----
-> >  drivers/gpu/drm/i915/display/intel_psr.c      | 43 +++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_psr.h      |  3 ++
-> >  include/drm/drm_dp_helper.h                   |  3 ++
-> >  5 files changed, 89 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 21ce8bccc645..b32d9529feef 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1070,6 +1070,7 @@ struct intel_crtc_state {
-> >  	bool req_psr2_sdp_prior_scanline;
-> >  	u32 dc3co_exitline;
-> >  	u16 su_y_granularity;
-> > +	bool has_panel_replay;
-> >  	struct drm_dp_vsc_sdp psr_vsc;
-> >
-> >  	/*
-> > @@ -1531,6 +1532,7 @@ struct intel_psr {
-> >  	bool irq_aux_error;
-> >  	u16 su_w_granularity;
-> >  	u16 su_y_granularity;
-> > +	bool sink_pr_support;
-> >  	u32 dc3co_exitline;
-> >  	u32 dc3co_exit_delay;
-> >  	struct delayed_work dc3co_work;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 74a657ae131a..45181692e3b0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1569,12 +1569,22 @@ static void
-> intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
-> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> >
-> > -	/*
-> > -	 * Prepare VSC Header for SU as per DP 1.4 spec, Table 2-118
-> > -	 * VSC SDP supporting 3D stereo, PSR2, and Pixel Encoding/
-> > -	 * Colorimetry Format indication.
-> > -	 */
-> > -	vsc->revision =3D 0x5;
-> > +	if (crtc_state->has_panel_replay) {
-> > +		/*
-> > +		 * Prepare VSC Header for SU as per DP 2.0 spec, Table 2-223
-> > +		 * VSC SDP supporting 3D stereo, Panel Replay, and Pixel
-> > +		 * Encoding/Colorimetry Format indication.
-> > +		 */
-> > +		vsc->revision =3D 0x7;
-> > +	} else {
-> > +		/*
-> > +		 * Prepare VSC Header for SU as per DP 1.4 spec, Table 2-118
-> > +		 * VSC SDP supporting 3D stereo, PSR2, and Pixel Encoding/
-> > +		 * Colorimetry Format indication.
-> > +		 */
-> > +		vsc->revision =3D 0x5;
-> > +	}
-> > +
-> >  	vsc->length =3D 0x13;
-> >
-> >  	/* DP 1.4a spec, Table 2-120 */
-> > @@ -1683,6 +1693,22 @@ void intel_dp_compute_psr_vsc_sdp(struct
-> intel_dp *intel_dp,
-> >  			vsc->revision =3D 0x4;
-> >  			vsc->length =3D 0xe;
-> >  		}
-> > +	} else if (intel_dp->psr.enabled && !intel_dp_is_edp(intel_dp)) {
-> > +		if (intel_dp->psr.colorimetry_support &&
-> > +		    intel_dp_needs_vsc_sdp(crtc_state, conn_state)) {
-> > +			/* [PR, +Colorimetry] */
-> > +			intel_dp_compute_vsc_colorimetry(crtc_state,
-> conn_state,
-> > +							 vsc);
-> > +		} else {
-> > +			/*
-> > +			 * [PR, -Colorimetry]
->=20
-> I don't understand the comment format here and above. Plain English, plea=
-se.
-
-Thanks for review.
-Sure, Will change it to "Panel Replay with colorimetry info" and "Panel rep=
-lay without colorimetry info"
-Earlier followed same format used by PSR2 ...=20
-
->=20
-> > +			 * Prepare VSC Header for SU as per DP 2.0 spec, Table
-> 2-223
-> > +			 * VSC SDP supporting 3D stereo + PR (applies to eDP
-> v1.3 or
-> > +			 * higher).
-> > +			 */
-> > +			vsc->revision =3D 0x6;
-> > +			vsc->length =3D 0x10;
-> > +		}
-> >  	} else {
-> >  		/*
-> >  		 * [PSR1]
-> > @@ -1824,6 +1850,7 @@ intel_dp_compute_config(struct intel_encoder
-> > *encoder,
-> >
-> >  	intel_vrr_compute_config(pipe_config, conn_state);
-> >  	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
-> > +	intel_panel_replay_compute_config(intel_dp, pipe_config);
->=20
-> Are there any cases where we'd actually need to keep intel_psr_compute_co=
-nfig
-> and intel_panel_replay_compute_config separate?
-> Could you just call intel_panel_replay_compute_config from within
-> intel_psr_compute_config to not clutter this?
-
-Ok .. moved intel_panel_replay_compute_config() inside intel_psr_compute_co=
-nfig().
-
->=20
-> >  	intel_drrs_compute_config(intel_dp, pipe_config, output_bpp,
-> >  				  constant_n);
-> >  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state); @@
-> > -2731,10 +2758,10 @@ static ssize_t intel_dp_vsc_sdp_pack(const struct
-> drm_dp_vsc_sdp *vsc,
-> >  	sdp->sdp_header.HB3 =3D vsc->length; /* Number of Valid Data Bytes */
-> >
-> >  	/*
-> > -	 * Only revision 0x5 supports Pixel Encoding/Colorimetry Format as
-> > -	 * per DP 1.4a spec.
-> > +	 * Revision 0x5 and 0x7 supports Pixel Encoding/Colorimetry Format as
-> > +	 * per DP 1.4a spec and DP 2.0 spec respectively.
-> >  	 */
-> > -	if (vsc->revision !=3D 0x5)
-> > +	if (vsc->revision !=3D 0x5 || vsc->revision !=3D 0x7)
-> >  		goto out;
-> >
-> >  	/* VSC SDP Payload for DB16 through DB18 */ @@ -5044,6 +5071,8
-> @@
-> > intel_dp_init_connector(struct intel_digital_port *dig_port,
-> >
-> >  	intel_psr_init(intel_dp);
-> >
-> > +	intel_panel_replay_init(intel_dp);
-> > +
->=20
-> Ditto here, why not just call intel_panel_replay_init in intel_psr_init?
-
-Ok, moved intel_panel_replay_init() inside intel_psr_init().
-
->=20
-> >  	return true;
-> >
-> >  fail:
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > index 7a205fd5023b..935ea1c434ac 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -933,6 +933,21 @@ static bool intel_psr2_config_valid(struct intel_d=
-p
-> *intel_dp,
-> >  	return true;
-> >  }
-> >
-> > +void intel_panel_replay_compute_config(struct intel_dp *intel_dp,
-> > +				       struct intel_crtc_state *crtc_state) {
-> > +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
->=20
-> Please use i915 local variable name instead of dev_priv whenever possible=
- for
-> new code.
-
-Ok.
-
->=20
-> > +
-> > +	if (!intel_dp->psr.sink_pr_support)
-> > +		return;
-> > +
-> > +	crtc_state->has_panel_replay =3D true;
-> > +	crtc_state->infoframes.enable |=3D
-> > +intel_hdmi_infoframe_enable(DP_SDP_VSC);
-> > +
-> > +	if (HAS_PSR2_SEL_FETCH(dev_priv))
-> > +		intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state); }
-> > +
-> >  void intel_psr_compute_config(struct intel_dp *intel_dp,
-> >  			      struct intel_crtc_state *crtc_state,
-> >  			      struct drm_connector_state *conn_state) @@ -
-> 2170,6 +2185,34
-> > @@ void intel_psr_flush(struct drm_i915_private *dev_priv,
-> >  	}
-> >  }
-> >
-> > +/**
-> > + * intel_panel_replay_init - Check for sink and source capability.
-> > + * @intel_dp: Intel DP
-> > + *
-> > + * This function is called after the initializing connector.
-> > + * (the initializing of connector treats the handling of connector
-> > +capabilities)
-> > + * And it initializes basic panel replay stuff for each DP Encoder.
-> > + */
-> > +void intel_panel_replay_init(struct intel_dp *intel_dp) {
-> > +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> > +	u8 pr_dpcd;
-> > +
-> > +	if (!(HAS_DP20(dev_priv) && HAS_PR(dev_priv)))
-> > +		return;
-> > +
-> > +	drm_dp_dpcd_read(&intel_dp->aux, DP_PANEL_REPLAY_SUPPORT,
-> &pr_dpcd,
-> > +			 sizeof(pr_dpcd));
->=20
-> drm_dp_dpcd_readb is for 1-byte reads.
->=20
-> If the read fails, pr_dpcd might be uninitialized. Either initialize pr_d=
-pcd =3D 0 or
-> check the return value.
-
-Ok.
-
->=20
-> > +
-> > +	if (!(pr_dpcd & PANEL_REPLAY_SUPPORT)) {
-> > +		drm_dbg_kms(&dev_priv->drm,
-> > +			    "Panel replay is not supported by panel\n");
->=20
-> So I'd rather see debug log when panel replay *is* supported.
->=20
-> Or both is and isn't supported.
->=20
-> But really not this asymmetric not supported alone.
-
-Ok, have added print for both.
-
->=20
-> > +		return;
-> > +	}
-> > +
-> > +	intel_dp->psr.sink_pr_support =3D true; }
-> > +
-> >  /**
-> >   * intel_psr_init - Init basic PSR work and mutex.
-> >   * @intel_dp: Intel DP
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.h
-> > b/drivers/gpu/drm/i915/display/intel_psr.h
-> > index facffbacd357..c9d1c1f0b470 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.h
-> > @@ -32,6 +32,7 @@ void intel_psr_flush(struct drm_i915_private *dev_pri=
-v,
-> >  		     unsigned frontbuffer_bits,
-> >  		     enum fb_op_origin origin);
-> >  void intel_psr_init(struct intel_dp *intel_dp);
-> > +void intel_panel_replay_init(struct intel_dp *intel_dp);
-> >  void intel_psr_compute_config(struct intel_dp *intel_dp,
-> >  			      struct intel_crtc_state *crtc_state,
-> >  			      struct drm_connector_state *conn_state); @@ -
-> 52,5 +53,7 @@
-> > void intel_psr2_disable_plane_sel_fetch(struct intel_plane *plane,
-> >  					const struct intel_crtc_state
-> *crtc_state);  void
-> > intel_psr_pause(struct intel_dp *intel_dp);  void
-> > intel_psr_resume(struct intel_dp *intel_dp);
-> > +void intel_panel_replay_compute_config(struct intel_dp *intel_dp,
-> > +				       struct intel_crtc_state *crtc_state);
-> >
-> >  #endif /* __INTEL_PSR_H__ */
-> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> > index b52df4db3e8f..d18340cbf8ac 100644
-> > --- a/include/drm/drm_dp_helper.h
-> > +++ b/include/drm/drm_dp_helper.h
-> > @@ -541,6 +541,9 @@ struct drm_panel;
-> >  /* DFP Capability Extension */
-> >  #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT	0x0a3	/* 2.0 */
-> >
-> > +#define DP_PANEL_REPLAY_SUPPORT             0x0b0
-> > +# define PANEL_REPLAY_SUPPORT               (1 << 0)
-> > +
->=20
-> Often easier and better to split out drm helper changes to separate patch=
-es for
-> all kinds of reasons.
-
-Ok.
+It may work to cache cursor.fences->shared_count into 
+cursor.shared_count at restart time, so dma_resv_get_fences could use it 
+to guarantee consistent view and allocated space correctly. Then 
+dma_resv_iter_next_unlocked would notice restart and cause unwind.
 
 Regards,
-Animesh
->=20
-> BR,
-> Jani.
->=20
-> >  /* Link Configuration */
-> >  #define	DP_LINK_BW_SET		            0x100
-> >  # define DP_LINK_RATE_TABLE		    0x00    /* eDP 1.4 */
->=20
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+
+Tvrtko
