@@ -2,40 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58DC3428146
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 Oct 2021 14:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B83428164
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Oct 2021 14:50:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75EF56E30F;
-	Sun, 10 Oct 2021 12:34:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23C186E30C;
+	Sun, 10 Oct 2021 12:50:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBF5D6E30F;
- Sun, 10 Oct 2021 12:34:14 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10132"; a="224140878"
-X-IronPort-AV: E=Sophos;i="5.85,362,1624345200"; d="scan'208";a="224140878"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2021 05:34:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,362,1624345200"; d="scan'208";a="658297901"
-Received: from amanna.iind.intel.com ([10.223.74.76])
- by orsmga005.jf.intel.com with ESMTP; 10 Oct 2021 05:34:12 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: gwan-gyeong.mun@intel.com, mika.kahola@intel.com, jani.nikula@intel.com,
- manasi.d.navare@intel.com, jose.souza@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Date: Sun, 10 Oct 2021 17:40:39 +0530
-Message-Id: <20211010121039.14725-6-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20211010121039.14725-1-animesh.manna@intel.com>
-References: <20211010121039.14725-1-animesh.manna@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AFAFE6E3AC;
+ Sun, 10 Oct 2021 12:50:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99291A77A5;
+ Sun, 10 Oct 2021 12:50:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 5/5] drm/i915/panelreplay: Added state
- checker for panel replay state
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sun, 10 Oct 2021 12:50:32 -0000
+Message-ID: <163387023260.32084.6660760061437249216@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211010121039.14725-1-animesh.manna@intel.com>
+In-Reply-To: <20211010121039.14725-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Panel_replay_phase1_implementation_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,50 +41,2777 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-has_panel_replay flag is used to check panel replay state
-which is part of crtc_state structure.
+== Series Details ==
 
-v1: RFC version.
-v2: has_panel_replay flag updated as per hw readout. [Jani]
+Series: Panel replay phase1 implementation (rev3)
+URL   : https://patchwork.freedesktop.org/series/94470/
+State : warning
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 1 +
- drivers/gpu/drm/i915/display/intel_psr.c     | 6 ++++++
- 2 files changed, 7 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4f0badb11bbb..a30b6fe87dfc 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8136,6 +8136,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 			PIPE_CONF_CHECK_BOOL(has_psr);
- 			PIPE_CONF_CHECK_BOOL(has_psr2);
- 			PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
-+			PIPE_CONF_CHECK_BOOL(has_panel_replay);
- 			PIPE_CONF_CHECK_I(dc3co_exitline);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 49f6242c2fde..d1a30b82ce6f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1054,6 +1054,12 @@ void intel_psr_get_config(struct intel_encoder *encoder,
- 	pipe_config->has_psr2 = intel_dp->psr.psr2_enabled;
- 	pipe_config->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
- 
-+	if (HAS_PANEL_REPLAY(dev_priv) && HAS_DP20(dev_priv)) {
-+		val = intel_de_read(dev_priv, TRANS_DP2_CTL(intel_dp->psr.transcoder));
-+		if (val & TRANS_DP2_PANEL_REPLAY_ENABLE)
-+			pipe_config->has_panel_replay = true;
-+	}
-+
- 	if (!intel_dp->psr.psr2_enabled)
- 		goto unlock;
- 
--- 
-2.29.0
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ 
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT  0x0A3
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT 0x0a3 /* 2.0 */
++ #def
+
 
