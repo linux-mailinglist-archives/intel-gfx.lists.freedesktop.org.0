@@ -1,77 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D2E42951E
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 19:02:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 696BA42954A
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 19:08:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A45806E909;
-	Mon, 11 Oct 2021 17:02:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 918486E901;
+	Mon, 11 Oct 2021 17:08:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8E706E8FC;
- Mon, 11 Oct 2021 17:02:26 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 0AFC022007;
- Mon, 11 Oct 2021 17:02:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1633971745; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=4jY518LLN0DEflKAEIOoiJENNbC5tBQaKEI9hO0rfaU=;
- b=b7iLr7upIMD9tjkdJx4F37SiOf5heqj7i9GTBuURfq9hu1TXF6xZcTOBGFmPIvNgEWsz5V
- yfgysUwkZU3oGy0GrEHczli9rjC/7s87TFYYK0m9dQbfNhwjM7Ca/vu+1SfHIBoUIkBI8z
- jEvllkuXnHP0R9kXAghBR/dnA+RV/QQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1633971745;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=4jY518LLN0DEflKAEIOoiJENNbC5tBQaKEI9hO0rfaU=;
- b=x61B30X9aAUcxuFVUI3noYurioH93T2CaNujNo5w18bg6oKqENvWOCrNZV38EhojRGy7qS
- qtbUS2RtUQMSfVAg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B16C513BCE;
- Mon, 11 Oct 2021 17:02:24 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id MAS1KSBuZGEcfwAAMHmgww
- (envelope-from <vbabka@suse.cz>); Mon, 11 Oct 2021 17:02:24 +0000
-Message-ID: <2a62971d-467f-f354-caac-2b5ecf258e3c@suse.cz>
-Date: Mon, 11 Oct 2021 19:02:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE8766E901;
+ Mon, 11 Oct 2021 17:08:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10134"; a="313118535"
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="313118535"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 10:08:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="526065135"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by fmsmga008.fm.intel.com with ESMTP; 11 Oct 2021 10:08:28 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 11 Oct 2021 10:08:27 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 11 Oct 2021 22:38:23 +0530
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.012;
+ Mon, 11 Oct 2021 10:08:22 -0700
+From: "Tang, CQ" <cq.tang@intel.com>
+To: "C, Ramalingam" <ramalingam.c@intel.com>, dri-devel
+ <dri-devel@lists.freedesktop.org>, intel-gfx
+ <intel-gfx@lists.freedesktop.org>
+CC: Daniel Vetter <daniel@ffwll.ch>, "Auld, Matthew" <matthew.auld@intel.com>, 
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>
+Thread-Topic: [PATCH 14/14] Doc/gpu/rfc/i915: i915 DG2 uAPI
+Thread-Index: AQHXvrputm43rCifYESyi86XFy9daKvN/vpQ
+Date: Mon, 11 Oct 2021 17:08:21 +0000
+Message-ID: <5e402f44acc1452a95ab4f44d06ace00@intel.com>
+References: <20211011161155.6397-1-ramalingam.c@intel.com>
+ <20211011161155.6397-15-ramalingam.c@intel.com>
+In-Reply-To: <20211011161155.6397-15-ramalingam.c@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Marco Elver <elver@google.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, kasan-dev@googlegroups.com,
- Vijayanand Jitta <vjitta@codeaurora.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Andrey Ryabinin <ryabinin.a.a@gmail.com>,
- Alexander Potapenko <glider@google.com>,
- Andrey Konovalov <andreyknvl@gmail.com>, Dmitry Vyukov <dvyukov@google.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Oliver Glitta
- <glittao@gmail.com>, Imran Khan <imran.f.khan@oracle.com>
-References: <20211007095815.3563-1-vbabka@suse.cz>
- <YV7TnygBLdHJjmRW@elver.google.com>
-From: Vlastimil Babka <vbabka@suse.cz>
-In-Reply-To: <YV7TnygBLdHJjmRW@elver.google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] lib/stackdepot: allow optional init and
- stack_table allocation by kvmalloc()
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 14/14] Doc/gpu/rfc/i915: i915 DG2 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,174 +73,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/7/21 13:01, Marco Elver wrote:
-> On Thu, Oct 07, 2021 at 11:58AM +0200, Vlastimil Babka wrote:
-> [...] 
->> - Add a CONFIG_STACKDEPOT_ALWAYS_INIT flag to keep using the current
->>   well-defined point of allocation as part of mem_init(). Make CONFIG_KASAN
->>   select this flag.
->> - Other users have to call stack_depot_init() as part of their own init when
->>   it's determined that stack depot will actually be used. This may depend on
->>   both config and runtime conditions. Convert current users which are
->>   page_owner and several in the DRM subsystem. Same will be done for SLUB
->>   later.
->> - Because the init might now be called after the boot-time memblock allocation
->>   has given all memory to the buddy allocator, change stack_depot_init() to
->>   allocate stack_table with kvmalloc() when memblock is no longer available.
->>   Also handle allocation failure by disabling stackdepot (could have
->>   theoretically happened even with memblock allocation previously), and don't
->>   unnecessarily align the memblock allocation to its own size anymore.
-> ...
->> Hi, I'd appreciate review of the DRM parts - namely that I've got correctly
->> that stack_depot_init() is called from the proper init functions and iff
->> stack_depot_save() is going to be used later. Thanks!
-> 
-> For ease of review between stackdepot and DRM changes, I thought it'd be
-> nice to split into 2 patches, but not sure it'll work, because you're
-> changing the semantics of the normal STACKDEPOT.
 
-Yeah, that's why it's a single patch. As the DRM parts are clearly separated
-to their files, I think review should be fine.
 
-> One option would be to flip it around, and instead have
-> STACKDEPOT_LAZY_INIT, but that seems counter-intuitive if the majority
-> of STACKDEPOT users are LAZY_INIT users.
+> -----Original Message-----
+> From: C, Ramalingam <ramalingam.c@intel.com>
+> Sent: Monday, October 11, 2021 9:12 AM
+> To: dri-devel <dri-devel@lists.freedesktop.org>; intel-gfx <intel-
+> gfx@lists.freedesktop.org>
+> Cc: Daniel Vetter <daniel@ffwll.ch>; Auld, Matthew
+> <matthew.auld@intel.com>; Tang, CQ <cq.tang@intel.com>; Hellstrom,
+> Thomas <thomas.hellstrom@intel.com>; C, Ramalingam
+> <ramalingam.c@intel.com>; Daniel Vetter <daniel.vetter@ffwll.ch>
+> Subject: [PATCH 14/14] Doc/gpu/rfc/i915: i915 DG2 uAPI
+>=20
+> Details of the new features getting added as part of DG2 enabling and the=
+ir
+> implicit impact on the uAPI.
+>=20
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> cc: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  Documentation/gpu/rfc/i915_dg2.rst | 47
+> ++++++++++++++++++++++++++++++
+>  Documentation/gpu/rfc/index.rst    |  3 ++
+>  2 files changed, 50 insertions(+)
+>  create mode 100644 Documentation/gpu/rfc/i915_dg2.rst
+>=20
+> diff --git a/Documentation/gpu/rfc/i915_dg2.rst
+> b/Documentation/gpu/rfc/i915_dg2.rst
+> new file mode 100644
+> index 000000000000..a83ca26cd758
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_dg2.rst
+> @@ -0,0 +1,47 @@
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +I915 DG2 RFC Section
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Upstream plan
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +Plan to upstream the DG2 enabling is:
+> +
+> +* Merge basic HW enabling for DG2(Still without pciid)
+> +* Merge the 64k support for lmem
+> +* Merge the flat CCS enabling patches
+> +* Add the pciid for DG2 and enable the DG2 in CI
+> +
+> +
+> +64K page support for lmem
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+> +On DG2 hw, local-memory supports minimum GTT page size of 64k only. 4k
+> is not supported anymore.
+> +
+> +DG2 hw dont support the 64k(lmem) and 4k(smem) pages in the same
+> ppgtt
+> +Page table. Refer the struct drm_i915_gem_create_ext for the implication
+> of handling the 64k page size.
+> +
+> +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> +        :functions: drm_i915_gem_create_ext
+> +
+> +
+> +flat CCS support for lmem
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+> +Gen 12+ devices support 3D surfaces compression and compression
+> +formats. This is accomplished by an additional compression control state
+> (CCS) stored for each surface.
 
-Agree.
+General introduction, OK.
 
-> On the other hand, the lazy initialization mode you're introducing
-> requires an explicit stack_depot_init() call somewhere and isn't as
-> straightforward as before.
-> 
-> Not sure what is best. My intuition tells me STACKDEPOT_LAZY_INIT would
-> be safer as it's a deliberate opt-in to the lazy initialization
-> behaviour.
+> +
+> +Gen 12 devices(TGL and DG1) stores compression state in a separate regio=
+n
+> of memory.
+> +It is managed by userspace and has an associated set of userspace
+> +managed page tables used by hardware for address translation.
 
-I think it should be fine with ALWAYS_INIT. There are not many stackdepot
-users being added, and anyone developing a new one will very quickly find
-out if they forget to call stack_depot_init()?
+I don't know the purpose of this paragraph, do we need to mention TGL/DG1? =
+This is "Gen 12", not "Gen 12+" in first paragraph.
 
-> Preferences?
-> 
-> [...]
->> --- a/drivers/gpu/drm/drm_mm.c
->> +++ b/drivers/gpu/drm/drm_mm.c
->> @@ -980,6 +980,10 @@ void drm_mm_init(struct drm_mm *mm, u64 start, u64 size)
->>  	add_hole(&mm->head_node);
->>  
->>  	mm->scan_active = 0;
->> +
->> +#ifdef CONFIG_DRM_DEBUG_MM
->> +	stack_depot_init();
->> +#endif
-> 
-> DRM_DEBUG_MM implies STACKDEPOT. Not sure what is more readable to drm
-> maintainers, but perhaps it'd be nicer to avoid the #ifdef here, and
-> instead just keep the no-op version of stack_depot_init() in
-> <linux/stackdepot.h>. I don't have a strong preference.
+> +
+> +In Gen 12.5 devices(XEXPSDV and DG2) Flat CCS is introduced to replace
+> +the userspace managed AUX pagetable with the flat indexed region of
+> +device memory for storing the compression state
 
-Hm, but in case STACKDEPOT is also selected by something else (e.g.
-CONFIG_PAGE_OWNER) which uses lazy init but isn't enabled on boot, then
-without #ifdef CONFIG_DRM_DEBUG_MM above, this code would call a
-stack_depot_init() (that's not a no-op) even in case it's not going to be
-using it, so not what we want to achieve.
-But it could be changed to use IS_ENABLED() if that's preferred by DRM folks.
+Because this is DG2 document, do we need to mention XeHP SDV?
 
-BTW it's possible that there won't be any DRM review because this failed to
-apply:
-https://patchwork.freedesktop.org/series/95549/
-DRM folks, any hint how to indicate that the base was next-20211001?
 
->> @@ -30,13 +40,4 @@ int stack_depot_snprint(depot_stack_handle_t handle, char *buf, size_t size,
->>  
->>  void stack_depot_print(depot_stack_handle_t stack);
->>  
->> -#ifdef CONFIG_STACKDEPOT
->> -int stack_depot_init(void);
->> -#else
->> -static inline int stack_depot_init(void)
->> -{
->> -	return 0;
->> -}
->> -#endif	/* CONFIG_STACKDEPOT */
->> -
-> 
-> Could we avoid the IS_ENABLED() in init/main.c by adding a wrapper here:
-> 
-> +#ifdef CONFIG_STACKDEPOT_ALWAYS_INIT
-> +static inline int stack_depot_early_init(void)	{ return stack_depot_init(); }
-> +#else
-> +static inline int stack_depot_early_init(void)	{ return 0; }
-> +#endif	/* CONFIG_STACKDEPOT_ALWAYS_INIT */
+> +
+> +GOP Driver steals a chunk of memory for the CCS surface corresponding
+> +to the entire range of local memory. The memory required for the CCS of
+> +the entire local memory is
+> +1/256 of the main local memory. The Gop driver will also program a
+> +secure register (XEHPSDV_FLAT_CCS_BASE_ADDR 0x4910) with this address
+> value.
 
-We could, but it's a wrapper made for only a single caller...
+I think it is not necessary to say the CCS base register. This is internal =
+detail.
 
->>  #endif
->> diff --git a/init/main.c b/init/main.c
->> index ee4d3e1b3eb9..b6a5833d98f5 100644
->> --- a/init/main.c
->> +++ b/init/main.c
->> @@ -844,7 +844,8 @@ static void __init mm_init(void)
->>  	init_mem_debugging_and_hardening();
->>  	kfence_alloc_pool();
->>  	report_meminit();
->> -	stack_depot_init();
->> +	if (IS_ENABLED(CONFIG_STACKDEPOT_ALWAYS_INIT))
->> +		stack_depot_init();
-> 
-> I'd push the decision of when to call this into <linux/stackdepot.h> via
-> wrapper stack_depot_early_init().
+> +
+> +So the Total local memory available for driver allocation is Total lmem
+> +size - CCS data size
 
-No strong preferrences, if you think it's worth it.
+Well, we need to minus the GTT, lmem stolen (DG2 only), and WOPCM.  Maybe j=
+ust say, total local memory available is smaller because of other reserved =
+regions.
 
->>  	mem_init();
->>  	mem_init_print_info();
->>  	/* page_owner must be initialized after buddy is ready */
->> diff --git a/lib/Kconfig b/lib/Kconfig
->> index 5e7165e6a346..df6bcf0a4cc3 100644
->> --- a/lib/Kconfig
->> +++ b/lib/Kconfig
->> @@ -671,6 +671,9 @@ config STACKDEPOT
->>  	bool
->>  	select STACKTRACE
->>  
->> +config STACKDEPOT_ALWAYS_INIT
->> +	bool
-> 
-> It looks like every users of STACKDEPOT_ALWAYS_INIT will also select
-> STACKDEPOT, so we could just make this:
-> 
-> +config STACKDEPOT_ALWAYS_INIT
-> +	bool
-> +	select STACKDEPOT
-> 
-> And remove the redundant 'select STACKDEPOT' in Kconfig.kasan.
+> +
+> +Flat CCS data needs to be cleared when a lmem object is allocated. And
+> +CCS data can be copied in and out of CCS region through
+> XY_CTRL_SURF_COPY_BLT.
 
-Right, will do, if KConfig resolver doesn't bite me.
+OK.
 
->>  config STACK_HASH_ORDER
->>  	int "stack depot hash size (12 => 4KB, 20 => 1024KB)"
->>  	range 12 20
->> diff --git a/lib/Kconfig.kasan b/lib/Kconfig.kasan
->> index cdc842d090db..695deb603c66 100644
->> --- a/lib/Kconfig.kasan
->> +++ b/lib/Kconfig.kasan
->> @@ -39,6 +39,7 @@ menuconfig KASAN
->>  		   HAVE_ARCH_KASAN_HW_TAGS
->>  	depends on (SLUB && SYSFS) || (SLAB && !DEBUG_SLAB)
->>  	select STACKDEPOT
->> +	select STACKDEPOT_ALWAYS_INIT
-> 
-> [...]
->>  
->> -int __init stack_depot_init(void)
->> +/*
->> + * __ref because of memblock_alloc(), which will not be actually called after
->> + * the __init code is gone
-> 
-> The reason is that after __init code is gone, slab_is_available() will
-> be true (might be worth adding to the comment).
+--CQ
 
-OK
+> diff --git a/Documentation/gpu/rfc/index.rst
+> b/Documentation/gpu/rfc/index.rst index 91e93a705230..afb320ed4028
+> 100644
+> --- a/Documentation/gpu/rfc/index.rst
+> +++ b/Documentation/gpu/rfc/index.rst
+> @@ -20,6 +20,9 @@ host such documentation:
+>=20
+>      i915_gem_lmem.rst
+>=20
+> +.. toctree::
+> +    i915_dg2.rst
+> +
+>  .. toctree::
+>=20
+>      i915_scheduler.rst
+> --
+> 2.20.1
 
-Thanks for the review!
