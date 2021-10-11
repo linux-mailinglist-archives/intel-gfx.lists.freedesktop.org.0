@@ -2,75 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D53A4291BD
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 16:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C29774292B7
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 17:01:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89DF56E491;
-	Mon, 11 Oct 2021 14:27:54 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C4B66E4F4;
- Mon, 11 Oct 2021 14:15:31 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id r18so56808481wrg.6;
- Mon, 11 Oct 2021 07:15:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=dLxsJUpDhzPmoSrF1qZa4Zl9U4s5BEcVvitiq3ldBzs=;
- b=Mn/WEBLhoPojIdasKOYB5LhCocKhVbLlACzAwBczfwTyYpXmjoT3McGcuu+JDd141P
- 3AnFKTI1Sz5UOr/2c3ywRwQsUyxW767ajHj3fHlmgGHDWkqnoqBSIybMPlZRkg5VswOi
- SLsotX2bQGEMW3vODiry31+QiZ5fLEg+WhTAqnqZWkG5uX6zj8PEeLITv4miVDPE/nzo
- bonvBUEtb02b2B8DSW1B2/9P1vpJVaO5oKooPXMSU8HDTZTD3gf8d7nanzdQH5qN95SZ
- XyneiU+T2ZRXbzjl5U50wDHxfs0bT8cERLFA1mPcs+Dy6WMsXaTJMHVvWYCEKBLgLkIO
- dYvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=dLxsJUpDhzPmoSrF1qZa4Zl9U4s5BEcVvitiq3ldBzs=;
- b=UzgXlnZa4sUwaSOpucs0bCK0QD9eeAgm6moc4XzUtmN2Fko0Pm+LIFa75nEjwIlICc
- sy187i3ikVVEcHzQKQA/JKoH3KzB+3qChRXuBMRoplGzl4VCS9ZFNbdtiR6Cnyu8jxRy
- WI1KwiAJ+2qTiPVHb94TrW6EQNIAC1xS45A3zoowXCiWOylDnuC3cTT56rC8uoyvDUNI
- 8m0iWi0y6axHHOiq0ll4sja4CUs7sTdjg6zguPgQ1cLg1Bh5mXDyGH58S9VshXI4uEZ8
- VakVbiZ9DC+/PmLWp2foEzL4Wae/u8e6JlC0hiRSqKS0tWhQxIOq8ix0Jtv74o18XAl1
- EzHQ==
-X-Gm-Message-State: AOAM5327zbfil8px2wW9ChaHaIedW8EuxmMy8gNkRDUNxV8jztiigJZo
- yZFhpESSquUGcju483kMukA=
-X-Google-Smtp-Source: ABdhPJy/+QpPnkBOuHDSZzntKKe7Q8Ee96pGXUq+k16RcQqTRYLhJiw/aHSwZ/axPkNutqppOhNWhQ==
-X-Received: by 2002:adf:a114:: with SMTP id o20mr24380239wro.95.1633961729555; 
- Mon, 11 Oct 2021 07:15:29 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:fefa:f968:b0f6:6172?
- ([2a02:908:1252:fb60:fefa:f968:b0f6:6172])
- by smtp.gmail.com with ESMTPSA id z8sm8053645wrq.16.2021.10.11.07.15.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Oct 2021 07:15:28 -0700 (PDT)
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Intel-gfx@lists.freedesktop.org
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-media@vger.kernel.org
-References: <20211008095007.972693-1-tvrtko.ursulin@linux.intel.com>
- <9eca89ab-f954-8b2a-7af5-b4a63b90eed0@amd.com>
- <67f413c4-b654-c7ea-bc4f-6b42418c7486@linux.intel.com>
- <85489b72-6001-98d8-d66a-395e05cd3d01@amd.com>
- <8f93439a-739d-835d-95e9-59ffb7380a27@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <a9f2661f-6f67-1cd7-e75d-c61aaaa381b4@gmail.com>
-Date: Mon, 11 Oct 2021 16:15:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96EA36E500;
+	Mon, 11 Oct 2021 15:01:20 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BAA06E4A2;
+ Mon, 11 Oct 2021 15:01:18 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10134"; a="227179407"
+X-IronPort-AV: E=Sophos;i="5.85,364,1624345200"; d="scan'208";a="227179407"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 07:56:43 -0700
+X-IronPort-AV: E=Sophos;i="5.85,364,1624345200"; d="scan'208";a="569984412"
+Received: from phutoant-mobl3.ccr.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.44.196])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 07:56:41 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 11 Oct 2021 15:56:12 +0100
+Message-Id: <20211011145619.1397733-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-In-Reply-To: <8f93439a-739d-835d-95e9-59ffb7380a27@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Mailman-Approved-At: Mon, 11 Oct 2021 14:27:53 +0000
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH] dma-resv: Fix
- dma_resv_get_fences and dma_resv_copy_fences after conversion
+Subject: [Intel-gfx] [PATCH v8 1/8] drm/i915/gem: Break out some shmem
+ backend utils
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,134 +49,335 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 11.10.21 um 14:32 schrieb Tvrtko Ursulin:
->
-> On 08/10/2021 13:19, Christian König wrote:
->> Am 08.10.21 um 12:49 schrieb Tvrtko Ursulin:
->>>
->>> On 08/10/2021 11:21, Christian König wrote:
->>>> Am 08.10.21 um 11:50 schrieb Tvrtko Ursulin:
->>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>
->>>>> Cache the count of shared fences in the iterator to avoid 
->>>>> dereferencing
->>>>> the dma_resv_object outside the RCU protection. Otherwise iterator 
->>>>> and its
->>>>> users can observe an incosistent state which makes it impossible 
->>>>> to use
->>>>> safely.
->>>>
->>>> Ah, of course! I've been staring at the code the whole morning and 
->>>> couldn't see it.
->>>>
->>>> Going to write a testcase to cover that.
->>>>
->>>>> Such as:
->>>>>
->>>>> <6> [187.517041] [IGT] gem_sync: executing
->>>>> <7> [187.536343] i915 0000:00:02.0: 
->>>>> [drm:i915_gem_context_create_ioctl [i915]] HW context 1 created
->>>>> <7> [187.536793] i915 0000:00:02.0: 
->>>>> [drm:i915_gem_context_create_ioctl [i915]] HW context 1 created
->>>>> <6> [187.551235] [IGT] gem_sync: starting subtest basic-many-each
->>>>> <1> [188.935462] BUG: kernel NULL pointer dereference, address: 
->>>>> 0000000000000010
->>>>> <1> [188.935485] #PF: supervisor write access in kernel mode
->>>>> <1> [188.935495] #PF: error_code(0x0002) - not-present page
->>>>> <6> [188.935504] PGD 0 P4D 0
->>>>> <4> [188.935512] Oops: 0002 [#1] PREEMPT SMP NOPTI
->>>>> <4> [188.935521] CPU: 2 PID: 1467 Comm: gem_sync Not tainted 
->>>>> 5.15.0-rc4-CI-Patchwork_21264+ #1
->>>>> <4> [188.935535] Hardware name:  /NUC6CAYB, BIOS 
->>>>> AYAPLCEL.86A.0049.2018.0508.1356 05/08/2018
->>>>> <4> [188.935546] RIP: 0010:dma_resv_get_fences+0x116/0x2d0
->>>>> <4> [188.935560] Code: 10 85 c0 7f c9 be 03 00 00 00 e8 15 8b df 
->>>>> ff eb bd e8 8e c6 ff ff eb b6 41 8b 04 24 49 8b 55 00 48 89 e7 8d 
->>>>> 48 01 41 89 0c 24 <4c> 89 34 c2 e8 41 f2 ff ff 49 89 c6 48 85 c0 
->>>>> 75 8c 48 8b 44 24 10
->>>>> <4> [188.935583] RSP: 0018:ffffc900011dbcc8 EFLAGS: 00010202
->>>>> <4> [188.935593] RAX: 0000000000000000 RBX: 00000000ffffffff RCX: 
->>>>> 0000000000000001
->>>>> <4> [188.935603] RDX: 0000000000000010 RSI: ffffffff822e343c RDI: 
->>>>> ffffc900011dbcc8
->>>>> <4> [188.935613] RBP: ffffc900011dbd48 R08: ffff88812d255bb8 R09: 
->>>>> 00000000fffffffe
->>>>> <4> [188.935623] R10: 0000000000000001 R11: 0000000000000000 R12: 
->>>>> ffffc900011dbd44
->>>>> <4> [188.935633] R13: ffffc900011dbd50 R14: ffff888113d29cc0 R15: 
->>>>> 0000000000000000
->>>>> <4> [188.935643] FS:  00007f68d17e9700(0000) 
->>>>> GS:ffff888277900000(0000) knlGS:0000000000000000
->>>>> <4> [188.935655] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->>>>> <4> [188.935665] CR2: 0000000000000010 CR3: 000000012d0a4000 CR4: 
->>>>> 00000000003506e0
->>>>> <4> [188.935676] Call Trace:
->>>>> <4> [188.935685]  i915_gem_object_wait+0x1ff/0x410 [i915]
->>>>> <4> [188.935988]  i915_gem_wait_ioctl+0xf2/0x2a0 [i915]
->>>>> <4> [188.936272]  ? i915_gem_object_wait+0x410/0x410 [i915]
->>>>> <4> [188.936533]  drm_ioctl_kernel+0xae/0x140
->>>>> <4> [188.936546]  drm_ioctl+0x201/0x3d0
->>>>> <4> [188.936555]  ? i915_gem_object_wait+0x410/0x410 [i915]
->>>>> <4> [188.936820]  ? __fget_files+0xc2/0x1c0
->>>>> <4> [188.936830]  ? __fget_files+0xda/0x1c0
->>>>> <4> [188.936839]  __x64_sys_ioctl+0x6d/0xa0
->>>>> <4> [188.936848]  do_syscall_64+0x3a/0xb0
->>>>> <4> [188.936859] entry_SYSCALL_64_after_hwframe+0x44/0xae
->>>>>
->>>>> If the shared object has changed during the RCU unlocked period
->>>>> callers will correctly handle the restart on the next iteration.
->>>>>
->>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>> Fixes: 96601e8a4755 ("dma-buf: use new iterator in 
->>>>> dma_resv_copy_fences")
->>>>> Fixes: d3c80698c9f5 ("dma-buf: use new iterator in 
->>>>> dma_resv_get_fences v3")
->>>>> Closes: 
->>>>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fdrm%2Fintel%2F-%2Fissues%2F4274&amp;data=04%7C01%7Cchristian.koenig%40amd.com%7Cc22feea06a3f4285cdac08d98a495984%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637692870805160909%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=6oPR30sWnJe04I4GlhhvJWX3QvwKFIOMW1uOIyWZFOE%3D&amp;reserved=0 
->>>>>
->>>>> Cc: Christian König <christian.koenig@amd.com>
->>>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
->>>>> Cc: Sumit Semwal <sumit.semwal@linaro.org>
->>>>> Cc: linux-media@vger.kernel.org
->>>>> Cc: dri-devel@lists.freedesktop.org
->>>>> Cc: linaro-mm-sig@lists.linaro.org
->>>>
->>>> Maybe we should remove cursor->fences altogether, but either way 
->>>> the patch is Reviewed-by: Christian König <christian.koenig@amd.com>
->>>>
->>>> Please push to drm-misc-next ASAP.
->>>
->>> Not sure I can or if my push permissions are limited to Intel 
->>> branches. I can try once CI gives a green light.
->>
->> If it doesn't work just ping me and I will push it.
->
-> It finally passed CI but it looks like you'll need to push it:
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Done.
+Break out some shmem backend utils for future reuse by the TTM backend:
+shmem_alloc_st(), shmem_free_st() and __shmem_writeback() which we can
+use to provide a shmem-backed TTM page pool for cached-only TTM
+buffer objects.
 
-Christian.
+Main functional change here is that we now compute the page sizes using
+the dma segments rather than using the physical page address segments.
 
->
-> tursulin@tursulin-mobl2:~/wc/dim/src$ dim push-branch drm-misc-next
-> Enumerating objects: 15, done.
-> Counting objects: 100% (15/15), done.
-> Delta compression using up to 8 threads
-> Compressing objects: 100% (8/8), done.
-> Writing objects: 100% (8/8), 2.32 KiB | 593.00 KiB/s, done.
-> Total 8 (delta 7), reused 0 (delta 0), pack-reused 0
-> error: remote unpack failed: unable to create temporary object directory
-> To ssh://git.freedesktop.org/git/drm/drm-misc
->  ! [remote rejected]           drm-misc-next -> drm-misc-next 
-> (unpacker error)
-> error: failed to push some refs to 
-> 'ssh://git.freedesktop.org/git/drm/drm-misc'
->
-> Regards,
->
-> Tvrtko
-> _______________________________________________
-> Linaro-mm-sig mailing list
-> Linaro-mm-sig@lists.linaro.org
-> https://lists.linaro.org/mailman/listinfo/linaro-mm-sig
+v2(Reported-by: kernel test robot <lkp@intel.com>)
+    - Make sure we initialise the mapping on the error path in
+      shmem_get_pages()
+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 181 +++++++++++++---------
+ 1 file changed, 106 insertions(+), 75 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index 11f072193f3b..36b711ae9e28 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -25,46 +25,61 @@ static void check_release_pagevec(struct pagevec *pvec)
+ 	cond_resched();
+ }
+ 
+-static int shmem_get_pages(struct drm_i915_gem_object *obj)
++static void shmem_free_st(struct sg_table *st, struct address_space *mapping,
++			  bool dirty, bool backup)
+ {
+-	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+-	struct intel_memory_region *mem = obj->mm.region;
+-	const unsigned long page_count = obj->base.size / PAGE_SIZE;
++	struct sgt_iter sgt_iter;
++	struct pagevec pvec;
++	struct page *page;
++
++	mapping_clear_unevictable(mapping);
++
++	pagevec_init(&pvec);
++	for_each_sgt_page(page, sgt_iter, st) {
++		if (dirty)
++			set_page_dirty(page);
++
++		if (backup)
++			mark_page_accessed(page);
++
++		if (!pagevec_add(&pvec, page))
++			check_release_pagevec(&pvec);
++	}
++	if (pagevec_count(&pvec))
++		check_release_pagevec(&pvec);
++
++	sg_free_table(st);
++	kfree(st);
++}
++
++static struct sg_table *shmem_alloc_st(struct drm_i915_private *i915,
++				       size_t size, struct intel_memory_region *mr,
++				       struct address_space *mapping,
++				       unsigned int max_segment)
++{
++	const unsigned long page_count = size / PAGE_SIZE;
+ 	unsigned long i;
+-	struct address_space *mapping;
+ 	struct sg_table *st;
+ 	struct scatterlist *sg;
+-	struct sgt_iter sgt_iter;
+ 	struct page *page;
+ 	unsigned long last_pfn = 0;	/* suppress gcc warning */
+-	unsigned int max_segment = i915_sg_segment_size();
+-	unsigned int sg_page_sizes;
+ 	gfp_t noreclaim;
+ 	int ret;
+ 
+-	/*
+-	 * Assert that the object is not currently in any GPU domain. As it
+-	 * wasn't in the GTT, there shouldn't be any way it could have been in
+-	 * a GPU cache
+-	 */
+-	GEM_BUG_ON(obj->read_domains & I915_GEM_GPU_DOMAINS);
+-	GEM_BUG_ON(obj->write_domain & I915_GEM_GPU_DOMAINS);
+-
+ 	/*
+ 	 * If there's no chance of allocating enough pages for the whole
+ 	 * object, bail early.
+ 	 */
+-	if (obj->base.size > resource_size(&mem->region))
+-		return -ENOMEM;
++	if (size > resource_size(&mr->region))
++		return ERR_PTR(-ENOMEM);
+ 
+ 	st = kmalloc(sizeof(*st), GFP_KERNEL);
+ 	if (!st)
+-		return -ENOMEM;
++		return ERR_PTR(-ENOMEM);
+ 
+-rebuild_st:
+ 	if (sg_alloc_table(st, page_count, GFP_KERNEL)) {
+ 		kfree(st);
+-		return -ENOMEM;
++		return ERR_PTR(-ENOMEM);
+ 	}
+ 
+ 	/*
+@@ -73,14 +88,12 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	 *
+ 	 * Fail silently without starting the shrinker
+ 	 */
+-	mapping = obj->base.filp->f_mapping;
+ 	mapping_set_unevictable(mapping);
+ 	noreclaim = mapping_gfp_constraint(mapping, ~__GFP_RECLAIM);
+ 	noreclaim |= __GFP_NORETRY | __GFP_NOWARN;
+ 
+ 	sg = st->sgl;
+ 	st->nents = 0;
+-	sg_page_sizes = 0;
+ 	for (i = 0; i < page_count; i++) {
+ 		const unsigned int shrink[] = {
+ 			I915_SHRINK_BOUND | I915_SHRINK_UNBOUND,
+@@ -135,10 +148,9 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 		if (!i ||
+ 		    sg->length >= max_segment ||
+ 		    page_to_pfn(page) != last_pfn + 1) {
+-			if (i) {
+-				sg_page_sizes |= sg->length;
++			if (i)
+ 				sg = sg_next(sg);
+-			}
++
+ 			st->nents++;
+ 			sg_set_page(sg, page, PAGE_SIZE, 0);
+ 		} else {
+@@ -149,14 +161,65 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 		/* Check that the i965g/gm workaround works. */
+ 		GEM_BUG_ON(gfp & __GFP_DMA32 && last_pfn >= 0x00100000UL);
+ 	}
+-	if (sg) { /* loop terminated early; short sg table */
+-		sg_page_sizes |= sg->length;
++	if (sg) /* loop terminated early; short sg table */
+ 		sg_mark_end(sg);
+-	}
+ 
+ 	/* Trim unused sg entries to avoid wasting memory. */
+ 	i915_sg_trim(st);
+ 
++	return st;
++err_sg:
++	sg_mark_end(sg);
++	if (sg != st->sgl) {
++		shmem_free_st(st, mapping, false, false);
++	} else {
++		mapping_clear_unevictable(mapping);
++		sg_free_table(st);
++		kfree(st);
++	}
++
++	/*
++	 * shmemfs first checks if there is enough memory to allocate the page
++	 * and reports ENOSPC should there be insufficient, along with the usual
++	 * ENOMEM for a genuine allocation failure.
++	 *
++	 * We use ENOSPC in our driver to mean that we have run out of aperture
++	 * space and so want to translate the error from shmemfs back to our
++	 * usual understanding of ENOMEM.
++	 */
++	if (ret == -ENOSPC)
++		ret = -ENOMEM;
++
++	return ERR_PTR(ret);
++}
++
++static int shmem_get_pages(struct drm_i915_gem_object *obj)
++{
++	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++	struct intel_memory_region *mem = obj->mm.region;
++	struct address_space *mapping = obj->base.filp->f_mapping;
++	const unsigned long page_count = obj->base.size / PAGE_SIZE;
++	unsigned int max_segment = i915_sg_segment_size();
++	struct sg_table *st;
++	struct sgt_iter sgt_iter;
++	struct page *page;
++	int ret;
++
++	/*
++	 * Assert that the object is not currently in any GPU domain. As it
++	 * wasn't in the GTT, there shouldn't be any way it could have been in
++	 * a GPU cache
++	 */
++	GEM_BUG_ON(obj->read_domains & I915_GEM_GPU_DOMAINS);
++	GEM_BUG_ON(obj->write_domain & I915_GEM_GPU_DOMAINS);
++
++rebuild_st:
++	st = shmem_alloc_st(i915, obj->base.size, mem, mapping, max_segment);
++	if (IS_ERR(st)) {
++		ret = PTR_ERR(st);
++		goto err_st;
++	}
++
+ 	ret = i915_gem_gtt_prepare_pages(obj, st);
+ 	if (ret) {
+ 		/*
+@@ -168,6 +231,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 			for_each_sgt_page(page, sgt_iter, st)
+ 				put_page(page);
+ 			sg_free_table(st);
++			kfree(st);
+ 
+ 			max_segment = PAGE_SIZE;
+ 			goto rebuild_st;
+@@ -200,28 +264,12 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	if (IS_JSL_EHL(i915) && obj->flags & I915_BO_ALLOC_USER)
+ 		obj->cache_dirty = true;
+ 
+-	__i915_gem_object_set_pages(obj, st, sg_page_sizes);
++	__i915_gem_object_set_pages(obj, st, i915_sg_dma_sizes(st->sgl));
+ 
+ 	return 0;
+ 
+-err_sg:
+-	sg_mark_end(sg);
+ err_pages:
+-	mapping_clear_unevictable(mapping);
+-	if (sg != st->sgl) {
+-		struct pagevec pvec;
+-
+-		pagevec_init(&pvec);
+-		for_each_sgt_page(page, sgt_iter, st) {
+-			if (!pagevec_add(&pvec, page))
+-				check_release_pagevec(&pvec);
+-		}
+-		if (pagevec_count(&pvec))
+-			check_release_pagevec(&pvec);
+-	}
+-	sg_free_table(st);
+-	kfree(st);
+-
++	shmem_free_st(st, mapping, false, false);
+ 	/*
+ 	 * shmemfs first checks if there is enough memory to allocate the page
+ 	 * and reports ENOSPC should there be insufficient, along with the usual
+@@ -231,6 +279,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	 * space and so want to translate the error from shmemfs back to our
+ 	 * usual understanding of ENOMEM.
+ 	 */
++err_st:
+ 	if (ret == -ENOSPC)
+ 		ret = -ENOMEM;
+ 
+@@ -251,10 +300,8 @@ shmem_truncate(struct drm_i915_gem_object *obj)
+ 	obj->mm.pages = ERR_PTR(-EFAULT);
+ }
+ 
+-static void
+-shmem_writeback(struct drm_i915_gem_object *obj)
++static void __shmem_writeback(size_t size, struct address_space *mapping)
+ {
+-	struct address_space *mapping;
+ 	struct writeback_control wbc = {
+ 		.sync_mode = WB_SYNC_NONE,
+ 		.nr_to_write = SWAP_CLUSTER_MAX,
+@@ -270,10 +317,9 @@ shmem_writeback(struct drm_i915_gem_object *obj)
+ 	 * instead of invoking writeback so they are aged and paged out
+ 	 * as normal.
+ 	 */
+-	mapping = obj->base.filp->f_mapping;
+ 
+ 	/* Begin writeback on each dirty page */
+-	for (i = 0; i < obj->base.size >> PAGE_SHIFT; i++) {
++	for (i = 0; i < size >> PAGE_SHIFT; i++) {
+ 		struct page *page;
+ 
+ 		page = find_lock_page(mapping, i);
+@@ -296,6 +342,12 @@ shmem_writeback(struct drm_i915_gem_object *obj)
+ 	}
+ }
+ 
++static void
++shmem_writeback(struct drm_i915_gem_object *obj)
++{
++	__shmem_writeback(obj->base.size, obj->base.filp->f_mapping);
++}
++
+ void
+ __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
+ 				struct sg_table *pages,
+@@ -316,11 +368,6 @@ __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
+ 
+ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_table *pages)
+ {
+-	struct sgt_iter sgt_iter;
+-	struct pagevec pvec;
+-	struct page *page;
+-
+-	GEM_WARN_ON(IS_DGFX(to_i915(obj->base.dev)));
+ 	__i915_gem_object_release_shmem(obj, pages, true);
+ 
+ 	i915_gem_gtt_finish_pages(obj, pages);
+@@ -328,25 +375,9 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
+ 	if (i915_gem_object_needs_bit17_swizzle(obj))
+ 		i915_gem_object_save_bit_17_swizzle(obj, pages);
+ 
+-	mapping_clear_unevictable(file_inode(obj->base.filp)->i_mapping);
+-
+-	pagevec_init(&pvec);
+-	for_each_sgt_page(page, sgt_iter, pages) {
+-		if (obj->mm.dirty)
+-			set_page_dirty(page);
+-
+-		if (obj->mm.madv == I915_MADV_WILLNEED)
+-			mark_page_accessed(page);
+-
+-		if (!pagevec_add(&pvec, page))
+-			check_release_pagevec(&pvec);
+-	}
+-	if (pagevec_count(&pvec))
+-		check_release_pagevec(&pvec);
++	shmem_free_st(pages, file_inode(obj->base.filp)->i_mapping,
++		      obj->mm.dirty, obj->mm.madv == I915_MADV_WILLNEED);
+ 	obj->mm.dirty = false;
+-
+-	sg_free_table(pages);
+-	kfree(pages);
+ }
+ 
+ static void
+-- 
+2.26.3
 
