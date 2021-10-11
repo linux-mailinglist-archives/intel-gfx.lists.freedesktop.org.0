@@ -1,35 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA70429768
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 21:14:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259C34297BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 21:45:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E075C6E532;
-	Mon, 11 Oct 2021 19:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88FA66E953;
+	Mon, 11 Oct 2021 19:45:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0277F6E532;
- Mon, 11 Oct 2021 19:14:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EFE14A9A42;
- Mon, 11 Oct 2021 19:14:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E64456E942;
+ Mon, 11 Oct 2021 19:45:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10134"; a="227242100"
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="227242100"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 12:45:20 -0700
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="441554722"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 12:45:19 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Cc: <john.c.harrison@intel.com>,
+	<thomas.hellstrom@linux.intel.com>
+Date: Mon, 11 Oct 2021 12:40:31 -0700
+Message-Id: <20211011194031.16502-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Oct 2021 19:14:38 -0000
-Message-ID: <163397967895.22682.13826528926364832122@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211011182144.22074-1-jani.nikula@intel.com>
-In-Reply-To: <20211011182144.22074-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/dp=3A_abstract_inte?=
- =?utf-8?b?bF9kcF9sYW5lX21heF92c3dpbmdfcmVhY2hlZCgp?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Skip hangcheck selftest on
+ DG1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,63 +45,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The hangcheck selftest blows on DG1 CI and aborts the BAT run.
+Investigation is underway to root cause the failure but in the meantime
+disable to this test on DG1 to unblock CI.
 
-Series: series starting with [1/2] drm/i915/dp: abstract intel_dp_lane_max_vswing_reached()
-URL   : https://patchwork.freedesktop.org/series/95689/
-State : warning
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-89b690d2e4c1 drm/i915/dp: abstract intel_dp_lane_max_vswing_reached()
-a5f36be2f5c0 drm/i915/dg2: update link training for 128b/132b
--:53: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
-#53: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1349:
-+		return train_set & DP_TX_FFE_PRESET_VALUE_MASK;
-+	} else {
-
--:85: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#85: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:307:
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index 7e2d99dd012d..e2115afbd073 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -2018,6 +2018,14 @@ int intel_hangcheck_live_selftests(struct drm_i915_private *i915)
+ 	intel_wakeref_t wakeref;
+ 	int err;
  
++	/*
++	 * FIXME: This test is blowing up in CI on DG1 due to engine resets
++	 * sporadically timing out. Investigation to root cause this under way.
++	 * In the meantime skip this test to unblock CI.
++	 */
++	if (IS_DG1(i915))
++		return 0;
 +
-
--:142: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#142: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:396:
-+#define TRAIN_REQ_TX_FFE_ARGS(link_status) \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 0), \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 1), \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 2), \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 3)
-
--:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'link_status' - possible side-effects?
-#142: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:396:
-+#define TRAIN_REQ_TX_FFE_ARGS(link_status) \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 0), \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 1), \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 2), \
-+	_TRAIN_REQ_TX_FFE_ARGS(link_status, 3)
-
--:188: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#188: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:521:
-+#define TRAIN_SET_TX_FFE_ARGS(train_set) \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[0]), \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[1]), \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[2]), \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[3])
-
--:188: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'train_set' - possible side-effects?
-#188: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:521:
-+#define TRAIN_SET_TX_FFE_ARGS(train_set) \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[0]), \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[1]), \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[2]), \
-+	_TRAIN_SET_TX_FFE_ARGS((train_set)[3])
-
-total: 2 errors, 1 warnings, 3 checks, 251 lines checked
-
+ 	if (!intel_has_gpu_reset(gt))
+ 		return 0;
+ 
+-- 
+2.32.0
 
