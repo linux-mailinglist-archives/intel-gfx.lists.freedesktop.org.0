@@ -2,36 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0CF2429645
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 20:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D40DE42966F
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 20:05:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53CBB6E911;
-	Mon, 11 Oct 2021 18:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23C986E915;
+	Mon, 11 Oct 2021 18:05:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA846E52A;
- Mon, 11 Oct 2021 18:01:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10134"; a="207049640"
-X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="207049640"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2021 11:01:53 -0700
-X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="485980770"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2021 11:01:52 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC766E914;
+ Mon, 11 Oct 2021 18:05:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10134"; a="224348516"
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="224348516"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 11:05:35 -0700
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; d="scan'208";a="526090756"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 11:05:35 -0700
+Date: Mon, 11 Oct 2021 11:00:50 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Cc: <thomas.hellstrom@linux.intel.com>
-Date: Mon, 11 Oct 2021 10:57:04 -0700
-Message-Id: <20211011175704.28509-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.32.0
+To: Thanneeru Srinivasulu <thanneeru.srinivasulu@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ michal.wajdeczko@intel.com
+Message-ID: <20211011180050.GA29821@jons-linux-dev-box>
+References: <20211011152106.3424810-1-thanneeru.srinivasulu@intel.com>
+ <20211011152106.3424810-5-thanneeru.srinivasulu@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Increase timeout in
- requests perf selftest
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211011152106.3424810-5-thanneeru.srinivasulu@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Inject probe errors for
+ CT send
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,52 +52,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-perf_parallel_engines is micro benchmark to test i915 request
-scheduling. The test creates a thread per physical engine and submits
-NOP requests and waits the requests to complete in a loop. In execlists
-mode this works perfectly fine as powerful CPU has enough cores to feed
-each engine and process the CSBs. With GuC submission the uC gets
-overwhelmed as all threads feed into a single CTB channel and the GuC
-gets bombarded with CSBs as contexts are immediately switched in and out
-on the engines due to the zero runtime of the requests. When the GuC is
-overwhelmed scheduling of contexts is unfair due to the nature of the
-GuC scheduling algorithm. This behavior is understood and deemed
-acceptable as this micro benchmark isn't close to real world use case.
-Increasing the timeout of wait period for requests to complete. This
-makes the test understand that is ok for contexts to get starved in this
-scenario.
+On Mon, Oct 11, 2021 at 08:51:06PM +0530, Thanneeru Srinivasulu wrote:
+> Inject probe errors -ENXIO, -EBUSY for CT send.
+> 
+> Signed-off-by: Thanneeru Srinivasulu <thanneeru.srinivasulu@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 83764db0fd6d..8ffef3abd3da 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -765,6 +765,14 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+>  	u32 status = ~0; /* undefined */
+>  	int ret;
+>  
+> +	ret = i915_inject_probe_error(ct_to_i915(ct), -ENXIO);
+> +	if (ret)
+> +		return ret;
+> +
 
-A future patch / cleanup may just delete these micro benchmark tests as
-they basically mean nothing. We care about real workloads not made up
-ones.
+I don't see where -ENXIO is returned during an error that we handle
+unless I am missing something. If we don't return -ENXIO anywhere else I
+don't think we need to inject this error.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/selftests/i915_request.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Matt 
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index d67710d10615..6496671a113c 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -2805,7 +2805,7 @@ static int p_sync0(void *arg)
- 		i915_request_add(rq);
- 
- 		err = 0;
--		if (i915_request_wait(rq, 0, HZ / 5) < 0)
-+		if (i915_request_wait(rq, 0, HZ) < 0)
- 			err = -ETIME;
- 		i915_request_put(rq);
- 		if (err)
-@@ -2876,7 +2876,7 @@ static int p_sync1(void *arg)
- 		i915_request_add(rq);
- 
- 		err = 0;
--		if (prev && i915_request_wait(prev, 0, HZ / 5) < 0)
-+		if (prev && i915_request_wait(prev, 0, HZ) < 0)
- 			err = -ETIME;
- 		i915_request_put(prev);
- 		prev = rq;
--- 
-2.32.0
-
+> +	ret = i915_inject_probe_error(ct_to_i915(ct), -EBUSY);
+> +	if (ret)
+> +		return ret;
+> +
+>  	if (unlikely(!ct->enabled)) {
+>  		struct intel_guc *guc = ct_to_guc(ct);
+>  		struct intel_uc *uc = container_of(guc, struct intel_uc, guc);
+> -- 
+> 2.25.1
+> 
