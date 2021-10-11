@@ -2,100 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF106429744
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 21:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FDFE429756
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Oct 2021 21:10:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22D586E94B;
-	Mon, 11 Oct 2021 19:06:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74D2D6E94C;
+	Mon, 11 Oct 2021 19:10:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2048.outbound.protection.outlook.com [40.107.244.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA426E94B;
- Mon, 11 Oct 2021 19:06:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=em/OUhISLEejfw47cW2Y4pRmA2uxbJUmygrhqk9vDa0au/E8pgO1K3RhCYYH3PwOzILVcIHLatQVfX2mlmEEoNp2MaJvQ+d7gqCnx2lvmTgsV7TGPoHbLpHJDX15NvuqZxxE+LlM7onFgzWsEv59fNnf83zl3vclxYS0rvIg6NuWYqBmfm/7KSV9nYoYdowLTDOK+j1XADi6FRJD2M4UR5J7hTSYy8QMo19QK9vSmxWVsuA5yEvEUm4rSUybIsqZGjAUDtJzUAp2xRGWpaUAoYbhD3AYefaK1jSeZJ859QE5WhRMbGbJPD2FmkS7zyl0zmMneIzQ/UENrpIi3xUFTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z4HdPZCjumm9oelccI9dnuSZ4Ye025zhV4VIlx2eUyE=;
- b=Fi8jRrZDafeWTFhX7Yx9swFEgedKFGq8FWM6ax6ClnAuchSaEK1kfgdpbCHaC9ZiOJpsFLNIgtiIMc+SRfak8kwlv7X5Uf5/NuD443W7Lip02nBHNKAJMJkMyfCTGUNFxhKDSd9dTKdwQC/HyNDk9vb3dzX58FHLg7NZsi6cgeBliYJwUKfWZY9FRbZYHjaM8l/eLNQZN75xTG+bJV6rA32sLwS25Lod1iBBkUXmGOTs0xSeo5wZbh0Qz+wrlIaAhpGR+g5DMJ0O13NfqXSYfmAfF2LLAeeubES+rbPdwt4ah3ktGzSKFwzuQk1bPzm5gnUUYql9P56Gc065nuwJfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z4HdPZCjumm9oelccI9dnuSZ4Ye025zhV4VIlx2eUyE=;
- b=Mmbuw/iWCCc9iwJD9a+sOXq8OMzZpCWk+cnczhdgFKa7QHZtqQ4WQUI33LLAGH0AFhC1TE1mdgdDwzs2YZcqXs5K5aMFBYoPW7YG/JvzuCbmWq34LBaELs98y2bpxbV809aGGXd3wy6rQy/tISL5u3YrB1WTEoU5f/C3+53dR/Y=
-Received: from DM5PR15CA0062.namprd15.prod.outlook.com (2603:10b6:3:ae::24) by
- BN6PR12MB1476.namprd12.prod.outlook.com (2603:10b6:405:11::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4587.22; Mon, 11 Oct 2021 19:06:34 +0000
-Received: from DM6NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ae:cafe::dd) by DM5PR15CA0062.outlook.office365.com
- (2603:10b6:3:ae::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18 via Frontend
- Transport; Mon, 11 Oct 2021 19:06:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT039.mail.protection.outlook.com (10.13.172.83) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4587.18 via Frontend Transport; Mon, 11 Oct 2021 19:06:33 +0000
-Received: from brihaspati.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Mon, 11 Oct
- 2021 14:06:29 -0500
-From: Nirmoy Das <nirmoy.das@amd.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <intel-gfx@lists.freedesktop.org>, Nirmoy Das <nirmoy.das@amd.com>, "Lukas
- Wunner" <lukas@wunner.de>, David Airlie <airlied@linux.ie>, Daniel Vetter
- <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Date: Mon, 11 Oct 2021 21:06:07 +0200
-Message-ID: <20211011190607.104618-4-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211011190607.104618-1-nirmoy.das@amd.com>
-References: <20211011190607.104618-1-nirmoy.das@amd.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 027D96E94C;
+ Mon, 11 Oct 2021 19:10:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ED44AA9A42;
+ Mon, 11 Oct 2021 19:10:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1854531875423700374=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5fa6e686-b3ae-4672-76ac-08d98cea3e0a
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1476:
-X-Microsoft-Antispam-PRVS: <BN6PR12MB147600371FD9301BBE7AB1908BB59@BN6PR12MB1476.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cDiE2j57aUlmMCiwGHEFEcPbR9dUPKGa3M94DsV/qVkDf86GPzFQbM4xpIV3a/QiA9RnJSBl7dd84t2LbLaXpYq8cT0i0b3TWH+VTJyQo+W9ov+LQ/8qOMSb6mQEAv+fLtqEYgiygT0L09sLfEAAkv5uXk5XOSZ3yWc/mC/vE+TdmXn/6vMLY5EcdOJCFck4/w0vTGSpyluit9NA0Pqi1VhrK6lRMJXKjG6IGH/F/ixR20NZax10Tz65QKLwkrrPziUSIw/E/2O/40GhdIc3X0WYhLANknpZGFcskDke2LiFmX0NcjPpBw8Q34922ArFvc7iSe1EmtZzRPvIdn8roI+wSzmR2ziAwT5B+efKEnIqo/Bau6h4hnJ3iyeyiKR64KLiBQTMUuB/e/6AzZ6ypTfM4KyRc8mzpNASU/nXv8Kmm4xOL/RhMqnaVYC6+S0HVQEJxdaOxDJCKYNRE/LbvHrQfJtYJ5LFrfXj/CH+Fsoa0SWV/vb7MXYNzliOySlyEzJpCP6tMyA+5vRS1qKuEAmfBxW1IS59oJxbZL5cIi9WoKvr6NC3Bmzlegmt4r+nS0A/6HInYw6zeE6arfkSIc9yjt3On9fb0fKmsfYVFcluwe0DSn0Gqbkn/eARtxIPvI6BKukPbwHn51o+/hP1H7676h2yi5S/omk3Sn8eEuMetFjNdiF2lYWrQK0iCrpCAL4ydqcGUdmjzwA2bUGA3Z0PMkXIe87czT/odTXYxgs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(44832011)(316002)(508600001)(4326008)(336012)(81166007)(6666004)(186003)(70206006)(356005)(7696005)(1076003)(36860700001)(2906002)(70586007)(8936002)(26005)(47076005)(83380400001)(82310400003)(6916009)(5660300002)(36756003)(2616005)(8676002)(16526019)(86362001)(426003)(54906003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2021 19:06:33.9935 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5fa6e686-b3ae-4672-76ac-08d98cea3e0a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT039.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1476
-Subject: [Intel-gfx] [PATCH 4/4] vgaswitcheroo: do not check for NULL
- debugfs dentry
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 11 Oct 2021 19:10:22 -0000
+Message-ID: <163397942293.22680.11917978978909345712@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211011175704.28509-1-matthew.brost@intel.com>
+In-Reply-To: <20211011175704.28509-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Increase_timeout_in_requests_perf_selftest?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,37 +41,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Debugfs APIs returns encoded error on failure so use
-debugfs_lookup() instead of checking for NULL.
+--===============1854531875423700374==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-CC: Lukas Wunner <lukas@wunner.de>
-CC: David Airlie <airlied@linux.ie>
-CC: Daniel Vetter <daniel@ffwll.ch>
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-CC: Maxime Ripard <mripard@kernel.org>
-CC: Thomas Zimmermann <tzimmermann@suse.de>
+== Series Details ==
 
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
----
- drivers/gpu/vga/vga_switcheroo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915/selftests: Increase timeout in requests perf selftest
+URL   : https://patchwork.freedesktop.org/series/95688/
+State : failure
 
-diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
-index 365e6ddbe90f..a331525f0b32 100644
---- a/drivers/gpu/vga/vga_switcheroo.c
-+++ b/drivers/gpu/vga/vga_switcheroo.c
-@@ -914,7 +914,7 @@ static void vga_switcheroo_debugfs_fini(struct vgasr_priv *priv)
- static void vga_switcheroo_debugfs_init(struct vgasr_priv *priv)
- {
- 	/* already initialised */
--	if (priv->debugfs_root)
-+	if (debugfs_lookup("vgaswitcheroo", NULL))
- 		return;
+== Summary ==
 
- 	priv->debugfs_root = debugfs_create_dir("vgaswitcheroo", NULL);
---
-2.32.0
+CI Bug Log - changes from CI_DRM_10717 -> Patchwork_21307
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_21307 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21307, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21307:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gem:
+    - fi-pnv-d510:        [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10717/fi-pnv-d510/igt@i915_selftest@live@gem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-pnv-d510/igt@i915_selftest@live@gem.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21307 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][4] ([fdo#109271] / [i915#2403])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-pnv-d510/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][5] ([i915#3921]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10717/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+
+
+Participating hosts (37 -> 19)
+------------------------------
+
+  Missing    (18): fi-kbl-soraka fi-cml-u2 fi-kbl-7567u fi-bxt-dsi fi-bdw-5557u fi-jsl-1 fi-bsw-n3050 fi-glk-dsi fi-icl-u2 fi-bsw-cyan fi-kbl-7500u fi-cfl-8109u fi-skl-6700k2 fi-ehl-2 fi-bsw-kefka fi-bsw-nick fi-skl-6600u fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10717 -> Patchwork_21307
+
+  CI-20190529: 20190529
+  CI_DRM_10717: 81e199c3565fe949631d8d08343bd89632a8ec0c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21307: 5a3113b7da092778de3dbfe25fcb183fdf558b8f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5a3113b7da09 drm/i915/selftests: Increase timeout in requests perf selftest
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/index.html
+
+--===============1854531875423700374==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Increase timeout in requests perf selftest</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95688/">https://patchwork.freedesktop.org/series/95688/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10717 -&gt; Patchwork_21307</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21307 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21307, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21307:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gem:<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10717/fi-pnv-d510/igt@i915_selftest@live@gem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21307 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10717/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21307/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (37 -&gt; 19)</h2>
+<p>Missing    (18): fi-kbl-soraka fi-cml-u2 fi-kbl-7567u fi-bxt-dsi fi-bdw-5557u fi-jsl-1 fi-bsw-n3050 fi-glk-dsi fi-icl-u2 fi-bsw-cyan fi-kbl-7500u fi-cfl-8109u fi-skl-6700k2 fi-ehl-2 fi-bsw-kefka fi-bsw-nick fi-skl-6600u fi-kbl-r </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10717 -&gt; Patchwork_21307</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10717: 81e199c3565fe949631d8d08343bd89632a8ec0c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21307: 5a3113b7da092778de3dbfe25fcb183fdf558b8f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5a3113b7da09 drm/i915/selftests: Increase timeout in requests perf selftest</p>
+
+</body>
+</html>
+
+--===============1854531875423700374==--
