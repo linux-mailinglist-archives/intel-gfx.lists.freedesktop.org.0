@@ -2,143 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBF7542AF94
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 00:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3573E42AFAB
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 00:34:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEC5C6E9F4;
-	Tue, 12 Oct 2021 22:15:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A11BD89DF7;
+	Tue, 12 Oct 2021 22:34:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15BBC6E9F4
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 22:15:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="250691714"
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="250691714"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 15:15:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="626119879"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga001.fm.intel.com with ESMTP; 12 Oct 2021 15:15:41 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 12 Oct 2021 15:15:41 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Tue, 12 Oct 2021 15:15:41 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Tue, 12 Oct 2021 15:15:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kccHVyLmM1aa0wwuj35pbFLf2w6oMSSGcQvsl0Yqz6bPuohgGzlPoZIXcUOkxc+reM8tJmO8hQ08txiMMxubwu5bB8qQQjwVMie373cPtAiCsfzIZ3Im2xdlXIq+ZCvCZRdyC7v7fE15R5eNmc1Z8n9bNvtD/lF4O8bB4qUUtrhfWCqzpuwz70lc/7I7gZh2X4PlNjNbmHYbFzNuI/vXFYELyitm0DvTiOC1MT36pJMjdUUwynVvI7xPWeS45Xh9bRED43wLubPq7YYcUwj1ZBKvfLhyEi/BVw80YHjGrQYbrMY9aMF4/OkvHZkiSCXOB22ezwNPGK1/HqGPkBiehQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4yu3H0/+ZE7/hWLXrEnM0styapwjlfE+DCwHW1rUPtU=;
- b=dDVUhbrcCPWa455QMwEthYq+bTPCvXtKYzhifm8rvwrv9/LFVjEkk1/ihI1HSWOHDowprtj5E67z0HWmRoeBhQ8cX/j4MsxElW2uKpwl+D58W7pfrgfJk9WX1v8vrMPzLkqfT8yjEZKRfxFPIUoldQOOkzuSIPKXL6OJ7CBOysG1XTSUTXvV2R4ppl4kS12q9VzHYedNjkxYOHEDZWxsi7seRWej7YzvwnDJj50/cH3Y5DPfbutR1GT+4mOQVEuNPsAa3Ep4mUBDEf0JUqhX9xp+GDKbMRUprKXjyTMn7DSQmTUROTWWCwJMLdjOnjFcAVXz/INAjfv9OmzhuLllwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4yu3H0/+ZE7/hWLXrEnM0styapwjlfE+DCwHW1rUPtU=;
- b=puZdypzd2zDVeNcy7knD19b3IHKp27LZTHeJ2ytkx0q2xMihBvonOxb2IeU2szzKPPyVqKjRikat0Zj44sFbXTV1kjypoP8M4HsshxQqsSFiLTzviNa298u1rGyDL4Ykt7lzmp91WmYXYYkbgP91KdB/HFuXnRGgHpFzw3MHnyo=
-Authentication-Results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com (2603:10b6:510:e5::13)
- by PH0PR11MB5580.namprd11.prod.outlook.com (2603:10b6:510:e5::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.20; Tue, 12 Oct
- 2021 22:15:39 +0000
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::880d:1a54:ca07:738a]) by PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::880d:1a54:ca07:738a%8]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 22:15:39 +0000
-To: <intel-gfx@lists.freedesktop.org>, Patchwork
- <patchwork@emeril.freedesktop.org>, Matthew Brost <matthew.brost@intel.com>
-References: <20211004220637.14746-1-matthew.brost@intel.com>
- <163338641382.1481.16854458251824370216@emeril.freedesktop.org>
-From: John Harrison <john.c.harrison@intel.com>
-Message-ID: <fcb604f9-5e2c-d694-5f02-ce0acb780947@intel.com>
-Date: Tue, 12 Oct 2021 15:15:37 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.14.0
-In-Reply-To: <163338641382.1481.16854458251824370216@emeril.freedesktop.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-ClientProxiedBy: CO2PR05CA0059.namprd05.prod.outlook.com
- (2603:10b6:102:2::27) To PH0PR11MB5642.namprd11.prod.outlook.com
- (2603:10b6:510:e5::13)
+Received: from 6.mo560.mail-out.ovh.net (6.mo560.mail-out.ovh.net
+ [87.98.165.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E84E089DF7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 22:34:09 +0000 (UTC)
+Received: from player693.ha.ovh.net (unknown [10.109.143.72])
+ by mo560.mail-out.ovh.net (Postfix) with ESMTP id C6195223DE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 22:18:06 +0000 (UTC)
+Received: from etezian.org (unknown [31.22.55.47])
+ (Authenticated sender: andi@etezian.org)
+ by player693.ha.ovh.net (Postfix) with ESMTPSA id E264B231C89BC;
+ Tue, 12 Oct 2021 22:17:58 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-102R0042857b523-8a3c-40ca-81be-617759a4ae64,
+ C786CB9E79FC7D8AF81679FEBE5E79C8CF9BC842) smtp.auth=andi@etezian.org
+X-OVh-ClientIp: 31.22.55.47
+From: Andi Shyti <andi@etezian.org>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Andi Shyti <andi@etezian.org>
+Date: Wed, 13 Oct 2021 00:17:38 +0200
+Message-Id: <20211012221738.16029-1-andi@etezian.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Received: from [192.168.1.106] (73.157.192.58) by
- CO2PR05CA0059.namprd05.prod.outlook.com (2603:10b6:102:2::27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4608.4 via Frontend Transport; Tue, 12 Oct 2021 22:15:39 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 11f3b26d-ea66-4392-e345-08d98dcdd2f8
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5580:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <PH0PR11MB558050019A675DA1CF062676BDB69@PH0PR11MB5580.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZTY+JmR6v1Ksw+VhPU0aRophPZvXJ81aAIfafv38fFHrIOR34zRAJiIayVs9kp2Aag6fiVQD5VBPkbS2otPMKmSBbMjtFC8xTJcNQwDrV9xCRl4lx1fnp0cKk9Pu3s+fWIGh4d0QBWeMhbcoVxuKURC8G3vJ5/kzDRR3OtKhq9OglRyVRIhClUgheh/mNcjLJN0o6afGX3FQj7/tVQR3V2qfbYWXsTsgAXV7cvMFHaLdOaZSecTrDJ4b1pkJtPKlrG3iTJGZidB+g7d81ou5pogG7MCl7tT2jri0v7J2zkTrkxBK0fGnQnpDVz5jjYuQ72B2BeOcQbjS1VlTnuyyNY179kW6foq5NxQpKmYgMpT7ZnrK/wFfadQFHIo/DiDlUgePA1SbPMKDn4MFgFZJgtG+/29WFYy4fIHnpEOO5pbBb2pMKJKH0Z+9ZrsFSUdDMy3KfyyEl4y4lHoAzFDkqnrcn+VR3Yp6rz257b60YHQ4yi2AaMdiEJqBbe7HLrMtthP5gdUKOUaMcjQeRxnRbGelmEswCtyXvesV/af6iDxJpQxdpbO4gJQ92CRcLlXeL9fCiOM+IQ6FlNZLgz0I7IgfF0qotLzglSO5pdSCNW6Kmv1YAQo+zWeftClIka5DWR0FYC/ciBARPMmbbhpYsWtfudKwa91pOPLtGuLgdTkFLRCMw/4DNY+6dJfvio1GMP83Hk/VnOX3Uk6oOE8YXVkM2nRdgiR/RalLfacorVY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB5642.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(31686004)(31696002)(2616005)(53546011)(83380400001)(8936002)(36756003)(86362001)(4744005)(38100700002)(186003)(26005)(508600001)(5660300002)(956004)(82960400001)(966005)(66476007)(66946007)(16576012)(6486002)(316002)(110136005)(6636002)(66556008)(2906002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZCtkcXB0dGREQVV1S0ZlMDVlNHhtYW9mYU9qcXQzT0tSamFIS0NGOUI4dkpF?=
- =?utf-8?B?QnFOQkZsNmRaRG8wVDYvS21sdmxBNS9BWDJRUFRyeWFIWk5tWEJ2UGlNTm1v?=
- =?utf-8?B?Tjd0RUtQbWxNL3g3YjBSdVNhN2JrVm8yZld6eHRSak5UMk1raGhEM2p6c0ky?=
- =?utf-8?B?R29qbFphRGl2d0RyRjNIOHErZy9MN0lIaXMvN2s2aXMwOU1DN2FCOTljdEU2?=
- =?utf-8?B?YmJyUndNZFYwMVNRWUpoMlRqRzA1bCt2Tnh0czNyYmZpNStaOHJxMGlOK0Y2?=
- =?utf-8?B?VW03Z08yK0lJakZuYkhmRUhMVUpWSUI0SEhVYk5Qd3Z6anN2UVovU29OYmxH?=
- =?utf-8?B?eU04UnRLRFdGcXZpdjFwN1hHK2NVZDI3Y3k0cTZQTDJ3S3c3dXVRaDlLVW9B?=
- =?utf-8?B?VlJEdDdNeGpqTlhQcTFUdnVYWkczR2tlbUNXM0thR1lWMW1pTW5GOVpMb0px?=
- =?utf-8?B?VFpsMGxrRGk4QkhiZkI2UWtXb283aEdaSGxtVnFOdjkvL3cvSyt1Yy9qYnFu?=
- =?utf-8?B?OVFoNlpjbFhQc3ZTYVcyRStkc21aUThrTmYxZjY2bkRJZFBOTDdWK1JjbFNV?=
- =?utf-8?B?aktpTFY0a0ZrOHNrVWlnejN5QnVGRVpJYVB5WE9HVmhoM09JOXphNll1MGlG?=
- =?utf-8?B?YnMya1ltdlh2MS95THEzSVBVMWw3WHFmR0FPWU5OSHJqMUdTNEJuMTBJcHl2?=
- =?utf-8?B?UmhTZlFsMWNRUEJDVjNKVzNRbzFXQy91a01BZnZad0R4NVVST0N1R3k3Ymww?=
- =?utf-8?B?eUZUeW5BSUh2alFaV1J3ME1uZjBia3lYOVlxMHJwcUtrb1VLOU1VQmR5MTZk?=
- =?utf-8?B?QzFicno3dzNTRmh5NllKRENIZjF0VHI4YU9iZDNLRWtBNGorRmFkTFNUMVhK?=
- =?utf-8?B?ZmFIWm9mTEhLdTBHSVEvdHhkanV1eHdQcWJoRllDVkNCT0xvOEZ0SFNQYTZU?=
- =?utf-8?B?eUtHNTFqckdHSWVLamlQZGp6ZG1rc09YOGpGWHFKQ045Z3hiMlI5VEkvSm10?=
- =?utf-8?B?eVBnK3ZsbzY2K2pzeVo1Nk9kdVdiMHl5R2NvWThGNjhqd1QwUjc2U2E0UFlU?=
- =?utf-8?B?eHo3V0VHajNSTjdHN0VQZ2ZwbG1YaGVSci83NWx0ZXU1NHQ3OUhORVJ2eFJs?=
- =?utf-8?B?UjBPV1liblprZGpDUEtDUjgyazVDT1g2THE3S1JSMFA1czkyNkVVWWNPZity?=
- =?utf-8?B?ajlGaFJ6ZnRZRWVZNDBLdjRoY05DTmJvdmlVYWU5ZGd6V1NLL2lhNFdzWElG?=
- =?utf-8?B?c1pmUFdZYU5UTi8xYVJIdGFlVmU3bTgrWVVSQmtWYlg0QWdwd29sNllCWXho?=
- =?utf-8?B?TWRLeXdhSHV1UnRJaWlxNEhVSDdNQjhrVWJUQTAyM1R3cVlDVnBac0MvVjFR?=
- =?utf-8?B?NFYrVEVEUzAySm9yc0R2WVVSS21OdzRjbDZacXhxR1AyZlo3VWM1MFZjbjA1?=
- =?utf-8?B?M3JGZFZyWHlmTE5saTZWby85U1c0NGN4WTRpVS8vQ1MxdE03SVVFMWg0UVNO?=
- =?utf-8?B?eCtPcFJ3ZjcrVmdVQUJOV2xxSk5lMTN5S0c0ZWVIZllDb0kxdnNVR05GV0kw?=
- =?utf-8?B?RGtMVTNsbFBXMEt2cUF1WWpGY1FmVExpaEFxS1o5UDA0K1ZHOU9xcXhFcUQ5?=
- =?utf-8?B?MmhZd3IwSXQ4ZHhQQStwREJvMnVVTVlWalJzZG1ScjQrR25wK1p0Q0VnN08w?=
- =?utf-8?B?SHAxNW5mN09Nd3lIQ3pMWUJZTDJxSjJJb1F6MHhLanhrTUVYdDliL1AyRGV0?=
- =?utf-8?Q?C79YYJ7I+CG1K2EvXD5eIam2jYxfsQKjn9UE9P1?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11f3b26d-ea66-4392-e345-08d98dcdd2f8
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5642.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 22:15:39.8189 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NIa/hprbZg2HRGsmdTzG39alzq7FLpBNG/vkkacIEKx+0v8A7co6q3h2tpcjqtNt/8+RsZDxIQND2T/zfjF9XKla5ovARyNM5h+KNFu3LLA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5580
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIFBh?=
- =?utf-8?q?rallel_submission_aka_multi-bb_execbuf_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 692991392904055306
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvtddrvddtledgtdeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnhepieetffeigfetkeehgefftedtgefhuddtuedtgfehtdfhueefffetgeeuhffgtddunecukfhppedtrddtrddtrddtpdefuddrvddvrdehhedrgeejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieelfedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: [Intel-gfx] [PATCH v5] drm/i915/gt: move remaining debugfs
+ interfaces into gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,21 +57,287 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/4/2021 15:26, Patchwork wrote:
-> == Series Details ==
->
-> Series: Parallel submission aka multi-bb execbuf (rev4)
-> URL   : https://patchwork.freedesktop.org/series/92789/
-> State : warning
->
-> == Summary ==
->
-> $ make htmldocs 2>&1 > /dev/null | grep i915
-> ./drivers/gpu/drm/i915/gt/uc/intel_guc.h:166: warning: Function parameter or member 'submission_stall_reason' not described in 'intel_guc'
-> ./drivers/gpu/drm/i915/gt/uc/intel_guc.h:166: warning: Function parameter or member 'submission_state' not described in 'intel_guc'
->
->
-These seem like valid things that need to be fixed.
+From: Andi Shyti <andi.shyti@linux.intel.com>
 
-John.
+The following interfaces:
+
+  i915_wedged
+  i915_forcewake_user
+
+are dependent on gt values. Put them inside gt/ and drop the
+"i915_" prefix name. This would be the new structure:
+
+  dri/0/gt
+  |
+  +-- forcewake_user
+  |
+  \-- reset
+
+For backwards compatibility with existing igt (and the slight
+semantic difference between operating on the i915 abi entry
+points and the deep gt info):
+
+  dri/0
+  |
+  +-- i915_wedged
+  |
+  \-- i915_forcewake_user
+
+remain at the top level.
+
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    | 55 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_debugfs.h    |  4 ++
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 41 ++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h |  4 ++
+ drivers/gpu/drm/i915/i915_debugfs.c           | 43 +++------------
+ 5 files changed, 111 insertions(+), 36 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+index 1fe19ccd2794..f103664b71d4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+@@ -13,6 +13,59 @@
+ #include "pxp/intel_pxp_debugfs.h"
+ #include "uc/intel_uc_debugfs.h"
+ 
++int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val)
++{
++	int ret = intel_gt_terminally_wedged(gt);
++
++	switch (ret) {
++	case -EIO:
++		*val = 1;
++		return 0;
++	case 0:
++		*val = 0;
++		return 0;
++	default:
++		return ret;
++	}
++}
++
++int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
++{
++	/* Flush any previous reset before applying for a new one */
++	wait_event(gt->reset.queue,
++		   !test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
++
++	intel_gt_handle_error(gt, val, I915_ERROR_CAPTURE,
++			      "Manually reset engine mask to %llx", val);
++	return 0;
++}
++
++/*
++ * keep the interface clean where the first parameter
++ * is a 'struct intel_gt *' instead of 'void *'
++ */
++static int __intel_gt_debugfs_reset_show(void *data, u64 *val)
++{
++	return intel_gt_debugfs_reset_show(data, val);
++}
++
++static int __intel_gt_debugfs_reset_store(void *data, u64 val)
++{
++	return intel_gt_debugfs_reset_store(data, val);
++}
++
++DEFINE_SIMPLE_ATTRIBUTE(reset_fops, __intel_gt_debugfs_reset_show,
++			__intel_gt_debugfs_reset_store, "%llu\n");
++
++static void gt_debugfs_register(struct intel_gt *gt, struct dentry *root)
++{
++	static const struct intel_gt_debugfs_file files[] = {
++		{ "reset", &reset_fops, NULL },
++	};
++
++	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
++}
++
+ void intel_gt_debugfs_register(struct intel_gt *gt)
+ {
+ 	struct dentry *root;
+@@ -24,6 +77,8 @@ void intel_gt_debugfs_register(struct intel_gt *gt)
+ 	if (IS_ERR(root))
+ 		return;
+ 
++	gt_debugfs_register(gt, root);
++
+ 	intel_gt_engines_debugfs_register(gt, root);
+ 	intel_gt_pm_debugfs_register(gt, root);
+ 	intel_sseu_debugfs_register(gt, root);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
+index 8b6fca09897c..e307ceb99031 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
+@@ -35,4 +35,8 @@ void intel_gt_debugfs_register_files(struct dentry *root,
+ 				     const struct intel_gt_debugfs_file *files,
+ 				     unsigned long count, void *data);
+ 
++/* functions that need to be accessed by the upper level non-gt interfaces */
++int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val);
++int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val);
++
+ #endif /* INTEL_GT_DEBUGFS_H */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+index 5f84ad602642..0bc1454f38dd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+@@ -19,6 +19,46 @@
+ #include "intel_sideband.h"
+ #include "intel_uncore.h"
+ 
++int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt)
++{
++	atomic_inc(&gt->user_wakeref);
++	intel_gt_pm_get(gt);
++	if (GRAPHICS_VER(gt->i915) >= 6)
++		intel_uncore_forcewake_user_get(gt->uncore);
++
++	return 0;
++}
++
++int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt)
++{
++	if (GRAPHICS_VER(gt->i915) >= 6)
++		intel_uncore_forcewake_user_put(gt->uncore);
++	intel_gt_pm_put(gt);
++	atomic_dec(&gt->user_wakeref);
++
++	return 0;
++}
++
++static int forcewake_user_open(struct inode *inode, struct file *file)
++{
++	struct intel_gt *gt = inode->i_private;
++
++	return intel_gt_pm_debugfs_forcewake_user_open(gt);
++}
++
++static int forcewake_user_release(struct inode *inode, struct file *file)
++{
++	struct intel_gt *gt = inode->i_private;
++
++	return intel_gt_pm_debugfs_forcewake_user_release(gt);
++}
++
++static const struct file_operations forcewake_user_fops = {
++	.owner = THIS_MODULE,
++	.open = forcewake_user_open,
++	.release = forcewake_user_release,
++};
++
+ static int fw_domains_show(struct seq_file *m, void *data)
+ {
+ 	struct intel_gt *gt = m->private;
+@@ -627,6 +667,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
+ 		{ "drpc", &drpc_fops, NULL },
+ 		{ "frequency", &frequency_fops, NULL },
+ 		{ "forcewake", &fw_domains_fops, NULL },
++		{ "forcewake_user", &forcewake_user_fops, NULL},
+ 		{ "llc", &llc_fops, llc_eval },
+ 		{ "rps_boost", &rps_boost_fops, rps_eval },
+ 	};
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
+index 2b824289582b..a8457887ec65 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
+@@ -13,4 +13,8 @@ struct drm_printer;
+ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root);
+ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *m);
+ 
++/* functions that need to be accessed by the upper level non-gt interfaces */
++int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt);
++int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt);
++
+ #endif /* INTEL_GT_PM_DEBUGFS_H */
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index fdbd46ff59e0..636cc3cf88be 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -35,6 +35,7 @@
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_buffer_pool.h"
+ #include "gt/intel_gt_clock_utils.h"
++#include "gt/intel_gt_debugfs.h"
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_gt_pm_debugfs.h"
+ #include "gt/intel_gt_requests.h"
+@@ -554,36 +555,18 @@ static int i915_wa_registers(struct seq_file *m, void *unused)
+ 	return 0;
+ }
+ 
+-static int
+-i915_wedged_get(void *data, u64 *val)
++static int i915_wedged_get(void *data, u64 *val)
+ {
+ 	struct drm_i915_private *i915 = data;
+-	int ret = intel_gt_terminally_wedged(&i915->gt);
+ 
+-	switch (ret) {
+-	case -EIO:
+-		*val = 1;
+-		return 0;
+-	case 0:
+-		*val = 0;
+-		return 0;
+-	default:
+-		return ret;
+-	}
++	return intel_gt_debugfs_reset_show(&i915->gt, val);
+ }
+ 
+-static int
+-i915_wedged_set(void *data, u64 val)
++static int i915_wedged_set(void *data, u64 val)
+ {
+ 	struct drm_i915_private *i915 = data;
+ 
+-	/* Flush any previous reset before applying for a new one */
+-	wait_event(i915->gt.reset.queue,
+-		   !test_bit(I915_RESET_BACKOFF, &i915->gt.reset.flags));
+-
+-	intel_gt_handle_error(&i915->gt, val, I915_ERROR_CAPTURE,
+-			      "Manually set wedged engine mask = %llx", val);
+-	return 0;
++	return intel_gt_debugfs_reset_store(&i915->gt, val);
+ }
+ 
+ DEFINE_SIMPLE_ATTRIBUTE(i915_wedged_fops,
+@@ -728,27 +711,15 @@ static int i915_sseu_status(struct seq_file *m, void *unused)
+ static int i915_forcewake_open(struct inode *inode, struct file *file)
+ {
+ 	struct drm_i915_private *i915 = inode->i_private;
+-	struct intel_gt *gt = &i915->gt;
+-
+-	atomic_inc(&gt->user_wakeref);
+-	intel_gt_pm_get(gt);
+-	if (GRAPHICS_VER(i915) >= 6)
+-		intel_uncore_forcewake_user_get(gt->uncore);
+ 
+-	return 0;
++	return intel_gt_pm_debugfs_forcewake_user_open(&i915->gt);
+ }
+ 
+ static int i915_forcewake_release(struct inode *inode, struct file *file)
+ {
+ 	struct drm_i915_private *i915 = inode->i_private;
+-	struct intel_gt *gt = &i915->gt;
+ 
+-	if (GRAPHICS_VER(i915) >= 6)
+-		intel_uncore_forcewake_user_put(&i915->uncore);
+-	intel_gt_pm_put(gt);
+-	atomic_dec(&gt->user_wakeref);
+-
+-	return 0;
++	return intel_gt_pm_debugfs_forcewake_user_release(&i915->gt);
+ }
+ 
+ static const struct file_operations i915_forcewake_fops = {
+-- 
+2.27.0
 
