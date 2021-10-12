@@ -2,43 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3306F42ABFD
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 20:36:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8749B42AD0A
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 21:11:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD8636E852;
-	Tue, 12 Oct 2021 18:36:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC3416E578;
+	Tue, 12 Oct 2021 19:11:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59F1A6E852;
- Tue, 12 Oct 2021 18:36:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="313434591"
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="313434591"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 11:36:28 -0700
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="716975379"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 11:36:28 -0700
-Date: Tue, 12 Oct 2021 11:31:44 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- john.c.harrison@intel.com, daniele.ceraolospurio@intel.com
-Message-ID: <20211012183144.GA9834@jons-linux-dev-box>
-References: <20211004220637.14746-1-matthew.brost@intel.com>
- <20211004220637.14746-25-matthew.brost@intel.com>
- <033fd934-26b8-2888-8605-45f80a38dffa@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAEC089BAC;
+ Tue, 12 Oct 2021 19:11:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="227143976"
+X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="227143976"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 12:11:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="441990038"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga003.jf.intel.com with ESMTP; 12 Oct 2021 12:11:32 -0700
+Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 12 Oct 2021 12:11:32 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 13 Oct 2021 00:41:29 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
+ Wed, 13 Oct 2021 00:41:29 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>, Simon Ser <contact@emersion.fr>,
+ "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "brian.starkey@arm.com" <brian.starkey@arm.com>,
+ "sebastian@sebastianwick.net" <sebastian@sebastianwick.net>,
+ "Shashank.Sharma@amd.com" <Shashank.Sharma@amd.com>
+Thread-Topic: [RFC v2 01/22] drm: RFC for Plane Color Hardware Pipeline
+Thread-Index: AQHXo2JKczsaELBrPkmGEyuwyN6iXqvPBXOAgAABXoCAABehgIAAz5Gg
+Date: Tue, 12 Oct 2021 19:11:29 +0000
+Message-ID: <917a5ffa4e00446a8469cf571458db7b@intel.com>
+References: <20210906213904.27918-1-uma.shankar@intel.com>
+ <20210906213904.27918-2-uma.shankar@intel.com>
+ <20211006155559.606521de@eldfell>
+ <vBmviRgvVBT-q8HSsJLnRc5CfOMr5rFRj6oeIqwh8QJSicQzQxu8_ORxE3OffANSSyF3wUF9_QFRk1uzrggdx_dcI-1WGzmruI4kIFdZQcU=@emersion.fr>
+ <20211012150011.6ca63157@eldfell>
+In-Reply-To: <20211012150011.6ca63157@eldfell>
+Accept-Language: en-US
+Content-Language: en-US
+X-Mentions: daniel.vetter@ffwll.ch
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <033fd934-26b8-2888-8605-45f80a38dffa@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 24/26] drm/i915: Update I915_GEM_BUSY IOCTL
- to understand composite fences
+Subject: Re: [Intel-gfx] [RFC v2 01/22] drm: RFC for Plane Color Hardware
+ Pipeline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,196 +81,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 12, 2021 at 08:53:25AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 04/10/2021 23:06, Matthew Brost wrote:
-> > Parallel submission create composite fences (dma_fence_array) for excl /
-> > shared slots in objects. The I915_GEM_BUSY IOCTL checks these slots to
-> > determine the busyness of the object. Prior to patch it only check if
-> > the fence in the slot was a i915_request. Update the check to understand
-> > composite fences and correctly report the busyness.
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_busy.c      | 60 +++++++++++++++----
-> >   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  5 +-
-> >   drivers/gpu/drm/i915/i915_request.h           |  6 ++
-> >   3 files changed, 58 insertions(+), 13 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_busy.c b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-> > index 6234e17259c1..b89d173c62eb 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-> > @@ -4,6 +4,8 @@
-> >    * Copyright © 2014-2016 Intel Corporation
-> >    */
-> > +#include <linux/dma-fence-array.h>
-> > +
-> >   #include "gt/intel_engine.h"
-> >   #include "i915_gem_ioctls.h"
-> > @@ -36,7 +38,7 @@ static __always_inline u32 __busy_write_id(u16 id)
-> >   }
-> >   static __always_inline unsigned int
-> > -__busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u16 id))
-> > +__busy_set_if_active(struct dma_fence *fence, u32 (*flag)(u16 id))
-> >   {
-> >   	const struct i915_request *rq;
-> > @@ -46,29 +48,63 @@ __busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u16 id))
-> >   	 * to eventually flush us, but to minimise latency just ask the
-> >   	 * hardware.
-> >   	 *
-> > -	 * Note we only report on the status of native fences.
-> > +	 * Note we only report on the status of native fences and we currently
-> > +	 * have two native fences:
-> > +	 *
-> > +	 * 1. A composite fence (dma_fence_array) constructed of i915 requests
-> > +	 * created during a parallel submission. In this case we deconstruct the
-> > +	 * composite fence into individual i915 requests and check the status of
-> > +	 * each request.
-> > +	 *
-> > +	 * 2. A single i915 request.
-> >   	 */
-> > -	if (!dma_fence_is_i915(fence))
-> > +	if (dma_fence_is_array(fence)) {
-> > +		struct dma_fence_array *array = to_dma_fence_array(fence);
-> > +		struct dma_fence **child = array->fences;
-> > +		unsigned int nchild = array->num_fences;
-> > +
-> > +		do {
-> > +			struct dma_fence *current_fence = *child++;
-> > +
-> > +			/* Not an i915 fence, can't be busy per above */
-> > +			if (!dma_fence_is_i915(current_fence) ||
-> > +			    !test_bit(I915_FENCE_FLAG_COMPOSITE,
-> > +				      &current_fence->flags)) {
-> > +				return 0;
-> > +			}
-> > +
-> > +			rq = to_request(current_fence);
-> > +			if (!i915_request_completed(rq)) {
-> > +				BUILD_BUG_ON(!typecheck(u16,
-> > +							rq->engine->uabi_class));
-> > +				return flag(rq->engine->uabi_class);
-> > +			}
-> > +		} while (--nchild);
-> 
-> Do you even need to introduce I915_FENCE_FLAG_COMPOSITE? If parallel submit
-> is the only possible creator of array fences then possibly not. Probably
-> even would result in less code which even keeps working in a hypothetical
-> future. Otherwise you could add a debug bug on if array fence contains a
-> fence without I915_FENCE_FLAG_COMPOSITE set.
-> 
 
-Certainly other drivers can create a dma fence array and in theory could
-include a i915_request in that array. Adding this flag makes it clear
-that this fence was created by i915 for parallel submission and future
-proofs this code.
 
-> Secondly, I'd also run the whole loop and not return on first busy or
-> incompatible for simplicity.
-> 
+> -----Original Message-----
+> From: Pekka Paalanen <ppaalanen@gmail.com>
+> Sent: Tuesday, October 12, 2021 5:30 PM
+> To: Simon Ser <contact@emersion.fr>
+> Cc: Shankar, Uma <uma.shankar@intel.com>; intel-gfx@lists.freedesktop.org=
+; dri-
+> devel@lists.freedesktop.org; harry.wentland@amd.com;
+> ville.syrjala@linux.intel.com; brian.starkey@arm.com;
+> sebastian@sebastianwick.net; Shashank.Sharma@amd.com
+> Subject: Re: [RFC v2 01/22] drm: RFC for Plane Color Hardware Pipeline
+>=20
+> On Tue, 12 Oct 2021 10:35:37 +0000
+> Simon Ser <contact@emersion.fr> wrote:
+>=20
+> > On Tuesday, October 12th, 2021 at 12:30, Pekka Paalanen
+> <ppaalanen@gmail.com> wrote:
+> >
+> > > is there a practise of landing proposal documents in the kernel? How
+> > > does that work, will a kernel tree carry the patch files?
+> > > Or should this document be worded like documentation for an accepted
+> > > feature, and then the patches either land or don't?
+> >
+> > Once everyone agrees, the RFC can land. I don't think a kernel tree is
+> > necessary. See:
+> >
+> > https://dri.freedesktop.org/docs/drm/gpu/rfc/index.html
+>=20
+> Does this mean the RFC doc patch will land, but the code patches will rem=
+ain in the
+> review cycles waiting for userspace proving vehicles?
+> Rather than e.g. committed as files that people would need to apply thems=
+elves? Or
+> how does one find the code patches corresponding to RFC docs?
 
-I disagree. Short circuiting when a condition is found is pretty
-standard and not hard to understand.
+As I understand, this section was added to finalize the design and debate o=
+n the UAPI,
+structures, headers and design etc. Once a general agreement is in place wi=
+th all the
+stakeholders, we can have ack on design and approach and get it merged. Thi=
+s hence
+serves as an approved reference for the UAPI, accepted and agreed by commun=
+ity at large.
 
-> And finally, with all above in place, I think you could have common function
-> for the below (checking one fence) and call that both for a single fence and
-> from an array loop above for less duplication. (Even duplicated BUILD_BUG_ON
-> which makes no sense!)
->
+Once the code lands, all the documentation will be added to the right drive=
+r sections and
+helpers, like it's been done currently.
 
-Yea duplicating the BUILD_BUG_ON doesn't make a ton of sense. Will
-remove.
+@daniel.vetter@ffwll.ch Hope this is the right understanding.=20
 
-Disagree on the helper, the code paths are different enough to just open
-code this.
+Thanks & Regards,
+Uma Shankar
 
-Matt
-
-> End result would be a simpler patch like:
-> 
-> __busy_set_if_active_one(...)
-> {
->    .. existing __busy_set_if_active ..
-> }
-> 
-> __busy_set_if_active(..)
-> {
->   ...
->   if (dma_fence_is_array(fence)) {
-> 	...
-> 	for (i = 0; i < array->num_fences; i++)
-> 		flags |= __busy_set_if_active_one(...);
->   } else {
-> 	flags = __busy_set_if_active_one(...);
->   }
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > +
-> > +		/* All requests in array complete, not busy */
-> >   		return 0;
-> > +	} else {
-> > +		if (!dma_fence_is_i915(fence))
-> > +			return 0;
-> > -	/* opencode to_request() in order to avoid const warnings */
-> > -	rq = container_of(fence, const struct i915_request, fence);
-> > -	if (i915_request_completed(rq))
-> > -		return 0;
-> > +		rq = to_request(fence);
-> > +		if (i915_request_completed(rq))
-> > +			return 0;
-> > -	/* Beware type-expansion follies! */
-> > -	BUILD_BUG_ON(!typecheck(u16, rq->engine->uabi_class));
-> > -	return flag(rq->engine->uabi_class);
-> > +		/* Beware type-expansion follies! */
-> > +		BUILD_BUG_ON(!typecheck(u16, rq->engine->uabi_class));
-> > +		return flag(rq->engine->uabi_class);
-> > +	}
-> >   }
-> >   static __always_inline unsigned int
-> > -busy_check_reader(const struct dma_fence *fence)
-> > +busy_check_reader(struct dma_fence *fence)
-> >   {
-> >   	return __busy_set_if_active(fence, __busy_read_flag);
-> >   }
-> >   static __always_inline unsigned int
-> > -busy_check_writer(const struct dma_fence *fence)
-> > +busy_check_writer(struct dma_fence *fence)
-> >   {
-> >   	if (!fence)
-> >   		return 0;
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > index 5c7fb6f68bbb..16276f406fd6 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > @@ -2988,8 +2988,11 @@ eb_composite_fence_create(struct i915_execbuffer *eb, int out_fence_fd)
-> >   	if (!fences)
-> >   		return ERR_PTR(-ENOMEM);
-> > -	for_each_batch_create_order(eb, i)
-> > +	for_each_batch_create_order(eb, i) {
-> >   		fences[i] = &eb->requests[i]->fence;
-> > +		__set_bit(I915_FENCE_FLAG_COMPOSITE,
-> > +			  &eb->requests[i]->fence.flags);
-> > +	}
-> >   	fence_array = dma_fence_array_create(eb->num_batches,
-> >   					     fences,
-> > diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> > index 24db8459376b..dc359242d1ae 100644
-> > --- a/drivers/gpu/drm/i915/i915_request.h
-> > +++ b/drivers/gpu/drm/i915/i915_request.h
-> > @@ -156,6 +156,12 @@ enum {
-> >   	 * submission / relationship encoutered an error.
-> >   	 */
-> >   	I915_FENCE_FLAG_SKIP_PARALLEL,
-> > +
-> > +	/*
-> > +	 * I915_FENCE_FLAG_COMPOSITE - Indicates fence is part of a composite
-> > +	 * fence (dma_fence_array) and i915 generated for parallel submission.
-> > +	 */
-> > +	I915_FENCE_FLAG_COMPOSITE,
-> >   };
-> >   /**
-> > 
+>=20
+> Thanks,
+> pq
