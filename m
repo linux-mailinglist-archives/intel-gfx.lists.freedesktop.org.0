@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E013B42AF19
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 23:40:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7521542AF22
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 23:43:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 828646E9EA;
-	Tue, 12 Oct 2021 21:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77F066E9E3;
+	Tue, 12 Oct 2021 21:43:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA1326E9F5
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 21:40:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="207392943"
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="207392943"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 14:40:36 -0700
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="562837560"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F19F6E9E3;
+ Tue, 12 Oct 2021 21:43:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="250684844"
+X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="250684844"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 14:43:22 -0700
+X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="486614081"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 14:40:36 -0700
-Date: Tue, 12 Oct 2021 14:40:35 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 14:43:21 -0700
+Date: Tue, 12 Oct 2021 14:43:20 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <20211012214035.GY602200@mdroper-desk1.amr.corp.intel.com>
-References: <20211008205855.36778-1-jose.souza@intel.com>
- <20211012212051.GX602200@mdroper-desk1.amr.corp.intel.com>
- <3200fd7f9d4b032a100abb311475ef44dd2e0edd.camel@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20211012214320.GZ602200@mdroper-desk1.amr.corp.intel.com>
+References: <20211001005816.73330-1-matthew.d.roper@intel.com>
+ <YWAURQ0kpRWsdeyM@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3200fd7f9d4b032a100abb311475ef44dd2e0edd.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl: Fix read of memory frequency
+In-Reply-To: <YWAURQ0kpRWsdeyM@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Stop using I915_TILING_* in
+ client blit selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,102 +52,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 12, 2021 at 02:23:27PM -0700, Souza, Jose wrote:
-> On Tue, 2021-10-12 at 14:20 -0700, Matt Roper wrote:
-> > On Fri, Oct 08, 2021 at 01:58:55PM -0700, José Roberto de Souza wrote:
-> > > All display 9 and display 10 platforms has only 4 bits for the memory
-> > > frequency but display 11 platforms it changes to 8 bits.
-> > > 
-> > > Display 9 platforms has another register in bits 7:4 that prevents us
-> > > to have a single mask.
-> > > Also adding new mask with the current name in CRWebViewer, not
-> > > sure why current mask is named like this.
-> > > 
-> > > Fixes: f8112cb9574b ("drm/i915/gen11+: Only load DRAM information from pcode")
-> > > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/i915_reg.h   | 1 +
-> > >  drivers/gpu/drm/i915/intel_dram.c | 7 +++++--
-> > >  2 files changed, 6 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > > index a897f4abea0c3..041f7dc9e0d94 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -11148,6 +11148,7 @@ enum skl_power_gate {
-> > >  #define SKL_MEMORY_FREQ_MULTIPLIER_HZ		266666666
-> > >  #define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5E04)
-> > >  #define  SKL_REQ_DATA_MASK			(0xF << 0)
-> > > +#define  ICL_FREQ_MASK				(0xFF << 0)
+On Fri, Oct 08, 2021 at 12:49:57PM +0300, Ville Syrjälä wrote:
+> On Thu, Sep 30, 2021 at 05:58:16PM -0700, Matt Roper wrote:
+> > The I915_TILING_* definitions in the uapi header are intended solely for
+> > tiling modes that are visible to the old de-tiling fence ioctls.  Since
+> > modern hardware does not support de-tiling fences, we should not add new
+> > definitions for new tiling types going forward.  However we do want the
+> > client blit selftest to eventually cover other new tiling modes (such as
+> > Tile4), so switch it to using its own enum of tiling modes.
 > > 
-> > We might as well take this opportunity to switch over to REG_GENMASK
-> > notation while we're here.
-> 
-> Will do.
-> 
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  .../i915/gem/selftests/i915_gem_client_blt.c  | 29 ++++++++++++-------
+> >  include/uapi/drm/i915_drm.h                   |  6 ++++
+> >  2 files changed, 24 insertions(+), 11 deletions(-)
 > > 
-> > >  #define  DG1_GEAR_TYPE				REG_BIT(16)
-> > >  
-> > >  #define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
-> > > diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-> > > index 30a0cab5eff46..558589b1202d6 100644
-> > > --- a/drivers/gpu/drm/i915/intel_dram.c
-> > > +++ b/drivers/gpu/drm/i915/intel_dram.c
-> > > @@ -257,8 +257,11 @@ skl_get_dram_info(struct drm_i915_private *i915)
-> > >  
-> > >  	val = intel_uncore_read(&i915->uncore,
-> > >  				SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
-> > > -	mem_freq_khz = DIV_ROUND_UP((val & SKL_REQ_DATA_MASK) *
-> > > -				    SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
-> > > +	if (DISPLAY_VER(i915) == 11)
-> > > +		val &= ICL_FREQ_MASK;
-> > > +	else
-> > > +		val &= SKL_REQ_DATA_MASK;
-> > > +	mem_freq_khz = DIV_ROUND_UP(val * SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
-> > 
-> > I'm not sure SKL_MEMORY_FREQ_MULTIPLIER_HZ is correct anymore either.
-> > If I'm reading the register description correctly, it appears the value
-> > is now given in units of 133.33 MHz instead of the old 266.66.
+> > diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+> > index ecbcbb86ae1e..8402ed925a69 100644
+> > --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+> > +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+> > @@ -17,13 +17,20 @@
+> >  #include "huge_gem_object.h"
+> >  #include "mock_context.h"
+> >  
+> > +enum client_tiling {
+> > +	CLIENT_TILING_LINEAR,
+> > +	CLIENT_TILING_X,
+> > +	CLIENT_TILING_Y,
+> > +	CLIENT_NUM_TILING_TYPES
+> > +};
+> > +
+> >  #define WIDTH 512
+> >  #define HEIGHT 32
+> >  
+> >  struct blit_buffer {
+> >  	struct i915_vma *vma;
+> >  	u32 start_val;
+> > -	u32 tiling;
+> > +	enum client_tiling tiling;
+> >  };
+> >  
+> >  struct tiled_blits {
+> > @@ -53,9 +60,9 @@ static int prepare_blit(const struct tiled_blits *t,
+> >  	*cs++ = MI_LOAD_REGISTER_IMM(1);
+> >  	*cs++ = i915_mmio_reg_offset(BCS_SWCTRL);
+> >  	cmd = (BCS_SRC_Y | BCS_DST_Y) << 16;
+> > -	if (src->tiling == I915_TILING_Y)
+> > +	if (src->tiling == CLIENT_TILING_Y)
+> >  		cmd |= BCS_SRC_Y;
+> > -	if (dst->tiling == I915_TILING_Y)
+> > +	if (dst->tiling == CLIENT_TILING_Y)
+> >  		cmd |= BCS_DST_Y;
+> >  	*cs++ = cmd;
+> >  
+> > @@ -172,7 +179,7 @@ static int tiled_blits_create_buffers(struct tiled_blits *t,
+> >  
+> >  		t->buffers[i].vma = vma;
+> >  		t->buffers[i].tiling =
+> > -			i915_prandom_u32_max_state(I915_TILING_Y + 1, prng);
+> > +			i915_prandom_u32_max_state(CLIENT_TILING_Y + 1, prng);
+> >  	}
+> >  
+> >  	return 0;
+> > @@ -197,17 +204,17 @@ static u64 swizzle_bit(unsigned int bit, u64 offset)
+> >  static u64 tiled_offset(const struct intel_gt *gt,
+> >  			u64 v,
+> >  			unsigned int stride,
+> > -			unsigned int tiling)
+> > +			enum client_tiling tiling)
+> >  {
+> >  	unsigned int swizzle;
+> >  	u64 x, y;
+> >  
+> > -	if (tiling == I915_TILING_NONE)
+> > +	if (tiling == CLIENT_TILING_LINEAR)
+> >  		return v;
+> >  
+> >  	y = div64_u64_rem(v, stride, &x);
+> >  
+> > -	if (tiling == I915_TILING_X) {
+> > +	if (tiling == CLIENT_TILING_X) {
+> >  		v = div64_u64_rem(y, 8, &y) * stride * 8;
+> >  		v += y * 512;
+> >  		v += div64_u64_rem(x, 512, &x) << 12;
+> > @@ -244,12 +251,12 @@ static u64 tiled_offset(const struct intel_gt *gt,
+> >  	return v;
+> >  }
+> >  
+> > -static const char *repr_tiling(int tiling)
+> > +static const char *repr_tiling(enum client_tiling tiling)
+> >  {
+> >  	switch (tiling) {
+> > -	case I915_TILING_NONE: return "linear";
+> > -	case I915_TILING_X: return "X";
+> > -	case I915_TILING_Y: return "Y";
+> > +	case CLIENT_TILING_LINEAR: return "linear";
+> > +	case CLIENT_TILING_X: return "X";
+> > +	case CLIENT_TILING_Y: return "Y";
+> >  	default: return "unknown";
+> >  	}
+> >  }
+> > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > index bde5860b3686..00311a63068e 100644
+> > --- a/include/uapi/drm/i915_drm.h
+> > +++ b/include/uapi/drm/i915_drm.h
+> > @@ -1522,6 +1522,12 @@ struct drm_i915_gem_caching {
+> >  #define I915_TILING_NONE	0
+> >  #define I915_TILING_X		1
+> >  #define I915_TILING_Y		2
+> > +/*
+> > + * Do not add new tiling types here.  The I915_TILING_* values are for
+> > + * de-tiling fence registers that no longer exist on modern platforms.  Although
+> > + * the hardware may support new types of tiling in general (e.g., Tile4), we
+> > + * do not need to add them to the uapi that is specific to now-defunct ioctls.
+> > + */
+> >  #define I915_TILING_LAST	I915_TILING_Y
 > 
-> Thought about that but as the calculated memory frequency here is not used for anything besides check if is not zero, I left as is.
+> I think we should split this one into a separate patch to give it
+> some visibility. The people who care about gem uapi seem to be in
+> some kind of early winter hibernation and no one read this.
+> 
+> Apart from that
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Hmm, good point.  Although in that case do we really need to read this
-register at all?  It seems like after
-
-        commit f0b29707baa9e6f3d7b90090fcce62d2f1023fa1
-        Author:     José Roberto de Souza <jose.souza@intel.com>
-        AuthorDate: Thu Jan 28 08:43:10 2021 -0800
-        Commit:     José Roberto de Souza <jose.souza@intel.com>
-        CommitDate: Fri Jan 29 05:50:48 2021 -0800
-
-            drm/i915: Nuke not needed members of dram_info
-
-we're not calculating bandwidth_kbps, so checking if the register is
-valid doesn't really gain us anything and could just be removed?  A
-simple check for
-
-        if (dram_info->num_channels == 0) {
-                ...error...
-        }
-
-might be sufficient?
+Thanks.  I dropped the comment here and pushed the rest of the patch.
+I'll re-send the uapi header comment separately to increase visibility.
 
 
 Matt
 
 > 
-> > 
-> > 
-> > Matt
-> > 
-> > >  
-> > >  	if (dram_info->num_channels * mem_freq_khz == 0) {
-> > >  		drm_info(&i915->drm,
-> > > -- 
-> > > 2.33.0
-> > > 
-> > 
+> >  
+> >  #define I915_BIT_6_SWIZZLE_NONE		0
+> > -- 
+> > 2.33.0
 > 
+> -- 
+> Ville Syrjälä
+> Intel
 
 -- 
 Matt Roper
