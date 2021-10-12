@@ -2,41 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A3AE42A787
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 16:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE34A42A79F
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 16:47:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E6AE6E9B0;
-	Tue, 12 Oct 2021 14:43:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4240C6E9A7;
+	Tue, 12 Oct 2021 14:47:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B439B6E9B0;
- Tue, 12 Oct 2021 14:43:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="313363486"
-X-IronPort-AV: E=Sophos;i="5.85,367,1624345200"; d="scan'208";a="313363486"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 07:43:34 -0700
-X-IronPort-AV: E=Sophos;i="5.85,367,1624345200"; d="scan'208";a="480380860"
-Received: from annahenx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.209.214])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 07:43:31 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- jani.nikula@intel.com
-Date: Tue, 12 Oct 2021 17:43:21 +0300
-Message-Id: <20211012144321.5990-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211012144321.5990-1-jani.nikula@intel.com>
-References: <20211012144321.5990-1-jani.nikula@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C6B89FA5;
+ Tue, 12 Oct 2021 14:47:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="227123921"
+X-IronPort-AV: E=Sophos;i="5.85,367,1624345200"; d="scan'208";a="227123921"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 07:47:30 -0700
+X-IronPort-AV: E=Sophos;i="5.85,367,1624345200"; d="scan'208";a="625975427"
+Received: from pmnk-mobl1.gar.corp.intel.com (HELO [10.249.254.42])
+ ([10.249.254.42])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 07:47:27 -0700
+Message-ID: <c49654d9-7174-f6db-e64b-bec3ecde7b5c@linux.intel.com>
+Date: Tue, 12 Oct 2021 16:47:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Content-Language: en-US
+To: Colin King <colin.king@canonical.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Matthew Auld <matthew.auld@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211012132549.260089-1-colin.king@canonical.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211012132549.260089-1-colin.king@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: use new link training delay
- helpers
+Subject: Re: [Intel-gfx] [PATCH][next] drm/i915: Fix dereference of pointer
+ backup before it is null checked
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,104 +57,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the new link training delay helpers, fixing the delays for
-128b/132b.
+Hi,
 
-For existing 8b/10b functionality, this will cause additional 1-byte
-DPCD reads for LTTPR delays instead of using the cached values. It's
-just too complicated to combine generic helpers with local caching in a
-sensible way.
+On 10/12/21 15:25, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+>
+> The assignment of pointer backup_bo dereferences pointer backup before
+> backup is null checked, this could lead to a null pointer dereference
+> issue. Fix this by only assigning backup_bo after backup has been null
+> checked.
+>
+> Addresses-Coverity: ("Dereference before null check")
+> Fixes: c56ce9565374 ("drm/i915 Implement LMEM backup and restore for suspend / resume")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_dp_link_training.c | 38 +++++++------------
- 1 file changed, 13 insertions(+), 25 deletions(-)
+There's not really a pointer dereference here, just pointer arithmetics, 
+so the code should be safe (but admittedly fragile), so to keep Coverity 
+happy,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 85676c953e0a..a72f2dc93718 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -683,15 +683,6 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
- 	return true;
- }
- 
--static void intel_dp_link_training_clock_recovery_delay(struct intel_dp *intel_dp,
--							enum drm_dp_phy dp_phy)
--{
--	if (dp_phy == DP_PHY_DPRX)
--		drm_dp_link_train_clock_recovery_delay(&intel_dp->aux, intel_dp->dpcd);
--	else
--		drm_dp_lttpr_link_train_clock_recovery_delay();
--}
--
- static bool intel_dp_adjust_request_changed(const struct intel_crtc_state *crtc_state,
- 					    const u8 old_link_status[DP_LINK_STATUS_SIZE],
- 					    const u8 new_link_status[DP_LINK_STATUS_SIZE])
-@@ -750,6 +741,11 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 	u8 link_status[DP_LINK_STATUS_SIZE];
- 	bool max_vswing_reached = false;
- 	char phy_name[10];
-+	int delay_us;
-+
-+	delay_us = drm_dp_read_clock_recovery_delay(&intel_dp->aux,
-+						    intel_dp->dpcd, dp_phy,
-+						    intel_dp_is_uhbr(crtc_state));
- 
- 	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
- 
-@@ -777,7 +773,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 
- 	voltage_tries = 1;
- 	for (cr_tries = 0; cr_tries < max_cr_tries; ++cr_tries) {
--		intel_dp_link_training_clock_recovery_delay(intel_dp, dp_phy);
-+		usleep_range(delay_us, 2 * delay_us);
- 
- 		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
- 						     link_status) < 0) {
-@@ -895,19 +891,6 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
- 	return DP_TRAINING_PATTERN_2;
- }
- 
--static void
--intel_dp_link_training_channel_equalization_delay(struct intel_dp *intel_dp,
--						  enum drm_dp_phy dp_phy)
--{
--	if (dp_phy == DP_PHY_DPRX) {
--		drm_dp_link_train_channel_eq_delay(&intel_dp->aux, intel_dp->dpcd);
--	} else {
--		const u8 *phy_caps = intel_dp_lttpr_phy_caps(intel_dp, dp_phy);
--
--		drm_dp_lttpr_link_train_channel_eq_delay(&intel_dp->aux, phy_caps);
--	}
--}
--
- /*
-  * Perform the link training channel equalization phase on the given DP PHY
-  * using one of training pattern 2, 3 or 4 depending on the source and
-@@ -925,6 +908,11 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 	u8 link_status[DP_LINK_STATUS_SIZE];
- 	bool channel_eq = false;
- 	char phy_name[10];
-+	int delay_us;
-+
-+	delay_us = drm_dp_read_channel_eq_delay(&intel_dp->aux,
-+						intel_dp->dpcd, dp_phy,
-+						intel_dp_is_uhbr(crtc_state));
- 
- 	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
- 
-@@ -944,8 +932,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 	}
- 
- 	for (tries = 0; tries < 5; tries++) {
--		intel_dp_link_training_channel_equalization_delay(intel_dp,
--								  dp_phy);
-+		usleep_range(delay_us, 2 * delay_us);
-+
- 		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
- 						     link_status) < 0) {
- 			drm_err(&i915->drm,
--- 
-2.30.2
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
+
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> index 3b6d14b5c604..4ec6c557083a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> @@ -149,7 +149,7 @@ static int i915_ttm_restore(struct i915_gem_apply_to_region *apply,
+>   	struct i915_gem_ttm_pm_apply *pm_apply =
+>   		container_of(apply, typeof(*pm_apply), base);
+>   	struct drm_i915_gem_object *backup = obj->ttm.backup;
+> -	struct ttm_buffer_object *backup_bo = i915_gem_to_ttm(backup);
+> +	struct ttm_buffer_object *backup_bo;
+>   	struct ttm_operation_ctx ctx = {};
+>   	int err;
+>   
+> @@ -163,6 +163,8 @@ static int i915_ttm_restore(struct i915_gem_apply_to_region *apply,
+>   	if (err)
+>   		return err;
+>   
+> +	backup_bo = i915_gem_to_ttm(backup);
+> +
+>   	/* Content may have been swapped. */
+>   	err = ttm_tt_populate(backup_bo->bdev, backup_bo->ttm, &ctx);
+>   	if (!err) {
