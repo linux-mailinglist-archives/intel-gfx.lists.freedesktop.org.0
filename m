@@ -2,33 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC7C1429D05
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 07:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B668429D10
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 07:23:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C69A89E9E;
-	Tue, 12 Oct 2021 05:20:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1156A89F19;
+	Tue, 12 Oct 2021 05:23:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DD95E89E9E;
- Tue, 12 Oct 2021 05:20:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CA2BDA7E03;
- Tue, 12 Oct 2021 05:20:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6771660615085075330=="
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com
+ [IPv6:2a00:1450:4864:20::12c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E8E89F08;
+ Tue, 12 Oct 2021 05:23:28 +0000 (UTC)
+Received: by mail-lf1-x12c.google.com with SMTP id j5so82861844lfg.8;
+ Mon, 11 Oct 2021 22:23:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=12BNlbCQgd+waveWEis1i977xILPo4T6UTRLGRk5nQc=;
+ b=SVirUMtzvIevieCz+PIbarz6CpfQKiu6wvuoCdwVu4FygCvzvWwAwH8HpSbGoJNRsp
+ 2362NdRYNni2XIhJUlJdq912ImtrofNmSzI58NfsKYBxZaWYSlxjb3XWkfXNy+az3tes
+ LJOxH4cM06Df+7LLiMhZSCYoj7sNRngGksiYzH7mFobXhfBKKcjeeAGPW6+UysaV3bij
+ iWgIBcuScPDDM3UdMarE+YIHKIpmbptL20fw+8atXSDw1YkFXXkYbr3wz5EtknhkE4UA
+ PewAKc6GKJGXPqJAOqqoy3TEe/Ky2Lp+6Jri8IijAUjYcz0Ag1B+/2AHSwHkRd0idH4U
+ 1fjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=12BNlbCQgd+waveWEis1i977xILPo4T6UTRLGRk5nQc=;
+ b=TrmYWfE607d7a/uJGpJblBgyYW84f5peWd8GBOZx9N0HP9KnvBvAgfDBIW5zlJh6er
+ JHmwH5y+9D8XphFvFkMR8p3gg/TRvC+nfWe8urPlP9YgpmjJfgjiGUooehsvjFxumOwa
+ zSM3x8zt0u5EFvgNZcjuQAjUBJvb2Mq8uELkhXYyw9FyL+Z9MvVTe52k6KpDZ9Qa+wzM
+ qv+m6NeeNgvAZxDYaAATO+P2a4fApBfjyWEvp3l7DbekXxLmHvmHY/CEAU4aFebfQxDz
+ l8M6qNRz0IIrFEGNN3NE7pC44gOVnegn0amcUV+VNcI1KOt3pPsEqgE0WSGXq1i3r+j1
+ K3Zg==
+X-Gm-Message-State: AOAM532jvIdFMKWoVq2QN7vZJkaDIxTgMXVpVeLeMK/zlGQVTMPwfo9m
+ zNsQhFgf8yttpSVaPFeBZBkCg7c0+cNe8OivHpzurFzU
+X-Google-Smtp-Source: ABdhPJx6e3tLq9pQQ9HeruBuNvSBr1oDsBc30h4zwEIg+aaklhKpcioPvoJderU155t61xL26fOPs2Lu11pSsU/9Mxk=
+X-Received: by 2002:a05:651c:1596:: with SMTP id
+ h22mr26926505ljq.405.1634016206901; 
+ Mon, 11 Oct 2021 22:23:26 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dave Airlie" <airlied@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Oct 2021 05:20:24 -0000
-Message-ID: <163401602480.14286.5304698420436815360@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211012043502.1377715-1-airlied@gmail.com>
-In-Reply-To: <20211012043502.1377715-1-airlied@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_refactor_plane_config_+_pin_out_=28rev2=29?=
+References: <20211011161155.6397-1-ramalingam.c@intel.com>
+ <20211011161155.6397-15-ramalingam.c@intel.com>
+In-Reply-To: <20211011161155.6397-15-ramalingam.c@intel.com>
+From: Lucas De Marchi <lucas.de.marchi@gmail.com>
+Date: Mon, 11 Oct 2021 22:23:15 -0700
+Message-ID: <CAKi4VAJg2C1p6ceXqLUFtwCRoSp2c+c4D-RyxDy4QB8130s9nQ@mail.gmail.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>, 
+ intel-gfx <intel-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>, 
+ Matthew Auld <matthew.auld@intel.com>, CQ Tang <cq.tang@intel.com>, 
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 14/14] Doc/gpu/rfc/i915: i915 DG2 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,193 +68,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6771660615085075330==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Oct 11, 2021 at 9:10 AM Ramalingam C <ramalingam.c@intel.com> wrote:
+>
+> Details of the new features getting added as part of DG2 enabling and their
+> implicit impact on the uAPI.
+>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> cc: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  Documentation/gpu/rfc/i915_dg2.rst | 47 ++++++++++++++++++++++++++++++
+>  Documentation/gpu/rfc/index.rst    |  3 ++
+>  2 files changed, 50 insertions(+)
+>  create mode 100644 Documentation/gpu/rfc/i915_dg2.rst
+>
+> diff --git a/Documentation/gpu/rfc/i915_dg2.rst b/Documentation/gpu/rfc/i915_dg2.rst
+> new file mode 100644
+> index 000000000000..a83ca26cd758
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_dg2.rst
+> @@ -0,0 +1,47 @@
+> +====================
+> +I915 DG2 RFC Section
+> +====================
+> +
+> +Upstream plan
+> +=============
+> +Plan to upstream the DG2 enabling is:
+> +
+> +* Merge basic HW enabling for DG2(Still without pciid)
 
-== Series Details ==
+here and everywhere below, missing space before (
 
-Series: drm/i915/display: refactor plane config + pin out (rev2)
-URL   : https://patchwork.freedesktop.org/series/95541/
-State : success
+> +* Merge the 64k support for lmem
+> +* Merge the flat CCS enabling patches
+> +* Add the pciid for DG2 and enable the DG2 in CI
+> +
+> +
+> +64K page support for lmem
+> +=========================
+> +On DG2 hw, local-memory supports minimum GTT page size of 64k only. 4k is not supported anymore.
+> +
+> +DG2 hw dont support the 64k(lmem) and 4k(smem) pages in the same ppgtt Page table. Refer the
 
-== Summary ==
+s/hw dont/doesn't/
 
-CI Bug Log - changes from CI_DRM_10720 -> Patchwork_21314
-====================================================
+> +struct drm_i915_gem_create_ext for the implication of handling the 64k page size.
+> +
+> +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> +        :functions: drm_i915_gem_create_ext
+> +
+> +
+> +flat CCS support for lmem
 
-Summary
--------
+Flat
 
-  **SUCCESS**
+> +=========================
+> +Gen 12+ devices support 3D surfaces compression and compression formats. This is
+> +accomplished by an additional compression control state (CCS) stored for each surface.
+> +
+> +Gen 12 devices(TGL and DG1) stores compression state in a separate region of memory.
 
-  No regressions found.
+s/stores/store/
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/index.html
+> +It is managed by userspace and has an associated set of userspace managed page tables
+> +used by hardware for address translation.
+> +
+> +In Gen 12.5 devices(XEXPSDV and DG2) Flat CCS is introduced to replace the userspace
 
-Known issues
-------------
+There is no such thing as Gen 12.5. The "Gen" nomenclature stopped on Gen 12.
 
-  Here are the changes found in Patchwork_21314 that come from known issues:
+Lucas De Marchi
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-compute:
-    - fi-elk-e7500:       NOTRUN -> [SKIP][1] ([fdo#109271]) +49 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-elk-e7500/igt@amdgpu/amd_basic@cs-compute.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +23 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#3921])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10720/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#4269])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10720/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-
-
-Participating hosts (35 -> 33)
-------------------------------
-
-  Additional (1): fi-elk-e7500 
-  Missing    (3): fi-jsl-1 fi-bsw-cyan fi-ilk-650 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10720 -> Patchwork_21314
-
-  CI-20190529: 20190529
-  CI_DRM_10720: 8a8d1f74b64edddbbb43fa4be5e438a12ba70707 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21314: 71cfd613f6977b69d62e8c42e20c9819a5e2b7e3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-71cfd613f697 drm/i915/display: drop unused parameter to dpt pin
-11c921fdcfbf drm/i915/display: move fbdev pin code into fb_pin
-e08334b38c2a drm/i915/display: refactor fbdev pin/unpin out into functions.
-32d63dc32c0a drm/i915/display: move pin/unpin fb/plane code to a new file.
-db2228c1c8b5 drm/i915/display: refactor initial plane config to a separate file
-fe9de0be3625 drm/i915/display: refactor out initial plane config for crtcs
-719e999a3ade drm/i915/display: let intel_plane_uses_fence be used from other places.
-569a494f9314 drm/i915/display: move plane prepare/cleanup to intel_atomic_plane.c
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/index.html
-
---===============6771660615085075330==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: refactor plane config + pin out (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95541/">https://patchwork.freedesktop.org/series/95541/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10720 -&gt; Patchwork_21314</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21314 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-compute:</p>
-<ul>
-<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-elk-e7500/igt@amdgpu/amd_basic@cs-compute.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +49 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10720/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10720/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21314/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (35 -&gt; 33)</h2>
-<p>Additional (1): fi-elk-e7500 <br />
-  Missing    (3): fi-jsl-1 fi-bsw-cyan fi-ilk-650 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10720 -&gt; Patchwork_21314</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10720: 8a8d1f74b64edddbbb43fa4be5e438a12ba70707 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21314: 71cfd613f6977b69d62e8c42e20c9819a5e2b7e3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>71cfd613f697 drm/i915/display: drop unused parameter to dpt pin<br />
-11c921fdcfbf drm/i915/display: move fbdev pin code into fb_pin<br />
-e08334b38c2a drm/i915/display: refactor fbdev pin/unpin out into functions.<br />
-32d63dc32c0a drm/i915/display: move pin/unpin fb/plane code to a new file.<br />
-db2228c1c8b5 drm/i915/display: refactor initial plane config to a separate file<br />
-fe9de0be3625 drm/i915/display: refactor out initial plane config for crtcs<br />
-719e999a3ade drm/i915/display: let intel_plane_uses_fence be used from other places.<br />
-569a494f9314 drm/i915/display: move plane prepare/cleanup to intel_atomic_plane.c</p>
-
-</body>
-</html>
-
---===============6771660615085075330==--
+> +managed AUX pagetable with the flat indexed region of device memory for storing the
+> +compression state
+> +
+> +GOP Driver steals a chunk of memory for the CCS surface corresponding to the entire
+> +range of local memory. The memory required for the CCS of the entire local memory is
+> +1/256 of the main local memory. The Gop driver will also program a secure register
+> +(XEHPSDV_FLAT_CCS_BASE_ADDR 0x4910) with this address value.
+> +
+> +So the Total local memory available for driver allocation is Total lmem size - CCS data size
+> +
+> +Flat CCS data needs to be cleared when a lmem object is allocated. And CCS data can
+> +be copied in and out of CCS region through XY_CTRL_SURF_COPY_BLT.
+> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+> index 91e93a705230..afb320ed4028 100644
+> --- a/Documentation/gpu/rfc/index.rst
+> +++ b/Documentation/gpu/rfc/index.rst
+> @@ -20,6 +20,9 @@ host such documentation:
+>
+>      i915_gem_lmem.rst
+>
+> +.. toctree::
+> +    i915_dg2.rst
+> +
+>  .. toctree::
+>
+>      i915_scheduler.rst
+> --
+> 2.20.1
+>
