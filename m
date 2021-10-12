@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF8E42A0BF
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 11:11:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D575942A0C5
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 11:13:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2511A6E823;
-	Tue, 12 Oct 2021 09:11:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F343C89ECB;
+	Tue, 12 Oct 2021 09:13:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 75D8F6E822;
- Tue, 12 Oct 2021 09:11:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6EE0CAA914;
- Tue, 12 Oct 2021 09:11:01 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A72889ECB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 09:13:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10134"; a="207205851"
+X-IronPort-AV: E=Sophos;i="5.85,367,1624345200"; d="scan'208";a="207205851"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 02:13:34 -0700
+X-IronPort-AV: E=Sophos;i="5.85,367,1624345200"; d="scan'208";a="490884623"
+Received: from pakumpul-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.40.207])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 02:13:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <20211011182144.22074-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211011182144.22074-1-jani.nikula@intel.com>
+Date: Tue, 12 Oct 2021 12:13:29 +0300
+Message-ID: <87r1cqzjuu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Oct 2021 09:11:01 -0000
-Message-ID: <163402986144.14289.12740524889375867177@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211012082845.16081-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20211012082845.16081-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/dg2=3A_Tile_4_plane_format_support?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dp: abstract
+ intel_dp_lane_max_vswing_reached()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,24 +47,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 11 Oct 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+> Add per-lane abstraction for max vswing reached to make follow-up
+> cleaner, as this one reverses the conditions.
+>
+> v2: both conditions need to be true, reverse (Ville)
+>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915/dg2: Tile 4 plane format support
-URL   : https://patchwork.freedesktop.org/series/95715/
-State : warning
+Pushed both with Ville's IRC r-b, thanks for the review.
 
-== Summary ==
+BR,
+Jani.
 
-$ dim checkpatch origin/drm-tip
-9f8c203ad95f drm/i915/dg2: Tile 4 plane format support
--:194: WARNING:LINE_CONTINUATIONS: Avoid unnecessary line continuations
-#194: FILE: drivers/gpu/drm/i915/i915_pci.c:975:
-+	.has_ftile = 1, \
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 42 +++++++++++--------
+>  1 file changed, 25 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 1a943ae38a6b..1d4bcb91cd3b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -515,29 +515,37 @@ intel_dp_update_link_train(struct intel_dp *intel_d=
+p,
+>  	return ret =3D=3D crtc_state->lane_count;
+>  }
+>=20=20
+> +/*
+> + * FIXME: The DP spec is very confusing here, also the Link CTS spec see=
+ms to
+> + * have self contradicting tests around this area.
+> + *
+> + * In lieu of better ideas let's just stop when we've reached the max su=
+pported
+> + * vswing with its max pre-emphasis, which is either 2+1 or 3+0 dependin=
+g on
+> + * whether vswing level 3 is supported or not.
+> + */
+> +static bool intel_dp_lane_max_vswing_reached(u8 train_set_lane)
+> +{
+> +	u8 v =3D (train_set_lane & DP_TRAIN_VOLTAGE_SWING_MASK) >>
+> +		DP_TRAIN_VOLTAGE_SWING_SHIFT;
+> +	u8 p =3D (train_set_lane & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+> +		DP_TRAIN_PRE_EMPHASIS_SHIFT;
+> +
+> +	if ((train_set_lane & DP_TRAIN_MAX_SWING_REACHED) =3D=3D 0)
+> +		return false;
+> +
+> +	if (v + p !=3D 3)
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+>  static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+>  					     const struct intel_crtc_state *crtc_state)
+>  {
+>  	int lane;
+>=20=20
+> -	/*
+> -	 * FIXME: The DP spec is very confusing here, also the Link CTS
+> -	 * spec seems to have self contradicting tests around this area.
+> -	 *
+> -	 * In lieu of better ideas let's just stop when we've reached the
+> -	 * max supported vswing with its max pre-emphasis, which is either
+> -	 * 2+1 or 3+0 depending on whether vswing level 3 is supported or not.
+> -	 */
+>  	for (lane =3D 0; lane < crtc_state->lane_count; lane++) {
+> -		u8 v =3D (intel_dp->train_set[lane] & DP_TRAIN_VOLTAGE_SWING_MASK) >>
+> -			DP_TRAIN_VOLTAGE_SWING_SHIFT;
+> -		u8 p =3D (intel_dp->train_set[lane] & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+> -			DP_TRAIN_PRE_EMPHASIS_SHIFT;
+> -
+> -		if ((intel_dp->train_set[lane] & DP_TRAIN_MAX_SWING_REACHED) =3D=3D 0)
+> -			return false;
+> -
+> -		if (v + p !=3D 3)
+> +		if (!intel_dp_lane_max_vswing_reached(intel_dp->train_set[lane]))
+>  			return false;
+>  	}
 
-total: 0 errors, 1 warnings, 0 checks, 168 lines checked
-
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
