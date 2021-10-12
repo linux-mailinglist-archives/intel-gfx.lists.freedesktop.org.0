@@ -1,35 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3819429A8A
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 02:53:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66B5B429B61
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 04:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04B706E5A2;
-	Tue, 12 Oct 2021 00:53:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DD3189E03;
+	Tue, 12 Oct 2021 02:18:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D4FE36E56D;
- Tue, 12 Oct 2021 00:52:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C91E3A9A42;
- Tue, 12 Oct 2021 00:52:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5540451888260622610=="
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4296289E2B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 02:18:47 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4HSzqL3w2Bz4xqP;
+ Tue, 12 Oct 2021 13:18:37 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1634005120;
+ bh=7TdwyrOsBCjwW6kUZLQ0ge42Vqvzaat+9cR/oYtHFUQ=;
+ h=Date:From:To:Cc:Subject:From;
+ b=VYfu0/fB6iI+Rzc+h/RAHVjla9SGIeXzax2RuDc9USZYB0FKyd66GQ3M3d3yo0kWF
+ 8B9dYbG2roCO0ayVXP40pFmaB8zo0rUMJdabTcQ095IbcCgzqmVcwMoj3GbJTKeYgK
+ oA0SI+7kltUIfPiczgIcKPRXQAy32Xm1rc8jYhKCRCY3ary5kknqpOndLBzdDkBCXz
+ UvXicU9Oz5RMvz0A99R0zFRtesl67NPRJmSW5/vYmorARw7sFftx2KRMs7BGQtkNvp
+ G0Mo5TkxuJioVdXYC/f+QjpzVbWe/LJIbCq0LRctDR8yCo5QzgoNcHWIyXYM4g8Wkt
+ tfl+nEJwBISCA==
+Date: Tue, 12 Oct 2021 13:18:36 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Cc: Karol Herbst <kherbst@redhat.com>, Luo penghao <luo.penghao@zte.com.cn>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Message-ID: <20211012131836.4e17a031@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Oct 2021 00:52:58 -0000
-Message-ID: <163399997879.14288.11533230730211990581@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211011234705.30853-1-matthew.brost@intel.com>
-In-Reply-To: <20211011234705.30853-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Allow_engine_reset_failure_to_do_a_GT_reset_?=
- =?utf-8?q?in_hangcheck_selftest?=
+Content-Type: multipart/signed; boundary="Sig_/aSVkmKQBx7LDjmkhgmtejTx";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,171 +53,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5540451888260622610==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/aSVkmKQBx7LDjmkhgmtejTx
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/i915/selftests: Allow engine reset failure to do a GT reset in hangcheck selftest
-URL   : https://patchwork.freedesktop.org/series/95702/
-State : success
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-== Summary ==
+drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c: In function 'gp100_vmm_=
+fault_cancel':
+drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c:491:6: error: unused var=
+iable 'inst' [-Werror=3Dunused-variable]
+  491 |  u32 inst, aper;
+      |      ^~~~
+cc1: all warnings being treated as errors
 
-CI Bug Log - changes from CI_DRM_10719 -> Patchwork_21313
-====================================================
+Caused by commit
 
-Summary
--------
+  404046cf4805 ("drm/nouveau/mmu/gp100-: drop unneeded assignment in the if=
+ condition.")
 
-  **SUCCESS**
+I have used the drm-misc tree from next-20211011 for today.
 
-  No regressions found.
+--=20
+Cheers,
+Stephen Rothwell
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/index.html
+--Sig_/aSVkmKQBx7LDjmkhgmtejTx
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Known issues
-------------
+-----BEGIN PGP SIGNATURE-----
 
-  Here are the changes found in Patchwork_21313 that come from known issues:
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFk8HwACgkQAVBC80lX
+0GxR9gf/dWV2TjBgsZxX9IdzhcV03t7T1O/NqxYkgb8OAGgM4dTbIKVqPLoHPOHN
+C+S/I6iPKyiFKcMhdzepdt3VDZJ11Ww4vauK3NWQTZ9a+SgmaH9ykbDp6+nkOrzS
+PfPi4mEMnfS//WmCgd8PWgULRkOcoFvwuGpy7kml4TLGTI06i9tHZreRQKkUzBN8
+Oy+k1ev2ZPh9g0aqeBxucB4yXHxGSPNON3XqIO8/91qPFtTubJ8wrFBg6CIJw2gl
+I3Qp+EnJ35kWlszJQiHmmTzVQzbBw7Lw1Ztz8ZgZblUCgvBtEjoA6a1KHBw89Jnv
+rzbtA1U9Xx8IcRqtnUygkFvxySkvjA==
+=O10a
+-----END PGP SIGNATURE-----
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#3921])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10719/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bdw-5557u:       [DMESG-FAIL][3] ([i915#541]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10719/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][5] ([i915#3303]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10719/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (38 -> 34)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan fi-elk-e7500 fi-kbl-guc fi-bsw-n3050 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10719 -> Patchwork_21313
-
-  CI-20190529: 20190529
-  CI_DRM_10719: b138938ad4071c045a865977718019951186e322 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21313: bad5ebd3f38295f5c7848973d023033c59390e4c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-bad5ebd3f382 drm/i915/selftests: Allow engine reset failure to do a GT reset in hangcheck selftest
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/index.html
-
---===============5540451888260622610==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Allow engine reset failure to do a GT reset in hangcheck selftest</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95702/">https://patchwork.freedesktop.org/series/95702/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10719 -&gt; Patchwork_21313</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21313 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10719/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10719/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10719/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21313/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 34)</h2>
-<p>Missing    (4): fi-bsw-cyan fi-elk-e7500 fi-kbl-guc fi-bsw-n3050 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10719 -&gt; Patchwork_21313</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10719: b138938ad4071c045a865977718019951186e322 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21313: bad5ebd3f38295f5c7848973d023033c59390e4c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>bad5ebd3f382 drm/i915/selftests: Allow engine reset failure to do a GT reset in hangcheck selftest</p>
-
-</body>
-</html>
-
---===============5540451888260622610==--
+--Sig_/aSVkmKQBx7LDjmkhgmtejTx--
