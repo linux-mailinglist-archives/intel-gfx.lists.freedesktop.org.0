@@ -1,127 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F9642A1E0
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 12:20:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1D042A22A
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 12:31:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E77CB6E839;
-	Tue, 12 Oct 2021 10:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69F236E830;
+	Tue, 12 Oct 2021 10:30:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2044.outbound.protection.outlook.com [40.107.243.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 685AE6E82D;
- Tue, 12 Oct 2021 10:19:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OvHb/dD+5Nsw4ZAjH9VPjIGfWjLKCdN11+NZuAC+d7f9deqGRTYe2iRR/6cX1x5p7V+AMhj7hRJTJQInonc51nrH10cVfsLtuyF7lCCA7Lq0oj1+4WL7DK+wTKjTOcwFlxYyKUKr+C2ghb7WRsCfnnCwsL4DmiPFRUCGOjLMNFDf9Vo+CxmKkdh+fUL/PkwT2Ihxx+9CqnMnlFtPfoEItq62xbFx09Ex5eQeHOTJpqvzTNIxckbAE5XGDQ2qPbg95wsO5LFhzfWPSK/F1wleOONVFKy/U8rP5UpKaZp6rnuQyGcjrjNqQla8we11EuavuzvGWDyaKAeHUlNf5DPu/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I8umFo93NU1q6+tsHt9Q/NMhXuNvpeu7jBdmYlERyvA=;
- b=bJ0AOkCst8StE2i2h+57QHZQe4w2lrGZ9HaeRJoKpR7vSdf5nYT02iwDpYoVX3PBo8pCH3ItVx38b++bdEuTzBIEvQO8ByBZHs1DJMtLDwg2pe7wS3q7GG4YlHeo5fABKfTdOl0h/knvZNlBNqmi8f1RZIwXnUeWadiSPN7XZPxewyXCsxBglM5nUmvOx4e9G5VaVHEqHxbef7/zv70XgkZ8DjwY7jjInSIQlrxHRtKOW2XO5Lhc/x3CIUqzaEwXpkzyoS2JhY7oJ5jrJ7KUGzS9b7Fn9zJzyIYB+sFuXL3u1MAowbUCYETuErn+7Fvodb0Yc7bwBfpDnVG39kOVEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I8umFo93NU1q6+tsHt9Q/NMhXuNvpeu7jBdmYlERyvA=;
- b=RPiRV3YDSfigKivyMZ2EkGeKP6FM8143dMwyGefa+PtLBFmuKKa5yvlv7HNwQs16kufGFk93vQgUg9+nQ3l0t2DG04Y8mZcTf3j92BR8D4E59R9B8Be6R+IzAWJEENT31pKXFaf1s5rXZtcYYdAfYjvOQsJl7sMv8fBl8F8kI90=
-Authentication-Results: ffwll.ch; dkim=none (message not signed)
- header.d=none;ffwll.ch; dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com (13.101.57.247) by
- DM4PR12MB5037.namprd12.prod.outlook.com (13.101.57.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4587.20; Tue, 12 Oct 2021 10:19:53 +0000
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::555a:2980:a5c2:8d29]) by DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::555a:2980:a5c2:8d29%8]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 10:19:52 +0000
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-References: <20211008091704.27094-1-nirmoy.das@amd.com>
- <20211008091704.27094-2-nirmoy.das@amd.com>
- <95bb9aa6-1e6e-c0da-64ed-30ac31f44b67@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@amd.com>
-Message-ID: <4d5c92f0-1a9f-27da-c404-d0891aefd32f@amd.com>
-Date: Tue, 12 Oct 2021 12:19:48 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-In-Reply-To: <95bb9aa6-1e6e-c0da-64ed-30ac31f44b67@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: AS9PR06CA0258.eurprd06.prod.outlook.com
- (2603:10a6:20b:45f::30) To DM4PR12MB5136.namprd12.prod.outlook.com
- (2603:10b6:5:393::23)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 650CF6E830;
+ Tue, 12 Oct 2021 10:30:57 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id y15so85838404lfk.7;
+ Tue, 12 Oct 2021 03:30:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=5OYElhLgX140tN0pwMxqY0LLaU23RLT1yPxlZUcs6+c=;
+ b=jLCyBOv/HNE7vBEaDIhdTC8v/GKNlPLjWVe95adyeCkGbJlNlurWcCK3uqPLgSvomC
+ obmX1kwj02x4jY3Ejn5JkSK6H19S0pcoBNSiQqWeaEsQqO1mCHNEVWgvdUaI5xYgJsVH
+ V48BX2IkDLh9L68rbQntCh21B+t62jWEh79UAK2XZY92nAliEq0qnEhZh48S1RN67+b7
+ kDU1W0IELJStaTeZiCocZcIcWSa1XCmy1t2HR3qa9fBRGhW2tLuhx8HRM33oY7lSnRBN
+ 7yDUq6GtV5bIG2YwzWIxn6KT+Lb+bKIrwP5RFQMM/RAV/E1u7dy9ERU5HOU8umKwHs9G
+ 9UKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=5OYElhLgX140tN0pwMxqY0LLaU23RLT1yPxlZUcs6+c=;
+ b=kTqDmjW4anMZ/8bxV8diZMl5J/oqLwSxa1SWfpzswEVB0wwO36qupfbIljmdHdyqC2
+ Fkf2mnMXh8OKWtGNUFTXzh9CVlUpyLzA4DclZqVGKDB5Nt3+nCCzmthHRXStmXFmbdeD
+ 9X2lNoCY0GPMizXK2+U4y5LwDOD0xcAP9E0gFsuS6+KtC0Lk0A8gJDyPjJbPaoR0IUPh
+ 9dSo/nZIoOEHqUcvNT8/QDLKtaJiXOGI9pzIv6CRzGus2chzmB08QvT8rW1Ws35wu7Lj
+ NWrFz9Umc12Zkz7L64tIq2x1xeIEwcB0gFMlNes2EfyuyI7i889zaGi4LFxHXYiNLlQZ
+ L90w==
+X-Gm-Message-State: AOAM533nG90j2mGP1THKjlj18/rzdlWJqoxmtX4K0hi6xFuDwbgnw2Xv
+ vYmMOaxXKhfW7ShDBdLjVjg=
+X-Google-Smtp-Source: ABdhPJyKszPkb3Q3iwHH6Ufi/V0uQsaOsYT+cWF05WCkmj4XU7TVDQwklyYfYsyTr9sg1rDLFcdOYQ==
+X-Received: by 2002:a2e:7204:: with SMTP id n4mr23614241ljc.430.1634034655423; 
+ Tue, 12 Oct 2021 03:30:55 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id 12sm989294lfz.259.2021.10.12.03.30.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 12 Oct 2021 03:30:54 -0700 (PDT)
+Date: Tue, 12 Oct 2021 13:30:43 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, ville.syrjala@linux.intel.com,
+ brian.starkey@arm.com, sebastian@sebastianwick.net, Shashank.Sharma@amd.com
+Message-ID: <20211006155559.606521de@eldfell>
+In-Reply-To: <20210906213904.27918-2-uma.shankar@intel.com>
+References: <20210906213904.27918-1-uma.shankar@intel.com>
+ <20210906213904.27918-2-uma.shankar@intel.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: from [192.168.178.88] (217.86.110.202) by
- AS9PR06CA0258.eurprd06.prod.outlook.com (2603:10a6:20b:45f::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.14 via Frontend
- Transport; Tue, 12 Oct 2021 10:19:51 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 830bec57-ed74-40d4-db51-08d98d69d480
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5037:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB503765EB5D107B2CF36D6DAA8BB69@DM4PR12MB5037.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: adj/zHDYZ5kPTigCDnxMKbZ93qQEtMl1dRJPDsggOeRMVs9pIE1/CdwIKc09yXNj9ho21/VyIkCPEbWgdGywNqu8ihmnXMsetbNa+1FcG/cNUatcVlRSVmhF07PX8vxnXQXx6karaTLe2YK+Y51Y8V3x2P++c840L67dS+WuU/YULYvKcKI3D3qfZ3wxdnTA6ooafp19Qa31yKMRqAyLGZ+hgv1x+iSiLR2UDzqBm+dD7ZjbwaYjP33uUqcAaGDeT/EgQPst2nX0hStE9YcKYLuCnyrmUY/9pIlenVavZCftSA9Oq+67focTArfxShx8FQUoJnGOhdCOHRjVBsH9P6Mipo+qxgIPG5PXGd8sns7l5r5dr0YmerrAJkJqFgVwQCu0fUQb86BGXwzAafogTBkM0IbcrZic041RuZlhGmHr7rJ4zIOmyfpPKLRfUuR0508fH5ichKMMfLRQqXKGm/JFxEbUhFDp9jE4yb4sn4qFF3hEXE2nCX2wkNs3pN6W2Gf9fbXcu2fq6c4SgnsF5miu7p/H+tzCFy9IZGjpc6yfYEfT8J5mDZnnHVs1kEKjVb4c2YYD5rwqMe1+EtMr47117geIsHcDnSsXR5yCmNAT7B4qUE5qhwJlt3iB8OF+7ixK9JWdVLgZcNSaGyD5YeTmaiqJiNb5NogUIJMFBQ4pmgGt/bK3wb3FUC1LrxY93V5SoLdG1B9rED9N40UhwjPKiHfZP2NJi2G8gPfWqzI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5136.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(16576012)(31686004)(6666004)(38100700002)(5660300002)(966005)(316002)(186003)(8676002)(508600001)(86362001)(110136005)(956004)(36756003)(66476007)(66556008)(2906002)(53546011)(66946007)(26005)(31696002)(2616005)(6486002)(54906003)(4326008)(8936002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UXhkMk80elhNK2xmWnZCdlV2VTVWcEd0NGZnejNzLzNjOEFnNnY2WE0zNVRn?=
- =?utf-8?B?cFdhbDkrcHRSUndYTnVUYWxTUVNOdmZ4RjNGL3JoQndlblprM2xDR1NSTHBT?=
- =?utf-8?B?WG83ZkMxVXBMOG1jNDNPbzFxdU1HQVVxS25tdFpCVjcvSnF6SXZYL0c5MW0z?=
- =?utf-8?B?NDNyR1dvWXBXa0h6VktISUt0T1J5aUY0cUJuTUhmUnhnNC9HTDBMZytmWWtr?=
- =?utf-8?B?WTd1bVNRbllGdU9LSEhmOGpSQWxnMTdKc3VoMDAza3dzbHgzZGhKaGxxTkk0?=
- =?utf-8?B?VHNSNGl4NTZJSTVnSzVVNXE1VHNNeXlNZ0V6SDFnUkdOQlJDV0thL1JIQ2U3?=
- =?utf-8?B?R3FiUEZ3U2RHdXJtS0I0bEE4QkNIQ1ErZis3OTlOeEowMUNVMFlYcUlnNEJs?=
- =?utf-8?B?bjVrMlQvYzJIQThBb3dNV0hxWWJFSXFCWm1Zc3pMQUVKcWNZMFpwbEVRcVVW?=
- =?utf-8?B?ajRGQVJleHU5bUo2T1gzT09hUisyZkFqL0xWYk1UaHNjWis3RmprR09QTlJi?=
- =?utf-8?B?K0V2MmR6dGdTLzNXSnRYWjhta2Q2bW9vS1NOOFh5NWRFMzlzaU41aXlQREx5?=
- =?utf-8?B?UE9SWmRLWkNWQ0VZU05CMlcyd3JlOVV2KzRDclZ5NWl2TlJ3Z0pNcE5XTkxy?=
- =?utf-8?B?M1hPT3NEZURPaFRNVko5bEZOZ0pQdEVncTd4NjJ2bUNDN2wvRUJjdzRCYUlY?=
- =?utf-8?B?VnlFT0Exc0tVRkt3TmtBUm8wLzRMK3lkZWsvS0JDbFlIaUV1SzFVRkJtd2dj?=
- =?utf-8?B?UDl2ZkM3L1o1QWNkUjZnRkxncUdBYmxBdjlYR1doOHowWjZJZGFVSUxsUCtx?=
- =?utf-8?B?bWVybzBTQWRYWWNXd3NBSFRtUWk3Wkp1UkFhTVZxT0dEaWlNakdPTFh2cFRI?=
- =?utf-8?B?NmVib1I2Q3EyVUV6MVFTaHRBMXdnWVhGN2k5N3FBQ3VCQmtFN1ppVWhZSWJE?=
- =?utf-8?B?MEZYaTBuaVBlOFNxQjdLTVQxR01STlBYVUhlMjBVaHluemkxSjNpL1dHOEdn?=
- =?utf-8?B?MWpwR0lDUTNKUnhZNElqcUJnYzlUMmtYd3FoTWR4VTZjMDhucnhXRllNVkF1?=
- =?utf-8?B?SmxOS3VZTDJXRDhNd1M3Y1ZyTDNaay9NbzNSWXV1NGNiby9BdXJUM24zUE5z?=
- =?utf-8?B?TGhzZnFGM3ZuVHU3Um14ODdiZk1rU1FXSXJQdzlHdFBKclU0N3A5elFzVkRR?=
- =?utf-8?B?Z21qblVteWpCclVYQ3U0S0JmSmxVTTZtYWdaR0Nwa3kwNGkyQjNDVnFZdHc3?=
- =?utf-8?B?L3V5RlNZWG56dmlvU3J4aktmTnMxZ2pxM1ptVDBXaE9CNGw0SWNFY0FQUkgx?=
- =?utf-8?B?WEFKR3hjNXU1ZmhGQzl1YzVnUWIydHhsSVM1NWtTS0UyUXN3VDE2WWNjc29K?=
- =?utf-8?B?K1BHNVZGSEtNQ09NSXRHVnRrc3VCeUtMckY0T2xaN3VYcVJzNWJTTFBkd044?=
- =?utf-8?B?dzJDTDFCQ05YbVVqOU5XMW9TTCs4b3l1QkRVWXNTSnNnd1BybGlxTVNnaFNi?=
- =?utf-8?B?WjVpWWNXYU10Y0ovaVVJK2hyNklRdWhRZnlNZ3lWK2JlUDAvSEt3WWxDcEhl?=
- =?utf-8?B?NGx6NUp1S0pxeGVXV2g0WlJFRE5SN3ZwZEY5RVVZczlRdnEwN1Z5TjlnOFJl?=
- =?utf-8?B?eFFyNjg1TFVSQjhmNm5Jei9DaVNmYXFPWG1SdHJ2czczcm1udGRJU2N2UXcr?=
- =?utf-8?B?aW93MWpDZDRTVWRpc1NNM3hzaWo4TWlOd3RxUk5wOWtKQW01bGNtSTdwTmx3?=
- =?utf-8?Q?K40BTn3iGnhMLpNRbga9hxsEwOca+GNvlxiiztx?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 830bec57-ed74-40d4-db51-08d98d69d480
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5136.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 10:19:52.8262 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P4dSuzqyPiRvMtT8oGqOnIsAe1/zKoEe3hr4xgKZKKUxWnd30rc3XTy5xrwiWJhOhdKYhWfo036ZBpN5oh8ECw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5037
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: check dri root before debugfs
- init
+Content-Type: multipart/signed; boundary="Sig_/Jh1_=ypjxL0+x.XGZylsUh3";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] [RFC v2 01/22] drm: RFC for Plane Color Hardware
+ Pipeline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,64 +75,445 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhi,
+--Sig_/Jh1_=ypjxL0+x.XGZylsUh3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Tue,  7 Sep 2021 03:08:43 +0530
+Uma Shankar <uma.shankar@intel.com> wrote:
+
+> This is a RFC proposal for plane color hardware blocks.
+> It exposes the property interface to userspace and calls
+> out the details or interfaces created and the intended
+> purpose.
+>=20
+> Credits: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  Documentation/gpu/rfc/drm_color_pipeline.rst | 167 +++++++++++++++++++
+>  1 file changed, 167 insertions(+)
+>  create mode 100644 Documentation/gpu/rfc/drm_color_pipeline.rst
+>=20
+> diff --git a/Documentation/gpu/rfc/drm_color_pipeline.rst b/Documentation=
+/gpu/rfc/drm_color_pipeline.rst
+> new file mode 100644
+> index 000000000000..0d1ca858783b
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/drm_color_pipeline.rst
+> @@ -0,0 +1,167 @@
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+> +Display Color Pipeline: Proposed DRM Properties
+
+Hi,
+
+is there a practise of landing proposal documents in the kernel? How
+does that work, will a kernel tree carry the patch files?
+Or should this document be worded like documentation for an accepted
+feature, and then the patches either land or don't?
+
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+> +
+> +This is how a typical display color hardware pipeline looks like:
+
+Typical, or should we say that this is the abstract color pipeline that
+KMS assumes?
+
+Then drivers map this to pieces of hardware the best they can and
+reject or do not expose the parts they cannot.
+
+> + +-------------------------------------------+
+> + |                RAM                        |
+> + |  +------+    +---------+    +---------+   |
+> + |  | FB 1 |    |  FB 2   |    | FB N    |   |
+> + |  +------+    +---------+    +---------+   |
+> + +-------------------------------------------+
+> +       |  Plane Color Hardware Block |
+> + +--------------------------------------------+
+> + | +---v-----+   +---v-------+   +---v------+ |
+> + | | Plane A |   | Plane B   |   | Plane N  | |
+> + | | DeGamma |   | Degamma   |   | Degamma  | |
+> + | +---+-----+   +---+-------+   +---+------+ |
+> + |     |             |               |        |
+> + | +---v-----+   +---v-------+   +---v------+ |
+> + | |Plane A  |   | Plane B   |   | Plane N  | |
+> + | |CSC/CTM  |   | CSC/CTM   |   | CSC/CTM  | |
+> + | +---+-----+   +----+------+   +----+-----+ |
+> + |     |              |               |       |
+> + | +---v-----+   +----v------+   +----v-----+ |
+> + | | Plane A |   | Plane B   |   | Plane N  | |
+> + | | Gamma   |   | Gamma     |   | Gamma    | |
+> + | +---+-----+   +----+------+   +----+-----+ |
+> + |     |              |               |       |
+> + +--------------------------------------------+
+> ++------v--------------v---------------v-------|
+> +||                                           ||
+> +||           Pipe Blender                    ||
+> ++--------------------+------------------------+
+> +|                    |                        |
+> +|        +-----------v----------+             |
+> +|        |  Pipe DeGamma        |             |
+> +|        |                      |             |
+> +|        +-----------+----------+             |
+> +|                    |            Pipe Color  |
+> +|        +-----------v----------+ Hardware    |
+> +|        |  Pipe CSC/CTM        |             |
+> +|        |                      |             |
+> +|        +-----------+----------+             |
+> +|                    |                        |
+> +|        +-----------v----------+             |
+> +|        |  Pipe Gamma          |             |
+> +|        |                      |             |
+> +|        +-----------+----------+             |
+> +|                    |                        |
+> ++---------------------------------------------+
+> +                     |
+> +                     v
+> +               Pipe Output
+> +
+> +Proposal is to have below properties for a plane:
+> +
+> +* Plane Degamma or Pre-Curve:
+> +	* This will be used to linearize the input framebuffer data.
+> +	* It will apply the reverse of the color transfer function.
+> +	* It can be a degamma curve or OETF for HDR.
+
+As you want to produce light-linear values, you use EOTF or inverse
+OETF.
+
+The term OETF has a built-in assumption that that happens in a camera:
+it takes in light and produces and electrical signal. Lately I have
+personally started talking about non-linear encoding of color values,
+since EOTF is often associated with displays if nothing else is said
+(taking in an electrical signal and producing light).
+
+So this would be decoding the color values into light-linear color
+values. That is what an EOTF does, yes, but I feel there is a nuanced
+difference. A piece of equipment implements an EOTF by turning an
+electrical signal into light, hence EOTF often refers to specific
+equipment. You could talk about content EOTF to denote content value
+encoding, as opposed to output or display EOTF, but that might be
+confusing if you look at e.g. the diagrams in BT.2100: is it the EOTF
+or is it the inverse OETF? Is the (inverse?) OOTF included?
+
+So I try to side-step those questions by talking about encoding.
+
+> +	* This linear data can be further acted on by the following
+> +	* color hardware blocks in the display hardware pipeline
+
+I think this and the above description ties the intended use down too
+much. This is one possible way to use degamma, yes, but there may be
+others. Particularly if CTM can be replaced with a 3D LUT, then the
+degamma is more likely a shaper (non-linear adjustment to 3D LUT tap
+positions).
+
+I would prefer the name pre-curve to underline that this can be
+whatever one wants it to be, but I understand that people may be more
+familiar with the name degamma.
+
+> +
+> +UAPI Name: PLANE_DEGAMMA_MODE
+> +Description: Enum property with values as blob_id's which advertizes
+> the
+
+Is enum with blob id values even a thing?
+
+> +	    possible degamma modes and lut ranges supported by the platform.
+> +	    This  allows userspace to query and get the plane degamma color
+> +	    caps and choose the appropriate degamma mode and create lut values
+> +	    accordingly.
+
+I agree that some sort of "mode" switch is necessary, and advertisement
+of capabilities as well.
+
+> +
+> +UAPI Name: PLANE_DEGAMMA_LUT
+> +Description: Blob property which allows a userspace to provide LUT values
+> +	     to apply degamma curve using the h/w plane degamma processing
+> +	     engine, thereby making the content as linear for further color
+> +	     processing. Userspace gets the size of LUT and precision etc
+> +	     from PLANE_DEGAMA_MODE_PROPERTY
+
+So all degamma modes will always be some kind of LUT? That may be a bit
+restrictive, as I understand AMD may have predefined or parameterised
+curves that are not LUTs. So there should be room for an arbitrary
+structure of parameters, which can be passed in as a blob id, and the
+contents defined by the degamma mode.
+
+LUT size, precision, and other details of each degamma mode would be
+good to expose somehow. I kind of expected those would have been
+exposed through the above mentioned "enum with blob id values" where
+each blob content structure is defined by the respective enum value.
+
+> +=09
+> +* Plane CTM
+> +	* This is a Property to program the color transformation matrix.
+
+No mode property here? Is there any hardware with something else than a
+matrix at this point?
+
+Should we assume there will be hardware with something else, and have a
+CSC mode property with only a single enum value defined so far:
+"matrix"? Or do we say PLANE_CTM is a matrix and if you have something
+else in hardware, then invent a new property for it?
+
+> +	* This can be used to perform a color space conversion like
+> +	* BT2020 to BT709 or BT601 etc.
+> +	* This block is generally kept after the degamma unit so that
+
+Not "generally". If blocks can change places, then it becomes
+intractable for generic userspace to program.
+
+> +	* linear data can be fed to it for conversion.
+> +
+> +UAPI Name: PLANE_CTM
+> +Description: Blob property which allows a userspace to provide CTM coeff=
+icients
+> +	     to do color space conversion or any other enhancement by doing a
+> +	     matrix multiplication using the h/w CTM processing engine
+> +
+
+Speaking of color space conversions, we should probably define what
+happens to out-of-range color values. Converting color into smaller
+gamut or smaller dynamic range always has the risk of ending up with
+out-of-range values. I suppose those get simply clipped independently
+on each color channel, right?
+
+Such clipping can change hue, so userspace would be better avoid
+triggering clipping at all, but we still need to know what would happen
+with out-of-range values.
+
+We would also need to know when clipping will happen. If FP16
+(half-float) FB produces out-of-range values and degamma stage is not
+used, will the CTM see original or clipped values? Or is that something
+we have to define as hardware-specific?
+
+Generic userspace will try hard to avoid triggering hardware-specific
+behaviour, so you can expect such behaviour to go unused.
+
+> +* Plane Gamma or Post-Curve
+> +	* This can be used to perform 2 operations:
+> +		* non-lineralize the framebuffer data. Can be used for
+> +		* non linear blending. It can be a gamma curve or EOTF
+> +		* for HDR.
+> +		* Perform Tone Mapping operation. This is an operation
+> +		* done when blending is done with HDR and SDR content.
+
+I like this wording better than the wording for pre-curve: "can", not
+"will". It leaves room for creative use of this processing block.
+
+Tone-mapping is needed always when dynamic range differs, so also for
+HDR to HDR, not just SDR to/from HDR.
+
+> +
+> +UAPI Name: PLANE_GAMMA_MODE
+> +Description: Enum property with values as blob_id's which advertizes the
+> +	    possible gamma modes and lut ranges supported by the platform.
+> +	    This  allows userspace to query and get the plane gamma color
+> +	    caps and choose the appropriate gamma mode and create lut values
+> +	    accordingly.
+> +
+> +UAPI Name: PLANE_GAMMA_LUT
+> +Description: Blob property which allows a userspace to provide LUT values
+> +	     to apply gamma curve or perform tone mapping using the h/w plane
+> +	     gamma processing engine, thereby making the content as linear
+> +	     for further color processing. Userspace gets the size of LUT and
+> +	     precision etc from PLANE_GAMA_MODE_PROPERTY
+
+The same comments here as with DEGAMMA.
+
+> +=09
+> +This is part of one plane engine. Data from multiple planes will be
+> +then fed to pipe where it will get blended. There is a similar set of
+> +properties available at crtc level which acts on this blended data.
+> +
+> +Below is a sample usecase:
+> +
+> +  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90      =E2=94=8C=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=90
+> +  =E2=94=82FB1         =E2=94=82      =E2=94=82Degamma Block=E2=94=82   =
+  =E2=94=82 CTM Matrix  =E2=94=82     =E2=94=82 Gamma Block =E2=94=82
+> +  =E2=94=82            =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=96=BA=E2=94=82Linearize-   =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=96=BA=E2=94=82 BT709 to    =E2=94=9C=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=96=BA=E2=94=82 SDR to HDR  =E2=94=82
+> +  =E2=94=82BT709 SDR   =E2=94=82      =E2=94=82BT709 inverse=E2=94=82   =
+  =E2=94=82 BT2020      =E2=94=82     =E2=94=82 Tone Mapping=E2=94=9C=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+> +  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98      =E2=94=94=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=98        =E2=94=82
+> +                                                                        =
+             =E2=94=82
+> +  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90      =E2=94=8C=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=90        =E2=94=82
+> +  =E2=94=82FB2         =E2=94=82      =E2=94=82Degamma Block=E2=94=82   =
+  =E2=94=82 CTM Matrix  =E2=94=82     =E2=94=82 Gamma Block =E2=94=82      =
+  =E2=94=82
+> +  =E2=94=82            =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=96=BA=E2=94=82Linearize-   =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=96=BA=E2=94=82 BT601 to    =E2=94=9C=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=96=BA=E2=94=82 SDR to HDR  =E2=94=9C=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=90  =E2=94=82
+> +  =E2=94=82BT601 SDR   =E2=94=82      =E2=94=82BT601 inverse=E2=94=82   =
+  =E2=94=82 BT2020      =E2=94=82     =E2=94=82 Tone Mapping=E2=94=82     =
+=E2=94=82  =E2=94=82
+> +  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98      =E2=94=94=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=82  =E2=94=82
+> +                                                                        =
+          =E2=94=82  =E2=94=82
+> +  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90      =E2=94=8C=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=82  =E2=94=82
+> +  =E2=94=82FB3         =E2=94=82      =E2=94=82Degamma Block=E2=94=82   =
+  =E2=94=82 CTM Matrix  =E2=94=82     =E2=94=82 Gamma Block =E2=94=82     =
+=E2=94=82  =E2=94=82
+> +  =E2=94=82            =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=96=BA=E2=94=82Linearize-   =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=96=BA=E2=94=82 NOP (Data in=E2=94=9C=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=96=BA=E2=94=82 NOP (Data in=E2=94=9C=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=90 =E2=94=82  =E2=94=82
+> +  =E2=94=82BT2020 HDR  =E2=94=82      =E2=94=82HDR OETF     =E2=94=82   =
+  =E2=94=82 BT2020)     =E2=94=82     =E2=94=82 HDR)        =E2=94=82   =E2=
+=94=82 =E2=94=82  =E2=94=82
+> +  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98      =E2=94=94=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=98   =E2=94=82 =E2=94=82  =E2=94=82
+
+EOTF, not OETF, since it is converting E to O, electrical to optical.
+
+> +                                                                        =
+        =E2=94=82 =E2=94=82  =E2=94=82
+> +                                                                        =
+        =E2=94=82 =E2=94=82  =E2=94=82
+> +                                                                        =
+        =E2=94=82 =E2=94=82  =E2=94=82
+> +=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=80=E2=94=B4=
+=E2=94=80=E2=94=80=E2=94=98
+> +=E2=94=82
+> +=E2=94=82 =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90=
+      =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90      =E2=
+=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+> +=E2=94=82 =E2=94=82 CRTC Degamma=E2=94=82      =E2=94=82 CRTC CTM    =E2=
+=94=82      =E2=94=82 CRTC Gamma    =E2=94=82
+> +=E2=94=94=E2=94=80=E2=94=A4 Use to make =E2=94=9C=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=96=BA=E2=94=82 Use for any =E2=94=9C=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BA=E2=94=82 Use for Tone  =E2=94=
+=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BA TO Port
+> +  =E2=94=82 data linear =E2=94=82      =E2=94=82 Color Space =E2=94=82  =
+    =E2=94=82 Mapping/apply =E2=94=82
+> +  =E2=94=82 after blend =E2=94=82      =E2=94=82 Conversion  =E2=94=82  =
+    =E2=94=82 transfer func =E2=94=82
+> +  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98      =E2=
+=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98      =E2=94=94=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+
+Blending does not change whether the data is linear or not. I suppose
+in this example, CRTC degamma and CTM would be passthrough, and gamma
+would be the inverse display EOTF for encoding color values into what
+the monitor expects.
+
+> +
+> +
+> +This patch series adds properties for plane color features. It adds
+> +properties for degamma used to linearize data and CSC used for gamut
+> +conversion. It also includes Gamma support used to again non-linearize
+> +data as per panel supported color space. These can be utilize by user
+> +space to convert planes from one format to another, one color space to
+> +another etc.
+
+FWIW, this is exactly the structure I have assumed in the Weston CM&HDR
+work.
+
+> +
+> +Userspace can take smart blending decisions and utilize these hardware
+> +supported plane color features to get accurate color profile. The same
+> +can help in consistent color quality from source to panel taking
+> +advantage of advanced color features in hardware.
+> +
+> +These patches add the property interfaces and enable helper functions.
+> +This series adds Intel's XE_LPD hw specific plane gamma feature. We
+> +can build up and add other platform/hardware specific implementation
+> +on top of this series.
+> +
+> +Credits: Special mention and credits to Ville Syrjala for coming up
+> +with a design for this feature and inputs. This series is based on
+> +his original design and idea.
 
 
-Please discard this patch,  review 
-https://patchwork.freedesktop.org/patch/458554/?series=95690&rev=1 instead.
+Thanks,
+pq
 
-minor->debugfs_root wont be NULl as we save debugfs_create_dir()'s return value in that.
+--Sig_/Jh1_=ypjxL0+x.XGZylsUh3
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Regards,
-Nirmoy
+-----BEGIN PGP SIGNATURE-----
 
-On 10/12/2021 11:59 AM, Wang, Zhi A wrote:
-> On 10/8/21 9:17 AM, Nirmoy Das wrote:
->> Return early if dri minor root dentry is NULL.
->>
->> CC: Zhenyu Wang <zhenyuw@linux.intel.com>
->> CC: Zhi Wang <zhi.a.wang@intel.com>
->> CC: Jani Nikula <jani.nikula@linux.intel.com>
->> CC: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> CC: David Airlie <airlied@linux.ie>
->> CC: Daniel Vetter <daniel@ffwll.ch>
->> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
->> ---
->>    drivers/gpu/drm/i915/gvt/debugfs.c  | 3 +++
->>    drivers/gpu/drm/i915/i915_debugfs.c | 3 +++
->>    2 files changed, 6 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
->> index 9f1c209d9251..2d47acaa03ee 100644
->> --- a/drivers/gpu/drm/i915/gvt/debugfs.c
->> +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
->> @@ -187,6 +187,9 @@ void intel_gvt_debugfs_init(struct intel_gvt *gvt)
->>    {
->>    	struct drm_minor *minor = gvt->gt->i915->drm.primary;
->>
->> +	if (!minor->debugfs_root)
->> +		return;
->> +
->>    	gvt->debugfs_root = debugfs_create_dir("gvt", minor->debugfs_root);
->>
->>    	debugfs_create_ulong("num_tracked_mmio", 0444, gvt->debugfs_root,
->> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
->> index 44969f5dde50..d572b686edeb 100644
->> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> @@ -1012,6 +1012,9 @@ void i915_debugfs_register(struct drm_i915_private *dev_priv)
->>    	struct drm_minor *minor = dev_priv->drm.primary;
->>    	int i;
->>
->> +	if (!minor->debugfs_root)
->> +		return;
->> +
->>    	i915_debugfs_params(dev_priv);
->>
->>    	debugfs_create_file("i915_forcewake_user", S_IRUSR, minor->debugfs_root,
->> --
->> 2.32.0
->>
-> Thanks for the patch. queued.
-> Reviewed-by: Zhi Wang <zhi.a.wang@intel.com>
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmFlY9MACgkQI1/ltBGq
+qqcC1xAAi68UPE1YhROdYacDO8edKv0ZdITwfTB1GcAgnuBwUAWfANtblGAecCOt
+/C3+MLriLzGhfJsm6Wx5++y7M/4mD2RV9CVZRlYEV3yYdNJBTACC9JQ6ZRlWfQHO
+twpuUaAayNWLhx+mxKgcugSV8ddghS8CYklVZIbhaXgfcFnnOzXTSoRoxSjtiRCr
+FaCkBEIs//jMFZomeN3avCHPlsiBFaCDBPnwxg+3fna/G5e0EmwMUakDLL/Lnxx0
+HcZbdssM0+TqSL7q4zjSIs4Q8jG/KIH0RLH0WNc1+z0BDhrRx8x8R6B4wASgkQAz
+JPEk7HaTxPAbqmqei5OXoXSwB9zV26foeq87hWXN9SKtdHN6HYRxH/YOyU1yryxJ
+aDiOtVfSv3VfcRZxz3E7WzusEGmVc6aeehrjadZLJnFB3rNHlohLBnM9HIYKjP0O
+04jQZyiX/JxqQthUnWiKadOXAEKisu1nBZeRe2gTwsQufGFv6EcBAy1SYr6dSBMI
+VFM7E9A6plOmeYhp2oYszslQKao41KjLPlbjtDsNJy1lGCJNTVlMg9YP4eMgyGPe
+M5qLug8N07qNthp6HF4hssZBiu3cB6eCHZHXc3dfdXBdoACMvJqrNNZh/ioq3iIG
+giJuF3m9u5b1xQTHRIPKrqhMN1PI6Oo8cXc8WrsaFLLBZ9aH9fQ=
+=A3Bc
+-----END PGP SIGNATURE-----
+
+--Sig_/Jh1_=ypjxL0+x.XGZylsUh3--
