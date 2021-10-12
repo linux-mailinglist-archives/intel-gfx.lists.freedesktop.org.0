@@ -1,66 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75BFF42AE6F
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 23:03:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B308242AEBF
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 23:20:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD4666E44C;
-	Tue, 12 Oct 2021 21:02:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27176E9E2;
+	Tue, 12 Oct 2021 21:20:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FFD16E030;
- Tue, 12 Oct 2021 21:02:57 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="227168082"
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="227168082"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 14:02:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="547606934"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga004.fm.intel.com with ESMTP; 12 Oct 2021 14:02:56 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 12 Oct 2021 14:02:55 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 13 Oct 2021 02:32:53 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Wed, 13 Oct 2021 02:32:53 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "brian.starkey@arm.com" <brian.starkey@arm.com>,
- "sebastian@sebastianwick.net" <sebastian@sebastianwick.net>,
- "Shashank.Sharma@amd.com" <Shashank.Sharma@amd.com>
-Thread-Topic: [RFC v2 03/22] drm: Add Plane Degamma Mode property
-Thread-Index: AQHXo2JOuoDKY7Z/CEScLcTVgGuQlavPG5wAgAD2ZBA=
-Date: Tue, 12 Oct 2021 21:02:53 +0000
-Message-ID: <1875243ac7544f79b398c16c312b7322@intel.com>
-References: <20210906213904.27918-1-uma.shankar@intel.com>
- <20210906213904.27918-4-uma.shankar@intel.com>
- <20211012145002.4382df2b@eldfell>
-In-Reply-To: <20211012145002.4382df2b@eldfell>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD306E9E2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 21:20:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="290766298"
+X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="290766298"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 14:20:52 -0700
+X-IronPort-AV: E=Sophos;i="5.85,368,1624345200"; d="scan'208";a="659269692"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 14:20:52 -0700
+Date: Tue, 12 Oct 2021 14:20:51 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <20211012212051.GX602200@mdroper-desk1.amr.corp.intel.com>
+References: <20211008205855.36778-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC v2 03/22] drm: Add Plane Degamma Mode property
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211008205855.36778-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl: Fix read of memory frequency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,161 +49,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Oct 08, 2021 at 01:58:55PM -0700, José Roberto de Souza wrote:
+> All display 9 and display 10 platforms has only 4 bits for the memory
+> frequency but display 11 platforms it changes to 8 bits.
+> 
+> Display 9 platforms has another register in bits 7:4 that prevents us
+> to have a single mask.
+> Also adding new mask with the current name in CRWebViewer, not
+> sure why current mask is named like this.
+> 
+> Fixes: f8112cb9574b ("drm/i915/gen11+: Only load DRAM information from pcode")
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h   | 1 +
+>  drivers/gpu/drm/i915/intel_dram.c | 7 +++++--
+>  2 files changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index a897f4abea0c3..041f7dc9e0d94 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -11148,6 +11148,7 @@ enum skl_power_gate {
+>  #define SKL_MEMORY_FREQ_MULTIPLIER_HZ		266666666
+>  #define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5E04)
+>  #define  SKL_REQ_DATA_MASK			(0xF << 0)
+> +#define  ICL_FREQ_MASK				(0xFF << 0)
+
+We might as well take this opportunity to switch over to REG_GENMASK
+notation while we're here.
+
+>  #define  DG1_GEAR_TYPE				REG_BIT(16)
+>  
+>  #define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
+> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
+> index 30a0cab5eff46..558589b1202d6 100644
+> --- a/drivers/gpu/drm/i915/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/intel_dram.c
+> @@ -257,8 +257,11 @@ skl_get_dram_info(struct drm_i915_private *i915)
+>  
+>  	val = intel_uncore_read(&i915->uncore,
+>  				SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
+> -	mem_freq_khz = DIV_ROUND_UP((val & SKL_REQ_DATA_MASK) *
+> -				    SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
+> +	if (DISPLAY_VER(i915) == 11)
+> +		val &= ICL_FREQ_MASK;
+> +	else
+> +		val &= SKL_REQ_DATA_MASK;
+> +	mem_freq_khz = DIV_ROUND_UP(val * SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
+
+I'm not sure SKL_MEMORY_FREQ_MULTIPLIER_HZ is correct anymore either.
+If I'm reading the register description correctly, it appears the value
+is now given in units of 133.33 MHz instead of the old 266.66.
 
 
-> -----Original Message-----
-> From: Pekka Paalanen <ppaalanen@gmail.com>
-> Sent: Tuesday, October 12, 2021 5:20 PM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
-> harry.wentland@amd.com; ville.syrjala@linux.intel.com; brian.starkey@arm.=
-com;
-> sebastian@sebastianwick.net; Shashank.Sharma@amd.com
-> Subject: Re: [RFC v2 03/22] drm: Add Plane Degamma Mode property
->=20
-> On Tue,  7 Sep 2021 03:08:45 +0530
-> Uma Shankar <uma.shankar@intel.com> wrote:
->=20
-> > Add Plane Degamma Mode as an enum property. Create a helper function
-> > for all plane color management features.
-> >
-> > This is an enum property with values as blob_id's and exposes the
-> > various gamma modes supported and the lut ranges. Getting the blob id
-> > in userspace, user can get the mode supported and also the range of
-> > gamma mode supported with number of lut coefficients. It can then set
-> > one of the modes using this enum property.
-> >
-> > Lut values will be sent through separate GAMMA_LUT blob property.
-> >
-> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > ---
-> >  Documentation/gpu/drm-kms.rst             | 90 ++++++++++++++++++++++
-> >  drivers/gpu/drm/drm_atomic.c              |  1 +
-> >  drivers/gpu/drm/drm_atomic_state_helper.c |  2 +
-> >  drivers/gpu/drm/drm_atomic_uapi.c         |  4 +
-> >  drivers/gpu/drm/drm_color_mgmt.c          | 93 ++++++++++++++++++++++-
-> >  include/drm/drm_mode_object.h             |  2 +-
-> >  include/drm/drm_plane.h                   | 23 ++++++
-> >  7 files changed, 212 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/gpu/drm-kms.rst
-> > b/Documentation/gpu/drm-kms.rst index 1ef7951ded5e..f4658417bf20
-> > 100644
-> > --- a/Documentation/gpu/drm-kms.rst
-> > +++ b/Documentation/gpu/drm-kms.rst
-> > @@ -545,9 +545,99 @@ Damage Tracking Properties  Color Management
-> > Properties
-> >  ---------------------------
-> >
-> > +Below is how a typical hardware pipeline for color will look like:
-> > +
-> > +.. kernel-render:: DOT
-> > +   :alt: Display Color Pipeline
-> > +   :caption: Display Color Pipeline Overview
-> > +
-> > +   digraph "KMS" {
-> > +      node [shape=3Dbox]
-> > +
-> > +      subgraph cluster_static {
-> > +          style=3Ddashed
-> > +          label=3D"Display Color Hardware Blocks"
-> > +
-> > +          node [bgcolor=3Dgrey style=3Dfilled]
-> > +          "Plane Degamma A" -> "Plane CSC/CTM A"
-> > +          "Plane CSC/CTM A" -> "Plane Gamma A"
-> > +          "Pipe Blender" [color=3Dlightblue,style=3Dfilled, width=3D5.=
-25, height=3D0.75];
-> > +          "Plane Gamma A" -> "Pipe Blender"
-> > +	  "Pipe Blender" -> "Pipe DeGamma"
-> > +          "Pipe DeGamma" -> "Pipe CSC/CTM"
-> > +          "Pipe CSC/CTM" -> "Pipe Gamma"
-> > +          "Pipe Gamma" -> "Pipe Output"
-> > +      }
-> > +
-> > +      subgraph cluster_static {
-> > +          style=3Ddashed
-> > +
-> > +          node [shape=3Dbox]
-> > +          "Plane Degamma B" -> "Plane CSC/CTM B"
-> > +          "Plane CSC/CTM B" -> "Plane Gamma B"
-> > +          "Plane Gamma B" -> "Pipe Blender"
-> > +      }
-> > +
-> > +      subgraph cluster_static {
-> > +          style=3Ddashed
-> > +
-> > +          node [shape=3Dbox]
-> > +          "Plane Degamma C" -> "Plane CSC/CTM C"
-> > +          "Plane CSC/CTM C" -> "Plane Gamma C"
-> > +          "Plane Gamma C" -> "Pipe Blender"
-> > +      }
-> > +
-> > +      subgraph cluster_fb {
-> > +          style=3Ddashed
-> > +          label=3D"RAM"
-> > +
-> > +          node [shape=3Dbox width=3D1.7 height=3D0.2]
-> > +
-> > +          "FB 1" -> "Plane Degamma A"
-> > +          "FB 2" -> "Plane Degamma B"
-> > +          "FB 3" -> "Plane Degamma C"
-> > +      }
-> > +   }
-> > +
-> > +In real world usecases,
-> > +
-> > +1. Plane Degamma can be used to linearize a non linear gamma encoded
-> > +framebuffer. This is needed to do any linear math like color space
-> > +conversion. For ex, linearize frames encoded in SRGB or by HDR curve.
->=20
-> Hi,
->=20
-> Maybe better to avoid the term "gamma" as the curves are not always a pur=
-e power
-> function.
->=20
-> sRGB with a small s.
+Matt
 
-Sure Pekka, will update these.
+>  
+>  	if (dram_info->num_channels * mem_freq_khz == 0) {
+>  		drm_info(&i915->drm,
+> -- 
+> 2.33.0
+> 
 
-Thanks & Regards,
-Uma Shankar
-
->=20
-> Thanks,
-> pq
->=20
-> > +
-> > +2. Later Plane CTM block can convert the content to some different
-> > +colorspace. For ex, SRGB to BT2020 etc.
-> > +
-> > +3. Plane Gamma block can be used later to re-apply the non-linear
-> > +curve. This can also be used to apply Tone Mapping for HDR usecases.
-> > +
-> > +All the layers or framebuffers need to be converted to same color
-> > +space and format before blending. The plane color hardware blocks can
-> > +help with this. Once the Data is blended, similar color processing
-> > +can be done on blended output using pipe color hardware blocks.
-> > +
-> > +DRM Properties have been created to define and expose all these
-> > +hardware blocks to userspace. A userspace application (compositor or
-> > +any color app) can use these interfaces and define policies to
-> > +efficiently use the display hardware for such color operations.
-> > +
-> > +Pipe Color Management Properties
-> > +---------------------------------
-> > +
-> >  .. kernel-doc:: drivers/gpu/drm/drm_color_mgmt.c
-> >     :doc: overview
-> >
-> > +Plane Color Management Properties
-> > +---------------------------------
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/drm_color_mgmt.c
-> > +   :doc: Plane Color Properties
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/drm_color_mgmt.c
-> > +   :doc: export
-> > +
-> >  Tile Group Property
-> >  -------------------
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
