@@ -1,70 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79FFE42A3C8
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 14:04:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFA242A446
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 14:22:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB4B6E901;
-	Tue, 12 Oct 2021 12:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B7589C59;
+	Tue, 12 Oct 2021 12:22:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com
- [IPv6:2607:f8b0:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA0E6E829
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 09:58:03 +0000 (UTC)
-Received: by mail-ot1-x32e.google.com with SMTP id
- d21-20020a9d4f15000000b0054e677e0ac5so11282459otl.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 02:58:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=exw8d3KuGhElvzTHGBSpGdBnH3FvQOLQqakhYUKFBwo=;
- b=W3fE3wAsv66M+coYvjcbMbl3r+dIcWqX2AIv8bXe1wiMNVe9wjzpexxe5M+fkdVlVV
- zFpZlo8b+YI2ZgubXdu1CaU5ZwpbNYUEaxCNmhep1fD2b5lALSz0Gp70qfBm0I5BMpKD
- P6aSrnRfjQo28DPvKrAihjAbzOEIrPAEGp/SJGIdHUMSFSPXu82iZwTcgpjCjoSoHGY3
- TDDJe3gZkKQTa4AUVeabUOYKP9UqO4PQnfKRFDUahnk7NmB+QpG6zGcLRh4507Emb6AP
- A2MdmK5TbB/ZaBMqIbgSh38I27+JA9fLgjQPRVSoQUUJguxML7cnFPZv1bgE/jGeJLD5
- hbpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=exw8d3KuGhElvzTHGBSpGdBnH3FvQOLQqakhYUKFBwo=;
- b=w561Ep7Bhrd+ZmBzcoSpDjiocxCLcO2+5Nj39ICqUG0qXHqDCGA9Cptts9svsiScp2
- KCxLshxgOza4VgTAJcwd0a7qIPLKNSBShUo/OXGLVVhxIUz6oJPnFumLdUN6RfZnKO3X
- od95C1vAym+Zgkx46/cba4kbtkPZH+MJTuKxYA51pfZ58+vPYb4FpbHelWuO+vXnWuY9
- JeWWEfqIHOH13/DcW8hyXYAydJOEEAzy/hskOvaFNj6p57HF89pMKH3GTkq0qyyoQeir
- iniWuLCR9miEGVqAjPnmvGPfBRhOleJxAA7IRdhd/gA1QvZhyJ2CJoZjp/b2WNNCPHn5
- fVPw==
-X-Gm-Message-State: AOAM532iF6mrLahJGeLKX7jF2YpI4c5uPQeyl3ddW1e//wBmKiQ2br/8
- t+di53cOboLe7U31l5W7zmqjWorYAy0IgL/J66Pr1Q==
-X-Google-Smtp-Source: ABdhPJwnMjSe2iK46VvQsj+toPmoU+1bu69ociYjowvPMvF/Pj9LFdmYmnVlmjP8gQKThbljOpFLENefX7FP3vLI23w=
-X-Received: by 2002:a05:6830:24a7:: with SMTP id
- v7mr1618845ots.329.1634032682395; 
- Tue, 12 Oct 2021 02:58:02 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7C1DF899E8;
+ Tue, 12 Oct 2021 12:22:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7328DA8836;
+ Tue, 12 Oct 2021 12:22:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1867673247650334099=="
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vlastimil Babka" <vbabka@suse.cz>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 12 Oct 2021 12:22:32 -0000
+Message-ID: <163404135246.14286.8438795059664406697@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20211012090621.1357-1-vbabka@suse.cz>
 In-Reply-To: <20211012090621.1357-1-vbabka@suse.cz>
-From: Marco Elver <elver@google.com>
-Date: Tue, 12 Oct 2021 11:57:50 +0200
-Message-ID: <CANpmjNOLEvY9zuBRMe-P_8jUzK6=rS06bQC4r0+=_6YP-UfeSA@mail.gmail.com>
-To: Vlastimil Babka <vbabka@suse.cz>
-Cc: Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, kasan-dev@googlegroups.com, 
- Dmitry Vyukov <dvyukov@google.com>, Vijayanand Jitta <vjitta@codeaurora.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Andrey Ryabinin <ryabinin.a.a@gmail.com>,
- Alexander Potapenko <glider@google.com>, 
- Andrey Konovalov <andreyknvl@gmail.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, 
- Oliver Glitta <glittao@gmail.com>, Imran Khan <imran.f.khan@oracle.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Tue, 12 Oct 2021 12:04:25 +0000
-Subject: Re: [Intel-gfx] [PATCH v2] lib/stackdepot: allow optional init and
- stack_table allocation by kvmalloc()
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgbGli?=
+ =?utf-8?q?/stackdepot=3A_allow_optional_init_and_stack=5Ftable_allocation?=
+ =?utf-8?b?IGJ5IGt2bWFsbG9jKCkgKHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,284 +42,360 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 12 Oct 2021 at 11:06, Vlastimil Babka <vbabka@suse.cz> wrote:
-> Currently, enabling CONFIG_STACKDEPOT means its stack_table will be allocated
-> from memblock, even if stack depot ends up not actually used. The default size
-> of stack_table is 4MB on 32-bit, 8MB on 64-bit.
->
-> This is fine for use-cases such as KASAN which is also a config option and
-> has overhead on its own. But it's an issue for functionality that has to be
-> actually enabled on boot (page_owner) or depends on hardware (GPU drivers)
-> and thus the memory might be wasted. This was raised as an issue [1] when
-> attempting to add stackdepot support for SLUB's debug object tracking
-> functionality. It's common to build kernels with CONFIG_SLUB_DEBUG and enable
-> slub_debug on boot only when needed, or create only specific kmem caches with
-> debugging for testing purposes.
->
-> It would thus be more efficient if stackdepot's table was allocated only when
-> actually going to be used. This patch thus makes the allocation (and whole
-> stack_depot_init() call) optional:
->
-> - Add a CONFIG_STACKDEPOT_ALWAYS_INIT flag to keep using the current
->   well-defined point of allocation as part of mem_init(). Make CONFIG_KASAN
->   select this flag.
-> - Other users have to call stack_depot_init() as part of their own init when
->   it's determined that stack depot will actually be used. This may depend on
->   both config and runtime conditions. Convert current users which are
->   page_owner and several in the DRM subsystem. Same will be done for SLUB
->   later.
-> - Because the init might now be called after the boot-time memblock allocation
->   has given all memory to the buddy allocator, change stack_depot_init() to
->   allocate stack_table with kvmalloc() when memblock is no longer available.
->   Also handle allocation failure by disabling stackdepot (could have
->   theoretically happened even with memblock allocation previously), and don't
->   unnecessarily align the memblock allocation to its own size anymore.
->
-> [1] https://lore.kernel.org/all/CAMuHMdW=eoVzM1Re5FVoEN87nKfiLmM2+Ah7eNu2KXEhCvbZyA@mail.gmail.com/
->
-> Signed-off-by: Vlastimil Babka <vbabka@suse.cz>
-> Acked-by: Dmitry Vyukov <dvyukov@google.com>
-> Cc: Marco Elver <elver@google.com>
-> Cc: Vijayanand Jitta <vjitta@codeaurora.org>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Andrey Ryabinin <ryabinin.a.a@gmail.com>
-> Cc: Alexander Potapenko <glider@google.com>
-> Cc: Andrey Konovalov <andreyknvl@gmail.com>
-> Cc: Dmitry Vyukov <dvyukov@google.com>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: Oliver Glitta <glittao@gmail.com>
-> Cc: Imran Khan <imran.f.khan@oracle.com>
+--===============1867673247650334099==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Marco Elver <elver@google.com> # stackdepot
+== Series Details ==
 
-Thanks!
+Series: lib/stackdepot: allow optional init and stack_table allocation by kvmalloc() (rev2)
+URL   : https://patchwork.freedesktop.org/series/95549/
+State : success
 
-> ---
-> Changes in v2:
-> - Rebase to v5.15-rc5.
-> - Stylistic changes suggested by Marco Elver.
->  drivers/gpu/drm/drm_dp_mst_topology.c   |  1 +
->  drivers/gpu/drm/drm_mm.c                |  4 ++++
->  drivers/gpu/drm/i915/intel_runtime_pm.c |  3 +++
->  include/linux/stackdepot.h              | 25 ++++++++++++-------
->  init/main.c                             |  2 +-
->  lib/Kconfig                             |  4 ++++
->  lib/Kconfig.kasan                       |  2 +-
->  lib/stackdepot.c                        | 32 +++++++++++++++++++++----
->  mm/page_owner.c                         |  2 ++
->  9 files changed, 59 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index 86d13d6bc463..b0ebdc843a00 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -5493,6 +5493,7 @@ int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
->         mutex_init(&mgr->probe_lock);
->  #if IS_ENABLED(CONFIG_DRM_DEBUG_DP_MST_TOPOLOGY_REFS)
->         mutex_init(&mgr->topology_ref_history_lock);
-> +       stack_depot_init();
->  #endif
->         INIT_LIST_HEAD(&mgr->tx_msg_downq);
->         INIT_LIST_HEAD(&mgr->destroy_port_list);
-> diff --git a/drivers/gpu/drm/drm_mm.c b/drivers/gpu/drm/drm_mm.c
-> index 93d48a6f04ab..5916228ea0c9 100644
-> --- a/drivers/gpu/drm/drm_mm.c
-> +++ b/drivers/gpu/drm/drm_mm.c
-> @@ -983,6 +983,10 @@ void drm_mm_init(struct drm_mm *mm, u64 start, u64 size)
->         add_hole(&mm->head_node);
->
->         mm->scan_active = 0;
-> +
-> +#ifdef CONFIG_DRM_DEBUG_MM
-> +       stack_depot_init();
-> +#endif
->  }
->  EXPORT_SYMBOL(drm_mm_init);
->
-> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> index eaf7688f517d..d083506986e1 100644
-> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> @@ -78,6 +78,9 @@ static void __print_depot_stack(depot_stack_handle_t stack,
->  static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
->  {
->         spin_lock_init(&rpm->debug.lock);
-> +
-> +       if (rpm->available)
-> +               stack_depot_init();
->  }
->
->  static noinline depot_stack_handle_t
-> diff --git a/include/linux/stackdepot.h b/include/linux/stackdepot.h
-> index 6bb4bc1a5f54..40fc5e92194f 100644
-> --- a/include/linux/stackdepot.h
-> +++ b/include/linux/stackdepot.h
-> @@ -13,6 +13,22 @@
->
->  typedef u32 depot_stack_handle_t;
->
-> +/*
-> + * Every user of stack depot has to call this during its own init when it's
-> + * decided that it will be calling stack_depot_save() later.
-> + *
-> + * The alternative is to select STACKDEPOT_ALWAYS_INIT to have stack depot
-> + * enabled as part of mm_init(), for subsystems where it's known at compile time
-> + * that stack depot will be used.
-> + */
-> +int stack_depot_init(void);
-> +
-> +#ifdef CONFIG_STACKDEPOT_ALWAYS_INIT
-> +static inline int stack_depot_early_init(void) { return stack_depot_init(); }
-> +#else
-> +static inline int stack_depot_early_init(void) { return 0; }
-> +#endif
-> +
->  depot_stack_handle_t stack_depot_save(unsigned long *entries,
->                                       unsigned int nr_entries, gfp_t gfp_flags);
->
-> @@ -21,13 +37,4 @@ unsigned int stack_depot_fetch(depot_stack_handle_t handle,
->
->  unsigned int filter_irq_stacks(unsigned long *entries, unsigned int nr_entries);
->
-> -#ifdef CONFIG_STACKDEPOT
-> -int stack_depot_init(void);
-> -#else
-> -static inline int stack_depot_init(void)
-> -{
-> -       return 0;
-> -}
-> -#endif /* CONFIG_STACKDEPOT */
-> -
->  #endif
-> diff --git a/init/main.c b/init/main.c
-> index 81a79a77db46..ca2765c8e45c 100644
-> --- a/init/main.c
-> +++ b/init/main.c
-> @@ -842,7 +842,7 @@ static void __init mm_init(void)
->         init_mem_debugging_and_hardening();
->         kfence_alloc_pool();
->         report_meminit();
-> -       stack_depot_init();
-> +       stack_depot_early_init();
->         mem_init();
->         mem_init_print_info();
->         /* page_owner must be initialized after buddy is ready */
-> diff --git a/lib/Kconfig b/lib/Kconfig
-> index 5e7165e6a346..9d0569084152 100644
-> --- a/lib/Kconfig
-> +++ b/lib/Kconfig
-> @@ -671,6 +671,10 @@ config STACKDEPOT
->         bool
->         select STACKTRACE
->
-> +config STACKDEPOT_ALWAYS_INIT
-> +       bool
-> +       select STACKDEPOT
-> +
->  config STACK_HASH_ORDER
->         int "stack depot hash size (12 => 4KB, 20 => 1024KB)"
->         range 12 20
-> diff --git a/lib/Kconfig.kasan b/lib/Kconfig.kasan
-> index cdc842d090db..879757b6dd14 100644
-> --- a/lib/Kconfig.kasan
-> +++ b/lib/Kconfig.kasan
-> @@ -38,7 +38,7 @@ menuconfig KASAN
->                     CC_HAS_WORKING_NOSANITIZE_ADDRESS) || \
->                    HAVE_ARCH_KASAN_HW_TAGS
->         depends on (SLUB && SYSFS) || (SLAB && !DEBUG_SLAB)
-> -       select STACKDEPOT
-> +       select STACKDEPOT_ALWAYS_INIT
->         help
->           Enables KASAN (KernelAddressSANitizer) - runtime memory debugger,
->           designed to find out-of-bounds accesses and use-after-free bugs.
-> diff --git a/lib/stackdepot.c b/lib/stackdepot.c
-> index 0a2e417f83cb..9bb5333bf02f 100644
-> --- a/lib/stackdepot.c
-> +++ b/lib/stackdepot.c
-> @@ -24,6 +24,7 @@
->  #include <linux/jhash.h>
->  #include <linux/kernel.h>
->  #include <linux/mm.h>
-> +#include <linux/mutex.h>
->  #include <linux/percpu.h>
->  #include <linux/printk.h>
->  #include <linux/slab.h>
-> @@ -146,6 +147,7 @@ static struct stack_record *depot_alloc_stack(unsigned long *entries, int size,
->  #define STACK_HASH_MASK (STACK_HASH_SIZE - 1)
->  #define STACK_HASH_SEED 0x9747b28c
->
-> +DEFINE_MUTEX(stack_depot_init_mutex);
->  static bool stack_depot_disable;
->  static struct stack_record **stack_table;
->
-> @@ -162,18 +164,38 @@ static int __init is_stack_depot_disabled(char *str)
->  }
->  early_param("stack_depot_disable", is_stack_depot_disabled);
->
-> -int __init stack_depot_init(void)
-> +/*
-> + * __ref because of memblock_alloc(), which will not be actually called after
-> + * the __init code is gone, because at that point slab_is_available() is true
-> + */
-> +__ref int stack_depot_init(void)
->  {
-> -       if (!stack_depot_disable) {
-> +       mutex_lock(&stack_depot_init_mutex);
-> +       if (!stack_depot_disable && stack_table == NULL) {
->                 size_t size = (STACK_HASH_SIZE * sizeof(struct stack_record *));
->                 int i;
->
-> -               stack_table = memblock_alloc(size, size);
-> -               for (i = 0; i < STACK_HASH_SIZE;  i++)
-> -                       stack_table[i] = NULL;
-> +               if (slab_is_available()) {
-> +                       pr_info("Stack Depot allocating hash table with kvmalloc\n");
-> +                       stack_table = kvmalloc(size, GFP_KERNEL);
-> +               } else {
-> +                       pr_info("Stack Depot allocating hash table with memblock_alloc\n");
-> +                       stack_table = memblock_alloc(size, SMP_CACHE_BYTES);
-> +               }
-> +               if (stack_table) {
-> +                       for (i = 0; i < STACK_HASH_SIZE;  i++)
-> +                               stack_table[i] = NULL;
-> +               } else {
-> +                       pr_err("Stack Depot failed hash table allocationg, disabling\n");
-> +                       stack_depot_disable = true;
-> +                       mutex_unlock(&stack_depot_init_mutex);
-> +                       return -ENOMEM;
-> +               }
->         }
-> +       mutex_unlock(&stack_depot_init_mutex);
->         return 0;
->  }
-> +EXPORT_SYMBOL_GPL(stack_depot_init);
->
->  /* Calculate hash for a stack */
->  static inline u32 hash_stack(unsigned long *entries, unsigned int size)
-> diff --git a/mm/page_owner.c b/mm/page_owner.c
-> index 62402d22539b..16a0ef903384 100644
-> --- a/mm/page_owner.c
-> +++ b/mm/page_owner.c
-> @@ -80,6 +80,8 @@ static void init_page_owner(void)
->         if (!page_owner_enabled)
->                 return;
->
-> +       stack_depot_init();
-> +
->         register_dummy_stack();
->         register_failure_stack();
->         register_early_stack();
-> --
-> 2.33.0
->
-> --
-> You received this message because you are subscribed to the Google Groups "kasan-dev" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to kasan-dev+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit https://groups.google.com/d/msgid/kasan-dev/20211012090621.1357-1-vbabka%40suse.cz.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10723 -> Patchwork_21318
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21318 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([fdo#109315])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +27 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@nop-gfx0:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +16 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#1155])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-skl-guc:         NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-skl-guc/igt@kms_chamelium@dp-crc-fast.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-skl-guc:         NOTRUN -> [SKIP][9] ([fdo#109271]) +28 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#4103]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp1:
+    - fi-cfl-8109u:       [PASS][11] -> [FAIL][12] ([i915#4165])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([fdo#109285])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-skl-guc:         NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#533])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-skl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][15] ([i915#1072]) +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][16] ([i915#3301])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [DMESG-WARN][17] ([i915#2868]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_flip@basic-plain-flip@c-dp1:
+    - fi-cfl-8109u:       [FAIL][19] ([i915#4165]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][21] ([i915#4269]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][23] ([i915#295]) -> [PASS][24] +13 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-WARN][25] ([i915#295]) -> [FAIL][26] ([i915#2546])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2546]: https://gitlab.freedesktop.org/drm/intel/issues/2546
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (35 -> 36)
+------------------------------
+
+  Additional (2): fi-skl-guc fi-tgl-1115g4 
+  Missing    (1): fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10723 -> Patchwork_21318
+
+  CI-20190529: 20190529
+  CI_DRM_10723: 574b5d6571aa7e24cde19c5e953a7b1a666267b4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21318: 205d6c25088db14d708db40faf4de699154ad912 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+205d6c25088d lib/stackdepot: allow optional init and stack_table allocation by kvmalloc()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/index.html
+
+--===============1867673247650334099==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>lib/stackdepot: allow optional init and stack_table allocation by kvmalloc() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95549/">https://patchwork.freedesktop.org/series/95549/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10723 -&gt; Patchwork_21318</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21318 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>
+<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-skl-guc/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>
+<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-skl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +28 similar issues</p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-skl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10723/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21318/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2546">i915#2546</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (35 -&gt; 36)</h2>
+<p>Additional (2): fi-skl-guc fi-tgl-1115g4 <br />
+  Missing    (1): fi-bsw-cyan </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10723 -&gt; Patchwork_21318</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10723: 574b5d6571aa7e24cde19c5e953a7b1a666267b4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21318: 205d6c25088db14d708db40faf4de699154ad912 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>205d6c25088d lib/stackdepot: allow optional init and stack_table allocation by kvmalloc()</p>
+
+</body>
+</html>
+
+--===============1867673247650334099==--
