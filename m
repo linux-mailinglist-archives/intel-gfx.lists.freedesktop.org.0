@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 433AA429C72
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 06:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC14429C73
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Oct 2021 06:35:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB07F89F8B;
-	Tue, 12 Oct 2021 04:35:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 351BE89F99;
+	Tue, 12 Oct 2021 04:35:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2C0E89F71
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 04:35:25 +0000 (UTC)
+ (us-smtp-delivery-44.mimecast.com [207.211.30.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A21E89F89
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 04:35:27 +0000 (UTC)
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-368-odJkaWTrM8KoDhBYxSCzYg-1; Tue, 12 Oct 2021 00:35:23 -0400
-X-MC-Unique: odJkaWTrM8KoDhBYxSCzYg-1
+ us-mta-145-V2BibskCMsSYQjt3Gu_U7g-1; Tue, 12 Oct 2021 00:35:24 -0400
+X-MC-Unique: V2BibskCMsSYQjt3Gu_U7g-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
  [10.5.11.12])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2FEF7835DE0;
- Tue, 12 Oct 2021 04:35:22 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A691E10B3940;
+ Tue, 12 Oct 2021 04:35:23 +0000 (UTC)
 Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.0.157])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 0FE1F60BF4;
- Tue, 12 Oct 2021 04:35:20 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8702260BF4;
+ Tue, 12 Oct 2021 04:35:22 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Dave Airlie <airlied@redhat.com>
-Date: Tue, 12 Oct 2021 14:34:56 +1000
-Message-Id: <20211012043502.1377715-3-airlied@gmail.com>
+Date: Tue, 12 Oct 2021 14:34:57 +1000
+Message-Id: <20211012043502.1377715-4-airlied@gmail.com>
 In-Reply-To: <20211012043502.1377715-1-airlied@gmail.com>
 References: <20211012043502.1377715-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -42,8 +42,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH 2/8] drm/i915/display: let
- intel_plane_uses_fence be used from other places.
+Subject: [Intel-gfx] [PATCH 3/8] drm/i915/display: refactor out initial
+ plane config for crtcs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +61,81 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-I want to refactor some stuff using this so make it shared.
+This just pulls this out into a function so it can be moved to
+another file easier.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- drivers/gpu/drm/i915/display/intel_display.h | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 44 +++++++++++---------
+ 1 file changed, 25 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm=
 /i915/display/intel_display.c
-index d1fa17929b1f..5254180934bb 100644
+index 5254180934bb..39a7b24135c9 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -851,7 +851,7 @@ unsigned int intel_remapped_info_size(const struct inte=
-l_remapped_info *rem_info
- =09return size;
+@@ -11460,6 +11460,30 @@ int intel_modeset_init_noirq(struct drm_i915_priva=
+te *i915)
+ =09return ret;
  }
 =20
--static bool intel_plane_uses_fence(const struct intel_plane_state *plane_s=
-tate)
-+bool intel_plane_uses_fence(const struct intel_plane_state *plane_state)
++static void
++intel_crtc_initial_plane_config(struct intel_crtc *crtc)
++{
++=09struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
++=09struct intel_initial_plane_config plane_config =3D {};
++
++=09/*
++=09 * Note that reserving the BIOS fb up front prevents us
++=09 * from stuffing other stolen allocations like the ring
++=09 * on top.  This prevents some ugliness at boot time, and
++=09 * can even allow for smooth boot transitions if the BIOS
++=09 * fb is large enough for the active pipe configuration.
++=09 */
++=09dev_priv->display->get_initial_plane_config(crtc, &plane_config);
++
++=09/*
++=09 * If the fb is shared between multiple heads, we'll
++=09 * just get the first one.
++=09 */
++=09intel_find_initial_plane_obj(crtc, &plane_config);
++
++=09plane_config_fini(&plane_config);
++}
++
+ /* part #2: call after irq install, but before gem init */
+ int intel_modeset_init_nogem(struct drm_i915_private *i915)
  {
- =09struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
- =09struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm=
-/i915/display/intel_display.h
-index a08903bb7647..d655d996d465 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -615,6 +615,7 @@ void ilk_pfit_disable(const struct intel_crtc_state *ol=
-d_crtc_state);
- int bdw_get_pipemisc_bpp(struct intel_crtc *crtc);
- unsigned int intel_plane_fence_y_offset(const struct intel_plane_state *pl=
-ane_state);
+@@ -11521,27 +11545,9 @@ int intel_modeset_init_nogem(struct drm_i915_priva=
+te *i915)
+ =09drm_modeset_unlock_all(dev);
 =20
-+bool intel_plane_uses_fence(const struct intel_plane_state *plane_state);
- bool
- intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
- =09=09=09=09    u64 modifier);
+ =09for_each_intel_crtc(dev, crtc) {
+-=09=09struct intel_initial_plane_config plane_config =3D {};
+-
+ =09=09if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
+ =09=09=09continue;
+-
+-=09=09/*
+-=09=09 * Note that reserving the BIOS fb up front prevents us
+-=09=09 * from stuffing other stolen allocations like the ring
+-=09=09 * on top.  This prevents some ugliness at boot time, and
+-=09=09 * can even allow for smooth boot transitions if the BIOS
+-=09=09 * fb is large enough for the active pipe configuration.
+-=09=09 */
+-=09=09i915->display->get_initial_plane_config(crtc, &plane_config);
+-
+-=09=09/*
+-=09=09 * If the fb is shared between multiple heads, we'll
+-=09=09 * just get the first one.
+-=09=09 */
+-=09=09intel_find_initial_plane_obj(crtc, &plane_config);
+-
+-=09=09plane_config_fini(&plane_config);
++=09=09intel_crtc_initial_plane_config(crtc);
+ =09}
+=20
+ =09/*
 --=20
 2.25.4
 
