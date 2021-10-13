@@ -1,63 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9318242CA30
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 21:38:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2352242CA3B
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 21:42:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E813C6EAC2;
-	Wed, 13 Oct 2021 19:38:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EECF36EACF;
+	Wed, 13 Oct 2021 19:41:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 549736EAC2
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 19:38:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="250941397"
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="250941397"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2021 12:38:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="527211557"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga008.fm.intel.com with ESMTP; 13 Oct 2021 12:38:11 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 13 Oct 2021 12:38:11 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 13 Oct 2021 12:38:10 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Wed, 13 Oct 2021 12:38:10 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-CC: "Zhao, Yakui" <yakui.zhao@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2] drm/i915: Remove memory frequency
- calculation
-Thread-Index: AQHXv8zrC12YUY1DuUCwCC8Q6TqE+qvRIEqAgAClAgCAAAJVgIAAA4QA
-Date: Wed, 13 Oct 2021 19:38:10 +0000
-Message-ID: <cb25d09369e2189098a30090da308eacb05aa5d3.camel@intel.com>
-References: <20211013010046.91858-1-jose.souza@intel.com>
- <YWanuyKbmIDWOGZ3@intel.com>
- <e85ffbe78d15f8714e88edcdf4d3112c59ae971f.camel@intel.com>
- <YWc0GwvlY4DQz84Y@intel.com>
-In-Reply-To: <YWc0GwvlY4DQz84Y@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6BC1FCC3854EBA4EAA58ABCCB39C7395@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C22CF6EACF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 19:41:58 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id y12so15157390eda.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 12:41:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=reply-to:subject:to:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=Ns77zmJD+0HX2rttJJnaB4rTPKiY/x5O2pxhe+nYkmk=;
+ b=FrOubU/h8BFTmmOKMytzvVR4etR199a2hfWjODj6UlazEw1qaXYrN7qkxSOnvamDr/
+ sW4odzWP5NO6hr4McAxyfu5RajdoLiFu70QNR2XyFKDORs+KIDiSXIqv5WY+WyExx/z2
+ yk0oAe8jl6JmIO3Tu7AWEoeJgyxZbKFS8q+JPPqb4xZeuEkqvvEAVD62GMHlETyu8KhR
+ tIPIbkrKUCuey5JQedFavsUpZ7SOa3ycjtS5CYC8x9JrDy/XQMjKA7dg0J1AQwPedc9l
+ bYVPquiBboAvUhJxQhY7DrwXspJdLc21irSwSgaieTOe1Xx/8HFeLaXIKkMUeLSerAlV
+ AgMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:reply-to:subject:to:references:from:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Ns77zmJD+0HX2rttJJnaB4rTPKiY/x5O2pxhe+nYkmk=;
+ b=NZfZ3F7dlEqMQoVLkcKuof2m1Cvllxke6AYAUHWgClB0gF8VZUc5dHJx67DDDSZ/pB
+ 0GxSfmky9veBFGx8k6vdo2NccngEWhlG6u76TC5TMLVTrWStp39Wk62duzIu0LyVazEi
+ UQfcHwDyZigDHnRz5pMUJsu1aiUJCVKEMIQzQIxTNoHjwXRLkJ5E7sBhpNzzjYdLrUrX
+ BJtn/0F/Txzhjqws89scRFza134ccJBwWLZwIJHvGNio+bJQ5zEhWQThWH6XTmNK1M6c
+ mdqrW4aVkh2sJfnrvx6oovQ4k4F0THtmwYlhHs+WbFz1aqRVA9gwGt/TVCaR7jObEQ5o
+ QkHA==
+X-Gm-Message-State: AOAM5336Xhiv53G1+LHtSXqUbFg8ny/DOHmYrfFrNsWhLW8bQ2CFfZxh
+ 1XPltk2T3GRfRHNMpXPnqWBzL3v3OjwkrA==
+X-Google-Smtp-Source: ABdhPJyJxf3bIHD+L+gYJjKjxQAPMQ6xkcwo5dBlNG5Y4WgA9eSRWJbyXfe9VmKB1ZYmgai3d75Fvg==
+X-Received: by 2002:a05:6402:26c5:: with SMTP id
+ x5mr1880203edd.297.1634154116983; 
+ Wed, 13 Oct 2021 12:41:56 -0700 (PDT)
+Received: from [0.0.0.0] ([134.134.139.86])
+ by smtp.googlemail.com with ESMTPSA id e7sm461979edk.3.2021.10.13.12.41.54
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 13 Oct 2021 12:41:56 -0700 (PDT)
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20211007203517.3364336-1-imre.deak@intel.com>
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Message-ID: <9367eab7-1947-53e8-67f1-a7015c9f491c@gmail.com>
+Date: Wed, 13 Oct 2021 22:41:49 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Remove memory frequency
- calculation
+In-Reply-To: <20211007203517.3364336-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 00/11] drm/i915: Simplify handling of
+ modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,34 +73,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTEwLTEzIGF0IDIyOjMxICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFdlZCwgT2N0IDEzLCAyMDIxIGF0IDA3OjE3OjE0UE0gKzAwMDAsIFNvdXphLCBKb3Nl
-IHdyb3RlOg0KPiA+IE9uIFdlZCwgMjAyMS0xMC0xMyBhdCAxMjozMiArMDMwMCwgVmlsbGUgU3ly
-asOkbMOkIHdyb3RlOg0KPiA+ID4gT24gVHVlLCBPY3QgMTIsIDIwMjEgYXQgMDY6MDA6NDZQTSAt
-MDcwMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSB3cm90ZToNCj4gPiA+ID4gVGhpcyBtZW1vcnkg
-ZnJlcXVlbmN5IGNhbGN1bGF0ZWQgaXMgb25seSB1c2VkIHRvIGNoZWNrIGlmIGl0IGlzIHplcm8s
-DQo+ID4gPiA+IHdoYXQgaXMgbm90IHVzZWZ1bCBhcyBpdCB3aWxsIG5ldmVyIGFjdHVhbGx5IGJl
-IHplcm8uDQo+ID4gPiA+IA0KPiA+ID4gPiBBbHNvIHRoZSBjYWxjdWxhdGlvbiBpcyB3cm9uZywg
-d2Ugc2hvdWxkIGJlIGNoZWNraW5nIG90aGVyIGJpdCB0bw0KPiA+ID4gPiBzZWxlY3QgdGhlIGFw
-cHJvcHJpYXRlIGZyZXF1ZW5jeSBtdWx0aXBsaWVyIHdoaWxlIHRoaXMgY29kZSBpcyBzdHVjaw0K
-PiA+ID4gPiB3aXRoIGEgZml4ZWQgbXVsdGlwbGllci4NCj4gPiA+IA0KPiA+ID4gSSBkb24ndCB0
-aGluayB0aGUgYWx0ZXJuYXRlIHJlZiBjbG9jayB3YXMgZXZlciB1c2VkLg0KPiA+ID4gQXQgbGVh
-c3QgSSBkb24ndCByZWNhbGwgZXZlciBzZWVpbmcgaXQuDQo+ID4gPiANCj4gPiA+IFRoZSByZWFs
-IHByb2JsZW0gd2l0aCB0aGlzIGlzIHRoYXQgSUlSQyB0aGlzIGlzIGp1c3QgdGhlIGxhc3QNCj4g
-PiA+IHJlcXVlc3RlZCBmcmVxdWVuY3kuIFNvIG9uIGEgc3lzdGVtIHdpdGggU0FHViB0aGlzIHdp
-bGwNCj4gPiA+IGNoYW5nZSBkeW5hbWljYWxseS4NCj4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
-U28gaGVyZSBkcm9wcGluZyBpdCBhcyB3aG9sZS4NCj4gPiA+IA0KPiA+ID4gV2UgaGF2ZSBhIHNl
-Y29uZCBjb3B5IG9mIHRoaXMgaW4gZ2VuNl91cGRhdGVfcmluZ19mcmVxKCkuIFJhdGhlcg0KPiA+
-ID4gdGhhbiByZW1vdmluZyBvbmUgYW5kIGxlYXZpbmcgYW5vdGhlciBwb3RlbnRpYWxseSBicm9r
-ZW4gb25lIGJlaGluZCB3ZQ0KPiA+ID4gc2hvdWxkIHByb2JhYmx5IGp1c3QgY29uc29saWRhdGUg
-b24gYSBzaW5nbGUgaW1wbGVtZW50YXRpb24uDQo+ID4gDQo+ID4gZ2VuNl91cGRhdGVfcmluZ19m
-cmVxKCkgaXMgcmVsYXRlZCB0byBHUFUgZnJlcXVlbmN5IG5vdCBtZW1vcnksIGRvbid0IGxvb2sg
-cmVsYXRlZCBhdCBhbGwgdG8gbWUuDQo+ID4gDQo+IA0KPiBHUFUsIENQVSBhbmQgbWVtb3J5IGNs
-b2NrcyBhcmUgYWxsIG5lZWRlZCB0aGVyZSwgYXQgbGVhc3Qgb24gc29tZQ0KPiBwbGF0Zm9ybXMu
-IEkgZm9yZ2V0IHdoaWNoIG9uZXMgZGlkIHdoYXQgZXhhY3RseS4NCg0KQnV0IGlzIGlzIG5vdCBy
-ZWxhdGUgd2l0aCByZW1vdmluZyB0aGlzIG1lbW9yeSBmcmVxdWVuY3kgY2FsY3VsYXRpb24sIHNv
-IHdlIGNhbiBkcm9wIGl0IHdpdGhvdXQgbGVhdmluZyBhbnkgY29kZSBiZWhpbmQuDQoNCj4gDQoN
-Cg==
+Set look all ok to me, including v2 patches.
+
+Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+
+On 7.10.2021 23.35, Imre Deak wrote:
+> This patchset adds a descriptor table for all modifiers used by i915,
+> which deduplicates the listing of supported modifiers during plane
+> initialization and during checking for a modifier support on a plane.
+> This also simplifies getting some modifier attributes like checking
+> if a plane is a CCS modifier. The motivation is to make it easier to
+> add and maintain new CCS modifier sets, which will be needed for at
+> least ADL-P and another upcoming platform.
+> 
+> Tested with igt/kms_plane,kms_ccs on CHV,HSW,TGL,ADLP.
+> 
+> The patches are also avaiable at:
+> https://github.com/ideak/linux/commits/modifier-descriptors
+> 
+> Imre Deak (11):
+>    drm/i915: Add a table with a descriptor for all i915 modifiers
+>    drm/i915: Move intel_get_format_info() to intel_fb.c
+>    drm/i915: Add tiling attribute to the modifier descriptor
+>    drm/i915: Simplify the modifier check for interlaced scanout support
+>    drm/i915: Unexport is_semiplanar_uv_plane()
+>    drm/i915: Move intel_format_info_is_yuv_semiplanar() to intel_fb.c
+>    drm/i915: Add a platform independent way to get the RC CCS CC plane
+>    drm/i915: Handle CCS CC planes separately from CCS control planes
+>    drm/i915: Add a platform independent way to check for CCS control
+>      planes
+>    drm/i915: Move is_ccs_modifier() to intel_fb.c
+>    drm/i915: Add functions to check for RC CCS CC and MC CCS modifiers
+> 
+>   .../gpu/drm/i915/display/intel_atomic_plane.c |   1 +
+>   drivers/gpu/drm/i915/display/intel_cursor.c   |  19 +-
+>   drivers/gpu/drm/i915/display/intel_display.c  | 150 +----
+>   drivers/gpu/drm/i915/display/intel_display.h  |   4 -
+>   .../drm/i915/display/intel_display_types.h    |  17 -
+>   drivers/gpu/drm/i915/display/intel_fb.c       | 536 ++++++++++++++++--
+>   drivers/gpu/drm/i915/display/intel_fb.h       |  25 +-
+>   drivers/gpu/drm/i915/display/intel_sprite.c   |  35 +-
+>   drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+>   .../drm/i915/display/skl_universal_plane.c    | 165 +-----
+>   drivers/gpu/drm/i915/i915_drv.h               |   3 +
+>   drivers/gpu/drm/i915/intel_pm.c               |   1 +
+>   12 files changed, 569 insertions(+), 388 deletions(-)
+> 
+
