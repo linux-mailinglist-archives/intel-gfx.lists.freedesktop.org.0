@@ -2,33 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8490E42B268
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 03:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C0B42B276
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 03:57:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FACA6E056;
-	Wed, 13 Oct 2021 01:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 239138926E;
+	Wed, 13 Oct 2021 01:57:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCB8F6E056;
- Wed, 13 Oct 2021 01:50:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AF387A00FD;
- Wed, 13 Oct 2021 01:50:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8398210127239215338=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D82616E060;
+ Wed, 13 Oct 2021 01:57:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="288192962"
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="288192962"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 18:57:19 -0700
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="526815372"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 18:57:18 -0700
+Date: Tue, 12 Oct 2021 18:52:34 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniele.ceraolospurio@intel.com
+Message-ID: <20211013015234.GA5551@jons-linux-dev-box>
+References: <20211004220637.14746-1-matthew.brost@intel.com>
+ <20211004220637.14746-21-matthew.brost@intel.com>
+ <a0fc2329-30c7-bf29-64b9-1ea766c3aeb1@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Oct 2021 01:50:07 -0000
-Message-ID: <163408980768.10252.7872091725469951003@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211013010046.91858-1-jose.souza@intel.com>
-In-Reply-To: <20211013010046.91858-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_memory_frequency_calculation_=28rev2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a0fc2329-30c7-bf29-64b9-1ea766c3aeb1@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 20/26] drm/i915/guc: Implement no mid batch
+ preemption for multi-lrc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,195 +51,565 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8398210127239215338==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Oct 11, 2021 at 04:32:03PM -0700, John Harrison wrote:
+> On 10/4/2021 15:06, Matthew Brost wrote:
+> > For some users of multi-lrc, e.g. split frame, it isn't safe to preempt
+> > mid BB. To safely enable preemption at the BB boundary, a handshake
+> > between to parent and child is needed. This is implemented via custom
+> between to parent -> between parent
+> > emit_bb_start & emit_fini_breadcrumb functions and enabled via by
+> via by -> by
+> 
+> I'm also not seeing any mention of the forced re-group behavioural change in
+> either the comments or commit description.
+> 
 
-== Series Details ==
+Will do all of the above + mention fixing the PD size.
 
-Series: drm/i915: Remove memory frequency calculation (rev2)
-URL   : https://patchwork.freedesktop.org/series/95748/
-State : success
+> > default if a context is configured by set parallel extension.
+> > 
+> > v2:
+> >   (John Harrison)
+> >    - Fix a few comments wording
+> >    - Add struture for parent page layout
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_context.c       |   2 +-
+> >   drivers/gpu/drm/i915/gt/intel_context_types.h |   2 +
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   2 +-
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 330 +++++++++++++++++-
+> >   4 files changed, 324 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > index 3b340eb59ada..ee84259959d0 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > @@ -569,7 +569,7 @@ void intel_context_bind_parent_child(struct intel_context *parent,
+> >   	GEM_BUG_ON(intel_context_is_child(child));
+> >   	GEM_BUG_ON(intel_context_is_parent(child));
+> > -	parent->parallel.number_children++;
+> > +	parent->parallel.child_index = parent->parallel.number_children++;
+> >   	list_add_tail(&child->parallel.child_link,
+> >   		      &parent->parallel.child_list);
+> >   	child->parallel.parent = parent;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > index 1d880303a7e4..95a5b94b4ece 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > @@ -250,6 +250,8 @@ struct intel_context {
+> >   		struct i915_request *last_rq;
+> >   		/** @number_children: number of children if parent */
+> >   		u8 number_children;
+> > +		/** @child_index: index into child_list if child */
+> > +		u8 child_index;
+> >   		/** @guc: GuC specific members for parallel submission */
+> >   		struct {
+> >   			/** @wqi_head: head pointer in work queue */
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> > index a00eeddc1449..663950d3badc 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> > @@ -181,7 +181,7 @@ struct guc_process_desc {
+> >   	u32 wq_status;
+> >   	u32 engine_presence;
+> >   	u32 priority;
+> > -	u32 reserved[30];
+> > +	u32 reserved[36];
+> Not seeing the promised explanation of this bug fix.
+> 
 
-== Summary ==
+Will add in commit message.
 
-CI Bug Log - changes from CI_DRM_10728 -> Patchwork_21324
-====================================================
+> >   } __packed;
+> >   #define CONTEXT_REGISTRATION_FLAG_KMD	BIT(0)
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 12ee8ca76249..f28e36aa77c2 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -11,6 +11,7 @@
+> >   #include "gt/intel_context.h"
+> >   #include "gt/intel_engine_pm.h"
+> >   #include "gt/intel_engine_heartbeat.h"
+> > +#include "gt/intel_gpu_commands.h"
+> >   #include "gt/intel_gt.h"
+> >   #include "gt/intel_gt_irq.h"
+> >   #include "gt/intel_gt_pm.h"
+> > @@ -368,10 +369,16 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
+> >   /*
+> >    * When using multi-lrc submission an extra page in the context state is
+> > - * reserved for the process descriptor and work queue.
+> > + * reserved for the process descriptor, work queue, and handshake between the
+> > + * parent + childlren contexts to insert safe preemption points between each set
+> > + * of BBs.
+> >    *
+> >    * The layout of this page is below:
+> >    * 0						guc_process_desc
+> > + * + sizeof(struct guc_process_desc)		child go
+> > + * + CACHELINE_BYTES				child join[0]
+> > + * ...
+> > + * + CACHELINE_BYTES				child join[n - 1]
+> >    * ...						unused
+> >    * PAGE_SIZE / 2				work queue start
+> >    * ...						work queue
+> > @@ -379,7 +386,25 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
+> >    */
+> >   #define WQ_SIZE			(PAGE_SIZE / 2)
+> >   #define WQ_OFFSET		(PAGE_SIZE - WQ_SIZE)
+> > -static u32 __get_process_desc_offset(struct intel_context *ce)
+> > +
+> > +struct parent_page {
+> > +	struct guc_process_desc pdesc;
+> > +
+> > +	u32 child_go_memory;
+> > +	u8 unused0[CACHELINE_BYTES - sizeof(u32)];
+> > +
+> > +	struct {
+> > +		u32 child_join_memory;
+> > +		u8 unused1[CACHELINE_BYTES - sizeof(u32)];
+> > +	} join[MAX_ENGINE_INSTANCE + 1];
+> Could have a common structure for these. Call the u32 'semaphore_memory' or
+> something then just have:
+>   struct sync_semaphore go;
+>   struct sync_semaphore go[MAX + 1];
+> 
 
-Summary
--------
+Sure.
 
-  **SUCCESS**
+> > +
+> > +	u8 unused2[(WQ_OFFSET - sizeof(struct guc_process_desc) -
+> > +		    CACHELINE_BYTES * (MAX_ENGINE_INSTANCE + 2))];
+> And this bit could be 'sizeof(struct sync_semaphore) * MAX + 2' to be
+> clearer what it refers to.
+> 
+> And to be totally paranoid about it, could also add
+> 'BUILD_BUG_ON(sizeof(struct sync_semaphore) != CACHELINE_BYTES'.
+> 
+> And BUILD_BUG_ON(sizeof(parent_page) == PARENT_PAGE_SIZE)'.
+>
 
-  No regressions found.
+Sure.
+ 
+> > +
+> > +	u32 wq[WQ_SIZE / sizeof(u32)];
+> > +};
+> > +
+> > +static u32 __get_parent_page_offset(struct intel_context *ce)
+> >   {
+> >   	GEM_BUG_ON(!ce->parallel.guc.parent_page);
+> > @@ -388,23 +413,35 @@ static u32 __get_process_desc_offset(struct intel_context *ce)
+> >   static u32 __get_wq_offset(struct intel_context *ce)
+> >   {
+> > -	return __get_process_desc_offset(ce) + WQ_OFFSET;
+> > +	BUILD_BUG_ON(offsetof(struct parent_page, wq) != WQ_OFFSET);
+> > +
+> > +	return __get_parent_page_offset(ce) + WQ_OFFSET;
+> >   }
+> > -static struct guc_process_desc *
+> > -__get_process_desc(struct intel_context *ce)
+> > +static struct parent_page *
+> > +__get_parent_page(struct intel_context *ce)
+> >   {
+> > +	BUILD_BUG_ON(sizeof(struct parent_page) != PAGE_SIZE);
+> > +
+> >   	/*
+> >   	 * Need to subtract LRC_STATE_OFFSET here as the
+> >   	 * parallel.guc.parent_page is the offset into ce->state while
+> >   	 * ce->lrc_reg_reg is ce->state + LRC_STATE_OFFSET.
+> >   	 */
+> > -	return (struct guc_process_desc *)
+> > +	return (struct parent_page *)
+> >   		(ce->lrc_reg_state +
+> > -		 ((__get_process_desc_offset(ce) -
+> > +		 ((__get_parent_page_offset(ce) -
+> >   		   LRC_STATE_OFFSET) / sizeof(u32)));
+> >   }
+> > +static struct guc_process_desc *
+> > +__get_process_desc(struct intel_context *ce)
+> > +{
+> > +	struct parent_page *pp = __get_parent_page(ce);
+> > +
+> > +	return &pp->pdesc;
+> > +}
+> > +
+> >   static u32 *get_wq_pointer(struct guc_process_desc *desc,
+> >   			   struct intel_context *ce,
+> >   			   u32 wqi_size)
+> > @@ -424,8 +461,7 @@ static u32 *get_wq_pointer(struct guc_process_desc *desc,
+> >   	}
+> >   #undef AVAILABLE_SPACE
+> > -	return ((u32 *)__get_process_desc(ce)) +
+> > -		((WQ_OFFSET + ce->parallel.guc.wqi_tail) / sizeof(u32));
+> > +	return &__get_parent_page(ce)->wq[ce->parallel.guc.wqi_tail / sizeof(u32)];
+> >   }
+> >   static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
+> > @@ -1829,6 +1865,26 @@ static int deregister_context(struct intel_context *ce, u32 guc_id)
+> >   	return __guc_action_deregister_context(guc, guc_id);
+> >   }
+> > +static inline void clear_children_join_go_memory(struct intel_context *ce)
+> > +{
+> > +	u32 *mem = (u32 *)(&__get_parent_page(ce)->child_go_memory);
+> > +	u8 i;
+> > +
+> > +	for (i = 0; i < ce->parallel.number_children + 1; ++i)
+> > +		mem[i * (CACHELINE_BYTES / sizeof(u32))] = 0;
+> Can't this be written as:
+>   pp->child_go_memory = 0;
+>   for(i = 0 to number_children)
+>     pp->child_join_memory = 0;
+> 
+> Seems like that would be much clearer than this magic casting and
+> offsetting. I mean, that was the whole point of creating the parent_page
+> structure.
+> 
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/index.html
+Will rewrite.
 
-Known issues
-------------
+> 
+> > +}
+> > +
+> > +static inline u32 get_children_go_value(struct intel_context *ce)
+> > +{
+> > +	return __get_parent_page(ce)->child_go_memory;
+> > +}
+> > +
+> > +static inline u32 get_children_join_value(struct intel_context *ce,
+> > +					  u8 child_index)
+> > +{
+> > +	return __get_parent_page(ce)->join[child_index].child_join_memory;
+> > +}
+> > +
+> >   static void guc_context_policy_init(struct intel_engine_cs *engine,
+> >   				    struct guc_lrc_desc *desc)
+> >   {
+> > @@ -1888,7 +1944,7 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+> >   		ce->parallel.guc.wqi_head = 0;
+> >   		desc->process_desc = i915_ggtt_offset(ce->state) +
+> > -			__get_process_desc_offset(ce);
+> > +			__get_parent_page_offset(ce);
+> >   		desc->wq_addr = i915_ggtt_offset(ce->state) +
+> >   			__get_wq_offset(ce);
+> >   		desc->wq_size = WQ_SIZE;
+> > @@ -1910,6 +1966,8 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+> >   			desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
+> >   			guc_context_policy_init(engine, desc);
+> >   		}
+> > +
+> > +		clear_children_join_go_memory(ce);
+> >   	}
+> >   	/*
+> > @@ -2976,6 +3034,31 @@ static const struct intel_context_ops virtual_child_context_ops = {
+> >   	.get_sibling = guc_virtual_get_sibling,
+> >   };
+> > +/*
+> > + * The below override of the breadcrumbs is enabled when the user configures a
+> > + * context for parallel submission (multi-lrc, parent-child).
+> > + *
+> > + * The overridden breadcrumbs implements an algorithm which allows the GuC to
+> > + * safely preempt all the hw contexts configured for parallel submission
+> > + * between each BB. The contract between the i915 and GuC is if the parent
+> > + * context can be preempted, all the children can be preempted, and the GuC will
+> > + * always try to preempt the parent before the children. A handshake between the
+> > + * parent / children breadcrumbs ensures the i915 holds up its end of the deal
+> > + * creating a window to preempt between each set of BBs.
+> > + */
+> > +static int emit_bb_start_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > +						     u64 offset, u32 len,
+> > +						     const unsigned int flags);
+> > +static int emit_bb_start_child_no_preempt_mid_batch(struct i915_request *rq,
+> > +						    u64 offset, u32 len,
+> > +						    const unsigned int flags);
+> > +static u32 *
+> > +emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > +						 u32 *cs);
+> > +static u32 *
+> > +emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq,
+> > +						u32 *cs);
+> > +
+> >   static struct intel_context *
+> >   guc_create_parallel(struct intel_engine_cs **engines,
+> >   		    unsigned int num_siblings,
+> > @@ -3011,6 +3094,20 @@ guc_create_parallel(struct intel_engine_cs **engines,
+> >   		}
+> >   	}
+> > +	parent->engine->emit_bb_start =
+> > +		emit_bb_start_parent_no_preempt_mid_batch;
+> > +	parent->engine->emit_fini_breadcrumb =
+> > +		emit_fini_breadcrumb_parent_no_preempt_mid_batch;
+> > +	parent->engine->emit_fini_breadcrumb_dw =
+> > +		12 + 4 * parent->parallel.number_children;
+> > +	for_each_child(parent, ce) {
+> > +		ce->engine->emit_bb_start =
+> > +			emit_bb_start_child_no_preempt_mid_batch;
+> > +		ce->engine->emit_fini_breadcrumb =
+> > +			emit_fini_breadcrumb_child_no_preempt_mid_batch;
+> > +		ce->engine->emit_fini_breadcrumb_dw = 16;
+> > +	}
+> > +
+> >   	kfree(siblings);
+> >   	return parent;
+> > @@ -3840,6 +3937,17 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
+> >   			drm_printf(p, "\t\tWQI Status: %u\n\n",
+> >   				   READ_ONCE(desc->wq_status));
+> > +			if (ce->engine->emit_bb_start ==
+> > +			    emit_bb_start_parent_no_preempt_mid_batch) {
+> > +				u8 i;
+> > +
+> > +				drm_printf(p, "\t\tChildren Go: %u\n\n",
+> > +					   get_children_go_value(ce));
+> > +				for (i = 0; i < ce->parallel.number_children; ++i)
+> > +					drm_printf(p, "\t\tChildren Join: %u\n",
+> > +						   get_children_join_value(ce, i));
+> > +			}
+> > +
+> >   			for_each_child(ce, child)
+> >   				guc_log_context(p, child);
+> >   		}
+> > @@ -3847,6 +3955,208 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
+> >   	xa_unlock_irqrestore(&guc->context_lookup, flags);
+> >   }
+> > +static inline u32 get_children_go_addr(struct intel_context *ce)
+> > +{
+> > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > +	BUILD_BUG_ON(offsetof(struct parent_page, child_go_memory) !=
+> > +		     sizeof(struct guc_process_desc));
+> > +
+> > +	return i915_ggtt_offset(ce->state) +
+> > +		__get_parent_page_offset(ce) +
+> > +		sizeof(struct guc_process_desc);
+> Rather than relying on the BUILD_BUG to make sure that the magic calculation
+> matches the structure definition, can't this just say "ggtt_offset +
+> pp_offset + offsetof(pp, child_go)"?
+> 
 
-  Here are the changes found in Patchwork_21324 that come from known issues:
+Probably.
 
-### IGT changes ###
+> > +}
+> > +
+> > +static inline u32 get_children_join_addr(struct intel_context *ce,
+> > +					 u8 child_index)
+> > +{
+> > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > +
+> > +	return get_children_go_addr(ce) + (child_index + 1) * CACHELINE_BYTES;
+> "ggtt_offset + pp_offset + offsetof(pp, child_join[i])"?
+> 
 
-#### Issues hit ####
+Probably.
 
-  * igt@gem_exec_parallel@engines@userptr:
-    - fi-pnv-d510:        [PASS][1] -> [INCOMPLETE][2] ([i915#299])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+> 
+> > +}
+> > +
+> > +#define PARENT_GO_BB			1
+> > +#define PARENT_GO_FINI_BREADCRUMB	0
+> > +#define CHILD_GO_BB			1
+> > +#define CHILD_GO_FINI_BREADCRUMB	0
+> > +static int emit_bb_start_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > +						     u64 offset, u32 len,
+> > +						     const unsigned int flags)
+> > +{
+> > +	struct intel_context *ce = rq->context;
+> > +	u32 *cs;
+> > +	u8 i;
+> > +
+> > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > +
+> > +	cs = intel_ring_begin(rq, 10 + 4 * ce->parallel.number_children);
+> > +	if (IS_ERR(cs))
+> > +		return PTR_ERR(cs);
+> > +
+> > +	/* Wait on children */
+> > +	for (i = 0; i < ce->parallel.number_children; ++i) {
+> > +		*cs++ = (MI_SEMAPHORE_WAIT |
+> > +			 MI_SEMAPHORE_GLOBAL_GTT |
+> > +			 MI_SEMAPHORE_POLL |
+> > +			 MI_SEMAPHORE_SAD_EQ_SDD);
+> > +		*cs++ = PARENT_GO_BB;
+> > +		*cs++ = get_children_join_addr(ce, i);
+> > +		*cs++ = 0;
+> > +	}
+> > +
+> > +	/* Turn off preemption */
+> > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
+> > +	*cs++ = MI_NOOP;
+> > +
+> > +	/* Tell children go */
+> > +	cs = gen8_emit_ggtt_write(cs,
+> > +				  CHILD_GO_BB,
+> > +				  get_children_go_addr(ce),
+> > +				  0);
+> > +
+> > +	/* Jump to batch */
+> > +	*cs++ = MI_BATCH_BUFFER_START_GEN8 |
+> > +		(flags & I915_DISPATCH_SECURE ? 0 : BIT(8));
+> > +	*cs++ = lower_32_bits(offset);
+> > +	*cs++ = upper_32_bits(offset);
+> > +	*cs++ = MI_NOOP;
+> > +
+> > +	intel_ring_advance(rq, cs);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int emit_bb_start_child_no_preempt_mid_batch(struct i915_request *rq,
+> > +						    u64 offset, u32 len,
+> > +						    const unsigned int flags)
+> > +{
+> > +	struct intel_context *ce = rq->context;
+> > +	struct intel_context *parent = intel_context_to_parent(ce);
+> > +	u32 *cs;
+> > +
+> > +	GEM_BUG_ON(!intel_context_is_child(ce));
+> > +
+> > +	cs = intel_ring_begin(rq, 12);
+> > +	if (IS_ERR(cs))
+> > +		return PTR_ERR(cs);
+> > +
+> > +	/* Signal parent */
+> > +	cs = gen8_emit_ggtt_write(cs,
+> > +				  PARENT_GO_BB,
+> > +				  get_children_join_addr(parent,
+> > +							 ce->parallel.child_index),
+> > +				  0);
+> > +
+> > +	/* Wait on parent for go */
+> > +	*cs++ = (MI_SEMAPHORE_WAIT |
+> > +		 MI_SEMAPHORE_GLOBAL_GTT |
+> > +		 MI_SEMAPHORE_POLL |
+> > +		 MI_SEMAPHORE_SAD_EQ_SDD);
+> > +	*cs++ = CHILD_GO_BB;
+> > +	*cs++ = get_children_go_addr(parent);
+> > +	*cs++ = 0;
+> > +
+> > +	/* Turn off preemption */
+> > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
+> > +
+> > +	/* Jump to batch */
+> > +	*cs++ = MI_BATCH_BUFFER_START_GEN8 |
+> > +		(flags & I915_DISPATCH_SECURE ? 0 : BIT(8));
+> > +	*cs++ = lower_32_bits(offset);
+> > +	*cs++ = upper_32_bits(offset);
+> > +
+> > +	intel_ring_advance(rq, cs);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static u32 *
+> > +emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
+> > +						 u32 *cs)
+> > +{
+> > +	struct intel_context *ce = rq->context;
+> > +	u8 i;
+> > +
+> > +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > +
+> > +	/* Wait on children */
+> > +	for (i = 0; i < ce->parallel.number_children; ++i) {
+> > +		*cs++ = (MI_SEMAPHORE_WAIT |
+> > +			 MI_SEMAPHORE_GLOBAL_GTT |
+> > +			 MI_SEMAPHORE_POLL |
+> > +			 MI_SEMAPHORE_SAD_EQ_SDD);
+> > +		*cs++ = PARENT_GO_FINI_BREADCRUMB;
+> > +		*cs++ = get_children_join_addr(ce, i);
+> > +		*cs++ = 0;
+> > +	}
+> > +
+> > +	/* Turn on preemption */
+> > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+> > +	*cs++ = MI_NOOP;
+> > +
+> You mentioned possibly needing to add an MI_ARB_CHECK in here but I'm not
+> seeing it. Did the testing happen? I don't see that it should be necessary.
+> Once you execute the MI_ARB_ENABLE, the CS can preempt anywhere, I thought?
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+No, it can only preempt on certain instructions - e.g. MI_ARB_CHECK or a
+semaphore.
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#4269])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+> Even if it can't there should be an MI_ARB_CHECK added at the next level up
+> after the breadcrumb code. Or do we not have those in between batches any
+> more?
+>
 
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][7] ([i915#2403] / [i915#2722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-pnv-d510/igt@runner@aborted.html
+Right. A MI_ARB_CHECK before writing the fini breadcrumbs would be wrong
+as we could preeempt after the batch is complete but before the fini
+breadcrumbs are written so the i915 still thinks the batch (request)
+isn't done. The code is fine as is. The emit BB code for the parent has
+semaphore instructions where is can be preempted.
 
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@perf:
-    - {fi-tgl-dsi}:       [DMESG-WARN][8] ([i915#2867]) -> [PASS][9] +9 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-tgl-dsi/igt@i915_selftest@live@perf.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-tgl-dsi/igt@i915_selftest@live@perf.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-
-
-Participating hosts (41 -> 37)
-------------------------------
-
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10728 -> Patchwork_21324
-
-  CI-20190529: 20190529
-  CI_DRM_10728: 82a9f298afec66c882e710078138891826ce5e22 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21324: e86da89208d640c5b2846820ee39637795c5b43c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e86da89208d6 drm/i915: Remove memory frequency calculation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/index.html
-
---===============8398210127239215338==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Remove memory frequency calculation (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95748/">https://patchwork.freedesktop.org/series/95748/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10728 -&gt; Patchwork_21324</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21324 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@userptr:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@perf:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-tgl-dsi/igt@i915_selftest@live@perf.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21324/fi-tgl-dsi/igt@i915_selftest@live@perf.html">PASS</a> +9 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (41 -&gt; 37)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10728 -&gt; Patchwork_21324</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10728: 82a9f298afec66c882e710078138891826ce5e22 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21324: e86da89208d640c5b2846820ee39637795c5b43c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e86da89208d6 drm/i915: Remove memory frequency calculation</p>
-
-</body>
-</html>
-
---===============8398210127239215338==--
+Matt
+ 
+> John.
+> 
+> 
+> > +	/* Tell children go */
+> > +	cs = gen8_emit_ggtt_write(cs,
+> > +				  CHILD_GO_FINI_BREADCRUMB,
+> > +				  get_children_go_addr(ce),
+> > +				  0);
+> > +
+> > +	/* Emit fini breadcrumb */
+> > +	cs = gen8_emit_ggtt_write(cs,
+> > +				  rq->fence.seqno,
+> > +				  i915_request_active_timeline(rq)->hwsp_offset,
+> > +				  0);
+> > +
+> > +	/* User interrupt */
+> > +	*cs++ = MI_USER_INTERRUPT;
+> > +	*cs++ = MI_NOOP;
+> > +
+> > +	rq->tail = intel_ring_offset(rq, cs);
+> > +
+> > +	return cs;
+> > +}
+> > +
+> > +static u32 *
+> > +emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq, u32 *cs)
+> > +{
+> > +	struct intel_context *ce = rq->context;
+> > +	struct intel_context *parent = intel_context_to_parent(ce);
+> > +
+> > +	GEM_BUG_ON(!intel_context_is_child(ce));
+> > +
+> > +	/* Turn on preemption */
+> > +	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+> > +	*cs++ = MI_NOOP;
+> > +
+> > +	/* Signal parent */
+> > +	cs = gen8_emit_ggtt_write(cs,
+> > +				  PARENT_GO_FINI_BREADCRUMB,
+> > +				  get_children_join_addr(parent,
+> > +							 ce->parallel.child_index),
+> > +				  0);
+> > +
+> > +	/* Wait parent on for go */
+> > +	*cs++ = (MI_SEMAPHORE_WAIT |
+> > +		 MI_SEMAPHORE_GLOBAL_GTT |
+> > +		 MI_SEMAPHORE_POLL |
+> > +		 MI_SEMAPHORE_SAD_EQ_SDD);
+> > +	*cs++ = CHILD_GO_FINI_BREADCRUMB;
+> > +	*cs++ = get_children_go_addr(parent);
+> > +	*cs++ = 0;
+> > +
+> > +	/* Emit fini breadcrumb */
+> > +	cs = gen8_emit_ggtt_write(cs,
+> > +				  rq->fence.seqno,
+> > +				  i915_request_active_timeline(rq)->hwsp_offset,
+> > +				  0);
+> > +
+> > +	/* User interrupt */
+> > +	*cs++ = MI_USER_INTERRUPT;
+> > +	*cs++ = MI_NOOP;
+> > +
+> > +	rq->tail = intel_ring_offset(rq, cs);
+> > +
+> > +	return cs;
+> > +}
+> > +
+> >   static struct intel_context *
+> >   guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+> >   		   unsigned long flags)
+> 
