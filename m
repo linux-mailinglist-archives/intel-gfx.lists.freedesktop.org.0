@@ -2,42 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3A7242B0F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 02:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0790542B0E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 02:19:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 161BE6E04E;
-	Wed, 13 Oct 2021 00:23:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9D126E043;
+	Wed, 13 Oct 2021 00:18:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 861736E04E;
- Wed, 13 Oct 2021 00:23:02 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="214252101"
-X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="214252101"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 17:23:01 -0700
-X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="547652159"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 17:23:01 -0700
-Date: Tue, 12 Oct 2021 17:18:17 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniele.ceraolospurio@intel.com
-Message-ID: <20211013001817.GA4760@jons-linux-dev-box>
-References: <20211004220637.14746-1-matthew.brost@intel.com>
- <20211004220637.14746-23-matthew.brost@intel.com>
- <9e63ab2b-55e1-5b83-45c7-4d0f8bb771f2@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0C376E043
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 00:18:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="290798519"
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="290798519"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 17:18:56 -0700
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="524419302"
+Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
+ ([10.24.14.60])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 17:18:56 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Yakui Zhao <yakui.zhao@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Date: Tue, 12 Oct 2021 17:24:55 -0700
+Message-Id: <20211013002455.77860-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9e63ab2b-55e1-5b83-45c7-4d0f8bb771f2@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 22/26] drm/i915/guc: Handle errors in
- multi-lrc requests
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Remove memory frequency calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,142 +48,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 12, 2021 at 02:56:36PM -0700, John Harrison wrote:
-> On 10/4/2021 15:06, Matthew Brost wrote:
-> > If an error occurs in the front end when multi-lrc requests are getting
-> > generated we need to skip these in the backend but we still need to
-> > emit the breadcrumbs seqno. An issues arises because with multi-lrc
-> > breadcrumbs there is a handshake between the parent and children to make
-> > forward progress. If all the requests are not present this handshake
-> > doesn't work. To work around this, if multi-lrc request has an error we
-> > skip the handshake but still emit the breadcrumbs seqno.
-> > 
-> > v2:
-> >   (John Harrison)
-> >    - Add comment explaining the skipping of the handshake logic
-> >    - Fix typos in the commit message
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 71 ++++++++++++++++++-
-> >   1 file changed, 68 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 83b0d2a114af..05e8b199e4ce 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -4072,8 +4072,8 @@ static int emit_bb_start_child_no_preempt_mid_batch(struct i915_request *rq,
-> >   }
-> >   static u32 *
-> > -emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
-> > -						 u32 *cs)
-> > +__emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
-> > +						   u32 *cs)
-> >   {
-> >   	struct intel_context *ce = rq->context;
-> >   	u8 i;
-> > @@ -4101,6 +4101,46 @@ emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
-> >   				  get_children_go_addr(ce),
-> >   				  0);
-> > +	return cs;
-> > +}
-> > +
-> > +/*
-> > + * If this true, a submission of multi-lrc requests had an error and the
-> > + * requests need to be skipped. The front end (execuf IOCTL) should've called
-> > + * i915_request_skip which squashes the BB but we still need to emit the fini
-> > + * breadrcrumbs seqno write. At this point we don't know how many of the
-> > + * requests in the multi-lrc submission were generated so we can't do the
-> > + * handshake between the parent and children (e.g. if 4 requests should be
-> > + * generated but 2nd hit an error only 1 would be seen by the GuC backend).
-> > + * Simply skip the handshake, but still emit the breadcrumbd seqno, if an error
-> > + * has occurred on any of the requests in submission / relationship.
-> > + */
-> > +static inline bool skip_handshake(struct i915_request *rq)
-> > +{
-> > +	return test_bit(I915_FENCE_FLAG_SKIP_PARALLEL, &rq->fence.flags);
-> > +}
-> > +
-> > +static u32 *
-> > +emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
-> > +						 u32 *cs)
-> > +{
-> > +	struct intel_context *ce = rq->context;
-> > +
-> > +	GEM_BUG_ON(!intel_context_is_parent(ce));
-> > +
-> > +	if (unlikely(skip_handshake(rq))) {
-> > +		/*
-> > +		 * NOP everything in
-> > +		 * __emit_fini_breadcrumb_parent_no_preempt_mid_batch, the -6
-> The line wrapping makes this look confusing. It seems like the function name
-> should fit on the line before. Even if it is a few characters over (although
-> the limit is now 100 not 80, I think), the checkpatch warning is worth the
-> readability of the code.
-> 
+This memory frequency calculated is only used to check if it is zero,
+what is not useful as it will never actually be zero.
 
-My vi setting wrap everything as 80 but agree it would be more readable
-if __emit_fini_breadcrumb_parent_no_preempt_mid_batch was on the
-previous line.
+Also the calculation is wrong, we should be checking other bit to
+select the appropriate frequency multiplier while this code is stuck
+with a fixed multiplier.
 
-> > +		 * comes of the length emission below.
-> -> comes from the length of the emits below.
->
+So here dropping it as whole.
+Cc: Yakui Zhao <yakui.zhao@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Fixes: f8112cb9574b ("drm/i915/gen11+: Only load DRAM information from pcode")
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/i915_reg.h   |  2 --
+ drivers/gpu/drm/i915/intel_dram.c | 12 ------------
+ 2 files changed, 14 deletions(-)
 
-Sure. Will fix.
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index a897f4abea0c3..03b6c505249dc 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -11145,9 +11145,7 @@ enum skl_power_gate {
+ #define  BXT_DRAM_TYPE_LPDDR4			(0x2 << 22)
+ #define  BXT_DRAM_TYPE_DDR4			(0x4 << 22)
+ 
+-#define SKL_MEMORY_FREQ_MULTIPLIER_HZ		266666666
+ #define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5E04)
+-#define  SKL_REQ_DATA_MASK			(0xF << 0)
+ #define  DG1_GEAR_TYPE				REG_BIT(16)
+ 
+ #define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
+diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
+index 30a0cab5eff46..31933b1e7277b 100644
+--- a/drivers/gpu/drm/i915/intel_dram.c
++++ b/drivers/gpu/drm/i915/intel_dram.c
+@@ -244,7 +244,6 @@ static int
+ skl_get_dram_info(struct drm_i915_private *i915)
+ {
+ 	struct dram_info *dram_info = &i915->dram_info;
+-	u32 mem_freq_khz, val;
+ 	int ret;
+ 
+ 	dram_info->type = skl_get_dram_type(i915);
+@@ -255,17 +254,6 @@ skl_get_dram_info(struct drm_i915_private *i915)
+ 	if (ret)
+ 		return ret;
+ 
+-	val = intel_uncore_read(&i915->uncore,
+-				SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
+-	mem_freq_khz = DIV_ROUND_UP((val & SKL_REQ_DATA_MASK) *
+-				    SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
+-
+-	if (dram_info->num_channels * mem_freq_khz == 0) {
+-		drm_info(&i915->drm,
+-			 "Couldn't get system memory bandwidth\n");
+-		return -EINVAL;
+-	}
+-
+ 	return 0;
+ }
+ 
+-- 
+2.33.0
 
-Matt
-
-> John.
-> 
-> > +		 */
-> > +		memset(cs, 0, sizeof(u32) *
-> > +		       (ce->engine->emit_fini_breadcrumb_dw - 6));
-> > +		cs += ce->engine->emit_fini_breadcrumb_dw - 6;
-> > +	} else {
-> > +		cs = __emit_fini_breadcrumb_parent_no_preempt_mid_batch(rq, cs);
-> > +	}
-> > +
-> >   	/* Emit fini breadcrumb */
-> >   	cs = gen8_emit_ggtt_write(cs,
-> >   				  rq->fence.seqno,
-> > @@ -4117,7 +4157,8 @@ emit_fini_breadcrumb_parent_no_preempt_mid_batch(struct i915_request *rq,
-> >   }
-> >   static u32 *
-> > -emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq, u32 *cs)
-> > +__emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq,
-> > +						  u32 *cs)
-> >   {
-> >   	struct intel_context *ce = rq->context;
-> >   	struct intel_context *parent = intel_context_to_parent(ce);
-> > @@ -4144,6 +4185,30 @@ emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq, u32 *cs
-> >   	*cs++ = get_children_go_addr(parent);
-> >   	*cs++ = 0;
-> > +	return cs;
-> > +}
-> > +
-> > +static u32 *
-> > +emit_fini_breadcrumb_child_no_preempt_mid_batch(struct i915_request *rq,
-> > +						u32 *cs)
-> > +{
-> > +	struct intel_context *ce = rq->context;
-> > +
-> > +	GEM_BUG_ON(!intel_context_is_child(ce));
-> > +
-> > +	if (unlikely(skip_handshake(rq))) {
-> > +		/*
-> > +		 * NOP everything in
-> > +		 * __emit_fini_breadcrumb_child_no_preempt_mid_batch, the -6
-> > +		 * comes from the length the emission below.
-> > +		 */
-> > +		memset(cs, 0, sizeof(u32) *
-> > +		       (ce->engine->emit_fini_breadcrumb_dw - 6));
-> > +		cs += ce->engine->emit_fini_breadcrumb_dw - 6;
-> > +	} else {
-> > +		cs = __emit_fini_breadcrumb_child_no_preempt_mid_batch(rq, cs);
-> > +	}
-> > +
-> >   	/* Emit fini breadcrumb */
-> >   	cs = gen8_emit_ggtt_write(cs,
-> >   				  rq->fence.seqno,
-> 
