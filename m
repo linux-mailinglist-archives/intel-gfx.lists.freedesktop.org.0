@@ -1,67 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067AA42BF4C
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 13:58:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2758442BF3D
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 13:51:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4686EA2A;
-	Wed, 13 Oct 2021 11:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC55A6EA27;
+	Wed, 13 Oct 2021 11:51:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 561F96EA19;
- Wed, 13 Oct 2021 11:49:10 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 288EE610E6;
- Wed, 13 Oct 2021 11:49:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1634125750;
- bh=08cmMCW6GG9gWIOhjxYfXSFIYClklm6HhvdpGKvi16g=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=a8/bDma6IeOw47+CVOZM0/AVmVmBWj1bzuEKec7UQcITca/iyIJH9GPAJIvAVnR2H
- gIj1lAPQWNgzGnxnDjDyDaF32C+R5o6fUz/YUAp3c1YZe/9hIP383TAgZJNW4BPXEl
- xYD+h/4uCsU8H8vRNmQD46ZYx8EtXiEsgIDmEbcLam7Kgy7p0D1CEyyWBZc8Oo5s4s
- mKx9gm2Et/G27qN8h5upJOFFpTZWaLQUyDXCOPY+Lk6JU5Ixx50zk5XTqJg6j3RoFm
- M2wBcpLSkUUaqE3EQb6QT7vjrO8+tWKwpsFH21EvMrrffZtKhX7xSJj6hkqXb9k04J
- n/uD/fERi9WNA==
-Received: by mail-wr1-f44.google.com with SMTP id m22so7592356wrb.0;
- Wed, 13 Oct 2021 04:49:10 -0700 (PDT)
-X-Gm-Message-State: AOAM532sDgnoLEgSjWWxKT9fDx4AQuQvEOi0KO8LC2+S9oLj7yk9qJP6
- TlQFVT1+cyVAwFcJcgDso72NDoTyOfJOJkM5Eq8=
-X-Google-Smtp-Source: ABdhPJxAPtyVc3G/tOtzJ7z3+RdpcFSsTVHBBrdmAoAeaOD1MZ0LF/ObKmsWMXdtxVVGB9gwLelX+Cl/3S/Jhom+ziQ=
-X-Received: by 2002:a1c:2358:: with SMTP id j85mr12179996wmj.1.1634125748613; 
- Wed, 13 Oct 2021 04:49:08 -0700 (PDT)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A8936EA25
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 11:51:34 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id r18so7419681wrg.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 04:51:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=vki2MOpHiPRjF8WV03xObL8WLrTT/QCXIdeoymbkrg4=;
+ b=HOpvbV/8VIT89xQR1G4qB0gn/wkeFr8tbi7t7Ej6scW9DiwHBv0LY+jJ7JSgoE6KyU
+ ZKyYEyAPrAtFtBiWCENUNiCOHeHWltxgzVqvUv9juywA/4hMMtJV05+HobRwvzQ6gnfu
+ YRNTwUtzRrjTIr12GISb0kYjCbUdwoXkepK6g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=vki2MOpHiPRjF8WV03xObL8WLrTT/QCXIdeoymbkrg4=;
+ b=UUgWiXd+kAuXD4KMaPdgUOb79uv1hoHRrHIZB74eWMqW6XYICkqaAt5s5vJk4xcNfF
+ sjJb3lxF41e3DiZsZcrWR2Atcfbnp8y7nIL2yDz5ZFI8P4ilS9dkvx7lAYq/fomL59nz
+ h6P3rVL/gaZ7Dc4XAhMGtds9Jy7YwpfgXu4AtWUpJvwG39HRORutYBdnZaZPuB08qr1M
+ 3AemfvWEaHGuo0DtUSBH2cLdSDdWNnrfTwN8obGaNmfcyB/b9fcBT2qYHB1SdT8XKQgG
+ lAlvT6WnR5hSP80vR5nlac9AGQNq2dDjaJvsI8iLGBPCFK9EkHrT/mm3zvJW8yy/umjr
+ 78Aw==
+X-Gm-Message-State: AOAM533KjImrHNxWNjg1K752BuRkxyxGgcOBfb5tlNc71g2RWVByq7kI
+ ItDkV2GTUvh95pTqtc1TXETHNw==
+X-Google-Smtp-Source: ABdhPJyqMmgpu2ql1/ClhZBIYGjM/oxKKvUtKMfYyVBZ/3VbeIdFLbpRezHwmnmwnj2CHBJT0vE0iA==
+X-Received: by 2002:a05:600c:154a:: with SMTP id
+ f10mr12123883wmg.184.1634125892773; 
+ Wed, 13 Oct 2021 04:51:32 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id b10sm8533490wrf.68.2021.10.13.04.51.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 13 Oct 2021 04:51:32 -0700 (PDT)
+Date: Wed, 13 Oct 2021 13:51:30 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Len Baker <len.baker@gmx.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Kees Cook <keescook@chromium.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-ID: <YWbIQmD1TGikpRm2@phenom.ffwll.local>
+Mail-Followup-To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Len Baker <len.baker@gmx.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Kees Cook <keescook@chromium.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211003104258.18550-1-len.baker@gmx.com>
+ <20211011092304.GA5790@titan> <87k0ihxj56.fsf@intel.com>
 MIME-Version: 1.0
-References: <20211006025350.a5PczFZP4%akpm@linux-foundation.org>
- <58fbf2ff-b367-2137-aa77-fcde6c46bbb7@infradead.org>
- <20211006182052.6ecc17cf@canb.auug.org.au>
- <f877a1c9-1898-23f3-bba3-3442dc1f3979@amd.com>
- <CAMuHMdV3eMchpgUasU6BBHrDQyjCc2TrqJ+zJgFhgAySpqVGfw@mail.gmail.com>
- <CAK8P3a1LLABstZ2rPYpsXRTxMdbSTrh0y753vrfGbRovv9fS8A@mail.gmail.com>
-In-Reply-To: <CAK8P3a1LLABstZ2rPYpsXRTxMdbSTrh0y753vrfGbRovv9fS8A@mail.gmail.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Wed, 13 Oct 2021 13:48:52 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1PoL4KMJfRyOB59tNYR6-cn3rWqDfqXeeW5ggMVGaeVg@mail.gmail.com>
-Message-ID: <CAK8P3a1PoL4KMJfRyOB59tNYR6-cn3rWqDfqXeeW5ggMVGaeVg@mail.gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Stephen Rothwell <sfr@canb.auug.org.au>, Randy Dunlap <rdunlap@infradead.org>, 
- Andrew Morton <akpm@linux-foundation.org>, Mark Brown <broonie@kernel.org>, 
- Linux FS Devel <linux-fsdevel@vger.kernel.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux MM <linux-mm@kvack.org>, 
- Linux-Next <linux-next@vger.kernel.org>, Michal Hocko <mhocko@suse.cz>,
- mm-commits@vger.kernel.org, 
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- freedreno <freedreno@lists.freedesktop.org>, 
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, 
- DRI <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Wed, 13 Oct 2021 11:58:09 +0000
-Subject: Re: [Intel-gfx] mmotm 2021-10-05-19-53 uploaded
- (drivers/gpu/drm/msm/hdmi/hdmi_phy.o)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87k0ihxj56.fsf@intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Prefer struct_size over open
+ coded arithmetic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,41 +88,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 13, 2021 at 12:54 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> On Thu, Oct 7, 2021 at 11:51 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> -msm-$(CONFIG_DRM_FBDEV_EMULATION) += msm_fbdev.o
-> -msm-$(CONFIG_COMMON_CLK) += disp/mdp4/mdp4_lvds_pll.o
-> -msm-$(CONFIG_COMMON_CLK) += hdmi/hdmi_pll_8960.o
-> -msm-$(CONFIG_COMMON_CLK) += hdmi/hdmi_phy_8996.o
-> +msm-$(CONFIG_DRM_FBDEV_EMULATION) += msm_fbdev.o \
-> + disp/mdp4/mdp4_lvds_pll.o \
-> + hdmi/hdmi_pll_8960.o \
-> + hdmi/hdmi_phy_8996.o
->
->  msm-$(CONFIG_DRM_MSM_HDMI_HDCP) += hdmi/hdmi_hdcp.o
+On Wed, Oct 13, 2021 at 02:24:05PM +0300, Jani Nikula wrote:
+> On Mon, 11 Oct 2021, Len Baker <len.baker@gmx.com> wrote:
+> > Hi,
+> >
+> > On Sun, Oct 03, 2021 at 12:42:58PM +0200, Len Baker wrote:
+> >> As noted in the "Deprecated Interfaces, Language Features, Attributes,
+> >> and Conventions" documentation [1], size calculations (especially
+> >> multiplication) should not be performed in memory allocator (or similar)
+> >> function arguments due to the risk of them overflowing. This could lead
+> >> to values wrapping around and a smaller allocation being made than the
+> >> caller was expecting. Using those allocations could lead to linear
+> >> overflows of heap memory and other misbehaviors.
+> >>
+> >> In this case these are not actually dynamic sizes: all the operands
+> >> involved in the calculation are constant values. However it is better to
+> >> refactor them anyway, just to keep the open-coded math idiom out of
+> >> code.
+> >>
+> >> So, add at the end of the struct i915_syncmap a union with two flexible
+> >> array members (these arrays share the same memory layout). This is
+> >> possible using the new DECLARE_FLEX_ARRAY macro. And then, use the
+> >> struct_size() helper to do the arithmetic instead of the argument
+> >> "size + count * size" in the kmalloc and kzalloc() functions.
+> >>
+> >> Also, take the opportunity to refactor the __sync_seqno and __sync_child
+> >> making them more readable.
+> >>
+> >> This code was detected with the help of Coccinelle and audited and fixed
+> >> manually.
+> >>
+> >> [1] https://www.kernel.org/doc/html/latest/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments
+> >>
+> >> Signed-off-by: Len Baker <len.baker@gmx.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/i915_syncmap.c | 12 ++++++++----
+> >>  1 file changed, 8 insertions(+), 4 deletions(-)
+> >
+> > I received a mail telling that this patch doesn't build:
+> >
+> > == Series Details ==
+> >
+> > Series: drm/i915: Prefer struct_size over open coded arithmetic
+> > URL   : https://patchwork.freedesktop.org/series/95408/
+> > State : failure
+> >
+> > But it builds without error against linux-next (tag next-20211001). Against
+> > which tree and branch do I need to build?
+> 
+> drm-tip [1]. It's a sort of linux-next for graphics. I think there are
+> still some branches that don't feed to linux-next.
 
-I fixed my local copy now after noticing that these should not go
-after CONFIG_DRM_FBDEV_EMULATION but the top-level option:
+Yeah we need to get gt-next in linux-next asap. Joonas promised to send
+out his patch to make that happen in dim.
+-Daniel
 
-@@ -23,8 +23,10 @@ msm-y := \
-        hdmi/hdmi_i2c.o \
-        hdmi/hdmi_phy.o \
-        hdmi/hdmi_phy_8960.o \
-+       hdmi/hdmi_phy_8996.o
-        hdmi/hdmi_phy_8x60.o \
-        hdmi/hdmi_phy_8x74.o \
-+       hdmi/hdmi_pll_8960.o \
-        edp/edp.o \
-        edp/edp_aux.o \
-        edp/edp_bridge.o \
-@@ -37,6 +39,7 @@ msm-y := \
-        disp/mdp4/mdp4_dtv_encoder.o \
-        disp/mdp4/mdp4_lcdc_encoder.o \
-        disp/mdp4/mdp4_lvds_connector.o \
-+       disp/mdp4/mdp4_lvds_pll.o \
-        disp/mdp4/mdp4_irq.o \
-        disp/mdp4/mdp4_kms.o \
-        disp/mdp4/mdp4_plane.o \
+> 
+> BR,
+> Jani.
+> 
+> 
+> [1] https://cgit.freedesktop.org/drm/drm-tip
+> 
+> 
+> >
+> > Regards,
+> > Len
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
-           Arnd
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
