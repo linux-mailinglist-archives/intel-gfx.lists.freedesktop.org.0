@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0790542B0E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 02:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF0F142B107
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 02:38:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9D126E043;
-	Wed, 13 Oct 2021 00:18:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D99D06E062;
+	Wed, 13 Oct 2021 00:38:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0C376E043
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 00:18:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="290798519"
-X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="290798519"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 17:18:56 -0700
-X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="524419302"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
- ([10.24.14.60])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2021 17:18:56 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Yakui Zhao <yakui.zhao@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Tue, 12 Oct 2021 17:24:55 -0700
-Message-Id: <20211013002455.77860-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.33.0
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3A56E9F8;
+ Wed, 13 Oct 2021 00:38:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="224744537"
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="224744537"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 17:37:32 -0700
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="547656173"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 17:37:32 -0700
+Date: Tue, 12 Oct 2021 17:32:48 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniele.ceraolospurio@intel.com
+Message-ID: <20211013003248.GA4795@jons-linux-dev-box>
+References: <20211004220637.14746-1-matthew.brost@intel.com>
+ <20211004220637.14746-24-matthew.brost@intel.com>
+ <03661707-0416-93cd-94b5-1624f1a5e073@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove memory frequency calculation
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <03661707-0416-93cd-94b5-1624f1a5e073@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 23/26] drm/i915: Make request conflict
+ tracking understand parallel submits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,67 +53,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This memory frequency calculated is only used to check if it is zero,
-what is not useful as it will never actually be zero.
+On Tue, Oct 12, 2021 at 03:08:05PM -0700, John Harrison wrote:
+> On 10/4/2021 15:06, Matthew Brost wrote:
+> > If an object in the excl or shared slot is a composite fence from a
+> > parallel submit and the current request in the conflict tracking is from
+> > the same parallel context there is no need to enforce ordering as the
+> > ordering already implicit. Make the request conflict tracking understand
+> ordering already -> ordering is already
+> 
 
-Also the calculation is wrong, we should be checking other bit to
-select the appropriate frequency multiplier while this code is stuck
-with a fixed multiplier.
+Yep.
 
-So here dropping it as whole.
-Cc: Yakui Zhao <yakui.zhao@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Fixes: f8112cb9574b ("drm/i915/gen11+: Only load DRAM information from pcode")
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h   |  2 --
- drivers/gpu/drm/i915/intel_dram.c | 12 ------------
- 2 files changed, 14 deletions(-)
+> > this by comparing the parents parallel fence values and skipping the
+> parents -> parent's
+>
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index a897f4abea0c3..03b6c505249dc 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -11145,9 +11145,7 @@ enum skl_power_gate {
- #define  BXT_DRAM_TYPE_LPDDR4			(0x2 << 22)
- #define  BXT_DRAM_TYPE_DDR4			(0x4 << 22)
- 
--#define SKL_MEMORY_FREQ_MULTIPLIER_HZ		266666666
- #define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5E04)
--#define  SKL_REQ_DATA_MASK			(0xF << 0)
- #define  DG1_GEAR_TYPE				REG_BIT(16)
- 
- #define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
-diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-index 30a0cab5eff46..31933b1e7277b 100644
---- a/drivers/gpu/drm/i915/intel_dram.c
-+++ b/drivers/gpu/drm/i915/intel_dram.c
-@@ -244,7 +244,6 @@ static int
- skl_get_dram_info(struct drm_i915_private *i915)
- {
- 	struct dram_info *dram_info = &i915->dram_info;
--	u32 mem_freq_khz, val;
- 	int ret;
- 
- 	dram_info->type = skl_get_dram_type(i915);
-@@ -255,17 +254,6 @@ skl_get_dram_info(struct drm_i915_private *i915)
- 	if (ret)
- 		return ret;
- 
--	val = intel_uncore_read(&i915->uncore,
--				SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
--	mem_freq_khz = DIV_ROUND_UP((val & SKL_REQ_DATA_MASK) *
--				    SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
--
--	if (dram_info->num_channels * mem_freq_khz == 0) {
--		drm_info(&i915->drm,
--			 "Couldn't get system memory bandwidth\n");
--		return -EINVAL;
--	}
--
- 	return 0;
- }
- 
--- 
-2.33.0
+Yep.
 
+> > conflict insertion if the values match.
+> Presumably, this is to cope with the fact that the parallel submit fences do
+> not look like regular submission fences. And hence the existing code that
+> says 'new fence belongs to same context as old fence, so safe to ignore'
+> does not work with parallel submission. However, this change does not appear
+
+Yes. The check for 'if (fence->context == rq->fence.context)' doesn't
+work with parallel submission as each rq->fence.context corresponds to a
+timeline. With parallel submission each intel_context in the parallel
+submit has its own timeline (seqno) so the compare fails for different
+intel_context within the same parallel submit. This is the reason for
+the additional compare on parallel submits parents, if they have the
+same parent it is the same parallel submission and there is no need to
+enforce additional ordering.
+
+> to be adding parallel submit support to an existing 'same context' check. It
+> seems to be a brand new check that does not exist for single submission.
+> What makes parallel submit different? If we aren't skipping same context
+> fences for single submits, why do we need it for parallel? Conversely, if we
+> need it for parallel then why don't we need it for single?
+>
+
+I'm confused by what you are asking here. The existing same context
+check is fine for parallel submits - it will just return true when we
+compare requests with the same intel_context and new additional check
+only true parallel submissions with the same parent.
+
+> And if the single submission version is simply somewhere else in the code,
+> why do the parallel version here instead of at the same place?
+>
+
+Again I'm confused by what you are asking. We might just need to sync on
+a quick call.
+
+Matt
+ 
+> John.
+> 
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/i915_request.c | 43 +++++++++++++++++++----------
+> >   1 file changed, 29 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> > index e9bfa32f9270..cf89624020ad 100644
+> > --- a/drivers/gpu/drm/i915/i915_request.c
+> > +++ b/drivers/gpu/drm/i915/i915_request.c
+> > @@ -1325,6 +1325,25 @@ i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
+> >   	return err;
+> >   }
+> > +static inline bool is_parallel_rq(struct i915_request *rq)
+> > +{
+> > +	return intel_context_is_parallel(rq->context);
+> > +}
+> > +
+> > +static inline struct intel_context *request_to_parent(struct i915_request *rq)
+> > +{
+> > +	return intel_context_to_parent(rq->context);
+> > +}
+> > +
+> > +static bool is_same_parallel_context(struct i915_request *to,
+> > +				     struct i915_request *from)
+> > +{
+> > +	if (is_parallel_rq(to))
+> Should this not say '&& is_parallel_rq(from)'?
+> 
+> > +		return request_to_parent(to) == request_to_parent(from);
+> > +
+> > +	return false;
+> > +}
+> > +
+> >   int
+> >   i915_request_await_execution(struct i915_request *rq,
+> >   			     struct dma_fence *fence)
+> > @@ -1356,11 +1375,14 @@ i915_request_await_execution(struct i915_request *rq,
+> >   		 * want to run our callback in all cases.
+> >   		 */
+> > -		if (dma_fence_is_i915(fence))
+> > +		if (dma_fence_is_i915(fence)) {
+> > +			if (is_same_parallel_context(rq, to_request(fence)))
+> > +				continue;
+> >   			ret = __i915_request_await_execution(rq,
+> >   							     to_request(fence));
+> > -		else
+> > +		} else {
+> >   			ret = i915_request_await_external(rq, fence);
+> > +		}
+> >   		if (ret < 0)
+> >   			return ret;
+> >   	} while (--nchild);
+> > @@ -1461,10 +1483,13 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
+> >   						 fence))
+> >   			continue;
+> > -		if (dma_fence_is_i915(fence))
+> > +		if (dma_fence_is_i915(fence)) {
+> > +			if (is_same_parallel_context(rq, to_request(fence)))
+> > +				continue;
+> >   			ret = i915_request_await_request(rq, to_request(fence));
+> > -		else
+> > +		} else {
+> >   			ret = i915_request_await_external(rq, fence);
+> > +		}
+> >   		if (ret < 0)
+> >   			return ret;
+> > @@ -1539,16 +1564,6 @@ i915_request_await_object(struct i915_request *to,
+> >   	return ret;
+> >   }
+> > -static inline bool is_parallel_rq(struct i915_request *rq)
+> > -{
+> > -	return intel_context_is_parallel(rq->context);
+> > -}
+> > -
+> > -static inline struct intel_context *request_to_parent(struct i915_request *rq)
+> > -{
+> > -	return intel_context_to_parent(rq->context);
+> > -}
+> > -
+> >   static struct i915_request *
+> >   __i915_request_ensure_parallel_ordering(struct i915_request *rq,
+> >   					struct intel_timeline *timeline)
+> 
