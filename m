@@ -2,34 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C8F142C6B0
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 18:47:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 517F042C7BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 19:36:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74B526E0D4;
-	Wed, 13 Oct 2021 16:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AA926EA9B;
+	Wed, 13 Oct 2021 17:35:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6D98F6E0D4;
- Wed, 13 Oct 2021 16:47:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 65279A7E03;
- Wed, 13 Oct 2021 16:47:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8351271408066195901=="
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF03E6EA7B;
+ Wed, 13 Oct 2021 17:35:51 +0000 (UTC)
+Date: Wed, 13 Oct 2021 19:35:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1634146549;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=wQMLAq54XtPtiUmi3cuCL2sgXoin4T6JNV4B+n7cIbk=;
+ b=LAhmieBm2yE9l0Rf4YWCbCuUDgMTcgFjMnqLPTf0UoDXrSla1JdozG2L13ndkLggbtid/x
+ vo4L0/uWQ2s63qhCTvgVaNK5RcXPrNkpL8U1vMG2bz/6bINa62Vb3qEIQg83As7HeNCFau
+ akzmAdXNZNNgY9FVf9eYCCpbJ0wA1ZRTtSiGc9qQfEiJ7AEPWerT+IzU/zzXNs7ewp9UG+
+ 9oi81dWXp53ZNGtI+q+KJwwbms1gRRgZnuKLB2h6tI5bouFEUGUw0NIYQZDxTSHtEoi1O9
+ z9mu5V6f5kizeZUkcM9hw27o6Mroz3wqZ4rjSTVesDIKbChIIIAj+oiGhTn8nQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1634146549;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=wQMLAq54XtPtiUmi3cuCL2sgXoin4T6JNV4B+n7cIbk=;
+ b=cKFQBr4SmGhT9xlL4dJ26JYtmbU4D56qYWVQesU7gqxEcGmRXhqoa0S0GX9mnplHv+M2BU
+ RnFNpoPjs2LL2yBA==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+Message-ID: <20211013173548.nldcwheo4t52dgvp@linutronix.de>
+References: <20211005065151.828922-1-bigeasy@linutronix.de>
+ <YWbK8wSxNjVu9OLm@phenom.ffwll.local>
+ <20211013123525.5nijgyx5ivnuujes@linutronix.de>
+ <YWbXvvTzMF1EZ5c7@phenom.ffwll.local>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kai Vehmanen" <kai.vehmanen@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Oct 2021 16:47:09 -0000
-Message-ID: <163414362940.10254.2270462298175554933@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211013161345.3755341-1-kai.vehmanen@linux.intel.com>
-In-Reply-To: <20211013161345.3755341-1-kai.vehmanen@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgY29t?=
- =?utf-8?q?ponent=3A_do_not_leave_master_devres_group_open_after_bind_=28r?=
- =?utf-8?q?ev3=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YWbXvvTzMF1EZ5c7@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] [RFC PATCH] drm: Increase DRM_OBJECT_MAX_PROPERTY
+ by 18.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,65 +65,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8351271408066195901==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 2021-10-13 14:57:34 [+0200], Daniel Vetter wrote:
+> Hm there's a pile of commits there, and nothing immediately jumps to
+> light. The thing is, 18 is likely way too much, since if e.g. we have a
+> single new property on a plane and that pushes over the limit on all of
+> them, you get iirc 3x4 already simply because we have that many planes.
+> 
+> So would be good to know the actual culprit.
+> 
+> Can you pls try to bisect the above range, applying the patch as a fixup
+> locally (without commit, that will confuse git bisect a bit I think), so
+> we know what/where went wrong?
 
-== Series Details ==
+c7fcbf2513973 -> does not boot
+c7fcbf2513973 + 2f425cf5242a0 -> boots, 18 x DRM_OBJECT_MAX_PROPERTY
+6f11f37459d8f -> boots, 0 x DRM_OBJECT_MAX_PROPERTY
+6f11f37459d8f + 2f425cf5242a0 -> boots, 18 x DRM_OBJECT_MAX_PROPERTY
 
-Series: component: do not leave master devres group open after bind (rev3)
-URL   : https://patchwork.freedesktop.org/series/94889/
-State : failure
+> I'm still confused why this isn't showing up anywhere in our intel ci ...
+> 
+> Thanks, Daniel
 
-== Summary ==
-
-Applying: component: do not leave master devres group open after bind
-Using index info to reconstruct a base tree...
-M	drivers/base/component.c
-Falling back to patching base and 3-way merge...
-No changes -- Patch already applied.
-
-
-
---===============8351271408066195901==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>component: do not leave master devres group open after bind (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94889/">https://patchwork.freedesktop.org/series/94889/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-</table>
-
-
-    <p>Applying: component: do not leave master devres group open after bind<br />
-Using index info to reconstruct a base tree...<br />
-M   drivers/base/component.c<br />
-Falling back to patching base and 3-way merge...<br />
-No changes -- Patch already applied.</p>
-
-</body>
-</html>
-
---===============8351271408066195901==--
+Sebastian
