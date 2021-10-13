@@ -1,43 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2024842CC23
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 22:53:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E2442CC30
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 22:56:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE0D6EB5F;
-	Wed, 13 Oct 2021 20:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F376EB6E;
+	Wed, 13 Oct 2021 20:55:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04B9C6EB5F
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 20:53:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="291023941"
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="291023941"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2021 13:40:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="460924332"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 13 Oct 2021 13:40:12 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 13 Oct 2021 23:40:11 +0300
-Date: Wed, 13 Oct 2021 23:40:11 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YWdEK+dlwCJehkw0@intel.com>
-References: <20211007203517.3364336-2-imre.deak@intel.com>
- <20211008001915.3508011-1-imre.deak@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FEBD6EB6B;
+ Wed, 13 Oct 2021 20:55:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="214690371"
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="214690371"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 13:47:18 -0700
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="524782675"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 13:47:18 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Cc: <john.c.harrison@intel.com>
+Date: Wed, 13 Oct 2021 13:42:06 -0700
+Message-Id: <20211013204231.19287-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211008001915.3508011-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 01/11] drm/i915: Add a table with a
- descriptor for all i915 modifiers
+Subject: [Intel-gfx] [PATCH 00/25] Parallel submission aka multi-bb execbuf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,23 +46,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 08, 2021 at 03:19:08AM +0300, Imre Deak wrote:
->  bool is_ccs_plane(const struct drm_framebuffer *fb, int plane);
->  bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane);
->  bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane);
+As discussed in [1] we are introducing a new parallel submission uAPI
+for the i915 which allows more than 1 BB to be submitted in an execbuf
+IOCTL. This is the implemenation for both GuC and execlists.
 
-Side note: 
-We have quite a few of these 'int plane' things still around. I'd 
-like to see them all renamed to 'color_plane' so that we don't get
-confused between diffrent kinds of planes.
+In addition to selftests in the series, an IGT is available implemented
+in the first 4 patches [2].
 
-The rules that I've been going for everywhere:
-- int color_plane == plane of a planar/compressed framebuffer
-- struct intel_plane *plane == representation of the piece of
-  hardware that does the scanout
-- enum plane plane_id == standalone version of plane->id
-- enum i9xx_plane_id i9xx_plane == standalone version of plane->i9xx_plane
+The execbuf IOCTL changes have been done in a single large patch (#21)
+as all the changes flow together and I believe a single patch will be
+better if some one has to lookup this change in the future. Can split in
+a series of smaller patches if desired.
+
+This code is available in a public [3] repo for UMD teams to test there
+code on.
+
+v2: Drop complicated state machine to block in kernel if no guc_ids
+available, perma-pin parallel contexts, reworker execbuf IOCTL to be a
+series of loops inside the IOCTL rather than 1 large one on the outside,
+address Daniel Vetter's comments
+v3: Address John Harrison's comments, add a couple of patches which fix
+bugs found internally
+v4: Address John Harrison's latest round of comments
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+[1] https://patchwork.freedesktop.org/series/92028/
+[2] https://patchwork.freedesktop.org/series/93071/
+[3] https://gitlab.freedesktop.org/mbrost/mbrost-drm-intel/-/tree/drm-intel-parallel
+
+Matthew Brost (25):
+  drm/i915/guc: Move GuC guc_id allocation under submission state
+    sub-struct
+  drm/i915/guc: Take GT PM ref when deregistering context
+  drm/i915/guc: Take engine PM when a context is pinned with GuC
+    submission
+  drm/i915/guc: Don't call switch_to_kernel_context with GuC submission
+  drm/i915: Add logical engine mapping
+  drm/i915: Expose logical engine instance to user
+  drm/i915/guc: Introduce context parent-child relationship
+  drm/i915/guc: Add multi-lrc context registration
+  drm/i915/guc: Ensure GuC schedule operations do not operate on child
+    contexts
+  drm/i915/guc: Assign contexts in parent-child relationship consecutive
+    guc_ids
+  drm/i915/guc: Implement parallel context pin / unpin functions
+  drm/i915/guc: Implement multi-lrc submission
+  drm/i915/guc: Insert submit fences between requests in parent-child
+    relationship
+  drm/i915/guc: Implement multi-lrc reset
+  drm/i915/guc: Update debugfs for GuC multi-lrc
+  drm/i915/guc: Connect UAPI to GuC multi-lrc interface
+  drm/i915/doc: Update parallel submit doc to point to i915_drm.h
+  drm/i915/guc: Add basic GuC multi-lrc selftest
+  drm/i915/guc: Implement no mid batch preemption for multi-lrc
+  drm/i915: Multi-BB execbuf
+  drm/i915/guc: Handle errors in multi-lrc requests
+  drm/i915: Make request conflict tracking understand parallel submits
+  drm/i915: Update I915_GEM_BUSY IOCTL to understand composite fences
+  drm/i915: Enable multi-bb execbuf
+  drm/i915/execlists: Weak parallel submission support for execlists
+
+ Documentation/gpu/rfc/i915_parallel_execbuf.h |  122 --
+ Documentation/gpu/rfc/i915_scheduler.rst      |    4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_busy.c      |   57 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  227 ++-
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   16 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  786 ++++++---
+ drivers/gpu/drm/i915/gt/intel_context.c       |   50 +-
+ drivers/gpu/drm/i915/gt/intel_context.h       |   54 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   73 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h        |   12 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   66 +-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |   13 +
+ drivers/gpu/drm/i915/gt/intel_engine_pm.h     |   37 +
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |    7 +
+ .../drm/i915/gt/intel_execlists_submission.c  |   63 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h         |   14 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |    7 +
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |   12 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |    1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   29 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   54 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |    2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   24 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   34 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 1452 ++++++++++++++---
+ .../drm/i915/gt/uc/selftest_guc_multi_lrc.c   |  179 ++
+ drivers/gpu/drm/i915/i915_query.c             |    2 +
+ drivers/gpu/drm/i915/i915_request.c           |  143 +-
+ drivers/gpu/drm/i915/i915_request.h           |   23 +
+ drivers/gpu/drm/i915/i915_vma.c               |   21 +-
+ drivers/gpu/drm/i915/i915_vma.h               |   13 +-
+ drivers/gpu/drm/i915/intel_wakeref.h          |   12 +
+ .../drm/i915/selftests/i915_live_selftests.h  |    1 +
+ include/uapi/drm/i915_drm.h                   |  139 +-
+ 34 files changed, 3056 insertions(+), 693 deletions(-)
+ delete mode 100644 Documentation/gpu/rfc/i915_parallel_execbuf.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c
 
 -- 
-Ville Syrjälä
-Intel
+2.32.0
+
