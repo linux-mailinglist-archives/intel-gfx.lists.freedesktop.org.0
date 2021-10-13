@@ -1,35 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A4E42BE3B
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 12:58:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F38C442BE50
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 12:59:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 109F76EA11;
-	Wed, 13 Oct 2021 10:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8146EA13;
+	Wed, 13 Oct 2021 10:59:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 15C266EA11;
- Wed, 13 Oct 2021 10:58:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 126D1AA0EA;
- Wed, 13 Oct 2021 10:58:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47C6B6EA13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 10:59:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="288272224"
+X-IronPort-AV: E=Sophos;i="5.85,370,1624345200"; d="scan'208";a="288272224"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 03:59:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,370,1624345200"; d="scan'208";a="524586216"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 13 Oct 2021 03:59:04 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 13 Oct 2021 13:59:03 +0300
+Date: Wed, 13 Oct 2021 13:59:03 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <YWa79w8LWIi3tpcn@intel.com>
+References: <cover.1634119597.git.jani.nikula@intel.com>
+ <YWa3QeJ3s0+9+fbH@intel.com> <87sfx5xkuq.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Oct 2021 10:58:08 -0000
-Message-ID: <163412268807.10251.15738150879503032641@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211013104123.1877827-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211013104123.1877827-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Use_dma=5Fresv=5Fiter_for_waiting_in_i915=5Fgem=5Fob?=
- =?utf-8?q?ject=5Fwait=5Freservation=2E?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87sfx5xkuq.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 0/1] drm/i915: vlv sideband
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,30 +49,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Oct 13, 2021 at 01:47:09PM +0300, Jani Nikula wrote:
+> On Wed, 13 Oct 2021, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Wed, Oct 13, 2021 at 01:11:58PM +0300, Jani Nikula wrote:
+> >> Three main ideas here:
+> >> 
+> >> - vlv sideband only has the name "sideband" in common with the rest of
+> >>   intel_sideband.[ch]
+> >
+> > I wouldn't put it like that. There are two actual sideband 
+> > implementtions in that file:
+> > - vlv/chv iosf sideband (vlv_sideband)
+> > - lpt/wpt iosf sideband (intel_sbi)
+> >
+> > And the third thing in that file is the snb+ pcode mailbox stuff,
+> > which has nothing to do with sideband.
+> 
+> Fair enough... but no opposition to the splitting out of vlv/chv iosf
+> sideband? vlv_sideband.[ch] like here? I'm fine with renaming too.
+> 
+> I can follow up with lpt/wpt iosf split out (intel_sbi.[ch]?) and snb+
+> pcode (intel_pcode.[ch]?).
 
-Series: drm/i915: Use dma_resv_iter for waiting in i915_gem_object_wait_reservation.
-URL   : https://patchwork.freedesktop.org/series/95765/
-State : failure
+Yeah, I guess just full split is the cleanest. Those names seem OK
+to me. Or I suppose we could rename the intel_sbi stuff to lpt_sbi
+or something? Might not be worth the hassle. Adding a small comment
+to intel_sbi.c to document what it's for should be sufficient reminder.
 
-== Summary ==
+> I think we've just put all of them together way back when this was all
+> probably bundled in i915_drv.c or something...
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-make[4]: *** No rule to make target 'drivers/gpu/drm/i915/dma_resv_utils.o', needed by 'drivers/gpu/drm/i915/i915.o'.  Stop.
-scripts/Makefile.build:540: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:540: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:540: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1868: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+Yeah. I think the common thread was that you need to go through
+a mailbox, but the file name didn't really reflect that.
 
-
+-- 
+Ville Syrjälä
+Intel
