@@ -2,75 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60DC42CD20
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 23:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA6DA42CD23
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 23:55:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 060DB6EBED;
-	Wed, 13 Oct 2021 21:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C70D86EBFB;
+	Wed, 13 Oct 2021 21:55:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
- [66.111.4.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0EDB6EBF6
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 21:54:28 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.nyi.internal (Postfix) with ESMTP id 527095C01BF
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 17:54:26 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Wed, 13 Oct 2021 17:54:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
- :from:to:subject:message-id:references:mime-version:content-type
- :in-reply-to; s=fm3; bh=E0rRhRtxdt8BWV/tovUlDnDZ/aZJ3sFKY+qlIgRm
- /PM=; b=SUyHdyFf/JCa8HVlHb31JjW1jKVljctouWqtX0hTnGu8iN5sGUq1UpwZ
- hfzqpH3Z07mqLBx+xXtchfYZ1+44c4LaUyB6WkNup+yifR8Ptxdrrocl7T/jZrIu
- DQmDlHL+i7eEoybVRBD0KMoi//aW82Z8QT+2B8x4ScmNmtJtKju875QnK/tO744v
- Av2nQcDjRwwxCAPD1fa7C9yGF7UK26NpEqmTXAqolzq90xJlrQoi+KSYDp95oGtd
- O7ORAaBHZeMdxPXT1mnmpf0h0yQ/VgHc60uAxXyLeQ6alLpigV03CjR6h0+4QJfP
- 00ud+49uQ+0jF9wYHIP/Lf+hn/t+zQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=E0rRhR
- txdt8BWV/tovUlDnDZ/aZJ3sFKY+qlIgRm/PM=; b=l49lqyq6UiSMbqtfFhNU3u
- DCPbmzKX+iZinnB/qrRZzmSREShSQA1oEmriD7+LSff0GdG2r1D3r360S3Xz7x79
- nl9tU5EDC6iiKSHlSRuEgNleIZcH8k4Z5DlsJNMd2FTCRCnFVQf+4KvcvFsMWtFa
- ggqWyDsb5En99wEYNUWHXIwVlTHZA/TPRv/y8/H2OsT6SMEN9jEwAbftOvI3YX1l
- BFr80XiJexEr2KWPs4VX8vGP/rLume5bvhS7tekAICZpEgkLpe4tYwadGY0UNK2Z
- pIbvGOWDDvOXCDx5Vvpqf5ZIIXGzet4bjTM4mzUOxKmAJOfOAXJimzDuRWQmcw7w
- ==
-X-ME-Sender: <xms:klVnYRVK0FKXKbjiBEaQ-kPQrWENxIj4hG1zp8r7VcDIkKP5MUGKzQ>
- <xme:klVnYRmFkC7WMiNDSJzOj65By4TIKj8LZwUxtjGmizWSgA_9uZQqI1g5kM_yM2rKd
- MQBOvjBb-21WOvEIw>
-X-ME-Received: <xmr:klVnYdZ5iQMkK0XpNG1pp8xA1_IyqYmuCrcWvKrScrEyK-h950r-dHnO35HXoys50MXGrgI->
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudeigecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehttd
- ertddttdejnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpedvgfegvdfhieduvdevfeefgeevhe
- ejveeikefhgeeghffgvdduudeuhfeuvdekveenucffohhmrghinheptddurdhorhhgnecu
- vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvggvnh
- hfohhosehuledvrdgvuh
-X-ME-Proxy: <xmx:klVnYUWQKi9q2d20-qDeTKPNCTO8GY4eYxgO3ko9h3cSjiLio_tTQA>
- <xmx:klVnYbkvnWQx03uFF5T3nw6ZKNPeBgbTmNjheIPgbgeBhrBd6jIzTQ>
- <xmx:klVnYRckQP2pN7Di2k_EleroWNxWDifcadtR3dUuRtm4OfJd3sYtnA>
- <xmx:klVnYRTirPZbHjTb0f95jeQ_G_bZhqXfWxudIZFzHLXEGeJwwCvHhw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA for
- <intel-gfx@lists.freedesktop.org>; Wed,
- 13 Oct 2021 17:54:25 -0400 (EDT)
-Date: Wed, 13 Oct 2021 23:54:22 +0200
-From: Fernando Ramos <greenfoo@u92.eu>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <YWdVjh55XuYlOD8u@zacax395.localdomain>
-References: <20211013204846.90026-1-greenfoo@u92.eu>
- <163416098524.10253.5906232603028257891@emeril.freedesktop.org>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B09996EBFB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 21:55:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="214489844"
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="214489844"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 14:55:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="527253660"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 13 Oct 2021 14:54:58 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 14 Oct 2021 00:54:58 +0300
+Date: Thu, 14 Oct 2021 00:54:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YWdVsmZRvl+dAgOM@intel.com>
+References: <20211007203517.3364336-1-imre.deak@intel.com>
+ <20211007203517.3364336-10-imre.deak@intel.com>
+ <YWdBFg9i85wzXUfz@intel.com> <YWdFbXzbqHCPK4uK@intel.com>
+ <20211013213255.GD19061@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <163416098524.10253.5906232603028257891@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?=3A_cleanup=3A_Use_DRM=5FMODESET=5FLOCK=5FALL=5F*_helpers_=28re?=
- =?utf-8?b?djIp?=
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211013213255.GD19061@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 09/11] drm/i915: Add a platform independent
+ way to check for CCS control planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,40 +55,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21/10/13 09:36PM, Patchwork wrote:
-> Summary
-> -------
+On Thu, Oct 14, 2021 at 12:32:55AM +0300, Imre Deak wrote:
+> On Wed, Oct 13, 2021 at 11:45:33PM +0300, Ville Syrjälä wrote:
+> > On Wed, Oct 13, 2021 at 11:27:02PM +0300, Ville Syrjälä wrote:
+> > > On Thu, Oct 07, 2021 at 11:35:15PM +0300, Imre Deak wrote:
+> > > > Future platforms change the location of CCS control planes in CCS
+> > > > framebuffers, so add intel_fb_is_rc_ccs_ctrl_plane() to query for these
+> > > 
+> > > Don't we use the term 'ccs_plane' everywhere else?
+> > > 
+> > > > planes independently of the platform. This function can be used
+> > > > everywhere instead of is_ccs_plane() (or is_ccs_plane() && !cc_plane()),
+> > > > since all the callers are only interested in control planes (and not CCS
+> > > > color-clear planes).
+> > 
+> > Hmm. I guess you're changing the terminology across the board?
+> > If it's used consistently then no objections from me.
 > 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_21333 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_21333, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_21333:
-> 
-> ### CI changes ###
-> 
-> #### Possible regressions ####
-> 
->   * boot:
->     - fi-kbl-r:           [PASS][1] -> [FAIL][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-kbl-r/boot.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-kbl-r/boot.html
+> ccs_plane has been used as a generic term for both the "control" and the
+> cc plane, or at least I thought of it as such.
 
-Hi, by looking at the report (first link) it looks like this is an issue with a
-specific machine (where all tests failed).
+The official definition I think is:
+CCS == color control surface
 
-Considering this same patch set ran without problems before this last rebase,
-could this be a setup issue? Is there a way to request a re-trigger on that
-machine?
+So in terms of modifier naming I suppose I tend to think
+of it like this:
+modifier name has CCS -> color control surface is present
+modifier name has CC -> clear color is present
 
-Thanks.
+But if we want to make the distinction somehow stronger I was
+thinking maybe ccs_aux vs. ccs_cc. But dunno if that just ends up
+being more confusing since AUX_DIST is also used for planar scanout
+on skl/etc.
+
+Or another way to make it more clear would be to drop the "ccs" part
+from the is_ccs_cc_plane() or whatever. But is_cc_plane() is perhaps
+also pretty confusing. So could expand it to full on is_clear_color_plane()?
+Shrug. Plenty of different color paint for this one available I think.
+
+-- 
+Ville Syrjälä
+Intel
