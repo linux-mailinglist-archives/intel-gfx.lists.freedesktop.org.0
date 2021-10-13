@@ -1,47 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AC8E42CE87
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 00:38:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF9B42CED0
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 00:43:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5BD6E878;
-	Wed, 13 Oct 2021 22:38:19 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C86716E878
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 22:38:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="208354515"
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="208354515"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2021 15:38:17 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF2756E87E;
+	Wed, 13 Oct 2021 22:43:18 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F9EE6E87E;
+ Wed, 13 Oct 2021 22:43:18 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="227840787"
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="227840787"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 15:43:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="441836714"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 13 Oct 2021 15:38:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 14 Oct 2021 01:38:14 +0300
-Date: Thu, 14 Oct 2021 01:38:14 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YWdf1pLjE5PUj5WI@intel.com>
-References: <20211007203517.3364336-1-imre.deak@intel.com>
- <20211007203517.3364336-10-imre.deak@intel.com>
- <YWdBFg9i85wzXUfz@intel.com> <YWdFbXzbqHCPK4uK@intel.com>
- <20211013213255.GD19061@ideak-desk.fi.intel.com>
- <YWdVsmZRvl+dAgOM@intel.com>
- <20211013222824.GE19061@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="592355713"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga004.jf.intel.com with ESMTP; 13 Oct 2021 15:43:17 -0700
+From: John.C.Harrison@Intel.com
+To: IGT-Dev@Lists.FreeDesktop.Org
+Cc: Intel-GFX@Lists.FreeDesktop.Org, John Harrison <John.C.Harrison@Intel.com>
+Date: Wed, 13 Oct 2021 15:43:17 -0700
+Message-Id: <20211013224317.943625-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211013222824.GE19061@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 09/11] drm/i915: Add a platform independent
- way to check for CCS control planes
+Subject: [Intel-gfx] [PATCH i-g-t] tests/i915: Skip gem_exec_fair on GuC
+ based platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,47 +48,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 14, 2021 at 01:28:24AM +0300, Imre Deak wrote:
-> On Thu, Oct 14, 2021 at 12:54:58AM +0300, Ville Syrjälä wrote:
-> > On Thu, Oct 14, 2021 at 12:32:55AM +0300, Imre Deak wrote:
-> > > On Wed, Oct 13, 2021 at 11:45:33PM +0300, Ville Syrjälä wrote:
-> > > > On Wed, Oct 13, 2021 at 11:27:02PM +0300, Ville Syrjälä wrote:
-> > > > > On Thu, Oct 07, 2021 at 11:35:15PM +0300, Imre Deak wrote:
-> > > > > > Future platforms change the location of CCS control planes in CCS
-> > > > > > framebuffers, so add intel_fb_is_rc_ccs_ctrl_plane() to query for these
-> > > > > 
-> > > > > Don't we use the term 'ccs_plane' everywhere else?
-> > > > > 
-> > > > > > planes independently of the platform. This function can be used
-> > > > > > everywhere instead of is_ccs_plane() (or is_ccs_plane() && !cc_plane()),
-> > > > > > since all the callers are only interested in control planes (and not CCS
-> > > > > > color-clear planes).
-> > > > 
-> > > > Hmm. I guess you're changing the terminology across the board?
-> > > > If it's used consistently then no objections from me.
-> > > 
-> > > ccs_plane has been used as a generic term for both the "control" and the
-> > > cc plane, or at least I thought of it as such.
-> > 
-> > The official definition I think is:
-> > CCS == color control surface
-> >
-> > So in terms of modifier naming I suppose I tend to think
-> > of it like this:
-> > modifier name has CCS -> color control surface is present
-> > modifier name has CC -> clear color is present
-> > 
-> > But if we want to make the distinction somehow stronger I was
-> > thinking maybe ccs_aux vs. ccs_cc. But dunno if that just ends up
-> > being more confusing since AUX_DIST is also used for planar scanout
-> > on skl/etc.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-I guess the fact that it would also say "ccs" in additon to "aux"
-would make it ok. So ccs_aux goes into AUX_DIST, ccs_cc goes into CC_VAL.
+The gem_exec_fair test is specifically testing scheduler algorithm
+performance. However, GuC does not implement the same algorithm as
+execlist mode and this test is not applicable. So, until sw arch
+approves a new algorithm and it is implemented in GuC, stop running
+the test.
 
-But anyway, as long we go with something consitent everywhere I'll be
-happy.
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+---
+ tests/i915/gem_exec_fair.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/tests/i915/gem_exec_fair.c b/tests/i915/gem_exec_fair.c
+index ef5a450f6..ca9c73c6e 100644
+--- a/tests/i915/gem_exec_fair.c
++++ b/tests/i915/gem_exec_fair.c
+@@ -1314,6 +1314,12 @@ igt_main
+ 		igt_require(gem_scheduler_enabled(i915));
+ 		igt_require(gem_scheduler_has_ctx_priority(i915));
+ 
++		/*
++		 * These tests are for a specific scheduling model which is
++		 * not currently implemented by GuC. So skip on GuC platforms.
++		 */
++		igt_require(intel_gen(intel_get_drm_devid(i915)) < 12);
++
+ 		cfg = intel_ctx_cfg_all_physical(i915);
+ 
+ 		igt_info("CS timestamp frequency: %d\n",
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
