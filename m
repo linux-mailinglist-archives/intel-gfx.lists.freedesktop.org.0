@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D20842C4DE
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 17:35:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD33542C4E5
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 17:37:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2C256E875;
-	Wed, 13 Oct 2021 15:35:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D7236E9FE;
+	Wed, 13 Oct 2021 15:37:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F291E6E875
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 15:35:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="226230162"
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="226230162"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2021 08:35:50 -0700
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="491513657"
-Received: from araghuw-mobl.gar.corp.intel.com (HELO localhost)
- ([10.251.208.234])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2021 08:35:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Imre Deak <imre.deak@intel.com>, "Nautiyal\,
- Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, uma.shankar@intel.com,
- animesh.manna@intel.com
-In-Reply-To: <20211013151915.GA9101@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
- <87lf3728zx.fsf@intel.com> <a3b08a93-e583-8f61-ee04-a76b8800a798@intel.com>
- <87bl43221e.fsf@intel.com> <20211005153153.GA2847074@ideak-desk.fi.intel.com>
- <5e73ecc6-ea08-a6f0-d708-9ff0ea12c07c@intel.com>
- <20211013151915.GA9101@ideak-desk.fi.intel.com>
-Date: Wed, 13 Oct 2021 18:35:44 +0300
-Message-ID: <874k9lx7hr.fsf@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 238836E875;
+ Wed, 13 Oct 2021 15:37:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="227353283"
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="227353283"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 08:37:06 -0700
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="480852200"
+Received: from lvoronov-mobl.ger.corp.intel.com (HELO [10.213.252.151])
+ ([10.213.252.151])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 08:37:05 -0700
+To: Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211013111817.1886880-1-maarten.lankhorst@linux.intel.com>
+ <20211013123203.1953276-1-maarten.lankhorst@linux.intel.com>
+ <YWbmm6UqJ8JDa9WD@phenom.ffwll.local>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <b7434459-de5c-3e8c-c94b-61f189e138e7@linux.intel.com>
+Date: Wed, 13 Oct 2021 16:37:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Remove check for low
- voltage sku for max dp source rate
+In-Reply-To: <YWbmm6UqJ8JDa9WD@phenom.ffwll.local>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use dma_resv_iter for waiting in
+ i915_gem_object_wait_reservation.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,337 +56,316 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Oct 07, 2021 at 01:19:25PM +0530, Nautiyal, Ankit K wrote:
->>=20
->> On 10/5/2021 9:01 PM, Imre Deak wrote:
->> > On Tue, Oct 05, 2021 at 01:34:21PM +0300, Jani Nikula wrote:
->> > > Cc: Imre, I think you were involved in adding the checks.
->> > About ADL-S the spec says:
->> >=20
->> > Bspec 53597:
->> > Combo Port Maximum Speed:
->> > OEM must use VBT to specify a maximum that is tolerated by the board d=
-esign.
->> >=20
->> > Combo Port HBR3 support:
->> > May require retimer on motherboard. The OEM must use VBT to limit the =
-link rate to HBR2 if HBR3 not supported by motherboard.
->> >=20
->> > Bspec/49201:
->> > Combo Port HBR3/6.48GHz support:
->> > Only supported on SKUs with higher I/O voltage
->> >=20
->> > I take the above meaning that only high voltage SKUs support HBR3 and
->> > on those SKUs the OEM must limit this to HBR2 if HBR3 would require a
->> > retimer on the board, but the board doesn't have this.
->> >=20
->> > If the above isn't correct and low voltage SKUs also in fact support
->> > HBR3 (with retimers if necessary) then this should imo clarified at
->> > Bspec/49201. The VBT limit could be used then if present, ignoring the
->> > low voltage SKU readout.
->>=20
->> Thanks Imre for the inputs.
->>=20
->> As you have mentioned note : rate >5.4 G supported only on High voltage =
-I/O,
->> is mentioned for platforms like ICL, JSL and Display 12 platforms.
->>=20
->> I had again asked the HW team and VBT/GOP team whether we can safely rel=
-y on
->> VBT for the max rate for these platforms, without worrying about the SKU=
-'s
->> IO Voltage, and also requested them to update the Bspec page for the sam=
-e.
->>=20
->> In response the Bspec pages 49201, 20598 are now updated with the note "=
-OEM
->> must use VBT to specify a maximum that is tolerated by the board design"=
- for
->> the rates above 5.4G.
->
-> Ok, thanks for this, now the spec is closer to the proposed changes. On
-> some platforms it's still unclear if the default max rate in the lack of
-> a VBT limit is HBR2 or HBR3. The ADL-S overview at Bspec/53597 is clear
-> now wrt. this:
->
-> (*) "May require retimer on motherboard. The OEM must use VBT to limit th=
-e link rate
->     to HBR2 if HBR3 not supported by motherboard."
->
-> ideally it should still clarify if the potential retimer requirement appl=
-ies to
-> both eDP and DP or only to DP.
->
-> I still see the followings to adjust in the spec so that it reflects
-> the patch:
->
-> - ICL
->   - bspec/20584:
->     "Increased IO voltage may be required to support HBR3 for the highest=
- DisplayPort
->      and eDP resolutions."
->
->      should be changed to (*) above mentioning that HBR3 is only supporte=
-d on
->      eDP.
->
->   - bspec/20598:
->     "Combo HBR3: OEM must use VBT to specify a miximum that is tolerated =
-by the
->     board design."
->
->     The DP/HBR3 support on ICL should be removed.
->
->     For eDP/HBR3 on ICL the above comment should be changed to (*).
->
-> - JSL
->   - bspec/32247:
->     "Increased IO voltage may be required to support HBR3 for the highest=
- DisplayPort
->      resolutions."
->
->     should be removed/changed to (*).
->
->   - bspec/20598:
->     "OEM must use VBT to specify a miximum that is tolerated by the
->     board design."
->
->     should be changed to (*).
->
-> - TGL:
->   - bspec/49201:
->     "Combo HBR3: OEM must use VBT to specify a miximum that is tolerated
->     by the board design."
->
->     The DP/HBR3 support should be removed, for eDP/HBR3 the above should
->     be changed to (*).
->
-> - RKL:
->   - bspec/49201, 49204:
->     Remove the RKL tag, since there is a separate page for RKL.
->
->   - bspec/49202:
->     "Combo HBR3: Only supported on SKUs with higher I/O voltage"
->
->     should be changed to (*).
->
-> - ADLS:
->   - bspec/49201, 49204:
->     The ADLS tag should be removed, since there is a separate page for AD=
-LS.
->
->   - bspec/53720:
->     "Combo HBR3: OEM must use VBT to specify a miximum that is tolerated =
-by the
->     board design."
->
->     should be changed to (*).
->
-> - DG1:
->   - bspec/49205:
->     "Combo HBR3: Only supported on SKUs with higher I/O voltage"
->
->     should be changed to (*) above.
->
-> - DG2:
->   - bspec/53657:
->     For Combo HBR3 (*) should be added.
->
->   - bspec/54034:
->     For Combo HBR3 (*) should be added.
->
-> - ADLP:
->   - bspec/49185:
->     "Combo DP/HBR3: OEM must use VBT to specify a miximum that is tolerat=
-ed by
->     the board design. An external re-timer may be needed."
->
->     should be changed to (*).
->
->
-> Also could you add a debug print with the voltage configuration of combo
-> PHYs somewhere in intel_combo_phy.c?
->
->> From what I understand, we can depend upon the VBT's rate, and if there =
-are
->> some low voltage I/O SKUs that do not support HBR3 rate, it should be
->> limited by the VBT.
->>=20
->> Thanks & Regards,
->>=20
->> Ankit
->>=20
->> > > BR,
->> > > Jani.
->> > >=20
->> > > On Tue, 05 Oct 2021, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com=
-> wrote:
->> > > > On 10/5/2021 1:34 PM, Jani Nikula wrote:
->> > > > > On Tue, 05 Oct 2021, Ankit Nautiyal <ankit.k.nautiyal@intel.com>=
- wrote:
->> > > > > > The low voltage sku check can be ignored as OEMs need to consi=
-der that
->> > > > > > when designing the board and then put any limits in VBT.
->> > > > > "can" or "must"?
->> > > > >=20
->> > > > > VBT has been notoriously buggy over the years, and we need to sa=
-feguard
->> > > > > against that. Are there any cases where having these checks are =
-wrong?
->> > > > Hi Jani,
->> > > >=20
->> > > > Bspec page for Combo PHY PLL frequencies now says "OEM must use VB=
-T to
->> > > > specify a maximum that is tolerated by the board design" for the r=
-ates
->> > > > above 5.4G.
->> > > >=20
->> > > > Earlier it was mentioned that rates > 5.4G were supported on SKUs =
-with
->> > > > Higher I/O Voltage.
->> > > >=20
->> > > > There was an instance where on an ADL-S board, where VBT was showi=
-ng as
->> > > > HBR3 supporting for a combo phy port,=C2=A0 but we were reading th=
-e IO
->> > > > voltage as 0.85V in is_low_voltage_sku()
->> > > >=20
->> > > > (Specifically, we were reading Register_PORT_COMP_DW3 bits 24-25 a=
-s 0)
->> > > > for a combo PHY port, and therefore we were limiting the BW to 5.4=
-Gbps
 
-Btw why was this? Is it the wrong register, wrong thing to do, what?
+On 13/10/2021 15:00, Daniel Vetter wrote:
+> On Wed, Oct 13, 2021 at 02:32:03PM +0200, Maarten Lankhorst wrote:
+>> No memory should be allocated when calling i915_gem_object_wait,
+>> because it may be called to idle a BO when evicting memory.
+>>
+>> Fix this by using dma_resv_iter helpers to call
+>> i915_gem_object_wait_fence() on each fence, which cleans up the code a lot.
+>> Also remove dma_resv_prune, it's questionably.
+>>
+>> This will result in the following lockdep splat.
+>>
+>> <4> [83.538517] ======================================================
+>> <4> [83.538520] WARNING: possible circular locking dependency detected
+>> <4> [83.538522] 5.15.0-rc5-CI-Trybot_8062+ #1 Not tainted
+>> <4> [83.538525] ------------------------------------------------------
+>> <4> [83.538527] gem_render_line/5242 is trying to acquire lock:
+>> <4> [83.538530] ffffffff8275b1e0 (fs_reclaim){+.+.}-{0:0}, at: __kmalloc_track_caller+0x56/0x270
+>> <4> [83.538538]
+>> but task is already holding lock:
+>> <4> [83.538540] ffff88813471d1e0 (&vm->mutex/1){+.+.}-{3:3}, at: i915_vma_pin_ww+0x1c7/0x970 [i915]
+>> <4> [83.538638]
+>> which lock already depends on the new lock.
+>> <4> [83.538642]
+>> the existing dependency chain (in reverse order) is:
+>> <4> [83.538645]
+>> -> #1 (&vm->mutex/1){+.+.}-{3:3}:
+>> <4> [83.538649]        lock_acquire+0xd3/0x310
+>> <4> [83.538654]        i915_gem_shrinker_taints_mutex+0x2d/0x50 [i915]
+>> <4> [83.538730]        i915_address_space_init+0xf5/0x1b0 [i915]
+>> <4> [83.538794]        ppgtt_init+0x55/0x70 [i915]
+>> <4> [83.538856]        gen8_ppgtt_create+0x44/0x5d0 [i915]
+>> <4> [83.538912]        i915_ppgtt_create+0x28/0xf0 [i915]
+>> <4> [83.538971]        intel_gt_init+0x130/0x3b0 [i915]
+>> <4> [83.539029]        i915_gem_init+0x14b/0x220 [i915]
+>> <4> [83.539100]        i915_driver_probe+0x97e/0xdd0 [i915]
+>> <4> [83.539149]        i915_pci_probe+0x43/0x1d0 [i915]
+>> <4> [83.539197]        pci_device_probe+0x9b/0x110
+>> <4> [83.539201]        really_probe+0x1b0/0x3b0
+>> <4> [83.539205]        __driver_probe_device+0xf6/0x170
+>> <4> [83.539208]        driver_probe_device+0x1a/0x90
+>> <4> [83.539210]        __driver_attach+0x93/0x160
+>> <4> [83.539213]        bus_for_each_dev+0x72/0xc0
+>> <4> [83.539216]        bus_add_driver+0x14b/0x1f0
+>> <4> [83.539220]        driver_register+0x66/0xb0
+>> <4> [83.539222]        hdmi_get_spk_alloc+0x1f/0x50 [snd_hda_codec_hdmi]
+>> <4> [83.539227]        do_one_initcall+0x53/0x2e0
+>> <4> [83.539230]        do_init_module+0x55/0x200
+>> <4> [83.539234]        load_module+0x2700/0x2980
+>> <4> [83.539237]        __do_sys_finit_module+0xaa/0x110
+>> <4> [83.539241]        do_syscall_64+0x37/0xb0
+>> <4> [83.539244]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+>> <4> [83.539247]
+>> -> #0 (fs_reclaim){+.+.}-{0:0}:
+>> <4> [83.539251]        validate_chain+0xb37/0x1e70
+>> <4> [83.539254]        __lock_acquire+0x5a1/0xb70
+>> <4> [83.539258]        lock_acquire+0xd3/0x310
+>> <4> [83.539260]        fs_reclaim_acquire+0x9d/0xd0
+>> <4> [83.539264]        __kmalloc_track_caller+0x56/0x270
+>> <4> [83.539267]        krealloc+0x48/0xa0
+>> <4> [83.539270]        dma_resv_get_fences+0x1c3/0x280
+>> <4> [83.539274]        i915_gem_object_wait+0x1ff/0x410 [i915]
+>> <4> [83.539342]        i915_gem_evict_for_node+0x16b/0x440 [i915]
+>> <4> [83.539412]        i915_gem_gtt_reserve+0xff/0x130 [i915]
+>> <4> [83.539482]        i915_vma_pin_ww+0x765/0x970 [i915]
+>> <4> [83.539556]        eb_validate_vmas+0x6fe/0x8e0 [i915]
+>> <4> [83.539626]        i915_gem_do_execbuffer+0x9a6/0x20a0 [i915]
+>> <4> [83.539693]        i915_gem_execbuffer2_ioctl+0x11f/0x2c0 [i915]
+>> <4> [83.539759]        drm_ioctl_kernel+0xac/0x140
+>> <4> [83.539763]        drm_ioctl+0x201/0x3d0
+>> <4> [83.539766]        __x64_sys_ioctl+0x6a/0xa0
+>> <4> [83.539769]        do_syscall_64+0x37/0xb0
+>> <4> [83.539772]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+>> <4> [83.539775]
+>> other info that might help us debug this:
+>> <4> [83.539778]  Possible unsafe locking scenario:
+>> <4> [83.539781]        CPU0                    CPU1
+>> <4> [83.539783]        ----                    ----
+>> <4> [83.539785]   lock(&vm->mutex/1);
+>> <4> [83.539788]                                lock(fs_reclaim);
+>> <4> [83.539791]                                lock(&vm->mutex/1);
+>> <4> [83.539794]   lock(fs_reclaim);
+>> <4> [83.539796]
+>>   *** DEADLOCK ***
+>> <4> [83.539799] 3 locks held by gem_render_line/5242:
+>> <4> [83.539802]  #0: ffffc90000d4bbf0 (reservation_ww_class_acquire){+.+.}-{0:0}, at: i915_gem_do_execbuffer+0x8e5/0x20a0 [i915]
+>> <4> [83.539870]  #1: ffff88811e48bae8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: eb_validate_vmas+0x81/0x8e0 [i915]
+>> <4> [83.539936]  #2: ffff88813471d1e0 (&vm->mutex/1){+.+.}-{3:3}, at: i915_vma_pin_ww+0x1c7/0x970 [i915]
+>> <4> [83.540011]
+>> stack backtrace:
+>> <4> [83.540014] CPU: 2 PID: 5242 Comm: gem_render_line Not tainted 5.15.0-rc5-CI-Trybot_8062+ #1
+>> <4> [83.540019] Hardware name: Intel(R) Client Systems NUC11TNHi3/NUC11TNBi3, BIOS TNTGL357.0038.2020.1124.1648 11/24/2020
+>> <4> [83.540023] Call Trace:
+>> <4> [83.540026]  dump_stack_lvl+0x56/0x7b
+>> <4> [83.540030]  check_noncircular+0x12e/0x150
+>> <4> [83.540034]  ? _raw_spin_unlock_irqrestore+0x50/0x60
+>> <4> [83.540038]  validate_chain+0xb37/0x1e70
+>> <4> [83.540042]  __lock_acquire+0x5a1/0xb70
+>> <4> [83.540046]  lock_acquire+0xd3/0x310
+>> <4> [83.540049]  ? __kmalloc_track_caller+0x56/0x270
+>> <4> [83.540052]  ? find_held_lock+0x2d/0x90
+>> <4> [83.540055]  ? dma_resv_get_fences+0x1c3/0x280
+>> <4> [83.540058]  fs_reclaim_acquire+0x9d/0xd0
+>> <4> [83.540061]  ? __kmalloc_track_caller+0x56/0x270
+>> <4> [83.540064]  __kmalloc_track_caller+0x56/0x270
+>> <4> [83.540067]  krealloc+0x48/0xa0
+>> <4> [83.540070]  dma_resv_get_fences+0x1c3/0x280
+>> <4> [83.540074]  i915_gem_object_wait+0x1ff/0x410 [i915]
+>> <4> [83.540143]  i915_gem_evict_for_node+0x16b/0x440 [i915]
+>> <4> [83.540212]  i915_gem_gtt_reserve+0xff/0x130 [i915]
+>> <4> [83.540281]  i915_vma_pin_ww+0x765/0x970 [i915]
+>> <4> [83.540354]  eb_validate_vmas+0x6fe/0x8e0 [i915]
+>> <4> [83.540420]  i915_gem_do_execbuffer+0x9a6/0x20a0 [i915]
+>> <4> [83.540485]  ? lockdep_hardirqs_on+0xbf/0x130
+>> <4> [83.540490]  ? __lock_acquire+0x5c0/0xb70
+>> <4> [83.540495]  i915_gem_execbuffer2_ioctl+0x11f/0x2c0 [i915]
+>> <4> [83.540559]  ? i915_gem_do_execbuffer+0x20a0/0x20a0 [i915]
+>> <4> [83.540622]  drm_ioctl_kernel+0xac/0x140
+>> <4> [83.540625]  drm_ioctl+0x201/0x3d0
+>> <4> [83.540628]  ? i915_gem_do_execbuffer+0x20a0/0x20a0 [i915]
+>> <4> [83.540691]  __x64_sys_ioctl+0x6a/0xa0
+>> <4> [83.540694]  do_syscall_64+0x37/0xb0
+>> <4> [83.540697]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+>> <4> [83.540700] RIP: 0033:0x7fc314edc50b
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> 
+> Yay for ditching i915/dma_resv_utils.c while we're at it!
+> 
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-BR,
-Jani.
+When Christian sent this patch I've raised one possibly important 
+difference difference (from msg id 
+e0954bdd-2183-f662-8192-c44f931c602b@linux.intel.com):
 
+"""
+Converting this one could be problematic. It's the wait ioctl which used 
+to grab an atomic snapshot and wait for that rendering to complete. With 
+this change I think it has the potential to run forever keeps catching 
+new activity against the same object.
 
->> > > >=20
->> > > > Due to this, 8k@60 mode was getting pruned on the board for that c=
-ombo
->> > > > phy port. On removing the low_voltage_sku( ) the mode was able to =
-be set
->> > > > properly.
->> > > >=20
->> > > > Incidentally, with Windows 8k@60 was also coming up on the same bo=
-ard on
->> > > > same port.
->> > > >=20
->> > > > So I had checked with HW team and GOP/VBT team if driver should co=
-nsider
->> > > > the low voltage sku check.=C2=A0 As per their response we 'can' ig=
-nore the
->> > > > check and rely on the VBT, as OEM should limit the rate as per boa=
-rd
->> > > > design. The Bspec was also updated to reflect the same.
->> > > >=20
->> > > > So IMHO we need not limit the rate as per is_low_voltage_sku check=
-, as
->> > > > this limiting of the rate through VBT is a must for the OEMs.
->> > > >=20
->> > > > I should perhaps change the wording of the commit message to conve=
-y the
->> > > > same.
->> > > >=20
->> > > >=20
->> > > > Thanks & Regards,
->> > > >=20
->> > > > Ankit
->> > > >=20
->> > > >=20
->> > > > > BR,
->> > > > > Jani.
->> > > > >=20
->> > > > > > Same is now changed in Bspec (53720).
->> > > > > >=20
->> > > > > > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> > > > > > ---
->> > > > > >    drivers/gpu/drm/i915/display/intel_dp.c | 32 +++-----------=
------------
->> > > > > >    1 file changed, 3 insertions(+), 29 deletions(-)
->> > > > > >=20
->> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers=
-/gpu/drm/i915/display/intel_dp.c
->> > > > > > index 74a657ae131a..75c364c3c88e 100644
->> > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > > > > > @@ -297,23 +297,13 @@ static int dg2_max_source_rate(struct in=
-tel_dp *intel_dp)
->> > > > > >    	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
->> > > > > >    }
->> > > > > > -static bool is_low_voltage_sku(struct drm_i915_private *i915,=
- enum phy phy)
->> > > > > > -{
->> > > > > > -	u32 voltage;
->> > > > > > -
->> > > > > > -	voltage =3D intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VO=
-LTAGE_INFO_MASK;
->> > > > > > -
->> > > > > > -	return voltage =3D=3D VOLTAGE_INFO_0_85V;
->> > > > > > -}
->> > > > > > -
->> > > > > >    static int icl_max_source_rate(struct intel_dp *intel_dp)
->> > > > > >    {
->> > > > > >    	struct intel_digital_port *dig_port =3D dp_to_dig_port(int=
-el_dp);
->> > > > > >    	struct drm_i915_private *dev_priv =3D to_i915(dig_port->ba=
-se.base.dev);
->> > > > > >    	enum phy phy =3D intel_port_to_phy(dev_priv, dig_port->bas=
-e.port);
->> > > > > > -	if (intel_phy_is_combo(dev_priv, phy) &&
->> > > > > > -	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(i=
-ntel_dp)))
->> > > > > > +	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(in=
-tel_dp))
->> > > > > >    		return 540000;
->> > > > > >    	return 810000;
->> > > > > > @@ -321,23 +311,7 @@ static int icl_max_source_rate(struct int=
-el_dp *intel_dp)
->> > > > > >    static int ehl_max_source_rate(struct intel_dp *intel_dp)
->> > > > > >    {
->> > > > > > -	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel=
-_dp);
->> > > > > > -	struct drm_i915_private *dev_priv =3D to_i915(dig_port->base=
-.base.dev);
->> > > > > > -	enum phy phy =3D intel_port_to_phy(dev_priv, dig_port->base.=
-port);
->> > > > > > -
->> > > > > > -	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv=
-, phy))
->> > > > > > -		return 540000;
->> > > > > > -
->> > > > > > -	return 810000;
->> > > > > > -}
->> > > > > > -
->> > > > > > -static int dg1_max_source_rate(struct intel_dp *intel_dp)
->> > > > > > -{
->> > > > > > -	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel=
-_dp);
->> > > > > > -	struct drm_i915_private *i915 =3D to_i915(dig_port->base.bas=
-e.dev);
->> > > > > > -	enum phy phy =3D intel_port_to_phy(i915, dig_port->base.port=
-);
->> > > > > > -
->> > > > > > -	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915=
-, phy))
->> > > > > > +	if (intel_dp_is_edp(intel_dp))
->> > > > > >    		return 540000;
->> > > > > >    	return 810000;
->> > > > > > @@ -380,7 +354,7 @@ intel_dp_set_source_rates(struct intel_dp =
-*intel_dp)
->> > > > > >    			max_rate =3D dg2_max_source_rate(intel_dp);
->> > > > > >    		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_p=
-riv) ||
->> > > > > >    			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
->> > > > > > -			max_rate =3D dg1_max_source_rate(intel_dp);
->> > > > > > +			max_rate =3D 810000;
->> > > > > >    		else if (IS_JSL_EHL(dev_priv))
->> > > > > >    			max_rate =3D ehl_max_source_rate(intel_dp);
->> > > > > >    		else
->> > > --=20
->> > > Jani Nikula, Intel Open Source Graphics Center
+I am not sure whether or not the difference is relevant for how 
+userspace uses it but I think needs discussion.
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Hm actually there are internal callers as well, and at least some of 
+those have the object locked. Would a wider refactoring to separate 
+those into buckets (locked vs unlocked) make sense?
+"""
+
+I don't have sufficient knowledge on how userspace might be using 
+gem_wait to call whether it is a problem or not, or how big. Thoughts?
+
+Regards,
+
+Tvrtko
+
+> 
+>> ---
+>>   drivers/gpu/drm/i915/Makefile                |  1 -
+>>   drivers/gpu/drm/i915/dma_resv_utils.c        | 17 ------
+>>   drivers/gpu/drm/i915/dma_resv_utils.h        | 13 -----
+>>   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c |  1 -
+>>   drivers/gpu/drm/i915/gem/i915_gem_wait.c     | 56 +++-----------------
+>>   5 files changed, 8 insertions(+), 80 deletions(-)
+>>   delete mode 100644 drivers/gpu/drm/i915/dma_resv_utils.c
+>>   delete mode 100644 drivers/gpu/drm/i915/dma_resv_utils.h
+>>
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>> index 21b05ed0e4e8..88bb326d9031 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -58,7 +58,6 @@ i915-y += i915_drv.o \
+>>   
+>>   # core library code
+>>   i915-y += \
+>> -	dma_resv_utils.o \
+>>   	i915_memcpy.o \
+>>   	i915_mm.o \
+>>   	i915_sw_fence.o \
+>> diff --git a/drivers/gpu/drm/i915/dma_resv_utils.c b/drivers/gpu/drm/i915/dma_resv_utils.c
+>> deleted file mode 100644
+>> index 7df91b7e4ca8..000000000000
+>> --- a/drivers/gpu/drm/i915/dma_resv_utils.c
+>> +++ /dev/null
+>> @@ -1,17 +0,0 @@
+>> -// SPDX-License-Identifier: MIT
+>> -/*
+>> - * Copyright © 2020 Intel Corporation
+>> - */
+>> -
+>> -#include <linux/dma-resv.h>
+>> -
+>> -#include "dma_resv_utils.h"
+>> -
+>> -void dma_resv_prune(struct dma_resv *resv)
+>> -{
+>> -	if (dma_resv_trylock(resv)) {
+>> -		if (dma_resv_test_signaled(resv, true))
+>> -			dma_resv_add_excl_fence(resv, NULL);
+>> -		dma_resv_unlock(resv);
+>> -	}
+>> -}
+>> diff --git a/drivers/gpu/drm/i915/dma_resv_utils.h b/drivers/gpu/drm/i915/dma_resv_utils.h
+>> deleted file mode 100644
+>> index b9d8fb5f8367..000000000000
+>> --- a/drivers/gpu/drm/i915/dma_resv_utils.h
+>> +++ /dev/null
+>> @@ -1,13 +0,0 @@
+>> -/* SPDX-License-Identifier: MIT */
+>> -/*
+>> - * Copyright © 2020 Intel Corporation
+>> - */
+>> -
+>> -#ifndef DMA_RESV_UTILS_H
+>> -#define DMA_RESV_UTILS_H
+>> -
+>> -struct dma_resv;
+>> -
+>> -void dma_resv_prune(struct dma_resv *resv);
+>> -
+>> -#endif /* DMA_RESV_UTILS_H */
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> index c80e6c1d2bcb..5375f3f9f016 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> @@ -15,7 +15,6 @@
+>>   
+>>   #include "gt/intel_gt_requests.h"
+>>   
+>> -#include "dma_resv_utils.h"
+>>   #include "i915_trace.h"
+>>   
+>>   static bool swap_available(void)
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+>> index f909aaa09d9c..e59304a76b2c 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+>> @@ -10,7 +10,6 @@
+>>   
+>>   #include "gt/intel_engine.h"
+>>   
+>> -#include "dma_resv_utils.h"
+>>   #include "i915_gem_ioctls.h"
+>>   #include "i915_gem_object.h"
+>>   
+>> @@ -37,56 +36,17 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
+>>   				 unsigned int flags,
+>>   				 long timeout)
+>>   {
+>> -	struct dma_fence *excl;
+>> -	bool prune_fences = false;
+>> -
+>> -	if (flags & I915_WAIT_ALL) {
+>> -		struct dma_fence **shared;
+>> -		unsigned int count, i;
+>> -		int ret;
+>> +	struct dma_resv_iter cursor;
+>> +	struct dma_fence *fence;
+>>   
+>> -		ret = dma_resv_get_fences(resv, &excl, &count, &shared);
+>> -		if (ret)
+>> -			return ret;
+>> -
+>> -		for (i = 0; i < count; i++) {
+>> -			timeout = i915_gem_object_wait_fence(shared[i],
+>> -							     flags, timeout);
+>> -			if (timeout < 0)
+>> -				break;
+>> +	dma_resv_iter_begin(&cursor, resv, flags & I915_WAIT_ALL);
+>> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>>   
+>> -			dma_fence_put(shared[i]);
+>> -		}
+>> -
+>> -		for (; i < count; i++)
+>> -			dma_fence_put(shared[i]);
+>> -		kfree(shared);
+>> -
+>> -		/*
+>> -		 * If both shared fences and an exclusive fence exist,
+>> -		 * then by construction the shared fences must be later
+>> -		 * than the exclusive fence. If we successfully wait for
+>> -		 * all the shared fences, we know that the exclusive fence
+>> -		 * must all be signaled. If all the shared fences are
+>> -		 * signaled, we can prune the array and recover the
+>> -		 * floating references on the fences/requests.
+>> -		 */
+>> -		prune_fences = count && timeout >= 0;
+>> -	} else {
+>> -		excl = dma_resv_get_excl_unlocked(resv);
+>> +		timeout = i915_gem_object_wait_fence(fence, flags, timeout);
+>> +		if (timeout <= 0)
+>> +			break;
+>>   	}
+>> -
+>> -	if (excl && timeout >= 0)
+>> -		timeout = i915_gem_object_wait_fence(excl, flags, timeout);
+>> -
+>> -	dma_fence_put(excl);
+>> -
+>> -	/*
+>> -	 * Opportunistically prune the fences iff we know they have *all* been
+>> -	 * signaled.
+>> -	 */
+>> -	if (prune_fences)
+>> -		dma_resv_prune(resv);
+>> +	dma_resv_iter_end(&cursor);
+>>   
+>>   	return timeout;
+>>   }
+>> -- 
+>> 2.33.0
+>>
+> 
