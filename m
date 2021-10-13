@@ -1,35 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929DB42CCE2
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 23:36:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD66D42CCF3
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 23:40:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C411D6EB4E;
-	Wed, 13 Oct 2021 21:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0094D6EBB5;
+	Wed, 13 Oct 2021 21:40:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 52A4E6EC12;
- Wed, 13 Oct 2021 21:36:25 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EDF3C6EBFD;
+ Wed, 13 Oct 2021 21:40:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 46AD0A77A5;
- Wed, 13 Oct 2021 21:36:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2070413726255305734=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id E1F58A00FD;
+ Wed, 13 Oct 2021 21:40:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Fernando Ramos" <greenfoo@u92.eu>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Oct 2021 21:36:25 -0000
-Message-ID: <163416098524.10253.5906232603028257891@emeril.freedesktop.org>
+Date: Wed, 13 Oct 2021 21:40:31 -0000
+Message-ID: <163416123188.10254.16524381483196937436@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211013204846.90026-1-greenfoo@u92.eu>
-In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?=3A_cleanup=3A_Use_DRM=5FMODESET=5FLOCK=5FALL=5F*_helpers_=28re?=
- =?utf-8?b?djIp?=
+References: <20211013204231.19287-1-matthew.brost@intel.com>
+In-Reply-To: <20211013204231.19287-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Parallel_submission_aka_multi-bb_execbuf_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,311 +45,86 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2070413726255305734==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: cleanup: Use DRM_MODESET_LOCK_ALL_* helpers (rev2)
-URL   : https://patchwork.freedesktop.org/series/95578/
-State : failure
+Series: Parallel submission aka multi-bb execbuf (rev6)
+URL   : https://patchwork.freedesktop.org/series/92789/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10732 -> Patchwork_21333
-====================================================
+$ dim checkpatch origin/drm-tip
+96b392951d3d drm/i915/guc: Move GuC guc_id allocation under submission state sub-struct
+a7d1c1c82188 drm/i915/guc: Take GT PM ref when deregistering context
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#82: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:44:
++#define with_intel_gt_pm(gt, tmp) \
++	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
++	     intel_gt_pm_put(gt), tmp = 0)
 
-Summary
--------
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tmp' - possible side-effects?
+#82: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:44:
++#define with_intel_gt_pm(gt, tmp) \
++	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
++	     intel_gt_pm_put(gt), tmp = 0)
 
-  **FAILURE**
+total: 0 errors, 0 warnings, 2 checks, 290 lines checked
+fce1426ce7b7 drm/i915/guc: Take engine PM when a context is pinned with GuC submission
+7751cb08a525 drm/i915/guc: Don't call switch_to_kernel_context with GuC submission
+edf6b764f7ad drm/i915: Add logical engine mapping
+baf5dc1fc9df drm/i915: Expose logical engine instance to user
+3fcd1f83dde6 drm/i915/guc: Introduce context parent-child relationship
+150093ea7387 drm/i915/guc: Add multi-lrc context registration
+0d569f349c42 drm/i915/guc: Ensure GuC schedule operations do not operate on child contexts
+0bdfa5c16cbe drm/i915/guc: Assign contexts in parent-child relationship consecutive guc_ids
+15aba0f8dc81 drm/i915/guc: Implement parallel context pin / unpin functions
+13fb055cc22c drm/i915/guc: Implement multi-lrc submission
+-:394: CHECK:SPACING: spaces preferred around that '*' (ctx:ExV)
+#394: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:775:
++		*wqi++ = child->ring->tail / sizeof(u64);
+ 		^
 
-  Serious unknown changes coming with Patchwork_21333 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21333, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+total: 0 errors, 0 warnings, 1 checks, 597 lines checked
+31917c1dcf79 drm/i915/guc: Insert submit fences between requests in parent-child relationship
+cc32a9e001af drm/i915/guc: Implement multi-lrc reset
+fc3628d02c3a drm/i915/guc: Update debugfs for GuC multi-lrc
+a6dbcce14531 drm/i915/guc: Connect UAPI to GuC multi-lrc interface
+304fa81a9399 drm/i915/doc: Update parallel submit doc to point to i915_drm.h
+-:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#13: 
+deleted file mode 100644
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/index.html
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+27d342e07431 drm/i915/guc: Add basic GuC multi-lrc selftest
+-:22: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#22: 
+new file mode 100644
 
-Possible new issues
--------------------
+total: 0 errors, 1 warnings, 0 checks, 190 lines checked
+1984b91d5186 drm/i915/guc: Implement no mid batch preemption for multi-lrc
+f5b8b45334d5 drm/i915: Multi-BB execbuf
+-:381: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#381: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1874:
++#define for_each_batch_create_order(_eb, _i) \
++	for ((_i) = 0; (_i) < (_eb)->num_batches; ++(_i))
 
-  Here are the unknown changes that may have been introduced in Patchwork_21333:
+-:383: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#383: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1876:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for ((_i) = (_eb)->num_batches - 1; (_i) >= 0; --(_i))
 
-### CI changes ###
+-:383: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#383: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1876:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for ((_i) = (_eb)->num_batches - 1; (_i) >= 0; --(_i))
 
-#### Possible regressions ####
-
-  * boot:
-    - fi-kbl-r:           [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-kbl-r/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-kbl-r/boot.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21333 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-compute0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-compute0.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-apl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][5] ([i915#1610])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][6] -> [INCOMPLETE][7] ([i915#3921])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_flip@basic-plain-flip@c-dp1:
-    - fi-cfl-8109u:       [PASS][8] -> [FAIL][9] ([i915#4165])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [PASS][10] -> [DMESG-WARN][11] ([i915#295]) +14 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  * igt@runner@aborted:
-    - fi-apl-guc:         NOTRUN -> [FAIL][12] ([i915#2426] / [i915#3363])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-apl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][13] ([i915#3303]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [FAIL][15] ([i915#1161]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+total: 1 errors, 0 warnings, 2 checks, 1289 lines checked
+5370262c7b18 drm/i915/guc: Handle errors in multi-lrc requests
+45927bbbecde drm/i915: Make request conflict tracking understand parallel submits
+20f16cbe9cab drm/i915: Update I915_GEM_BUSY IOCTL to understand composite fences
+1f94d4826235 drm/i915: Enable multi-bb execbuf
+9a0c2d682fa1 drm/i915/execlists: Weak parallel submission support for execlists
 
 
-Participating hosts (41 -> 38)
-------------------------------
-
-  Additional (1): fi-apl-guc 
-  Missing    (4): fi-bsw-cyan fi-bwr-2160 fi-skl-6700k2 fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10732 -> Patchwork_21333
-
-  CI-20190529: 20190529
-  CI_DRM_10732: 3fdfa1de4774903b9cb4fb308102b5a2d762d829 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6243: 438788b5dbd23085745fdd3da5a237f3577945df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21333: af5e711477c791752f017701fed641aeab7773c4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-af5e711477c7 drm: cleanup: remove acquire_ctx from drm_mode_config
-bb9b65cd5b5b drm: cleanup: remove drm_modeset_(un)lock_all()
-b70e6c200ae1 drm/amd: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN() [part 3]
-dd137e97ed38 drm/amd: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN() [part 2]
-7fa9bdcd87e2 drm/amd: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-ce7fa81b13fe drm/gma500: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-fd114f4e7c59 drm/i915: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN() [part 3]
-3026ac065c13 drm/i915: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN() [part 2]
-fee9d051a2a5 drm/i915: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-c4d9066d0d89 drm/msm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-15b0e8ed8fe6 drm/nouveau: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-f087719fcede drm/omapdrm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-7ca5bc6c8a21 drm/radeon: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-8bb63a93f988 drm/shmobile: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-3dabbbcda820 drm/tegra: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-5ac1c65d8c79 drm/vmwgfx: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-ef081f4e8430 drm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-d09f57454a6e drm/msm: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
-e0a3defcfd96 drm/i915: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
-ca6e1f9ff655 drm: cleanup: drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/index.html
-
---===============2070413726255305734==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: cleanup: Use DRM_MODESET_LOCK_ALL_* helpers (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95578/">https://patchwork.freedesktop.org/series/95578/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10732 -&gt; Patchwork_21333</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21333 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21333, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21333:</p>
-<h3>CI changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-kbl-r/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-kbl-r/boot.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21333 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-compute0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@c-dp1:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +14 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10732/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21333/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Additional (1): fi-apl-guc <br />
-  Missing    (4): fi-bsw-cyan fi-bwr-2160 fi-skl-6700k2 fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10732 -&gt; Patchwork_21333</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10732: 3fdfa1de4774903b9cb4fb308102b5a2d762d829 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6243: 438788b5dbd23085745fdd3da5a237f3577945df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21333: af5e711477c791752f017701fed641aeab7773c4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>af5e711477c7 drm: cleanup: remove acquire_ctx from drm_mode_config<br />
-bb9b65cd5b5b drm: cleanup: remove drm_modeset_(un)lock_all()<br />
-b70e6c200ae1 drm/amd: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN() [part 3]<br />
-dd137e97ed38 drm/amd: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN() [part 2]<br />
-7fa9bdcd87e2 drm/amd: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-ce7fa81b13fe drm/gma500: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-fd114f4e7c59 drm/i915: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN() [part 3]<br />
-3026ac065c13 drm/i915: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN() [part 2]<br />
-fee9d051a2a5 drm/i915: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-c4d9066d0d89 drm/msm: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-15b0e8ed8fe6 drm/nouveau: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-f087719fcede drm/omapdrm: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-7ca5bc6c8a21 drm/radeon: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-8bb63a93f988 drm/shmobile: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-3dabbbcda820 drm/tegra: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-5ac1c65d8c79 drm/vmwgfx: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-ef081f4e8430 drm: cleanup: drm_modeset_lock_all() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-d09f57454a6e drm/msm: cleanup: drm_modeset_lock_all_ctx() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-e0a3defcfd96 drm/i915: cleanup: drm_modeset_lock_all_ctx() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()<br />
-ca6e1f9ff655 drm: cleanup: drm_modeset_lock_all_ctx() --&gt; DRM_MODESET_LOCK_ALL_BEGIN()</p>
-
-</body>
-</html>
-
---===============2070413726255305734==--
