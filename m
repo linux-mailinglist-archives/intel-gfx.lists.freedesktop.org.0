@@ -2,67 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D579442BF4D
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 13:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2446E42BE2B
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 12:57:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8743E6EA2E;
-	Wed, 13 Oct 2021 11:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB976E0D8;
+	Wed, 13 Oct 2021 10:57:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBDAE6E86B;
- Wed, 13 Oct 2021 10:55:04 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B0370610C9;
- Wed, 13 Oct 2021 10:55:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1634122504;
- bh=cHJwlE/4hKjsg8N9PIPkUgBxfg4CYIeT2a/7mtQ0gV4=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=Gvd6nNUOzZ1UK/F83pyQaR5TauDo53BnYMnJejta47hA700Gc4nEjGIFnHwmjOADo
- AKNy+aONpGH/0IsqLm0Dcpm6wjEJavnew940SDLuN/5a6FYUw3ELyYcU0A3Q/NRQek
- QfoThQlCQv7p+iOVnXWOAHkCznwBtAwOy+ujza96o7WAaFxFjrC8XZ1wckA/fZVTbk
- VwI4mJWJKdlfyh1Lt6ftM0G3FhFyxA8FUoE+m7e14+8RRL2PlJvv9hf7Oz7NJ/FAwC
- wgr7gidywOLH4DV+TxM46MeGP/by3gM7M3FjX3pF1U7UjvwkkKAPLPGpJwUDxBDIsM
- sv3E+u1PeyN3A==
-Received: by mail-wr1-f50.google.com with SMTP id r10so6803147wra.12;
- Wed, 13 Oct 2021 03:55:04 -0700 (PDT)
-X-Gm-Message-State: AOAM530KfVMYNbT0I3mgSvnjuKMHKvpcL0uZ9gBkGjX/v35fLfi3J6JQ
- IRPxLOq5Lt7b0lt91XDoXju/fKJ6Tge1VTT2IIo=
-X-Google-Smtp-Source: ABdhPJzW6QwF+fpri3xax3BToB6ExyXZ9H+Kw/HXMbby5km4lbFfKsXJq/EA3ZMCLu9RmweZx7YA8FnfMM0PPRf9Pg4=
-X-Received: by 2002:a05:600c:4f42:: with SMTP id
- m2mr9273874wmq.82.1634122503094; 
- Wed, 13 Oct 2021 03:55:03 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9EAB66E0D8;
+ Wed, 13 Oct 2021 10:57:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9696FAA0EA;
+ Wed, 13 Oct 2021 10:57:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1956925568384128581=="
 MIME-Version: 1.0
-References: <20211006025350.a5PczFZP4%akpm@linux-foundation.org>
- <58fbf2ff-b367-2137-aa77-fcde6c46bbb7@infradead.org>
- <20211006182052.6ecc17cf@canb.auug.org.au>
- <f877a1c9-1898-23f3-bba3-3442dc1f3979@amd.com>
- <CAMuHMdV3eMchpgUasU6BBHrDQyjCc2TrqJ+zJgFhgAySpqVGfw@mail.gmail.com>
-In-Reply-To: <CAMuHMdV3eMchpgUasU6BBHrDQyjCc2TrqJ+zJgFhgAySpqVGfw@mail.gmail.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Wed, 13 Oct 2021 12:54:47 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1LLABstZ2rPYpsXRTxMdbSTrh0y753vrfGbRovv9fS8A@mail.gmail.com>
-Message-ID: <CAK8P3a1LLABstZ2rPYpsXRTxMdbSTrh0y753vrfGbRovv9fS8A@mail.gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Stephen Rothwell <sfr@canb.auug.org.au>, Randy Dunlap <rdunlap@infradead.org>, 
- Andrew Morton <akpm@linux-foundation.org>, Mark Brown <broonie@kernel.org>, 
- Linux FS Devel <linux-fsdevel@vger.kernel.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux MM <linux-mm@kvack.org>, 
- Linux-Next <linux-next@vger.kernel.org>, Michal Hocko <mhocko@suse.cz>,
- mm-commits@vger.kernel.org, 
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- freedreno <freedreno@lists.freedesktop.org>, 
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, 
- DRI <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 13 Oct 2021 11:58:09 +0000
-Subject: Re: [Intel-gfx] mmotm 2021-10-05-19-53 uploaded
- (drivers/gpu/drm/msm/hdmi/hdmi_phy.o)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 13 Oct 2021 10:57:21 -0000
+Message-ID: <163412264161.10254.2765821384245931858@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1634119597.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1634119597.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_vlv_sideband?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,61 +41,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 7, 2021 at 11:51 AM Geert Uytterhoeven <geert@linux-m68k.org> w=
-rote:
-> On Wed, Oct 6, 2021 at 9:28 AM Christian K=C3=B6nig <christian.koenig@amd=
-.com> wrote:
-> > Am 06.10.21 um 09:20 schrieb Stephen Rothwell:
-> > > On Tue, 5 Oct 2021 22:48:03 -0700 Randy Dunlap <rdunlap@infradead.org=
-> wrote:
-> > >> on i386:
-> > >>
-> > >> ld: drivers/gpu/drm/msm/hdmi/hdmi_phy.o:(.rodata+0x3f0): undefined r=
-eference to `msm_hdmi_phy_8996_cfg'
+--===============1956925568384128581==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I ran into the same thing now as well.
-E_TEST) && COMMON_CLK
->
-> I'd make that:
->
->     -        depends on DRM
->     +       depends on COMMON_CLK && DRM && IOMMU_SUPPORT
->             depends on ARCH_QCOM || SOC_IMX5 || COMPILE_TEST
->     -        depends on IOMMU_SUPPORT
->     -       depends on (OF && COMMON_CLK) || COMPILE_TEST
->     +       depends on OF || COMPILE_TEST
->
-> to keep a better separation between hard and soft dependencies.
->
-> Note that the "depends on OF || COMPILE_TEST" can even be
-> deleted, as the dependency on ARCH_QCOM || SOC_IMX5 implies OF.
+== Series Details ==
 
-Looks good to me, I would also drop that last line in this case, and maybe
-add this change as building without COMMON_CLK is no longer possible:
+Series: drm/i915: vlv sideband
+URL   : https://patchwork.freedesktop.org/series/95764/
+State : success
 
-diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-index 904535eda0c4..a5d87e03812f 100644
---- a/drivers/gpu/drm/msm/Makefile
-+++ b/drivers/gpu/drm/msm/Makefile
-@@ -116,10 +116,10 @@ msm-$(CONFIG_DRM_MSM_DP)+=3D dp/dp_aux.o \
-  dp/dp_power.o \
-  dp/dp_audio.o
+== Summary ==
 
--msm-$(CONFIG_DRM_FBDEV_EMULATION) +=3D msm_fbdev.o
--msm-$(CONFIG_COMMON_CLK) +=3D disp/mdp4/mdp4_lvds_pll.o
--msm-$(CONFIG_COMMON_CLK) +=3D hdmi/hdmi_pll_8960.o
--msm-$(CONFIG_COMMON_CLK) +=3D hdmi/hdmi_phy_8996.o
-+msm-$(CONFIG_DRM_FBDEV_EMULATION) +=3D msm_fbdev.o \
-+ disp/mdp4/mdp4_lvds_pll.o \
-+ hdmi/hdmi_pll_8960.o \
-+ hdmi/hdmi_phy_8996.o
+CI Bug Log - changes from CI_DRM_10728 -> Patchwork_21327
+====================================================
 
- msm-$(CONFIG_DRM_MSM_HDMI_HDCP) +=3D hdmi/hdmi_hdcp.o
+Summary
+-------
 
-Has anyone submitted a patch already, or should I send the version
-that I am using locally now?
+  **SUCCESS**
 
-        Arnd
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21327 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [PASS][1] -> [INCOMPLETE][2] ([i915#3303])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@vga-hpd-fast:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-kbl-guc/igt@kms_chamelium@vga-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#4269])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#533])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-kbl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][7] ([fdo#109271]) +41 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-kbl-guc/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  * igt@runner@aborted:
+    - fi-ivb-3770:        NOTRUN -> [FAIL][8] ([fdo#109271])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-ivb-3770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][9] ([i915#3303]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@perf:
+    - {fi-tgl-dsi}:       [DMESG-WARN][11] ([i915#2867]) -> [PASS][12] +9 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Additional (1): fi-kbl-guc 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-ctg-p8600 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10728 -> Patchwork_21327
+
+  CI-20190529: 20190529
+  CI_DRM_10728: 82a9f298afec66c882e710078138891826ce5e22 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21327: ba91b0757d4b185a92e03981ca99df05ca7cea22 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ba91b0757d4b drm/i915: split out vlv sideband to a separate file
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/index.html
+
+--===============1956925568384128581==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: vlv sideband</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95764/">https://patchwork.freedesktop.org/series/95764/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10728 -&gt; Patchwork_21327</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21327 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-hpd-fast:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-kbl-guc/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-kbl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-c:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-kbl-guc/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +41 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-ivb-3770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@perf:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-tgl-dsi/igt@i915_selftest@live@perf.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21327/fi-tgl-dsi/igt@i915_selftest@live@perf.html">PASS</a> +9 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Additional (1): fi-kbl-guc <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-ctg-p8600 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10728 -&gt; Patchwork_21327</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10728: 82a9f298afec66c882e710078138891826ce5e22 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21327: ba91b0757d4b185a92e03981ca99df05ca7cea22 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ba91b0757d4b drm/i915: split out vlv sideband to a separate file</p>
+
+</body>
+</html>
+
+--===============1956925568384128581==--
