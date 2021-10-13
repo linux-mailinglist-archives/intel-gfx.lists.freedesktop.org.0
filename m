@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A461342C339
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 16:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB28242C345
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 16:32:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A954F6EA6C;
-	Wed, 13 Oct 2021 14:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1345C89F9F;
+	Wed, 13 Oct 2021 14:32:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 023606EA53
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 14:31:07 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id t2so9075122wrb.8
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 07:31:06 -0700 (PDT)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 860B8883A9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 14:32:17 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id o20so9152406wro.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 07:32:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=6tq8Smct1MJoJumDXNBJuUP3GtNG4JxmFE/qpsP7bjw=;
- b=KiU3YeLJZ7sb9UTPffXi6zuNo62/3TTWlotxFoCAMiu0+ROMX9Dl38qmvsoL1azPf1
- IkllaVifg/UKOODiAIbyBDf+Hlxcyeg2oTU7tFcxqjZ041jbPxDy6wV+xnKDQE2y8vAn
- 13B7F5k78sP5L8HU6C0lIsUBW2Wkg4vxHi/Kw=
+ bh=iKQ96m1zzkQMuFL3fcXQPzaxnnE4DluBXjRvFkSR5wI=;
+ b=ODf6itJ3fnWbDlharuS4Wj+1XeDkgwC8SSXHTy+CeDfYmS8y1a4+OuduJ3MChaifTP
+ GgeKZkeLiaUbLvIOiC9S9XqAmkICJYYBhlnJYHE/QKU/OA30SExGMtA3ucg3zDbW//2+
+ KcKkk1wVoLLSvWfWDVDOeUNBKIGDSsrz3/GoE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=6tq8Smct1MJoJumDXNBJuUP3GtNG4JxmFE/qpsP7bjw=;
- b=m+NS5xRruy1kc5kOSmmvnHG0Lzvh/nphvMv/2yf9aB4p5ZjmzR48J6X1833lZnEW1+
- MwwWREwqEHoFzxRQoDzsWXf02ylfCJaBYiYGpEdM5kJsDWSUl4xNpKw93yUhcSW1wgS+
- riezCgGHsN+nAiXeZE54qeWfY7+EsuXTd4McU0uIIrvTF1VRkl6khmDxYj8EQ1C5v06/
- ipWU+xIY4cIge+A8I3KCfpECqY6jICRhRGx6OyZZNyjhtWiTbnpw/Co2rWhjlhVq5NL4
- 7+2G2G7hnFWFn9kPpEiOjAk4dBEKQ6VOnICL5QyzrpLINYIL32yJ9m+O566gzLQk91US
- 3K+Q==
-X-Gm-Message-State: AOAM530LAZNEaFQgNksmNA54EqRah4B4SpOaneHOJvf6s4/ukzUVttom
- cz0SANPK6gvuHycQFHuvsN9N2Q==
-X-Google-Smtp-Source: ABdhPJy3Tc+8RM6gjALdeDYn0+OEHx7+hZmSpzgoaXo+0bD0SJuiR90J8Wo5ZozKTZynXWI53KX1iQ==
-X-Received: by 2002:a5d:58ec:: with SMTP id f12mr40034247wrd.24.1634135465534; 
- Wed, 13 Oct 2021 07:31:05 -0700 (PDT)
+ bh=iKQ96m1zzkQMuFL3fcXQPzaxnnE4DluBXjRvFkSR5wI=;
+ b=OTz6+/nnkYyvzU2nfrW4Jm4Bf+ASEjc9rmAIuQG65dV7R/9rnl/XNLkLRLHw2VBxiF
+ 3A4w/HMBYgC2W46PVhfKX1nfvGzugN2RivBVCd2wTWVMyFBNWmMMnAHgDkanPpjpUwkA
+ tQMO1JMiQaUuKjqBfohGT2HKEk1sWe4j92irvnSkcKWrXnRVoRlAyxGhLy/FrJZoDLje
+ hkxpAclup2n9McTdsp8zN+VcMDWC8BQt0HwUaWjfFQulSsvrN2avJxQ3lovW84svrGo/
+ ewJPVIbUP3o+QUgA6lY7YPnTDOcTp8/n0Wg6dcTI6v8qqxt+YHlsoQYnKRCibJiFkP5P
+ QdmQ==
+X-Gm-Message-State: AOAM531cphxTwaNuizi5Vvsob5FTmUkAC8yLG8v8IN/vSzNPzMkBnS19
+ tQpPUVUAMipigoW9HxbiaQhn5g==
+X-Google-Smtp-Source: ABdhPJxOOVUWtj4KaDAa/dBN+HmwBExqoN7dFMBZ9hrJ2SWC4H73/jm3/GoodLipJP6b1uo6WHOAGQ==
+X-Received: by 2002:a7b:c114:: with SMTP id w20mr13006075wmi.143.1634135535984; 
+ Wed, 13 Oct 2021 07:32:15 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l124sm5795580wml.8.2021.10.13.07.31.04
+ by smtp.gmail.com with ESMTPSA id b19sm5756585wmb.1.2021.10.13.07.32.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Oct 2021 07:31:05 -0700 (PDT)
-Date: Wed, 13 Oct 2021 16:31:03 +0200
+ Wed, 13 Oct 2021 07:32:15 -0700 (PDT)
+Date: Wed, 13 Oct 2021 16:32:13 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
 Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
  linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  daniel@ffwll.ch, tvrtko.ursulin@linux.intel.com
-Message-ID: <YWbtpxmI1BAtRvey@phenom.ffwll.local>
+Message-ID: <YWbt7cLOLDSQhkOV@phenom.ffwll.local>
 References: <20211005113742.1101-1-christian.koenig@amd.com>
- <20211005113742.1101-28-christian.koenig@amd.com>
+ <20211005113742.1101-29-christian.koenig@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211005113742.1101-28-christian.koenig@amd.com>
+In-Reply-To: <20211005113742.1101-29-christian.koenig@amd.com>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 27/28] drm/etnaviv: use new iterator in
- etnaviv_gem_describe
+Subject: Re: [Intel-gfx] [PATCH 28/28] drm/etnaviv: replace
+ dma_resv_get_excl_unlocked
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,81 +75,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 05, 2021 at 01:37:41PM +0200, Christian König wrote:
-> Instead of hand rolling the logic.
+On Tue, Oct 05, 2021 at 01:37:42PM +0200, Christian König wrote:
+> We certainly hold the reservation lock here, no need for the RCU dance.
 > 
 > Signed-off-by: Christian König <christian.koenig@amd.com>
 > ---
->  drivers/gpu/drm/etnaviv/etnaviv_gem.c | 31 ++++++++++-----------------
->  1 file changed, 11 insertions(+), 20 deletions(-)
+>  drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem.c b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> index 8f1b5af47dd6..0eeb33de2ff4 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> @@ -428,19 +428,17 @@ int etnaviv_gem_wait_bo(struct etnaviv_gpu *gpu, struct drm_gem_object *obj,
->  static void etnaviv_gem_describe_fence(struct dma_fence *fence,
->  	const char *type, struct seq_file *m)
->  {
-> -	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c b/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+> index 4dd7d9d541c0..7e17bc2b5df1 100644
+> --- a/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+> @@ -195,7 +195,7 @@ static int submit_fence_sync(struct etnaviv_gem_submit *submit)
+>  			if (ret)
+>  				return ret;
+>  		} else {
+> -			bo->excl = dma_resv_get_excl_unlocked(robj);
 
-Yay for removing open-coded tests like this. Drivers really should have no
-business digging around in fence->flags (i915 is terrible in this regard
-unfortunately).
+Maybe have that in the series to sunset dma_resv_get_excl_unlocked()? Just
+so it makes a bit more sense from a motivation pov. Or explain that in the
+commit message.
 
-> -		seq_printf(m, "\t%9s: %s %s seq %llu\n",
-> -			   type,
-> -			   fence->ops->get_driver_name(fence),
-> -			   fence->ops->get_timeline_name(fence),
-> -			   fence->seqno);
-> +	seq_printf(m, "\t%9s: %s %s seq %llu\n", type,
-> +		   fence->ops->get_driver_name(fence),
-> +		   fence->ops->get_timeline_name(fence),
-> +		   fence->seqno);
->  }
->  
->  static void etnaviv_gem_describe(struct drm_gem_object *obj, struct seq_file *m)
->  {
->  	struct etnaviv_gem_object *etnaviv_obj = to_etnaviv_bo(obj);
->  	struct dma_resv *robj = obj->resv;
-> -	struct dma_resv_list *fobj;
-> +	struct dma_resv_iter cursor;
->  	struct dma_fence *fence;
->  	unsigned long off = drm_vma_node_start(&obj->vma_node);
->  
-> @@ -449,21 +447,14 @@ static void etnaviv_gem_describe(struct drm_gem_object *obj, struct seq_file *m)
->  			obj->name, kref_read(&obj->refcount),
->  			off, etnaviv_obj->vaddr, obj->size);
->  
-> -	rcu_read_lock();
-> -	fobj = dma_resv_shared_list(robj);
-> -	if (fobj) {
-> -		unsigned int i, shared_count = fobj->shared_count;
-> -
-> -		for (i = 0; i < shared_count; i++) {
-> -			fence = rcu_dereference(fobj->shared[i]);
-> +	dma_resv_iter_begin(&cursor, robj, true);
-> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		if (dma_resv_iter_is_exclusive(&cursor))
-> +			etnaviv_gem_describe_fence(fence, "Exclusive", m);
-> +		else
->  			etnaviv_gem_describe_fence(fence, "Shared", m);
-> -		}
->  	}
-> -
-> -	fence = dma_resv_excl_fence(robj);
-> -	if (fence)
-> -		etnaviv_gem_describe_fence(fence, "Exclusive", m);
-> -	rcu_read_unlock();
-> +	dma_resv_iter_end(&cursor);
+Anyway looks correct.
 
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Please make sure it compiles on arm before pushing :-)
-
->  }
+> +			bo->excl = dma_fence_get(dma_resv_excl_fence(robj));
+>  		}
 >  
->  void etnaviv_gem_describe_objects(struct etnaviv_drm_private *priv,
+>  	}
 > -- 
 > 2.25.1
 > 
