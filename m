@@ -2,42 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F2E42BBAC
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 11:32:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6D342BC86
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 12:12:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 708B26E861;
-	Wed, 13 Oct 2021 09:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 134166E0BC;
+	Wed, 13 Oct 2021 10:12:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C307C89C96
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 09:32:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="214540096"
-X-IronPort-AV: E=Sophos;i="5.85,370,1624345200"; d="scan'208";a="214540096"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2021 02:32:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,370,1624345200"; d="scan'208";a="460715354"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 13 Oct 2021 02:32:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 13 Oct 2021 12:32:43 +0300
-Date: Wed, 13 Oct 2021 12:32:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Yakui Zhao <yakui.zhao@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <YWanuyKbmIDWOGZ3@intel.com>
-References: <20211013010046.91858-1-jose.souza@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16F76E0BC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 10:12:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="224834874"
+X-IronPort-AV: E=Sophos;i="5.85,370,1624345200"; d="scan'208";a="224834874"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 03:12:08 -0700
+X-IronPort-AV: E=Sophos;i="5.85,370,1624345200"; d="scan'208";a="491397125"
+Received: from araghuw-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.251.208.234])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 03:12:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Wed, 13 Oct 2021 13:11:58 +0300
+Message-Id: <cover.1634119597.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211013010046.91858-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Remove memory frequency
- calculation
+Subject: [Intel-gfx] [PATCH 0/1] drm/i915: vlv sideband
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,128 +49,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 12, 2021 at 06:00:46PM -0700, JosÈ Roberto de Souza wrote:
-> This memory frequency calculated is only used to check if it is zero,
-> what is not useful as it will never actually be zero.
-> 
-> Also the calculation is wrong, we should be checking other bit to
-> select the appropriate frequency multiplier while this code is stuck
-> with a fixed multiplier.
+Three main ideas here:
 
-I don't think the alternate ref clock was ever used.
-At least I don't recall ever seeing it.
+- vlv sideband only has the name "sideband" in common with the rest of
+  intel_sideband.[ch]
 
-The real problem with this is that IIRC this is just the last
-requested frequency. So on a system with SAGV this will
-change dynamically.
+- we may need better abstractions on the <asm/iosf_mbi.h> dependency,
+  this should help a little bit; maybe vlv_sideband.[ch] can be turned
+  into that abstraction layer
 
-> 
-> So here dropping it as whole.
+- we probably want to split out sideband registers from i915_reg.h, and
+  they could go to vlv_sideband.h or vlv_sideband_reg.h or something
 
-We have a second copy of this in gen6_update_ring_freq(). Rather
-than removing one and leaving another potentially broken one behind we
-should probably just consolidate on a single implementation.
+BR,
+Jani.
 
-> 
-> v2:
-> - Also remove memory frequency calculation for gen9 LP platforms
-> 
-> Cc: Yakui Zhao <yakui.zhao@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Fixes: f8112cb9574b ("drm/i915/gen11+: Only load DRAM information from pcode")
-> Signed-off-by: JosÈ Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg.h   |  8 --------
->  drivers/gpu/drm/i915/intel_dram.c | 30 ++----------------------------
->  2 files changed, 2 insertions(+), 36 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index a897f4abea0c3..8825f7ac477b6 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -11109,12 +11109,6 @@ enum skl_power_gate {
->  #define  DC_STATE_DEBUG_MASK_CORES	(1 << 0)
->  #define  DC_STATE_DEBUG_MASK_MEMORY_UP	(1 << 1)
->  
-> -#define BXT_P_CR_MC_BIOS_REQ_0_0_0	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x7114)
-> -#define  BXT_REQ_DATA_MASK			0x3F
-> -#define  BXT_DRAM_CHANNEL_ACTIVE_SHIFT		12
-> -#define  BXT_DRAM_CHANNEL_ACTIVE_MASK		(0xF << 12)
-> -#define  BXT_MEMORY_FREQ_MULTIPLIER_HZ		133333333
-> -
->  #define BXT_D_CR_DRP0_DUNIT8			0x1000
->  #define BXT_D_CR_DRP0_DUNIT9			0x1200
->  #define  BXT_D_CR_DRP0_DUNIT_START		8
-> @@ -11145,9 +11139,7 @@ enum skl_power_gate {
->  #define  BXT_DRAM_TYPE_LPDDR4			(0x2 << 22)
->  #define  BXT_DRAM_TYPE_DDR4			(0x4 << 22)
->  
-> -#define SKL_MEMORY_FREQ_MULTIPLIER_HZ		266666666
->  #define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5E04)
-> -#define  SKL_REQ_DATA_MASK			(0xF << 0)
->  #define  DG1_GEAR_TYPE				REG_BIT(16)
->  
->  #define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
-> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-> index 30a0cab5eff46..0adadfd9528aa 100644
-> --- a/drivers/gpu/drm/i915/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/intel_dram.c
-> @@ -244,7 +244,6 @@ static int
->  skl_get_dram_info(struct drm_i915_private *i915)
->  {
->  	struct dram_info *dram_info = &i915->dram_info;
-> -	u32 mem_freq_khz, val;
->  	int ret;
->  
->  	dram_info->type = skl_get_dram_type(i915);
-> @@ -255,17 +254,6 @@ skl_get_dram_info(struct drm_i915_private *i915)
->  	if (ret)
->  		return ret;
->  
-> -	val = intel_uncore_read(&i915->uncore,
-> -				SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
-> -	mem_freq_khz = DIV_ROUND_UP((val & SKL_REQ_DATA_MASK) *
-> -				    SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
-> -
-> -	if (dram_info->num_channels * mem_freq_khz == 0) {
-> -		drm_info(&i915->drm,
-> -			 "Couldn't get system memory bandwidth\n");
-> -		return -EINVAL;
-> -	}
-> -
->  	return 0;
->  }
->  
-> @@ -350,24 +338,10 @@ static void bxt_get_dimm_info(struct dram_dimm_info *dimm, u32 val)
->  static int bxt_get_dram_info(struct drm_i915_private *i915)
->  {
->  	struct dram_info *dram_info = &i915->dram_info;
-> -	u32 dram_channels;
-> -	u32 mem_freq_khz, val;
-> -	u8 num_active_channels, valid_ranks = 0;
-> +	u32 val;
-> +	u8 valid_ranks = 0;
->  	int i;
->  
-> -	val = intel_uncore_read(&i915->uncore, BXT_P_CR_MC_BIOS_REQ_0_0_0);
-> -	mem_freq_khz = DIV_ROUND_UP((val & BXT_REQ_DATA_MASK) *
-> -				    BXT_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
-> -
-> -	dram_channels = val & BXT_DRAM_CHANNEL_ACTIVE_MASK;
-> -	num_active_channels = hweight32(dram_channels);
-> -
-> -	if (mem_freq_khz * num_active_channels == 0) {
-> -		drm_info(&i915->drm,
-> -			 "Couldn't get system memory bandwidth\n");
-> -		return -EINVAL;
-> -	}
-> -
->  	/*
->  	 * Now read each DUNIT8/9/10/11 to check the rank of each dimms.
->  	 */
-> -- 
-> 2.33.0
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+
+
+Jani Nikula (1):
+  drm/i915: split out vlv sideband to a separate file
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   2 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |   1 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   1 +
+ .../drm/i915/display/intel_display_debugfs.c  |   1 -
+ .../drm/i915/display/intel_display_power.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   1 -
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |   5 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c    |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |   1 +
+ drivers/gpu/drm/i915/gt/intel_rps.c           |   1 +
+ drivers/gpu/drm/i915/i915_debugfs.c           |   1 -
+ drivers/gpu/drm/i915/i915_sysfs.c             |   1 -
+ drivers/gpu/drm/i915/intel_pm.c               |   1 +
+ drivers/gpu/drm/i915/intel_sideband.c         | 257 -----------------
+ drivers/gpu/drm/i915/intel_sideband.h         | 110 --------
+ drivers/gpu/drm/i915/vlv_sideband.c           | 266 ++++++++++++++++++
+ drivers/gpu/drm/i915/vlv_sideband.h           | 123 ++++++++
+ 22 files changed, 405 insertions(+), 382 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/vlv_sideband.c
+ create mode 100644 drivers/gpu/drm/i915/vlv_sideband.h
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.30.2
+
