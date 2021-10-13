@@ -1,35 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9420042B29D
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 04:27:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D1042B2EC
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Oct 2021 04:54:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EC3C6E063;
-	Wed, 13 Oct 2021 02:27:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEA946E05F;
+	Wed, 13 Oct 2021 02:54:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CDA116E05F;
- Wed, 13 Oct 2021 02:27:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C614BAA0EA;
- Wed, 13 Oct 2021 02:27:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3310813929872043835=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA6FC6E05F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 02:54:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10135"; a="250743908"
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="250743908"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 19:54:33 -0700
+X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; d="scan'208";a="659358982"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2021 19:54:32 -0700
+Date: Tue, 12 Oct 2021 19:54:30 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Yakui Zhao <yakui.zhao@intel.com>
+Message-ID: <20211013025430.GB602200@mdroper-desk1.amr.corp.intel.com>
+References: <20211013010046.91858-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Oct 2021 02:27:14 -0000
-Message-ID: <163409203477.10251.845363347828581121@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211013005625.54770-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20211013005625.54770-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/pmu=3A_Add_a_name_to_the_e?=
- =?utf-8?q?xeclists_stats?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211013010046.91858-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Remove memory frequency
+ calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,161 +47,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3310813929872043835==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Oct 12, 2021 at 06:00:46PM -0700, José Roberto de Souza wrote:
+> This memory frequency calculated is only used to check if it is zero,
+> what is not useful as it will never actually be zero.
+> 
+> Also the calculation is wrong, we should be checking other bit to
+> select the appropriate frequency multiplier while this code is stuck
+> with a fixed multiplier.
+> 
+> So here dropping it as whole.
+> 
+> v2:
+> - Also remove memory frequency calculation for gen9 LP platforms
+> 
+> Cc: Yakui Zhao <yakui.zhao@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Fixes: f8112cb9574b ("drm/i915/gen11+: Only load DRAM information from pcode")
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 
-== Series Details ==
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Series: series starting with [1/2] drm/i915/pmu: Add a name to the execlists stats
-URL   : https://patchwork.freedesktop.org/series/95750/
-State : failure
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h   |  8 --------
+>  drivers/gpu/drm/i915/intel_dram.c | 30 ++----------------------------
+>  2 files changed, 2 insertions(+), 36 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index a897f4abea0c3..8825f7ac477b6 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -11109,12 +11109,6 @@ enum skl_power_gate {
+>  #define  DC_STATE_DEBUG_MASK_CORES	(1 << 0)
+>  #define  DC_STATE_DEBUG_MASK_MEMORY_UP	(1 << 1)
+>  
+> -#define BXT_P_CR_MC_BIOS_REQ_0_0_0	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x7114)
+> -#define  BXT_REQ_DATA_MASK			0x3F
+> -#define  BXT_DRAM_CHANNEL_ACTIVE_SHIFT		12
+> -#define  BXT_DRAM_CHANNEL_ACTIVE_MASK		(0xF << 12)
+> -#define  BXT_MEMORY_FREQ_MULTIPLIER_HZ		133333333
+> -
+>  #define BXT_D_CR_DRP0_DUNIT8			0x1000
+>  #define BXT_D_CR_DRP0_DUNIT9			0x1200
+>  #define  BXT_D_CR_DRP0_DUNIT_START		8
+> @@ -11145,9 +11139,7 @@ enum skl_power_gate {
+>  #define  BXT_DRAM_TYPE_LPDDR4			(0x2 << 22)
+>  #define  BXT_DRAM_TYPE_DDR4			(0x4 << 22)
+>  
+> -#define SKL_MEMORY_FREQ_MULTIPLIER_HZ		266666666
+>  #define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5E04)
+> -#define  SKL_REQ_DATA_MASK			(0xF << 0)
+>  #define  DG1_GEAR_TYPE				REG_BIT(16)
+>  
+>  #define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
+> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
+> index 30a0cab5eff46..0adadfd9528aa 100644
+> --- a/drivers/gpu/drm/i915/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/intel_dram.c
+> @@ -244,7 +244,6 @@ static int
+>  skl_get_dram_info(struct drm_i915_private *i915)
+>  {
+>  	struct dram_info *dram_info = &i915->dram_info;
+> -	u32 mem_freq_khz, val;
+>  	int ret;
+>  
+>  	dram_info->type = skl_get_dram_type(i915);
+> @@ -255,17 +254,6 @@ skl_get_dram_info(struct drm_i915_private *i915)
+>  	if (ret)
+>  		return ret;
+>  
+> -	val = intel_uncore_read(&i915->uncore,
+> -				SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
+> -	mem_freq_khz = DIV_ROUND_UP((val & SKL_REQ_DATA_MASK) *
+> -				    SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
+> -
+> -	if (dram_info->num_channels * mem_freq_khz == 0) {
+> -		drm_info(&i915->drm,
+> -			 "Couldn't get system memory bandwidth\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	return 0;
+>  }
+>  
+> @@ -350,24 +338,10 @@ static void bxt_get_dimm_info(struct dram_dimm_info *dimm, u32 val)
+>  static int bxt_get_dram_info(struct drm_i915_private *i915)
+>  {
+>  	struct dram_info *dram_info = &i915->dram_info;
+> -	u32 dram_channels;
+> -	u32 mem_freq_khz, val;
+> -	u8 num_active_channels, valid_ranks = 0;
+> +	u32 val;
+> +	u8 valid_ranks = 0;
+>  	int i;
+>  
+> -	val = intel_uncore_read(&i915->uncore, BXT_P_CR_MC_BIOS_REQ_0_0_0);
+> -	mem_freq_khz = DIV_ROUND_UP((val & BXT_REQ_DATA_MASK) *
+> -				    BXT_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
+> -
+> -	dram_channels = val & BXT_DRAM_CHANNEL_ACTIVE_MASK;
+> -	num_active_channels = hweight32(dram_channels);
+> -
+> -	if (mem_freq_khz * num_active_channels == 0) {
+> -		drm_info(&i915->drm,
+> -			 "Couldn't get system memory bandwidth\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	/*
+>  	 * Now read each DUNIT8/9/10/11 to check the rank of each dimms.
+>  	 */
+> -- 
+> 2.33.0
+> 
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10728 -> Patchwork_21325
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_21325 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21325, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21325:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-rkl-guc/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/fi-rkl-guc/igt@debugfs_test@read_all_entries.html
-
-  * igt@runner@aborted:
-    - fi-rkl-guc:         NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/fi-rkl-guc/igt@runner@aborted.html
-
-  
-
-
-Participating hosts (41 -> 2)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_21325 prevented too many machines from booting.
-
-  Missing    (39): fi-kbl-soraka fi-rkl-11600 fi-bdw-gvtdvm fi-icl-u2 fi-apl-guc fi-snb-2520m fi-pnv-d510 fi-icl-y fi-skl-6600u fi-snb-2600 fi-cml-u2 fi-bxt-dsi fi-bdw-5557u fi-glk-dsi fi-bwr-2160 fi-ilk-650 fi-kbl-7500u fi-ctg-p8600 fi-hsw-4770 fi-ivb-3770 fi-elk-e7500 fi-bsw-nick fi-skl-6700k2 fi-kbl-r fi-kbl-7567u fi-ilk-m540 fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-ehl-2 fi-hsw-gt1 fi-jsl-1 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-cfl-guc fi-cfl-8109u fi-kbl-8809g fi-bsw-kefka 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10728 -> Patchwork_21325
-
-  CI-20190529: 20190529
-  CI_DRM_10728: 82a9f298afec66c882e710078138891826ce5e22 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21325: 1fa082d603c915029148c7c034a3f4a2f9258d03 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1fa082d603c9 drm/i915/pmu: Connect engine busyness stats from GuC to pmu
-d9aca49cd0a6 drm/i915/pmu: Add a name to the execlists stats
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/index.html
-
---===============3310813929872043835==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/pmu: Add a name to the execlists stats</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95750/">https://patchwork.freedesktop.org/series/95750/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10728 -&gt; Patchwork_21325</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21325 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21325, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21325:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10728/fi-rkl-guc/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/fi-rkl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21325/fi-rkl-guc/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 2)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_21325 prevented too many machines from booting.</p>
-<p>Missing    (39): fi-kbl-soraka fi-rkl-11600 fi-bdw-gvtdvm fi-icl-u2 fi-apl-guc fi-snb-2520m fi-pnv-d510 fi-icl-y fi-skl-6600u fi-snb-2600 fi-cml-u2 fi-bxt-dsi fi-bdw-5557u fi-glk-dsi fi-bwr-2160 fi-ilk-650 fi-kbl-7500u fi-ctg-p8600 fi-hsw-4770 fi-ivb-3770 fi-elk-e7500 fi-bsw-nick fi-skl-6700k2 fi-kbl-r fi-kbl-7567u fi-ilk-m540 fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-ehl-2 fi-hsw-gt1 fi-jsl-1 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-cfl-guc fi-cfl-8109u fi-kbl-8809g fi-bsw-kefka </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10728 -&gt; Patchwork_21325</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10728: 82a9f298afec66c882e710078138891826ce5e22 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6242: 721fd85ee95225ed5df322f7182bdfa9b86a3e68 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21325: 1fa082d603c915029148c7c034a3f4a2f9258d03 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1fa082d603c9 drm/i915/pmu: Connect engine busyness stats from GuC to pmu<br />
-d9aca49cd0a6 drm/i915/pmu: Add a name to the execlists stats</p>
-
-</body>
-</html>
-
---===============3310813929872043835==--
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
