@@ -2,73 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF26342D1F2
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 07:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B8D042D3A3
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 09:30:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24C456E12A;
-	Thu, 14 Oct 2021 05:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7F986EC1E;
+	Thu, 14 Oct 2021 07:30:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D06D16E12B
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 05:42:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1634190146;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=VY03GubPFVDdkvSR8SdXXqCAVaPVrTzhj7NluBAU388=;
- b=McaNinSH1tySYbnWs6zNh2hcJPkwECpsneQ6/5gd8pYHN4HrNbVH15ykF63fu4onpNOKYJ
- 5uOp1GcYs7ssnUg2I0b1rO/sBz3LQtwnIuQCVb1Cl/5LNWniRaP2Dh9vVO/kneyz17FvF9
- 2X6qvjSviOIcKMvcRWrOYlof/DHlivA=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-415-bxpE_Z0_P8WwkkfWJDivGg-1; Thu, 14 Oct 2021 01:42:21 -0400
-X-MC-Unique: bxpE_Z0_P8WwkkfWJDivGg-1
-Received: by mail-wr1-f71.google.com with SMTP id
- c2-20020adfa302000000b0015e4260febdso3626238wrb.20
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 22:42:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=VY03GubPFVDdkvSR8SdXXqCAVaPVrTzhj7NluBAU388=;
- b=l2XpIB5wKdyzTOB/aYGgEvlFSeeJCDL/bzMRSAkWmT7XzMczkOqm8Lmct1IwajSHHc
- oKWfebKUINa7O2Pzn+59WbzZXF2dQoMkuyqN0/zSw6zh+GM5rxzAkMMD/89ks2blvzK2
- 3rsH+9v5iIdbcrUebAQdb7QJt1fhx1/e3RcBhawkKUJwVVhAQ2E31+xfFvmKDToXvKak
- lDJbK/3CaDv5+Gm76ltsXoiz5qNFGmMKL4A5ODzTVQ5lL+c7/1T+6cS3cNcPeJD1Fdee
- k0Jxnl8oqTM0vrhgZOIFvyzd3qla/IIRQuaedKFj2q4E0SZBME/zoaIHZ62SF5itdkuh
- 4JNw==
-X-Gm-Message-State: AOAM531q7rVvUl/v/p/U3QzzN7DcWhLVHOR8Nuadtb30d8pZ4PbstwW4
- vobcRmHIW6yxgZnqxpCFz5lqAqbdxal3chJ9pQetTsJcA9GX7zcl4UYXfOzJ1FAolq4DhoIFs/I
- bO/Gb/YfgkYeoKGoFb2ptKdu6SCo0vfEp7QWgEAgruZfr
-X-Received: by 2002:adf:a29c:: with SMTP id s28mr4104546wra.116.1634190140691; 
- Wed, 13 Oct 2021 22:42:20 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwQovMuuTmLhj35z2utXaPHJV063AsII3FyccF8wXMMb7viJYHRoQqfSWAqErXYbz1US8DF/BzbxkOaXmWnGMg=
-X-Received: by 2002:adf:a29c:: with SMTP id s28mr4104529wra.116.1634190140520; 
- Wed, 13 Oct 2021 22:42:20 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90F626EC1E;
+ Thu, 14 Oct 2021 07:29:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="227578244"
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="227578244"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 00:29:59 -0700
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="442631628"
+Received: from lapeders-mobl.ger.corp.intel.com (HELO [10.249.254.221])
+ ([10.249.254.221])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 00:29:57 -0700
+Message-ID: <cae33057-8218-6746-2d82-e8fda1e5d14d@linux.intel.com>
+Date: Thu, 14 Oct 2021 09:29:55 +0200
 MIME-Version: 1.0
-References: <20211012131836.4e17a031@canb.auug.org.au>
- <202110141102364478237@zte.com.cn>
-In-Reply-To: <202110141102364478237@zte.com.cn>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Thu, 14 Oct 2021 07:42:09 +0200
-Message-ID: <CACO55tsyrnta4z=K_vARsQTTD1t4o8sHA4Svr=Z+sDnvv0jHCQ@mail.gmail.com>
-To: Luo penghao <luo.penghao@zte.com.cn>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Content-Language: en-US
+To: Dave Airlie <airlied@gmail.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  dri-devel <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, 
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+References: <20211008133530.664509-1-thomas.hellstrom@linux.intel.com>
+ <CAPM=9tzt3wr5=ZdDGqH6TTOpKqp_-Wbxw+LBMK=f3Nm=og_14Q@mail.gmail.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <CAPM=9tzt3wr5=ZdDGqH6TTOpKqp_-Wbxw+LBMK=f3Nm=og_14Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 0/6] drm/i915: Failsafe migration blits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,39 +55,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 14, 2021 at 5:02 AM <luo.penghao@zte.com.cn> wrote:
->
-> Hi,
->
-> I review the code.
->
-> It seems I forget to delete the definition of the variable "inst",I'm sry for that.: (
->
-> I'll submit another patch soon.
->
+Hi, Dave,
 
-I already wrote the patch and pushed it:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit?id=381ba6a6baf104b572379c6b2deab884555104d4
-
+On 10/14/21 03:50, Dave Airlie wrote:
+> On Fri, 8 Oct 2021 at 23:36, Thomas Hellström
+> <thomas.hellstrom@linux.intel.com> wrote:
+>> This patch series introduces failsafe migration blits.
+>> The reason for this seemingly strange concept is that if the initial
+>> clearing or readback of LMEM fails for some reason, and we then set up
+>> either GPU- or CPU ptes to the allocated LMEM, we can expose old
+>> contents from other clients.
+> Can we enumerate "for some reason" here?
 >
-> > Hi all,
-> >
-> > After merging the drm-misc tree, today's linux-next build (x86_64
-> > allmodconfig) failed like this:
-> >
-> > drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c: In function 'gp100_vmm_fault_cancel':
-> > drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c:491:6: error: unused variable 'inst' [-Werror=unused-variable]
-> >   491 |  u32 inst, aper;
-> >       |      ^~~~
-> > cc1: all warnings being treated as errors
-> >
-> > Caused by commit
-> >
-> >   404046cf4805 ("drm/nouveau/mmu/gp100-: drop unneeded assignment in the if condition.")
-> >
-> > I have used the drm-misc tree from next-20211011 for today.
-> >
-> > --
-> > Cheers,
-> > Stephen Rothwell
+> This feels like "security" with no defined threat model. Maybe if the
+> cover letter contains more details on the threat model it would make
+> more sense.
 
+TBH, I'd be quite happy if we could find a way to skip this series (or 
+even a reworked version) completely.
+
+Assuming that the migration request setup code is bug-free enough to not 
+never cause an engine reset, there are at least two ways I can see the 
+migration fail:
+
+1) The migration fence we will be depending on when fully async 
+(ttm->moving) may signal with error after the following:
+malicious_batchbuffer_causing_reset -> async eviction -> allocation -> 
+async clearing
+
+2) malicious_batchbuffers_causing_gt_wedge submitted to copy engine -> 
+migration_blit submitted to  copy_engine. If wedging the gt, the 
+migration blit will never be executed, fence->error will end up with 
+-EIO but TTM will happily fault the pages to user-space.
+
+Now we had other versions around looking at the ttm_bo->moving errors at 
+vma binding and cpu faulting, but this was the direction chosen after 
+discussions with our arch team. Either way we'd probably want to block 
+the error propagation after async_eviction.
+
+I can of course add 1) and 2) above to the cover-letter, but if you have 
+any additional input on the best way to handle this, that'd be appreciated.
+
+Thanks,
+
+Thomas
+
+
+
+
+
+> Dave.
