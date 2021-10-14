@@ -2,72 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECFC42E22A
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 21:46:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6665B42E331
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 23:22:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A92A66EC3A;
-	Thu, 14 Oct 2021 19:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0466E201;
+	Thu, 14 Oct 2021 21:21:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F29DF6EC3A;
- Thu, 14 Oct 2021 19:46:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="208577954"
-X-IronPort-AV: E=Sophos;i="5.85,373,1624345200"; d="scan'208";a="208577954"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2021 12:46:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,373,1624345200"; d="scan'208";a="564047317"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP; 14 Oct 2021 12:46:42 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 14 Oct 2021 12:46:41 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 15 Oct 2021 01:16:39 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Fri, 15 Oct 2021 01:16:39 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-CC: Simon Ser <contact@emersion.fr>, "daniel.vetter@ffwll.ch"
- <daniel.vetter@ffwll.ch>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "harry.wentland@amd.com"
- <harry.wentland@amd.com>, "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "brian.starkey@arm.com"
- <brian.starkey@arm.com>, "sebastian@sebastianwick.net"
- <sebastian@sebastianwick.net>, "Shashank.Sharma@amd.com"
- <Shashank.Sharma@amd.com>
-Thread-Topic: [RFC v2 01/22] drm: RFC for Plane Color Hardware Pipeline
-Thread-Index: AQHXo2JKczsaELBrPkmGEyuwyN6iXqvPBXOAgAABXoCAABehgIAAz5GggAB2HICAArz5UA==
-Date: Thu, 14 Oct 2021 19:46:39 +0000
-Message-ID: <5a4da625945c40b8bfb2537ca134a79a@intel.com>
-References: <20210906213904.27918-1-uma.shankar@intel.com>
- <20210906213904.27918-2-uma.shankar@intel.com>
- <20211006155559.606521de@eldfell>
- <vBmviRgvVBT-q8HSsJLnRc5CfOMr5rFRj6oeIqwh8QJSicQzQxu8_ORxE3OffANSSyF3wUF9_QFRk1uzrggdx_dcI-1WGzmruI4kIFdZQcU=@emersion.fr>
- <20211012150011.6ca63157@eldfell>
- <917a5ffa4e00446a8469cf571458db7b@intel.com>
- <20211013102532.32da12c4@eldfell>
-In-Reply-To: <20211013102532.32da12c4@eldfell>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27EE26E201
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 21:21:57 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id n8so32457071lfk.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 14:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=kQwUmmPeJ8Hce507ICCeYLH5aPrCZw/ZIJrPidgd9ZE=;
+ b=HMN7qIWonn2K5R4zTQ2lDey6lWwmzqJlSStqviM7qxSdzciKyT9pSF7PvGKF5nZtKe
+ bIzc4Wim9DKWdo0s7t/S4Stw+bjX4NTSbQrEJXGloTpUc6lXYgElEKn+fmaT+mtRsmGm
+ xGbMRdPYm9U4MsGWGEUCFlmSokKe85X36P7IgBgCqzKY4ZNddAphaTGb0qrQCavQXL1W
+ rKbTCLqs/PIp8yRaN2vjKJ7nxoHhOh98POPoAqbsDljCp1c04VsHN4U+di73gsd3JdGJ
+ EMi0ZmE1nolIZ2ZQmA0xOep6o/wongsjBW0ShfD0eCV2it/KczUx6S47vV01tPsfoEzY
+ f14g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=kQwUmmPeJ8Hce507ICCeYLH5aPrCZw/ZIJrPidgd9ZE=;
+ b=Y1EPWOECkaJGtmRTukujTOztFPhkl3AwmHLXovVggqWeKOTbvLZw48gLQ1eq5ZmCfl
+ pGsr7zHLjObch42MwbJOk/y468ZS4Fxgi4SvE8ySpHAEKesWlwsAe0blzOxtjIbWU1Xe
+ xTqqGTeYany2MdN1GHpsjtaELhuPASpDJ33Ozq6KOZzknMV1AZtV9CDnuTVdtpfaOv5V
+ sQSc0ySJdEspuvUMoG43clGWp9Vm8xTGd2g9gFmzqLlvxte7xqykEqcVwjHxgOE6Z29t
+ c4ivKsx0RY3SoIWI22QBaUW3e7CQ3Khtf8MbyoybwEsgfjLqdXsWlsSVtGZesRY4vqTj
+ ZT4w==
+X-Gm-Message-State: AOAM53045KucZsQmz5dHP2sp2RXpTIfjjQQTL466lG3/WqCiQz3ozHc8
+ K/0BZN7C5HrPThr879G/+wmDzJXM45ThhcsY9TjXCg==
+X-Google-Smtp-Source: ABdhPJzcKBq6vCrkR8ENl9gj9IqS485yrxDyz2P7VIjz8eeAT/1thN0HtZ0Fi2grgZQEmwtsIyFcjiem2P07eTN9XKg=
+X-Received: by 2002:a2e:461a:: with SMTP id t26mr8609302lja.198.1634246515116; 
+ Thu, 14 Oct 2021 14:21:55 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC v2 01/22] drm: RFC for Plane Color Hardware
- Pipeline
+References: <20211014211916.3550122-1-nathan@kernel.org>
+In-Reply-To: <20211014211916.3550122-1-nathan@kernel.org>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Thu, 14 Oct 2021 14:21:43 -0700
+Message-ID: <CAKwvOdmSFP98Mc1u2b+=_Dux9eB_yumRvxOx7UTXuyXOYzG3uA@mail.gmail.com>
+To: Nathan Chancellor <nathan@kernel.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev, 
+ =?UTF-8?B?RMOhdmlkIEJvbHZhbnNrw70=?= <david.bolvansky@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Avoid bitwise vs logical OR
+ warning in snb_wm_latency_quirk()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,79 +73,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Oct 14, 2021 at 2:19 PM Nathan Chancellor <nathan@kernel.org> wrote=
+:
+>
+> A new warning in clang points out a place in this file where a bitwise
+> OR is being used with boolean types:
+>
+> drivers/gpu/drm/i915/intel_pm.c:3066:12: warning: use of bitwise '|' with=
+ boolean operands [-Wbitwise-instead-of-logical]
+>         changed =3D ilk_increase_wm_latency(dev_priv, dev_priv->wm.pri_la=
+tency, 12) |
+>                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~~~~~~~
+>
+> This construct is intentional, as it allows every one of the calls to
+> ilk_increase_wm_latency() to occur (instead of short circuiting with
+> logical OR) while still caring about the result of each call.
+>
+> To make this clearer to the compiler, use the '|=3D' operator to assign
+> the result of each ilk_increase_wm_latency() call to changed, which
+> keeps the meaning of the code the same but makes it obvious that every
+> one of these calls is expected to happen.
+>
+> Link: https://github.com/ClangBuiltLinux/linux/issues/1473
+> Reported-by: Nick Desaulniers <ndesaulniers@google.com>
+
+Thanks for the patch!
+Suggested-by: D=C3=A1vid Bolvansk=C3=BD <david.bolvansky@gmail.com>
+Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+
+> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index f90fe39cf8ca..aaa3a0998e4c 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3050,9 +3050,9 @@ static void snb_wm_latency_quirk(struct drm_i915_pr=
+ivate *dev_priv)
+>          * The BIOS provided WM memory latency values are often
+>          * inadequate for high resolution displays. Adjust them.
+>          */
+> -       changed =3D ilk_increase_wm_latency(dev_priv, dev_priv->wm.pri_la=
+tency, 12) |
+> -               ilk_increase_wm_latency(dev_priv, dev_priv->wm.spr_latenc=
+y, 12) |
+> -               ilk_increase_wm_latency(dev_priv, dev_priv->wm.cur_latenc=
+y, 12);
+> +       changed =3D ilk_increase_wm_latency(dev_priv, dev_priv->wm.pri_la=
+tency, 12);
+> +       changed |=3D ilk_increase_wm_latency(dev_priv, dev_priv->wm.spr_l=
+atency, 12);
+> +       changed |=3D ilk_increase_wm_latency(dev_priv, dev_priv->wm.cur_l=
+atency, 12);
+>
+>         if (!changed)
+>                 return;
+>
+> base-commit: d73b17465d6da0a94bc0fcc86b150e1e923e8f71
+> --
+> 2.33.1.637.gf443b226ca
+>
 
 
-> -----Original Message-----
-> From: Pekka Paalanen <ppaalanen@gmail.com>
-> Sent: Wednesday, October 13, 2021 12:56 PM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: Simon Ser <contact@emersion.fr>; daniel.vetter@ffwll.ch; intel-
-> gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
-> harry.wentland@amd.com; ville.syrjala@linux.intel.com; brian.starkey@arm.=
-com;
-> sebastian@sebastianwick.net; Shashank.Sharma@amd.com
-> Subject: Re: [RFC v2 01/22] drm: RFC for Plane Color Hardware Pipeline
->=20
-> On Tue, 12 Oct 2021 19:11:29 +0000
-> "Shankar, Uma" <uma.shankar@intel.com> wrote:
->=20
-> > > -----Original Message-----
-> > > From: Pekka Paalanen <ppaalanen@gmail.com>
-> > > Sent: Tuesday, October 12, 2021 5:30 PM
-> > > To: Simon Ser <contact@emersion.fr>
-> > > Cc: Shankar, Uma <uma.shankar@intel.com>;
-> > > intel-gfx@lists.freedesktop.org; dri- devel@lists.freedesktop.org;
-> > > harry.wentland@amd.com; ville.syrjala@linux.intel.com;
-> > > brian.starkey@arm.com; sebastian@sebastianwick.net;
-> > > Shashank.Sharma@amd.com
-> > > Subject: Re: [RFC v2 01/22] drm: RFC for Plane Color Hardware
-> > > Pipeline
-> > >
-> > > On Tue, 12 Oct 2021 10:35:37 +0000
-> > > Simon Ser <contact@emersion.fr> wrote:
-> > >
-> > > > On Tuesday, October 12th, 2021 at 12:30, Pekka Paalanen
-> > > <ppaalanen@gmail.com> wrote:
-> > > >
-> > > > > is there a practise of landing proposal documents in the kernel?
-> > > > > How does that work, will a kernel tree carry the patch files?
-> > > > > Or should this document be worded like documentation for an
-> > > > > accepted feature, and then the patches either land or don't?
-> > > >
-> > > > Once everyone agrees, the RFC can land. I don't think a kernel
-> > > > tree is necessary. See:
-> > > >
-> > > > https://dri.freedesktop.org/docs/drm/gpu/rfc/index.html
-> > >
-> > > Does this mean the RFC doc patch will land, but the code patches
-> > > will remain in the review cycles waiting for userspace proving vehicl=
-es?
-> > > Rather than e.g. committed as files that people would need to apply
-> > > themselves? Or how does one find the code patches corresponding to RF=
-C docs?
-> >
-> > As I understand, this section was added to finalize the design and
-> > debate on the UAPI, structures, headers and design etc. Once a general
-> > agreement is in place with all the stakeholders, we can have ack on
-> > design and approach and get it merged. This hence serves as an approved
-> reference for the UAPI, accepted and agreed by community at large.
-> >
-> > Once the code lands, all the documentation will be added to the right
-> > driver sections and helpers, like it's been done currently.
->=20
-> I'm just wondering: someone browses a kernel tree, and discovers this RFC=
- doc in
-> there. They want to see or test the latest (WIP) kernel implementation of=
- it. How will
-> they find the code / patches?
-
-Maybe we could include the WIP links here to help with getting the pieces, =
-this may include
-the driver patches and also the userspace efforts as well.
-
-Regards,
-Uma Shankar
-
->=20
-> Thanks,
-> pq
+--=20
+Thanks,
+~Nick Desaulniers
