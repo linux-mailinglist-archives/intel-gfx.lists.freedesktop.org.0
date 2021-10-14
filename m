@@ -1,58 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF5942D91F
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 14:13:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3584842D8C4
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 14:04:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6E386E12A;
-	Thu, 14 Oct 2021 12:13:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A933C6E10E;
+	Thu, 14 Oct 2021 12:04:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 004206EC5B;
- Thu, 14 Oct 2021 10:17:00 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F1CC1610E8;
- Thu, 14 Oct 2021 10:16:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1634206620;
- bh=HkGc1jYcLiDfFRVHfe07q93sWwpARViWgqIARlFWxr8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=NhOD9vih8DjT4o3RqENEgZa2uUhL7ycjVTHWY+vNF0zihZkE+PD5atC+DOswPfZ89
- Ts4Gc0mIcD/LSi8HdCoGA0JGi3D4cmCkiEc8Vkx5pqw0ZKAIBPS6DwoZx0vsAFNlKO
- FWMC6ZkWlLFNI6JyelKUkpfTBcxSuR07lAmNPwb8/FIbmHAz5D03opGf2sWkQGhxVo
- mtOcbWoRS7txN6hG4FMaFyqao3cVoCIZFELjIX5jXHKfeSAcWXbijtKyau6IguEaWY
- Li0tO/gnho+6vDTmYUbZCmEeqxbcONYEfqAiomU6pLYLpLxMED7ca6h0r1UsSL07so
- BeaxbnasP4H2A==
-Date: Thu, 14 Oct 2021 13:16:50 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Vlastimil Babka <vbabka@suse.cz>
-Cc: kernel test robot <oliver.sang@intel.com>, 0day robot <lkp@intel.com>,
- Dmitry Vyukov <dvyukov@google.com>, Marco Elver <elver@google.com>,
- Vijayanand Jitta <vjitta@codeaurora.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Andrey Ryabinin <ryabinin.a.a@gmail.com>,
- Alexander Potapenko <glider@google.com>,
- Andrey Konovalov <andreyknvl@gmail.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Oliver Glitta <glittao@gmail.com>, Imran Khan <imran.f.khan@oracle.com>,
- LKML <linux-kernel@vger.kernel.org>, lkp@lists.01.org,
- Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- kasan-dev@googlegroups.com
-Message-ID: <YWgDkjqtJO4e3DM6@kernel.org>
-References: <20211014085450.GC18719@xsang-OptiPlex-9020>
- <4d99add1-5cf7-c608-a131-18959b85e5dc@suse.cz>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 203666E106;
+ Thu, 14 Oct 2021 12:04:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="225118953"
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="225118953"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 05:04:22 -0700
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="481235432"
+Received: from thanners-mobl.ger.corp.intel.com (HELO [10.252.62.140])
+ ([10.252.62.140])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 05:04:20 -0700
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: daniel@ffwll.ch, tvrtko.ursulin@linux.intel.com
+References: <20211005113742.1101-1-christian.koenig@amd.com>
+ <20211005113742.1101-21-christian.koenig@amd.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <5accca25-8ac3-47ca-ee56-8b33c208fc80@linux.intel.com>
+Date: Thu, 14 Oct 2021 14:04:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4d99add1-5cf7-c608-a131-18959b85e5dc@suse.cz>
-X-Mailman-Approved-At: Thu, 14 Oct 2021 12:13:49 +0000
-Subject: Re: [Intel-gfx] [lib/stackdepot] 1cd8ce52c5:
- BUG:unable_to_handle_page_fault_for_address
+In-Reply-To: <20211005113742.1101-21-christian.koenig@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 20/28] drm/i915: use new iterator in
+ i915_gem_object_wait_reservation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,126 +55,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 14, 2021 at 11:33:03AM +0200, Vlastimil Babka wrote:
-> On 10/14/21 10:54, kernel test robot wrote:
-> > 
-> > 
-> > Greeting,
-> > 
-> > FYI, we noticed the following commit (built with gcc-9):
-> > 
-> > commit: 1cd8ce52c520c26c513899fb5aee42b8e5f60d0d ("[PATCH v2] lib/stackdepot: allow optional init and stack_table allocation by kvmalloc()")
-> > url: https://github.com/0day-ci/linux/commits/Vlastimil-Babka/lib-stackdepot-allow-optional-init-and-stack_table-allocation-by-kvmalloc/20211012-170816
-> > base: git://anongit.freedesktop.org/drm-intel for-linux-next
-> > 
-> > in testcase: rcutorture
-> > version: 
-> > with following parameters:
-> > 
-> > 	runtime: 300s
-> > 	test: cpuhotplug
-> > 	torture_type: srcud
-> > 
-> > test-description: rcutorture is rcutorture kernel module load/unload test.
-> > test-url: https://www.kernel.org/doc/Documentation/RCU/torture.txt
-> > 
-> > 
-> > on test machine: qemu-system-i386 -enable-kvm -cpu SandyBridge -smp 2 -m 4G
-> > 
-> > caused below changes (please refer to attached dmesg/kmsg for entire log/backtrace):
-> > 
-> > 
-> > +---------------------------------------------+------------+------------+
-> > |                                             | a94a6d76c9 | 1cd8ce52c5 |
-> > +---------------------------------------------+------------+------------+
-> > | boot_successes                              | 30         | 0          |
-> > | boot_failures                               | 0          | 7          |
-> > | BUG:kernel_NULL_pointer_dereference,address | 0          | 2          |
-> > | Oops:#[##]                                  | 0          | 7          |
-> > | EIP:stack_depot_save                        | 0          | 7          |
-> > | Kernel_panic-not_syncing:Fatal_exception    | 0          | 7          |
-> > | BUG:unable_to_handle_page_fault_for_address | 0          | 5          |
-> > +---------------------------------------------+------------+------------+
-> > 
-> > 
-> > If you fix the issue, kindly add following tag
-> > Reported-by: kernel test robot <oliver.sang@intel.com>
-> > 
-> > 
-> > 
-> > [  319.147926][  T259] BUG: unable to handle page fault for address: 0ec74110
-> > [  319.149309][  T259] #PF: supervisor read access in kernel mode
-> > [  319.150362][  T259] #PF: error_code(0x0000) - not-present page
-> > [  319.151372][  T259] *pde = 00000000
-> > [  319.151964][  T259] Oops: 0000 [#1] SMP
-> > [  319.152617][  T259] CPU: 0 PID: 259 Comm: systemd-rc-loca Not tainted 5.15.0-rc1-00270-g1cd8ce52c520 #1
-> > [  319.154514][  T259] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.12.0-1 04/01/2014
-> > [  319.156200][  T259] EIP: stack_depot_save+0x12a/0x4d0
-> 
-> 
-> Cc Mike Rapoport, looks like:
-> - memblock_alloc() should have failed (I think, because page allocator
->   already took over?), but didn't. So apparently we got some area that wasn't
->   fully mapped.
-> - using slab_is_available() is not accurate enough to detect when to use
-> memblock or page allocator (kvmalloc in case of my patch). I have used it
-> because memblock_alloc_internal() checks the same condition to issue a warning.
-> 
-> Relevant part of dmesg.xz that was attached:
-> [    1.589075][    T0] Dentry cache hash table entries: 524288 (order: 9, 2097152 bytes, linear)
-> [    1.592396][    T0] Inode-cache hash table entries: 262144 (order: 8, 1048576 bytes, linear)
-> [    2.916844][    T0] allocated 31496920 bytes of page_ext
-> 
-> - this means we were allocating from page allocator by alloc_pages_exact_nid() already
-> 
-> [    2.918197][    T0] mem auto-init: stack:off, heap alloc:off, heap free:on
-> [    2.919683][    T0] mem auto-init: clearing system memory may take some time...
-> [    2.921239][    T0] Initializing HighMem for node 0 (000b67fe:000bffe0)
-> [   23.023619][    T0] Initializing Movable for node 0 (00000000:00000000)
-> [  245.194520][    T0] Checking if this processor honours the WP bit even in supervisor mode...Ok.
-> [  245.196847][    T0] Memory: 2914460K/3145208K available (20645K kernel code, 5953K rwdata, 12624K rodata, 760K init, 8112K bss, 230748K reserved, 0K cma-reserved, 155528K highmem)
-> [  245.200521][    T0] Stack Depot allocating hash table with memblock_alloc
-> 
-> - initializing stack depot as part of initializing page_owner, uses memblock_alloc()
->   because slab_is_available() is still false
-> 
-> [  245.212005][    T0] Node 0, zone   Normal: page owner found early allocated 0 pages
-> [  245.213867][    T0] Node 0, zone  HighMem: page owner found early allocated 0 pages
-> [  245.216126][    T0] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
-> 
-> - printed by slub's kmem_cache_init() after create_kmalloc_caches() setting slab_state
->   to UP, making slab_is_available() true, but too late
-> 
-> In my local testing of the patch, when stackdepot was initialized through
-> page owner init, it was using kvmalloc() so slab_is_available() was true.
-> Looks like the exact order of slab vs page_owner alloc is non-deterministic,
-> could be arch-dependent or just random ordering of init calls. A wrong order
-> will exploit the apparent fact that slab_is_available() is not a good
-> indicator of using memblock vs page allocator, and we would need a better one.
-> Thoughts?
+Op 05-10-2021 om 13:37 schreef Christian König:
+> Simplifying the code a bit.
+>
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_wait.c | 51 +++++-------------------
+>  1 file changed, 9 insertions(+), 42 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+> index f909aaa09d9c..a13193db1dba 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+> @@ -37,55 +37,22 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
+>  				 unsigned int flags,
+>  				 long timeout)
+>  {
+> -	struct dma_fence *excl;
+> -	bool prune_fences = false;
+> -
+> -	if (flags & I915_WAIT_ALL) {
+> -		struct dma_fence **shared;
+> -		unsigned int count, i;
+> -		int ret;
+> +	struct dma_resv_iter cursor;
+> +	struct dma_fence *fence;
+>  
+> -		ret = dma_resv_get_fences(resv, &excl, &count, &shared);
+> -		if (ret)
+> -			return ret;
+> -
+> -		for (i = 0; i < count; i++) {
+> -			timeout = i915_gem_object_wait_fence(shared[i],
+> -							     flags, timeout);
+> -			if (timeout < 0)
+> -				break;
+> -
+> -			dma_fence_put(shared[i]);
+> -		}
+> -
+> -		for (; i < count; i++)
+> -			dma_fence_put(shared[i]);
+> -		kfree(shared);
+> -
+> -		/*
+> -		 * If both shared fences and an exclusive fence exist,
+> -		 * then by construction the shared fences must be later
+> -		 * than the exclusive fence. If we successfully wait for
+> -		 * all the shared fences, we know that the exclusive fence
+> -		 * must all be signaled. If all the shared fences are
+> -		 * signaled, we can prune the array and recover the
+> -		 * floating references on the fences/requests.
+> -		 */
+> -		prune_fences = count && timeout >= 0;
+> -	} else {
+> -		excl = dma_resv_get_excl_unlocked(resv);
+> +	dma_resv_iter_begin(&cursor, resv, flags & I915_WAIT_ALL);
+> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
+> +		timeout = i915_gem_object_wait_fence(fence, flags, timeout);
+> +		if (timeout < 0)
+> +			break;
+>  	}
+> -
+> -	if (excl && timeout >= 0)
+> -		timeout = i915_gem_object_wait_fence(excl, flags, timeout);
+> -
+> -	dma_fence_put(excl);
+> +	dma_resv_iter_end(&cursor);
+>  
+>  	/*
+>  	 * Opportunistically prune the fences iff we know they have *all* been
+>  	 * signaled.
+>  	 */
+> -	if (prune_fences)
+> +	if (timeout > 0)
+>  		dma_resv_prune(resv);
+>  
+>  	return timeout;
 
-The order of slab vs page_owner is deterministic, but it is different for
-FLATMEM and SPARSEMEM. And page_ext_init_flatmem_late() that initializes
-page_ext for FLATMEM is called exactly between buddy and slab setup:
+When replying to tvrtko about correctness of the conversion, I just now noticed a logic bug here, the same logic bug also affects dma_resv_wait_timeout.
 
-static void __init mm_init(void)
+long dma_resv_wait_timeout(struct dma_resv *obj, bool wait_all, bool intr,
+			   unsigned long timeout)
 {
-	...
+	long ret = timeout ? timeout : 1;
+	struct dma_resv_iter cursor;
+	struct dma_fence *fence;
 
-	mem_init();
-	mem_init_print_info();
-	/* page_owner must be initialized after buddy is ready */
-	page_ext_init_flatmem_late();
-	kmem_cache_init();
+	dma_resv_iter_begin(&cursor, obj, wait_all);
+	dma_resv_for_each_fence_unlocked(&cursor, fence) {
 
-	...
+		ret = dma_fence_wait_timeout(fence, intr, ret);
+		if (ret <= 0) {
+			dma_resv_iter_end(&cursor);
+			return ret;
+		}
+	}
+	dma_resv_iter_end(&cursor);
+
+	return ret;
 }
 
-I've stared for a while at page_ext init and it seems that the
-page_ext_init_flatmem_late() can be simply dropped because there is anyway
-a call to invoke_init_callbacks() in page_ext_init() that is called much
-later in the boot process.
+It fails to handle the case correctly when timeout = 0, I think the original code probably did.
+dma_fence_wait_timeout should be called with timeout = 0 explicitly.
 
--- 
-Sincerely yours,
-Mike.
+Fixed code for inner loop:
+ret = dma_fence_wait_timeout(fence, intr, timeout);
+if (ret <= 0) break;
+if (timeout) timeout = ret;
+
+This bug also affects i915_gem_object_wait_reservation, so the whole series might need to be
+respinned, or at least checked, if more wait conversions are affected.
+
+~Maarten
+
