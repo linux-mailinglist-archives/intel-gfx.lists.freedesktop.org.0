@@ -1,61 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740ED42D012
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 03:50:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1C8442D11A
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 05:38:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 137526E133;
-	Thu, 14 Oct 2021 01:50:31 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89C966E133;
- Thu, 14 Oct 2021 01:50:30 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id a25so17797509edx.8;
- Wed, 13 Oct 2021 18:50:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=RvGlhpBdoSGJY07qYcoxstqzyNYso35hmP1TDGV1z4g=;
- b=qW7ab3idrM55I9OTL3GrIElKPjaIhew6Sc2swiQ6z3GGZKZ4sKwc2EqCtfffUBIuP2
- lu+mEDP7PGOk4oRy+JqxFefJ2QzgDXSAIjVXwWwi9acizduRC1ULUfqzHa/jDrFxXnjY
- HaJ21105BgM5/bbpbpSpfx8WE9oUIbivL6aCQN1cr3929S68TjS7GCrpoHkSbxOWvwLi
- iCOWUpMpzqFS7+BQmcbssEO+A55PCO/zYSWnkiTRNWSfCtHL4s4f7DkFgudaVkZmKWa3
- X1f5wAoIUR7UHNOX1YVW2fIu1Fj01rl/wZM7/Ywxy7jVzCgfrKBY5a0ByGRFhv4ki5RM
- MuvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=RvGlhpBdoSGJY07qYcoxstqzyNYso35hmP1TDGV1z4g=;
- b=56gI2AAErcGQB27ZKJvTKrjNvn0+cSx7h40zYoU05WWvz+R5+TPVXdsB+/zo2HkfHB
- lkFJ5wm+sIkpXCCrDGrNiVQFhEzQy9JAtr7xAeF7DXMKo0LNlm0m7mAhBZLMwF4jmXEG
- kYe7f2ZM1KTQu1WT1dnf/jETILbJqIgGwILuWp8TBE/R6ds9sbmYV56GL8pjpoG9ql9x
- fmh81vsDjJZ/OBJ1FRdknBWN4I5N+Aa1ELdA4t7JBV2+iFUo6klQ2OApemHH7TmwcJlr
- xo8jYskNatwqCW62LyAmILOKsiJF8CaVpquMxK8Hczx52VmxWzXJvs5uYe1Y3I1Ad+p6
- 8DPA==
-X-Gm-Message-State: AOAM531k7z41hdzr56ctN3ZXeQs+Rywo4H2vPfS8anxsNLRGibo4IQYB
- /YcAzWaIwKDXtjm/F2U6IrcZqh34gvstHclgSqg=
-X-Google-Smtp-Source: ABdhPJwi11719SRkCOiPMN/Zte43zfyvEqn21jnxMF2BYaxtGXJQ0gXaDA9Di8A1LyGOWtBSYOvYWwqvz7DYVGycrOA=
-X-Received: by 2002:a05:6402:1547:: with SMTP id
- p7mr4491032edx.371.1634176228758; 
- Wed, 13 Oct 2021 18:50:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211008133530.664509-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211008133530.664509-1-thomas.hellstrom@linux.intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Thu, 14 Oct 2021 11:50:17 +1000
-Message-ID: <CAPM=9tzt3wr5=ZdDGqH6TTOpKqp_-Wbxw+LBMK=f3Nm=og_14Q@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 0/6] drm/i915: Failsafe migration blits
+	by gabe.freedesktop.org (Postfix) with ESMTP id 070866E8A3;
+	Thu, 14 Oct 2021 03:38:43 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 862846E072;
+ Thu, 14 Oct 2021 03:38:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="313790737"
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="313790737"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 20:38:39 -0700
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; d="scan'208";a="524895562"
+Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.18.78])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 20:38:38 -0700
+Date: Wed, 13 Oct 2021 20:21:07 -0700
+Message-ID: <878rywi95o.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: <IGT-Dev@Lists.FreeDesktop.Org>,
+	<Intel-GFX@Lists.FreeDesktop.Org>
+In-Reply-To: <2981474c-7bbc-c76f-6035-f8643f2be547@intel.com>
+References: <20211013224317.943625-1-John.C.Harrison@Intel.com>
+ <87ily0ilkd.wl-ashutosh.dixit@intel.com>
+ <2981474c-7bbc-c76f-6035-f8643f2be547@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/27.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915: Skip gem_exec_fair on GuC
+ based platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,19 +54,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 8 Oct 2021 at 23:36, Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
+On Wed, 13 Oct 2021 18:07:05 -0700, John Harrison wrote:
 >
-> This patch series introduces failsafe migration blits.
-> The reason for this seemingly strange concept is that if the initial
-> clearing or readback of LMEM fails for some reason, and we then set up
-> either GPU- or CPU ptes to the allocated LMEM, we can expose old
-> contents from other clients.
+> On 10/13/2021 15:53, Dixit, Ashutosh wrote:
+> >> diff --git a/tests/i915/gem_exec_fair.c b/tests/i915/gem_exec_fair.c
+> >> index ef5a450f6..ca9c73c6e 100644
+> >> --- a/tests/i915/gem_exec_fair.c
+> >> +++ b/tests/i915/gem_exec_fair.c
+> >> @@ -1314,6 +1314,12 @@ igt_main
+> >>		igt_require(gem_scheduler_enabled(i915));
+> >>		igt_require(gem_scheduler_has_ctx_priority(i915));
+> >>
+> >> +		/*
+> >> +		 * These tests are for a specific scheduling model which is
+> >> +		 * not currently implemented by GuC. So skip on GuC platforms.
+> >> +		 */
+> >> +		igt_require(intel_gen(intel_get_drm_devid(i915)) < 12);
+> > Probably a feature check rather than a version check is better? Can we use
+> > say gem_has_guc_submission() instead?
+> >
+> > Though appears gem_has_guc_submission() only checks if guc submission is
+> > available, not if it is actually in use (unless guc will used when
+> > available automatically)? Is it possible to add the check if guc submission
+> > is actually in use? Or a check for guc scheduler?
+>
+> I believe this has come up a few times before. My understanding is that no,
+> there is no current official/safe way for userland to check if GuC
+> submission is enabled (you can read some of the debugfs files and make an
+> educated guess but that isn't exactly an official interface). And the
+> answer was that it isn't worth adding a UAPI specifically for it. Not least
+> because it would be a UAPI solely for use by IGT which is not allowed.
 
-Can we enumerate "for some reason" here?
+Hmm, so kernel will use GuC submission if bit 0 of enable_guc module param
+is 1, correct? Which is what gem_has_guc_submission() checks, though I
+guess we can also add a function gem_using_guc_submission() which is
+basically an alias for gem_has_guc_submission(). So we can't do this? Or
+the module param is not an acceptable uapi? But we already introduced
+gem_has_guc_submission()?
 
-This feels like "security" with no defined threat model. Maybe if the
-cover letter contains more details on the threat model it would make
-more sense.
-
-Dave.
+I think this kind of a generation/version check should be implemented in
+the kernel. If kernel wants to turn on GuC submission by default let it do
+that and set enable_guc. In IGT we just check enable_guc. No? Thanks.
