@@ -1,69 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64CD42DA85
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 15:33:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1D8342DAB1
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 15:45:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFA26E893;
-	Thu, 14 Oct 2021 13:33:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0A276EAD4;
+	Thu, 14 Oct 2021 13:45:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 635946E893
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 13:33:41 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id r18so24264427edv.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 06:33:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=tDsYb2O9ylqW7Ss2K5s9nrfev8gLYMTY+dJxMjCccFQ=;
- b=kDNfZGo2NEt0QtAc/c+G2Ufi9IuL17iXy14SOD4Vl+e7OceIH4hUBbvmmr5xT1Jl18
- xG2KL5bQJnW+Ts1+JNU42S3cgcMO7yog2LsFBK8WzKDkFugPJWSvBKCAq8JqwNgQx532
- zvYY+6/ylC+N55pdevszAUfOhm41sr7Ud+X1w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=tDsYb2O9ylqW7Ss2K5s9nrfev8gLYMTY+dJxMjCccFQ=;
- b=Ia7ecyWZ9QimRJWMjUzifFmGivlkz2hvboNIrRDRWJvpdtxFkk7araIIWeSYvJXUj3
- KnFU1V5q10ITTY31bLLgeonc1v/ig77c1nh20O8he6gBPt3oQJJAtSVjtgP2zIfIHNDy
- APGQ780baWU/1VIpfYCi/JIxgPRhCgBTdjZrhq2AtfYenYDranjHqsUgoW+hr49KeBJp
- Jtb2ABdmLVqs7Gc4U8GqXXmqKJBZp7vIs3FliwTbCXYRDrNJjEI9cALyEX/izZLStloI
- ryfzeQDKtW6mlyJApDngIZM+V0JrvH/+VyjBfMawkAzhWgUIfkpLa3fo6Ul/CudRHwA1
- 8KxA==
-X-Gm-Message-State: AOAM531ym/m7PvvHdWQeMpWr5HDVVteUw+cpf8fQopzrtKEhu6nSzJwe
- IV5G8BLrjiIA6zzMFXjhCZWbkg==
-X-Google-Smtp-Source: ABdhPJwXNnfZWYWi6Hjvai8ksKalaS/LTYSmEW6CB192bNoUPnhJ+orKQtU+9qqEf30Brzn83f67DA==
-X-Received: by 2002:a17:907:628d:: with SMTP id
- nd13mr4004601ejc.7.1634218410796; 
- Thu, 14 Oct 2021 06:33:30 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id e7sm2703638edz.95.2021.10.14.06.33.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Oct 2021 06:33:30 -0700 (PDT)
-Date: Thu, 14 Oct 2021 15:33:28 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Auld <matthew.auld@intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Ramalingam C <ramalingam.c@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, CQ Tang <cq.tang@intel.com>,
- Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <YWgxqGYS8Ps3JtqD@phenom.ffwll.local>
-References: <20211011161155.6397-1-ramalingam.c@intel.com>
- <20211011161155.6397-4-ramalingam.c@intel.com>
- <YWbhYrNaT0TS1D3a@phenom.ffwll.local>
- <50362606-46a1-0a41-8063-5dca5ac99b98@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE866EA9F;
+ Thu, 14 Oct 2021 13:45:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="251113089"
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="251113089"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 06:45:06 -0700
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="481264578"
+Received: from thanners-mobl.ger.corp.intel.com (HELO [10.252.62.140])
+ ([10.252.62.140])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 06:45:04 -0700
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20211013104123.1877827-1-maarten.lankhorst@linux.intel.com>
+ <8625e3ca-57f8-e387-1742-808e3599786f@linux.intel.com>
+ <c3888f2f-8f30-68f6-2c69-961035c7573a@linux.intel.com>
+ <2e438a2b-290d-6519-c73e-6747c9d7db50@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <87224679-f1b0-8164-c5bd-29d596235a4a@linux.intel.com>
+Date: Thu, 14 Oct 2021 15:45:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <50362606-46a1-0a41-8063-5dca5ac99b98@intel.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 03/14] drm/i915/xehpsdv: enforce min GTT
- alignment
+In-Reply-To: <2e438a2b-290d-6519-c73e-6747c9d7db50@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use dma_resv_iter for waiting in
+ i915_gem_object_wait_reservation.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,70 +58,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 13, 2021 at 03:13:33PM +0100, Matthew Auld wrote:
-> On 13/10/2021 14:38, Daniel Vetter wrote:
-> > On Mon, Oct 11, 2021 at 09:41:44PM +0530, Ramalingam C wrote:
-> > > From: Matthew Auld <matthew.auld@intel.com>
-> > > 
-> > > For local-memory objects we need to align the GTT addresses to 64K, both
-> > > for the ppgtt and ggtt.
-> > > 
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-> > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > 
-> > Do we still need this with relocations removed? Userspace is picking all
-> > the addresses for us, so all we have to check is whether userspace got it
-> > right.
-> 
-> Yeah, for OFFSET_FIXED this just validates that the provided address is
-> correctly aligned to 64K, while for the in-kernel insertion stuff we still
-> need to allocate an address that is aligned to 64K. Setting the alignment
-> here handles both cases.
+Op 14-10-2021 om 15:25 schreef Tvrtko Ursulin:
+>
+> On 14/10/2021 13:05, Maarten Lankhorst wrote:
+>> Op 14-10-2021 om 10:37 schreef Tvrtko Ursulin:
+>>>
+>>> On 13/10/2021 11:41, Maarten Lankhorst wrote:
+>>>> No memory should be allocated when calling i915_gem_object_wait,
+>>>> because it may be called to idle a BO when evicting memory.
+>>>>
+>>>> Fix this by using dma_resv_iter helpers to call
+>>>> i915_gem_object_wait_fence() on each fence, which cleans up the code a lot.
+>>>> Also remove dma_resv_prune, it's questionably.
+>>>>
+>>>> This will result in the following lockdep splat.
+>>>
+>>> <snip>
+>>>
+>>>> @@ -37,56 +36,17 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
+>>>>                     unsigned int flags,
+>>>>                     long timeout)
+>>>>    {
+>>>> -    struct dma_fence *excl;
+>>>> -    bool prune_fences = false;
+>>>> -
+>>>> -    if (flags & I915_WAIT_ALL) {
+>>>> -        struct dma_fence **shared;
+>>>> -        unsigned int count, i;
+>>>> -        int ret;
+>>>> +    struct dma_resv_iter cursor;
+>>>> +    struct dma_fence *fence;
+>>>>    -        ret = dma_resv_get_fences(resv, &excl, &count, &shared);
+>>>> -        if (ret)
+>>>> -            return ret;
+>>>> -
+>>>> -        for (i = 0; i < count; i++) {
+>>>> -            timeout = i915_gem_object_wait_fence(shared[i],
+>>>> -                                 flags, timeout);
+>>>> -            if (timeout < 0)
+>>>> -                break;
+>>>> +    dma_resv_iter_begin(&cursor, resv, flags & I915_WAIT_ALL);
+>>>> +    dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>>>>    -            dma_fence_put(shared[i]);
+>>>> -        }
+>>>> -
+>>>> -        for (; i < count; i++)
+>>>> -            dma_fence_put(shared[i]);
+>>>> -        kfree(shared);
+>>>> -
+>>>> -        /*
+>>>> -         * If both shared fences and an exclusive fence exist,
+>>>> -         * then by construction the shared fences must be later
+>>>> -         * than the exclusive fence. If we successfully wait for
+>>>> -         * all the shared fences, we know that the exclusive fence
+>>>> -         * must all be signaled. If all the shared fences are
+>>>> -         * signaled, we can prune the array and recover the
+>>>> -         * floating references on the fences/requests.
+>>>> -         */
+>>>> -        prune_fences = count && timeout >= 0;
+>>>> -    } else {
+>>>> -        excl = dma_resv_get_excl_unlocked(resv);
+>>>> +        timeout = i915_gem_object_wait_fence(fence, flags, timeout);
+>>>> +        if (timeout <= 0)
+>>>> +            break;
+>>>
+>>> You have another change in behaviour here, well a bug really. When userspace passes in zero timeout you fail to report activity in other than the first fence.
+>>
+>> Hmm, not necessarily, passing 0 to i915_gem_object_wait_fence timeout = 0 is a special case and means test only. It will return 1 on success.
+>
+> I tried to enumerate the whole chain here. All for timeout == 0. Please double check I did not make a mistake somewhere since there are many return code inversions here.
+>
+> As building blocks for the whole "game" we have:
+>
+> 1. dma_fence_default_wait, it returns for states:
+>     
+>     not signaled -> 0
+>     signaled -> 1
+>
+> 2. i915_request_wait
+>
+>     not signaled -> -ETIME
+>     signaled -> 0
+>
+> Then i915_gem_object_wait_fence builds on top of it and has therefore these possible outputs:
+>
+>     signaled -> 0
+>     not signaled:
+>         i915 path -> -ETIME
+>         ext fence -> 0
+>
+> So this looks a like problem already with 0 for signaled and not signaled. Unless it is by design that the return value does not want to report external fences? But it is not documented and it still waits on them so odd.
+>
+> Then in i915_gem_object_wait_reservation we have a loop:
+>
+>         for (i = 0; i < count; i++) {
+>             timeout = i915_gem_object_wait_fence(shared[i],
+>                                  flags, timeout);
+>             if (timeout < 0)
+>                 break;
+>
+> So short circuit happens only for i915 fences, by virtue of no negative return codes otherwise.
+>
+> If we focus for i915 fences only for a moment. It means it keeps skipping signaled to check if any is not, therefore returning -ETIME if any is not signaled. i915_gem_object_wait passes the negative return on.
+>
+> With your patch you have:
+>
+> +        timeout = i915_gem_object_wait_fence(fence, flags, timeout);
+> +        if (timeout <= 0)
+> +            break;
+>
+> Which means you break on first signaled fence (i915 or external), therefore missing to report any possible subsequent  unsignaled fences. So gem_wait ioctl breaks unless I am missing something. 
 
-Can't we just teach any in-kernel allocators to align to 2M and call it a
-day? Ofc the code can still validate we don't have bugs (always good to
-check your work). Ofc if the benefits is "no code can be removed anyway
-since we still need to check" then ofc no point :-)
+You're cc'd on a mail I sent to König regarding this.
+"Re: [PATCH 20/28] drm/i915: use new iterator in i915_gem_object_wait_reservation" 
+5accca25-8ac3-47ca-ee56-8b33c208fc80@linux.intel.com
 
-Just want to make sure we're not carrying complexity around for nothing,
-since this predates the relocation removal.
--Daniel
 
-> 
-> > -Daniel
-> > 
-> > 
-> > > ---
-> > >   drivers/gpu/drm/i915/i915_vma.c | 9 +++++++--
-> > >   1 file changed, 7 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> > > index 4b7fc4647e46..1ea1fa08efdf 100644
-> > > --- a/drivers/gpu/drm/i915/i915_vma.c
-> > > +++ b/drivers/gpu/drm/i915/i915_vma.c
-> > > @@ -670,8 +670,13 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
-> > >   	}
-> > >   	color = 0;
-> > > -	if (vma->obj && i915_vm_has_cache_coloring(vma->vm))
-> > > -		color = vma->obj->cache_level;
-> > > +	if (vma->obj) {
-> > > +		if (HAS_64K_PAGES(vma->vm->i915) && i915_gem_object_is_lmem(vma->obj))
-> > > +			alignment = max(alignment, I915_GTT_PAGE_SIZE_64K);
-> > > +
-> > > +		if (i915_vm_has_cache_coloring(vma->vm))
-> > > +			color = vma->obj->cache_level;
-> > > +	}
-> > >   	if (flags & PIN_OFFSET_FIXED) {
-> > >   		u64 offset = flags & PIN_OFFSET_MASK;
-> > > -- 
-> > > 2.20.1
-> > > 
-> > 
+timeout = 0 is a special case, fence_wait should return 1 if signaled, or 0 if waiting. Not -ETIME, as i915 does currently.
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+This means our i915_fence_wait() handler is currently very wrong too, needs to be fixed. It returns 0 if timeout = 0 even
+if signaled.
+
+I think it cancels the fail in our gem_object_wait, but more consistency is definitely needed first.
+
+I think it's best to keep the current semantics for i915_reuest_wait, but make it a wrapper around a
+fixed i915_request_wait_timeout(), which would have the correct return semantics.
+
+~Maarten
+
