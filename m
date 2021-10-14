@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA0042DD07
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 17:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0573742DD51
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 17:04:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8B76EB68;
-	Thu, 14 Oct 2021 15:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 237FF6EB70;
+	Thu, 14 Oct 2021 15:04:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FF946EB68
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 15:02:02 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="226463263"
-X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="226463263"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2021 08:01:29 -0700
-X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="527619697"
-Received: from stadju-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.34.223])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2021 08:01:29 -0700
-Date: Thu, 14 Oct 2021 08:01:29 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211014150129.u6aj6q6t64tnlcnw@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <cover.1634207064.git.jani.nikula@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 684446EB70
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 15:04:24 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="225152957"
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="225152957"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 08:04:02 -0700
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="481288979"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 08:04:00 -0700
+Date: Thu, 14 Oct 2021 18:03:56 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <20211014150356.GD33552@ideak-desk.fi.intel.com>
+References: <20211007203517.3364336-1-imre.deak@intel.com>
+ <20211007203517.3364336-2-imre.deak@intel.com>
+ <874k9jwvhn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1634207064.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/2] drm/i915: intel sbi/pcode cleanup
+In-Reply-To: <874k9jwvhn.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915: Add a table with a
+ descriptor for all i915 modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,63 +50,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 14, 2021 at 01:28:56PM +0300, Jani Nikula wrote:
->Split out the sbi and pcode code to separate files.
->
->There's potential for follow-up work that's not included here:
->
->- vlv_sideband, intel_sbi and intel_pcode all use
->  i915->sb_lock. Technically it's fine, but the appearance is confusing.
->
->- The pcode function naming could use some cleanup.
->
->- Slightly unrelated, all the functions in intel_display.c using
->  intel_sbi should be moved out of intel_display.c as a group.
->
->
->BR,
->Jani.
->
->Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
+On Thu, Oct 14, 2021 at 05:07:16PM +0300, Jani Nikula wrote:
+> On Thu, 07 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> > Add a table describing all the framebuffer modifiers used by i915 at one
+> > place. This has the benefit of deduplicating the listing of supported
+> > modifiers for each platform and checking the support of these modifiers
+> > on a given plane. This also simplifies in a similar way getting some
+> > attribute for a modifier, for instance checking if the modifier is a
+> > CCS modifier type.
+> 
+> Just some high level comments inline.
+> 
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cursor.c   |  19 +-
+> >  .../drm/i915/display/intel_display_types.h    |   1 -
+> >  drivers/gpu/drm/i915/display/intel_fb.c       | 178 ++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_fb.h       |   8 +
+> >  drivers/gpu/drm/i915/display/intel_sprite.c   |  35 +---
+> >  drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+> >  .../drm/i915/display/skl_universal_plane.c    | 137 +-------------
+> >  drivers/gpu/drm/i915/i915_drv.h               |   3 +
+> >  8 files changed, 218 insertions(+), 164 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > index f6dcb5aa63f64..bcd44ff30ce5b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > @@ -28,11 +28,6 @@ static const u32 intel_cursor_formats[] = {
+> >  	DRM_FORMAT_ARGB8888,
+> >  };
+> >  
+> > -static const u64 cursor_format_modifiers[] = {
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> >  static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+> >  {
+> >  	struct drm_i915_private *dev_priv =
+> > @@ -605,8 +600,10 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
+> >  static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+> >  					      u32 format, u64 modifier)
+> >  {
+> > -	return modifier == DRM_FORMAT_MOD_LINEAR &&
+> > -		format == DRM_FORMAT_ARGB8888;
+> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> > +		return false;
+> > +
+> > +	return format == DRM_FORMAT_ARGB8888;
+> >  }
+> >  
+> >  static int
+> > @@ -754,6 +751,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> >  {
+> >  	struct intel_plane *cursor;
+> >  	int ret, zpos;
+> > +	u64 *modifiers;
+> >  
+> >  	cursor = intel_plane_alloc();
+> >  	if (IS_ERR(cursor))
+> > @@ -784,13 +782,18 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> >  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
+> >  		cursor->cursor.size = ~0;
+> >  
+> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, pipe, cursor->id);
+> > +
+> >  	ret = drm_universal_plane_init(&dev_priv->drm, &cursor->base,
+> >  				       0, &intel_cursor_plane_funcs,
+> >  				       intel_cursor_formats,
+> >  				       ARRAY_SIZE(intel_cursor_formats),
+> > -				       cursor_format_modifiers,
+> > +				       modifiers,
+> >  				       DRM_PLANE_TYPE_CURSOR,
+> >  				       "cursor %c", pipe_name(pipe));
+> > +
+> > +	kfree(modifiers);
+> > +
+> >  	if (ret)
+> >  		goto fail;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 21ce8bccc645a..bb53b01f07aee 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1336,7 +1336,6 @@ struct intel_plane {
+> >  	enum plane_id id;
+> >  	enum pipe pipe;
+> >  	bool has_fbc;
+> > -	bool has_ccs;
+> >  	bool need_async_flip_disable_wa;
+> >  	u32 frontbuffer_bit;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> > index fa1f375e696bf..aefae988b620b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -13,6 +13,184 @@
+> >  
+> >  #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
+> >  
+> > +const struct intel_modifier_desc {
+> 
+> static?
 
-series is
+Yes, will fix this.
 
+> Maybe split the struct declaration and the array definition for
+> clarity. *shrug*
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Ok.
 
-thanks for cleaning that up.
+> > +	u64 id;
+> > +	u64 display_versions;
+> > +
+> > +	struct {
+> > +#define INTEL_CCS_RC		BIT(0)
+> > +#define INTEL_CCS_RC_CC		BIT(1)
+> > +#define INTEL_CCS_MC		BIT(2)
+> > +
+> > +#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
+> > +		u8 type:3;
+> > +	} ccs;
+> > +} intel_modifiers[] = {
+> > +	{
+> > +		.id = DRM_FORMAT_MOD_LINEAR,
+> > +		.display_versions = DISPLAY_VER_MASK_ALL,
+> 
+> What is this going to look like when display version mask isn't fine
+> grained enough to cover all the platforms? Do we have cases like that
+> already?
 
-Lucas De Marchi
+Display 13 platforms will have different modifiers enabled, but they can
+be distinguished with a modifier attribute.
 
->Jani Nikula (2):
->  drm/i915: split out intel_pcode.[ch] to separate file
->  drm/i915: rename intel_sideband.[ch] to intel_sbi.[ch]
+> [snip]
+> 
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index 12256218634f4..a92228c922a54 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -1342,6 +1342,9 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+> >  #define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
+> >  #define IS_DISPLAY_VER(i915, from, until) \
+> >  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+> > +#define DISPLAY_VER_BIT(d)	BIT_ULL(d)
+> > +#define DISPLAY_VER_MASK(f, u)	GENMASK_ULL(u, f)
+> > +#define DISPLAY_VER_MASK_ALL	DISPLAY_VER_MASK(0, BITS_PER_LONG_LONG - 1)
+> 
+> Do we want to promote this usage all over the place? Maybe keep them
+> internal to intel_fb.c?
 >
-> drivers/gpu/drm/i915/Makefile                 |  3 +-
-> drivers/gpu/drm/i915/display/intel_bw.c       |  2 +-
-> drivers/gpu/drm/i915/display/intel_cdclk.c    |  2 +-
-> drivers/gpu/drm/i915/display/intel_display.c  |  5 +-
-> .../drm/i915/display/intel_display_power.c    |  2 +-
-> drivers/gpu/drm/i915/display/intel_fdi.c      |  2 +-
-> drivers/gpu/drm/i915/display/intel_hdcp.c     |  6 +-
-> drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  2 +-
-> drivers/gpu/drm/i915/gt/intel_llc.c           |  2 +-
-> drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
-> drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
-> drivers/gpu/drm/i915/i915_drv.c               |  2 +-
-> drivers/gpu/drm/i915/intel_dram.c             |  2 +-
-> .../i915/{intel_sideband.c => intel_pcode.c}  | 91 +------------------
-> .../i915/{intel_sideband.h => intel_pcode.h}  | 19 ++--
-> drivers/gpu/drm/i915/intel_pm.c               |  2 +-
-> drivers/gpu/drm/i915/intel_sbi.c              | 73 +++++++++++++++
-> drivers/gpu/drm/i915/intel_sbi.h              | 23 +++++
-> 18 files changed, 124 insertions(+), 118 deletions(-)
-> rename drivers/gpu/drm/i915/{intel_sideband.c => intel_pcode.c} (69%)
-> rename drivers/gpu/drm/i915/{intel_sideband.h => intel_pcode.h} (63%)
-> create mode 100644 drivers/gpu/drm/i915/intel_sbi.c
-> create mode 100644 drivers/gpu/drm/i915/intel_sbi.h
+> Or just add both from and until members in intel_modifier_desc, and use
+> the regular IS_DISPLAY_VER() in intel_fb.c as well. It's not worse
+> considering the mask you have is u64. You could have two u8's
+> instead.
 >
->-- 
->2.30.2
+> You could consider 0 for either to mean "no limit", and skip
+> the initialization instead of duplicating .display_versions =
+> DISPLAY_VER_MASK_ALL.
 >
+> I think I'd prefer that. Or do you see masks with gaps in them?
+
+No, just continuous ranges atm.
+
+Ok, I can change these to two u8s instead, though I would prefer the
+simpler way of checking a bitmask. But yes, it requires a u64 (or u32
+which would be enough for now).
+
+> BR,
+> Jani.
+> 
+> 
+> >  
+> >  #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
