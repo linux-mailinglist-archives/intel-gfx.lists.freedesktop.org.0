@@ -2,49 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF57342DAEB
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 15:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3504D42DB20
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 16:07:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51B656EB0D;
-	Thu, 14 Oct 2021 13:56:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A1AE6EB18;
+	Thu, 14 Oct 2021 14:07:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 004516EB0C;
- Thu, 14 Oct 2021 13:56:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="214843918"
-X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="214843918"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2021 06:56:44 -0700
-X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="525058503"
-Received: from ebarkhuy-mobl2.ger.corp.intel.com (HELO [10.213.193.241])
- ([10.213.193.241])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2021 06:56:43 -0700
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20211013104123.1877827-1-maarten.lankhorst@linux.intel.com>
- <8625e3ca-57f8-e387-1742-808e3599786f@linux.intel.com>
- <c3888f2f-8f30-68f6-2c69-961035c7573a@linux.intel.com>
- <2e438a2b-290d-6519-c73e-6747c9d7db50@linux.intel.com>
- <87224679-f1b0-8164-c5bd-29d596235a4a@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <0ddf31af-c13e-3436-253d-8f1c076bd844@linux.intel.com>
-Date: Thu, 14 Oct 2021 14:56:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 073056EB18
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 14:07:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="313881649"
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="313881649"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 07:07:21 -0700
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="492012433"
+Received: from rwambsga-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.251.210.16])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 07:07:19 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211007203517.3364336-2-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211007203517.3364336-1-imre.deak@intel.com>
+ <20211007203517.3364336-2-imre.deak@intel.com>
+Date: Thu, 14 Oct 2021 17:07:16 +0300
+Message-ID: <874k9jwvhn.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <87224679-f1b0-8164-c5bd-29d596235a4a@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use dma_resv_iter for waiting in
- i915_gem_object_wait_reservation.
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915: Add a table with a
+ descriptor for all i915 modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,147 +49,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 07 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> Add a table describing all the framebuffer modifiers used by i915 at one
+> place. This has the benefit of deduplicating the listing of supported
+> modifiers for each platform and checking the support of these modifiers
+> on a given plane. This also simplifies in a similar way getting some
+> attribute for a modifier, for instance checking if the modifier is a
+> CCS modifier type.
 
-On 14/10/2021 14:45, Maarten Lankhorst wrote:
-> Op 14-10-2021 om 15:25 schreef Tvrtko Ursulin:
->>
->> On 14/10/2021 13:05, Maarten Lankhorst wrote:
->>> Op 14-10-2021 om 10:37 schreef Tvrtko Ursulin:
->>>>
->>>> On 13/10/2021 11:41, Maarten Lankhorst wrote:
->>>>> No memory should be allocated when calling i915_gem_object_wait,
->>>>> because it may be called to idle a BO when evicting memory.
->>>>>
->>>>> Fix this by using dma_resv_iter helpers to call
->>>>> i915_gem_object_wait_fence() on each fence, which cleans up the code a lot.
->>>>> Also remove dma_resv_prune, it's questionably.
->>>>>
->>>>> This will result in the following lockdep splat.
->>>>
->>>> <snip>
->>>>
->>>>> @@ -37,56 +36,17 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
->>>>>                      unsigned int flags,
->>>>>                      long timeout)
->>>>>     {
->>>>> -    struct dma_fence *excl;
->>>>> -    bool prune_fences = false;
->>>>> -
->>>>> -    if (flags & I915_WAIT_ALL) {
->>>>> -        struct dma_fence **shared;
->>>>> -        unsigned int count, i;
->>>>> -        int ret;
->>>>> +    struct dma_resv_iter cursor;
->>>>> +    struct dma_fence *fence;
->>>>>     -        ret = dma_resv_get_fences(resv, &excl, &count, &shared);
->>>>> -        if (ret)
->>>>> -            return ret;
->>>>> -
->>>>> -        for (i = 0; i < count; i++) {
->>>>> -            timeout = i915_gem_object_wait_fence(shared[i],
->>>>> -                                 flags, timeout);
->>>>> -            if (timeout < 0)
->>>>> -                break;
->>>>> +    dma_resv_iter_begin(&cursor, resv, flags & I915_WAIT_ALL);
->>>>> +    dma_resv_for_each_fence_unlocked(&cursor, fence) {
->>>>>     -            dma_fence_put(shared[i]);
->>>>> -        }
->>>>> -
->>>>> -        for (; i < count; i++)
->>>>> -            dma_fence_put(shared[i]);
->>>>> -        kfree(shared);
->>>>> -
->>>>> -        /*
->>>>> -         * If both shared fences and an exclusive fence exist,
->>>>> -         * then by construction the shared fences must be later
->>>>> -         * than the exclusive fence. If we successfully wait for
->>>>> -         * all the shared fences, we know that the exclusive fence
->>>>> -         * must all be signaled. If all the shared fences are
->>>>> -         * signaled, we can prune the array and recover the
->>>>> -         * floating references on the fences/requests.
->>>>> -         */
->>>>> -        prune_fences = count && timeout >= 0;
->>>>> -    } else {
->>>>> -        excl = dma_resv_get_excl_unlocked(resv);
->>>>> +        timeout = i915_gem_object_wait_fence(fence, flags, timeout);
->>>>> +        if (timeout <= 0)
->>>>> +            break;
->>>>
->>>> You have another change in behaviour here, well a bug really. When userspace passes in zero timeout you fail to report activity in other than the first fence.
->>>
->>> Hmm, not necessarily, passing 0 to i915_gem_object_wait_fence timeout = 0 is a special case and means test only. It will return 1 on success.
->>
->> I tried to enumerate the whole chain here. All for timeout == 0. Please double check I did not make a mistake somewhere since there are many return code inversions here.
->>
->> As building blocks for the whole "game" we have:
->>
->> 1. dma_fence_default_wait, it returns for states:
->>      
->>      not signaled -> 0
->>      signaled -> 1
->>
->> 2. i915_request_wait
->>
->>      not signaled -> -ETIME
->>      signaled -> 0
->>
->> Then i915_gem_object_wait_fence builds on top of it and has therefore these possible outputs:
->>
->>      signaled -> 0
->>      not signaled:
->>          i915 path -> -ETIME
->>          ext fence -> 0
->>
->> So this looks a like problem already with 0 for signaled and not signaled. Unless it is by design that the return value does not want to report external fences? But it is not documented and it still waits on them so odd.
->>
->> Then in i915_gem_object_wait_reservation we have a loop:
->>
->>          for (i = 0; i < count; i++) {
->>              timeout = i915_gem_object_wait_fence(shared[i],
->>                                   flags, timeout);
->>              if (timeout < 0)
->>                  break;
->>
->> So short circuit happens only for i915 fences, by virtue of no negative return codes otherwise.
->>
->> If we focus for i915 fences only for a moment. It means it keeps skipping signaled to check if any is not, therefore returning -ETIME if any is not signaled. i915_gem_object_wait passes the negative return on.
->>
->> With your patch you have:
->>
->> +        timeout = i915_gem_object_wait_fence(fence, flags, timeout);
->> +        if (timeout <= 0)
->> +            break;
->>
->> Which means you break on first signaled fence (i915 or external), therefore missing to report any possible subsequent  unsignaled fences. So gem_wait ioctl breaks unless I am missing something.
-> 
-> You're cc'd on a mail I sent to König regarding this.
-> "Re: [PATCH 20/28] drm/i915: use new iterator in i915_gem_object_wait_reservation"
-> 5accca25-8ac3-47ca-ee56-8b33c208fc80@linux.intel.com
-> 
-> 
-> timeout = 0 is a special case, fence_wait should return 1 if signaled, or 0 if waiting. Not -ETIME, as i915 does currently.
-> 
-> This means our i915_fence_wait() handler is currently very wrong too, needs to be fixed. It returns 0 if timeout = 0 even
-> if signaled.
-> 
-> I think it cancels the fail in our gem_object_wait, but more consistency is definitely needed first.
-> 
-> I think it's best to keep the current semantics for i915_reuest_wait, but make it a wrapper around a
-> fixed i915_request_wait_timeout(), which would have the correct return semantics.
+Just some high level comments inline.
 
-Okay you are opening up a new issue here. What I am saying is don't break gem_wait. :) Christian's patch did not have the "<=" bug, it simply preserved the existing behaviour.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cursor.c   |  19 +-
+>  .../drm/i915/display/intel_display_types.h    |   1 -
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 178 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fb.h       |   8 +
+>  drivers/gpu/drm/i915/display/intel_sprite.c   |  35 +---
+>  drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+>  .../drm/i915/display/skl_universal_plane.c    | 137 +-------------
+>  drivers/gpu/drm/i915/i915_drv.h               |   3 +
+>  8 files changed, 218 insertions(+), 164 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index f6dcb5aa63f64..bcd44ff30ce5b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -28,11 +28,6 @@ static const u32 intel_cursor_formats[] = {
+>  	DRM_FORMAT_ARGB8888,
+>  };
+>  
+> -static const u64 cursor_format_modifiers[] = {
+> -	DRM_FORMAT_MOD_LINEAR,
+> -	DRM_FORMAT_MOD_INVALID
+> -};
+> -
+>  static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+>  {
+>  	struct drm_i915_private *dev_priv =
+> @@ -605,8 +600,10 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
+>  static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+>  					      u32 format, u64 modifier)
+>  {
+> -	return modifier == DRM_FORMAT_MOD_LINEAR &&
+> -		format == DRM_FORMAT_ARGB8888;
+> +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> +		return false;
+> +
+> +	return format == DRM_FORMAT_ARGB8888;
+>  }
+>  
+>  static int
+> @@ -754,6 +751,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+>  {
+>  	struct intel_plane *cursor;
+>  	int ret, zpos;
+> +	u64 *modifiers;
+>  
+>  	cursor = intel_plane_alloc();
+>  	if (IS_ERR(cursor))
+> @@ -784,13 +782,18 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+>  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
+>  		cursor->cursor.size = ~0;
+>  
+> +	modifiers = intel_fb_plane_get_modifiers(dev_priv, pipe, cursor->id);
+> +
+>  	ret = drm_universal_plane_init(&dev_priv->drm, &cursor->base,
+>  				       0, &intel_cursor_plane_funcs,
+>  				       intel_cursor_formats,
+>  				       ARRAY_SIZE(intel_cursor_formats),
+> -				       cursor_format_modifiers,
+> +				       modifiers,
+>  				       DRM_PLANE_TYPE_CURSOR,
+>  				       "cursor %c", pipe_name(pipe));
+> +
+> +	kfree(modifiers);
+> +
+>  	if (ret)
+>  		goto fail;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 21ce8bccc645a..bb53b01f07aee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1336,7 +1336,6 @@ struct intel_plane {
+>  	enum plane_id id;
+>  	enum pipe pipe;
+>  	bool has_fbc;
+> -	bool has_ccs;
+>  	bool need_async_flip_disable_wa;
+>  	u32 frontbuffer_bit;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index fa1f375e696bf..aefae988b620b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -13,6 +13,184 @@
+>  
+>  #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
+>  
+> +const struct intel_modifier_desc {
 
-Then for the fence->wait() issue you raise, comment is lacking:
+static?
 
-	 * Must return -ERESTARTSYS if the wait is intr = true and the wait was
-	 * interrupted, and remaining jiffies if fence has signaled, or 0 if wait
-	 * timed out. Can also return other error values on custom implementations,
-	 * which should be treated as if the fence is signaled. For example a hardware
-	 * lockup could be reported like that.
+Maybe split the struct declaration and the array definition for
+clarity. *shrug*
 
-No mention of the timeout == 0 special case so that needs to be fixed as well. Plenty of issues to work on.
+> +	u64 id;
+> +	u64 display_versions;
+> +
+> +	struct {
+> +#define INTEL_CCS_RC		BIT(0)
+> +#define INTEL_CCS_RC_CC		BIT(1)
+> +#define INTEL_CCS_MC		BIT(2)
+> +
+> +#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
+> +		u8 type:3;
+> +	} ccs;
+> +} intel_modifiers[] = {
+> +	{
+> +		.id = DRM_FORMAT_MOD_LINEAR,
+> +		.display_versions = DISPLAY_VER_MASK_ALL,
 
-Regards,
+What is this going to look like when display version mask isn't fine
+grained enough to cover all the platforms? Do we have cases like that
+already?
 
-Tvrtko
+[snip]
 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 12256218634f4..a92228c922a54 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1342,6 +1342,9 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+>  #define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
+>  #define IS_DISPLAY_VER(i915, from, until) \
+>  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+> +#define DISPLAY_VER_BIT(d)	BIT_ULL(d)
+> +#define DISPLAY_VER_MASK(f, u)	GENMASK_ULL(u, f)
+> +#define DISPLAY_VER_MASK_ALL	DISPLAY_VER_MASK(0, BITS_PER_LONG_LONG - 1)
+
+Do we want to promote this usage all over the place? Maybe keep them
+internal to intel_fb.c?
+
+Or just add both from and until members in intel_modifier_desc, and use
+the regular IS_DISPLAY_VER() in intel_fb.c as well. It's not worse
+considering the mask you have is u64. You could have two u8's
+instead. You could consider 0 for either to mean "no limit", and skip
+the initialization instead of duplicating .display_versions =
+DISPLAY_VER_MASK_ALL.
+
+I think I'd prefer that. Or do you see masks with gaps in them?
+
+BR,
+Jani.
+
+
+>  
+>  #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
