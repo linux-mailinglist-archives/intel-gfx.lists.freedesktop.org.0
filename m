@@ -2,50 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0985A42DB5C
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 16:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E832E42DB97
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Oct 2021 16:31:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF136E99F;
-	Thu, 14 Oct 2021 14:21:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5599E6EB33;
+	Thu, 14 Oct 2021 14:30:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A25646E2ED;
- Thu, 14 Oct 2021 14:21:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="208488425"
-X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="208488425"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2021 07:21:19 -0700
-X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; d="scan'208";a="481275921"
-Received: from gprashan-mobl4.ger.corp.intel.com (HELO [10.252.26.144])
- ([10.252.26.144])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2021 07:21:16 -0700
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Ramalingam C <ramalingam.c@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, CQ Tang <cq.tang@intel.com>,
- Hellstrom Thomas <thomas.hellstrom@intel.com>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD4706EB28
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 14:30:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1634221852;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Qjxkd6qIxa6afij1vTqNqr+MC+NtBXcpce6L9f194Qw=;
+ b=CDeqSewIKXdJ7k6v1wQI03oMNq+4YVI94kIAh2ZDm2m7r6kU9XN77Hs2Z0RsUxFWD2HVOm
+ Jgy0kVCIzxIA6wpwGo2qPzwrRNXAg//xqXPqblUOqZsWM76LfHxyLjZWEZulIA2aCRk1x8
+ 93crCpSewwbZBngOJiCywdd2ehSHQzc=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-384-EV1wF19nOmCsoF6qACZhHw-1; Thu, 14 Oct 2021 10:30:51 -0400
+X-MC-Unique: EV1wF19nOmCsoF6qACZhHw-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ c25-20020a056402143900b003dc19782ea8so1809568edx.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 07:30:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Qjxkd6qIxa6afij1vTqNqr+MC+NtBXcpce6L9f194Qw=;
+ b=4QZp+Rr4Y4i5QhApWqbCRFf6lWzPE8gbyqR5UrPu3cmaFljYPfbqelQalEMx91yaQb
+ SqYgKXd4dhu5FM5H5qhqRcssDLPS0ca02RNf20psMX/Nfa+Ii6IbQPtt6vwyRDqxW2Z5
+ 87Si2G636zIwfZcqZFE8bhy72BvOnSNHY8Ctw57LW6gHDyBi2pBOC8rgJbjORgql8CSp
+ fx6GPn5LnnFWHYVM6+PiN+rvrgCHoV3B8qcKCB2yqJ7qzl7bq2UMwMnqKyYGAwIda65k
+ vJiIhOP5DQbkNsGTaOT/TTbvWjj7K3SqHltrFm7LCXId2AVUukvhU8+htuqbKPgm+/f+
+ cv+w==
+X-Gm-Message-State: AOAM5325vbf7c9D/woQeL6PnW1m2TJh1LEJHUVfXlpr1pp/xHfJzS97A
+ YmA6P4BAyb02OZ7hzFUkOx4or7UTC03igjnXBmSeNaqmY4hBCNFdi+OhsPeT+hvjMqCGScfL7D6
+ 6Eg8NXLR91YGU9dL+Cb8x/sYhBBYN
+X-Received: by 2002:a17:907:7ba8:: with SMTP id
+ ne40mr4054154ejc.335.1634221850356; 
+ Thu, 14 Oct 2021 07:30:50 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxPOu4t8z30VvQcwYxIwLoEy5kn2EUQYMs3skWQhi1HQfLZ4CKTI1pxvHqzXeaTSd0eWFgjfQ==
+X-Received: by 2002:a17:907:7ba8:: with SMTP id
+ ne40mr4054108ejc.335.1634221849994; 
+ Thu, 14 Oct 2021 07:30:49 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id g22sm2088225ejd.33.2021.10.14.07.30.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 14 Oct 2021 07:30:49 -0700 (PDT)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Maxime Ripard <maxime@cerno.tech>, Dave Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20211011161155.6397-1-ramalingam.c@intel.com>
- <20211011161155.6397-4-ramalingam.c@intel.com>
- <YWbhYrNaT0TS1D3a@phenom.ffwll.local>
- <50362606-46a1-0a41-8063-5dca5ac99b98@intel.com>
- <YWgxqGYS8Ps3JtqD@phenom.ffwll.local>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <ff05dba2-9626-4afe-93f2-eb0151fec363@intel.com>
-Date: Thu, 14 Oct 2021 15:21:13 +0100
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+References: <20211014120452.2wicnt6hobu3kbwb@gilmour>
+ <c78e0488-249f-5cb4-8cca-f64dcb13bd45@redhat.com>
+Message-ID: <6f5ce650-6e06-955a-c079-e8f916e8bbd9@redhat.com>
+Date: Thu, 14 Oct 2021 16:30:48 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <YWgxqGYS8Ps3JtqD@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 03/14] drm/i915/xehpsdv: enforce min GTT
- alignment
+In-Reply-To: <c78e0488-249f-5cb4-8cca-f64dcb13bd45@redhat.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,84 +98,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 14/10/2021 14:33, Daniel Vetter wrote:
-> On Wed, Oct 13, 2021 at 03:13:33PM +0100, Matthew Auld wrote:
->> On 13/10/2021 14:38, Daniel Vetter wrote:
->>> On Mon, Oct 11, 2021 at 09:41:44PM +0530, Ramalingam C wrote:
->>>> From: Matthew Auld <matthew.auld@intel.com>
->>>>
->>>> For local-memory objects we need to align the GTT addresses to 64K, both
->>>> for the ppgtt and ggtt.
->>>>
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
->>>> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
->>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>
->>> Do we still need this with relocations removed? Userspace is picking all
->>> the addresses for us, so all we have to check is whether userspace got it
->>> right.
+Hi,
+
+On 10/14/21 3:24 PM, Hans de Goede wrote:
+> Hi,
+> 
+> On 10/14/21 2:04 PM, Maxime Ripard wrote:
+>> Hi Dave, Daniel,
 >>
->> Yeah, for OFFSET_FIXED this just validates that the provided address is
->> correctly aligned to 64K, while for the in-kernel insertion stuff we still
->> need to allocate an address that is aligned to 64K. Setting the alignment
->> here handles both cases.
-> 
-> Can't we just teach any in-kernel allocators to align to 2M and call it a
-> day? Ofc the code can still validate we don't have bugs (always good to
-> check your work). Ofc if the benefits is "no code can be removed anyway
-> since we still need to check" then ofc no point :-)
-
-Yeah, if we want to make it 2M, then we still need to add that here, 
-like with 64K.
-
-> 
-> Just want to make sure we're not carrying complexity around for nothing,
-> since this predates the relocation removal.
-
-If we were to just make everything 2M then we can in theory ditch all 
-the colouring stuff. Assuming userspace is happy with 2M or nothing, 
-then it just means potentially terrible utilisation of the ppGTT for the 
-kernel, but maybe that doesn't matter much really? For userspace maybe 
-they will have some kind of sub-allocation scheme?
-
-Well actually I guess it would be 2M alignment + 2M vma padding for 
-anything that can be placed in I915_MEMORY_CLASS_DEVICE, including mixed 
-objects. And then the usual 4K alignment for I915_MEMORY_CLASS_SYSTEM 
-only objects.
-
-
-> -Daniel
-> 
+>> Here's this week drm-misc-next PR
 >>
->>> -Daniel
->>>
->>>
->>>> ---
->>>>    drivers/gpu/drm/i915/i915_vma.c | 9 +++++++--
->>>>    1 file changed, 7 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
->>>> index 4b7fc4647e46..1ea1fa08efdf 100644
->>>> --- a/drivers/gpu/drm/i915/i915_vma.c
->>>> +++ b/drivers/gpu/drm/i915/i915_vma.c
->>>> @@ -670,8 +670,13 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
->>>>    	}
->>>>    	color = 0;
->>>> -	if (vma->obj && i915_vm_has_cache_coloring(vma->vm))
->>>> -		color = vma->obj->cache_level;
->>>> +	if (vma->obj) {
->>>> +		if (HAS_64K_PAGES(vma->vm->i915) && i915_gem_object_is_lmem(vma->obj))
->>>> +			alignment = max(alignment, I915_GTT_PAGE_SIZE_64K);
->>>> +
->>>> +		if (i915_vm_has_cache_coloring(vma->vm))
->>>> +			color = vma->obj->cache_level;
->>>> +	}
->>>>    	if (flags & PIN_OFFSET_FIXED) {
->>>>    		u64 offset = flags & PIN_OFFSET_MASK;
->>>> -- 
->>>> 2.20.1
->>>>
->>>
+>> Maxime
+>>
+>> drm-misc-next-2021-10-14:
+>> drm-misc-next for 5.16:
 > 
+> Ugh, this just missed the drm-privacy-screen work which I just pushed
+> out to drm-misc-next (I was waiting for the last i915 integration patch
+> to get reviewed).
+> 
+> It would be nice if we can still get the drm-privacy-screen work
+> included into 5.16. But if it is too late I understand.
+
+Thinking more about this, delaying this till 5.17 is fine, that
+will nicely align its release with GNOME42 which will be the
+first userspace to support this; and it will give it a nice long
+time to find any issues in -next (not that I expect any).
+
+Regards,
+
+Hans
+
+
+>> UAPI Changes:
+>>
+>> Cross-subsystem Changes:
+>>
+>> Core Changes:
+>>   - fbdev: Fix double-free, Remove unused scrolling acceleration
+>>   - locking: improve logging for contented locks without backoff
+>>   - dma-buf: Add dma_resv_for_each_fence iterator, and conversion of
+>>     users
+>>
+>> Driver Changes:
+>>   - nouveau: Various code style improvements
+>>   - bridge: HPD improvements for lt9611uxc, eDP aux-bus support for
+>>     ps8640, lvds-codec data-mapping selection support
+>>   - panels: Vivax TPC-9150, Innolux G070Y2-T02, LOGIC Technologies
+>>     LTTD800480070-L2RT, Sharp LS060T1SX01,
+>> The following changes since commit 9962601ca5719050906915c3c33a63744ac7b15c:
+>>
+>>   drm/bridge: dw-hdmi-cec: Make use of the helper function devm_add_action_or_reset() (2021-10-06 11:21:46 +0200)
+>>
+>> are available in the Git repository at:
+>>
+>>   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2021-10-14
+>>
+>> for you to fetch changes up to b3ec8cdf457e5e63d396fe1346cc788cf7c1b578:
+>>
+>>   fbdev: Garbage collect fbdev scrolling acceleration, part 1 (from TODO list) (2021-10-13 15:29:23 +0200)
+>>
+>> ----------------------------------------------------------------
+>> drm-misc-next for 5.16:
+>>
+>> UAPI Changes:
+>>
+>> Cross-subsystem Changes:
+>>
+>> Core Changes:
+>>   - fbdev: Fix double-free, Remove unused scrolling acceleration
+>>   - locking: improve logging for contented locks without backoff
+>>   - dma-buf: Add dma_resv_for_each_fence iterator, and conversion of
+>>     users
+>>
+>> Driver Changes:
+>>   - nouveau: Various code style improvements
+>>   - bridge: HPD improvements for lt9611uxc, eDP aux-bus support for
+>>     ps8640, lvds-codec data-mapping selection support
+>>   - panels: Vivax TPC-9150, Innolux G070Y2-T02, LOGIC Technologies
+>>     LTTD800480070-L2RT, Sharp LS060T1SX01,
+>>
+>> ----------------------------------------------------------------
+>> Alex Xu (Hello71) (1):
+>>       drm/plane-helper: fix uninitialized variable reference
+>>
+>> Amos Kong (1):
+>>       drm/ttm_bo_api: update the description for @placement and @sg
+>>
+>> Christian König (7):
+>>       dma-buf: add dma_resv_for_each_fence v3
+>>       dma-buf: use the new iterator in dma_buf_debug_show
+>>       dma-buf: use the new iterator in dma_resv_poll
+>>       drm/ttm: use the new iterator in ttm_bo_flush_all_fences
+>>       drm/scheduler: use new iterator in drm_sched_job_add_implicit_dependencies v2
+>>       drm/i915: use the new iterator in i915_request_await_object v2
+>>       drm: use new iterator in drm_gem_fence_array_add_implicit v3
+>>
+>> Claudio Suarez (1):
+>>       fbdev: Garbage collect fbdev scrolling acceleration, part 1 (from TODO list)
+>>
+>> Dan Carpenter (1):
+>>       drm/v3d: fix copy_from_user() error codes
+>>
+>> David Heidelberg (1):
+>>       dt-bindings: display: simple: hardware can use ddc-i2c-bus
+>>
+>> Dmitry Baryshkov (5):
+>>       drm/bridge/lontium-lt9611uxc: fix provided connector suport
+>>       dt-bindings: add bindings for the Sharp LS060T1SX01 panel
+>>       drm/panel: Add support for Sharp LS060T1SX01 panel
+>>       dt-bindings: add bindings for the Sharp LS060T1SX01 panel
+>>       drm/panel: Add support for Sharp LS060T1SX01 panel
+>>
+>> Guido Günther (5):
+>>       drm/bridge: nwl-dsi: Add atomic_get_input_bus_fmts
+>>       drm/panel: mantix: Add media bus format
+>>       drm/panel: st7703: Add media bus format
+>>       drm: mxsfb: Print failed bus format in hex
+>>       drm: mxsfb: Set fallback bus format when the bridge doesn't provide one
+>>
+>> Jani Nikula (1):
+>>       drm/locking: add backtrace for locking contended locks without backoff
+>>
+>> Jing Xiangfeng (1):
+>>       drm/virtio: fix the missed drm_gem_object_put() in virtio_gpu_user_framebuffer_create()
+>>
+>> Karol Herbst (1):
+>>       drm/nouveau/mmu/gp100: remove unused variable
+>>
+>> Lee Jones (1):
+>>       drm/nouveau/nouveau_bo: Remove unused variables 'dev'
+>>
+>> Luo penghao (2):
+>>       drm/nouveau/mmu: drop unneeded assignment in the nvkm_uvmm_mthd_page()
+>>       drm/nouveau/mmu/gp100-: drop unneeded assignment in the if condition.
+>>
+>> Marek Vasut (3):
+>>       drm/bridge: ti-sn65dsi83: Implement .detach callback
+>>       dt-bindings: display: bridge: lvds-codec: Document LVDS data mapping select
+>>       drm/bridge: lvds-codec: Add support for LVDS data mapping select
+>>
+>> Nikola Pavlica (2):
+>>       dt-bindings: add vendor prefix for Vivax
+>>       dt-bindings: display: simple: Add Vivax TPC-9150 panel
+>>
+>> Oleksij Rempel (1):
+>>       dt-bindings: display: simple: add Innolux G070Y2-T02 panel
+>>
+>> Philip Chen (1):
+>>       dt-bindings: drm/bridge: ps8640: Add aux-bus child
+>>
+>> Randy Dunlap (1):
+>>       drm/connector: fix all kernel-doc warnings
+>>
+>> Sam Ravnborg (2):
+>>       Revert "drm/panel: Add support for Sharp LS060T1SX01 panel"
+>>       Revert "dt-bindings: add bindings for the Sharp LS060T1SX01 panel"
+>>
+>> Simon Ser (1):
+>>       drm/connector: refer to CTA-861-G in the "content type" prop docs
+>>
+>> Søren Andersen (1):
+>>       drm/panel: panel-simple: add LOGIC Technologies LTTD800480070-L2RT panel
+>>
+>> Tvrtko Ursulin (1):
+>>       dma-resv: Fix dma_resv_get_fences and dma_resv_copy_fences after conversion
+>>
+>> Uwe Kleine-König (1):
+>>       drm/panel: s6e63m0: Make s6e63m0_remove() return void
+>>
+>> Yang Yingliang (1):
+>>       drm/nouveau/gem: remove redundant semi-colon
+>>
+>> Zheyu Ma (1):
+>>       fbdev: fbmem: Fix double free of 'fb_info->pixmap.addr'
+>>
+>> yong yiran (1):
+>>       drm/nouveau/nvenc: remove duplicate include in base.c
+>>
+>>  .../bindings/display/bridge/lvds-codec.yaml        |  33 +-
+>>  .../devicetree/bindings/display/bridge/ps8640.yaml |  19 +-
+>>  .../bindings/display/panel/panel-simple.yaml       |   5 +
+>>  .../bindings/display/panel/sharp,ls060t1sx01.yaml  |  56 +++
+>>  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+>>  Documentation/gpu/todo.rst                         |  13 +-
+>>  drivers/dma-buf/dma-buf.c                          |  60 +--
+>>  drivers/dma-buf/dma-resv.c                         |  69 ++-
+>>  drivers/gpu/drm/Kconfig                            |  15 +
+>>  drivers/gpu/drm/bridge/lontium-lt9611uxc.c         |   9 +-
+>>  drivers/gpu/drm/bridge/lvds-codec.c                |  76 ++-
+>>  drivers/gpu/drm/bridge/nwl-dsi.c                   |  35 ++
+>>  drivers/gpu/drm/bridge/ti-sn65dsi83.c              |  17 +-
+>>  drivers/gpu/drm/drm_connector.c                    |  32 +-
+>>  drivers/gpu/drm/drm_gem.c                          |  26 +-
+>>  drivers/gpu/drm/drm_modeset_lock.c                 |  49 +-
+>>  drivers/gpu/drm/drm_plane_helper.c                 |   1 -
+>>  drivers/gpu/drm/i915/i915_request.c                |  34 +-
+>>  drivers/gpu/drm/mxsfb/mxsfb_kms.c                  |   8 +-
+>>  drivers/gpu/drm/nouveau/nouveau_bo.c               |   4 -
+>>  drivers/gpu/drm/nouveau/nouveau_gem.c              |   2 +-
+>>  drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c   |   1 -
+>>  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c     |   2 +-
+>>  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c |   4 +-
+>>  drivers/gpu/drm/panel/Kconfig                      |  10 +
+>>  drivers/gpu/drm/panel/Makefile                     |   1 +
+>>  drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c   |   9 +
+>>  drivers/gpu/drm/panel/panel-samsung-s6e63m0-dsi.c  |   3 +-
+>>  drivers/gpu/drm/panel/panel-samsung-s6e63m0-spi.c  |   3 +-
+>>  drivers/gpu/drm/panel/panel-samsung-s6e63m0.c      |   4 +-
+>>  drivers/gpu/drm/panel/panel-samsung-s6e63m0.h      |   2 +-
+>>  drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c    | 333 ++++++++++++++
+>>  drivers/gpu/drm/panel/panel-simple.c               |  35 ++
+>>  drivers/gpu/drm/panel/panel-sitronix-st7703.c      |   8 +
+>>  drivers/gpu/drm/scheduler/sched_main.c             |  26 +-
+>>  drivers/gpu/drm/ttm/ttm_bo.c                       |  16 +-
+>>  drivers/gpu/drm/v3d/v3d_gem.c                      |  13 +-
+>>  drivers/gpu/drm/virtio/virtgpu_display.c           |   4 +-
+>>  drivers/video/fbdev/core/bitblit.c                 |  16 -
+>>  drivers/video/fbdev/core/fbcon.c                   | 509 +--------------------
+>>  drivers/video/fbdev/core/fbcon.h                   |  59 ---
+>>  drivers/video/fbdev/core/fbcon_ccw.c               |  28 +-
+>>  drivers/video/fbdev/core/fbcon_cw.c                |  28 +-
+>>  drivers/video/fbdev/core/fbcon_rotate.h            |   9 -
+>>  drivers/video/fbdev/core/fbcon_ud.c                |  37 +-
+>>  drivers/video/fbdev/core/fbmem.c                   |   5 +-
+>>  drivers/video/fbdev/core/tileblit.c                |  16 -
+>>  drivers/video/fbdev/skeletonfb.c                   |  12 +-
+>>  include/drm/drm_modeset_lock.h                     |   8 +
+>>  include/drm/ttm/ttm_bo_api.h                       |   6 +-
+>>  include/linux/dma-resv.h                           |  25 +-
+>>  include/linux/fb.h                                 |   2 +-
+>>  52 files changed, 939 insertions(+), 860 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
+>>  create mode 100644 drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
+>>
+
