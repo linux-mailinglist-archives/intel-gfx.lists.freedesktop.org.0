@@ -1,38 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4C842ED31
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 11:09:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E756B42ED4A
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 11:11:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 247426ED09;
-	Fri, 15 Oct 2021 09:09:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A18B6ED0B;
+	Fri, 15 Oct 2021 09:11:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3DA76ED09
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 09:09:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="227773287"
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="227773287"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2021 02:09:26 -0700
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="564235035"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF906ED0B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 09:11:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="226654222"
+X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="226654222"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2021 02:11:35 -0700
+X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="592921437"
 Received: from rboyadji-mobl.amr.corp.intel.com (HELO rdvivi-mobl4.intel.com)
  ([10.213.161.67])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2021 02:09:25 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2021 02:11:34 -0700
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Date: Fri, 15 Oct 2021 05:09:16 -0400
-Message-Id: <20211015090916.82968-1-rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Date: Fri, 15 Oct 2021 05:11:29 -0400
+Message-Id: <20211015091129.83226-1-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Clean up PXP Kconfig info.
+Subject: [Intel-gfx] [PATCH] drm/i915: Clean-up bonding debug message.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,46 +47,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During the review I focused on stop the using of the "+"
-to reference the newer platforms, but I forgot that we are
-in a process of making things more clear and differentiate
-graphics and display versions. So, let me to clean up this
-a bit. Also, we don't need any version mentioned in the
-config menu entry, only in the help.
+We should stop using the gen name and the "+" to reference
+the newer platforms.
+And on this case specifically we can simplify the debug
+message even further.
 
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/i915/Kconfig | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 8859444943a0..bf041b26ffec 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -132,15 +132,15 @@ config DRM_I915_GVT_KVMGT
- 	  Intel GVT-g.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index d225d3dd0b40..30759b651180 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -479,7 +479,7 @@ set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
+ 	if (GRAPHICS_VER(i915) >= 12 && !IS_TIGERLAKE(i915) &&
+ 	    !IS_ROCKETLAKE(i915) && !IS_ALDERLAKE_S(i915)) {
+ 		drm_dbg(&i915->drm,
+-			"Bonding on gen12+ aside from TGL, RKL, and ADL_S not supported\n");
++			"Bonding not supported on this platform\n");
+ 		return -ENODEV;
+ 	}
  
- config DRM_I915_PXP
--	bool "Enable Intel PXP support for Intel Gen12 and newer platform"
-+	bool "Enable Intel PXP support"
- 	depends on DRM_I915
- 	depends on INTEL_MEI && INTEL_MEI_PXP
- 	default n
- 	help
--	  PXP (Protected Xe Path) is an i915 component, available on GEN12 and
--	  newer GPUs, that helps to establish the hardware protected session and
--	  manage the status of the alive software session, as well as its life
--	  cycle.
-+	  PXP (Protected Xe Path) is an i915 component, available on graphics
-+	  version 12 and newer GPUs, that helps to establish the hardware
-+	  protected session and manage the status of the alive software session,
-+	  as well as its life cycle.
- 
- menu "drm/i915 Debugging"
- depends on DRM_I915
 -- 
 2.31.1
 
