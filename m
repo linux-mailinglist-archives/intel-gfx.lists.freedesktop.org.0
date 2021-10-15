@@ -2,63 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F8D42F196
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 14:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 108FA42F1B9
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 15:08:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B74C6E321;
-	Fri, 15 Oct 2021 12:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3D4B6E2EF;
+	Fri, 15 Oct 2021 13:08:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E3F46E2D5;
- Fri, 15 Oct 2021 12:59:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="251353558"
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="251353558"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2021 05:59:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="492550362"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 15 Oct 2021 05:58:56 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Oct 2021 15:58:55 +0300
-Date: Fri, 15 Oct 2021 15:58:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Claudio Suarez <cssk@net-c.es>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
-Message-ID: <YWl7D9Qnt/Ysk2JI@intel.com>
-References: <20211015113713.630119-1-cssk@net-c.es>
- <20211015113713.630119-16-cssk@net-c.es> <87a6jav4n3.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 40B066E2EF;
+ Fri, 15 Oct 2021 13:08:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3875FA01BB;
+ Fri, 15 Oct 2021 13:08:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6570527928870860469=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87a6jav4n3.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 15/15] drm/i915: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Oct 2021 13:08:02 -0000
+Message-ID: <163430328220.29320.16357041983764149730@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211015115720.79958-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20211015115720.79958-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZG1h?=
+ =?utf-8?q?-buf=3A_Fix_breakages_from_dma=5Fresv=5Fiter_conversion=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,47 +41,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 15, 2021 at 03:44:48PM +0300, Jani Nikula wrote:
-> On Fri, 15 Oct 2021, Claudio Suarez <cssk@net-c.es> wrote:
-> > Once EDID is parsed, the monitor HDMI support information is available
-> > through drm_display_info.is_hdmi. Retriving the same information with
-> > drm_detect_hdmi_monitor() is less efficient. Change to
-> > drm_display_info.is_hdmi where possible.
-> >
-> > This is a TODO task in Documentation/gpu/todo.rst
-> >
-> > Signed-off-by: Claudio Suarez <cssk@net-c.es>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_connector.c | 5 +++++
-> >  drivers/gpu/drm/i915/display/intel_connector.h | 1 +
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c      | 2 +-
-> >  drivers/gpu/drm/i915/display/intel_sdvo.c      | 3 ++-
-> >  4 files changed, 9 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-> > index 9bed1ccecea0..3346b55df6e1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> > @@ -213,6 +213,11 @@ int intel_ddc_get_modes(struct drm_connector *connector,
-> >  	return ret;
-> >  }
-> >  
-> > +bool intel_connector_is_hdmi_monitor(struct drm_connector *connector)
-> > +{
-> > +	return connector->display_info.is_hdmi;
-> > +}
-> > +
-> 
-> A helper like this belongs in drm, not i915. Seems useful in other
-> drivers too.
+--===============6570527928870860469==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Not sure it's actually helpful for i915. We end up having to root around
-in the display_info in a lot of places anyway. So a helper for single
-boolean seems a bit out of place perhaps.
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: dma-buf: Fix breakages from dma_resv_iter conversion.
+URL   : https://patchwork.freedesktop.org/series/95877/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10743 -> Patchwork_21352
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21352 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][2] -> [INCOMPLETE][3] ([i915#3921])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][5] ([fdo#109271]) +48 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@engines@userptr:
+    - fi-pnv-d510:        [INCOMPLETE][6] ([i915#299]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+
+
+Participating hosts (39 -> 36)
+------------------------------
+
+  Missing    (3): fi-bsw-cyan bat-dg1-6 fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10743 -> Patchwork_21352
+
+  CI-20190529: 20190529
+  CI_DRM_10743: 12c88a23f431212268d7d4d16d313f1d8661c7e5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6250: 3c2ac88757f0d0ac9450487d314fcaceebc8bc26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21352: 3bf852bf1efcc613fbd47938c7c0c7dc644c3f79 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3bf852bf1efc dma-buf: Fix dma_resv_test_signaled.
+f7a9383f94a9 dma-buf: Fix dma_resv_wait_timeout handling of timeout = 0.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/index.html
+
+--===============6570527928870860469==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>dma-buf: Fix breakages from dma_resv_iter conversion.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95877/">https://patchwork.freedesktop.org/series/95877/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10743 -&gt; Patchwork_21352</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21352 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +48 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_parallel@engines@userptr:<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21352/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Missing    (3): fi-bsw-cyan bat-dg1-6 fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10743 -&gt; Patchwork_21352</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10743: 12c88a23f431212268d7d4d16d313f1d8661c7e5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6250: 3c2ac88757f0d0ac9450487d314fcaceebc8bc26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21352: 3bf852bf1efcc613fbd47938c7c0c7dc644c3f79 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>3bf852bf1efc dma-buf: Fix dma_resv_test_signaled.<br />
+f7a9383f94a9 dma-buf: Fix dma_resv_wait_timeout handling of timeout = 0.</p>
+
+</body>
+</html>
+
+--===============6570527928870860469==--
