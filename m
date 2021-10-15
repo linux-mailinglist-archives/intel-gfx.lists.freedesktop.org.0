@@ -1,64 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEEA042E857
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 07:17:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD5C42E85F
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 07:20:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E17E6E220;
-	Fri, 15 Oct 2021 05:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 738236ECCB;
+	Fri, 15 Oct 2021 05:20:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 944B16E220;
- Fri, 15 Oct 2021 05:17:53 +0000 (UTC)
-Received: by mail-ed1-x530.google.com with SMTP id t16so33171516eds.9;
- Thu, 14 Oct 2021 22:17:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IY0VDzzBP/Ta/+EbEWrnfIeYI/gKNtDErU5o48aI9tU=;
- b=ghmufCpFSZTrwm1H++YTPAHtceSg1c7+k5d5bhNCWTjwA8rOKTCPq0sKZUKL9Fmys0
- a3oTpe4bLSc1yIxWMZfcTvYpPSrDJDKpOrXQ83Ne+G3LC6Jr4JKft+rZn11wUucTEi1p
- 1syrJcLxQ89XNNgpG9BMlZtbSkvST1Gk89O9sbsB1T/lXRPb9HFNAjDfgJHgJbAJhZlk
- nL6wSxKXPHAmQ8stHpfyhjhy56QQ5q2gNhfeAav+5rR8JfAFIPqf5x38pXNpaQgXLM8I
- PJNT6U/CAl24rTrmXwiHJVLd1fGMw8gOeVBv+mF+TytFDEtvOoZZkU0U3fUEVuJzOG0z
- SChQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IY0VDzzBP/Ta/+EbEWrnfIeYI/gKNtDErU5o48aI9tU=;
- b=gtJqOAodBSnMk/N9cI34mh/rLZjR/j3EqNpYqo2f7z1+JWVwyBxTrKny6xohnXjNxR
- zx17BKXnXLp7Ztx4jpVgEXksy9rfqGdOcVzutZgwOihoeavpp6OdS6NgH2sNbyY3rAju
- zr8ajUH9jeIFCCSjqF/D2WoEcnTx4Co3u31u417V97T9BgY7KqnB9aqcRKYN4zV/Z3m8
- VzqkAyxXe+X1kmZQjDY3KbMuJAS7EmDEuiK/kUqlC5lFf86VcerfrulY0c6Kf7yKfuUk
- jUGLDevrU8aGt5p3wnUxNUNWPuURwL0Ee40AxFuqqyvykd5OBXUek+f2CRUl6AGfpeHg
- jL+Q==
-X-Gm-Message-State: AOAM532eF5aMOVjWsKi/HyMJ2EzavW+E0gxzbsDIQFsyn/qx+4Fn/sDm
- OkhhYdDTosE5/KzX+Tqwdyb7/9p2VPtceJD3MnU=
-X-Google-Smtp-Source: ABdhPJw9/RH6fccv0J/pir5ytqRVb5bsqqdJtiC2IIaQAskMYkm18UnxljhJJkJzBzNhx1meTeBUSmlc7pWdmR+2G9Q=
-X-Received: by 2002:a17:907:2156:: with SMTP id
- rk22mr4344953ejb.64.1634275072068; 
- Thu, 14 Oct 2021 22:17:52 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78E816ECCB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 05:20:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="215015321"
+X-IronPort-AV: E=Sophos;i="5.85,374,1624345200"; d="scan'208";a="215015321"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 22:20:46 -0700
+X-IronPort-AV: E=Sophos;i="5.85,374,1624345200"; d="scan'208";a="442412423"
+Received: from invictus.jf.intel.com ([10.165.21.205])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 22:20:45 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Oct 2021 22:20:36 -0700
+Message-Id: <20211015052036.20290-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <8ac9a968-64d8-44ae-a9ae-863c21524fce@linux.intel.com>
-In-Reply-To: <8ac9a968-64d8-44ae-a9ae-863c21524fce@linux.intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Fri, 15 Oct 2021 15:17:40 +1000
-Message-ID: <CAPM=9tzcrtHqLtKVrpOp9nPxY5+owxz372pQ=ZhXq9tWn_nOmw@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Sean Paul <sean@poorly.run>, dri-devel <dri-devel@lists.freedesktop.org>, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v7] drm/i915: Update memory bandwidth formulae
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,14 +45,378 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> - Respun clock fixes for vc4/hdmi.
+The formulae has been updated to include more variables. Make
+sure the code carries the same.
 
-I was uneasy with these patches due to the number and size of them at
-this point in the cycle. Is there any major problem leaving them until
-next? I think fixes needs a hard reset and rebase to rc6 when it's
-tagged.
+Bspec: 64631, 54023
 
-If these are super-urgent fixes then I'd rather they come in a topic
-branch I can give to Linus separately.
+v2: Make GEN11 follow the default route and fix calculation of
+    maxdebw(RK)
+v3: Fix div by zero on default case
+    Correct indent for fallthrough(Jani)
+v4: Fix div by zero on gen11.
+v5: Fix 0 max_numchannels case
+v6:
+    - Split gen11/gen12 algorithms
+    - Fix RKL deburst value
+    - Fix difference b/ween ICL and TGL algorithms
+    - Protect deinterleave from being 0
+    - Warn when numchannels exceeds max_numchannels
+    - Fix scaling of clk_max from different units
+    - s/deinterleave/channelwidth/ in calculating peakbw
+    - Fix off by one for num_planes TGL+
+    - Fix SAGV check
+v7: Fix div by zero error on gen11
 
-Dave.
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 211 ++++++++++++++++++++----
+ 1 file changed, 179 insertions(+), 32 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 8d9d888e9316..29a4824b3763 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -27,6 +27,9 @@ struct intel_qgv_info {
+ 	u8 num_points;
+ 	u8 num_psf_points;
+ 	u8 t_bl;
++	u8 max_numchannels;
++	u8 channel_width;
++	u8 deinterleave;
+ };
+ 
+ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
+@@ -69,6 +72,7 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
+ 					 int point)
+ {
+ 	u32 val = 0, val2 = 0;
++	u16 dclk;
+ 	int ret;
+ 
+ 	ret = sandybridge_pcode_read(dev_priv,
+@@ -78,7 +82,8 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
+ 	if (ret)
+ 		return ret;
+ 
+-	sp->dclk = val & 0xffff;
++	dclk = val & 0xffff;
++	sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(dev_priv) > 11 ? 500 : 0), 1000);
+ 	sp->t_rp = (val & 0xff0000) >> 16;
+ 	sp->t_rcd = (val & 0xff000000) >> 24;
+ 
+@@ -133,7 +138,8 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+ }
+ 
+ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+-			      struct intel_qgv_info *qi)
++			      struct intel_qgv_info *qi,
++			      bool is_y_tile)
+ {
+ 	const struct dram_info *dram_info = &dev_priv->dram_info;
+ 	int i, ret;
+@@ -144,17 +150,41 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+ 	if (DISPLAY_VER(dev_priv) == 12)
+ 		switch (dram_info->type) {
+ 		case INTEL_DRAM_DDR4:
+-			qi->t_bl = 4;
++			qi->t_bl = is_y_tile ? 8 : 4;
++			qi->max_numchannels = 2;
++			qi->channel_width = 64;
++			qi->deinterleave = is_y_tile ? 1 : 2;
+ 			break;
+ 		case INTEL_DRAM_DDR5:
+-			qi->t_bl = 8;
++			qi->t_bl = is_y_tile ? 16 : 8;
++			qi->max_numchannels = 4;
++			qi->channel_width = 32;
++			qi->deinterleave = is_y_tile ? 1 : 2;
++			break;
++		case INTEL_DRAM_LPDDR4:
++			if (IS_ROCKETLAKE(dev_priv)) {
++				qi->t_bl = 8;
++				qi->max_numchannels = 4;
++				qi->channel_width = 32;
++				qi->deinterleave = 2;
++				break;
++			}
++			fallthrough;
++		case INTEL_DRAM_LPDDR5:
++			qi->t_bl = 16;
++			qi->max_numchannels = 8;
++			qi->channel_width = 16;
++			qi->deinterleave = is_y_tile ? 2 : 4;
+ 			break;
+ 		default:
+ 			qi->t_bl = 16;
++			qi->max_numchannels = 1;
+ 			break;
+ 		}
+-	else if (DISPLAY_VER(dev_priv) == 11)
++	else if (DISPLAY_VER(dev_priv) == 11) {
+ 		qi->t_bl = dev_priv->dram_info.type == INTEL_DRAM_DDR4 ? 4 : 8;
++		qi->max_numchannels = 1;
++	}
+ 
+ 	if (drm_WARN_ON(&dev_priv->drm,
+ 			qi->num_points > ARRAY_SIZE(qi->points)))
+@@ -193,12 +223,6 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+ 	return 0;
+ }
+ 
+-static int icl_calc_bw(int dclk, int num, int den)
+-{
+-	/* multiples of 16.666MHz (100/6) */
+-	return DIV_ROUND_CLOSEST(num * dclk * 100, den * 6);
+-}
+-
+ static int adl_calc_psf_bw(int clk)
+ {
+ 	/*
+@@ -240,7 +264,7 @@ static const struct intel_sa_info tgl_sa_info = {
+ };
+ 
+ static const struct intel_sa_info rkl_sa_info = {
+-	.deburst = 16,
++	.deburst = 8,
+ 	.deprogbwlimit = 20, /* GB/s */
+ 	.displayrtids = 128,
+ 	.derating = 10,
+@@ -265,35 +289,130 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	struct intel_qgv_info qi = {};
+ 	bool is_y_tile = true; /* assume y tile may be used */
+ 	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
+-	int deinterleave;
+-	int ipqdepth, ipqdepthpch;
++	int ipqdepth, ipqdepthpch = 16;
+ 	int dclk_max;
+ 	int maxdebw;
++	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
+ 	int i, ret;
+ 
+-	ret = icl_get_qgv_points(dev_priv, &qi);
++	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+ 	if (ret) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+ 		return ret;
+ 	}
+ 
+-	deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+ 	dclk_max = icl_sagv_max_dclk(&qi);
++	maxdebw = min(sa->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
++	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
++	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
++
++	for (i = 0; i < num_groups; i++) {
++		struct intel_bw_info *bi = &dev_priv->max_bw[i];
++		int clpchgroup;
++		int j;
++
++		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
++		bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
++
++		bi->num_qgv_points = qi.num_points;
++		bi->num_psf_gv_points = qi.num_psf_points;
++
++		for (j = 0; j < qi.num_points; j++) {
++			const struct intel_qgv_point *sp = &qi.points[j];
++			int ct, bw;
++
++			/*
++			 * Max row cycle time
++			 *
++			 * FIXME what is the logic behind the
++			 * assumed burst length?
++			 */
++			ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
++				   (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
++			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+ 
+-	ipqdepthpch = 16;
++			bi->deratedbw[j] = min(maxdebw,
++					       bw * (100 - sa->derating) / 100);
++
++			drm_dbg_kms(&dev_priv->drm,
++				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
++				    i, j, bi->num_planes, bi->deratedbw[j]);
++		}
++	}
++	/*
++	 * In case if SAGV is disabled in BIOS, we always get 1
++	 * SAGV point, but we can't send PCode commands to restrict it
++	 * as it will fail and pointless anyway.
++	 */
++	if (qi.num_points == 1)
++		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
++	else
++		dev_priv->sagv_status = I915_SAGV_ENABLED;
++
++	return 0;
++}
++
++static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
++{
++	struct intel_qgv_info qi = {};
++	const struct dram_info *dram_info = &dev_priv->dram_info;
++	bool is_y_tile = true; /* assume y tile may be used */
++	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
++	int ipqdepth, ipqdepthpch = 16;
++	int dclk_max;
++	int maxdebw, peakbw;
++	int clperchgroup;
++	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
++	int i, ret;
++
++	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
++	if (ret) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "Failed to get memory subsystem information, ignoring bandwidth limits");
++		return ret;
++	}
++
++	if (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5)
++		num_channels *= 2;
++
++	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
++
++	if (num_channels < qi.max_numchannels && DISPLAY_VER(dev_priv) >= 12)
++		qi.deinterleave = max(DIV_ROUND_UP(qi.deinterleave, 2), 1);
++
++	if (DISPLAY_VER(dev_priv) > 11 && num_channels > qi.max_numchannels)
++		drm_warn(&dev_priv->drm, "Number of channels exceeds max number of channels.");
++	if (qi.max_numchannels != 0)
++		num_channels = min_t(u8, num_channels, qi.max_numchannels);
++
++	dclk_max = icl_sagv_max_dclk(&qi);
++
++	peakbw = num_channels * DIV_ROUND_UP(qi.channel_width, 8) * dclk_max;
++	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * 6 / 10); /* 60% */
+ 
+-	maxdebw = min(sa->deprogbwlimit * 1000,
+-		      icl_calc_bw(dclk_max, 16, 1) * 6 / 10); /* 60% */
+ 	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
++	/*
++	 * clperchgroup = 4kpagespermempage * clperchperblock,
++	 * clperchperblock = 8 / num_channels * interleave
++	 */
++	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
+ 
+-	for (i = 0; i < ARRAY_SIZE(dev_priv->max_bw); i++) {
++	for (i = 0; i < num_groups; i++) {
+ 		struct intel_bw_info *bi = &dev_priv->max_bw[i];
++		struct intel_bw_info *bi_next;
+ 		int clpchgroup;
+ 		int j;
+ 
+-		clpchgroup = (sa->deburst * deinterleave / num_channels) << i;
+-		bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
++		if (i < num_groups - 1)
++			bi_next = &dev_priv->max_bw[i + 1];
++
++		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
++
++		if (i < num_groups - 1 && clpchgroup < clperchgroup)
++			bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
++		else
++			bi_next->num_planes = 0;
+ 
+ 		bi->num_qgv_points = qi.num_points;
+ 		bi->num_psf_gv_points = qi.num_psf_points;
+@@ -310,7 +429,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 			 */
+ 			ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
+ 				   (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
+-			bw = icl_calc_bw(sp->dclk, clpchgroup * 32 * num_channels, ct);
++			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+ 
+ 			bi->deratedbw[j] = min(maxdebw,
+ 					       bw * (100 - sa->derating) / 100);
+@@ -329,9 +448,6 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 				    "BW%d / PSF GV %d: num_planes=%d bw=%u\n",
+ 				    i, j, bi->num_planes, bi->psf_bw[j]);
+ 		}
+-
+-		if (bi->num_planes == 1)
+-			break;
+ 	}
+ 
+ 	/*
+@@ -388,13 +504,41 @@ static unsigned int icl_max_bw(struct drm_i915_private *dev_priv,
+ 		if (qgv_point >= bi->num_qgv_points)
+ 			return UINT_MAX;
+ 
+-		if (num_planes >= bi->num_planes)
++		if (num_planes > bi->num_planes)
+ 			return bi->deratedbw[qgv_point];
+ 	}
+ 
+ 	return 0;
+ }
+ 
++static unsigned int tgl_max_bw(struct drm_i915_private *dev_priv,
++			       int num_planes, int qgv_point)
++{
++	int i;
++
++	/*
++	 * Let's return max bw for 0 planes
++	 */
++	num_planes = max(1, num_planes);
++
++	for (i = ARRAY_SIZE(dev_priv->max_bw) - 1; i >= 0; i--) {
++		const struct intel_bw_info *bi =
++			&dev_priv->max_bw[i];
++
++		/*
++		 * Pcode will not expose all QGV points when
++		 * SAGV is forced to off/min/med/max.
++		 */
++		if (qgv_point >= bi->num_qgv_points)
++			return UINT_MAX;
++
++		if (num_planes <= bi->num_planes)
++			return bi->deratedbw[qgv_point];
++	}
++
++	return dev_priv->max_bw[0].deratedbw[qgv_point];
++}
++
+ static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
+ 			       int psf_gv_point)
+ {
+@@ -412,13 +556,13 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+ 	if (IS_DG2(dev_priv))
+ 		dg2_get_bw_info(dev_priv);
+ 	else if (IS_ALDERLAKE_P(dev_priv))
+-		icl_get_bw_info(dev_priv, &adlp_sa_info);
++		tgl_get_bw_info(dev_priv, &adlp_sa_info);
+ 	else if (IS_ALDERLAKE_S(dev_priv))
+-		icl_get_bw_info(dev_priv, &adls_sa_info);
++		tgl_get_bw_info(dev_priv, &adls_sa_info);
+ 	else if (IS_ROCKETLAKE(dev_priv))
+-		icl_get_bw_info(dev_priv, &rkl_sa_info);
++		tgl_get_bw_info(dev_priv, &rkl_sa_info);
+ 	else if (DISPLAY_VER(dev_priv) == 12)
+-		icl_get_bw_info(dev_priv, &tgl_sa_info);
++		tgl_get_bw_info(dev_priv, &tgl_sa_info);
+ 	else if (DISPLAY_VER(dev_priv) == 11)
+ 		icl_get_bw_info(dev_priv, &icl_sa_info);
+ }
+@@ -746,7 +890,10 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	for (i = 0; i < num_qgv_points; i++) {
+ 		unsigned int max_data_rate;
+ 
+-		max_data_rate = icl_max_bw(dev_priv, num_active_planes, i);
++		if (DISPLAY_VER(dev_priv) > 11)
++			max_data_rate = tgl_max_bw(dev_priv, num_active_planes, i);
++		else
++			max_data_rate = icl_max_bw(dev_priv, num_active_planes, i);
+ 		/*
+ 		 * We need to know which qgv point gives us
+ 		 * maximum bandwidth in order to disable SAGV
+-- 
+2.20.1
+
