@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7A042E9DF
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 09:16:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1416E42E9E1
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 09:16:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDC9B6ECD9;
-	Fri, 15 Oct 2021 07:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0BE06ECDF;
+	Fri, 15 Oct 2021 07:16:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86CC76ECD9
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 07:16:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="207980323"
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="207980323"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2021 00:16:38 -0700
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EED56ECDF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 07:16:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="288732331"
+X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="288732331"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2021 00:16:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="461487054"
+X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="564213528"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 15 Oct 2021 00:16:35 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 15 Oct 2021 00:16:39 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Oct 2021 10:16:35 +0300
+ Fri, 15 Oct 2021 10:16:38 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Dave Airlie <airlied@redhat.com>,
 	Jani Nikula <jani.nikula@intel.com>
-Date: Fri, 15 Oct 2021 10:16:19 +0300
-Message-Id: <20211015071625.593-4-ville.syrjala@linux.intel.com>
+Date: Fri, 15 Oct 2021 10:16:20 +0300
+Message-Id: <20211015071625.593-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211015071625.593-1-ville.syrjala@linux.intel.com>
 References: <20211015071625.593-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/9] drm/i915: Clean up the {ilk,
- lpt}_pch_enable() calling convention
+Subject: [Intel-gfx] [PATCH 4/9] drm/i915: Move LPT PCH readout code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,142 +53,153 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Use the clean "atomic_state+crtc" approach of passing
-arguments to the top level PCH modeset code.
-
-And while at it we can also just pass the whole crtc to
-ilk_disable_pch_transcoder().
+Nuke the hsw_get_ddi_port_state() eyesore by putting the
+readout code into intel_pch_display.c, and calling it directly
+from hsw_crt_get_config().
 
 Cc: Dave Airlie <airlied@redhat.com>
 Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  4 ++--
- .../gpu/drm/i915/display/intel_pch_display.c  | 23 +++++++++++--------
- .../gpu/drm/i915/display/intel_pch_display.h  | 12 +++++-----
- 4 files changed, 22 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crt.c      |  2 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 46 ++-----------------
+ drivers/gpu/drm/i915/display/intel_display.h  |  2 +
+ .../gpu/drm/i915/display/intel_pch_display.c  | 18 ++++++++
+ .../gpu/drm/i915/display/intel_pch_display.h  |  1 +
+ 5 files changed, 26 insertions(+), 43 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 54540138bd1d..4038ae342ea1 100644
+index 4038ae342ea1..03cfae46f92f 100644
 --- a/drivers/gpu/drm/i915/display/intel_crt.c
 +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -318,7 +318,7 @@ static void hsw_enable_crt(struct intel_atomic_state *state,
+@@ -147,6 +147,8 @@ static void hsw_crt_get_config(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
  
- 	intel_enable_transcoder(crtc_state);
++	lpt_pch_get_config(pipe_config);
++
+ 	hsw_ddi_get_config(encoder, pipe_config);
  
--	lpt_pch_enable(crtc_state);
-+	lpt_pch_enable(state, crtc);
- 
- 	intel_crtc_vblank_on(crtc_state);
- 
+ 	pipe_config->hw.adjusted_mode.flags &= ~(DRM_MODE_FLAG_PHSYNC |
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 69549886fe5b..2ee02c16bd1c 100644
+index 2ee02c16bd1c..8f65b8b6a306 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2020,7 +2020,7 @@ static void ilk_crtc_enable(struct intel_atomic_state *state,
- 	intel_enable_transcoder(new_crtc_state);
+@@ -4090,8 +4090,8 @@ void intel_dp_get_m_n(struct intel_crtc *crtc,
+ 					     &pipe_config->dp_m2_n2);
+ }
  
- 	if (new_crtc_state->has_pch_encoder)
--		ilk_pch_enable(state, new_crtc_state);
-+		ilk_pch_enable(state, crtc);
+-static void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
+-				   struct intel_crtc_state *pipe_config)
++void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
++			    struct intel_crtc_state *pipe_config)
+ {
+ 	intel_cpu_transcoder_get_m_n(crtc, pipe_config->cpu_transcoder,
+ 				     &pipe_config->fdi_m_n, NULL);
+@@ -4486,45 +4486,6 @@ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
+ 	return transcoder_is_dsi(pipe_config->cpu_transcoder);
+ }
  
- 	intel_crtc_vblank_on(new_crtc_state);
+-static void hsw_get_ddi_port_state(struct intel_crtc *crtc,
+-				   struct intel_crtc_state *pipe_config)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum transcoder cpu_transcoder = pipe_config->cpu_transcoder;
+-	enum port port;
+-	u32 tmp;
+-
+-	if (transcoder_is_dsi(cpu_transcoder)) {
+-		port = (cpu_transcoder == TRANSCODER_DSI_A) ?
+-						PORT_A : PORT_B;
+-	} else {
+-		tmp = intel_de_read(dev_priv,
+-				    TRANS_DDI_FUNC_CTL(cpu_transcoder));
+-		if (!(tmp & TRANS_DDI_FUNC_ENABLE))
+-			return;
+-		if (DISPLAY_VER(dev_priv) >= 12)
+-			port = TGL_TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
+-		else
+-			port = TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
+-	}
+-
+-	/*
+-	 * Haswell has only FDI/PCH transcoder A. It is which is connected to
+-	 * DDI E. So just check whether this pipe is wired to DDI E and whether
+-	 * the PCH transcoder is on.
+-	 */
+-	if (DISPLAY_VER(dev_priv) < 9 &&
+-	    (port == PORT_E) && intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) {
+-		pipe_config->has_pch_encoder = true;
+-
+-		tmp = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
+-		pipe_config->fdi_lanes = ((FDI_DP_PORT_WIDTH_MASK & tmp) >>
+-					  FDI_DP_PORT_WIDTH_SHIFT) + 1;
+-
+-		ilk_get_fdi_m_n_config(crtc, pipe_config);
+-	}
+-}
+-
+ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+ 				struct intel_crtc_state *pipe_config)
+ {
+@@ -4562,8 +4523,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+ 		/* we cannot read out most state, so don't bother.. */
+ 		pipe_config->quirks |= PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE;
+ 	} else if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
+-	    DISPLAY_VER(dev_priv) >= 11) {
+-		hsw_get_ddi_port_state(crtc, pipe_config);
++		   DISPLAY_VER(dev_priv) >= 11) {
+ 		intel_get_transcoder_timings(crtc, pipe_config);
+ 	}
  
-@@ -2299,7 +2299,7 @@ static void ilk_crtc_disable(struct intel_atomic_state *state,
- 	intel_encoders_post_disable(state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 93c84f2174b5..5bc8d8913178 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -584,6 +584,8 @@ void intel_dp_get_m_n(struct intel_crtc *crtc,
+ 		      struct intel_crtc_state *pipe_config);
+ void intel_dp_set_m_n(const struct intel_crtc_state *crtc_state,
+ 		      enum link_m_n_set m_n);
++void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
++			    struct intel_crtc_state *pipe_config);
+ int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
  
- 	if (old_crtc_state->has_pch_encoder) {
--		ilk_disable_pch_transcoder(dev_priv, pipe);
-+		ilk_disable_pch_transcoder(crtc);
- 
- 		if (HAS_PCH_CPT(dev_priv)) {
- 			i915_reg_t reg;
+ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state);
 diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 0056c2fe49ec..50995c4f2aaa 100644
+index 50995c4f2aaa..df7195ed1aaa 100644
 --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -179,9 +179,10 @@ static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
- 			pipe_name(pipe));
+@@ -366,3 +366,21 @@ void lpt_pch_enable(struct intel_atomic_state *state,
+ 
+ 	lpt_enable_pch_transcoder(dev_priv, cpu_transcoder);
  }
- 
--void ilk_disable_pch_transcoder(struct drm_i915_private *dev_priv,
--				enum pipe pipe)
-+void ilk_disable_pch_transcoder(struct intel_crtc *crtc)
- {
++
++void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
 +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum pipe pipe = crtc->pipe;
- 	i915_reg_t reg;
- 	u32 val;
- 
-@@ -218,12 +219,12 @@ void ilk_disable_pch_transcoder(struct drm_i915_private *dev_priv,
-  *   - DP transcoding bits
-  *   - transcoder
-  */
--void ilk_pch_enable(const struct intel_atomic_state *state,
--		    const struct intel_crtc_state *crtc_state)
-+void ilk_pch_enable(struct intel_atomic_state *state,
-+		    struct intel_crtc *crtc)
- {
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_device *dev = crtc->base.dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	const struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state,  crtc);
- 	enum pipe pipe = crtc->pipe;
- 	u32 temp;
- 
-@@ -289,7 +290,7 @@ void ilk_pch_enable(const struct intel_atomic_state *state,
- 			temp |= TRANS_DP_VSYNC_ACTIVE_HIGH;
- 
- 		port = intel_get_crtc_new_encoder(state, crtc_state)->port;
--		drm_WARN_ON(dev, port < PORT_B || port > PORT_D);
-+		drm_WARN_ON(&dev_priv->drm, port < PORT_B || port > PORT_D);
- 		temp |= TRANS_DP_PORT_SEL(port);
- 
- 		intel_de_write(dev_priv, reg, temp);
-@@ -348,10 +349,12 @@ void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv)
- 	intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
- }
- 
--void lpt_pch_enable(const struct intel_crtc_state *crtc_state)
-+void lpt_pch_enable(struct intel_atomic_state *state,
-+		    struct intel_crtc *crtc)
- {
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	const struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state,  crtc);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
- 	assert_pch_transcoder_disabled(dev_priv, PIPE_A);
++	u32 tmp;
++
++	if ((intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) == 0)
++		return;
++
++	crtc_state->has_pch_encoder = true;
++
++	tmp = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
++	crtc_state->fdi_lanes = ((FDI_DP_PORT_WIDTH_MASK & tmp) >>
++				 FDI_DP_PORT_WIDTH_SHIFT) + 1;
++
++	ilk_get_fdi_m_n_config(crtc, crtc_state);
++}
 diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.h b/drivers/gpu/drm/i915/display/intel_pch_display.h
-index 6eba1fd667ea..7f9df2c13cf3 100644
+index 7f9df2c13cf3..e0ff331c0bc6 100644
 --- a/drivers/gpu/drm/i915/display/intel_pch_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_pch_display.h
-@@ -6,17 +6,17 @@
- #ifndef _INTEL_PCH_DISPLAY_H_
- #define _INTEL_PCH_DISPLAY_H_
- 
--enum pipe;
- struct drm_i915_private;
- struct intel_atomic_state;
-+struct intel_crtc;
- struct intel_crtc_state;
- 
--void ilk_disable_pch_transcoder(struct drm_i915_private *dev_priv,
--				enum pipe pipe);
--void ilk_pch_enable(const struct intel_atomic_state *state,
--		    const struct intel_crtc_state *crtc_state);
-+void ilk_disable_pch_transcoder(struct intel_crtc *crtc);
-+void ilk_pch_enable(struct intel_atomic_state *state,
-+		    struct intel_crtc *crtc);
- 
+@@ -18,5 +18,6 @@ void ilk_pch_enable(struct intel_atomic_state *state,
  void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv);
--void lpt_pch_enable(const struct intel_crtc_state *crtc_state);
-+void lpt_pch_enable(struct intel_atomic_state *state,
-+		    struct intel_crtc *crtc);
+ void lpt_pch_enable(struct intel_atomic_state *state,
+ 		    struct intel_crtc *crtc);
++void lpt_pch_get_config(struct intel_crtc_state *crtc_state);
  
  #endif
 -- 
