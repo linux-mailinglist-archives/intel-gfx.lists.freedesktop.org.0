@@ -2,34 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A6642E806
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 06:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC0842E823
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 06:54:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA696E187;
-	Fri, 15 Oct 2021 04:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 188B76E210;
+	Fri, 15 Oct 2021 04:54:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0CB616E187;
- Fri, 15 Oct 2021 04:45:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 04CFAA77A5;
- Fri, 15 Oct 2021 04:45:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 299406E210;
+ Fri, 15 Oct 2021 04:54:52 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="227743985"
+X-IronPort-AV: E=Sophos;i="5.85,374,1624345200"; d="scan'208";a="227743985"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 21:54:51 -0700
+X-IronPort-AV: E=Sophos;i="5.85,374,1624345200"; d="scan'208";a="492318583"
+Received: from rcaravac-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.213.186.99])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2021 21:54:50 -0700
+Date: Thu, 14 Oct 2021 21:54:50 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20211015045450.ew5n7plkbllshms2@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20211012221738.16029-1-andi@etezian.org>
+ <20211014000427.652zp2ahlq7g2cvd@ldmartin-desk2>
+ <YWd1tnp2bdHBIWG0@intel.intel>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Oct 2021 04:45:48 -0000
-Message-ID: <163427314899.29320.5251596786920218797@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211015011833.59054-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20211015011833.59054-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915/pmu=3A_Add_a_name_to_th?=
- =?utf-8?q?e_execlists_stats?=
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <YWd1tnp2bdHBIWG0@intel.intel>
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gt: move remaining debugfs
+ interfaces into gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,43 +52,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Oct 14, 2021 at 02:11:34AM +0200, Andi Shyti wrote:
+>Hi Lucas,
+>
+>On Wed, Oct 13, 2021 at 05:04:27PM -0700, Lucas De Marchi wrote:
+>> On Wed, Oct 13, 2021 at 12:17:38AM +0200, Andi Shyti wrote:
+>> > From: Andi Shyti <andi.shyti@linux.intel.com>
+>> >
+>> > The following interfaces:
+>> >
+>> >  i915_wedged
+>> >  i915_forcewake_user
+>> >
+>> > are dependent on gt values. Put them inside gt/ and drop the
+>> > "i915_" prefix name. This would be the new structure:
+>> >
+>> >  dri/0/gt
+>> >  |
+>> >  +-- forcewake_user
+>> >  |
+>> >  \-- reset
+>> >
+>> > For backwards compatibility with existing igt (and the slight
+>> > semantic difference between operating on the i915 abi entry
+>> > points and the deep gt info):
+>> >
+>> >  dri/0
+>> >  |
+>> >  +-- i915_wedged
+>> >  |
+>> >  \-- i915_forcewake_user
+>> >
+>> > remain at the top level.
+>> >
+>> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+>> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>
+>> do you want me to push this?
+>
+>yes, please.
 
-Series: series starting with [1/2] drm/i915/pmu: Add a name to the execlists stats
-URL   : https://patchwork.freedesktop.org/series/95853/
-State : warning
+done, thanks.
 
-== Summary ==
+Now, about igt: eventually we need to update it to use the gt
+debugfs file. Is this something you have already or is it something
+we are waiting on multi-gt to land?
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:33:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:33:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:57:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:57:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1407:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+./include/linux/rcupdate.h:716:9: warning: context imbalance in 'intel_gt_reset_trylock_no_wait' - different lock contexts for basic block
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
--O:drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
+Lucas De Marchi
 
-
+>
+>Thanks,
+>Andi
