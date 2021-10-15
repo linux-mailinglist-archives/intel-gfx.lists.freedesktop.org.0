@@ -2,34 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 325D543184A
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 13:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC5A4318E3
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 14:19:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B7C16E873;
-	Mon, 18 Oct 2021 11:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFFA56EA17;
+	Mon, 18 Oct 2021 12:19:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4DBFB6E873;
- Mon, 18 Oct 2021 11:58:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4A508A7525;
- Mon, 18 Oct 2021 11:58:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Fri, 15 Oct 2021 10:31:14 UTC
+Received: from gimli.rothwell.id.au (gimli.rothwell.id.au [103.230.158.156])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 500226E249;
+ Fri, 15 Oct 2021 10:31:14 +0000 (UTC)
+Received: from authenticated.rothwell.id.au (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.rothwell.id.au (Postfix) with ESMTPSA id 4HW2S13FD3z101M;
+ Fri, 15 Oct 2021 21:24:01 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rothwell.id.au;
+ s=201702; t=1634293443;
+ bh=tepJe4AXXxss/DiAoGZR08QB5qtGDqWnkQk6fLoZ39o=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=UzXkr8yt/ZzXjeAilE9mwRB87eXjfTUhvt6kRbgUvMg1YWSg8Llkt88gdbMLEOs2U
+ y9LLxjqP5hHrBAi24C/ME2pTa9LUEIlEDCt4mL6YY/uluom1/jwPQBrBqgx8L2OurL
+ OD7QsJXUXNXVyTt8n5P9jrf+KAWBXesq//YhO8QIZl7m5eA3BBaCQDqXtW3Aq0Gpos
+ /i314NHc1lXIQiZdDsAMxso4F9hxeLT5GF9yOV5EaWcM+wIGU9MqHlVeGppPZi42oS
+ oIWWxoqnCOjZFJyMRpCWS9QxGgddIInlSYqGXOzgH5CyCLYBCjX6xSflsVgMEPod63
+ cD93pKWVrPwhA==
+Date: Fri, 15 Oct 2021 21:23:59 +1100
+From: Stephen Rothwell <sfr@rothwell.id.au>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Message-ID: <20211015212359.30e2fb01@elm.ozlabs.ibm.com>
+In-Reply-To: <87h7divcet.fsf@intel.com>
+References: <20211015202648.258445ef@canb.auug.org.au>
+ <87h7divcet.fsf@intel.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Oct 2021 11:58:45 -0000
-Message-ID: <163455832530.27088.13392926861938826318@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211018091055.1998191-1-matthew.auld@intel.com>
-In-Reply-To: <20211018091055.1998191-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv9=2C1/8=5D_drm/i915/gem=3A_Break_out_s?=
- =?utf-8?q?ome_shmem_backend_utils?=
+Content-Type: multipart/signed; boundary="Sig_/9bo9n8X6MVEuaY_0YZ+30wy";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Mon, 18 Oct 2021 12:19:37 +0000
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +61,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--Sig_/9bo9n8X6MVEuaY_0YZ+30wy
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Series: series starting with [v9,1/8] drm/i915/gem: Break out some shmem backend utils
-URL   : https://patchwork.freedesktop.org/series/95942/
-State : warning
+Hi Jani,
 
-== Summary ==
+On Fri, 15 Oct 2021 12:56:58 +0300 Jani Nikula <jani.nikula@intel.com> wrot=
+e:
+>
+> The fix looks good, but I'd rename __stack_depot_print too added in the
+> same commit. Do you want to respin or shall I take it from here?
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
+If you are happy to take it on, then thanks.
 
+--=20
+Cheers,
+Stephen Rothwell
 
+--Sig_/9bo9n8X6MVEuaY_0YZ+30wy
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFpVr8ACgkQAVBC80lX
+0GwUcgf/c+KVcX32awGERmuiAMlIyuV579fRV+2X98LX/oqdTTurqeHrABVDPZii
+g+1XP5IQ/l0buN7ELXLWQQqVK2p9VJHBii9/F/Qth1g69JqaTPbo9qBbrzaxWtnc
+c+NFNr15G3/t9DGH286JE1W6q0EeQ17j/X47D4UWwpXVRryCrCfjAHgBpykThswA
+gAZ0YplO+TsLanJ12oFxEATntf5zaO1ZCzbqYvsbUxcVcfr59OD21HzaOjKlY+Uo
+37c9JVzpOWnvHv1A9N96ipw492H8EEjRAr/TLh7vjJDNJN/JkGXBlDQj7RxcHUNW
+EnmZ3aoYZJXncCm44D8cgtmxLRnQKQ==
+=RJqB
+-----END PGP SIGNATURE-----
+
+--Sig_/9bo9n8X6MVEuaY_0YZ+30wy--
