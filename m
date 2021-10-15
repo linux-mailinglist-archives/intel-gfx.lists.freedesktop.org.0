@@ -1,42 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3B8942F3FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 15:40:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D6142F48D
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Oct 2021 15:58:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB72C6EDB4;
-	Fri, 15 Oct 2021 13:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DBBC6ED9E;
+	Fri, 15 Oct 2021 13:58:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81D486EDB4
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 13:40:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10137"; a="225376628"
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="225376628"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2021 06:40:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; d="scan'208";a="571765548"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 15 Oct 2021 06:40:21 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Oct 2021 16:40:21 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-Date: Fri, 15 Oct 2021 16:39:21 +0300
-Message-Id: <20211015133921.4609-21-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211015133921.4609-1-ville.syrjala@linux.intel.com>
-References: <20211015133921.4609-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BFDE56E323;
+ Fri, 15 Oct 2021 13:58:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B435EA8836;
+ Fri, 15 Oct 2021 13:58:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7971483713056619778=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 20/20] drm/i915/dp: Disable DFP RGB->YCbCr
- conversion for now
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Oct 2021 13:58:45 -0000
+Message-ID: <163430632568.29318.14473621005067721244@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211015121031.870282-1-imre.deak@intel.com>
+In-Reply-To: <20211015121031.870282-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dp=3A_Skip_the_HW_readout_of_DPCD_on_disabled_encoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,59 +41,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============7971483713056619778==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We lack sufficient state tracking to figure out whether
-we want the DFP to perform the RGB->YCbCr conversion for us
-or not. So currently we are blindly just enabling that all the
-time when supported by the DFP. That is nonsense. So until
-we imporve our state tracking for this just disable the feature.
+== Series Details ==
 
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Series: drm/i915/dp: Skip the HW readout of DPCD on disabled encoders
+URL   : https://patchwork.freedesktop.org/series/95878/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 29b12456c461..3e2a29b589a9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1107,6 +1107,7 @@ static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
- static bool intel_dp_is_ycbcr420(struct intel_dp *intel_dp,
- 				 const struct intel_crtc_state *crtc_state)
- {
-+	/* FIXME see intel_dp_update_420() regarding rgb_to_ycbcr */
- 	return crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
- 		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
- 		 intel_dp->dfp.ycbcr_444_to_420);
-@@ -2456,6 +2457,7 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
- 			    enabledisable(intel_dp->dfp.ycbcr_444_to_420));
- 
-+	/* FIXME see intel_dp_update_420() regarding rgb_to_ycbcr */
- 	tmp = intel_dp->dfp.rgb_to_ycbcr ?
- 		DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
- 
-@@ -4261,6 +4263,14 @@ intel_dp_update_420(struct intel_dp *intel_dp)
- 	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
- 								 intel_dp->downstream_ports,
- 								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
-+	/*
-+	 * FIXME need to actually track whether we're really
-+	 * going to be doing the RGB->YCbCr connversion or not.
-+	 * We can't tell by simply looking at intel_dp->dfp.rgb_to_ycbcr.
-+	 * Readout is going to annoying due to having to read that
-+	 * state from external hardware that may vanish at any time :(
-+	 */
-+	rgb_to_ycbcr = false;
- 
- 	if (DISPLAY_VER(i915) >= 11) {
- 		/* Let PCON convert from RGB->YCbCr if possible */
--- 
-2.32.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_10743 -> Patchwork_21353
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21353 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2] ([i915#2940])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#3921])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][7] ([fdo#109271]) +48 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-bsw-kefka:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436] / [i915#3428])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bsw-kefka/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@engines@userptr:
+    - fi-pnv-d510:        [INCOMPLETE][9] ([i915#299]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp1:
+    - fi-cfl-8109u:       [FAIL][11] ([i915#4165]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][13] ([i915#295]) -> [PASS][14] +18 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+
+
+Participating hosts (39 -> 36)
+------------------------------
+
+  Missing    (3): fi-bsw-cyan bat-dg1-6 fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10743 -> Patchwork_21353
+
+  CI-20190529: 20190529
+  CI_DRM_10743: 12c88a23f431212268d7d4d16d313f1d8661c7e5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6250: 3c2ac88757f0d0ac9450487d314fcaceebc8bc26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21353: bb05655f976723ba4ed44e928343c60d831938c9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bb05655f9767 drm/i915/dp: Skip the HW readout of DPCD on disabled encoders
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/index.html
+
+--===============7971483713056619778==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Skip the HW readout of DPCD on disabled encoders</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95878/">https://patchwork.freedesktop.org/series/95878/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10743 -&gt; Patchwork_21353</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21353 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +48 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_parallel@engines@userptr:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10743/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21353/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +18 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Missing    (3): fi-bsw-cyan bat-dg1-6 fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10743 -&gt; Patchwork_21353</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10743: 12c88a23f431212268d7d4d16d313f1d8661c7e5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6250: 3c2ac88757f0d0ac9450487d314fcaceebc8bc26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21353: bb05655f976723ba4ed44e928343c60d831938c9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bb05655f9767 drm/i915/dp: Skip the HW readout of DPCD on disabled encoders</p>
+
+</body>
+</html>
+
+--===============7971483713056619778==--
