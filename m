@@ -2,41 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEADF430073
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 Oct 2021 07:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E476430125
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 Oct 2021 10:25:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEA326E408;
-	Sat, 16 Oct 2021 05:50:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A0E6E41B;
+	Sat, 16 Oct 2021 08:25:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF7A6E408
- for <intel-gfx@lists.freedesktop.org>; Sat, 16 Oct 2021 05:50:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10138"; a="228309201"
-X-IronPort-AV: E=Sophos;i="5.85,377,1624345200"; d="scan'208";a="228309201"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2021 22:50:34 -0700
-X-IronPort-AV: E=Sophos;i="5.85,377,1624345200"; d="scan'208";a="660738990"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2021 22:50:33 -0700
-Date: Sat, 16 Oct 2021 08:50:29 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: "Souza, Jose" <jose.souza@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <20211016055029.GB1027064@ideak-desk.fi.intel.com>
-References: <20211015121031.870282-1-imre.deak@intel.com>
- <b5ca89da3e8e7d3cff3c314e0b99807416b4e416.camel@intel.com>
- <87v91yt0dp.fsf@intel.com>
+Received: from msg-4.mailo.com (ip-15.mailobj.net [213.182.54.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF7A46E419;
+ Sat, 16 Oct 2021 08:25:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1634372706; bh=yZzgPykl4Bs+bjn8VyGJS4/uveNfNvHA1+ZdWhCtElE=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To;
+ b=wWMsPosvxYC0hUTuNskQtjaK4A0OSCkYJLfNsRREaPprBWK5/hFofHtPAM+pf+mFw
+ A8v6EwrivfPxjx2zz5g7sjcn2k6+1RMH1RIDAtESrMwq18LSo8OpckCitXvzPsCyeF
+ 7Lyg0wwMrnehjqaNydEV5nmunSRisHnMLDQjhizo=
+Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Sat, 16 Oct 2021 10:25:06 +0200 (CEST)
+X-EA-Auth: NRS5ipq4PdTt+JAH6bHxz4H2hBw4isFILYBvQU7UNrUFLZTxbjQJHTD8I+F5D0UsnPjvvuhUpwJExaACHSHoV/oeR/31d9wx
+Date: Sat, 16 Oct 2021 10:25:03 +0200
+From: Claudio Suarez <cssk@net-c.es>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
+Message-ID: <YWqMX+EOjk++HPOe@gineta.localdomain>
+References: <20211015113713.630119-1-cssk@net-c.es>
+ <20211015113713.630119-2-cssk@net-c.es>
+ <YWluAX6LA2DupE+E@intel.com> <YWnVVoCipTXxx8NW@gineta.localdomain>
+ <YWnXierh4TSXpDMc@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87v91yt0dp.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Skip the HW readout of DPCD on
- disabled encoders
+In-Reply-To: <YWnXierh4TSXpDMc@intel.com>
+Subject: Re: [Intel-gfx] [Freedreno] [PATCH 01/15] gpu/drm: make
+ drm_add_edid_modes() consistent when updating connector->display_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,87 +73,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Oct 16, 2021 at 12:59:46AM +0300, Jani Nikula wrote:
-> On Fri, 15 Oct 2021, "Souza, Jose" <jose.souza@intel.com> wrote:
-> > On Fri, 2021-10-15 at 15:10 +0300, Imre Deak wrote:
-> >> Reading out the DP encoders' DPCD during booting or resume is only
-> >> required for enabled encoders: such encoders may be modesetted during
-> >> the initial commit and the link training this involves depends on an
-> >> initialized DPCD. For DDI encoders reading out the DPCD is skipped, do
-> >> the same on pre-DDI platforms.
-> >
-> > Missing fixes tag
-> >
-> >> 
-> >> Cc: José Roberto de Souza <jose.souza@intel.com>
-> >> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
-> >>  1 file changed, 3 insertions(+)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> index 9d8132dd4cc5a..23de500d56b52 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> @@ -2007,6 +2007,9 @@ void intel_dp_sync_state(struct intel_encoder *encoder,
-> >>  {
-> >>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> >>  
-> >> +	if (!crtc_state)
-> >> +		return;
-> >
-> > crtc_state is not used
+On Fri, Oct 15, 2021 at 10:33:29PM +0300, Ville Syrjälä wrote:
+> On Fri, Oct 15, 2021 at 09:24:06PM +0200, Claudio Suarez wrote:
+> > On Fri, Oct 15, 2021 at 03:03:13PM +0300, Ville Syrjälä wrote:
+> > > On Fri, Oct 15, 2021 at 01:36:59PM +0200, Claudio Suarez wrote:
+> > > > According to the documentation, drm_add_edid_modes
+> > > > "... Also fills out the &drm_display_info structure and ELD in @connector
+> > > > with any information which can be derived from the edid."
+> > > > 
+> > > > drm_add_edid_modes accepts a struct edid *edid parameter which may have a
+> > > > value or may be null. When it is not null, connector->display_info and
+> > > > connector->eld are updated according to the edid. When edid=NULL, only
+> > > > connector->eld is reset. Reset connector->display_info to be consistent
+> > > > and accurate.
+> > > > 
+> > > > Signed-off-by: Claudio Suarez <cssk@net-c.es>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_edid.c | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> > > > index 6325877c5fd6..6cbe09b2357c 100644
+> > > > --- a/drivers/gpu/drm/drm_edid.c
+> > > > +++ b/drivers/gpu/drm/drm_edid.c
+> > > > @@ -5358,10 +5358,12 @@ int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
+> > > >  
+> > > >  	if (edid == NULL) {
+> > > >  		clear_eld(connector);
+> > > > +		drm_reset_display_info(connector);
+> > > >  		return 0;
+> > > >  	}
+> > > >  	if (!drm_edid_is_valid(edid)) {
+> > > >  		clear_eld(connector);
+> > > > +		drm_reset_display_info(connector);
+> > > 
+> > > Looks easier if you pull both of those out from these branches and
+> > > just call them unconditionally at the start.
+> > 
+> > After looking at the full code, I am not sure. This is the code:
+> > ==================
+> > int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
+> > {
+> >         int num_modes = 0;
+> >         u32 quirks;
+> > 
+> >         if (edid == NULL) {
+> >                 clear_eld(connector);
+> >                 drm_reset_display_info(connector); <--- added by me
+> >                 return 0;
+> >         }
+> >         if (!drm_edid_is_valid(edid)) {
+> >                 clear_eld(connector);
+> >                 drm_reset_display_info(connector); <--- added by me
+> >                 drm_warn(connector->dev, "%s: EDID invalid.\n",
+> >                          connector->name);
+> >                 return 0;
+> >         }
+> > 
+> >         drm_edid_to_eld(connector, edid);
+> > 
+> >         quirks = drm_add_display_info(connector, edid);
+> > 	etc...
+> > =================
+> > 
+> > If we move those out of these branches and edid != NULL, we are executing an
+> > unnecessary clear_eld(connector) and an unnecessary drm_reset_display_info(connector)
+> > because the fields will be set in the next drm_edid_to_eld(connector, edid) and
+> > drm_add_display_info(connector, edid)
+> > 
+> > Do we want this ?
 > 
-> This is why it's so subtle. The commit a532cde31de3 ("drm/i915/tc: Fix
-> TypeC port init/resume time sanitization") changes when the sync_state
-> hook is called, and now it's also called for disabled encoders, and
-> crtc_state != NULL is the way to check that now. Which absolutely must
-> be documented in this fix! (And I'm not sure if even that is enough in
-> the long term, it seems to me the change is just too subtle and we'll
-> get it wrong again.)
-
-The intention was to call the hook on TypeC platforms, where the
-encoder/PHY state has to be synced even if the encoder is disabled. I
-missed both the dsi and - as now turns out - the g4x dp hooks which I
-intended in a532cde31de3 to keep behaving as before.
-
-> I'm guessing the intel_dp_max_common_rate() call gets inlined in
-> intel_dp_sync_state(), and it goes wrong with intel_dp->num_common_rates
-> being 0 and the array index being -1.
-
-Yes, I came to the same conclusion, see
-https://gitlab.freedesktop.org/drm/intel/-/issues/4297
-
-Luckily this doesn't cause an actual problem for regular users, since
-the out-of-bound 
-
-intel_dp->common_rates[intel_dp->num_common_rates - 1];
-
-access in intel_dp_max_common_rate() in case num_common_rates is 0 will
-just return the value of intel_dp->num_common_rates (0). If
-KCONFIG_UBSAN is enabled this access will trigger a kernel crash assert
-(again luckily for us, even though there could be an explanation message
-for the assert).
-
-I'll resend this patch with the root cause for 4297 explained, and
-stable CC'd. Also I'll send related patches that will ensure that the
-link config parameters derived from DPCD have a valid default value
-even in the lack of a valid DPCD.
-
-Imo we should also enable KCONFIG_UBSAN in CI.
-
-> Anyway, having said that, we'll need to stop guessing and dig into the
-> root cause.
+> Seems fine by me. And maybe we could nuke the second
+> drm_reset_display_info() from deeper inside drm_add_display_info()?
+> Not sure if drm_add_display_info() still has to be able to operate
+> standalone or not.
 > 
-> BR,
-> Jani.
-> 
-> >
-> >> +
-> >>  	/*
-> >>  	 * Don't clobber DPCD if it's been already read out during output
-> >>  	 * setup (eDP) or detect.
-> >
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+> Hmm. Another option is to just move all these NULL/invalid edid
+> checks into drm_edid_to_eld() and drm_add_display_info().
+
+I was thinking about this. We can use a boolean variable:
+===============
+        bool edid_is_invalid;
+
+	edid_is_invalid = !drm_edid_is_valid(edid);
+
+        if (edid == NULL || edid_is_invalid) {
+                clear_eld(connector);
+                drm_reset_display_info(connector);
+                if (edid_is_invalid)
+                         drm_warn(connector->dev, "%s: EDID invalid.\n",
+                                  connector->name);
+                return 0;
+        }
+
+        drm_edid_to_eld(connector, edid);
+...
+===============
+Internally, drm_edid_is_valid() handles NULL pointers properly.
+It is a quite elegant solution with a small change in the original
+design, and it improves this part in the way you pointed out.
+
+Best regards,
+Claudio Suarez
+
+
+
