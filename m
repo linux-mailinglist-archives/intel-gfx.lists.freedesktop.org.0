@@ -1,59 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF7A4304AA
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 Oct 2021 21:18:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED45C4304CD
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 Oct 2021 21:36:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 227786E506;
-	Sat, 16 Oct 2021 19:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067906E4B5;
+	Sat, 16 Oct 2021 19:36:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from msg-6.mailo.com (ip-16.mailobj.net [213.182.54.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEFD36E4F4;
- Sat, 16 Oct 2021 19:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634409871; bh=1/OydcnVwUBndNkWR/YOnashKy6VPirsEbA4L+EOJZ4=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=B+raApksCV4XRqSp/CLYivelmjavkNwNTYU3glC0Wkh/vSU/vSsj1/9suEmuxRRNT
- gAyLMUD8ZKXgVUVE8NYDSHJ9eFo5ZxRyZmI2zQEc2G+5NiCQYeA7rzLA2pjNhxwetc
- PxLfzkekLTPDpFCscTAhBTojzRJaLFUIrzG6d5hE=
-Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Sat, 16 Oct 2021 20:44:05 +0200 (CEST)
-X-EA-Auth: H/qsRidbIT3KyEA1EBIFm5A01FGasDKWzj1hSWYlxZfFW7bFlONyivG9ZdF8Eyke822OO7m3noOUPyoxCYBst0C4EfHo4iWT
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Sat, 16 Oct 2021 20:42:26 +0200
-Message-Id: <20211016184226.3862-14-cssk@net-c.es>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211016184226.3862-1-cssk@net-c.es>
-References: <20211016184226.3862-1-cssk@net-c.es>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 125216E4BA;
+ Sat, 16 Oct 2021 19:36:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BCD0A9A42;
+ Sat, 16 Oct 2021 19:36:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 13/13] drm/i915: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Claudio Suarez" <cssk@net-c.es>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 16 Oct 2021 19:36:44 -0000
+Message-ID: <163441300404.20372.5119192588713709101@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211016184226.3862-1-cssk@net-c.es>
+In-Reply-To: <20211016184226.3862-1-cssk@net-c.es>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_replace_drm=5Fdetect=5Fhdmi=5Fmonitor=28=29_with_drm=5Fdisp?=
+ =?utf-8?b?bGF5X2luZm8uaXNfaGRtaSAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,51 +42,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Once EDID is parsed, the monitor HDMI support information is available
-through drm_display_info.is_hdmi. Retriving the same information with
-drm_detect_hdmi_monitor() is less efficient. Change to
-drm_display_info.is_hdmi where possible.
+== Series Details ==
 
-This is a TODO task in Documentation/gpu/todo.rst
+Series: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi (rev2)
+URL   : https://patchwork.freedesktop.org/series/95880/
+State : warning
 
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
----
- drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c | 3 ++-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index b04685bb6439..008e5b0ba408 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2355,7 +2355,7 @@ intel_hdmi_set_edid(struct drm_connector *connector)
- 	to_intel_connector(connector)->detect_edid = edid;
- 	if (edid && edid->input & DRM_EDID_INPUT_DIGITAL) {
- 		intel_hdmi->has_audio = drm_detect_monitor_audio(edid);
--		intel_hdmi->has_hdmi_sink = drm_detect_hdmi_monitor(edid);
-+		intel_hdmi->has_hdmi_sink = connector->display_info.is_hdmi;
- 
- 		connected = true;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 6cb27599ea03..b4065e4df644 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2060,8 +2060,9 @@ intel_sdvo_tmds_sink_detect(struct drm_connector *connector)
- 		if (edid->input & DRM_EDID_INPUT_DIGITAL) {
- 			status = connector_status_connected;
- 			if (intel_sdvo_connector->is_hdmi) {
--				intel_sdvo->has_hdmi_monitor = drm_detect_hdmi_monitor(edid);
- 				intel_sdvo->has_hdmi_audio = drm_detect_monitor_audio(edid);
-+				intel_sdvo->has_hdmi_monitor =
-+							    connector->display_info.is_hdmi;
- 			}
- 		} else
- 			status = connector_status_disconnected;
--- 
-2.33.0
+$ dim checkpatch origin/drm-tip
+7b39eddd53ad gpu/drm: make drm_add_edid_modes() consistent when updating connector->display_info
+46dbab3185c1 drm/vc4: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+ffa81a725bbf drm/radeon: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#19: 
+drm_get_edid() - which internally calls drm_connector_update_edid_property().
+
+total: 0 errors, 1 warnings, 0 checks, 111 lines checked
+6cbe78362dff drm/tegra: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+9364f4f058dc drm/gma500: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+26861ada9f8f drm/exynos: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+38784a13b7f3 drm/msm: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+6b995911e7af drm/sun4i: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+d75d232101ee drm/sti: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+cfbb96664239 drm/rockchip: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+c9cb54c0941a drm/bridge: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+ef8c940adad0 drm/nouveau: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+9fe31441fd76 drm/i915: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 
 
