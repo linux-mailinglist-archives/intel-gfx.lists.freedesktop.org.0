@@ -1,43 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3766430BE9
-	for <lists+intel-gfx@lfdr.de>; Sun, 17 Oct 2021 22:04:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D93430C14
+	for <lists+intel-gfx@lfdr.de>; Sun, 17 Oct 2021 22:48:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2C3B6E027;
-	Sun, 17 Oct 2021 20:04:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF896E581;
+	Sun, 17 Oct 2021 20:48:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net
- [IPv6:2a01:4f8:150:2161:1:b009:f23e:0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 240256E027;
- Sun, 17 Oct 2021 20:04:00 +0000 (UTC)
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client CN "*.hostsharing.net",
- Issuer "RapidSSL TLS DV RSA Mixed SHA256 2020 CA-1" (verified OK))
- by bmailout3.hostsharing.net (Postfix) with ESMTPS id DD8E6100CF137;
- Sun, 17 Oct 2021 22:03:55 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
- id BC299233EA6; Sun, 17 Oct 2021 22:03:55 +0200 (CEST)
-Date: Sun, 17 Oct 2021 22:03:55 +0200
-From: Lukas Wunner <lukas@wunner.de>
-To: Nirmoy Das <nirmoy.das@amd.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20211017200355.GA3480@wunner.de>
-References: <20211013183601.16514-1-nirmoy.das@amd.com>
- <20211013183601.16514-4-nirmoy.das@amd.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51D736E570;
+ Sun, 17 Oct 2021 20:48:16 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="251591811"
+X-IronPort-AV: E=Sophos;i="5.85,380,1624345200"; d="scan'208";a="251591811"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2021 13:48:15 -0700
+X-IronPort-AV: E=Sophos;i="5.85,380,1624345200"; d="scan'208";a="493329324"
+Received: from nidhinms-mobl.gar.corp.intel.com (HELO intel.com)
+ ([10.249.44.7])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2021 13:48:11 -0700
+Date: Sun, 17 Oct 2021 22:48:07 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
+Cc: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <YWyMB0qWf9/tpxFj@intel.intel>
+References: <20211014000817.39227-1-andi@etezian.org>
+ <bcb0891f-a648-7ded-0a4e-3ed745253088@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211013183601.16514-4-nirmoy.das@amd.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] vgaswitcheroo: do not check for NULL
- debugfs dentry
+In-Reply-To: <bcb0891f-a648-7ded-0a4e-3ed745253088@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: make a gt sysfs group and move
+ power management files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,42 +56,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 13, 2021 at 08:36:01PM +0200, Nirmoy Das wrote:
-> Debugfs APIs returns encoded error on failure so use
-> debugfs_lookup() instead of checking for NULL.
+Hi Sujaritha,
 
-The commit message no longer matches up with the patch itself
-(debugfs_lookup() isn't called).
+[...]
 
-My suggestion would be something like:
+> > +void intel_gt_sysfs_unregister(struct intel_gt *gt)
+> > +{
+> > +}
+> 
+> Is there a reason for this function to not be populated ?
 
-  Retry creation of the vga_switcheroo debugfs if a previous
-  invocation of debugfs_create_dir() returned an error code.
+yes, there is, indeed, something missing here. There has been a
+fix bout this floating around from Chris about sysfs_gt kobjects.
 
-With that addressed,
-Reviewed-by: Lukas Wunner <lukas@wunner.de>
+I will check if we can add the fix at the next verion.
 
 Thanks,
-
-Lukas
-
-> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
-> ---
->  drivers/gpu/vga/vga_switcheroo.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
-> index 365e6ddbe90f..07ab8d85e899 100644
-> --- a/drivers/gpu/vga/vga_switcheroo.c
-> +++ b/drivers/gpu/vga/vga_switcheroo.c
-> @@ -914,7 +914,7 @@ static void vga_switcheroo_debugfs_fini(struct vgasr_priv *priv)
->  static void vga_switcheroo_debugfs_init(struct vgasr_priv *priv)
->  {
->  	/* already initialised */
-> -	if (priv->debugfs_root)
-> +	if (priv->debugfs_root && !IS_ERR(priv->debugfs_root))
->  		return;
-> 
->  	priv->debugfs_root = debugfs_create_dir("vgaswitcheroo", NULL);
-> --
-> 2.32.0
+Andi
