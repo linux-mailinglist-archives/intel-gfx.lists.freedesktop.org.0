@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3DE430CF4
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 01:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41040430CF3
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 01:57:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3D489B06;
-	Sun, 17 Oct 2021 23:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6207C89AC0;
+	Sun, 17 Oct 2021 23:57:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE20889B06
- for <intel-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 23:58:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A71BF89AC0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 23:57:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1634515081;
+ s=mimecast20190719; t=1634515059;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=fzF2m91VEgIe2X1R9yfvXh/Em/cza7YcT35eDLOAp6w=;
- b=GhEAQzUQi5swwk9v7qUw42fepofXusSMIr0Uu/c/s4+S4POIrXYXD/uBJ/iP1iXCS6QSEh
- cfHNPZBeogFEScB6Zk3lg8ReF0tNduEA7qprNVbBP9jUyvpyBdOxsbe0xjjohe+6D3rdhp
- 16pQfCngLsukdTpBA+7bIEETH3+Zi4w=
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
- [209.85.210.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-35-plc75bsuP1a6X5FLHjzVqw-1; Sun, 17 Oct 2021 19:56:46 -0400
-X-MC-Unique: plc75bsuP1a6X5FLHjzVqw-1
-Received: by mail-ot1-f70.google.com with SMTP id
- k102-20020a9d19ef000000b0054dd5fae7ceso9677321otk.20
- for <intel-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 16:56:46 -0700 (PDT)
+ bh=tdfVtREZdpwwHjR2YPxPquHliLtYFH4Ctie6qrJ8Wig=;
+ b=DzTMoHKdKyifXOanBJyN/SPgQkn3PB/OFrZjb3w3fJJARTo9XvK9dskLcQ5kGn8zq5he7d
+ 7niM/5gLtl/uczDZWPUaqgHk1o70YNRQrz9WiHRWq44ekIPiclPF4QMtgVUwc4f9dmDXWN
+ u/+wxNXCinAXJsPYi9ocwRGh/TlLLNc=
+Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com
+ [209.85.167.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-52-0TfdxJo1M6y0iMdCrUCNig-1; Sun, 17 Oct 2021 19:57:36 -0400
+X-MC-Unique: 0TfdxJo1M6y0iMdCrUCNig-1
+Received: by mail-oi1-f199.google.com with SMTP id
+ x145-20020aca3197000000b002986e47af95so7866671oix.0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 16:57:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc:content-transfer-encoding;
- bh=fzF2m91VEgIe2X1R9yfvXh/Em/cza7YcT35eDLOAp6w=;
- b=S//jGQoZQh3eUczsVvPAWvrfXm/WyjaWDk8N0ommVNYiFzhLfuzmj7UbNKJH3uqMvT
- vYQEqARuzibk3gW39Nb9OSeV1dOXo/0IkEC2IvczB5iNVy0p+pBmZO5wKibWJ7gmg7BZ
- V4XVrVpO0T5KmwA5p4neULKX+tx2TfKOUbEBuVFrI6bXNyxhwEyWZ7HPFEQ26d6H2pSR
- Za/1iOEoAU4DVzioDb25oGR3lduE4bYTko7iH9+hbfkak/fADCwHjFyG8qy1iAQVg5DA
- QAHWh0A55KYnNHKrAhX19aUfl1rn02m7TGckBcM3DLKLzs73be7Emr9ykBbwZ1yXVVTp
- L0VA==
-X-Gm-Message-State: AOAM530dzquR/k2hLXeA/VZRoi2FxJaCFw4ObhM4tv0jxSVhufc67l6Q
- 0k+KnZw7slCGMR74DSoG90huDCerqdtJc2Sk3/mY0T36wEDI65M21E1OxXdFuE2fPzg2Khd1RGM
- kymXiCWFaW83Ou4V1J5RgApyuAU2Lo91353zz+C/BbPFe
-X-Received: by 2002:a4a:3bc8:: with SMTP id s191mr18854428oos.88.1634515005520; 
- Sun, 17 Oct 2021 16:56:45 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzh6JW+WiPalmAt19FjGgl8VYM5aMFYJnmprOUeO8jCRBb7187DkRQpIv97qfFDsSZoqfIgMhesj2YCckkvMRw=
-X-Received: by 2002:a4a:3bc8:: with SMTP id s191mr18854406oos.88.1634515004887; 
- Sun, 17 Oct 2021 16:56:44 -0700 (PDT)
+ bh=tdfVtREZdpwwHjR2YPxPquHliLtYFH4Ctie6qrJ8Wig=;
+ b=ORJT84aDUCDOOT5MhdpMRFyMgVWpCVocnywXNDaPxnDIOAQHQiWDd1GaOmMBc2OTs3
+ gXaza2q+FnUiL0IWT7Rtgqyhuhf1UPTu4RZzPLAULQrSDT3OvBV3miYyc+akQwRgPDXt
+ qsVBMxzbMASOGq7xWJ97kbKV4OAoiPSVeIPxFNpno86toCm463rosgznfC/FKLq+RGSY
+ Bn9BkJzlOe6TZ5Qea58cc1gmL3GJ4wp3ogoLpuBKY6wc9DAb4VChGJNgDc+KkcZukLL0
+ +BEf7GbiESv10H2uqrLzk/WfmLp6iWebBnGMxWs9n6RP+WvrXhUOGrkaCSj9WNkgCxyW
+ jiIw==
+X-Gm-Message-State: AOAM532mAtYBSDBXrDuJrAmNxXuAB9bso0o+O8mT2ybVRolsccIFOgO1
+ xJzWABz56mXQPSJ20HapiFW5xqXDmp5Z1ZRAoU0D+w2rtnlV4DKsb4vafc61wDMWahYYhKcQy0B
+ xldbbM3kNneYj8Oc59NgGXLW94hp74XRnLMGF9nn1MWoh
+X-Received: by 2002:a05:6830:1293:: with SMTP id
+ z19mr15057863otp.353.1634515055086; 
+ Sun, 17 Oct 2021 16:57:35 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyyUFBOOIg+79XG9z0iedLijDAWI4ZYza0DXZW5Zz1vJCO8i1IhKz6xSRUiqrof5+g6eUIvwd+8tzSRJj2Y95A=
+X-Received: by 2002:a05:6830:1293:: with SMTP id
+ z19mr15057835otp.353.1634515054642; 
+ Sun, 17 Oct 2021 16:57:34 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211015071625.593-1-ville.syrjala@linux.intel.com>
- <20211015071625.593-2-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211015071625.593-2-ville.syrjala@linux.intel.com>
+ <20211015071625.593-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211015071625.593-3-ville.syrjala@linux.intel.com>
 From: David Airlie <airlied@redhat.com>
-Date: Mon, 18 Oct 2021 09:56:33 +1000
-Message-ID: <CAMwc25oi5bn-c-YgKX3xpHnNKzdZ4WO5P2xLpGKKU=7sg-gESw@mail.gmail.com>
+Date: Mon, 18 Oct 2021 09:57:23 +1000
+Message-ID: <CAMwc25p1oG3LTJQrrVpW7YFXymwn=6SNEvnnkdJ0fDcaHrzijQ@mail.gmail.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: "Development, Intel" <intel-gfx@lists.freedesktop.org>,
  Jani Nikula <jani.nikula@intel.com>
@@ -65,8 +67,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: Move PCH refclok stuff into
- its own file
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Move PCH modeset code to its
+ own file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,18 +89,17 @@ On Fri, Oct 15, 2021 at 5:16 PM Ville Syrjala
 >
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Move the PCH refclk stuff (including all the LPT/WPT
-> iCLKIP/CLKOUT_DP things) to its own file.
+> Start moving the code for PCH modeset sequence/etc. to
+> its own file.
 >
-> We also suck in the mPHY programming from intel_fdi.c
-> since we're the only caller.
+> Still not sure about the file name though...
 
-The title of the patch has a typo refclok->reclock.
+Name is good enough for now, there aren't a lot of great names, no
+point getting stuck on it.
 
-Other than that this looks fine,
+Otherwise
 
 Reviewed-by: Dave Airlie <airlied@redhat.com>
-
 >
 > Cc: Dave Airlie <airlied@redhat.com>
 > Cc: Jani Nikula <jani.nikula@intel.com>
@@ -106,1555 +107,924 @@ Reviewed-by: Dave Airlie <airlied@redhat.com>
 > ---
 >  drivers/gpu/drm/i915/Makefile                 |   1 +
 >  drivers/gpu/drm/i915/display/intel_crt.c      |   1 +
->  drivers/gpu/drm/i915/display/intel_display.c  | 537 +--------------
->  drivers/gpu/drm/i915/display/intel_display.h  |   4 -
->  .../drm/i915/display/intel_display_power.c    |   1 +
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   1 +
->  drivers/gpu/drm/i915/display/intel_fdi.c      |  99 ---
->  drivers/gpu/drm/i915/display/intel_fdi.h      |   1 -
->  .../gpu/drm/i915/display/intel_pch_refclk.c   | 648 ++++++++++++++++++
->  .../gpu/drm/i915/display/intel_pch_refclk.h   |  21 +
->  drivers/gpu/drm/i915/i915_drv.c               |   1 +
->  11 files changed, 675 insertions(+), 640 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_pch_refclk.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_pch_refclk.h
+>  drivers/gpu/drm/i915/display/intel_display.c  | 348 +----------------
+>  drivers/gpu/drm/i915/display/intel_display.h  |   5 -
+>  .../gpu/drm/i915/display/intel_pch_display.c  | 365 ++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_pch_display.h  |  22 ++
+>  6 files changed, 390 insertions(+), 352 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pch_display.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pch_display.h
 >
 > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefil=
 e
-> index 660bb03de6fc..96f3b8f6c50d 100644
+> index 96f3b8f6c50d..467872cca027 100644
 > --- a/drivers/gpu/drm/i915/Makefile
 > +++ b/drivers/gpu/drm/i915/Makefile
 > @@ -226,6 +226,7 @@ i915-y +=3D \
 >         display/intel_hotplug.o \
 >         display/intel_lpe_audio.o \
 >         display/intel_overlay.o \
-> +       display/intel_pch_refclk.o \
+> +       display/intel_pch_display.o \
+>         display/intel_pch_refclk.o \
 >         display/intel_plane_initial.o \
 >         display/intel_psr.o \
->         display/intel_quirks.o \
 > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
 915/display/intel_crt.c
-> index 1c161eeed82f..bf03bd0ecd43 100644
+> index bf03bd0ecd43..54540138bd1d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_crt.c
 > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
 > @@ -45,6 +45,7 @@
 >  #include "intel_fifo_underrun.h"
 >  #include "intel_gmbus.h"
 >  #include "intel_hotplug.h"
-> +#include "intel_pch_refclk.h"
+> +#include "intel_pch_display.h"
+>  #include "intel_pch_refclk.h"
 >
 >  /* Here's the desired hotplug mode */
->  #define ADPA_HOTPLUG_BITS (ADPA_CRT_HOTPLUG_PERIOD_128 |               \
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index ff598b6cd953..995050443065 100644
+> index 995050443065..69549886fe5b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
 > @@ -96,6 +96,7 @@
 >  #include "intel_hotplug.h"
 >  #include "intel_overlay.h"
 >  #include "intel_panel.h"
-> +#include "intel_pch_refclk.h"
+> +#include "intel_pch_display.h"
+>  #include "intel_pch_refclk.h"
 >  #include "intel_pcode.h"
 >  #include "intel_pipe_crc.h"
->  #include "intel_plane_initial.h"
-> @@ -103,7 +104,6 @@
->  #include "intel_pps.h"
->  #include "intel_psr.h"
->  #include "intel_quirks.h"
-> -#include "intel_sbi.h"
->  #include "intel_sprite.h"
->  #include "intel_tc.h"
->  #include "intel_vga.h"
-> @@ -1388,133 +1388,6 @@ bool intel_has_pending_fb_unpin(struct drm_i915_p=
-rivate *dev_priv)
->         return false;
+> @@ -454,80 +455,6 @@ static void assert_planes_disabled(struct intel_crtc=
+ *crtc)
+>                 assert_plane_disabled(plane);
 >  }
 >
-> -void lpt_disable_iclkip(struct drm_i915_private *dev_priv)
+> -void assert_pch_transcoder_disabled(struct drm_i915_private *dev_priv,
+> -                                   enum pipe pipe)
 > -{
-> -       u32 temp;
+> -       u32 val;
+> -       bool enabled;
 > -
-> -       intel_de_write(dev_priv, PIXCLK_GATE, PIXCLK_GATE_GATE);
-> -
-> -       mutex_lock(&dev_priv->sb_lock);
-> -
-> -       temp =3D intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
-> -       temp |=3D SBI_SSCCTL_DISABLE;
-> -       intel_sbi_write(dev_priv, SBI_SSCCTL6, temp, SBI_ICLK);
-> -
-> -       mutex_unlock(&dev_priv->sb_lock);
+> -       val =3D intel_de_read(dev_priv, PCH_TRANSCONF(pipe));
+> -       enabled =3D !!(val & TRANS_ENABLE);
+> -       I915_STATE_WARN(enabled,
+> -            "transcoder assertion failed, should be off on pipe %c but i=
+s still active\n",
+> -            pipe_name(pipe));
 > -}
 > -
-> -/* Program iCLKIP clock to the desired frequency */
-> -static void lpt_program_iclkip(const struct intel_crtc_state *crtc_state=
-)
+> -static void assert_pch_dp_disabled(struct drm_i915_private *dev_priv,
+> -                                  enum pipe pipe, enum port port,
+> -                                  i915_reg_t dp_reg)
+> -{
+> -       enum pipe port_pipe;
+> -       bool state;
+> -
+> -       state =3D g4x_dp_port_enabled(dev_priv, dp_reg, port, &port_pipe)=
+;
+> -
+> -       I915_STATE_WARN(state && port_pipe =3D=3D pipe,
+> -                       "PCH DP %c enabled on transcoder %c, should be di=
+sabled\n",
+> -                       port_name(port), pipe_name(pipe));
+> -
+> -       I915_STATE_WARN(HAS_PCH_IBX(dev_priv) && !state && port_pipe =3D=
+=3D PIPE_B,
+> -                       "IBX PCH DP %c still using transcoder B\n",
+> -                       port_name(port));
+> -}
+> -
+> -static void assert_pch_hdmi_disabled(struct drm_i915_private *dev_priv,
+> -                                    enum pipe pipe, enum port port,
+> -                                    i915_reg_t hdmi_reg)
+> -{
+> -       enum pipe port_pipe;
+> -       bool state;
+> -
+> -       state =3D intel_sdvo_port_enabled(dev_priv, hdmi_reg, &port_pipe)=
+;
+> -
+> -       I915_STATE_WARN(state && port_pipe =3D=3D pipe,
+> -                       "PCH HDMI %c enabled on transcoder %c, should be =
+disabled\n",
+> -                       port_name(port), pipe_name(pipe));
+> -
+> -       I915_STATE_WARN(HAS_PCH_IBX(dev_priv) && !state && port_pipe =3D=
+=3D PIPE_B,
+> -                       "IBX PCH HDMI %c still using transcoder B\n",
+> -                       port_name(port));
+> -}
+> -
+> -static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
+> -                                     enum pipe pipe)
+> -{
+> -       enum pipe port_pipe;
+> -
+> -       assert_pch_dp_disabled(dev_priv, pipe, PORT_B, PCH_DP_B);
+> -       assert_pch_dp_disabled(dev_priv, pipe, PORT_C, PCH_DP_C);
+> -       assert_pch_dp_disabled(dev_priv, pipe, PORT_D, PCH_DP_D);
+> -
+> -       I915_STATE_WARN(intel_crt_port_enabled(dev_priv, PCH_ADPA, &port_=
+pipe) &&
+> -                       port_pipe =3D=3D pipe,
+> -                       "PCH VGA enabled on transcoder %c, should be disa=
+bled\n",
+> -                       pipe_name(pipe));
+> -
+> -       I915_STATE_WARN(intel_lvds_port_enabled(dev_priv, PCH_LVDS, &port=
+_pipe) &&
+> -                       port_pipe =3D=3D pipe,
+> -                       "PCH LVDS enabled on transcoder %c, should be dis=
+abled\n",
+> -                       pipe_name(pipe));
+> -
+> -       /* PCH SDVOB multiplex with HDMIB */
+> -       assert_pch_hdmi_disabled(dev_priv, pipe, PORT_B, PCH_HDMIB);
+> -       assert_pch_hdmi_disabled(dev_priv, pipe, PORT_C, PCH_HDMIC);
+> -       assert_pch_hdmi_disabled(dev_priv, pipe, PORT_D, PCH_HDMID);
+> -}
+> -
+>  void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
+>                          struct intel_digital_port *dig_port,
+>                          unsigned int expected_mask)
+> @@ -562,154 +489,6 @@ void vlv_wait_port_ready(struct drm_i915_private *d=
+ev_priv,
+>                          expected_mask);
+>  }
+>
+> -static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crt=
+c_state)
 > -{
 > -       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
 > -       struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> -       int clock =3D crtc_state->hw.adjusted_mode.crtc_clock;
-> -       u32 divsel, phaseinc, auxdiv, phasedir =3D 0;
-> -       u32 temp;
+> -       enum pipe pipe =3D crtc->pipe;
+> -       i915_reg_t reg;
+> -       u32 val, pipeconf_val;
 > -
-> -       lpt_disable_iclkip(dev_priv);
+> -       /* Make sure PCH DPLL is enabled */
+> -       assert_shared_dpll_enabled(dev_priv, crtc_state->shared_dpll);
 > -
-> -       /* The iCLK virtual clock root frequency is in MHz,
-> -        * but the adjusted_mode->crtc_clock in in KHz. To get the
-> -        * divisors, it is necessary to divide one by another, so we
-> -        * convert the virtual clock precision to KHz here for higher
-> -        * precision.
-> -        */
-> -       for (auxdiv =3D 0; auxdiv < 2; auxdiv++) {
-> -               u32 iclk_virtual_root_freq =3D 172800 * 1000;
-> -               u32 iclk_pi_range =3D 64;
-> -               u32 desired_divisor;
+> -       /* FDI must be feeding us bits for PCH ports */
+> -       assert_fdi_tx_enabled(dev_priv, pipe);
+> -       assert_fdi_rx_enabled(dev_priv, pipe);
 > -
-> -               desired_divisor =3D DIV_ROUND_CLOSEST(iclk_virtual_root_f=
-req,
-> -                                                   clock << auxdiv);
-> -               divsel =3D (desired_divisor / iclk_pi_range) - 2;
-> -               phaseinc =3D desired_divisor % iclk_pi_range;
-> -
+> -       if (HAS_PCH_CPT(dev_priv)) {
+> -               reg =3D TRANS_CHICKEN2(pipe);
+> -               val =3D intel_de_read(dev_priv, reg);
 > -               /*
-> -                * Near 20MHz is a corner case which is
-> -                * out of range for the 7-bit divisor
+> -                * Workaround: Set the timing override bit
+> -                * before enabling the pch transcoder.
 > -                */
-> -               if (divsel <=3D 0x7f)
-> -                       break;
+> -               val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
+> -               /* Configure frame start delay to match the CPU */
+> -               val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
+> -               val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->frame=
+start_delay - 1);
+> -               intel_de_write(dev_priv, reg, val);
 > -       }
 > -
-> -       /* This should not happen with any sane values */
-> -       drm_WARN_ON(&dev_priv->drm, SBI_SSCDIVINTPHASE_DIVSEL(divsel) &
-> -                   ~SBI_SSCDIVINTPHASE_DIVSEL_MASK);
-> -       drm_WARN_ON(&dev_priv->drm, SBI_SSCDIVINTPHASE_DIR(phasedir) &
-> -                   ~SBI_SSCDIVINTPHASE_INCVAL_MASK);
-> -
-> -       drm_dbg_kms(&dev_priv->drm,
-> -                   "iCLKIP clock: found settings for %dKHz refresh rate:=
- auxdiv=3D%x, divsel=3D%x, phasedir=3D%x, phaseinc=3D%x\n",
-> -                   clock, auxdiv, divsel, phasedir, phaseinc);
-> -
-> -       mutex_lock(&dev_priv->sb_lock);
-> -
-> -       /* Program SSCDIVINTPHASE6 */
-> -       temp =3D intel_sbi_read(dev_priv, SBI_SSCDIVINTPHASE6, SBI_ICLK);
-> -       temp &=3D ~SBI_SSCDIVINTPHASE_DIVSEL_MASK;
-> -       temp |=3D SBI_SSCDIVINTPHASE_DIVSEL(divsel);
-> -       temp &=3D ~SBI_SSCDIVINTPHASE_INCVAL_MASK;
-> -       temp |=3D SBI_SSCDIVINTPHASE_INCVAL(phaseinc);
-> -       temp |=3D SBI_SSCDIVINTPHASE_DIR(phasedir);
-> -       temp |=3D SBI_SSCDIVINTPHASE_PROPAGATE;
-> -       intel_sbi_write(dev_priv, SBI_SSCDIVINTPHASE6, temp, SBI_ICLK);
-> -
-> -       /* Program SSCAUXDIV */
-> -       temp =3D intel_sbi_read(dev_priv, SBI_SSCAUXDIV6, SBI_ICLK);
-> -       temp &=3D ~SBI_SSCAUXDIV_FINALDIV2SEL(1);
-> -       temp |=3D SBI_SSCAUXDIV_FINALDIV2SEL(auxdiv);
-> -       intel_sbi_write(dev_priv, SBI_SSCAUXDIV6, temp, SBI_ICLK);
-> -
-> -       /* Enable modulator and associated divider */
-> -       temp =3D intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
-> -       temp &=3D ~SBI_SSCCTL_DISABLE;
-> -       intel_sbi_write(dev_priv, SBI_SSCCTL6, temp, SBI_ICLK);
-> -
-> -       mutex_unlock(&dev_priv->sb_lock);
-> -
-> -       /* Wait for initialization time */
-> -       udelay(24);
-> -
-> -       intel_de_write(dev_priv, PIXCLK_GATE, PIXCLK_GATE_UNGATE);
-> -}
-> -
-> -int lpt_get_iclkip(struct drm_i915_private *dev_priv)
-> -{
-> -       u32 divsel, phaseinc, auxdiv;
-> -       u32 iclk_virtual_root_freq =3D 172800 * 1000;
-> -       u32 iclk_pi_range =3D 64;
-> -       u32 desired_divisor;
-> -       u32 temp;
-> -
-> -       if ((intel_de_read(dev_priv, PIXCLK_GATE) & PIXCLK_GATE_UNGATE) =
-=3D=3D 0)
-> -               return 0;
-> -
-> -       mutex_lock(&dev_priv->sb_lock);
-> -
-> -       temp =3D intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
-> -       if (temp & SBI_SSCCTL_DISABLE) {
-> -               mutex_unlock(&dev_priv->sb_lock);
-> -               return 0;
-> -       }
-> -
-> -       temp =3D intel_sbi_read(dev_priv, SBI_SSCDIVINTPHASE6, SBI_ICLK);
-> -       divsel =3D (temp & SBI_SSCDIVINTPHASE_DIVSEL_MASK) >>
-> -               SBI_SSCDIVINTPHASE_DIVSEL_SHIFT;
-> -       phaseinc =3D (temp & SBI_SSCDIVINTPHASE_INCVAL_MASK) >>
-> -               SBI_SSCDIVINTPHASE_INCVAL_SHIFT;
-> -
-> -       temp =3D intel_sbi_read(dev_priv, SBI_SSCAUXDIV6, SBI_ICLK);
-> -       auxdiv =3D (temp & SBI_SSCAUXDIV_FINALDIV2SEL_MASK) >>
-> -               SBI_SSCAUXDIV_FINALDIV2SEL_SHIFT;
-> -
-> -       mutex_unlock(&dev_priv->sb_lock);
-> -
-> -       desired_divisor =3D (divsel + 2) * iclk_pi_range + phaseinc;
-> -
-> -       return DIV_ROUND_CLOSEST(iclk_virtual_root_freq,
-> -                                desired_divisor << auxdiv);
-> -}
->
->  static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state=
- *crtc_state,
->                                            enum pipe pch_transcoder)
-> @@ -4299,414 +4172,6 @@ static bool i9xx_get_pipe_config(struct intel_crt=
-c *crtc,
->         return ret;
->  }
->
-> -static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
-> -{
-> -       struct intel_encoder *encoder;
-> -       int i;
-> -       u32 val, final;
-> -       bool has_lvds =3D false;
-> -       bool has_cpu_edp =3D false;
-> -       bool has_panel =3D false;
-> -       bool has_ck505 =3D false;
-> -       bool can_ssc =3D false;
-> -       bool using_ssc_source =3D false;
-> -
-> -       /* We need to take the global config into account */
-> -       for_each_intel_encoder(&dev_priv->drm, encoder) {
-> -               switch (encoder->type) {
-> -               case INTEL_OUTPUT_LVDS:
-> -                       has_panel =3D true;
-> -                       has_lvds =3D true;
-> -                       break;
-> -               case INTEL_OUTPUT_EDP:
-> -                       has_panel =3D true;
-> -                       if (encoder->port =3D=3D PORT_A)
-> -                               has_cpu_edp =3D true;
-> -                       break;
-> -               default:
-> -                       break;
-> -               }
-> -       }
+> -       reg =3D PCH_TRANSCONF(pipe);
+> -       val =3D intel_de_read(dev_priv, reg);
+> -       pipeconf_val =3D intel_de_read(dev_priv, PIPECONF(pipe));
 > -
 > -       if (HAS_PCH_IBX(dev_priv)) {
-> -               has_ck505 =3D dev_priv->vbt.display_clock_mode;
-> -               can_ssc =3D has_ck505;
+> -               /* Configure frame start delay to match the CPU */
+> -               val &=3D ~TRANS_FRAME_START_DELAY_MASK;
+> -               val |=3D TRANS_FRAME_START_DELAY(dev_priv->framestart_del=
+ay - 1);
+> -
+> -               /*
+> -                * Make the BPC in transcoder be consistent with
+> -                * that in pipeconf reg. For HDMI we must use 8bpc
+> -                * here for both 8bpc and 12bpc.
+> -                */
+> -               val &=3D ~PIPECONF_BPC_MASK;
+> -               if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> -                       val |=3D PIPECONF_8BPC;
+> -               else
+> -                       val |=3D pipeconf_val & PIPECONF_BPC_MASK;
+> -       }
+> -
+> -       val &=3D ~TRANS_INTERLACE_MASK;
+> -       if ((pipeconf_val & PIPECONF_INTERLACE_MASK) =3D=3D PIPECONF_INTE=
+RLACED_ILK) {
+> -               if (HAS_PCH_IBX(dev_priv) &&
+> -                   intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
+> -                       val |=3D TRANS_LEGACY_INTERLACED_ILK;
+> -               else
+> -                       val |=3D TRANS_INTERLACED;
 > -       } else {
-> -               has_ck505 =3D false;
-> -               can_ssc =3D true;
+> -               val |=3D TRANS_PROGRESSIVE;
 > -       }
 > -
-> -       /* Check if any DPLLs are using the SSC source */
-> -       for (i =3D 0; i < dev_priv->dpll.num_shared_dpll; i++) {
-> -               u32 temp =3D intel_de_read(dev_priv, PCH_DPLL(i));
+> -       intel_de_write(dev_priv, reg, val | TRANS_ENABLE);
+> -       if (intel_de_wait_for_set(dev_priv, reg, TRANS_STATE_ENABLE, 100)=
+)
+> -               drm_err(&dev_priv->drm, "failed to enable transcoder %c\n=
+",
+> -                       pipe_name(pipe));
+> -}
 > -
-> -               if (!(temp & DPLL_VCO_ENABLE))
-> -                       continue;
+> -static void lpt_enable_pch_transcoder(struct drm_i915_private *dev_priv,
+> -                                     enum transcoder cpu_transcoder)
+> -{
+> -       u32 val, pipeconf_val;
 > -
-> -               if ((temp & PLL_REF_INPUT_MASK) =3D=3D
-> -                   PLLB_REF_INPUT_SPREADSPECTRUMIN) {
-> -                       using_ssc_source =3D true;
-> -                       break;
-> -               }
-> -       }
+> -       /* FDI must be feeding us bits for PCH ports */
+> -       assert_fdi_tx_enabled(dev_priv, (enum pipe) cpu_transcoder);
+> -       assert_fdi_rx_enabled(dev_priv, PIPE_A);
 > -
-> -       drm_dbg_kms(&dev_priv->drm,
-> -                   "has_panel %d has_lvds %d has_ck505 %d using_ssc_sour=
-ce %d\n",
-> -                   has_panel, has_lvds, has_ck505, using_ssc_source);
+> -       val =3D intel_de_read(dev_priv, TRANS_CHICKEN2(PIPE_A));
+> -       /* Workaround: set timing override bit. */
+> -       val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
+> -       /* Configure frame start delay to match the CPU */
+> -       val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
+> -       val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_de=
+lay - 1);
+> -       intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
 > -
-> -       /* Ironlake: try to setup display ref clock before DPLL
-> -        * enabling. This is only under driver's control after
-> -        * PCH B stepping, previous chipset stepping should be
-> -        * ignoring this setting.
-> -        */
-> -       val =3D intel_de_read(dev_priv, PCH_DREF_CONTROL);
+> -       val =3D TRANS_ENABLE;
+> -       pipeconf_val =3D intel_de_read(dev_priv, PIPECONF(cpu_transcoder)=
+);
 > -
-> -       /* As we must carefully and slowly disable/enable each source in =
-turn,
-> -        * compute the final state we want first and check if we need to
-> -        * make any changes at all.
-> -        */
-> -       final =3D val;
-> -       final &=3D ~DREF_NONSPREAD_SOURCE_MASK;
-> -       if (has_ck505)
-> -               final |=3D DREF_NONSPREAD_CK505_ENABLE;
+> -       if ((pipeconf_val & PIPECONF_INTERLACE_MASK_HSW) =3D=3D
+> -           PIPECONF_INTERLACED_ILK)
+> -               val |=3D TRANS_INTERLACED;
 > -       else
-> -               final |=3D DREF_NONSPREAD_SOURCE_ENABLE;
+> -               val |=3D TRANS_PROGRESSIVE;
 > -
-> -       final &=3D ~DREF_SSC_SOURCE_MASK;
-> -       final &=3D ~DREF_CPU_SOURCE_OUTPUT_MASK;
-> -       final &=3D ~DREF_SSC1_ENABLE;
-> -
-> -       if (has_panel) {
-> -               final |=3D DREF_SSC_SOURCE_ENABLE;
-> -
-> -               if (intel_panel_use_ssc(dev_priv) && can_ssc)
-> -                       final |=3D DREF_SSC1_ENABLE;
-> -
-> -               if (has_cpu_edp) {
-> -                       if (intel_panel_use_ssc(dev_priv) && can_ssc)
-> -                               final |=3D DREF_CPU_SOURCE_OUTPUT_DOWNSPR=
-EAD;
-> -                       else
-> -                               final |=3D DREF_CPU_SOURCE_OUTPUT_NONSPRE=
-AD;
-> -               } else
-> -                       final |=3D DREF_CPU_SOURCE_OUTPUT_DISABLE;
-> -       } else if (using_ssc_source) {
-> -               final |=3D DREF_SSC_SOURCE_ENABLE;
-> -               final |=3D DREF_SSC1_ENABLE;
-> -       }
-> -
-> -       if (final =3D=3D val)
-> -               return;
-> -
-> -       /* Always enable nonspread source */
-> -       val &=3D ~DREF_NONSPREAD_SOURCE_MASK;
-> -
-> -       if (has_ck505)
-> -               val |=3D DREF_NONSPREAD_CK505_ENABLE;
-> -       else
-> -               val |=3D DREF_NONSPREAD_SOURCE_ENABLE;
-> -
-> -       if (has_panel) {
-> -               val &=3D ~DREF_SSC_SOURCE_MASK;
-> -               val |=3D DREF_SSC_SOURCE_ENABLE;
-> -
-> -               /* SSC must be turned on before enabling the CPU output  =
-*/
-> -               if (intel_panel_use_ssc(dev_priv) && can_ssc) {
-> -                       drm_dbg_kms(&dev_priv->drm, "Using SSC on panel\n=
-");
-> -                       val |=3D DREF_SSC1_ENABLE;
-> -               } else
-> -                       val &=3D ~DREF_SSC1_ENABLE;
-> -
-> -               /* Get SSC going before enabling the outputs */
-> -               intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> -               intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-> -               udelay(200);
-> -
-> -               val &=3D ~DREF_CPU_SOURCE_OUTPUT_MASK;
-> -
-> -               /* Enable CPU source on CPU attached eDP */
-> -               if (has_cpu_edp) {
-> -                       if (intel_panel_use_ssc(dev_priv) && can_ssc) {
-> -                               drm_dbg_kms(&dev_priv->drm,
-> -                                           "Using SSC on eDP\n");
-> -                               val |=3D DREF_CPU_SOURCE_OUTPUT_DOWNSPREA=
-D;
-> -                       } else
-> -                               val |=3D DREF_CPU_SOURCE_OUTPUT_NONSPREAD=
-;
-> -               } else
-> -                       val |=3D DREF_CPU_SOURCE_OUTPUT_DISABLE;
-> -
-> -               intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> -               intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-> -               udelay(200);
-> -       } else {
-> -               drm_dbg_kms(&dev_priv->drm, "Disabling CPU source output\=
+> -       intel_de_write(dev_priv, LPT_TRANSCONF, val);
+> -       if (intel_de_wait_for_set(dev_priv, LPT_TRANSCONF,
+> -                                 TRANS_STATE_ENABLE, 100))
+> -               drm_err(&dev_priv->drm, "Failed to enable PCH transcoder\=
 n");
+> -}
 > -
-> -               val &=3D ~DREF_CPU_SOURCE_OUTPUT_MASK;
+> -static void ilk_disable_pch_transcoder(struct drm_i915_private *dev_priv=
+,
+> -                                      enum pipe pipe)
+> -{
+> -       i915_reg_t reg;
+> -       u32 val;
 > -
-> -               /* Turn off CPU output */
-> -               val |=3D DREF_CPU_SOURCE_OUTPUT_DISABLE;
+> -       /* FDI relies on the transcoder */
+> -       assert_fdi_tx_disabled(dev_priv, pipe);
+> -       assert_fdi_rx_disabled(dev_priv, pipe);
 > -
-> -               intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> -               intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-> -               udelay(200);
+> -       /* Ports must be off as well */
+> -       assert_pch_ports_disabled(dev_priv, pipe);
 > -
-> -               if (!using_ssc_source) {
-> -                       drm_dbg_kms(&dev_priv->drm, "Disabling SSC source=
+> -       reg =3D PCH_TRANSCONF(pipe);
+> -       val =3D intel_de_read(dev_priv, reg);
+> -       val &=3D ~TRANS_ENABLE;
+> -       intel_de_write(dev_priv, reg, val);
+> -       /* wait for PCH transcoder off, transcoder state */
+> -       if (intel_de_wait_for_clear(dev_priv, reg, TRANS_STATE_ENABLE, 50=
+))
+> -               drm_err(&dev_priv->drm, "failed to disable transcoder %c\=
+n",
+> -                       pipe_name(pipe));
+> -
+> -       if (HAS_PCH_CPT(dev_priv)) {
+> -               /* Workaround: Clear the timing override chicken bit agai=
+n. */
+> -               reg =3D TRANS_CHICKEN2(pipe);
+> -               val =3D intel_de_read(dev_priv, reg);
+> -               val &=3D ~TRANS_CHICKEN2_TIMING_OVERRIDE;
+> -               intel_de_write(dev_priv, reg, val);
+> -       }
+> -}
+> -
+> -void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv)
+> -{
+> -       u32 val;
+> -
+> -       val =3D intel_de_read(dev_priv, LPT_TRANSCONF);
+> -       val &=3D ~TRANS_ENABLE;
+> -       intel_de_write(dev_priv, LPT_TRANSCONF, val);
+> -       /* wait for PCH transcoder off, transcoder state */
+> -       if (intel_de_wait_for_clear(dev_priv, LPT_TRANSCONF,
+> -                                   TRANS_STATE_ENABLE, 50))
+> -               drm_err(&dev_priv->drm, "Failed to disable PCH transcoder=
 \n");
 > -
-> -                       /* Turn off the SSC source */
-> -                       val &=3D ~DREF_SSC_SOURCE_MASK;
-> -                       val |=3D DREF_SSC_SOURCE_DISABLE;
-> -
-> -                       /* Turn off SSC1 */
-> -                       val &=3D ~DREF_SSC1_ENABLE;
-> -
-> -                       intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> -                       intel_de_posting_read(dev_priv, PCH_DREF_CONTROL)=
-;
-> -                       udelay(200);
-> -               }
-> -       }
-> -
-> -       BUG_ON(val !=3D final);
+> -       /* Workaround: clear timing override bit. */
+> -       val =3D intel_de_read(dev_priv, TRANS_CHICKEN2(PIPE_A));
+> -       val &=3D ~TRANS_CHICKEN2_TIMING_OVERRIDE;
+> -       intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
 > -}
 > -
-> -/* Implements 3 different sequences from BSpec chapter "Display iCLK
-> - * Programming" based on the parameters passed:
-> - * - Sequence to enable CLKOUT_DP
-> - * - Sequence to enable CLKOUT_DP without spread
-> - * - Sequence to enable CLKOUT_DP for FDI usage and configure PCH FDI I/=
-O
-> - */
-> -static void lpt_enable_clkout_dp(struct drm_i915_private *dev_priv,
-> -                                bool with_spread, bool with_fdi)
-> -{
-> -       u32 reg, tmp;
-> -
-> -       if (drm_WARN(&dev_priv->drm, with_fdi && !with_spread,
-> -                    "FDI requires downspread\n"))
-> -               with_spread =3D true;
-> -       if (drm_WARN(&dev_priv->drm, HAS_PCH_LPT_LP(dev_priv) &&
-> -                    with_fdi, "LP PCH doesn't have FDI\n"))
-> -               with_fdi =3D false;
-> -
-> -       mutex_lock(&dev_priv->sb_lock);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, SBI_SSCCTL, SBI_ICLK);
-> -       tmp &=3D ~SBI_SSCCTL_DISABLE;
-> -       tmp |=3D SBI_SSCCTL_PATHALT;
-> -       intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
-> -
-> -       udelay(24);
-> -
-> -       if (with_spread) {
-> -               tmp =3D intel_sbi_read(dev_priv, SBI_SSCCTL, SBI_ICLK);
-> -               tmp &=3D ~SBI_SSCCTL_PATHALT;
-> -               intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
-> -
-> -               if (with_fdi)
-> -                       lpt_fdi_program_mphy(dev_priv);
-> -       }
-> -
-> -       reg =3D HAS_PCH_LPT_LP(dev_priv) ? SBI_GEN0 : SBI_DBUFF0;
-> -       tmp =3D intel_sbi_read(dev_priv, reg, SBI_ICLK);
-> -       tmp |=3D SBI_GEN0_CFG_BUFFENABLE_DISABLE;
-> -       intel_sbi_write(dev_priv, reg, tmp, SBI_ICLK);
-> -
-> -       mutex_unlock(&dev_priv->sb_lock);
-> -}
-> -
-> -/* Sequence to disable CLKOUT_DP */
-> -void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv)
-> -{
-> -       u32 reg, tmp;
-> -
-> -       mutex_lock(&dev_priv->sb_lock);
-> -
-> -       reg =3D HAS_PCH_LPT_LP(dev_priv) ? SBI_GEN0 : SBI_DBUFF0;
-> -       tmp =3D intel_sbi_read(dev_priv, reg, SBI_ICLK);
-> -       tmp &=3D ~SBI_GEN0_CFG_BUFFENABLE_DISABLE;
-> -       intel_sbi_write(dev_priv, reg, tmp, SBI_ICLK);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, SBI_SSCCTL, SBI_ICLK);
-> -       if (!(tmp & SBI_SSCCTL_DISABLE)) {
-> -               if (!(tmp & SBI_SSCCTL_PATHALT)) {
-> -                       tmp |=3D SBI_SSCCTL_PATHALT;
-> -                       intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_IC=
-LK);
-> -                       udelay(32);
-> -               }
-> -               tmp |=3D SBI_SSCCTL_DISABLE;
-> -               intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
-> -       }
-> -
-> -       mutex_unlock(&dev_priv->sb_lock);
-> -}
-> -
-> -#define BEND_IDX(steps) ((50 + (steps)) / 5)
-> -
-> -static const u16 sscdivintphase[] =3D {
-> -       [BEND_IDX( 50)] =3D 0x3B23,
-> -       [BEND_IDX( 45)] =3D 0x3B23,
-> -       [BEND_IDX( 40)] =3D 0x3C23,
-> -       [BEND_IDX( 35)] =3D 0x3C23,
-> -       [BEND_IDX( 30)] =3D 0x3D23,
-> -       [BEND_IDX( 25)] =3D 0x3D23,
-> -       [BEND_IDX( 20)] =3D 0x3E23,
-> -       [BEND_IDX( 15)] =3D 0x3E23,
-> -       [BEND_IDX( 10)] =3D 0x3F23,
-> -       [BEND_IDX(  5)] =3D 0x3F23,
-> -       [BEND_IDX(  0)] =3D 0x0025,
-> -       [BEND_IDX( -5)] =3D 0x0025,
-> -       [BEND_IDX(-10)] =3D 0x0125,
-> -       [BEND_IDX(-15)] =3D 0x0125,
-> -       [BEND_IDX(-20)] =3D 0x0225,
-> -       [BEND_IDX(-25)] =3D 0x0225,
-> -       [BEND_IDX(-30)] =3D 0x0325,
-> -       [BEND_IDX(-35)] =3D 0x0325,
-> -       [BEND_IDX(-40)] =3D 0x0425,
-> -       [BEND_IDX(-45)] =3D 0x0425,
-> -       [BEND_IDX(-50)] =3D 0x0525,
-> -};
-> -
-> -/*
-> - * Bend CLKOUT_DP
-> - * steps -50 to 50 inclusive, in steps of 5
-> - * < 0 slow down the clock, > 0 speed up the clock, 0 =3D=3D no bend (13=
-5MHz)
-> - * change in clock period =3D -(steps / 10) * 5.787 ps
-> - */
-> -static void lpt_bend_clkout_dp(struct drm_i915_private *dev_priv, int st=
-eps)
-> -{
-> -       u32 tmp;
-> -       int idx =3D BEND_IDX(steps);
-> -
-> -       if (drm_WARN_ON(&dev_priv->drm, steps % 5 !=3D 0))
-> -               return;
-> -
-> -       if (drm_WARN_ON(&dev_priv->drm, idx >=3D ARRAY_SIZE(sscdivintphas=
-e)))
-> -               return;
-> -
-> -       mutex_lock(&dev_priv->sb_lock);
-> -
-> -       if (steps % 10 !=3D 0)
-> -               tmp =3D 0xAAAAAAAB;
-> -       else
-> -               tmp =3D 0x00000000;
-> -       intel_sbi_write(dev_priv, SBI_SSCDITHPHASE, tmp, SBI_ICLK);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, SBI_SSCDIVINTPHASE, SBI_ICLK);
-> -       tmp &=3D 0xffff0000;
-> -       tmp |=3D sscdivintphase[idx];
-> -       intel_sbi_write(dev_priv, SBI_SSCDIVINTPHASE, tmp, SBI_ICLK);
-> -
-> -       mutex_unlock(&dev_priv->sb_lock);
-> -}
-> -
-> -#undef BEND_IDX
-> -
-> -static bool spll_uses_pch_ssc(struct drm_i915_private *dev_priv)
-> -{
-> -       u32 fuse_strap =3D intel_de_read(dev_priv, FUSE_STRAP);
-> -       u32 ctl =3D intel_de_read(dev_priv, SPLL_CTL);
-> -
-> -       if ((ctl & SPLL_PLL_ENABLE) =3D=3D 0)
-> -               return false;
-> -
-> -       if ((ctl & SPLL_REF_MASK) =3D=3D SPLL_REF_MUXED_SSC &&
-> -           (fuse_strap & HSW_CPU_SSC_ENABLE) =3D=3D 0)
-> -               return true;
-> -
-> -       if (IS_BROADWELL(dev_priv) &&
-> -           (ctl & SPLL_REF_MASK) =3D=3D SPLL_REF_PCH_SSC_BDW)
-> -               return true;
-> -
-> -       return false;
-> -}
-> -
-> -static bool wrpll_uses_pch_ssc(struct drm_i915_private *dev_priv,
-> -                              enum intel_dpll_id id)
-> -{
-> -       u32 fuse_strap =3D intel_de_read(dev_priv, FUSE_STRAP);
-> -       u32 ctl =3D intel_de_read(dev_priv, WRPLL_CTL(id));
-> -
-> -       if ((ctl & WRPLL_PLL_ENABLE) =3D=3D 0)
-> -               return false;
-> -
-> -       if ((ctl & WRPLL_REF_MASK) =3D=3D WRPLL_REF_PCH_SSC)
-> -               return true;
-> -
-> -       if ((IS_BROADWELL(dev_priv) || IS_HSW_ULT(dev_priv)) &&
-> -           (ctl & WRPLL_REF_MASK) =3D=3D WRPLL_REF_MUXED_SSC_BDW &&
-> -           (fuse_strap & HSW_CPU_SSC_ENABLE) =3D=3D 0)
-> -               return true;
-> -
-> -       return false;
-> -}
-> -
-> -static void lpt_init_pch_refclk(struct drm_i915_private *dev_priv)
-> -{
-> -       struct intel_encoder *encoder;
-> -       bool has_fdi =3D false;
-> -
-> -       for_each_intel_encoder(&dev_priv->drm, encoder) {
-> -               switch (encoder->type) {
-> -               case INTEL_OUTPUT_ANALOG:
-> -                       has_fdi =3D true;
-> -                       break;
-> -               default:
-> -                       break;
-> -               }
-> -       }
-> -
-> -       /*
-> -        * The BIOS may have decided to use the PCH SSC
-> -        * reference so we must not disable it until the
-> -        * relevant PLLs have stopped relying on it. We'll
-> -        * just leave the PCH SSC reference enabled in case
-> -        * any active PLL is using it. It will get disabled
-> -        * after runtime suspend if we don't have FDI.
-> -        *
-> -        * TODO: Move the whole reference clock handling
-> -        * to the modeset sequence proper so that we can
-> -        * actually enable/disable/reconfigure these things
-> -        * safely. To do that we need to introduce a real
-> -        * clock hierarchy. That would also allow us to do
-> -        * clock bending finally.
-> -        */
-> -       dev_priv->pch_ssc_use =3D 0;
-> -
-> -       if (spll_uses_pch_ssc(dev_priv)) {
-> -               drm_dbg_kms(&dev_priv->drm, "SPLL using PCH SSC\n");
-> -               dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_SPLL);
-> -       }
-> -
-> -       if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL1)) {
-> -               drm_dbg_kms(&dev_priv->drm, "WRPLL1 using PCH SSC\n");
-> -               dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL1);
-> -       }
-> -
-> -       if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL2)) {
-> -               drm_dbg_kms(&dev_priv->drm, "WRPLL2 using PCH SSC\n");
-> -               dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL2);
-> -       }
-> -
-> -       if (dev_priv->pch_ssc_use)
-> -               return;
-> -
-> -       if (has_fdi) {
-> -               lpt_bend_clkout_dp(dev_priv, 0);
-> -               lpt_enable_clkout_dp(dev_priv, true, true);
-> -       } else {
-> -               lpt_disable_clkout_dp(dev_priv);
-> -       }
-> -}
-> -
-> -/*
-> - * Initialize reference clocks when the driver loads
-> - */
-> -void intel_init_pch_refclk(struct drm_i915_private *dev_priv)
-> -{
-> -       if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv))
-> -               ilk_init_pch_refclk(dev_priv);
-> -       else if (HAS_PCH_LPT(dev_priv))
-> -               lpt_init_pch_refclk(dev_priv);
-> -}
-> -
->  static void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+>  enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
 >  {
->         struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>         struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> @@ -1388,31 +1167,6 @@ bool intel_has_pending_fb_unpin(struct drm_i915_pr=
+ivate *dev_priv)
+>         return false;
+>  }
+>
+> -
+> -static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state=
+ *crtc_state,
+> -                                          enum pipe pch_transcoder)
+> -{
+> -       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> -       struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -       enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+> -
+> -       intel_de_write(dev_priv, PCH_TRANS_HTOTAL(pch_transcoder),
+> -                      intel_de_read(dev_priv, HTOTAL(cpu_transcoder)));
+> -       intel_de_write(dev_priv, PCH_TRANS_HBLANK(pch_transcoder),
+> -                      intel_de_read(dev_priv, HBLANK(cpu_transcoder)));
+> -       intel_de_write(dev_priv, PCH_TRANS_HSYNC(pch_transcoder),
+> -                      intel_de_read(dev_priv, HSYNC(cpu_transcoder)));
+> -
+> -       intel_de_write(dev_priv, PCH_TRANS_VTOTAL(pch_transcoder),
+> -                      intel_de_read(dev_priv, VTOTAL(cpu_transcoder)));
+> -       intel_de_write(dev_priv, PCH_TRANS_VBLANK(pch_transcoder),
+> -                      intel_de_read(dev_priv, VBLANK(cpu_transcoder)));
+> -       intel_de_write(dev_priv, PCH_TRANS_VSYNC(pch_transcoder),
+> -                      intel_de_read(dev_priv, VSYNC(cpu_transcoder)));
+> -       intel_de_write(dev_priv, PCH_TRANS_VSYNCSHIFT(pch_transcoder),
+> -                      intel_de_read(dev_priv, VSYNCSHIFT(cpu_transcoder)=
+));
+> -}
+> -
+>  /*
+>   * Finds the encoder associated with the given CRTC. This can only be
+>   * used when we know that the CRTC isn't feeding multiple encoders!
+> @@ -1443,106 +1197,6 @@ intel_get_crtc_new_encoder(const struct intel_ato=
+mic_state *state,
+>         return encoder;
+>  }
+>
+> -/*
+> - * Enable PCH resources required for PCH ports:
+> - *   - PCH PLLs
+> - *   - FDI training & RX/TX
+> - *   - update transcoder timings
+> - *   - DP transcoding bits
+> - *   - transcoder
+> - */
+> -static void ilk_pch_enable(const struct intel_atomic_state *state,
+> -                          const struct intel_crtc_state *crtc_state)
+> -{
+> -       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> -       struct drm_device *dev =3D crtc->base.dev;
+> -       struct drm_i915_private *dev_priv =3D to_i915(dev);
+> -       enum pipe pipe =3D crtc->pipe;
+> -       u32 temp;
+> -
+> -       assert_pch_transcoder_disabled(dev_priv, pipe);
+> -
+> -       /* For PCH output, training FDI link */
+> -       intel_fdi_link_train(crtc, crtc_state);
+> -
+> -       /* We need to program the right clock selection before writing th=
+e pixel
+> -        * mutliplier into the DPLL. */
+> -       if (HAS_PCH_CPT(dev_priv)) {
+> -               u32 sel;
+> -
+> -               temp =3D intel_de_read(dev_priv, PCH_DPLL_SEL);
+> -               temp |=3D TRANS_DPLL_ENABLE(pipe);
+> -               sel =3D TRANS_DPLLB_SEL(pipe);
+> -               if (crtc_state->shared_dpll =3D=3D
+> -                   intel_get_shared_dpll_by_id(dev_priv, DPLL_ID_PCH_PLL=
+_B))
+> -                       temp |=3D sel;
+> -               else
+> -                       temp &=3D ~sel;
+> -               intel_de_write(dev_priv, PCH_DPLL_SEL, temp);
+> -       }
+> -
+> -       /* XXX: pch pll's can be enabled any time before we enable the PC=
+H
+> -        * transcoder, and we actually should do this to not upset any PC=
+H
+> -        * transcoder that already use the clock when we share it.
+> -        *
+> -        * Note that enable_shared_dpll tries to do the right thing, but
+> -        * get_shared_dpll unconditionally resets the pll - we need that =
+to have
+> -        * the right LVDS enable sequence. */
+> -       intel_enable_shared_dpll(crtc_state);
+> -
+> -       /* set transcoder timing, panel must allow it */
+> -       assert_pps_unlocked(dev_priv, pipe);
+> -       ilk_pch_transcoder_set_timings(crtc_state, pipe);
+> -
+> -       intel_fdi_normal_train(crtc);
+> -
+> -       /* For PCH DP, enable TRANS_DP_CTL */
+> -       if (HAS_PCH_CPT(dev_priv) &&
+> -           intel_crtc_has_dp_encoder(crtc_state)) {
+> -               const struct drm_display_mode *adjusted_mode =3D
+> -                       &crtc_state->hw.adjusted_mode;
+> -               u32 bpc =3D (intel_de_read(dev_priv, PIPECONF(pipe)) & PI=
+PECONF_BPC_MASK) >> 5;
+> -               i915_reg_t reg =3D TRANS_DP_CTL(pipe);
+> -               enum port port;
+> -
+> -               temp =3D intel_de_read(dev_priv, reg);
+> -               temp &=3D ~(TRANS_DP_PORT_SEL_MASK |
+> -                         TRANS_DP_SYNC_MASK |
+> -                         TRANS_DP_BPC_MASK);
+> -               temp |=3D TRANS_DP_OUTPUT_ENABLE;
+> -               temp |=3D bpc << 9; /* same format but at 11:9 */
+> -
+> -               if (adjusted_mode->flags & DRM_MODE_FLAG_PHSYNC)
+> -                       temp |=3D TRANS_DP_HSYNC_ACTIVE_HIGH;
+> -               if (adjusted_mode->flags & DRM_MODE_FLAG_PVSYNC)
+> -                       temp |=3D TRANS_DP_VSYNC_ACTIVE_HIGH;
+> -
+> -               port =3D intel_get_crtc_new_encoder(state, crtc_state)->p=
+ort;
+> -               drm_WARN_ON(dev, port < PORT_B || port > PORT_D);
+> -               temp |=3D TRANS_DP_PORT_SEL(port);
+> -
+> -               intel_de_write(dev_priv, reg, temp);
+> -       }
+> -
+> -       ilk_enable_pch_transcoder(crtc_state);
+> -}
+> -
+> -void lpt_pch_enable(const struct intel_crtc_state *crtc_state)
+> -{
+> -       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> -       struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -       enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+> -
+> -       assert_pch_transcoder_disabled(dev_priv, PIPE_A);
+> -
+> -       lpt_program_iclkip(crtc_state);
+> -
+> -       /* Set transcoder timing. */
+> -       ilk_pch_transcoder_set_timings(crtc_state, PIPE_A);
+> -
+> -       lpt_enable_pch_transcoder(dev_priv, cpu_transcoder);
+> -}
+> -
+>  static void cpt_verify_modeset(struct drm_i915_private *dev_priv,
+>                                enum pipe pipe)
+>  {
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
 rm/i915/display/intel_display.h
-> index 0c76bf57f86b..39c18b8807f9 100644
+> index 39c18b8807f9..93c84f2174b5 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -521,7 +521,6 @@ void intel_link_compute_m_n(u16 bpp, int nlanes,
->                             int pixel_clock, int link_clock,
->                             struct intel_link_m_n *m_n,
->                             bool constant_n, bool fec_enable);
-> -void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv);
->  u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
->                               u32 pixel_format, u64 modifier);
->  enum drm_mode_status
-> @@ -544,7 +543,6 @@ int vlv_get_cck_clock_hpll(struct drm_i915_private *d=
-ev_priv,
+> @@ -541,8 +541,6 @@ int vlv_get_cck_clock(struct drm_i915_private *dev_pr=
+iv,
+>                       const char *name, u32 reg, int ref_freq);
+>  int vlv_get_cck_clock_hpll(struct drm_i915_private *dev_priv,
 >                            const char *name, u32 reg);
->  void lpt_pch_enable(const struct intel_crtc_state *crtc_state);
->  void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv);
-> -void lpt_disable_iclkip(struct drm_i915_private *dev_priv);
+> -void lpt_pch_enable(const struct intel_crtc_state *crtc_state);
+> -void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv);
 >  void intel_init_display_hooks(struct drm_i915_private *dev_priv);
 >  unsigned int intel_fb_xy_to_linear(int x, int y,
 >                                    const struct intel_plane_state *state,
-> @@ -583,7 +581,6 @@ intel_framebuffer_create(struct drm_i915_gem_object *=
-obj,
->  void assert_pch_transcoder_disabled(struct drm_i915_private *dev_priv,
->                                     enum pipe pipe);
+> @@ -578,9 +576,6 @@ struct drm_framebuffer *
+>  intel_framebuffer_create(struct drm_i915_gem_object *obj,
+>                          struct drm_mode_fb_cmd2 *mode_cmd);
 >
-> -int lpt_get_iclkip(struct drm_i915_private *dev_priv);
+> -void assert_pch_transcoder_disabled(struct drm_i915_private *dev_priv,
+> -                                   enum pipe pipe);
+> -
 >  bool intel_fuzzy_clock_check(int clock1, int clock2);
 >
 >  void intel_display_prepare_reset(struct drm_i915_private *dev_priv);
-> @@ -632,7 +629,6 @@ void intel_modeset_driver_remove(struct drm_i915_priv=
-ate *i915);
->  void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915);
->  void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915);
->  void intel_display_resume(struct drm_device *dev);
-> -void intel_init_pch_refclk(struct drm_i915_private *dev_priv);
->  int intel_modeset_all_pipes(struct intel_atomic_state *state);
->
->  /* modesetting asserts */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 1672604f9ef7..d88da0d0f05a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -15,6 +15,7 @@
->  #include "intel_dpio_phy.h"
->  #include "intel_dpll.h"
->  #include "intel_hotplug.h"
-> +#include "intel_pch_refclk.h"
->  #include "intel_pcode.h"
->  #include "intel_pm.h"
->  #include "intel_pps.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index 0a7e04db04be..ca69b67bbc23 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -26,6 +26,7 @@
->  #include "intel_dpio_phy.h"
->  #include "intel_dpll.h"
->  #include "intel_dpll_mgr.h"
-> +#include "intel_pch_refclk.h"
->  #include "intel_tc.h"
->
->  /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i=
-915/display/intel_fdi.c
-> index dd2cf0c59921..d1c1600c66cb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> @@ -8,7 +8,6 @@
->  #include "intel_de.h"
->  #include "intel_display_types.h"
->  #include "intel_fdi.h"
-> -#include "intel_sbi.h"
->
->  static void assert_fdi_tx(struct drm_i915_private *dev_priv,
->                           enum pipe pipe, bool state)
-> @@ -1006,104 +1005,6 @@ void ilk_fdi_disable(struct intel_crtc *crtc)
->         udelay(100);
->  }
->
-> -static void lpt_fdi_reset_mphy(struct drm_i915_private *dev_priv)
-> -{
-> -       u32 tmp;
-> -
-> -       tmp =3D intel_de_read(dev_priv, SOUTH_CHICKEN2);
-> -       tmp |=3D FDI_MPHY_IOSFSB_RESET_CTL;
-> -       intel_de_write(dev_priv, SOUTH_CHICKEN2, tmp);
-> -
-> -       if (wait_for_us(intel_de_read(dev_priv, SOUTH_CHICKEN2) &
-> -                       FDI_MPHY_IOSFSB_RESET_STATUS, 100))
-> -               drm_err(&dev_priv->drm, "FDI mPHY reset assert timeout\n"=
-);
-> -
-> -       tmp =3D intel_de_read(dev_priv, SOUTH_CHICKEN2);
-> -       tmp &=3D ~FDI_MPHY_IOSFSB_RESET_CTL;
-> -       intel_de_write(dev_priv, SOUTH_CHICKEN2, tmp);
-> -
-> -       if (wait_for_us((intel_de_read(dev_priv, SOUTH_CHICKEN2) &
-> -                        FDI_MPHY_IOSFSB_RESET_STATUS) =3D=3D 0, 100))
-> -               drm_err(&dev_priv->drm, "FDI mPHY reset de-assert timeout=
-\n");
-> -}
-> -
-> -/* WaMPhyProgramming:hsw */
-> -void lpt_fdi_program_mphy(struct drm_i915_private *dev_priv)
-> -{
-> -       u32 tmp;
-> -
-> -       lpt_fdi_reset_mphy(dev_priv);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x8008, SBI_MPHY);
-> -       tmp &=3D ~(0xFF << 24);
-> -       tmp |=3D (0x12 << 24);
-> -       intel_sbi_write(dev_priv, 0x8008, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x2008, SBI_MPHY);
-> -       tmp |=3D (1 << 11);
-> -       intel_sbi_write(dev_priv, 0x2008, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x2108, SBI_MPHY);
-> -       tmp |=3D (1 << 11);
-> -       intel_sbi_write(dev_priv, 0x2108, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x206C, SBI_MPHY);
-> -       tmp |=3D (1 << 24) | (1 << 21) | (1 << 18);
-> -       intel_sbi_write(dev_priv, 0x206C, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x216C, SBI_MPHY);
-> -       tmp |=3D (1 << 24) | (1 << 21) | (1 << 18);
-> -       intel_sbi_write(dev_priv, 0x216C, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x2080, SBI_MPHY);
-> -       tmp &=3D ~(7 << 13);
-> -       tmp |=3D (5 << 13);
-> -       intel_sbi_write(dev_priv, 0x2080, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x2180, SBI_MPHY);
-> -       tmp &=3D ~(7 << 13);
-> -       tmp |=3D (5 << 13);
-> -       intel_sbi_write(dev_priv, 0x2180, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x208C, SBI_MPHY);
-> -       tmp &=3D ~0xFF;
-> -       tmp |=3D 0x1C;
-> -       intel_sbi_write(dev_priv, 0x208C, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x218C, SBI_MPHY);
-> -       tmp &=3D ~0xFF;
-> -       tmp |=3D 0x1C;
-> -       intel_sbi_write(dev_priv, 0x218C, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x2098, SBI_MPHY);
-> -       tmp &=3D ~(0xFF << 16);
-> -       tmp |=3D (0x1C << 16);
-> -       intel_sbi_write(dev_priv, 0x2098, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x2198, SBI_MPHY);
-> -       tmp &=3D ~(0xFF << 16);
-> -       tmp |=3D (0x1C << 16);
-> -       intel_sbi_write(dev_priv, 0x2198, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x20C4, SBI_MPHY);
-> -       tmp |=3D (1 << 27);
-> -       intel_sbi_write(dev_priv, 0x20C4, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x21C4, SBI_MPHY);
-> -       tmp |=3D (1 << 27);
-> -       intel_sbi_write(dev_priv, 0x21C4, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x20EC, SBI_MPHY);
-> -       tmp &=3D ~(0xF << 28);
-> -       tmp |=3D (4 << 28);
-> -       intel_sbi_write(dev_priv, 0x20EC, tmp, SBI_MPHY);
-> -
-> -       tmp =3D intel_sbi_read(dev_priv, 0x21EC, SBI_MPHY);
-> -       tmp &=3D ~(0xF << 28);
-> -       tmp |=3D (4 << 28);
-> -       intel_sbi_write(dev_priv, 0x21EC, tmp, SBI_MPHY);
-> -}
-> -
->  static const struct intel_fdi_funcs ilk_funcs =3D {
->         .fdi_link_train =3D ilk_fdi_link_train,
->  };
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i=
-915/display/intel_fdi.h
-> index 640d6585c137..5a361730f80a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
-> @@ -24,7 +24,6 @@ void intel_fdi_init_hook(struct drm_i915_private *dev_p=
-riv);
->  void hsw_fdi_link_train(struct intel_encoder *encoder,
->                         const struct intel_crtc_state *crtc_state);
->  void intel_fdi_pll_freq_update(struct drm_i915_private *i915);
-> -void lpt_fdi_program_mphy(struct drm_i915_private *i915);
->
->  void intel_fdi_link_train(struct intel_crtc *crtc,
->                           const struct intel_crtc_state *crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gp=
-u/drm/i915/display/intel_pch_refclk.c
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/g=
+pu/drm/i915/display/intel_pch_display.c
 > new file mode 100644
-> index 000000000000..b688fd87e3da
+> index 000000000000..0056c2fe49ec
 > --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> @@ -0,0 +1,648 @@
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> @@ -0,0 +1,365 @@
 > +// SPDX-License-Identifier: MIT
 > +/*
 > + * Copyright =C2=A9 2021 Intel Corporation
 > + */
 > +
+> +#include "g4x_dp.h"
+> +#include "intel_crt.h"
 > +#include "intel_de.h"
 > +#include "intel_display_types.h"
-> +#include "intel_panel.h"
+> +#include "intel_fdi.h"
+> +#include "intel_lvds.h"
+> +#include "intel_pch_display.h"
 > +#include "intel_pch_refclk.h"
-> +#include "intel_sbi.h"
+> +#include "intel_pps.h"
+> +#include "intel_sdvo.h"
 > +
-> +static void lpt_fdi_reset_mphy(struct drm_i915_private *dev_priv)
+> +static void assert_pch_dp_disabled(struct drm_i915_private *dev_priv,
+> +                                  enum pipe pipe, enum port port,
+> +                                  i915_reg_t dp_reg)
 > +{
-> +       u32 tmp;
+> +       enum pipe port_pipe;
+> +       bool state;
 > +
-> +       tmp =3D intel_de_read(dev_priv, SOUTH_CHICKEN2);
-> +       tmp |=3D FDI_MPHY_IOSFSB_RESET_CTL;
-> +       intel_de_write(dev_priv, SOUTH_CHICKEN2, tmp);
+> +       state =3D g4x_dp_port_enabled(dev_priv, dp_reg, port, &port_pipe)=
+;
 > +
-> +       if (wait_for_us(intel_de_read(dev_priv, SOUTH_CHICKEN2) &
-> +                       FDI_MPHY_IOSFSB_RESET_STATUS, 100))
-> +               drm_err(&dev_priv->drm, "FDI mPHY reset assert timeout\n"=
-);
+> +       I915_STATE_WARN(state && port_pipe =3D=3D pipe,
+> +                       "PCH DP %c enabled on transcoder %c, should be di=
+sabled\n",
+> +                       port_name(port), pipe_name(pipe));
 > +
-> +       tmp =3D intel_de_read(dev_priv, SOUTH_CHICKEN2);
-> +       tmp &=3D ~FDI_MPHY_IOSFSB_RESET_CTL;
-> +       intel_de_write(dev_priv, SOUTH_CHICKEN2, tmp);
-> +
-> +       if (wait_for_us((intel_de_read(dev_priv, SOUTH_CHICKEN2) &
-> +                        FDI_MPHY_IOSFSB_RESET_STATUS) =3D=3D 0, 100))
-> +               drm_err(&dev_priv->drm, "FDI mPHY reset de-assert timeout=
-\n");
+> +       I915_STATE_WARN(HAS_PCH_IBX(dev_priv) && !state && port_pipe =3D=
+=3D PIPE_B,
+> +                       "IBX PCH DP %c still using transcoder B\n",
+> +                       port_name(port));
 > +}
 > +
-> +/* WaMPhyProgramming:hsw */
-> +static void lpt_fdi_program_mphy(struct drm_i915_private *dev_priv)
+> +static void assert_pch_hdmi_disabled(struct drm_i915_private *dev_priv,
+> +                                    enum pipe pipe, enum port port,
+> +                                    i915_reg_t hdmi_reg)
 > +{
-> +       u32 tmp;
+> +       enum pipe port_pipe;
+> +       bool state;
 > +
-> +       lpt_fdi_reset_mphy(dev_priv);
+> +       state =3D intel_sdvo_port_enabled(dev_priv, hdmi_reg, &port_pipe)=
+;
 > +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x8008, SBI_MPHY);
-> +       tmp &=3D ~(0xFF << 24);
-> +       tmp |=3D (0x12 << 24);
-> +       intel_sbi_write(dev_priv, 0x8008, tmp, SBI_MPHY);
+> +       I915_STATE_WARN(state && port_pipe =3D=3D pipe,
+> +                       "PCH HDMI %c enabled on transcoder %c, should be =
+disabled\n",
+> +                       port_name(port), pipe_name(pipe));
 > +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x2008, SBI_MPHY);
-> +       tmp |=3D (1 << 11);
-> +       intel_sbi_write(dev_priv, 0x2008, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x2108, SBI_MPHY);
-> +       tmp |=3D (1 << 11);
-> +       intel_sbi_write(dev_priv, 0x2108, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x206C, SBI_MPHY);
-> +       tmp |=3D (1 << 24) | (1 << 21) | (1 << 18);
-> +       intel_sbi_write(dev_priv, 0x206C, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x216C, SBI_MPHY);
-> +       tmp |=3D (1 << 24) | (1 << 21) | (1 << 18);
-> +       intel_sbi_write(dev_priv, 0x216C, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x2080, SBI_MPHY);
-> +       tmp &=3D ~(7 << 13);
-> +       tmp |=3D (5 << 13);
-> +       intel_sbi_write(dev_priv, 0x2080, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x2180, SBI_MPHY);
-> +       tmp &=3D ~(7 << 13);
-> +       tmp |=3D (5 << 13);
-> +       intel_sbi_write(dev_priv, 0x2180, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x208C, SBI_MPHY);
-> +       tmp &=3D ~0xFF;
-> +       tmp |=3D 0x1C;
-> +       intel_sbi_write(dev_priv, 0x208C, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x218C, SBI_MPHY);
-> +       tmp &=3D ~0xFF;
-> +       tmp |=3D 0x1C;
-> +       intel_sbi_write(dev_priv, 0x218C, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x2098, SBI_MPHY);
-> +       tmp &=3D ~(0xFF << 16);
-> +       tmp |=3D (0x1C << 16);
-> +       intel_sbi_write(dev_priv, 0x2098, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x2198, SBI_MPHY);
-> +       tmp &=3D ~(0xFF << 16);
-> +       tmp |=3D (0x1C << 16);
-> +       intel_sbi_write(dev_priv, 0x2198, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x20C4, SBI_MPHY);
-> +       tmp |=3D (1 << 27);
-> +       intel_sbi_write(dev_priv, 0x20C4, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x21C4, SBI_MPHY);
-> +       tmp |=3D (1 << 27);
-> +       intel_sbi_write(dev_priv, 0x21C4, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x20EC, SBI_MPHY);
-> +       tmp &=3D ~(0xF << 28);
-> +       tmp |=3D (4 << 28);
-> +       intel_sbi_write(dev_priv, 0x20EC, tmp, SBI_MPHY);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, 0x21EC, SBI_MPHY);
-> +       tmp &=3D ~(0xF << 28);
-> +       tmp |=3D (4 << 28);
-> +       intel_sbi_write(dev_priv, 0x21EC, tmp, SBI_MPHY);
+> +       I915_STATE_WARN(HAS_PCH_IBX(dev_priv) && !state && port_pipe =3D=
+=3D PIPE_B,
+> +                       "IBX PCH HDMI %c still using transcoder B\n",
+> +                       port_name(port));
 > +}
 > +
-> +void lpt_disable_iclkip(struct drm_i915_private *dev_priv)
+> +static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
+> +                                     enum pipe pipe)
 > +{
-> +       u32 temp;
+> +       enum pipe port_pipe;
 > +
-> +       intel_de_write(dev_priv, PIXCLK_GATE, PIXCLK_GATE_GATE);
+> +       assert_pch_dp_disabled(dev_priv, pipe, PORT_B, PCH_DP_B);
+> +       assert_pch_dp_disabled(dev_priv, pipe, PORT_C, PCH_DP_C);
+> +       assert_pch_dp_disabled(dev_priv, pipe, PORT_D, PCH_DP_D);
 > +
-> +       mutex_lock(&dev_priv->sb_lock);
+> +       I915_STATE_WARN(intel_crt_port_enabled(dev_priv, PCH_ADPA, &port_=
+pipe) &&
+> +                       port_pipe =3D=3D pipe,
+> +                       "PCH VGA enabled on transcoder %c, should be disa=
+bled\n",
+> +                       pipe_name(pipe));
 > +
-> +       temp =3D intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
-> +       temp |=3D SBI_SSCCTL_DISABLE;
-> +       intel_sbi_write(dev_priv, SBI_SSCCTL6, temp, SBI_ICLK);
+> +       I915_STATE_WARN(intel_lvds_port_enabled(dev_priv, PCH_LVDS, &port=
+_pipe) &&
+> +                       port_pipe =3D=3D pipe,
+> +                       "PCH LVDS enabled on transcoder %c, should be dis=
+abled\n",
+> +                       pipe_name(pipe));
 > +
-> +       mutex_unlock(&dev_priv->sb_lock);
+> +       /* PCH SDVOB multiplex with HDMIB */
+> +       assert_pch_hdmi_disabled(dev_priv, pipe, PORT_B, PCH_HDMIB);
+> +       assert_pch_hdmi_disabled(dev_priv, pipe, PORT_C, PCH_HDMIC);
+> +       assert_pch_hdmi_disabled(dev_priv, pipe, PORT_D, PCH_HDMID);
 > +}
 > +
-> +/* Program iCLKIP clock to the desired frequency */
-> +void lpt_program_iclkip(const struct intel_crtc_state *crtc_state)
+> +static void assert_pch_transcoder_disabled(struct drm_i915_private *dev_=
+priv,
+> +                                          enum pipe pipe)
+> +{
+> +       u32 val;
+> +       bool enabled;
+> +
+> +       val =3D intel_de_read(dev_priv, PCH_TRANSCONF(pipe));
+> +       enabled =3D !!(val & TRANS_ENABLE);
+> +       I915_STATE_WARN(enabled,
+> +                       "transcoder assertion failed, should be off on pi=
+pe %c but is still active\n",
+> +                       pipe_name(pipe));
+> +}
+> +
+> +static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state=
+ *crtc_state,
+> +                                          enum pipe pch_transcoder)
 > +{
 > +       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
 > +       struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> +       int clock =3D crtc_state->hw.adjusted_mode.crtc_clock;
-> +       u32 divsel, phaseinc, auxdiv, phasedir =3D 0;
-> +       u32 temp;
+> +       enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
 > +
-> +       lpt_disable_iclkip(dev_priv);
+> +       intel_de_write(dev_priv, PCH_TRANS_HTOTAL(pch_transcoder),
+> +                      intel_de_read(dev_priv, HTOTAL(cpu_transcoder)));
+> +       intel_de_write(dev_priv, PCH_TRANS_HBLANK(pch_transcoder),
+> +                      intel_de_read(dev_priv, HBLANK(cpu_transcoder)));
+> +       intel_de_write(dev_priv, PCH_TRANS_HSYNC(pch_transcoder),
+> +                      intel_de_read(dev_priv, HSYNC(cpu_transcoder)));
 > +
-> +       /* The iCLK virtual clock root frequency is in MHz,
-> +        * but the adjusted_mode->crtc_clock in KHz. To get the
-> +        * divisors, it is necessary to divide one by another, so we
-> +        * convert the virtual clock precision to KHz here for higher
-> +        * precision.
-> +        */
-> +       for (auxdiv =3D 0; auxdiv < 2; auxdiv++) {
-> +               u32 iclk_virtual_root_freq =3D 172800 * 1000;
-> +               u32 iclk_pi_range =3D 64;
-> +               u32 desired_divisor;
+> +       intel_de_write(dev_priv, PCH_TRANS_VTOTAL(pch_transcoder),
+> +                      intel_de_read(dev_priv, VTOTAL(cpu_transcoder)));
+> +       intel_de_write(dev_priv, PCH_TRANS_VBLANK(pch_transcoder),
+> +                      intel_de_read(dev_priv, VBLANK(cpu_transcoder)));
+> +       intel_de_write(dev_priv, PCH_TRANS_VSYNC(pch_transcoder),
+> +                      intel_de_read(dev_priv, VSYNC(cpu_transcoder)));
+> +       intel_de_write(dev_priv, PCH_TRANS_VSYNCSHIFT(pch_transcoder),
+> +                      intel_de_read(dev_priv, VSYNCSHIFT(cpu_transcoder)=
+));
+> +}
 > +
-> +               desired_divisor =3D DIV_ROUND_CLOSEST(iclk_virtual_root_f=
-req,
-> +                                                   clock << auxdiv);
-> +               divsel =3D (desired_divisor / iclk_pi_range) - 2;
-> +               phaseinc =3D desired_divisor % iclk_pi_range;
+> +static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crt=
+c_state)
+> +{
+> +       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +       struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +       enum pipe pipe =3D crtc->pipe;
+> +       i915_reg_t reg;
+> +       u32 val, pipeconf_val;
+> +
+> +       /* Make sure PCH DPLL is enabled */
+> +       assert_shared_dpll_enabled(dev_priv, crtc_state->shared_dpll);
+> +
+> +       /* FDI must be feeding us bits for PCH ports */
+> +       assert_fdi_tx_enabled(dev_priv, pipe);
+> +       assert_fdi_rx_enabled(dev_priv, pipe);
+> +
+> +       if (HAS_PCH_CPT(dev_priv)) {
+> +               reg =3D TRANS_CHICKEN2(pipe);
+> +               val =3D intel_de_read(dev_priv, reg);
+> +               /*
+> +                * Workaround: Set the timing override bit
+> +                * before enabling the pch transcoder.
+> +                */
+> +               val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
+> +               /* Configure frame start delay to match the CPU */
+> +               val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
+> +               val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->frame=
+start_delay - 1);
+> +               intel_de_write(dev_priv, reg, val);
+> +       }
+> +
+> +       reg =3D PCH_TRANSCONF(pipe);
+> +       val =3D intel_de_read(dev_priv, reg);
+> +       pipeconf_val =3D intel_de_read(dev_priv, PIPECONF(pipe));
+> +
+> +       if (HAS_PCH_IBX(dev_priv)) {
+> +               /* Configure frame start delay to match the CPU */
+> +               val &=3D ~TRANS_FRAME_START_DELAY_MASK;
+> +               val |=3D TRANS_FRAME_START_DELAY(dev_priv->framestart_del=
+ay - 1);
 > +
 > +               /*
-> +                * Near 20MHz is a corner case which is
-> +                * out of range for the 7-bit divisor
+> +                * Make the BPC in transcoder be consistent with
+> +                * that in pipeconf reg. For HDMI we must use 8bpc
+> +                * here for both 8bpc and 12bpc.
 > +                */
-> +               if (divsel <=3D 0x7f)
-> +                       break;
+> +               val &=3D ~PIPECONF_BPC_MASK;
+> +               if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> +                       val |=3D PIPECONF_8BPC;
+> +               else
+> +                       val |=3D pipeconf_val & PIPECONF_BPC_MASK;
 > +       }
 > +
-> +       /* This should not happen with any sane values */
-> +       drm_WARN_ON(&dev_priv->drm, SBI_SSCDIVINTPHASE_DIVSEL(divsel) &
-> +                   ~SBI_SSCDIVINTPHASE_DIVSEL_MASK);
-> +       drm_WARN_ON(&dev_priv->drm, SBI_SSCDIVINTPHASE_DIR(phasedir) &
-> +                   ~SBI_SSCDIVINTPHASE_INCVAL_MASK);
+> +       val &=3D ~TRANS_INTERLACE_MASK;
+> +       if ((pipeconf_val & PIPECONF_INTERLACE_MASK) =3D=3D PIPECONF_INTE=
+RLACED_ILK) {
+> +               if (HAS_PCH_IBX(dev_priv) &&
+> +                   intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
+> +                       val |=3D TRANS_LEGACY_INTERLACED_ILK;
+> +               else
+> +                       val |=3D TRANS_INTERLACED;
+> +       } else {
+> +               val |=3D TRANS_PROGRESSIVE;
+> +       }
 > +
-> +       drm_dbg_kms(&dev_priv->drm,
-> +                   "iCLKIP clock: found settings for %dKHz refresh rate:=
- auxdiv=3D%x, divsel=3D%x, phasedir=3D%x, phaseinc=3D%x\n",
-> +                   clock, auxdiv, divsel, phasedir, phaseinc);
-> +
-> +       mutex_lock(&dev_priv->sb_lock);
-> +
-> +       /* Program SSCDIVINTPHASE6 */
-> +       temp =3D intel_sbi_read(dev_priv, SBI_SSCDIVINTPHASE6, SBI_ICLK);
-> +       temp &=3D ~SBI_SSCDIVINTPHASE_DIVSEL_MASK;
-> +       temp |=3D SBI_SSCDIVINTPHASE_DIVSEL(divsel);
-> +       temp &=3D ~SBI_SSCDIVINTPHASE_INCVAL_MASK;
-> +       temp |=3D SBI_SSCDIVINTPHASE_INCVAL(phaseinc);
-> +       temp |=3D SBI_SSCDIVINTPHASE_DIR(phasedir);
-> +       temp |=3D SBI_SSCDIVINTPHASE_PROPAGATE;
-> +       intel_sbi_write(dev_priv, SBI_SSCDIVINTPHASE6, temp, SBI_ICLK);
-> +
-> +       /* Program SSCAUXDIV */
-> +       temp =3D intel_sbi_read(dev_priv, SBI_SSCAUXDIV6, SBI_ICLK);
-> +       temp &=3D ~SBI_SSCAUXDIV_FINALDIV2SEL(1);
-> +       temp |=3D SBI_SSCAUXDIV_FINALDIV2SEL(auxdiv);
-> +       intel_sbi_write(dev_priv, SBI_SSCAUXDIV6, temp, SBI_ICLK);
-> +
-> +       /* Enable modulator and associated divider */
-> +       temp =3D intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
-> +       temp &=3D ~SBI_SSCCTL_DISABLE;
-> +       intel_sbi_write(dev_priv, SBI_SSCCTL6, temp, SBI_ICLK);
-> +
-> +       mutex_unlock(&dev_priv->sb_lock);
-> +
-> +       /* Wait for initialization time */
-> +       udelay(24);
-> +
-> +       intel_de_write(dev_priv, PIXCLK_GATE, PIXCLK_GATE_UNGATE);
+> +       intel_de_write(dev_priv, reg, val | TRANS_ENABLE);
+> +       if (intel_de_wait_for_set(dev_priv, reg, TRANS_STATE_ENABLE, 100)=
+)
+> +               drm_err(&dev_priv->drm, "failed to enable transcoder %c\n=
+",
+> +                       pipe_name(pipe));
 > +}
 > +
-> +int lpt_get_iclkip(struct drm_i915_private *dev_priv)
+> +void ilk_disable_pch_transcoder(struct drm_i915_private *dev_priv,
+> +                               enum pipe pipe)
 > +{
-> +       u32 divsel, phaseinc, auxdiv;
-> +       u32 iclk_virtual_root_freq =3D 172800 * 1000;
-> +       u32 iclk_pi_range =3D 64;
-> +       u32 desired_divisor;
-> +       u32 temp;
+> +       i915_reg_t reg;
+> +       u32 val;
 > +
-> +       if ((intel_de_read(dev_priv, PIXCLK_GATE) & PIXCLK_GATE_UNGATE) =
-=3D=3D 0)
-> +               return 0;
+> +       /* FDI relies on the transcoder */
+> +       assert_fdi_tx_disabled(dev_priv, pipe);
+> +       assert_fdi_rx_disabled(dev_priv, pipe);
 > +
-> +       mutex_lock(&dev_priv->sb_lock);
+> +       /* Ports must be off as well */
+> +       assert_pch_ports_disabled(dev_priv, pipe);
 > +
-> +       temp =3D intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
-> +       if (temp & SBI_SSCCTL_DISABLE) {
-> +               mutex_unlock(&dev_priv->sb_lock);
-> +               return 0;
+> +       reg =3D PCH_TRANSCONF(pipe);
+> +       val =3D intel_de_read(dev_priv, reg);
+> +       val &=3D ~TRANS_ENABLE;
+> +       intel_de_write(dev_priv, reg, val);
+> +       /* wait for PCH transcoder off, transcoder state */
+> +       if (intel_de_wait_for_clear(dev_priv, reg, TRANS_STATE_ENABLE, 50=
+))
+> +               drm_err(&dev_priv->drm, "failed to disable transcoder %c\=
+n",
+> +                       pipe_name(pipe));
+> +
+> +       if (HAS_PCH_CPT(dev_priv)) {
+> +               /* Workaround: Clear the timing override chicken bit agai=
+n. */
+> +               reg =3D TRANS_CHICKEN2(pipe);
+> +               val =3D intel_de_read(dev_priv, reg);
+> +               val &=3D ~TRANS_CHICKEN2_TIMING_OVERRIDE;
+> +               intel_de_write(dev_priv, reg, val);
 > +       }
-> +
-> +       temp =3D intel_sbi_read(dev_priv, SBI_SSCDIVINTPHASE6, SBI_ICLK);
-> +       divsel =3D (temp & SBI_SSCDIVINTPHASE_DIVSEL_MASK) >>
-> +               SBI_SSCDIVINTPHASE_DIVSEL_SHIFT;
-> +       phaseinc =3D (temp & SBI_SSCDIVINTPHASE_INCVAL_MASK) >>
-> +               SBI_SSCDIVINTPHASE_INCVAL_SHIFT;
-> +
-> +       temp =3D intel_sbi_read(dev_priv, SBI_SSCAUXDIV6, SBI_ICLK);
-> +       auxdiv =3D (temp & SBI_SSCAUXDIV_FINALDIV2SEL_MASK) >>
-> +               SBI_SSCAUXDIV_FINALDIV2SEL_SHIFT;
-> +
-> +       mutex_unlock(&dev_priv->sb_lock);
-> +
-> +       desired_divisor =3D (divsel + 2) * iclk_pi_range + phaseinc;
-> +
-> +       return DIV_ROUND_CLOSEST(iclk_virtual_root_freq,
-> +                                desired_divisor << auxdiv);
 > +}
-> +
-> +/* Implements 3 different sequences from BSpec chapter "Display iCLK
-> + * Programming" based on the parameters passed:
-> + * - Sequence to enable CLKOUT_DP
-> + * - Sequence to enable CLKOUT_DP without spread
-> + * - Sequence to enable CLKOUT_DP for FDI usage and configure PCH FDI I/=
-O
-> + */
-> +static void lpt_enable_clkout_dp(struct drm_i915_private *dev_priv,
-> +                                bool with_spread, bool with_fdi)
-> +{
-> +       u32 reg, tmp;
-> +
-> +       if (drm_WARN(&dev_priv->drm, with_fdi && !with_spread,
-> +                    "FDI requires downspread\n"))
-> +               with_spread =3D true;
-> +       if (drm_WARN(&dev_priv->drm, HAS_PCH_LPT_LP(dev_priv) &&
-> +                    with_fdi, "LP PCH doesn't have FDI\n"))
-> +               with_fdi =3D false;
-> +
-> +       mutex_lock(&dev_priv->sb_lock);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, SBI_SSCCTL, SBI_ICLK);
-> +       tmp &=3D ~SBI_SSCCTL_DISABLE;
-> +       tmp |=3D SBI_SSCCTL_PATHALT;
-> +       intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
-> +
-> +       udelay(24);
-> +
-> +       if (with_spread) {
-> +               tmp =3D intel_sbi_read(dev_priv, SBI_SSCCTL, SBI_ICLK);
-> +               tmp &=3D ~SBI_SSCCTL_PATHALT;
-> +               intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
-> +
-> +               if (with_fdi)
-> +                       lpt_fdi_program_mphy(dev_priv);
-> +       }
-> +
-> +       reg =3D HAS_PCH_LPT_LP(dev_priv) ? SBI_GEN0 : SBI_DBUFF0;
-> +       tmp =3D intel_sbi_read(dev_priv, reg, SBI_ICLK);
-> +       tmp |=3D SBI_GEN0_CFG_BUFFENABLE_DISABLE;
-> +       intel_sbi_write(dev_priv, reg, tmp, SBI_ICLK);
-> +
-> +       mutex_unlock(&dev_priv->sb_lock);
-> +}
-> +
-> +/* Sequence to disable CLKOUT_DP */
-> +void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv)
-> +{
-> +       u32 reg, tmp;
-> +
-> +       mutex_lock(&dev_priv->sb_lock);
-> +
-> +       reg =3D HAS_PCH_LPT_LP(dev_priv) ? SBI_GEN0 : SBI_DBUFF0;
-> +       tmp =3D intel_sbi_read(dev_priv, reg, SBI_ICLK);
-> +       tmp &=3D ~SBI_GEN0_CFG_BUFFENABLE_DISABLE;
-> +       intel_sbi_write(dev_priv, reg, tmp, SBI_ICLK);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, SBI_SSCCTL, SBI_ICLK);
-> +       if (!(tmp & SBI_SSCCTL_DISABLE)) {
-> +               if (!(tmp & SBI_SSCCTL_PATHALT)) {
-> +                       tmp |=3D SBI_SSCCTL_PATHALT;
-> +                       intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_IC=
-LK);
-> +                       udelay(32);
-> +               }
-> +               tmp |=3D SBI_SSCCTL_DISABLE;
-> +               intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
-> +       }
-> +
-> +       mutex_unlock(&dev_priv->sb_lock);
-> +}
-> +
-> +#define BEND_IDX(steps) ((50 + (steps)) / 5)
-> +
-> +static const u16 sscdivintphase[] =3D {
-> +       [BEND_IDX( 50)] =3D 0x3B23,
-> +       [BEND_IDX( 45)] =3D 0x3B23,
-> +       [BEND_IDX( 40)] =3D 0x3C23,
-> +       [BEND_IDX( 35)] =3D 0x3C23,
-> +       [BEND_IDX( 30)] =3D 0x3D23,
-> +       [BEND_IDX( 25)] =3D 0x3D23,
-> +       [BEND_IDX( 20)] =3D 0x3E23,
-> +       [BEND_IDX( 15)] =3D 0x3E23,
-> +       [BEND_IDX( 10)] =3D 0x3F23,
-> +       [BEND_IDX(  5)] =3D 0x3F23,
-> +       [BEND_IDX(  0)] =3D 0x0025,
-> +       [BEND_IDX( -5)] =3D 0x0025,
-> +       [BEND_IDX(-10)] =3D 0x0125,
-> +       [BEND_IDX(-15)] =3D 0x0125,
-> +       [BEND_IDX(-20)] =3D 0x0225,
-> +       [BEND_IDX(-25)] =3D 0x0225,
-> +       [BEND_IDX(-30)] =3D 0x0325,
-> +       [BEND_IDX(-35)] =3D 0x0325,
-> +       [BEND_IDX(-40)] =3D 0x0425,
-> +       [BEND_IDX(-45)] =3D 0x0425,
-> +       [BEND_IDX(-50)] =3D 0x0525,
-> +};
 > +
 > +/*
-> + * Bend CLKOUT_DP
-> + * steps -50 to 50 inclusive, in steps of 5
-> + * < 0 slow down the clock, > 0 speed up the clock, 0 =3D=3D no bend (13=
-5MHz)
-> + * change in clock period =3D -(steps / 10) * 5.787 ps
+> + * Enable PCH resources required for PCH ports:
+> + *   - PCH PLLs
+> + *   - FDI training & RX/TX
+> + *   - update transcoder timings
+> + *   - DP transcoding bits
+> + *   - transcoder
 > + */
-> +static void lpt_bend_clkout_dp(struct drm_i915_private *dev_priv, int st=
-eps)
+> +void ilk_pch_enable(const struct intel_atomic_state *state,
+> +                   const struct intel_crtc_state *crtc_state)
 > +{
-> +       u32 tmp;
-> +       int idx =3D BEND_IDX(steps);
+> +       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +       struct drm_device *dev =3D crtc->base.dev;
+> +       struct drm_i915_private *dev_priv =3D to_i915(dev);
+> +       enum pipe pipe =3D crtc->pipe;
+> +       u32 temp;
 > +
-> +       if (drm_WARN_ON(&dev_priv->drm, steps % 5 !=3D 0))
-> +               return;
+> +       assert_pch_transcoder_disabled(dev_priv, pipe);
 > +
-> +       if (drm_WARN_ON(&dev_priv->drm, idx >=3D ARRAY_SIZE(sscdivintphas=
-e)))
-> +               return;
+> +       /* For PCH output, training FDI link */
+> +       intel_fdi_link_train(crtc, crtc_state);
 > +
-> +       mutex_lock(&dev_priv->sb_lock);
+> +       /*
+> +        * We need to program the right clock selection
+> +        * before writing the pixel multiplier into the DPLL.
+> +        */
+> +       if (HAS_PCH_CPT(dev_priv)) {
+> +               u32 sel;
 > +
-> +       if (steps % 10 !=3D 0)
-> +               tmp =3D 0xAAAAAAAB;
-> +       else
-> +               tmp =3D 0x00000000;
-> +       intel_sbi_write(dev_priv, SBI_SSCDITHPHASE, tmp, SBI_ICLK);
-> +
-> +       tmp =3D intel_sbi_read(dev_priv, SBI_SSCDIVINTPHASE, SBI_ICLK);
-> +       tmp &=3D 0xffff0000;
-> +       tmp |=3D sscdivintphase[idx];
-> +       intel_sbi_write(dev_priv, SBI_SSCDIVINTPHASE, tmp, SBI_ICLK);
-> +
-> +       mutex_unlock(&dev_priv->sb_lock);
-> +}
-> +
-> +#undef BEND_IDX
-> +
-> +static bool spll_uses_pch_ssc(struct drm_i915_private *dev_priv)
-> +{
-> +       u32 fuse_strap =3D intel_de_read(dev_priv, FUSE_STRAP);
-> +       u32 ctl =3D intel_de_read(dev_priv, SPLL_CTL);
-> +
-> +       if ((ctl & SPLL_PLL_ENABLE) =3D=3D 0)
-> +               return false;
-> +
-> +       if ((ctl & SPLL_REF_MASK) =3D=3D SPLL_REF_MUXED_SSC &&
-> +           (fuse_strap & HSW_CPU_SSC_ENABLE) =3D=3D 0)
-> +               return true;
-> +
-> +       if (IS_BROADWELL(dev_priv) &&
-> +           (ctl & SPLL_REF_MASK) =3D=3D SPLL_REF_PCH_SSC_BDW)
-> +               return true;
-> +
-> +       return false;
-> +}
-> +
-> +static bool wrpll_uses_pch_ssc(struct drm_i915_private *dev_priv,
-> +                              enum intel_dpll_id id)
-> +{
-> +       u32 fuse_strap =3D intel_de_read(dev_priv, FUSE_STRAP);
-> +       u32 ctl =3D intel_de_read(dev_priv, WRPLL_CTL(id));
-> +
-> +       if ((ctl & WRPLL_PLL_ENABLE) =3D=3D 0)
-> +               return false;
-> +
-> +       if ((ctl & WRPLL_REF_MASK) =3D=3D WRPLL_REF_PCH_SSC)
-> +               return true;
-> +
-> +       if ((IS_BROADWELL(dev_priv) || IS_HSW_ULT(dev_priv)) &&
-> +           (ctl & WRPLL_REF_MASK) =3D=3D WRPLL_REF_MUXED_SSC_BDW &&
-> +           (fuse_strap & HSW_CPU_SSC_ENABLE) =3D=3D 0)
-> +               return true;
-> +
-> +       return false;
-> +}
-> +
-> +static void lpt_init_pch_refclk(struct drm_i915_private *dev_priv)
-> +{
-> +       struct intel_encoder *encoder;
-> +       bool has_fdi =3D false;
-> +
-> +       for_each_intel_encoder(&dev_priv->drm, encoder) {
-> +               switch (encoder->type) {
-> +               case INTEL_OUTPUT_ANALOG:
-> +                       has_fdi =3D true;
-> +                       break;
-> +               default:
-> +                       break;
-> +               }
+> +               temp =3D intel_de_read(dev_priv, PCH_DPLL_SEL);
+> +               temp |=3D TRANS_DPLL_ENABLE(pipe);
+> +               sel =3D TRANS_DPLLB_SEL(pipe);
+> +               if (crtc_state->shared_dpll =3D=3D
+> +                   intel_get_shared_dpll_by_id(dev_priv, DPLL_ID_PCH_PLL=
+_B))
+> +                       temp |=3D sel;
+> +               else
+> +                       temp &=3D ~sel;
+> +               intel_de_write(dev_priv, PCH_DPLL_SEL, temp);
 > +       }
 > +
 > +       /*
-> +        * The BIOS may have decided to use the PCH SSC
-> +        * reference so we must not disable it until the
-> +        * relevant PLLs have stopped relying on it. We'll
-> +        * just leave the PCH SSC reference enabled in case
-> +        * any active PLL is using it. It will get disabled
-> +        * after runtime suspend if we don't have FDI.
+> +        * XXX: pch pll's can be enabled any time before we enable the PC=
+H
+> +        * transcoder, and we actually should do this to not upset any PC=
+H
+> +        * transcoder that already use the clock when we share it.
 > +        *
-> +        * TODO: Move the whole reference clock handling
-> +        * to the modeset sequence proper so that we can
-> +        * actually enable/disable/reconfigure these things
-> +        * safely. To do that we need to introduce a real
-> +        * clock hierarchy. That would also allow us to do
-> +        * clock bending finally.
+> +        * Note that enable_shared_dpll tries to do the right thing, but
+> +        * get_shared_dpll unconditionally resets the pll - we need that
+> +        * to have the right LVDS enable sequence.
 > +        */
-> +       dev_priv->pch_ssc_use =3D 0;
+> +       intel_enable_shared_dpll(crtc_state);
 > +
-> +       if (spll_uses_pch_ssc(dev_priv)) {
-> +               drm_dbg_kms(&dev_priv->drm, "SPLL using PCH SSC\n");
-> +               dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_SPLL);
+> +       /* set transcoder timing, panel must allow it */
+> +       assert_pps_unlocked(dev_priv, pipe);
+> +       ilk_pch_transcoder_set_timings(crtc_state, pipe);
+> +
+> +       intel_fdi_normal_train(crtc);
+> +
+> +       /* For PCH DP, enable TRANS_DP_CTL */
+> +       if (HAS_PCH_CPT(dev_priv) &&
+> +           intel_crtc_has_dp_encoder(crtc_state)) {
+> +               const struct drm_display_mode *adjusted_mode =3D
+> +                       &crtc_state->hw.adjusted_mode;
+> +               u32 bpc =3D (intel_de_read(dev_priv, PIPECONF(pipe)) & PI=
+PECONF_BPC_MASK) >> 5;
+> +               i915_reg_t reg =3D TRANS_DP_CTL(pipe);
+> +               enum port port;
+> +
+> +               temp =3D intel_de_read(dev_priv, reg);
+> +               temp &=3D ~(TRANS_DP_PORT_SEL_MASK |
+> +                         TRANS_DP_SYNC_MASK |
+> +                         TRANS_DP_BPC_MASK);
+> +               temp |=3D TRANS_DP_OUTPUT_ENABLE;
+> +               temp |=3D bpc << 9; /* same format but at 11:9 */
+> +
+> +               if (adjusted_mode->flags & DRM_MODE_FLAG_PHSYNC)
+> +                       temp |=3D TRANS_DP_HSYNC_ACTIVE_HIGH;
+> +               if (adjusted_mode->flags & DRM_MODE_FLAG_PVSYNC)
+> +                       temp |=3D TRANS_DP_VSYNC_ACTIVE_HIGH;
+> +
+> +               port =3D intel_get_crtc_new_encoder(state, crtc_state)->p=
+ort;
+> +               drm_WARN_ON(dev, port < PORT_B || port > PORT_D);
+> +               temp |=3D TRANS_DP_PORT_SEL(port);
+> +
+> +               intel_de_write(dev_priv, reg, temp);
 > +       }
 > +
-> +       if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL1)) {
-> +               drm_dbg_kms(&dev_priv->drm, "WRPLL1 using PCH SSC\n");
-> +               dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL1);
-> +       }
-> +
-> +       if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL2)) {
-> +               drm_dbg_kms(&dev_priv->drm, "WRPLL2 using PCH SSC\n");
-> +               dev_priv->pch_ssc_use |=3D BIT(DPLL_ID_WRPLL2);
-> +       }
-> +
-> +       if (dev_priv->pch_ssc_use)
-> +               return;
-> +
-> +       if (has_fdi) {
-> +               lpt_bend_clkout_dp(dev_priv, 0);
-> +               lpt_enable_clkout_dp(dev_priv, true, true);
-> +       } else {
-> +               lpt_disable_clkout_dp(dev_priv);
-> +       }
+> +       ilk_enable_pch_transcoder(crtc_state);
 > +}
 > +
-> +static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
+> +static void lpt_enable_pch_transcoder(struct drm_i915_private *dev_priv,
+> +                                     enum transcoder cpu_transcoder)
 > +{
-> +       struct intel_encoder *encoder;
-> +       int i;
-> +       u32 val, final;
-> +       bool has_lvds =3D false;
-> +       bool has_cpu_edp =3D false;
-> +       bool has_panel =3D false;
-> +       bool has_ck505 =3D false;
-> +       bool can_ssc =3D false;
-> +       bool using_ssc_source =3D false;
+> +       u32 val, pipeconf_val;
 > +
-> +       /* We need to take the global config into account */
-> +       for_each_intel_encoder(&dev_priv->drm, encoder) {
-> +               switch (encoder->type) {
-> +               case INTEL_OUTPUT_LVDS:
-> +                       has_panel =3D true;
-> +                       has_lvds =3D true;
-> +                       break;
-> +               case INTEL_OUTPUT_EDP:
-> +                       has_panel =3D true;
-> +                       if (encoder->port =3D=3D PORT_A)
-> +                               has_cpu_edp =3D true;
-> +                       break;
-> +               default:
-> +                       break;
-> +               }
-> +       }
+> +       /* FDI must be feeding us bits for PCH ports */
+> +       assert_fdi_tx_enabled(dev_priv, (enum pipe) cpu_transcoder);
+> +       assert_fdi_rx_enabled(dev_priv, PIPE_A);
 > +
-> +       if (HAS_PCH_IBX(dev_priv)) {
-> +               has_ck505 =3D dev_priv->vbt.display_clock_mode;
-> +               can_ssc =3D has_ck505;
-> +       } else {
-> +               has_ck505 =3D false;
-> +               can_ssc =3D true;
-> +       }
+> +       val =3D intel_de_read(dev_priv, TRANS_CHICKEN2(PIPE_A));
+> +       /* Workaround: set timing override bit. */
+> +       val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
+> +       /* Configure frame start delay to match the CPU */
+> +       val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
+> +       val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_de=
+lay - 1);
+> +       intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
 > +
-> +       /* Check if any DPLLs are using the SSC source */
-> +       for (i =3D 0; i < dev_priv->dpll.num_shared_dpll; i++) {
-> +               u32 temp =3D intel_de_read(dev_priv, PCH_DPLL(i));
+> +       val =3D TRANS_ENABLE;
+> +       pipeconf_val =3D intel_de_read(dev_priv, PIPECONF(cpu_transcoder)=
+);
 > +
-> +               if (!(temp & DPLL_VCO_ENABLE))
-> +                       continue;
-> +
-> +               if ((temp & PLL_REF_INPUT_MASK) =3D=3D
-> +                   PLLB_REF_INPUT_SPREADSPECTRUMIN) {
-> +                       using_ssc_source =3D true;
-> +                       break;
-> +               }
-> +       }
-> +
-> +       drm_dbg_kms(&dev_priv->drm,
-> +                   "has_panel %d has_lvds %d has_ck505 %d using_ssc_sour=
-ce %d\n",
-> +                   has_panel, has_lvds, has_ck505, using_ssc_source);
-> +
-> +       /* Ironlake: try to setup display ref clock before DPLL
-> +        * enabling. This is only under driver's control after
-> +        * PCH B stepping, previous chipset stepping should be
-> +        * ignoring this setting.
-> +        */
-> +       val =3D intel_de_read(dev_priv, PCH_DREF_CONTROL);
-> +
-> +       /* As we must carefully and slowly disable/enable each source in =
-turn,
-> +        * compute the final state we want first and check if we need to
-> +        * make any changes at all.
-> +        */
-> +       final =3D val;
-> +       final &=3D ~DREF_NONSPREAD_SOURCE_MASK;
-> +       if (has_ck505)
-> +               final |=3D DREF_NONSPREAD_CK505_ENABLE;
+> +       if ((pipeconf_val & PIPECONF_INTERLACE_MASK_HSW) =3D=3D
+> +           PIPECONF_INTERLACED_ILK)
+> +               val |=3D TRANS_INTERLACED;
 > +       else
-> +               final |=3D DREF_NONSPREAD_SOURCE_ENABLE;
+> +               val |=3D TRANS_PROGRESSIVE;
 > +
-> +       final &=3D ~DREF_SSC_SOURCE_MASK;
-> +       final &=3D ~DREF_CPU_SOURCE_OUTPUT_MASK;
-> +       final &=3D ~DREF_SSC1_ENABLE;
-> +
-> +       if (has_panel) {
-> +               final |=3D DREF_SSC_SOURCE_ENABLE;
-> +
-> +               if (intel_panel_use_ssc(dev_priv) && can_ssc)
-> +                       final |=3D DREF_SSC1_ENABLE;
-> +
-> +               if (has_cpu_edp) {
-> +                       if (intel_panel_use_ssc(dev_priv) && can_ssc)
-> +                               final |=3D DREF_CPU_SOURCE_OUTPUT_DOWNSPR=
-EAD;
-> +                       else
-> +                               final |=3D DREF_CPU_SOURCE_OUTPUT_NONSPRE=
-AD;
-> +               } else {
-> +                       final |=3D DREF_CPU_SOURCE_OUTPUT_DISABLE;
-> +               }
-> +       } else if (using_ssc_source) {
-> +               final |=3D DREF_SSC_SOURCE_ENABLE;
-> +               final |=3D DREF_SSC1_ENABLE;
-> +       }
-> +
-> +       if (final =3D=3D val)
-> +               return;
-> +
-> +       /* Always enable nonspread source */
-> +       val &=3D ~DREF_NONSPREAD_SOURCE_MASK;
-> +
-> +       if (has_ck505)
-> +               val |=3D DREF_NONSPREAD_CK505_ENABLE;
-> +       else
-> +               val |=3D DREF_NONSPREAD_SOURCE_ENABLE;
-> +
-> +       if (has_panel) {
-> +               val &=3D ~DREF_SSC_SOURCE_MASK;
-> +               val |=3D DREF_SSC_SOURCE_ENABLE;
-> +
-> +               /* SSC must be turned on before enabling the CPU output  =
-*/
-> +               if (intel_panel_use_ssc(dev_priv) && can_ssc) {
-> +                       drm_dbg_kms(&dev_priv->drm, "Using SSC on panel\n=
-");
-> +                       val |=3D DREF_SSC1_ENABLE;
-> +               } else {
-> +                       val &=3D ~DREF_SSC1_ENABLE;
-> +               }
-> +
-> +               /* Get SSC going before enabling the outputs */
-> +               intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> +               intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-> +               udelay(200);
-> +
-> +               val &=3D ~DREF_CPU_SOURCE_OUTPUT_MASK;
-> +
-> +               /* Enable CPU source on CPU attached eDP */
-> +               if (has_cpu_edp) {
-> +                       if (intel_panel_use_ssc(dev_priv) && can_ssc) {
-> +                               drm_dbg_kms(&dev_priv->drm,
-> +                                           "Using SSC on eDP\n");
-> +                               val |=3D DREF_CPU_SOURCE_OUTPUT_DOWNSPREA=
-D;
-> +                       } else {
-> +                               val |=3D DREF_CPU_SOURCE_OUTPUT_NONSPREAD=
-;
-> +                       }
-> +               } else {
-> +                       val |=3D DREF_CPU_SOURCE_OUTPUT_DISABLE;
-> +               }
-> +
-> +               intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> +               intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-> +               udelay(200);
-> +       } else {
-> +               drm_dbg_kms(&dev_priv->drm, "Disabling CPU source output\=
+> +       intel_de_write(dev_priv, LPT_TRANSCONF, val);
+> +       if (intel_de_wait_for_set(dev_priv, LPT_TRANSCONF,
+> +                                 TRANS_STATE_ENABLE, 100))
+> +               drm_err(&dev_priv->drm, "Failed to enable PCH transcoder\=
 n");
+> +}
 > +
-> +               val &=3D ~DREF_CPU_SOURCE_OUTPUT_MASK;
+> +void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv)
+> +{
+> +       u32 val;
 > +
-> +               /* Turn off CPU output */
-> +               val |=3D DREF_CPU_SOURCE_OUTPUT_DISABLE;
-> +
-> +               intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> +               intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-> +               udelay(200);
-> +
-> +               if (!using_ssc_source) {
-> +                       drm_dbg_kms(&dev_priv->drm, "Disabling SSC source=
+> +       val =3D intel_de_read(dev_priv, LPT_TRANSCONF);
+> +       val &=3D ~TRANS_ENABLE;
+> +       intel_de_write(dev_priv, LPT_TRANSCONF, val);
+> +       /* wait for PCH transcoder off, transcoder state */
+> +       if (intel_de_wait_for_clear(dev_priv, LPT_TRANSCONF,
+> +                                   TRANS_STATE_ENABLE, 50))
+> +               drm_err(&dev_priv->drm, "Failed to disable PCH transcoder=
 \n");
 > +
-> +                       /* Turn off the SSC source */
-> +                       val &=3D ~DREF_SSC_SOURCE_MASK;
-> +                       val |=3D DREF_SSC_SOURCE_DISABLE;
-> +
-> +                       /* Turn off SSC1 */
-> +                       val &=3D ~DREF_SSC1_ENABLE;
-> +
-> +                       intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
-> +                       intel_de_posting_read(dev_priv, PCH_DREF_CONTROL)=
-;
-> +                       udelay(200);
-> +               }
-> +       }
-> +
-> +       BUG_ON(val !=3D final);
+> +       /* Workaround: clear timing override bit. */
+> +       val =3D intel_de_read(dev_priv, TRANS_CHICKEN2(PIPE_A));
+> +       val &=3D ~TRANS_CHICKEN2_TIMING_OVERRIDE;
+> +       intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
 > +}
 > +
-> +/*
-> + * Initialize reference clocks when the driver loads
-> + */
-> +void intel_init_pch_refclk(struct drm_i915_private *dev_priv)
+> +void lpt_pch_enable(const struct intel_crtc_state *crtc_state)
 > +{
-> +       if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv))
-> +               ilk_init_pch_refclk(dev_priv);
-> +       else if (HAS_PCH_LPT(dev_priv))
-> +               lpt_init_pch_refclk(dev_priv);
+> +       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +       struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +       enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+> +
+> +       assert_pch_transcoder_disabled(dev_priv, PIPE_A);
+> +
+> +       lpt_program_iclkip(crtc_state);
+> +
+> +       /* Set transcoder timing. */
+> +       ilk_pch_transcoder_set_timings(crtc_state, PIPE_A);
+> +
+> +       lpt_enable_pch_transcoder(dev_priv, cpu_transcoder);
 > +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.h b/drivers/gp=
-u/drm/i915/display/intel_pch_refclk.h
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.h b/drivers/g=
+pu/drm/i915/display/intel_pch_display.h
 > new file mode 100644
-> index 000000000000..12ab2c75a800
+> index 000000000000..6eba1fd667ea
 > --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.h
-> @@ -0,0 +1,21 @@
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.h
+> @@ -0,0 +1,22 @@
 > +/* SPDX-License-Identifier: MIT */
 > +/*
 > + * Copyright =C2=A9 2021 Intel Corporation
 > + */
 > +
-> +#ifndef _INTEL_PCH_REFCLK_H_
-> +#define _INTEL_PCH_REFCLK_H_
+> +#ifndef _INTEL_PCH_DISPLAY_H_
+> +#define _INTEL_PCH_DISPLAY_H_
 > +
-> +#include <linux/types.h>
-> +
+> +enum pipe;
 > +struct drm_i915_private;
+> +struct intel_atomic_state;
 > +struct intel_crtc_state;
 > +
-> +void lpt_program_iclkip(const struct intel_crtc_state *crtc_state);
-> +void lpt_disable_iclkip(struct drm_i915_private *dev_priv);
-> +int lpt_get_iclkip(struct drm_i915_private *dev_priv);
+> +void ilk_disable_pch_transcoder(struct drm_i915_private *dev_priv,
+> +                               enum pipe pipe);
+> +void ilk_pch_enable(const struct intel_atomic_state *state,
+> +                   const struct intel_crtc_state *crtc_state);
 > +
-> +void intel_init_pch_refclk(struct drm_i915_private *dev_priv);
-> +void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv);
+> +void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv);
+> +void lpt_pch_enable(const struct intel_crtc_state *crtc_state);
 > +
 > +#endif
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index b18a250e5d2e..1e5b75ae9932 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -54,6 +54,7 @@
->  #include "display/intel_fbdev.h"
->  #include "display/intel_hotplug.h"
->  #include "display/intel_overlay.h"
-> +#include "display/intel_pch_refclk.h"
->  #include "display/intel_pipe_crc.h"
->  #include "display/intel_pps.h"
->  #include "display/intel_sprite.h"
 > --
 > 2.32.0
 >
