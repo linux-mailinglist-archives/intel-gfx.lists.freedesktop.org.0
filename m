@@ -1,65 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF2F430914
-	for <lists+intel-gfx@lfdr.de>; Sun, 17 Oct 2021 14:45:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73AC14309F9
+	for <lists+intel-gfx@lfdr.de>; Sun, 17 Oct 2021 17:24:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28ABC6E5C0;
-	Sun, 17 Oct 2021 12:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B6536E5D5;
+	Sun, 17 Oct 2021 15:24:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 217696E5C0
- for <intel-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 12:45:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10139"; a="228059703"
-X-IronPort-AV: E=Sophos;i="5.85,380,1624345200"; d="scan'208";a="228059703"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2021 05:45:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,380,1624345200"; d="scan'208";a="717237341"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga006.fm.intel.com with ESMTP; 17 Oct 2021 05:45:53 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Sun, 17 Oct 2021 05:45:53 -0700
-Received: from hasmsx602.ger.corp.intel.com (10.184.107.142) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Sun, 17 Oct 2021 05:45:52 -0700
-Received: from hasmsx602.ger.corp.intel.com ([10.184.107.142]) by
- HASMSX602.ger.corp.intel.com ([10.184.107.142]) with mapi id 15.01.2242.012;
- Sun, 17 Oct 2021 15:45:50 +0300
-From: "Winkler, Tomas" <tomas.winkler@intel.com>
-To: Pavel Machek <pavel@ucw.cz>, kernel list <linux-kernel@vger.kernel.org>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>, "Ceraolo Spurio, Daniele"
- <daniele.ceraolospurio@intel.com>, "jani.nikula@linux.intel.com"
- <jani.nikula@linux.intel.com>, "joonas.lahtinen@linux.intel.com"
- <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
- "masahiroy@kernel.org" <masahiroy@kernel.org>
-Thread-Topic: intel_mei_pxp: needs better help text
-Thread-Index: AQHXwOnBA6KbpVrfrE+vWdMNeqOXV6vWm8UAgACLvLA=
-Date: Sun, 17 Oct 2021 12:45:50 +0000
-Message-ID: <dc2ae3d0c3e6452b80a53ca6ca2b20b8@intel.com>
-References: <20211014105334.GA19786@duo.ucw.cz>
- <20211017072356.GA4756@duo.ucw.cz>
-In-Reply-To: <20211017072356.GA4756@duo.ucw.cz>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 245456E5D4;
+ Sun, 17 Oct 2021 15:24:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05558A0169;
+ Sun, 17 Oct 2021 15:24:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] intel_mei_pxp: needs better help text
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Claudio Suarez" <cssk@net-c.es>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sun, 17 Oct 2021 15:24:46 -0000
+Message-ID: <163448428698.7564.7410653441840482668@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211016184226.3862-1-cssk@net-c.es>
+In-Reply-To: <20211016184226.3862-1-cssk@net-c.es>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_replace_drm=5Fdetect=5Fhdmi=5Fmonitor=28=29_with_drm=5Fdisp?=
+ =?utf-8?b?bGF5X2luZm8uaXNfaGRtaSAocmV2Myk=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,57 +42,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thank you,  we will handle that.
-Please mind our weekend.=20
-Thanks
-Tomas
+== Series Details ==
+
+Series: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi (rev3)
+URL   : https://patchwork.freedesktop.org/series/95880/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+bcbb68918d43 gpu/drm: make drm_add_edid_modes() consistent when updating connector->display_info
+25340326dac7 drm/vc4: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+65d2ced8ec91 drm/radeon: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#19: 
+drm_get_edid() - which internally calls drm_connector_update_edid_property().
+
+total: 0 errors, 1 warnings, 0 checks, 111 lines checked
+f53d37f02d12 drm/tegra: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+0a005136d282 drm/gma500: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+b6048d04f9ef drm/exynos: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+fd6c2adeaad4 drm/msm: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+5784e84bbf18 drm/sun4i: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+08aa49298fbd drm/sti: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+f90cf0fc32c7 drm/rockchip: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+4540f3464323 drm/bridge: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+4c633affde23 drm/nouveau: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+643066d1ab7b drm/i915: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 
 
-> -----Original Message-----
-> From: Pavel Machek <pavel@ucw.cz>
-> Sent: Sunday, October 17, 2021 10:24
-> To: kernel list <linux-kernel@vger.kernel.org>; Lubart, Vitaly
-> <vitaly.lubart@intel.com>; Winkler, Tomas <tomas.winkler@intel.com>;
-> Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>;
-> jani.nikula@linux.intel.com; joonas.lahtinen@linux.intel.com; Vivi, Rodri=
-go
-> <rodrigo.vivi@intel.com>; intel-gfx@lists.freedesktop.org; linux-
-> kbuild@vger.kernel.org; masahiroy@kernel.org
-> Subject: Re: intel_mei_pxp: needs better help text
->=20
-> Hi!
->=20
-> Extended Cc list. Should I attempt to prepare a patch?
->=20
-> Best regards,
-> 							Pavel
->=20
-> On Thu 2021-10-14 12:53:34, Pavel Machek wrote:
-> >
-> > CONFIG_INTEL_MEI_PXP:
-> >
-> > MEI Support for PXP Services on Intel platforms.
-> >
-> > Enables the ME FW services required for PXP support through
-> > I915 display driver of Intel.
-> >
-> >
-> > That's ... very useless help text. According to
-> > https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DIntel-PXP-
-> Protecte
-> > d-Xe-Path this is some kind of DRM. Help text should probably say it
-> > has to do with i915 video, and explain the acronyms, and probably its
-> > usecases.
-> >
-> >
-> >
-> > --
-> > http://www.livejournal.com/~pavelmachek
->=20
->=20
->=20
-> --
-> http://www.livejournal.com/~pavelmachek
