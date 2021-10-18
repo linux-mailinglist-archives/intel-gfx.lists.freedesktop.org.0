@@ -1,40 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A8094312E6
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 11:12:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E95B4312F0
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 11:12:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8C96E9B3;
-	Mon, 18 Oct 2021 09:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B23C66E9C5;
+	Mon, 18 Oct 2021 09:12:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7083A6E9B6;
- Mon, 18 Oct 2021 09:12:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="209001432"
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="209001432"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 02:12:00 -0700
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="443330280"
-Received: from cscleary-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.13.221])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 02:11:59 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 18 Oct 2021 10:10:55 +0100
-Message-Id: <20211018091055.1998191-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20211018091055.1998191-1-matthew.auld@intel.com>
-References: <20211018091055.1998191-1-matthew.auld@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B60336E9B4;
+ Mon, 18 Oct 2021 09:12:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="215135688"
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="215135688"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 02:12:06 -0700
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="493509143"
+Received: from foboril-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.44.188])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 02:12:01 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: luo penghao <cgel.zte@gmail.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Stephen Rothwell <sfr@canb.auug.org.au>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, luo penghao <luo.penghao@zte.com.cn>,
+ Zeal Robot <zealci@zte.com.cn>, "Deak\, Imre" <imre.deak@intel.com>
+In-Reply-To: <20211018084449.852251-1-luo.penghao@zte.com.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211018084449.852251-1-luo.penghao@zte.com.cn>
+Date: Mon, 18 Oct 2021 12:11:58 +0300
+Message-ID: <87k0iau275.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v9 8/8] drm/i915/ttm: enable shmem tt backend
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH linux-next] drm/i915/display: Remove unused
+ variable in the for loop.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,29 +54,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Turn on the shmem tt backend, and enable shrinking.
+On Mon, 18 Oct 2021, luo penghao <cgel.zte@gmail.com> wrote:
+> Variable is not used in the loop, and its assignment is redundant too.
+> So it should be deleted.
+>
+> The clang_analyzer complains as follows:
+>
+> drivers/gpu/drm/i915/display/intel_fb.c:1018:3 warning:
+>
+> Value stored to 'cpp' is never read.
+>
+> Reported-by: Zeal Robot <zealci@zte.com.cn>
+> Signed-off-by: luo penghao <luo.penghao@zte.com.cn>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fb.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index fa1f375..b9b6a7a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -998,7 +998,7 @@ int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *
+>  	for (i = 0; i < num_planes; i++) {
+>  		struct fb_plane_view_dims view_dims;
+>  		unsigned int width, height;
+> -		unsigned int cpp, size;
+> +		unsigned int size;
+>  		u32 offset;
+>  		int x, y;
+>  		int ret;
+> @@ -1015,7 +1015,7 @@ int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *
+>  				return -EINVAL;
+>  		}
+>  
+> -		cpp = fb->base.format->cpp[i];
+> +		fb->base.format->cpp[i];
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Thanks for the report. However, this "fix" isn't any better than having
+the unused variable. It's obviously wrong.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index d37581d9194c..4fd2edb20dd9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -1113,7 +1113,8 @@ static u64 i915_ttm_mmap_offset(struct drm_i915_gem_object *obj)
- 
- static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops = {
- 	.name = "i915_gem_object_ttm",
--	.flags = I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
-+	.flags = I915_GEM_OBJECT_IS_SHRINKABLE |
-+		 I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
- 
- 	.get_pages = i915_ttm_get_pages,
- 	.put_pages = i915_ttm_put_pages,
+It would be useful to dig into the history of the function, and figure
+out when and why the variable became unused, and whether that caused an
+actual bug or whether this was just leftovers from some refactoring.
+
+So that's what I did. Some git blame and git log -p revealed commit
+d3c5e10b6059 ("drm/i915/intel_fb: Factor out
+convert_plane_offset_to_xy()") that moved the check that used the cpp
+variable to a separate function, and the local variable and the line
+above became unused and useless.
+
+That's the actually helpful part. It's easy to see and verify that the
+right fix is to just remove the line completely.
+
+BR,
+Jani.
+
+
+>  		intel_fb_plane_dims(fb, i, &width, &height);
+>  
+>  		ret = convert_plane_offset_to_xy(fb, i, width, &x, &y);
+
 -- 
-2.26.3
-
+Jani Nikula, Intel Open Source Graphics Center
