@@ -1,61 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1385430D20
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 02:43:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5E7430D21
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 02:43:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 252266E041;
-	Mon, 18 Oct 2021 00:43:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 841CA6E8E4;
+	Mon, 18 Oct 2021 00:43:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7224A6E041
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 00:43:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBE586E8E4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 00:43:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1634517797;
+ s=mimecast20190719; t=1634517811;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=c2coGEDRpLtaKxQwlBYXpM+qcwpVi4zUNyxwVVEWbA0=;
- b=igMmsC/hMCAqF4muskH7Cspnut1RYsv/AF0TxwYjGBc+Rw86c/hr5SScGV6q8DP8dcxqqe
- MleOcbkBMEWhpqddQMdwv9wBUNB/Z2RU4Zkb54a11B26eQ++xJ2KZnogcokRHdfvi7FNh6
- HU/tNLjqRyz7fHQzoNjy8QOzDJOVX6w=
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
- [209.85.210.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-566-p_RNNCLuN7u70oYbFr5AOw-1; Sun, 17 Oct 2021 20:43:16 -0400
-X-MC-Unique: p_RNNCLuN7u70oYbFr5AOw-1
-Received: by mail-ot1-f69.google.com with SMTP id
- w16-20020a9d5a90000000b0055036b7abd9so9703327oth.22
- for <intel-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 17:43:15 -0700 (PDT)
+ bh=fIcHej/2wAUjMYD4ahhqQNJTZw4ZKDxjIJ6sNJKpaCo=;
+ b=IpGWzWyJQ3P/T9AD+ld+/8NU8LBOB4eJztoNHHndvsiErxa4YFNGKXP8Gj/je27sgh3RxL
+ 2ZRGJgiFiB/fS1euJeq5lAu9Tq9u2nmS0igCwPXDCqi8pHEG/RNgU3XL958ow9z1/II4Iy
+ /J07G7tGRTvArbzFydEOa2pw+qC9omg=
+Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com
+ [209.85.161.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-6-vuXEurBsNm2wAdDjJFishw-1; Sun, 17 Oct 2021 20:43:30 -0400
+X-MC-Unique: vuXEurBsNm2wAdDjJFishw-1
+Received: by mail-oo1-f71.google.com with SMTP id
+ k1-20020a4a8501000000b0029ac7b9dc82so6604530ooh.17
+ for <intel-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 17:43:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc:content-transfer-encoding;
- bh=c2coGEDRpLtaKxQwlBYXpM+qcwpVi4zUNyxwVVEWbA0=;
- b=Lqh7g4Q6T39kez9ahVTMm64BHAEXsITZKLOdkA77cw+ztWXPlxOzZg08VJIWX2c3SI
- 5dt7Lmrfg68Xk7+tvhdVKfgr5Fyyg7Kg0zSCdHPnfpbo16XUVT5KM7eoETEwKzNidCGl
- oofAALLuCcXYby09QXhXXSHGLhY9XEeubMNHTnoHP97C1Zys6Jbd82iD6jxy+eL0vAJI
- dUYuDIuzLiPEcpzYrt1CN0T7WtTLhuZP2b3ly8sJlMUn+yJ7bu2yny+pgbsQf+xVFR1z
- J82k1bidrhVG8dbJWozUQB9Orsivik60P3jkVhHRhB5mk7nzlezZXlwmyKeQ2Yy9GOc2
- Mb3g==
-X-Gm-Message-State: AOAM532XFNiscrwXgBIrwa+xADjd4Nh5591hGTMFLGlBncDLxn84XySP
- w77qu3cWdaFpPwMuX96EYXkL/Sc05NoERU7VbAF6HeAPZqJ5dVaWsCZJvZ/GuQ3ijJgI/PQhW35
- oztFqJWwXKvbOqm8usbgFkg+xEKJZiBUyHvkDqOXwo3Ns
-X-Received: by 2002:a9d:6159:: with SMTP id c25mr18882394otk.286.1634517795482; 
- Sun, 17 Oct 2021 17:43:15 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJztKGxpFDMvbMcHluDQ7hglWmWO8dW2OWCwwt5fvtTi2zxIXEiUOM2mRy4S1B5EI/zzXFjNaSrlkAJ0mCeO1wU=
-X-Received: by 2002:a9d:6159:: with SMTP id c25mr18882383otk.286.1634517795267; 
- Sun, 17 Oct 2021 17:43:15 -0700 (PDT)
+ bh=fIcHej/2wAUjMYD4ahhqQNJTZw4ZKDxjIJ6sNJKpaCo=;
+ b=KEdVpEv3VsskMtRrchWmdzczt0aRzHR2y7gRiJRRZhUXqMm7o6vI+s/U7Mlt2pORtz
+ OE1a+4Maft3fx2OEA6hY1SjOjKPisyspQzAxIgv7iRxwdN38qvcLmd4TCqY9vj/8XJu+
+ Du+0p0/gbI+HiSh0y1J90zFz2khCX3GLn7KQQVCRxf8KJdW0Bn+8tAbBdwEJy7DAMTe5
+ 3/tmTWWsN5472jOFI8//wiZfW+hIUdx9eAlaIWk4Wd6teddCE16wX+1MrlnUX+47bC8B
+ kIN85yMk9L7RT3kSEoE2cnYMzHFbcKx5rC8Z5Qk6HFBk1H//ot1vo8qn+POFz7DyMHoL
+ k+vw==
+X-Gm-Message-State: AOAM533GrvZ29zj/i5m9aSUaTV7RlGqBUO0xKtb14PoTSBOnXGx42SWu
+ /Wra1nx4EgmN4XR2gHgrexSn4yeHLYZmvw/AqaXOHG6CjHVSAhqwEhOSUxY3NJSy6b9j0dNXsrK
+ qa+J6GcyD9jyZSA9h33W+lfHbkhEW6hlFEhgJHiklAP86
+X-Received: by 2002:a05:6808:14d6:: with SMTP id
+ f22mr2966726oiw.152.1634517809928; 
+ Sun, 17 Oct 2021 17:43:29 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyMsS715bAR+beGP2kkr/FqAWSQfXig2OG7xwwuPXOHiaDBL3xLb0dXNNeY8Uyd9RNphSBXUJ8rS9hma6f6s+A=
+X-Received: by 2002:a05:6808:14d6:: with SMTP id
+ f22mr2966721oiw.152.1634517809772; 
+ Sun, 17 Oct 2021 17:43:29 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211015071625.593-1-ville.syrjala@linux.intel.com>
- <20211015071625.593-7-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211015071625.593-7-ville.syrjala@linux.intel.com>
+ <20211015071625.593-8-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211015071625.593-8-ville.syrjala@linux.intel.com>
 From: David Airlie <airlied@redhat.com>
-Date: Mon, 18 Oct 2021 10:43:04 +1000
-Message-ID: <CAMwc25rOjvQi+x0ot3bROgBXDd_4TRswqXN=Us_M0pcDsHcFWw@mail.gmail.com>
+Date: Mon, 18 Oct 2021 10:43:18 +1000
+Message-ID: <CAMwc25r2df1PV0w1sD2kvE5=wocwcuNvHv9nmDRMYzGXbo34Bw@mail.gmail.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: "Development, Intel" <intel-gfx@lists.freedesktop.org>,
  Jani Nikula <jani.nikula@intel.com>
@@ -65,8 +67,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915: Move iCLKIP readout to the
- pch code
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915: Introduce ilk_pch_disable()
+ and ilk_pch_post_disable()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,17 +89,14 @@ On Fri, Oct 15, 2021 at 5:17 PM Ville Syrjala
 >
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Move the lpt_get_iclkip() call from hsw_crt_get_config()
-> since that's where we have the lpt_program_iclkip() call
-> as well.
+> Hoover the remaining open coded PCH modeset sequence bits
+> out from ilk_crtc_disable(). Somewhat annoyingly the
+> enable vs. disable is a bit asymmetric so we need two
+> functions for the disable case.
 >
-> Tehcnically this isn't perhaps quite right since iCLKIP
-> is providing the CRT dotclock. So one can argue all of
-> it should be directly in intel_crt.c. But since the CRT
-> port is the only one on the PCH sticking it all into the
-> PCH code seems OK.
-
-Looks good,
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Dave Airlie <airlied@redhat.com>
 
