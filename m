@@ -1,44 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE2E43113D
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 09:15:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7413431186
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 09:43:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0486E96C;
-	Mon, 18 Oct 2021 07:15:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D49EE6E97D;
+	Mon, 18 Oct 2021 07:43:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 587D36E96C
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 07:15:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="215114715"
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="215114715"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 00:15:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="526145713"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 18 Oct 2021 00:15:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 18 Oct 2021 10:15:25 +0300
-Date: Mon, 18 Oct 2021 10:15:25 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: David Airlie <airlied@redhat.com>
-Cc: "Development, Intel" <intel-gfx@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YW0fDbChJ3pjiNUB@intel.com>
-References: <20211015071625.593-1-ville.syrjala@linux.intel.com>
- <20211015071625.593-5-ville.syrjala@linux.intel.com>
- <CAMwc25onNHuhM0X9z6t+vHHhc-MJu-78RSobPwJSjROPTvO0gQ@mail.gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 89D156E09F;
+ Mon, 18 Oct 2021 07:43:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82744A7525;
+ Mon, 18 Oct 2021 07:43:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1654383534208472045=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMwc25onNHuhM0X9z6t+vHHhc-MJu-78RSobPwJSjROPTvO0gQ@mail.gmail.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915: Move LPT PCH readout code
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Oct 2021 07:43:48 -0000
+Message-ID: <163454302852.27089.10318676224669785484@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
+ =?utf-8?q?ble_MIPI_DSI_video_mode_on_ADLP?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,191 +41,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 18, 2021 at 10:19:31AM +1000, David Airlie wrote:
-> On Fri, Oct 15, 2021 at 5:16 PM Ville Syrjala
-> <ville.syrjala@linux.intel.com> wrote:
-> >
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Nuke the hsw_get_ddi_port_state() eyesore by putting the
-> > readout code into intel_pch_display.c, and calling it directly
-> > from hsw_crt_get_config().
-> >
-> > Cc: Dave Airlie <airlied@redhat.com>
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_crt.c      |  2 +
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 46 ++-----------------
-> >  drivers/gpu/drm/i915/display/intel_display.h  |  2 +
-> >  .../gpu/drm/i915/display/intel_pch_display.c  | 18 ++++++++
-> >  .../gpu/drm/i915/display/intel_pch_display.h  |  1 +
-> >  5 files changed, 26 insertions(+), 43 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-> > index 4038ae342ea1..03cfae46f92f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> > @@ -147,6 +147,8 @@ static void hsw_crt_get_config(struct intel_encoder *encoder,
-> >  {
-> >         struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> >
-> > +       lpt_pch_get_config(pipe_config);
-> > +
-> >         hsw_ddi_get_config(encoder, pipe_config);
-> >
-> >         pipe_config->hw.adjusted_mode.flags &= ~(DRM_MODE_FLAG_PHSYNC |
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 2ee02c16bd1c..8f65b8b6a306 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -4090,8 +4090,8 @@ void intel_dp_get_m_n(struct intel_crtc *crtc,
-> >                                              &pipe_config->dp_m2_n2);
-> >  }
-> >
-> > -static void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
-> > -                                  struct intel_crtc_state *pipe_config)
-> > +void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
-> > +                           struct intel_crtc_state *pipe_config)
-> >  {
-> >         intel_cpu_transcoder_get_m_n(crtc, pipe_config->cpu_transcoder,
-> >                                      &pipe_config->fdi_m_n, NULL);
-> > @@ -4486,45 +4486,6 @@ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
-> >         return transcoder_is_dsi(pipe_config->cpu_transcoder);
-> >  }
-> >
-> > -static void hsw_get_ddi_port_state(struct intel_crtc *crtc,
-> > -                                  struct intel_crtc_state *pipe_config)
-> > -{
-> > -       struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > -       enum transcoder cpu_transcoder = pipe_config->cpu_transcoder;
-> > -       enum port port;
-> > -       u32 tmp;
-> > -
-> > -       if (transcoder_is_dsi(cpu_transcoder)) {
-> > -               port = (cpu_transcoder == TRANSCODER_DSI_A) ?
-> > -                                               PORT_A : PORT_B;
-> > -       } else {
-> > -               tmp = intel_de_read(dev_priv,
-> > -                                   TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> > -               if (!(tmp & TRANS_DDI_FUNC_ENABLE))
-> > -                       return;
-> > -               if (DISPLAY_VER(dev_priv) >= 12)
-> > -                       port = TGL_TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
-> > -               else
-> > -                       port = TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
-> > -       }
-> 
-> Where does thie code go? is it necessary, maybe make a precursor patch
-> showing why this isn't needed?
-> or just more commentary on why it's not needed anymore, since PORT_E
-> is hardcoded to the crt?
+--===============1654383534208472045==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, since the thing is now called from encoder->get_config() we
-already know we're dealing with the correct port. This code was
-called from a place where it had no idea which port we were driving
-so it had to check manually. I'll amend the commit message a bit.
+== Series Details ==
 
-> 
-> This is also the only use of those two macros
-> *DDI_FUNC_CTL_VAL_TO_PORT(tmp), should those  be nuked as well?
+Series: Enable MIPI DSI video mode on ADLP
+URL   : https://patchwork.freedesktop.org/series/95928/
+State : success
 
-Probably. If someone needs them in the future they can just
-reimplement using REG_FIELD_GET().
+== Summary ==
 
-Thanks.
+CI Bug Log - changes from CI_DRM_10750 -> Patchwork_21364
+====================================================
 
-> 
-> Dave.
-> 
-> > -
-> > -       /*
-> > -        * Haswell has only FDI/PCH transcoder A. It is which is connected to
-> > -        * DDI E. So just check whether this pipe is wired to DDI E and whether
-> > -        * the PCH transcoder is on.
-> > -        */
-> > -       if (DISPLAY_VER(dev_priv) < 9 &&
-> > -           (port == PORT_E) && intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) {
-> > -               pipe_config->has_pch_encoder = true;
-> > -
-> > -               tmp = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
-> > -               pipe_config->fdi_lanes = ((FDI_DP_PORT_WIDTH_MASK & tmp) >>
-> > -                                         FDI_DP_PORT_WIDTH_SHIFT) + 1;
-> > -
-> > -               ilk_get_fdi_m_n_config(crtc, pipe_config);
-> > -       }
-> > -}
-> > -
-> >  static bool hsw_get_pipe_config(struct intel_crtc *crtc,
-> >                                 struct intel_crtc_state *pipe_config)
-> >  {
-> > @@ -4562,8 +4523,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
-> >                 /* we cannot read out most state, so don't bother.. */
-> >                 pipe_config->quirks |= PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE;
-> >         } else if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
-> > -           DISPLAY_VER(dev_priv) >= 11) {
-> > -               hsw_get_ddi_port_state(crtc, pipe_config);
-> > +                  DISPLAY_VER(dev_priv) >= 11) {
-> >                 intel_get_transcoder_timings(crtc, pipe_config);
-> >         }
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> > index 93c84f2174b5..5bc8d8913178 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > @@ -584,6 +584,8 @@ void intel_dp_get_m_n(struct intel_crtc *crtc,
-> >                       struct intel_crtc_state *pipe_config);
-> >  void intel_dp_set_m_n(const struct intel_crtc_state *crtc_state,
-> >                       enum link_m_n_set m_n);
-> > +void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
-> > +                           struct intel_crtc_state *pipe_config);
-> >  int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
-> >
-> >  bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > index 50995c4f2aaa..df7195ed1aaa 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > @@ -366,3 +366,21 @@ void lpt_pch_enable(struct intel_atomic_state *state,
-> >
-> >         lpt_enable_pch_transcoder(dev_priv, cpu_transcoder);
-> >  }
-> > +
-> > +void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
-> > +{
-> > +       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +       struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > +       u32 tmp;
-> > +
-> > +       if ((intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) == 0)
-> > +               return;
-> > +
-> > +       crtc_state->has_pch_encoder = true;
-> > +
-> > +       tmp = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
-> > +       crtc_state->fdi_lanes = ((FDI_DP_PORT_WIDTH_MASK & tmp) >>
-> > +                                FDI_DP_PORT_WIDTH_SHIFT) + 1;
-> > +
-> > +       ilk_get_fdi_m_n_config(crtc, crtc_state);
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.h b/drivers/gpu/drm/i915/display/intel_pch_display.h
-> > index 7f9df2c13cf3..e0ff331c0bc6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_pch_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_pch_display.h
-> > @@ -18,5 +18,6 @@ void ilk_pch_enable(struct intel_atomic_state *state,
-> >  void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv);
-> >  void lpt_pch_enable(struct intel_atomic_state *state,
-> >                     struct intel_crtc *crtc);
-> > +void lpt_pch_get_config(struct intel_crtc_state *crtc_state);
-> >
-> >  #endif
-> > --
-> > 2.32.0
-> >
+Summary
+-------
 
--- 
-Ville Syrjälä
-Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21364 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-soraka:      [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-kbl-soraka/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-kbl-soraka/igt@i915_module_load@reload.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp1:
+    - fi-cfl-8109u:       [PASS][7] -> [FAIL][8] ([i915#4165]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+
+  * igt@kms_flip@basic-plain-flip@c-dp2:
+    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#295]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp2.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp2.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-n3050:       [DMESG-FAIL][11] ([i915#2927] / [i915#3428]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
+
+  
+#### Warnings ####
+
+  * igt@kms_flip@basic-plain-flip@c-dp1:
+    - fi-cfl-8109u:       [FAIL][13] ([i915#4165]) -> [DMESG-WARN][14] ([i915#295])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+
+
+Participating hosts (41 -> 36)
+------------------------------
+
+  Missing    (5): bat-dg1-6 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-kbl-7500u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10750 -> Patchwork_21364
+
+  CI-20190529: 20190529
+  CI_DRM_10750: 7df3fd87528d6d245e5101cc32518ac649aeea98 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6251: 01b6be842d74fb86f3226acb4ddcb85231f4b161 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21364: ee4291972bfaccbc5346c168de21b715aeae867f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ee4291972bfa drm/i915/dsi: Ungate clock before enabling the phy
+8aa18dc8fe29 drm/i915/dsi/xelpd: Disable DC states in Video mode
+b325a854f9bc drm/i915/dsi/xelpd: Add DSI transcoder support
+fded35f39772 drm/i915/dsi/xelpd: Fix the bit mask for wakeup GB
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/index.html
+
+--===============1654383534208472045==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable MIPI DSI video mode on ADLP</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95928/">https://patchwork.freedesktop.org/series/95928/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10750 -&gt; Patchwork_21364</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21364 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-kbl-soraka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-kbl-soraka/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-dp2:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@late_gt_pm:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-dp1:<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10750/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21364/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 36)</h2>
+<p>Missing    (5): bat-dg1-6 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-kbl-7500u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10750 -&gt; Patchwork_21364</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10750: 7df3fd87528d6d245e5101cc32518ac649aeea98 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6251: 01b6be842d74fb86f3226acb4ddcb85231f4b161 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21364: ee4291972bfaccbc5346c168de21b715aeae867f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ee4291972bfa drm/i915/dsi: Ungate clock before enabling the phy<br />
+8aa18dc8fe29 drm/i915/dsi/xelpd: Disable DC states in Video mode<br />
+b325a854f9bc drm/i915/dsi/xelpd: Add DSI transcoder support<br />
+fded35f39772 drm/i915/dsi/xelpd: Fix the bit mask for wakeup GB</p>
+
+</body>
+</html>
+
+--===============1654383534208472045==--
