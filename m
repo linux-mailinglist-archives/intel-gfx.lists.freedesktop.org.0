@@ -1,44 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E2174324EA
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 19:22:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1663A4324F2
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 19:23:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4EE26EA6F;
-	Mon, 18 Oct 2021 17:22:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12AE86EA09;
+	Mon, 18 Oct 2021 17:23:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 210366E875
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 17:22:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="227075962"
-X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="227075962"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 10:22:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="489662759"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga007.fm.intel.com with SMTP; 18 Oct 2021 10:22:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 18 Oct 2021 20:22:05 +0300
-Date: Mon, 18 Oct 2021 20:22:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YW2tPQjDn5C45CEr@intel.com>
-References: <20211018115030.3547-1-ville.syrjala@linux.intel.com>
- <20211018115030.3547-6-ville.syrjala@linux.intel.com>
- <20211018120634.GA16624@intel.com> <YW2rXMmeJzrGORxt@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 121D46EA09;
+ Mon, 18 Oct 2021 17:23:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BAF7A47DF;
+ Mon, 18 Oct 2021 17:23:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5202171550924070835=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YW2rXMmeJzrGORxt@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915: Split skl+ plane update into
- noarm+arm pair
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "luo penghao" <cgel.zte@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Oct 2021 17:23:45 -0000
+Message-ID: <163457782504.27086.15655950958739841878@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211018084331.851975-1-luo.penghao@zte.com.cn>
+In-Reply-To: <20211018084331.851975-1-luo.penghao@zte.com.cn>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Remove_unused_variable_and_its_assignment=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,112 +41,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 18, 2021 at 08:14:04PM +0300, Ville Syrjälä wrote:
-> On Mon, Oct 18, 2021 at 03:06:34PM +0300, Lisovskiy, Stanislav wrote:
-> > On Mon, Oct 18, 2021 at 02:50:26PM +0300, Ville Syrjala wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > Chop skl_program_plane() into two halves. Fist half becomes
-> > > the _noarm() variant, second part the _arm() variant.
-> > > 
-> > > Fortunately I have already previously grouped the register
-> > > writes into roughtly the correct order, so the split looks
-> > > surprisingly clean.
-> > > 
-> > > A few notable oddities I did not realize were self arming
-> > > are AUX_DIST and COLOR_CTL.
-> > > 
-> > > i915_update_info doesn't look too terrible on my cfl running
-> > > kms_atomic_transition --r plane-all-transition --extended:
-> > > w/o patch                           w/ patch
-> > > Updates: 2178                       Updates: 2018
-> > >        |                                   |
-> > >    1us |                               1us |
-> > >        |                                   |
-> > >    4us |                               4us |*****
-> > >        |*********                          |**********
-> > >   16us |**********                    16us |*******
-> > >        |***                                |
-> > >   66us |                              66us |
-> > >        |                                   |
-> > >  262us |                             262us |
-> > >        |                                   |
-> > >    1ms |                               1ms |
-> > >        |                                   |
-> > >    4ms |                               4ms |
-> > >        |                                   |
-> > >   17ms |                              17ms |
-> > >        |                                   |
-> > > Min update: 8332ns                  Min update: 6164ns
-> > > Max update: 48758ns                 Max update: 31808ns
-> > > Average update: 19959ns             Average update: 13159ns
-> > > Overruns > 100us: 0                 Overruns > 100us: 0
-> > > 
-> > > And with lockdep enabled:
-> > > w/o patch                           w/ patch
-> > > Updates: 2177			    Updates: 2172
-> > >        |			    	   |
-> > >    1us |			       1us |
-> > >        |			    	   |
-> > >    4us |			       4us |
-> > >        |*******			    	   |*********
-> > >   16us |**********		      16us |**********
-> > >        |*******			    	   |*
-> > >   66us |			      66us |
-> > >        |			    	   |
-> > >  262us |			     262us |
-> > >        |			    	   |
-> > >    1ms |			       1ms |
-> > >        |			    	   |
-> > >    4ms |			       4ms |
-> > >        |			    	   |
-> > >   17ms |			      17ms |
-> > >        |			    	   |
-> > > Min update: 12645ns		    Min update: 9980ns
-> > > Max update: 50153ns		    Max update: 33533ns
-> > > Average update: 25337ns		    Average update: 18245ns
-> > > Overruns > 250us: 0		    Overruns > 250us: 0
-> > > 
-> > > TODO: On icl+ everything seems to be armed by PLANE_SURF, so we
-> > >       can optimize this even further on modern platforms. But I
-> > >       think there's a bit of refactoring to be done first to
-> > >       figure out the best way to go about it (eg. just reusing
-> > >       the current skl+ functions, or doing a lower level split).
-> > > 
-> > > TODO: Split scaler programming as well, but IIRC the scaler
-> > >       has some oddball double buffering behaviour on some
-> > >       platforms, so needs proper reverse engineering
-> > > 
-> > > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Should I use that one as a base for further splitting, i.e for DG2?
-> > Which refactoring has to be done first, as I understand should be
-> > pretty safe to leave only PLANE_SURF update in arm section, and 
-> > of course scaler is a different thing.
-> 
-> I'm not really sure which way we should do the skl+ vs. icl+ split.
-> 
-> Various ideas I've had:
-> - Definitly pull all the icl+ specific things out from the skl+
->   functions and stuff them into icl_plane_update_noarm()
-> - After that just call the remaining skl_plane_update_noarm()+arm() 
->   back to back from icl_update_noarm() maybe? I don't like this
->   idea much actually.
-> - Maybe instead pull some sequences of register writes into small
->   helpers (eg. colorkey registers could be one). But dunno if there
->   are other clear groups to make this super useful.
-> - Or perhaps just pull most fiddly register value calculations 
->   (aux_dist,ckey+alpha things,maybe others) into small helpers
->   to avoid duplicating themm but otherwise fully duplicate all
->   the actual register writes?
+--===============5202171550924070835==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I guess that last thing is what I already did with skl_plane_surf()
-earlier in the series. So maybe we should just embrace it fully.
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: drm/i915/display: Remove unused variable and its assignment.
+URL   : https://patchwork.freedesktop.org/series/95966/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10753 -> Patchwork_21372
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21372 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-soraka:      [PASS][2] -> [INCOMPLETE][3] ([i915#4221])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp1:
+    - fi-cfl-8109u:       [PASS][4] -> [FAIL][5] ([i915#4165]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#295]) +18 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [INCOMPLETE][8] ([i915#2940]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+  [i915#4221]: https://gitlab.freedesktop.org/drm/intel/issues/4221
+
+
+Participating hosts (39 -> 37)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan bat-dg1-6 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10753 -> Patchwork_21372
+
+  CI-20190529: 20190529
+  CI_DRM_10753: 57c1bcf63565db8d65783364c632a04a44bbd616 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21372: 96c9d1f9af61cc2a106983090ab92059f55a5c99 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+96c9d1f9af61 drm/i915/display: Remove unused variable and its assignment.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/index.html
+
+--===============5202171550924070835==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Remove unused variable and its assignment.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95966/">https://patchwork.freedesktop.org/series/95966/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10753 -&gt; Patchwork_21372</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21372 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4221">i915#4221</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +18 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21372/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (39 -&gt; 37)</h2>
+<p>Missing    (2): fi-bsw-cyan bat-dg1-6 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10753 -&gt; Patchwork_21372</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10753: 57c1bcf63565db8d65783364c632a04a44bbd616 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21372: 96c9d1f9af61cc2a106983090ab92059f55a5c99 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>96c9d1f9af61 drm/i915/display: Remove unused variable and its assignment.</p>
+
+</body>
+</html>
+
+--===============5202171550924070835==--
