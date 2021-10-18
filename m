@@ -2,38 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4653A4313BB
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 11:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 999FC4313F9
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 12:01:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A00176E9C7;
-	Mon, 18 Oct 2021 09:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC1B46E9CA;
+	Mon, 18 Oct 2021 10:01:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13C496E9C6
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 09:42:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="208315985"
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="208315985"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E28866E9C9;
+ Mon, 18 Oct 2021 10:01:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="208319091"
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="208319091"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 02:42:12 -0700
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="493516768"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ 18 Oct 2021 03:00:11 -0700
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="493521361"
+Received: from foboril-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.44.188])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 02:42:06 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Mon, 18 Oct 2021 12:41:54 +0300
-Message-Id: <20211018094154.1407705-7-imre.deak@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20211018094154.1407705-1-imre.deak@intel.com>
-References: <20211018094154.1407705-1-imre.deak@intel.com>
+ 18 Oct 2021 03:00:04 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Len Baker <len.baker@gmx.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: Len Baker <len.baker@gmx.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Kees Cook <keescook@chromium.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-hardening@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20211016111602.GA1996@titan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211003104258.18550-1-len.baker@gmx.com>
+ <20211011092304.GA5790@titan> <87k0ihxj56.fsf@intel.com>
+ <YWbIQmD1TGikpRm2@phenom.ffwll.local> <20211016111602.GA1996@titan>
+Date: Mon, 18 Oct 2021 13:00:01 +0300
+Message-ID: <877deatzz2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/dp: Sanitize link common rate
- array lookups
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Prefer struct_size over open
+ coded arithmetic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,101 +57,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add an assert that lookups from the intel_dp->common_rates[] array
-are always valid.
+On Sat, 16 Oct 2021, Len Baker <len.baker@gmx.com> wrote:
+> Hi Daniel and Jani,
+>
+> On Wed, Oct 13, 2021 at 01:51:30PM +0200, Daniel Vetter wrote:
+>> On Wed, Oct 13, 2021 at 02:24:05PM +0300, Jani Nikula wrote:
+>> > On Mon, 11 Oct 2021, Len Baker <len.baker@gmx.com> wrote:
+>> > > Hi,
+>> > >
+>> > > On Sun, Oct 03, 2021 at 12:42:58PM +0200, Len Baker wrote:
+>> > >> As noted in the "Deprecated Interfaces, Language Features, Attributes,
+>> > >> and Conventions" documentation [1], size calculations (especially
+>> > >> multiplication) should not be performed in memory allocator (or similar)
+>> > >> function arguments due to the risk of them overflowing. This could lead
+>> > >> to values wrapping around and a smaller allocation being made than the
+>> > >> caller was expecting. Using those allocations could lead to linear
+>> > >> overflows of heap memory and other misbehaviors.
+>> > >>
+>> > >> In this case these are not actually dynamic sizes: all the operands
+>> > >> involved in the calculation are constant values. However it is better to
+>> > >> refactor them anyway, just to keep the open-coded math idiom out of
+>> > >> code.
+>> > >>
+>> > >> So, add at the end of the struct i915_syncmap a union with two flexible
+>> > >> array members (these arrays share the same memory layout). This is
+>> > >> possible using the new DECLARE_FLEX_ARRAY macro. And then, use the
+>> > >> struct_size() helper to do the arithmetic instead of the argument
+>> > >> "size + count * size" in the kmalloc and kzalloc() functions.
+>> > >>
+>> > >> Also, take the opportunity to refactor the __sync_seqno and __sync_child
+>> > >> making them more readable.
+>> > >>
+>> > >> This code was detected with the help of Coccinelle and audited and fixed
+>> > >> manually.
+>> > >>
+>> > >> [1] https://www.kernel.org/doc/html/latest/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments
+>> > >>
+>> > >> Signed-off-by: Len Baker <len.baker@gmx.com>
+>> > >> ---
+>> > >>  drivers/gpu/drm/i915/i915_syncmap.c | 12 ++++++++----
+>> > >>  1 file changed, 8 insertions(+), 4 deletions(-)
+>> > >
+>> > > I received a mail telling that this patch doesn't build:
+>> > >
+>> > > == Series Details ==
+>> > >
+>> > > Series: drm/i915: Prefer struct_size over open coded arithmetic
+>> > > URL   : https://patchwork.freedesktop.org/series/95408/
+>> > > State : failure
+>> > >
+>> > > But it builds without error against linux-next (tag next-20211001). Against
+>> > > which tree and branch do I need to build?
+>> >
+>> > drm-tip [1]. It's a sort of linux-next for graphics. I think there are
+>> > still some branches that don't feed to linux-next.
+>>
+>> Yeah we need to get gt-next in linux-next asap. Joonas promised to send
+>> out his patch to make that happen in dim.
+>> -Daniel
+>
+> Is there a possibility that you give an "Acked-by" tag? And then this patch
+> goes to the mainline through the Kees' tree or Gustavo's tree?
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 33 ++++++++++++-------------
- 1 file changed, 16 insertions(+), 17 deletions(-)
+If this does not apply to drm-intel-gt-next (or drm-tip), applying it to
+some other branch will just cause unnecessary conflicts later on. It's
+unnecessary extra work. It's not an urgent fix or anything, there is no
+reason to do that. So that's a NAK.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f8082eb8e7263..3869d454c10f0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -267,10 +267,19 @@ static int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
- 				       intel_dp->num_common_rates, max_rate);
- }
- 
-+static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
-+{
-+	if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
-+			index < 0 || index >= intel_dp->num_common_rates))
-+		return 162000;
-+
-+	return intel_dp->common_rates[index];
-+}
-+
- /* Theoretical max between source and sink */
- static int intel_dp_max_common_rate(struct intel_dp *intel_dp)
- {
--	return intel_dp->common_rates[intel_dp->num_common_rates - 1];
-+	return intel_dp_common_rate(intel_dp, intel_dp->num_common_rates - 1);
- }
- 
- /* Theoretical max between source and sink */
-@@ -610,13 +619,13 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
- 	if (index > 0) {
- 		if (intel_dp_is_edp(intel_dp) &&
- 		    !intel_dp_can_link_train_fallback_for_edp(intel_dp,
--							      intel_dp->common_rates[index - 1],
-+							      intel_dp_common_rate(intel_dp, index - 1),
- 							      lane_count)) {
- 			drm_dbg_kms(&i915->drm,
- 				    "Retrying Link training for eDP with same parameters\n");
- 			return 0;
- 		}
--		intel_dp->max_link_rate = intel_dp->common_rates[index - 1];
-+		intel_dp->max_link_rate = intel_dp_common_rate(intel_dp, index - 1);
- 		intel_dp->max_link_lane_count = lane_count;
- 	} else if (lane_count > 1) {
- 		if (intel_dp_is_edp(intel_dp) &&
-@@ -1056,14 +1065,11 @@ static void intel_dp_print_rates(struct intel_dp *intel_dp)
- int
- intel_dp_max_link_rate(struct intel_dp *intel_dp)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int len;
- 
- 	len = intel_dp_common_len_rate_limit(intel_dp, intel_dp->max_link_rate);
--	if (drm_WARN_ON(&i915->drm, len <= 0))
--		return 162000;
- 
--	return intel_dp->common_rates[len - 1];
-+	return intel_dp_common_rate(intel_dp, len - 1);
- }
- 
- int intel_dp_rate_select(struct intel_dp *intel_dp, int rate)
-@@ -1260,7 +1266,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- 						   output_bpp);
- 
- 		for (i = 0; i < intel_dp->num_common_rates; i++) {
--			link_rate = intel_dp->common_rates[i];
-+			link_rate = intel_dp_common_rate(intel_dp, i);
- 			if (link_rate < limits->min_rate ||
- 			    link_rate > limits->max_rate)
- 				continue;
-@@ -1508,17 +1514,10 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 		&pipe_config->hw.adjusted_mode;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct link_config_limits limits;
--	int common_len;
- 	int ret;
- 
--	common_len = intel_dp_common_len_rate_limit(intel_dp,
--						    intel_dp->max_link_rate);
--
--	/* No common link rates between source and sink */
--	drm_WARN_ON(encoder->base.dev, common_len <= 0);
--
--	limits.min_rate = intel_dp->common_rates[0];
--	limits.max_rate = intel_dp->common_rates[common_len - 1];
-+	limits.min_rate = intel_dp_common_rate(intel_dp, 0);
-+	limits.max_rate = intel_dp_max_link_rate(intel_dp);
- 
- 	limits.min_lane_count = 1;
- 	limits.max_lane_count = intel_dp_max_lane_count(intel_dp);
+> Or is it better to wait for drm-tip to update?
+
+drm-tip is up to date, it's just that one of the branches that feed to
+it is (was?) not feeding to linux-next.
+
+If you're contributing to drm, please consider basing your patches on
+top of drm-tip.
+
+
+BR,
+Jani.
+
+
+>
+> Regards,
+> Len
+>
+>>
+>> >
+>> > BR,
+>> > Jani.
+>> >
+>> >
+>> > [1] https://cgit.freedesktop.org/drm/drm-tip
+>> >
+>> >
+>> > >
+>> > > Regards,
+>> > > Len
+>> >
+>> > --
+>> > Jani Nikula, Intel Open Source Graphics Center
+>>
+>> --
+>> Daniel Vetter
+>> Software Engineer, Intel Corporation
+>> http://blog.ffwll.ch
+
 -- 
-2.27.0
-
+Jani Nikula, Intel Open Source Graphics Center
