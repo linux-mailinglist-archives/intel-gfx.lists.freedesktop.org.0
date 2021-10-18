@@ -2,77 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6099743124B
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 10:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB3343127A
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 10:51:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A12A46E990;
-	Mon, 18 Oct 2021 08:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 219406E9A1;
+	Mon, 18 Oct 2021 08:51:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com
- [64.147.123.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9542A6E991;
- Mon, 18 Oct 2021 08:41:51 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailout.west.internal (Postfix) with ESMTP id F28233200E8E;
- Mon, 18 Oct 2021 04:41:50 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Mon, 18 Oct 2021 04:41:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm1; bh=NuxYKvOyWduzc0gjAk/aabJvFPe
- VUu1WatQDsIsbc50=; b=lwplPaXANULAyw028wF0+LUHtuGataWUdFM/ySv5Inz
- MaMrMhuaog5TMwwR8LCK0AuJ3azF2VXAEsBtm6rdAAJWAwQiysqD5wIYFeMd13pO
- cRd4mD/txFmQaa2IXzNRGAJ8vYMCSewZlrpdSamzw03W6mSugoRqcgt+XrRDDtWU
- vbz6dz+yu3N9ecJkcvXFoWUe6jgGRrS+yTAxzR+A8oXUDz/oPJx7VroVGh9APfvg
- SR+hSFcdOdGLiOYUg21RxWhetWU7oGk2rL5yNvLCAoAfKtGOE9vIZnsu5VT7WOUK
- hqN8JihyvQyDzpL5kdkNIDy2cCx3GIBJR97zZpBg6eQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=NuxYKv
- OyWduzc0gjAk/aabJvFPeVUu1WatQDsIsbc50=; b=cBHqFm04ov+OhlNzvhOOKK
- 3vHqyZDnDuuThaYp91mlH+AIWp0iR7MaJbP5NtxlBIDob1kfyt48ASLEW0ij85ko
- 9NcXtg6pxmMdTdfc04F9ah1Ry95HEDsvnMWVRyjel9CV1jQuOKtrQqA7fcGkLh2B
- Im398OaEjPr6fpb+uF2jlBBIWZ/z2jIlvPv18zwfoLX2WTaeHK3sZ62XqRTpBffd
- ehoeK6+oeg+94bOEhp/f1tD+1FYSk5FwpEA58bxgQdpk9a0sGes1Pwa/RI0YSpHk
- TAsoFIlta6blsEka8P8VWLGVIgRzaYRFy8CQ6nuCaEOo/euXzs5qOGZq8U9oGm2w
- ==
-X-ME-Sender: <xms:TTNtYZSLQ0JjpXwSQVv_TWEBAc-Zw_A_SbeBY5WE7_c1Ha3EiW0SVQ>
- <xme:TTNtYSyCjzJW31jxgwtAQDj-Pl45CiOWDej91vqwDkRI8NOQ0gD9Z6n4Iaoteq2hb
- iVkCpoEUWFchMohi6c>
-X-ME-Received: <xmr:TTNtYe1M_pWNLwvbVbRM8wz_YjOhsTcRFnGFmI2edmaR3sXkFUC_ljiKQM1zOZ6YrxpU4JUY7RuDGqENIpXldyGna5dFYIRwNXgXRoCM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddvtddgtdehucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
- gfevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:TTNtYRAbwwsi78ovZ6W3FblO0okl_P1RwNekaLdqz_CqCbedZirxQQ>
- <xmx:TTNtYSiqZltLGGg7D-VSMJHAyX6fJMolO-Rfa_lqxxmdHpBcwm0KJw>
- <xmx:TTNtYVr_XDU-13VXwLvVsj193GnLQknVQHWec0e0hIccRCLlGpE6yw>
- <xmx:TjNtYae4B9j2JAG2sE-HLDZIYMNmT5PZjSsYgH8DLZGHDLtDBcqlIw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 18 Oct 2021 04:41:49 -0400 (EDT)
-Date: Mon, 18 Oct 2021 10:41:47 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Message-ID: <20211018084147.iuexgyykyrrx2ykw@gilmour>
-References: <20211014150059.28957-1-jani.nikula@intel.com>
- <871r4muxds.fsf@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 784D86E99A;
+ Mon, 18 Oct 2021 08:51:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="208307094"
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="208307094"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 01:51:26 -0700
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="493501959"
+Received: from foboril-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.44.188])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 01:51:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
+ Stephen Rothwell <sfr@canb.auug.org.au>, Daniel Vetter <daniel@ffwll.ch>
+Date: Mon, 18 Oct 2021 11:51:13 +0300
+Message-Id: <20211018085113.27033-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="mucs4vrm2uxzg2uc"
-Content-Disposition: inline
-In-Reply-To: <871r4muxds.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/dp: add helpers to read link
- training delays
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/locking: fix __stack_depot_* name conflict
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,61 +48,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Stephen Rothwell <sfr@canb.auug.org.au>
 
---mucs4vrm2uxzg2uc
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Commit cd06ab2fd48f ("drm/locking: add backtrace for locking contended
+locks without backoff") added functions named __stack_depot_* in drm
+which conflict with stack depot. Rename to __drm_stack_depot_*.
 
-Hi Jani,
+v2 by Jani:
+- Also rename __stack_depot_print
 
-On Fri, Oct 15, 2021 at 06:21:35PM +0300, Jani Nikula wrote:
-> On Thu, 14 Oct 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> > The link training delays are different and/or available in different
-> > DPCD offsets depending on:
-> >
-> > - Clock recovery vs. channel equalization
-> > - DPRX vs. LTTPR
-> > - 128b/132b vs. 8b/10b
-> > - DPCD 1.4+ vs. earlier
-> >
-> > Add helpers to get the correct delays in us, reading DPCD if
-> > necessary. This is more straightforward than trying to retrofit the
-> > existing helpers to take 128b/132b into account.
-> >
-> > Having to pass in the DPCD receiver cap field seems unavoidable, because
-> > reading it involves checking the revision and reading extended receiver
-> > cap. So unfortunately the interface is mixed cached and read as needed.
-> >
-> > v2: Remove delay_us < 0 check and the whole local var (Ville)
-> >
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->=20
-> Maarten, Maxime, Thomas -
->=20
-> Ack on the first two patches in this series?
->=20
-> Should we merge them via a topic branch to both drm-misc-next and
-> drm-intel-next, or is it fine to merge them all via drm-intel-next? We
-> might be at a point in the development cycle that it takes a while to
-> get the branches in sync again.
+References: https://lore.kernel.org/r/20211015202648.258445ef@canb.auug.org.au
+Fixes: cd06ab2fd48f ("drm/locking: add backtrace for locking contended locks without backoff")
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/drm_modeset_lock.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-I guess the easiest would be to send a PR so that we can merge it in the
-two branches then.
+diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+index 4d32b61fa1fd..c97323365675 100644
+--- a/drivers/gpu/drm/drm_modeset_lock.c
++++ b/drivers/gpu/drm/drm_modeset_lock.c
+@@ -79,7 +79,7 @@
+ static DEFINE_WW_CLASS(crtc_ww_class);
+ 
+ #if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
+-static noinline depot_stack_handle_t __stack_depot_save(void)
++static noinline depot_stack_handle_t __drm_stack_depot_save(void)
+ {
+ 	unsigned long entries[8];
+ 	unsigned int n;
+@@ -89,7 +89,7 @@ static noinline depot_stack_handle_t __stack_depot_save(void)
+ 	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
+ }
+ 
+-static void __stack_depot_print(depot_stack_handle_t stack_depot)
++static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
+ {
+ 	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
+ 	unsigned long *entries;
+@@ -108,11 +108,11 @@ static void __stack_depot_print(depot_stack_handle_t stack_depot)
+ 	kfree(buf);
+ }
+ #else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+-static depot_stack_handle_t __stack_depot_save(void)
++static depot_stack_handle_t __drm_stack_depot_save(void)
+ {
+ 	return 0;
+ }
+-static void __stack_depot_print(depot_stack_handle_t stack_depot)
++static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
+ {
+ }
+ #endif /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+@@ -266,7 +266,7 @@ EXPORT_SYMBOL(drm_modeset_acquire_fini);
+ void drm_modeset_drop_locks(struct drm_modeset_acquire_ctx *ctx)
+ {
+ 	if (WARN_ON(ctx->contended))
+-		__stack_depot_print(ctx->stack_depot);
++		__drm_stack_depot_print(ctx->stack_depot);
+ 
+ 	while (!list_empty(&ctx->locked)) {
+ 		struct drm_modeset_lock *lock;
+@@ -286,7 +286,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+ 	int ret;
+ 
+ 	if (WARN_ON(ctx->contended))
+-		__stack_depot_print(ctx->stack_depot);
++		__drm_stack_depot_print(ctx->stack_depot);
+ 
+ 	if (ctx->trylock_only) {
+ 		lockdep_assert_held(&ctx->ww_ctx);
+@@ -317,7 +317,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+ 		ret = 0;
+ 	} else if (ret == -EDEADLK) {
+ 		ctx->contended = lock;
+-		ctx->stack_depot = __stack_depot_save();
++		ctx->stack_depot = __drm_stack_depot_save();
+ 	}
+ 
+ 	return ret;
+-- 
+2.30.2
 
-Maxime
-
---mucs4vrm2uxzg2uc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYW0zSwAKCRDj7w1vZxhR
-xfC8AQCCLDrkZi9cHM+CqFCgQN7LbdiaolKM2bJXXMJVyjaUIQEA2aPR8E0Rq6ml
-LTma9nItvfaF+3kfqd2dcQubi456JAQ=
-=hxmm
------END PGP SIGNATURE-----
-
---mucs4vrm2uxzg2uc--
