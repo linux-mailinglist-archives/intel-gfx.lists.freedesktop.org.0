@@ -2,44 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CEE64322D1
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 17:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45B54322FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 17:35:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C99E6E0CA;
-	Mon, 18 Oct 2021 15:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 868D66E0C1;
+	Mon, 18 Oct 2021 15:35:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DAC76E0CA
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 15:27:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="251731484"
-X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="251731484"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 08:27:21 -0700
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C452D6E0C1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 15:35:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="215201412"
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="215201412"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 08:35:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="443451061"
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="526281760"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 18 Oct 2021 08:27:16 -0700
+ by orsmga001.jf.intel.com with SMTP; 18 Oct 2021 08:35:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 18 Oct 2021 18:27:15 +0300
-Date: Mon, 18 Oct 2021 18:27:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <YW2SU4YIz8uzm6ul@intel.com>
-References: <20211018094154.1407705-1-imre.deak@intel.com>
- <20211018094154.1407705-5-imre.deak@intel.com>
- <YW2M8h02rslxYBSO@intel.com>
- <20211018151319.GD1409539@ideak-desk.fi.intel.com>
+ Mon, 18 Oct 2021 18:35:25 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>,
+	Jani Nikula <jani.nikula@intel.com>
+Date: Mon, 18 Oct 2021 18:35:25 +0300
+Message-Id: <20211018153525.21597-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211015071625.593-5-ville.syrjala@linux.intel.com>
+References: <20211015071625.593-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211018151319.GD1409539@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/dp: Ensure sink/link max lane
- count values are always valid
+Subject: [Intel-gfx] [PATCH v2 4/9] drm/i915: Move LPT PCH readout code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,130 +51,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 18, 2021 at 06:13:19PM +0300, Imre Deak wrote:
-> On Mon, Oct 18, 2021 at 06:04:18PM +0300, Ville Syrj‰l‰ wrote:
-> > On Mon, Oct 18, 2021 at 12:41:52PM +0300, Imre Deak wrote:
-> > > Print an error if the DPCD sink max lane count is invalid and fix it up.
-> > > 
-> > > While at it also add an assert that the link max lane count (derived
-> > > from intel_dp_max_common_lane_count(), potentially reduced by the LT
-> > > fallback logic) value is also valid.
-> > > 
-> > > Cc: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  .../drm/i915/display/intel_display_types.h    |  2 +
-> > >  drivers/gpu/drm/i915/display/intel_dp.c       | 44 ++++++++++++++++++-
-> > >  2 files changed, 44 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index 39e11eaec1a3f..1e42bf901263c 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -1563,6 +1563,8 @@ struct intel_dp {
-> > >  	int num_sink_rates;
-> > >  	int sink_rates[DP_MAX_SUPPORTED_RATES];
-> > >  	bool use_rate_select;
-> > > +	/* Max sink lane count as reported by DP_MAX_LANE_COUNT */
-> > > +	int max_sink_lane_count;
-> > >  	/* intersection of source and sink rates */
-> > >  	int num_common_rates;
-> > >  	int common_rates[DP_MAX_SUPPORTED_RATES];
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > index 1935eb49f9574..f7711779df132 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -197,6 +197,35 @@ static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
-> > >  	intel_dp->num_sink_rates = i;
-> > >  }
-> > >  
-> > > +static void intel_dp_set_default_max_sink_lane_count(struct intel_dp *intel_dp)
-> > > +{
-> > > +	intel_dp->max_sink_lane_count = 1;
-> > > +}
-> > > +
-> > > +static void intel_dp_set_max_sink_lane_count(struct intel_dp *intel_dp)
-> > > +{
-> > > +	struct intel_connector *connector = intel_dp->attached_connector;
-> > > +	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> > > +	struct intel_encoder *encoder = &intel_dig_port->base;
-> > > +
-> > > +	intel_dp->max_sink_lane_count = drm_dp_max_lane_count(intel_dp->dpcd);
-> > > +
-> > > +	switch (intel_dp->max_sink_lane_count) {
-> > > +	case 1:
-> > > +	case 2:
-> > > +	case 4:
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	drm_err(&dp_to_i915(intel_dp)->drm,
-> > > +		"[CONNECTOR:%d:%s][ENCODER:%d:%s] Invalid DPCD max lane count (%d), using default\n",
-> > > +		connector->base.base.id, connector->base.name,
-> > > +		encoder->base.base.id, encoder->base.name,
-> > > +		intel_dp->max_sink_lane_count);
-> > > +
-> > > +	intel_dp_set_default_max_sink_lane_count(intel_dp);
-> > > +}
-> > > +
-> > >  /* Get length of rates array potentially limited by max_rate. */
-> > >  static int intel_dp_rate_limit_len(const int *rates, int len, int max_rate)
-> > >  {
-> > > @@ -230,7 +259,7 @@ static int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
-> > >  {
-> > >  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > >  	int source_max = dig_port->max_lanes;
-> > > -	int sink_max = drm_dp_max_lane_count(intel_dp->dpcd);
-> > > +	int sink_max = intel_dp->max_sink_lane_count;
-> > >  	int fia_max = intel_tc_port_fia_max_lane_count(dig_port);
-> > >  	int lttpr_max = drm_dp_lttpr_max_lane_count(intel_dp->lttpr_common_caps);
-> > >  
-> > > @@ -242,7 +271,15 @@ static int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
-> > >  
-> > >  int intel_dp_max_lane_count(struct intel_dp *intel_dp)
-> > >  {
-> > > -	return intel_dp->max_link_lane_count;
-> > > +	switch (intel_dp->max_link_lane_count) {
-> > > +	case 1:
-> > > +	case 2:
-> > > +	case 4:
-> > > +		return intel_dp->max_link_lane_count;
-> > > +	default:
-> > > +		MISSING_CASE(intel_dp->max_link_lane_count);
-> > > +		return 1;
-> > > +	}
-> > >  }
-> > 
-> > I guess this is just a second level sanity check. I was wondering it
-> > gets confusing and people start thinking this can actually happen,
-> > but I suppose the MISSING_CASE() should be indication enough that it
-> > in fact should not happen.
-> 
-> Yes it shouldn't happen. Given that we don't consider the FIA reg value
-> external, but I think that's a reasonable assumption.
-> 
-> > Series looks sane to me:
-> > Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> 
-> Thanks.
-> 
-> > BTW there's now some kms_bw thing in igt which seems to forcing
-> > DP connectors on left and right, and thus triggering a bunch of 
-> > WARNs.
-> 
-> Yes, noticed. This series should fix the WARN, however the modeset will
-> still fail, due to using the minimum link_rate/lane_count set by default
-> in this patchset. But due to the LT failing and fallback reducing the
-> link params it would anyway fail after the first modeset. I wonder what
-> would be a good solution if the above kind of use case is important
-> enough (I at least use this for debugging). Maybe a virtual loopback
-> connector which could handle LT (in kernel perhaps) and even any AUX
-> traffic (in userspace)? Anyway that's far beyond the scope of this
-> patchset.
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Yeah, a virtual DP sink with DPCD and the works is something
-I've occasionally pondered. But it would take some actual work.
+Nuke the hsw_get_ddi_port_state() eyesore by putting the
+readout code into intel_pch_display.c, and calling it directly
+from hsw_crt_get_config().
 
+Note that the nuked TRANS_DDI_FUNC_CTL readout from
+hsw_get_ddi_port_state() is now etirely redundant since we
+get called from the encoder->get_config() so we already know
+we're dealing with the correct DDI port. Previously the
+code was called from a place where that wasn't known so
+it had to checked manually.
+
+v2: Clarify the TRANS_DDI_FUNC_CTL change (Dave)
+    Nuke the now unused *TRANS_DDI_FUNC_CTL_VAL_TO_PORT() (Dave)
+
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_crt.c      |  2 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 46 ++-----------------
+ drivers/gpu/drm/i915/display/intel_display.h  |  2 +
+ .../gpu/drm/i915/display/intel_pch_display.c  | 18 ++++++++
+ .../gpu/drm/i915/display/intel_pch_display.h  |  1 +
+ drivers/gpu/drm/i915/i915_reg.h               |  2 -
+ 6 files changed, 26 insertions(+), 45 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+index 4038ae342ea1..03cfae46f92f 100644
+--- a/drivers/gpu/drm/i915/display/intel_crt.c
++++ b/drivers/gpu/drm/i915/display/intel_crt.c
+@@ -147,6 +147,8 @@ static void hsw_crt_get_config(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 
++	lpt_pch_get_config(pipe_config);
++
+ 	hsw_ddi_get_config(encoder, pipe_config);
+ 
+ 	pipe_config->hw.adjusted_mode.flags &= ~(DRM_MODE_FLAG_PHSYNC |
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 2ee02c16bd1c..8f65b8b6a306 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4090,8 +4090,8 @@ void intel_dp_get_m_n(struct intel_crtc *crtc,
+ 					     &pipe_config->dp_m2_n2);
+ }
+ 
+-static void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
+-				   struct intel_crtc_state *pipe_config)
++void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
++			    struct intel_crtc_state *pipe_config)
+ {
+ 	intel_cpu_transcoder_get_m_n(crtc, pipe_config->cpu_transcoder,
+ 				     &pipe_config->fdi_m_n, NULL);
+@@ -4486,45 +4486,6 @@ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
+ 	return transcoder_is_dsi(pipe_config->cpu_transcoder);
+ }
+ 
+-static void hsw_get_ddi_port_state(struct intel_crtc *crtc,
+-				   struct intel_crtc_state *pipe_config)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum transcoder cpu_transcoder = pipe_config->cpu_transcoder;
+-	enum port port;
+-	u32 tmp;
+-
+-	if (transcoder_is_dsi(cpu_transcoder)) {
+-		port = (cpu_transcoder == TRANSCODER_DSI_A) ?
+-						PORT_A : PORT_B;
+-	} else {
+-		tmp = intel_de_read(dev_priv,
+-				    TRANS_DDI_FUNC_CTL(cpu_transcoder));
+-		if (!(tmp & TRANS_DDI_FUNC_ENABLE))
+-			return;
+-		if (DISPLAY_VER(dev_priv) >= 12)
+-			port = TGL_TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
+-		else
+-			port = TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
+-	}
+-
+-	/*
+-	 * Haswell has only FDI/PCH transcoder A. It is which is connected to
+-	 * DDI E. So just check whether this pipe is wired to DDI E and whether
+-	 * the PCH transcoder is on.
+-	 */
+-	if (DISPLAY_VER(dev_priv) < 9 &&
+-	    (port == PORT_E) && intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) {
+-		pipe_config->has_pch_encoder = true;
+-
+-		tmp = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
+-		pipe_config->fdi_lanes = ((FDI_DP_PORT_WIDTH_MASK & tmp) >>
+-					  FDI_DP_PORT_WIDTH_SHIFT) + 1;
+-
+-		ilk_get_fdi_m_n_config(crtc, pipe_config);
+-	}
+-}
+-
+ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+ 				struct intel_crtc_state *pipe_config)
+ {
+@@ -4562,8 +4523,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+ 		/* we cannot read out most state, so don't bother.. */
+ 		pipe_config->quirks |= PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE;
+ 	} else if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
+-	    DISPLAY_VER(dev_priv) >= 11) {
+-		hsw_get_ddi_port_state(crtc, pipe_config);
++		   DISPLAY_VER(dev_priv) >= 11) {
+ 		intel_get_transcoder_timings(crtc, pipe_config);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 93c84f2174b5..5bc8d8913178 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -584,6 +584,8 @@ void intel_dp_get_m_n(struct intel_crtc *crtc,
+ 		      struct intel_crtc_state *pipe_config);
+ void intel_dp_set_m_n(const struct intel_crtc_state *crtc_state,
+ 		      enum link_m_n_set m_n);
++void ilk_get_fdi_m_n_config(struct intel_crtc *crtc,
++			    struct intel_crtc_state *pipe_config);
+ int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
+ 
+ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+index 50995c4f2aaa..df7195ed1aaa 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_display.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+@@ -366,3 +366,21 @@ void lpt_pch_enable(struct intel_atomic_state *state,
+ 
+ 	lpt_enable_pch_transcoder(dev_priv, cpu_transcoder);
+ }
++
++void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	u32 tmp;
++
++	if ((intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) == 0)
++		return;
++
++	crtc_state->has_pch_encoder = true;
++
++	tmp = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
++	crtc_state->fdi_lanes = ((FDI_DP_PORT_WIDTH_MASK & tmp) >>
++				 FDI_DP_PORT_WIDTH_SHIFT) + 1;
++
++	ilk_get_fdi_m_n_config(crtc, crtc_state);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.h b/drivers/gpu/drm/i915/display/intel_pch_display.h
+index 7f9df2c13cf3..e0ff331c0bc6 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_display.h
++++ b/drivers/gpu/drm/i915/display/intel_pch_display.h
+@@ -18,5 +18,6 @@ void ilk_pch_enable(struct intel_atomic_state *state,
+ void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv);
+ void lpt_pch_enable(struct intel_atomic_state *state,
+ 		    struct intel_crtc *crtc);
++void lpt_pch_get_config(struct intel_crtc_state *crtc_state);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index da9055c3ebf0..9a89565fd458 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -10212,8 +10212,6 @@ enum skl_power_gate {
+ #define  TGL_TRANS_DDI_PORT_MASK	(0xf << TGL_TRANS_DDI_PORT_SHIFT)
+ #define  TRANS_DDI_SELECT_PORT(x)	((x) << TRANS_DDI_PORT_SHIFT)
+ #define  TGL_TRANS_DDI_SELECT_PORT(x)	(((x) + 1) << TGL_TRANS_DDI_PORT_SHIFT)
+-#define  TRANS_DDI_FUNC_CTL_VAL_TO_PORT(val)	 (((val) & TRANS_DDI_PORT_MASK) >> TRANS_DDI_PORT_SHIFT)
+-#define  TGL_TRANS_DDI_FUNC_CTL_VAL_TO_PORT(val) ((((val) & TGL_TRANS_DDI_PORT_MASK) >> TGL_TRANS_DDI_PORT_SHIFT) - 1)
+ #define  TRANS_DDI_MODE_SELECT_MASK	(7 << 24)
+ #define  TRANS_DDI_MODE_SELECT_HDMI	(0 << 24)
+ #define  TRANS_DDI_MODE_SELECT_DVI	(1 << 24)
 -- 
-Ville Syrj‰l‰
-Intel
+2.32.0
+
