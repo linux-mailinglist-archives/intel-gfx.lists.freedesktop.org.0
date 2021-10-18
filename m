@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED91E4312F1
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 11:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8094312E6
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 11:12:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 070E46E9BD;
-	Mon, 18 Oct 2021 09:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8C96E9B3;
+	Mon, 18 Oct 2021 09:12:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 208496E9B3;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7083A6E9B6;
  Mon, 18 Oct 2021 09:12:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="209001425"
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="209001425"
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="209001432"
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="209001432"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 02:11:59 -0700
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="443330278"
+ 18 Oct 2021 02:12:00 -0700
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="443330280"
 Received: from cscleary-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.13.221])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 02:11:58 -0700
+ 18 Oct 2021 02:11:59 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 18 Oct 2021 10:10:54 +0100
-Message-Id: <20211018091055.1998191-7-matthew.auld@intel.com>
+Date: Mon, 18 Oct 2021 10:10:55 +0100
+Message-Id: <20211018091055.1998191-8-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20211018091055.1998191-1-matthew.auld@intel.com>
 References: <20211018091055.1998191-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v9 7/8] drm/i915/ttm: use cached system pages
- when evicting lmem
+Subject: [Intel-gfx] [PATCH v9 8/8] drm/i915/ttm: enable shmem tt backend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,37 +50,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This should let us do an accelerated copy directly to the shmem pages
-when temporarily moving lmem-only objects, where the i915-gem shrinker
-can later kick in to swap out the pages, if needed.
+Turn on the shmem tt backend, and enable shrinking.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 8de1031a2c6e..d37581d9194c 100644
+index d37581d9194c..4fd2edb20dd9 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -134,11 +134,11 @@ static enum ttm_caching
- i915_ttm_select_tt_caching(const struct drm_i915_gem_object *obj)
- {
- 	/*
--	 * Objects only allowed in system get cached cpu-mappings.
--	 * Other objects get WC mapping for now. Even if in system.
-+	 * Objects only allowed in system get cached cpu-mappings, or when
-+	 * evicting lmem-only buffers to system for swapping. Other objects get
-+	 * WC mapping for now. Even if in system.
- 	 */
--	if (obj->mm.region->type == INTEL_MEMORY_SYSTEM &&
--	    obj->mm.n_placements <= 1)
-+	if (obj->mm.n_placements <= 1)
- 		return ttm_cached;
+@@ -1113,7 +1113,8 @@ static u64 i915_ttm_mmap_offset(struct drm_i915_gem_object *obj)
  
- 	return ttm_write_combined;
+ static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops = {
+ 	.name = "i915_gem_object_ttm",
+-	.flags = I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
++	.flags = I915_GEM_OBJECT_IS_SHRINKABLE |
++		 I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
+ 
+ 	.get_pages = i915_ttm_get_pages,
+ 	.put_pages = i915_ttm_put_pages,
 -- 
 2.26.3
 
