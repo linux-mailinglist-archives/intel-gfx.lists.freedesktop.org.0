@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D42431AAE
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 15:23:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 015BB431AAF
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 15:23:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 190916E09A;
-	Mon, 18 Oct 2021 13:23:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A93B6E0B6;
+	Mon, 18 Oct 2021 13:23:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37F1F6E09A
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 13:23:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="208349275"
-X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="208349275"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 06:23:16 -0700
-X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="482730679"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ACD16E0B6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 13:23:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="215174885"
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="215174885"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 06:23:31 -0700
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="661374069"
 Received: from mhe-mobl1.amr.corp.intel.com (HELO intel.com) ([10.212.124.254])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 06:23:15 -0700
-Date: Mon, 18 Oct 2021 09:23:13 -0400
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 06:23:29 -0700
+Date: Mon, 18 Oct 2021 09:23:26 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <YW11QUUhp/fJzip9@intel.com>
-References: <20211015091650.87270-1-rodrigo.vivi@intel.com>
- <87mtn6u4df.fsf@intel.com>
+	Matthew Brost <matthew.brost@intel.com>
+Message-ID: <YW11TguAGzkl+IHM@intel.com>
+References: <20211015091129.83226-1-rodrigo.vivi@intel.com>
+ <87pms2u4ei.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87mtn6u4df.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't propagate the gen split
- confusion further
+In-Reply-To: <87pms2u4ei.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Clean-up bonding debug message.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,11 +49,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 18, 2021 at 11:25:00AM +0300, Jani Nikula wrote:
+On Mon, Oct 18, 2021 at 11:24:21AM +0300, Jani Nikula wrote:
 > On Fri, 15 Oct 2021, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > There's no such thing as gen13. It is either display 13
-> > or graphics 13. Don't propagate the gen12 confusion
-> > further.
+> > We should stop using the gen name and the "+" to reference
+> > the newer platforms.
+> > And on this case specifically we can simplify the debug
+> > message even further.
 > 
 > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
@@ -62,26 +62,25 @@ thanks, pushed
 
 > 
 > >
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
 > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/i915_reg.h | 2 +-
+> >  drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
 > >  1 file changed, 1 insertion(+), 1 deletion(-)
 > >
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index da9055c3ebf0..1e221fbe37fd 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -8263,7 +8263,7 @@ enum {
-> >  
-> >  /*
-> >   * The below are numbered starting from "S1" on gen11/gen12, but starting
-> > - * with gen13 display, the bspec switches to a 0-based numbering scheme
-> > + * with display 13, the bspec switches to a 0-based numbering scheme
-> >   * (although the addresses stay the same so new S0 = old S1, new S1 = old S2).
-> >   * We'll just use the 0-based numbering here for all platforms since it's the
-> >   * way things will be named by the hardware team going forward, plus it's more
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > index d225d3dd0b40..30759b651180 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > @@ -479,7 +479,7 @@ set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
+> >  	if (GRAPHICS_VER(i915) >= 12 && !IS_TIGERLAKE(i915) &&
+> >  	    !IS_ROCKETLAKE(i915) && !IS_ALDERLAKE_S(i915)) {
+> >  		drm_dbg(&i915->drm,
+> > -			"Bonding on gen12+ aside from TGL, RKL, and ADL_S not supported\n");
+> > +			"Bonding not supported on this platform\n");
+> >  		return -ENODEV;
+> >  	}
 > 
 > -- 
 > Jani Nikula, Intel Open Source Graphics Center
