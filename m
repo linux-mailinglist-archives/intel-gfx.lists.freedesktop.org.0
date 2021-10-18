@@ -2,39 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063904310E1
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 08:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE6BD431139
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 09:13:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD9B6E96B;
-	Mon, 18 Oct 2021 06:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D2D6E973;
+	Mon, 18 Oct 2021 07:13:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 859FF6E96B
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 06:51:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="208286132"
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="208286132"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2021 23:51:46 -0700
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="482603726"
-Received: from unknown (HELO vandita-Z390-AORUS-ULTRA.iind.intel.com)
- ([10.190.238.8])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2021 23:51:44 -0700
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, imre.deak@intel.com, matthew.d.roper@intel.com,
- Vandita Kulkarni <vandita.kulkarni@intel.com>
-Date: Mon, 18 Oct 2021 12:22:07 +0530
-Message-Id: <20211018065207.30587-5-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211018065207.30587-1-vandita.kulkarni@intel.com>
-References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BE91F6E970;
+ Mon, 18 Oct 2021 07:13:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B7CB4AA0ED;
+ Mon, 18 Oct 2021 07:13:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/dsi: Ungate clock before enabling
- the phy
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Oct 2021 07:13:35 -0000
+Message-ID: <163454121575.27086.12046423327167223410@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Enable_MIPI_DSI_video_mode_on_ADLP?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,51 +41,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the PHY enable/disable signalling to propagate
-between Dispaly and PHY, DDI clocks need to be running when
-enabling the PHY.
+== Series Details ==
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Series: Enable MIPI DSI video mode on ADLP
+URL   : https://patchwork.freedesktop.org/series/95928/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 8c166f92f8bd..77cd01ecfa80 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1135,8 +1135,6 @@ static void
- gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 -
- 	/* step 4a: power up all lanes of the DDI used by DSI */
- 	gen11_dsi_power_up_lanes(encoder);
- 
-@@ -1146,6 +1144,8 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
- 	/* step 4c: configure voltage swing and skew */
- 	gen11_dsi_voltage_swing_program_seq(encoder);
- 
-+	gen11_dsi_ungate_clocks(encoder);
-+
- 	/* enable DDI buffer */
- 	gen11_dsi_enable_ddi_buffer(encoder);
- 
-@@ -1161,9 +1161,7 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
- 	/* Step (4h, 4i, 4j, 4k): Configure transcoder */
- 	gen11_dsi_configure_transcoder(encoder, crtc_state);
- 
--	/* Step 4l: Gate DDI clocks */
--	if (DISPLAY_VER(dev_priv) == 11)
--		gen11_dsi_gate_clocks(encoder);
-+	gen11_dsi_gate_clocks(encoder);
- }
- 
- static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
--- 
-2.32.0
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
+
 
