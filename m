@@ -2,41 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 876B143119F
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 09:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8724311AF
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 09:58:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A575E6E980;
-	Mon, 18 Oct 2021 07:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC736E981;
+	Mon, 18 Oct 2021 07:58:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A0226E980
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 07:54:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="228140060"
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="228140060"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 00:54:20 -0700
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="572663135"
-Received: from cscleary-mobl.ger.corp.intel.com (HELO [10.252.13.221])
- ([10.252.13.221])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 00:54:18 -0700
-To: Oak Zeng <oak.zeng@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: srinivasan.s@intel.com, sudeep.dutt@intel.com, cq.tang@intel.com,
- chris@chris-wilson.co.uk
-References: <20211018034256.816113-1-oak.zeng@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <f555cc59-d427-f183-5d32-d4dd89405853@intel.com>
-Date: Mon, 18 Oct 2021 08:54:14 +0100
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 726526E981;
+ Mon, 18 Oct 2021 07:58:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="208986409"
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="208986409"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 00:58:04 -0700
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="443961216"
+Received: from icdeacon-mobl.ger.corp.intel.com (HELO [10.213.254.147])
+ ([10.213.254.147])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 00:58:03 -0700
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: john.c.harrison@intel.com, daniel.vetter@ffwll.ch,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20211015234705.12392-1-umesh.nerlige.ramappa@intel.com>
+ <20211015234705.12392-2-umesh.nerlige.ramappa@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <2a31b713-e8ea-524b-f37c-976791a2ccc4@linux.intel.com>
+Date: Mon, 18 Oct 2021 08:58:01 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211018034256.816113-1-oak.zeng@intel.com>
+In-Reply-To: <20211015234705.12392-2-umesh.nerlige.ramappa@intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Wait request to finish
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Connect engine busyness
+ stats from GuC to pmu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,37 +56,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 18/10/2021 04:42, Oak Zeng wrote:
-> Caller of function igt_gpu_fill_dw assumes when this function
-> returns, the gpu command to fill dword is already finished.
-> Caller usually checks the GPU filling result immediately, see
-> the usage in function __igt_write_huge. If there is no wait,
-> when function igt_gpu_fill_dw returns, the GPU command is not
-> guaranteed to be finished. So wait for request to finish.
 
-AFAIK the existing callers only expect that the request will be 
-scheduled to run at some point, like in the case of __igt_write_huge(), 
-before we read the page contents via the CPU, there is an object_wait(). 
-Also in the shrink_thp test I guess we intentionally don't want to wait 
-directly in the test, since part of what we are testing is that the 
-shrinker ensures the object is idle before unbinding it.
 
+On 16/10/2021 00:47, Umesh Nerlige Ramappa wrote:
+> With GuC handling scheduling, i915 is not aware of the time that a
+> context is scheduled in and out of the engine. Since i915 pmu relies on
+> this info to provide engine busyness to the user, GuC shares this info
+> with i915 for all engines using shared memory. For each engine, this
+> info contains:
 > 
-> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c | 1 +
->   1 file changed, 1 insertion(+)
+> - total busyness: total time that the context was running (total)
+> - id: id of the running context (id)
+> - start timestamp: timestamp when the context started running (start)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> index b35c1219c852..5fa595ed30b1 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> @@ -157,6 +157,7 @@ int igt_gpu_fill_dw(struct intel_context *ce,
->   	if (err)
->   		i915_request_set_error_once(rq, err);
->   	i915_request_add(rq);
-> +	err = i915_request_wait(rq, 0, HZ/5);
->   err_batch:
->   	i915_vma_unpin_and_release(&batch, 0);
->   	return err;
+> At the time (now) of sampling the engine busyness, if the id is valid
+> (!= ~0), and start is non-zero, then the context is considered to be
+> active and the engine busyness is calculated using the below equation
 > 
+> 	engine busyness = total + (now - start)
+> 
+> All times are obtained from the gt clock base. For inactive contexts,
+> engine busyness is just equal to the total.
+> 
+> The start and total values provided by GuC are 32 bits and wrap around
+> in a few minutes. Since perf pmu provides busyness as 64 bit
+> monotonically increasing values, there is a need for this implementation
+> to account for overflows and extend the time to 64 bits before returning
+> busyness to the user. In order to do that, a worker runs periodically at
+> frequency = 1/8th the time it takes for the timestamp to wrap. As an
+> example, that would be once in 27 seconds for a gt clock frequency of
+> 19.2 MHz.
+> 
+> Note:
+> There might be an overaccounting of busyness due to the fact that GuC
+> may be updating the total and start values while kmd is reading them.
+> (i.e kmd may read the updated total and the stale start). In such a
+> case, user may see higher busyness value followed by smaller ones which
+> would eventually catch up to the higher value.
+> 
+> v2: (Tvrtko)
+> - Include details in commit message
+> - Move intel engine busyness function into execlist code
+> - Use union inside engine->stats
+> - Use natural type for ping delay jiffies
+> - Drop active_work condition checks
+> - Use for_each_engine if iterating all engines
+> - Drop seq locking, use spinlock at guc level to update engine stats
+> - Document worker specific details
+> 
+> v3: (Tvrtko/Umesh)
+> - Demarcate guc and execlist stat objects with comments
+> - Document known over-accounting issue in commit
+> - Provide a consistent view of guc state
+> - Add hooks to gt park/unpark for guc busyness
+> - Stop/start worker in gt park/unpark path
+> - Drop inline
+> - Move spinlock and worker inits to guc initialization
+> - Drop helpers that are called only once
+> 
+> v4: (Tvrtko/Matt/Umesh)
+> - Drop addressed opens from commit message
+> - Get runtime pm in ping, remove from the park path
+> - Use cancel_delayed_work_sync in disable_submission path
+> - Update stats during reset prepare
+> - Skip ping if reset in progress
+> - Explicitly name execlists and guc stats objects
+> - Since disable_submission is called from many places, move resetting
+>    stats to intel_guc_submission_reset_prepare
+> 
+> v5: (Tvrtko)
+> - Add a trylock helper that does not sleep and synchronize PMU event
+>    callbacks and worker with gt reset
+> 
+> v6: (CI BAT failures)
+> - DUTs using execlist submission failed to boot since __gt_unpark is
+>    called during i915 load. This ends up calling the guc busyness unpark
+>    hook and results in kiskstarting an uninitialized worker. Let
+>    park/unpark hooks check if guc submission has been initialized.
+> - drop cant_sleep() from trylock hepler since rcu_read_lock takes care
+>    of that.
+> 
+> v7: (CI) Fix igt@i915_selftest@live@gt_engines
+> - For guc mode of submission the engine busyness is derived from gt time
+>    domain. Use gt time elapsed as reference in the selftest.
+> - Increase busyness calculation to 10ms duration to ensure batch runs
+>    longer and falls within the busyness tolerances in selftest.
+
+[snip]
+
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+> index 75569666105d..24358bef6691 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+> @@ -234,6 +234,7 @@ static int live_engine_busy_stats(void *arg)
+>   		struct i915_request *rq;
+>   		ktime_t de, dt;
+>   		ktime_t t[2];
+> +		u32 gt_stamp;
+>   
+>   		if (!intel_engine_supports_stats(engine))
+>   			continue;
+> @@ -251,10 +252,16 @@ static int live_engine_busy_stats(void *arg)
+>   		ENGINE_TRACE(engine, "measuring idle time\n");
+>   		preempt_disable();
+>   		de = intel_engine_get_busy_time(engine, &t[0]);
+> -		udelay(100);
+> +		gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP);
+> +		udelay(10000);
+>   		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
+> +		gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP) - gt_stamp;
+>   		preempt_enable();
+> -		dt = ktime_sub(t[1], t[0]);
+> +
+> +		dt = intel_engine_uses_guc(engine) ?
+> +		     intel_gt_clock_interval_to_ns(engine->gt, gt_stamp) :
+> +		     ktime_sub(t[1], t[0]);
+
+But this then shows the thing might not work for external callers like 
+PMU who have no idea about GUCPMTIMESTAMP and cannot obtain it anyway.
+
+What is the root cause of the failure here, 100us or clock source? Is 
+the granularity of GUCPMTIMESTAMP perhaps simply too coarse for 100us 
+test period? I forget what frequency it runs at.
+
+Regards,
+
+Tvrtko
