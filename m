@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242C2431817
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 13:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB16431818
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 13:50:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 750896E9E9;
-	Mon, 18 Oct 2021 11:50:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5298B6E9EA;
+	Mon, 18 Oct 2021 11:50:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C979F6E9E9
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 11:50:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="289082561"
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="289082561"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2021 04:50:40 -0700
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CB126E9EB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 11:50:45 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10140"; a="228178938"
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="228178938"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 04:50:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="526221172"
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; d="scan'208";a="462299574"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 18 Oct 2021 04:50:37 -0700
+ by orsmga002.jf.intel.com with SMTP; 18 Oct 2021 04:50:41 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 18 Oct 2021 14:50:36 +0300
+ Mon, 18 Oct 2021 14:50:40 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Juston Li <juston.li@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Uma Shankar <uma.shankar@intel.com>, Karthik B S <karthik.b.s@intel.com>
-Date: Mon, 18 Oct 2021 14:50:23 +0300
-Message-Id: <20211018115030.3547-3-ville.syrjala@linux.intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Date: Mon, 18 Oct 2021 14:50:24 +0300
+Message-Id: <20211018115030.3547-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211018115030.3547-1-ville.syrjala@linux.intel.com>
 References: <20211018115030.3547-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/9] drm/i915: Fix async flip with decryption
- and/or DPT
+Subject: [Intel-gfx] [PATCH 3/9] drm/i915: Fix up the sprite namespacing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,124 +52,312 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We're currently forgetting to set the PLANE_SURF_DECRYPT
-flag in the async flip path. So if the hardware were to
-latch that bit despite this being an async flip we'd start
-scanning out garbage. And if it doesn't latch it then I
-guess we'd just end up with a weird register value that
-doesn't actually match the hardware state, which isn't
-great for anyone starting at register dumps.
+Give all sprite exclusive functions/etc. a proper namespace.
 
-Similarly the async flip path also forgets to call
-skl_surf_address() which means the DPT address space to
-GGTT address space downshift is not being applied to
-the offset. Which means we are pointing PLANE_SURF
-at some random location in GGTT instead of the correct
-DPT page.
-
-So let's fix two birds with one stone and extract the
-PLANE_SURF calculation from skl_program_plane() into
-a small helper and use it in the async flip path as well.
-
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Juston Li <juston.li@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Karthik B S <karthik.b.s@intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/skl_universal_plane.c    | 30 ++++++++++++-------
- 1 file changed, 20 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sprite.c | 106 ++++++++++----------
+ 1 file changed, 53 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 7444b88829ea..e2f024449149 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1011,6 +1011,20 @@ static u32 skl_surf_address(const struct intel_plane_state *plane_state,
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 08116f41da26..1daa3360cf02 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -118,7 +118,7 @@ static void i9xx_plane_linear_gamma(u16 gamma[8])
  }
  
-+static u32 skl_plane_surf(const struct intel_plane_state *plane_state,
-+			  int color_plane)
-+{
-+	u32 plane_surf;
-+
-+	plane_surf = intel_plane_ggtt_offset(plane_state) +
-+		skl_surf_address(plane_state, color_plane);
-+
-+	if (plane_state->decrypt)
-+		plane_surf |= PLANE_SURF_DECRYPT;
-+
-+	return plane_surf;
-+}
-+
- static void icl_plane_csc_load_black(struct intel_plane *plane)
+ static void
+-chv_update_csc(const struct intel_plane_state *plane_state)
++chv_sprite_update_csc(const struct intel_plane_state *plane_state)
  {
- 	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-@@ -1045,7 +1059,6 @@ skl_program_plane(struct intel_plane *plane,
- 	enum plane_id plane_id = plane->id;
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+@@ -190,7 +190,7 @@ chv_update_csc(const struct intel_plane_state *plane_state)
+ #define COS_0 1
+ 
+ static void
+-vlv_update_clrc(const struct intel_plane_state *plane_state)
++vlv_sprite_update_clrc(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+@@ -393,7 +393,7 @@ static u32 vlv_sprite_ctl(const struct intel_crtc_state *crtc_state,
+ 	return sprctl;
+ }
+ 
+-static void vlv_update_gamma(const struct intel_plane_state *plane_state)
++static void vlv_sprite_update_gamma(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+@@ -417,9 +417,9 @@ static void vlv_update_gamma(const struct intel_plane_state *plane_state)
+ }
+ 
+ static void
+-vlv_update_plane(struct intel_plane *plane,
+-		 const struct intel_crtc_state *crtc_state,
+-		 const struct intel_plane_state *plane_state)
++vlv_sprite_update(struct intel_plane *plane,
++		  const struct intel_crtc_state *crtc_state,
++		  const struct intel_plane_state *plane_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
  	enum pipe pipe = plane->pipe;
- 	const struct drm_intel_sprite_colorkey *key = &plane_state->ckey;
--	u32 surf_addr = skl_surf_address(plane_state, color_plane);
- 	u32 stride = skl_plane_stride(plane_state, color_plane);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	int aux_plane = skl_main_to_aux_plane(fb, color_plane);
-@@ -1058,7 +1071,7 @@ skl_program_plane(struct intel_plane *plane,
- 	u8 alpha = plane_state->hw.alpha >> 8;
- 	u32 plane_color_ctl = 0, aux_dist = 0;
- 	unsigned long irqflags;
--	u32 keymsk, keymax, plane_surf;
-+	u32 keymsk, keymax;
- 	u32 plane_ctl = plane_state->ctl;
+@@ -455,7 +455,7 @@ vlv_update_plane(struct intel_plane *plane,
+ 	intel_de_write_fw(dev_priv, SPCONSTALPHA(pipe, plane_id), 0);
  
- 	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
-@@ -1084,16 +1097,13 @@ skl_program_plane(struct intel_plane *plane,
- 	}
+ 	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B)
+-		chv_update_csc(plane_state);
++		chv_sprite_update_csc(plane_state);
  
- 	if (aux_plane) {
--		aux_dist = skl_surf_address(plane_state, aux_plane) - surf_addr;
-+		aux_dist = skl_surf_address(plane_state, aux_plane) -
-+			skl_surf_address(plane_state, color_plane);
+ 	if (key->flags) {
+ 		intel_de_write_fw(dev_priv, SPKEYMINVAL(pipe, plane_id),
+@@ -478,15 +478,15 @@ vlv_update_plane(struct intel_plane *plane,
+ 	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id),
+ 			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
  
- 		if (DISPLAY_VER(dev_priv) < 12)
- 			aux_dist |= skl_plane_stride(plane_state, aux_plane);
- 	}
- 
--	plane_surf = intel_plane_ggtt_offset(plane_state) + surf_addr;
--	if (plane_state->decrypt)
--		plane_surf |= PLANE_SURF_DECRYPT;
--
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	/*
-@@ -1157,7 +1167,8 @@ skl_program_plane(struct intel_plane *plane,
- 	 * the control register just before the surface register.
- 	 */
- 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
--	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
-+	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
-+			  skl_plane_surf(plane_state, color_plane));
+-	vlv_update_clrc(plane_state);
+-	vlv_update_gamma(plane_state);
++	vlv_sprite_update_clrc(plane_state);
++	vlv_sprite_update_gamma(plane_state);
  
  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
  }
-@@ -1172,7 +1183,6 @@ skl_plane_async_flip(struct intel_plane *plane,
- 	unsigned long irqflags;
- 	enum plane_id plane_id = plane->id;
+ 
+ static void
+-vlv_disable_plane(struct intel_plane *plane,
+-		  const struct intel_crtc_state *crtc_state)
++vlv_sprite_disable(struct intel_plane *plane,
++		   const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
  	enum pipe pipe = plane->pipe;
--	u32 surf_addr = plane_state->view.color_plane[0].offset;
- 	u32 plane_ctl = plane_state->ctl;
+@@ -502,8 +502,8 @@ vlv_disable_plane(struct intel_plane *plane,
+ }
  
- 	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
-@@ -1184,7 +1194,7 @@ skl_plane_async_flip(struct intel_plane *plane,
+ static bool
+-vlv_plane_get_hw_state(struct intel_plane *plane,
+-		       enum pipe *pipe)
++vlv_sprite_get_hw_state(struct intel_plane *plane,
++			enum pipe *pipe)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum intel_display_power_domain power_domain;
+@@ -805,7 +805,7 @@ static void ivb_sprite_linear_gamma(const struct intel_plane_state *plane_state,
+ 	i++;
+ }
  
- 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
- 	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
--			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-+			  skl_plane_surf(plane_state, 0));
+-static void ivb_update_gamma(const struct intel_plane_state *plane_state)
++static void ivb_sprite_update_gamma(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+@@ -835,9 +835,9 @@ static void ivb_update_gamma(const struct intel_plane_state *plane_state)
+ }
+ 
+ static void
+-ivb_update_plane(struct intel_plane *plane,
+-		 const struct intel_crtc_state *crtc_state,
+-		 const struct intel_plane_state *plane_state)
++ivb_sprite_update(struct intel_plane *plane,
++		  const struct intel_crtc_state *crtc_state,
++		  const struct intel_plane_state *plane_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum pipe pipe = plane->pipe;
+@@ -902,14 +902,14 @@ ivb_update_plane(struct intel_plane *plane,
+ 	intel_de_write_fw(dev_priv, SPRSURF(pipe),
+ 			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
+ 
+-	ivb_update_gamma(plane_state);
++	ivb_sprite_update_gamma(plane_state);
  
  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
  }
+ 
+ static void
+-ivb_disable_plane(struct intel_plane *plane,
+-		  const struct intel_crtc_state *crtc_state)
++ivb_sprite_disable(struct intel_plane *plane,
++		   const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum pipe pipe = plane->pipe;
+@@ -927,8 +927,8 @@ ivb_disable_plane(struct intel_plane *plane,
+ }
+ 
+ static bool
+-ivb_plane_get_hw_state(struct intel_plane *plane,
+-		       enum pipe *pipe)
++ivb_sprite_get_hw_state(struct intel_plane *plane,
++			enum pipe *pipe)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum intel_display_power_domain power_domain;
+@@ -1106,7 +1106,7 @@ static u32 g4x_sprite_ctl(const struct intel_crtc_state *crtc_state,
+ 	return dvscntr;
+ }
+ 
+-static void g4x_update_gamma(const struct intel_plane_state *plane_state)
++static void g4x_sprite_update_gamma(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+@@ -1136,7 +1136,7 @@ static void ilk_sprite_linear_gamma(u16 gamma[17])
+ 		gamma[i] = (i << 10) / 16;
+ }
+ 
+-static void ilk_update_gamma(const struct intel_plane_state *plane_state)
++static void ilk_sprite_update_gamma(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+@@ -1163,9 +1163,9 @@ static void ilk_update_gamma(const struct intel_plane_state *plane_state)
+ }
+ 
+ static void
+-g4x_update_plane(struct intel_plane *plane,
+-		 const struct intel_crtc_state *crtc_state,
+-		 const struct intel_plane_state *plane_state)
++g4x_sprite_update(struct intel_plane *plane,
++		  const struct intel_crtc_state *crtc_state,
++		  const struct intel_plane_state *plane_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum pipe pipe = plane->pipe;
+@@ -1224,16 +1224,16 @@ g4x_update_plane(struct intel_plane *plane,
+ 			  intel_plane_ggtt_offset(plane_state) + dvssurf_offset);
+ 
+ 	if (IS_G4X(dev_priv))
+-		g4x_update_gamma(plane_state);
++		g4x_sprite_update_gamma(plane_state);
+ 	else
+-		ilk_update_gamma(plane_state);
++		ilk_sprite_update_gamma(plane_state);
+ 
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ }
+ 
+ static void
+-g4x_disable_plane(struct intel_plane *plane,
+-		  const struct intel_crtc_state *crtc_state)
++g4x_sprite_disable(struct intel_plane *plane,
++		   const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum pipe pipe = plane->pipe;
+@@ -1250,8 +1250,8 @@ g4x_disable_plane(struct intel_plane *plane,
+ }
+ 
+ static bool
+-g4x_plane_get_hw_state(struct intel_plane *plane,
+-		       enum pipe *pipe)
++g4x_sprite_get_hw_state(struct intel_plane *plane,
++			enum pipe *pipe)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum intel_display_power_domain power_domain;
+@@ -1567,7 +1567,7 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+ 	return ret;
+ }
+ 
+-static const u32 g4x_plane_formats[] = {
++static const u32 g4x_sprite_formats[] = {
+ 	DRM_FORMAT_XRGB8888,
+ 	DRM_FORMAT_YUYV,
+ 	DRM_FORMAT_YVYU,
+@@ -1581,7 +1581,7 @@ static const u64 i9xx_plane_format_modifiers[] = {
+ 	DRM_FORMAT_MOD_INVALID
+ };
+ 
+-static const u32 snb_plane_formats[] = {
++static const u32 snb_sprite_formats[] = {
+ 	DRM_FORMAT_XRGB8888,
+ 	DRM_FORMAT_XBGR8888,
+ 	DRM_FORMAT_XRGB2101010,
+@@ -1594,7 +1594,7 @@ static const u32 snb_plane_formats[] = {
+ 	DRM_FORMAT_VYUY,
+ };
+ 
+-static const u32 vlv_plane_formats[] = {
++static const u32 vlv_sprite_formats[] = {
+ 	DRM_FORMAT_C8,
+ 	DRM_FORMAT_RGB565,
+ 	DRM_FORMAT_XRGB8888,
+@@ -1762,9 +1762,9 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+ 		return plane;
+ 
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+-		plane->update_plane = vlv_update_plane;
+-		plane->disable_plane = vlv_disable_plane;
+-		plane->get_hw_state = vlv_plane_get_hw_state;
++		plane->update_plane = vlv_sprite_update;
++		plane->disable_plane = vlv_sprite_disable;
++		plane->get_hw_state = vlv_sprite_get_hw_state;
+ 		plane->check_plane = vlv_sprite_check;
+ 		plane->max_stride = i965_plane_max_stride;
+ 		plane->min_cdclk = vlv_plane_min_cdclk;
+@@ -1773,16 +1773,16 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+ 			formats = chv_pipe_b_sprite_formats;
+ 			num_formats = ARRAY_SIZE(chv_pipe_b_sprite_formats);
+ 		} else {
+-			formats = vlv_plane_formats;
+-			num_formats = ARRAY_SIZE(vlv_plane_formats);
++			formats = vlv_sprite_formats;
++			num_formats = ARRAY_SIZE(vlv_sprite_formats);
+ 		}
+ 		modifiers = i9xx_plane_format_modifiers;
+ 
+ 		plane_funcs = &vlv_sprite_funcs;
+ 	} else if (DISPLAY_VER(dev_priv) >= 7) {
+-		plane->update_plane = ivb_update_plane;
+-		plane->disable_plane = ivb_disable_plane;
+-		plane->get_hw_state = ivb_plane_get_hw_state;
++		plane->update_plane = ivb_sprite_update;
++		plane->disable_plane = ivb_sprite_disable;
++		plane->get_hw_state = ivb_sprite_get_hw_state;
+ 		plane->check_plane = g4x_sprite_check;
+ 
+ 		if (IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv)) {
+@@ -1793,28 +1793,28 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+ 			plane->min_cdclk = ivb_sprite_min_cdclk;
+ 		}
+ 
+-		formats = snb_plane_formats;
+-		num_formats = ARRAY_SIZE(snb_plane_formats);
++		formats = snb_sprite_formats;
++		num_formats = ARRAY_SIZE(snb_sprite_formats);
+ 		modifiers = i9xx_plane_format_modifiers;
+ 
+ 		plane_funcs = &snb_sprite_funcs;
+ 	} else {
+-		plane->update_plane = g4x_update_plane;
+-		plane->disable_plane = g4x_disable_plane;
+-		plane->get_hw_state = g4x_plane_get_hw_state;
++		plane->update_plane = g4x_sprite_update;
++		plane->disable_plane = g4x_sprite_disable;
++		plane->get_hw_state = g4x_sprite_get_hw_state;
+ 		plane->check_plane = g4x_sprite_check;
+ 		plane->max_stride = g4x_sprite_max_stride;
+ 		plane->min_cdclk = g4x_sprite_min_cdclk;
+ 
+ 		modifiers = i9xx_plane_format_modifiers;
+ 		if (IS_SANDYBRIDGE(dev_priv)) {
+-			formats = snb_plane_formats;
+-			num_formats = ARRAY_SIZE(snb_plane_formats);
++			formats = snb_sprite_formats;
++			num_formats = ARRAY_SIZE(snb_sprite_formats);
+ 
+ 			plane_funcs = &snb_sprite_funcs;
+ 		} else {
+-			formats = g4x_plane_formats;
+-			num_formats = ARRAY_SIZE(g4x_plane_formats);
++			formats = g4x_sprite_formats;
++			num_formats = ARRAY_SIZE(g4x_sprite_formats);
+ 
+ 			plane_funcs = &g4x_sprite_funcs;
+ 		}
 -- 
 2.32.0
 
