@@ -1,71 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43584327E9
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 21:46:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BEDC432883
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 22:35:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F35496EA65;
-	Mon, 18 Oct 2021 19:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C57CD6E0CC;
+	Mon, 18 Oct 2021 20:35:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9C4B6EA65
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 19:46:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1634586406;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=jQL0jVbOP+6WbzULS81lLCKVsttMv8hubfd57ew04Jg=;
- b=dUI6UptMO342UJy/LjePH1OkzktfimIeaaw0C69TL4F59EPYKVbTuhJv5rcXbeUNXHLdKq
- 3rhagBgoyfj7uwoPyjVsylTqE2rmiODdy/uC0rNKwGjLky9Rk7nk3SanKpLD3yLnUObk2l
- hYWr9YSeQD1aEqsnKu3K7VSrB2dQgkw=
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com
- [209.85.161.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-146-yZQPt66XPLiIvnMW_fWW-A-1; Mon, 18 Oct 2021 15:46:45 -0400
-X-MC-Unique: yZQPt66XPLiIvnMW_fWW-A-1
-Received: by mail-oo1-f70.google.com with SMTP id
- k1-20020a4a8501000000b0029ac7b9dc82so468411ooh.17
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 12:46:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=jQL0jVbOP+6WbzULS81lLCKVsttMv8hubfd57ew04Jg=;
- b=dq4jv9autBlvHchiK13zLaIZYTXasDMGjeZehIBH6IzaCWNEHCP5wPtvYaPwzVIaOb
- r1bz0JQSu8YkDB5eTLB0p3peBIN6WaJwxuj9vgU7+okxsvNAczNCH51+mMKDfHXx2E7T
- gYy+EUyMRlG/PPCS2Udrc/d9OxLbCE2UpXJeBIkolzDDYbSx5uktbgI29QwSGr/g1eDY
- AA3efTPrBT+LCfgHtxt4Sn7sHUb5IGh3QDBCzxH8IAzvI06jjUx3QtGzyOo6Fx3TPHPF
- i563dtzYRTz24Nsk//yPwRsABGtekQRXnGsxZDG3Qy8tzkEAq12SNIxfeTk91AR6lkyv
- u53A==
-X-Gm-Message-State: AOAM530NeGjH2rhTpqdMj7FPaiKyERe17XisSynQ23lLozsyrHXJDRPK
- +L3n6/ojIwN3mZQLmDuTbhWe+uSIM+6tT3hgZcE22oStpIs1EySUKvOgmQF+gfNQgsm7exqfAkh
- K8UxlrGjIhnSDDmq/T+8aJYzidDRbW7SOJ52nbnkk66Yq
-X-Received: by 2002:a4a:3bc8:: with SMTP id s191mr1384132oos.88.1634586404384; 
- Mon, 18 Oct 2021 12:46:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJztqUB54jE4jDIlohb0K7pCi4f5Tx9EBXBroemQDwm9odt3V9tvmtYK0mhWJl4t0eVl2EufufczLzpy+uCpkSA=
-X-Received: by 2002:a4a:3bc8:: with SMTP id s191mr1384123oos.88.1634586404180; 
- Mon, 18 Oct 2021 12:46:44 -0700 (PDT)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9010D6E07D;
+ Mon, 18 Oct 2021 20:35:16 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="314556992"
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="314556992"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 13:35:16 -0700
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="443600452"
+Received: from unerlige-desk.amr.corp.intel.com (HELO
+ unerlige-ril-10.165.21.208) ([10.165.21.208])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 13:35:15 -0700
+Date: Mon, 18 Oct 2021 13:35:15 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ john.c.harrison@intel.com, daniel.vetter@ffwll.ch,
+ Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20211018203515.GB10100@unerlige-ril-10.165.21.208>
+References: <20211015234705.12392-1-umesh.nerlige.ramappa@intel.com>
+ <20211015234705.12392-2-umesh.nerlige.ramappa@intel.com>
+ <2a31b713-e8ea-524b-f37c-976791a2ccc4@linux.intel.com>
+ <20211018183544.GA10100@unerlige-ril-10.165.21.208>
 MIME-Version: 1.0
-References: <20211015071625.593-5-ville.syrjala@linux.intel.com>
- <20211018153525.21597-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211018153525.21597-1-ville.syrjala@linux.intel.com>
-From: David Airlie <airlied@redhat.com>
-Date: Tue, 19 Oct 2021 05:46:33 +1000
-Message-ID: <CAMwc25quLa7eXH2XOSsnRzDWCuxQjEeXBJ6yLyOUnTdBeYXzsA@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: "Development, Intel" <intel-gfx@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=airlied@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 4/9] drm/i915: Move LPT PCH readout code
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20211018183544.GA10100@unerlige-ril-10.165.21.208>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Connect engine busyness
+ stats from GuC to pmu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,28 +55,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 19, 2021 at 1:35 AM Ville Syrjala
-<ville.syrjala@linux.intel.com> wrote:
+On Mon, Oct 18, 2021 at 11:35:44AM -0700, Umesh Nerlige Ramappa wrote:
+>On Mon, Oct 18, 2021 at 08:58:01AM +0100, Tvrtko Ursulin wrote:
+>>
+>>
+>>On 16/10/2021 00:47, Umesh Nerlige Ramappa wrote:
+>>>With GuC handling scheduling, i915 is not aware of the time that a
+>>>context is scheduled in and out of the engine. Since i915 pmu relies on
+>>>this info to provide engine busyness to the user, GuC shares this info
+>>>with i915 for all engines using shared memory. For each engine, this
+>>>info contains:
+>>>
+>>>- total busyness: total time that the context was running (total)
+>>>- id: id of the running context (id)
+>>>- start timestamp: timestamp when the context started running (start)
+>>>
+>>>At the time (now) of sampling the engine busyness, if the id is valid
+>>>(!= ~0), and start is non-zero, then the context is considered to be
+>>>active and the engine busyness is calculated using the below equation
+>>>
+>>>	engine busyness = total + (now - start)
+>>>
+>>>All times are obtained from the gt clock base. For inactive contexts,
+>>>engine busyness is just equal to the total.
+>>>
+>>>The start and total values provided by GuC are 32 bits and wrap around
+>>>in a few minutes. Since perf pmu provides busyness as 64 bit
+>>>monotonically increasing values, there is a need for this implementation
+>>>to account for overflows and extend the time to 64 bits before returning
+>>>busyness to the user. In order to do that, a worker runs periodically at
+>>>frequency = 1/8th the time it takes for the timestamp to wrap. As an
+>>>example, that would be once in 27 seconds for a gt clock frequency of
+>>>19.2 MHz.
+>>>
+>>>Note:
+>>>There might be an overaccounting of busyness due to the fact that GuC
+>>>may be updating the total and start values while kmd is reading them.
+>>>(i.e kmd may read the updated total and the stale start). In such a
+>>>case, user may see higher busyness value followed by smaller ones which
+>>>would eventually catch up to the higher value.
+>>>
+>>>v2: (Tvrtko)
+>>>- Include details in commit message
+>>>- Move intel engine busyness function into execlist code
+>>>- Use union inside engine->stats
+>>>- Use natural type for ping delay jiffies
+>>>- Drop active_work condition checks
+>>>- Use for_each_engine if iterating all engines
+>>>- Drop seq locking, use spinlock at guc level to update engine stats
+>>>- Document worker specific details
+>>>
+>>>v3: (Tvrtko/Umesh)
+>>>- Demarcate guc and execlist stat objects with comments
+>>>- Document known over-accounting issue in commit
+>>>- Provide a consistent view of guc state
+>>>- Add hooks to gt park/unpark for guc busyness
+>>>- Stop/start worker in gt park/unpark path
+>>>- Drop inline
+>>>- Move spinlock and worker inits to guc initialization
+>>>- Drop helpers that are called only once
+>>>
+>>>v4: (Tvrtko/Matt/Umesh)
+>>>- Drop addressed opens from commit message
+>>>- Get runtime pm in ping, remove from the park path
+>>>- Use cancel_delayed_work_sync in disable_submission path
+>>>- Update stats during reset prepare
+>>>- Skip ping if reset in progress
+>>>- Explicitly name execlists and guc stats objects
+>>>- Since disable_submission is called from many places, move resetting
+>>>  stats to intel_guc_submission_reset_prepare
+>>>
+>>>v5: (Tvrtko)
+>>>- Add a trylock helper that does not sleep and synchronize PMU event
+>>>  callbacks and worker with gt reset
+>>>
+>>>v6: (CI BAT failures)
+>>>- DUTs using execlist submission failed to boot since __gt_unpark is
+>>>  called during i915 load. This ends up calling the guc busyness unpark
+>>>  hook and results in kiskstarting an uninitialized worker. Let
+>>>  park/unpark hooks check if guc submission has been initialized.
+>>>- drop cant_sleep() from trylock hepler since rcu_read_lock takes care
+>>>  of that.
+>>>
+>>>v7: (CI) Fix igt@i915_selftest@live@gt_engines
+>>>- For guc mode of submission the engine busyness is derived from gt time
+>>>  domain. Use gt time elapsed as reference in the selftest.
+>>>- Increase busyness calculation to 10ms duration to ensure batch runs
+>>>  longer and falls within the busyness tolerances in selftest.
+>>
+>>[snip]
+>>
+>>>diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>>>index 75569666105d..24358bef6691 100644
+>>>--- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>>>+++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>>>@@ -234,6 +234,7 @@ static int live_engine_busy_stats(void *arg)
+>>> 		struct i915_request *rq;
+>>> 		ktime_t de, dt;
+>>> 		ktime_t t[2];
+>>>+		u32 gt_stamp;
+>>> 		if (!intel_engine_supports_stats(engine))
+>>> 			continue;
+>>>@@ -251,10 +252,16 @@ static int live_engine_busy_stats(void *arg)
+>>> 		ENGINE_TRACE(engine, "measuring idle time\n");
+>>> 		preempt_disable();
+>>> 		de = intel_engine_get_busy_time(engine, &t[0]);
+>>>-		udelay(100);
+>>>+		gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP);
+>>>+		udelay(10000);
+>>> 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
+>>>+		gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP) - gt_stamp;
+>>> 		preempt_enable();
+>>>-		dt = ktime_sub(t[1], t[0]);
+>>>+
+>>>+		dt = intel_engine_uses_guc(engine) ?
+>>>+		     intel_gt_clock_interval_to_ns(engine->gt, gt_stamp) :
+>>>+		     ktime_sub(t[1], t[0]);
+>>
+>>But this then shows the thing might not work for external callers 
+>>like PMU who have no idea about GUCPMTIMESTAMP and cannot obtain it 
+>>anyway.
+>>
+>>What is the root cause of the failure here, 100us or clock source? 
+>>Is the granularity of GUCPMTIMESTAMP perhaps simply too coarse for 
+>>100us test period? I forget what frequency it runs at.
 >
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>guc timestamp is ticking at 19.2 MHz in adlp/rkl (where I ran this).
 >
-> Nuke the hsw_get_ddi_port_state() eyesore by putting the
-> readout code into intel_pch_display.c, and calling it directly
-> from hsw_crt_get_config().
+>1)
+>With 100us, often times I see that the batch has not yet started, so I 
+>get busy time in the range 0 - 60 %. I increased the time such that 
+>the batch runs long enough to make the scheduling time < 5%.
 >
-> Note that the nuked TRANS_DDI_FUNC_CTL readout from
-> hsw_get_ddi_port_state() is now etirely redundant since we
-> get called from the encoder->get_config() so we already know
-> we're dealing with the correct DDI port. Previously the
-> code was called from a place where that wasn't known so
-> it had to checked manually.
->
-> v2: Clarify the TRANS_DDI_FUNC_CTL change (Dave)
->     Nuke the now unused *TRANS_DDI_FUNC_CTL_VAL_TO_PORT() (Dave)
->
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>2)
+>I did a 100 runs on rkl/adlp. No failures on rkl.
 
-Reviewed-by: Dave Airlie <airlied@redhat.com>
+Sorry, my bad, RKL failed with 91% busyness always (checked it again 
+now). I think the first time I ran this, GuC was not enabled by default.
 
+Regards,
+Umesh
+
+> On adlp, I saw one in 25 runs show 93%/94% busyness for rcs0 and fail 
+>(expected is 95%).  For that I tried using the guc timestamp thinking 
+>it would provide more accuracy. It did in my testing, but CI still 
+>failed for rkl-guc (110% busyness!!), so now I just think we need to 
+>tweak the expected busyness for guc.
+>
+>Is 1) acceptable?
+>
+>For 2) I am thinking of just changing the expected busyness to 90% 
+>plus for guc mode OR should we just let it fail occassionally? 
+>Thoughts?
+>
+>Thanks,
+>Umesh
+>
+>>
+>>Regards,
+>>
+>>Tvrtko
