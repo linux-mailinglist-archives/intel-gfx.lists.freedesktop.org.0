@@ -1,35 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A07A943265F
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 20:31:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA66432682
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Oct 2021 20:35:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 370556EA64;
-	Mon, 18 Oct 2021 18:31:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 025B46E0EF;
+	Mon, 18 Oct 2021 18:35:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DB2BC6E0EF;
- Mon, 18 Oct 2021 18:31:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D5363AA0ED;
- Mon, 18 Oct 2021 18:31:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6118573927185172470=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A73C6E0E8;
+ Mon, 18 Oct 2021 18:35:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="291807596"
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="291807596"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 11:35:49 -0700
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; d="scan'208";a="573189490"
+Received: from unerlige-desk.amr.corp.intel.com (HELO
+ unerlige-ril-10.165.21.208) ([10.165.21.208])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2021 11:35:49 -0700
+Date: Mon, 18 Oct 2021 11:35:44 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ john.c.harrison@intel.com, daniel.vetter@ffwll.ch,
+ Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20211018183544.GA10100@unerlige-ril-10.165.21.208>
+References: <20211015234705.12392-1-umesh.nerlige.ramappa@intel.com>
+ <20211015234705.12392-2-umesh.nerlige.ramappa@intel.com>
+ <2a31b713-e8ea-524b-f37c-976791a2ccc4@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Oct 2021 18:31:22 -0000
-Message-ID: <163458188285.27086.13546776604988836279@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211018094154.1407705-1-imre.deak@intel.com>
-In-Reply-To: <20211018094154.1407705-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dp=3A_Fix_link_parameter_use_in_lack_of_a_valid_DPCD_=28r?=
- =?utf-8?q?ev2=29?=
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <2a31b713-e8ea-524b-f37c-976791a2ccc4@linux.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Connect engine busyness
+ stats from GuC to pmu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,175 +51,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6118573927185172470==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Oct 18, 2021 at 08:58:01AM +0100, Tvrtko Ursulin wrote:
+>
+>
+>On 16/10/2021 00:47, Umesh Nerlige Ramappa wrote:
+>>With GuC handling scheduling, i915 is not aware of the time that a
+>>context is scheduled in and out of the engine. Since i915 pmu relies on
+>>this info to provide engine busyness to the user, GuC shares this info
+>>with i915 for all engines using shared memory. For each engine, this
+>>info contains:
+>>
+>>- total busyness: total time that the context was running (total)
+>>- id: id of the running context (id)
+>>- start timestamp: timestamp when the context started running (start)
+>>
+>>At the time (now) of sampling the engine busyness, if the id is valid
+>>(!= ~0), and start is non-zero, then the context is considered to be
+>>active and the engine busyness is calculated using the below equation
+>>
+>>	engine busyness = total + (now - start)
+>>
+>>All times are obtained from the gt clock base. For inactive contexts,
+>>engine busyness is just equal to the total.
+>>
+>>The start and total values provided by GuC are 32 bits and wrap around
+>>in a few minutes. Since perf pmu provides busyness as 64 bit
+>>monotonically increasing values, there is a need for this implementation
+>>to account for overflows and extend the time to 64 bits before returning
+>>busyness to the user. In order to do that, a worker runs periodically at
+>>frequency = 1/8th the time it takes for the timestamp to wrap. As an
+>>example, that would be once in 27 seconds for a gt clock frequency of
+>>19.2 MHz.
+>>
+>>Note:
+>>There might be an overaccounting of busyness due to the fact that GuC
+>>may be updating the total and start values while kmd is reading them.
+>>(i.e kmd may read the updated total and the stale start). In such a
+>>case, user may see higher busyness value followed by smaller ones which
+>>would eventually catch up to the higher value.
+>>
+>>v2: (Tvrtko)
+>>- Include details in commit message
+>>- Move intel engine busyness function into execlist code
+>>- Use union inside engine->stats
+>>- Use natural type for ping delay jiffies
+>>- Drop active_work condition checks
+>>- Use for_each_engine if iterating all engines
+>>- Drop seq locking, use spinlock at guc level to update engine stats
+>>- Document worker specific details
+>>
+>>v3: (Tvrtko/Umesh)
+>>- Demarcate guc and execlist stat objects with comments
+>>- Document known over-accounting issue in commit
+>>- Provide a consistent view of guc state
+>>- Add hooks to gt park/unpark for guc busyness
+>>- Stop/start worker in gt park/unpark path
+>>- Drop inline
+>>- Move spinlock and worker inits to guc initialization
+>>- Drop helpers that are called only once
+>>
+>>v4: (Tvrtko/Matt/Umesh)
+>>- Drop addressed opens from commit message
+>>- Get runtime pm in ping, remove from the park path
+>>- Use cancel_delayed_work_sync in disable_submission path
+>>- Update stats during reset prepare
+>>- Skip ping if reset in progress
+>>- Explicitly name execlists and guc stats objects
+>>- Since disable_submission is called from many places, move resetting
+>>   stats to intel_guc_submission_reset_prepare
+>>
+>>v5: (Tvrtko)
+>>- Add a trylock helper that does not sleep and synchronize PMU event
+>>   callbacks and worker with gt reset
+>>
+>>v6: (CI BAT failures)
+>>- DUTs using execlist submission failed to boot since __gt_unpark is
+>>   called during i915 load. This ends up calling the guc busyness unpark
+>>   hook and results in kiskstarting an uninitialized worker. Let
+>>   park/unpark hooks check if guc submission has been initialized.
+>>- drop cant_sleep() from trylock hepler since rcu_read_lock takes care
+>>   of that.
+>>
+>>v7: (CI) Fix igt@i915_selftest@live@gt_engines
+>>- For guc mode of submission the engine busyness is derived from gt time
+>>   domain. Use gt time elapsed as reference in the selftest.
+>>- Increase busyness calculation to 10ms duration to ensure batch runs
+>>   longer and falls within the busyness tolerances in selftest.
+>
+>[snip]
+>
+>>diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>>index 75569666105d..24358bef6691 100644
+>>--- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>>+++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>>@@ -234,6 +234,7 @@ static int live_engine_busy_stats(void *arg)
+>>  		struct i915_request *rq;
+>>  		ktime_t de, dt;
+>>  		ktime_t t[2];
+>>+		u32 gt_stamp;
+>>  		if (!intel_engine_supports_stats(engine))
+>>  			continue;
+>>@@ -251,10 +252,16 @@ static int live_engine_busy_stats(void *arg)
+>>  		ENGINE_TRACE(engine, "measuring idle time\n");
+>>  		preempt_disable();
+>>  		de = intel_engine_get_busy_time(engine, &t[0]);
+>>-		udelay(100);
+>>+		gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP);
+>>+		udelay(10000);
+>>  		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
+>>+		gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP) - gt_stamp;
+>>  		preempt_enable();
+>>-		dt = ktime_sub(t[1], t[0]);
+>>+
+>>+		dt = intel_engine_uses_guc(engine) ?
+>>+		     intel_gt_clock_interval_to_ns(engine->gt, gt_stamp) :
+>>+		     ktime_sub(t[1], t[0]);
+>
+>But this then shows the thing might not work for external callers like 
+>PMU who have no idea about GUCPMTIMESTAMP and cannot obtain it anyway.
+>
+>What is the root cause of the failure here, 100us or clock source? Is 
+>the granularity of GUCPMTIMESTAMP perhaps simply too coarse for 100us 
+>test period? I forget what frequency it runs at.
 
-== Series Details ==
+guc timestamp is ticking at 19.2 MHz in adlp/rkl (where I ran this).
 
-Series: drm/i915/dp: Fix link parameter use in lack of a valid DPCD (rev2)
-URL   : https://patchwork.freedesktop.org/series/95948/
-State : success
+1)
+With 100us, often times I see that the batch has not yet started, so I 
+get busy time in the range 0 - 60 %. I increased the time such that the 
+batch runs long enough to make the scheduling time < 5%.
 
-== Summary ==
+2)
+I did a 100 runs on rkl/adlp. No failures on rkl. On adlp, I saw one in 
+25 runs show 93%/94% busyness for rcs0 and fail (expected is 95%). For 
+that I tried using the guc timestamp thinking it would provide more 
+accuracy. It did in my testing, but CI still failed for rkl-guc (110% 
+busyness!!), so now I just think we need to tweak the expected busyness 
+for guc.
 
-CI Bug Log - changes from CI_DRM_10753 -> Patchwork_21374
-====================================================
+Is 1) acceptable?
 
-Summary
--------
+For 2) I am thinking of just changing the expected busyness to 90% plus 
+for guc mode OR should we just let it fail occassionally? Thoughts?
 
-  **SUCCESS**
+Thanks,
+Umesh
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21374 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][4] ([i915#3921]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-
-
-Participating hosts (39 -> 37)
-------------------------------
-
-  Missing    (2): fi-bsw-cyan bat-dg1-6 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10753 -> Patchwork_21374
-
-  CI-20190529: 20190529
-  CI_DRM_10753: 57c1bcf63565db8d65783364c632a04a44bbd616 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21374: d94f0647dd7812e0f536f8199860568c6a0d2cf9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d94f0647dd78 drm/i915/dp: Sanitize link common rate array lookups
-f2bd5e3e941b drm/i915/dp: Sanitize sink rate DPCD register values
-66b542816538 drm/i915/dp: Ensure sink/link max lane count values are always valid
-ef437e0c551b drm/i915/dp: Ensure max link params are always valid
-4de2ca096081 drm/i915/dp: Ensure sink rate values are always valid
-8f1a6421dfe5 drm/i915/dp: Skip the HW readout of DPCD on disabled encoders
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/index.html
-
---===============6118573927185172470==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix link parameter use in lack of a valid DPCD (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95948/">https://patchwork.freedesktop.org/series/95948/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10753 -&gt; Patchwork_21374</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21374 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10753/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21374/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Missing    (2): fi-bsw-cyan bat-dg1-6 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10753 -&gt; Patchwork_21374</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10753: 57c1bcf63565db8d65783364c632a04a44bbd616 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21374: d94f0647dd7812e0f536f8199860568c6a0d2cf9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d94f0647dd78 drm/i915/dp: Sanitize link common rate array lookups<br />
-f2bd5e3e941b drm/i915/dp: Sanitize sink rate DPCD register values<br />
-66b542816538 drm/i915/dp: Ensure sink/link max lane count values are always valid<br />
-ef437e0c551b drm/i915/dp: Ensure max link params are always valid<br />
-4de2ca096081 drm/i915/dp: Ensure sink rate values are always valid<br />
-8f1a6421dfe5 drm/i915/dp: Skip the HW readout of DPCD on disabled encoders</p>
-
-</body>
-</html>
-
---===============6118573927185172470==--
+>
+>Regards,
+>
+>Tvrtko
