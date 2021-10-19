@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43C94334F5
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:45:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2300D4334F8
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:46:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 907336EB8B;
-	Tue, 19 Oct 2021 11:45:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF4C6EB8D;
+	Tue, 19 Oct 2021 11:46:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB9166EB8B
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:45:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="289336560"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="289336560"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 04:45:08 -0700
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="483187650"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC1E46EB8D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:46:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="225947563"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="225947563"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 04:46:22 -0700
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="443847498"
 Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.251.211.239])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 04:45:06 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 04:46:19 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: "Kulkarni\, Vandita" <vandita.kulkarni@intel.com>,
  "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Cc: "Deak\, Imre" <imre.deak@intel.com>, "Roper\,
  Matthew D" <matthew.d.roper@intel.com>
-In-Reply-To: <ecae5fbc44ac4fe0a58e69258143bb50@intel.com>
+In-Reply-To: <a9ed33b941ed4a2cb8c8375c0ce81281@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
- <20211018065207.30587-3-vandita.kulkarni@intel.com>
- <8735oxs4o7.fsf@intel.com> <ecae5fbc44ac4fe0a58e69258143bb50@intel.com>
-Date: Tue, 19 Oct 2021 14:45:03 +0300
-Message-ID: <87h7ddqlvk.fsf@intel.com>
+ <20211018065207.30587-5-vandita.kulkarni@intel.com>
+ <87y26pqpw9.fsf@intel.com> <a9ed33b941ed4a2cb8c8375c0ce81281@intel.com>
+Date: Tue, 19 Oct 2021 14:46:16 +0300
+Message-ID: <87ee8hqltj.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder
- support
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/dsi: Ungate clock before
+ enabling the phy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,162 +56,85 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 19 Oct 2021, "Kulkarni, Vandita" <vandita.kulkarni@intel.com> wrote:
 >> -----Original Message-----
 >> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Tuesday, October 19, 2021 3:44 PM
+>> Sent: Tuesday, October 19, 2021 3:48 PM
 >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
 >> gfx@lists.freedesktop.org
 >> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
 >> <matthew.d.roper@intel.com>; Kulkarni, Vandita
 >> <vandita.kulkarni@intel.com>
->> Subject: Re: [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder support
+>> Subject: Re: [PATCH 4/4] drm/i915/dsi: Ungate clock before enabling the phy
 >> 
 >> On Mon, 18 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
->> > Update ADL_P device info to support DSI0, DSI1
+>> > For the PHY enable/disable signalling to propagate between Dispaly and
+>> > PHY, DDI clocks need to be running when enabling the PHY.
 >> >
+>> 
+>> A bspec reference would be useful:
+>> 
+>> Bspec: NNN
+>> 
 >> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 >> > ---
->> >  drivers/gpu/drm/i915/i915_pci.c | 31 ++++++++++++++++++++++++++++-
->> --
->> >  1 file changed, 28 insertions(+), 3 deletions(-)
+>> >  drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
+>> >  1 file changed, 3 insertions(+), 5 deletions(-)
 >> >
->> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
->> > b/drivers/gpu/drm/i915/i915_pci.c index 169837de395d..a2dd5a38fdf5
->> > 100644
->> > --- a/drivers/gpu/drm/i915/i915_pci.c
->> > +++ b/drivers/gpu/drm/i915/i915_pci.c
->> > @@ -932,8 +932,6 @@ static const struct intel_device_info adl_s_info =
->> > {  #define XE_LPD_FEATURES \
->> >  	.abox_mask = GENMASK(1, 0),
->> 	\
->> >  	.color = { .degamma_lut_size = 0, .gamma_lut_size = 0 },
->> 	\
->> > -	.cpu_transcoder_mask = BIT(TRANSCODER_A) |
->> BIT(TRANSCODER_B) |		\
->> > -		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
->> 		\
->> >  	.dbuf.size = 4096,
->> 	\
->> >  	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |
->> 		\
->> >  		BIT(DBUF_S4),
->> 	\
->> > @@ -950,23 +948,49 @@ static const struct intel_device_info adl_s_info = {
->> >  	.display.has_psr = 1,
->> 	\
->> >  	.display.ver = 13,
->> 	\
->> >  	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
->> 	\
->> > +	XE_LPD_CURSOR_OFFSETS
+>> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > index 8c166f92f8bd..77cd01ecfa80 100644
+>> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > @@ -1135,8 +1135,6 @@ static void
+>> >  gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
+>> >  			      const struct intel_crtc_state *crtc_state)
+>> >  {
+>> > -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> > -
+>> >  	/* step 4a: power up all lanes of the DDI used by DSI */
+>> >  	gen11_dsi_power_up_lanes(encoder);
+>> >
+>> > @@ -1146,6 +1144,8 @@ gen11_dsi_enable_port_and_phy(struct
+>> intel_encoder *encoder,
+>> >  	/* step 4c: configure voltage swing and skew */
+>> >  	gen11_dsi_voltage_swing_program_seq(encoder);
+>> >
+>> > +	gen11_dsi_ungate_clocks(encoder);
 >> > +
->> > +#define ADLP_TRANSCODERS \
->> > +	.cpu_transcoder_mask = BIT(TRANSCODER_A) |
->> BIT(TRANSCODER_B) |		\
->> > +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
->> 		\
->> > +		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
->> 		\
->> >  	.pipe_offsets = {
->> 	\
->> >  		[TRANSCODER_A] = PIPE_A_OFFSET,
->> 		\
->> >  		[TRANSCODER_B] = PIPE_B_OFFSET,
->> 		\
->> >  		[TRANSCODER_C] = PIPE_C_OFFSET,
->> 		\
->> >  		[TRANSCODER_D] = PIPE_D_OFFSET,
->> 		\
->> > +		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,
->> 		\
->> > +		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,
->> 		\
->> >  	},
->> 	\
->> >  	.trans_offsets = {
->> 	\
->> >  		[TRANSCODER_A] = TRANSCODER_A_OFFSET,
->> 		\
->> >  		[TRANSCODER_B] = TRANSCODER_B_OFFSET,
->> 		\
->> >  		[TRANSCODER_C] = TRANSCODER_C_OFFSET,
->> 		\
->> >  		[TRANSCODER_D] = TRANSCODER_D_OFFSET,
->> 		\
->> > +		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,
->> 		\
->> > +		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,
->> 		\
+>> >  	/* enable DDI buffer */
+>> >  	gen11_dsi_enable_ddi_buffer(encoder);
+>> >
+>> > @@ -1161,9 +1161,7 @@ gen11_dsi_enable_port_and_phy(struct
+>> intel_encoder *encoder,
+>> >  	/* Step (4h, 4i, 4j, 4k): Configure transcoder */
+>> >  	gen11_dsi_configure_transcoder(encoder, crtc_state);
+>> >
+>> > -	/* Step 4l: Gate DDI clocks */
+>> > -	if (DISPLAY_VER(dev_priv) == 11)
+>> > -		gen11_dsi_gate_clocks(encoder);
+>> > +	gen11_dsi_gate_clocks(encoder);
 >> 
->> I think you could just add these changes to XE_LPD_FEATURES, and have
->> separate .cpu_transcoder_mask initialization for ADLP and DG2.
+>> So how does this relate to
+>> 991d9557b0c4 ("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")
 >
-> Okay got it. So its ok to have the pipe_offsets  or transcoder offsets added unless we are not defining it in the .cpu_transcoder_mask
-> Will make this change.
+> As per the latest bspec, this change doesn't seem to be valid anymore.
+> It is marked with removed tag.
+> When TGL got added this change came in.
+>
+> But now with ADL the whole thing is marked as removed.
+> So, Do you suggest that I submit a revert for this change ?
 
-Yeah, the *_offsets are only used if referenced, and having them should
-not make a difference. It's the .cpu_transcoder_mask and .pipe_mask that
-matter.
+No, just an explanation and maybe that commit reference in the commit
+message.
 
 BR,
-Hani.
+Jani.
 
 >
 > Thanks,
 > Vandita
 >> 
->> Compare GEN12_FEATURES.
->> 
->> BR,
->> Jani.
->> 
->> > +	}
->> 	\
->> > +
->> > +#define DG2_TRANSCODERS \
->> > +	.cpu_transcoder_mask = BIT(TRANSCODER_A) |
->> BIT(TRANSCODER_B) |		\
->> > +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
->> 		\
->> > +	.pipe_offsets = {
->> 	\
->> > +		[TRANSCODER_A] = PIPE_A_OFFSET,
->> 		\
->> > +		[TRANSCODER_B] = PIPE_B_OFFSET,
->> 		\
->> > +		[TRANSCODER_C] = PIPE_C_OFFSET,
->> 		\
->> > +		[TRANSCODER_D] = PIPE_D_OFFSET,
->> 		\
->> >  	},
->> 	\
->> > -	XE_LPD_CURSOR_OFFSETS
->> > +	.trans_offsets = {
->> 	\
->> > +		[TRANSCODER_A] = TRANSCODER_A_OFFSET,
->> 		\
->> > +		[TRANSCODER_B] = TRANSCODER_B_OFFSET,
->> 		\
->> > +		[TRANSCODER_C] = TRANSCODER_C_OFFSET,
->> 		\
->> > +		[TRANSCODER_D] = TRANSCODER_D_OFFSET,
->> 		\
->> > +	}
->> 	\
+>> >  }
 >> >
->> >  static const struct intel_device_info adl_p_info = {
->> >  	GEN12_FEATURES,
->> >  	XE_LPD_FEATURES,
->> > +	ADLP_TRANSCODERS,
->> >  	PLATFORM(INTEL_ALDERLAKE_P),
->> >  	.require_force_probe = 1,
->> >  	.display.has_cdclk_crawl = 1,
->> > @@ -1029,6 +1053,7 @@ static const struct intel_device_info dg2_info = {
->> >  	XE_HP_FEATURES,
->> >  	XE_HPM_FEATURES,
->> >  	XE_LPD_FEATURES,
->> > +	DG2_TRANSCODERS,
->> >  	DGFX_FEATURES,
->> >  	.graphics_rel = 55,
->> >  	.media_rel = 55,
+>> >  static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
 >> 
 >> --
 >> Jani Nikula, Intel Open Source Graphics Center
