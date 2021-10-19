@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29BC433577
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:09:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15366433582
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:11:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 226166EB9D;
-	Tue, 19 Oct 2021 12:09:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17C666EBA0;
+	Tue, 19 Oct 2021 12:11:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC51D6EB9D
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 12:09:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="215415149"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="215415149"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 05:09:04 -0700
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="483194951"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 05:09:03 -0700
-Date: Tue, 19 Oct 2021 15:08:59 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com
-Message-ID: <20211019120859.GA1598321@ideak-desk.fi.intel.com>
-References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
- <20211018065207.30587-4-vandita.kulkarni@intel.com>
- <87v91tqpl8.fsf@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E7E56EBA0;
+ Tue, 19 Oct 2021 12:11:00 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="289341254"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="289341254"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 05:11:00 -0700
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="494067173"
+Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.211.239])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 05:10:58 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20211018085113.27033-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211018085113.27033-1-jani.nikula@intel.com>
+Date: Tue, 19 Oct 2021 15:10:55 +0300
+Message-ID: <878rypqkog.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87v91tqpl8.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/dsi/xelpd: Disable DC states
- in Video mode
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/locking: fix __stack_depot_* name
+ conflict
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,64 +50,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 19, 2021 at 01:24:51PM +0300, Jani Nikula wrote:
-> On Mon, 18 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> > MIPI DSI transcoder cannot be in video mode to support any of the
-> > display C states.
-> 
-> Imre, could you review this one please?
-> 
-> The added confusion is that POWER_DOMAIN_TRANSCODER_DSI_A and
-> POWER_DOMAIN_TRANSCODER_DSI_C are never used anywhere and
-> POWER_DOMAIN_TRANSCODER() does not take DSI transcoders into account.
+On Mon, 18 Oct 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+> From: Stephen Rothwell <sfr@canb.auug.org.au>
+>
+> Commit cd06ab2fd48f ("drm/locking: add backtrace for locking contended
+> locks without backoff") added functions named __stack_depot_* in drm
+> which conflict with stack depot. Rename to __drm_stack_depot_*.
+>
+> v2 by Jani:
+> - Also rename __stack_depot_print
+>
+> References: https://lore.kernel.org/r/20211015202648.258445ef@canb.auug.org.au
+> Fixes: cd06ab2fd48f ("drm/locking: add backtrace for locking contended locks without backoff")
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-<tl;dr>
-You mean they are not listed in the power_domain->power_well mappings.
-Those power domains don't use any power wells above PW#1. PW#0/1 is
-handled "automatically" by DMC, so we don't have to toggle the power for
-those manually. However they still need a runtime PM reference, since
-whatever HW domain you want to use, the PCI device must be in the runtime
-resumed state. This is ensured by the always-on power well, which every
-domain has a dependency on.
-<tl;dr>
+Pushed to drm-misc-next with Daniel's IRC r-b. Thanks for the original
+patch and review.
 
-The transcoder power domains are acquired in get_crtc_power_domains(),
-doesn't the DSI encoder using the DSI_A/C transcoders?
+BR,
+Jani.
 
-Yes, POWER_DOMAIN_TRANSCODER is now broken wrt. DSI due to
-POWER_DOMAIN_TRANSCODER_VDSC_PW2. So that would need to be moved after
-the TRANSCODER_DSI_C. And the POWER_DOMAIN_TRANSCODER macro could be
-also simplified afaics.
+> ---
+>  drivers/gpu/drm/drm_modeset_lock.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+> index 4d32b61fa1fd..c97323365675 100644
+> --- a/drivers/gpu/drm/drm_modeset_lock.c
+> +++ b/drivers/gpu/drm/drm_modeset_lock.c
+> @@ -79,7 +79,7 @@
+>  static DEFINE_WW_CLASS(crtc_ww_class);
+>  
+>  #if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
+> -static noinline depot_stack_handle_t __stack_depot_save(void)
+> +static noinline depot_stack_handle_t __drm_stack_depot_save(void)
+>  {
+>  	unsigned long entries[8];
+>  	unsigned int n;
+> @@ -89,7 +89,7 @@ static noinline depot_stack_handle_t __stack_depot_save(void)
+>  	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
+>  }
+>  
+> -static void __stack_depot_print(depot_stack_handle_t stack_depot)
+> +static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
+>  {
+>  	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
+>  	unsigned long *entries;
+> @@ -108,11 +108,11 @@ static void __stack_depot_print(depot_stack_handle_t stack_depot)
+>  	kfree(buf);
+>  }
+>  #else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+> -static depot_stack_handle_t __stack_depot_save(void)
+> +static depot_stack_handle_t __drm_stack_depot_save(void)
+>  {
+>  	return 0;
+>  }
+> -static void __stack_depot_print(depot_stack_handle_t stack_depot)
+> +static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
+>  {
+>  }
+>  #endif /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+> @@ -266,7 +266,7 @@ EXPORT_SYMBOL(drm_modeset_acquire_fini);
+>  void drm_modeset_drop_locks(struct drm_modeset_acquire_ctx *ctx)
+>  {
+>  	if (WARN_ON(ctx->contended))
+> -		__stack_depot_print(ctx->stack_depot);
+> +		__drm_stack_depot_print(ctx->stack_depot);
+>  
+>  	while (!list_empty(&ctx->locked)) {
+>  		struct drm_modeset_lock *lock;
+> @@ -286,7 +286,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+>  	int ret;
+>  
+>  	if (WARN_ON(ctx->contended))
+> -		__stack_depot_print(ctx->stack_depot);
+> +		__drm_stack_depot_print(ctx->stack_depot);
+>  
+>  	if (ctx->trylock_only) {
+>  		lockdep_assert_held(&ctx->ww_ctx);
+> @@ -317,7 +317,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+>  		ret = 0;
+>  	} else if (ret == -EDEADLK) {
+>  		ctx->contended = lock;
+> -		ctx->stack_depot = __stack_depot_save();
+> +		ctx->stack_depot = __drm_stack_depot_save();
+>  	}
+>  
+>  	return ret;
 
-Otherwise this patch looks ok to me, just the bspec links would be good
-to have here too.
-
-> 
-> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_power.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index 709569211c85..8406db5e573e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -3105,7 +3105,8 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
-> >  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
-> >  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
-> >  	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
-> > -	BIT_ULL(POWER_DOMAIN_INIT))
-> > +	BIT_ULL(POWER_DOMAIN_INIT)) |			\
-> > +	BIT_ULL(POWER_DOMAIN_PORT_DSI)
-> 
-> Everywhere else POWER_DOMAIN_INIT is last in the list.
-> 
-> BR,
-> Jani.
-> 
-> >  
-> >  #define XELPD_AUX_IO_D_XELPD_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_D_XELPD)
-> >  #define XELPD_AUX_IO_E_XELPD_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_E_XELPD)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+-- 
+Jani Nikula, Intel Open Source Graphics Center
