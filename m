@@ -2,42 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93194334F0
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C10A64334F4
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:44:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D762A6E133;
-	Tue, 19 Oct 2021 11:43:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C824F6EB88;
+	Tue, 19 Oct 2021 11:44:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C9826E133
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:43:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="215410311"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="215410311"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 04:43:42 -0700
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="494057850"
-Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.211.239])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 04:43:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Uma Shankar <uma.shankar@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Swati Sharma <swati2.sharma@intel.com>
-Date: Tue, 19 Oct 2021 14:43:34 +0300
-Message-Id: <20211019114334.24643-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76D1D6EB88
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:44:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="227254996"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="227254996"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 04:44:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="594205638"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by orsmga004.jf.intel.com with ESMTP; 19 Oct 2021 04:44:03 -0700
+Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 19 Oct 2021 04:44:02 -0700
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 19 Oct 2021 17:13:59 +0530
+Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
+ BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.012;
+ Tue, 19 Oct 2021 17:13:59 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Deak, Imre" <imre.deak@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+Thread-Topic: [PATCH 4/4] drm/i915/dsi: Ungate clock before enabling the phy
+Thread-Index: AQHXw+yfy9Z1c2yNRkSqQfk1IFFtcKvZwTMAgABvplCAAAPLgA==
+Date: Tue, 19 Oct 2021 11:43:59 +0000
+Message-ID: <e8ac1de6651549b2a62ea25217ac9cd3@intel.com>
+References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+ <20211018065207.30587-5-vandita.kulkarni@intel.com>
+ <87y26pqpw9.fsf@intel.com> <a9ed33b941ed4a2cb8c8375c0ce81281@intel.com>
+In-Reply-To: <a9ed33b941ed4a2cb8c8375c0ce81281@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] Revert "drm/i915/bios: gracefully disable dual
- eDP for now"
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/dsi: Ungate clock before
+ enabling the phy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,89 +74,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 05734ca2a8f76c9eb3890b3c9dfc3467f03105c1.
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Kulkarni, Vandita
+> Sent: Tuesday, October 19, 2021 5:03 PM
+> To: Nikula, Jani <jani.nikula@intel.com>; intel-gfx@lists.freedesktop.org
+> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
+> <matthew.d.roper@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/dsi: Ungate clock before
+> enabling the phy
+>=20
+> > -----Original Message-----
+> > From: Nikula, Jani <jani.nikula@intel.com>
+> > Sent: Tuesday, October 19, 2021 3:48 PM
+> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
+> > gfx@lists.freedesktop.org
+> > Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
+> > <matthew.d.roper@intel.com>; Kulkarni, Vandita
+> > <vandita.kulkarni@intel.com>
+> > Subject: Re: [PATCH 4/4] drm/i915/dsi: Ungate clock before enabling
+> > the phy
+> >
+> > On Mon, 18 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com>
+> wrote:
+> > > For the PHY enable/disable signalling to propagate between Dispaly
+> > > and PHY, DDI clocks need to be running when enabling the PHY.
+> > >
+> >
+> > A bspec reference would be useful:
+> >
+> > Bspec: NNN
 
-It's not graceful, instead it leads to boot time warning splats in the
-case it is supposed to handle gracefully. Apparently the BIOS/GOP
-enabling the port we end up skipping leads to state readout
-problems. Back to the drawing board.
+Bspec: 49187
 
-References: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21255/bat-adlp-4/boot0.txt
-Fixes: 05734ca2a8f7 ("drm/i915/bios: gracefully disable dual eDP for now")
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Swati Sharma <swati2.sharma@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 47 -----------------------
- 1 file changed, 47 deletions(-)
+> >
+> > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
+> > >  1 file changed, 3 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > > index 8c166f92f8bd..77cd01ecfa80 100644
+> > > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > > @@ -1135,8 +1135,6 @@ static void
+> > >  gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
+> > >  			      const struct intel_crtc_state *crtc_state)  {
+> > > -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> > > -
+> > >  	/* step 4a: power up all lanes of the DDI used by DSI */
+> > >  	gen11_dsi_power_up_lanes(encoder);
+> > >
+> > > @@ -1146,6 +1144,8 @@ gen11_dsi_enable_port_and_phy(struct
+> > intel_encoder *encoder,
+> > >  	/* step 4c: configure voltage swing and skew */
+> > >  	gen11_dsi_voltage_swing_program_seq(encoder);
+> > >
+> > > +	gen11_dsi_ungate_clocks(encoder);
+> > > +
+> > >  	/* enable DDI buffer */
+> > >  	gen11_dsi_enable_ddi_buffer(encoder);
+> > >
+> > > @@ -1161,9 +1161,7 @@ gen11_dsi_enable_port_and_phy(struct
+> > intel_encoder *encoder,
+> > >  	/* Step (4h, 4i, 4j, 4k): Configure transcoder */
+> > >  	gen11_dsi_configure_transcoder(encoder, crtc_state);
+> > >
+> > > -	/* Step 4l: Gate DDI clocks */
+> > > -	if (DISPLAY_VER(dev_priv) =3D=3D 11)
+> > > -		gen11_dsi_gate_clocks(encoder);
+> > > +	gen11_dsi_gate_clocks(encoder);
+> >
+> > So how does this relate to
+> > 991d9557b0c4 ("drm/i915/tgl/dsi: Gate the ddi clocks after pll
+> > mapping")
+>=20
+> As per the latest bspec, this change doesn't seem to be valid anymore.
+> It is marked with removed tag.
+> When TGL got added this change came in.
+>=20
+> But now with ADL the whole thing is marked as removed.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index b99907c656bb..f9776ca85de3 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1930,50 +1930,6 @@ static int _intel_bios_max_tmds_clock(const struct intel_bios_encoder_data *devd
- 	}
- }
- 
--static enum port get_edp_port(struct drm_i915_private *i915)
--{
--	const struct intel_bios_encoder_data *devdata;
--	enum port port;
--
--	for_each_port(port) {
--		devdata = i915->vbt.ports[port];
--
--		if (devdata && intel_bios_encoder_supports_edp(devdata))
--			return port;
--	}
--
--	return PORT_NONE;
--}
--
--/*
-- * FIXME: The power sequencer and backlight code currently do not support more
-- * than one set registers, at least not on anything other than VLV/CHV. It will
-- * clobber the registers. As a temporary workaround, gracefully prevent more
-- * than one eDP from being registered.
-- */
--static void sanitize_dual_edp(struct intel_bios_encoder_data *devdata,
--			      enum port port)
--{
--	struct drm_i915_private *i915 = devdata->i915;
--	struct child_device_config *child = &devdata->child;
--	enum port p;
--
--	/* CHV might not clobber PPS registers. */
--	if (IS_CHERRYVIEW(i915))
--		return;
--
--	p = get_edp_port(i915);
--	if (p == PORT_NONE)
--		return;
--
--	drm_dbg_kms(&i915->drm, "both ports %c and %c configured as eDP, "
--		    "disabling port %c eDP\n", port_name(p), port_name(port),
--		    port_name(port));
--
--	child->device_type &= ~DEVICE_TYPE_DISPLAYPORT_OUTPUT;
--	child->device_type &= ~DEVICE_TYPE_INTERNAL_CONNECTOR;
--}
--
- static bool is_port_valid(struct drm_i915_private *i915, enum port port)
- {
- 	/*
-@@ -2031,9 +1987,6 @@ static void parse_ddi_port(struct drm_i915_private *i915,
- 		    supports_typec_usb, supports_tbt,
- 		    devdata->dsc != NULL);
- 
--	if (is_edp)
--		sanitize_dual_edp(devdata, port);
--
- 	if (is_dvi)
- 		sanitize_ddc_pin(devdata, port);
- 
--- 
-2.30.2
+And the gating is now added after enabling DDI Buffer=20
 
+> So, Do you suggest that I submit a revert for this change ?
+>=20
+> Thanks,
+> Vandita
+> >
+> > >  }
+> > >
+> > >  static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+> >
+> > --
+> > Jani Nikula, Intel Open Source Graphics Center
