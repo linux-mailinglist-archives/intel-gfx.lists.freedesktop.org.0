@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 268534334C0
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:32:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CCD4334E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:40:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 806926E14F;
-	Tue, 19 Oct 2021 11:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC0436E155;
+	Tue, 19 Oct 2021 11:40:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 814966E14F
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:32:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="225945662"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="225945662"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 04:32:34 -0700
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64D396E155
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:40:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="289335903"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="289335903"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 04:40:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="490247557"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga007.fm.intel.com with ESMTP; 19 Oct 2021 04:32:34 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="550777773"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga004.fm.intel.com with ESMTP; 19 Oct 2021 04:40:32 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 19 Oct 2021 04:32:34 -0700
+ 15.1.2242.12; Tue, 19 Oct 2021 04:40:32 -0700
 Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 19 Oct 2021 04:32:32 -0700
+ 15.1.2242.12; Tue, 19 Oct 2021 04:40:30 -0700
 Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
  BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.012;
- Tue, 19 Oct 2021 17:02:30 +0530
+ Tue, 19 Oct 2021 17:10:28 +0530
 From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
 CC: "Deak, Imre" <imre.deak@intel.com>, "Roper, Matthew D"
  <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH 4/4] drm/i915/dsi: Ungate clock before enabling the phy
-Thread-Index: AQHXw+yfy9Z1c2yNRkSqQfk1IFFtcKvZwTMAgABvplA=
-Date: Tue, 19 Oct 2021 11:32:30 +0000
-Message-ID: <a9ed33b941ed4a2cb8c8375c0ce81281@intel.com>
+Thread-Topic: [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder support
+Thread-Index: AQHXw+yd3j9CdKpBz0e9Z7fXZgoZIavZv/EAgABzosA=
+Date: Tue, 19 Oct 2021 11:40:28 +0000
+Message-ID: <ecae5fbc44ac4fe0a58e69258143bb50@intel.com>
 References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
- <20211018065207.30587-5-vandita.kulkarni@intel.com>
- <87y26pqpw9.fsf@intel.com>
-In-Reply-To: <87y26pqpw9.fsf@intel.com>
+ <20211018065207.30587-3-vandita.kulkarni@intel.com>
+ <8735oxs4o7.fsf@intel.com>
+In-Reply-To: <8735oxs4o7.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -56,8 +56,8 @@ x-originating-ip: [10.223.10.1]
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/dsi: Ungate clock before
- enabling the phy
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,79 +75,158 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Tuesday, October 19, 2021 3:48 PM
+> Sent: Tuesday, October 19, 2021 3:44 PM
 > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
 > gfx@lists.freedesktop.org
 > Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
 > <matthew.d.roper@intel.com>; Kulkarni, Vandita
 > <vandita.kulkarni@intel.com>
-> Subject: Re: [PATCH 4/4] drm/i915/dsi: Ungate clock before enabling the p=
-hy
+> Subject: Re: [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder support
 >=20
 > On Mon, 18 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> > For the PHY enable/disable signalling to propagate between Dispaly and
-> > PHY, DDI clocks need to be running when enabling the PHY.
+> > Update ADL_P device info to support DSI0, DSI1
 > >
->=20
-> A bspec reference would be useful:
->=20
-> Bspec: NNN
->=20
 > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
-> >  1 file changed, 3 insertions(+), 5 deletions(-)
+> >  drivers/gpu/drm/i915/i915_pci.c | 31 ++++++++++++++++++++++++++++-
+> --
+> >  1 file changed, 28 insertions(+), 3 deletions(-)
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > index 8c166f92f8bd..77cd01ecfa80 100644
-> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > @@ -1135,8 +1135,6 @@ static void
-> >  gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
-> >  			      const struct intel_crtc_state *crtc_state)
-> >  {
-> > -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> > -
-> >  	/* step 4a: power up all lanes of the DDI used by DSI */
-> >  	gen11_dsi_power_up_lanes(encoder);
-> >
-> > @@ -1146,6 +1144,8 @@ gen11_dsi_enable_port_and_phy(struct
-> intel_encoder *encoder,
-> >  	/* step 4c: configure voltage swing and skew */
-> >  	gen11_dsi_voltage_swing_program_seq(encoder);
-> >
-> > +	gen11_dsi_ungate_clocks(encoder);
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
+> > b/drivers/gpu/drm/i915/i915_pci.c index 169837de395d..a2dd5a38fdf5
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -932,8 +932,6 @@ static const struct intel_device_info adl_s_info =
+=3D
+> > {  #define XE_LPD_FEATURES \
+> >  	.abox_mask =3D GENMASK(1, 0),
+> 	\
+> >  	.color =3D { .degamma_lut_size =3D 0, .gamma_lut_size =3D 0 },
+> 	\
+> > -	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) |
+> BIT(TRANSCODER_B) |		\
+> > -		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> 		\
+> >  	.dbuf.size =3D 4096,
+> 	\
+> >  	.dbuf.slice_mask =3D BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |
+> 		\
+> >  		BIT(DBUF_S4),
+> 	\
+> > @@ -950,23 +948,49 @@ static const struct intel_device_info adl_s_info =
+=3D {
+> >  	.display.has_psr =3D 1,
+> 	\
+> >  	.display.ver =3D 13,
+> 	\
+> >  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+> 	\
+> > +	XE_LPD_CURSOR_OFFSETS
 > > +
-> >  	/* enable DDI buffer */
-> >  	gen11_dsi_enable_ddi_buffer(encoder);
-> >
-> > @@ -1161,9 +1161,7 @@ gen11_dsi_enable_port_and_phy(struct
-> intel_encoder *encoder,
-> >  	/* Step (4h, 4i, 4j, 4k): Configure transcoder */
-> >  	gen11_dsi_configure_transcoder(encoder, crtc_state);
-> >
-> > -	/* Step 4l: Gate DDI clocks */
-> > -	if (DISPLAY_VER(dev_priv) =3D=3D 11)
-> > -		gen11_dsi_gate_clocks(encoder);
-> > +	gen11_dsi_gate_clocks(encoder);
+> > +#define ADLP_TRANSCODERS \
+> > +	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) |
+> BIT(TRANSCODER_B) |		\
+> > +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
+> 		\
+> > +		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
+> 		\
+> >  	.pipe_offsets =3D {
+> 	\
+> >  		[TRANSCODER_A] =3D PIPE_A_OFFSET,
+> 		\
+> >  		[TRANSCODER_B] =3D PIPE_B_OFFSET,
+> 		\
+> >  		[TRANSCODER_C] =3D PIPE_C_OFFSET,
+> 		\
+> >  		[TRANSCODER_D] =3D PIPE_D_OFFSET,
+> 		\
+> > +		[TRANSCODER_DSI_0] =3D PIPE_DSI0_OFFSET,
+> 		\
+> > +		[TRANSCODER_DSI_1] =3D PIPE_DSI1_OFFSET,
+> 		\
+> >  	},
+> 	\
+> >  	.trans_offsets =3D {
+> 	\
+> >  		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET,
+> 		\
+> >  		[TRANSCODER_B] =3D TRANSCODER_B_OFFSET,
+> 		\
+> >  		[TRANSCODER_C] =3D TRANSCODER_C_OFFSET,
+> 		\
+> >  		[TRANSCODER_D] =3D TRANSCODER_D_OFFSET,
+> 		\
+> > +		[TRANSCODER_DSI_0] =3D TRANSCODER_DSI0_OFFSET,
+> 		\
+> > +		[TRANSCODER_DSI_1] =3D TRANSCODER_DSI1_OFFSET,
+> 		\
 >=20
-> So how does this relate to
-> 991d9557b0c4 ("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")
+> I think you could just add these changes to XE_LPD_FEATURES, and have
+> separate .cpu_transcoder_mask initialization for ADLP and DG2.
 
-As per the latest bspec, this change doesn't seem to be valid anymore.
-It is marked with removed tag.
-When TGL got added this change came in.
-
-But now with ADL the whole thing is marked as removed.
-So, Do you suggest that I submit a revert for this change ?
+Okay got it. So its ok to have the pipe_offsets  or transcoder offsets adde=
+d unless we are not defining it in the .cpu_transcoder_mask
+Will make this change.
 
 Thanks,
 Vandita
 >=20
-> >  }
+> Compare GEN12_FEATURES.
+>=20
+> BR,
+> Jani.
+>=20
+> > +	}
+> 	\
+> > +
+> > +#define DG2_TRANSCODERS \
+> > +	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) |
+> BIT(TRANSCODER_B) |		\
+> > +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> 		\
+> > +	.pipe_offsets =3D {
+> 	\
+> > +		[TRANSCODER_A] =3D PIPE_A_OFFSET,
+> 		\
+> > +		[TRANSCODER_B] =3D PIPE_B_OFFSET,
+> 		\
+> > +		[TRANSCODER_C] =3D PIPE_C_OFFSET,
+> 		\
+> > +		[TRANSCODER_D] =3D PIPE_D_OFFSET,
+> 		\
+> >  	},
+> 	\
+> > -	XE_LPD_CURSOR_OFFSETS
+> > +	.trans_offsets =3D {
+> 	\
+> > +		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET,
+> 		\
+> > +		[TRANSCODER_B] =3D TRANSCODER_B_OFFSET,
+> 		\
+> > +		[TRANSCODER_C] =3D TRANSCODER_C_OFFSET,
+> 		\
+> > +		[TRANSCODER_D] =3D TRANSCODER_D_OFFSET,
+> 		\
+> > +	}
+> 	\
 > >
-> >  static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+> >  static const struct intel_device_info adl_p_info =3D {
+> >  	GEN12_FEATURES,
+> >  	XE_LPD_FEATURES,
+> > +	ADLP_TRANSCODERS,
+> >  	PLATFORM(INTEL_ALDERLAKE_P),
+> >  	.require_force_probe =3D 1,
+> >  	.display.has_cdclk_crawl =3D 1,
+> > @@ -1029,6 +1053,7 @@ static const struct intel_device_info dg2_info =
+=3D {
+> >  	XE_HP_FEATURES,
+> >  	XE_HPM_FEATURES,
+> >  	XE_LPD_FEATURES,
+> > +	DG2_TRANSCODERS,
+> >  	DGFX_FEATURES,
+> >  	.graphics_rel =3D 55,
+> >  	.media_rel =3D 55,
 >=20
 > --
 > Jani Nikula, Intel Open Source Graphics Center
