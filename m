@@ -2,61 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20497433E93
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 20:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABD54433E8F
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 20:37:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80D156E88D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C16A6E888;
 	Tue, 19 Oct 2021 18:37:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 300376E888;
- Tue, 19 Oct 2021 18:37:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="215760675"
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="215760675"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 11:37:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="462869280"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 19 Oct 2021 11:37:23 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 19 Oct 2021 21:37:22 +0300
-Date: Tue, 19 Oct 2021 21:37:22 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Claudio Suarez <cssk@net-c.es>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
-Message-ID: <YW8QYsmkm3ZrBAx3@intel.com>
-References: <20211016184226.3862-1-cssk@net-c.es>
- <20211016184226.3862-14-cssk@net-c.es>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2514E6E888
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 18:37:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="314800071"
+X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="314800071"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 11:37:29 -0700
+X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="494236401"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 11:37:27 -0700
+Date: Tue, 19 Oct 2021 21:37:23 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ stable@vger.kernel.org
+Message-ID: <20211019183723.GA1621650@ideak-desk.fi.intel.com>
+References: <20211018094154.1407705-1-imre.deak@intel.com>
+ <20211018094154.1407705-3-imre.deak@intel.com>
+ <87pms1scdl.fsf@intel.com>
+ <20211019073335.GB1537791@ideak-desk.fi.intel.com>
+ <87mtn5sbwi.fsf@intel.com>
+ <20211019073902.GC1537791@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211016184226.3862-14-cssk@net-c.es>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 13/13] drm/i915: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+In-Reply-To: <20211019073902.GC1537791@ideak-desk.fi.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/dp: Ensure sink rate values
+ are always valid
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,56 +56,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Oct 16, 2021 at 08:42:26PM +0200, Claudio Suarez wrote:
-> Once EDID is parsed, the monitor HDMI support information is available
-> through drm_display_info.is_hdmi. Retriving the same information with
-> drm_detect_hdmi_monitor() is less efficient. Change to
-> drm_display_info.is_hdmi where possible.
+On Tue, Oct 19, 2021 at 10:39:08AM +0300, Imre Deak wrote:
+> On Tue, Oct 19, 2021 at 10:37:33AM +0300, Jani Nikula wrote:
+> > On Tue, 19 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> > > On Tue, Oct 19, 2021 at 10:27:18AM +0300, Jani Nikula wrote:
+> > >> On Mon, 18 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> > >> > Atm, there are no sink rate values set for DP (vs. eDP) sinks until the
+> > >> > DPCD capabilities are successfully read from the sink. During this time
+> > >> > intel_dp->num_common_rates is 0 which can lead to a
+> > >> >
+> > >> > intel_dp->common_rates[-1]    (*)
+> > >> >
+> > >> > access, which is an undefined behaviour, in the following cases:
+> > >> >
+> > >> > - In intel_dp_sync_state(), if the encoder is enabled without a sink
+> > >> >   connected to the encoder's connector (BIOS enabled a monitor, but the
+> > >> >   user unplugged the monitor until the driver loaded).
+> > >> > - In intel_dp_sync_state() if the encoder is enabled with a sink
+> > >> >   connected, but for some reason the DPCD read has failed.
+> > >> > - In intel_dp_compute_link_config() if modesetting a connector without
+> > >> >   a sink connected on it.
+> > >> > - In intel_dp_compute_link_config() if modesetting a connector with a
+> > >> >   a sink connected on it, but before probing the connector first.
+> > >> >
+> > >> > To avoid the (*) access in all the above cases, make sure that the sink
+> > >> > rate table - and hence the common rate table - is always valid, by
+> > >> > setting a default minimum sink rate when registering the connector
+> > >> > before anything could use it.
+> > >> >
+> > >> > I also considered setting all the DP link rates by default, so that
+> > >> > modesetting with higher resolution modes also succeeds in the last two
+> > >> > cases above. However in case a sink is not connected that would stop
+> > >> > working after the first modeset, due to the LT fallback logic. So this
+> > >> > would need more work, beyond the scope of this fix.
+> > >> >
+> > >> > As I mentioned in the previous patch, I don't think the issue this patch
+> > >> > fixes is user visible, however it is an undefined behaviour by
+> > >> > definition and triggers a BUG() in CONFIG_UBSAN builds, hence CC:stable.
+> > >> 
+> > >> I think the question here, and in the following patches, is whether this
+> > >> papers over potential bugs elsewhere.
+> > >> 
+> > >> Would the original bug fixed by patch 1 have been detected if all the
+> > >> safeguards here had been in place? Point being, we shouldn't be doing
+> > >> any of these things before we've read the dpcd.
+> > >
+> > > Modesets are possible even without a connected sink or a read-out DPCD,
+> > > so the link parameters need to be valid even without those.
+> > 
+> > Modeset on a disconnected DP? How?
+> 
+> Yes, just do a modeset on it. It doesn't have to be disconnected either,
+> you can modeset a DP connector before probing it.
 
-We still need proof in the commit message that display_info
-is actually populated by the time this gets called.
+Jani,
 
-> 
-> This is a TODO task in Documentation/gpu/todo.rst
-> 
-> Signed-off-by: Claudio Suarez <cssk@net-c.es>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c | 3 ++-
->  2 files changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index b04685bb6439..008e5b0ba408 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2355,7 +2355,7 @@ intel_hdmi_set_edid(struct drm_connector *connector)
->  	to_intel_connector(connector)->detect_edid = edid;
->  	if (edid && edid->input & DRM_EDID_INPUT_DIGITAL) {
->  		intel_hdmi->has_audio = drm_detect_monitor_audio(edid);
-> -		intel_hdmi->has_hdmi_sink = drm_detect_hdmi_monitor(edid);
-> +		intel_hdmi->has_hdmi_sink = connector->display_info.is_hdmi;
->  
->  		connected = true;
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index 6cb27599ea03..b4065e4df644 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -2060,8 +2060,9 @@ intel_sdvo_tmds_sink_detect(struct drm_connector *connector)
->  		if (edid->input & DRM_EDID_INPUT_DIGITAL) {
->  			status = connector_status_connected;
->  			if (intel_sdvo_connector->is_hdmi) {
-> -				intel_sdvo->has_hdmi_monitor = drm_detect_hdmi_monitor(edid);
->  				intel_sdvo->has_hdmi_audio = drm_detect_monitor_audio(edid);
-> +				intel_sdvo->has_hdmi_monitor =
-> +							    connector->display_info.is_hdmi;
->  			}
->  		} else
->  			status = connector_status_disconnected;
-> -- 
-> 2.33.0
-> 
+any objections to merge patches 2-6 as well? In a summary the reasons:
 
--- 
-Ville Syrjälä
-Intel
+- Fix userspace triggerable WARNs().
+- Fix undefined behavior triggerring BUG() in UBSAN builds
+  (in addition to the case the first patch fixes).
+- Validate the DP_MAX_LINK_RATE value we read from DPCD.
+- It unifies some open-coded functionality (patch 3 and 6).
+
+> > BR,
+> > Jani.
+> > 
+> > 
+> > >
+> > >> BR,
+> > >> Jani.
+> > >> 
+> > >> 
+> > >> >
+> > >> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4297
+> > >> > References: https://gitlab.freedesktop.org/drm/intel/-/issues/4298
+> > >> > Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >> > Cc: <stable@vger.kernel.org>
+> > >> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > >> > ---
+> > >> >  drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++++++
+> > >> >  1 file changed, 8 insertions(+)
+> > >> >
+> > >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > >> > index 23de500d56b52..153ae944a354b 100644
+> > >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > >> > @@ -120,6 +120,12 @@ bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
+> > >> >  	return crtc_state->port_clock >= 1000000;
+> > >> >  }
+> > >> >  
+> > >> > +static void intel_dp_set_default_sink_rates(struct intel_dp *intel_dp)
+> > >> > +{
+> > >> > +	intel_dp->sink_rates[0] = 162000;
+> > >> > +	intel_dp->num_sink_rates = 1;
+> > >> > +}
+> > >> > +
+> > >> >  /* update sink rates from dpcd */
+> > >> >  static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
+> > >> >  {
+> > >> > @@ -5003,6 +5009,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+> > >> >  	}
+> > >> >  
+> > >> >  	intel_dp_set_source_rates(intel_dp);
+> > >> > +	intel_dp_set_default_sink_rates(intel_dp);
+> > >> > +	intel_dp_set_common_rates(intel_dp);
+> > >> >  
+> > >> >  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> > >> >  		intel_dp->pps.active_pipe = vlv_active_pipe(intel_dp);
+> > >> 
+> > >> -- 
+> > >> Jani Nikula, Intel Open Source Graphics Center
+> > 
+> > -- 
+> > Jani Nikula, Intel Open Source Graphics Center
