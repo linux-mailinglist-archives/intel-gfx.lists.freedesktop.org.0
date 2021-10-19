@@ -1,66 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC73433623
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:40:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7C57433622
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:40:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB63E6EC1B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 861106EC0F;
 	Tue, 19 Oct 2021 12:40:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 720F66EB5C;
- Tue, 19 Oct 2021 09:02:45 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id o133so17039804pfg.7;
- Tue, 19 Oct 2021 02:02:45 -0700 (PDT)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com
+ [IPv6:2a00:1450:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E3B86E118;
+ Tue, 19 Oct 2021 11:36:29 +0000 (UTC)
+Received: by mail-wm1-x333.google.com with SMTP id v127so11582211wme.5;
+ Tue, 19 Oct 2021 04:36:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=sW5kzqI2ZLlgm72jV9aPPdFKNC889wnGZx9L6y3GNDE=;
- b=KQ6KKZrilTzlxQ5KkvqlvnbNQ/cJxM54GDqV4uxqzpBbCnSiHHjsgyu7ZqkvO12KPf
- uXVbkuTWMPodLFMAAM4pzZApcjfjUIj3lcRn3R9nX8Wx7UNRtXUcHaD1Cy0ikOksTAsi
- QB79kgXcaIdeJ2LEgdh+riEPU4/GUN98aUzchgmRJvakDLi89c6yVA2WpJ0cYxS6XA19
- G94hjk/Ay8IcRUV/tQav7P/AQNxN5tE/E+Y+J4rOT8oWdAH+q2KVtkHVCgnS4EUhq6LI
- uWt5500ppG1B5lgc+XqWt9oe6XbochwNDiCvhEXC5fmhErRKIobuJXptWKZybloQ18+C
- P7Iw==
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=M3LiI2dynM1nZYamguT3elJaAc7JLzbkcv2J5Oa0PxI=;
+ b=ax+//QLOzRzifYURKML/tpp9AHBIzuQk6Eb/IVxhDu6QdiTQJke+WQUPauvV2csBmx
+ vbPKIuyiSVuZi6DEux2yncqUbJPeYbXJ70zZjwlwYyLarry5WIdUU8oJqwwqBvTNXexF
+ Axa38j9hCiGDqxWXABvDM2kiU1Ht7FmAYx2MTyXhNOvHpHwXgdGarwrChwlX2XJmy4//
+ sbr/fsjx8QO11RqD2J+ip+sGz5dLM/exoR2UYnRdHdJ0MRCAVUSySKp1ZII/dOuSwhF5
+ IWnSJa0nEKe8FRJA8NX/x4JD6yuoUdjDA2p9o8gz3EflwgSJAY0PycNHbOD1aCwQ0PNM
+ I84Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=sW5kzqI2ZLlgm72jV9aPPdFKNC889wnGZx9L6y3GNDE=;
- b=2Kyv2d6HrctKxpDHa0AlxFbL4vE+p4xT//gTIEpgoIYfymgzuMfUcv7T2xreWaYceL
- W1tFJbcM6Sz4yMq2V6ZmgGH8VLxnj/UAolIt/F8SQ7zAm1pQ8NdTk4nkehwZdq19ZAFU
- IxySK1U4R59kGEEi37TaD/PVLHlv7kBDT0h5uJlhDld+Ddk+IMC4QtblariomiqkDYoE
- 30VI5ur8gQRtwYtgr9HBux3KbEaARjkIoBSi86PGiIOdByIPsA78zhOkL5XDWo7yR7xF
- cPpc0fum7HJNDdOPSYFmIPo4PxvX6tKKdYQ87LmHx+woW2OMsytOcDB9Pf2PkvAnhIH+
- a47g==
-X-Gm-Message-State: AOAM533S8wl4Lm70UCKluP3+42acGNH79naf5aIVWjedjJ7LXx4gkL5Q
- JTD5YwzX1lCF65eWJ0klBjCm2kJU09E=
-X-Google-Smtp-Source: ABdhPJwUfkoqRsVd+CCYM8ak6IRF7IftK8GgqFupS44n7zlu7KDBI56oFbj2TEQOPZQoPwy/mwU7DQ==
-X-Received: by 2002:a63:8742:: with SMTP id i63mr16229969pge.328.1634634165079; 
- Tue, 19 Oct 2021 02:02:45 -0700 (PDT)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id s2sm15184610pfw.30.2021.10.19.02.02.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Oct 2021 02:02:44 -0700 (PDT)
-From: cgel.zte@gmail.com
-X-Google-Original-From: ran.jianping@zte.com.cn
-To: jani.nikula@linux.intel.com
-Cc: joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
- daniel@ffwll.ch, matthew.auld@intel.com, thomas.hellstrom@linux.intel.com,
- chris@chris-wilson.co.uk, maarten.lankhorst@linux.intel.com,
- ran.jianping@zte.com.cn, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Zeal Robot <zealci@zte.com.cn>
-Date: Tue, 19 Oct 2021 09:02:05 +0000
-Message-Id: <20211019090205.1003458-1-ran.jianping@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=M3LiI2dynM1nZYamguT3elJaAc7JLzbkcv2J5Oa0PxI=;
+ b=H1j6LgbiVJVqyJ1ILTtmtnj1Aj7wxlz4VljyjGrgKKvXpJo8qszQwHi1i74YqBxyb4
+ okxAYdW6lEH8YFqaf2+N+Vp0YhqGLoGExiGaU9qTO+VopT3VUiuZYILSMRQ/ymWOQg7p
+ vehh+yMWSQq2YH+3gjSttW+a+4V4XN1TseOgnewImRGBnkfZOrKtn2ImOo1MOf8YyzBx
+ gMsYbtrAVl8LzlxepuMgkZDS0VtAZ0uddMaBU6+RWROaoWmX5MEJXpLp2cswLBQszpK0
+ qin++2NW8pIYx5Ystunx/zR8GLmBHhlxhJ/i5/Cq3R624Iyzqhc7/5XN2VLoU/YlgPAw
+ RnrA==
+X-Gm-Message-State: AOAM531sb0c4/Tot2dmkTrgdxcpkW4sq6aRIf8NDfHS7Ige9zoEHnOY/
+ CtPJS2bvnImmJV8ag3kIgy0=
+X-Google-Smtp-Source: ABdhPJxKJUE9DPjZGw2RK07XvLt3WGtWLRzf2uHEQt87Ekn7KXR93fRKOrmLCyCNH19mhUgCaBWjQw==
+X-Received: by 2002:a7b:c8ce:: with SMTP id f14mr5228360wml.177.1634643387780; 
+ Tue, 19 Oct 2021 04:36:27 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:f344:748e:38f7:c50?
+ ([2a02:908:1252:fb60:f344:748e:38f7:c50])
+ by smtp.gmail.com with ESMTPSA id c3sm13657502wrw.66.2021.10.19.04.36.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 19 Oct 2021 04:36:27 -0700 (PDT)
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ tvrtko.ursulin@linux.intel.com
+References: <20211005113742.1101-1-christian.koenig@amd.com>
+ <20211005113742.1101-13-christian.koenig@amd.com>
+ <YWboMfLOIjl1l7tF@phenom.ffwll.local>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <a0a926a7-13d0-b996-5f32-36aa6d74165e@gmail.com>
+Date: Tue, 19 Oct 2021 13:36:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <YWboMfLOIjl1l7tF@phenom.ffwll.local>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-Mailman-Approved-At: Tue, 19 Oct 2021 12:40:07 +0000
-Subject: [Intel-gfx] [PATCH] remove duplicate include in mock_region.c
+Subject: Re: [Intel-gfx] [PATCH 12/28] drm/amdgpu: use new iterator in
+ amdgpu_ttm_bo_eviction_valuable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,31 +82,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ran Jianping <ran.jianping@zte.com.cn>
+Am 13.10.21 um 16:07 schrieb Daniel Vetter:
+> On Tue, Oct 05, 2021 at 01:37:26PM +0200, Christian König wrote:
+>> Simplifying the code a bit.
+>>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 14 ++++----------
+>>   1 file changed, 4 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> index e8d70b6e6737..722e3c9e8882 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> @@ -1345,10 +1345,9 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+>>   					    const struct ttm_place *place)
+>>   {
+>>   	unsigned long num_pages = bo->resource->num_pages;
+>> +	struct dma_resv_iter resv_cursor;
+>>   	struct amdgpu_res_cursor cursor;
+>> -	struct dma_resv_list *flist;
+>>   	struct dma_fence *f;
+>> -	int i;
+>>   
+>>   	/* Swapout? */
+>>   	if (bo->resource->mem_type == TTM_PL_SYSTEM)
+>> @@ -1362,14 +1361,9 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+>>   	 * If true, then return false as any KFD process needs all its BOs to
+>>   	 * be resident to run successfully
+>>   	 */
+>> -	flist = dma_resv_shared_list(bo->base.resv);
+>> -	if (flist) {
+>> -		for (i = 0; i < flist->shared_count; ++i) {
+>> -			f = rcu_dereference_protected(flist->shared[i],
+>> -				dma_resv_held(bo->base.resv));
+>> -			if (amdkfd_fence_check_mm(f, current->mm))
+>> -				return false;
+>> -		}
+>> +	dma_resv_for_each_fence(&resv_cursor, bo->base.resv, true, f) {
+> 							    ^false?
+>
+> At least I'm not seeing the code look at the exclusive fence here.
 
-'drm/ttm/ttm_placement.h' included in
-'drivers/gpu/drm/i915/selftests/mock_region.c' is duplicated.
-It is also included on the 9 line.
+Yes, but that's correct. We need to look at all potential fences.
 
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: Ran Jianping <ran.jianping@zte.com.cn>
----
- drivers/gpu/drm/i915/selftests/mock_region.c | 2 --
- 1 file changed, 2 deletions(-)
+It's a design problem in KFD if you ask me, but that is a completely 
+different topic.
 
-diff --git a/drivers/gpu/drm/i915/selftests/mock_region.c b/drivers/gpu/drm/i915/selftests/mock_region.c
-index efa86dffe3c6..75793008c4ef 100644
---- a/drivers/gpu/drm/i915/selftests/mock_region.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_region.c
-@@ -6,8 +6,6 @@
- #include <drm/ttm/ttm_placement.h>
- #include <linux/scatterlist.h>
- 
--#include <drm/ttm/ttm_placement.h>
--
- #include "gem/i915_gem_region.h"
- #include "intel_memory_region.h"
- #include "intel_region_ttm.h"
--- 
-2.25.1
+Christian.
+
+> -Daniel
+>
+>> +		if (amdkfd_fence_check_mm(f, current->mm))
+>> +			return false;
+>>   	}
+>>   
+>>   	switch (bo->resource->mem_type) {
+>> -- 
+>> 2.25.1
+>>
 
