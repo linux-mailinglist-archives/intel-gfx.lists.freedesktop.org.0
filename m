@@ -1,40 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15366433582
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:11:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD0E4335DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:24:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17C666EBA0;
-	Tue, 19 Oct 2021 12:11:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE8076E87E;
+	Tue, 19 Oct 2021 12:24:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E7E56EBA0;
- Tue, 19 Oct 2021 12:11:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="289341254"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="289341254"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 05:11:00 -0700
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="494067173"
-Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.211.239])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 05:10:58 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Stephen Rothwell <sfr@canb.auug.org.au>,
- Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <20211018085113.27033-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211018085113.27033-1-jani.nikula@intel.com>
-Date: Tue, 19 Oct 2021 15:10:55 +0300
-Message-ID: <878rypqkog.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 940936E10F;
+ Tue, 19 Oct 2021 12:24:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79748A9932;
+ Tue, 19 Oct 2021 12:24:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5836263188378671488=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/locking: fix __stack_depot_* name
- conflict
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 19 Oct 2021 12:24:04 -0000
+Message-ID: <163464624449.5184.14330100814549602161@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Remove_check_for_low_voltage_sku_for_max_dp_so?=
+ =?utf-8?q?urce_rate_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,98 +42,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Oct 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> From: Stephen Rothwell <sfr@canb.auug.org.au>
->
-> Commit cd06ab2fd48f ("drm/locking: add backtrace for locking contended
-> locks without backoff") added functions named __stack_depot_* in drm
-> which conflict with stack depot. Rename to __drm_stack_depot_*.
->
-> v2 by Jani:
-> - Also rename __stack_depot_print
->
-> References: https://lore.kernel.org/r/20211015202648.258445ef@canb.auug.org.au
-> Fixes: cd06ab2fd48f ("drm/locking: add backtrace for locking contended locks without backoff")
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--===============5836263188378671488==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Pushed to drm-misc-next with Daniel's IRC r-b. Thanks for the original
-patch and review.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/display: Remove check for low voltage sku for max dp source rate (rev3)
+URL   : https://patchwork.freedesktop.org/series/95444/
+State : success
 
-> ---
->  drivers/gpu/drm/drm_modeset_lock.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
-> index 4d32b61fa1fd..c97323365675 100644
-> --- a/drivers/gpu/drm/drm_modeset_lock.c
-> +++ b/drivers/gpu/drm/drm_modeset_lock.c
-> @@ -79,7 +79,7 @@
->  static DEFINE_WW_CLASS(crtc_ww_class);
->  
->  #if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
-> -static noinline depot_stack_handle_t __stack_depot_save(void)
-> +static noinline depot_stack_handle_t __drm_stack_depot_save(void)
->  {
->  	unsigned long entries[8];
->  	unsigned int n;
-> @@ -89,7 +89,7 @@ static noinline depot_stack_handle_t __stack_depot_save(void)
->  	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
->  }
->  
-> -static void __stack_depot_print(depot_stack_handle_t stack_depot)
-> +static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
->  {
->  	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
->  	unsigned long *entries;
-> @@ -108,11 +108,11 @@ static void __stack_depot_print(depot_stack_handle_t stack_depot)
->  	kfree(buf);
->  }
->  #else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
-> -static depot_stack_handle_t __stack_depot_save(void)
-> +static depot_stack_handle_t __drm_stack_depot_save(void)
->  {
->  	return 0;
->  }
-> -static void __stack_depot_print(depot_stack_handle_t stack_depot)
-> +static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
->  {
->  }
->  #endif /* CONFIG_DRM_DEBUG_MODESET_LOCK */
-> @@ -266,7 +266,7 @@ EXPORT_SYMBOL(drm_modeset_acquire_fini);
->  void drm_modeset_drop_locks(struct drm_modeset_acquire_ctx *ctx)
->  {
->  	if (WARN_ON(ctx->contended))
-> -		__stack_depot_print(ctx->stack_depot);
-> +		__drm_stack_depot_print(ctx->stack_depot);
->  
->  	while (!list_empty(&ctx->locked)) {
->  		struct drm_modeset_lock *lock;
-> @@ -286,7 +286,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
->  	int ret;
->  
->  	if (WARN_ON(ctx->contended))
-> -		__stack_depot_print(ctx->stack_depot);
-> +		__drm_stack_depot_print(ctx->stack_depot);
->  
->  	if (ctx->trylock_only) {
->  		lockdep_assert_held(&ctx->ww_ctx);
-> @@ -317,7 +317,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
->  		ret = 0;
->  	} else if (ret == -EDEADLK) {
->  		ctx->contended = lock;
-> -		ctx->stack_depot = __stack_depot_save();
-> +		ctx->stack_depot = __drm_stack_depot_save();
->  	}
->  
->  	return ret;
+== Summary ==
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+CI Bug Log - changes from CI_DRM_10758 -> Patchwork_21377
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (38 -> 36)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan bat-dg1-6 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10758 -> Patchwork_21377
+
+  CI-20190529: 20190529
+  CI_DRM_10758: 8d0a08c4502a98ae3a6d533edaa2aabc2e491585 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21377: 342ca9feb4a1b9a564c50498d03c82c71745ba55 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+342ca9feb4a1 drm/i915/display: Remove check for low voltage sku for max dp source rate
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html
+
+--===============5836263188378671488==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Remove check for low voltage sku for max dp source rate (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95444/">https://patchwork.freedesktop.org/series/95444/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10758 -&gt; Patchwork_21377</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Missing    (2): fi-bsw-cyan bat-dg1-6 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10758 -&gt; Patchwork_21377</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10758: 8d0a08c4502a98ae3a6d533edaa2aabc2e491585 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21377: 342ca9feb4a1b9a564c50498d03c82c71745ba55 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>342ca9feb4a1 drm/i915/display: Remove check for low voltage sku for max dp source rate</p>
+
+</body>
+</html>
+
+--===============5836263188378671488==--
