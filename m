@@ -2,43 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C13B433300
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 12:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C405843332E
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 12:05:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3E4B6EB7F;
-	Tue, 19 Oct 2021 10:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6D16E152;
+	Tue, 19 Oct 2021 10:05:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11F316EB7F
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 10:00:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="227240754"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="227240754"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 03:00:07 -0700
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="629569039"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 03:00:05 -0700
-Date: Tue, 19 Oct 2021 13:00:02 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211019100002.GA1596069@ideak-desk.fi.intel.com>
-References: <20211014220921.683870-1-imre.deak@intel.com>
- <20211014220921.683870-10-imre.deak@intel.com>
- <87h7ddsaqi.fsf@intel.com>
- <20211019083833.GE1537791@ideak-desk.fi.intel.com>
- <20211019084745.GF1537791@ideak-desk.fi.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89FEC6E152
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 10:05:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="215397279"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="215397279"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 03:05:25 -0700
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="483159004"
+Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.211.239])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 03:05:22 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: imre.deak@intel.com, matthew.d.roper@intel.com,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>
+In-Reply-To: <20211018065207.30587-2-vandita.kulkarni@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+ <20211018065207.30587-2-vandita.kulkarni@intel.com>
+Date: Tue, 19 Oct 2021 13:05:20 +0300
+Message-ID: <875ytts527.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211019084745.GF1537791@ideak-desk.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 09/11] drm/i915: Add a platform
- independent way to check for CCS AUX planes
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/dsi/xelpd: Fix the bit mask
+ for wakeup GB
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,94 +52,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 19, 2021 at 11:47:45AM +0300, Imre Deak wrote:
-> On Tue, Oct 19, 2021 at 11:38:33AM +0300, Imre Deak wrote:
-> > On Tue, Oct 19, 2021 at 11:02:45AM +0300, Jani Nikula wrote:
-> > > 
-> > > From patch 1:
-> > > 
-> > > static bool check_modifier_display_ver(const struct intel_modifier_desc *md,
-> > > 				       u8 display_ver)
-> > > {
-> > > 	return display_ver >= md->display_ver.from &&
-> > > 	       display_ver <= md->display_ver.until;
-> > > }
-> > > 
-> > > On Fri, 15 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> > > > +static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
-> > > > +					     u8 display_ver_from, u8 display_ver_until)
-> > > > +{
-> > > > +	return check_modifier_display_ver(md, display_ver_from) &&
-> > > > +	       check_modifier_display_ver(md, display_ver_until);
-> > > > +}
-> > > > +
-> > > 
-> > > ...
-> > > 
-> > > > +/**
-> > > > + * intel_fb_is_gen12_ccs_aux_plane: Check if a framebuffer color plane is a GEN12 CCS AUX plane
-> > > > + * @fb: Framebuffer
-> > > > + * @color_plane: color plane index to check
-> > > > + *
-> > > > + * Returns:
-> > > > + * Returns %true if @fb's color plane at index @color_plane is a GEN12 CCS AUX plane.
-> > > > + */
-> > > > +static bool intel_fb_is_gen12_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane)
-> > > >  {
-> > > > -	return is_gen12_ccs_modifier(fb->modifier) && is_ccs_plane(fb, plane);
-> > > > +	const struct intel_modifier_desc *md = lookup_modifier(fb->modifier);
-> > > > +
-> > > > +	return check_modifier_display_ver_range(md, 12, 13) &&
-> > > > +	       ccs_aux_plane_mask(md, fb->format) & BIT(color_plane);
-> > > >  }
-> > > 
-> > > check_modifier_display_ver_range(md, 12, 13)
-> > > 
-> > > ==>
-> > > 
-> > > check_modifier_display_ver(md, 12) &&
-> > > check_modifier_display_ver(md, 13)
-> > > 
-> > > ==>
-> > > 
-> > > 12 >= md->display_ver.from &&
-> > > 12 <= md->display_ver.until &&
-> > > 13 >= md->display_ver.from &&
-> > > 13 <= md->display_ver.until
-> > > 
-> > > ==>
-> > > 
-> > > Always false.
-> > 
-> > If md->display_ver.from=12, md->display_ver.until=13
-> > 
-> > 12 >= 12 &&
-> > 12 <= 13 &&
-> > 13 >= 12 &&
-> > 13 <= 13
-> > 
-> > not false.
-> > 
-> > But yes, check_modifier_display_ver_range() is bogus for the
-> > md->display_ver.from == md->display_ver.until case, and should be
-> > 
-> > md->display_ver.from >= display_ver_from &&
-> > md->display_ver.until <= disaply_ver_until
-> 
-> arg the above is still bogus and should be:
-> 
->  check_modifier_display_ver(md, display_ver_from) ||
->  check_modifier_display_ver(md, display_ver_until);
+On Mon, 18 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
 
-Somehow the intersect check for two ranges was difficult :/ I hope v4 I
-sent is correct.
+Commit message goes here.
 
-> 
-> > Thanks for catching this, will fix it.
-> > 
-> > > BR,
-> > > Jani.
-> > > 
-> > > 
-> > > -- 
-> > > Jani Nikula, Intel Open Source Graphics Center
+> Fixes: f87c46c43175 ("drm/i915/dsi/xelpd: Add WA to program LP to HS wakeup guardband")
+> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 2 +-
+>  drivers/gpu/drm/i915/i915_reg.h        | 3 ++-
+>  2 files changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 9ee62707ec72..8c166f92f8bd 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1271,7 +1271,7 @@ static void adlp_set_lp_hs_wakeup_gb(struct intel_encoder *encoder)
+>  	if (DISPLAY_VER(i915) == 13) {
+>  		for_each_dsi_port(port, intel_dsi->ports)
+>  			intel_de_rmw(i915, TGL_DSI_CHKN_REG(port),
+> -				     TGL_DSI_CHKN_LSHS_GB, 0x4);
+> +				     TGL_DSI_CHKN_LSHS_GB_MASK, TGL_DSI_CHKN_LSHS_GB_MASK);
+
+I think you mean the value should be TGL_DSI_CHKN_LSHS_GB.
+
+BR,
+Jani.
+
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index a897f4abea0c..e4b1f80ca5eb 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -11728,7 +11728,8 @@ enum skl_power_gate {
+>  #define TGL_DSI_CHKN_REG(port)		_MMIO_PORT(port,	\
+>  						    _TGL_DSI_CHKN_REG_0, \
+>  						    _TGL_DSI_CHKN_REG_1)
+> -#define TGL_DSI_CHKN_LSHS_GB			REG_GENMASK(15, 12)
+> +#define TGL_DSI_CHKN_LSHS_GB_MASK		REG_GENMASK(15, 12)
+> +#define TGL_DSI_CHKN_LSHS_GB			REG_FIELD_PREP(TGL_DSI_CHKN_LSHS_GB_MASK, 4)
+>  
+>  /* Display Stream Splitter Control */
+>  #define DSS_CTL1				_MMIO(0x67400)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
