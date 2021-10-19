@@ -1,43 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0B243318A
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 10:47:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017AA4331CF
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 11:08:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C97C6E151;
-	Tue, 19 Oct 2021 08:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 255956EB60;
+	Tue, 19 Oct 2021 09:08:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FBBD6E151
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 08:47:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="314660553"
-X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="314660553"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 01:47:50 -0700
-X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="629507643"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 01:47:48 -0700
-Date: Tue, 19 Oct 2021 11:47:45 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211019084745.GF1537791@ideak-desk.fi.intel.com>
-References: <20211014220921.683870-1-imre.deak@intel.com>
- <20211014220921.683870-10-imre.deak@intel.com>
- <87h7ddsaqi.fsf@intel.com>
- <20211019083833.GE1537791@ideak-desk.fi.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 426BF6EB60;
+ Tue, 19 Oct 2021 09:08:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="228734459"
+X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="228734459"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 02:08:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="462692561"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 19 Oct 2021 02:08:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 19 Oct 2021 12:08:36 +0300
+Date: Tue, 19 Oct 2021 12:08:36 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Dave Airlie <airlied@redhat.com>, Jani Nikula <jani.nikula@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Message-ID: <YW6LFInWuSGMc3mL@intel.com>
+References: <20211014090941.12159-1-ville.syrjala@linux.intel.com>
+ <CAPM=9twtQFKU_oFyEoKg3j-OgVNDrODN180eYM+ASvFYyWjm3w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211019083833.GE1537791@ideak-desk.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 09/11] drm/i915: Add a platform
- independent way to check for CCS AUX planes
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPM=9twtQFKU_oFyEoKg3j-OgVNDrODN180eYM+ASvFYyWjm3w@mail.gmail.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915: Make the driver not oops on
+ load on old machines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,89 +59,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 19, 2021 at 11:38:33AM +0300, Imre Deak wrote:
-> On Tue, Oct 19, 2021 at 11:02:45AM +0300, Jani Nikula wrote:
-> > 
-> > From patch 1:
-> > 
-> > static bool check_modifier_display_ver(const struct intel_modifier_desc *md,
-> > 				       u8 display_ver)
-> > {
-> > 	return display_ver >= md->display_ver.from &&
-> > 	       display_ver <= md->display_ver.until;
-> > }
-> > 
-> > On Fri, 15 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> > > +static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
-> > > +					     u8 display_ver_from, u8 display_ver_until)
-> > > +{
-> > > +	return check_modifier_display_ver(md, display_ver_from) &&
-> > > +	       check_modifier_display_ver(md, display_ver_until);
-> > > +}
-> > > +
-> > 
-> > ...
-> > 
-> > > +/**
-> > > + * intel_fb_is_gen12_ccs_aux_plane: Check if a framebuffer color plane is a GEN12 CCS AUX plane
-> > > + * @fb: Framebuffer
-> > > + * @color_plane: color plane index to check
-> > > + *
-> > > + * Returns:
-> > > + * Returns %true if @fb's color plane at index @color_plane is a GEN12 CCS AUX plane.
-> > > + */
-> > > +static bool intel_fb_is_gen12_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane)
-> > >  {
-> > > -	return is_gen12_ccs_modifier(fb->modifier) && is_ccs_plane(fb, plane);
-> > > +	const struct intel_modifier_desc *md = lookup_modifier(fb->modifier);
-> > > +
-> > > +	return check_modifier_display_ver_range(md, 12, 13) &&
-> > > +	       ccs_aux_plane_mask(md, fb->format) & BIT(color_plane);
-> > >  }
-> > 
-> > check_modifier_display_ver_range(md, 12, 13)
-> > 
-> > ==>
-> > 
-> > check_modifier_display_ver(md, 12) &&
-> > check_modifier_display_ver(md, 13)
-> > 
-> > ==>
-> > 
-> > 12 >= md->display_ver.from &&
-> > 12 <= md->display_ver.until &&
-> > 13 >= md->display_ver.from &&
-> > 13 <= md->display_ver.until
-> > 
-> > ==>
-> > 
-> > Always false.
+On Mon, Oct 18, 2021 at 09:54:59AM +1000, Dave Airlie wrote:
+> On Thu, 14 Oct 2021 at 19:09, Ville Syrjala
+> <ville.syrjala@linux.intel.com> wrote:
+> >
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Fix a pile of regression on older machines which just oops the driver
+> > on load.
+> >
 > 
-> If md->display_ver.from=12, md->display_ver.until=13
+> For all 4:
 > 
-> 12 >= 12 &&
-> 12 <= 13 &&
-> 13 >= 12 &&
-> 13 <= 13
+> Reviewed-by: Dave Airlie <airlied@redhat.com>
 > 
-> not false.
-> 
-> But yes, check_modifier_display_ver_range() is bogus for the
-> md->display_ver.from == md->display_ver.until case, and should be
-> 
-> md->display_ver.from >= display_ver_from &&
-> md->display_ver.until <= disaply_ver_until
+> though it would be nice if the clflushes has more justifications on
+> initial patch submission/review, maybe something for gt team to keep
+> an eye for patches coming out from internal.
 
-arg the above is still bogus and should be:
+Thanks. clflush fixes pushed to drm-intel-gt-next. The hpd fix
+I pushed to drm-intel-next already earlier.
 
- check_modifier_display_ver(md, display_ver_from) ||
- check_modifier_display_ver(md, display_ver_until);
-
-> Thanks for catching this, will fix it.
-> 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > -- 
-> > Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
