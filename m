@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2593433F35
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 21:23:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C1D433F3F
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 21:28:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D206F6E88C;
-	Tue, 19 Oct 2021 19:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C91F66E897;
+	Tue, 19 Oct 2021 19:28:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 148E76E88C
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 19:23:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="228489059"
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="228489059"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3A26E897
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 19:28:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="289462169"
+X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="289462169"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 12:23:19 -0700
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="494256356"
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 12:28:28 -0700
+X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="494258157"
 Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.251.211.239])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 12:23:17 -0700
+ 19 Oct 2021 12:28:26 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20211018094154.1407705-7-imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211015133921.4609-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211018094154.1407705-1-imre.deak@intel.com>
- <20211018094154.1407705-7-imre.deak@intel.com>
-Date: Tue, 19 Oct 2021 22:23:14 +0300
-Message-ID: <87fsswq0nx.fsf@intel.com>
+References: <20211015133921.4609-1-ville.syrjala@linux.intel.com>
+ <20211015133921.4609-6-ville.syrjala@linux.intel.com>
+Date: Tue, 19 Oct 2021 22:28:23 +0300
+Message-ID: <87bl3kq0fc.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dp: Sanitize link common rate
- array lookups
+Subject: Re: [Intel-gfx] [PATCH 05/20] drm/i915/hdmi: Extract
+ intel_hdmi_output_format()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,122 +51,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> Add an assert that lookups from the intel_dp->common_rates[] array
-> are always valid.
-
-The one thought I had here was that if we're adding helper functions for
-accessing common rates, they should probably be of the form "this is the
-rate I have now, give me a slower rate" instead of making the index part
-of the interface. The index doesn't really mean anything, and if we want
-to avoid overflows, it should be hidden from the interfaces.
-
-But again, can be follow-up.
-
-BR,
-Jani.
-
-
+On Fri, 15 Oct 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Reorganize the HDMI 4:2:0 handling a bit by introducing
+> intel_hdmi_output_format(). We already have the DP counterpart
+> and I want to unify the 4:2:0 handling across both a bit.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Patches 1-5,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 33 ++++++++++++-------------
->  1 file changed, 16 insertions(+), 17 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 35 ++++++++++++++---------
+>  1 file changed, 22 insertions(+), 13 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index f8082eb8e7263..3869d454c10f0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -267,10 +267,19 @@ static int intel_dp_common_len_rate_limit(const str=
-uct intel_dp *intel_dp,
->  				       intel_dp->num_common_rates, max_rate);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 18e7ef125827..7e6af959bf83 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2157,34 +2157,43 @@ static bool intel_hdmi_has_audio(struct intel_enc=
+oder *encoder,
+>  		return intel_conn_state->force_audio =3D=3D HDMI_AUDIO_ON;
 >  }
 >=20=20
-> +static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
+> +static enum intel_output_format
+> +intel_hdmi_output_format(struct intel_connector *connector,
+> +			 bool ycbcr_420_output)
 > +{
-> +	if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
-> +			index < 0 || index >=3D intel_dp->num_common_rates))
-> +		return 162000;
-> +
-> +	return intel_dp->common_rates[index];
+> +	if (connector->base.ycbcr_420_allowed && ycbcr_420_output)
+> +		return INTEL_OUTPUT_FORMAT_YCBCR420;
+> +	else
+> +		return INTEL_OUTPUT_FORMAT_RGB;
 > +}
 > +
->  /* Theoretical max between source and sink */
->  static int intel_dp_max_common_rate(struct intel_dp *intel_dp)
+>  static int intel_hdmi_compute_output_format(struct intel_encoder *encode=
+r,
+>  					    struct intel_crtc_state *crtc_state,
+>  					    const struct drm_connector_state *conn_state)
 >  {
-> -	return intel_dp->common_rates[intel_dp->num_common_rates - 1];
-> +	return intel_dp_common_rate(intel_dp, intel_dp->num_common_rates - 1);
->  }
->=20=20
->  /* Theoretical max between source and sink */
-> @@ -610,13 +619,13 @@ int intel_dp_get_link_train_fallback_values(struct =
-intel_dp *intel_dp,
->  	if (index > 0) {
->  		if (intel_dp_is_edp(intel_dp) &&
->  		    !intel_dp_can_link_train_fallback_for_edp(intel_dp,
-> -							      intel_dp->common_rates[index - 1],
-> +							      intel_dp_common_rate(intel_dp, index - 1),
->  							      lane_count)) {
->  			drm_dbg_kms(&i915->drm,
->  				    "Retrying Link training for eDP with same parameters\n");
->  			return 0;
->  		}
-> -		intel_dp->max_link_rate =3D intel_dp->common_rates[index - 1];
-> +		intel_dp->max_link_rate =3D intel_dp_common_rate(intel_dp, index - 1);
->  		intel_dp->max_link_lane_count =3D lane_count;
->  	} else if (lane_count > 1) {
->  		if (intel_dp_is_edp(intel_dp) &&
-> @@ -1056,14 +1065,11 @@ static void intel_dp_print_rates(struct intel_dp =
-*intel_dp)
->  int
->  intel_dp_max_link_rate(struct intel_dp *intel_dp)
->  {
-> -	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
->  	int len;
->=20=20
->  	len =3D intel_dp_common_len_rate_limit(intel_dp, intel_dp->max_link_rat=
-e);
-> -	if (drm_WARN_ON(&i915->drm, len <=3D 0))
-> -		return 162000;
->=20=20
-> -	return intel_dp->common_rates[len - 1];
-> +	return intel_dp_common_rate(intel_dp, len - 1);
->  }
->=20=20
->  int intel_dp_rate_select(struct intel_dp *intel_dp, int rate)
-> @@ -1260,7 +1266,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *=
-intel_dp,
->  						   output_bpp);
->=20=20
->  		for (i =3D 0; i < intel_dp->num_common_rates; i++) {
-> -			link_rate =3D intel_dp->common_rates[i];
-> +			link_rate =3D intel_dp_common_rate(intel_dp, i);
->  			if (link_rate < limits->min_rate ||
->  			    link_rate > limits->max_rate)
->  				continue;
-> @@ -1508,17 +1514,10 @@ intel_dp_compute_link_config(struct intel_encoder=
- *encoder,
->  		&pipe_config->hw.adjusted_mode;
->  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->  	struct link_config_limits limits;
-> -	int common_len;
+> -	struct drm_connector *connector =3D conn_state->connector;
+> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+> +	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
+nnector);
+>  	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
+ed_mode;
+> +	const struct drm_display_info *info =3D &connector->base.display_info;
+> +	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+> +	bool ycbcr_420_only =3D drm_mode_is_420_only(info, adjusted_mode);
 >  	int ret;
+> -	bool ycbcr_420_only;
 >=20=20
-> -	common_len =3D intel_dp_common_len_rate_limit(intel_dp,
-> -						    intel_dp->max_link_rate);
-> -
-> -	/* No common link rates between source and sink */
-> -	drm_WARN_ON(encoder->base.dev, common_len <=3D 0);
-> -
-> -	limits.min_rate =3D intel_dp->common_rates[0];
-> -	limits.max_rate =3D intel_dp->common_rates[common_len - 1];
-> +	limits.min_rate =3D intel_dp_common_rate(intel_dp, 0);
-> +	limits.max_rate =3D intel_dp_max_link_rate(intel_dp);
+> -	ycbcr_420_only =3D drm_mode_is_420_only(&connector->display_info, adjus=
+ted_mode);
+> -	if (connector->ycbcr_420_allowed && ycbcr_420_only) {
+> -		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+> -	} else {
+> -		if (!connector->ycbcr_420_allowed && ycbcr_420_only)
+> -			drm_dbg_kms(&i915->drm,
+> -				    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling b=
+ack to RGB.\n");
+> +	crtc_state->output_format =3D intel_hdmi_output_format(connector, ycbcr=
+_420_only);
+> +
+> +	if (ycbcr_420_only && !intel_hdmi_is_ycbcr420(crtc_state)) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling ba=
+ck to RGB.\n");
+>  		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
+>  	}
 >=20=20
->  	limits.min_lane_count =3D 1;
->  	limits.max_lane_count =3D intel_dp_max_lane_count(intel_dp);
+>  	ret =3D intel_hdmi_compute_clock(encoder, crtc_state);
+>  	if (ret) {
+>  		if (intel_hdmi_is_ycbcr420(crtc_state) ||
+> -		    !connector->ycbcr_420_allowed ||
+> -		    !drm_mode_is_420_also(&connector->display_info, adjusted_mode))
+> +		    !connector->base.ycbcr_420_allowed ||
+> +		    !drm_mode_is_420_also(info, adjusted_mode))
+>  			return ret;
+>=20=20
+> -		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+> +		crtc_state->output_format =3D intel_hdmi_output_format(connector, true=
+);
+>  		ret =3D intel_hdmi_compute_clock(encoder, crtc_state);
+>  	}
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
