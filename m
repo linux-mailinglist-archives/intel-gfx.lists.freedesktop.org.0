@@ -2,42 +2,125 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150C9433BEC
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 18:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9435433C3A
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 18:30:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2F7C6E192;
-	Tue, 19 Oct 2021 16:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C54F6E198;
+	Tue, 19 Oct 2021 16:30:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81AF6E192;
- Tue, 19 Oct 2021 16:18:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="292025377"
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="292025377"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 09:13:36 -0700
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="443951691"
-Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.211.239])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 09:13:34 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Date: Tue, 19 Oct 2021 19:13:22 +0300
-Message-Id: <20211019161322.11037-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211019161322.11037-1-jani.nikula@intel.com>
-References: <20211019161322.11037-1-jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2080.outbound.protection.outlook.com [40.107.93.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B65E76E198;
+ Tue, 19 Oct 2021 16:30:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ELBwGwY6UzaeXepfjnkVhmxK5K9HkRqPB17jAUjlhLvk/Sq+sacqzz8/qI162rcbMFu3amyWrodaNWEuHxV1RbXvzmG61uqLkGWwf2Es4vHLtTQg5NSBtoTPgoReozDJg1kA77n/WhZ+5OuyukXMlGZINvZnqMiyqvyaExREBTgrW3b+LXzluubQLdjacY0W3YjtMuUbB5oH60C5/ws/JWaI46PcaLFtGFwsyvcO2sO+uNlzajHDrTf9TqqKwg4Xo1M2FsA2iDAXOejlT25ET5b1XubmCYYlb+XhbUyoeRRCWo5VSFe7yZ7gcMEQgA8+ynCxZUIYhQZyZ3zCi2FKrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LxJ4PM3w+2xOxLtg73UaRmKeFxYV4e0IiJ1Ne9ariCY=;
+ b=Mim6sYmx+E1WrVrJDCDxXm2+YEXqoe+gUAE7aC15Hsl5uAzNaYFTKy/XvIbRHgEejm/bQjhcbtIq3OHeujoiz0DDRykHZcFVtwKLph30hFTGNG4o87ooi5co/WTTgCEe9gnK+5ent51ecyePlC32mxazqOJs77Q+8MVEENE2d8YvzBS9105M4R3gZEYe+w3y/xPJMkt32Huy/itgQ03aqqu7kyfA9w8iz9F0Hb6NQ7Yk2v694/1y7jyPb99GVfl7MUcNVnnIFaE7u8vfIIDHjbfkEAn0rxLEqARxRZTOq/uZ6eSK+z41hwPy48Jsehp282YTQR9hsQZu2R0shSlRxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LxJ4PM3w+2xOxLtg73UaRmKeFxYV4e0IiJ1Ne9ariCY=;
+ b=vd0+fyga9CKYRU5tZG0ZYx6S9OJO627G1TuZi6R/SJfY+oqzRUewwQWfZQO1+qOikVWsABvWGuPo1Ri/G/V/jwlI2GPDXM/Jh0d5g5Kxi0ClL6B0eM2Y0vDMUXtK695kBrHM1L4ML2v0gQBeblE9+AytVZovKsCswhlFS4N3rVc=
+Authentication-Results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
+Received: from DM5PR1201MB2491.namprd12.prod.outlook.com (2603:10b6:3:eb::23)
+ by DM6PR12MB4265.namprd12.prod.outlook.com (2603:10b6:5:211::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17; Tue, 19 Oct
+ 2021 16:30:43 +0000
+Received: from DM5PR1201MB2491.namprd12.prod.outlook.com
+ ([fe80::d153:3aa6:4677:e29]) by DM5PR1201MB2491.namprd12.prod.outlook.com
+ ([fe80::d153:3aa6:4677:e29%7]) with mapi id 15.20.4608.018; Tue, 19 Oct 2021
+ 16:30:43 +0000
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ tvrtko.ursulin@linux.intel.com
+References: <20211005113742.1101-1-christian.koenig@amd.com>
+ <20211005113742.1101-13-christian.koenig@amd.com>
+ <YWboMfLOIjl1l7tF@phenom.ffwll.local>
+ <a0a926a7-13d0-b996-5f32-36aa6d74165e@gmail.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Message-ID: <c18a4c91-93b4-79ed-0907-84adb29761d8@amd.com>
+Date: Tue, 19 Oct 2021 12:30:40 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <a0a926a7-13d0-b996-5f32-36aa6d74165e@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: use drm_dp_phy_name() for
- logging
+Content-Language: en-US
+X-ClientProxiedBy: YT1PR01CA0099.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::8) To DM5PR1201MB2491.namprd12.prod.outlook.com
+ (2603:10b6:3:eb::23)
+MIME-Version: 1.0
+Received: from [192.168.2.100] (142.118.126.231) by
+ YT1PR01CA0099.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4628.15 via Frontend Transport; Tue, 19 Oct 2021 16:30:42 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b716448e-00af-488b-8bf8-08d9931dcb8d
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4265:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4265ED10CED6FB0F5484D24692BD9@DM6PR12MB4265.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: u30dx3u18H3GfMtKoF1R5Ooc19TD9tCCaNh7s+I2awPPs2nzg7yYjWuyAOjjKW/roSq65I/E3L0o7Yutqc9T9hGJZnRZTLuWI2iIDRGOFXWN5SBfEiICTgdmyuGyvkLj7eD4WbkKauTPdNNlM9qWmGJN4giVXVC0pZSyIDGsbARCWay8kXur+J08k/8UUgMVtNLOe0K+KtQtHWONVSkpzFiO6Rmd58j6MEtIXBqiqYtaDc3zySyjtHxsjUzFjnZS9E9+azB/NqIvghs1rTSDrUbiZghxVwtku/Y0kEFmowIuE0/oqLuYP5G/rzHUhozxncysVzCF4vQh5jlHygt6VoYyDsJtpfZDgCBPv8DiZS19HeFORvrK8tgoIg+72cCqL7r3kjGkocnF//sZOEGVLskiK6F9YN+bi3CE369mntZxEqwnN7zsNZbZ2B8rqxCRbKNWxoqw3/VPXx6+iIf1VizZo/Hbh78t0fb7hGRS2XralVk8JHVCBqdIpV/yhzWJZiZqjogVInrtXpL+tpJGsoNVfInb5osueY1VHVpijU7HpYwY/TcPV3EqpjV6cunm8kstc+KE3ZD+opSunLDmQpWgoHbUoeZB0MNZDaca1AeDoEx4zjoG2AXvTGkvCot4ix5sqWMKddWSYeBwYQYFCdOusVgQzIX8fLE3TBAwUXA1L7ViOH5yyiA7UMrrjXemPy/GskGM5DRoKFknK8CQHDou8LTKDbAp6kGvbVzQ8F0MZ2hRYEm02ZD1xIKiTV3t
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR1201MB2491.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(5660300002)(4001150100001)(66946007)(31686004)(4326008)(38100700002)(26005)(44832011)(6486002)(83380400001)(66476007)(66556008)(86362001)(8676002)(2616005)(31696002)(16576012)(316002)(8936002)(36756003)(508600001)(956004)(186003)(110136005)(2906002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Ri9aaFpkZC9ZLzlDOTlOMlh6ZFRTL2JWcUtHM3VIWkh4UFRpRmlOdDRnVmk4?=
+ =?utf-8?B?eWU1M0NlN3AxaU44UlQ3VGZJdWJLcXBmbTlRVmFETGVjbVh4aU9kYXQycTVq?=
+ =?utf-8?B?QUYzQmJpRldUbnVSVENpYjg1djZmTDAwU05Gd0Q2UWQ1eGZkRkVKTnRrZCtx?=
+ =?utf-8?B?dUpHcDdkNDYxKzFkR2ZqWDIra1dKMmFRSzE1ZlVUYTR3L0diQythQjdKVlpZ?=
+ =?utf-8?B?UEcvN1U4akNtb2g3dndHMlV4OVQ3cHZiQ2ZIRjN4ODhqV1B2RVovRythTVpL?=
+ =?utf-8?B?djlBUmZkQkZGVzFscDZ1bDhJS3VYMHhkZVlHYmZ4WmJudUZsUURVcGViQU1w?=
+ =?utf-8?B?TjdYT3YzemZlRXZ6OFNlRmMrNDk2NlZVZVE1OFZYRHNGbkF1cC9qOWZocGdn?=
+ =?utf-8?B?ZlRRYzFRbVMrS3hYSUNyNG9yYVROY2tWTGdZRnpGNU9Xcmo1N3gzNmlleUZS?=
+ =?utf-8?B?azRwRFhlYnNGZjgzVTBNcTJPeEQ4THdlNThYZEk1eGJxaUF0SklXYVBPSnVC?=
+ =?utf-8?B?NkFTbDR2TlVnSXZ6aWJ1WERKZ3dxM09Kd0FCTUYzZGRrM3FkRkFSQW9TQmI0?=
+ =?utf-8?B?NlZhRmxmRC9kdDlwRUpLOTRyYVdTa0V5aC9uamVmeGlabGx3c2VUOXhiQ1dm?=
+ =?utf-8?B?QUxPMmFlMUtzbFA0WDRVU0g2QmJLT0dGbDlEYTFVaGN1NnF3c1hhaGtiaEc0?=
+ =?utf-8?B?WXhFd1dkVHBWYm1ENlVBMEU2R0F0UmJLcHhtNmpVRjEyY0FUaFk4Q2FTc1lm?=
+ =?utf-8?B?VzdUSUFyOXhoc0ljbDdWMGx6c3dQSmlpQlUrRWJUT000Qmg3T1oweEoySko0?=
+ =?utf-8?B?SFNXaVRyNzFQNUx0a0lWc2ZRYVNIMzZZWHdlaE1yYXcvWWd2WXZiWEY1WlJp?=
+ =?utf-8?B?TUFHZStaMWFaL0RlcWJWQVF1TXhUdEdqSlNjM0FKelhZc0Z6VUZtMzE5QjRM?=
+ =?utf-8?B?REpjOHBWdlNWd3ZORTdPSEh3Q1l2M2hTSFRZRGplVFpUbzBZWG5jQ1dJK2Ju?=
+ =?utf-8?B?TmlOdmlpZHRHMEFiWGFiZXFhOEJ3YXJuazA5Z2hrOXhtMTZ2Y3lONjlCUDVm?=
+ =?utf-8?B?SXlvNURqc1JMVEJLV3ZlK1dkbENHVmw3cWQ0anVKL24wbjFMNDFZMnNkcHNv?=
+ =?utf-8?B?NUFnWUhPT2Ewb1Zxdk1xUVhXR3RpQWd0cmRjelFxLy9NNDR5eE8ydTdKMkhj?=
+ =?utf-8?B?aTZkTi8zZ0JqUFN0Ymd0SHF1RWtXR1JBcXFvNlJ4elF2Um5ZTWhLQTJKT2p0?=
+ =?utf-8?B?SkNyWjZSUlg3dXhnRWdyVU83ckN4MWpIUlFJZUhRSzVCOTlleTdpQ1pCYUNG?=
+ =?utf-8?B?dnhuMXE4TkZvR3dhMXZoM0JXemd6MldLOERCbWJDMTFzNFU4enltbXNPaFhY?=
+ =?utf-8?B?WmlrUjI4a09WNjFzTmVsQXE0WXVlZ3BuWnBDcWlseFpWR2E0c1lmY2c5RWRC?=
+ =?utf-8?B?TzcvSmdJUUhwNFFWTDFib0R2VWRZckxnTWRpWis5Uk0yNUxQaFdKZytTeVBp?=
+ =?utf-8?B?SmJqaDNaMXZHTHZWclk3OSswTG5vTVFSd0JrZi9uWG1KeDlwVzlhM3ZvRk0x?=
+ =?utf-8?B?ajFac25tS3pJQ00zN3dkZm1NZkI4ajBCYzBhYWpuRzFnR2lKTHZoM1JFczVF?=
+ =?utf-8?B?OEpMa2t5dUNGdjJtZ21kSlZvQ3FnVDZwSUdiOVRCdkRwYUhiRHlsbDVFbTBQ?=
+ =?utf-8?B?VGQrS1Q2c2p3ZGJ6TjFBUmE3dUVJOXJ4T1hXemFzZW51SEtkM3AxRmM2UHZY?=
+ =?utf-8?B?QmU0MjhMWCtReTVXMVhYenRlRmFjZkY0cWc3Z1ZSWjhVTEdhVVVGSGUzOC9o?=
+ =?utf-8?B?Nk92TGs1dHZBQU9ab1FmQT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b716448e-00af-488b-8bf8-08d9931dcb8d
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR1201MB2491.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 16:30:43.1380 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /3ftIQZ1VCKMHPMjp1yvaOElHNdUCAU6NFligJGhdmEb4DTDuUtuskRnjtdgVT07kKMMa8FpZViLR2gmJ28CWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4265
+Subject: Re: [Intel-gfx] [PATCH 12/28] drm/amdgpu: use new iterator in
+ amdgpu_ttm_bo_eviction_valuable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,318 +136,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop the local intel_dp_phy_name() function, and replace with
-drm_dp_phy_name(). This lets us drop a number of local buffers.
+Am 2021-10-19 um 7:36 a.m. schrieb Christian König:
+> Am 13.10.21 um 16:07 schrieb Daniel Vetter:
+>> On Tue, Oct 05, 2021 at 01:37:26PM +0200, Christian König wrote:
+>>> Simplifying the code a bit.
+>>>
+>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 14 ++++----------
+>>>   1 file changed, 4 insertions(+), 10 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>> index e8d70b6e6737..722e3c9e8882 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>> @@ -1345,10 +1345,9 @@ static bool
+>>> amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+>>>                           const struct ttm_place *place)
+>>>   {
+>>>       unsigned long num_pages = bo->resource->num_pages;
+>>> +    struct dma_resv_iter resv_cursor;
+>>>       struct amdgpu_res_cursor cursor;
+>>> -    struct dma_resv_list *flist;
+>>>       struct dma_fence *f;
+>>> -    int i;
+>>>         /* Swapout? */
+>>>       if (bo->resource->mem_type == TTM_PL_SYSTEM)
+>>> @@ -1362,14 +1361,9 @@ static bool
+>>> amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+>>>        * If true, then return false as any KFD process needs all its
+>>> BOs to
+>>>        * be resident to run successfully
+>>>        */
+>>> -    flist = dma_resv_shared_list(bo->base.resv);
+>>> -    if (flist) {
+>>> -        for (i = 0; i < flist->shared_count; ++i) {
+>>> -            f = rcu_dereference_protected(flist->shared[i],
+>>> -                dma_resv_held(bo->base.resv));
+>>> -            if (amdkfd_fence_check_mm(f, current->mm))
+>>> -                return false;
+>>> -        }
+>>> +    dma_resv_for_each_fence(&resv_cursor, bo->base.resv, true, f) {
+>>                                 ^false?
+>>
+>> At least I'm not seeing the code look at the exclusive fence here.
+>
+> Yes, but that's correct. We need to look at all potential fences.
 
-v2: Rebase
+amdkfd_fence_check_mm is only meaningful for KFD eviction fences, and
+they are always added as shared fences. I think setting all_fences =
+false would return only the exclusive fence.
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v1
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_dp_link_training.c | 83 ++++++++-----------
- 1 file changed, 36 insertions(+), 47 deletions(-)
+Regards,
+  Felix
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index a72f2dc93718..81f93733fcc5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -37,17 +37,6 @@ static void intel_dp_reset_lttpr_count(struct intel_dp *intel_dp)
- 				    DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV] = 0;
- }
- 
--static const char *intel_dp_phy_name(enum drm_dp_phy dp_phy,
--				     char *buf, size_t buf_size)
--{
--	if (dp_phy == DP_PHY_DPRX)
--		snprintf(buf, buf_size, "DPRX");
--	else
--		snprintf(buf, buf_size, "LTTPR %d", dp_phy - DP_PHY_LTTPR1 + 1);
--
--	return buf;
--}
--
- static u8 *intel_dp_lttpr_phy_caps(struct intel_dp *intel_dp,
- 				   enum drm_dp_phy dp_phy)
- {
-@@ -59,20 +48,19 @@ static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
- {
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	u8 *phy_caps = intel_dp_lttpr_phy_caps(intel_dp, dp_phy);
--	char phy_name[10];
--
--	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
- 
- 	if (drm_dp_read_lttpr_phy_caps(&intel_dp->aux, dp_phy, phy_caps) < 0) {
- 		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
- 			    "[ENCODER:%d:%s][%s] failed to read the PHY caps\n",
--			    encoder->base.base.id, encoder->base.name, phy_name);
-+			    encoder->base.base.id, encoder->base.name,
-+			    drm_dp_phy_name(dp_phy));
- 		return;
- 	}
- 
- 	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
- 		    "[ENCODER:%d:%s][%s] PHY capabilities: %*ph\n",
--		    encoder->base.base.id, encoder->base.name, phy_name,
-+		    encoder->base.base.id, encoder->base.name,
-+		    drm_dp_phy_name(dp_phy),
- 		    (int)sizeof(intel_dp->lttpr_phy_caps[0]),
- 		    phy_caps);
- }
-@@ -406,14 +394,13 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
- {
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	char phy_name[10];
- 	int lane;
- 
- 	if (intel_dp_is_uhbr(crtc_state)) {
- 		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
- 			    "TX FFE request: " TRAIN_REQ_FMT "\n",
- 			    encoder->base.base.id, encoder->base.name,
--			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
-+			    drm_dp_phy_name(dp_phy),
- 			    crtc_state->lane_count,
- 			    TRAIN_REQ_TX_FFE_ARGS(link_status));
- 	} else {
-@@ -421,7 +408,7 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
- 			    "vswing request: " TRAIN_REQ_FMT ", "
- 			    "pre-emphasis request: " TRAIN_REQ_FMT "\n",
- 			    encoder->base.base.id, encoder->base.name,
--			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
-+			    drm_dp_phy_name(dp_phy),
- 			    crtc_state->lane_count,
- 			    TRAIN_REQ_VSWING_ARGS(link_status),
- 			    TRAIN_REQ_PREEMPH_ARGS(link_status));
-@@ -486,13 +473,12 @@ intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	u8 train_pat = intel_dp_training_pattern_symbol(dp_train_pat);
--	char phy_name[10];
- 
- 	if (train_pat != DP_TRAINING_PATTERN_DISABLE)
- 		drm_dbg_kms(&i915->drm,
- 			    "[ENCODER:%d:%s][%s] Using DP training pattern TPS%c\n",
- 			    encoder->base.base.id, encoder->base.name,
--			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
-+			    drm_dp_phy_name(dp_phy),
- 			    dp_training_pattern_name(train_pat));
- 
- 	intel_dp->set_link_train(intel_dp, crtc_state, dp_train_pat);
-@@ -529,13 +515,12 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
- {
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	char phy_name[10];
- 
- 	if (intel_dp_is_uhbr(crtc_state)) {
- 		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
- 			    "TX FFE presets: " TRAIN_SET_FMT "\n",
- 			    encoder->base.base.id, encoder->base.name,
--			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
-+			    drm_dp_phy_name(dp_phy),
- 			    crtc_state->lane_count,
- 			    TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
- 	} else {
-@@ -543,7 +528,7 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
- 			    "vswing levels: " TRAIN_SET_FMT ", "
- 			    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
- 			    encoder->base.base.id, encoder->base.name,
--			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
-+			    drm_dp_phy_name(dp_phy),
- 			    crtc_state->lane_count,
- 			    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
- 			    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
-@@ -715,12 +700,11 @@ intel_dp_dump_link_status(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
- {
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	char phy_name[10];
- 
- 	drm_dbg_kms(&i915->drm,
- 		    "[ENCODER:%d:%s][%s] ln0_1:0x%x ln2_3:0x%x align:0x%x sink:0x%x adj_req0_1:0x%x adj_req2_3:0x%x\n",
- 		    encoder->base.base.id, encoder->base.name,
--		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
-+		    drm_dp_phy_name(dp_phy),
- 		    link_status[0], link_status[1], link_status[2],
- 		    link_status[3], link_status[4], link_status[5]);
- }
-@@ -740,21 +724,19 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 	int voltage_tries, cr_tries, max_cr_tries;
- 	u8 link_status[DP_LINK_STATUS_SIZE];
- 	bool max_vswing_reached = false;
--	char phy_name[10];
- 	int delay_us;
- 
- 	delay_us = drm_dp_read_clock_recovery_delay(&intel_dp->aux,
- 						    intel_dp->dpcd, dp_phy,
- 						    intel_dp_is_uhbr(crtc_state));
- 
--	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
--
- 	/* clock recovery */
- 	if (!intel_dp_reset_link_train(intel_dp, crtc_state, dp_phy,
- 				       DP_TRAINING_PATTERN_1 |
- 				       DP_LINK_SCRAMBLING_DISABLE)) {
- 		drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to enable link training\n",
--			encoder->base.base.id, encoder->base.name, phy_name);
-+			encoder->base.base.id, encoder->base.name,
-+			drm_dp_phy_name(dp_phy));
- 		return false;
- 	}
- 
-@@ -778,14 +760,16 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
- 						     link_status) < 0) {
- 			drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to get link status\n",
--				encoder->base.base.id, encoder->base.name, phy_name);
-+				encoder->base.base.id, encoder->base.name,
-+				drm_dp_phy_name(dp_phy));
- 			return false;
- 		}
- 
- 		if (drm_dp_clock_recovery_ok(link_status, crtc_state->lane_count)) {
- 			drm_dbg_kms(&i915->drm,
- 				    "[ENCODER:%d:%s][%s] Clock recovery OK\n",
--				    encoder->base.base.id, encoder->base.name, phy_name);
-+				    encoder->base.base.id, encoder->base.name,
-+				    drm_dp_phy_name(dp_phy));
- 			return true;
- 		}
- 
-@@ -793,7 +777,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
- 			drm_dbg_kms(&i915->drm,
- 				    "[ENCODER:%d:%s][%s] Same voltage tried 5 times\n",
--				    encoder->base.base.id, encoder->base.name, phy_name);
-+				    encoder->base.base.id, encoder->base.name,
-+				    drm_dp_phy_name(dp_phy));
- 			return false;
- 		}
- 
-@@ -801,7 +786,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
- 			drm_dbg_kms(&i915->drm,
- 				    "[ENCODER:%d:%s][%s] Max Voltage Swing reached\n",
--				    encoder->base.base.id, encoder->base.name, phy_name);
-+				    encoder->base.base.id, encoder->base.name,
-+				    drm_dp_phy_name(dp_phy));
- 			return false;
- 		}
- 
-@@ -811,7 +797,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
- 			drm_err(&i915->drm,
- 				"[ENCODER:%d:%s][%s] Failed to update link training\n",
--				encoder->base.base.id, encoder->base.name, phy_name);
-+				encoder->base.base.id, encoder->base.name,
-+				drm_dp_phy_name(dp_phy));
- 			return false;
- 		}
- 
-@@ -829,7 +816,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
- 	intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
- 	drm_err(&i915->drm,
- 		"[ENCODER:%d:%s][%s] Failed clock recovery %d times, giving up!\n",
--		encoder->base.base.id, encoder->base.name, phy_name, max_cr_tries);
-+		encoder->base.base.id, encoder->base.name,
-+		drm_dp_phy_name(dp_phy), max_cr_tries);
- 
- 	return false;
- }
-@@ -907,15 +895,12 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 	u32 training_pattern;
- 	u8 link_status[DP_LINK_STATUS_SIZE];
- 	bool channel_eq = false;
--	char phy_name[10];
- 	int delay_us;
- 
- 	delay_us = drm_dp_read_channel_eq_delay(&intel_dp->aux,
- 						intel_dp->dpcd, dp_phy,
- 						intel_dp_is_uhbr(crtc_state));
- 
--	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
--
- 	training_pattern = intel_dp_training_pattern(intel_dp, crtc_state, dp_phy);
- 	/* Scrambling is disabled for TPS2/3 and enabled for TPS4 */
- 	if (training_pattern != DP_TRAINING_PATTERN_4)
-@@ -927,7 +912,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 		drm_err(&i915->drm,
- 			"[ENCODER:%d:%s][%s] Failed to start channel equalization\n",
- 			encoder->base.base.id, encoder->base.name,
--			phy_name);
-+			drm_dp_phy_name(dp_phy));
- 		return false;
- 	}
- 
-@@ -938,7 +923,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 						     link_status) < 0) {
- 			drm_err(&i915->drm,
- 				"[ENCODER:%d:%s][%s] Failed to get link status\n",
--				encoder->base.base.id, encoder->base.name, phy_name);
-+				encoder->base.base.id, encoder->base.name,
-+				drm_dp_phy_name(dp_phy));
- 			break;
- 		}
- 
-@@ -949,7 +935,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 			drm_dbg_kms(&i915->drm,
- 				    "[ENCODER:%d:%s][%s] Clock recovery check failed, cannot "
- 				    "continue channel equalization\n",
--				    encoder->base.base.id, encoder->base.name, phy_name);
-+				    encoder->base.base.id, encoder->base.name,
-+				    drm_dp_phy_name(dp_phy));
- 			break;
- 		}
- 
-@@ -958,7 +945,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 			channel_eq = true;
- 			drm_dbg_kms(&i915->drm,
- 				    "[ENCODER:%d:%s][%s] Channel EQ done. DP Training successful\n",
--				    encoder->base.base.id, encoder->base.name, phy_name);
-+				    encoder->base.base.id, encoder->base.name,
-+				    drm_dp_phy_name(dp_phy));
- 			break;
- 		}
- 
-@@ -968,7 +956,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
- 			drm_err(&i915->drm,
- 				"[ENCODER:%d:%s][%s] Failed to update link training\n",
--				encoder->base.base.id, encoder->base.name, phy_name);
-+				encoder->base.base.id, encoder->base.name,
-+				drm_dp_phy_name(dp_phy));
- 			break;
- 		}
- 	}
-@@ -978,7 +967,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
- 		intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
- 		drm_dbg_kms(&i915->drm,
- 			    "[ENCODER:%d:%s][%s] Channel equalization failed 5 times\n",
--			    encoder->base.base.id, encoder->base.name, phy_name);
-+			    encoder->base.base.id, encoder->base.name,
-+			    drm_dp_phy_name(dp_phy));
- 	}
- 
- 	return channel_eq;
-@@ -1026,7 +1016,6 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
- {
- 	struct intel_connector *connector = intel_dp->attached_connector;
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
--	char phy_name[10];
- 	bool ret = false;
- 
- 	if (!intel_dp_link_training_clock_recovery(intel_dp, crtc_state, dp_phy))
-@@ -1042,7 +1031,7 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
- 		    "[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] Link Training %s at link rate = %d, lane count = %d\n",
- 		    connector->base.base.id, connector->base.name,
- 		    encoder->base.base.id, encoder->base.name,
--		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
-+		    drm_dp_phy_name(dp_phy),
- 		    ret ? "passed" : "failed",
- 		    crtc_state->port_clock, crtc_state->lane_count);
- 
--- 
-2.30.2
 
+>
+> It's a design problem in KFD if you ask me, but that is a completely
+> different topic.
+>
+> Christian.
+>
+>> -Daniel
+>>
+>>> +        if (amdkfd_fence_check_mm(f, current->mm))
+>>> +            return false;
+>>>       }
+>>>         switch (bo->resource->mem_type) {
+>>> -- 
+>>> 2.25.1
+>>>
+>
