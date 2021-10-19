@@ -2,62 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93CCD4334E3
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E93194334F0
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 13:43:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC0436E155;
-	Tue, 19 Oct 2021 11:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D762A6E133;
+	Tue, 19 Oct 2021 11:43:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64D396E155
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:40:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="289335903"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="289335903"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 04:40:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="550777773"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga004.fm.intel.com with ESMTP; 19 Oct 2021 04:40:32 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 19 Oct 2021 04:40:32 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 19 Oct 2021 04:40:30 -0700
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.012;
- Tue, 19 Oct 2021 17:10:28 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Deak, Imre" <imre.deak@intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder support
-Thread-Index: AQHXw+yd3j9CdKpBz0e9Z7fXZgoZIavZv/EAgABzosA=
-Date: Tue, 19 Oct 2021 11:40:28 +0000
-Message-ID: <ecae5fbc44ac4fe0a58e69258143bb50@intel.com>
-References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
- <20211018065207.30587-3-vandita.kulkarni@intel.com>
- <8735oxs4o7.fsf@intel.com>
-In-Reply-To: <8735oxs4o7.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C9826E133
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 11:43:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="215410311"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="215410311"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 04:43:42 -0700
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="494057850"
+Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.211.239])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 04:43:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Swati Sharma <swati2.sharma@intel.com>
+Date: Tue, 19 Oct 2021 14:43:34 +0300
+Message-Id: <20211019114334.24643-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder
- support
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] Revert "drm/i915/bios: gracefully disable dual
+ eDP for now"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,160 +53,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Tuesday, October 19, 2021 3:44 PM
-> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
-> <matthew.d.roper@intel.com>; Kulkarni, Vandita
-> <vandita.kulkarni@intel.com>
-> Subject: Re: [PATCH 2/4] drm/i915/dsi/xelpd: Add DSI transcoder support
->=20
-> On Mon, 18 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> > Update ADL_P device info to support DSI0, DSI1
-> >
-> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_pci.c | 31 ++++++++++++++++++++++++++++-
-> --
-> >  1 file changed, 28 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
-> > b/drivers/gpu/drm/i915/i915_pci.c index 169837de395d..a2dd5a38fdf5
-> > 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -932,8 +932,6 @@ static const struct intel_device_info adl_s_info =
-=3D
-> > {  #define XE_LPD_FEATURES \
-> >  	.abox_mask =3D GENMASK(1, 0),
-> 	\
-> >  	.color =3D { .degamma_lut_size =3D 0, .gamma_lut_size =3D 0 },
-> 	\
-> > -	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) |
-> BIT(TRANSCODER_B) |		\
-> > -		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
-> 		\
-> >  	.dbuf.size =3D 4096,
-> 	\
-> >  	.dbuf.slice_mask =3D BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |
-> 		\
-> >  		BIT(DBUF_S4),
-> 	\
-> > @@ -950,23 +948,49 @@ static const struct intel_device_info adl_s_info =
-=3D {
-> >  	.display.has_psr =3D 1,
-> 	\
-> >  	.display.ver =3D 13,
-> 	\
-> >  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-> 	\
-> > +	XE_LPD_CURSOR_OFFSETS
-> > +
-> > +#define ADLP_TRANSCODERS \
-> > +	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) |
-> BIT(TRANSCODER_B) |		\
-> > +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
-> 		\
-> > +		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
-> 		\
-> >  	.pipe_offsets =3D {
-> 	\
-> >  		[TRANSCODER_A] =3D PIPE_A_OFFSET,
-> 		\
-> >  		[TRANSCODER_B] =3D PIPE_B_OFFSET,
-> 		\
-> >  		[TRANSCODER_C] =3D PIPE_C_OFFSET,
-> 		\
-> >  		[TRANSCODER_D] =3D PIPE_D_OFFSET,
-> 		\
-> > +		[TRANSCODER_DSI_0] =3D PIPE_DSI0_OFFSET,
-> 		\
-> > +		[TRANSCODER_DSI_1] =3D PIPE_DSI1_OFFSET,
-> 		\
-> >  	},
-> 	\
-> >  	.trans_offsets =3D {
-> 	\
-> >  		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET,
-> 		\
-> >  		[TRANSCODER_B] =3D TRANSCODER_B_OFFSET,
-> 		\
-> >  		[TRANSCODER_C] =3D TRANSCODER_C_OFFSET,
-> 		\
-> >  		[TRANSCODER_D] =3D TRANSCODER_D_OFFSET,
-> 		\
-> > +		[TRANSCODER_DSI_0] =3D TRANSCODER_DSI0_OFFSET,
-> 		\
-> > +		[TRANSCODER_DSI_1] =3D TRANSCODER_DSI1_OFFSET,
-> 		\
->=20
-> I think you could just add these changes to XE_LPD_FEATURES, and have
-> separate .cpu_transcoder_mask initialization for ADLP and DG2.
+This reverts commit 05734ca2a8f76c9eb3890b3c9dfc3467f03105c1.
 
-Okay got it. So its ok to have the pipe_offsets  or transcoder offsets adde=
-d unless we are not defining it in the .cpu_transcoder_mask
-Will make this change.
+It's not graceful, instead it leads to boot time warning splats in the
+case it is supposed to handle gracefully. Apparently the BIOS/GOP
+enabling the port we end up skipping leads to state readout
+problems. Back to the drawing board.
 
-Thanks,
-Vandita
->=20
-> Compare GEN12_FEATURES.
->=20
-> BR,
-> Jani.
->=20
-> > +	}
-> 	\
-> > +
-> > +#define DG2_TRANSCODERS \
-> > +	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) |
-> BIT(TRANSCODER_B) |		\
-> > +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
-> 		\
-> > +	.pipe_offsets =3D {
-> 	\
-> > +		[TRANSCODER_A] =3D PIPE_A_OFFSET,
-> 		\
-> > +		[TRANSCODER_B] =3D PIPE_B_OFFSET,
-> 		\
-> > +		[TRANSCODER_C] =3D PIPE_C_OFFSET,
-> 		\
-> > +		[TRANSCODER_D] =3D PIPE_D_OFFSET,
-> 		\
-> >  	},
-> 	\
-> > -	XE_LPD_CURSOR_OFFSETS
-> > +	.trans_offsets =3D {
-> 	\
-> > +		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET,
-> 		\
-> > +		[TRANSCODER_B] =3D TRANSCODER_B_OFFSET,
-> 		\
-> > +		[TRANSCODER_C] =3D TRANSCODER_C_OFFSET,
-> 		\
-> > +		[TRANSCODER_D] =3D TRANSCODER_D_OFFSET,
-> 		\
-> > +	}
-> 	\
-> >
-> >  static const struct intel_device_info adl_p_info =3D {
-> >  	GEN12_FEATURES,
-> >  	XE_LPD_FEATURES,
-> > +	ADLP_TRANSCODERS,
-> >  	PLATFORM(INTEL_ALDERLAKE_P),
-> >  	.require_force_probe =3D 1,
-> >  	.display.has_cdclk_crawl =3D 1,
-> > @@ -1029,6 +1053,7 @@ static const struct intel_device_info dg2_info =
-=3D {
-> >  	XE_HP_FEATURES,
-> >  	XE_HPM_FEATURES,
-> >  	XE_LPD_FEATURES,
-> > +	DG2_TRANSCODERS,
-> >  	DGFX_FEATURES,
-> >  	.graphics_rel =3D 55,
-> >  	.media_rel =3D 55,
->=20
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+References: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21255/bat-adlp-4/boot0.txt
+Fixes: 05734ca2a8f7 ("drm/i915/bios: gracefully disable dual eDP for now")
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Swati Sharma <swati2.sharma@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 47 -----------------------
+ 1 file changed, 47 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index b99907c656bb..f9776ca85de3 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1930,50 +1930,6 @@ static int _intel_bios_max_tmds_clock(const struct intel_bios_encoder_data *devd
+ 	}
+ }
+ 
+-static enum port get_edp_port(struct drm_i915_private *i915)
+-{
+-	const struct intel_bios_encoder_data *devdata;
+-	enum port port;
+-
+-	for_each_port(port) {
+-		devdata = i915->vbt.ports[port];
+-
+-		if (devdata && intel_bios_encoder_supports_edp(devdata))
+-			return port;
+-	}
+-
+-	return PORT_NONE;
+-}
+-
+-/*
+- * FIXME: The power sequencer and backlight code currently do not support more
+- * than one set registers, at least not on anything other than VLV/CHV. It will
+- * clobber the registers. As a temporary workaround, gracefully prevent more
+- * than one eDP from being registered.
+- */
+-static void sanitize_dual_edp(struct intel_bios_encoder_data *devdata,
+-			      enum port port)
+-{
+-	struct drm_i915_private *i915 = devdata->i915;
+-	struct child_device_config *child = &devdata->child;
+-	enum port p;
+-
+-	/* CHV might not clobber PPS registers. */
+-	if (IS_CHERRYVIEW(i915))
+-		return;
+-
+-	p = get_edp_port(i915);
+-	if (p == PORT_NONE)
+-		return;
+-
+-	drm_dbg_kms(&i915->drm, "both ports %c and %c configured as eDP, "
+-		    "disabling port %c eDP\n", port_name(p), port_name(port),
+-		    port_name(port));
+-
+-	child->device_type &= ~DEVICE_TYPE_DISPLAYPORT_OUTPUT;
+-	child->device_type &= ~DEVICE_TYPE_INTERNAL_CONNECTOR;
+-}
+-
+ static bool is_port_valid(struct drm_i915_private *i915, enum port port)
+ {
+ 	/*
+@@ -2031,9 +1987,6 @@ static void parse_ddi_port(struct drm_i915_private *i915,
+ 		    supports_typec_usb, supports_tbt,
+ 		    devdata->dsc != NULL);
+ 
+-	if (is_edp)
+-		sanitize_dual_edp(devdata, port);
+-
+ 	if (is_dvi)
+ 		sanitize_ddc_pin(devdata, port);
+ 
+-- 
+2.30.2
+
