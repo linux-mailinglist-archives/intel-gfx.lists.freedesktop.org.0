@@ -2,47 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08840433121
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 10:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4490433125
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 10:36:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4276EB55;
-	Tue, 19 Oct 2021 08:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0896C6EB51;
+	Tue, 19 Oct 2021 08:35:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADBF46EB53;
- Tue, 19 Oct 2021 08:33:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="291923844"
-X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="291923844"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 01:32:11 -0700
-X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="444410470"
-Received: from smaji-mobl.ger.corp.intel.com (HELO [10.213.226.238])
- ([10.213.226.238])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 01:32:09 -0700
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- john.c.harrison@intel.com, daniel.vetter@ffwll.ch,
- Matthew Brost <matthew.brost@intel.com>
-References: <20211015234705.12392-1-umesh.nerlige.ramappa@intel.com>
- <20211015234705.12392-2-umesh.nerlige.ramappa@intel.com>
- <2a31b713-e8ea-524b-f37c-976791a2ccc4@linux.intel.com>
- <20211018183544.GA10100@unerlige-ril-10.165.21.208>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <bbaa19bf-d25d-d9cd-8064-cec23ec58b3a@linux.intel.com>
-Date: Tue, 19 Oct 2021 09:32:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 911DA6EB51
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 08:35:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="228407210"
+X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="228407210"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 01:34:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; d="scan'208";a="443792024"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 19 Oct 2021 01:34:45 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 19 Oct 2021 11:34:45 +0300
+Date: Tue, 19 Oct 2021 11:34:45 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
+ Dave Airlie <airlied@redhat.com>
+Message-ID: <YW6DJYvHuj5zyal4@intel.com>
+References: <20211017234106.2412994-1-airlied@gmail.com>
+ <20211017234106.2412994-2-airlied@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211018183544.GA10100@unerlige-ril-10.165.21.208>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Connect engine busyness
- stats from GuC to pmu
+In-Reply-To: <20211017234106.2412994-2-airlied@gmail.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/display: refactor fbdev
+ pin/unpin out into functions.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,174 +54,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 18/10/2021 19:35, Umesh Nerlige Ramappa wrote:
-> On Mon, Oct 18, 2021 at 08:58:01AM +0100, Tvrtko Ursulin wrote:
->>
->>
->> On 16/10/2021 00:47, Umesh Nerlige Ramappa wrote:
->>> With GuC handling scheduling, i915 is not aware of the time that a
->>> context is scheduled in and out of the engine. Since i915 pmu relies on
->>> this info to provide engine busyness to the user, GuC shares this info
->>> with i915 for all engines using shared memory. For each engine, this
->>> info contains:
->>>
->>> - total busyness: total time that the context was running (total)
->>> - id: id of the running context (id)
->>> - start timestamp: timestamp when the context started running (start)
->>>
->>> At the time (now) of sampling the engine busyness, if the id is valid
->>> (!= ~0), and start is non-zero, then the context is considered to be
->>> active and the engine busyness is calculated using the below equation
->>>
->>>     engine busyness = total + (now - start)
->>>
->>> All times are obtained from the gt clock base. For inactive contexts,
->>> engine busyness is just equal to the total.
->>>
->>> The start and total values provided by GuC are 32 bits and wrap around
->>> in a few minutes. Since perf pmu provides busyness as 64 bit
->>> monotonically increasing values, there is a need for this implementation
->>> to account for overflows and extend the time to 64 bits before returning
->>> busyness to the user. In order to do that, a worker runs periodically at
->>> frequency = 1/8th the time it takes for the timestamp to wrap. As an
->>> example, that would be once in 27 seconds for a gt clock frequency of
->>> 19.2 MHz.
->>>
->>> Note:
->>> There might be an overaccounting of busyness due to the fact that GuC
->>> may be updating the total and start values while kmd is reading them.
->>> (i.e kmd may read the updated total and the stale start). In such a
->>> case, user may see higher busyness value followed by smaller ones which
->>> would eventually catch up to the higher value.
->>>
->>> v2: (Tvrtko)
->>> - Include details in commit message
->>> - Move intel engine busyness function into execlist code
->>> - Use union inside engine->stats
->>> - Use natural type for ping delay jiffies
->>> - Drop active_work condition checks
->>> - Use for_each_engine if iterating all engines
->>> - Drop seq locking, use spinlock at guc level to update engine stats
->>> - Document worker specific details
->>>
->>> v3: (Tvrtko/Umesh)
->>> - Demarcate guc and execlist stat objects with comments
->>> - Document known over-accounting issue in commit
->>> - Provide a consistent view of guc state
->>> - Add hooks to gt park/unpark for guc busyness
->>> - Stop/start worker in gt park/unpark path
->>> - Drop inline
->>> - Move spinlock and worker inits to guc initialization
->>> - Drop helpers that are called only once
->>>
->>> v4: (Tvrtko/Matt/Umesh)
->>> - Drop addressed opens from commit message
->>> - Get runtime pm in ping, remove from the park path
->>> - Use cancel_delayed_work_sync in disable_submission path
->>> - Update stats during reset prepare
->>> - Skip ping if reset in progress
->>> - Explicitly name execlists and guc stats objects
->>> - Since disable_submission is called from many places, move resetting
->>>   stats to intel_guc_submission_reset_prepare
->>>
->>> v5: (Tvrtko)
->>> - Add a trylock helper that does not sleep and synchronize PMU event
->>>   callbacks and worker with gt reset
->>>
->>> v6: (CI BAT failures)
->>> - DUTs using execlist submission failed to boot since __gt_unpark is
->>>   called during i915 load. This ends up calling the guc busyness unpark
->>>   hook and results in kiskstarting an uninitialized worker. Let
->>>   park/unpark hooks check if guc submission has been initialized.
->>> - drop cant_sleep() from trylock hepler since rcu_read_lock takes care
->>>   of that.
->>>
->>> v7: (CI) Fix igt@i915_selftest@live@gt_engines
->>> - For guc mode of submission the engine busyness is derived from gt time
->>>   domain. Use gt time elapsed as reference in the selftest.
->>> - Increase busyness calculation to 10ms duration to ensure batch runs
->>>   longer and falls within the busyness tolerances in selftest.
->>
->> [snip]
->>
->>> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c 
->>> b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
->>> index 75569666105d..24358bef6691 100644
->>> --- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
->>> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
->>> @@ -234,6 +234,7 @@ static int live_engine_busy_stats(void *arg)
->>>          struct i915_request *rq;
->>>          ktime_t de, dt;
->>>          ktime_t t[2];
->>> +        u32 gt_stamp;
->>>          if (!intel_engine_supports_stats(engine))
->>>              continue;
->>> @@ -251,10 +252,16 @@ static int live_engine_busy_stats(void *arg)
->>>          ENGINE_TRACE(engine, "measuring idle time\n");
->>>          preempt_disable();
->>>          de = intel_engine_get_busy_time(engine, &t[0]);
->>> -        udelay(100);
->>> +        gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP);
->>> +        udelay(10000);
->>>          de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
->>> +        gt_stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP) - 
->>> gt_stamp;
->>>          preempt_enable();
->>> -        dt = ktime_sub(t[1], t[0]);
->>> +
->>> +        dt = intel_engine_uses_guc(engine) ?
->>> +             intel_gt_clock_interval_to_ns(engine->gt, gt_stamp) :
->>> +             ktime_sub(t[1], t[0]);
->>
->> But this then shows the thing might not work for external callers like 
->> PMU who have no idea about GUCPMTIMESTAMP and cannot obtain it anyway.
->>
->> What is the root cause of the failure here, 100us or clock source? Is 
->> the granularity of GUCPMTIMESTAMP perhaps simply too coarse for 100us 
->> test period? I forget what frequency it runs at.
+On Mon, Oct 18, 2021 at 09:41:03AM +1000, Dave Airlie wrote:
+> From: Dave Airlie <airlied@redhat.com>
 > 
-> guc timestamp is ticking at 19.2 MHz in adlp/rkl (where I ran this).
-
-So ~52ns clock granularity, right?
-
-In which case 100us with +/- 52ns error should be max 0.05% error - is 
-this math correct?
-
+> This just cleans up the calls a bit.
 > 
-> 1)
-> With 100us, often times I see that the batch has not yet started, so I 
-> get busy time in the range 0 - 60 %. I increased the time such that the 
-> batch runs long enough to make the scheduling time < 5%.
-
-0-60% should not be possible since there is a igt_wait_for_spinner call 
-before measuring starts, which ensures spinner is executing on the GPU.
-
-I think we first need to understand where is this 0 - 60% problem coming 
-from because I don't think it is from batch not yet started.
-
-Regards,
-
-Tvrtko
-
+> v2: fix unpin in vaddr fail path (Jani)
+> Signed-off-by: Dave Airlie <airlied@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 67 +++++++++++++---------
+>  1 file changed, 41 insertions(+), 26 deletions(-)
 > 
-> 2)
-> I did a 100 runs on rkl/adlp. No failures on rkl. On adlp, I saw one in 
-> 25 runs show 93%/94% busyness for rcs0 and fail (expected is 95%). For 
-> that I tried using the guc timestamp thinking it would provide more 
-> accuracy. It did in my testing, but CI still failed for rkl-guc (110% 
-> busyness!!), so now I just think we need to tweak the expected busyness 
-> for guc.
-> 
-> Is 1) acceptable?
-> 
-> For 2) I am thinking of just changing the expected busyness to 90% plus 
-> for guc mode OR should we just let it fail occassionally? Thoughts?
-> 
-> Thanks,
-> Umesh
-> 
->>
->> Regards,
->>
->> Tvrtko
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index adc3a81be9f7..c3ea9639a4ed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -171,6 +171,38 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+>  	return 0;
+>  }
+>  
+> +static void intel_fbdev_unpin(struct intel_fbdev *ifbdev)
+> +{
+> +	if (ifbdev->vma)
+> +		intel_unpin_fb_vma(ifbdev->vma, ifbdev->vma_flags);
+> +	ifbdev->vma = NULL;
+> +	ifbdev->vma_flags = 0;
+> +}
+> +
+> +static int intel_fbdev_pin_and_fence(struct drm_i915_private *dev_priv,
+> +				     struct intel_fbdev *ifbdev,
+> +				     void **vaddr)
+
+__iomem ?
+
+Was wonder why sparse didn't catch this, but looks like it did.
+
+> +{
+> +	const struct i915_ggtt_view view = {
+> +		.type = I915_GGTT_VIEW_NORMAL,
+> +	};
+
+Surprised checkpatch didn't complain about lack of an empty line
+after the variable declarations. Pretty sure I've seen it do that,
+or was it perhaps some other checker?
+
+> +	ifbdev->vma = intel_pin_and_fence_fb_obj(&ifbdev->fb->base, false,
+> +						 &view, false, &ifbdev->vma_flags);
+> +
+> +	if (IS_ERR(ifbdev->vma)) {
+> +		return PTR_ERR(ifbdev->vma);
+> +	}
+
+A few trivial checkpatch warns around single line if-statements
+vs. braces. Should be easy to clear those out.
+
+Looks good otherwise
+Reviewed-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+
+> +
+> +	*vaddr = i915_vma_pin_iomap(ifbdev->vma);
+> +	if (IS_ERR(*vaddr)) {
+> +		intel_fbdev_unpin(ifbdev);
+> +		drm_err(&dev_priv->drm,
+> +			"Failed to remap framebuffer into virtual memory\n");
+> +		return PTR_ERR(vaddr);
+> +	}
+> +	return 0;
+> +}
+> +
+>  static int intelfb_create(struct drm_fb_helper *helper,
+>  			  struct drm_fb_helper_surface_size *sizes)
+>  {
+> @@ -181,13 +213,8 @@ static int intelfb_create(struct drm_fb_helper *helper,
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+>  	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+>  	struct i915_ggtt *ggtt = &dev_priv->ggtt;
+> -	const struct i915_ggtt_view view = {
+> -		.type = I915_GGTT_VIEW_NORMAL,
+> -	};
+>  	intel_wakeref_t wakeref;
+>  	struct fb_info *info;
+> -	struct i915_vma *vma;
+> -	unsigned long flags = 0;
+>  	bool prealloc = false;
+>  	void __iomem *vaddr;
+>  	struct drm_i915_gem_object *obj;
+> @@ -224,10 +251,8 @@ static int intelfb_create(struct drm_fb_helper *helper,
+>  	 * This also validates that any existing fb inherited from the
+>  	 * BIOS is suitable for own access.
+>  	 */
+> -	vma = intel_pin_and_fence_fb_obj(&ifbdev->fb->base, false,
+> -					 &view, false, &flags);
+> -	if (IS_ERR(vma)) {
+> -		ret = PTR_ERR(vma);
+> +	ret = intel_fbdev_pin_and_fence(dev_priv, ifbdev, &vaddr);
+> +	if (ret) {
+>  		goto out_unlock;
+>  	}
+>  
+> @@ -261,19 +286,12 @@ static int intelfb_create(struct drm_fb_helper *helper,
+>  
+>  		/* Our framebuffer is the entirety of fbdev's system memory */
+>  		info->fix.smem_start =
+> -			(unsigned long)(ggtt->gmadr.start + vma->node.start);
+> -		info->fix.smem_len = vma->node.size;
+> +			(unsigned long)(ggtt->gmadr.start + ifbdev->vma->node.start);
+> +		info->fix.smem_len = ifbdev->vma->node.size;
+>  	}
+>  
+> -	vaddr = i915_vma_pin_iomap(vma);
+> -	if (IS_ERR(vaddr)) {
+> -		drm_err(&dev_priv->drm,
+> -			"Failed to remap framebuffer into virtual memory\n");
+> -		ret = PTR_ERR(vaddr);
+> -		goto out_unpin;
+> -	}
+>  	info->screen_base = vaddr;
+> -	info->screen_size = vma->node.size;
+> +	info->screen_size = ifbdev->vma->node.size;
+>  
+>  	drm_fb_helper_fill_info(info, &ifbdev->helper, sizes);
+>  
+> @@ -281,23 +299,21 @@ static int intelfb_create(struct drm_fb_helper *helper,
+>  	 * If the object is stolen however, it will be full of whatever
+>  	 * garbage was left in there.
+>  	 */
+> -	if (!i915_gem_object_is_shmem(vma->obj) && !prealloc)
+> +	if (!i915_gem_object_is_shmem(ifbdev->vma->obj) && !prealloc)
+>  		memset_io(info->screen_base, 0, info->screen_size);
+>  
+>  	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
+>  
+>  	drm_dbg_kms(&dev_priv->drm, "allocated %dx%d fb: 0x%08x\n",
+>  		    ifbdev->fb->base.width, ifbdev->fb->base.height,
+> -		    i915_ggtt_offset(vma));
+> -	ifbdev->vma = vma;
+> -	ifbdev->vma_flags = flags;
+> +		    i915_ggtt_offset(ifbdev->vma));
+>  
+>  	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+>  	vga_switcheroo_client_fb_set(pdev, info);
+>  	return 0;
+>  
+>  out_unpin:
+> -	intel_unpin_fb_vma(vma, flags);
+> +	intel_fbdev_unpin(ifbdev);
+>  out_unlock:
+>  	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+>  	return ret;
+> @@ -316,8 +332,7 @@ static void intel_fbdev_destroy(struct intel_fbdev *ifbdev)
+>  
+>  	drm_fb_helper_fini(&ifbdev->helper);
+>  
+> -	if (ifbdev->vma)
+> -		intel_unpin_fb_vma(ifbdev->vma, ifbdev->vma_flags);
+> +	intel_fbdev_unpin(ifbdev);
+>  
+>  	if (ifbdev->fb)
+>  		drm_framebuffer_remove(&ifbdev->fb->base);
+> -- 
+> 2.25.4
+
+-- 
+Ville Syrj�l�
+Intel
