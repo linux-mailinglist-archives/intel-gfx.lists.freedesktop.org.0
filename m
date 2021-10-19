@@ -1,73 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA70A433621
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:40:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C29BC433577
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:09:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61C616EC14;
-	Tue, 19 Oct 2021 12:40:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 226166EB9D;
+	Tue, 19 Oct 2021 12:09:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC6EA6E0FE;
- Tue, 19 Oct 2021 11:49:10 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id v127so11613785wme.5;
- Tue, 19 Oct 2021 04:49:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=egDcJzLzf/Uxj848Ty7/5BUuy3wZZ0YFuTvjxwcidJg=;
- b=K7mF4Ax5bWuDd0p6uv/wHlHOVoQSEMRCzONmjR/o+WxERYIScG9mhePG9bMfay2nwa
- ARVpJsXLoaJ66xrGmSHd7EFFGapPdLdy/HMS6xnrbnCCvGXXHrNMONVuKWa8SLVPJlb4
- 1TmEIRHm6JFqXxgOyqffMcsnOBPskflIV/mbuu/AnKSdTIy9wl1VgCbXXdiXfY29HGQW
- zv1mXdWq810MjhVw15AZ9CwqY6AX2635RzkXLG8I8p+nACvX8ZKKu2FPQqg2XX1ROvfz
- T3XOgcs0jBiIaEHVB7sAu29WUYkvGya6Sq86+tILgdbopVFixVCKm98UiMQomhMSO8+E
- 55fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=egDcJzLzf/Uxj848Ty7/5BUuy3wZZ0YFuTvjxwcidJg=;
- b=R1tFjWlhvxthBanc8No7WFSxlq2Xgt4gE6dkaaITyH5fvUUwJMi6Xy2ytrGAvEcUrr
- 6nuCdeIcXMiKfpWxk3elcfxP0zaRne722VcNb+BKAQBLhjGt6RyE76QjJBCKm3kbx1nx
- hi5qd4bhGNXHIeAn5adYbp1REM/zjGK0dKDpbF9PG1QCP63iExhoNeuWCbA40XFZieb9
- BiUEJN9N/X2JqTV626K8RxDNIL0UbRymJ3h2NedLHWcJbUbflZd1CF+XXl5w72lpiNhi
- 1TYdxAAYJbch03gBWTMGcbyXtRMpVp4qy5WnTjxsr2gW8N8fY8/psMtUJaNn/G8FONOq
- gXCw==
-X-Gm-Message-State: AOAM533WmVAa6qM3CypXGFqNC2dZKj0lh7XS/uyHzzP638xbd7GjQJQL
- 3AsgP6MoP6KbR8+9jZzqK3l9gESoZOk=
-X-Google-Smtp-Source: ABdhPJy+IdMIzL2VFAVUXSkXWGgmJQypeQj8T16niNgUpDzi2GSZ+eSOF1fnyhlmfHh4rbR9QfeFbw==
-X-Received: by 2002:a05:600c:a0b:: with SMTP id
- z11mr5704474wmp.147.1634644149444; 
- Tue, 19 Oct 2021 04:49:09 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:f344:748e:38f7:c50?
- ([2a02:908:1252:fb60:f344:748e:38f7:c50])
- by smtp.gmail.com with ESMTPSA id a2sm15169311wru.82.2021.10.19.04.49.08
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 19 Oct 2021 04:49:09 -0700 (PDT)
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- tvrtko.ursulin@linux.intel.com
-References: <20211005113742.1101-1-christian.koenig@amd.com>
- <20211005113742.1101-15-christian.koenig@amd.com>
- <YWbp1PoezuLqHpKZ@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <9fff1e2b-b4f1-9c36-b621-4c896bf58c01@gmail.com>
-Date: Tue, 19 Oct 2021 13:49:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC51D6EB9D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 12:09:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="215415149"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="215415149"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 05:09:04 -0700
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="483194951"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 05:09:03 -0700
+Date: Tue, 19 Oct 2021 15:08:59 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com
+Message-ID: <20211019120859.GA1598321@ideak-desk.fi.intel.com>
+References: <20211018065207.30587-1-vandita.kulkarni@intel.com>
+ <20211018065207.30587-4-vandita.kulkarni@intel.com>
+ <87v91tqpl8.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YWbp1PoezuLqHpKZ@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Mailman-Approved-At: Tue, 19 Oct 2021 12:40:07 +0000
-Subject: Re: [Intel-gfx] [PATCH 14/28] drm/msm: use new iterator in
- msm_gem_describe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87v91tqpl8.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/dsi/xelpd: Disable DC states
+ in Video mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,81 +51,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 13.10.21 um 16:14 schrieb Daniel Vetter:
-> On Tue, Oct 05, 2021 at 01:37:28PM +0200, Christian König wrote:
->> Simplifying the code a bit. Also drop the RCU read side lock since the
->> object is locked anyway.
->>
->> Untested since I can't get the driver to compile on !ARM.
-> Cross-compiler install is pretty easy and you should have that for pushing
-> drm changes to drm-misc :-)
+On Tue, Oct 19, 2021 at 01:24:51PM +0300, Jani Nikula wrote:
+> On Mon, 18 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
+> > MIPI DSI transcoder cannot be in video mode to support any of the
+> > display C states.
+> 
+> Imre, could you review this one please?
+> 
+> The added confusion is that POWER_DOMAIN_TRANSCODER_DSI_A and
+> POWER_DOMAIN_TRANSCODER_DSI_C are never used anywhere and
+> POWER_DOMAIN_TRANSCODER() does not take DSI transcoders into account.
 
-I do have cross compile setups for some architectures, but I seriously 
-can't do that for every single driver.
+<tl;dr>
+You mean they are not listed in the power_domain->power_well mappings.
+Those power domains don't use any power wells above PW#1. PW#0/1 is
+handled "automatically" by DMC, so we don't have to toggle the power for
+those manually. However they still need a runtime PM reference, since
+whatever HW domain you want to use, the PCI device must be in the runtime
+resumed state. This is ensured by the always-on power well, which every
+domain has a dependency on.
+<tl;dr>
 
-With only a bit of work we allowed MSM to be compile tested on other 
-architectures as well now. That even yielded a couple of missing 
-includes and dependencies in MSM which just don't matter on ARM.
+The transcoder power domains are acquired in get_crtc_power_domains(),
+doesn't the DSI encoder using the DSI_A/C transcoders?
 
->
->> Signed-off-by: Christian König <christian.koenig@amd.com>
-> Assuming this compiles, it looks correct.
+Yes, POWER_DOMAIN_TRANSCODER is now broken wrt. DSI due to
+POWER_DOMAIN_TRANSCODER_VDSC_PW2. So that would need to be moved after
+the TRANSCODER_DSI_C. And the POWER_DOMAIN_TRANSCODER macro could be
+also simplified afaics.
 
-Yes it does.
+Otherwise this patch looks ok to me, just the bspec links would be good
+to have here too.
 
->
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-
-Thanks,
-Christian.
-
->
->> ---
->>   drivers/gpu/drm/msm/msm_gem.c | 19 +++++--------------
->>   1 file changed, 5 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
->> index 40a9863f5951..5bd511f07c07 100644
->> --- a/drivers/gpu/drm/msm/msm_gem.c
->> +++ b/drivers/gpu/drm/msm/msm_gem.c
->> @@ -880,7 +880,7 @@ void msm_gem_describe(struct drm_gem_object *obj, struct seq_file *m,
->>   {
->>   	struct msm_gem_object *msm_obj = to_msm_bo(obj);
->>   	struct dma_resv *robj = obj->resv;
->> -	struct dma_resv_list *fobj;
->> +	struct dma_resv_iter cursor;
->>   	struct dma_fence *fence;
->>   	struct msm_gem_vma *vma;
->>   	uint64_t off = drm_vma_node_start(&obj->vma_node);
->> @@ -955,22 +955,13 @@ void msm_gem_describe(struct drm_gem_object *obj, struct seq_file *m,
->>   		seq_puts(m, "\n");
->>   	}
->>   
->> -	rcu_read_lock();
->> -	fobj = dma_resv_shared_list(robj);
->> -	if (fobj) {
->> -		unsigned int i, shared_count = fobj->shared_count;
->> -
->> -		for (i = 0; i < shared_count; i++) {
->> -			fence = rcu_dereference(fobj->shared[i]);
->> +	dma_resv_for_each_fence(&cursor, robj, true, fence) {
->> +		if (dma_resv_iter_is_exclusive(&cursor))
->> +			describe_fence(fence, "Exclusive", m);
->> +		else
->>   			describe_fence(fence, "Shared", m);
->> -		}
->>   	}
->>   
->> -	fence = dma_resv_excl_fence(robj);
->> -	if (fence)
->> -		describe_fence(fence, "Exclusive", m);
->> -	rcu_read_unlock();
->> -
->>   	msm_gem_unlock(obj);
->>   }
->>   
->> -- 
->> 2.25.1
->>
-
+> 
+> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display_power.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 709569211c85..8406db5e573e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -3105,7 +3105,8 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+> >  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+> >  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> >  	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
+> > -	BIT_ULL(POWER_DOMAIN_INIT))
+> > +	BIT_ULL(POWER_DOMAIN_INIT)) |			\
+> > +	BIT_ULL(POWER_DOMAIN_PORT_DSI)
+> 
+> Everywhere else POWER_DOMAIN_INIT is last in the list.
+> 
+> BR,
+> Jani.
+> 
+> >  
+> >  #define XELPD_AUX_IO_D_XELPD_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_D_XELPD)
+> >  #define XELPD_AUX_IO_E_XELPD_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_E_XELPD)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
