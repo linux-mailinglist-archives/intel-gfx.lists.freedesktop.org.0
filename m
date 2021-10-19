@@ -1,44 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BBB433624
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:40:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC73433623
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:40:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDFC56EC28;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB63E6EC1B;
 	Tue, 19 Oct 2021 12:40:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mxhk.zte.com.cn (mxhk.zte.com.cn [63.217.80.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E2C6E11F;
- Tue, 19 Oct 2021 02:24:31 +0000 (UTC)
-Received: from mse-fl1.zte.com.cn (unknown [10.30.14.238])
- by Forcepoint Email with ESMTPS id 95486C679B548C50F010;
- Tue, 19 Oct 2021 10:24:29 +0800 (CST)
-Received: from xaxapp03.zte.com.cn ([10.88.40.52])
- by mse-fl1.zte.com.cn with SMTP id 19J2OQLf095694;
- Tue, 19 Oct 2021 10:24:26 +0800 (GMT-8)
- (envelope-from luo.penghao@zte.com.cn)
-Received: from mapi (xaxapp02[null]) by mapi (Zmail) with MAPI id mid31;
- Tue, 19 Oct 2021 10:24:25 +0800 (CST)
-Date: Tue, 19 Oct 2021 10:24:25 +0800 (CST)
-X-Zmail-TransId: 2afa616e2c59c8d3e5dd
-X-Mailer: Zmail v1.0
-Message-ID: <202110191024257210716@zte.com.cn>
-Mime-Version: 1.0
-From: <luo.penghao@zte.com.cn>
-To: <ville.syrjala@linux.intel.com>
-Cc: <cgel.zte@gmail.com>, <jani.nikula@linux.intel.com>,
- <joonas.lahtinen@linux.intel.com>, <rodrigo.vivi@intel.com>,
- <airlied@linux.ie>, <daniel@ffwll.ch>, <sfr@canb.auug.org.au>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed;
-	boundary="=====_001_next====="
-X-MAIL: mse-fl1.zte.com.cn 19J2OQLf095694
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 720F66EB5C;
+ Tue, 19 Oct 2021 09:02:45 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id o133so17039804pfg.7;
+ Tue, 19 Oct 2021 02:02:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=sW5kzqI2ZLlgm72jV9aPPdFKNC889wnGZx9L6y3GNDE=;
+ b=KQ6KKZrilTzlxQ5KkvqlvnbNQ/cJxM54GDqV4uxqzpBbCnSiHHjsgyu7ZqkvO12KPf
+ uXVbkuTWMPodLFMAAM4pzZApcjfjUIj3lcRn3R9nX8Wx7UNRtXUcHaD1Cy0ikOksTAsi
+ QB79kgXcaIdeJ2LEgdh+riEPU4/GUN98aUzchgmRJvakDLi89c6yVA2WpJ0cYxS6XA19
+ G94hjk/Ay8IcRUV/tQav7P/AQNxN5tE/E+Y+J4rOT8oWdAH+q2KVtkHVCgnS4EUhq6LI
+ uWt5500ppG1B5lgc+XqWt9oe6XbochwNDiCvhEXC5fmhErRKIobuJXptWKZybloQ18+C
+ P7Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=sW5kzqI2ZLlgm72jV9aPPdFKNC889wnGZx9L6y3GNDE=;
+ b=2Kyv2d6HrctKxpDHa0AlxFbL4vE+p4xT//gTIEpgoIYfymgzuMfUcv7T2xreWaYceL
+ W1tFJbcM6Sz4yMq2V6ZmgGH8VLxnj/UAolIt/F8SQ7zAm1pQ8NdTk4nkehwZdq19ZAFU
+ IxySK1U4R59kGEEi37TaD/PVLHlv7kBDT0h5uJlhDld+Ddk+IMC4QtblariomiqkDYoE
+ 30VI5ur8gQRtwYtgr9HBux3KbEaARjkIoBSi86PGiIOdByIPsA78zhOkL5XDWo7yR7xF
+ cPpc0fum7HJNDdOPSYFmIPo4PxvX6tKKdYQ87LmHx+woW2OMsytOcDB9Pf2PkvAnhIH+
+ a47g==
+X-Gm-Message-State: AOAM533S8wl4Lm70UCKluP3+42acGNH79naf5aIVWjedjJ7LXx4gkL5Q
+ JTD5YwzX1lCF65eWJ0klBjCm2kJU09E=
+X-Google-Smtp-Source: ABdhPJwUfkoqRsVd+CCYM8ak6IRF7IftK8GgqFupS44n7zlu7KDBI56oFbj2TEQOPZQoPwy/mwU7DQ==
+X-Received: by 2002:a63:8742:: with SMTP id i63mr16229969pge.328.1634634165079; 
+ Tue, 19 Oct 2021 02:02:45 -0700 (PDT)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id s2sm15184610pfw.30.2021.10.19.02.02.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Oct 2021 02:02:44 -0700 (PDT)
+From: cgel.zte@gmail.com
+X-Google-Original-From: ran.jianping@zte.com.cn
+To: jani.nikula@linux.intel.com
+Cc: joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, matthew.auld@intel.com, thomas.hellstrom@linux.intel.com,
+ chris@chris-wilson.co.uk, maarten.lankhorst@linux.intel.com,
+ ran.jianping@zte.com.cn, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Zeal Robot <zealci@zte.com.cn>
+Date: Tue, 19 Oct 2021 09:02:05 +0000
+Message-Id: <20211019090205.1003458-1-ran.jianping@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 19 Oct 2021 12:40:07 +0000
-Subject: Re: [Intel-gfx] 
- =?utf-8?q?=5BPATCH_linux-next=5D_drm/i915/display=3A?=
- =?utf-8?q?_Remove_unused_variable_and_its_assignment=2E?=
+Subject: [Intel-gfx] [PATCH] remove duplicate include in mock_region.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,103 +76,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ran Jianping <ran.jianping@zte.com.cn>
 
+'drm/ttm/ttm_placement.h' included in
+'drivers/gpu/drm/i915/selftests/mock_region.c' is duplicated.
+It is also included on the 9 line.
 
---=====_001_next=====
-Content-Type: multipart/related;
-	boundary="=====_002_next====="
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: Ran Jianping <ran.jianping@zte.com.cn>
+---
+ drivers/gpu/drm/i915/selftests/mock_region.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-
---=====_002_next=====
-Content-Type: multipart/alternative;
-	boundary="=====_003_next====="
-
-
---=====_003_next=====
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: base64 
-
-PiBUaGlzIG9uZSB3ZSBjb3VsZCB1c2UuIEZvciBzb21lIHJlYXNvbiB3ZSBoYXJkY29kZSBpdCB0
-bw0KDQoNCg0KPiAxIG5vdywgd2hpY2ggaXMgY29ycmVjdCBmb3Igb3VyIHVzZSBjYXNlcyBidXQg
-SSBkb24ndCByZWFsbHk+IHNlZSBhIHJlYXNvbiB0byBoYXJkY29kZSBpdCBoZXJlLiBXZSBhcmUg
-c3VwcG9zZWQgdG8gY2FsY3VsYXRlPiBpdCBjb3JyZWN0bHkgYWZ0ZXIgYWxsLCBhbmQgY2h2X2Ny
-dGNfY2xvY2tfZ2V0KCkgYWxzbyBqdXN0IGJsaW5kbHk+IHJlYWRzIGl0IG91dC4+ID4gPiAgICAg
-IGJlc3RtMl9mcmFjID0gY3J0Y19zdGF0ZS0+ZHBsbC5tMiAmIDB4M2ZmZmZmOz4gPiAtICAgIGJl
-c3RtMSA9IGNydGNfc3RhdGUtPmRwbGwubTE7PiA+IFRoaXMgb25lIGlzIGEgYml0IHRyaWNraWVy
-IHNpbmNlIEkgZG9uJ3QgdGhpbmsgdGhlIHNwZWMgZXZlbj4gZ2l2ZXMgdXMgb3RoZXIgdmFsdWVz
-LiBCdXQgd2UgY291bGQgYXNzZXJ0IHRoYXQgaXQncyBjb3JyZWN0Lj4gPiBTb21lIHNvbWV0aGlu
-ZyBhbG9uZyB0aGVzZSBsaW5lcyBJIHRoaW5rIHdvdWxkIGJlIGJlc3Q6PiArIGRybV9XQVJOX09O
-KCZkZXZfcHJpdi0+ZHJtLCBiZXN0bTEgIT0gMik7PiAgIHZsdl9kcGlvX3dyaXRlKGRldl9wcml2
-LCBwaXBlLCBDSFZfUExMX0RXMShwb3J0KSw+ICAgICAgICAgICAgICAgICAgRFBJT19DSFZfTTFf
-RElWX0JZXzIgfD4gLSAgICAgICAgICAxIDw8IERQSU9fQ0hWX05fRElWX1NISUZUKTs+ICsgICAg
-ICAgICAgYmVzdG4gPDwgRFBJT19DSFZfTl9ESVZfU0hJRlQpOw0KDQoNCg0KDQoNCg0KVGhhbmtz
-IGZvciB5b3VyIGtpbmQgcmVzcG9uc2UgISBEb2VzIHRoYXQgbWVhbnMgdGhlIHZhcmlhYmxlIHdp
-bGwgYmUNCg0KDQp1c2VkIGJ5IHRoZSBoYXJkd2FyZe+8n2lmIHNvIGFzIGZhciBhcyBJIHNlZSBp
-dCwgSSBkb24ndCBzZWVtIHRvIHNlZSB0aGUNCg0KDQpyZWxldmFudCBpbnRlcmZhY2Uu
-
-
---=====_003_next=====
-Content-Type: text/html ;
-	charset="UTF-8"
-Content-Transfer-Encoding: base64
-
-PGRpdiBjbGFzcz0iemNvbnRlbnRSb3ciPjxkaXY+PGRpdiBjbGFzcz0iemNvbnRlbnRSb3ciPjxk
-aXY+PGRpdiBjbGFzcz0iemNvbnRlbnRSb3ciPjxwIHN0eWxlPSJmb250LXNpemU6MTRweDtmb250
-LWZhbWlseTrlvq7ova/pm4Xpu5EsTWljcm9zb2Z0IFlhSGVpOyI+Jmd0OyBUaGlzJm5ic3A7b25l
-Jm5ic3A7d2UmbmJzcDtjb3VsZCZuYnNwO3VzZS4mbmJzcDtGb3ImbmJzcDtzb21lJm5ic3A7cmVh
-c29uJm5ic3A7d2UmbmJzcDtoYXJkY29kZSZuYnNwO2l0Jm5ic3A7dG88YnI+PC9wPjxwIHN0eWxl
-PSJmb250LXNpemU6MTRweDtmb250LWZhbWlseTrlvq7ova/pm4Xpu5EsTWljcm9zb2Z0IFlhSGVp
-OyI+Jmd0OyAxJm5ic3A7bm93LCZuYnNwO3doaWNoJm5ic3A7aXMmbmJzcDtjb3JyZWN0Jm5ic3A7
-Zm9yJm5ic3A7b3VyJm5ic3A7dXNlJm5ic3A7Y2FzZXMmbmJzcDtidXQmbmJzcDtJJm5ic3A7ZG9u
-J3QmbmJzcDtyZWFsbHk8YnIgc3R5bGU9IndoaXRlLXNwYWNlOiBub3JtYWw7Ij4mZ3Q7IHNlZSZu
-YnNwO2EmbmJzcDtyZWFzb24mbmJzcDt0byZuYnNwO2hhcmRjb2RlJm5ic3A7aXQmbmJzcDtoZXJl
-LiZuYnNwO1dlJm5ic3A7YXJlJm5ic3A7c3VwcG9zZWQmbmJzcDt0byZuYnNwO2NhbGN1bGF0ZTxi
-ciBzdHlsZT0id2hpdGUtc3BhY2U6IG5vcm1hbDsiPiZndDsgaXQmbmJzcDtjb3JyZWN0bHkmbmJz
-cDthZnRlciZuYnNwO2FsbCwmbmJzcDthbmQmbmJzcDtjaHZfY3J0Y19jbG9ja19nZXQoKSZuYnNw
-O2Fsc28mbmJzcDtqdXN0Jm5ic3A7YmxpbmRseTxiciBzdHlsZT0id2hpdGUtc3BhY2U6IG5vcm1h
-bDsiPiZndDsgcmVhZHMmbmJzcDtpdCZuYnNwO291dC48YnIgc3R5bGU9IndoaXRlLXNwYWNlOiBu
-b3JtYWw7Ij4mZ3Q7Jm5ic3A7PGJyIHN0eWxlPSJ3aGl0ZS1zcGFjZTogbm9ybWFsOyI+Jmd0OyAm
-Z3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7YmVzdG0yX2ZyYWMmbmJzcDs9
-Jm5ic3A7Y3J0Y19zdGF0ZS0mZ3Q7ZHBsbC5tMiZuYnNwOyZhbXA7Jm5ic3A7MHgzZmZmZmY7PGJy
-IHN0eWxlPSJ3aGl0ZS1zcGFjZTogbm9ybWFsOyI+Jmd0OyAmZ3Q7Jm5ic3A7LSZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwO2Jlc3RtMSZuYnNwOz0mbmJzcDtjcnRjX3N0YXRlLSZndDtkcGxsLm0xOzxi
-ciBzdHlsZT0id2hpdGUtc3BhY2U6IG5vcm1hbDsiPiZndDsmbmJzcDs8YnIgc3R5bGU9IndoaXRl
-LXNwYWNlOiBub3JtYWw7Ij4mZ3Q7IFRoaXMmbmJzcDtvbmUmbmJzcDtpcyZuYnNwO2EmbmJzcDti
-aXQmbmJzcDt0cmlja2llciZuYnNwO3NpbmNlJm5ic3A7SSZuYnNwO2Rvbid0Jm5ic3A7dGhpbmsm
-bmJzcDt0aGUmbmJzcDtzcGVjJm5ic3A7ZXZlbjxiciBzdHlsZT0id2hpdGUtc3BhY2U6IG5vcm1h
-bDsiPiZndDsgZ2l2ZXMmbmJzcDt1cyZuYnNwO290aGVyJm5ic3A7dmFsdWVzLiZuYnNwO0J1dCZu
-YnNwO3dlJm5ic3A7Y291bGQmbmJzcDthc3NlcnQmbmJzcDt0aGF0Jm5ic3A7aXQncyZuYnNwO2Nv
-cnJlY3QuPGJyIHN0eWxlPSJ3aGl0ZS1zcGFjZTogbm9ybWFsOyI+Jmd0OyZuYnNwOzxiciBzdHls
-ZT0id2hpdGUtc3BhY2U6IG5vcm1hbDsiPiZndDsgU29tZSZuYnNwO3NvbWV0aGluZyZuYnNwO2Fs
-b25nJm5ic3A7dGhlc2UmbmJzcDtsaW5lcyZuYnNwO0kmbmJzcDt0aGluayZuYnNwO3dvdWxkJm5i
-c3A7YmUmbmJzcDtiZXN0OjxiciBzdHlsZT0id2hpdGUtc3BhY2U6IG5vcm1hbDsiPiZndDsgKyZu
-YnNwO2RybV9XQVJOX09OKCZhbXA7ZGV2X3ByaXYtJmd0O2RybSwmbmJzcDtiZXN0bTEmbmJzcDsh
-PSZuYnNwOzIpOzxiciBzdHlsZT0id2hpdGUtc3BhY2U6IG5vcm1hbDsiPiZndDsmbmJzcDsgJm5i
-c3A7dmx2X2RwaW9fd3JpdGUoZGV2X3ByaXYsJm5ic3A7cGlwZSwmbmJzcDtDSFZfUExMX0RXMShw
-b3J0KSw8YnIgc3R5bGU9IndoaXRlLXNwYWNlOiBub3JtYWw7Ij4mZ3Q7Jm5ic3A7ICZuYnNwOyAm
-bmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgRFBJT19DSFZf
-TTFfRElWX0JZXzImbmJzcDt8PGJyIHN0eWxlPSJ3aGl0ZS1zcGFjZTogbm9ybWFsOyI+Jmd0OyAt
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7MSZuYnNwOyZsdDsmbHQ7Jm5ic3A7RFBJT19DSFZfTl9ESVZfU0hJRlQpOzxiciBzdHlsZT0i
-d2hpdGUtc3BhY2U6IG5vcm1hbDsiPiZndDsgKyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2Jlc3RuJm5ic3A7Jmx0OyZsdDsmbmJzcDtE
-UElPX0NIVl9OX0RJVl9TSElGVCk7PC9wPjxwIHN0eWxlPSJmb250LXNpemU6MTRweDtmb250LWZh
-bWlseTrlvq7ova/pm4Xpu5EsTWljcm9zb2Z0IFlhSGVpOyI+PGJyPjwvcD48cCBzdHlsZT0iZm9u
-dC1zaXplOjE0cHg7Zm9udC1mYW1pbHk65b6u6L2v6ZuF6buRLE1pY3Jvc29mdCBZYUhlaTsiPlRo
-YW5rcyBmb3IgeW91ciBraW5kIHJlc3BvbnNlICEgRG9lcyB0aGF0IG1lYW5zIHRoZSB2YXJpYWJs
-ZSB3aWxsIGJlPC9wPjxwIHN0eWxlPSJmb250LXNpemU6MTRweDtmb250LWZhbWlseTrlvq7ova/p
-m4Xpu5EsTWljcm9zb2Z0IFlhSGVpOyI+dXNlZCBieSB0aGUgaGFyZHdhcmXvvJ9pZiBzbyBhcyBm
-YXIgYXMgSSBzZWUgaXQsIEkgZG9uJ3Qgc2VlbSB0byBzZWUgdGhlPC9wPjxwIHN0eWxlPSJmb250
-LXNpemU6MTRweDtmb250LWZhbWlseTrlvq7ova/pm4Xpu5EsTWljcm9zb2Z0IFlhSGVpOyI+cmVs
-ZXZhbnQgaW50ZXJmYWNlLjwvcD48cCBzdHlsZT0iZm9udC1zaXplOjE0cHg7Zm9udC1mYW1pbHk6
-5b6u6L2v6ZuF6buRLE1pY3Jvc29mdCBZYUhlaTsiPjxicj48L3A+PC9kaXY+PC9kaXY+PC9kaXY+
-PC9kaXY+PC9kaXY+
-
-
---=====_003_next=====--
-
---=====_002_next=====--
-
---=====_001_next=====--
+diff --git a/drivers/gpu/drm/i915/selftests/mock_region.c b/drivers/gpu/drm/i915/selftests/mock_region.c
+index efa86dffe3c6..75793008c4ef 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_region.c
++++ b/drivers/gpu/drm/i915/selftests/mock_region.c
+@@ -6,8 +6,6 @@
+ #include <drm/ttm/ttm_placement.h>
+ #include <linux/scatterlist.h>
+ 
+-#include <drm/ttm/ttm_placement.h>
+-
+ #include "gem/i915_gem_region.h"
+ #include "intel_memory_region.h"
+ #include "intel_region_ttm.h"
+-- 
+2.25.1
 
