@@ -2,34 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADD0E4335DB
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2614335DC
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:24:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE8076E87E;
-	Tue, 19 Oct 2021 12:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39266E10F;
+	Tue, 19 Oct 2021 12:24:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 940936E10F;
- Tue, 19 Oct 2021 12:24:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79748A9932;
- Tue, 19 Oct 2021 12:24:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5836263188378671488=="
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA55F6E895
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 12:24:33 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id w19so12096600edd.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 05:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=xvkAEbSpUfLjgxEcHIxRjeiYhD20MmbRjqi31aQh8uA=;
+ b=UPOz+txq4NDGZglf26mqc/S/nsYh7EvImRxMWn+xdNIXnAXCvublOE5pZofUeNOk/R
+ 3uvIV0/KSPmD7Ur6tkf+4KDxwM9F03vqYVNoSCH6eiB+YFfRJCq8Gfv5xX07X0j+/rMO
+ 9cbT8prsfahhXYgj787bbYNoWOQvVei9ojfsc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=xvkAEbSpUfLjgxEcHIxRjeiYhD20MmbRjqi31aQh8uA=;
+ b=hFYa36SyRNIMQE5JE3Pz7cw5TWUAP+5z3RaD5PRh8qfkiQ2AJiFnpedI+7p6+8zaJO
+ CpzZd3dlCE2H7FrBRapa15//rDicQJUFRr93EKs4SN95tKsU7MqWUFOZj/nsDyXnjIfI
+ dtoAV5srusMw+P0/ee3vcsK6DvigMvWXaELFOBSIEH5y9y8F9GVf8LTyR9/MRjKEuS1n
+ nlXjxUdd/6czX2OKOvImaSFA9Uo5SNqG4Bc9fokCF/3C9laVKmRK4R4mx5YTA5EFxgwd
+ fSSZhS2wasSZaI2nSH/6WYE759VCfTNsmZ7LUZjK0H9Vk6GHPPpiKJUapgHVj4M8ujca
+ s4Fw==
+X-Gm-Message-State: AOAM532GLrwNWOcnXzi4hgPwcbrCgjUV5gRdtODcORfSqRRtDt74DKH7
+ w5bXPMqC39YldrdajlaVnFdxmw==
+X-Google-Smtp-Source: ABdhPJyMY1FDCZ9p/bTf35VEQDT21Dm0ZI+cb43O+HMaL8NCn9CoDUybNixugZHpZQnLLBGyts38gg==
+X-Received: by 2002:a05:6402:348b:: with SMTP id
+ v11mr52372674edc.296.1634646272373; 
+ Tue, 19 Oct 2021 05:24:32 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id a4sm2275738edk.71.2021.10.19.05.24.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Oct 2021 05:24:31 -0700 (PDT)
+Date: Tue, 19 Oct 2021 14:24:29 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+Message-ID: <YW64/Y8RgU63BYY2@phenom.ffwll.local>
+References: <20211005065151.828922-1-bigeasy@linutronix.de>
+ <YWbK8wSxNjVu9OLm@phenom.ffwll.local>
+ <20211013123525.5nijgyx5ivnuujes@linutronix.de>
+ <YWbXvvTzMF1EZ5c7@phenom.ffwll.local>
+ <20211013173548.nldcwheo4t52dgvp@linutronix.de>
+ <YWgu0v5iPDFViHXS@phenom.ffwll.local>
+ <20211014134731.4a5vgdklj3sjyfks@linutronix.de>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Oct 2021 12:24:04 -0000
-Message-ID: <163464624449.5184.14330100814549602161@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20211005071531.2274972-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Remove_check_for_low_voltage_sku_for_max_dp_so?=
- =?utf-8?q?urce_rate_=28rev3=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211014134731.4a5vgdklj3sjyfks@linutronix.de>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [RFC PATCH] drm: Increase DRM_OBJECT_MAX_PROPERTY
+ by 18.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,117 +80,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5836263188378671488==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Oct 14, 2021 at 03:47:31PM +0200, Sebastian Andrzej Siewior wrote:
+> On 2021-10-14 15:21:22 [+0200], Daniel Vetter wrote:
+> > On Wed, Oct 13, 2021 at 07:35:48PM +0200, Sebastian Andrzej Siewior wrote:
+> > > c7fcbf2513973 -> does not boot
+> > > c7fcbf2513973 + 2f425cf5242a0 -> boots, 18 x DRM_OBJECT_MAX_PROPERTY
+> > > 6f11f37459d8f -> boots, 0 x DRM_OBJECT_MAX_PROPERTY
+> > > 6f11f37459d8f + 2f425cf5242a0 -> boots, 18 x DRM_OBJECT_MAX_PROPERTY
+> > 
+> > Just to check, you've built 6f11f37459d8f, and then you cherry-picked
+> > 2f425cf5242a0 on top (not merged), and that already got you the warning
+> > flood?
+> 
+> Correct.
+> 
+> > I'm probably blind, but I'm really not seeing where this pile of
+> > properties is coming from. Can you pls also boot with drm.debug=0xe and
+> > attach full dmesg? Plus your .config please.
+> 
+> attached. dmesg.txt is 6f11f37459d8f and the other is 6f11f37459d8f +
+> 2f425cf5242a0.
 
-== Series Details ==
+Ah dmesg help me understand what's going on. Does the below patch help? If
+it's this one that would also explain why intel CI hasn't hit it - it's a
+leak between tests and we run them all individually instead of once at
+boot-up.
 
-Series: drm/i915/display: Remove check for low voltage sku for max dp source rate (rev3)
-URL   : https://patchwork.freedesktop.org/series/95444/
-State : success
+Cheers, Daniel
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10758 -> Patchwork_21377
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (38 -> 36)
-------------------------------
-
-  Missing    (2): fi-bsw-cyan bat-dg1-6 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10758 -> Patchwork_21377
-
-  CI-20190529: 20190529
-  CI_DRM_10758: 8d0a08c4502a98ae3a6d533edaa2aabc2e491585 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21377: 342ca9feb4a1b9a564c50498d03c82c71745ba55 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-342ca9feb4a1 drm/i915/display: Remove check for low voltage sku for max dp source rate
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html
-
---===============5836263188378671488==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Remove check for low voltage sku for max dp source rate (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95444/">https://patchwork.freedesktop.org/series/95444/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10758 -&gt; Patchwork_21377</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21377/index.html</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (38 -&gt; 36)</h2>
-<p>Missing    (2): fi-bsw-cyan bat-dg1-6 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10758 -&gt; Patchwork_21377</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10758: 8d0a08c4502a98ae3a6d533edaa2aabc2e491585 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6254: 51792e987da03ba2a6faf5857c12f1d173c87def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21377: 342ca9feb4a1b9a564c50498d03c82c71745ba55 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>342ca9feb4a1 drm/i915/display: Remove check for low voltage sku for max dp source rate</p>
-
-</body>
-</html>
-
---===============5836263188378671488==--
+diff --git a/drivers/gpu/drm/selftests/test-drm_damage_helper.c b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
+index 1c19a5d3eefb..8d8d8e214c28 100644
+--- a/drivers/gpu/drm/selftests/test-drm_damage_helper.c
++++ b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
+@@ -30,6 +30,7 @@ static void mock_setup(struct drm_plane_state *state)
+ 	mock_device.driver = &mock_driver;
+ 	mock_device.mode_config.prop_fb_damage_clips = &mock_prop;
+ 	mock_plane.dev = &mock_device;
++	mock_obj_props.count = 0;
+ 	mock_plane.base.properties = &mock_obj_props;
+ 	mock_prop.base.id = 1; /* 0 is an invalid id */
+ 	mock_prop.dev = &mock_device;
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
