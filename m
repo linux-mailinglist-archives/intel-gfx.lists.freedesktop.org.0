@@ -1,73 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B2614335DC
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:24:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7AEB43361B
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 14:39:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B39266E10F;
-	Tue, 19 Oct 2021 12:24:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4330F6EBA8;
+	Tue, 19 Oct 2021 12:39:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA55F6E895
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 12:24:33 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id w19so12096600edd.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 05:24:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=xvkAEbSpUfLjgxEcHIxRjeiYhD20MmbRjqi31aQh8uA=;
- b=UPOz+txq4NDGZglf26mqc/S/nsYh7EvImRxMWn+xdNIXnAXCvublOE5pZofUeNOk/R
- 3uvIV0/KSPmD7Ur6tkf+4KDxwM9F03vqYVNoSCH6eiB+YFfRJCq8Gfv5xX07X0j+/rMO
- 9cbT8prsfahhXYgj787bbYNoWOQvVei9ojfsc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=xvkAEbSpUfLjgxEcHIxRjeiYhD20MmbRjqi31aQh8uA=;
- b=hFYa36SyRNIMQE5JE3Pz7cw5TWUAP+5z3RaD5PRh8qfkiQ2AJiFnpedI+7p6+8zaJO
- CpzZd3dlCE2H7FrBRapa15//rDicQJUFRr93EKs4SN95tKsU7MqWUFOZj/nsDyXnjIfI
- dtoAV5srusMw+P0/ee3vcsK6DvigMvWXaELFOBSIEH5y9y8F9GVf8LTyR9/MRjKEuS1n
- nlXjxUdd/6czX2OKOvImaSFA9Uo5SNqG4Bc9fokCF/3C9laVKmRK4R4mx5YTA5EFxgwd
- fSSZhS2wasSZaI2nSH/6WYE759VCfTNsmZ7LUZjK0H9Vk6GHPPpiKJUapgHVj4M8ujca
- s4Fw==
-X-Gm-Message-State: AOAM532GLrwNWOcnXzi4hgPwcbrCgjUV5gRdtODcORfSqRRtDt74DKH7
- w5bXPMqC39YldrdajlaVnFdxmw==
-X-Google-Smtp-Source: ABdhPJyMY1FDCZ9p/bTf35VEQDT21Dm0ZI+cb43O+HMaL8NCn9CoDUybNixugZHpZQnLLBGyts38gg==
-X-Received: by 2002:a05:6402:348b:: with SMTP id
- v11mr52372674edc.296.1634646272373; 
- Tue, 19 Oct 2021 05:24:32 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id a4sm2275738edk.71.2021.10.19.05.24.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Oct 2021 05:24:31 -0700 (PDT)
-Date: Tue, 19 Oct 2021 14:24:29 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B18B16EC01;
+ Tue, 19 Oct 2021 12:39:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="228373796"
+X-IronPort-AV: E=Sophos;i="5.87,384,1631602800"; d="scan'208";a="228373796"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 05:39:25 -0700
+X-IronPort-AV: E=Sophos;i="5.87,384,1631602800"; d="scan'208";a="494077200"
+Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.211.239])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 05:39:22 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
-Message-ID: <YW64/Y8RgU63BYY2@phenom.ffwll.local>
-References: <20211005065151.828922-1-bigeasy@linutronix.de>
- <YWbK8wSxNjVu9OLm@phenom.ffwll.local>
- <20211013123525.5nijgyx5ivnuujes@linutronix.de>
- <YWbXvvTzMF1EZ5c7@phenom.ffwll.local>
- <20211013173548.nldcwheo4t52dgvp@linutronix.de>
- <YWgu0v5iPDFViHXS@phenom.ffwll.local>
- <20211014134731.4a5vgdklj3sjyfks@linutronix.de>
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com
+In-Reply-To: <20211018084147.iuexgyykyrrx2ykw@gilmour>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211014150059.28957-1-jani.nikula@intel.com>
+ <871r4muxds.fsf@intel.com> <20211018084147.iuexgyykyrrx2ykw@gilmour>
+Date: Tue, 19 Oct 2021 15:39:20 +0300
+Message-ID: <875yttqjd3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211014134731.4a5vgdklj3sjyfks@linutronix.de>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [RFC PATCH] drm: Increase DRM_OBJECT_MAX_PROPERTY
- by 18.
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/dp: add helpers to read link
+ training delays
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,47 +54,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 14, 2021 at 03:47:31PM +0200, Sebastian Andrzej Siewior wrote:
-> On 2021-10-14 15:21:22 [+0200], Daniel Vetter wrote:
-> > On Wed, Oct 13, 2021 at 07:35:48PM +0200, Sebastian Andrzej Siewior wrote:
-> > > c7fcbf2513973 -> does not boot
-> > > c7fcbf2513973 + 2f425cf5242a0 -> boots, 18 x DRM_OBJECT_MAX_PROPERTY
-> > > 6f11f37459d8f -> boots, 0 x DRM_OBJECT_MAX_PROPERTY
-> > > 6f11f37459d8f + 2f425cf5242a0 -> boots, 18 x DRM_OBJECT_MAX_PROPERTY
-> > 
-> > Just to check, you've built 6f11f37459d8f, and then you cherry-picked
-> > 2f425cf5242a0 on top (not merged), and that already got you the warning
-> > flood?
-> 
-> Correct.
-> 
-> > I'm probably blind, but I'm really not seeing where this pile of
-> > properties is coming from. Can you pls also boot with drm.debug=0xe and
-> > attach full dmesg? Plus your .config please.
-> 
-> attached. dmesg.txt is 6f11f37459d8f and the other is 6f11f37459d8f +
-> 2f425cf5242a0.
+On Mon, 18 Oct 2021, Maxime Ripard <maxime@cerno.tech> wrote:
+> Hi Jani,
+>
+> On Fri, Oct 15, 2021 at 06:21:35PM +0300, Jani Nikula wrote:
+>> On Thu, 14 Oct 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+>> > The link training delays are different and/or available in different
+>> > DPCD offsets depending on:
+>> >
+>> > - Clock recovery vs. channel equalization
+>> > - DPRX vs. LTTPR
+>> > - 128b/132b vs. 8b/10b
+>> > - DPCD 1.4+ vs. earlier
+>> >
+>> > Add helpers to get the correct delays in us, reading DPCD if
+>> > necessary. This is more straightforward than trying to retrofit the
+>> > existing helpers to take 128b/132b into account.
+>> >
+>> > Having to pass in the DPCD receiver cap field seems unavoidable, becau=
+se
+>> > reading it involves checking the revision and reading extended receiver
+>> > cap. So unfortunately the interface is mixed cached and read as needed.
+>> >
+>> > v2: Remove delay_us < 0 check and the whole local var (Ville)
+>> >
+>> > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> > Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>=20
+>> Maarten, Maxime, Thomas -
+>>=20
+>> Ack on the first two patches in this series?
+>>=20
+>> Should we merge them via a topic branch to both drm-misc-next and
+>> drm-intel-next, or is it fine to merge them all via drm-intel-next? We
+>> might be at a point in the development cycle that it takes a while to
+>> get the branches in sync again.
+>
+> I guess the easiest would be to send a PR so that we can merge it in the
+> two branches then.
 
-Ah dmesg help me understand what's going on. Does the below patch help? If
-it's this one that would also explain why intel CI hasn't hit it - it's a
-leak between tests and we run them all individually instead of once at
-boot-up.
+Sent.
 
-Cheers, Daniel
+https://lore.kernel.org/r/878ryps5b6.fsf@intel.com
 
-diff --git a/drivers/gpu/drm/selftests/test-drm_damage_helper.c b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-index 1c19a5d3eefb..8d8d8e214c28 100644
---- a/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-+++ b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-@@ -30,6 +30,7 @@ static void mock_setup(struct drm_plane_state *state)
- 	mock_device.driver = &mock_driver;
- 	mock_device.mode_config.prop_fb_damage_clips = &mock_prop;
- 	mock_plane.dev = &mock_device;
-+	mock_obj_props.count = 0;
- 	mock_plane.base.properties = &mock_obj_props;
- 	mock_prop.base.id = 1; /* 0 is an invalid id */
- 	mock_prop.dev = &mock_device;
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+BR,
+Jani.
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
