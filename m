@@ -1,43 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F5C9433AE3
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 17:41:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 783EF433B97
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 18:04:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A30DC6EC1F;
-	Tue, 19 Oct 2021 15:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74DDF6E18F;
+	Tue, 19 Oct 2021 16:04:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D45E6EC1F
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 15:41:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="215473103"
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="215473103"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 08:41:35 -0700
-X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="483282737"
-Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.211.239])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 08:41:32 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: imre.deak@intel.com, matthew.d.roper@intel.com,
- ville.syrjala@linux.intel.com, Vandita
- Kulkarni <vandita.kulkarni@intel.com>
-In-Reply-To: <20211019151435.20477-3-vandita.kulkarni@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211019151435.20477-1-vandita.kulkarni@intel.com>
- <20211019151435.20477-3-vandita.kulkarni@intel.com>
-Date: Tue, 19 Oct 2021 18:41:29 +0300
-Message-ID: <87r1chowd2.fsf@intel.com>
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
+ [IPv6:2a00:1450:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF4B16EB62;
+ Tue, 19 Oct 2021 15:51:41 +0000 (UTC)
+Received: by mail-wm1-x331.google.com with SMTP id
+ s198-20020a1ca9cf000000b0030d6986ea9fso3751796wme.1; 
+ Tue, 19 Oct 2021 08:51:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=6ZFaxOZuF+IhLUiqvXFEEaubfNfset/rnTpcy2dgnJg=;
+ b=UKPHdrSwzYVYfSOaQNp28TlNw8ngnMfJFfd+bxj8K6Yk60xlDM3U3CMVv7havbe6d5
+ mlhmi+ZablsSB8GX3O3JLakmBpT4p/UFv6EBMQiUNmbHp8w86++d1P1D9eE34J3Xn/UN
+ QrvCaOe6Ebj8ZPQYzkFrNuKm3+BHxHE851Thul43ZfsCvMn6vJLjX/1jgzAIhCGEsN9e
+ oA6TExBNqjmvTTgQ2W+mkivR9ovsuQ+VhByjzxqAuRfHXRfx5Ud+CtKkUj+9Ug0bjCHI
+ VE4zU2MMS/hPW/IwgxZGY94R9f58Jq8wLe5F7m7aFOEQMkeVwKU2si3Tqe+jcKFK6Bdb
+ WfLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=6ZFaxOZuF+IhLUiqvXFEEaubfNfset/rnTpcy2dgnJg=;
+ b=P22++yi2fml59XaaRJIaMFur0+2RePK1PBpNIRQ3BLbe0/Qaborx/DRENrH8KNchxO
+ q13CRxoXQmPXYksyjHiHCoG+CJY+YZThKeMJ+ImgEQoZoeDCZaAXgPyZ5lUKCCZXwVu4
+ Va+ozL/5bPACWd5wEBU6ODEJBMBYAQiRsaIfj2TFzujrWH07QXFpWqaVb2Af010FTg8N
+ MrbNt4jl++EhD5qt751KQsboyw0eAvlK4e1aIgbgImqGjm7vu1LIxfv3ThLFtGmsbNeF
+ UXy76+ncqhxt38bzf+TpOfR4PIC09m8xsK8olT8A7iHm2ZhPXnwc83wdJKaLqafTv3ya
+ hqrw==
+X-Gm-Message-State: AOAM530NX4+Hug65wazvFk3UKWfIxQV4hq/xQ5wQsDa07nMnvRx1DqFn
+ M+d6/GdNUrMgU68YbJ4sERm5XzZpxbA=
+X-Google-Smtp-Source: ABdhPJz4XNeACAlrFxmsoMuUEFHsdoY3ZgMk/DqPLSEBGgjXzSylOvjXgNMCJTEtcGYcpIsBs1s+Tw==
+X-Received: by 2002:a7b:c114:: with SMTP id w20mr6922264wmi.143.1634658700577; 
+ Tue, 19 Oct 2021 08:51:40 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:4fc4:fae2:bc41:a808?
+ ([2a02:908:1252:fb60:4fc4:fae2:bc41:a808])
+ by smtp.gmail.com with ESMTPSA id 133sm2560203wmb.24.2021.10.19.08.51.39
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 19 Oct 2021 08:51:40 -0700 (PDT)
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ tvrtko.ursulin@linux.intel.com
+References: <20211005113742.1101-1-christian.koenig@amd.com>
+ <20211005113742.1101-25-christian.koenig@amd.com>
+ <YWbr0/ey1rCbb0Yi@phenom.ffwll.local>
+ <405b9df8-58fd-b8f2-cec2-acde69aa5633@gmail.com>
+ <YW7WmU/GLzgJbDQc@phenom.ffwll.local>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <35416546-b60b-d5cf-7fe9-abaa0dde63e2@gmail.com>
+Date: Tue, 19 Oct 2021 17:51:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [V2 2/4] drm/i915/dsi/xelpd: Add DSI transcoder
- support
+In-Reply-To: <YW7WmU/GLzgJbDQc@phenom.ffwll.local>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Mailman-Approved-At: Tue, 19 Oct 2021 16:04:22 +0000
+Subject: Re: [Intel-gfx] [PATCH 24/28] drm: use new iterator in
+ drm_gem_plane_helper_prepare_fb v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,68 +85,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> Update ADL_P device info to support DSI0, DSI1
+Am 19.10.21 um 16:30 schrieb Daniel Vetter:
+> On Tue, Oct 19, 2021 at 03:02:26PM +0200, Christian König wrote:
+>> Am 13.10.21 um 16:23 schrieb Daniel Vetter:
+>>> On Tue, Oct 05, 2021 at 01:37:38PM +0200, Christian König wrote:
+>>>> Makes the handling a bit more complex, but avoids the use of
+>>>> dma_resv_get_excl_unlocked().
+>>>>
+>>>> v2: improve coding and documentation
+>>>>
+>>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>>> ---
+>>>>    drivers/gpu/drm/drm_gem_atomic_helper.c | 13 +++++++++++--
+>>>>    1 file changed, 11 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/drm_gem_atomic_helper.c b/drivers/gpu/drm/drm_gem_atomic_helper.c
+>>>> index e570398abd78..8534f78d4d6d 100644
+>>>> --- a/drivers/gpu/drm/drm_gem_atomic_helper.c
+>>>> +++ b/drivers/gpu/drm/drm_gem_atomic_helper.c
+>>>> @@ -143,6 +143,7 @@
+>>>>     */
+>>>>    int drm_gem_plane_helper_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
+>>>>    {
+>>>> +	struct dma_resv_iter cursor;
+>>>>    	struct drm_gem_object *obj;
+>>>>    	struct dma_fence *fence;
+>>>> @@ -150,9 +151,17 @@ int drm_gem_plane_helper_prepare_fb(struct drm_plane *plane, struct drm_plane_st
+>>>>    		return 0;
+>>>>    	obj = drm_gem_fb_get_obj(state->fb, 0);
+>>>> -	fence = dma_resv_get_excl_unlocked(obj->resv);
+>>>> -	drm_atomic_set_fence_for_plane(state, fence);
+>>>> +	dma_resv_iter_begin(&cursor, obj->resv, false);
+>>>> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>>>> +		/* TODO: We only use the first write fence here and need to fix
+>>>> +		 * the drm_atomic_set_fence_for_plane() API to accept more than
+>>>> +		 * one. */
+>>> I'm confused, right now there is only one write fence. So no need to
+>>> iterate, and also no need to add a TODO. If/when we add more write fences
+>>> then I think this needs to be revisited, and ofc then we do need to update
+>>> the set_fence helpers to carry an entire array of fences.
+>> Well could be that I misunderstood you, but in your last explanation it
+>> sounded like the drm_atomic_set_fence_for_plane() function needs fixing
+>> anyway because a plane could have multiple BOs.
+>>
+>> So in my understanding what we need is a
+>> drm_atomic_add_dependency_for_plane() function which records that a certain
+>> fence needs to be signaled before a flip.
+> Yeah that's another issue, but in practice there's no libva which decodes
+> into planar yuv with different fences between the planes. So not a bug in
+> practice.
 >
-> v2: Re-define cpu_transcoder_mask only (Jani)
+> But this is entirely orthogonal to you picking up the wrong fence here if
+> there's not exclusive fence set:
 >
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/i915_pci.c | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
+> - old code: Either pick the exclusive fence, or not fence if the exclusive
+>    one is not set.
 >
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 169837de395d..44c3577be748 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -932,8 +932,6 @@ static const struct intel_device_info adl_s_info = {
->  #define XE_LPD_FEATURES \
->  	.abox_mask = GENMASK(1, 0),						\
->  	.color = { .degamma_lut_size = 0, .gamma_lut_size = 0 },		\
-> -	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |		\
-> -		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
->  	.dbuf.size = 4096,							\
->  	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
->  		BIT(DBUF_S4),							\
-> @@ -955,12 +953,16 @@ static const struct intel_device_info adl_s_info = {
->  		[TRANSCODER_B] = PIPE_B_OFFSET,					\
->  		[TRANSCODER_C] = PIPE_C_OFFSET,					\
->  		[TRANSCODER_D] = PIPE_D_OFFSET,					\
-> +		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,				\
-> +		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,				\
->  	},									\
->  	.trans_offsets = {							\
->  		[TRANSCODER_A] = TRANSCODER_A_OFFSET,				\
->  		[TRANSCODER_B] = TRANSCODER_B_OFFSET,				\
->  		[TRANSCODER_C] = TRANSCODER_C_OFFSET,				\
->  		[TRANSCODER_D] = TRANSCODER_D_OFFSET,				\
-> +		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,			\
-> +		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,			\
->  	},									\
->  	XE_LPD_CURSOR_OFFSETS
->  
-> @@ -969,6 +971,9 @@ static const struct intel_device_info adl_p_info = {
->  	XE_LPD_FEATURES,
->  	PLATFORM(INTEL_ALDERLAKE_P),
->  	.require_force_probe = 1,
-> +	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-> +			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
-> +			       BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
->  	.display.has_cdclk_crawl = 1,
->  	.display.has_modular_fia = 1,
->  	.display.has_psr_hw_tracking = 0,
-> @@ -1038,6 +1043,8 @@ static const struct intel_device_info dg2_info = {
->  		BIT(VECS0) | BIT(VECS1) |
->  		BIT(VCS0) | BIT(VCS2),
->  	.require_force_probe = 1,
-> +	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-> +			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
->  };
->  
->  #undef PLATFORM
+> - new code: Pick the exclusive fence or the first shared fence
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Hui what?
+
+We use "dma_resv_iter_begin(&cursor, obj->resv, *false*);" here which 
+means that only the exclusive fence is returned and no shared fences 
+whatsoever.
+
+My next step is to replace the boolean with a bunch of use case 
+describing enums. I hope that will make it much clearer what's going on 
+here.
+
+Christian.
+
+> New behaviour is busted, because scanning out and reading from a buffer at
+> the same time (for the next frame, e.g. to copy over damaged areas or some
+> other tricks) is very much a supported thing. Atomic _only_ wants to look
+> at the exclusive fence slot, which mean "there is an implicitly synced
+> write to this buffers". Implicitly synced reads _must_ be ignored.
+
+
+>
+> Now amdgpu doesn't have this distinction in its uapi, but many drivers do.
+> -Daniel
+>
+>> Support for more than one write fence then comes totally naturally.
+>>
+>> Christian.
+>>
+>>> -Daniel
+>>>
+>>>> +		dma_fence_get(fence);
+>>>> +		break;
+>>>> +	}
+>>>> +	dma_resv_iter_end(&cursor);
+>>>> +	drm_atomic_set_fence_for_plane(state, fence);
+>>>>    	return 0;
+>>>>    }
+>>>>    EXPORT_SYMBOL_GPL(drm_gem_plane_helper_prepare_fb);
+>>>> -- 
+>>>> 2.25.1
+>>>>
+
