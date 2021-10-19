@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E6E4332FE
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 12:00:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C13B433300
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Oct 2021 12:00:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48A2E6EB7E;
-	Tue, 19 Oct 2021 10:00:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3E4B6EB7F;
+	Tue, 19 Oct 2021 10:00:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DB816E14C;
- Tue, 19 Oct 2021 10:00:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="209267753"
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="209267753"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11F316EB7F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 10:00:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="227240754"
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="227240754"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 03:00:07 -0700
+X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="629569039"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Oct 2021 03:00:05 -0700
-X-IronPort-AV: E=Sophos;i="5.85,384,1624345200"; d="scan'208";a="494027614"
-Received: from jsanz-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.211.239])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2021 03:00:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org,
- Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 19 Oct 2021 12:59:57 +0300
-Message-ID: <878ryps5b6.fsf@intel.com>
+Date: Tue, 19 Oct 2021 13:00:02 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20211019100002.GA1596069@ideak-desk.fi.intel.com>
+References: <20211014220921.683870-1-imre.deak@intel.com>
+ <20211014220921.683870-10-imre.deak@intel.com>
+ <87h7ddsaqi.fsf@intel.com>
+ <20211019083833.GE1537791@ideak-desk.fi.intel.com>
+ <20211019084745.GF1537791@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: [Intel-gfx] [PULL] topic/drm-dp-training-delay-helpers for
- drm-misc-next and drm-intel-next
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211019084745.GF1537791@ideak-desk.fi.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 09/11] drm/i915: Add a platform
+ independent way to check for CCS AUX planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,44 +54,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Oct 19, 2021 at 11:47:45AM +0300, Imre Deak wrote:
+> On Tue, Oct 19, 2021 at 11:38:33AM +0300, Imre Deak wrote:
+> > On Tue, Oct 19, 2021 at 11:02:45AM +0300, Jani Nikula wrote:
+> > > 
+> > > From patch 1:
+> > > 
+> > > static bool check_modifier_display_ver(const struct intel_modifier_desc *md,
+> > > 				       u8 display_ver)
+> > > {
+> > > 	return display_ver >= md->display_ver.from &&
+> > > 	       display_ver <= md->display_ver.until;
+> > > }
+> > > 
+> > > On Fri, 15 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> > > > +static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
+> > > > +					     u8 display_ver_from, u8 display_ver_until)
+> > > > +{
+> > > > +	return check_modifier_display_ver(md, display_ver_from) &&
+> > > > +	       check_modifier_display_ver(md, display_ver_until);
+> > > > +}
+> > > > +
+> > > 
+> > > ...
+> > > 
+> > > > +/**
+> > > > + * intel_fb_is_gen12_ccs_aux_plane: Check if a framebuffer color plane is a GEN12 CCS AUX plane
+> > > > + * @fb: Framebuffer
+> > > > + * @color_plane: color plane index to check
+> > > > + *
+> > > > + * Returns:
+> > > > + * Returns %true if @fb's color plane at index @color_plane is a GEN12 CCS AUX plane.
+> > > > + */
+> > > > +static bool intel_fb_is_gen12_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane)
+> > > >  {
+> > > > -	return is_gen12_ccs_modifier(fb->modifier) && is_ccs_plane(fb, plane);
+> > > > +	const struct intel_modifier_desc *md = lookup_modifier(fb->modifier);
+> > > > +
+> > > > +	return check_modifier_display_ver_range(md, 12, 13) &&
+> > > > +	       ccs_aux_plane_mask(md, fb->format) & BIT(color_plane);
+> > > >  }
+> > > 
+> > > check_modifier_display_ver_range(md, 12, 13)
+> > > 
+> > > ==>
+> > > 
+> > > check_modifier_display_ver(md, 12) &&
+> > > check_modifier_display_ver(md, 13)
+> > > 
+> > > ==>
+> > > 
+> > > 12 >= md->display_ver.from &&
+> > > 12 <= md->display_ver.until &&
+> > > 13 >= md->display_ver.from &&
+> > > 13 <= md->display_ver.until
+> > > 
+> > > ==>
+> > > 
+> > > Always false.
+> > 
+> > If md->display_ver.from=12, md->display_ver.until=13
+> > 
+> > 12 >= 12 &&
+> > 12 <= 13 &&
+> > 13 >= 12 &&
+> > 13 <= 13
+> > 
+> > not false.
+> > 
+> > But yes, check_modifier_display_ver_range() is bogus for the
+> > md->display_ver.from == md->display_ver.until case, and should be
+> > 
+> > md->display_ver.from >= display_ver_from &&
+> > md->display_ver.until <= disaply_ver_until
+> 
+> arg the above is still bogus and should be:
+> 
+>  check_modifier_display_ver(md, display_ver_from) ||
+>  check_modifier_display_ver(md, display_ver_until);
 
-Hi all -
+Somehow the intersect check for two ranges was difficult :/ I hope v4 I
+sent is correct.
 
-These are the drm dp helpers for figuring out link training delays, to
-be pulled to both drm-misc-next and drm-intel-next.
-
-
-topic/drm-dp-training-delay-helpers-2021-10-19:
-Core Changes:
-- drm dp helpers for figuring out link training delays
-
-BR,
-Jani.
-
-The following changes since commit 9962601ca5719050906915c3c33a63744ac7b15c:
-
-  drm/bridge: dw-hdmi-cec: Make use of the helper function devm_add_action_or_reset() (2021-10-06 11:21:46 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/topic/drm-dp-training-delay-helpers-2021-10-19
-
-for you to fetch changes up to 02ed47aa6cc697fc34053c011fe72984a86273cb:
-
-  drm/dp: reuse the 8b/10b link training delay helpers (2021-10-19 11:30:27 +0300)
-
-----------------------------------------------------------------
-Core Changes:
-- drm dp helpers for figuring out link training delays
-
-----------------------------------------------------------------
-Jani Nikula (2):
-      drm/dp: add helpers to read link training delays
-      drm/dp: reuse the 8b/10b link training delay helpers
-
- drivers/gpu/drm/drm_dp_helper.c | 153 +++++++++++++++++++++++++++++++++++-----
- include/drm/drm_dp_helper.h     |  21 +++++-
- 2 files changed, 154 insertions(+), 20 deletions(-)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> > Thanks for catching this, will fix it.
+> > 
+> > > BR,
+> > > Jani.
+> > > 
+> > > 
+> > > -- 
+> > > Jani Nikula, Intel Open Source Graphics Center
