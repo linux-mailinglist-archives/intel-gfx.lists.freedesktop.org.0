@@ -2,41 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCC2435483
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 22:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EBD74354CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 22:51:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C77FB6E3B2;
-	Wed, 20 Oct 2021 20:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4C266E3D6;
+	Wed, 20 Oct 2021 20:51:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31BC46E3B2
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 20:23:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="216040422"
-X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="216040422"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 13:23:03 -0700
-X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="483871030"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 13:23:03 -0700
-Date: Wed, 20 Oct 2021 13:35:32 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20211020203531.GA25526@labuser-Z97X-UD5H>
-References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
- <20210913144440.23008-15-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E76AE6E3D2;
+ Wed, 20 Oct 2021 20:51:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DCCF8A00FD;
+ Wed, 20 Oct 2021 20:51:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8916092525815949921=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210913144440.23008-15-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 14/16] drm/i915: Perform correct
- cpu_transcoder readout for bigjoiner
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 Oct 2021 20:51:33 -0000
+Message-ID: <163476309386.27358.7942429484825175014@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211020195138.1841242-1-imre.deak@intel.com>
+In-Reply-To: <20211020195138.1841242-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Simplify_handling_of_modifiers_=28rev12=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,121 +41,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 13, 2021 at 05:44:38PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Read out cpu_transcoder correctly for the bigjoiner slave pipes.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============8916092525815949921==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+== Series Details ==
 
-Manasi
+Series: drm/i915: Simplify handling of modifiers (rev12)
+URL   : https://patchwork.freedesktop.org/series/95579/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 66 ++++++++++++++++++++
->  1 file changed, 66 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 4e659a103984..25ae9e4f6b66 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5581,6 +5581,16 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
->  	return ret;
->  }
->  
-> +static u8 bigjoiner_pipes(struct drm_i915_private *i915)
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10765 -> Patchwork_21393
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21393 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#3921])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@perf:
+    - {fi-tgl-dsi}:       [DMESG-WARN][3] ([i915#2867]) -> [PASS][4] +11 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp1:
+    - fi-cfl-8109u:       [FAIL][5] ([i915#4165]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][7] ([i915#4269]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][9] ([i915#295]) -> [PASS][10] +17 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-WARN][11] ([i915#295]) -> [FAIL][12] ([i915#2546])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2546]: https://gitlab.freedesktop.org/drm/intel/issues/2546
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
 
 
-> +{
-> +	if (DISPLAY_VER(i915) >= 12)
-> +		return BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D);
-> +	else if (DISPLAY_VER(i915) >= 11)
-> +		return BIT(PIPE_B) | BIT(PIPE_C);
-> +	else
-> +		return 0;
-> +}
-> +
->  static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
->  					   enum transcoder cpu_transcoder)
->  {
-> @@ -5596,6 +5606,54 @@ static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
->  	return tmp & TRANS_DDI_FUNC_ENABLE;
->  }
->  
-> +static u8 enabled_bigjoiner_pipes(struct drm_i915_private *dev_priv)
-> +{
-> +	u8 master_pipes = 0, slave_pipes = 0;
-> +	struct intel_crtc *crtc;
-> +
-> +	for_each_intel_crtc(&dev_priv->drm, crtc) {
-> +		enum intel_display_power_domain power_domain;
-> +		enum pipe pipe = crtc->pipe;
-> +		intel_wakeref_t wakeref;
-> +
-> +		if ((bigjoiner_pipes(dev_priv) & BIT(pipe)) == 0)
-> +			continue;
-> +
-> +		power_domain = intel_dsc_power_domain(crtc, (enum transcoder) pipe);
-> +		with_intel_display_power_if_enabled(dev_priv, power_domain, wakeref) {
-> +			u32 tmp = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL1(pipe));
-> +
-> +			if (!(tmp & BIG_JOINER_ENABLE))
-> +				continue;
-> +
-> +			if (tmp & MASTER_BIG_JOINER_ENABLE)
-> +				master_pipes |= BIT(pipe);
-> +			else
-> +				slave_pipes |= BIT(pipe);
-> +		}
-> +
-> +		if (DISPLAY_VER(dev_priv) < 13)
-> +			continue;
-> +
-> +		power_domain = POWER_DOMAIN_PIPE(pipe);
-> +		with_intel_display_power_if_enabled(dev_priv, power_domain, wakeref) {
-> +			u32 tmp = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL1(pipe));
-> +
-> +			if (tmp & UNCOMPRESSED_JOINER_MASTER)
-> +				master_pipes |= BIT(pipe);
-> +			if (tmp & UNCOMPRESSED_JOINER_SLAVE)
-> +				slave_pipes |= BIT(pipe);
-> +		}
-> +	}
-> +
-> +	/* Bigjoiner pipes should always be consecutive master and slave */
-> +	drm_WARN(&dev_priv->drm, slave_pipes != master_pipes << 1,
-> +		 "Bigjoiner misconfigured (master pipes 0x%x, slave pipes 0x%x)\n",
-> +		 master_pipes, slave_pipes);
-> +
-> +	return slave_pipes;
-> +}
-> +
->  static u8 hsw_panel_transcoders(struct drm_i915_private *i915)
->  {
->  	u8 panel_transcoder_mask = BIT(TRANSCODER_EDP);
-> @@ -5657,10 +5715,18 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
->  			enabled_transcoders |= BIT(cpu_transcoder);
->  	}
->  
-> +	/* single pipe or bigjoiner master */
->  	cpu_transcoder = (enum transcoder) crtc->pipe;
->  	if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
->  		enabled_transcoders |= BIT(cpu_transcoder);
->  
-> +	/* bigjoiner slave -> consider the master pipe's transcoder as well */
-> +	if (enabled_bigjoiner_pipes(dev_priv) & BIT(crtc->pipe)) {
-> +		cpu_transcoder = (enum transcoder) crtc->pipe - 1;
-> +		if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
-> +			enabled_transcoders |= BIT(cpu_transcoder);
-> +	}
-> +
->  	return enabled_transcoders;
->  }
->  
-> -- 
-> 2.32.0
-> 
+Participating hosts (44 -> 38)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-kbl-x1275 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10765 -> Patchwork_21393
+
+  CI-20190529: 20190529
+  CI_DRM_10765: 19edb8bd013aa8cfd4345a405b07a0c1ef424b74 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21393: a510cc2c3093e14534e5641be105d6445613e42d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a510cc2c3093 drm/i915: Add functions to check for RC CCS CC and MC CCS modifiers
+605d4c7e75b3 drm/i915: Move is_ccs_modifier() to intel_fb.c
+48b044ca6958 drm/i915: Add a platform independent way to check for CCS AUX planes
+066204606ff2 drm/i915: Handle CCS CC planes separately from CCS AUX planes
+3b5a352ccae1 drm/i915: Add a platform independent way to get the RC CCS CC plane
+a57a4c9e3ddc drm/i915: Move intel_format_info_is_yuv_semiplanar() to intel_fb.c
+d9e1b092e0b4 drm/i915: Unexport is_semiplanar_uv_plane()
+c62bf50af74c drm/i915: Simplify the modifier check for interlaced scanout support
+bc09112178a4 drm/i915: Add tiling attribute to the modifier descriptor
+31cf2c8a39f2 drm/i915: Move intel_get_format_info() to intel_fb.c
+78f3fdfcbe6d drm/i915: Add a table with a descriptor for all i915 modifiers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/index.html
+
+--===============8916092525815949921==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Simplify handling of modifiers (rev12)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95579/">https://patchwork.freedesktop.org/series/95579/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10765 -&gt; Patchwork_21393</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21393 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@perf:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-tgl-dsi/igt@i915_selftest@live@perf.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-tgl-dsi/igt@i915_selftest@live@perf.html">PASS</a> +11 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10765/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21393/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2546">i915#2546</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 38)</h2>
+<p>Missing    (6): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-kbl-x1275 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10765 -&gt; Patchwork_21393</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10765: 19edb8bd013aa8cfd4345a405b07a0c1ef424b74 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21393: a510cc2c3093e14534e5641be105d6445613e42d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a510cc2c3093 drm/i915: Add functions to check for RC CCS CC and MC CCS modifiers<br />
+605d4c7e75b3 drm/i915: Move is_ccs_modifier() to intel_fb.c<br />
+48b044ca6958 drm/i915: Add a platform independent way to check for CCS AUX planes<br />
+066204606ff2 drm/i915: Handle CCS CC planes separately from CCS AUX planes<br />
+3b5a352ccae1 drm/i915: Add a platform independent way to get the RC CCS CC plane<br />
+a57a4c9e3ddc drm/i915: Move intel_format_info_is_yuv_semiplanar() to intel_fb.c<br />
+d9e1b092e0b4 drm/i915: Unexport is_semiplanar_uv_plane()<br />
+c62bf50af74c drm/i915: Simplify the modifier check for interlaced scanout support<br />
+bc09112178a4 drm/i915: Add tiling attribute to the modifier descriptor<br />
+31cf2c8a39f2 drm/i915: Move intel_get_format_info() to intel_fb.c<br />
+78f3fdfcbe6d drm/i915: Add a table with a descriptor for all i915 modifiers</p>
+
+</body>
+</html>
+
+--===============8916092525815949921==--
