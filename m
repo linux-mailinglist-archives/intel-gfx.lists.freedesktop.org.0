@@ -2,40 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E5243485B
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 11:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C6B54348A9
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 12:10:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54EED6E29D;
-	Wed, 20 Oct 2021 09:54:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57E236E964;
+	Wed, 20 Oct 2021 10:10:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F9B86E29D
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 09:53:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="292205450"
-X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="292205450"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 02:53:57 -0700
-X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="494550108"
-Received: from sischoen-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.45.52])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 02:53:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-In-Reply-To: <20211020090624.GA1662819@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA4336E29D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 10:10:40 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="229015366"
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="229015366"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 03:09:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="444305751"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 20 Oct 2021 03:09:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 20 Oct 2021 13:09:36 +0300
+Date: Wed, 20 Oct 2021 13:09:36 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <YW/q4HXo7q/aceOj@intel.com>
 References: <20211018094154.1407705-1-imre.deak@intel.com>
- <20211018094154.1407705-7-imre.deak@intel.com> <87fsswq0nx.fsf@intel.com>
+ <20211018094154.1407705-7-imre.deak@intel.com>
+ <87fsswq0nx.fsf@intel.com>
  <20211020090624.GA1662819@ideak-desk.fi.intel.com>
-Date: Wed, 20 Oct 2021 12:53:52 +0300
-Message-ID: <87r1cgnhsf.fsf@intel.com>
+ <87r1cgnhsf.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87r1cgnhsf.fsf@intel.com>
+X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dp: Sanitize link common rate
  array lookups
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -53,149 +56,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 20 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> On Tue, Oct 19, 2021 at 10:23:14PM +0300, Jani Nikula wrote:
->> On Mon, 18 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
->> > Add an assert that lookups from the intel_dp->common_rates[] array
->> > are always valid.
->>=20
->> The one thought I had here was that if we're adding helper functions for
->> accessing common rates, they should probably be of the form "this is the
->> rate I have now, give me a slower rate" instead of making the index part
->> of the interface. The index doesn't really mean anything, and if we want
->> to avoid overflows, it should be hidden from the interfaces.
->
-> intel_dp_rate_index() is also part of the interface, but I suppose it
-> could be improved.
+On Wed, Oct 20, 2021 at 12:53:52PM +0300, Jani Nikula wrote:
+> On Wed, 20 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> > On Tue, Oct 19, 2021 at 10:23:14PM +0300, Jani Nikula wrote:
+> >> On Mon, 18 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> >> > Add an assert that lookups from the intel_dp->common_rates[] array
+> >> > are always valid.
+> >> 
+> >> The one thought I had here was that if we're adding helper functions for
+> >> accessing common rates, they should probably be of the form "this is the
+> >> rate I have now, give me a slower rate" instead of making the index part
+> >> of the interface. The index doesn't really mean anything, and if we want
+> >> to avoid overflows, it should be hidden from the interfaces.
+> >
+> > intel_dp_rate_index() is also part of the interface, but I suppose it
+> > could be improved.
+> 
+> Most of its users could be converted to two functions:
+> 
+> - is this a valid rate?
+> - give me a slower rate
+> 
+> The only place where index is actually needed is the eDP rate select
+> method.
+> 
+> Pretty much everywhere I'm starting to prefer passing the actual values
+> instead of mappings.
 
-Most of its users could be converted to two functions:
+I think I had an ancient patch along those lines...
+I guess I'm thinking of this one:
+https://patchwork.freedesktop.org/patch/101471/?series=10354&rev=3
 
-- is this a valid rate?
-- give me a slower rate
-
-The only place where index is actually needed is the eDP rate select
-method.
-
-Pretty much everywhere I'm starting to prefer passing the actual values
-instead of mappings.
-
-
-BR,
-Jani.
-
-
->
->> But again, can be follow-up.
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_dp.c | 33 ++++++++++++-------------
->> >  1 file changed, 16 insertions(+), 17 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm=
-/i915/display/intel_dp.c
->> > index f8082eb8e7263..3869d454c10f0 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > @@ -267,10 +267,19 @@ static int intel_dp_common_len_rate_limit(const =
-struct intel_dp *intel_dp,
->> >  				       intel_dp->num_common_rates, max_rate);
->> >  }
->> >=20=20
->> > +static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
->> > +{
->> > +	if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
->> > +			index < 0 || index >=3D intel_dp->num_common_rates))
->> > +		return 162000;
->> > +
->> > +	return intel_dp->common_rates[index];
->> > +}
->> > +
->> >  /* Theoretical max between source and sink */
->> >  static int intel_dp_max_common_rate(struct intel_dp *intel_dp)
->> >  {
->> > -	return intel_dp->common_rates[intel_dp->num_common_rates - 1];
->> > +	return intel_dp_common_rate(intel_dp, intel_dp->num_common_rates - 1=
-);
->> >  }
->> >=20=20
->> >  /* Theoretical max between source and sink */
->> > @@ -610,13 +619,13 @@ int intel_dp_get_link_train_fallback_values(stru=
-ct intel_dp *intel_dp,
->> >  	if (index > 0) {
->> >  		if (intel_dp_is_edp(intel_dp) &&
->> >  		    !intel_dp_can_link_train_fallback_for_edp(intel_dp,
->> > -							      intel_dp->common_rates[index - 1],
->> > +							      intel_dp_common_rate(intel_dp, index - 1),
->> >  							      lane_count)) {
->> >  			drm_dbg_kms(&i915->drm,
->> >  				    "Retrying Link training for eDP with same parameters\n");
->> >  			return 0;
->> >  		}
->> > -		intel_dp->max_link_rate =3D intel_dp->common_rates[index - 1];
->> > +		intel_dp->max_link_rate =3D intel_dp_common_rate(intel_dp, index - =
-1);
->> >  		intel_dp->max_link_lane_count =3D lane_count;
->> >  	} else if (lane_count > 1) {
->> >  		if (intel_dp_is_edp(intel_dp) &&
->> > @@ -1056,14 +1065,11 @@ static void intel_dp_print_rates(struct intel_=
-dp *intel_dp)
->> >  int
->> >  intel_dp_max_link_rate(struct intel_dp *intel_dp)
->> >  {
->> > -	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
->> >  	int len;
->> >=20=20
->> >  	len =3D intel_dp_common_len_rate_limit(intel_dp, intel_dp->max_link_=
-rate);
->> > -	if (drm_WARN_ON(&i915->drm, len <=3D 0))
->> > -		return 162000;
->> >=20=20
->> > -	return intel_dp->common_rates[len - 1];
->> > +	return intel_dp_common_rate(intel_dp, len - 1);
->> >  }
->> >=20=20
->> >  int intel_dp_rate_select(struct intel_dp *intel_dp, int rate)
->> > @@ -1260,7 +1266,7 @@ intel_dp_compute_link_config_wide(struct intel_d=
-p *intel_dp,
->> >  						   output_bpp);
->> >=20=20
->> >  		for (i =3D 0; i < intel_dp->num_common_rates; i++) {
->> > -			link_rate =3D intel_dp->common_rates[i];
->> > +			link_rate =3D intel_dp_common_rate(intel_dp, i);
->> >  			if (link_rate < limits->min_rate ||
->> >  			    link_rate > limits->max_rate)
->> >  				continue;
->> > @@ -1508,17 +1514,10 @@ intel_dp_compute_link_config(struct intel_enco=
-der *encoder,
->> >  		&pipe_config->hw.adjusted_mode;
->> >  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> >  	struct link_config_limits limits;
->> > -	int common_len;
->> >  	int ret;
->> >=20=20
->> > -	common_len =3D intel_dp_common_len_rate_limit(intel_dp,
->> > -						    intel_dp->max_link_rate);
->> > -
->> > -	/* No common link rates between source and sink */
->> > -	drm_WARN_ON(encoder->base.dev, common_len <=3D 0);
->> > -
->> > -	limits.min_rate =3D intel_dp->common_rates[0];
->> > -	limits.max_rate =3D intel_dp->common_rates[common_len - 1];
->> > +	limits.min_rate =3D intel_dp_common_rate(intel_dp, 0);
->> > +	limits.max_rate =3D intel_dp_max_link_rate(intel_dp);
->> >=20=20
->> >  	limits.min_lane_count =3D 1;
->> >  	limits.max_lane_count =3D intel_dp_max_lane_count(intel_dp);
->>=20
->> --=20
->> Jani Nikula, Intel Open Source Graphics Center
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
