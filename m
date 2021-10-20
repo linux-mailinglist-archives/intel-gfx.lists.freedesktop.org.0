@@ -1,68 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509504346BE
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 10:21:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1895143470F
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 10:38:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E30B6E8D2;
-	Wed, 20 Oct 2021 08:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 571366E847;
+	Wed, 20 Oct 2021 08:38:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A4826E8D2;
- Wed, 20 Oct 2021 08:21:13 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 472C31FD9D;
- Wed, 20 Oct 2021 08:21:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1634718072; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=/t5w3Oy5KHGFXvGLXI6TU0p3a/8pg5S2V/9clDUNR7A=;
- b=kFg1ajISOD0Aqy/Z3AH/HCGPRyeKZlsxz07Gbj6W2gqn3SkP9r4c24uLlNPOmxZltL7I58
- 1q8nmnO9/+expMBceOeBIqYrUtYztv0omDBPF78rv6ceEdNzp5NqWzeNbu6b6rMvqsGz77
- 0dYa0ES0y2VLnpz/bUqlnjzMWaJBdS8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1634718072;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=/t5w3Oy5KHGFXvGLXI6TU0p3a/8pg5S2V/9clDUNR7A=;
- b=4nAQh3Mv5Llsp13EfLGAzX/TAbsEIZQ9N2W5h6I9U/sr12nMsNMf5zXMwYjxttP9PD97dJ
- eu8lnBmXWPBLjyCQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 1909A13F7C;
- Wed, 20 Oct 2021 08:21:12 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id h02RBHjRb2EMXgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Wed, 20 Oct 2021 08:21:12 +0000
-Message-ID: <84ff2d86-345c-8bcf-81c6-467b9737f652@suse.de>
-Date: Wed, 20 Oct 2021 10:21:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-US
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEC016E847;
+ Wed, 20 Oct 2021 08:38:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="226188503"
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="226188503"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 01:38:33 -0700
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="494524838"
+Received: from sischoen-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.45.52])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 01:38:29 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org
 Cc: christian.koenig@amd.com, daniel@ffwll.ch, matthew.auld@intel.com,
- alexander.deucher@amd.com
+ alexander.deucher@amd.com, Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20211019225409.569355-3-Arunpravin.PaneerSelvam@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20211019225409.569355-1-Arunpravin.PaneerSelvam@amd.com>
- <20211019225409.569355-4-Arunpravin.PaneerSelvam@amd.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20211019225409.569355-4-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------agyJ8GFf7ECqg7Ybaxwx8ly8"
-Subject: Re: [Intel-gfx] [PATCH 03/13] drm: add Makefile support for drm
- buddy
+ <20211019225409.569355-3-Arunpravin.PaneerSelvam@amd.com>
+Date: Wed, 20 Oct 2021 11:38:26 +0300
+Message-ID: <87wnm8nla5.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 02/13] drm: Move and rename i915 buddy source
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,94 +52,507 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------agyJ8GFf7ECqg7Ybaxwx8ly8
-Content-Type: multipart/mixed; boundary="------------1oRyLfLhoa4yqL2KbIoqJ9fC";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, daniel@ffwll.ch, matthew.auld@intel.com,
- alexander.deucher@amd.com
-Message-ID: <84ff2d86-345c-8bcf-81c6-467b9737f652@suse.de>
-Subject: Re: [PATCH 03/13] drm: add Makefile support for drm buddy
-References: <20211019225409.569355-1-Arunpravin.PaneerSelvam@amd.com>
- <20211019225409.569355-4-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20211019225409.569355-4-Arunpravin.PaneerSelvam@amd.com>
+On Wed, 20 Oct 2021, Arunpravin <Arunpravin.PaneerSelvam@amd.com> wrote:
+> - Move i915_buddy.c to drm root folder
+> - Rename "i915" string with "drm" string wherever applicable
+> - Rename "I915" string with "DRM" string wherever applicable
+> - Fix header file dependencies
+> - Fix alignment issues
+>
+> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>  .../drm/{i915/i915_buddy.c => drm_buddy.c}    | 193 +++++++++---------
+>  include/drm/drm_buddy.h                       |  10 +
+>  2 files changed, 105 insertions(+), 98 deletions(-)
+>  rename drivers/gpu/drm/{i915/i915_buddy.c => drm_buddy.c} (58%)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> similarity index 58%
+> rename from drivers/gpu/drm/i915/i915_buddy.c
+> rename to drivers/gpu/drm/drm_buddy.c
+> index 6e2ad68f8f3f..0398706cb7ae 100644
+> --- a/drivers/gpu/drm/i915/i915_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -6,21 +6,18 @@
+>  #include <linux/kmemleak.h>
+>  #include <linux/sizes.h>
+>  
+> -#include "i915_buddy.h"
+> -
+> -#include "i915_gem.h"
+> -#include "i915_utils.h"
+> +#include <drm/drm_buddy.h>
 
---------------1oRyLfLhoa4yqL2KbIoqJ9fC
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Please ensure the series builds after every commit. Clearly this is not
+the case here.
 
-SGkNCg0KQW0gMjAuMTAuMjEgdW0gMDA6NTMgc2NocmllYiBBcnVucHJhdmluOg0KPiAtIElu
-Y2x1ZGUgZHJtIGJ1ZGR5IHRvIERSTSByb290IE1ha2VmaWxlDQo+IC0gQWRkIGRybSBidWRk
-eSBpbml0IGFuZCBleGl0IGZ1bmN0aW9uIGNhbGxzDQo+ICAgIHRvIGRybSBjb3JlDQoNCklz
-IHRoZXJlIGEgaGFyZCByZXF1aXJlbWVudCB0byBoYXZlIHRoaXMgY29kZSBpbiB0aGUgY29y
-ZT8NCg0KSU1ITyB0aGVyZSdzIGFscmVhZHkgdG9vIG11Y2ggY29kZSBpbiB0aGUgRFJNIGNv
-cmUgdGhhdCBzaG91bGQgcmF0aGVyIGdvIA0KaW50byBoZWxwZXJzLiBUaGUgYWxsb2NhdG9y
-IHNob3VsZCBsaXZlIGluIGl0J3Mgb3duIG1vZHVsZSBhbmQgZHJpdmVyIA0Kc2hvdWxkIGlu
-aXQgaXQgaWYgbmVlZGVkLg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBBcnVucHJhdmluIDxB
-cnVucHJhdmluLlBhbmVlclNlbHZhbUBhbWQuY29tPg0KPiAtLS0NCj4gICBkcml2ZXJzL2dw
-dS9kcm0vTWFrZWZpbGUgIHwgMiArLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9kcm1fZHJ2LmMg
-fCAzICsrKw0KPiAgIDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAxIGRlbGV0
-aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL01ha2VmaWxlIGIv
-ZHJpdmVycy9ncHUvZHJtL01ha2VmaWxlDQo+IGluZGV4IDBkZmY0MGJiODYzYy4uZGM2MWU5
-MWEzMTU0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vTWFrZWZpbGUNCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL01ha2VmaWxlDQo+IEBAIC0xOCw3ICsxOCw3IEBAIGRybS15
-ICAgICAgIDo9CWRybV9hcGVydHVyZS5vIGRybV9hdXRoLm8gZHJtX2NhY2hlLm8gXA0KPiAg
-IAkJZHJtX2R1bWJfYnVmZmVycy5vIGRybV9tb2RlX2NvbmZpZy5vIGRybV92YmxhbmsubyBc
-DQo+ICAgCQlkcm1fc3luY29iai5vIGRybV9sZWFzZS5vIGRybV93cml0ZWJhY2subyBkcm1f
-Y2xpZW50Lm8gXA0KPiAgIAkJZHJtX2NsaWVudF9tb2Rlc2V0Lm8gZHJtX2F0b21pY191YXBp
-Lm8gZHJtX2hkY3AubyBcDQo+IC0JCWRybV9tYW5hZ2VkLm8gZHJtX3ZibGFua193b3JrLm8N
-Cj4gKwkJZHJtX21hbmFnZWQubyBkcm1fdmJsYW5rX3dvcmsubyBkcm1fYnVkZHkubw0KPiAg
-IA0KPiAgIGRybS0kKENPTkZJR19EUk1fTEVHQUNZKSArPSBkcm1fYWdwc3VwcG9ydC5vIGRy
-bV9idWZzLm8gZHJtX2NvbnRleHQubyBkcm1fZG1hLm8gXA0KPiAgIAkJCSAgICBkcm1fbGVn
-YWN5X21pc2MubyBkcm1fbG9jay5vIGRybV9tZW1vcnkubyBkcm1fc2NhdHRlci5vIFwNCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHJ2LmMgYi9kcml2ZXJzL2dwdS9k
-cm0vZHJtX2Rydi5jDQo+IGluZGV4IDdhNTA5NzQ2N2JhNS4uNjcwN2VlYzIxYmVmIDEwMDY0
-NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2Rydi5jDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fZHJ2LmMNCj4gQEAgLTQzLDYgKzQzLDcgQEANCj4gICAjaW5jbHVkZSA8
-ZHJtL2RybV9tYW5hZ2VkLmg+DQo+ICAgI2luY2x1ZGUgPGRybS9kcm1fbW9kZV9vYmplY3Qu
-aD4NCj4gICAjaW5jbHVkZSA8ZHJtL2RybV9wcmludC5oPg0KPiArI2luY2x1ZGUgPGRybS9k
-cm1fYnVkZHkuaD4NCg0KSW4gYWxwaGFiZXRpY2FsIG9yZGVyIHBsZWFzZS4gSGVyZSBhbmQg
-ZXZlcnl3aGVyZSBlbHNlLg0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+ICAgDQo+ICAg
-I2luY2x1ZGUgImRybV9jcnRjX2ludGVybmFsLmgiDQo+ICAgI2luY2x1ZGUgImRybV9pbnRl
-cm5hbC5oIg0KPiBAQCAtMTAzNCw2ICsxMDM1LDcgQEAgc3RhdGljIHZvaWQgZHJtX2NvcmVf
-ZXhpdCh2b2lkKQ0KPiAgIAlkcm1fc3lzZnNfZGVzdHJveSgpOw0KPiAgIAlpZHJfZGVzdHJv
-eSgmZHJtX21pbm9yc19pZHIpOw0KPiAgIAlkcm1fY29ubmVjdG9yX2lkYV9kZXN0cm95KCk7
-DQo+ICsJZHJtX2J1ZGR5X21vZHVsZV9leGl0KCk7DQo+ICAgfQ0KPiAgIA0KPiAgIHN0YXRp
-YyBpbnQgX19pbml0IGRybV9jb3JlX2luaXQodm9pZCkNCj4gQEAgLTEwNDMsNiArMTA0NSw3
-IEBAIHN0YXRpYyBpbnQgX19pbml0IGRybV9jb3JlX2luaXQodm9pZCkNCj4gICAJZHJtX2Nv
-bm5lY3Rvcl9pZGFfaW5pdCgpOw0KPiAgIAlpZHJfaW5pdCgmZHJtX21pbm9yc19pZHIpOw0K
-PiAgIAlkcm1fbWVtY3B5X2luaXRfZWFybHkoKTsNCj4gKwlkcm1fYnVkZHlfbW9kdWxlX2lu
-aXQoKTsNCj4gICANCj4gICAJcmV0ID0gZHJtX3N5c2ZzX2luaXQoKTsNCj4gICAJaWYgKHJl
-dCA8IDApIHsNCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZl
-ciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4
-ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBO
-w7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogRmVsaXggSW1lbmTDtnJmZmVyDQo=
+BR,
+Jani.
 
---------------1oRyLfLhoa4yqL2KbIoqJ9fC--
+>  
+>  static struct kmem_cache *slab_blocks;
+>  
+> -static struct i915_buddy_block *i915_block_alloc(struct i915_buddy_mm *mm,
+> -						 struct i915_buddy_block *parent,
+> -						 unsigned int order,
+> -						 u64 offset)
+> +static struct drm_buddy_block *drm_block_alloc(struct drm_buddy_mm *mm,
+> +					       struct drm_buddy_block *parent,
+> +					       unsigned int order,
+> +					       u64 offset)
+>  {
+> -	struct i915_buddy_block *block;
+> +	struct drm_buddy_block *block;
+>  
+> -	GEM_BUG_ON(order > I915_BUDDY_MAX_ORDER);
+> +	BUG_ON(order > DRM_BUDDY_MAX_ORDER);
+>  
+>  	block = kmem_cache_zalloc(slab_blocks, GFP_KERNEL);
+>  	if (!block)
+> @@ -30,43 +27,43 @@ static struct i915_buddy_block *i915_block_alloc(struct i915_buddy_mm *mm,
+>  	block->header |= order;
+>  	block->parent = parent;
+>  
+> -	GEM_BUG_ON(block->header & I915_BUDDY_HEADER_UNUSED);
+> +	BUG_ON(block->header & DRM_BUDDY_HEADER_UNUSED);
+>  	return block;
+>  }
+>  
+> -static void i915_block_free(struct i915_buddy_mm *mm,
+> -			    struct i915_buddy_block *block)
+> +static void drm_block_free(struct drm_buddy_mm *mm,
+> +			   struct drm_buddy_block *block)
+>  {
+>  	kmem_cache_free(slab_blocks, block);
+>  }
+>  
+> -static void mark_allocated(struct i915_buddy_block *block)
+> +static void mark_allocated(struct drm_buddy_block *block)
+>  {
+> -	block->header &= ~I915_BUDDY_HEADER_STATE;
+> -	block->header |= I915_BUDDY_ALLOCATED;
+> +	block->header &= ~DRM_BUDDY_HEADER_STATE;
+> +	block->header |= DRM_BUDDY_ALLOCATED;
+>  
+>  	list_del(&block->link);
+>  }
+>  
+> -static void mark_free(struct i915_buddy_mm *mm,
+> -		      struct i915_buddy_block *block)
+> +static void mark_free(struct drm_buddy_mm *mm,
+> +		      struct drm_buddy_block *block)
+>  {
+> -	block->header &= ~I915_BUDDY_HEADER_STATE;
+> -	block->header |= I915_BUDDY_FREE;
+> +	block->header &= ~DRM_BUDDY_HEADER_STATE;
+> +	block->header |= DRM_BUDDY_FREE;
+>  
+>  	list_add(&block->link,
+> -		 &mm->free_list[i915_buddy_block_order(block)]);
+> +		 &mm->free_list[drm_buddy_block_order(block)]);
+>  }
+>  
+> -static void mark_split(struct i915_buddy_block *block)
+> +static void mark_split(struct drm_buddy_block *block)
+>  {
+> -	block->header &= ~I915_BUDDY_HEADER_STATE;
+> -	block->header |= I915_BUDDY_SPLIT;
+> +	block->header &= ~DRM_BUDDY_HEADER_STATE;
+> +	block->header |= DRM_BUDDY_SPLIT;
+>  
+>  	list_del(&block->link);
+>  }
+>  
+> -int i915_buddy_init(struct i915_buddy_mm *mm, u64 size, u64 chunk_size)
+> +int drm_buddy_init(struct drm_buddy_mm *mm, u64 size, u64 chunk_size)
+>  {
+>  	unsigned int i;
+>  	u64 offset;
+> @@ -87,7 +84,7 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 size, u64 chunk_size)
+>  	mm->chunk_size = chunk_size;
+>  	mm->max_order = ilog2(size) - ilog2(chunk_size);
+>  
+> -	GEM_BUG_ON(mm->max_order > I915_BUDDY_MAX_ORDER);
+> +	BUG_ON(mm->max_order > DRM_BUDDY_MAX_ORDER);
+>  
+>  	mm->free_list = kmalloc_array(mm->max_order + 1,
+>  				      sizeof(struct list_head),
+> @@ -101,7 +98,7 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 size, u64 chunk_size)
+>  	mm->n_roots = hweight64(size);
+>  
+>  	mm->roots = kmalloc_array(mm->n_roots,
+> -				  sizeof(struct i915_buddy_block *),
+> +				  sizeof(struct drm_buddy_block *),
+>  				  GFP_KERNEL);
+>  	if (!mm->roots)
+>  		goto out_free_list;
+> @@ -114,21 +111,21 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 size, u64 chunk_size)
+>  	 * not itself a power-of-two.
+>  	 */
+>  	do {
+> -		struct i915_buddy_block *root;
+> +		struct drm_buddy_block *root;
+>  		unsigned int order;
+>  		u64 root_size;
+>  
+>  		root_size = rounddown_pow_of_two(size);
+>  		order = ilog2(root_size) - ilog2(chunk_size);
+>  
+> -		root = i915_block_alloc(mm, NULL, order, offset);
+> +		root = drm_block_alloc(mm, NULL, order, offset);
+>  		if (!root)
+>  			goto out_free_roots;
+>  
+>  		mark_free(mm, root);
+>  
+> -		GEM_BUG_ON(i > mm->max_order);
+> -		GEM_BUG_ON(i915_buddy_block_size(mm, root) < chunk_size);
+> +		BUG_ON(i > mm->max_order);
+> +		BUG_ON(drm_buddy_block_size(mm, root) < chunk_size);
+>  
+>  		mm->roots[i] = root;
+>  
+> @@ -141,45 +138,45 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 size, u64 chunk_size)
+>  
+>  out_free_roots:
+>  	while (i--)
+> -		i915_block_free(mm, mm->roots[i]);
+> +		drm_block_free(mm, mm->roots[i]);
+>  	kfree(mm->roots);
+>  out_free_list:
+>  	kfree(mm->free_list);
+>  	return -ENOMEM;
+>  }
+>  
+> -void i915_buddy_fini(struct i915_buddy_mm *mm)
+> +void drm_buddy_fini(struct drm_buddy_mm *mm)
+>  {
+>  	int i;
+>  
+>  	for (i = 0; i < mm->n_roots; ++i) {
+> -		GEM_WARN_ON(!i915_buddy_block_is_free(mm->roots[i]));
+> -		i915_block_free(mm, mm->roots[i]);
+> +		WARN_ON(!drm_buddy_block_is_free(mm->roots[i]));
+> +		drm_block_free(mm, mm->roots[i]);
+>  	}
+>  
+> -	GEM_WARN_ON(mm->avail != mm->size);
+> +	WARN_ON(mm->avail != mm->size);
+>  
+>  	kfree(mm->roots);
+>  	kfree(mm->free_list);
+>  }
+>  
+> -static int split_block(struct i915_buddy_mm *mm,
+> -		       struct i915_buddy_block *block)
+> +static int split_block(struct drm_buddy_mm *mm,
+> +		       struct drm_buddy_block *block)
+>  {
+> -	unsigned int block_order = i915_buddy_block_order(block) - 1;
+> -	u64 offset = i915_buddy_block_offset(block);
+> +	unsigned int block_order = drm_buddy_block_order(block) - 1;
+> +	u64 offset = drm_buddy_block_offset(block);
+>  
+> -	GEM_BUG_ON(!i915_buddy_block_is_free(block));
+> -	GEM_BUG_ON(!i915_buddy_block_order(block));
+> +	BUG_ON(!drm_buddy_block_is_free(block));
+> +	BUG_ON(!drm_buddy_block_order(block));
+>  
+> -	block->left = i915_block_alloc(mm, block, block_order, offset);
+> +	block->left = drm_block_alloc(mm, block, block_order, offset);
+>  	if (!block->left)
+>  		return -ENOMEM;
+>  
+> -	block->right = i915_block_alloc(mm, block, block_order,
+> +	block->right = drm_block_alloc(mm, block, block_order,
+>  					offset + (mm->chunk_size << block_order));
+>  	if (!block->right) {
+> -		i915_block_free(mm, block->left);
+> +		drm_block_free(mm, block->left);
+>  		return -ENOMEM;
+>  	}
+>  
+> @@ -191,10 +188,10 @@ static int split_block(struct i915_buddy_mm *mm,
+>  	return 0;
+>  }
+>  
+> -static struct i915_buddy_block *
+> -get_buddy(struct i915_buddy_block *block)
+> +static struct drm_buddy_block *
+> +get_buddy(struct drm_buddy_block *block)
+>  {
+> -	struct i915_buddy_block *parent;
+> +	struct drm_buddy_block *parent;
+>  
+>  	parent = block->parent;
+>  	if (!parent)
+> @@ -206,23 +203,23 @@ get_buddy(struct i915_buddy_block *block)
+>  	return parent->left;
+>  }
+>  
+> -static void __i915_buddy_free(struct i915_buddy_mm *mm,
+> -			      struct i915_buddy_block *block)
+> +static void __drm_buddy_free(struct drm_buddy_mm *mm,
+> +			     struct drm_buddy_block *block)
+>  {
+> -	struct i915_buddy_block *parent;
+> +	struct drm_buddy_block *parent;
+>  
+>  	while ((parent = block->parent)) {
+> -		struct i915_buddy_block *buddy;
+> +		struct drm_buddy_block *buddy;
+>  
+>  		buddy = get_buddy(block);
+>  
+> -		if (!i915_buddy_block_is_free(buddy))
+> +		if (!drm_buddy_block_is_free(buddy))
+>  			break;
+>  
+>  		list_del(&buddy->link);
+>  
+> -		i915_block_free(mm, block);
+> -		i915_block_free(mm, buddy);
+> +		drm_block_free(mm, block);
+> +		drm_block_free(mm, buddy);
+>  
+>  		block = parent;
+>  	}
+> @@ -230,20 +227,20 @@ static void __i915_buddy_free(struct i915_buddy_mm *mm,
+>  	mark_free(mm, block);
+>  }
+>  
+> -void i915_buddy_free(struct i915_buddy_mm *mm,
+> -		     struct i915_buddy_block *block)
+> +void drm_buddy_free(struct drm_buddy_mm *mm,
+> +		    struct drm_buddy_block *block)
+>  {
+> -	GEM_BUG_ON(!i915_buddy_block_is_allocated(block));
+> -	mm->avail += i915_buddy_block_size(mm, block);
+> -	__i915_buddy_free(mm, block);
+> +	BUG_ON(!drm_buddy_block_is_allocated(block));
+> +	mm->avail += drm_buddy_block_size(mm, block);
+> +	__drm_buddy_free(mm, block);
+>  }
+>  
+> -void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head *objects)
+> +void drm_buddy_free_list(struct drm_buddy_mm *mm, struct list_head *objects)
+>  {
+> -	struct i915_buddy_block *block, *on;
+> +	struct drm_buddy_block *block, *on;
+>  
+>  	list_for_each_entry_safe(block, on, objects, link) {
+> -		i915_buddy_free(mm, block);
+> +		drm_buddy_free(mm, block);
+>  		cond_resched();
+>  	}
+>  	INIT_LIST_HEAD(objects);
+> @@ -257,16 +254,16 @@ void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head *objects)
+>   *   2 = 2^2 * mm->chunk_size
+>   *   ...
+>   */
+> -struct i915_buddy_block *
+> -i915_buddy_alloc(struct i915_buddy_mm *mm, unsigned int order)
+> +struct drm_buddy_block *
+> +drm_buddy_alloc(struct drm_buddy_mm *mm, unsigned int order)
+>  {
+> -	struct i915_buddy_block *block = NULL;
+> +	struct drm_buddy_block *block = NULL;
+>  	unsigned int i;
+>  	int err;
+>  
+>  	for (i = order; i <= mm->max_order; ++i) {
+>  		block = list_first_entry_or_null(&mm->free_list[i],
+> -						 struct i915_buddy_block,
+> +						 struct drm_buddy_block,
+>  						 link);
+>  		if (block)
+>  			break;
+> @@ -275,7 +272,7 @@ i915_buddy_alloc(struct i915_buddy_mm *mm, unsigned int order)
+>  	if (!block)
+>  		return ERR_PTR(-ENOSPC);
+>  
+> -	GEM_BUG_ON(!i915_buddy_block_is_free(block));
+> +	BUG_ON(!drm_buddy_block_is_free(block));
+>  
+>  	while (i != order) {
+>  		err = split_block(mm, block);
+> @@ -288,13 +285,13 @@ i915_buddy_alloc(struct i915_buddy_mm *mm, unsigned int order)
+>  	}
+>  
+>  	mark_allocated(block);
+> -	mm->avail -= i915_buddy_block_size(mm, block);
+> +	mm->avail -= drm_buddy_block_size(mm, block);
+>  	kmemleak_update_trace(block);
+>  	return block;
+>  
+>  out_free:
+>  	if (i != order)
+> -		__i915_buddy_free(mm, block);
+> +		__drm_buddy_free(mm, block);
+>  	return ERR_PTR(err);
+>  }
+>  
+> @@ -314,16 +311,16 @@ static inline bool contains(u64 s1, u64 e1, u64 s2, u64 e2)
+>   *
+>   * Intended for pre-allocating portions of the address space, for example to
+>   * reserve a block for the initial framebuffer or similar, hence the expectation
+> - * here is that i915_buddy_alloc() is still the main vehicle for
+> + * here is that drm_buddy_alloc() is still the main vehicle for
+>   * allocations, so if that's not the case then the drm_mm range allocator is
+>   * probably a much better fit, and so you should probably go use that instead.
+>   */
+> -int i915_buddy_alloc_range(struct i915_buddy_mm *mm,
+> -			   struct list_head *blocks,
+> -			   u64 start, u64 size)
+> +int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
+> +			  struct list_head *blocks,
+> +			  u64 start, u64 size)
+>  {
+> -	struct i915_buddy_block *block;
+> -	struct i915_buddy_block *buddy;
+> +	struct drm_buddy_block *block;
+> +	struct drm_buddy_block *buddy;
+>  	LIST_HEAD(allocated);
+>  	LIST_HEAD(dfs);
+>  	u64 end;
+> @@ -349,37 +346,37 @@ int i915_buddy_alloc_range(struct i915_buddy_mm *mm,
+>  		u64 block_end;
+>  
+>  		block = list_first_entry_or_null(&dfs,
+> -						 struct i915_buddy_block,
+> +						 struct drm_buddy_block,
+>  						 tmp_link);
+>  		if (!block)
+>  			break;
+>  
+>  		list_del(&block->tmp_link);
+>  
+> -		block_start = i915_buddy_block_offset(block);
+> -		block_end = block_start + i915_buddy_block_size(mm, block) - 1;
+> +		block_start = drm_buddy_block_offset(block);
+> +		block_end = block_start + drm_buddy_block_size(mm, block) - 1;
+>  
+>  		if (!overlaps(start, end, block_start, block_end))
+>  			continue;
+>  
+> -		if (i915_buddy_block_is_allocated(block)) {
+> +		if (drm_buddy_block_is_allocated(block)) {
+>  			err = -ENOSPC;
+>  			goto err_free;
+>  		}
+>  
+>  		if (contains(start, end, block_start, block_end)) {
+> -			if (!i915_buddy_block_is_free(block)) {
+> +			if (!drm_buddy_block_is_free(block)) {
+>  				err = -ENOSPC;
+>  				goto err_free;
+>  			}
+>  
+>  			mark_allocated(block);
+> -			mm->avail -= i915_buddy_block_size(mm, block);
+> +			mm->avail -= drm_buddy_block_size(mm, block);
+>  			list_add_tail(&block->link, &allocated);
+>  			continue;
+>  		}
+>  
+> -		if (!i915_buddy_block_is_split(block)) {
+> +		if (!drm_buddy_block_is_split(block)) {
+>  			err = split_block(mm, block);
+>  			if (unlikely(err))
+>  				goto err_undo;
+> @@ -400,26 +397,26 @@ int i915_buddy_alloc_range(struct i915_buddy_mm *mm,
+>  	 */
+>  	buddy = get_buddy(block);
+>  	if (buddy &&
+> -	    (i915_buddy_block_is_free(block) &&
+> -	     i915_buddy_block_is_free(buddy)))
+> -		__i915_buddy_free(mm, block);
+> +	    (drm_buddy_block_is_free(block) &&
+> +	     drm_buddy_block_is_free(buddy)))
+> +		__drm_buddy_free(mm, block);
+>  
+>  err_free:
+> -	i915_buddy_free_list(mm, &allocated);
+> +	drm_buddy_free_list(mm, &allocated);
+>  	return err;
+>  }
+>  
+> -void i915_buddy_block_print(struct i915_buddy_mm *mm,
+> -			    struct i915_buddy_block *block,
+> -			    struct drm_printer *p)
+> +void drm_buddy_block_print(struct drm_buddy_mm *mm,
+> +			   struct drm_buddy_block *block,
+> +			   struct drm_printer *p)
+>  {
+> -	u64 start = i915_buddy_block_offset(block);
+> -	u64 size = i915_buddy_block_size(mm, block);
+> +	u64 start = drm_buddy_block_offset(block);
+> +	u64 size = drm_buddy_block_size(mm, block);
+>  
+>  	drm_printf(p, "%#018llx-%#018llx: %llu\n", start, start + size, size);
+>  }
+>  
+> -void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer *p)
+> +void drm_buddy_print(struct drm_buddy_mm *mm, struct drm_printer *p)
+>  {
+>  	int order;
+>  
+> @@ -427,11 +424,11 @@ void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer *p)
+>  		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20);
+>  
+>  	for (order = mm->max_order; order >= 0; order--) {
+> -		struct i915_buddy_block *block;
+> +		struct drm_buddy_block *block;
+>  		u64 count = 0, free;
+>  
+>  		list_for_each_entry(block, &mm->free_list[order], link) {
+> -			GEM_BUG_ON(!i915_buddy_block_is_free(block));
+> +			BUG_ON(!drm_buddy_block_is_free(block));
+>  			count++;
+>  		}
+>  
+> @@ -451,14 +448,14 @@ void i915_buddy_print(struct i915_buddy_mm *mm, struct drm_printer *p)
+>  #include "selftests/i915_buddy.c"
+>  #endif
+>  
+> -void i915_buddy_module_exit(void)
+> +void drm_buddy_module_exit(void)
+>  {
+>  	kmem_cache_destroy(slab_blocks);
+>  }
+>  
+> -int __init i915_buddy_module_init(void)
+> +int __init drm_buddy_module_init(void)
+>  {
+> -	slab_blocks = KMEM_CACHE(i915_buddy_block, 0);
+> +	slab_blocks = KMEM_CACHE(drm_buddy_block, 0);
+>  	if (!slab_blocks)
+>  		return -ENOMEM;
+>  
+> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+> index 521ed532d2b8..390b133fe342 100644
+> --- a/include/drm/drm_buddy.h
+> +++ b/include/drm/drm_buddy.h
+> @@ -9,9 +9,19 @@
+>  #include <linux/bitops.h>
+>  #include <linux/list.h>
+>  #include <linux/slab.h>
+> +#include <linux/sched.h>
+>  
+>  #include <drm/drm_print.h>
+>  
+> +#define range_overflows(start, size, max) ({ \
+> +	typeof(start) start__ = (start); \
+> +	typeof(size) size__ = (size); \
+> +	typeof(max) max__ = (max); \
+> +	(void)(&start__ == &size__); \
+> +	(void)(&start__ == &max__); \
+> +	start__ >= max__ || size__ > max__ - start__; \
+> +})
+> +
+>  struct drm_buddy_block {
+>  #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+>  #define DRM_BUDDY_HEADER_STATE  GENMASK_ULL(11, 10)
 
---------------agyJ8GFf7ECqg7Ybaxwx8ly8
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmFv0XcFAwAAAAAACgkQlh/E3EQov+Dl
-yQ//fkZdi4V/v4rsD40KuzqJHNaaYsyufS4uOp091GMQyAr5XQ2HssdXQiMMPrtedDady8Dd8kVm
-EeUvOqEd9eXGzUVfiYK9n0whbepP+udBKjgAeQbL0g3kX4Q2yc0JopuhEFpo35mY68gxxReirqdX
-MFNQv3SB/4Qv49Gq83KsJLQGy/npexSTB7VY1bGRGf45UdJoxau1RRKSC8Bv0glDSmbZu4EjYRFI
-4kR8GhZqIomTiF/KWtBsVWDk88G2uMLeufnepIjSIQnwcMR4sIYvsdCBzEwhBxYiBhJQDxc6P6xR
-XZVq5T/hd0RZTMytZca1nGeJ7bJgahxXSI/WsdHh0/y00fQMSNRgtjdLQ1gfNhY7D0lcWETE6PUE
-VMaUz/pR+iFgQe0cdNds1OxgdAjrXJwl6E29MNvscy1Mo6uQh7eyURYraWwMsZWzi3AIRkj2RPSR
-8RtXu49HgiNqPvPkhpeayuHYimlLpS1Y/TYPQCc9F5hxU7Efsb6/Lxv41HHrGwXnl4gCqaqaNFpx
-0dsoyTWSwrZx7YjWFQLWO+swmFXkfe0PVq+l8eYlCRl2ZJBR+SAAFJjKZJYNogFD8KUbZjnunoeP
-VflHgnimbmB+eGIM61UioXJCRqaAbCeirB10TOz203uw1BKZ0mWZn3N8uIz3GTPMIwFrnIe2ia+X
-lcU=
-=gOfK
------END PGP SIGNATURE-----
-
---------------agyJ8GFf7ECqg7Ybaxwx8ly8--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
