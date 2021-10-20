@@ -2,34 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484664355E2
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 00:31:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B4A4355E8
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 00:33:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5A0F6E3F0;
-	Wed, 20 Oct 2021 22:31:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25A5D6EA0E;
+	Wed, 20 Oct 2021 22:33:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3D88B6E3F0;
- Wed, 20 Oct 2021 22:31:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 35CD8AA0EA;
- Wed, 20 Oct 2021 22:31:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 716A76EA09
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 22:33:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="227663897"
+X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="227663897"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 15:33:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="444540540"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 20 Oct 2021 15:33:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 21 Oct 2021 01:33:39 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Lyude Paul <lyude@redhat.com>
+Date: Thu, 21 Oct 2021 01:33:35 +0300
+Message-Id: <20211020223339.669-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bhawanpreet Lakha" <bhawanpreet.lakha@amd.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Oct 2021 22:31:52 -0000
-Message-ID: <163476911219.27360.13488576022692959434@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211020194715.1107972-1-Bhawanpreet.Lakha@amd.com>
-In-Reply-To: <20211020194715.1107972-1-Bhawanpreet.Lakha@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/4=5D_drm=3A_Remove_slot_checks_in_dp_m?=
- =?utf-8?q?st_topology_during_commit_=28rev3=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/4] drm/i915: (near)atomic gamma LUT updates
+ via vblank workers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,27 +46,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: series starting with [1/4] drm: Remove slot checks in dp mst topology during commit (rev3)
-URL   : https://patchwork.freedesktop.org/series/96079/
-State : failure
+Finally got around to refreshing my vblank worker gamma LUT series.
+Since I started this (ahem, some years ago) Lyude took over the
+actual vblank worker implementation, mostly rewrote it I think,
+and landed it for use in nouveau. So now I'm just left with the
+easy task of using it for i915 gamma LUT updates. And so here
+we are.
 
-== Summary ==
+CC: Lyude Paul <lyude@redhat.com>
 
-Applying: drm: Remove slot checks in dp mst topology during commit
-Applying: drm: Update MST First Link Slot Information Based on Encoding Format
-Applying: drm/amd/display: Add DP 2.0 MST DC Support
-error: sha1 information is lacking or useless (drivers/gpu/drm/amd/display/dc/core/dc.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0003 drm/amd/display: Add DP 2.0 MST DC Support
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Ville Syrjälä (4):
+  drm/i915: Move function prototypes to the correct header
+  drm/i915: Do vrr push before sampling the freame counter
+  drm/i915: Use vblank workers for gamma updates
+  drm/i915: Use unlocked register accesses for LUT loads
 
+ drivers/gpu/drm/i915/display/intel_color.c    | 128 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  82 ++++++++++-
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   9 +-
+ .../drm/i915/display/intel_display_types.h    |   8 ++
+ drivers/gpu/drm/i915/display/intel_dsb.c      |   4 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.h   |   4 -
+ drivers/gpu/drm/i915/i915_trace.h             |  42 ++++++
+ 9 files changed, 203 insertions(+), 83 deletions(-)
+
+-- 
+2.32.0
 
