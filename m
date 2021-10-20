@@ -1,64 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3BC4353D5
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 21:30:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF4694353E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 21:38:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B426F89C85;
-	Wed, 20 Oct 2021 19:30:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2D889BEC;
+	Wed, 20 Oct 2021 19:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EFF689C85
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 19:30:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="228815942"
-X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="228815942"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 12:30:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="491494948"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga007.fm.intel.com with ESMTP; 20 Oct 2021 12:30:00 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 20 Oct 2021 12:29:59 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 20 Oct 2021 12:29:59 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Wed, 20 Oct 2021 12:29:59 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-CC: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "Atwood, Matthew S"
- <matthew.s.atwood@intel.com>, "daniel.vetter@ffwll.ch"
- <daniel.vetter@ffwll.ch>, "tvrtko.ursulin@linux.intel.com"
- <tvrtko.ursulin@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
-Thread-Index: AQHXxUfp90zJKsmfc0KKIjZpNBUnJqvcGbGAgACkkIA=
-Date: Wed, 20 Oct 2021 19:29:59 +0000
-Message-ID: <74cc5b4a8ebe2a5f7ae01994c6782124328a2e0e.camel@intel.com>
-References: <20211020002353.193893-1-jose.souza@intel.com>
- <87tuhcni3k.fsf@intel.com>
-In-Reply-To: <87tuhcni3k.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2D65AD88FA3C064C950C852708ED1BE8@intel.com>
-Content-Transfer-Encoding: base64
+Received: from desiato.infradead.org (desiato.infradead.org
+ [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C18C89BEC;
+ Wed, 20 Oct 2021 19:38:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=25uxvcU8Q6SEEyqa5u7IFHx2RyyudtDeLjhkROKSTUk=; b=h/oQA+oze8XD4yl/NvHbXK8Yd6
+ jleU0NVVf9yFgu0+diJb00fWwZ6ggm3XO5xaRJK3EIYJrafTX9uvgSwRPGAXbbsn+j6xErrcU7Grw
+ GCMgyBcIFMYxiXACw2uCW1ZWYNUTbtf+4VzM0RE9UbXFb2Mj2yNa6iAcjJ7IHn9WvNt+TN+RU3d0+
+ Dg5FaZu3cm89n9GsUgsdDBQ3S1X0hhv/1QC6+tCDvIkFXRtP6+gOtHmMFQGyz22GEmgVziLI70eKJ
+ g4cJ/k8aXUj0kGaUMMeXXbB0gWWbhSaiXOW5WOln24rM8nlbNRe5XJX5Pe2e395ee3UElWDAda/B0
+ LPCKXCsg==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=worktop.programming.kicks-ass.net)
+ by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mdHPL-00B0wV-BZ; Wed, 20 Oct 2021 19:37:51 +0000
+Received: by worktop.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 6B710986DD9; Wed, 20 Oct 2021 21:37:51 +0200 (CEST)
+Date: Wed, 20 Oct 2021 21:37:51 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ matthew.auld@intel.com
+Message-ID: <20211020193751.GS174703@worktop.programming.kicks-ass.net>
+References: <20210326055505.1424432-1-hch@lst.de>
+ <20210326055505.1424432-3-hch@lst.de>
+ <20211020154005.uk6u4ovcmlhpyubk@ldmartin-desk2>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211020154005.uk6u4ovcmlhpyubk@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [PATCH 2/4] mm: add a io_mapping_map_user helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,31 +64,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTEwLTIwIGF0IDEyOjQ3ICswMzAwLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4g
-T24gVHVlLCAxOSBPY3QgMjAyMSwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+IHdyb3RlOg0KPiA+IFRoZSBjb25zdGFudCBwbGF0Zm9ybSBkaXNwbGF5IHZlcnNp
-b24gaXMgbm90IHVzaW5nIHRoaXMgbmV3IHN0cnVjdCBidXQNCj4gPiB0aGUgcnVudGltZSB2YXJp
-YW50IHdpbGwgZGVmaW5pdGVseSB1c2UgaXQuDQo+IA0KPiBDYzogU29tZSBtb3JlIGZvbGtzIHRv
-IGhpamFjayB0aGlzIHRocmVhZC4gU29ycnkhIDspDQo+IA0KPiBXZSBhZGRlZCBydW50aW1lIGlu
-Zm8gdG8gaTkxNSwgYmVjYXVzZSB3ZSBoYWQgdGhpcyBpZGVhIGFuZCBnb2FsIG9mDQo+IHR1cm5p
-bmcgdGhlIGRldmljZSBpbmZvIHRvIGEgdHJ1bHkgY29uc3QgcG9pbnRlciB0byB0aGUgaW5mbyBz
-dHJ1Y3R1cmVzDQo+IGluIGk5MTVfcGNpLmMgdGhhdCBhcmUgc3RvcmVkIGluIHJvZGF0YS4gVGhl
-IGlkZWEgd2FzIHRoYXQgd2UnbGwgaGF2ZSBhDQo+IGNvbXBsZXRlIHNwbGl0IG9mIG11dGFibGUg
-YW5kIGltbXV0YWJsZSBkZXZpY2UgZGF0YSwgd2l0aCBhbGwgdGhlDQo+IG11dGFibGUgZGF0YSBp
-biBydW50aW1lIGluZm8uDQo+IA0KPiBBbGFzLCB3ZSBuZXZlciBnb3QgdGhlcmUuIE1vcmUgYW5k
-IG1vcmUgZGF0YSB0aGF0IHdhcyBtb3N0bHkgY29uc3QgYnV0DQo+IHNvbWV0aW1lcyBuZWVkZWQg
-dHdlYWtpbmcga2VwdCBwaWxpbmcgdXAuIG1rd3JpdGVfZGV2aWNlX2luZm8oKSB3YXMNCj4gc3Vw
-cG9zZWQgdG8gYmUgYSBjbHVlIG5vdCB0byBtb2RpZnkgZGV2aWNlIGluZm8gcnVudGltZSwgYnV0
-IGluc3RlYWQgaXQNCj4gcHJvbGlmZXJhdGVkLiBOb3cgd2UgaGF2ZSBwbGFjZXMgbGlrZSBpbnRl
-bF9mYmNfaW5pdCgpIGRpc2FibGluZyBGQkMNCj4gdGhyb3VnaCB0aGF0LiBCdXQgbW9zdCBpbXBv
-cnRhbnRseSwgd2UgaGF2ZSBmdXNpbmcgdGhhdCBjb25zaWRlcmFibHkNCj4gY2hhbmdlcyB0aGUg
-ZGV2aWNlIGluZm8sIGFuZCB0aGUgY29weWluZyBhbGwgb2YgdGhhdCBkYXRhIG92ZXIgdG8NCj4g
-cnVudGltZSBpbmZvIHByb2JhYmx5IGlzbid0IHdvcnRoIGl0Lg0KPiANCj4gU2hvdWxkIHdlIGp1
-c3QgYWNrbm93bGVkZ2UgdGhhdCB0aGUgcnVudGltZSBpbmZvIGlzIHVzZWxlc3MsIGFuZCBtb3Zl
-DQo+IHNvbWUgb2YgdGhhdCBkYXRhIHRvIGludGVsX2RldmljZV9pbmZvIGFuZCBzb21lIG9mIGl0
-IGVsc2V3aGVyZSBpbiBpOTE1Pw0KDQpXaXRoIG5ld2VyIHBsYXRmb3JtcyBnZXR0aW5nIG1vcmUg
-YW5kIG1vcmUgbW9kdWxhciwgSSBiZWxpZXZlIHdlIHdpbGwgbmVlZCB0byBzdG9yZSBldmVuIG1v
-cmUgbXV0YWJsZSBwbGF0Zm9ybSBpbmZvcm1hdGlvbi4NCg0KSW4gbXkgb3BpbmlvbiBhIHNlcGFy
-YXRpb24gb2YgaW1tdXRhYmxlIGFuZCBtdXRhYmxlIHBsYXRmb3JtIGluZm9ybWF0aW9uIGlzIGNs
-ZWFuZXIgYW5kIGVhc2llciB0byBtYWludGFpbi4NCg0KPiANCj4gDQo+IEJSLA0KPiBKYW5pLg0K
-PiANCg0K
+On Wed, Oct 20, 2021 at 08:40:05AM -0700, Lucas De Marchi wrote:
+> On Fri, Mar 26, 2021 at 06:55:03AM +0100, Christoph Hellwig wrote:
+> > Add a helper that calls remap_pfn_range for an struct io_mapping, relying
+> > on the pgprot pre-validation done when creating the mapping instead of
+> > doing it at runtime.
+> > 
+> > Signed-off-by: Christoph Hellwig <hch@lst.de>
+> > ---
+> > include/linux/io-mapping.h |  3 +++
+> > mm/Kconfig                 |  3 +++
+> > mm/Makefile                |  1 +
+> > mm/io-mapping.c            | 29 +++++++++++++++++++++++++++++
+> > 4 files changed, 36 insertions(+)
+> > create mode 100644 mm/io-mapping.c
+> > 
+> > diff --git a/include/linux/io-mapping.h b/include/linux/io-mapping.h
+> > index c093e81310a9b3..e9743cfd858527 100644
+> > --- a/include/linux/io-mapping.h
+> > +++ b/include/linux/io-mapping.h
+> > @@ -220,3 +220,6 @@ io_mapping_free(struct io_mapping *iomap)
+> > }
+> > 
+> > #endif /* _LINUX_IO_MAPPING_H */
+> > +
+> > +int io_mapping_map_user(struct io_mapping *iomap, struct vm_area_struct *vma,
+> > +		unsigned long addr, unsigned long pfn, unsigned long size);
+> 
+> I'm not sure what exactly brought me to check this, but while debugging
+> I noticed this outside the header guard. But then after some more checks I
+> saw nothing actually selects CONFIG_IO_MAPPING because commit using
+> it was reverted in commit 0e4fe0c9f2f9 ("Revert "i915: use io_mapping_map_user"")
+> 
+> Is this something we want to re-attempt moving to mm/ ?
+
+Yes, it would be very good to unexport apply_to_page_range(), it's a
+terrible interface to expose.
