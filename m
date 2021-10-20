@@ -2,41 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C23FB43479C
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 11:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 271BD43479D
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 11:06:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C8B6E221;
-	Wed, 20 Oct 2021 09:06:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01CEF6E23F;
+	Wed, 20 Oct 2021 09:06:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 925366E221
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 09:06:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="252216733"
-X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="252216733"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA9876E23F;
+ Wed, 20 Oct 2021 09:06:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="228607075"
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="228607075"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 02:06:30 -0700
-X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="463105146"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 02:06:43 -0700
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="463105214"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 02:06:28 -0700
-Date: Wed, 20 Oct 2021 12:06:24 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211020090624.GA1662819@ideak-desk.fi.intel.com>
-References: <20211018094154.1407705-1-imre.deak@intel.com>
- <20211018094154.1407705-7-imre.deak@intel.com>
- <87fsswq0nx.fsf@intel.com>
+ 20 Oct 2021 02:06:43 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org
+Date: Wed, 20 Oct 2021 02:06:25 -0700
+Message-Id: <20211020090625.1037517-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87fsswq0nx.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dp: Sanitize link common rate
- array lookups
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: stop using PAGE_KERNEL_IO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,119 +46,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 19, 2021 at 10:23:14PM +0300, Jani Nikula wrote:
-> On Mon, 18 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> > Add an assert that lookups from the intel_dp->common_rates[] array
-> > are always valid.
-> 
-> The one thought I had here was that if we're adding helper functions for
-> accessing common rates, they should probably be of the form "this is the
-> rate I have now, give me a slower rate" instead of making the index part
-> of the interface. The index doesn't really mean anything, and if we want
-> to avoid overflows, it should be hidden from the interfaces.
+PAGE_KERNEL_IO is only defined for x86 and is the same as PAGE_KERNEL.
+Use the latter since that is also available on other archs, which should
+help us getting i915 there.
 
-intel_dp_rate_index() is also part of the interface, but I suppose it
-could be improved.
+This is the same that was done done in commit 80c33624e472 ("io-mapping:
+Fixup for different names of writecombine"). Later the commit
+80c33624e472 ("io-mapping: Fixup for different names of writecombine")
+added a "Fixes" tag to the first one, but that is actually fixing a
+separate issue:  the different names for pgprot_writecombine().
 
-> But again, can be follow-up.
-> 
-> BR,
-> Jani.
-> 
-> 
-> >
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 33 ++++++++++++-------------
-> >  1 file changed, 16 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index f8082eb8e7263..3869d454c10f0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -267,10 +267,19 @@ static int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
-> >  				       intel_dp->num_common_rates, max_rate);
-> >  }
-> >  
-> > +static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
-> > +{
-> > +	if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
-> > +			index < 0 || index >= intel_dp->num_common_rates))
-> > +		return 162000;
-> > +
-> > +	return intel_dp->common_rates[index];
-> > +}
-> > +
-> >  /* Theoretical max between source and sink */
-> >  static int intel_dp_max_common_rate(struct intel_dp *intel_dp)
-> >  {
-> > -	return intel_dp->common_rates[intel_dp->num_common_rates - 1];
-> > +	return intel_dp_common_rate(intel_dp, intel_dp->num_common_rates - 1);
-> >  }
-> >  
-> >  /* Theoretical max between source and sink */
-> > @@ -610,13 +619,13 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
-> >  	if (index > 0) {
-> >  		if (intel_dp_is_edp(intel_dp) &&
-> >  		    !intel_dp_can_link_train_fallback_for_edp(intel_dp,
-> > -							      intel_dp->common_rates[index - 1],
-> > +							      intel_dp_common_rate(intel_dp, index - 1),
-> >  							      lane_count)) {
-> >  			drm_dbg_kms(&i915->drm,
-> >  				    "Retrying Link training for eDP with same parameters\n");
-> >  			return 0;
-> >  		}
-> > -		intel_dp->max_link_rate = intel_dp->common_rates[index - 1];
-> > +		intel_dp->max_link_rate = intel_dp_common_rate(intel_dp, index - 1);
-> >  		intel_dp->max_link_lane_count = lane_count;
-> >  	} else if (lane_count > 1) {
-> >  		if (intel_dp_is_edp(intel_dp) &&
-> > @@ -1056,14 +1065,11 @@ static void intel_dp_print_rates(struct intel_dp *intel_dp)
-> >  int
-> >  intel_dp_max_link_rate(struct intel_dp *intel_dp)
-> >  {
-> > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> >  	int len;
-> >  
-> >  	len = intel_dp_common_len_rate_limit(intel_dp, intel_dp->max_link_rate);
-> > -	if (drm_WARN_ON(&i915->drm, len <= 0))
-> > -		return 162000;
-> >  
-> > -	return intel_dp->common_rates[len - 1];
-> > +	return intel_dp_common_rate(intel_dp, len - 1);
-> >  }
-> >  
-> >  int intel_dp_rate_select(struct intel_dp *intel_dp, int rate)
-> > @@ -1260,7 +1266,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
-> >  						   output_bpp);
-> >  
-> >  		for (i = 0; i < intel_dp->num_common_rates; i++) {
-> > -			link_rate = intel_dp->common_rates[i];
-> > +			link_rate = intel_dp_common_rate(intel_dp, i);
-> >  			if (link_rate < limits->min_rate ||
-> >  			    link_rate > limits->max_rate)
-> >  				continue;
-> > @@ -1508,17 +1514,10 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
-> >  		&pipe_config->hw.adjusted_mode;
-> >  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> >  	struct link_config_limits limits;
-> > -	int common_len;
-> >  	int ret;
-> >  
-> > -	common_len = intel_dp_common_len_rate_limit(intel_dp,
-> > -						    intel_dp->max_link_rate);
-> > -
-> > -	/* No common link rates between source and sink */
-> > -	drm_WARN_ON(encoder->base.dev, common_len <= 0);
-> > -
-> > -	limits.min_rate = intel_dp->common_rates[0];
-> > -	limits.max_rate = intel_dp->common_rates[common_len - 1];
-> > +	limits.min_rate = intel_dp_common_rate(intel_dp, 0);
-> > +	limits.max_rate = intel_dp_max_link_rate(intel_dp);
-> >  
-> >  	limits.min_lane_count = 1;
-> >  	limits.max_lane_count = intel_dp_max_lane_count(intel_dp);
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Fast-forward today, it seems the only 2 archs that define
+pgprot_noncached_wc() are microblaze and powerpc. Microblaze has the
+same definition for pgprot_writecombine() since commit
+97ccedd793ac ("microblaze: Provide pgprot_device/writecombine macros for
+nommu"). Powerpc has 3 variants and all of them have the same behavior
+for pgprot_writecombine() and pgprot_noncached_wc(). From the commit message
+and linked issue, the fallback was needed for arm, but apparently today
+all the variants there also have pgprot_writecombine().
+
+So, just use PAGE_KERNEL, and just use pgprot_writecombine().
+
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 8eb1c3a6fc9c..68fe1837ef54 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -289,7 +289,7 @@ static void *i915_gem_object_map_page(struct drm_i915_gem_object *obj,
+ 		pgprot = PAGE_KERNEL;
+ 		break;
+ 	case I915_MAP_WC:
+-		pgprot = pgprot_writecombine(PAGE_KERNEL_IO);
++		pgprot = pgprot_writecombine(PAGE_KERNEL);
+ 		break;
+ 	}
+ 
+@@ -333,7 +333,7 @@ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
+ 	i = 0;
+ 	for_each_sgt_daddr(addr, iter, obj->mm.pages)
+ 		pfns[i++] = (iomap + addr) >> PAGE_SHIFT;
+-	vaddr = vmap_pfn(pfns, n_pfn, pgprot_writecombine(PAGE_KERNEL_IO));
++	vaddr = vmap_pfn(pfns, n_pfn, pgprot_writecombine(PAGE_KERNEL));
+ 	if (pfns != stack)
+ 		kvfree(pfns);
+ 
+-- 
+2.33.1
+
