@@ -1,40 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 225F34355E9
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 00:33:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C4204355EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 00:35:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 318C76EA10;
-	Wed, 20 Oct 2021 22:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8056E415;
+	Wed, 20 Oct 2021 22:34:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 713876EA10
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 22:33:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="227663916"
-X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="227663916"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 15:33:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="533096608"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 20 Oct 2021 15:33:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Oct 2021 01:33:51 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Oct 2021 01:33:39 +0300
-Message-Id: <20211020223339.669-5-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211020223339.669-1-ville.syrjala@linux.intel.com>
-References: <20211020223339.669-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D52356E415;
+ Wed, 20 Oct 2021 22:34:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CEE01AA0EA;
+ Wed, 20 Oct 2021 22:34:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5300100019856959062=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Use unlocked register accesses
- for LUT loads
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 Oct 2021 22:34:57 -0000
+Message-ID: <163476929784.27359.17173071602196165734@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211020195216.36173-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20211020195216.36173-1-vinay.belgaumkar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/guc/slpc=3A_Implement_waitboost_for_SLPC?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,391 +41,300 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============5300100019856959062==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We have to bash in a lot of registers to load the higher
-precision LUT modes. The locking overhead is significant, especially
-as we have to get this done as quickly as possible during vblank.
-So let's switch to unlocked accesses for these. Fortunately the LUT
-registers are mostly spread around such that two pipes do not have
-any registers on the same cacheline. So as long as commits on the
-same pipe are serialized (which they are) we should get away with
-this without angering the hardware.
+== Series Details ==
 
-The only exceptions are the PREC_PIPEGCMAX registers on ilk/snb which
-we don't use atm as they are only used in the 12bit gamma mode. If/when
-we add support for that we may need to remember to still serialize
-those registers, though I'm not sure ilk/snb are actually affected
-by the same cacheline issue. I think ivb/hsw at least were, but they
-use a different set of registers for the precision LUT.
+Series: drm/i915/guc/slpc: Implement waitboost for SLPC
+URL   : https://patchwork.freedesktop.org/series/96082/
+State : failure
 
-I have a test case which is updating the LUTs on two pipes from a
-single atomic commit. Running that in a loop for a minute I get the
-following worst case with the locks in place:
- intel_crtc_vblank_work_start: pipe B, frame=10037, scanline=1081
- intel_crtc_vblank_work_start: pipe A, frame=12274, scanline=769
- intel_crtc_vblank_work_end: pipe A, frame=12274, scanline=58
- intel_crtc_vblank_work_end: pipe B, frame=10037, scanline=74
+== Summary ==
 
-And here's the worst case with the locks removed:
- intel_crtc_vblank_work_start: pipe B, frame=5869, scanline=1081
- intel_crtc_vblank_work_start: pipe A, frame=7616, scanline=769
- intel_crtc_vblank_work_end: pipe B, frame=5869, scanline=1096
- intel_crtc_vblank_work_end: pipe A, frame=7616, scanline=777
+CI Bug Log - changes from CI_DRM_10766 -> Patchwork_21394
+====================================================
 
-The test was done on a snb using the 10bit 1024 entry LUT mode.
-The vtotals for the two displays are 793 and 1125. So we can
-see that with the locks ripped out the LUT updates are pretty
-nicely confined within the vblank, whereas with the locks in
-place we're routinely blasting past the vblank end which causes
-visual artifacts near the top of the screen.
+Summary
+-------
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c | 128 ++++++++++-----------
- drivers/gpu/drm/i915/display/intel_dsb.c   |   4 +-
- 2 files changed, 66 insertions(+), 66 deletions(-)
+  **FAILURE**
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 5359b7305a78..c870a0e50cb1 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -552,8 +552,8 @@ static void i9xx_load_lut_8(struct intel_crtc *crtc,
- 	lut = blob->data;
- 
- 	for (i = 0; i < 256; i++)
--		intel_de_write(dev_priv, PALETTE(pipe, i),
--			       i9xx_lut_8(&lut[i]));
-+		intel_de_write_fw(dev_priv, PALETTE(pipe, i),
-+				  i9xx_lut_8(&lut[i]));
- }
- 
- static void i9xx_load_luts(const struct intel_crtc_state *crtc_state)
-@@ -576,15 +576,15 @@ static void i965_load_lut_10p6(struct intel_crtc *crtc,
- 	enum pipe pipe = crtc->pipe;
- 
- 	for (i = 0; i < lut_size - 1; i++) {
--		intel_de_write(dev_priv, PALETTE(pipe, 2 * i + 0),
--			       i965_lut_10p6_ldw(&lut[i]));
--		intel_de_write(dev_priv, PALETTE(pipe, 2 * i + 1),
--			       i965_lut_10p6_udw(&lut[i]));
-+		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 0),
-+				  i965_lut_10p6_ldw(&lut[i]));
-+		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 1),
-+				  i965_lut_10p6_udw(&lut[i]));
- 	}
- 
--	intel_de_write(dev_priv, PIPEGCMAX(pipe, 0), lut[i].red);
--	intel_de_write(dev_priv, PIPEGCMAX(pipe, 1), lut[i].green);
--	intel_de_write(dev_priv, PIPEGCMAX(pipe, 2), lut[i].blue);
-+	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 0), lut[i].red);
-+	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 1), lut[i].green);
-+	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 2), lut[i].blue);
- }
- 
- static void i965_load_luts(const struct intel_crtc_state *crtc_state)
-@@ -618,8 +618,8 @@ static void ilk_load_lut_8(struct intel_crtc *crtc,
- 	lut = blob->data;
- 
- 	for (i = 0; i < 256; i++)
--		intel_de_write(dev_priv, LGC_PALETTE(pipe, i),
--			       i9xx_lut_8(&lut[i]));
-+		intel_de_write_fw(dev_priv, LGC_PALETTE(pipe, i),
-+				  i9xx_lut_8(&lut[i]));
- }
- 
- static void ilk_load_lut_10(struct intel_crtc *crtc,
-@@ -631,8 +631,8 @@ static void ilk_load_lut_10(struct intel_crtc *crtc,
- 	enum pipe pipe = crtc->pipe;
- 
- 	for (i = 0; i < lut_size; i++)
--		intel_de_write(dev_priv, PREC_PALETTE(pipe, i),
--			       ilk_lut_10(&lut[i]));
-+		intel_de_write_fw(dev_priv, PREC_PALETTE(pipe, i),
-+				  ilk_lut_10(&lut[i]));
- }
- 
- static void ilk_load_luts(const struct intel_crtc_state *crtc_state)
-@@ -681,16 +681,16 @@ static void ivb_load_lut_10(struct intel_crtc *crtc,
- 		const struct drm_color_lut *entry =
- 			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
- 
--		intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), prec_index++);
--		intel_de_write(dev_priv, PREC_PAL_DATA(pipe),
--			       ilk_lut_10(entry));
-+		intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), prec_index++);
-+		intel_de_write_fw(dev_priv, PREC_PAL_DATA(pipe),
-+				  ilk_lut_10(entry));
- 	}
- 
- 	/*
- 	 * Reset the index, otherwise it prevents the legacy palette to be
- 	 * written properly.
- 	 */
--	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), 0);
- }
- 
- /* On BDW+ the index auto increment mode actually works */
-@@ -704,23 +704,23 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
- 	int i, lut_size = drm_color_lut_size(blob);
- 	enum pipe pipe = crtc->pipe;
- 
--	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe),
--		       prec_index | PAL_PREC_AUTO_INCREMENT);
-+	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe),
-+			  prec_index | PAL_PREC_AUTO_INCREMENT);
- 
- 	for (i = 0; i < hw_lut_size; i++) {
- 		/* We discard half the user entries in split gamma mode */
- 		const struct drm_color_lut *entry =
- 			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
- 
--		intel_de_write(dev_priv, PREC_PAL_DATA(pipe),
--			       ilk_lut_10(entry));
-+		intel_de_write_fw(dev_priv, PREC_PAL_DATA(pipe),
-+				  ilk_lut_10(entry));
- 	}
- 
- 	/*
- 	 * Reset the index, otherwise it prevents the legacy palette to be
- 	 * written properly.
- 	 */
--	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), 0);
- }
- 
- static void ivb_load_lut_ext_max(const struct intel_crtc_state *crtc_state)
-@@ -821,9 +821,9 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state)
- 	 * ignore the index bits, so we need to reset it to index 0
- 	 * separately.
- 	 */
--	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
--	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
--		       PRE_CSC_GAMC_AUTO_INCREMENT);
-+	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
-+			  PRE_CSC_GAMC_AUTO_INCREMENT);
- 
- 	for (i = 0; i < lut_size; i++) {
- 		/*
-@@ -839,15 +839,15 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state)
- 		 * ToDo: Extend to max 7.0. Enable 32 bit input value
- 		 * as compared to just 16 to achieve this.
- 		 */
--		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe),
--			       lut[i].green);
-+		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe),
-+				  lut[i].green);
- 	}
- 
- 	/* Clamp values > 1.0. */
- 	while (i++ < 35)
--		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
-+		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
- 
--	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
- }
- 
- static void glk_load_degamma_lut_linear(const struct intel_crtc_state *crtc_state)
-@@ -862,21 +862,21 @@ static void glk_load_degamma_lut_linear(const struct intel_crtc_state *crtc_stat
- 	 * ignore the index bits, so we need to reset it to index 0
- 	 * separately.
- 	 */
--	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
--	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
--		       PRE_CSC_GAMC_AUTO_INCREMENT);
-+	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
-+			  PRE_CSC_GAMC_AUTO_INCREMENT);
- 
- 	for (i = 0; i < lut_size; i++) {
- 		u32 v = (i << 16) / (lut_size - 1);
- 
--		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), v);
-+		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe), v);
- 	}
- 
- 	/* Clamp values > 1.0. */
- 	while (i++ < 35)
--		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
-+		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
- 
--	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
- }
- 
- static void glk_load_luts(const struct intel_crtc_state *crtc_state)
-@@ -1071,10 +1071,10 @@ static void chv_load_cgm_degamma(struct intel_crtc *crtc,
- 	enum pipe pipe = crtc->pipe;
- 
- 	for (i = 0; i < lut_size; i++) {
--		intel_de_write(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 0),
--			       chv_cgm_degamma_ldw(&lut[i]));
--		intel_de_write(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 1),
--			       chv_cgm_degamma_udw(&lut[i]));
-+		intel_de_write_fw(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 0),
-+				  chv_cgm_degamma_ldw(&lut[i]));
-+		intel_de_write_fw(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 1),
-+				  chv_cgm_degamma_udw(&lut[i]));
- 	}
- }
- 
-@@ -1105,10 +1105,10 @@ static void chv_load_cgm_gamma(struct intel_crtc *crtc,
- 	enum pipe pipe = crtc->pipe;
- 
- 	for (i = 0; i < lut_size; i++) {
--		intel_de_write(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0),
--			       chv_cgm_gamma_ldw(&lut[i]));
--		intel_de_write(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1),
--			       chv_cgm_gamma_udw(&lut[i]));
-+		intel_de_write_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0),
-+				  chv_cgm_gamma_ldw(&lut[i]));
-+		intel_de_write_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1),
-+				  chv_cgm_gamma_udw(&lut[i]));
- 	}
- }
- 
-@@ -1131,8 +1131,8 @@ static void chv_load_luts(const struct intel_crtc_state *crtc_state)
- 	else
- 		i965_load_luts(crtc_state);
- 
--	intel_de_write(dev_priv, CGM_PIPE_MODE(crtc->pipe),
--		       crtc_state->cgm_mode);
-+	intel_de_write_fw(dev_priv, CGM_PIPE_MODE(crtc->pipe),
-+			  crtc_state->cgm_mode);
- }
- 
- void intel_color_load_luts(const struct intel_crtc_state *crtc_state)
-@@ -1808,7 +1808,7 @@ static struct drm_property_blob *i9xx_read_lut_8(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < LEGACY_LUT_LENGTH; i++) {
--		u32 val = intel_de_read(dev_priv, PALETTE(pipe, i));
-+		u32 val = intel_de_read_fw(dev_priv, PALETTE(pipe, i));
- 
- 		i9xx_lut_8_pack(&lut[i], val);
- 	}
-@@ -1843,15 +1843,15 @@ static struct drm_property_blob *i965_read_lut_10p6(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < lut_size - 1; i++) {
--		u32 ldw = intel_de_read(dev_priv, PALETTE(pipe, 2 * i + 0));
--		u32 udw = intel_de_read(dev_priv, PALETTE(pipe, 2 * i + 1));
-+		u32 ldw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 0));
-+		u32 udw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 1));
- 
- 		i965_lut_10p6_pack(&lut[i], ldw, udw);
- 	}
- 
--	lut[i].red = i965_lut_11p6_max_pack(intel_de_read(dev_priv, PIPEGCMAX(pipe, 0)));
--	lut[i].green = i965_lut_11p6_max_pack(intel_de_read(dev_priv, PIPEGCMAX(pipe, 1)));
--	lut[i].blue = i965_lut_11p6_max_pack(intel_de_read(dev_priv, PIPEGCMAX(pipe, 2)));
-+	lut[i].red = i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEGCMAX(pipe, 0)));
-+	lut[i].green = i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEGCMAX(pipe, 1)));
-+	lut[i].blue = i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEGCMAX(pipe, 2)));
- 
- 	return blob;
- }
-@@ -1886,8 +1886,8 @@ static struct drm_property_blob *chv_read_cgm_gamma(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < lut_size; i++) {
--		u32 ldw = intel_de_read(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0));
--		u32 udw = intel_de_read(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1));
-+		u32 ldw = intel_de_read_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0));
-+		u32 udw = intel_de_read_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1));
- 
- 		chv_cgm_gamma_pack(&lut[i], ldw, udw);
- 	}
-@@ -1922,7 +1922,7 @@ static struct drm_property_blob *ilk_read_lut_8(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < LEGACY_LUT_LENGTH; i++) {
--		u32 val = intel_de_read(dev_priv, LGC_PALETTE(pipe, i));
-+		u32 val = intel_de_read_fw(dev_priv, LGC_PALETTE(pipe, i));
- 
- 		i9xx_lut_8_pack(&lut[i], val);
- 	}
-@@ -1947,7 +1947,7 @@ static struct drm_property_blob *ilk_read_lut_10(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < lut_size; i++) {
--		u32 val = intel_de_read(dev_priv, PREC_PALETTE(pipe, i));
-+		u32 val = intel_de_read_fw(dev_priv, PREC_PALETTE(pipe, i));
- 
- 		ilk_lut_10_pack(&lut[i], val);
- 	}
-@@ -1999,16 +1999,16 @@ static struct drm_property_blob *bdw_read_lut_10(struct intel_crtc *crtc,
- 
- 	lut = blob->data;
- 
--	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe),
--		       prec_index | PAL_PREC_AUTO_INCREMENT);
-+	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe),
-+			  prec_index | PAL_PREC_AUTO_INCREMENT);
- 
- 	for (i = 0; i < lut_size; i++) {
--		u32 val = intel_de_read(dev_priv, PREC_PAL_DATA(pipe));
-+		u32 val = intel_de_read_fw(dev_priv, PREC_PAL_DATA(pipe));
- 
- 		ilk_lut_10_pack(&lut[i], val);
- 	}
- 
--	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), 0);
- 
- 	return blob;
- }
-@@ -2050,17 +2050,17 @@ icl_read_lut_multi_segment(struct intel_crtc *crtc)
- 
- 	lut = blob->data;
- 
--	intel_de_write(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe),
--		       PAL_PREC_AUTO_INCREMENT);
-+	intel_de_write_fw(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe),
-+			  PAL_PREC_AUTO_INCREMENT);
- 
- 	for (i = 0; i < 9; i++) {
--		u32 ldw = intel_de_read(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
--		u32 udw = intel_de_read(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
-+		u32 ldw = intel_de_read_fw(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
-+		u32 udw = intel_de_read_fw(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
- 
- 		icl_lut_multi_seg_pack(&lut[i], ldw, udw);
- 	}
- 
--	intel_de_write(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe), 0);
-+	intel_de_write_fw(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe), 0);
- 
- 	/*
- 	 * FIXME readouts from PAL_PREC_DATA register aren't giving
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 62a8a69f9f5d..83a69a4a4fea 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -100,7 +100,7 @@ void intel_dsb_indexed_reg_write(const struct intel_crtc_state *crtc_state,
- 	u32 reg_val;
- 
- 	if (!dsb) {
--		intel_de_write(dev_priv, reg, val);
-+		intel_de_write_fw(dev_priv, reg, val);
- 		return;
- 	}
- 	buf = dsb->cmd_buf;
-@@ -177,7 +177,7 @@ void intel_dsb_reg_write(const struct intel_crtc_state *crtc_state,
- 
- 	dsb = crtc_state->dsb;
- 	if (!dsb) {
--		intel_de_write(dev_priv, reg, val);
-+		intel_de_write_fw(dev_priv, reg, val);
- 		return;
- 	}
- 
--- 
-2.32.0
+  Serious unknown changes coming with Patchwork_21394 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21394, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21394:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_busy@basic@flip:
+    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10766/fi-rkl-guc/igt@kms_busy@basic@flip.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-rkl-guc/igt@kms_busy@basic@flip.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21394 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_cs_nop@nop-gfx0:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([fdo#109315] / [i915#2575]) +16 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+
+  * igt@gem_exec_parallel@engines@userptr:
+    - fi-pnv-d510:        [PASS][5] -> [INCOMPLETE][6] ([i915#299])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10766/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      NOTRUN -> [FAIL][7] ([i915#1888])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#2190])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#1155])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#4103]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([fdo#109285])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([i915#1072]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][14] ([i915#3301])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][15] ([i915#2403] / [i915#4312])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-pnv-d510/igt@runner@aborted.html
+
+  
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Additional (1): fi-tgl-1115g4 
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan bat-dg1-6 fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10766 -> Patchwork_21394
+
+  CI-20190529: 20190529
+  CI_DRM_10766: ec5a16c84280673a3a09a67c445b0df3d205c30b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21394: d2be325e7ae0d35177155991c9d752d3c168bafc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d2be325e7ae0 drm/i915/guc/slpc: Update boost sysfs hooks for SLPC
+cda3c12346d8 drm/i915/guc/slpc: Add waitboost functionality for SLPC
+0eb920836a06 drm/i915/guc/slpc: Define and initialize boost frequency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/index.html
+
+--===============5300100019856959062==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/guc/slpc: Implement waitboost for SLPC</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96082/">https://patchwork.freedesktop.org/series/96082/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10766 -&gt; Patchwork_21394</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21394 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21394, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21394:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_busy@basic@flip:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10766/fi-rkl-guc/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-rkl-guc/igt@kms_busy@basic@flip.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21394 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_parallel@engines@userptr:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10766/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21394/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Additional (1): fi-tgl-1115g4 <br />
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan bat-dg1-6 fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10766 -&gt; Patchwork_21394</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10766: ec5a16c84280673a3a09a67c445b0df3d205c30b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21394: d2be325e7ae0d35177155991c9d752d3c168bafc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d2be325e7ae0 drm/i915/guc/slpc: Update boost sysfs hooks for SLPC<br />
+cda3c12346d8 drm/i915/guc/slpc: Add waitboost functionality for SLPC<br />
+0eb920836a06 drm/i915/guc/slpc: Define and initialize boost frequency</p>
+
+</body>
+</html>
+
+--===============5300100019856959062==--
