@@ -2,46 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 637B843495C
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 12:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06AFB434A04
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 13:28:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDB26E29D;
-	Wed, 20 Oct 2021 10:50:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE5E6E249;
+	Wed, 20 Oct 2021 11:28:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B5F56E29D
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 10:50:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="314954420"
-X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="314954420"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 03:50:52 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 440486E249
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 11:28:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="215922476"
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="215922476"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 04:28:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="532602017"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 20 Oct 2021 03:50:49 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 20 Oct 2021 13:50:48 +0300
-Date: Wed, 20 Oct 2021 13:50:48 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YW/0iC1zuCFX5vPS@intel.com>
-References: <20211014220921.683870-1-imre.deak@intel.com>
- <20211014220921.683870-2-imre.deak@intel.com>
- <YW/kDmI0Y3VAe1v8@intel.com>
- <20211020104630.GB1662819@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; d="scan'208";a="527019747"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga001.jf.intel.com with ESMTP; 20 Oct 2021 04:28:43 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 20 Oct 2021 04:28:43 -0700
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 20 Oct 2021 04:28:41 -0700
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2242.012;
+ Wed, 20 Oct 2021 12:28:40 +0100
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Hogander, Jouni" <jouni.hogander@intel.com>, "Sripada, Radhakrishna"
+ <radhakrishna.sripada@intel.com>
+Thread-Topic: [PATCH 2/2] drm/i915/display: Add warn_on in intel_psr_pause()
+Thread-Index: AQHXxUmYoVLZzkwzQ0iEiHtTKDnJp6vbv1Nw
+Date: Wed, 20 Oct 2021 11:28:40 +0000
+Message-ID: <4fc7f6074d764db5b3b8787c71de6d9e@intel.com>
+References: <20211020003558.222198-1-jose.souza@intel.com>
+ <20211020003558.222198-2-jose.souza@intel.com>
+In-Reply-To: <20211020003558.222198-2-jose.souza@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.200.16
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [163.33.253.164]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211020104630.GB1662819@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 01/11] drm/i915: Add a table with a
- descriptor for all i915 modifiers
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Add warn_on in
+ intel_psr_pause()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,111 +72,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 20, 2021 at 01:46:30PM +0300, Imre Deak wrote:
-> On Wed, Oct 20, 2021 at 12:40:30PM +0300, Ville Syrjälä wrote:
-> > On Fri, Oct 15, 2021 at 01:09:11AM +0300, Imre Deak wrote:
-> > > +static const struct intel_modifier_desc intel_modifiers[] = {
-> > > +	{
-> > > +		.modifier = DRM_FORMAT_MOD_LINEAR,
-> > > +		.display_ver = DISPLAY_VER_ALL,
-> > > +
-> > > +		.is_linear = true,
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_X_TILED,
-> > > +		.display_ver = DISPLAY_VER_ALL,
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_Y_TILED,
-> > > +		.display_ver = { 9, 13 },
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_Yf_TILED,
-> > > +		.display_ver = { 9, 11 },
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_Y_TILED_CCS,
-> > > +		.display_ver = { 9, 11 },
-> > > +
-> > > +		.ccs.type = INTEL_CCS_RC,
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_Yf_TILED_CCS,
-> > > +		.display_ver = { 9, 11 },
-> > > +
-> > > +		.ccs.type = INTEL_CCS_RC,
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-> > > +		.display_ver = { 12, 13 },
-> > > +
-> > > +		.ccs.type = INTEL_CCS_RC,
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
-> > > +		.display_ver = { 12, 13 },
-> > > +
-> > > +		.ccs.type = INTEL_CCS_RC_CC,
-> > > +	},
-> > > +	{
-> > > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
-> > > +		.display_ver = { 12, 13 },
-> > > +
-> > > +		.ccs.type = INTEL_CCS_MC,
-> > > +	},
-> > > +};
-> > > +
-> > <snip>
-> > > +u64 *intel_fb_plane_get_modifiers(struct drm_i915_private *i915,
-> > > +				  enum intel_plane_caps plane_caps)
-> > > +{
-> > > +	u64 *list, *p;
-> > > +	int count = 1;		/* +1 for invalid modifier terminator */
-> > > +	int i;
-> > > +
-> > > +	for (i = 0; i < ARRAY_SIZE(intel_modifiers); i++) {
-> > > +		if (plane_has_modifier(i915, plane_caps, &intel_modifiers[i]))
-> > > +			count++;
-> > > +	}
-> > > +
-> > > +	list = kmalloc_array(count, sizeof(*list), GFP_KERNEL);
-> > > +	if (drm_WARN_ON(&i915->drm, !list))
-> > > +		return NULL;
-> > > +
-> > > +	p = list;
-> > > +	for (i = 0; i < ARRAY_SIZE(intel_modifiers); i++) {
-> > > +		if (plane_has_modifier(i915, plane_caps, &intel_modifiers[i]))
-> > > +			*p++ = intel_modifiers[i].modifier;
-> > > +	}
-> > > +	*p++ = DRM_FORMAT_MOD_INVALID;
-> > 
-> > Oh, one thing I just realized is that this will now list the modifiers
-> > in the opposite order to what we had before. Previously we had roughly
-> > compressed->tiled->linear order. I'm not sure sure anything relies on
-> > that, but seems best to try and preserve it. I guess one could think
-> > of it as some kind of priority order for the modifiers, where the more
-> > efficient ones (in some sense) come first.
-> 
-> Hm, right that was subtle, thanks for catching it. 
-> 
-> As I understood Mesa (for instance) has to know what kind of modifiers
-> it sees and do a priority reorder for other clients anyway (which don't
-> know more about the mods besides the ID?).
-> 
-> +Danvet.
-> 
-> But the order shouldn't definitely be changed if there is no reason for
-> it. Ensuring some priority order scheme already at the kernel i/f makes
-> also sense to me. So if it's ok, I'll fix it up to be in the
-> 
-> gen12_mc -> gen12_rc -> gen12_rc_cc -> gen9_yf_rc -> gen9_y_rc -> yf_tiled -> y_tiled -> x_tiled -> linear
-> 
-> order, which is the current one.
-> 
-> For that matter, shouldn't gen12_rc_cc be before gen12_rc?
-
-Probably. No idea why it's not currently.
-
--- 
-Ville Syrjälä
-Intel
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU291emEsIEpvc2UgPGpv
+c2Uuc291emFAaW50ZWwuY29tPg0KPiBTZW50OiBXZWRuZXNkYXksIE9jdG9iZXIgMjAsIDIwMjEg
+MzozNiBBTQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogS2Fo
+b2xhLCBNaWthIDxtaWthLmthaG9sYUBpbnRlbC5jb20+OyBIb2dhbmRlciwgSm91bmkNCj4gPGpv
+dW5pLmhvZ2FuZGVyQGludGVsLmNvbT47IFNyaXBhZGEsIFJhZGhha3Jpc2huYQ0KPiA8cmFkaGFr
+cmlzaG5hLnNyaXBhZGFAaW50ZWwuY29tPjsgU291emEsIEpvc2UgPGpvc2Uuc291emFAaW50ZWwu
+Y29tPg0KPiBTdWJqZWN0OiBbUEFUQ0ggMi8yXSBkcm0vaTkxNS9kaXNwbGF5OiBBZGQgd2Fybl9v
+biBpbiBpbnRlbF9wc3JfcGF1c2UoKQ0KPiANCj4gUmlnaHQgbm93IHRoZSBvbmx5IHVzZXIgb2Yg
+cHNyX3BhdXNlL3Jlc3VtZSBpcyBpbnRlbF9jZGNsayBidXQgYWRkaXRpb25hbCB1c2Vycw0KPiB3
+aWxsIGJlIGFkZGVkIGluIHRoZSBmdXR1cmUgYW5kIHdlIG1heSBuZWVkIGRvIHJlZmVyZW5jZSBj
+b3VudGluZyBmb3IgUFNSDQo+IHBhdXNlIGFuZCByZXN1bWUsIGZvciBub3cgb25seSBhZGRpbmcg
+YSB3YXJuX29uIHNvIHRoaXMgY2FzZXMgZG8gbm90IGdvDQo+IHVubm90aWNlZC4NCj4gDQo+IENj
+OiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFAaW50ZWwuY29tPg0KPiBDYzogSm91bmkgSG9nYW5k
+ZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4NCj4gQ2M6IFJhZGhha3Jpc2huYSBTcmlwYWRh
+IDxyYWRoYWtyaXNobmEuc3JpcGFkYUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEpvc8Op
+IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQpGb3IgdGhlIHRpbWUg
+YmVpbmcsIHRoZSB3YXJuX29uIHNlZW1zIGEgdmFsaWQgYWRkaXRpb24gdG8gcmVtaW5kIHVzIGFi
+b3V0IHRoZXNlIGNhc2VzLg0KDQpSZXZpZXdlZC1ieTogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xh
+QGludGVsLmNvbT4NCg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfcHNyLmMgfCA0ICsrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykNCj4g
+DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+DQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCA3
+YTIwNWZkNTAyM2JiLi40OWMyZGZiZDQwNTU0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gQEAgLTEzNDYsNiArMTM0Niw3IEBAIHZvaWQgaW50ZWxf
+cHNyX2Rpc2FibGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gICAqLw0KPiAgdm9pZCBp
+bnRlbF9wc3JfcGF1c2Uoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkgIHsNCj4gKwlzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsNCj4gIAlz
+dHJ1Y3QgaW50ZWxfcHNyICpwc3IgPSAmaW50ZWxfZHAtPnBzcjsNCj4gDQo+ICAJaWYgKCFDQU5f
+UFNSKGludGVsX2RwKSkNCj4gQEAgLTEzNTgsNiArMTM1OSw5IEBAIHZvaWQgaW50ZWxfcHNyX3Bh
+dXNlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApDQo+ICAJCXJldHVybjsNCj4gIAl9DQo+IA0K
+PiArCS8qIElmIHdlIGV2ZXIgaGl0IHRoaXMsIHdlIHdpbGwgbmVlZCB0byBhZGQgcmVmY291bnQg
+dG8gcGF1c2UvcmVzdW1lICovDQo+ICsJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sIHBzci0+
+cGF1c2VkKTsNCj4gKw0KPiAgCWludGVsX3Bzcl9leGl0KGludGVsX2RwKTsNCj4gIAlpbnRlbF9w
+c3Jfd2FpdF9leGl0X2xvY2tlZChpbnRlbF9kcCk7DQo+ICAJcHNyLT5wYXVzZWQgPSB0cnVlOw0K
+PiAtLQ0KPiAyLjMzLjENCg0K
