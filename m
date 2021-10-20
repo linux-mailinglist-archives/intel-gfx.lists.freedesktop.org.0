@@ -2,34 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9443434246
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 01:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A631434282
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 02:17:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E7346E88C;
-	Tue, 19 Oct 2021 23:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60BE589D9B;
+	Wed, 20 Oct 2021 00:17:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 955896E847;
- Tue, 19 Oct 2021 23:46:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 82369A73C9;
- Tue, 19 Oct 2021 23:46:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7954725972030425692=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B69C89D4D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 00:17:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="292121654"
+X-IronPort-AV: E=Sophos;i="5.87,165,1631602800"; d="scan'208";a="292121654"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 17:17:48 -0700
+X-IronPort-AV: E=Sophos;i="5.87,165,1631602800"; d="scan'208";a="462967146"
+Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
+ ([10.24.14.60])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 17:17:47 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Date: Tue, 19 Oct 2021 17:23:51 -0700
+Message-Id: <20211020002353.193893-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Claudio Suarez" <cssk@net-c.es>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Oct 2021 23:46:22 -0000
-Message-ID: <163468718249.5187.4960805473253750635@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211016184226.3862-1-cssk@net-c.es>
-In-Reply-To: <20211016184226.3862-1-cssk@net-c.es>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgcmVw?=
- =?utf-8?q?lace_drm=5Fdetect=5Fhdmi=5Fmonitor=28=29_with_drm=5Fdisplay=5Fi?=
- =?utf-8?b?bmZvLmlzX2hkbWkgKHJldjUp?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,298 +46,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7954725972030425692==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Adding a structure to standardize access to IP versioning as future
+platforms will have this information populated at runtime.
 
-== Series Details ==
+The constant platform display version is not using this new struct but
+the runtime variant will definitely use it.
 
-Series: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi (rev5)
-URL   : https://patchwork.freedesktop.org/series/95880/
-State : success
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.c               |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 12 ++++++------
+ drivers/gpu/drm/i915/i915_pci.c               | 18 +++++++++---------
+ drivers/gpu/drm/i915/intel_device_info.c      | 19 ++++++++++++-------
+ drivers/gpu/drm/i915/intel_device_info.h      | 12 ++++++++----
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +-
+ 6 files changed, 37 insertions(+), 28 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 1e5b75ae99329..bdf85d202c55c 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -808,7 +808,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		return PTR_ERR(i915);
+ 
+ 	/* Disable nuclear pageflip by default on pre-ILK */
+-	if (!i915->params.nuclear_pageflip && match_info->graphics_ver < 5)
++	if (!i915->params.nuclear_pageflip && match_info->graphics.ver < 5)
+ 		i915->drm.driver_features &= ~DRIVER_ATOMIC;
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 12256218634f4..26b6e2b8bb5e8 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1327,15 +1327,15 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+ 
+ #define IP_VER(ver, rel)		((ver) << 8 | (rel))
+ 
+-#define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics_ver)
+-#define GRAPHICS_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->graphics_ver, \
+-					       INTEL_INFO(i915)->graphics_rel)
++#define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics.ver)
++#define GRAPHICS_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->graphics.ver, \
++					       INTEL_INFO(i915)->graphics.rel)
+ #define IS_GRAPHICS_VER(i915, from, until) \
+ 	(GRAPHICS_VER(i915) >= (from) && GRAPHICS_VER(i915) <= (until))
+ 
+-#define MEDIA_VER(i915)			(INTEL_INFO(i915)->media_ver)
+-#define MEDIA_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->media_ver, \
+-					       INTEL_INFO(i915)->media_rel)
++#define MEDIA_VER(i915)			(INTEL_INFO(i915)->media.ver)
++#define MEDIA_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->media.arch, \
++					       INTEL_INFO(i915)->media.rel)
+ #define IS_MEDIA_VER(i915, from, until) \
+ 	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
+ 
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 169837de395d3..5e6795853dc31 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -32,8 +32,8 @@
+ 
+ #define PLATFORM(x) .platform = (x)
+ #define GEN(x) \
+-	.graphics_ver = (x), \
+-	.media_ver = (x), \
++	.graphics.ver = (x), \
++	.media.ver = (x), \
+ 	.display.ver = (x)
+ 
+ #define I845_PIPE_OFFSETS \
+@@ -899,7 +899,7 @@ static const struct intel_device_info rkl_info = {
+ static const struct intel_device_info dg1_info = {
+ 	GEN12_FEATURES,
+ 	DGFX_FEATURES,
+-	.graphics_rel = 10,
++	.graphics.rel = 10,
+ 	PLATFORM(INTEL_DG1),
+ 	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+ 	.require_force_probe = 1,
+@@ -986,8 +986,8 @@ static const struct intel_device_info adl_p_info = {
+ 		      I915_GTT_PAGE_SIZE_2M
+ 
+ #define XE_HP_FEATURES \
+-	.graphics_ver = 12, \
+-	.graphics_rel = 50, \
++	.graphics.ver = 12, \
++	.graphics.rel = 50, \
+ 	XE_HP_PAGE_SIZES, \
+ 	.dma_mask_size = 46, \
+ 	.has_64bit_reloc = 1, \
+@@ -1005,8 +1005,8 @@ static const struct intel_device_info adl_p_info = {
+ 	.ppgtt_type = INTEL_PPGTT_FULL
+ 
+ #define XE_HPM_FEATURES \
+-	.media_ver = 12, \
+-	.media_rel = 50
++	.media.ver = 12, \
++	.media.rel = 50
+ 
+ __maybe_unused
+ static const struct intel_device_info xehpsdv_info = {
+@@ -1030,8 +1030,8 @@ static const struct intel_device_info dg2_info = {
+ 	XE_HPM_FEATURES,
+ 	XE_LPD_FEATURES,
+ 	DGFX_FEATURES,
+-	.graphics_rel = 55,
+-	.media_rel = 55,
++	.graphics.rel = 55,
++	.media.rel = 55,
+ 	PLATFORM(INTEL_DG2),
+ 	.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) |
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 305facedd2841..6e6b317bc33ce 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -97,17 +97,22 @@ static const char *iommu_name(void)
+ void intel_device_info_print_static(const struct intel_device_info *info,
+ 				    struct drm_printer *p)
+ {
+-	if (info->graphics_rel)
+-		drm_printf(p, "graphics version: %u.%02u\n", info->graphics_ver, info->graphics_rel);
++	if (info->graphics.rel)
++		drm_printf(p, "graphics version: %u.%02u\n", info->graphics.ver,
++			   info->graphics.rel);
+ 	else
+-		drm_printf(p, "graphics version: %u\n", info->graphics_ver);
++		drm_printf(p, "graphics version: %u\n", info->graphics.ver);
+ 
+-	if (info->media_rel)
+-		drm_printf(p, "media version: %u.%02u\n", info->media_ver, info->media_rel);
++	if (info->media.rel)
++		drm_printf(p, "media version: %u.%02u\n", info->media.ver, info->media.rel);
+ 	else
+-		drm_printf(p, "media version: %u\n", info->media_ver);
++		drm_printf(p, "media version: %u\n", info->media.ver);
++
++	if (info->display.rel)
++		drm_printf(p, "display version: %u.%02u\n", info->display.ver, info->display.rel);
++	else
++		drm_printf(p, "display version: %u\n", info->display.ver);
+ 
+-	drm_printf(p, "display version: %u\n", info->display.ver);
+ 	drm_printf(p, "gt: %d\n", info->gt);
+ 	drm_printf(p, "iommu: %s\n", iommu_name());
+ 	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 8e6f48d1eb7bc..669f0d26c3c38 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -166,11 +166,14 @@ enum intel_ppgtt_type {
+ 	func(overlay_needs_physical); \
+ 	func(supports_tv);
+ 
++struct ip_version {
++	u8 ver;
++	u8 rel;
++};
++
+ struct intel_device_info {
+-	u8 graphics_ver;
+-	u8 graphics_rel;
+-	u8 media_ver;
+-	u8 media_rel;
++	struct ip_version graphics;
++	struct ip_version media;
+ 
+ 	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
+ 
+@@ -200,6 +203,7 @@ struct intel_device_info {
+ 
+ 	struct {
+ 		u8 ver;
++		u8 rel;
+ 
+ #define DEFINE_FLAG(name) u8 name:1
+ 		DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 4f81801468881..9ab3f284d1dd9 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -165,7 +165,7 @@ struct drm_i915_private *mock_gem_device(void)
+ 	/* Using the global GTT may ask questions about KMS users, so prepare */
+ 	drm_mode_config_init(&i915->drm);
+ 
+-	mkwrite_device_info(i915)->graphics_ver = -1;
++	mkwrite_device_info(i915)->graphics.ver = -1;
+ 
+ 	mkwrite_device_info(i915)->page_sizes =
+ 		I915_GTT_PAGE_SIZE_4K |
+-- 
+2.33.1
 
-CI Bug Log - changes from CI_DRM_10762 -> Patchwork_21384
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21384 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-ilk-650:         NOTRUN -> [SKIP][1] ([fdo#109271]) +35 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-ilk-650/igt@amdgpu/amd_basic@query-info.html
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][2] ([fdo#109315])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_cs_nop@nop-gfx0:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +16 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#1155])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][6] -> [INCOMPLETE][7] ([i915#3921])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10762/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-ilk-650:         NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-ilk-650/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#4103]) +1 similar issue
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([fdo#109285])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([i915#1072]) +3 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([i915#3301])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-icl-u2:          [FAIL][14] ([i915#3363]) -> [FAIL][15] ([i915#3363] / [i915#4312])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10762/fi-icl-u2/igt@runner@aborted.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-icl-u2/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-
-
-Participating hosts (36 -> 35)
-------------------------------
-
-  Additional (2): fi-tgl-1115g4 fi-ilk-650 
-  Missing    (3): fi-kbl-soraka fi-bsw-cyan bat-dg1-6 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10762 -> Patchwork_21384
-
-  CI-20190529: 20190529
-  CI_DRM_10762: 448b23374caeafa59d2a057fdc1a7c069b934960 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6255: 9b0881254557edeaf273b2196309fc4e22ea0312 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21384: 415fad5a7f91890c0da0e797faa5b928c1a44da2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-415fad5a7f91 drm/i915: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-69ae884f14bd drm/nouveau: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-5f65b0c735df drm/bridge: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-7c1d51956f94 drm/rockchip: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-199244a0b398 drm/sti: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-045c9182b766 drm/sun4i: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-a43989d686a3 drm/msm: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-d343d69908cd drm/exynos: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-4e2489b2ac97 drm/gma500: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-4f4be9d8da74 drm/tegra: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-6467b8c22e2e drm/radeon: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-1180ca83baa8 drm/vc4: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-34716383fea8 gpu/drm: make drm_add_edid_modes() consistent when updating connector->display_info
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/index.html
-
---===============7954725972030425692==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95880/">https://patchwork.freedesktop.org/series/95880/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10762 -&gt; Patchwork_21384</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21384 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>
-<p>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-ilk-650/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 similar issues</p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10762/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-ilk-650/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10762/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21384/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (36 -&gt; 35)</h2>
-<p>Additional (2): fi-tgl-1115g4 fi-ilk-650 <br />
-  Missing    (3): fi-kbl-soraka fi-bsw-cyan bat-dg1-6 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10762 -&gt; Patchwork_21384</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10762: 448b23374caeafa59d2a057fdc1a7c069b934960 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6255: 9b0881254557edeaf273b2196309fc4e22ea0312 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21384: 415fad5a7f91890c0da0e797faa5b928c1a44da2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>415fad5a7f91 drm/i915: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-69ae884f14bd drm/nouveau: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-5f65b0c735df drm/bridge: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-7c1d51956f94 drm/rockchip: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-199244a0b398 drm/sti: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-045c9182b766 drm/sun4i: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-a43989d686a3 drm/msm: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-d343d69908cd drm/exynos: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-4e2489b2ac97 drm/gma500: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-4f4be9d8da74 drm/tegra: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-6467b8c22e2e drm/radeon: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-1180ca83baa8 drm/vc4: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-34716383fea8 gpu/drm: make drm_add_edid_modes() consistent when updating connector-&gt;display_info</p>
-
-</body>
-</html>
-
---===============7954725972030425692==--
