@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBFA4355EA
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 00:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 225F34355E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 00:33:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94EA36EA13;
-	Wed, 20 Oct 2021 22:34:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 318C76EA10;
+	Wed, 20 Oct 2021 22:33:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30ABA6EA13
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 22:33:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="215815178"
-X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="215815178"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 15:33:57 -0700
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 713876EA10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 22:33:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="227663916"
+X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="227663916"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 15:33:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="568081346"
+X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="533096608"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 20 Oct 2021 15:33:49 -0700
+ by fmsmga008.fm.intel.com with SMTP; 20 Oct 2021 15:33:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Oct 2021 01:33:48 +0300
+ Thu, 21 Oct 2021 01:33:51 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Lyude Paul <lyude@redhat.com>
-Date: Thu, 21 Oct 2021 01:33:38 +0300
-Message-Id: <20211020223339.669-4-ville.syrjala@linux.intel.com>
+Date: Thu, 21 Oct 2021 01:33:39 +0300
+Message-Id: <20211020223339.669-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211020223339.669-1-ville.syrjala@linux.intel.com>
 References: <20211020223339.669-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Use vblank workers for gamma
- updates
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Use unlocked register accesses
+ for LUT loads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,334 +52,386 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The pipe gamma registers are single buffered so they should only
-be updated during the vblank to avoid screen tearing. In fact they
-really should only be updated between start of vblank and frame
-start because that is the only time the pipe is guaranteed to be
-empty. Already at frame start the pipe begins to fill up with
-data for the next frame.
+We have to bash in a lot of registers to load the higher
+precision LUT modes. The locking overhead is significant, especially
+as we have to get this done as quickly as possible during vblank.
+So let's switch to unlocked accesses for these. Fortunately the LUT
+registers are mostly spread around such that two pipes do not have
+any registers on the same cacheline. So as long as commits on the
+same pipe are serialized (which they are) we should get away with
+this without angering the hardware.
 
-Unfortunately frame start happens ~1 scanline after the start
-of vblank which in practice doesn't always leave us enough time to
-finish the gamma update in time (gamma LUTs can be several KiB of
-data we have to bash into the registers). However we must try our
-best and so we'll add a vblank work for each pipe from where we
-can do the gamma update. Additionally we could consider pushing
-frame start forward to the max of ~4 scanlines after start of
-vblank. But not sure that's exactly a validated configuration.
-As it stands the ~100 first pixels tend to make it through with
-the old gamma values.
+The only exceptions are the PREC_PIPEGCMAX registers on ilk/snb which
+we don't use atm as they are only used in the 12bit gamma mode. If/when
+we add support for that we may need to remember to still serialize
+those registers, though I'm not sure ilk/snb are actually affected
+by the same cacheline issue. I think ivb/hsw at least were, but they
+use a different set of registers for the precision LUT.
 
-Even though the vblank worker is running on a high prority thread
-we still have to contend with C-states. If the CPU happens be in
-a deep C-state when the vblank interrupt arrives even the irq
-handler gets delayed massively (I've observed dozens of scanlines
-worth of latency). To avoid that problem we'll use the qos mechanism
-to keep the CPU awake while the vblank work is scheduled.
+I have a test case which is updating the LUTs on two pipes from a
+single atomic commit. Running that in a loop for a minute I get the
+following worst case with the locks in place:
+ intel_crtc_vblank_work_start: pipe B, frame=10037, scanline=1081
+ intel_crtc_vblank_work_start: pipe A, frame=12274, scanline=769
+ intel_crtc_vblank_work_end: pipe A, frame=12274, scanline=58
+ intel_crtc_vblank_work_end: pipe B, frame=10037, scanline=74
 
-With all this hooked up we can finally enjoy near atomic gamma
-updates. It even works across several pipes from the same atomic
-commit which previously was a total fail because we did the
-gamma updates for each pipe serially after waiting for all
-pipes to have latched the double buffered registers.
+And here's the worst case with the locks removed:
+ intel_crtc_vblank_work_start: pipe B, frame=5869, scanline=1081
+ intel_crtc_vblank_work_start: pipe A, frame=7616, scanline=769
+ intel_crtc_vblank_work_end: pipe B, frame=5869, scanline=1096
+ intel_crtc_vblank_work_end: pipe A, frame=7616, scanline=777
 
-In the future the DSB should take over this responsibility
-which will hopefully avoid some of these issues.
+The test was done on a snb using the 10bit 1024 entry LUT mode.
+The vtotals for the two displays are 793 and 1125. So we can
+see that with the locks ripped out the LUT updates are pretty
+nicely confined within the vblank, whereas with the locks in
+place we're routinely blasting past the vblank end which causes
+visual artifacts near the top of the screen.
 
-Kudos to Lyude for finishing the actual vblank workers.
-Works like the proverbial train toilet.
-
-v2: Add missing intel_atomic_state fwd declaration
-v3: Clean up properly when not scheduling the worker
-v4: Clean up the rest and add tracepoints
-
-CC: Lyude Paul <lyude@redhat.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c     | 76 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_crtc.h     |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  9 +--
- .../drm/i915/display/intel_display_types.h    |  8 ++
- drivers/gpu/drm/i915/i915_trace.h             | 42 ++++++++++
- 5 files changed, 129 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 128 ++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_dsb.c   |   4 +-
+ 2 files changed, 66 insertions(+), 66 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 0f8b48b6911c..4758c61adae8 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -3,12 +3,14 @@
-  * Copyright © 2020 Intel Corporation
-  */
- #include <linux/kernel.h>
-+#include <linux/pm_qos.h>
- #include <linux/slab.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 5359b7305a78..c870a0e50cb1 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -552,8 +552,8 @@ static void i9xx_load_lut_8(struct intel_crtc *crtc,
+ 	lut = blob->data;
  
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_plane.h>
- #include <drm/drm_plane_helper.h>
-+#include <drm/drm_vblank_work.h>
- 
- #include "i915_trace.h"
- #include "i915_vgpu.h"
-@@ -167,6 +169,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 
-+	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
-+
- 	drm_crtc_cleanup(&crtc->base);
- 	kfree(crtc);
- }
-@@ -344,6 +348,8 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 
- 	intel_crtc_crc_init(crtc);
- 
-+	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
-+
- 	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
- 
- 	return 0;
-@@ -354,6 +360,65 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 	return ret;
+ 	for (i = 0; i < 256; i++)
+-		intel_de_write(dev_priv, PALETTE(pipe, i),
+-			       i9xx_lut_8(&lut[i]));
++		intel_de_write_fw(dev_priv, PALETTE(pipe, i),
++				  i9xx_lut_8(&lut[i]));
  }
  
-+static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
-+{
-+	return crtc_state->hw.active &&
-+		!intel_crtc_needs_modeset(crtc_state) &&
-+		!crtc_state->preload_luts &&
-+		(crtc_state->uapi.color_mgmt_changed ||
-+		 crtc_state->update_pipe);
-+}
-+
-+static void intel_crtc_vblank_work(struct kthread_work *base)
-+{
-+	struct drm_vblank_work *work = to_drm_vblank_work(base);
-+	struct intel_crtc_state *crtc_state =
-+		container_of(work, typeof(*crtc_state), vblank_work);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	trace_intel_crtc_vblank_work_start(crtc);
-+
-+	intel_color_load_luts(crtc_state);
-+
-+	if (crtc_state->uapi.event) {
-+		spin_lock_irq(&crtc->base.dev->event_lock);
-+		drm_crtc_send_vblank_event(&crtc->base, crtc_state->uapi.event);
-+		crtc_state->uapi.event = NULL;
-+		spin_unlock_irq(&crtc->base.dev->event_lock);
-+	}
-+
-+	trace_intel_crtc_vblank_work_end(crtc);
-+}
-+
-+static void intel_crtc_vblank_work_init(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	drm_vblank_work_init(&crtc_state->vblank_work, &crtc->base,
-+			     intel_crtc_vblank_work);
-+	/*
-+	 * Interrupt latency is critical for getting the vblank
-+	 * work executed as early as possible during the vblank.
-+	 */
-+	cpu_latency_qos_update_request(&crtc->vblank_pm_qos, 0);
-+}
-+
-+void intel_wait_for_vblank_works(struct intel_atomic_state *state)
-+{
-+	struct intel_crtc_state *crtc_state;
-+	struct intel_crtc *crtc;
-+	int i;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-+		if (!intel_crtc_needs_vblank_work(crtc_state))
-+			continue;
-+
-+		drm_vblank_work_flush(&crtc_state->vblank_work);
-+		cpu_latency_qos_update_request(&crtc->vblank_pm_qos,
-+					       PM_QOS_DEFAULT_VALUE);
-+	}
-+}
-+
- int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
- 			     int usecs)
- {
-@@ -387,7 +452,7 @@ static int intel_mode_vblank_start(const struct drm_display_mode *mode)
-  * until a subsequent call to intel_pipe_update_end(). That is done to
-  * avoid random delays.
-  */
--void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
-+void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-@@ -402,6 +467,9 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
- 	if (new_crtc_state->uapi.async_flip)
- 		return;
+ static void i9xx_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -576,15 +576,15 @@ static void i965_load_lut_10p6(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
  
-+	if (intel_crtc_needs_vblank_work(new_crtc_state))
-+		intel_crtc_vblank_work_init(new_crtc_state);
-+
- 	if (new_crtc_state->vrr.enable)
- 		vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
- 	else
-@@ -557,7 +625,11 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
- 	 * Would be slightly nice to just grab the vblank count and arm the
- 	 * event outside of the critical section - the spinlock might spin for a
- 	 * while ... */
--	if (new_crtc_state->uapi.event) {
-+	if (intel_crtc_needs_vblank_work(new_crtc_state)) {
-+		drm_vblank_work_schedule(&new_crtc_state->vblank_work,
-+					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+					 false);
-+	} else if (new_crtc_state->uapi.event) {
- 		drm_WARN_ON(&dev_priv->drm,
- 			    drm_crtc_vblank_get(&crtc->base) != 0);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-index 22363fbbc925..25eb58bce0dd 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.h
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-@@ -11,6 +11,7 @@
- enum pipe;
- struct drm_display_mode;
- struct drm_i915_private;
-+struct intel_atomic_state;
- struct intel_crtc;
- struct intel_crtc_state;
- 
-@@ -24,7 +25,8 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
- u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
- void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
- void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
--void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state);
-+void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state);
- void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
-+void intel_wait_for_vblank_works(struct intel_atomic_state *state);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 79a7552af7b5..1375d963c0a8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8818,6 +8818,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		intel_set_cdclk_post_plane_update(state);
+ 	for (i = 0; i < lut_size - 1; i++) {
+-		intel_de_write(dev_priv, PALETTE(pipe, 2 * i + 0),
+-			       i965_lut_10p6_ldw(&lut[i]));
+-		intel_de_write(dev_priv, PALETTE(pipe, 2 * i + 1),
+-			       i965_lut_10p6_udw(&lut[i]));
++		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 0),
++				  i965_lut_10p6_ldw(&lut[i]));
++		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 1),
++				  i965_lut_10p6_udw(&lut[i]));
  	}
  
-+	intel_wait_for_vblank_works(state);
-+
- 	/* FIXME: We should call drm_atomic_helper_commit_hw_done() here
- 	 * already, but still need the state for the delayed optimization. To
- 	 * fix this:
-@@ -8832,13 +8834,6 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		if (new_crtc_state->uapi.async_flip)
- 			intel_crtc_disable_flip_done(state, crtc);
--
--		if (new_crtc_state->hw.active &&
--		    !intel_crtc_needs_modeset(new_crtc_state) &&
--		    !new_crtc_state->preload_luts &&
--		    (new_crtc_state->uapi.color_mgmt_changed ||
--		     new_crtc_state->update_pipe))
--			intel_color_load_luts(new_crtc_state);
+-	intel_de_write(dev_priv, PIPEGCMAX(pipe, 0), lut[i].red);
+-	intel_de_write(dev_priv, PIPEGCMAX(pipe, 1), lut[i].green);
+-	intel_de_write(dev_priv, PIPEGCMAX(pipe, 2), lut[i].blue);
++	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 0), lut[i].red);
++	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 1), lut[i].green);
++	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 2), lut[i].blue);
+ }
+ 
+ static void i965_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -618,8 +618,8 @@ static void ilk_load_lut_8(struct intel_crtc *crtc,
+ 	lut = blob->data;
+ 
+ 	for (i = 0; i < 256; i++)
+-		intel_de_write(dev_priv, LGC_PALETTE(pipe, i),
+-			       i9xx_lut_8(&lut[i]));
++		intel_de_write_fw(dev_priv, LGC_PALETTE(pipe, i),
++				  i9xx_lut_8(&lut[i]));
+ }
+ 
+ static void ilk_load_lut_10(struct intel_crtc *crtc,
+@@ -631,8 +631,8 @@ static void ilk_load_lut_10(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	for (i = 0; i < lut_size; i++)
+-		intel_de_write(dev_priv, PREC_PALETTE(pipe, i),
+-			       ilk_lut_10(&lut[i]));
++		intel_de_write_fw(dev_priv, PREC_PALETTE(pipe, i),
++				  ilk_lut_10(&lut[i]));
+ }
+ 
+ static void ilk_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -681,16 +681,16 @@ static void ivb_load_lut_10(struct intel_crtc *crtc,
+ 		const struct drm_color_lut *entry =
+ 			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
+ 
+-		intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), prec_index++);
+-		intel_de_write(dev_priv, PREC_PAL_DATA(pipe),
+-			       ilk_lut_10(entry));
++		intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), prec_index++);
++		intel_de_write_fw(dev_priv, PREC_PAL_DATA(pipe),
++				  ilk_lut_10(entry));
  	}
  
  	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 1e42bf901263..8bb9264022f5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -28,6 +28,7 @@
+ 	 * Reset the index, otherwise it prevents the legacy palette to be
+ 	 * written properly.
+ 	 */
+-	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), 0);
+ }
  
- #include <linux/async.h>
- #include <linux/i2c.h>
-+#include <linux/pm_qos.h>
- #include <linux/pwm.h>
- #include <linux/sched/clock.h>
+ /* On BDW+ the index auto increment mode actually works */
+@@ -704,23 +704,23 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
+ 	int i, lut_size = drm_color_lut_size(blob);
+ 	enum pipe pipe = crtc->pipe;
  
-@@ -41,6 +42,7 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_rect.h>
- #include <drm/drm_vblank.h>
-+#include <drm/drm_vblank_work.h>
- #include <drm/i915_mei_hdcp_interface.h>
- #include <media/cec-notifier.h>
+-	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe),
+-		       prec_index | PAL_PREC_AUTO_INCREMENT);
++	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe),
++			  prec_index | PAL_PREC_AUTO_INCREMENT);
  
-@@ -1241,6 +1243,9 @@ struct intel_crtc_state {
- 		u8 link_count;
- 		u8 pixel_overlap;
- 	} splitter;
-+
-+	/* for loading single buffered registers during vblank */
-+	struct drm_vblank_work vblank_work;
- };
+ 	for (i = 0; i < hw_lut_size; i++) {
+ 		/* We discard half the user entries in split gamma mode */
+ 		const struct drm_color_lut *entry =
+ 			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
  
- enum intel_pipe_crc_source {
-@@ -1325,6 +1330,9 @@ struct intel_crtc {
- 	/* scalers available on this crtc */
- 	int num_scalers;
+-		intel_de_write(dev_priv, PREC_PAL_DATA(pipe),
+-			       ilk_lut_10(entry));
++		intel_de_write_fw(dev_priv, PREC_PAL_DATA(pipe),
++				  ilk_lut_10(entry));
+ 	}
  
-+	/* for loading single buffered registers during vblank */
-+	struct pm_qos_request vblank_pm_qos;
-+
- #ifdef CONFIG_DEBUG_FS
- 	struct intel_pipe_crc pipe_crc;
- #endif
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-index 9795f456cccf..fc48a16d7a4f 100644
---- a/drivers/gpu/drm/i915/i915_trace.h
-+++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -404,6 +404,48 @@ TRACE_EVENT(intel_fbc_nuke,
+ 	/*
+ 	 * Reset the index, otherwise it prevents the legacy palette to be
+ 	 * written properly.
+ 	 */
+-	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), 0);
+ }
  
- /* pipe updates */
+ static void ivb_load_lut_ext_max(const struct intel_crtc_state *crtc_state)
+@@ -821,9 +821,9 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state)
+ 	 * ignore the index bits, so we need to reset it to index 0
+ 	 * separately.
+ 	 */
+-	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
+-	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
+-		       PRE_CSC_GAMC_AUTO_INCREMENT);
++	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
++			  PRE_CSC_GAMC_AUTO_INCREMENT);
  
-+TRACE_EVENT(intel_crtc_vblank_work_start,
-+	    TP_PROTO(struct intel_crtc *crtc),
-+	    TP_ARGS(crtc),
-+
-+	    TP_STRUCT__entry(
-+			     __field(enum pipe, pipe)
-+			     __field(u32, frame)
-+			     __field(u32, scanline)
-+			     ),
-+
-+	    TP_fast_assign(
-+			   __entry->pipe = crtc->pipe;
-+			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
-+			   __entry->scanline = intel_get_crtc_scanline(crtc);
-+			   ),
-+
-+	    TP_printk("pipe %c, frame=%u, scanline=%u",
-+		      pipe_name(__entry->pipe), __entry->frame,
-+		       __entry->scanline)
-+);
-+
-+TRACE_EVENT(intel_crtc_vblank_work_end,
-+	    TP_PROTO(struct intel_crtc *crtc),
-+	    TP_ARGS(crtc),
-+
-+	    TP_STRUCT__entry(
-+			     __field(enum pipe, pipe)
-+			     __field(u32, frame)
-+			     __field(u32, scanline)
-+			     ),
-+
-+	    TP_fast_assign(
-+			   __entry->pipe = crtc->pipe;
-+			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
-+			   __entry->scanline = intel_get_crtc_scanline(crtc);
-+			   ),
-+
-+	    TP_printk("pipe %c, frame=%u, scanline=%u",
-+		      pipe_name(__entry->pipe), __entry->frame,
-+		       __entry->scanline)
-+);
-+
- TRACE_EVENT(intel_pipe_update_start,
- 	    TP_PROTO(struct intel_crtc *crtc),
- 	    TP_ARGS(crtc),
+ 	for (i = 0; i < lut_size; i++) {
+ 		/*
+@@ -839,15 +839,15 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state)
+ 		 * ToDo: Extend to max 7.0. Enable 32 bit input value
+ 		 * as compared to just 16 to achieve this.
+ 		 */
+-		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe),
+-			       lut[i].green);
++		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe),
++				  lut[i].green);
+ 	}
+ 
+ 	/* Clamp values > 1.0. */
+ 	while (i++ < 35)
+-		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
++		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
+ 
+-	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
+ }
+ 
+ static void glk_load_degamma_lut_linear(const struct intel_crtc_state *crtc_state)
+@@ -862,21 +862,21 @@ static void glk_load_degamma_lut_linear(const struct intel_crtc_state *crtc_stat
+ 	 * ignore the index bits, so we need to reset it to index 0
+ 	 * separately.
+ 	 */
+-	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
+-	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
+-		       PRE_CSC_GAMC_AUTO_INCREMENT);
++	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
++			  PRE_CSC_GAMC_AUTO_INCREMENT);
+ 
+ 	for (i = 0; i < lut_size; i++) {
+ 		u32 v = (i << 16) / (lut_size - 1);
+ 
+-		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), v);
++		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe), v);
+ 	}
+ 
+ 	/* Clamp values > 1.0. */
+ 	while (i++ < 35)
+-		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
++		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
+ 
+-	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
+ }
+ 
+ static void glk_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -1071,10 +1071,10 @@ static void chv_load_cgm_degamma(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		intel_de_write(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 0),
+-			       chv_cgm_degamma_ldw(&lut[i]));
+-		intel_de_write(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 1),
+-			       chv_cgm_degamma_udw(&lut[i]));
++		intel_de_write_fw(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 0),
++				  chv_cgm_degamma_ldw(&lut[i]));
++		intel_de_write_fw(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 1),
++				  chv_cgm_degamma_udw(&lut[i]));
+ 	}
+ }
+ 
+@@ -1105,10 +1105,10 @@ static void chv_load_cgm_gamma(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		intel_de_write(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0),
+-			       chv_cgm_gamma_ldw(&lut[i]));
+-		intel_de_write(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1),
+-			       chv_cgm_gamma_udw(&lut[i]));
++		intel_de_write_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0),
++				  chv_cgm_gamma_ldw(&lut[i]));
++		intel_de_write_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1),
++				  chv_cgm_gamma_udw(&lut[i]));
+ 	}
+ }
+ 
+@@ -1131,8 +1131,8 @@ static void chv_load_luts(const struct intel_crtc_state *crtc_state)
+ 	else
+ 		i965_load_luts(crtc_state);
+ 
+-	intel_de_write(dev_priv, CGM_PIPE_MODE(crtc->pipe),
+-		       crtc_state->cgm_mode);
++	intel_de_write_fw(dev_priv, CGM_PIPE_MODE(crtc->pipe),
++			  crtc_state->cgm_mode);
+ }
+ 
+ void intel_color_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -1808,7 +1808,7 @@ static struct drm_property_blob *i9xx_read_lut_8(struct intel_crtc *crtc)
+ 	lut = blob->data;
+ 
+ 	for (i = 0; i < LEGACY_LUT_LENGTH; i++) {
+-		u32 val = intel_de_read(dev_priv, PALETTE(pipe, i));
++		u32 val = intel_de_read_fw(dev_priv, PALETTE(pipe, i));
+ 
+ 		i9xx_lut_8_pack(&lut[i], val);
+ 	}
+@@ -1843,15 +1843,15 @@ static struct drm_property_blob *i965_read_lut_10p6(struct intel_crtc *crtc)
+ 	lut = blob->data;
+ 
+ 	for (i = 0; i < lut_size - 1; i++) {
+-		u32 ldw = intel_de_read(dev_priv, PALETTE(pipe, 2 * i + 0));
+-		u32 udw = intel_de_read(dev_priv, PALETTE(pipe, 2 * i + 1));
++		u32 ldw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 0));
++		u32 udw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 1));
+ 
+ 		i965_lut_10p6_pack(&lut[i], ldw, udw);
+ 	}
+ 
+-	lut[i].red = i965_lut_11p6_max_pack(intel_de_read(dev_priv, PIPEGCMAX(pipe, 0)));
+-	lut[i].green = i965_lut_11p6_max_pack(intel_de_read(dev_priv, PIPEGCMAX(pipe, 1)));
+-	lut[i].blue = i965_lut_11p6_max_pack(intel_de_read(dev_priv, PIPEGCMAX(pipe, 2)));
++	lut[i].red = i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEGCMAX(pipe, 0)));
++	lut[i].green = i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEGCMAX(pipe, 1)));
++	lut[i].blue = i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEGCMAX(pipe, 2)));
+ 
+ 	return blob;
+ }
+@@ -1886,8 +1886,8 @@ static struct drm_property_blob *chv_read_cgm_gamma(struct intel_crtc *crtc)
+ 	lut = blob->data;
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		u32 ldw = intel_de_read(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0));
+-		u32 udw = intel_de_read(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1));
++		u32 ldw = intel_de_read_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0));
++		u32 udw = intel_de_read_fw(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1));
+ 
+ 		chv_cgm_gamma_pack(&lut[i], ldw, udw);
+ 	}
+@@ -1922,7 +1922,7 @@ static struct drm_property_blob *ilk_read_lut_8(struct intel_crtc *crtc)
+ 	lut = blob->data;
+ 
+ 	for (i = 0; i < LEGACY_LUT_LENGTH; i++) {
+-		u32 val = intel_de_read(dev_priv, LGC_PALETTE(pipe, i));
++		u32 val = intel_de_read_fw(dev_priv, LGC_PALETTE(pipe, i));
+ 
+ 		i9xx_lut_8_pack(&lut[i], val);
+ 	}
+@@ -1947,7 +1947,7 @@ static struct drm_property_blob *ilk_read_lut_10(struct intel_crtc *crtc)
+ 	lut = blob->data;
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		u32 val = intel_de_read(dev_priv, PREC_PALETTE(pipe, i));
++		u32 val = intel_de_read_fw(dev_priv, PREC_PALETTE(pipe, i));
+ 
+ 		ilk_lut_10_pack(&lut[i], val);
+ 	}
+@@ -1999,16 +1999,16 @@ static struct drm_property_blob *bdw_read_lut_10(struct intel_crtc *crtc,
+ 
+ 	lut = blob->data;
+ 
+-	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe),
+-		       prec_index | PAL_PREC_AUTO_INCREMENT);
++	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe),
++			  prec_index | PAL_PREC_AUTO_INCREMENT);
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		u32 val = intel_de_read(dev_priv, PREC_PAL_DATA(pipe));
++		u32 val = intel_de_read_fw(dev_priv, PREC_PAL_DATA(pipe));
+ 
+ 		ilk_lut_10_pack(&lut[i], val);
+ 	}
+ 
+-	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), 0);
+ 
+ 	return blob;
+ }
+@@ -2050,17 +2050,17 @@ icl_read_lut_multi_segment(struct intel_crtc *crtc)
+ 
+ 	lut = blob->data;
+ 
+-	intel_de_write(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe),
+-		       PAL_PREC_AUTO_INCREMENT);
++	intel_de_write_fw(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe),
++			  PAL_PREC_AUTO_INCREMENT);
+ 
+ 	for (i = 0; i < 9; i++) {
+-		u32 ldw = intel_de_read(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
+-		u32 udw = intel_de_read(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
++		u32 ldw = intel_de_read_fw(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
++		u32 udw = intel_de_read_fw(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
+ 
+ 		icl_lut_multi_seg_pack(&lut[i], ldw, udw);
+ 	}
+ 
+-	intel_de_write(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe), 0);
++	intel_de_write_fw(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe), 0);
+ 
+ 	/*
+ 	 * FIXME readouts from PAL_PREC_DATA register aren't giving
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 62a8a69f9f5d..83a69a4a4fea 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -100,7 +100,7 @@ void intel_dsb_indexed_reg_write(const struct intel_crtc_state *crtc_state,
+ 	u32 reg_val;
+ 
+ 	if (!dsb) {
+-		intel_de_write(dev_priv, reg, val);
++		intel_de_write_fw(dev_priv, reg, val);
+ 		return;
+ 	}
+ 	buf = dsb->cmd_buf;
+@@ -177,7 +177,7 @@ void intel_dsb_reg_write(const struct intel_crtc_state *crtc_state,
+ 
+ 	dsb = crtc_state->dsb;
+ 	if (!dsb) {
+-		intel_de_write(dev_priv, reg, val);
++		intel_de_write_fw(dev_priv, reg, val);
+ 		return;
+ 	}
+ 
 -- 
 2.32.0
 
