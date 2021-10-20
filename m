@@ -1,59 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AC044353B6
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 21:19:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7625C4353D0
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Oct 2021 21:27:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA8866E158;
-	Wed, 20 Oct 2021 19:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92ADA89CB3;
+	Wed, 20 Oct 2021 19:27:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F40A26E158
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Oct 2021 19:19:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="315068149"
-X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="315068149"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 12:19:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="719240208"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga006.fm.intel.com with ESMTP; 20 Oct 2021 12:19:22 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 20 Oct 2021 12:19:22 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 20 Oct 2021 12:19:21 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Wed, 20 Oct 2021 12:19:21 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Yokoyama, Caz" <caz.yokoyama@intel.com>
-CC: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>, "Atwood, Matthew
- S" <matthew.s.atwood@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
-Thread-Index: AQHXxUfp90zJKsmfc0KKIjZpNBUnJqvccUaAgABKBAA=
-Date: Wed, 20 Oct 2021 19:19:21 +0000
-Message-ID: <e061d0ce689b9bcba4473a9703effad35505a593.camel@intel.com>
-References: <20211020002353.193893-1-jose.souza@intel.com>
- <9a1dc5019848cc8c854d9cfdf46113b626563d98.camel@intel.com>
-In-Reply-To: <9a1dc5019848cc8c854d9cfdf46113b626563d98.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <28C7FD357E750240ADBB01E925C80D85@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 696B189CB3;
+ Wed, 20 Oct 2021 19:27:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="226326392"
+X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="226326392"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 12:26:30 -0700
+X-IronPort-AV: E=Sophos;i="5.87,167,1631602800"; d="scan'208";a="463314131"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 12:26:30 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Cc: <daniele.ceraolospurio@intel.com>, <thomas.hellstrom@linux.intel.com>,
+ <john.c.harrison@intel.com>
+Date: Wed, 20 Oct 2021 12:21:47 -0700
+Message-Id: <20211020192147.8048-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Fix recursive lock in GuC
+ submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,170 +48,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTEwLTIwIGF0IDE1OjAwICswMDAwLCBZb2tveWFtYSwgQ2F6IHdyb3RlOg0K
-PiBPbiBUdWUsIDIwMjEtMTAtMTkgYXQgMTc6MjMgLTA3MDAsIEpvc8OpIFJvYmVydG8gZGUgU291
-emEgd3JvdGU6DQo+ID4gQWRkaW5nIGEgc3RydWN0dXJlIHRvIHN0YW5kYXJkaXplIGFjY2VzcyB0
-byBJUCB2ZXJzaW9uaW5nIGFzIGZ1dHVyZQ0KPiA+IHBsYXRmb3JtcyB3aWxsIGhhdmUgdGhpcyBp
-bmZvcm1hdGlvbiBwb3B1bGF0ZWQgYXQgcnVudGltZS4NCj4gPiANCj4gPiBUaGUgY29uc3RhbnQg
-cGxhdGZvcm0gZGlzcGxheSB2ZXJzaW9uIGlzIG5vdCB1c2luZyB0aGlzIG5ldyBzdHJ1Y3QNCj4g
-PiBidXQNCj4gPiB0aGUgcnVudGltZSB2YXJpYW50IHdpbGwgZGVmaW5pdGVseSB1c2UgaXQuDQo+
-ID4gDQo+ID4gQ2M6IFJhZGhha3Jpc2huYSBTcmlwYWRhIDxyYWRoYWtyaXNobmEuc3JpcGFkYUBp
-bnRlbC5jb20+DQo+ID4gQ2M6IE1hdHQgQXR3b29kIDxtYXR0aGV3LnMuYXR3b29kQGludGVsLmNv
-bT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
-QGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
-YyAgICAgICAgICAgICAgIHwgIDIgKy0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuaCAgICAgICAgICAgICAgIHwgMTIgKysrKysrLS0tLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfcGNpLmMgICAgICAgICAgICAgICB8IDE4ICsrKysrKysrKy0tLS0tLQ0KPiA+
-IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jICAgICAg
-fCAxOSArKysrKysrKysrKystLS0tLQ0KPiA+IC0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2ludGVsX2RldmljZV9pbmZvLmggICAgICB8IDEyICsrKysrKysrLS0tLQ0KPiA+ICAuLi4vZ3B1
-L2RybS9pOTE1L3NlbGZ0ZXN0cy9tb2NrX2dlbV9kZXZpY2UuYyAgfCAgMiArLQ0KPiA+ICA2IGZp
-bGVzIGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKyksIDI4IGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+ID4gYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+ID4gaW5kZXggMWU1Yjc1YWU5OTMyOS4uYmRm
-ODVkMjAyYzU1YyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
-di5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYw0KPiA+IEBAIC04
-MDgsNyArODA4LDcgQEAgaW50IGk5MTVfZHJpdmVyX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2
-LCBjb25zdA0KPiA+IHN0cnVjdCBwY2lfZGV2aWNlX2lkICplbnQpDQo+ID4gICAgICAgICAgICAg
-ICByZXR1cm4gUFRSX0VSUihpOTE1KTsNCj4gPiANCj4gPiAgICAgICAvKiBEaXNhYmxlIG51Y2xl
-YXIgcGFnZWZsaXAgYnkgZGVmYXVsdCBvbiBwcmUtSUxLICovDQo+ID4gLSAgICAgaWYgKCFpOTE1
-LT5wYXJhbXMubnVjbGVhcl9wYWdlZmxpcCAmJiBtYXRjaF9pbmZvLT5ncmFwaGljc192ZXINCj4g
-PiA8IDUpDQo+ID4gKyAgICAgaWYgKCFpOTE1LT5wYXJhbXMubnVjbGVhcl9wYWdlZmxpcCAmJiBt
-YXRjaF9pbmZvLT5ncmFwaGljcy52ZXINCj4gPiA8IDUpDQo+IEkgZG9uJ3QgZmluZCBhbnkgZGlm
-ZmVyZW5jZSBvbiB0aGlzIGFuZCB0aGUgc2ltaWxhciBtb2RpZmljYXRpb25zDQo+IGJlbG93LiBB
-bSBJIG1pc3Npbmcgc29tZXRoaW5nPw0KDQpDaGFuZ2luZyB1OCBncmFwaGljc192ZXIgdG8gc3Ry
-dWN0IGlwX3ZlcnNpb24gdGhhdCBjb250YWlucyBhIG1lbWJlciBjYWxsZWQgdmVyLg0KU28gb25s
-eSBjaGFuZ2luZyAnXycgdG8gJy4nIGluIG1vc3QgcGxhY2VzLg0KDQo+IC1jYXoNCj4gDQo+ID4g
-ICAgICAgICAgICAgICBpOTE1LT5kcm0uZHJpdmVyX2ZlYXR1cmVzICY9IH5EUklWRVJfQVRPTUlD
-Ow0KPiA+IA0KPiA+ICAgICAgIC8qDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfZHJ2LmgNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4g
-PiBpbmRleCAxMjI1NjIxODYzNGY0Li4yNmI2ZTJiOGJiNWU4IDEwMDY0NA0KPiA+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2Rydi5oDQo+ID4gQEAgLTEzMjcsMTUgKzEzMjcsMTUgQEAgc3RhdGljIGlubGlu
-ZSBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQ0KPiA+ICpwZGV2X3RvX2k5MTUoc3RydWN0IHBjaV9k
-ZXYgKnBkZXYpDQo+ID4gDQo+ID4gICNkZWZpbmUgSVBfVkVSKHZlciwgcmVsKSAgICAgICAgICAg
-ICAoKHZlcikgPDwgOCB8IChyZWwpKQ0KPiA+IA0KPiA+IC0jZGVmaW5lIEdSQVBISUNTX1ZFUihp
-OTE1KSAgICAgICAgICAgKElOVEVMX0lORk8oaTkxNSktDQo+ID4gPiBncmFwaGljc192ZXIpDQo+
-ID4gLSNkZWZpbmUgR1JBUEhJQ1NfVkVSX0ZVTEwoaTkxNSkgICAgICAgICAgICAgIElQX1ZFUihJ
-TlRFTF9JTkZPKGk5MTUpDQo+ID4gLT5ncmFwaGljc192ZXIsIFwNCj4gPiAtICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBJTlRFTF9JTkZPKGk5MTUpLQ0KPiA+ID4g
-Z3JhcGhpY3NfcmVsKQ0KPiA+ICsjZGVmaW5lIEdSQVBISUNTX1ZFUihpOTE1KSAgICAgICAgICAg
-KElOVEVMX0lORk8oaTkxNSktDQo+ID4gPiBncmFwaGljcy52ZXIpDQo+ID4gKyNkZWZpbmUgR1JB
-UEhJQ1NfVkVSX0ZVTEwoaTkxNSkgICAgICAgICAgICAgIElQX1ZFUihJTlRFTF9JTkZPKGk5MTUp
-DQo+ID4gLT5ncmFwaGljcy52ZXIsIFwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICBJTlRFTF9JTkZPKGk5MTUpLQ0KPiA+ID4gZ3JhcGhpY3MucmVsKQ0K
-PiA+ICAjZGVmaW5lIElTX0dSQVBISUNTX1ZFUihpOTE1LCBmcm9tLCB1bnRpbCkgXA0KPiA+ICAg
-ICAgIChHUkFQSElDU19WRVIoaTkxNSkgPj0gKGZyb20pICYmIEdSQVBISUNTX1ZFUihpOTE1KSA8
-PSAodW50aWwpKQ0KPiA+IA0KPiA+IC0jZGVmaW5lIE1FRElBX1ZFUihpOTE1KSAgICAgICAgICAg
-ICAgICAgICAgICAoSU5URUxfSU5GTyhpOTE1KS0NCj4gPiA+IG1lZGlhX3ZlcikNCj4gPiAtI2Rl
-ZmluZSBNRURJQV9WRVJfRlVMTChpOTE1KSAgICAgICAgIElQX1ZFUihJTlRFTF9JTkZPKGk5MTUp
-LQ0KPiA+ID4gbWVkaWFfdmVyLCBcDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgSU5URUxfSU5GTyhpOTE1KS0NCj4gPiA+IG1lZGlhX3JlbCkNCj4gPiAr
-I2RlZmluZSBNRURJQV9WRVIoaTkxNSkgICAgICAgICAgICAgICAgICAgICAgKElOVEVMX0lORk8o
-aTkxNSktDQo+ID4gPiBtZWRpYS52ZXIpDQo+ID4gKyNkZWZpbmUgTUVESUFfVkVSX0ZVTEwoaTkx
-NSkgICAgICAgICBJUF9WRVIoSU5URUxfSU5GTyhpOTE1KS0NCj4gPiA+IG1lZGlhLmFyY2gsIFwN
-Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBJTlRFTF9J
-TkZPKGk5MTUpLQ0KPiA+ID4gbWVkaWEucmVsKQ0KPiA+ICAjZGVmaW5lIElTX01FRElBX1ZFUihp
-OTE1LCBmcm9tLCB1bnRpbCkgXA0KPiA+ICAgICAgIChNRURJQV9WRVIoaTkxNSkgPj0gKGZyb20p
-ICYmIE1FRElBX1ZFUihpOTE1KSA8PSAodW50aWwpKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X3BjaS5jDQo+ID4gaW5kZXggMTY5ODM3ZGUzOTVkMy4uNWU2Nzk1ODUzZGMzMSAxMDA2
-NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jDQo+ID4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiA+IEBAIC0zMiw4ICszMiw4IEBADQo+
-ID4gDQo+ID4gICNkZWZpbmUgUExBVEZPUk0oeCkgLnBsYXRmb3JtID0gKHgpDQo+ID4gICNkZWZp
-bmUgR0VOKHgpIFwNCj4gPiAtICAgICAuZ3JhcGhpY3NfdmVyID0gKHgpLCBcDQo+ID4gLSAgICAg
-Lm1lZGlhX3ZlciA9ICh4KSwgXA0KPiA+ICsgICAgIC5ncmFwaGljcy52ZXIgPSAoeCksIFwNCj4g
-PiArICAgICAubWVkaWEudmVyID0gKHgpLCBcDQo+ID4gICAgICAgLmRpc3BsYXkudmVyID0gKHgp
-DQo+ID4gDQo+ID4gICNkZWZpbmUgSTg0NV9QSVBFX09GRlNFVFMgXA0KPiA+IEBAIC04OTksNyAr
-ODk5LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyBya2xfaW5mbyA9
-DQo+ID4gew0KPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGRnMV9p
-bmZvID0gew0KPiA+ICAgICAgIEdFTjEyX0ZFQVRVUkVTLA0KPiA+ICAgICAgIERHRlhfRkVBVFVS
-RVMsDQo+ID4gLSAgICAgLmdyYXBoaWNzX3JlbCA9IDEwLA0KPiA+ICsgICAgIC5ncmFwaGljcy5y
-ZWwgPSAxMCwNCj4gPiAgICAgICBQTEFURk9STShJTlRFTF9ERzEpLA0KPiA+ICAgICAgIC5waXBl
-X21hc2sgPSBCSVQoUElQRV9BKSB8IEJJVChQSVBFX0IpIHwgQklUKFBJUEVfQykgfA0KPiA+IEJJ
-VChQSVBFX0QpLA0KPiA+ICAgICAgIC5yZXF1aXJlX2ZvcmNlX3Byb2JlID0gMSwNCj4gPiBAQCAt
-OTg2LDggKzk4Niw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gYWRs
-X3BfaW5mbw0KPiA+ID0gew0KPiA+ICAgICAgICAgICAgICAgICAgICAgSTkxNV9HVFRfUEFHRV9T
-SVpFXzJNDQo+ID4gDQo+ID4gICNkZWZpbmUgWEVfSFBfRkVBVFVSRVMgXA0KPiA+IC0gICAgIC5n
-cmFwaGljc192ZXIgPSAxMiwgXA0KPiA+IC0gICAgIC5ncmFwaGljc19yZWwgPSA1MCwgXA0KPiA+
-ICsgICAgIC5ncmFwaGljcy52ZXIgPSAxMiwgXA0KPiA+ICsgICAgIC5ncmFwaGljcy5yZWwgPSA1
-MCwgXA0KPiA+ICAgICAgIFhFX0hQX1BBR0VfU0laRVMsIFwNCj4gPiAgICAgICAuZG1hX21hc2tf
-c2l6ZSA9IDQ2LCBcDQo+ID4gICAgICAgLmhhc182NGJpdF9yZWxvYyA9IDEsIFwNCj4gPiBAQCAt
-MTAwNSw4ICsxMDA1LDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbw0K
-PiA+IGFkbF9wX2luZm8gPSB7DQo+ID4gICAgICAgLnBwZ3R0X3R5cGUgPSBJTlRFTF9QUEdUVF9G
-VUxMDQo+ID4gDQo+ID4gICNkZWZpbmUgWEVfSFBNX0ZFQVRVUkVTIFwNCj4gPiAtICAgICAubWVk
-aWFfdmVyID0gMTIsIFwNCj4gPiAtICAgICAubWVkaWFfcmVsID0gNTANCj4gPiArICAgICAubWVk
-aWEudmVyID0gMTIsIFwNCj4gPiArICAgICAubWVkaWEucmVsID0gNTANCj4gPiANCj4gPiAgX19t
-YXliZV91bnVzZWQNCj4gPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyB4
-ZWhwc2R2X2luZm8gPSB7DQo+ID4gQEAgLTEwMzAsOCArMTAzMCw4IEBAIHN0YXRpYyBjb25zdCBz
-dHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gZGcyX2luZm8NCj4gPiA9IHsNCj4gPiAgICAgICBYRV9I
-UE1fRkVBVFVSRVMsDQo+ID4gICAgICAgWEVfTFBEX0ZFQVRVUkVTLA0KPiA+ICAgICAgIERHRlhf
-RkVBVFVSRVMsDQo+ID4gLSAgICAgLmdyYXBoaWNzX3JlbCA9IDU1LA0KPiA+IC0gICAgIC5tZWRp
-YV9yZWwgPSA1NSwNCj4gPiArICAgICAuZ3JhcGhpY3MucmVsID0gNTUsDQo+ID4gKyAgICAgLm1l
-ZGlhLnJlbCA9IDU1LA0KPiA+ICAgICAgIFBMQVRGT1JNKElOVEVMX0RHMiksDQo+ID4gICAgICAg
-LnBsYXRmb3JtX2VuZ2luZV9tYXNrID0NCj4gPiAgICAgICAgICAgICAgIEJJVChSQ1MwKSB8IEJJ
-VChCQ1MwKSB8DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rl
-dmljZV9pbmZvLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZv
-LmMNCj4gPiBpbmRleCAzMDVmYWNlZGQyODQxLi42ZTZiMzE3YmMzM2NlIDEwMDY0NA0KPiA+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMNCj4gPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jDQo+ID4gQEAgLTk3LDE3ICs5
-NywyMiBAQCBzdGF0aWMgY29uc3QgY2hhciAqaW9tbXVfbmFtZSh2b2lkKQ0KPiA+ICB2b2lkIGlu
-dGVsX2RldmljZV9pbmZvX3ByaW50X3N0YXRpYyhjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2lu
-Zm8NCj4gPiAqaW5mbywNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3Ry
-dWN0IGRybV9wcmludGVyICpwKQ0KPiA+ICB7DQo+ID4gLSAgICAgaWYgKGluZm8tPmdyYXBoaWNz
-X3JlbCkNCj4gPiAtICAgICAgICAgICAgIGRybV9wcmludGYocCwgImdyYXBoaWNzIHZlcnNpb246
-ICV1LiUwMnVcbiIsIGluZm8tDQo+ID4gPiBncmFwaGljc192ZXIsIGluZm8tPmdyYXBoaWNzX3Jl
-bCk7DQo+ID4gKyAgICAgaWYgKGluZm8tPmdyYXBoaWNzLnJlbCkNCj4gPiArICAgICAgICAgICAg
-IGRybV9wcmludGYocCwgImdyYXBoaWNzIHZlcnNpb246ICV1LiUwMnVcbiIsIGluZm8tDQo+ID4g
-PiBncmFwaGljcy52ZXIsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgIGluZm8tPmdyYXBo
-aWNzLnJlbCk7DQo+ID4gICAgICAgZWxzZQ0KPiA+IC0gICAgICAgICAgICAgZHJtX3ByaW50Zihw
-LCAiZ3JhcGhpY3MgdmVyc2lvbjogJXVcbiIsIGluZm8tDQo+ID4gPiBncmFwaGljc192ZXIpOw0K
-PiA+ICsgICAgICAgICAgICAgZHJtX3ByaW50ZihwLCAiZ3JhcGhpY3MgdmVyc2lvbjogJXVcbiIs
-IGluZm8tDQo+ID4gPiBncmFwaGljcy52ZXIpOw0KPiA+IA0KPiA+IC0gICAgIGlmIChpbmZvLT5t
-ZWRpYV9yZWwpDQo+ID4gLSAgICAgICAgICAgICBkcm1fcHJpbnRmKHAsICJtZWRpYSB2ZXJzaW9u
-OiAldS4lMDJ1XG4iLCBpbmZvLQ0KPiA+ID4gbWVkaWFfdmVyLCBpbmZvLT5tZWRpYV9yZWwpOw0K
-PiA+ICsgICAgIGlmIChpbmZvLT5tZWRpYS5yZWwpDQo+ID4gKyAgICAgICAgICAgICBkcm1fcHJp
-bnRmKHAsICJtZWRpYSB2ZXJzaW9uOiAldS4lMDJ1XG4iLCBpbmZvLQ0KPiA+ID4gbWVkaWEudmVy
-LCBpbmZvLT5tZWRpYS5yZWwpOw0KPiA+ICAgICAgIGVsc2UNCj4gPiAtICAgICAgICAgICAgIGRy
-bV9wcmludGYocCwgIm1lZGlhIHZlcnNpb246ICV1XG4iLCBpbmZvLT5tZWRpYV92ZXIpOw0KPiA+
-ICsgICAgICAgICAgICAgZHJtX3ByaW50ZihwLCAibWVkaWEgdmVyc2lvbjogJXVcbiIsIGluZm8t
-Pm1lZGlhLnZlcik7DQo+ID4gKw0KPiA+ICsgICAgIGlmIChpbmZvLT5kaXNwbGF5LnJlbCkNCj4g
-PiArICAgICAgICAgICAgIGRybV9wcmludGYocCwgImRpc3BsYXkgdmVyc2lvbjogJXUuJTAydVxu
-IiwgaW5mby0NCj4gPiA+IGRpc3BsYXkudmVyLCBpbmZvLT5kaXNwbGF5LnJlbCk7DQo+ID4gKyAg
-ICAgZWxzZQ0KPiA+ICsgICAgICAgICAgICAgZHJtX3ByaW50ZihwLCAiZGlzcGxheSB2ZXJzaW9u
-OiAldVxuIiwgaW5mby0NCj4gPiA+IGRpc3BsYXkudmVyKTsNCj4gPiANCj4gPiAtICAgICBkcm1f
-cHJpbnRmKHAsICJkaXNwbGF5IHZlcnNpb246ICV1XG4iLCBpbmZvLT5kaXNwbGF5LnZlcik7DQo+
-ID4gICAgICAgZHJtX3ByaW50ZihwLCAiZ3Q6ICVkXG4iLCBpbmZvLT5ndCk7DQo+ID4gICAgICAg
-ZHJtX3ByaW50ZihwLCAiaW9tbXU6ICVzXG4iLCBpb21tdV9uYW1lKCkpOw0KPiA+ICAgICAgIGRy
-bV9wcmludGYocCwgIm1lbW9yeS1yZWdpb25zOiAleFxuIiwgaW5mby0+bWVtb3J5X3JlZ2lvbnMp
-Ow0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5m
-by5oDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+ID4g
-aW5kZXggOGU2ZjQ4ZDFlYjdiYy4uNjY5ZjBkMjZjM2MzOCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+ID4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaA0KPiA+IEBAIC0xNjYsMTEgKzE2NiwxNCBA
-QCBlbnVtIGludGVsX3BwZ3R0X3R5cGUgew0KPiA+ICAgICAgIGZ1bmMob3ZlcmxheV9uZWVkc19w
-aHlzaWNhbCk7IFwNCj4gPiAgICAgICBmdW5jKHN1cHBvcnRzX3R2KTsNCj4gPiANCj4gPiArc3Ry
-dWN0IGlwX3ZlcnNpb24gew0KPiA+ICsgICAgIHU4IHZlcjsNCj4gPiArICAgICB1OCByZWw7DQo+
-ID4gK307DQo+ID4gKw0KPiA+ICBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gew0KPiA+IC0gICAg
-IHU4IGdyYXBoaWNzX3ZlcjsNCj4gPiAtICAgICB1OCBncmFwaGljc19yZWw7DQo+ID4gLSAgICAg
-dTggbWVkaWFfdmVyOw0KPiA+IC0gICAgIHU4IG1lZGlhX3JlbDsNCj4gPiArICAgICBzdHJ1Y3Qg
-aXBfdmVyc2lvbiBncmFwaGljczsNCj4gPiArICAgICBzdHJ1Y3QgaXBfdmVyc2lvbiBtZWRpYTsN
-Cj4gPiANCj4gPiAgICAgICBpbnRlbF9lbmdpbmVfbWFza190IHBsYXRmb3JtX2VuZ2luZV9tYXNr
-OyAvKiBFbmdpbmVzIHN1cHBvcnRlZA0KPiA+IGJ5IHRoZSBIVyAqLw0KPiA+IA0KPiA+IEBAIC0y
-MDAsNiArMjAzLDcgQEAgc3RydWN0IGludGVsX2RldmljZV9pbmZvIHsNCj4gPiANCj4gPiAgICAg
-ICBzdHJ1Y3Qgew0KPiA+ICAgICAgICAgICAgICAgdTggdmVyOw0KPiA+ICsgICAgICAgICAgICAg
-dTggcmVsOw0KPiA+IA0KPiA+ICAjZGVmaW5lIERFRklORV9GTEFHKG5hbWUpIHU4IG5hbWU6MQ0K
-PiA+ICAgICAgICAgICAgICAgREVWX0lORk9fRElTUExBWV9GT1JfRUFDSF9GTEFHKERFRklORV9G
-TEFHKTsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL21v
-Y2tfZ2VtX2RldmljZS5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvbW9j
-a19nZW1fZGV2aWNlLmMNCj4gPiBpbmRleCA0ZjgxODAxNDY4ODgxLi45YWIzZjI4NGQxZGQ5IDEw
-MDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9tb2NrX2dlbV9k
-ZXZpY2UuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9tb2NrX2dl
-bV9kZXZpY2UuYw0KPiA+IEBAIC0xNjUsNyArMTY1LDcgQEAgc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKm1vY2tfZ2VtX2RldmljZSh2b2lkKQ0KPiA+ICAgICAgIC8qIFVzaW5nIHRoZSBnbG9iYWwg
-R1RUIG1heSBhc2sgcXVlc3Rpb25zIGFib3V0IEtNUyB1c2Vycywgc28NCj4gPiBwcmVwYXJlICov
-DQo+ID4gICAgICAgZHJtX21vZGVfY29uZmlnX2luaXQoJmk5MTUtPmRybSk7DQo+ID4gDQo+ID4g
-LSAgICAgbWt3cml0ZV9kZXZpY2VfaW5mbyhpOTE1KS0+Z3JhcGhpY3NfdmVyID0gLTE7DQo+ID4g
-KyAgICAgbWt3cml0ZV9kZXZpY2VfaW5mbyhpOTE1KS0+Z3JhcGhpY3MudmVyID0gLTE7DQo+ID4g
-DQo+ID4gICAgICAgbWt3cml0ZV9kZXZpY2VfaW5mbyhpOTE1KS0+cGFnZV9zaXplcyA9DQo+ID4g
-ICAgICAgICAgICAgICBJOTE1X0dUVF9QQUdFX1NJWkVfNEsgfA0KDQo=
+Use __release_guc_id (lock held) rather than release_guc_id (acquires
+lock), add lockdep annotations.
+
+213.280129] i915: Running i915_perf_live_selftests/live_noa_gpr
+[ 213.283459] ============================================
+[ 213.283462] WARNING: possible recursive locking detected
+{{[ 213.283466] 5.15.0-rc6+ #18 Tainted: G U W }}
+[ 213.283470] --------------------------------------------
+[ 213.283472] kworker/u24:0/8 is trying to acquire lock:
+[ 213.283475] ffff8ffc4f6cc1e8 (&guc->submission_state.lock){....}-{2:2}, at: destroyed_worker_func+0x2df/0x350 [i915]
+{{[ 213.283618] }}
+{{ but task is already holding lock:}}
+[ 213.283621] ffff8ffc4f6cc1e8 (&guc->submission_state.lock){....}-{2:2}, at: destroyed_worker_func+0x4f/0x350 [i915]
+{{[ 213.283720] }}
+{{ other info that might help us debug this:}}
+[ 213.283724] Possible unsafe locking scenario:[ 213.283727] CPU0
+[ 213.283728] ----
+[ 213.283730] lock(&guc->submission_state.lock);
+[ 213.283734] lock(&guc->submission_state.lock);
+{{[ 213.283737] }}
+{{ *** DEADLOCK ***}}[ 213.283740] May be due to missing lock nesting notation[ 213.283744] 3 locks held by kworker/u24:0/8:
+[ 213.283747] #0: ffff8ffb80059d38 ((wq_completion)events_unbound){..}-{0:0}, at: process_one_work+0x1f3/0x550
+[ 213.283757] #1: ffffb509000e3e78 ((work_completion)(&guc->submission_state.destroyed_worker)){..}-{0:0}, at: process_one_work+0x1f3/0x550
+[ 213.283766] #2: ffff8ffc4f6cc1e8 (&guc->submission_state.lock){....}-{2:2}, at: destroyed_worker_func+0x4f/0x350 [i915]
+{{[ 213.283860] }}
+{{ stack backtrace:}}
+[ 213.283863] CPU: 8 PID: 8 Comm: kworker/u24:0 Tainted: G U W 5.15.0-rc6+ #18
+[ 213.283868] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 0403 01/26/2021
+[ 213.283873] Workqueue: events_unbound destroyed_worker_func [i915]
+[ 213.283957] Call Trace:
+[ 213.283960] dump_stack_lvl+0x57/0x72
+[ 213.283966] __lock_acquire.cold+0x191/0x2d3
+[ 213.283972] lock_acquire+0xb5/0x2b0
+[ 213.283978] ? destroyed_worker_func+0x2df/0x350 [i915]
+[ 213.284059] ? destroyed_worker_func+0x2d7/0x350 [i915]
+[ 213.284139] ? lock_release+0xb9/0x280
+[ 213.284143] _raw_spin_lock_irqsave+0x48/0x60
+[ 213.284148] ? destroyed_worker_func+0x2df/0x350 [i915]
+[ 213.284226] destroyed_worker_func+0x2df/0x350 [i915]
+[ 213.284310] process_one_work+0x270/0x550
+[ 213.284315] worker_thread+0x52/0x3b0
+[ 213.284319] ? process_one_work+0x550/0x550
+[ 213.284322] kthread+0x135/0x160
+[ 213.284326] ? set_kthread_struct+0x40/0x40
+[ 213.284331] ret_from_fork+0x1f/0x30
+
+and a bit later in the trace:
+
+{{ 227.499864] do_raw_spin_lock+0x94/0xa0}}
+[ 227.499868] _raw_spin_lock_irqsave+0x50/0x60
+[ 227.499871] ? guc_flush_destroyed_contexts+0x4f/0xf0 [i915]
+[ 227.499995] guc_flush_destroyed_contexts+0x4f/0xf0 [i915]
+[ 227.500104] intel_guc_submission_reset_prepare+0x99/0x4b0 [i915]
+[ 227.500209] ? mark_held_locks+0x49/0x70
+[ 227.500212] intel_uc_reset_prepare+0x46/0x50 [i915]
+[ 227.500320] reset_prepare+0x78/0x90 [i915]
+[ 227.500412] __intel_gt_set_wedged.part.0+0x13/0xe0 [i915]
+[ 227.500485] intel_gt_set_wedged.part.0+0x54/0x100 [i915]
+[ 227.500556] intel_gt_set_wedged_on_fini+0x1a/0x30 [i915]
+[ 227.500622] intel_gt_driver_unregister+0x1e/0x60 [i915]
+[ 227.500694] i915_driver_remove+0x4a/0xf0 [i915]
+[ 227.500767] i915_pci_probe+0x84/0x170 [i915]
+[ 227.500838] local_pci_probe+0x42/0x80
+[ 227.500842] pci_device_probe+0xd9/0x190
+[ 227.500844] really_probe+0x1f2/0x3f0
+[ 227.500847] __driver_probe_device+0xfe/0x180
+[ 227.500848] driver_probe_device+0x1e/0x90
+[ 227.500850] __driver_attach+0xc4/0x1d0
+[ 227.500851] ? __device_attach_driver+0xe0/0xe0
+[ 227.500853] ? __device_attach_driver+0xe0/0xe0
+[ 227.500854] bus_for_each_dev+0x64/0x90
+[ 227.500856] bus_add_driver+0x12e/0x1f0
+[ 227.500857] driver_register+0x8f/0xe0
+[ 227.500859] i915_init+0x1d/0x8f [i915]
+[ 227.500934] ? 0xffffffffc144a000
+[ 227.500936] do_one_initcall+0x58/0x2d0
+[ 227.500938] ? rcu_read_lock_sched_held+0x3f/0x80
+[ 227.500940] ? kmem_cache_alloc_trace+0x238/0x2d0
+[ 227.500944] do_init_module+0x5c/0x270
+[ 227.500946] __do_sys_finit_module+0x95/0xe0
+[ 227.500949] do_syscall_64+0x38/0x90
+[ 227.500951] entry_SYSCALL_64_after_hwframe+0x44/0xae
+[ 227.500953] RIP: 0033:0x7ffa59d2ae0d
+[ 227.500954] Code: c8 0c 00 0f 05 eb a9 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 3b 80 0c 00 f7 d8 64 89 01 48
+[ 227.500955] RSP: 002b:00007fff320bbf48 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[ 227.500956] RAX: ffffffffffffffda RBX: 00000000022ea710 RCX: 00007ffa59d2ae0d
+[ 227.500957] RDX: 0000000000000000 RSI: 00000000022e1d90 RDI: 0000000000000004
+[ 227.500958] RBP: 0000000000000020 R08: 00007ffa59df3a60 R09: 0000000000000070
+[ 227.500958] R10: 00000000022e1d90 R11: 0000000000000246 R12: 00000000022e1d90
+[ 227.500959] R13: 00000000022e58e0 R14: 0000000000000043 R15: 00000000022e42c0
+
+v2:
+ (CI build)
+  - Fix build error
+
+Fixes: 1a52faed31311 ("drm/i915/guc: Take engine PM when a context is pinned with GuC submission")
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index d7710debcd47..38b47e73e35d 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -2373,6 +2373,7 @@ static inline void guc_lrc_desc_unpin(struct intel_context *ce)
+ 	unsigned long flags;
+ 	bool disabled;
+ 
++	lockdep_assert_held(&guc->submission_state.lock);
+ 	GEM_BUG_ON(!intel_gt_pm_is_awake(gt));
+ 	GEM_BUG_ON(!lrc_desc_registered(guc, ce->guc_id.id));
+ 	GEM_BUG_ON(ce != __get_context(guc, ce->guc_id.id));
+@@ -2388,7 +2389,7 @@ static inline void guc_lrc_desc_unpin(struct intel_context *ce)
+ 	}
+ 	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+ 	if (unlikely(disabled)) {
+-		release_guc_id(guc, ce);
++		__release_guc_id(guc, ce);
+ 		__guc_context_destroy(ce);
+ 		return;
+ 	}
+-- 
+2.32.0
+
