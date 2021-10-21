@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64116435AC1
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 08:16:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47070435AC7
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 08:18:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C2D6EB55;
-	Thu, 21 Oct 2021 06:15:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B1E06EA2A;
+	Thu, 21 Oct 2021 06:18:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E37D6EA2A;
- Thu, 21 Oct 2021 06:15:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="227724887"
-X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="227724887"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 23:15:54 -0700
-X-IronPort-AV: E=Sophos;i="5.87,168,1631602800"; d="scan'208";a="632067132"
-Received: from mstribae-mobl1.ger.corp.intel.com (HELO [10.249.254.146])
- ([10.249.254.146])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2021 23:15:52 -0700
-Message-ID: <f8f1ae021e8cabc2c6d76996b5e74912cb0913db.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- intel-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
-Cc: john.c.harrison@intel.com
-Date: Thu, 21 Oct 2021 08:15:49 +0200
-In-Reply-To: <20211011234705.30853-1-matthew.brost@intel.com>
-References: <20211011234705.30853-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 896FB6EA2A;
+ Thu, 21 Oct 2021 06:18:43 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 508AB68BEB; Thu, 21 Oct 2021 08:18:39 +0200 (CEST)
+Date: Thu, 21 Oct 2021 08:18:39 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Christoph Hellwig <hch@lst.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ matthew.auld@intel.com
+Message-ID: <20211021061839.GA27953@lst.de>
+References: <20210326055505.1424432-1-hch@lst.de>
+ <20210326055505.1424432-3-hch@lst.de>
+ <20211020154005.uk6u4ovcmlhpyubk@ldmartin-desk2>
+ <20211020193751.GS174703@worktop.programming.kicks-ass.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Allow engine reset
- failure to do a GT reset in hangcheck selftest
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211020193751.GS174703@worktop.programming.kicks-ass.net>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH 2/4] mm: add a io_mapping_map_user helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,90 +52,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Matthew,
-
-On Mon, 2021-10-11 at 16:47 -0700, Matthew Brost wrote:
-> The hangcheck selftest blocks per engine resets by setting magic bits
-> in
-> the reset flags. This is incorrect for GuC submission because if the
-> GuC
-> fails to reset an engine we would like to do a full GT reset. Do no
-> set
-> these magic bits when using GuC submission.
+On Wed, Oct 20, 2021 at 09:37:51PM +0200, Peter Zijlstra wrote:
+> > I'm not sure what exactly brought me to check this, but while debugging
+> > I noticed this outside the header guard. But then after some more checks I
+> > saw nothing actually selects CONFIG_IO_MAPPING because commit using
+> > it was reverted in commit 0e4fe0c9f2f9 ("Revert "i915: use io_mapping_map_user"")
+> > 
+> > Is this something we want to re-attempt moving to mm/ ?
 > 
-> Side note this lockless algorithm with magic bits to block resets
-> really
-> should be ripped out.
-> 
+> Yes, it would be very good to unexport apply_to_page_range(), it's a
+> terrible interface to expose.
 
-Lockless algorithm aside, from a quick look at the code in
-intel_reset.c it appears to me like the interface that falls back to a
-full GT reset is intel_gt_handle_error() whereas intel_engine_reset()
-is explicitly intended to not do that, so is there a discrepancy
-between GuC and non-GuC here?
-
-/Thomas
-
-
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index 7e2d99dd012d..90a03c60c80c 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -734,7 +734,8 @@ static int __igt_reset_engine(struct intel_gt
-> *gt, bool active)
->                 reset_engine_count = i915_reset_engine_count(global,
-> engine);
->  
->                 st_engine_heartbeat_disable(engine);
-> -               set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> +               if (!using_guc)
-> +                       set_bit(I915_RESET_ENGINE + id, &gt-
-> >reset.flags);
->                 count = 0;
->                 do {
->                         struct i915_request *rq = NULL;
-> @@ -824,7 +825,8 @@ static int __igt_reset_engine(struct intel_gt
-> *gt, bool active)
->                         if (err)
->                                 break;
->                 } while (time_before(jiffies, end_time));
-> -               clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> +               if (!using_guc)
-> +                       clear_bit(I915_RESET_ENGINE + id, &gt-
-> >reset.flags);
->                 st_engine_heartbeat_enable(engine);
->                 pr_info("%s: Completed %lu %s resets\n",
->                         engine->name, count, active ? "active" :
-> "idle");
-> @@ -1042,7 +1044,8 @@ static int __igt_reset_engines(struct intel_gt
-> *gt,
->                 yield(); /* start all threads before we begin */
->  
->                 st_engine_heartbeat_disable_no_pm(engine);
-> -               set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> +               if (!using_guc)
-> +                       set_bit(I915_RESET_ENGINE + id, &gt-
-> >reset.flags);
->                 do {
->                         struct i915_request *rq = NULL;
->                         struct intel_selftest_saved_policy saved;
-> @@ -1165,7 +1168,8 @@ static int __igt_reset_engines(struct intel_gt
-> *gt,
->                         if (err)
->                                 break;
->                 } while (time_before(jiffies, end_time));
-> -               clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> +               if (!using_guc)
-> +                       clear_bit(I915_RESET_ENGINE + id, &gt-
-> >reset.flags);
->                 st_engine_heartbeat_enable_no_pm(engine);
->  
->                 pr_info("i915_reset_engine(%s:%s): %lu resets\n",
-
-
+Yes.  We need to get back to this rather sooner than later.  I'm a little
+swamped unfortunately.
