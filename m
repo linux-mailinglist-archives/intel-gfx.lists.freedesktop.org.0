@@ -2,48 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB4F543582E
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 03:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86AA643583C
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 03:29:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3E526EA24;
-	Thu, 21 Oct 2021 01:27:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDD46EA22;
+	Thu, 21 Oct 2021 01:29:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A97CE6EA24;
- Thu, 21 Oct 2021 01:27:14 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4HZVFm2b3Rz4xbL;
- Thu, 21 Oct 2021 12:27:08 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1634779629;
- bh=/P3sXv3gg+XWwVuNNFzsys4NuZ1Yv/74orig70uJzH4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=o6UOh8UKYL9dHZPIkbY5Goqo8g0WDASq0S9rVYBWjy/R+yUoe8yVCxCCoEsjY4kyH
- 6yr3lTwN3LP8Zy924fHKfJUSsROszJ2rCjaQPv2LS7Re0DGPQX7ELnYBnKuOlJU0l9
- cxyqGrYDtaar8WEeaGbO9d513ytVaJ4kXlFvLycWSyUwQxBmOe2PILlM1bfD8eG3Nc
- +ym7tJ/OQzC6vZijFNxGEjPBF2Ygycfh0lINu4JVkLxywqL7fKvfcZtLXE3aiCVX5h
- DAPX2Dhyv/zz0Un78T6V1U4O2mglL+33HHqqP1LldqnwQZr9IJR4YCQ8rofXzKqEW+
- H5zuuiHwlgrag==
-Date: Thu, 21 Oct 2021 12:27:05 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Message-ID: <20211021122705.2282c49b@canb.auug.org.au>
-In-Reply-To: <f9b1b7e6-94ab-50f8-d16c-a3581096687d@amd.com>
-References: <20211005185940.382720e7@canb.auug.org.au>
- <f9b1b7e6-94ab-50f8-d16c-a3581096687d@amd.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D38AA89D58;
+ Thu, 21 Oct 2021 01:29:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CAA9EA47EB;
+ Thu, 21 Oct 2021 01:29:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6981548592020865214=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/gnfe75AE3eq1OYO7JPRDy2e";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-misc tree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Oct 2021 01:29:06 -0000
+Message-ID: <163477974680.20177.17047586681086441450@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211020223339.669-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211020223339.669-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_=28near=29atomic_gamma_LUT_updates_via_vblank_workers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,54 +41,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/gnfe75AE3eq1OYO7JPRDy2e
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--===============6981548592020865214==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+== Series Details ==
 
-On Tue, 5 Oct 2021 10:23:23 +0200 Christian K=C3=B6nig <christian.koenig@am=
-d.com> wrote:
->
-> Am 05.10.21 um 09:59 schrieb Stephen Rothwell:
-> >
-> > After merging the drm-misc tree, today's linux-next build (htmldocs)
-> > produced this warning:
-> >
-> > include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_=
-in' not described in 'dma_buf'
-> > include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_=
-out' not described in 'dma_buf'
-> >
-> > Introduced by commit
-> >
-> >    6b51b02a3a0a ("dma-buf: fix and rework dma_buf_poll v7")
->
-> Thanks for the notice, going to fix this.
+Series: drm/i915: (near)atomic gamma LUT updates via vblank workers
+URL   : https://patchwork.freedesktop.org/series/96089/
+State : success
 
-I am still seeing these warnings.
+== Summary ==
 
---=20
-Cheers,
-Stephen Rothwell
+CI Bug Log - changes from CI_DRM_10767 -> Patchwork_21399
+====================================================
 
---Sig_/gnfe75AE3eq1OYO7JPRDy2e
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Summary
+-------
 
------BEGIN PGP SIGNATURE-----
+  **SUCCESS**
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFwwekACgkQAVBC80lX
-0GyV5gf/S+g93X5+pnzfg+sMV1u6Z81Eki3YB95pwwcQpaGQFYtBBKi+wrp+NlJg
-9Z8HSyE7JDD5Fzv13vC6fEQsufrBn8haG7GNDcI9SVOCtaPMsvtzbtYg3sktR9al
-TjISf3cac7B7pqjEmx3DfcUhP2DvD9vMyiHsPd9beJU8PAFW991ChMz0iDEiaOQ9
-IGg1SzAUohuIet+IyFhgUd9OKr4dyYUF5TDtXMO+UmRQhnqoGf4h7FOnmc2+GVYO
-JeNwoVgPHq1jSH5rXm5SBPWFF7T+8BOmo874yFDaKwMsieiGnylwjuzWkYg/n8i9
-fAuXp5RwIGCD9pnvMH9oZ9Z6y76ttA==
-=AusU
------END PGP SIGNATURE-----
+  No regressions found.
 
---Sig_/gnfe75AE3eq1OYO7JPRDy2e--
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21399 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-kbl-soraka:      [PASS][2] -> [DMESG-WARN][3] ([i915#1982] / [i915#262])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#4269])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][6] ([i915#3921]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_flip@basic-plain-flip@c-dp1:
+    - fi-cfl-8109u:       [FAIL][8] ([i915#4165]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][10] ([i915#295]) -> [PASS][11] +14 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan bat-dg1-6 fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10767 -> Patchwork_21399
+
+  CI-20190529: 20190529
+  CI_DRM_10767: 4d947bb057406e5c30081736db70da3f5726e0cd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21399: 6c8274b2061ce9afe497ca680479ab7fb295e9f0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6c8274b2061c drm/i915: Use unlocked register accesses for LUT loads
+b9a5bb22d814 drm/i915: Use vblank workers for gamma updates
+0b7c1b5f5243 drm/i915: Do vrr push before sampling the freame counter
+889072d8ac0e drm/i915: Move function prototypes to the correct header
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/index.html
+
+--===============6981548592020865214==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: (near)atomic gamma LUT updates via vblank workers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96089/">https://patchwork.freedesktop.org/series/96089/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10767 -&gt; Patchwork_21399</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21399 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@c-dp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10767/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21399/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +14 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-bsw-cyan bat-dg1-6 fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10767 -&gt; Patchwork_21399</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10767: 4d947bb057406e5c30081736db70da3f5726e0cd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21399: 6c8274b2061ce9afe497ca680479ab7fb295e9f0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>6c8274b2061c drm/i915: Use unlocked register accesses for LUT loads<br />
+b9a5bb22d814 drm/i915: Use vblank workers for gamma updates<br />
+0b7c1b5f5243 drm/i915: Do vrr push before sampling the freame counter<br />
+889072d8ac0e drm/i915: Move function prototypes to the correct header</p>
+
+</body>
+</html>
+
+--===============6981548592020865214==--
