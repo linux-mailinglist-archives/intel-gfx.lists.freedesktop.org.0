@@ -2,58 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7FE43675C
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 18:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B39F14367C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 18:29:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6424989FCA;
-	Thu, 21 Oct 2021 16:13:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B1246ECCA;
+	Thu, 21 Oct 2021 16:29:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com
- [IPv6:2607:f8b0:4864:20::82b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E70FE89FCA;
- Thu, 21 Oct 2021 16:13:17 +0000 (UTC)
-Received: by mail-qt1-x82b.google.com with SMTP id r17so922047qtx.10;
- Thu, 21 Oct 2021 09:13:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=42wgC7/OJ1iZJFVTsytDh53+gbOn4bGIDLlbQmkjweE=;
- b=kJVH15q6EyB5qEPMLtvb7J+FvohGaFZmdw1oZ2632qZCzBuL5eINzWulpqbN87+RFM
- ORt352ScEJeWm5EPTAJcuTIGpkl8aJj9ZqmkpkQoTMvr+coVsP9it81W7tujfbw/CWsk
- cHTyfyJM9df0D/BFpHMKWM7O4NkFdlqdWeH39vdQMOr7wzmFxjI8dmNacZAg+bDCK8aY
- V0gldbutQHdShDilGbQ/eKSSjpG8RMkXhp9RBCPK62boFZpbfjML142XD4IL+Nzl1RPk
- 9qPMNecB4TtqIAYC5p7dwalcoZY+OXqnlNLcBEkoiZ988/lMMNYDzvObJb8eXXnI66RI
- lkqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=42wgC7/OJ1iZJFVTsytDh53+gbOn4bGIDLlbQmkjweE=;
- b=jBExIVsXmlQh9WafK3pP4DVxmxqQC7PgVeuA+JN1KO1XSnBDYWPMtUjJpOFjRIxEjo
- CXaI2MovPLqoVRhy7vZH2zY6XygC0ltHp7kwdmoG+ixqHaVFsazp9TPIIwxyoYyb4CSB
- WGTZJBBw01zjMlvUDJMVXA6jTNiX7CziPY186B7C/yMI61VFehaCWp+IRVuZUrhpg2Tv
- 4T8NejkPgvzKfJ2rixSLudKFKRNmj3oqsXRIy4lzLRToeQDq2Pc75DKaFlD2I0aaisHi
- w4d8dhq+avxtddZDTNsnFNI35kheWLYdYP+nMjB5iqIVOaFKmsMHx8hNnChKO7WP8QNP
- AJTA==
-X-Gm-Message-State: AOAM533JPLZx9qPv0/oRxJvsD2UzXE6as20vbIw7wVSmtN+YTNS1j2Eh
- fmXciDiKFR54aeArHKuf8TTXmXsSV9uv4k58rwc=
-X-Google-Smtp-Source: ABdhPJw7sXYwYxH67AcWbXVIvBHv+KFgeTbhoTTjkXIWbmlm7oYeZNt+RL0RvX2AVdA6FdT5OT4GeN+ZTcKrjMcrtFw=
-X-Received: by 2002:ac8:7f52:: with SMTP id g18mr7028905qtk.196.1634832797083; 
- Thu, 21 Oct 2021 09:13:17 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A8A3F6E46B;
+ Thu, 21 Oct 2021 16:29:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A1520A47E1;
+ Thu, 21 Oct 2021 16:29:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
- <20211021103605.735002-10-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211021103605.735002-10-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 21 Oct 2021 17:12:49 +0100
-Message-ID: <CAM0jSHO+A=Ocop-xirPeWxjaYvQ8w-K76jkCWvwOwXPgAkVuYA@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- ML dri-devel <dri-devel@lists.freedesktop.org>, 
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 10/28] drm/i915: Change shrink ordering to
- use locking around unbinding.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhawanpreet Lakha" <bhawanpreet.lakha@amd.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Oct 2021 16:29:54 -0000
+Message-ID: <163483379463.20177.13386232529667042363@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211020194715.1107972-1-Bhawanpreet.Lakha@amd.com>
+In-Reply-To: <20211020194715.1107972-1-Bhawanpreet.Lakha@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/4=5D_drm=3A_Remove_slot_checks_in_dp_m?=
+ =?utf-8?q?st_topology_during_commit_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,91 +42,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Oct 2021 at 11:37, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> Call drop_pages with the gem object lock held, instead of the other
-> way around. This will allow us to drop the vma bindings with the
-> gem object lock held.
->
-> We plan to require the object lock for unpinning in the future,
-> and this is an easy target.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 42 ++++++++++----------
->  1 file changed, 22 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-> index af3eb7fd951d..d3f29a66cb36 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-> @@ -36,8 +36,8 @@ static bool can_release_pages(struct drm_i915_gem_object *obj)
->         return swap_available() || obj->mm.madv == I915_MADV_DONTNEED;
->  }
->
-> -static bool unsafe_drop_pages(struct drm_i915_gem_object *obj,
-> -                             unsigned long shrink, bool trylock_vm)
-> +static int drop_pages(struct drm_i915_gem_object *obj,
-> +                      unsigned long shrink, bool trylock_vm)
->  {
->         unsigned long flags;
->
-> @@ -208,26 +208,28 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
->
->                         spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
->
-> -                       err = 0;
-> -                       if (unsafe_drop_pages(obj, shrink, trylock_vm)) {
-> -                               /* May arrive from get_pages on another bo */
-> -                               if (!ww) {
-> -                                       if (!i915_gem_object_trylock(obj))
-> -                                               goto skip;
-> -                               } else {
-> -                                       err = i915_gem_object_lock(obj, ww);
-> -                                       if (err)
-> -                                               goto skip;
-> -                               }
-> -
-> -                               if (!__i915_gem_object_put_pages(obj)) {
-> -                                       try_to_writeback(obj, shrink);
-> -                                       count += obj->base.size >> PAGE_SHIFT;
-> -                               }
-> -                               if (!ww)
-> -                                       i915_gem_object_unlock(obj);
-> +                       /* May arrive from get_pages on another bo */
-> +                       if (!ww) {
-> +                               if (!i915_gem_object_trylock(obj))
-> +                                       goto skip;
-> +                       } else {
-> +                               err = i915_gem_object_lock(obj, ww);
-> +                               if (err)
-> +                                       goto skip;
->                         }
->
-> +                       if (drop_pages(obj, shrink, trylock_vm) &&
-> +                           !__i915_gem_object_put_pages(obj)) {
-> +                               try_to_writeback(obj, shrink);
-> +                               count += obj->base.size >> PAGE_SHIFT;
-> +                       }
-> +
-> +                       if (dma_resv_test_signaled(obj->base.resv, true))
-> +                               dma_resv_add_excl_fence(obj->base.resv, NULL);
+== Series Details ==
 
-I assume we want to rip out resv_prune here in the series, or
-something? Instead of randomly adding this back here.
+Series: series starting with [1/4] drm: Remove slot checks in dp mst topology during commit (rev4)
+URL   : https://patchwork.freedesktop.org/series/96079/
+State : failure
 
-> +
-> +                       if (!ww)
-> +                               i915_gem_object_unlock(obj);
-> +
->                         scanned += obj->base.size >> PAGE_SHIFT;
->  skip:
->                         i915_gem_object_put(obj);
-> --
-> 2.33.0
->
+== Summary ==
+
+Applying: drm: Remove slot checks in dp mst topology during commit
+Applying: drm: Update MST First Link Slot Information Based on Encoding Format
+Applying: drm/amd/display: Add DP 2.0 MST DC Support
+error: sha1 information is lacking or useless (drivers/gpu/drm/amd/display/dc/core/dc.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0003 drm/amd/display: Add DP 2.0 MST DC Support
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+
