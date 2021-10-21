@@ -2,125 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 584C0435F5D
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5923435F75
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:42:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15A556EC31;
-	Thu, 21 Oct 2021 10:39:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D76456EC35;
+	Thu, 21 Oct 2021 10:42:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2075.outbound.protection.outlook.com [40.107.236.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B451F6EC31;
- Thu, 21 Oct 2021 10:39:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mm1GiL2wY1pG+tR+Ao0OvCc1eHClTn5aoRvUhGvBa7APqBUhYTii3q3ZsuzrlklgAy2cakRLRwtfkUrZG3meA924IBNovi8/364zWZTs2crCz5fYye6qapvZx/XQ5mCB3285wpE1Fpsm0B+10Ftt8YyJKRMn0X9woYh1IQqFOUFrU+j8T7/hOUNr1Gl+X0Pf1oRhCLZkKinaLjF00mcguae1ImEc3U557Jbe5LhZkRDGq+Mhm/6nRC0lYX9dZJKs7TJouMzsZ0aHD7FCNhhPW3XrwnLcoM2RXklyYuYUTdu4JXqdpmbc5hQQFN8pnr2AQhE8i1+nMcnw92fD97z5HA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bTy7q5XRkQI9vuNTtB6yLKrTnuBzXrsSt8t9DiQ9qPM=;
- b=Mb8nBd7Xwk6/Pd67RoO3PBJxZpsS7zw0r2rJjE5xkadWi5C63uxHFpbTT9J7+q9UbhqGsYaigUDYoB9dIKeQRnW5L45pE3E22gBGrntYvf02xu6KljBRZFrvC0H0SoAHKBDvFL2R95v4kYiHvfeOyswuHq9iFna1/cGuy5r6zZEdACdjXFI8pL2JYJiYgZ+4x8oA7rpsEw6lS/QAi0m322+uXo1/fEvqyMn/C048caNEwg5kasgF1Ht2fgqBIDG14sXMw1xl7X/BqTVZ7tvu+kQrIv1CsItmf63dGLrKWR3uJ8fo6v4WeULYwybHairhgrg4u0My5B91zJKijClz7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bTy7q5XRkQI9vuNTtB6yLKrTnuBzXrsSt8t9DiQ9qPM=;
- b=bxFMCztx+MArDClBaKeyXIYUtJvi8N54iNDA2TDV9AmSl0wxgonBeLZaJQP8ykuDaxsKJGf3tV9vYa9KGNm7awd3glaHzToFqeuwqoy7TS01urIB7zDBfHZdWTT3v295O4pbthTB5wxvE9VxYsTc3ehciW6FBEI7PGTFd+vsiPs=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14) by MW2PR12MB2428.namprd12.prod.outlook.com
- (2603:10b6:907:6::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Thu, 21 Oct
- 2021 10:39:06 +0000
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::55c7:6fc9:b2b1:1e6a]) by MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::55c7:6fc9:b2b1:1e6a%10]) with mapi id 15.20.4608.019; Thu, 21 Oct
- 2021 10:39:05 +0000
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
- <20211021103605.735002-2-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <022f8ecb-37c0-3d67-563f-012f0a3651df@amd.com>
-Date: Thu, 21 Oct 2021 12:38:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <20211021103605.735002-2-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: AM6PR0502CA0055.eurprd05.prod.outlook.com
- (2603:10a6:20b:56::32) To MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A86FA89F2D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 10:42:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="216165429"
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="216165429"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 03:42:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="632134063"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 21 Oct 2021 03:42:51 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 21 Oct 2021 13:42:50 +0300
+Date: Thu, 21 Oct 2021 13:42:50 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
+Message-ID: <YXFEKv0GVXQgsumS@intel.com>
+References: <20211020223339.669-1-ville.syrjala@linux.intel.com>
+ <20211020223339.669-4-ville.syrjala@linux.intel.com>
+ <87o87imzrz.fsf@intel.com>
 MIME-Version: 1.0
-Received: from [IPv6:2a02:908:1252:fb60:46a4:dec3:9292:691a]
- (2a02:908:1252:fb60:46a4:dec3:9292:691a) by
- AM6PR0502CA0055.eurprd05.prod.outlook.com (2603:10a6:20b:56::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16 via Frontend
- Transport; Thu, 21 Oct 2021 10:39:04 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d0dcb5cd-e32a-4ee1-d714-08d9947f0157
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2428:
-X-Microsoft-Antispam-PRVS: <MW2PR12MB24286A60CEA490D96C6F996583BF9@MW2PR12MB2428.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AblcQa6ABwxZIlKe+dsMmzkPL3cdNf8T3V29FGgLq5ozKMSJmkUXgstNcHXOVTwi0VajYHiO1qTEjT+HgmsXj98UUESSR+Y0+xJyaWTYHemrdSQ/OWEQ5y4+m71TglbVYJCXYJC2yvWkEqQ9Om6/umaTVci+BT8eOMGgcf4Zu9oAqefW/BshuQMSPkB8l4duwX93HflS6w0necs1jhxX2rz5QqQ/hnmFNp//e5jERtz+3AZEj84Li8dqQQ9J01m1eDXmqFEVv/O05bIyLoKwavN4uqz94OxBTvh9O0C+Bfi0fUK03QS4QpWvOJdTMUoKE5QlIxfy3p44WjUHl197tSC2QfUG2z1Dhb7BmprZ8umNSBNV3qTziOHnSWvfiZ5Se35Uc+0QBE7xH2QuyOYkHC9qzg2cBAZFAKUuqq2+kO3jRtJtxHhmCnr8YxT5Dn36g6SeXljjJYdTtX2vyuqyuvVjkUz9HfvbaN/xZxOivgj51AcF0nh6ig3/rvmVIirQp4zL1XOMa8S7u5AblGsxIgZnHAayIqaGV+PdyfmiFhClXJiNYvTsCNspuM6ddTtre4DI2RcFKWapbl+kNWGUp39JR5teqHuKMoITsVHC0eh1lDvFDwyAKJv+aa0XgG4KgkPVXH1eABLuOBkUB0+FKdv6Z6qPUpWyV0ZN+fIz++6nBLAGPJVreZOwZ6N4ShM2is1c3FhpoDrncY6hZ+MNHDOMEpWwHWstdqzp32O2Wpfpfs4uZJallssM7FIYADeN
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(31686004)(186003)(66946007)(66556008)(31696002)(38100700002)(8936002)(316002)(86362001)(2616005)(66476007)(508600001)(6666004)(5660300002)(4326008)(6486002)(2906002)(8676002)(66574015)(83380400001)(36756003)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aEtsK0RHU0pKL3FMOUFvdXFEdVlkMWJKZ1VqNEdIb3E4a1h3YUovM09sMzB4?=
- =?utf-8?B?b0wxVTVzdG56SHJzTmxhV3g0Q1dPR0VidVJiOFFadXVrWkRjakl1RnE2Z0Vj?=
- =?utf-8?B?VFFWd1ZlS0lybDMvQ0JSbHhnVzVxOXovd3d6SkhQaUQ4ZGk5aGx1V1hQQ0Zs?=
- =?utf-8?B?MVBWaUFmQ2wwMUlGL1NWTklRcjJaUnpNcDk5dXRvZ0loekhkcTJ2bFl6WTZw?=
- =?utf-8?B?UFpteEFoOE03RDU4ME1tbjJFay9ybzJRaFdrSUJSYVlBcThtcERxYUlraVZX?=
- =?utf-8?B?V2RIZ2lPK0djYWVQNEFjREZVL1MvUlFrclExa2xVOXdXOWRpYy9xTGIrTTFQ?=
- =?utf-8?B?bEdmaDl6cC9yUHFOVWxRbHVjSExuWDduRWRGWlIzS3p0Q2dTR0IxbVI4Nm01?=
- =?utf-8?B?b29mMUdTUnRZYlhqSTN5RHhvWGNaZEJMSGxha0tIZlVVUjJkaDlxV0FIR1VO?=
- =?utf-8?B?emJHNHhEZjJaUFcxZUxHN2tENmZvbHZpUTYwbUZMc2pyWm1nM3o1N05pOURS?=
- =?utf-8?B?bmdwUFJGU2pYNzRlOHh5VmU2TEtRQVJDcFV0SkxlaDd2MExEQWZ2VDdqNXJp?=
- =?utf-8?B?MEVBN29OTXpzZW5Yd2JZZmliWjBzUDdPbUtLL2JncU9ORi93eTJGUm9UZmpq?=
- =?utf-8?B?cWkydE8zeXA1RXJneDN3RDV0alZBNit6MlIyZERic3dpYklwTW1EV2orWCtm?=
- =?utf-8?B?bjAvVVFScWVBdVhQd3lrZFhrclFIbUlCaWduUHd3KzA3VWtlT1JXVmwwMkNU?=
- =?utf-8?B?NDZNNmtaQW85WktKTzlKVFJrOURyenVpNHJVR1puc1lWcE5ha3E0RXBEWUk3?=
- =?utf-8?B?b01xTnhSN282NmVPd01IVDhjeUhadk4ycDdUNE9pUEZaNFZodFBZN3JiNWd2?=
- =?utf-8?B?emNJL3BCUFB2TWNkWUJxTzlUUDErMlRFc1dzaWJzYUhGTlZiZWVOY3FNVDB2?=
- =?utf-8?B?TW5janhSODFqWnRQRCs3VUVzQ2psZ21Ra2JJdkNjY3JjRkdTK294REFvU25J?=
- =?utf-8?B?ZjUvbmxJTkhKeGRtcitkSDM4SFpRKy94UlFWSXh2WjBSNHJnd1ZlQm9hSUJ3?=
- =?utf-8?B?TFltelZMNFo0c3BNMFYvbWkxSWxWcDk4M2haUXdUeVhOcUxxMDA5S0ZiSFhG?=
- =?utf-8?B?aXU0NTIwUkhzUHFqUFFiUk5PNzNnS0NiR0FRT2picFM3Y2FsdDRyblVETHE3?=
- =?utf-8?B?MzZBcmwxdzg0bHpJaG1NQjN6ZVFiZWZwbnlnSXRtZUF5RnpndHFHaE8vWWVX?=
- =?utf-8?B?b2U5OTlzZDZQdkdweVN0UjdNc08ySUVraHY5UHREOE1iNTFrKzRuMUJuUWc1?=
- =?utf-8?B?OTQwWTZERGg0cEtaR3ZzdWs1eC9JblBJNGEreHRxVXN1NUJXVFd0NkhEczlM?=
- =?utf-8?B?RGFkd2xJYzdQS3BjMm10azF3K3R4Nmo0OXVzT2szR3dZeExyWGwveWk5T0Fo?=
- =?utf-8?B?WG9xeThMMXZNanJiQ0N4TFgrOVlqM1RKWEQyQWExdm1MOVZEdUgrTDdseUdj?=
- =?utf-8?B?MnY2Y0x2L0EySWlodjFKc2ZDUWptK002bmljYmdWWWJCNTYyenRmTVlhcTFi?=
- =?utf-8?B?MUlwQ1Q2anBtVDRQL0F5ekNOMmcvbVRJSVFEVENoTi9BRG54RzBLa3dKcVNx?=
- =?utf-8?B?Q0JhMHI3L0hidnJzaVZsaEd3UE9TRW5HcWxxSGtSUUFOOG1uT2gwMVVXK0Fa?=
- =?utf-8?B?azdhTkcySmoyWEFlTkJ1K1JXMW1CeUduMWQwa1JsWkxDRVhJYkpPTGhHVFAw?=
- =?utf-8?B?djZwZ1ppUTY2UWJOd1R2RGxhdzY5YjJ5Z2dLeXczSlZxZnZuenFidGRLZjVw?=
- =?utf-8?B?MSt2M29zaFRvd1JTY1dTZmNWYlp5Z01nUlJVVmNvWmNBamN5UTVpT2x2MkpG?=
- =?utf-8?Q?lEXo/d/uhIzWz?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0dcb5cd-e32a-4ee1-d714-08d9947f0157
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2021 10:39:05.7565 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ckoenig@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2428
-Subject: Re: [Intel-gfx] [PATCH 02/28] drm/i915: use new iterator in
- i915_gem_object_wait_reservation
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87o87imzrz.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Use vblank workers for gamma
+ updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,120 +54,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 21.10.21 um 12:35 schrieb Maarten Lankhorst:
-> From: Christian KÃ¶nig <christian.koenig@amd.com>
->
-> Simplifying the code a bit.
->
-> Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
-> [mlankhorst: Handle timeout = 0 correctly, use new i915_request_wait_timeout.]
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Thu, Oct 21, 2021 at 01:35:12PM +0300, Jani Nikula wrote:
+> On Thu, 21 Oct 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > The pipe gamma registers are single buffered so they should only
+> > be updated during the vblank to avoid screen tearing. In fact they
+> > really should only be updated between start of vblank and frame
+> > start because that is the only time the pipe is guaranteed to be
+> > empty. Already at frame start the pipe begins to fill up with
+> > data for the next frame.
+> >
+> > Unfortunately frame start happens ~1 scanline after the start
+> > of vblank which in practice doesn't always leave us enough time to
+> > finish the gamma update in time (gamma LUTs can be several KiB of
+> > data we have to bash into the registers). However we must try our
+> > best and so we'll add a vblank work for each pipe from where we
+> > can do the gamma update. Additionally we could consider pushing
+> > frame start forward to the max of ~4 scanlines after start of
+> > vblank. But not sure that's exactly a validated configuration.
+> > As it stands the ~100 first pixels tend to make it through with
+> > the old gamma values.
+> >
+> > Even though the vblank worker is running on a high prority thread
+> > we still have to contend with C-states. If the CPU happens be in
+> > a deep C-state when the vblank interrupt arrives even the irq
+> > handler gets delayed massively (I've observed dozens of scanlines
+> > worth of latency). To avoid that problem we'll use the qos mechanism
+> > to keep the CPU awake while the vblank work is scheduled.
+> >
+> > With all this hooked up we can finally enjoy near atomic gamma
+> > updates. It even works across several pipes from the same atomic
+> > commit which previously was a total fail because we did the
+> > gamma updates for each pipe serially after waiting for all
+> > pipes to have latched the double buffered registers.
+> >
+> > In the future the DSB should take over this responsibility
+> > which will hopefully avoid some of these issues.
+> >
+> > Kudos to Lyude for finishing the actual vblank workers.
+> > Works like the proverbial train toilet.
+> >
+> > v2: Add missing intel_atomic_state fwd declaration
+> > v3: Clean up properly when not scheduling the worker
+> > v4: Clean up the rest and add tracepoints
+> >
+> > CC: Lyude Paul <lyude@redhat.com>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_crtc.c     | 76 ++++++++++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_crtc.h     |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  9 +--
+> >  .../drm/i915/display/intel_display_types.h    |  8 ++
+> >  drivers/gpu/drm/i915/i915_trace.h             | 42 ++++++++++
+> >  5 files changed, 129 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > index 0f8b48b6911c..4758c61adae8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -3,12 +3,14 @@
+> >   * Copyright © 2020 Intel Corporation
+> >   */
+> >  #include <linux/kernel.h>
+> > +#include <linux/pm_qos.h>
+> >  #include <linux/slab.h>
+> >  
+> >  #include <drm/drm_atomic_helper.h>
+> >  #include <drm/drm_fourcc.h>
+> >  #include <drm/drm_plane.h>
+> >  #include <drm/drm_plane_helper.h>
+> > +#include <drm/drm_vblank_work.h>
+> >  
+> >  #include "i915_trace.h"
+> >  #include "i915_vgpu.h"
+> > @@ -167,6 +169,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
+> >  {
+> >  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
+> >  
+> > +	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
+> > +
+> >  	drm_crtc_cleanup(&crtc->base);
+> >  	kfree(crtc);
+> >  }
+> > @@ -344,6 +348,8 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  
+> >  	intel_crtc_crc_init(crtc);
+> >  
+> > +	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
+> > +
+> >  	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
+> >  
+> >  	return 0;
+> > @@ -354,6 +360,65 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  	return ret;
+> >  }
+> >  
+> > +static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	return crtc_state->hw.active &&
+> > +		!intel_crtc_needs_modeset(crtc_state) &&
+> > +		!crtc_state->preload_luts &&
+> > +		(crtc_state->uapi.color_mgmt_changed ||
+> > +		 crtc_state->update_pipe);
+> > +}
+> > +
+> > +static void intel_crtc_vblank_work(struct kthread_work *base)
+> > +{
+> > +	struct drm_vblank_work *work = to_drm_vblank_work(base);
+> > +	struct intel_crtc_state *crtc_state =
+> > +		container_of(work, typeof(*crtc_state), vblank_work);
+> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +
+> > +	trace_intel_crtc_vblank_work_start(crtc);
+> > +
+> > +	intel_color_load_luts(crtc_state);
+> > +
+> > +	if (crtc_state->uapi.event) {
+> > +		spin_lock_irq(&crtc->base.dev->event_lock);
+> > +		drm_crtc_send_vblank_event(&crtc->base, crtc_state->uapi.event);
+> > +		crtc_state->uapi.event = NULL;
+> > +		spin_unlock_irq(&crtc->base.dev->event_lock);
+> > +	}
+> > +
+> > +	trace_intel_crtc_vblank_work_end(crtc);
+> > +}
+> > +
+> > +static void intel_crtc_vblank_work_init(struct intel_crtc_state *crtc_state)
+> > +{
+> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +
+> > +	drm_vblank_work_init(&crtc_state->vblank_work, &crtc->base,
+> > +			     intel_crtc_vblank_work);
+> > +	/*
+> > +	 * Interrupt latency is critical for getting the vblank
+> > +	 * work executed as early as possible during the vblank.
+> > +	 */
+> > +	cpu_latency_qos_update_request(&crtc->vblank_pm_qos, 0);
+> > +}
+> > +
+> > +void intel_wait_for_vblank_works(struct intel_atomic_state *state)
+> > +{
+> > +	struct intel_crtc_state *crtc_state;
+> > +	struct intel_crtc *crtc;
+> > +	int i;
+> > +
+> > +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> > +		if (!intel_crtc_needs_vblank_work(crtc_state))
+> > +			continue;
+> > +
+> > +		drm_vblank_work_flush(&crtc_state->vblank_work);
+> > +		cpu_latency_qos_update_request(&crtc->vblank_pm_qos,
+> > +					       PM_QOS_DEFAULT_VALUE);
+> > +	}
+> > +}
+> > +
+> >  int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
+> >  			     int usecs)
+> >  {
+> > @@ -387,7 +452,7 @@ static int intel_mode_vblank_start(const struct drm_display_mode *mode)
+> >   * until a subsequent call to intel_pipe_update_end(). That is done to
+> >   * avoid random delays.
+> >   */
+> > -void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
+> > +void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
+> >  {
+> >  	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > @@ -402,6 +467,9 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
+> >  	if (new_crtc_state->uapi.async_flip)
+> >  		return;
+> >  
+> > +	if (intel_crtc_needs_vblank_work(new_crtc_state))
+> > +		intel_crtc_vblank_work_init(new_crtc_state);
+> > +
+> >  	if (new_crtc_state->vrr.enable)
+> >  		vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
+> >  	else
+> > @@ -557,7 +625,11 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
+> >  	 * Would be slightly nice to just grab the vblank count and arm the
+> >  	 * event outside of the critical section - the spinlock might spin for a
+> >  	 * while ... */
+> > -	if (new_crtc_state->uapi.event) {
+> > +	if (intel_crtc_needs_vblank_work(new_crtc_state)) {
+> > +		drm_vblank_work_schedule(&new_crtc_state->vblank_work,
+> > +					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+> > +					 false);
+> > +	} else if (new_crtc_state->uapi.event) {
+> >  		drm_WARN_ON(&dev_priv->drm,
+> >  			    drm_crtc_vblank_get(&crtc->base) != 0);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
+> > index 22363fbbc925..25eb58bce0dd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+> > @@ -11,6 +11,7 @@
+> >  enum pipe;
+> >  struct drm_display_mode;
+> >  struct drm_i915_private;
+> > +struct intel_atomic_state;
+> >  struct intel_crtc;
+> >  struct intel_crtc_state;
+> >  
+> > @@ -24,7 +25,8 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+> >  u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
+> >  void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
+> >  void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
+> > -void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state);
+> > +void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state);
+> >  void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
+> > +void intel_wait_for_vblank_works(struct intel_atomic_state *state);
+> >  
+> >  #endif
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 79a7552af7b5..1375d963c0a8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -8818,6 +8818,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> >  		intel_set_cdclk_post_plane_update(state);
+> >  	}
+> >  
+> > +	intel_wait_for_vblank_works(state);
+> 
+> Nitpick, I think the function name can be confusing due to the plural
+> vs. verb here. intel_wait_for_vblank_work_end(), _finish(), _done()?
 
-LGTM, do you want to push it or should I pick it up into drm-misc-next?
+I guess _end() would match what I called the tracepoint. Another
+idea could be s/works/workers/
 
-Christian.
-
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_wait.c | 65 ++++++++----------------
->   1 file changed, 20 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> index f909aaa09d9c..840c13706999 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> @@ -25,7 +25,7 @@ i915_gem_object_wait_fence(struct dma_fence *fence,
->   		return timeout;
->   
->   	if (dma_fence_is_i915(fence))
-> -		return i915_request_wait(to_request(fence), flags, timeout);
-> +		return i915_request_wait_timeout(to_request(fence), flags, timeout);
->   
->   	return dma_fence_wait_timeout(fence,
->   				      flags & I915_WAIT_INTERRUPTIBLE,
-> @@ -37,58 +37,29 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
->   				 unsigned int flags,
->   				 long timeout)
->   {
-> -	struct dma_fence *excl;
-> -	bool prune_fences = false;
-> -
-> -	if (flags & I915_WAIT_ALL) {
-> -		struct dma_fence **shared;
-> -		unsigned int count, i;
-> -		int ret;
-> -
-> -		ret = dma_resv_get_fences(resv, &excl, &count, &shared);
-> -		if (ret)
-> -			return ret;
-> -
-> -		for (i = 0; i < count; i++) {
-> -			timeout = i915_gem_object_wait_fence(shared[i],
-> -							     flags, timeout);
-> -			if (timeout < 0)
-> -				break;
-> -
-> -			dma_fence_put(shared[i]);
-> -		}
-> -
-> -		for (; i < count; i++)
-> -			dma_fence_put(shared[i]);
-> -		kfree(shared);
-> +	struct dma_resv_iter cursor;
-> +	struct dma_fence *fence;
-> +	long ret = timeout ?: 1;
-> +
-> +	dma_resv_iter_begin(&cursor, resv, flags & I915_WAIT_ALL);
-> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		ret = i915_gem_object_wait_fence(fence, flags, timeout);
-> +		if (ret <= 0)
-> +			break;
->   
-> -		/*
-> -		 * If both shared fences and an exclusive fence exist,
-> -		 * then by construction the shared fences must be later
-> -		 * than the exclusive fence. If we successfully wait for
-> -		 * all the shared fences, we know that the exclusive fence
-> -		 * must all be signaled. If all the shared fences are
-> -		 * signaled, we can prune the array and recover the
-> -		 * floating references on the fences/requests.
-> -		 */
-> -		prune_fences = count && timeout >= 0;
-> -	} else {
-> -		excl = dma_resv_get_excl_unlocked(resv);
-> +		if (timeout)
-> +			timeout = ret;
->   	}
-> -
-> -	if (excl && timeout >= 0)
-> -		timeout = i915_gem_object_wait_fence(excl, flags, timeout);
-> -
-> -	dma_fence_put(excl);
-> +	dma_resv_iter_end(&cursor);
->   
->   	/*
->   	 * Opportunistically prune the fences iff we know they have *all* been
->   	 * signaled.
->   	 */
-> -	if (prune_fences)
-> +	if (timeout > 0)
->   		dma_resv_prune(resv);
->   
-> -	return timeout;
-> +	return ret;
->   }
->   
->   static void fence_set_priority(struct dma_fence *fence,
-> @@ -196,7 +167,11 @@ i915_gem_object_wait(struct drm_i915_gem_object *obj,
->   
->   	timeout = i915_gem_object_wait_reservation(obj->base.resv,
->   						   flags, timeout);
-> -	return timeout < 0 ? timeout : 0;
-> +
-> +	if (timeout < 0)
-> +		return timeout;
-> +
-> +	return !timeout ? -ETIME : 0;
->   }
->   
->   static inline unsigned long nsecs_to_jiffies_timeout(const u64 n)
-
+-- 
+Ville Syrjälä
+Intel
