@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C8D436446
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 16:29:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB09436462
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 16:35:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F27C6EC8D;
-	Thu, 21 Oct 2021 14:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA1E26ECA0;
+	Thu, 21 Oct 2021 14:35:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D85A6EC8D;
- Thu, 21 Oct 2021 14:28:57 +0000 (UTC)
-Date: Thu, 21 Oct 2021 14:28:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail; t=1634826535;
- bh=XhCHjy4D/VoaIqOFwU/L+rZZ/vqAoKZ2ejoeJJT2rNA=;
- h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=u/6sFNgLLWqLY6g3u/dwNUO5iVIWPCFS9/3O5Yw8JSmbXqB8Jcuin/duG+eOt6zpR
- 2lvGCzAPY6eHuFRj+TVg6ijlD18fjfNKn6i9TrELbzL1Lda2/2ZRebBqm0dX/ISb9o
- EaaGXs3/1VZ6hrNn2XFwwmAIRlAGmfaD6OEwWaPDoJdJ11HX4TTR+WoHxK1CqPRBnO
- WvdeH1U4+ugW0Ht5Shch8+eF575+JTx9TtpFmM12zSc+qLPkcvbFjaqO/HKyy5aeka
- FqjRtNWepjSvqb6mEHoQDUlxZfRIKYan+/2daWcrJT6+uxD8bVhuX11aje8K5MPqoz
- 15QH3WwSJmAQg==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F347E6ECA0;
+ Thu, 21 Oct 2021 14:35:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="292513422"
+X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="292513422"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 07:35:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="495174359"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 21 Oct 2021 07:35:33 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 21 Oct 2021 17:35:32 +0300
+Date: Thu, 21 Oct 2021 17:35:32 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Ramalingam C <ramalingam.c@intel.com>
-From: Simon Ser <contact@emersion.fr>
 Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- CQ Tang <cq.tang@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Pekka Paalanen <ppaalanen@gmail.com>
-Message-ID: <0TCwIaJ_y0G_dlblGhM5TI_ssamrIgqkNkEReoQRgtJ74Lo3UFL3Q-1vicXKBwRwgtcEBjCaTIJDZAO53sJhFl8gqPHhwqYa3v4JoUWgZWw=@emersion.fr>
-In-Reply-To: <20211021142627.31058-15-ramalingam.c@intel.com>
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, CQ Tang <cq.tang@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Simon Ser <contact@emersion.fr>,
+ Pekka Paalanen <ppaalanen@gmail.com>
+Message-ID: <YXF6tItZLX4Cn6Aw@intel.com>
 References: <20211021142627.31058-1-ramalingam.c@intel.com>
  <20211021142627.31058-15-ramalingam.c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211021142627.31058-15-ramalingam.c@intel.com>
+X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [PATCH v2 14/17] uapi/drm/dg2: Format modifier for
  DG2 unified compression and clear color
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -57,10 +56,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the include/uapi/drm/drm_fourcc.h changes:
+On Thu, Oct 21, 2021 at 07:56:24PM +0530, Ramalingam C wrote:
+> From: Matt Roper <matthew.d.roper@intel.com>
+> 
+> DG2 unifies render compression and media compression into a single
+> format for the first time.  The programming and buffer layout is
+> supposed to match compression on older gen12 platforms, but the
+> actual compression algorithm is different from any previous platform; as
+> such, we need a new framebuffer modifier to represent buffers in this
+> format, but otherwise we can re-use the existing gen12 compression driver
+> logic.
+> 
+> DG2 clear color render compression uses Tile4 layout. Therefore, we need
+> to define a new format modifier for uAPI to support clear color rendering.
+> 
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com> (v2)
+> Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> cc: Simon Ser <contact@emersion.fr>
+> Cc: Pekka Paalanen <ppaalanen@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  |  3 ++
+>  .../drm/i915/display/intel_display_types.h    | 10 +++-
+>  drivers/gpu/drm/i915/display/intel_fb.c       |  7 +++
+>  .../drm/i915/display/skl_universal_plane.c    | 49 +++++++++++++++++--
+>  include/uapi/drm/drm_fourcc.h                 | 30 ++++++++++++
+>  5 files changed, 94 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 9b678839bf2b..2949fe9f5b9f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1013,6 +1013,9 @@ intel_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+>  					  cmd->pixel_format);
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+> +	case I915_FORMAT_MOD_F_TILED_DG2_RC_CCS:
+> +	case I915_FORMAT_MOD_F_TILED_DG2_MC_CCS:
+> +	case I915_FORMAT_MOD_F_TILED_DG2_RC_CCS_CC:
+>  		return lookup_format_info(gen12_ccs_formats,
+>  					  ARRAY_SIZE(gen12_ccs_formats),
+>  					  cmd->pixel_format);
 
-Acked-by: Simon Ser <contact@emersion.fr>
+That seems not right. Flat CCS is invisible to the user so the format
+info should not include a CCS plane.
+
+-- 
+Ville Syrjälä
+Intel
