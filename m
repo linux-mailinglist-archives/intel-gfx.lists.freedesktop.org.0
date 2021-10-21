@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFBD1435EF5
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 426EF435F00
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:27:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD616E427;
-	Thu, 21 Oct 2021 10:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97C896E3EC;
+	Thu, 21 Oct 2021 10:27:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB6E6E427
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 10:21:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="229267527"
-X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="229267527"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 03:21:48 -0700
-X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="495068561"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB6846E3EC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 10:27:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="215917140"
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="215917140"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 03:26:37 -0700
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="484144711"
 Received: from ssuryana-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.45.34])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 03:21:45 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 03:26:35 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Cc: jose.souza@intel.com, mika.kahola@intel.com, wan-gyeong.mun@intel.com
-In-Reply-To: <20211021101024.13112-2-jouni.hogander@intel.com>
+In-Reply-To: <20211020223339.669-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211021101024.13112-1-jouni.hogander@intel.com>
- <20211021101024.13112-2-jouni.hogander@intel.com>
-Date: Thu, 21 Oct 2021 13:21:42 +0300
-Message-ID: <87tuhan0eh.fsf@intel.com>
+References: <20211020223339.669-1-ville.syrjala@linux.intel.com>
+ <20211020223339.669-2-ville.syrjala@linux.intel.com>
+Date: Thu, 21 Oct 2021 13:26:32 +0300
+Message-ID: <87r1cen06f.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: Add initial selective
- fetch support for biplanar formats
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Move function prototypes to
+ the correct header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,89 +51,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Oct 2021, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Biplanar formats are using two planes (Y and UV). This patch adds handling
-> of Y selective fetch area by utilizing existing linked plane mechanism.
-> Also UV plane Y offset configuration is modified according to Bspec.
+On Thu, 21 Oct 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> A bunch of function prototypes were left behind when the
+> plane/crtc code got reshuffled to new files. Move the
+> prototypes as well.
 
-FYI, it's fine to add the bspec reference as a tag in the commit
-message, e.g.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Bspec: 12345
-
-See git log --grep=3D"^Bspec:" for examples.
-
-No need to resend for this.
-
-BR,
-Jani.
 
 >
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 30 +++++++++++++++++++++---
->  1 file changed, 27 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_crtc.h   | 5 +++++
+>  drivers/gpu/drm/i915/display/intel_psr.c    | 2 +-
+>  drivers/gpu/drm/i915/display/intel_sprite.h | 4 ----
+>  3 files changed, 6 insertions(+), 5 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/=
+i915/display/intel_crtc.h
+> index a5ae997581aa..22363fbbc925 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+> @@ -9,10 +9,13 @@
+>  #include <linux/types.h>
+>=20=20
+>  enum pipe;
+> +struct drm_display_mode;
+>  struct drm_i915_private;
+>  struct intel_crtc;
+>  struct intel_crtc_state;
+>=20=20
+> +int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mod=
+e,
+> +			     int usecs);
+>  u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_stat=
+e);
+>  int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe);
+>  struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc);
+> @@ -21,5 +24,7 @@ void intel_crtc_state_reset(struct intel_crtc_state *cr=
+tc_state,
+>  u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
+>  void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
+>  void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
+> +void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_sta=
+te);
+> +void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
+>=20=20
+>  #endif
 > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
 915/display/intel_psr.c
-> index 49c2dfbd4055..469bf95178f3 100644
+> index 49c2dfbd4055..ccffe05784d3 100644
 > --- a/drivers/gpu/drm/i915/display/intel_psr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1467,10 +1467,19 @@ void intel_psr2_program_plane_sel_fetch(struct in=
-tel_plane *plane,
->  	val |=3D plane_state->uapi.dst.x1;
->  	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_POS(pipe, plane->id), val);
+> @@ -28,13 +28,13 @@
 >=20=20
-> -	/* TODO: consider auxiliary surfaces */
-> -	x =3D plane_state->uapi.src.x1 >> 16;
-> -	y =3D (plane_state->uapi.src.y1 >> 16) + clip->y1;
-> +	x =3D plane_state->view.color_plane[color_plane].x;
-> +
-> +	/*
-> +	 * From Bspec: UV surface Start Y Position =3D half of Y plane Y
-> +	 * start position.
-> +	 */
-> +	if (!color_plane)
-> +		y =3D plane_state->view.color_plane[color_plane].y + clip->y1;
-> +	else
-> +		y =3D plane_state->view.color_plane[color_plane].y + clip->y1 / 2;
-> +
->  	val =3D y << 16 | x;
-> +
->  	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_OFFSET(pipe, plane->id),
->  			  val);
+>  #include "i915_drv.h"
+>  #include "intel_atomic.h"
+> +#include "intel_crtc.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dp_aux.h"
+>  #include "intel_hdmi.h"
+>  #include "intel_psr.h"
+>  #include "intel_snps_phy.h"
+> -#include "intel_sprite.h"
+>  #include "skl_universal_plane.h"
 >=20=20
-> @@ -1700,6 +1709,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic=
-_state *state,
->  	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
->  					     new_plane_state, i) {
->  		struct drm_rect *sel_fetch_area, inter;
-> +		struct intel_plane *linked =3D new_plane_state->planar_linked_plane;
+>  /**
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.h b/drivers/gpu/dr=
+m/i915/display/intel_sprite.h
+> index c085eb87705c..4f63e4967731 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.h
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.h
+> @@ -27,14 +27,10 @@ struct intel_plane_state;
+>  #define VBLANK_EVASION_TIME_US 100
+>  #endif
 >=20=20
->  		if (new_plane_state->uapi.crtc !=3D crtc_state->uapi.crtc ||
->  		    !new_plane_state->uapi.visible)
-> @@ -1718,6 +1728,20 @@ int intel_psr2_sel_fetch_update(struct intel_atomi=
-c_state *state,
->  		sel_fetch_area->y1 =3D inter.y1 - new_plane_state->uapi.dst.y1;
->  		sel_fetch_area->y2 =3D inter.y2 - new_plane_state->uapi.dst.y1;
->  		crtc_state->update_planes |=3D BIT(plane->id);
-> +
-> +		/*
-> +		 * Sel_fetch_area is calculated for UV plane. Use
-> +		 * same area for Y plane as well.
-> +		 */
-> +		if (linked) {
-> +			struct intel_plane_state *linked_new_plane_state =3D
-> +			  intel_atomic_get_new_plane_state(state, linked);
-> +			struct drm_rect *linked_sel_fetch_area =3D
-> +			  &linked_new_plane_state->psr2_sel_fetch_area;
-> +
-> +			linked_sel_fetch_area->y1 =3D sel_fetch_area->y1;
-> +			linked_sel_fetch_area->y2 =3D sel_fetch_area->y2;
-> +		}
->  	}
->=20=20
->  skip_sel_fetch_set_loop:
+> -int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mod=
+e,
+> -			     int usecs);
+>  struct intel_plane *intel_sprite_plane_create(struct drm_i915_private *d=
+ev_priv,
+>  					      enum pipe pipe, int plane);
+>  int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+>  				    struct drm_file *file_priv);
+> -void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_sta=
+te);
+> -void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
+>  int intel_plane_check_src_coordinates(struct intel_plane_state *plane_st=
+ate);
+>  int chv_plane_check_rotation(const struct intel_plane_state *plane_state=
+);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
