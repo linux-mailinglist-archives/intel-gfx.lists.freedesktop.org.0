@@ -1,34 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECEE4367DC
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 18:33:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB63436908
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 19:30:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64D1A6ECCA;
-	Thu, 21 Oct 2021 16:33:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB5116ECDE;
+	Thu, 21 Oct 2021 17:30:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D93346ECC8;
- Thu, 21 Oct 2021 16:33:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D12A7A7DFB;
- Thu, 21 Oct 2021 16:33:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0422263646296921157=="
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com
+ [IPv6:2607:f8b0:4864:20::834])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45BC06ECDD;
+ Thu, 21 Oct 2021 17:30:48 +0000 (UTC)
+Received: by mail-qt1-x834.google.com with SMTP id c28so1144454qtv.11;
+ Thu, 21 Oct 2021 10:30:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DxOCWWsD/0+gLjvRcfMIPOSA285zoKyVlm1i/S1e5z8=;
+ b=hPSh5AYH94U7K9V0p38h3YlI5hY6A49rMiVGCba1uErWb4eSLZb695ZK4Wla+hJWQl
+ ng++MY8mlvsa8q3slYlFZo9HTQHF6BnTHGUWut/KTZNGhV6gGAN61ONAYNpCIbbdcYHw
+ ZUycQmXYdqKjcBbjh84ploY2NnFs2OKq2S8hf2mvidNXTvohc2QeDgYMGmDNm3CdFQE+
+ UJDX1XGiGSfpN0LvX2MQLOpq3DihdYIjX+M1ZURT8z0CMNDEGRs6OMTRGaIZouwj/aHR
+ 4Uq5eStN1/TGwqTsfX7ol31Gmdf73tJNNC8sOx2+KfY8LEoT0koRldrfO26j3gWfhB9X
+ 0srQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DxOCWWsD/0+gLjvRcfMIPOSA285zoKyVlm1i/S1e5z8=;
+ b=zHuWYqZhGWWcfsRJL5h12q9j+/IC6CurBB+ZwgUAz3RwYYR5UicrDhSn5EpmG1tiec
+ /am8IzgBA9LAe8wCqNiNuXQQ5rQ+5eduIdxg4XMLAGdTUJ3YoqGrZ0uxEPbTIQTsEAUm
+ wJvvSCy7RRGV6fi1y1K8EYW1iYwTy4xTEU6fIWFrRLXxdUq2P7ttl+hsyHBD6wusm6VL
+ yU9ggcTneqCV6fkEpyGWU9Ke+QVKyElL2zPvOevZghRjar8m6Be8EDJRMMQLQQWSXbsU
+ oGuD4NsREoOtdPbdLLjKDS5r8GaydldgqKM6LDaL1iAxnjYvqLukXHTvrRFSOwS6p75X
+ Q4kg==
+X-Gm-Message-State: AOAM530POAzlCeh72KBs4mkPdE5C3s5yotRbn+qoCfg12G3FumwAb8XJ
+ JZyTuGKsiyFQERL88r7py+RVg2UiKBbnScfte+4=
+X-Google-Smtp-Source: ABdhPJyl+pJq16lxI1uvkxUc7OgHkpiGQzderU1I9ZsCbyh3egAXCoUvkeKQkufiPZlaBIudluR0Y2uIrfuthMu8AUk=
+X-Received: by 2002:ac8:5f91:: with SMTP id j17mr7673860qta.138.1634837446751; 
+ Thu, 21 Oct 2021 10:30:46 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Oct 2021 16:33:16 -0000
-Message-ID: <163483399683.20173.307809183992947223@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211021142627.31058-1-ramalingam.c@intel.com>
-In-Reply-To: <20211021142627.31058-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/dg2=3A_Enabling_64k_page_size_and_flat_ccs_=28rev2=29?=
+References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
+ <20211021103605.735002-13-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20211021103605.735002-13-maarten.lankhorst@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 21 Oct 2021 18:30:19 +0100
+Message-ID: <CAM0jSHOpC7OCQfXUse10h+MHQE06wHOgbkYaVov+g-z+s54j2w@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 13/28] drm/i915: Remove pages_mutex and
+ intel_gtt->vma_ops.set/clear_pages members
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,252 +65,903 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0422263646296921157==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 21 Oct 2021 at 11:36, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
+>
+> Big delta, but boils down to moving set_pages to i915_vma.c, and removing
+> the special handling, all callers use the defaults anyway. We only remap
+> in ggtt, so default case will fall through.
+>
+> Because we still don't require locking in i915_vma_unpin(), handle this by
+> using xchg in get_pages(), as it's locked with obj->mutex, and cmpxchg in
+> unpin, which only fails if we race a against a new pin.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dpt.c      |   2 -
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  15 -
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 345 ----------------
+>  drivers/gpu/drm/i915/gt/intel_gtt.c           |  13 -
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           |   7 -
+>  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  12 -
+>  drivers/gpu/drm/i915/i915_vma.c               | 388 ++++++++++++++++--
+>  drivers/gpu/drm/i915/i915_vma.h               |   3 +
+>  drivers/gpu/drm/i915/i915_vma_types.h         |   1 -
+>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  12 +-
+>  drivers/gpu/drm/i915/selftests/mock_gtt.c     |   4 -
+>  11 files changed, 368 insertions(+), 434 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+> index 8f7b1f7534a4..ef428f3fc538 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> @@ -221,8 +221,6 @@ intel_dpt_create(struct intel_framebuffer *fb)
+>
+>         vm->vma_ops.bind_vma    = dpt_bind_vma;
+>         vm->vma_ops.unbind_vma  = dpt_unbind_vma;
+> -       vm->vma_ops.set_pages   = ggtt_set_pages;
+> -       vm->vma_ops.clear_pages = clear_pages;
+>
+>         vm->pte_encode = gen8_ggtt_pte_encode;
+>
+> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> index 5caa1703716e..5c048b4ccd4d 100644
+> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> @@ -270,19 +270,6 @@ static void gen6_ppgtt_cleanup(struct i915_address_space *vm)
+>         free_pd(&ppgtt->base.vm, ppgtt->base.pd);
+>  }
+>
+> -static int pd_vma_set_pages(struct i915_vma *vma)
+> -{
+> -       vma->pages = ERR_PTR(-ENODEV);
+> -       return 0;
+> -}
+> -
+> -static void pd_vma_clear_pages(struct i915_vma *vma)
+> -{
+> -       GEM_BUG_ON(!vma->pages);
+> -
+> -       vma->pages = NULL;
+> -}
+> -
+>  static void pd_vma_bind(struct i915_address_space *vm,
+>                         struct i915_vm_pt_stash *stash,
+>                         struct i915_vma *vma,
+> @@ -322,8 +309,6 @@ static void pd_vma_unbind(struct i915_address_space *vm, struct i915_vma *vma)
+>  }
+>
+>  static const struct i915_vma_ops pd_vma_ops = {
+> -       .set_pages = pd_vma_set_pages,
+> -       .clear_pages = pd_vma_clear_pages,
+>         .bind_vma = pd_vma_bind,
+>         .unbind_vma = pd_vma_unbind,
+>  };
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index f17383e76eb7..6da57199bb33 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -20,9 +20,6 @@
+>  #include "intel_gtt.h"
+>  #include "gen8_ppgtt.h"
+>
+> -static int
+> -i915_get_ggtt_vma_pages(struct i915_vma *vma);
+> -
+>  static void i915_ggtt_color_adjust(const struct drm_mm_node *node,
+>                                    unsigned long color,
+>                                    u64 *start,
+> @@ -875,21 +872,6 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+>         return 0;
+>  }
+>
+> -int ggtt_set_pages(struct i915_vma *vma)
+> -{
+> -       int ret;
+> -
+> -       GEM_BUG_ON(vma->pages);
+> -
+> -       ret = i915_get_ggtt_vma_pages(vma);
+> -       if (ret)
+> -               return ret;
+> -
+> -       vma->page_sizes = vma->obj->mm.page_sizes;
+> -
+> -       return 0;
+> -}
+> -
+>  static void gen6_gmch_remove(struct i915_address_space *vm)
+>  {
+>         struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
+> @@ -950,8 +932,6 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+>
+>         ggtt->vm.vma_ops.bind_vma    = ggtt_bind_vma;
+>         ggtt->vm.vma_ops.unbind_vma  = ggtt_unbind_vma;
+> -       ggtt->vm.vma_ops.set_pages   = ggtt_set_pages;
+> -       ggtt->vm.vma_ops.clear_pages = clear_pages;
+>
+>         ggtt->vm.pte_encode = gen8_ggtt_pte_encode;
+>
+> @@ -1100,8 +1080,6 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
+>
+>         ggtt->vm.vma_ops.bind_vma    = ggtt_bind_vma;
+>         ggtt->vm.vma_ops.unbind_vma  = ggtt_unbind_vma;
+> -       ggtt->vm.vma_ops.set_pages   = ggtt_set_pages;
+> -       ggtt->vm.vma_ops.clear_pages = clear_pages;
+>
+>         return ggtt_probe_common(ggtt, size);
+>  }
+> @@ -1145,8 +1123,6 @@ static int i915_gmch_probe(struct i915_ggtt *ggtt)
+>
+>         ggtt->vm.vma_ops.bind_vma    = ggtt_bind_vma;
+>         ggtt->vm.vma_ops.unbind_vma  = ggtt_unbind_vma;
+> -       ggtt->vm.vma_ops.set_pages   = ggtt_set_pages;
+> -       ggtt->vm.vma_ops.clear_pages = clear_pages;
+>
+>         if (unlikely(ggtt->do_idle_maps))
+>                 drm_notice(&i915->drm,
+> @@ -1294,324 +1270,3 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>
+>         intel_ggtt_restore_fences(ggtt);
+>  }
+> -
+> -static struct scatterlist *
+> -rotate_pages(struct drm_i915_gem_object *obj, unsigned int offset,
+> -            unsigned int width, unsigned int height,
+> -            unsigned int src_stride, unsigned int dst_stride,
+> -            struct sg_table *st, struct scatterlist *sg)
+> -{
+> -       unsigned int column, row;
+> -       unsigned int src_idx;
+> -
+> -       for (column = 0; column < width; column++) {
+> -               unsigned int left;
+> -
+> -               src_idx = src_stride * (height - 1) + column + offset;
+> -               for (row = 0; row < height; row++) {
+> -                       st->nents++;
+> -                       /*
+> -                        * We don't need the pages, but need to initialize
+> -                        * the entries so the sg list can be happily traversed.
+> -                        * The only thing we need are DMA addresses.
+> -                        */
+> -                       sg_set_page(sg, NULL, I915_GTT_PAGE_SIZE, 0);
+> -                       sg_dma_address(sg) =
+> -                               i915_gem_object_get_dma_address(obj, src_idx);
+> -                       sg_dma_len(sg) = I915_GTT_PAGE_SIZE;
+> -                       sg = sg_next(sg);
+> -                       src_idx -= src_stride;
+> -               }
+> -
+> -               left = (dst_stride - height) * I915_GTT_PAGE_SIZE;
+> -
+> -               if (!left)
+> -                       continue;
+> -
+> -               st->nents++;
+> -
+> -               /*
+> -                * The DE ignores the PTEs for the padding tiles, the sg entry
+> -                * here is just a conenience to indicate how many padding PTEs
+> -                * to insert at this spot.
+> -                */
+> -               sg_set_page(sg, NULL, left, 0);
+> -               sg_dma_address(sg) = 0;
+> -               sg_dma_len(sg) = left;
+> -               sg = sg_next(sg);
+> -       }
+> -
+> -       return sg;
+> -}
+> -
+> -static noinline struct sg_table *
+> -intel_rotate_pages(struct intel_rotation_info *rot_info,
+> -                  struct drm_i915_gem_object *obj)
+> -{
+> -       unsigned int size = intel_rotation_info_size(rot_info);
+> -       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> -       struct sg_table *st;
+> -       struct scatterlist *sg;
+> -       int ret = -ENOMEM;
+> -       int i;
+> -
+> -       /* Allocate target SG list. */
+> -       st = kmalloc(sizeof(*st), GFP_KERNEL);
+> -       if (!st)
+> -               goto err_st_alloc;
+> -
+> -       ret = sg_alloc_table(st, size, GFP_KERNEL);
+> -       if (ret)
+> -               goto err_sg_alloc;
+> -
+> -       st->nents = 0;
+> -       sg = st->sgl;
+> -
+> -       for (i = 0 ; i < ARRAY_SIZE(rot_info->plane); i++)
+> -               sg = rotate_pages(obj, rot_info->plane[i].offset,
+> -                                 rot_info->plane[i].width, rot_info->plane[i].height,
+> -                                 rot_info->plane[i].src_stride,
+> -                                 rot_info->plane[i].dst_stride,
+> -                                 st, sg);
+> -
+> -       return st;
+> -
+> -err_sg_alloc:
+> -       kfree(st);
+> -err_st_alloc:
+> -
+> -       drm_dbg(&i915->drm, "Failed to create rotated mapping for object size %zu! (%ux%u tiles, %u pages)\n",
+> -               obj->base.size, rot_info->plane[0].width,
+> -               rot_info->plane[0].height, size);
+> -
+> -       return ERR_PTR(ret);
+> -}
+> -
+> -static struct scatterlist *
+> -remap_pages(struct drm_i915_gem_object *obj,
+> -           unsigned int offset, unsigned int alignment_pad,
+> -           unsigned int width, unsigned int height,
+> -           unsigned int src_stride, unsigned int dst_stride,
+> -           struct sg_table *st, struct scatterlist *sg)
+> -{
+> -       unsigned int row;
+> -
+> -       if (alignment_pad) {
+> -               st->nents++;
+> -
+> -               /*
+> -                * The DE ignores the PTEs for the padding tiles, the sg entry
+> -                * here is just a convenience to indicate how many padding PTEs
+> -                * to insert at this spot.
+> -                */
+> -               sg_set_page(sg, NULL, alignment_pad * 4096, 0);
+> -               sg_dma_address(sg) = 0;
+> -               sg_dma_len(sg) = alignment_pad * 4096;
+> -               sg = sg_next(sg);
+> -       }
+> -
+> -       for (row = 0; row < height; row++) {
+> -               unsigned int left = width * I915_GTT_PAGE_SIZE;
+> -
+> -               while (left) {
+> -                       dma_addr_t addr;
+> -                       unsigned int length;
+> -
+> -                       /*
+> -                        * We don't need the pages, but need to initialize
+> -                        * the entries so the sg list can be happily traversed.
+> -                        * The only thing we need are DMA addresses.
+> -                        */
+> -
+> -                       addr = i915_gem_object_get_dma_address_len(obj, offset, &length);
+> -
+> -                       length = min(left, length);
+> -
+> -                       st->nents++;
+> -
+> -                       sg_set_page(sg, NULL, length, 0);
+> -                       sg_dma_address(sg) = addr;
+> -                       sg_dma_len(sg) = length;
+> -                       sg = sg_next(sg);
+> -
+> -                       offset += length / I915_GTT_PAGE_SIZE;
+> -                       left -= length;
+> -               }
+> -
+> -               offset += src_stride - width;
+> -
+> -               left = (dst_stride - width) * I915_GTT_PAGE_SIZE;
+> -
+> -               if (!left)
+> -                       continue;
+> -
+> -               st->nents++;
+> -
+> -               /*
+> -                * The DE ignores the PTEs for the padding tiles, the sg entry
+> -                * here is just a conenience to indicate how many padding PTEs
+> -                * to insert at this spot.
+> -                */
+> -               sg_set_page(sg, NULL, left, 0);
+> -               sg_dma_address(sg) = 0;
+> -               sg_dma_len(sg) = left;
+> -               sg = sg_next(sg);
+> -       }
+> -
+> -       return sg;
+> -}
+> -
+> -static noinline struct sg_table *
+> -intel_remap_pages(struct intel_remapped_info *rem_info,
+> -                 struct drm_i915_gem_object *obj)
+> -{
+> -       unsigned int size = intel_remapped_info_size(rem_info);
+> -       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> -       struct sg_table *st;
+> -       struct scatterlist *sg;
+> -       unsigned int gtt_offset = 0;
+> -       int ret = -ENOMEM;
+> -       int i;
+> -
+> -       /* Allocate target SG list. */
+> -       st = kmalloc(sizeof(*st), GFP_KERNEL);
+> -       if (!st)
+> -               goto err_st_alloc;
+> -
+> -       ret = sg_alloc_table(st, size, GFP_KERNEL);
+> -       if (ret)
+> -               goto err_sg_alloc;
+> -
+> -       st->nents = 0;
+> -       sg = st->sgl;
+> -
+> -       for (i = 0 ; i < ARRAY_SIZE(rem_info->plane); i++) {
+> -               unsigned int alignment_pad = 0;
+> -
+> -               if (rem_info->plane_alignment)
+> -                       alignment_pad = ALIGN(gtt_offset, rem_info->plane_alignment) - gtt_offset;
+> -
+> -               sg = remap_pages(obj,
+> -                                rem_info->plane[i].offset, alignment_pad,
+> -                                rem_info->plane[i].width, rem_info->plane[i].height,
+> -                                rem_info->plane[i].src_stride, rem_info->plane[i].dst_stride,
+> -                                st, sg);
+> -
+> -               gtt_offset += alignment_pad +
+> -                             rem_info->plane[i].dst_stride * rem_info->plane[i].height;
+> -       }
+> -
+> -       i915_sg_trim(st);
+> -
+> -       return st;
+> -
+> -err_sg_alloc:
+> -       kfree(st);
+> -err_st_alloc:
+> -
+> -       drm_dbg(&i915->drm, "Failed to create remapped mapping for object size %zu! (%ux%u tiles, %u pages)\n",
+> -               obj->base.size, rem_info->plane[0].width,
+> -               rem_info->plane[0].height, size);
+> -
+> -       return ERR_PTR(ret);
+> -}
+> -
+> -static noinline struct sg_table *
+> -intel_partial_pages(const struct i915_ggtt_view *view,
+> -                   struct drm_i915_gem_object *obj)
+> -{
+> -       struct sg_table *st;
+> -       struct scatterlist *sg, *iter;
+> -       unsigned int count = view->partial.size;
+> -       unsigned int offset;
+> -       int ret = -ENOMEM;
+> -
+> -       st = kmalloc(sizeof(*st), GFP_KERNEL);
+> -       if (!st)
+> -               goto err_st_alloc;
+> -
+> -       ret = sg_alloc_table(st, count, GFP_KERNEL);
+> -       if (ret)
+> -               goto err_sg_alloc;
+> -
+> -       iter = i915_gem_object_get_sg_dma(obj, view->partial.offset, &offset);
+> -       GEM_BUG_ON(!iter);
+> -
+> -       sg = st->sgl;
+> -       st->nents = 0;
+> -       do {
+> -               unsigned int len;
+> -
+> -               len = min(sg_dma_len(iter) - (offset << PAGE_SHIFT),
+> -                         count << PAGE_SHIFT);
+> -               sg_set_page(sg, NULL, len, 0);
+> -               sg_dma_address(sg) =
+> -                       sg_dma_address(iter) + (offset << PAGE_SHIFT);
+> -               sg_dma_len(sg) = len;
+> -
+> -               st->nents++;
+> -               count -= len >> PAGE_SHIFT;
+> -               if (count == 0) {
+> -                       sg_mark_end(sg);
+> -                       i915_sg_trim(st); /* Drop any unused tail entries. */
+> -
+> -                       return st;
+> -               }
+> -
+> -               sg = __sg_next(sg);
+> -               iter = __sg_next(iter);
+> -               offset = 0;
+> -       } while (1);
+> -
+> -err_sg_alloc:
+> -       kfree(st);
+> -err_st_alloc:
+> -       return ERR_PTR(ret);
+> -}
+> -
+> -static int
+> -i915_get_ggtt_vma_pages(struct i915_vma *vma)
+> -{
+> -       int ret;
+> -
+> -       /*
+> -        * The vma->pages are only valid within the lifespan of the borrowed
+> -        * obj->mm.pages. When the obj->mm.pages sg_table is regenerated, so
+> -        * must be the vma->pages. A simple rule is that vma->pages must only
+> -        * be accessed when the obj->mm.pages are pinned.
+> -        */
+> -       GEM_BUG_ON(!i915_gem_object_has_pinned_pages(vma->obj));
+> -
+> -       switch (vma->ggtt_view.type) {
+> -       default:
+> -               GEM_BUG_ON(vma->ggtt_view.type);
+> -               fallthrough;
+> -       case I915_GGTT_VIEW_NORMAL:
+> -               vma->pages = vma->obj->mm.pages;
+> -               return 0;
+> -
+> -       case I915_GGTT_VIEW_ROTATED:
+> -               vma->pages =
+> -                       intel_rotate_pages(&vma->ggtt_view.rotated, vma->obj);
+> -               break;
+> -
+> -       case I915_GGTT_VIEW_REMAPPED:
+> -               vma->pages =
+> -                       intel_remap_pages(&vma->ggtt_view.remapped, vma->obj);
+> -               break;
+> -
+> -       case I915_GGTT_VIEW_PARTIAL:
+> -               vma->pages = intel_partial_pages(&vma->ggtt_view, vma->obj);
+> -               break;
+> -       }
+> -
+> -       ret = 0;
+> -       if (IS_ERR(vma->pages)) {
+> -               ret = PTR_ERR(vma->pages);
+> -               vma->pages = NULL;
+> -               drm_err(&vma->vm->i915->drm,
+> -                       "Failed to get pages for VMA view type %u (%d)!\n",
+> -                       vma->ggtt_view.type, ret);
+> -       }
+> -       return ret;
+> -}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> index 67d14afa6623..12eed5fcb17a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> @@ -221,19 +221,6 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+>         INIT_LIST_HEAD(&vm->bound_list);
+>  }
+>
+> -void clear_pages(struct i915_vma *vma)
+> -{
+> -       GEM_BUG_ON(!vma->pages);
+> -
+> -       if (vma->pages != vma->obj->mm.pages) {
+> -               sg_free_table(vma->pages);
+> -               kfree(vma->pages);
+> -       }
+> -       vma->pages = NULL;
+> -
+> -       memset(&vma->page_sizes, 0, sizeof(vma->page_sizes));
+> -}
+> -
+>  void *__px_vaddr(struct drm_i915_gem_object *p)
+>  {
+>         enum i915_map_type type;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> index bc6750263359..306e7645fdc5 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> @@ -206,9 +206,6 @@ struct i915_vma_ops {
+>          */
+>         void (*unbind_vma)(struct i915_address_space *vm,
+>                            struct i915_vma *vma);
+> -
+> -       int (*set_pages)(struct i915_vma *vma);
+> -       void (*clear_pages)(struct i915_vma *vma);
+>  };
+>
+>  struct i915_address_space {
+> @@ -594,10 +591,6 @@ release_pd_entry(struct i915_page_directory * const pd,
+>                  const struct drm_i915_gem_object * const scratch);
+>  void gen6_ggtt_invalidate(struct i915_ggtt *ggtt);
+>
+> -int ggtt_set_pages(struct i915_vma *vma);
+> -int ppgtt_set_pages(struct i915_vma *vma);
+> -void clear_pages(struct i915_vma *vma);
+> -
+>  void ppgtt_bind_vma(struct i915_address_space *vm,
+>                     struct i915_vm_pt_stash *stash,
+>                     struct i915_vma *vma,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+> index 4396bfd630d8..083b3090c69c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+> @@ -289,16 +289,6 @@ void i915_vm_free_pt_stash(struct i915_address_space *vm,
+>         }
+>  }
+>
+> -int ppgtt_set_pages(struct i915_vma *vma)
+> -{
+> -       GEM_BUG_ON(vma->pages);
+> -
+> -       vma->pages = vma->obj->mm.pages;
+> -       vma->page_sizes = vma->obj->mm.page_sizes;
+> -
+> -       return 0;
+> -}
+> -
+>  void ppgtt_init(struct i915_ppgtt *ppgtt, struct intel_gt *gt,
+>                 unsigned long lmem_pt_obj_flags)
+>  {
+> @@ -315,6 +305,4 @@ void ppgtt_init(struct i915_ppgtt *ppgtt, struct intel_gt *gt,
+>
+>         ppgtt->vm.vma_ops.bind_vma    = ppgtt_bind_vma;
+>         ppgtt->vm.vma_ops.unbind_vma  = ppgtt_unbind_vma;
+> -       ppgtt->vm.vma_ops.set_pages   = ppgtt_set_pages;
+> -       ppgtt->vm.vma_ops.clear_pages = clear_pages;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index ac09b685678a..bacc8d68e495 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -112,7 +112,6 @@ vma_create(struct drm_i915_gem_object *obj,
+>                 return ERR_PTR(-ENOMEM);
+>
+>         kref_init(&vma->ref);
+> -       mutex_init(&vma->pages_mutex);
+>         vma->vm = i915_vm_get(vm);
+>         vma->ops = &vm->vma_ops;
+>         vma->obj = obj;
+> @@ -789,10 +788,343 @@ static bool try_qad_pin(struct i915_vma *vma, unsigned int flags)
+>         return pinned;
+>  }
+>
+> -static int vma_get_pages(struct i915_vma *vma)
+> +
+> +
+> +static struct scatterlist *
+> +rotate_pages(struct drm_i915_gem_object *obj, unsigned int offset,
+> +            unsigned int width, unsigned int height,
+> +            unsigned int src_stride, unsigned int dst_stride,
+> +            struct sg_table *st, struct scatterlist *sg)
+>  {
+> -       int err = 0;
+> -       bool pinned_pages = true;
+> +       unsigned int column, row;
+> +       unsigned int src_idx;
+> +
+> +       for (column = 0; column < width; column++) {
+> +               unsigned int left;
+> +
+> +               src_idx = src_stride * (height - 1) + column + offset;
+> +               for (row = 0; row < height; row++) {
+> +                       st->nents++;
+> +                       /*
+> +                        * We don't need the pages, but need to initialize
+> +                        * the entries so the sg list can be happily traversed.
+> +                        * The only thing we need are DMA addresses.
+> +                        */
+> +                       sg_set_page(sg, NULL, I915_GTT_PAGE_SIZE, 0);
+> +                       sg_dma_address(sg) =
+> +                               i915_gem_object_get_dma_address(obj, src_idx);
+> +                       sg_dma_len(sg) = I915_GTT_PAGE_SIZE;
+> +                       sg = sg_next(sg);
+> +                       src_idx -= src_stride;
+> +               }
+> +
+> +               left = (dst_stride - height) * I915_GTT_PAGE_SIZE;
+> +
+> +               if (!left)
+> +                       continue;
+> +
+> +               st->nents++;
+> +
+> +               /*
+> +                * The DE ignores the PTEs for the padding tiles, the sg entry
+> +                * here is just a conenience to indicate how many padding PTEs
+> +                * to insert at this spot.
+> +                */
+> +               sg_set_page(sg, NULL, left, 0);
+> +               sg_dma_address(sg) = 0;
+> +               sg_dma_len(sg) = left;
+> +               sg = sg_next(sg);
+> +       }
+> +
+> +       return sg;
+> +}
+> +
+> +static noinline struct sg_table *
+> +intel_rotate_pages(struct intel_rotation_info *rot_info,
+> +                  struct drm_i915_gem_object *obj)
+> +{
+> +       unsigned int size = intel_rotation_info_size(rot_info);
+> +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> +       struct sg_table *st;
+> +       struct scatterlist *sg;
+> +       int ret = -ENOMEM;
+> +       int i;
+> +
+> +       /* Allocate target SG list. */
+> +       st = kmalloc(sizeof(*st), GFP_KERNEL);
+> +       if (!st)
+> +               goto err_st_alloc;
+> +
+> +       ret = sg_alloc_table(st, size, GFP_KERNEL);
+> +       if (ret)
+> +               goto err_sg_alloc;
+> +
+> +       st->nents = 0;
+> +       sg = st->sgl;
+> +
+> +       for (i = 0 ; i < ARRAY_SIZE(rot_info->plane); i++)
+> +               sg = rotate_pages(obj, rot_info->plane[i].offset,
+> +                                 rot_info->plane[i].width, rot_info->plane[i].height,
+> +                                 rot_info->plane[i].src_stride,
+> +                                 rot_info->plane[i].dst_stride,
+> +                                 st, sg);
+> +
+> +       return st;
+> +
+> +err_sg_alloc:
+> +       kfree(st);
+> +err_st_alloc:
+> +
+> +       drm_dbg(&i915->drm, "Failed to create rotated mapping for object size %zu! (%ux%u tiles, %u pages)\n",
+> +               obj->base.size, rot_info->plane[0].width,
+> +               rot_info->plane[0].height, size);
+> +
+> +       return ERR_PTR(ret);
+> +}
+> +
+> +static struct scatterlist *
+> +remap_pages(struct drm_i915_gem_object *obj,
+> +           unsigned int offset, unsigned int alignment_pad,
+> +           unsigned int width, unsigned int height,
+> +           unsigned int src_stride, unsigned int dst_stride,
+> +           struct sg_table *st, struct scatterlist *sg)
+> +{
+> +       unsigned int row;
+> +
+> +       if (alignment_pad) {
+> +               st->nents++;
+> +
+> +               /*
+> +                * The DE ignores the PTEs for the padding tiles, the sg entry
+> +                * here is just a convenience to indicate how many padding PTEs
+> +                * to insert at this spot.
+> +                */
+> +               sg_set_page(sg, NULL, alignment_pad * 4096, 0);
+> +               sg_dma_address(sg) = 0;
+> +               sg_dma_len(sg) = alignment_pad * 4096;
+> +               sg = sg_next(sg);
+> +       }
+> +
+> +       for (row = 0; row < height; row++) {
+> +               unsigned int left = width * I915_GTT_PAGE_SIZE;
+> +
+> +               while (left) {
+> +                       dma_addr_t addr;
+> +                       unsigned int length;
+> +
+> +                       /*
+> +                        * We don't need the pages, but need to initialize
+> +                        * the entries so the sg list can be happily traversed.
+> +                        * The only thing we need are DMA addresses.
+> +                        */
+> +
+> +                       addr = i915_gem_object_get_dma_address_len(obj, offset, &length);
+> +
+> +                       length = min(left, length);
+> +
+> +                       st->nents++;
+> +
+> +                       sg_set_page(sg, NULL, length, 0);
+> +                       sg_dma_address(sg) = addr;
+> +                       sg_dma_len(sg) = length;
+> +                       sg = sg_next(sg);
+> +
+> +                       offset += length / I915_GTT_PAGE_SIZE;
+> +                       left -= length;
+> +               }
+> +
+> +               offset += src_stride - width;
+> +
+> +               left = (dst_stride - width) * I915_GTT_PAGE_SIZE;
+> +
+> +               if (!left)
+> +                       continue;
+> +
+> +               st->nents++;
+> +
+> +               /*
+> +                * The DE ignores the PTEs for the padding tiles, the sg entry
+> +                * here is just a conenience to indicate how many padding PTEs
+> +                * to insert at this spot.
+> +                */
+> +               sg_set_page(sg, NULL, left, 0);
+> +               sg_dma_address(sg) = 0;
+> +               sg_dma_len(sg) = left;
+> +               sg = sg_next(sg);
+> +       }
+> +
+> +       return sg;
+> +}
+> +
+> +static noinline struct sg_table *
+> +intel_remap_pages(struct intel_remapped_info *rem_info,
+> +                 struct drm_i915_gem_object *obj)
+> +{
+> +       unsigned int size = intel_remapped_info_size(rem_info);
+> +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> +       struct sg_table *st;
+> +       struct scatterlist *sg;
+> +       unsigned int gtt_offset = 0;
+> +       int ret = -ENOMEM;
+> +       int i;
+> +
+> +       /* Allocate target SG list. */
+> +       st = kmalloc(sizeof(*st), GFP_KERNEL);
+> +       if (!st)
+> +               goto err_st_alloc;
+> +
+> +       ret = sg_alloc_table(st, size, GFP_KERNEL);
+> +       if (ret)
+> +               goto err_sg_alloc;
+> +
+> +       st->nents = 0;
+> +       sg = st->sgl;
+> +
+> +       for (i = 0 ; i < ARRAY_SIZE(rem_info->plane); i++) {
+> +               unsigned int alignment_pad = 0;
+> +
+> +               if (rem_info->plane_alignment)
+> +                       alignment_pad = ALIGN(gtt_offset, rem_info->plane_alignment) - gtt_offset;
+> +
+> +               sg = remap_pages(obj,
+> +                                rem_info->plane[i].offset, alignment_pad,
+> +                                rem_info->plane[i].width, rem_info->plane[i].height,
+> +                                rem_info->plane[i].src_stride, rem_info->plane[i].dst_stride,
+> +                                st, sg);
+> +
+> +               gtt_offset += alignment_pad +
+> +                             rem_info->plane[i].dst_stride * rem_info->plane[i].height;
+> +       }
+> +
+> +       i915_sg_trim(st);
+> +
+> +       return st;
+> +
+> +err_sg_alloc:
+> +       kfree(st);
+> +err_st_alloc:
+> +
+> +       drm_dbg(&i915->drm, "Failed to create remapped mapping for object size %zu! (%ux%u tiles, %u pages)\n",
+> +               obj->base.size, rem_info->plane[0].width,
+> +               rem_info->plane[0].height, size);
+> +
+> +       return ERR_PTR(ret);
+> +}
+> +
+> +static noinline struct sg_table *
+> +intel_partial_pages(const struct i915_ggtt_view *view,
+> +                   struct drm_i915_gem_object *obj)
+> +{
+> +       struct sg_table *st;
+> +       struct scatterlist *sg, *iter;
+> +       unsigned int count = view->partial.size;
+> +       unsigned int offset;
+> +       int ret = -ENOMEM;
+> +
+> +       st = kmalloc(sizeof(*st), GFP_KERNEL);
+> +       if (!st)
+> +               goto err_st_alloc;
+> +
+> +       ret = sg_alloc_table(st, count, GFP_KERNEL);
+> +       if (ret)
+> +               goto err_sg_alloc;
+> +
+> +       iter = i915_gem_object_get_sg_dma(obj, view->partial.offset, &offset);
+> +       GEM_BUG_ON(!iter);
+> +
+> +       sg = st->sgl;
+> +       st->nents = 0;
+> +       do {
+> +               unsigned int len;
+> +
+> +               len = min(sg_dma_len(iter) - (offset << PAGE_SHIFT),
+> +                         count << PAGE_SHIFT);
+> +               sg_set_page(sg, NULL, len, 0);
+> +               sg_dma_address(sg) =
+> +                       sg_dma_address(iter) + (offset << PAGE_SHIFT);
+> +               sg_dma_len(sg) = len;
+> +
+> +               st->nents++;
+> +               count -= len >> PAGE_SHIFT;
+> +               if (count == 0) {
+> +                       sg_mark_end(sg);
+> +                       i915_sg_trim(st); /* Drop any unused tail entries. */
+> +
+> +                       return st;
+> +               }
+> +
+> +               sg = __sg_next(sg);
+> +               iter = __sg_next(iter);
+> +               offset = 0;
+> +       } while (1);
+> +
+> +err_sg_alloc:
+> +       kfree(st);
+> +err_st_alloc:
+> +       return ERR_PTR(ret);
+> +}
+> +
+> +static int
+> +__i915_vma_get_pages(struct i915_vma *vma)
+> +{
+> +       struct sg_table *pages;
+> +       int ret;
+> +
+> +       /*
+> +        * The vma->pages are only valid within the lifespan of the borrowed
+> +        * obj->mm.pages. When the obj->mm.pages sg_table is regenerated, so
+> +        * must be the vma->pages. A simple rule is that vma->pages must only
+> +        * be accessed when the obj->mm.pages are pinned.
+> +        */
+> +       GEM_BUG_ON(!i915_gem_object_has_pinned_pages(vma->obj));
+> +
+> +       switch (vma->ggtt_view.type) {
+> +       default:
+> +               GEM_BUG_ON(vma->ggtt_view.type);
+> +               fallthrough;
+> +       case I915_GGTT_VIEW_NORMAL:
+> +               pages = vma->obj->mm.pages;
+> +               break;
+> +
+> +       case I915_GGTT_VIEW_ROTATED:
+> +               pages =
+> +                       intel_rotate_pages(&vma->ggtt_view.rotated, vma->obj);
+> +               break;
+> +
+> +       case I915_GGTT_VIEW_REMAPPED:
+> +               pages =
+> +                       intel_remap_pages(&vma->ggtt_view.remapped, vma->obj);
+> +               break;
+> +
+> +       case I915_GGTT_VIEW_PARTIAL:
+> +               pages = intel_partial_pages(&vma->ggtt_view, vma->obj);
+> +               break;
+> +       }
+> +
+> +       ret = 0;
+> +       /* gen6 ppgtt doesn't have backing pages, special-case it */
+> +       if (IS_ERR(pages) && pages != ERR_PTR(-ENODEV)) {
 
-== Series Details ==
+Where does this -ENODEV come from? AFAIK for the gen6 thing mm.pages =
+ZERO_SIZE_PTR. Also, just checking, I assume we always hit the
+VIEW_NORMAL for that?
 
-Series: drm/i915/dg2: Enabling 64k page size and flat ccs (rev2)
-URL   : https://patchwork.freedesktop.org/series/95686/
-State : failure
+> +               ret = PTR_ERR(pages);
+> +               pages = NULL;
+> +               drm_err(&vma->vm->i915->drm,
+> +                       "Failed to get pages for VMA view type %u (%d)!\n",
+> +                       vma->ggtt_view.type, ret);
 
-== Summary ==
+Can we just return here?
 
-CI Bug Log - changes from CI_DRM_10770 -> Patchwork_21407
-====================================================
+> +       }
+> +
+> +       pages = xchg(&vma->pages, pages);
+> +
+> +       /* did we race against a put_pages? */
+> +       if (pages && pages != vma->obj->mm.pages) {
+> +               sg_free_table(vma->pages);
+> +               kfree(vma->pages);
+> +       }
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_21407 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21407, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21407:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gem:
-    - fi-pnv-d510:        [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10770/fi-pnv-d510/igt@i915_selftest@live@gem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-pnv-d510/igt@i915_selftest@live@gem.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21407 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_prime@i915-to-amd:
-    - fi-snb-2520m:       NOTRUN -> [SKIP][3] ([fdo#109271]) +37 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-snb-2520m:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-snb-2520m/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#2403] / [i915#4312])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-pnv-d510/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][6] ([i915#3303]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10770/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-
-
-Participating hosts (38 -> 8)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_21407 prevented too many machines from booting.
-
-  Additional (1): fi-snb-2520m 
-  Missing    (31): fi-kbl-soraka fi-rkl-11600 fi-rkl-guc fi-icl-u2 fi-apl-guc fi-icl-y fi-skl-6600u fi-cml-u2 fi-bxt-dsi fi-bdw-5557u fi-bsw-n3050 fi-glk-dsi fi-ilk-650 fi-kbl-7500u fi-ctg-p8600 fi-bsw-nick fi-skl-6700k2 fi-kbl-7567u fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-ehl-2 fi-jsl-1 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-cfl-guc fi-kbl-guc fi-cfl-8109u fi-kbl-8809g fi-bsw-kefka 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10770 -> Patchwork_21407
-
-  CI-20190529: 20190529
-  CI_DRM_10770: 214e8b46143416c4a130cbaeea8430ad9fa19f63 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21407: dd2578c083baf57fb6fbd219b904c1b2d8c992aa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dd2578c083ba Doc/gpu/rfc/i915: i915 DG2 uAPI
-05178dab38b0 drm/i915/Flat-CCS: Document on Flat-CCS memory compression
-86bc18650b6c drm/i915/uapi: document behaviour for DG2 64K support
-a25cd0cf423a uapi/drm/dg2: Format modifier for DG2 unified compression and clear color
-6d6995163aa1 drm/i915/dg2: Tile 4 plane format support
-39e9fd04a236 drm/i915/gt: Clear compress metadata for Xe_HP platforms
-2287c2405ffa drm/i915/lmem: Enable lmem for platforms with Flat CCS
-dc2516e13157 drm/i915/xehpsdv: Add has_flat_ccs to device info
-08702a20cfb0 drm/i915/xehpsdv: implement memory coloring
-fd0534c7e65a drm/i915/selftests: account for min_alignment in GTT selftests
-2ed3c1383b59 drm/i915: Add vm min alignment support
-3ca8d7a82f95 drm/i915/xehpsdv: support 64K GTT pages
-b515c67a4176 drm/i915/gtt/xehpsdv: move scratch page to system memory
-9a84cb61c10d drm/i915: enforce min page size for scratch
-03200bc06b46 drm/i915/xehpsdv: enforce min GTT alignment
-45ceb0b40034 drm/i915/xehpsdv: set min page-size to 64K
-a3c94fe1d5cd drm/i915: Add has_64k_pages flag
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/index.html
-
---===============0422263646296921157==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: Enabling 64k page size and flat ccs (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95686/">https://patchwork.freedesktop.org/series/95686/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10770 -&gt; Patchwork_21407</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21407 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21407, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21407:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gem:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10770/fi-pnv-d510/igt@i915_selftest@live@gem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21407 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_prime@i915-to-amd:</p>
-<ul>
-<li>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +37 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-snb-2520m/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10770/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21407/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 8)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_21407 prevented too many machines from booting.</p>
-<p>Additional (1): fi-snb-2520m <br />
-  Missing    (31): fi-kbl-soraka fi-rkl-11600 fi-rkl-guc fi-icl-u2 fi-apl-guc fi-icl-y fi-skl-6600u fi-cml-u2 fi-bxt-dsi fi-bdw-5557u fi-bsw-n3050 fi-glk-dsi fi-ilk-650 fi-kbl-7500u fi-ctg-p8600 fi-bsw-nick fi-skl-6700k2 fi-kbl-7567u fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-ehl-2 fi-jsl-1 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-cfl-guc fi-kbl-guc fi-cfl-8109u fi-kbl-8809g fi-bsw-kefka </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10770 -&gt; Patchwork_21407</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10770: 214e8b46143416c4a130cbaeea8430ad9fa19f63 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21407: dd2578c083baf57fb6fbd219b904c1b2d8c992aa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>dd2578c083ba Doc/gpu/rfc/i915: i915 DG2 uAPI<br />
-05178dab38b0 drm/i915/Flat-CCS: Document on Flat-CCS memory compression<br />
-86bc18650b6c drm/i915/uapi: document behaviour for DG2 64K support<br />
-a25cd0cf423a uapi/drm/dg2: Format modifier for DG2 unified compression and clear color<br />
-6d6995163aa1 drm/i915/dg2: Tile 4 plane format support<br />
-39e9fd04a236 drm/i915/gt: Clear compress metadata for Xe_HP platforms<br />
-2287c2405ffa drm/i915/lmem: Enable lmem for platforms with Flat CCS<br />
-dc2516e13157 drm/i915/xehpsdv: Add has_flat_ccs to device info<br />
-08702a20cfb0 drm/i915/xehpsdv: implement memory coloring<br />
-fd0534c7e65a drm/i915/selftests: account for min_alignment in GTT selftests<br />
-2ed3c1383b59 drm/i915: Add vm min alignment support<br />
-3ca8d7a82f95 drm/i915/xehpsdv: support 64K GTT pages<br />
-b515c67a4176 drm/i915/gtt/xehpsdv: move scratch page to system memory<br />
-9a84cb61c10d drm/i915: enforce min page size for scratch<br />
-03200bc06b46 drm/i915/xehpsdv: enforce min GTT alignment<br />
-45ceb0b40034 drm/i915/xehpsdv: set min page-size to 64K<br />
-a3c94fe1d5cd drm/i915: Add has_64k_pages flag</p>
-
-</body>
-</html>
-
---===============0422263646296921157==--
+What is this race exactly, can we add some more details here please?
+So we can more easily evaluate the lockless trickery here.
