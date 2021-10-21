@@ -1,42 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E926C436E25
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 01:16:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74EA436E51
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 01:27:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E4566E4F1;
-	Thu, 21 Oct 2021 23:16:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02FFA6E500;
+	Thu, 21 Oct 2021 23:27:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0112B6E4F1
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 23:16:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="229448938"
-X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="229448938"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 16:15:04 -0700
-X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="495398848"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 16:15:03 -0700
-Date: Thu, 21 Oct 2021 16:27:34 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20211021232734.GA30741@labuser-Z97X-UD5H>
-References: <20210913144440.23008-1-ville.syrjala@linux.intel.com>
- <20210913144440.23008-12-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 137296E4FB;
+ Thu, 21 Oct 2021 23:27:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2012A7525;
+ Thu, 21 Oct 2021 23:27:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7970547618844768030=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210913144440.23008-12-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 11/16] drm/i915: Introduce
- intel_master_crtc()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Oct 2021 23:27:45 -0000
+Message-ID: <163485886588.20179.9989872233353547305@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211021181847.1543341-1-lucas.demarchi@intel.com>
+In-Reply-To: <20211021181847.1543341-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_remove_CNL_leftover?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,198 +41,278 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 13, 2021 at 05:44:35PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Add a helper to determine the master crtc for bigjoiner usage.
-> Also name the variables consistently.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============7970547618844768030==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Agree with Jani that at some point we should start calling this Primary/secondary after Bspec names change probably
-But for now this logic looks good
+== Series Details ==
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Series: drm/i915: remove CNL leftover
+URL   : https://patchwork.freedesktop.org/series/96147/
+State : success
 
-Manasi
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c     |  6 +--
->  drivers/gpu/drm/i915/display/intel_display.c | 57 +++++++++++---------
->  2 files changed, 33 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 4f7420dda8b5..4fbffce501dc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2882,12 +2882,10 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
->  	}
->  
->  	if (old_crtc_state->bigjoiner_linked_crtc) {
-> -		struct intel_atomic_state *state =
-> -			to_intel_atomic_state(old_crtc_state->uapi.state);
-> -		struct intel_crtc *slave =
-> +		struct intel_crtc *slave_crtc =
->  			old_crtc_state->bigjoiner_linked_crtc;
->  		const struct intel_crtc_state *old_slave_crtc_state =
-> -			intel_atomic_get_old_crtc_state(state, slave);
-> +			intel_atomic_get_old_crtc_state(state, slave_crtc);
->  
->  		intel_crtc_vblank_off(old_slave_crtc_state);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 24214e6249a9..a5450ac9e2d0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -227,6 +227,14 @@ is_trans_port_sync_mode(const struct intel_crtc_state *crtc_state)
->  		is_trans_port_sync_slave(crtc_state);
->  }
->  
-> +static struct intel_crtc *intel_master_crtc(const struct intel_crtc_state *crtc_state)
-> +{
-> +	if (crtc_state->bigjoiner_slave)
-> +		return crtc_state->bigjoiner_linked_crtc;
-> +	else
-> +		return to_intel_crtc(crtc_state->uapi.crtc);
-> +}
-> +
->  static bool pipe_scanline_is_moving(struct drm_i915_private *dev_priv,
->  				    enum pipe pipe)
->  {
-> @@ -2978,21 +2986,19 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
->  static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
->  					 const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_crtc *master = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *dev_priv = to_i915(master->base.dev);
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->  	struct intel_crtc_state *master_crtc_state;
-> +	struct intel_crtc *master_crtc;
->  	struct drm_connector_state *conn_state;
->  	struct drm_connector *conn;
->  	struct intel_encoder *encoder = NULL;
->  	int i;
->  
-> -	if (crtc_state->bigjoiner_slave)
-> -		master = crtc_state->bigjoiner_linked_crtc;
-> -
-> -	master_crtc_state = intel_atomic_get_new_crtc_state(state, master);
-> +	master_crtc = intel_master_crtc(crtc_state);
-> +	master_crtc_state = intel_atomic_get_new_crtc_state(state, master_crtc);
->  
->  	for_each_new_connector_in_state(&state->base, conn, conn_state, i) {
-> -		if (conn_state->crtc != &master->base)
-> +		if (conn_state->crtc != &master_crtc->base)
->  			continue;
->  
->  		encoder = to_intel_encoder(conn_state->best_encoder);
-> @@ -3006,10 +3012,10 @@ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
->  		/*
->  		 * Enable sequence steps 1-7 on bigjoiner master
->  		 */
-> -		intel_encoders_pre_pll_enable(state, master);
-> +		intel_encoders_pre_pll_enable(state, master_crtc);
->  		if (master_crtc_state->shared_dpll)
->  			intel_enable_shared_dpll(master_crtc_state);
-> -		intel_encoders_pre_enable(state, master);
-> +		intel_encoders_pre_enable(state, master_crtc);
->  
->  		/* and DSC on slave */
->  		intel_dsc_enable(NULL, crtc_state);
-> @@ -8462,7 +8468,7 @@ verify_crtc_state(struct intel_crtc *crtc,
->  	struct intel_encoder *encoder;
->  	struct intel_crtc_state *pipe_config = old_crtc_state;
->  	struct drm_atomic_state *state = old_crtc_state->uapi.state;
-> -	struct intel_crtc *master = crtc;
-> +	struct intel_crtc *master_crtc;
->  
->  	__drm_atomic_helper_crtc_destroy_state(&old_crtc_state->uapi);
->  	intel_crtc_free_hw_state(old_crtc_state);
-> @@ -8490,10 +8496,9 @@ verify_crtc_state(struct intel_crtc *crtc,
->  			"(expected %i, found %i)\n",
->  			new_crtc_state->hw.active, crtc->active);
->  
-> -	if (new_crtc_state->bigjoiner_slave)
-> -		master = new_crtc_state->bigjoiner_linked_crtc;
-> +	master_crtc = intel_master_crtc(new_crtc_state);
->  
-> -	for_each_encoder_on_crtc(dev, &master->base, encoder) {
-> +	for_each_encoder_on_crtc(dev, &master_crtc->base, encoder) {
->  		enum pipe pipe;
->  		bool active;
->  
-> @@ -8503,7 +8508,7 @@ verify_crtc_state(struct intel_crtc *crtc,
->  				encoder->base.base.id, active,
->  				new_crtc_state->hw.active);
->  
-> -		I915_STATE_WARN(active && master->pipe != pipe,
-> +		I915_STATE_WARN(active && master_crtc->pipe != pipe,
->  				"Encoder connected to wrong pipe %c\n",
->  				pipe_name(pipe));
->  
-> @@ -9192,13 +9197,13 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
->  					struct intel_crtc_state *new_crtc_state)
->  {
->  	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
-> -	struct intel_crtc *slave, *master;
-> +	struct intel_crtc *slave_crtc, *master_crtc;
->  
->  	/* slave being enabled, is master is still claiming this crtc? */
->  	if (old_crtc_state->bigjoiner_slave) {
-> -		slave = crtc;
-> -		master = old_crtc_state->bigjoiner_linked_crtc;
-> -		master_crtc_state = intel_atomic_get_new_crtc_state(state, master);
-> +		slave_crtc = crtc;
-> +		master_crtc = old_crtc_state->bigjoiner_linked_crtc;
-> +		master_crtc_state = intel_atomic_get_new_crtc_state(state, master_crtc);
->  		if (!master_crtc_state || !intel_crtc_needs_modeset(master_crtc_state))
->  			goto claimed;
->  	}
-> @@ -9206,17 +9211,17 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
->  	if (!new_crtc_state->bigjoiner)
->  		return 0;
->  
-> -	slave = intel_dsc_get_bigjoiner_secondary(crtc);
-> -	if (!slave) {
-> +	slave_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
-> +	if (!slave_crtc) {
->  		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
->  			      "CRTC + 1 to be used, doesn't exist\n",
->  			      crtc->base.base.id, crtc->base.name);
->  		return -EINVAL;
->  	}
->  
-> -	new_crtc_state->bigjoiner_linked_crtc = slave;
-> -	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave);
-> -	master = crtc;
-> +	new_crtc_state->bigjoiner_linked_crtc = slave_crtc;
-> +	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave_crtc);
-> +	master_crtc = crtc;
->  	if (IS_ERR(slave_crtc_state))
->  		return PTR_ERR(slave_crtc_state);
->  
-> @@ -9225,15 +9230,15 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
->  		goto claimed;
->  
->  	DRM_DEBUG_KMS("[CRTC:%d:%s] Used as slave for big joiner\n",
-> -		      slave->base.base.id, slave->base.name);
-> +		      slave_crtc->base.base.id, slave_crtc->base.name);
->  
->  	return copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_state);
->  
->  claimed:
->  	DRM_DEBUG_KMS("[CRTC:%d:%s] Slave is enabled as normal CRTC, but "
->  		      "[CRTC:%d:%s] claiming this CRTC for bigjoiner.\n",
-> -		      slave->base.base.id, slave->base.name,
-> -		      master->base.base.id, master->base.name);
-> +		      slave_crtc->base.base.id, slave_crtc->base.name,
-> +		      master_crtc->base.base.id, master_crtc->base.name);
->  	return -EINVAL;
->  }
->  
-> -- 
-> 2.32.0
-> 
+CI Bug Log - changes from CI_DRM_10773 -> Patchwork_21411
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21411 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-apl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][2] ([i915#1610])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-soraka:      [PASS][3] -> [INCOMPLETE][4] ([i915#794])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-bdw-5557u:       [PASS][5] -> [INCOMPLETE][6] ([i915#146])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  * igt@runner@aborted:
+    - fi-apl-guc:         NOTRUN -> [FAIL][7] ([i915#2426] / [i915#3363] / [i915#4312])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-apl-guc/igt@runner@aborted.html
+    - fi-kbl-soraka:      NOTRUN -> [FAIL][8] ([i915#1436] / [i915#3363] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-kbl-soraka/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [FAIL][9] ([i915#579]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bdw-samus:       [DMESG-FAIL][11] ([i915#541]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][13] ([i915#3303]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp2:
+    - fi-cfl-8109u:       [DMESG-WARN][15] ([i915#165]) -> [PASS][16] +2 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][17] ([i915#4269]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][19] ([i915#165] / [i915#295]) -> [PASS][20] +20 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
+
+
+Participating hosts (39 -> 36)
+------------------------------
+
+  Additional (1): fi-apl-guc 
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-snb-2520m fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10773 -> Patchwork_21411
+
+  CI-20190529: 20190529
+  CI_DRM_10773: fa267509357bd9eb021c3d474fe0980cde18de62 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21411: 20b30b7549b8c338079071bb446945734a1db2e5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+20b30b7549b8 drm/i915: remove CNL leftover
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/index.html
+
+--===============7970547618844768030==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: remove CNL leftover</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96147/">https://patchwork.freedesktop.org/series/96147/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10773 -&gt; Patchwork_21411</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21411 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/794">i915#794</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bdw-samus:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp2:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21411/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +20 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Additional (1): fi-apl-guc <br />
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-snb-2520m fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10773 -&gt; Patchwork_21411</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10773: fa267509357bd9eb021c3d474fe0980cde18de62 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21411: 20b30b7549b8c338079071bb446945734a1db2e5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>20b30b7549b8 drm/i915: remove CNL leftover</p>
+
+</body>
+</html>
+
+--===============7970547618844768030==--
