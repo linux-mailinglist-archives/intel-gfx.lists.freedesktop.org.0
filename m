@@ -1,44 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5923435F75
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:42:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2E4D435FAC
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:49:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76456EC35;
-	Thu, 21 Oct 2021 10:42:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 137336EC35;
+	Thu, 21 Oct 2021 10:49:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86FA89F2D
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 10:42:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="216165429"
-X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="216165429"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 03:42:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="632134063"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 21 Oct 2021 03:42:51 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Oct 2021 13:42:50 +0300
-Date: Thu, 21 Oct 2021 13:42:50 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
-Message-ID: <YXFEKv0GVXQgsumS@intel.com>
-References: <20211020223339.669-1-ville.syrjala@linux.intel.com>
- <20211020223339.669-4-ville.syrjala@linux.intel.com>
- <87o87imzrz.fsf@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62E1C6EC31
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 10:49:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="227771506"
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="227771506"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 03:49:18 -0700
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="495078220"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 03:49:16 -0700
+Date: Thu, 21 Oct 2021 13:49:13 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Message-ID: <20211021104913.GA1854152@ideak-desk.fi.intel.com>
+References: <20211020195138.1841242-1-imre.deak@intel.com>
+ <20211020195138.1841242-2-imre.deak@intel.com>
+ <87wnm6n0po.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87o87imzrz.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Use vblank workers for gamma
- updates
+In-Reply-To: <87wnm6n0po.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 01/11] drm/i915: Add a table with a
+ descriptor for all i915 modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,234 +53,794 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 21, 2021 at 01:35:12PM +0300, Jani Nikula wrote:
-> On Thu, 21 Oct 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, Oct 21, 2021 at 01:14:59PM +0300, Jani Nikula wrote:
+> On Wed, 20 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
+> > Add a table describing all the framebuffer modifiers used by i915 at one
+> > place. This has the benefit of deduplicating the listing of supported
+> > modifiers for each platform and checking the support of these modifiers
+> > on a given plane. This also simplifies in a similar way getting some
+> > attribute for a modifier, for instance checking if the modifier is a
+> > CCS modifier type.
 > >
-> > The pipe gamma registers are single buffered so they should only
-> > be updated during the vblank to avoid screen tearing. In fact they
-> > really should only be updated between start of vblank and frame
-> > start because that is the only time the pipe is guaranteed to be
-> > empty. Already at frame start the pipe begins to fill up with
-> > data for the next frame.
+> > While at it drop the cursor plane filtering from skl_plane_has_rc_ccs(),
+> > as the cursor plane is registered with DRM core elsewhere.
 > >
-> > Unfortunately frame start happens ~1 scanline after the start
-> > of vblank which in practice doesn't always leave us enough time to
-> > finish the gamma update in time (gamma LUTs can be several KiB of
-> > data we have to bash into the registers). However we must try our
-> > best and so we'll add a vblank work for each pipe from where we
-> > can do the gamma update. Additionally we could consider pushing
-> > frame start forward to the max of ~4 scanlines after start of
-> > vblank. But not sure that's exactly a validated configuration.
-> > As it stands the ~100 first pixels tend to make it through with
-> > the old gamma values.
+> > v1: Unchanged.
+> > v2:
+> > - Keep the plane caps calculation in the plane code and pass an enum
+> >   with these caps to intel_fb_get_modifiers(). (Ville)
+> > - Get the modifiers calling intel_fb_get_modifiers() in i9xx_plane.c as
+> >   well.
+> > v3:
+> > - s/.id/.modifier/ (Ville)
+> > - Keep modifier_desc vs. plane_cap filter conditions consistent. (Ville)
+> > - Drop redundant cursor plane check from skl_plane_has_rc_ccs(). (Ville)
+> > - Use from, until display version fields in modifier_desc instead of a mask. (Jani)
+> > - Unexport struct intel_modifier_desc, separate its decl and init. (Jani)
+> > - Remove enum pipe, plane_id forward decls from intel_fb.h, which are
+> >   not needed after v2.
+> > v4:
+> > - Reuse IS_DISPLAY_VER() instead of open-coding it. (Jani)
+> > - Preserve the current modifier order exposed to user space. (Ville)
 > >
-> > Even though the vblank worker is running on a high prority thread
-> > we still have to contend with C-states. If the CPU happens be in
-> > a deep C-state when the vblank interrupt arrives even the irq
-> > handler gets delayed massively (I've observed dozens of scanlines
-> > worth of latency). To avoid that problem we'll use the qos mechanism
-> > to keep the CPU awake while the vblank work is scheduled.
-> >
-> > With all this hooked up we can finally enjoy near atomic gamma
-> > updates. It even works across several pipes from the same atomic
-> > commit which previously was a total fail because we did the
-> > gamma updates for each pipe serially after waiting for all
-> > pipes to have latched the double buffered registers.
-> >
-> > In the future the DSB should take over this responsibility
-> > which will hopefully avoid some of these issues.
-> >
-> > Kudos to Lyude for finishing the actual vblank workers.
-> > Works like the proverbial train toilet.
-> >
-> > v2: Add missing intel_atomic_state fwd declaration
-> > v3: Clean up properly when not scheduling the worker
-> > v4: Clean up the rest and add tracepoints
-> >
-> > CC: Lyude Paul <lyude@redhat.com>
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> (v3)
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_crtc.c     | 76 ++++++++++++++++++-
-> >  drivers/gpu/drm/i915/display/intel_crtc.h     |  4 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c  |  9 +--
-> >  .../drm/i915/display/intel_display_types.h    |  8 ++
-> >  drivers/gpu/drm/i915/i915_trace.h             | 42 ++++++++++
-> >  5 files changed, 129 insertions(+), 10 deletions(-)
+> >  drivers/gpu/drm/i915/display/i9xx_plane.c     |  30 +--
+> >  drivers/gpu/drm/i915/display/intel_cursor.c   |  19 +-
+> >  .../drm/i915/display/intel_display_types.h    |   1 -
+> >  drivers/gpu/drm/i915/display/intel_fb.c       | 152 +++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_fb.h       |  13 ++
+> >  drivers/gpu/drm/i915/display/intel_sprite.c   |  35 +---
+> >  drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+> >  .../drm/i915/display/skl_universal_plane.c    | 178 +++++-------------
+> >  8 files changed, 245 insertions(+), 184 deletions(-)
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > index 0f8b48b6911c..4758c61adae8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -3,12 +3,14 @@
-> >   * Copyright © 2020 Intel Corporation
-> >   */
-> >  #include <linux/kernel.h>
-> > +#include <linux/pm_qos.h>
-> >  #include <linux/slab.h>
+> > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > index b1439ba78f67b..a939accff7ee2 100644
+> > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > @@ -60,22 +60,11 @@ static const u32 vlv_primary_formats[] = {
+> >  	DRM_FORMAT_XBGR16161616F,
+> >  };
 > >  
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/drm_fourcc.h>
-> >  #include <drm/drm_plane.h>
-> >  #include <drm/drm_plane_helper.h>
-> > +#include <drm/drm_vblank_work.h>
-> >  
-> >  #include "i915_trace.h"
-> >  #include "i915_vgpu.h"
-> > @@ -167,6 +169,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
+> > -static const u64 i9xx_format_modifiers[] = {
+> > -	I915_FORMAT_MOD_X_TILED,
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> >  static bool i8xx_plane_format_mod_supported(struct drm_plane *_plane,
+> >  					    u32 format, u64 modifier)
 > >  {
-> >  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
+> > -	switch (modifier) {
+> > -	case DRM_FORMAT_MOD_LINEAR:
+> > -	case I915_FORMAT_MOD_X_TILED:
+> > -		break;
+> > -	default:
+> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> >  		return false;
+> > -	}
 > >  
-> > +	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
-> > +
-> >  	drm_crtc_cleanup(&crtc->base);
-> >  	kfree(crtc);
-> >  }
-> > @@ -344,6 +348,8 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
-> >  
-> >  	intel_crtc_crc_init(crtc);
-> >  
-> > +	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
-> > +
-> >  	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
-> >  
-> >  	return 0;
-> > @@ -354,6 +360,65 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
-> >  	return ret;
-> >  }
-> >  
-> > +static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	return crtc_state->hw.active &&
-> > +		!intel_crtc_needs_modeset(crtc_state) &&
-> > +		!crtc_state->preload_luts &&
-> > +		(crtc_state->uapi.color_mgmt_changed ||
-> > +		 crtc_state->update_pipe);
-> > +}
-> > +
-> > +static void intel_crtc_vblank_work(struct kthread_work *base)
-> > +{
-> > +	struct drm_vblank_work *work = to_drm_vblank_work(base);
-> > +	struct intel_crtc_state *crtc_state =
-> > +		container_of(work, typeof(*crtc_state), vblank_work);
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +
-> > +	trace_intel_crtc_vblank_work_start(crtc);
-> > +
-> > +	intel_color_load_luts(crtc_state);
-> > +
-> > +	if (crtc_state->uapi.event) {
-> > +		spin_lock_irq(&crtc->base.dev->event_lock);
-> > +		drm_crtc_send_vblank_event(&crtc->base, crtc_state->uapi.event);
-> > +		crtc_state->uapi.event = NULL;
-> > +		spin_unlock_irq(&crtc->base.dev->event_lock);
-> > +	}
-> > +
-> > +	trace_intel_crtc_vblank_work_end(crtc);
-> > +}
-> > +
-> > +static void intel_crtc_vblank_work_init(struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +
-> > +	drm_vblank_work_init(&crtc_state->vblank_work, &crtc->base,
-> > +			     intel_crtc_vblank_work);
-> > +	/*
-> > +	 * Interrupt latency is critical for getting the vblank
-> > +	 * work executed as early as possible during the vblank.
-> > +	 */
-> > +	cpu_latency_qos_update_request(&crtc->vblank_pm_qos, 0);
-> > +}
-> > +
-> > +void intel_wait_for_vblank_works(struct intel_atomic_state *state)
-> > +{
-> > +	struct intel_crtc_state *crtc_state;
-> > +	struct intel_crtc *crtc;
-> > +	int i;
-> > +
-> > +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> > +		if (!intel_crtc_needs_vblank_work(crtc_state))
-> > +			continue;
-> > +
-> > +		drm_vblank_work_flush(&crtc_state->vblank_work);
-> > +		cpu_latency_qos_update_request(&crtc->vblank_pm_qos,
-> > +					       PM_QOS_DEFAULT_VALUE);
-> > +	}
-> > +}
-> > +
-> >  int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
-> >  			     int usecs)
+> >  	switch (format) {
+> >  	case DRM_FORMAT_C8:
+> > @@ -92,13 +81,8 @@ static bool i8xx_plane_format_mod_supported(struct drm_plane *_plane,
+> >  static bool i965_plane_format_mod_supported(struct drm_plane *_plane,
+> >  					    u32 format, u64 modifier)
 > >  {
-> > @@ -387,7 +452,7 @@ static int intel_mode_vblank_start(const struct drm_display_mode *mode)
-> >   * until a subsequent call to intel_pipe_update_end(). That is done to
-> >   * avoid random delays.
-> >   */
-> > -void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
-> > +void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
-> >  {
-> >  	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
-> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > @@ -402,6 +467,9 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
-> >  	if (new_crtc_state->uapi.async_flip)
-> >  		return;
+> > -	switch (modifier) {
+> > -	case DRM_FORMAT_MOD_LINEAR:
+> > -	case I915_FORMAT_MOD_X_TILED:
+> > -		break;
+> > -	default:
+> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> >  		return false;
+> > -	}
 > >  
-> > +	if (intel_crtc_needs_vblank_work(new_crtc_state))
-> > +		intel_crtc_vblank_work_init(new_crtc_state);
-> > +
-> >  	if (new_crtc_state->vrr.enable)
-> >  		vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
-> >  	else
-> > @@ -557,7 +625,11 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
-> >  	 * Would be slightly nice to just grab the vblank count and arm the
-> >  	 * event outside of the critical section - the spinlock might spin for a
-> >  	 * while ... */
-> > -	if (new_crtc_state->uapi.event) {
-> > +	if (intel_crtc_needs_vblank_work(new_crtc_state)) {
-> > +		drm_vblank_work_schedule(&new_crtc_state->vblank_work,
-> > +					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-> > +					 false);
-> > +	} else if (new_crtc_state->uapi.event) {
-> >  		drm_WARN_ON(&dev_priv->drm,
-> >  			    drm_crtc_vblank_get(&crtc->base) != 0);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-> > index 22363fbbc925..25eb58bce0dd 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-> > @@ -11,6 +11,7 @@
-> >  enum pipe;
-> >  struct drm_display_mode;
-> >  struct drm_i915_private;
-> > +struct intel_atomic_state;
-> >  struct intel_crtc;
-> >  struct intel_crtc_state;
-> >  
-> > @@ -24,7 +25,8 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
-> >  u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
-> >  void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
-> >  void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
-> > -void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state);
-> > +void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state);
-> >  void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
-> > +void intel_wait_for_vblank_works(struct intel_atomic_state *state);
-> >  
-> >  #endif
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 79a7552af7b5..1375d963c0a8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -8818,6 +8818,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
-> >  		intel_set_cdclk_post_plane_update(state);
+> >  	switch (format) {
+> >  	case DRM_FORMAT_C8:
+> > @@ -768,6 +752,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  	struct intel_plane *plane;
+> >  	const struct drm_plane_funcs *plane_funcs;
+> >  	unsigned int supported_rotations;
+> > +	const u64 *modifiers;
+> >  	const u32 *formats;
+> >  	int num_formats;
+> >  	int ret, zpos;
+> > @@ -875,21 +860,26 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  		plane->disable_flip_done = ilk_primary_disable_flip_done;
 > >  	}
 > >  
-> > +	intel_wait_for_vblank_works(state);
+> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
+> > +
+> >  	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
+> >  		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> >  					       0, plane_funcs,
+> >  					       formats, num_formats,
+> > -					       i9xx_format_modifiers,
+> > +					       modifiers,
+> >  					       DRM_PLANE_TYPE_PRIMARY,
+> >  					       "primary %c", pipe_name(pipe));
+> >  	else
+> >  		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> >  					       0, plane_funcs,
+> >  					       formats, num_formats,
+> > -					       i9xx_format_modifiers,
+> > +					       modifiers,
+> >  					       DRM_PLANE_TYPE_PRIMARY,
+> >  					       "plane %c",
+> >  					       plane_name(plane->i9xx_plane));
+> > +
+> > +	kfree(modifiers);
+> > +
+> >  	if (ret)
+> >  		goto fail;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > index 11842f2126130..6b08d8bca5cd4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > @@ -28,11 +28,6 @@ static const u32 intel_cursor_formats[] = {
+> >  	DRM_FORMAT_ARGB8888,
+> >  };
+> >  
+> > -static const u64 cursor_format_modifiers[] = {
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> >  static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+> >  {
+> >  	struct drm_i915_private *dev_priv =
+> > @@ -605,8 +600,10 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
+> >  static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+> >  					      u32 format, u64 modifier)
+> >  {
+> > -	return modifier == DRM_FORMAT_MOD_LINEAR &&
+> > -		format == DRM_FORMAT_ARGB8888;
+> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> > +		return false;
+> > +
+> > +	return format == DRM_FORMAT_ARGB8888;
+> >  }
+> >  
+> >  static int
+> > @@ -754,6 +751,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> >  {
+> >  	struct intel_plane *cursor;
+> >  	int ret, zpos;
+> > +	u64 *modifiers;
+> >  
+> >  	cursor = intel_plane_alloc();
+> >  	if (IS_ERR(cursor))
+> > @@ -784,13 +782,18 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> >  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
+> >  		cursor->cursor.size = ~0;
+> >  
+> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_NO_CAPS);
+> > +
+> >  	ret = drm_universal_plane_init(&dev_priv->drm, &cursor->base,
+> >  				       0, &intel_cursor_plane_funcs,
+> >  				       intel_cursor_formats,
+> >  				       ARRAY_SIZE(intel_cursor_formats),
+> > -				       cursor_format_modifiers,
+> > +				       modifiers,
+> >  				       DRM_PLANE_TYPE_CURSOR,
+> >  				       "cursor %c", pipe_name(pipe));
+> > +
+> > +	kfree(modifiers);
+> > +
+> >  	if (ret)
+> >  		goto fail;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 1e42bf901263c..a4930a56bfa82 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1336,7 +1336,6 @@ struct intel_plane {
+> >  	enum plane_id id;
+> >  	enum pipe pipe;
+> >  	bool has_fbc;
+> > -	bool has_ccs;
+> >  	bool need_async_flip_disable_wa;
+> >  	u32 frontbuffer_bit;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> > index fa1f375e696bf..cf4748daf2acf 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -13,6 +13,158 @@
+> >  
+> >  #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
+> >  
+> > +struct intel_modifier_desc {
+> > +	u64 modifier;
+> > +	struct {
+> > +		u8 from;
+> > +		u8 until;
+> > +	} display_ver;
+> > +#define DISPLAY_VER_ALL		{ 0, -1 }
+> > +
+> > +	u8 is_linear:1;
+> > +
+> > +	struct {
+> > +#define INTEL_CCS_RC		BIT(0)
+> > +#define INTEL_CCS_RC_CC		BIT(1)
+> > +#define INTEL_CCS_MC		BIT(2)
+> > +
+> > +#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
+> > +		u8 type:3;
+> > +	} ccs;
+> > +};
+> > +
+> > +static const struct intel_modifier_desc intel_modifiers[] = {
+> > +	{
+> > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+> > +		.display_ver = { 12, 13 },
+> > +
+> > +		.ccs.type = INTEL_CCS_MC,
+> > +	},
+> > +	{
 > 
-> Nitpick, I think the function name can be confusing due to the plural
-> vs. verb here. intel_wait_for_vblank_work_end(), _finish(), _done()?
+> Argh, I meant to comment that "}, {" on one line is customary for stuff
+> like this to reduce the vertical space.
+> 
+> If you need to do another spin for other reasons, please include this
+> change, otherwise it can be a follow-up.
 
-I guess _end() would match what I called the tracepoint. Another
-idea could be s/works/workers/
+Ok, let's see if there are more comments. If not I can also change this
+while pushing the patches.
 
--- 
-Ville Syrjälä
-Intel
+> 
+> BR,
+> Jani.
+> 
+> > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> > +		.display_ver = { 12, 13 },
+> > +
+> > +		.ccs.type = INTEL_CCS_RC,
+> > +	},
+> > +	{
+> > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+> > +		.display_ver = { 12, 13 },
+> > +
+> > +		.ccs.type = INTEL_CCS_RC_CC,
+> > +	},
+> > +	{
+> > +		.modifier = I915_FORMAT_MOD_Yf_TILED_CCS,
+> > +		.display_ver = { 9, 11 },
+> > +
+> > +		.ccs.type = INTEL_CCS_RC,
+> > +	},
+> > +	{
+> > +		.modifier = I915_FORMAT_MOD_Y_TILED_CCS,
+> > +		.display_ver = { 9, 11 },
+> > +
+> > +		.ccs.type = INTEL_CCS_RC,
+> > +	},
+> > +	{
+> > +		.modifier = I915_FORMAT_MOD_Yf_TILED,
+> > +		.display_ver = { 9, 11 },
+> > +	},
+> > +	{
+> > +		.modifier = I915_FORMAT_MOD_Y_TILED,
+> > +		.display_ver = { 9, 13 },
+> > +	},
+> > +	{
+> > +		.modifier = I915_FORMAT_MOD_X_TILED,
+> > +		.display_ver = DISPLAY_VER_ALL,
+> > +	},
+> > +	{
+> > +		.modifier = DRM_FORMAT_MOD_LINEAR,
+> > +		.display_ver = DISPLAY_VER_ALL,
+> > +
+> > +		.is_linear = true,
+> > +	},
+> > +};
+> > +
+> > +static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_type)
+> > +{
+> > +	return md->ccs.type & ccs_type;
+> > +}
+> > +
+> > +static bool plane_has_modifier(struct drm_i915_private *i915,
+> > +			       enum intel_plane_caps plane_caps,
+> > +			       const struct intel_modifier_desc *md)
+> > +{
+> > +	if (!IS_DISPLAY_VER(i915, md->display_ver.from, md->display_ver.until))
+> > +		return false;
+> > +
+> > +	if (!md->is_linear &&
+> > +	    !(plane_caps & PLANE_HAS_TILING))
+> > +		return false;
+> > +
+> > +	if (is_ccs_type_modifier(md, INTEL_CCS_RC | INTEL_CCS_RC_CC) &&
+> > +	    !(plane_caps & PLANE_HAS_CCS_RC))
+> > +		return false;
+> > +
+> > +	if (is_ccs_type_modifier(md, INTEL_CCS_MC) &&
+> > +	    !(plane_caps & PLANE_HAS_CCS_MC))
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +/**
+> > + * intel_fb_plane_get_modifiers: Get the modifiers for the given platform and plane capabilities
+> > + * @i915: i915 device instance
+> > + * @plane_caps: capabilities for the plane the modifiers are queried for
+> > + *
+> > + * Returns:
+> > + * Returns the list of modifiers allowed by the @i915 platform and @plane_caps.
+> > + * The caller must free the returned buffer.
+> > + */
+> > +u64 *intel_fb_plane_get_modifiers(struct drm_i915_private *i915,
+> > +				  enum intel_plane_caps plane_caps)
+> > +{
+> > +	u64 *list, *p;
+> > +	int count = 1;		/* +1 for invalid modifier terminator */
+> > +	int i;
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(intel_modifiers); i++) {
+> > +		if (plane_has_modifier(i915, plane_caps, &intel_modifiers[i]))
+> > +			count++;
+> > +	}
+> > +
+> > +	list = kmalloc_array(count, sizeof(*list), GFP_KERNEL);
+> > +	if (drm_WARN_ON(&i915->drm, !list))
+> > +		return NULL;
+> > +
+> > +	p = list;
+> > +	for (i = 0; i < ARRAY_SIZE(intel_modifiers); i++) {
+> > +		if (plane_has_modifier(i915, plane_caps, &intel_modifiers[i]))
+> > +			*p++ = intel_modifiers[i].modifier;
+> > +	}
+> > +	*p++ = DRM_FORMAT_MOD_INVALID;
+> > +
+> > +	return list;
+> > +}
+> > +
+> > +/**
+> > + * intel_fb_plane_supports_modifier: Determine if a modifier is supported by the given plane
+> > + * @plane: Plane to check the modifier support for
+> > + * @modifier: The modifier to check the support for
+> > + *
+> > + * Returns:
+> > + * %true if the @modifier is supported on @plane.
+> > + */
+> > +bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i = 0; i < plane->base.modifier_count; i++)
+> > +		if (plane->base.modifiers[i] == modifier)
+> > +			return true;
+> > +
+> > +	return false;
+> > +}
+> > +
+> >  bool is_ccs_plane(const struct drm_framebuffer *fb, int plane)
+> >  {
+> >  	if (!is_ccs_modifier(fb->modifier))
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+> > index 1cbdd84502bdd..0f77e81e69d29 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+> > @@ -6,6 +6,7 @@
+> >  #ifndef __INTEL_FB_H__
+> >  #define __INTEL_FB_H__
+> >  
+> > +#include <linux/bits.h>
+> >  #include <linux/types.h>
+> >  
+> >  struct drm_device;
+> > @@ -16,13 +17,25 @@ struct drm_i915_private;
+> >  struct drm_mode_fb_cmd2;
+> >  struct intel_fb_view;
+> >  struct intel_framebuffer;
+> > +struct intel_plane;
+> >  struct intel_plane_state;
+> >  
+> > +enum intel_plane_caps {
+> > +	PLANE_HAS_NO_CAPS = 0,
+> > +	PLANE_HAS_TILING = BIT(0),
+> > +	PLANE_HAS_CCS_RC = BIT(1),
+> > +	PLANE_HAS_CCS_MC = BIT(2),
+> > +};
+> > +
+> >  bool is_ccs_plane(const struct drm_framebuffer *fb, int plane);
+> >  bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane);
+> >  bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane);
+> >  bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane);
+> >  
+> > +u64 *intel_fb_plane_get_modifiers(struct drm_i915_private *i915,
+> > +				  enum intel_plane_caps plane_caps);
+> > +bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
+> > +
+> >  bool is_surface_linear(const struct drm_framebuffer *fb, int color_plane);
+> >  
+> >  int main_to_ccs_plane(const struct drm_framebuffer *fb, int main_plane);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > index 08116f41da26a..2f4f47ab9da03 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > @@ -45,6 +45,7 @@
+> >  #include "intel_atomic_plane.h"
+> >  #include "intel_de.h"
+> >  #include "intel_display_types.h"
+> > +#include "intel_fb.h"
+> >  #include "intel_frontbuffer.h"
+> >  #include "intel_sprite.h"
+> >  #include "i9xx_plane.h"
+> > @@ -1575,12 +1576,6 @@ static const u32 g4x_plane_formats[] = {
+> >  	DRM_FORMAT_VYUY,
+> >  };
+> >  
+> > -static const u64 i9xx_plane_format_modifiers[] = {
+> > -	I915_FORMAT_MOD_X_TILED,
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> >  static const u32 snb_plane_formats[] = {
+> >  	DRM_FORMAT_XRGB8888,
+> >  	DRM_FORMAT_XBGR8888,
+> > @@ -1629,13 +1624,8 @@ static const u32 chv_pipe_b_sprite_formats[] = {
+> >  static bool g4x_sprite_format_mod_supported(struct drm_plane *_plane,
+> >  					    u32 format, u64 modifier)
+> >  {
+> > -	switch (modifier) {
+> > -	case DRM_FORMAT_MOD_LINEAR:
+> > -	case I915_FORMAT_MOD_X_TILED:
+> > -		break;
+> > -	default:
+> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> >  		return false;
+> > -	}
+> >  
+> >  	switch (format) {
+> >  	case DRM_FORMAT_XRGB8888:
+> > @@ -1655,13 +1645,8 @@ static bool g4x_sprite_format_mod_supported(struct drm_plane *_plane,
+> >  static bool snb_sprite_format_mod_supported(struct drm_plane *_plane,
+> >  					    u32 format, u64 modifier)
+> >  {
+> > -	switch (modifier) {
+> > -	case DRM_FORMAT_MOD_LINEAR:
+> > -	case I915_FORMAT_MOD_X_TILED:
+> > -		break;
+> > -	default:
+> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> >  		return false;
+> > -	}
+> >  
+> >  	switch (format) {
+> >  	case DRM_FORMAT_XRGB8888:
+> > @@ -1686,13 +1671,8 @@ static bool snb_sprite_format_mod_supported(struct drm_plane *_plane,
+> >  static bool vlv_sprite_format_mod_supported(struct drm_plane *_plane,
+> >  					    u32 format, u64 modifier)
+> >  {
+> > -	switch (modifier) {
+> > -	case DRM_FORMAT_MOD_LINEAR:
+> > -	case I915_FORMAT_MOD_X_TILED:
+> > -		break;
+> > -	default:
+> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
+> >  		return false;
+> > -	}
+> >  
+> >  	switch (format) {
+> >  	case DRM_FORMAT_C8:
+> > @@ -1776,7 +1756,6 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+> >  			formats = vlv_plane_formats;
+> >  			num_formats = ARRAY_SIZE(vlv_plane_formats);
+> >  		}
+> > -		modifiers = i9xx_plane_format_modifiers;
+> >  
+> >  		plane_funcs = &vlv_sprite_funcs;
+> >  	} else if (DISPLAY_VER(dev_priv) >= 7) {
+> > @@ -1795,7 +1774,6 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+> >  
+> >  		formats = snb_plane_formats;
+> >  		num_formats = ARRAY_SIZE(snb_plane_formats);
+> > -		modifiers = i9xx_plane_format_modifiers;
+> >  
+> >  		plane_funcs = &snb_sprite_funcs;
+> >  	} else {
+> > @@ -1806,7 +1784,6 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+> >  		plane->max_stride = g4x_sprite_max_stride;
+> >  		plane->min_cdclk = g4x_sprite_min_cdclk;
+> >  
+> > -		modifiers = i9xx_plane_format_modifiers;
+> >  		if (IS_SANDYBRIDGE(dev_priv)) {
+> >  			formats = snb_plane_formats;
+> >  			num_formats = ARRAY_SIZE(snb_plane_formats);
+> > @@ -1833,11 +1810,15 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+> >  	plane->id = PLANE_SPRITE0 + sprite;
+> >  	plane->frontbuffer_bit = INTEL_FRONTBUFFER(pipe, plane->id);
+> >  
+> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
+> > +
+> >  	ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> >  				       0, plane_funcs,
+> >  				       formats, num_formats, modifiers,
+> >  				       DRM_PLANE_TYPE_OVERLAY,
+> >  				       "sprite %c", sprite_name(pipe, sprite));
+> > +	kfree(modifiers);
+> > +
+> >  	if (ret)
+> >  		goto fail;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> > index 37eabeff8197f..c2e94118566b6 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> > @@ -4,6 +4,7 @@
+> >   */
+> >  #include "intel_de.h"
+> >  #include "intel_display_types.h"
+> > +#include "intel_fb.h"
+> >  #include "skl_scaler.h"
+> >  #include "skl_universal_plane.h"
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > index 7444b88829ea7..7ee2114e420b7 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > @@ -163,50 +163,6 @@ static const u32 icl_hdr_plane_formats[] = {
+> >  	DRM_FORMAT_XVYU16161616,
+> >  };
+> >  
+> > -static const u64 skl_plane_format_modifiers_noccs[] = {
+> > -	I915_FORMAT_MOD_Yf_TILED,
+> > -	I915_FORMAT_MOD_Y_TILED,
+> > -	I915_FORMAT_MOD_X_TILED,
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> > -static const u64 skl_plane_format_modifiers_ccs[] = {
+> > -	I915_FORMAT_MOD_Yf_TILED_CCS,
+> > -	I915_FORMAT_MOD_Y_TILED_CCS,
+> > -	I915_FORMAT_MOD_Yf_TILED,
+> > -	I915_FORMAT_MOD_Y_TILED,
+> > -	I915_FORMAT_MOD_X_TILED,
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> > -static const u64 gen12_plane_format_modifiers_mc_ccs[] = {
+> > -	I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+> > -	I915_FORMAT_MOD_Y_TILED,
+> > -	I915_FORMAT_MOD_X_TILED,
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> > -static const u64 gen12_plane_format_modifiers_rc_ccs[] = {
+> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+> > -	I915_FORMAT_MOD_Y_TILED,
+> > -	I915_FORMAT_MOD_X_TILED,
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> > -static const u64 adlp_step_a_plane_format_modifiers[] = {
+> > -	I915_FORMAT_MOD_Y_TILED,
+> > -	I915_FORMAT_MOD_X_TILED,
+> > -	DRM_FORMAT_MOD_LINEAR,
+> > -	DRM_FORMAT_MOD_INVALID
+> > -};
+> > -
+> >  int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
+> >  {
+> >  	switch (format) {
+> > @@ -1882,42 +1838,13 @@ static const u32 *icl_get_plane_formats(struct drm_i915_private *dev_priv,
+> >  	}
+> >  }
+> >  
+> > -static bool skl_plane_has_ccs(struct drm_i915_private *dev_priv,
+> > -			      enum pipe pipe, enum plane_id plane_id)
+> > -{
+> > -	if (plane_id == PLANE_CURSOR)
+> > -		return false;
+> > -
+> > -	if (DISPLAY_VER(dev_priv) >= 11)
+> > -		return true;
+> > -
+> > -	if (IS_GEMINILAKE(dev_priv))
+> > -		return pipe != PIPE_C;
+> > -
+> > -	return pipe != PIPE_C &&
+> > -		(plane_id == PLANE_PRIMARY ||
+> > -		 plane_id == PLANE_SPRITE0);
+> > -}
+> > -
+> >  static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
+> >  					   u32 format, u64 modifier)
+> >  {
+> >  	struct intel_plane *plane = to_intel_plane(_plane);
+> >  
+> > -	switch (modifier) {
+> > -	case DRM_FORMAT_MOD_LINEAR:
+> > -	case I915_FORMAT_MOD_X_TILED:
+> > -	case I915_FORMAT_MOD_Y_TILED:
+> > -	case I915_FORMAT_MOD_Yf_TILED:
+> > -		break;
+> > -	case I915_FORMAT_MOD_Y_TILED_CCS:
+> > -	case I915_FORMAT_MOD_Yf_TILED_CCS:
+> > -		if (!plane->has_ccs)
+> > -			return false;
+> > -		break;
+> > -	default:
+> > +	if (!intel_fb_plane_supports_modifier(plane, modifier))
+> >  		return false;
+> > -	}
+> >  
+> >  	switch (format) {
+> >  	case DRM_FORMAT_XRGB8888:
+> > @@ -1965,45 +1892,13 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
+> >  	}
+> >  }
+> >  
+> > -static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
+> > -					enum plane_id plane_id)
+> > -{
+> > -	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
+> > -	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
+> > -	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_D0))
+> > -		return false;
+> > -
+> > -	/* Wa_22011186057 */
+> > -	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+> > -		return false;
+> > -
+> > -	return plane_id < PLANE_SPRITE4;
+> > -}
+> > -
+> >  static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+> >  					     u32 format, u64 modifier)
+> >  {
+> > -	struct drm_i915_private *dev_priv = to_i915(_plane->dev);
+> >  	struct intel_plane *plane = to_intel_plane(_plane);
+> >  
+> > -	switch (modifier) {
+> > -	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+> > -		if (!gen12_plane_supports_mc_ccs(dev_priv, plane->id))
+> > -			return false;
+> > -		fallthrough;
+> > -	case DRM_FORMAT_MOD_LINEAR:
+> > -	case I915_FORMAT_MOD_X_TILED:
+> > -	case I915_FORMAT_MOD_Y_TILED:
+> > -		break;
+> > -	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> > -	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+> > -		/* Wa_22011186057 */
+> > -		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+> > -			return false;
+> > -		break;
+> > -	default:
+> > +	if (!intel_fb_plane_supports_modifier(plane, modifier))
+> >  		return false;
+> > -	}
+> >  
+> >  	switch (format) {
+> >  	case DRM_FORMAT_XRGB8888:
+> > @@ -2051,18 +1946,6 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+> >  	}
+> >  }
+> >  
+> > -static const u64 *gen12_get_plane_modifiers(struct drm_i915_private *dev_priv,
+> > -					    enum plane_id plane_id)
+> > -{
+> > -	/* Wa_22011186057 */
+> > -	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+> > -		return adlp_step_a_plane_format_modifiers;
+> > -	else if (gen12_plane_supports_mc_ccs(dev_priv, plane_id))
+> > -		return gen12_plane_format_modifiers_mc_ccs;
+> > -	else
+> > -		return gen12_plane_format_modifiers_rc_ccs;
+> > -}
+> > -
+> >  static const struct drm_plane_funcs skl_plane_funcs = {
+> >  	.update_plane = drm_atomic_helper_update_plane,
+> >  	.disable_plane = drm_atomic_helper_disable_plane,
+> > @@ -2103,6 +1986,39 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
+> >  	spin_unlock_irq(&i915->irq_lock);
+> >  }
+> >  
+> > +static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+> > +				 enum pipe pipe, enum plane_id plane_id)
+> > +{
+> > +	/* Wa_22011186057 */
+> > +	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+> > +		return false;
+> > +
+> > +	if (DISPLAY_VER(i915) >= 11)
+> > +		return true;
+> > +
+> > +	if (IS_GEMINILAKE(i915))
+> > +		return pipe != PIPE_C;
+> > +
+> > +	return pipe != PIPE_C &&
+> > +		(plane_id == PLANE_PRIMARY ||
+> > +		 plane_id == PLANE_SPRITE0);
+> > +}
+> > +
+> > +static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
+> > +				   enum plane_id plane_id)
+> > +{
+> > +	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
+> > +	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
+> > +	    IS_TGL_DISPLAY_STEP(i915, STEP_A0, STEP_D0))
+> > +		return false;
+> > +
+> > +	/* Wa_22011186057 */
+> > +	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+> > +		return false;
+> > +
+> > +	return plane_id < PLANE_SPRITE4;
+> > +}
+> > +
+> >  struct intel_plane *
+> >  skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> >  			   enum pipe pipe, enum plane_id plane_id)
+> > @@ -2110,6 +2026,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> >  	const struct drm_plane_funcs *plane_funcs;
+> >  	struct intel_plane *plane;
+> >  	enum drm_plane_type plane_type;
+> > +	enum intel_plane_caps plane_caps;
+> >  	unsigned int supported_rotations;
+> >  	unsigned int supported_csc;
+> >  	const u64 *modifiers;
+> > @@ -2171,29 +2088,34 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> >  		formats = skl_get_plane_formats(dev_priv, pipe,
+> >  						plane_id, &num_formats);
+> >  
+> > -	plane->has_ccs = skl_plane_has_ccs(dev_priv, pipe, plane_id);
+> > -	if (DISPLAY_VER(dev_priv) >= 12) {
+> > -		modifiers = gen12_get_plane_modifiers(dev_priv, plane_id);
+> > +	if (DISPLAY_VER(dev_priv) >= 12)
+> >  		plane_funcs = &gen12_plane_funcs;
+> > -	} else {
+> > -		if (plane->has_ccs)
+> > -			modifiers = skl_plane_format_modifiers_ccs;
+> > -		else
+> > -			modifiers = skl_plane_format_modifiers_noccs;
+> > +	else
+> >  		plane_funcs = &skl_plane_funcs;
+> > -	}
+> >  
+> >  	if (plane_id == PLANE_PRIMARY)
+> >  		plane_type = DRM_PLANE_TYPE_PRIMARY;
+> >  	else
+> >  		plane_type = DRM_PLANE_TYPE_OVERLAY;
+> >  
+> > +	plane_caps = PLANE_HAS_TILING;
+> > +	if (skl_plane_has_rc_ccs(dev_priv, pipe, plane_id))
+> > +		plane_caps |= PLANE_HAS_CCS_RC;
+> > +
+> > +	if (gen12_plane_has_mc_ccs(dev_priv, plane_id))
+> > +		plane_caps |= PLANE_HAS_CCS_MC;
+> > +
+> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, plane_caps);
+> > +
+> >  	ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> >  				       0, plane_funcs,
+> >  				       formats, num_formats, modifiers,
+> >  				       plane_type,
+> >  				       "plane %d%c", plane_id + 1,
+> >  				       pipe_name(pipe));
+> > +
+> > +	kfree(modifiers);
+> > +
+> >  	if (ret)
+> >  		goto fail;
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
