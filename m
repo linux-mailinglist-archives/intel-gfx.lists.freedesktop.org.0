@@ -2,65 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4262643605E
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 13:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D517043607E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 13:44:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA2289FCA;
-	Thu, 21 Oct 2021 11:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08F496EB55;
+	Thu, 21 Oct 2021 11:44:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52C386E433
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 11:33:25 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- a20-20020a1c7f14000000b003231d13ee3cso3500018wmd.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 04:33:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Zl6IbkoInf5UicY+j8DDMBtOrzL+VF+yR479ysx8ejg=;
- b=ZBqljJUZ4MFRZoJdAexm2mTa9BnieHyZ868JiyyIxyqopSU5Fd9KVR76BNqCQ+Nx9w
- fgHmWN2p4gT0TCsLp0WEscJpXp15SX8GrF9JXDzD/B3zvbGTdpn4X7yM248DFgYQ4MPn
- UYZufwWny0oHgPdzU//t299Ej4ORRkslSnz0Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=Zl6IbkoInf5UicY+j8DDMBtOrzL+VF+yR479ysx8ejg=;
- b=voBIwN6Ph+/fDR4WRwdc4g1wyYfcNd6BUwW4+g7dfo8dc7DPAZWcjPjK7uWCDnMWTF
- 6ujVA18ZcmHwXdOb4blFyAwNXiQCBEvX3OBl1A8E1NeWb7v60Ms43Yqt+1FgMAWw7BDa
- ksLQGbK8ZEseBuO4MCRVTwyAEb/vlZGeLdQsvRjXp6EK75eyJO/WbkgfLvSRXG0VDSB8
- Pg79P0bbeVbLh15qXD0MePtdSLBD0o2z9/8VVRAL2dU44EFyoxQXcO9d+0ex0JJdEYFt
- yMZzzVDb9WTs2pl0GIr0tXXqYYDDYKyqu2ivYKubrEmeDbWnFOmLcPt6kr9rgF8A7oSr
- TIXA==
-X-Gm-Message-State: AOAM5315XHo8nMrKIiOVD7VKj1jHDunJDa6jAZnezBq7fJkMvNhlE/pV
- YaQqwMfNTTbzYYL43MzB1J1dYQ==
-X-Google-Smtp-Source: ABdhPJyoq5TeNgHAwXtWgVJjxcKwV91bkdqYyew+/OUXQKSaxzSm9K3M/Un2Bxx4E324wBk6jmwr0A==
-X-Received: by 2002:a1c:a591:: with SMTP id o139mr2080147wme.172.1634816003780; 
- Thu, 21 Oct 2021 04:33:23 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id j15sm4697048wrr.8.2021.10.21.04.33.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 21 Oct 2021 04:33:23 -0700 (PDT)
-Date: Thu, 21 Oct 2021 13:33:21 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, tvrtko.ursulin@linux.intel.com
-Message-ID: <YXFQAeggTok/oYwe@phenom.ffwll.local>
-References: <20211005113742.1101-1-christian.koenig@amd.com>
- <20211005113742.1101-25-christian.koenig@amd.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4756EB55;
+ Thu, 21 Oct 2021 11:44:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="292476715"
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="292476715"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 04:44:43 -0700
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="568287250"
+Received: from lmirabel-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.195.77])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 04:44:41 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 21 Oct 2021 12:44:07 +0100
+Message-Id: <20211021114410.2437099-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211005113742.1101-25-christian.koenig@amd.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 24/28] drm: use new iterator in
- drm_gem_plane_helper_prepare_fb v2
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/clflush: fixup handling of
+ cache_dirty
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,64 +49,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 05, 2021 at 01:37:38PM +0200, Christian König wrote:
-> Makes the handling a bit more complex, but avoids the use of
-> dma_resv_get_excl_unlocked().
-> 
-> v2: improve coding and documentation
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> ---
->  drivers/gpu/drm/drm_gem_atomic_helper.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gem_atomic_helper.c b/drivers/gpu/drm/drm_gem_atomic_helper.c
-> index e570398abd78..8534f78d4d6d 100644
-> --- a/drivers/gpu/drm/drm_gem_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_atomic_helper.c
-> @@ -143,6 +143,7 @@
->   */
->  int drm_gem_plane_helper_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
->  {
-> +	struct dma_resv_iter cursor;
->  	struct drm_gem_object *obj;
->  	struct dma_fence *fence;
->  
-> @@ -150,9 +151,17 @@ int drm_gem_plane_helper_prepare_fb(struct drm_plane *plane, struct drm_plane_st
->  		return 0;
->  
->  	obj = drm_gem_fb_get_obj(state->fb, 0);
-> -	fence = dma_resv_get_excl_unlocked(obj->resv);
-> -	drm_atomic_set_fence_for_plane(state, fence);
-> +	dma_resv_iter_begin(&cursor, obj->resv, false);
-> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		/* TODO: We only use the first write fence here and need to fix
+In theory if clflush_work_create() somehow fails here, and we don't yet
+have mm.pages populated then we end up resetting cache_dirty, which is
+likely wrong, since that will potentially skip the flush-on-acquire, if
+it was needed.
 
-Maybe reword the todo that currently there's only one write fence, and if
-that changes we have work to do. Or something like that. The current
-comments sounds like multiple write fences are possible, which is not the
-case.
+It looks like intel_user_framebuffer_dirty() can arrive here before the
+pages are populated.
 
-With that:
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas HellstrÃ¶m <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-> +		 * the drm_atomic_set_fence_for_plane() API to accept more than
-> +		 * one. */
-> +		dma_fence_get(fence);
-> +		break;
-> +	}
-> +	dma_resv_iter_end(&cursor);
->  
-> +	drm_atomic_set_fence_for_plane(state, fence);
->  	return 0;
->  }
->  EXPORT_SYMBOL_GPL(drm_gem_plane_helper_prepare_fb);
-> -- 
-> 2.25.1
-> 
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+index f0435c6feb68..d09365b5eb29 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+@@ -20,6 +20,7 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
+ {
+ 	GEM_BUG_ON(!i915_gem_object_has_pages(obj));
+ 	drm_clflush_sg(obj->mm.pages);
++	obj->cache_dirty = false;
+ 
+ 	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
+ }
+@@ -115,6 +116,5 @@ bool i915_gem_clflush_object(struct drm_i915_gem_object *obj,
+ 		GEM_BUG_ON(obj->write_domain != I915_GEM_DOMAIN_CPU);
+ 	}
+ 
+-	obj->cache_dirty = false;
+ 	return true;
+ }
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.26.3
+
