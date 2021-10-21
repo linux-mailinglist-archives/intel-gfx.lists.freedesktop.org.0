@@ -1,59 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144954366F6
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 17:58:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90D67436726
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 18:02:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2896ECB6;
-	Thu, 21 Oct 2021 15:58:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C78756ECBF;
+	Thu, 21 Oct 2021 16:02:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com
- [IPv6:2607:f8b0:4864:20::830])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A9016ECB6;
- Thu, 21 Oct 2021 15:58:21 +0000 (UTC)
-Received: by mail-qt1-x830.google.com with SMTP id v17so933748qtp.1;
- Thu, 21 Oct 2021 08:58:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=HvH+/l2njxx4Ke2vRINQSFTt0ijW8lYgJb/ZBYjDrsw=;
- b=fyEP+m7fvg4hEJJJrsHQ1SKt2JRVrfspY3kvaMBo61kdGL3P0D6mkka+HKiiwG4LZO
- cMVr3MINGcxqMdKJqD1wM2BwaefjRAt/a75I3voWTs4eW3aAV6LVZBJkRafr3deVNOr1
- vDjgA67BTEzQ3u6mMHn+WK4/ARkM7nquDQ9krlxVlWVO5RKZ30lf6v4NByZO2j6eq3t2
- Xs2qLY6xiBJdH6LxCKiLMzXLCDXi6yE+K+2K09b6Pv8lW+1wMB97r0pbInrTcaQRRqti
- /3GzCoC1aGWy6HB/fnV4VUl9VNHv//0Ps6TTSUMCO4PtSJBbzKln7YkLWae1cpRGwj0e
- oNvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=HvH+/l2njxx4Ke2vRINQSFTt0ijW8lYgJb/ZBYjDrsw=;
- b=Hqnho59x5ofeS3OoAZwM8WzHeyY15zsfCF93cFDKqsuYv78Aylk3RN6J3vq9FVSNcy
- RzJTbDiXGIe44y+hwKV/TJeaJbqA9nH5IlbnXeVe96dsLXr9vyEahv3uXS6R0KIgxIEy
- 4/ywXjM+f1GtjbR6QWQAW8cAyUNBDLiWCu2eJZCHt7lD9KDe5c529qUvmpaz4hDkCbK+
- GMTjNX4Z2d9Pb7DnrjDGTKIH0eVhnThAYfO25IrvzhUiqp9vuarepUJxFTCZq9Z1P07l
- kfDM1cbuyNEmhSbnCM/8frX9tu/wQpqwcw4/pJ1aQj5rQaDL2gjkb3dW/+hOmoi7YmGq
- 5bFA==
-X-Gm-Message-State: AOAM531z/eW3M2T+MfQrfUTwh61x8Wm18Ni6Y0ZckFAgdcqNwgcmBlYK
- OGf5XzAw4jyGcPiRM8ohT9DD78d+phzaPWYZDLP/6ivOhJg=
-X-Google-Smtp-Source: ABdhPJyRElJ58pWlvpi31LvNCH56m6ZdMnGiX0OkMsqpRxVpeSidYe5HCyqv6pBFavocPs0TPevmUDN0P0WHKRhlwJE=
-X-Received: by 2002:a05:622a:1998:: with SMTP id
- u24mr6958822qtc.156.1634831900274; 
- Thu, 21 Oct 2021 08:58:20 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49FB46ECBF;
+ Thu, 21 Oct 2021 16:02:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 425BEAADD5;
+ Thu, 21 Oct 2021 16:02:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
- <20211021103605.735002-8-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211021103605.735002-8-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 21 Oct 2021 16:57:52 +0100
-Message-ID: <CAM0jSHN7htNjZORSqA=YDRP3TuWq6Xs+su8wF_hBqcu0qukvpA@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 08/28] drm/i915: Create a full object for
- mock_ring, v2.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ramalingam C" <ramalingam.c@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Oct 2021 16:02:04 -0000
+Message-ID: <163483212426.20177.6717886295986471913@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211021142627.31058-1-ramalingam.c@intel.com>
+In-Reply-To: <20211021142627.31058-1-ramalingam.c@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dg2=3A_Enabling_64k_page_size_and_flat_ccs_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,114 +42,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Oct 2021 at 11:36, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> This allows us to finally get rid of all the assumptions that vma->obj is NULL.
->
-> Changes since v1:
-> - Ensure the mock_ring vma is pinned to prevent a fault.
-> - Pin it high to avoid failure in evict_for_vma selftest.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/mock_engine.c | 38 ++++++++++++++++++++-------
->  1 file changed, 28 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-> index 8b89215afe46..bb99fc03f503 100644
-> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
-> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-> @@ -35,9 +35,31 @@ static void mock_timeline_unpin(struct intel_timeline *tl)
->         atomic_dec(&tl->pin_count);
->  }
->
-> +static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
-> +{
-> +       struct i915_address_space *vm = &ggtt->vm;
-> +       struct drm_i915_private *i915 = vm->i915;
-> +       struct drm_i915_gem_object *obj;
-> +       struct i915_vma *vma;
-> +
-> +       obj = i915_gem_object_create_internal(i915, size);
-> +       if (IS_ERR(obj))
-> +               return ERR_CAST(obj);
+== Series Details ==
 
-We didn't want to use the dummy object here also? I guess meh?
+Series: drm/i915/dg2: Enabling 64k page size and flat ccs (rev2)
+URL   : https://patchwork.freedesktop.org/series/95686/
+State : warning
 
-> +
-> +       vma = i915_vma_instance(obj, vm, NULL);
-> +       if (IS_ERR(vma))
-> +               goto err;
-> +
-> +       return vma;
-> +
-> +err:
-> +       i915_gem_object_put(obj);
-> +       return vma;
-> +}
-> +
->  static struct intel_ring *mock_ring(struct intel_engine_cs *engine)
->  {
-> -       const unsigned long sz = PAGE_SIZE / 2;
-> +       const unsigned long sz = PAGE_SIZE;
+== Summary ==
 
-Is that significant?
+$ dim checkpatch origin/drm-tip
+a3c94fe1d5cd drm/i915: Add has_64k_pages flag
+45ceb0b40034 drm/i915/xehpsdv: set min page-size to 64K
+03200bc06b46 drm/i915/xehpsdv: enforce min GTT alignment
+9a84cb61c10d drm/i915: enforce min page size for scratch
+b515c67a4176 drm/i915/gtt/xehpsdv: move scratch page to system memory
+3ca8d7a82f95 drm/i915/xehpsdv: support 64K GTT pages
+2ed3c1383b59 drm/i915: Add vm min alignment support
+fd0534c7e65a drm/i915/selftests: account for min_alignment in GTT selftests
+-:108: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#108: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:456:
++						if (offset < hole_start + aligned_size)
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+-:120: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#120: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:480:
++						if (offset + aligned_size > hole_end)
+
+-:138: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#138: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:496:
++						if (offset < hole_start + aligned_size)
+
+-:150: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#150: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:519:
++						if (offset + aligned_size > hole_end)
+
+-:168: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#168: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:535:
++						if (offset < hole_start + aligned_size)
+
+-:180: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#180: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:559:
++						if (offset + aligned_size > hole_end)
+
+-:198: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#198: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:575:
++						if (offset < hole_start + aligned_size)
+
+-:210: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#210: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:598:
++						if (offset + aligned_size > hole_end)
+
+total: 0 errors, 8 warnings, 0 checks, 297 lines checked
+08702a20cfb0 drm/i915/xehpsdv: implement memory coloring
+dc2516e13157 drm/i915/xehpsdv: Add has_flat_ccs to device info
+2287c2405ffa drm/i915/lmem: Enable lmem for platforms with Flat CCS
+39e9fd04a236 drm/i915/gt: Clear compress metadata for Xe_HP platforms
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#8: 
+device memory buffer object we also need to clear the associated CCS buffer.
+
+total: 0 errors, 1 warnings, 0 checks, 171 lines checked
+6d6995163aa1 drm/i915/dg2: Tile 4 plane format support
+-:198: WARNING:LINE_CONTINUATIONS: Avoid unnecessary line continuations
+#198: FILE: drivers/gpu/drm/i915/i915_pci.c:975:
++	.has_ftile = 1, \
+
+total: 0 errors, 1 warnings, 0 checks, 168 lines checked
+a25cd0cf423a uapi/drm/dg2: Format modifier for DG2 unified compression and clear color
+86bc18650b6c drm/i915/uapi: document behaviour for DG2 64K support
+05178dab38b0 drm/i915/Flat-CCS: Document on Flat-CCS memory compression
+dd2578c083ba Doc/gpu/rfc/i915: i915 DG2 uAPI
+-:18: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#18: 
+new file mode 100644
+
+-:23: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#23: FILE: Documentation/gpu/rfc/i915_dg2.rst:1:
++====================
+
+total: 0 errors, 2 warnings, 0 checks, 41 lines checked
 
 
->         struct intel_ring *ring;
->
->         ring = kzalloc(sizeof(*ring) + sz, GFP_KERNEL);
-> @@ -50,15 +72,11 @@ static struct intel_ring *mock_ring(struct intel_engine_cs *engine)
->         ring->vaddr = (void *)(ring + 1);
->         atomic_set(&ring->pin_count, 1);
->
-> -       ring->vma = i915_vma_alloc();
-> -       if (!ring->vma) {
-> +       ring->vma = create_ring_vma(engine->gt->ggtt, PAGE_SIZE);
-> +       if (IS_ERR(ring->vma)) {
->                 kfree(ring);
->                 return NULL;
->         }
-> -       i915_active_init(&ring->vma->active, NULL, NULL, 0);
-> -       __set_bit(I915_VMA_GGTT_BIT, __i915_vma_flags(ring->vma));
-> -       __set_bit(DRM_MM_NODE_ALLOCATED_BIT, &ring->vma->node.flags);
-> -       ring->vma->node.size = sz;
->
->         intel_ring_update_space(ring);
->
-> @@ -67,8 +85,7 @@ static struct intel_ring *mock_ring(struct intel_engine_cs *engine)
->
->  static void mock_ring_free(struct intel_ring *ring)
->  {
-> -       i915_active_fini(&ring->vma->active);
-> -       i915_vma_free(ring->vma);
-> +       i915_vma_put(ring->vma);
->
->         kfree(ring);
->  }
-> @@ -125,6 +142,7 @@ static void mock_context_unpin(struct intel_context *ce)
->
->  static void mock_context_post_unpin(struct intel_context *ce)
->  {
-> +       i915_vma_unpin(ce->ring->vma);
->  }
->
->  static void mock_context_destroy(struct kref *ref)
-> @@ -169,7 +187,7 @@ static int mock_context_alloc(struct intel_context *ce)
->  static int mock_context_pre_pin(struct intel_context *ce,
->                                 struct i915_gem_ww_ctx *ww, void **unused)
->  {
-> -       return 0;
-> +       return i915_vma_pin_ww(ce->ring->vma, ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
->  }
->
->  static int mock_context_pin(struct intel_context *ce, void *unused)
-> --
-> 2.33.0
->
