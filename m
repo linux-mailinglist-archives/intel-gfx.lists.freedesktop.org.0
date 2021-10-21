@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5734369B7
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 19:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5587B4369D6
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 19:56:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 814C46ECDA;
-	Thu, 21 Oct 2021 17:48:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 464706E48B;
+	Thu, 21 Oct 2021 17:56:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com
- [IPv6:2607:f8b0:4864:20::f36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C79C66E471;
- Thu, 21 Oct 2021 17:48:31 +0000 (UTC)
-Received: by mail-qv1-xf36.google.com with SMTP id g14so941865qvb.0;
- Thu, 21 Oct 2021 10:48:31 -0700 (PDT)
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com
+ [IPv6:2607:f8b0:4864:20::82f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9C826E48B;
+ Thu, 21 Oct 2021 17:56:03 +0000 (UTC)
+Received: by mail-qt1-x82f.google.com with SMTP id g17so1235974qtk.8;
+ Thu, 21 Oct 2021 10:56:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4qDWTHyy75fUmTy/5nYWBlXI97/PUjvunHLAf/D9j1I=;
- b=TJjjeSK8ncb+AdeLxILY/fSFaippjcabvRVafiAWiedi2BUziYisQV0C4pHKNnECox
- rtQdm1o+ym4QXlnx1MF7TPEW3NzvV5demeNDnglp4DHUSltv23OCpPHVB+x2tlDAAWGD
- SqAnHoEWlKLkwwAHI0kKsC3VfFkpl4hqtobrr1jIKiQVl4qoxCRrtP3Je7k7Id/JTEEM
- H/B1KZpq62gBuSYo7w7mZHMxWsq0bZh+AyCa8f3Ng/MULJaTwHd/Tw6R56m0QfyC01ty
- TjvM2YIS89e2zCGnoGSPtjdnzBe0fYfp1Saxp2JaDzwccos0VcEZOAHHG5Myfnn1t1c9
- OGdA==
+ :cc; bh=hAV42tauO1V5AmOfnutuHncYWnOdndS+sBToQSeaE04=;
+ b=jr1dw8eboC1lwuav3MPEXlH8YoXTL8MiSlst/iZX6kHbvaiNKQ0apnepusYZK5A925
+ 0fr8V/zTsFI7kphXkfcxJumqId7+5VQMYbrSLomdi5kbFo1WipAN/uonnQa9p6Zfkzd4
+ KSyUn4QKQxYeIcibCaYSxg/xdzL8yUKCflNCHTnvECklQDfYznW/lbFRqfzBbuzSzq7L
+ 5vfqm7dUkmZXWuNSqlWtL5CNJ/o3F3swKwxnDw9yVuCjPJwLMW35whBnB10tkd1qkfyC
+ Z9AHdIkQm3GoxvO0bd3ynrRqEc7mGrdQivEua+7gCpduZeKKBG+evPT0cVeeNDBa+HuG
+ FSZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=4qDWTHyy75fUmTy/5nYWBlXI97/PUjvunHLAf/D9j1I=;
- b=mbMZwUvwJ7g4/akD9WT++8lTsX+WOZVTyD+BaBdjARGd52AaNjJHyh5hghGoGJ5PtJ
- 4qTWvkSns35TRwr/5FsmTaZUl2brKhHFA2rscpmBxsukpWhxHcVXGPU496Uvu3oXosfz
- 5PYzWLGXHtOL+3jDqJ2Efbnjtd4rHob2yPpHpzK5d17JCBy8YK3e+ML/b+fJ04HGKxA9
- 8b4ectMyZGIn1xJnPBMGRBF4vy2UMk/K2g7olOBMxZtmO1FHxfwbbhWG14k4cES1N+A4
- 1Apxy3Y7N1UmtQ0Okh0+HA0lnp6L4gdwZb79BGdcuGKX3oeVvcKifMv96fGVARr0AQUE
- hfeA==
-X-Gm-Message-State: AOAM5327I6LvBS1aqzOxhWylPpWEGJWQAQAkG3nAyTNo8SBemnrL1ARy
- 4iW1yqv58zn4oPZr5h1hfQfnK9IPOL/PY7DsesFqnRh7Bqw=
-X-Google-Smtp-Source: ABdhPJxVTocx2sRqYxkM1CJkH873GuSi4cAwjoOS5VbxZ6NX8O88ecbi8H7MUQLGzqybizXOsSknD8xGIwE7HY1yb4I=
-X-Received: by 2002:ad4:5948:: with SMTP id eo8mr6916569qvb.1.1634838510729;
- Thu, 21 Oct 2021 10:48:30 -0700 (PDT)
+ bh=hAV42tauO1V5AmOfnutuHncYWnOdndS+sBToQSeaE04=;
+ b=Q8/1eIWy7gE8I1u+QjkkrZoo8Hmchy9D+mqac6AFMUcdekpz88HeeFuFElTQd+cKFT
+ rKGt3NUMuzL8Fyv7mI398j0B9PhF60XsqxaYeCTIvAakeRTX75zgZyO1bNJ8bRJMV5VK
+ eL+aKUQ/nBLUwqoXE/DiW+FvgbK6zAyJmySFvkk5XiGwcoxtEsknZD34B3wgCd7QP2tO
+ XC19PIboNVfuOC5OfUyD0ns8urz6MfwNHcYEPQL9Q6aBbq9Nq5tqvL2Q2KGTBSajd+qI
+ 6TGTxowhb4M+NcEkex9BUYZRMKiisVcwtKksQk45CWvPyDSjP6lQZziD6Bfg/tkIirMV
+ lBKw==
+X-Gm-Message-State: AOAM532ixPc0sccerkZ2vvKTzXli511qGeVV6aHZAjQ62tMuGCJv9J4z
+ CuM1WVneUJcFyGoixBLnQ/6WAszRkFWH9Sq1x8Q9PyZQugk=
+X-Google-Smtp-Source: ABdhPJw1WAWtzBqdH6NXbYpG0Sf4eWPlbXKcnC6nLgGgEXUYv5mKh9RLab0um9Dzk3BdLnBoO5Ml4zfm1kE3CVQLA14=
+X-Received: by 2002:a05:622a:1209:: with SMTP id
+ y9mr7955263qtx.13.1634838962903; 
+ Thu, 21 Oct 2021 10:56:02 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
- <20211021103605.735002-15-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211021103605.735002-15-maarten.lankhorst@linux.intel.com>
+ <20211021103605.735002-16-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20211021103605.735002-16-maarten.lankhorst@linux.intel.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 21 Oct 2021 18:48:03 +0100
-Message-ID: <CAM0jSHPq1s9hV2gFmGK0Y9PPbgyTYKiaxzR-+xojbFNzU9EW-A@mail.gmail.com>
+Date: Thu, 21 Oct 2021 18:55:35 +0100
+Message-ID: <CAM0jSHPza2KL2CmquMCyOM9q7+kN306+KN+FuQ+vZW9oB8Hdpg@mail.gmail.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
  ML dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 15/28] drm/i915: Add lock for unbinding to
- i915_gem_object_ggtt_pin_ww
+Subject: Re: [Intel-gfx] [PATCH 16/28] drm/i915: Rework context handling in
+ hugepages selftests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,37 +72,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 21 Oct 2021 at 11:37, Maarten Lankhorst
 <maarten.lankhorst@linux.intel.com> wrote:
 >
+> In the next commit, we don't evict when refcount = 0, so we need to
+> call drain freed objects, because we want to pin new bo's in the same
+> place, causing a test failure.
+>
+> Furthermore, since each subtest is separated, it's a lot better to use
+> i915_live_selftests, so each subtest starts with a clean slate, and a
+> clean address space.
+>
 > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-Needs a proper commit message.
-
-> ---
->  drivers/gpu/drm/i915/i915_gem.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 981e383d1a5d..6aa9e465b48e 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -931,7 +931,14 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
->                         goto new_vma;
->                 }
->
-> -               ret = i915_vma_unbind(vma);
-> +               ret = 0;
-> +               if (!ww)
-> +                       ret = i915_gem_object_lock_interruptible(obj, NULL);
-> +               if (!ret) {
-> +                       ret = i915_vma_unbind(vma);
-> +                       if (!ww)
-> +                               i915_gem_object_unlock(obj);
-> +               }
-
-There is also a wait_for_bind below. Do we need the lock for that also?
-
->                 if (ret)
->                         return ERR_PTR(ret);
->         }
-> --
-> 2.33.0
->
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
