@@ -2,34 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8018B435807
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 03:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB4F543582E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 03:27:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC696EA1D;
-	Thu, 21 Oct 2021 01:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E526EA24;
+	Thu, 21 Oct 2021 01:27:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 940696E406;
- Thu, 21 Oct 2021 01:00:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8FA87A77A5;
- Thu, 21 Oct 2021 01:00:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A97CE6EA24;
+ Thu, 21 Oct 2021 01:27:14 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4HZVFm2b3Rz4xbL;
+ Thu, 21 Oct 2021 12:27:08 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1634779629;
+ bh=/P3sXv3gg+XWwVuNNFzsys4NuZ1Yv/74orig70uJzH4=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=o6UOh8UKYL9dHZPIkbY5Goqo8g0WDASq0S9rVYBWjy/R+yUoe8yVCxCCoEsjY4kyH
+ 6yr3lTwN3LP8Zy924fHKfJUSsROszJ2rCjaQPv2LS7Re0DGPQX7ELnYBnKuOlJU0l9
+ cxyqGrYDtaar8WEeaGbO9d513ytVaJ4kXlFvLycWSyUwQxBmOe2PILlM1bfD8eG3Nc
+ +ym7tJ/OQzC6vZijFNxGEjPBF2Ygycfh0lINu4JVkLxywqL7fKvfcZtLXE3aiCVX5h
+ DAPX2Dhyv/zz0Un78T6V1U4O2mglL+33HHqqP1LldqnwQZr9IJR4YCQ8rofXzKqEW+
+ H5zuuiHwlgrag==
+Date: Thu, 21 Oct 2021 12:27:05 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Message-ID: <20211021122705.2282c49b@canb.auug.org.au>
+In-Reply-To: <f9b1b7e6-94ab-50f8-d16c-a3581096687d@amd.com>
+References: <20211005185940.382720e7@canb.auug.org.au>
+ <f9b1b7e6-94ab-50f8-d16c-a3581096687d@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Oct 2021 01:00:48 -0000
-Message-ID: <163477804858.20178.10763428203647269199@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211020223339.669-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211020223339.669-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_=28near=29atomic_gamma_LUT_updates_via_vblank_worke?=
- =?utf-8?q?rs?=
+Content-Type: multipart/signed; boundary="Sig_/gnfe75AE3eq1OYO7JPRDy2e";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +56,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--Sig_/gnfe75AE3eq1OYO7JPRDy2e
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/i915: (near)atomic gamma LUT updates via vblank workers
-URL   : https://patchwork.freedesktop.org/series/96089/
-State : warning
+Hi all,
 
-== Summary ==
+On Tue, 5 Oct 2021 10:23:23 +0200 Christian K=C3=B6nig <christian.koenig@am=
+d.com> wrote:
+>
+> Am 05.10.21 um 09:59 schrieb Stephen Rothwell:
+> >
+> > After merging the drm-misc tree, today's linux-next build (htmldocs)
+> > produced this warning:
+> >
+> > include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_=
+in' not described in 'dma_buf'
+> > include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_=
+out' not described in 'dma_buf'
+> >
+> > Introduced by commit
+> >
+> >    6b51b02a3a0a ("dma-buf: fix and rework dma_buf_poll v7")
+>
+> Thanks for the notice, going to fix this.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
+I am still seeing these warnings.
 
+--=20
+Cheers,
+Stephen Rothwell
 
+--Sig_/gnfe75AE3eq1OYO7JPRDy2e
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFwwekACgkQAVBC80lX
+0GyV5gf/S+g93X5+pnzfg+sMV1u6Z81Eki3YB95pwwcQpaGQFYtBBKi+wrp+NlJg
+9Z8HSyE7JDD5Fzv13vC6fEQsufrBn8haG7GNDcI9SVOCtaPMsvtzbtYg3sktR9al
+TjISf3cac7B7pqjEmx3DfcUhP2DvD9vMyiHsPd9beJU8PAFW991ChMz0iDEiaOQ9
+IGg1SzAUohuIet+IyFhgUd9OKr4dyYUF5TDtXMO+UmRQhnqoGf4h7FOnmc2+GVYO
+JeNwoVgPHq1jSH5rXm5SBPWFF7T+8BOmo874yFDaKwMsieiGnylwjuzWkYg/n8i9
+fAuXp5RwIGCD9pnvMH9oZ9Z6y76ttA==
+=AusU
+-----END PGP SIGNATURE-----
+
+--Sig_/gnfe75AE3eq1OYO7JPRDy2e--
