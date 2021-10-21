@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2906B435F42
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9BB435F56
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:37:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EFCA6EC62;
-	Thu, 21 Oct 2021 10:36:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D10A6EC77;
+	Thu, 21 Oct 2021 10:36:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 915CF6EC3F;
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BD446EC3A;
  Thu, 21 Oct 2021 10:36:12 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date: Thu, 21 Oct 2021 12:35:57 +0200
-Message-Id: <20211021103605.735002-20-maarten.lankhorst@linux.intel.com>
+Date: Thu, 21 Oct 2021 12:35:58 +0200
+Message-Id: <20211021103605.735002-21-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
 References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 20/28] drm/i915: Ensure i915_vma tests do not
- get -ENOSPC with the locking changes.
+Subject: [Intel-gfx] [PATCH 21/28] drm/i915: Drain the ttm delayed workqueue
+ too
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,60 +41,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we require locking to evict, multiple vmas from the same object
-might not be evicted. This is expected and required, because execbuf will
-move to short-term pinning by using the lock only. This will cause these
-tests to fail, because they create a ton of vma's for the same object.
-
-Unbind manually to prevent spurious -ENOSPC in those mock tests.
+Be thorough..
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/selftests/i915_vma.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_drv.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
-index 1f10fe36619b..5c5809dfe9b2 100644
---- a/drivers/gpu/drm/i915/selftests/i915_vma.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
-@@ -691,7 +691,11 @@ static int igt_vma_rotate_remap(void *arg)
- 					}
- 
- 					i915_vma_unpin(vma);
--
-+					err = i915_vma_unbind(vma);
-+					if (err) {
-+						pr_err("Unbinding returned %i\n", err);
-+						goto out_object;
-+					}
- 					cond_resched();
- 				}
- 			}
-@@ -848,6 +852,11 @@ static int igt_vma_partial(void *arg)
- 
- 				i915_vma_unpin(vma);
- 				nvma++;
-+				err = i915_vma_unbind(vma);
-+				if (err) {
-+					pr_err("Unbinding returned %i\n", err);
-+					goto out_object;
-+				}
- 
- 				cond_resched();
- 			}
-@@ -882,6 +891,12 @@ static int igt_vma_partial(void *arg)
- 
- 		i915_vma_unpin(vma);
- 
-+		err = i915_vma_unbind(vma);
-+		if (err) {
-+			pr_err("Unbinding returned %i\n", err);
-+			goto out_object;
-+		}
-+
- 		count = 0;
- 		list_for_each_entry(vma, &obj->vma.list, obj_link)
- 			count++;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 22c891720c6d..7c5ed5957fe2 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1819,6 +1819,7 @@ static inline void i915_gem_drain_freed_objects(struct drm_i915_private *i915)
+ 	 */
+ 	while (atomic_read(&i915->mm.free_count)) {
+ 		flush_work(&i915->mm.free_work);
++		flush_delayed_work(&i915->bdev.wq);
+ 		rcu_barrier();
+ 	}
+ }
 -- 
 2.33.0
 
