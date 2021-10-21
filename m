@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2E4D435FAC
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:49:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A46FF435FB7
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 12:51:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 137336EC35;
-	Thu, 21 Oct 2021 10:49:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76EC86EA9F;
+	Thu, 21 Oct 2021 10:51:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62E1C6EC31
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Oct 2021 10:49:19 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="227771506"
-X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="227771506"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 03:49:18 -0700
-X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; d="scan'208";a="495078220"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 03:49:16 -0700
-Date: Thu, 21 Oct 2021 13:49:13 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Message-ID: <20211021104913.GA1854152@ideak-desk.fi.intel.com>
-References: <20211020195138.1841242-1-imre.deak@intel.com>
- <20211020195138.1841242-2-imre.deak@intel.com>
- <87wnm6n0po.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 341CF6EA9F;
+ Thu, 21 Oct 2021 10:51:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2D800A7DFB;
+ Thu, 21 Oct 2021 10:51:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7781194757925395959=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87wnm6n0po.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 01/11] drm/i915: Add a table with a
- descriptor for all i915 modifiers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Oct 2021 10:51:53 -0000
+Message-ID: <163481351315.20173.9347799674098073812@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211021101024.13112-1-jouni.hogander@intel.com>
+In-Reply-To: <20211021101024.13112-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU2Vs?=
+ =?utf-8?q?ective_fetch_support_for_biplanar_formats?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,797 +41,279 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 21, 2021 at 01:14:59PM +0300, Jani Nikula wrote:
-> On Wed, 20 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> > Add a table describing all the framebuffer modifiers used by i915 at one
-> > place. This has the benefit of deduplicating the listing of supported
-> > modifiers for each platform and checking the support of these modifiers
-> > on a given plane. This also simplifies in a similar way getting some
-> > attribute for a modifier, for instance checking if the modifier is a
-> > CCS modifier type.
-> >
-> > While at it drop the cursor plane filtering from skl_plane_has_rc_ccs(),
-> > as the cursor plane is registered with DRM core elsewhere.
-> >
-> > v1: Unchanged.
-> > v2:
-> > - Keep the plane caps calculation in the plane code and pass an enum
-> >   with these caps to intel_fb_get_modifiers(). (Ville)
-> > - Get the modifiers calling intel_fb_get_modifiers() in i9xx_plane.c as
-> >   well.
-> > v3:
-> > - s/.id/.modifier/ (Ville)
-> > - Keep modifier_desc vs. plane_cap filter conditions consistent. (Ville)
-> > - Drop redundant cursor plane check from skl_plane_has_rc_ccs(). (Ville)
-> > - Use from, until display version fields in modifier_desc instead of a mask. (Jani)
-> > - Unexport struct intel_modifier_desc, separate its decl and init. (Jani)
-> > - Remove enum pipe, plane_id forward decls from intel_fb.h, which are
-> >   not needed after v2.
-> > v4:
-> > - Reuse IS_DISPLAY_VER() instead of open-coding it. (Jani)
-> > - Preserve the current modifier order exposed to user space. (Ville)
-> >
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> (v3)
-> > ---
-> >  drivers/gpu/drm/i915/display/i9xx_plane.c     |  30 +--
-> >  drivers/gpu/drm/i915/display/intel_cursor.c   |  19 +-
-> >  .../drm/i915/display/intel_display_types.h    |   1 -
-> >  drivers/gpu/drm/i915/display/intel_fb.c       | 152 +++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_fb.h       |  13 ++
-> >  drivers/gpu/drm/i915/display/intel_sprite.c   |  35 +---
-> >  drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
-> >  .../drm/i915/display/skl_universal_plane.c    | 178 +++++-------------
-> >  8 files changed, 245 insertions(+), 184 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > index b1439ba78f67b..a939accff7ee2 100644
-> > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > @@ -60,22 +60,11 @@ static const u32 vlv_primary_formats[] = {
-> >  	DRM_FORMAT_XBGR16161616F,
-> >  };
-> >  
-> > -static const u64 i9xx_format_modifiers[] = {
-> > -	I915_FORMAT_MOD_X_TILED,
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> >  static bool i8xx_plane_format_mod_supported(struct drm_plane *_plane,
-> >  					    u32 format, u64 modifier)
-> >  {
-> > -	switch (modifier) {
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -		break;
-> > -	default:
-> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
-> >  		return false;
-> > -	}
-> >  
-> >  	switch (format) {
-> >  	case DRM_FORMAT_C8:
-> > @@ -92,13 +81,8 @@ static bool i8xx_plane_format_mod_supported(struct drm_plane *_plane,
-> >  static bool i965_plane_format_mod_supported(struct drm_plane *_plane,
-> >  					    u32 format, u64 modifier)
-> >  {
-> > -	switch (modifier) {
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -		break;
-> > -	default:
-> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
-> >  		return false;
-> > -	}
-> >  
-> >  	switch (format) {
-> >  	case DRM_FORMAT_C8:
-> > @@ -768,6 +752,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
-> >  	struct intel_plane *plane;
-> >  	const struct drm_plane_funcs *plane_funcs;
-> >  	unsigned int supported_rotations;
-> > +	const u64 *modifiers;
-> >  	const u32 *formats;
-> >  	int num_formats;
-> >  	int ret, zpos;
-> > @@ -875,21 +860,26 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
-> >  		plane->disable_flip_done = ilk_primary_disable_flip_done;
-> >  	}
-> >  
-> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
-> > +
-> >  	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
-> >  		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> >  					       0, plane_funcs,
-> >  					       formats, num_formats,
-> > -					       i9xx_format_modifiers,
-> > +					       modifiers,
-> >  					       DRM_PLANE_TYPE_PRIMARY,
-> >  					       "primary %c", pipe_name(pipe));
-> >  	else
-> >  		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> >  					       0, plane_funcs,
-> >  					       formats, num_formats,
-> > -					       i9xx_format_modifiers,
-> > +					       modifiers,
-> >  					       DRM_PLANE_TYPE_PRIMARY,
-> >  					       "plane %c",
-> >  					       plane_name(plane->i9xx_plane));
-> > +
-> > +	kfree(modifiers);
-> > +
-> >  	if (ret)
-> >  		goto fail;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > index 11842f2126130..6b08d8bca5cd4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > @@ -28,11 +28,6 @@ static const u32 intel_cursor_formats[] = {
-> >  	DRM_FORMAT_ARGB8888,
-> >  };
-> >  
-> > -static const u64 cursor_format_modifiers[] = {
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> >  static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
-> >  {
-> >  	struct drm_i915_private *dev_priv =
-> > @@ -605,8 +600,10 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
-> >  static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
-> >  					      u32 format, u64 modifier)
-> >  {
-> > -	return modifier == DRM_FORMAT_MOD_LINEAR &&
-> > -		format == DRM_FORMAT_ARGB8888;
-> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
-> > +		return false;
-> > +
-> > +	return format == DRM_FORMAT_ARGB8888;
-> >  }
-> >  
-> >  static int
-> > @@ -754,6 +751,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
-> >  {
-> >  	struct intel_plane *cursor;
-> >  	int ret, zpos;
-> > +	u64 *modifiers;
-> >  
-> >  	cursor = intel_plane_alloc();
-> >  	if (IS_ERR(cursor))
-> > @@ -784,13 +782,18 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
-> >  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
-> >  		cursor->cursor.size = ~0;
-> >  
-> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_NO_CAPS);
-> > +
-> >  	ret = drm_universal_plane_init(&dev_priv->drm, &cursor->base,
-> >  				       0, &intel_cursor_plane_funcs,
-> >  				       intel_cursor_formats,
-> >  				       ARRAY_SIZE(intel_cursor_formats),
-> > -				       cursor_format_modifiers,
-> > +				       modifiers,
-> >  				       DRM_PLANE_TYPE_CURSOR,
-> >  				       "cursor %c", pipe_name(pipe));
-> > +
-> > +	kfree(modifiers);
-> > +
-> >  	if (ret)
-> >  		goto fail;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 1e42bf901263c..a4930a56bfa82 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1336,7 +1336,6 @@ struct intel_plane {
-> >  	enum plane_id id;
-> >  	enum pipe pipe;
-> >  	bool has_fbc;
-> > -	bool has_ccs;
-> >  	bool need_async_flip_disable_wa;
-> >  	u32 frontbuffer_bit;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> > index fa1f375e696bf..cf4748daf2acf 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > @@ -13,6 +13,158 @@
-> >  
-> >  #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
-> >  
-> > +struct intel_modifier_desc {
-> > +	u64 modifier;
-> > +	struct {
-> > +		u8 from;
-> > +		u8 until;
-> > +	} display_ver;
-> > +#define DISPLAY_VER_ALL		{ 0, -1 }
-> > +
-> > +	u8 is_linear:1;
-> > +
-> > +	struct {
-> > +#define INTEL_CCS_RC		BIT(0)
-> > +#define INTEL_CCS_RC_CC		BIT(1)
-> > +#define INTEL_CCS_MC		BIT(2)
-> > +
-> > +#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
-> > +		u8 type:3;
-> > +	} ccs;
-> > +};
-> > +
-> > +static const struct intel_modifier_desc intel_modifiers[] = {
-> > +	{
-> > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
-> > +		.display_ver = { 12, 13 },
-> > +
-> > +		.ccs.type = INTEL_CCS_MC,
-> > +	},
-> > +	{
-> 
-> Argh, I meant to comment that "}, {" on one line is customary for stuff
-> like this to reduce the vertical space.
-> 
-> If you need to do another spin for other reasons, please include this
-> change, otherwise it can be a follow-up.
+--===============7781194757925395959==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ok, let's see if there are more comments. If not I can also change this
-while pushing the patches.
+== Series Details ==
 
-> 
-> BR,
-> Jani.
-> 
-> > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-> > +		.display_ver = { 12, 13 },
-> > +
-> > +		.ccs.type = INTEL_CCS_RC,
-> > +	},
-> > +	{
-> > +		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
-> > +		.display_ver = { 12, 13 },
-> > +
-> > +		.ccs.type = INTEL_CCS_RC_CC,
-> > +	},
-> > +	{
-> > +		.modifier = I915_FORMAT_MOD_Yf_TILED_CCS,
-> > +		.display_ver = { 9, 11 },
-> > +
-> > +		.ccs.type = INTEL_CCS_RC,
-> > +	},
-> > +	{
-> > +		.modifier = I915_FORMAT_MOD_Y_TILED_CCS,
-> > +		.display_ver = { 9, 11 },
-> > +
-> > +		.ccs.type = INTEL_CCS_RC,
-> > +	},
-> > +	{
-> > +		.modifier = I915_FORMAT_MOD_Yf_TILED,
-> > +		.display_ver = { 9, 11 },
-> > +	},
-> > +	{
-> > +		.modifier = I915_FORMAT_MOD_Y_TILED,
-> > +		.display_ver = { 9, 13 },
-> > +	},
-> > +	{
-> > +		.modifier = I915_FORMAT_MOD_X_TILED,
-> > +		.display_ver = DISPLAY_VER_ALL,
-> > +	},
-> > +	{
-> > +		.modifier = DRM_FORMAT_MOD_LINEAR,
-> > +		.display_ver = DISPLAY_VER_ALL,
-> > +
-> > +		.is_linear = true,
-> > +	},
-> > +};
-> > +
-> > +static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_type)
-> > +{
-> > +	return md->ccs.type & ccs_type;
-> > +}
-> > +
-> > +static bool plane_has_modifier(struct drm_i915_private *i915,
-> > +			       enum intel_plane_caps plane_caps,
-> > +			       const struct intel_modifier_desc *md)
-> > +{
-> > +	if (!IS_DISPLAY_VER(i915, md->display_ver.from, md->display_ver.until))
-> > +		return false;
-> > +
-> > +	if (!md->is_linear &&
-> > +	    !(plane_caps & PLANE_HAS_TILING))
-> > +		return false;
-> > +
-> > +	if (is_ccs_type_modifier(md, INTEL_CCS_RC | INTEL_CCS_RC_CC) &&
-> > +	    !(plane_caps & PLANE_HAS_CCS_RC))
-> > +		return false;
-> > +
-> > +	if (is_ccs_type_modifier(md, INTEL_CCS_MC) &&
-> > +	    !(plane_caps & PLANE_HAS_CCS_MC))
-> > +		return false;
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +/**
-> > + * intel_fb_plane_get_modifiers: Get the modifiers for the given platform and plane capabilities
-> > + * @i915: i915 device instance
-> > + * @plane_caps: capabilities for the plane the modifiers are queried for
-> > + *
-> > + * Returns:
-> > + * Returns the list of modifiers allowed by the @i915 platform and @plane_caps.
-> > + * The caller must free the returned buffer.
-> > + */
-> > +u64 *intel_fb_plane_get_modifiers(struct drm_i915_private *i915,
-> > +				  enum intel_plane_caps plane_caps)
-> > +{
-> > +	u64 *list, *p;
-> > +	int count = 1;		/* +1 for invalid modifier terminator */
-> > +	int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(intel_modifiers); i++) {
-> > +		if (plane_has_modifier(i915, plane_caps, &intel_modifiers[i]))
-> > +			count++;
-> > +	}
-> > +
-> > +	list = kmalloc_array(count, sizeof(*list), GFP_KERNEL);
-> > +	if (drm_WARN_ON(&i915->drm, !list))
-> > +		return NULL;
-> > +
-> > +	p = list;
-> > +	for (i = 0; i < ARRAY_SIZE(intel_modifiers); i++) {
-> > +		if (plane_has_modifier(i915, plane_caps, &intel_modifiers[i]))
-> > +			*p++ = intel_modifiers[i].modifier;
-> > +	}
-> > +	*p++ = DRM_FORMAT_MOD_INVALID;
-> > +
-> > +	return list;
-> > +}
-> > +
-> > +/**
-> > + * intel_fb_plane_supports_modifier: Determine if a modifier is supported by the given plane
-> > + * @plane: Plane to check the modifier support for
-> > + * @modifier: The modifier to check the support for
-> > + *
-> > + * Returns:
-> > + * %true if the @modifier is supported on @plane.
-> > + */
-> > +bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < plane->base.modifier_count; i++)
-> > +		if (plane->base.modifiers[i] == modifier)
-> > +			return true;
-> > +
-> > +	return false;
-> > +}
-> > +
-> >  bool is_ccs_plane(const struct drm_framebuffer *fb, int plane)
-> >  {
-> >  	if (!is_ccs_modifier(fb->modifier))
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-> > index 1cbdd84502bdd..0f77e81e69d29 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-> > @@ -6,6 +6,7 @@
-> >  #ifndef __INTEL_FB_H__
-> >  #define __INTEL_FB_H__
-> >  
-> > +#include <linux/bits.h>
-> >  #include <linux/types.h>
-> >  
-> >  struct drm_device;
-> > @@ -16,13 +17,25 @@ struct drm_i915_private;
-> >  struct drm_mode_fb_cmd2;
-> >  struct intel_fb_view;
-> >  struct intel_framebuffer;
-> > +struct intel_plane;
-> >  struct intel_plane_state;
-> >  
-> > +enum intel_plane_caps {
-> > +	PLANE_HAS_NO_CAPS = 0,
-> > +	PLANE_HAS_TILING = BIT(0),
-> > +	PLANE_HAS_CCS_RC = BIT(1),
-> > +	PLANE_HAS_CCS_MC = BIT(2),
-> > +};
-> > +
-> >  bool is_ccs_plane(const struct drm_framebuffer *fb, int plane);
-> >  bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane);
-> >  bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane);
-> >  bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane);
-> >  
-> > +u64 *intel_fb_plane_get_modifiers(struct drm_i915_private *i915,
-> > +				  enum intel_plane_caps plane_caps);
-> > +bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
-> > +
-> >  bool is_surface_linear(const struct drm_framebuffer *fb, int color_plane);
-> >  
-> >  int main_to_ccs_plane(const struct drm_framebuffer *fb, int main_plane);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > index 08116f41da26a..2f4f47ab9da03 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > @@ -45,6 +45,7 @@
-> >  #include "intel_atomic_plane.h"
-> >  #include "intel_de.h"
-> >  #include "intel_display_types.h"
-> > +#include "intel_fb.h"
-> >  #include "intel_frontbuffer.h"
-> >  #include "intel_sprite.h"
-> >  #include "i9xx_plane.h"
-> > @@ -1575,12 +1576,6 @@ static const u32 g4x_plane_formats[] = {
-> >  	DRM_FORMAT_VYUY,
-> >  };
-> >  
-> > -static const u64 i9xx_plane_format_modifiers[] = {
-> > -	I915_FORMAT_MOD_X_TILED,
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> >  static const u32 snb_plane_formats[] = {
-> >  	DRM_FORMAT_XRGB8888,
-> >  	DRM_FORMAT_XBGR8888,
-> > @@ -1629,13 +1624,8 @@ static const u32 chv_pipe_b_sprite_formats[] = {
-> >  static bool g4x_sprite_format_mod_supported(struct drm_plane *_plane,
-> >  					    u32 format, u64 modifier)
-> >  {
-> > -	switch (modifier) {
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -		break;
-> > -	default:
-> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
-> >  		return false;
-> > -	}
-> >  
-> >  	switch (format) {
-> >  	case DRM_FORMAT_XRGB8888:
-> > @@ -1655,13 +1645,8 @@ static bool g4x_sprite_format_mod_supported(struct drm_plane *_plane,
-> >  static bool snb_sprite_format_mod_supported(struct drm_plane *_plane,
-> >  					    u32 format, u64 modifier)
-> >  {
-> > -	switch (modifier) {
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -		break;
-> > -	default:
-> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
-> >  		return false;
-> > -	}
-> >  
-> >  	switch (format) {
-> >  	case DRM_FORMAT_XRGB8888:
-> > @@ -1686,13 +1671,8 @@ static bool snb_sprite_format_mod_supported(struct drm_plane *_plane,
-> >  static bool vlv_sprite_format_mod_supported(struct drm_plane *_plane,
-> >  					    u32 format, u64 modifier)
-> >  {
-> > -	switch (modifier) {
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -		break;
-> > -	default:
-> > +	if (!intel_fb_plane_supports_modifier(to_intel_plane(_plane), modifier))
-> >  		return false;
-> > -	}
-> >  
-> >  	switch (format) {
-> >  	case DRM_FORMAT_C8:
-> > @@ -1776,7 +1756,6 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
-> >  			formats = vlv_plane_formats;
-> >  			num_formats = ARRAY_SIZE(vlv_plane_formats);
-> >  		}
-> > -		modifiers = i9xx_plane_format_modifiers;
-> >  
-> >  		plane_funcs = &vlv_sprite_funcs;
-> >  	} else if (DISPLAY_VER(dev_priv) >= 7) {
-> > @@ -1795,7 +1774,6 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
-> >  
-> >  		formats = snb_plane_formats;
-> >  		num_formats = ARRAY_SIZE(snb_plane_formats);
-> > -		modifiers = i9xx_plane_format_modifiers;
-> >  
-> >  		plane_funcs = &snb_sprite_funcs;
-> >  	} else {
-> > @@ -1806,7 +1784,6 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
-> >  		plane->max_stride = g4x_sprite_max_stride;
-> >  		plane->min_cdclk = g4x_sprite_min_cdclk;
-> >  
-> > -		modifiers = i9xx_plane_format_modifiers;
-> >  		if (IS_SANDYBRIDGE(dev_priv)) {
-> >  			formats = snb_plane_formats;
-> >  			num_formats = ARRAY_SIZE(snb_plane_formats);
-> > @@ -1833,11 +1810,15 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
-> >  	plane->id = PLANE_SPRITE0 + sprite;
-> >  	plane->frontbuffer_bit = INTEL_FRONTBUFFER(pipe, plane->id);
-> >  
-> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
-> > +
-> >  	ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> >  				       0, plane_funcs,
-> >  				       formats, num_formats, modifiers,
-> >  				       DRM_PLANE_TYPE_OVERLAY,
-> >  				       "sprite %c", sprite_name(pipe, sprite));
-> > +	kfree(modifiers);
-> > +
-> >  	if (ret)
-> >  		goto fail;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> > index 37eabeff8197f..c2e94118566b6 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> > @@ -4,6 +4,7 @@
-> >   */
-> >  #include "intel_de.h"
-> >  #include "intel_display_types.h"
-> > +#include "intel_fb.h"
-> >  #include "skl_scaler.h"
-> >  #include "skl_universal_plane.h"
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > index 7444b88829ea7..7ee2114e420b7 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -163,50 +163,6 @@ static const u32 icl_hdr_plane_formats[] = {
-> >  	DRM_FORMAT_XVYU16161616,
-> >  };
-> >  
-> > -static const u64 skl_plane_format_modifiers_noccs[] = {
-> > -	I915_FORMAT_MOD_Yf_TILED,
-> > -	I915_FORMAT_MOD_Y_TILED,
-> > -	I915_FORMAT_MOD_X_TILED,
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> > -static const u64 skl_plane_format_modifiers_ccs[] = {
-> > -	I915_FORMAT_MOD_Yf_TILED_CCS,
-> > -	I915_FORMAT_MOD_Y_TILED_CCS,
-> > -	I915_FORMAT_MOD_Yf_TILED,
-> > -	I915_FORMAT_MOD_Y_TILED,
-> > -	I915_FORMAT_MOD_X_TILED,
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> > -static const u64 gen12_plane_format_modifiers_mc_ccs[] = {
-> > -	I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
-> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
-> > -	I915_FORMAT_MOD_Y_TILED,
-> > -	I915_FORMAT_MOD_X_TILED,
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> > -static const u64 gen12_plane_format_modifiers_rc_ccs[] = {
-> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-> > -	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
-> > -	I915_FORMAT_MOD_Y_TILED,
-> > -	I915_FORMAT_MOD_X_TILED,
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> > -static const u64 adlp_step_a_plane_format_modifiers[] = {
-> > -	I915_FORMAT_MOD_Y_TILED,
-> > -	I915_FORMAT_MOD_X_TILED,
-> > -	DRM_FORMAT_MOD_LINEAR,
-> > -	DRM_FORMAT_MOD_INVALID
-> > -};
-> > -
-> >  int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
-> >  {
-> >  	switch (format) {
-> > @@ -1882,42 +1838,13 @@ static const u32 *icl_get_plane_formats(struct drm_i915_private *dev_priv,
-> >  	}
-> >  }
-> >  
-> > -static bool skl_plane_has_ccs(struct drm_i915_private *dev_priv,
-> > -			      enum pipe pipe, enum plane_id plane_id)
-> > -{
-> > -	if (plane_id == PLANE_CURSOR)
-> > -		return false;
-> > -
-> > -	if (DISPLAY_VER(dev_priv) >= 11)
-> > -		return true;
-> > -
-> > -	if (IS_GEMINILAKE(dev_priv))
-> > -		return pipe != PIPE_C;
-> > -
-> > -	return pipe != PIPE_C &&
-> > -		(plane_id == PLANE_PRIMARY ||
-> > -		 plane_id == PLANE_SPRITE0);
-> > -}
-> > -
-> >  static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
-> >  					   u32 format, u64 modifier)
-> >  {
-> >  	struct intel_plane *plane = to_intel_plane(_plane);
-> >  
-> > -	switch (modifier) {
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -	case I915_FORMAT_MOD_Y_TILED:
-> > -	case I915_FORMAT_MOD_Yf_TILED:
-> > -		break;
-> > -	case I915_FORMAT_MOD_Y_TILED_CCS:
-> > -	case I915_FORMAT_MOD_Yf_TILED_CCS:
-> > -		if (!plane->has_ccs)
-> > -			return false;
-> > -		break;
-> > -	default:
-> > +	if (!intel_fb_plane_supports_modifier(plane, modifier))
-> >  		return false;
-> > -	}
-> >  
-> >  	switch (format) {
-> >  	case DRM_FORMAT_XRGB8888:
-> > @@ -1965,45 +1892,13 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
-> >  	}
-> >  }
-> >  
-> > -static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
-> > -					enum plane_id plane_id)
-> > -{
-> > -	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
-> > -	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
-> > -	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_D0))
-> > -		return false;
-> > -
-> > -	/* Wa_22011186057 */
-> > -	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-> > -		return false;
-> > -
-> > -	return plane_id < PLANE_SPRITE4;
-> > -}
-> > -
-> >  static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
-> >  					     u32 format, u64 modifier)
-> >  {
-> > -	struct drm_i915_private *dev_priv = to_i915(_plane->dev);
-> >  	struct intel_plane *plane = to_intel_plane(_plane);
-> >  
-> > -	switch (modifier) {
-> > -	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
-> > -		if (!gen12_plane_supports_mc_ccs(dev_priv, plane->id))
-> > -			return false;
-> > -		fallthrough;
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -	case I915_FORMAT_MOD_Y_TILED:
-> > -		break;
-> > -	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
-> > -	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
-> > -		/* Wa_22011186057 */
-> > -		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-> > -			return false;
-> > -		break;
-> > -	default:
-> > +	if (!intel_fb_plane_supports_modifier(plane, modifier))
-> >  		return false;
-> > -	}
-> >  
-> >  	switch (format) {
-> >  	case DRM_FORMAT_XRGB8888:
-> > @@ -2051,18 +1946,6 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
-> >  	}
-> >  }
-> >  
-> > -static const u64 *gen12_get_plane_modifiers(struct drm_i915_private *dev_priv,
-> > -					    enum plane_id plane_id)
-> > -{
-> > -	/* Wa_22011186057 */
-> > -	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-> > -		return adlp_step_a_plane_format_modifiers;
-> > -	else if (gen12_plane_supports_mc_ccs(dev_priv, plane_id))
-> > -		return gen12_plane_format_modifiers_mc_ccs;
-> > -	else
-> > -		return gen12_plane_format_modifiers_rc_ccs;
-> > -}
-> > -
-> >  static const struct drm_plane_funcs skl_plane_funcs = {
-> >  	.update_plane = drm_atomic_helper_update_plane,
-> >  	.disable_plane = drm_atomic_helper_disable_plane,
-> > @@ -2103,6 +1986,39 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
-> >  	spin_unlock_irq(&i915->irq_lock);
-> >  }
-> >  
-> > +static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
-> > +				 enum pipe pipe, enum plane_id plane_id)
-> > +{
-> > +	/* Wa_22011186057 */
-> > +	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> > +		return false;
-> > +
-> > +	if (DISPLAY_VER(i915) >= 11)
-> > +		return true;
-> > +
-> > +	if (IS_GEMINILAKE(i915))
-> > +		return pipe != PIPE_C;
-> > +
-> > +	return pipe != PIPE_C &&
-> > +		(plane_id == PLANE_PRIMARY ||
-> > +		 plane_id == PLANE_SPRITE0);
-> > +}
-> > +
-> > +static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
-> > +				   enum plane_id plane_id)
-> > +{
-> > +	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
-> > +	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
-> > +	    IS_TGL_DISPLAY_STEP(i915, STEP_A0, STEP_D0))
-> > +		return false;
-> > +
-> > +	/* Wa_22011186057 */
-> > +	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> > +		return false;
-> > +
-> > +	return plane_id < PLANE_SPRITE4;
-> > +}
-> > +
-> >  struct intel_plane *
-> >  skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> >  			   enum pipe pipe, enum plane_id plane_id)
-> > @@ -2110,6 +2026,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> >  	const struct drm_plane_funcs *plane_funcs;
-> >  	struct intel_plane *plane;
-> >  	enum drm_plane_type plane_type;
-> > +	enum intel_plane_caps plane_caps;
-> >  	unsigned int supported_rotations;
-> >  	unsigned int supported_csc;
-> >  	const u64 *modifiers;
-> > @@ -2171,29 +2088,34 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> >  		formats = skl_get_plane_formats(dev_priv, pipe,
-> >  						plane_id, &num_formats);
-> >  
-> > -	plane->has_ccs = skl_plane_has_ccs(dev_priv, pipe, plane_id);
-> > -	if (DISPLAY_VER(dev_priv) >= 12) {
-> > -		modifiers = gen12_get_plane_modifiers(dev_priv, plane_id);
-> > +	if (DISPLAY_VER(dev_priv) >= 12)
-> >  		plane_funcs = &gen12_plane_funcs;
-> > -	} else {
-> > -		if (plane->has_ccs)
-> > -			modifiers = skl_plane_format_modifiers_ccs;
-> > -		else
-> > -			modifiers = skl_plane_format_modifiers_noccs;
-> > +	else
-> >  		plane_funcs = &skl_plane_funcs;
-> > -	}
-> >  
-> >  	if (plane_id == PLANE_PRIMARY)
-> >  		plane_type = DRM_PLANE_TYPE_PRIMARY;
-> >  	else
-> >  		plane_type = DRM_PLANE_TYPE_OVERLAY;
-> >  
-> > +	plane_caps = PLANE_HAS_TILING;
-> > +	if (skl_plane_has_rc_ccs(dev_priv, pipe, plane_id))
-> > +		plane_caps |= PLANE_HAS_CCS_RC;
-> > +
-> > +	if (gen12_plane_has_mc_ccs(dev_priv, plane_id))
-> > +		plane_caps |= PLANE_HAS_CCS_MC;
-> > +
-> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, plane_caps);
-> > +
-> >  	ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> >  				       0, plane_funcs,
-> >  				       formats, num_formats, modifiers,
-> >  				       plane_type,
-> >  				       "plane %d%c", plane_id + 1,
-> >  				       pipe_name(pipe));
-> > +
-> > +	kfree(modifiers);
-> > +
-> >  	if (ret)
-> >  		goto fail;
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Series: Selective fetch support for biplanar formats
+URL   : https://patchwork.freedesktop.org/series/96113/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10768 -> Patchwork_21401
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21401:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {fi-hsw-gt1}:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21401 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#533])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][8] ([fdo#109271]) +30 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@kms_psr@primary_page_flip.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][9] ([fdo#109271]) +63 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [FAIL][10] ([i915#1888]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][12] ([i915#3303]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+    - fi-snb-2600:        [INCOMPLETE][14] ([i915#3921]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (41 -> 34)
+------------------------------
+
+  Additional (2): fi-glk-dsi fi-bsw-nick 
+  Missing    (9): fi-kbl-soraka fi-bdw-5557u bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-kbl-8809g 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10768 -> Patchwork_21401
+
+  CI-20190529: 20190529
+  CI_DRM_10768: 0e1c99720e0793390c9758dc1b4eedd7395b1382 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21401: 7164a9803ffc40031a3ab1eac77f9f69fd167586 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7164a9803ffc Revert "drm/i915/display/psr: Do full fetch when handling multi-planar formats"
+c3d07cfdcd88 drm/i915/display: Add initial selective fetch support for biplanar formats
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/index.html
+
+--===============7781194757925395959==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Selective fetch support for biplanar formats</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96113/">https://patchwork.freedesktop.org/series/96113/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10768 -&gt; Patchwork_21401</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21401:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21401 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-glk-dsi/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +30 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +63 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10768/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21401/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 34)</h2>
+<p>Additional (2): fi-glk-dsi fi-bsw-nick <br />
+  Missing    (9): fi-kbl-soraka fi-bdw-5557u bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-kbl-8809g </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10768 -&gt; Patchwork_21401</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10768: 0e1c99720e0793390c9758dc1b4eedd7395b1382 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21401: 7164a9803ffc40031a3ab1eac77f9f69fd167586 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>7164a9803ffc Revert "drm/i915/display/psr: Do full fetch when handling multi-planar formats"<br />
+c3d07cfdcd88 drm/i915/display: Add initial selective fetch support for biplanar formats</p>
+
+</body>
+</html>
+
+--===============7781194757925395959==--
