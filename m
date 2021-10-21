@@ -1,43 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9FC436C52
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 22:42:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A316436CB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 23:32:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A25BA6E4A2;
-	Thu, 21 Oct 2021 20:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9DA6E4C5;
+	Thu, 21 Oct 2021 21:32:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35AA96E4A2;
- Thu, 21 Oct 2021 20:42:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="216058027"
-X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="216058027"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21E006E4C4;
+ Thu, 21 Oct 2021 21:32:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="216066894"
+X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="216066894"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 13:42:26 -0700
-X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="568577532"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 13:42:26 -0700
-Date: Thu, 21 Oct 2021 13:37:47 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- john.c.harrison@intel.com
-Message-ID: <20211021203747.GA27209@jons-linux-dev-box>
-References: <20211011234705.30853-1-matthew.brost@intel.com>
- <f8f1ae021e8cabc2c6d76996b5e74912cb0913db.camel@linux.intel.com>
+ 21 Oct 2021 14:32:16 -0700
+X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="445502291"
+Received: from sghiemst-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.10.154])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2021 14:32:15 -0700
+Date: Thu, 21 Oct 2021 14:32:13 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <20211021213213.rl7dyux3sfaczyit@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20211021181847.1543341-1-lucas.demarchi@intel.com>
+ <YXG6BGEtId+5oXFH@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f8f1ae021e8cabc2c6d76996b5e74912cb0913db.camel@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Allow engine reset
- failure to do a GT reset in hangcheck selftest
+In-Reply-To: <YXG6BGEtId+5oXFH@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: remove CNL leftover
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,105 +51,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 21, 2021 at 08:15:49AM +0200, Thomas Hellström wrote:
-> Hi, Matthew,
-> 
-> On Mon, 2021-10-11 at 16:47 -0700, Matthew Brost wrote:
-> > The hangcheck selftest blocks per engine resets by setting magic bits
-> > in
-> > the reset flags. This is incorrect for GuC submission because if the
-> > GuC
-> > fails to reset an engine we would like to do a full GT reset. Do no
-> > set
-> > these magic bits when using GuC submission.
-> > 
-> > Side note this lockless algorithm with magic bits to block resets
-> > really
-> > should be ripped out.
-> > 
-> 
-> Lockless algorithm aside, from a quick look at the code in
-> intel_reset.c it appears to me like the interface that falls back to a
-> full GT reset is intel_gt_handle_error() whereas intel_engine_reset()
-> is explicitly intended to not do that, so is there a discrepancy
-> between GuC and non-GuC here?
-> 
+On Thu, Oct 21, 2021 at 10:05:40PM +0300, Ville Syrjälä wrote:
+>On Thu, Oct 21, 2021 at 11:18:47AM -0700, Lucas De Marchi wrote:
+>> We left the definition IS_CANNONLAKE() macro while removing it from the
+>> tree due to having to merge the changes in different branches. Now that
+>> everything is back in sync and nobody is using IS_CANNONLAKE(), we can
+>> safely ditch it.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+>I found another leftover somewhere else, but now I forgot where
+>it was. I guess it'll come back to me eventually.
 
-With GuC submission when an engine reset fails, we get an engine reset
-failure notification which triggers a full GT reset
-(intel_guc_engine_failure_process_msg in intel_guc_submission.c). That
-reset is blocking by setting these magic bits. Clearing the bits in this
-function doesn't seem to unblock that reset either, the driver tries to
-unload with a worker blocked, and results in the blow up. Something with
-this lockless algorithm could be wrong as clear of the bit should
-unlblock the reset but it is doesn't. We can look into that but in the
-meantime we need to fix this test to be able to fail gracefully and not
-crash CI.
+drivers/gpu/drm/i915/intel_pch.c, which I suspect is what you're talking
+about due to your recent patches. But that one is correct as we still
+have Cannon Lake Point (and I never remember if P in CNP is for PCH or
+Point) 
 
-Matt
+there is another one in a comment in drivers/gpu/drm/i915/gt/intel_gt.c,
+too.
 
-> /Thomas
-> 
-> 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 12 ++++++++----
-> >  1 file changed, 8 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > index 7e2d99dd012d..90a03c60c80c 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> > @@ -734,7 +734,8 @@ static int __igt_reset_engine(struct intel_gt
-> > *gt, bool active)
-> >                 reset_engine_count = i915_reset_engine_count(global,
-> > engine);
-> >  
-> >                 st_engine_heartbeat_disable(engine);
-> > -               set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> > +               if (!using_guc)
-> > +                       set_bit(I915_RESET_ENGINE + id, &gt-
-> > >reset.flags);
-> >                 count = 0;
-> >                 do {
-> >                         struct i915_request *rq = NULL;
-> > @@ -824,7 +825,8 @@ static int __igt_reset_engine(struct intel_gt
-> > *gt, bool active)
-> >                         if (err)
-> >                                 break;
-> >                 } while (time_before(jiffies, end_time));
-> > -               clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> > +               if (!using_guc)
-> > +                       clear_bit(I915_RESET_ENGINE + id, &gt-
-> > >reset.flags);
-> >                 st_engine_heartbeat_enable(engine);
-> >                 pr_info("%s: Completed %lu %s resets\n",
-> >                         engine->name, count, active ? "active" :
-> > "idle");
-> > @@ -1042,7 +1044,8 @@ static int __igt_reset_engines(struct intel_gt
-> > *gt,
-> >                 yield(); /* start all threads before we begin */
-> >  
-> >                 st_engine_heartbeat_disable_no_pm(engine);
-> > -               set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> > +               if (!using_guc)
-> > +                       set_bit(I915_RESET_ENGINE + id, &gt-
-> > >reset.flags);
-> >                 do {
-> >                         struct i915_request *rq = NULL;
-> >                         struct intel_selftest_saved_policy saved;
-> > @@ -1165,7 +1168,8 @@ static int __igt_reset_engines(struct intel_gt
-> > *gt,
-> >                         if (err)
-> >                                 break;
-> >                 } while (time_before(jiffies, end_time));
-> > -               clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-> > +               if (!using_guc)
-> > +                       clear_bit(I915_RESET_ENGINE + id, &gt-
-> > >reset.flags);
-> >                 st_engine_heartbeat_enable_no_pm(engine);
-> >  
-> >                 pr_info("i915_reset_engine(%s:%s): %lu resets\n",
-> 
-> 
+Lucas De Marchi
+
+>
+>> ---
+>>  drivers/gpu/drm/i915/i915_drv.h | 1 -
+>>  1 file changed, 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index 357faa043b3a..5e23c0273cf0 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -1431,7 +1431,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>  #define IS_GEMINILAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_GEMINILAKE)
+>>  #define IS_COFFEELAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_COFFEELAKE)
+>>  #define IS_COMETLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_COMETLAKE)
+>> -#define IS_CANNONLAKE(dev_priv)	0
+>>  #define IS_ICELAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ICELAKE)
+>>  #define IS_JSL_EHL(dev_priv)	(IS_PLATFORM(dev_priv, INTEL_JASPERLAKE) || \
+>>  				IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE))
+>> --
+>> 2.33.1
+>
+>-- 
+>Ville Syrjälä
+>Intel
