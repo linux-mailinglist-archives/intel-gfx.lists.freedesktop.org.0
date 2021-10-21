@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECEC44363F2
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 16:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B0B4363F7
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Oct 2021 16:18:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 445116EC7D;
-	Thu, 21 Oct 2021 14:17:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EC4A6EC80;
+	Thu, 21 Oct 2021 14:18:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0D6BB6E456;
- Thu, 21 Oct 2021 14:17:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C7356E456;
+ Thu, 21 Oct 2021 14:18:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 058B6A0169;
- Thu, 21 Oct 2021 14:17:23 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 65ECAA0169;
+ Thu, 21 Oct 2021 14:18:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Oct 2021 14:17:23 -0000
-Message-ID: <163482584300.20177.466347936862785601@emeril.freedesktop.org>
+Date: Thu, 21 Oct 2021 14:18:49 -0000
+Message-ID: <163482592941.20179.12926150121981387503@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211021114410.2437099-1-matthew.auld@intel.com>
 In-Reply-To: <20211021114410.2437099-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915/clflush=3A_fixup_ha?=
- =?utf-8?q?ndling_of_cache=5Fdirty?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/4=5D_drm/i915/clflush=3A_fixup_handli?=
+ =?utf-8?q?ng_of_cache=5Fdirty?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,16 +54,34 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-a73be2e8149b drm/i915/clflush: fixup handling of cache_dirty
-b9d957e084bd drm/i915/clflush: disallow on discrete
--:35: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#35: FILE: drivers/gpu/drm/i915/gem/i915_gem_clflush.c:73:
- {
-+
-
-total: 0 errors, 0 warnings, 1 checks, 24 lines checked
-8458b5d40c8d drm/i915: move cpu_write_needs_clflush
-e587884c5e81 drm/i915: stop setting cache_dirty on discrete
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
 
 
