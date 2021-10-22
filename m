@@ -1,40 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CEB6436E70
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 01:41:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE97436F25
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 02:53:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 876DF6E519;
-	Thu, 21 Oct 2021 23:40:48 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73F5F6E504;
- Thu, 21 Oct 2021 23:40:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="292644807"
-X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="292644807"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 16:40:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,170,1631602800"; d="scan'208";a="484446176"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by orsmga007.jf.intel.com with ESMTP; 21 Oct 2021 16:40:44 -0700
-From: John.C.Harrison@Intel.com
-To: IGT-Dev@Lists.FreeDesktop.Org
-Cc: Intel-GFX@Lists.FreeDesktop.Org, John Harrison <John.C.Harrison@Intel.com>
-Date: Thu, 21 Oct 2021 16:40:44 -0700
-Message-Id: <20211021234044.3071069-9-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
-References: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02C046E50B;
+	Fri, 22 Oct 2021 00:53:47 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6744D6E50B;
+ Fri, 22 Oct 2021 00:53:46 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Hb5Sf3L14z4xfH;
+ Fri, 22 Oct 2021 11:53:37 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1634864021;
+ bh=d6ItCl+Efl1Nk/5Rb/6mxbH0xgfWmTzJa5UQ5hcJI44=;
+ h=Date:From:To:Cc:Subject:From;
+ b=I7VGwtVF4rpm9XyA+1CHWDHQgD42WZWwLp9vQDO4xcYhgWdqkhiqZ7hDLEz6zQuw7
+ 1PSIvn6OpB+vNWAZzxpt2mTJntN7g97Ow6pef2HgWUbkG6GV2+loZaWvnA+Mao0w75
+ dPY9dl+XKJAf5cqqbJEfOEtpC19n6LP8cQ2OgGr3vIlZ6/43YM6MBB5JPm2l1fFtU7
+ 17ZlM71G1MtxC4OAerNqdhgTLov9UVo+ny7FsdObSIOcnd3SvSTLRAUwtuXi0ZAss9
+ nBFGTNjMBJ7+oD9aUk2bwdXFxkbCPggEgUqNKFCj6aGX1Ark4JAviqCM25oItPwQWm
+ LcfA+KEEvb8Ew==
+Date: Fri, 22 Oct 2021 11:53:36 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Cc: Bryant Mairs <bryant@mai.rs>, Hans de Goede <hdegoede@redhat.com>, Linux
+ Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Sam Ravnborg <sam@ravnborg.org>
+Message-ID: <20211022115336.28e41185@canb.auug.org.au>
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 8/8] tests/i915/gem_exec_capture: Update
- to support GuC based resets
+Content-Type: multipart/signed; boundary="Sig_/QAgoVkw4C2wHzZH=MYSvvXG";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
+ drm-misc-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,204 +57,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--Sig_/QAgoVkw4C2wHzZH=MYSvvXG
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-When GuC submission is enabled, GuC itself manages hang detection and
-recovery. Therefore, any test that relies on being able to trigger an
-engine reset in the driver will fail. Full GT resets can still be
-triggered by the driver. However, in that situation detecting the
-specific context that caused a hang is not possible as the driver has
-no information about what is actually running on the hardware at any
-given time. Plus of course, there was no context that caused the hang
-because the hang was triggered manually, so it's basically a bogus
-mechanism in the first place!
+Hi all,
 
-Update the capture test to cause a reset via a the hangcheck mechanism
-by submitting a hanging batch and waiting. That way it is guaranteed to
-be testing the correct reset code paths for the current platform,
-whether that is GuC enabled or not.
+Today's linux-next merge of the drm tree got a conflict in:
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- tests/i915/gem_exec_capture.c | 65 ++++++++++++++++++++++++++++-------
- 1 file changed, 53 insertions(+), 12 deletions(-)
+  drivers/gpu/drm/drm_panel_orientation_quirks.c
 
-diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-index 8997125ee..dda6e6a8f 100644
---- a/tests/i915/gem_exec_capture.c
-+++ b/tests/i915/gem_exec_capture.c
-@@ -23,6 +23,7 @@
- 
- #include <sys/poll.h>
- #include <zlib.h>
-+#include <sched.h>
- 
- #include "i915/gem.h"
- #include "i915/gem_create.h"
-@@ -31,6 +32,8 @@
- #include "igt_rand.h"
- #include "igt_sysfs.h"
- 
-+#define MAX_RESET_TIME	600
-+
- IGT_TEST_DESCRIPTION("Check that we capture the user specified objects on a hang");
- 
- struct offset {
-@@ -213,7 +216,29 @@ static void configure_hangs(int fd, const struct intel_execution_engine2 *e, int
- 	gem_engine_property_printf(fd, e->name, "heartbeat_interval_ms", "%d", 500);
- 
- 	/* Allow engine based resets and disable banning */
--	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE);
-+	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
-+}
-+
-+static bool fence_busy(int fence)
-+{
-+	return poll(&(struct pollfd){fence, POLLIN}, 1, 0) == 0;
-+}
-+
-+static void wait_to_die(int fence_out)
-+{
-+	struct timeval before, after, delta;
-+
-+	/* Wait for a reset to occur */
-+	gettimeofday(&before, NULL);
-+	while (fence_busy(fence_out)) {
-+		gettimeofday(&after, NULL);
-+		timersub(&after, &before, &delta);
-+		igt_assert(delta.tv_sec < MAX_RESET_TIME);
-+		sched_yield();
-+	}
-+	gettimeofday(&after, NULL);
-+	timersub(&after, &before, &delta);
-+	igt_info("Target died after %ld.%06lds\n", delta.tv_sec, delta.tv_usec);
- }
- 
- static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
-@@ -230,7 +255,7 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	uint32_t *batch, *seqno;
- 	struct offset offset;
--	int i;
-+	int i, fence_out;
- 
- 	configure_hangs(fd, e, ctx->id);
- 
-@@ -315,18 +340,25 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	execbuf.flags = e->flags;
- 	if (gen > 3 && gen < 6)
- 		execbuf.flags |= I915_EXEC_SECURE;
-+	execbuf.flags |= I915_EXEC_FENCE_OUT;
- 	execbuf.rsvd1 = ctx->id;
-+	execbuf.rsvd2 = ~0UL;
- 
- 	igt_assert(!READ_ONCE(*seqno));
--	gem_execbuf(fd, &execbuf);
-+	gem_execbuf_wr(fd, &execbuf);
-+
-+	fence_out = execbuf.rsvd2 >> 32;
-+	igt_assert(fence_out >= 0);
- 
- 	/* Wait for the request to start */
- 	while (READ_ONCE(*seqno) != 0xc0ffee)
- 		igt_assert(gem_bo_busy(fd, obj[SCRATCH].handle));
- 	munmap(seqno, 4096);
- 
-+	/* Wait for a reset to occur */
-+	wait_to_die(fence_out);
-+
- 	/* Check that only the buffer we marked is reported in the error */
--	igt_force_gpu_reset(fd);
- 	memset(&offset, 0, sizeof(offset));
- 	offset.addr = obj[CAPTURE].offset;
- 	igt_assert_eq(check_error_state(dir, &offset, 1, target_size, false), 1);
-@@ -373,7 +405,8 @@ static int cmp(const void *A, const void *B)
- static struct offset *
- __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	   const struct intel_execution_engine2 *e,
--	   unsigned int size, int count, unsigned int flags)
-+	   unsigned int size, int count,
-+	   unsigned int flags, int *_fence_out)
- #define INCREMENTAL 0x1
- #define ASYNC 0x2
- {
-@@ -383,7 +416,7 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	uint32_t *batch, *seqno;
- 	struct offset *offsets;
--	int i;
-+	int i, fence_out;
- 
- 	configure_hangs(fd, e, ctx->id);
- 
-@@ -491,10 +524,17 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	execbuf.flags = e->flags;
- 	if (gen > 3 && gen < 6)
- 		execbuf.flags |= I915_EXEC_SECURE;
-+	execbuf.flags |= I915_EXEC_FENCE_OUT;
- 	execbuf.rsvd1 = ctx->id;
-+	execbuf.rsvd2 = ~0UL;
- 
- 	igt_assert(!READ_ONCE(*seqno));
--	gem_execbuf(fd, &execbuf);
-+	gem_execbuf_wr(fd, &execbuf);
-+
-+	fence_out = execbuf.rsvd2 >> 32;
-+	igt_assert(fence_out >= 0);
-+	if (_fence_out)
-+		*_fence_out = fence_out;
- 
- 	/* Wait for the request to start */
- 	while (READ_ONCE(*seqno) != 0xc0ffee)
-@@ -502,7 +542,7 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	munmap(seqno, 4096);
- 
- 	if (!(flags & ASYNC)) {
--		igt_force_gpu_reset(fd);
-+		wait_to_die(fence_out);
- 		gem_sync(fd, obj[count + 1].handle);
- 	}
- 
-@@ -549,7 +589,7 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
- 	intel_require_memory(count, size, CHECK_RAM);
- 	ahnd = get_reloc_ahnd(fd, ctx->id);
- 
--	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags);
-+	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags, NULL);
- 
- 	blobs = check_error_state(dir, offsets, count, size, !!(flags & INCREMENTAL));
- 	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
-@@ -602,6 +642,7 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
- 	igt_assert(pipe(link) == 0);
- 	igt_fork(child, 1) {
- 		const intel_ctx_t *ctx2;
-+		int fence_out;
- 		fd = gem_reopen_driver(fd);
- 		igt_debug("Submitting large capture [%ld x %dMiB objects]\n",
- 			  count, (int)(size >> 20));
-@@ -613,11 +654,11 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
- 		/* Reopen the allocator in the new process. */
- 		ahnd = get_reloc_ahnd(fd, ctx2->id);
- 
--		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC));
-+		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC, &fence_out));
- 		put_ahnd(ahnd);
- 
- 		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
--		igt_force_gpu_reset(fd);
-+		wait_to_die(fence_out);
- 		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
- 	}
- 	read(link[0], &dummy, sizeof(dummy));
-@@ -714,7 +755,7 @@ igt_main
- 		gem_require_mmap_wc(fd);
- 		igt_require(has_capture(fd));
- 		ctx = intel_ctx_create_all_physical(fd);
--		igt_allow_hang(fd, ctx->id, HANG_ALLOW_CAPTURE);
-+		igt_allow_hang(fd, ctx->id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
- 
- 		dir = igt_sysfs_open(fd);
- 		igt_require(igt_sysfs_set(dir, "error", "Begone!"));
--- 
-2.25.1
+between commit:
 
+  def0c3697287 ("drm: panel-orientation-quirks: Add quirk for Aya Neo 2021")
+
+from the drm-misc-fixes tree and commits:
+
+  072e70d52372 ("drm: panel-orientation-quirks: Add quirk for the Chuwi Hi1=
+0 Pro")
+  63a4881572d7 ("drm: panel-orientation-quirks: Add quirk for the Chuwi HiB=
+ook")
+
+from the drm tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/drm_panel_orientation_quirks.c
+index 30c17a76f49a,62e8ccc7ab9c..000000000000
+--- a/drivers/gpu/drm/drm_panel_orientation_quirks.c
++++ b/drivers/gpu/drm/drm_panel_orientation_quirks.c
+@@@ -134,12 -140,20 +140,26 @@@ static const struct dmi_system_id orien
+  		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "T103HAF"),
+  		},
+  		.driver_data =3D (void *)&lcd800x1280_rightside_up,
+ +	}, {	/* AYA NEO 2021 */
+ +		.matches =3D {
+ +		  DMI_EXACT_MATCH(DMI_SYS_VENDOR, "AYADEVICE"),
+ +		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "AYA NEO 2021"),
+ +		},
+ +		.driver_data =3D (void *)&lcd800x1280_rightside_up,
++ 	}, {	/* Chuwi HiBook (CWI514) */
++ 		.matches =3D {
++ 			DMI_MATCH(DMI_BOARD_VENDOR, "Hampoo"),
++ 			DMI_MATCH(DMI_BOARD_NAME, "Cherry Trail CR"),
++ 			/* Above matches are too generic, add bios-date match */
++ 			DMI_MATCH(DMI_BIOS_DATE, "05/07/2016"),
++ 		},
++ 		.driver_data =3D (void *)&lcd1200x1920_rightside_up,
++ 	}, {	/* Chuwi Hi10 Pro (CWI529) */
++ 		.matches =3D {
++ 		  DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Hampoo"),
++ 		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "Hi10 pro tablet"),
++ 		},
++ 		.driver_data =3D (void *)&lcd1200x1920_rightside_up,
+  	}, {	/* GPD MicroPC (generic strings, also match on bios date) */
+  		.matches =3D {
+  		  DMI_EXACT_MATCH(DMI_SYS_VENDOR, "Default string"),
+
+--Sig_/QAgoVkw4C2wHzZH=MYSvvXG
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFyC5AACgkQAVBC80lX
+0Gwwlgf/YzLzI7xb2reXJgvWAk/JLKFVEQOBWx5cYdRpFA/w00uo87yKWUQqkdFv
+lR2dIpDjd5fsc4EFRkblAZikNZiazEVj43NWlfd2eRQdlrsgYNWiu5j82bDqinTh
+QcIDAmZp8WNSh4AUTCCk/Su/nJGKKj/4bpdRoIeQS9fsQEKUEKUQ2tqgraUkLdeR
+EEP36LkbPTlrHmOVyFD1sjrz+f1G5/p+rY46yE/4QZTauvAOrhx1+e9ubsYg5Max
+YKD4wiGIMasfF3dHm2O8ZJ86wPoqgx0CrISFQr3H+R15GVLgdSkavfe5moJGmavr
+zs3JA1680M2oqshbADaN03MaGyEOPg==
+=Njwx
+-----END PGP SIGNATURE-----
+
+--Sig_/QAgoVkw4C2wHzZH=MYSvvXG--
