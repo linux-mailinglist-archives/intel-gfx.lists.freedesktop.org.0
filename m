@@ -2,33 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA18A437F68
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 22:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DBC0437FA9
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 22:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D73AA6E027;
-	Fri, 22 Oct 2021 20:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB0F6E5B9;
+	Fri, 22 Oct 2021 20:53:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2BC016E027;
- Fri, 22 Oct 2021 20:39:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 231EDAA917;
- Fri, 22 Oct 2021 20:39:29 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C5576E5B9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 20:53:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10145"; a="210171278"
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="210171278"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 13:53:15 -0700
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="495830107"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 13:53:14 -0700
+Date: Fri, 22 Oct 2021 23:53:10 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Oct 2021 20:39:29 -0000
-Message-ID: <163493516911.14705.8181347931529816636@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1634918767.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1634918767.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_split_out_audio_private_from_dev=5Fpriv?=
+Message-ID: <20211022205310.GB1980572@ideak-desk.fi.intel.com>
+References: <20211006204547.669464-1-anusha.srivatsa@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211006204547.669464-1-anusha.srivatsa@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] i915/display/dmc: Add Support for PipeC and
+ PipeD DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,35 +45,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Oct 06, 2021 at 01:45:47PM -0700, Anusha Srivatsa wrote:
+> So far we had support for main, PipeA and PipeB
+> DMC. If we find a binary from PipeA-D, lets load it.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-Series: drm/i915: split out audio private from dev_priv
-URL   : https://patchwork.freedesktop.org/series/96195/
-State : warning
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-4d684e513941 drm/i915/audio: group audio under anonymous struct in drm_i915_private
-7dde34aa454e drm/i915/audio: name the audio sub-struct in drm_i915_private
--:315: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "audio.lpe.platdev"
-#315: FILE: drivers/gpu/drm/i915/display/intel_audio.c:1371:
-+	if ((dev_priv)->audio.lpe.platdev != NULL)
-
--:328: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "audio.lpe.platdev"
-#328: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.c:77:
-+#define HAS_LPE_AUDIO(dev_priv) ((dev_priv)->audio.lpe.platdev != NULL)
-
--:337: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#337: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.c:99:
-+	rsc[0].start    = rsc[0].end = dev_priv->audio.lpe.irq;
-
-total: 0 errors, 0 warnings, 3 checks, 438 lines checked
-f6bfd155afcd drm/i915/audio: define the audio struct separately from drm_i915_private
-4ba26336de5d drm/i915/audio: move intel_audio_funcs internal to intel_audio.c
-
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+> index c3c00ff03869..b20f3441ca60 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+> @@ -20,6 +20,8 @@ enum {
+>  	DMC_FW_MAIN = 0,
+>  	DMC_FW_PIPEA,
+>  	DMC_FW_PIPEB,
+> +	DMC_FW_PIPEC,
+> +	DMC_FW_PIPED,
+>  	DMC_FW_MAX
+>  };
+>  
+> -- 
+> 2.25.1
+> 
