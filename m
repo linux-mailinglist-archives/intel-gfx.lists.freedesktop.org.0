@@ -2,58 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B81F84373C2
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 10:39:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6579D4373D3
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 10:44:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 526636E8FD;
-	Fri, 22 Oct 2021 08:39:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 479C06E8FE;
+	Fri, 22 Oct 2021 08:44:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
- [IPv6:2607:f8b0:4864:20::72f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D456E575;
- Fri, 22 Oct 2021 08:39:41 +0000 (UTC)
-Received: by mail-qk1-x72f.google.com with SMTP id r15so3898207qkp.8;
- Fri, 22 Oct 2021 01:39:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qhJwM3Hz28ZevvoHoUJUGs0FBBITYEtpwNOdUuRSac8=;
- b=fskGz8VJY5QMHf7+PZtHJFJtbkygWDvY5WHuquvsu3VugjbYu9pS+EkvFRg3ZNftY6
- 6eVNVxNyQj1BLNAHv6H7lbdclYr8HrbaAmkVQduMNdiz0U8TTGektEu5JcfQYLpiXUdH
- BUJZluKd+Y22o+H5GfX+cc+GleJ0qlyeeXAfor9XIO7Tqkfka8ZHjj9e4FF7UQI9q0Hc
- w5qBq3su/Z0r/TzMS7u7yzLgHi+VJmG1SEAWjGZXHZHBxr/arJ1gfjGmeyb7i+ng1hUy
- zCNjr73uO6PAbRct5HYdCLOed9wyYHs1vhUvYj9DZP0ss3uJHc61okBk/46g9BuMSB/Q
- FGCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qhJwM3Hz28ZevvoHoUJUGs0FBBITYEtpwNOdUuRSac8=;
- b=doYdrUm8enZ5/DhdxmzYQYVUdlCC7JDpp9U2RgMM+xBDaeGj8R+d+zb8/6kDulTvhc
- d9jfTtyPNDnCqErLV/9FCHHulbryT91cDc6JYVasMQK4OTlI/GFEHVut5Qdu2osX1Zn1
- niDDVl4z03Tnd32x4srw3AtTJ7zrNUt0uKUteX6hcstHFvosjcoVglJTnffhd6yLHE8I
- aFBOimmDDOJ+WtgYURx+9RhzwApferQ6qGwPOBvdSn+CRxrpBSGjRXiUAItMgZ4TVhmN
- F3LoAR22uHodW33BhT7Nv3Xe8qICKM2MdSkouAqY7gG6fCgtNz21iTrwhvQDKeNmWHJB
- U03g==
-X-Gm-Message-State: AOAM532gNm9i49/MNv7KlOO3jlPzZe5h/wDCDAhddicL53zAHUteOa3c
- qAfPn9c98ExO4p4Ff5d1rvYc65V96jPoFZS8OKg=
-X-Google-Smtp-Source: ABdhPJwc9c/OO72WTKGkd9/efEYSwm8X8DPQUNRgD8wtWL5QpGV/qBxmIKtP431HLl/XtowD/G3qFlBpPkFu6aB+u3s=
-X-Received: by 2002:a37:857:: with SMTP id 84mr8659620qki.342.1634891980944;
- Fri, 22 Oct 2021 01:39:40 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB65F6E8FE;
+ Fri, 22 Oct 2021 08:44:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="229528088"
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="229528088"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 01:44:34 -0700
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="484598105"
+Received: from dkarner-mobl.ger.corp.intel.com (HELO [10.252.48.154])
+ ([10.252.48.154])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 01:44:33 -0700
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
+ <20211021103605.735002-18-maarten.lankhorst@linux.intel.com>
+ <CAM0jSHNq0RrTrG3hjiBz05QEokGS8YN8=YbwQ7UgWm+S=L-0hg@mail.gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <65b5f267-574e-3c9c-b518-c701b821232a@linux.intel.com>
+Date: Fri, 22 Oct 2021 10:44:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211022082200.2684194-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20211022082200.2684194-1-daniel.vetter@ffwll.ch>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 22 Oct 2021 09:39:13 +0100
-Message-ID: <CAM0jSHOm-fhS_ANcoU+_vOa2=9ewFk+mqPr0XKU5jxQB6WxonQ@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i195: Remove some dead struct fwd decl
- from i915_drv.h
+In-Reply-To: <CAM0jSHNq0RrTrG3hjiBz05QEokGS8YN8=YbwQ7UgWm+S=L-0hg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 18/28] drm/i915: Take trylock during
+ eviction, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +55,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 22 Oct 2021 at 09:22, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
->
-> Gone with userptr rewrite by Maarten in ed29c2691188 ("drm/i915: Fix
-> userptr so we do not have to worry about obj->mm.lock, v7.")
->
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Op 21-10-2021 om 19:59 schreef Matthew Auld:
+> On Thu, 21 Oct 2021 at 11:37, Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com> wrote:
+>> Now that freeing objects takes the object lock when destroying the
+>> backing pages, we can confidently take the object lock even for dead
+>> objects.
+>>
+>> Use this fact to take the object lock in the shrinker, without requiring
+>> a reference to the object, so all calls to unbind take the object lock.
+>>
+>> This is the last step to requiring the object lock for vma_unbind.
+> For the eviction what is the reason for only trylock here, assuming we
+> are given a ww context? Maybe the back off is annoying? And the full
+> lock version comes later?
 
-s/i195/i915/
+2 reasons:
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+1. We can't take the full lock, because we already hold vm->mutex, which may be held inside dma_resv_lock. This inverts the locking, and is also why we could not keep obj->mm.lock. Until locking for vm is reworked, you cannot do this anyway.
 
-> ---
->  drivers/gpu/drm/i915/i915_drv.h | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 12256218634f..2321f895cdea 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -191,8 +191,6 @@ struct i915_hotplug {
->          I915_GEM_DOMAIN_VERTEX)
->
->  struct drm_i915_private;
-> -struct i915_mm_struct;
-> -struct i915_mmu_object;
->
->  struct drm_i915_file_private {
->         struct drm_i915_private *dev_priv;
-> --
-> 2.33.0
->
+Lockdep will complain about the following lock cycle: dma_resv_lock -> vm->mutex -> dma_resv_lock, and will eventually deadlock.
+
+2. Until locking or delayed destroy is reworked, we cannot call a blocking dma_resv_lock for objects in the list when the refcount may be 0.
+
+ "[PATCH 25/28] drm/i915: Require object lock when freeing pages during destruction".
+
+When destroying the object, we will take dma_resv_lock in blocking mode one last time, then unbind all its vma's. The fact we're holding vm->mutex prevents the object from disappearing, because its vma is not yet unbound. This is how we can get away with unbinding dead objects currently, before and after the changes. This also means we can only trylock, because we can only trylock inside vm->mutex.
+
+If we start reworking vm locking, we may need to handle waiting on dead objects better. It's worth noting that TTM has to handle the exact same race, which can be seen inside ttm_bo_cleanup_refs().
+
+>> Changes since v1:
+>> - No longer require the refcount, as every freed object now holds the lock
+>>   when unbinding VMA's.
+>>
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c |  6 ++++
+>>  drivers/gpu/drm/i915/i915_gem_evict.c        | 34 +++++++++++++++++---
+>>  2 files changed, 35 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> index d3f29a66cb36..34c12e5983eb 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> @@ -403,12 +403,18 @@ i915_gem_shrinker_vmap(struct notifier_block *nb, unsigned long event, void *ptr
+>>         list_for_each_entry_safe(vma, next,
+>>                                  &i915->ggtt.vm.bound_list, vm_link) {
+>>                 unsigned long count = vma->node.size >> PAGE_SHIFT;
+>> +               struct drm_i915_gem_object *obj = vma->obj;
+>>
+>>                 if (!vma->iomap || i915_vma_is_active(vma))
+>>                         continue;
+>>
+>> +               if (!i915_gem_object_trylock(obj))
+>> +                       continue;
+>> +
+>>                 if (__i915_vma_unbind(vma) == 0)
+>>                         freed_pages += count;
+>> +
+>> +               i915_gem_object_unlock(obj);
+>>         }
+>>         mutex_unlock(&i915->ggtt.vm.mutex);
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+>> index 2b73ddb11c66..286efa462eca 100644
+>> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
+>> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+>> @@ -58,6 +58,9 @@ mark_free(struct drm_mm_scan *scan,
+>>         if (i915_vma_is_pinned(vma))
+>>                 return false;
+>>
+>> +       if (!i915_gem_object_trylock(vma->obj))
+>> +               return false;
+>> +
+>>         list_add(&vma->evict_link, unwind);
+>>         return drm_mm_scan_add_block(scan, &vma->node);
+>>  }
+>> @@ -178,6 +181,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
+>>         list_for_each_entry_safe(vma, next, &eviction_list, evict_link) {
+>>                 ret = drm_mm_scan_remove_block(&scan, &vma->node);
+>>                 BUG_ON(ret);
+>> +               i915_gem_object_unlock(vma->obj);
+>>         }
+>>
+>>         /*
+>> @@ -222,10 +226,12 @@ i915_gem_evict_something(struct i915_address_space *vm,
+>>          * of any of our objects, thus corrupting the list).
+>>          */
+>>         list_for_each_entry_safe(vma, next, &eviction_list, evict_link) {
+>> -               if (drm_mm_scan_remove_block(&scan, &vma->node))
+>> +               if (drm_mm_scan_remove_block(&scan, &vma->node)) {
+>>                         __i915_vma_pin(vma);
+>> -               else
+>> +               } else {
+>>                         list_del(&vma->evict_link);
+>> +                       i915_gem_object_unlock(vma->obj);
+>> +               }
+>>         }
+>>
+>>         /* Unbinding will emit any required flushes */
+>> @@ -234,16 +240,22 @@ i915_gem_evict_something(struct i915_address_space *vm,
+>>                 __i915_vma_unpin(vma);
+>>                 if (ret == 0)
+>>                         ret = __i915_vma_unbind(vma);
+>> +
+>> +               i915_gem_object_unlock(vma->obj);
+>>         }
+>>
+>>         while (ret == 0 && (node = drm_mm_scan_color_evict(&scan))) {
+>>                 vma = container_of(node, struct i915_vma, node);
+>>
+>> +
+>>                 /* If we find any non-objects (!vma), we cannot evict them */
+>> -               if (vma->node.color != I915_COLOR_UNEVICTABLE)
+>> +               if (vma->node.color != I915_COLOR_UNEVICTABLE &&
+>> +                   i915_gem_object_trylock(vma->obj)) {
+>>                         ret = __i915_vma_unbind(vma);
+>> -               else
+>> -                       ret = -ENOSPC; /* XXX search failed, try again? */
+>> +                       i915_gem_object_unlock(vma->obj);
+>> +               } else {
+>> +                       ret = -ENOSPC;
+>> +               }
+>>         }
+>>
+>>         return ret;
+>> @@ -333,6 +345,11 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+>>                         break;
+>>                 }
+>>
+>> +               if (!i915_gem_object_trylock(vma->obj)) {
+>> +                       ret = -ENOSPC;
+>> +                       break;
+>> +               }
+>> +
+>>                 /*
+>>                  * Never show fear in the face of dragons!
+>>                  *
+>> @@ -350,6 +367,8 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+>>                 __i915_vma_unpin(vma);
+>>                 if (ret == 0)
+>>                         ret = __i915_vma_unbind(vma);
+>> +
+>> +               i915_gem_object_unlock(vma->obj);
+>>         }
+>>
+>>         return ret;
+>> @@ -393,6 +412,9 @@ int i915_gem_evict_vm(struct i915_address_space *vm)
+>>                         if (i915_vma_is_pinned(vma))
+>>                                 continue;
+>>
+>> +                       if (!i915_gem_object_trylock(vma->obj))
+>> +                               continue;
+>> +
+>>                         __i915_vma_pin(vma);
+>>                         list_add(&vma->evict_link, &eviction_list);
+>>                 }
+>> @@ -406,6 +428,8 @@ int i915_gem_evict_vm(struct i915_address_space *vm)
+>>                                 ret = __i915_vma_unbind(vma);
+>>                         if (ret != -EINTR) /* "Get me out of here!" */
+>>                                 ret = 0;
+>> +
+>> +                       i915_gem_object_unlock(vma->obj);
+>>                 }
+>>         } while (ret == 0);
+>>
+>> --
+>> 2.33.0
+>>
+
