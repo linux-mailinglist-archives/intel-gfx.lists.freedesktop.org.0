@@ -1,34 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C4A6437B9D
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 19:13:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 903B3437BCF
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 19:22:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43EE16EDB7;
-	Fri, 22 Oct 2021 17:13:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E043A6E7FE;
+	Fri, 22 Oct 2021 17:22:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 183866EDB7;
- Fri, 22 Oct 2021 17:13:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0F440A0169;
- Fri, 22 Oct 2021 17:13:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45C766E7FE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 17:22:38 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10145"; a="226801168"
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="226801168"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 10:22:37 -0700
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="721951024"
+Received: from ptoro-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.47.175])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 10:22:37 -0700
+Date: Fri, 22 Oct 2021 10:22:33 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, airlied@gmail.com, daniel@ffwll.ch,
+ ville.syrjala@linux.intel.com, Dave Airlie <airlied@redhat.com>
+Message-ID: <20211022172233.ehi6spnogih5vkmh@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <cover.1634918767.git.jani.nikula@intel.com>
+ <9a04d5af717f6fddcf21a3c096eb3807dffbc1cf.1634918767.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Oct 2021 17:13:16 -0000
-Message-ID: <163492279602.14705.8276940797209714189@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211022103304.24164-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211022103304.24164-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Fix_bigjoiner_state_readout_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <9a04d5af717f6fddcf21a3c096eb3807dffbc1cf.1634918767.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/audio: group audio under
+ anonymous struct in drm_i915_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,36 +49,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Oct 22, 2021 at 07:27:55PM +0300, Jani Nikula wrote:
+>With an anonymous struct, this can be pure hierarchical organization
+>without code changes.
 
-Series: drm/i915: Fix bigjoiner state readout (rev2)
-URL   : https://patchwork.freedesktop.org/series/94609/
-State : warning
+start reading from patch 1 left me confused. A sentence here that next
+patches will add the sub-struct name would be good.
 
-== Summary ==
+Lucas De Marchi
 
-$ dim checkpatch origin/drm-tip
-9b834bd6bbea drm/i915/psr: Disable PSR before modesets turn off all planes
-4a710bf77f9e Revert "drm/i915/display: Disable audio, DRRS and PSR before planes"
-c17b15ad96c9 drm/i915: Disable all planes before modesetting any pipes
-0528d44fc4ec drm/i915: Introduce intel_master_crtc()
-2852fb0b99d4 drm/i915: Simplify intel_crtc_copy_uapi_to_hw_state_nomodeset()
-41811b325b36 drm/i915: Split PPS write from DSC enable
-0fb2e7d625be drm/i915: Perform correct cpu_transcoder readout for bigjoiner
--:53: CHECK:SPACING: No space is necessary after a cast
-#53: FILE: drivers/gpu/drm/i915/display/intel_display.c:4105:
-+		power_domain = intel_dsc_power_domain(crtc, (enum transcoder) pipe);
-
--:102: CHECK:SPACING: No space is necessary after a cast
-#102: FILE: drivers/gpu/drm/i915/display/intel_display.c:4208:
-+		cpu_transcoder = (enum transcoder) crtc->pipe - 1;
-
-total: 0 errors, 0 warnings, 2 checks, 88 lines checked
-70dc7e08d720 drm/i915: Reduce bigjoiner special casing
-15721df82bec drm/i915: Nuke PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE
-
-
+>
+>Cc: Dave Airlie <airlied@redhat.com>
+>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>---
+> drivers/gpu/drm/i915/i915_drv.h | 43 +++++++++++++++++----------------
+> 1 file changed, 22 insertions(+), 21 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>index 19e6700a4315..ee210e12648a 100644
+>--- a/drivers/gpu/drm/i915/i915_drv.h
+>+++ b/drivers/gpu/drm/i915/i915_drv.h
+>@@ -995,9 +995,6 @@ struct drm_i915_private {
+> 	/* Display internal color functions */
+> 	const struct intel_color_funcs *color_funcs;
+>
+>-	/* Display internal audio functions */
+>-	const struct intel_audio_funcs *audio_funcs;
+>-
+> 	/* Display CDCLK functions */
+> 	const struct intel_cdclk_funcs *cdclk_funcs;
+>
+>@@ -1084,17 +1081,6 @@ struct drm_i915_private {
+> 	struct drm_property *broadcast_rgb_property;
+> 	struct drm_property *force_audio_property;
+>
+>-	/* hda/i915 audio component */
+>-	struct i915_audio_component *audio_component;
+>-	bool audio_component_registered;
+>-	/**
+>-	 * av_mutex - mutex for audio/video sync
+>-	 *
+>-	 */
+>-	struct mutex av_mutex;
+>-	int audio_power_refcount;
+>-	u32 audio_freq_cntrl;
+>-
+> 	u32 fdi_rx_config;
+>
+> 	/* Shadow for DISPLAY_PHY_CONTROL which can't be safely read */
+>@@ -1227,14 +1213,29 @@ struct drm_i915_private {
+>
+> 	bool ipc_enabled;
+>
+>-	/* Used to save the pipe-to-encoder mapping for audio */
+>-	struct intel_encoder *av_enc_map[I915_MAX_PIPES];
+>-
+>-	/* necessary resource sharing with HDMI LPE audio driver. */
+> 	struct {
+>-		struct platform_device *platdev;
+>-		int	irq;
+>-	} lpe_audio;
+>+		/* Display internal audio functions */
+>+		const struct intel_audio_funcs *audio_funcs;
+>+
+>+		/* hda/i915 audio component */
+>+		struct i915_audio_component *audio_component;
+>+		bool audio_component_registered;
+>+		/**
+>+		 * av_mutex - mutex for audio/video sync
+>+		 */
+>+		struct mutex av_mutex;
+>+		int audio_power_refcount;
+>+		u32 audio_freq_cntrl;
+>+
+>+		/* Used to save the pipe-to-encoder mapping for audio */
+>+		struct intel_encoder *av_enc_map[I915_MAX_PIPES];
+>+
+>+		/* necessary resource sharing with HDMI LPE audio driver. */
+>+		struct {
+>+			struct platform_device *platdev;
+>+			int irq;
+>+		} lpe_audio;
+>+	};
+>
+> 	struct i915_pmu pmu;
+>
+>-- 
+>2.30.2
+>
