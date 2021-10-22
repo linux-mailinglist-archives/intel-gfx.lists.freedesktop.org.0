@@ -2,44 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B239437501
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 11:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7FF6437614
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 13:37:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 311AD6E939;
-	Fri, 22 Oct 2021 09:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 145A76ED42;
+	Fri, 22 Oct 2021 11:37:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50F0B6E928;
- Fri, 22 Oct 2021 09:47:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="229214191"
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="229214191"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 02:47:22 -0700
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="445226439"
-Received: from bkokkula-mobl1.ger.corp.intel.com (HELO [10.252.0.159])
- ([10.252.0.159])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 02:47:21 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-References: <20211021125332.2455288-1-matthew.auld@intel.com>
- <20211021125332.2455288-2-matthew.auld@intel.com>
- <c8e40d5f-beda-d5fd-9aa7-df951ba819b2@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <337c653c-4074-9e67-e8c1-04d0d21830da@intel.com>
-Date: Fri, 22 Oct 2021 10:47:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from msg-6.mailo.com (ip-16.mailobj.net [213.182.54.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26C0A6ED42;
+ Fri, 22 Oct 2021 11:36:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1634898358; bh=qXTIz9NUZOX9AJLI0EfpCFCuPKutlkzQauklWJ1ZdII=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To;
+ b=CDMwG+cYraiCkOvqWNoXRIOQdd1SKnLC6HrdHC95WxmidMkx+VnAsy2hnJqIKzTzu
+ FEtdjZUf6XU2V9+66nVczdfj8AX/zERhEb1ooKV1f1ToGqd9ubuQgXMALLiCPlSACK
+ XGc2B/eNeFQHv6UGVfpbYVPnwzAUmBX65vye7TSQ=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Fri, 22 Oct 2021 12:25:37 +0200 (CEST)
+X-EA-Auth: ZUkw32usS9GpQ95qw4isUA4Qn5D5k42ZU4ER4OtDUnr2ExZFz+AjbHpLkWo4vIllva24n6AgDPqBGMsl893/BqHzRs7jwkE6
+Date: Fri, 22 Oct 2021 12:25:33 +0200
+From: Claudio Suarez <cssk@net-c.es>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
+Message-ID: <YXKRnUHWuboQKBF1@zorro.micasa>
+References: <20211016184226.3862-1-cssk@net-c.es>
+ <20211016184226.3862-14-cssk@net-c.es> <YW8QYsmkm3ZrBAx3@intel.com>
+ <YW9L6d7e+RO29VJu@gineta.localdomain> <YXFwB7rN4bvR0Z+m@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <c8e40d5f-beda-d5fd-9aa7-df951ba819b2@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dmabuf: drop the flush on
- discrete
+In-Reply-To: <YXFwB7rN4bvR0Z+m@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 13/13] drm/i915: replace
+ drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,46 +72,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 22/10/2021 10:26, Thomas Hellström wrote:
-> Hi, Matt
+On Thu, Oct 21, 2021 at 04:49:59PM +0300, Ville Syrj�l� wrote:
+> On Wed, Oct 20, 2021 at 12:51:21AM +0200, Claudio Suarez wrote:
+> > drm_get_edid() internally calls to drm_connector_update_edid_property()
+> > and then drm_add_display_info(), which parses the EDID.
+> > This happens in the function intel_hdmi_set_edid() and
+> > intel_sdvo_tmds_sink_detect() (via intel_sdvo_get_edid()).
+> > 
+> > Once EDID is parsed, the monitor HDMI support information is available
+> > through drm_display_info.is_hdmi. Retriving the same information with
+> > drm_detect_hdmi_monitor() is less efficient. Change to
+> > drm_display_info.is_hdmi
 > 
-> On 10/21/21 14:53, Matthew Auld wrote:
->> We were overzealous here; even though discrete is non-LLC, it should
->> still be always coherent.
->>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> index a45d0ec2c5b6..848e81368043 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> @@ -251,7 +251,8 @@ static int i915_gem_object_get_pages_dmabuf(struct 
->> drm_i915_gem_object *obj)
->>           return PTR_ERR(pages);
->>       /* XXX: consider doing a vmap flush or something */
->> -    if (!HAS_LLC(i915) || i915_gem_object_can_bypass_llc(obj))
->> +    if ((!HAS_LLC(i915) && !IS_DGFX(i915)) ||
-> 
-> Q: I notice that DG1 at least has HAS_SNOOP. Would it be incorrect to 
-> use that in this case?
+> I meant we need to examine all call chains that can lead to
+> .detect() to make sure all of them do in fact update the
+> display_info beforehand.
 
-AFAIK DG1 is special in that CACHE_NONE will still snoop transactions, 
-which is not the case for other HAS_SNOOP platforms. AFAIK that is part 
-of the reason why we also just force CACHE_LLC everywhere on DG1.
+Well, I studied it carefully and, yes, all call chains that can lead to
+drm_display_info.is_hdmi / drm_detect_hdmi_monitor() update display_info
+beforehand. In the case that this doesn't happen, the code is unchanged.
 
-Could maybe do s/IS_DGFX/IS_DG1/ here? In case that changes on other 
-discrete platforms. And then add a comment.
+Do you want I explain the changes in the code here again ? Or do you want
+to me change the commit message to be more clear ? In the first case, I can
+write here a detailed explanation. In the second case I can make a longer commit
+message.
 
-> 
-> /Thomas
-> 
-> 
-> 
->> +        i915_gem_object_can_bypass_llc(obj))
->>           wbinvd_on_all_cpus();
->>       sg_page_sizes = i915_sg_dma_sizes(pages->sgl);
+Or both?
+
+Best Regards,
+Claudio Suarez.
+
+
