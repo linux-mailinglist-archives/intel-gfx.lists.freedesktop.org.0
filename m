@@ -2,66 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC3B437FDE
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 23:14:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED880437FEF
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 23:27:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6426EDDA;
-	Fri, 22 Oct 2021 21:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 182B46EDD4;
+	Fri, 22 Oct 2021 21:27:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from so254-9.mailgun.net (so254-9.mailgun.net [198.61.254.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF6176EDD9
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 21:14:52 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1634937294; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=CnZyW9nnPIHVrtlFAZ0lww8IAHinwmw8am3Z+41Hbxk=;
- b=sLh5vxu4XMm4DSh5afhBnCb1vvzizZW+UGqNyAKFGQlwOrpmujeDxjGAAnPSFePYhFQS/VZn
- R5BPoc8uxTfoDP/tqCoO6MyxmHPEyy2HndqlSDG3dYmZYlEpOLSSx9K48iLPPRQYxvZIJU4p
- /NGx5gXGcFTUF+tbCZrdPnvx65k=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI5MzZmYyIsICJpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIiwgImJlOWU0YSJd
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 617329c5b03398c06c5fc384 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 22 Oct 2021 21:14:45
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 78194C4338F; Fri, 22 Oct 2021 21:14:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
- aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
- URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: abhinavk)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id EDDF7C4338F;
- Fri, 22 Oct 2021 21:14:38 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 529A66EDD4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 21:27:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10145"; a="209496572"
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="209496572"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 14:27:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="576875498"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP; 22 Oct 2021 14:27:03 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 22 Oct 2021 14:27:03 -0700
+Received: from fmsmsx606.amr.corp.intel.com (10.18.126.86) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 22 Oct 2021 14:27:02 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Fri, 22 Oct 2021 14:27:02 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.49) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.12; Fri, 22 Oct 2021 14:27:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CYi55P1ka0xLL+NZFfmJr5N7ubWhbxFtJKphBSpqY4v2vCFkE6tgoToAO/D8MNMRgkHvZMlatqiNuD5EiemdP4A1tw0EeaIKl/q0HKQZfw3TpD1MnGM5NnwIq+DbbhBvnOlZ6oIKZhGo/I/jcmiLu7IEfCavXZ3Y/YOLJVrDSV+3E7hJT5Fr/NodZ0OrhUJYOpnfqhhG1kr3HMW8b9KG1AZLYhbWntjnXMweEwUKxH5ohsboFY7C1ICsRhMsHluQD6QVAOQ2KlId/Kq6IpKVrYJS2yUTtmqlf2su+AA9o6uYRRwxpmcUBWRCNe/HBXDQq7nkZRaAdRWKyRonk6G3DA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=87r7NKyf3gUK3h1uILLJDPHoQHXjlNUZ+f92AIrM0Nw=;
+ b=RoWcWzMAXeLxlVS79MBPELwTc7UZwoomARJUYKnlFs6qRxZy4GYhWaBymxd9sNHnxoFfew+1TvjsI2XesvxmJ/HBOGvbCHC6WpdbqWWBvHyliVq+oGSt0zydAz5cSYH3XeLCuF81lN2dCd654GuEiZLf1HvQaeYHrwxif9aXg2cRFDhV0DF59zLuzPutQ88gRCvBRQXOVM7ywJLkPypmapvezDqR2Ecxk/0cTGwFNCdpUjSeomvm8MV/kmQWQHkPclo8U0TeALwIjkcFZbrNk5Hzo1U7O20wa4SD7VUD/ym6/TwWfRhLnRshUKE1BAl3archRMg9pBLIH97Puqymgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=87r7NKyf3gUK3h1uILLJDPHoQHXjlNUZ+f92AIrM0Nw=;
+ b=Q8lPXLCzpZH2S2H9zQ1hScgMK5Xc1wbZUYvndjr18jPZwWehjuiAf+1+bf1oX7FdH66mP7jPiVcw817uU4Gi79aET+4i+av9e/r2cKSWfM/daeQew0dWKsMgWQV180xapQ5dX43Cnn/HpgG3aSbZJ42te/C04TY2Ew/dFMen9D0=
+Received: from MN2PR11MB4661.namprd11.prod.outlook.com (2603:10b6:208:26b::16)
+ by BL0PR11MB2963.namprd11.prod.outlook.com (2603:10b6:208:7b::28)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16; Fri, 22 Oct
+ 2021 21:26:56 +0000
+Received: from MN2PR11MB4661.namprd11.prod.outlook.com
+ ([fe80::49d6:ef3:b83:2379]) by MN2PR11MB4661.namprd11.prod.outlook.com
+ ([fe80::49d6:ef3:b83:2379%3]) with mapi id 15.20.4628.018; Fri, 22 Oct 2021
+ 21:26:55 +0000
+From: "Yokoyama, Caz" <caz.yokoyama@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Souza, Jose" <jose.souza@intel.com>
+CC: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>, "Atwood, Matthew
+ S" <matthew.s.atwood@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
+Thread-Index: AQHXxUfzx0iKOQHUCUupKvDEtDXS6Kvb++iAgABITICAA0hMgA==
+Date: Fri, 22 Oct 2021 21:26:55 +0000
+Message-ID: <6349cf75e1a674288250a137b09911ea2349fc41.camel@intel.com>
+References: <20211020002353.193893-1-jose.souza@intel.com>
+ <9a1dc5019848cc8c854d9cfdf46113b626563d98.camel@intel.com>
+ <e061d0ce689b9bcba4473a9703effad35505a593.camel@intel.com>
+In-Reply-To: <e061d0ce689b9bcba4473a9703effad35505a593.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3d9754eb-0d15-4b31-81f3-08d995a2ac6c
+x-ms-traffictypediagnostic: BL0PR11MB2963:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <BL0PR11MB29636B03D8FA42EB1F1611279F809@BL0PR11MB2963.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Zx5leF1CYG54nf/mxLmRutzecQ8IHad4T2cVFubTEYLOrMogEqT7Yc9fKYYy5VMgcMnIcrK0JmpNRzwOBNdXqyfDX1w9RGOL7NWMBFd0H+zUu3+l8mnqkWKL1jqQg5IzBJEP/h3g9sogfw9m69CCXdLTetH5lVuVPaF3e2qHCcXxeebW7WuKR8STeFW/noIVcVnFMOvNRbJ7CqlX7YR5/TS6w5KTB3TQdKZWDXfEAL9LjI+pcwnRNITPFZENRBix0u7/vMSEfKvqXg4MYVQEBsHW4ydBtfVfs5ZGbmZkt17F1nwt1i4N0aOn61UbNbSXgs25zTg9MRs/C0OZDbPEZF+MAsVjnw/vhhSNQwg1OrP9Im/FVDn1m5Q7Ifbf4EwHmUxv7oAC+o4xEWBwClLd+fF+ci3zGpBSMWENtbqZ4lo0QTWjk/HSI3l+aWQMXkO/kcZoWirCecVPkfHjQxsOJl01jj/sVt1spb5o8gVwTNE+jwHgU7njBacvi8WBeU5YwHuqGsPFLZ+EWZDWtXL53zaR63QUo7BIy2088BGvbWK6mIyCrn03hQTC0dAUKW88lgf8+FExYoOQJrE4jkddRpB3UR546kV6NVOCOF1cxjoBJF9j9Y9Kczgi9Sff4fJ+glqefvX+oF24S+0kSHgKLewZFab1xMrVOHAbpc/pGEZiBmYfrQDxVmtUiSoDaowwWMS4h4Z+rFGVccOuXywnrg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR11MB4661.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(122000001)(2906002)(38070700005)(316002)(66446008)(6512007)(2616005)(8676002)(66946007)(66476007)(82960400001)(4001150100001)(38100700002)(54906003)(6636002)(186003)(64756008)(107886003)(110136005)(36756003)(6506007)(5660300002)(508600001)(91956017)(86362001)(6486002)(83380400001)(4326008)(8936002)(76116006)(71200400001)(66556008)(26005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eHRhR1NNc3pBNW1LYnQxaldocXVWcXlLeTZJY2ZOMmdRVE1lTzArbTFmM092?=
+ =?utf-8?B?dVJMWGhlM1N4dG9mbDFPVndCa3pRR3l4K1hHV3hFbVM5dFl4S1JhU0hLZHRq?=
+ =?utf-8?B?MHlNNXJhWWYrZG0xcDVuYW1ud2FBTWF1b1hsd3J4dXFVdmJGRnd6WVdHZlR1?=
+ =?utf-8?B?K0xQRXpFWVFZektqTEFTczlTelBpNWE1U2NQTFVNRGFZdjA5aDRIV0hHUTB1?=
+ =?utf-8?B?Q0dnNXFNblZwUWk0ckRkOHdxcVlsRjhCZXA1VEJQM0hGRjVmdGtXNDdhT3Ay?=
+ =?utf-8?B?bmVOMUV0YVR2VStqTzd4M2ZwQzN5K1pwYTcxbkFtQ1AyWlZsVVVkVkxVVmdZ?=
+ =?utf-8?B?T0szSFhST29uY1BEUk8zaXZYVGhmOGV6TXdnVmw0RW8xQ1NrTjV1dlhYckZX?=
+ =?utf-8?B?Nkw1TGxXN09yeTdoUXE0aUVySWJPSlExSDNPVHdIeTFVaTlFeURad25PVkFo?=
+ =?utf-8?B?Y3JIZ0NqWTBIemlnVWFJS252Myt4S3NscnAwa2VrMzE3NHlZM2s5Z2oxbEhM?=
+ =?utf-8?B?YUNNbWFyOHpNUkFmOWM0NHNrMUFCSkhWOGRIQVUyRW51dk9yNmFYb3hTVUt5?=
+ =?utf-8?B?WEYvMWlNTXVBN3hnUUlEUG9lRUNsUE56Y29KNzlpYytXNFdYZmZHZmlkdXcr?=
+ =?utf-8?B?RW1TSFZPRWU2dlVIUTZqbVo3Ym1mSHBLOEFqbmNCMmkvM3ZWMnFVU1dkR0Zp?=
+ =?utf-8?B?OWwrMmpaTTVvWXI4MFpjQlh3amxHVEZpRXJBa1YvV3hZWlZ1eGpZS3lLOE03?=
+ =?utf-8?B?OTR0Nm5GRUVUSGFicWJIWnJUcmdpZnVkbHUzQ2o2cGE0Y3p1NEhtMm9SV3lH?=
+ =?utf-8?B?ZVM2eG9RMmd6dytrL1g2cjlDMzdTbW9TWk5yNEkwT3lhb2VEamp1cjRPWnl3?=
+ =?utf-8?B?MjhndzhZM3JvK0JBQm9zbHhhcTQ3VHZVTEI4ZTR1MVJxblFQVWhYejJJdlBs?=
+ =?utf-8?B?ZS9JRll3d1VlbEhmcEFoaTJBMlArVDlyZk1XWjNBc0VRUlo3UnF4OFdiVEMr?=
+ =?utf-8?B?Nnlld1djL1hBTHBPb2hxeXE0OVFnQ2FvSk93VXo3eUROeHpiTjliYnZQTGcz?=
+ =?utf-8?B?bmM1bnQ3WXFKeHY5Si8xMHQraHY5Y1lPTUcrUmVnNDN6NFpodFAyY0FhR0Yr?=
+ =?utf-8?B?UmFDL1l2TzdKaGluMVd6QUFpVmxkY3FIbjJTN0VqQXlBYWZXN1NqdC9hUFQr?=
+ =?utf-8?B?UTYzY0l2U2F2UkpxUDNoZkhpSU9JZk1CYytiY0lvV24wTi9GT3FHOUdya1NT?=
+ =?utf-8?B?a1pteEw1WDRXeWlCSE5sb1lEK1VWMTY2ZS9WTWJ3YmlydEhTK2tEdlJLWXhr?=
+ =?utf-8?B?NVAxdjFMM0lXdEFoWVJnd3JNVHZpUkxUNm5LNWJLQ3N5MGNOa21NV0RXWW1U?=
+ =?utf-8?B?ZTRCc1NDY0dSTVlUVGpUZjVObVdpK3pLamU3M3hXK0Rad3RGTWs0TkttaDBj?=
+ =?utf-8?B?V1JicFR2Y2hvZVc1bGE4TGRWOWM1UDk3OFhYUmtyTUh3QjZIR0NOY0wydSs0?=
+ =?utf-8?B?TXlGbTJqOTJiWmxzb0U0SEF1VVU4cUs1REk2UHo5V1JMaFJHa3dqMng2TkNV?=
+ =?utf-8?B?K2xNWTljZFYrbUcxUG9ra1lOUFVJRkQyRDBIWEU4U01kcXVBNWNScEh2UVJR?=
+ =?utf-8?B?b3F2WE9ST0tSc3VRNVFYY1NhQ0p1VFZtcXp5U1VwemV1UDBGck1iN0dSYmwx?=
+ =?utf-8?B?dHZzbTMyWWZaY2hGWDFSbDU5U01UcUJTdFVTL3JPTFJsZU9INlhsMno4OVpn?=
+ =?utf-8?B?NFNOaG5oSVAwSzNPQ1ZJTUtVcExUY1dWNWNtVGFxL1pYSkt3VHZJUnliQXow?=
+ =?utf-8?B?d3FLdXRDWFMwY0NjenVTQkxGa0d3REdJTTFVTVZ4cmxpQkoxWklWa1UwT0FG?=
+ =?utf-8?B?clViYnVoeFhuK2xBczRCS0hIZU9MaG9SRkgwQng1OC91ZERoSU8xUDc2NWp6?=
+ =?utf-8?Q?g2zBwkUuckovkApTatqN2Hzb2s2ppHkE?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <416B1FF65284CB408048AB8A638D1B23@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Fri, 22 Oct 2021 14:14:38 -0700
-From: abhinavk@codeaurora.org
-To: Sean Paul <sean@poorly.run>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, swboyd@chromium.org,
- jani.nikula@linux.intel.com, Sean Paul <seanpaul@chromium.org>, Jani Nikula
- <jani.nikula@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <20211001151145.55916-5-sean@poorly.run>
-References: <20211001151145.55916-1-sean@poorly.run>
- <20211001151145.55916-5-sean@poorly.run>
-Message-ID: <273061b1fd39e890e7e2384f6e735459@codeaurora.org>
-X-Sender: abhinavk@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
-Subject: Re: [Intel-gfx] [Freedreno] [PATCH v3 04/14] drm/hdcp: Expand HDCP
- helper library for enable/disable/check
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4661.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d9754eb-0d15-4b31-81f3-08d995a2ac6c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2021 21:26:55.8732 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: caz.yokoyama@intel.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR11MB2963
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,1485 +159,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-10-01 08:11, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
-> 
-> This patch expands upon the HDCP helper library to manage HDCP
-> enable, disable, and check.
-> 
-> Previous to this patch, the majority of the state management and sink
-> interaction is tucked inside the Intel driver with the understanding
-> that once a new platform supported HDCP we could make good decisions
-> about what should be centralized. With the addition of HDCP support
-> for Qualcomm, it's time to migrate the protocol-specific bits of HDCP
-> authentication, key exchange, and link checks to the HDCP helper.
-> 
-> In terms of functionality, this migration is 1:1 with the Intel driver,
-> however things are laid out a bit differently than with intel_hdcp.c,
-> which is why this is a separate patch from the i915 transition to the
-> helper. On i915, the "shim" vtable is used to account for HDMI vs. DP
-> vs. DP-MST differences whereas the helper library uses a LUT to
-> account for the register offsets and a remote read function to route
-> the messages. On i915, storing the sink information in the source is
-> done inline whereas now we use the new drm_hdcp_helper_funcs vtable
-> to store and fetch information to/from source hw. Finally, instead of
-> calling enable/disable directly from the driver, we'll leave that
-> decision to the helper and by calling drm_hdcp_helper_atomic_commit()
-> from the driver. All told, this will centralize the protocol and state
-> handling in the helper, ensuring we collect all of our bugs^Wlogic
-> in one place.
-> 
-> Cc: Abhinav Kumar <abhinavk@codeaurora.org>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-
-For vendors/chipsets supporting HW polling, this needs rework to skip 
-the SW
-polling, as agreed this will be done in a follow up change. Hence,
-
-Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
-
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-5-sean@poorly.run
-> #v1
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-5-sean@poorly.run
-> #v2
-> 
-> Changes in v2:
-> -Fixed set-but-unused variable identified by 0-day
-> Changes in v3:
-> -Fixed uninitialized variable warning identified by 0-day
-> ---
->  drivers/gpu/drm/drm_hdcp.c | 1103 ++++++++++++++++++++++++++++++++++++
->  include/drm/drm_hdcp.h     |  191 +++++++
->  2 files changed, 1294 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
-> index 8c851d40cd45..2bfa07fc3fbc 100644
-> --- a/drivers/gpu/drm/drm_hdcp.c
-> +++ b/drivers/gpu/drm/drm_hdcp.c
-> @@ -6,15 +6,20 @@
->   * Ramalingam C <ramalingam.c@intel.com>
->   */
-> 
-> +#include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/err.h>
->  #include <linux/gfp.h>
-> +#include <linux/i2c.h>
-> +#include <linux/iopoll.h>
->  #include <linux/export.h>
->  #include <linux/slab.h>
->  #include <linux/firmware.h>
-> +#include <linux/workqueue.h>
-> 
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_connector.h>
-> +#include <drm/drm_dp_helper.h>
->  #include <drm/drm_hdcp.h>
->  #include <drm/drm_sysfs.h>
->  #include <drm/drm_print.h>
-> @@ -513,3 +518,1101 @@ bool drm_hdcp_atomic_check(struct drm_connector
-> *connector,
->  	return old_hdcp != new_hdcp;
->  }
->  EXPORT_SYMBOL(drm_hdcp_atomic_check);
-> +
-> +struct drm_hdcp_helper_data {
-> +	struct mutex mutex;
-> +	struct mutex *driver_mutex;
-> +
-> +	struct drm_connector *connector;
-> +	const struct drm_hdcp_helper_funcs *funcs;
-> +
-> +	u64 value;
-> +	unsigned int enabled_type;
-> +
-> +	struct delayed_work check_work;
-> +	struct work_struct prop_work;
-> +
-> +	struct drm_dp_aux *aux;
-> +	const struct drm_hdcp_hdcp1_receiver_reg_lut *hdcp1_lut;
-> +};
-> +
-> +struct drm_hdcp_hdcp1_receiver_reg_lut {
-> +	unsigned int bksv;
-> +	unsigned int ri;
-> +	unsigned int aksv;
-> +	unsigned int an;
-> +	unsigned int ainfo;
-> +	unsigned int v[5];
-> +	unsigned int bcaps;
-> +	unsigned int bcaps_mask_repeater_present;
-> +	unsigned int bstatus;
-> +};
-> +
-> +static const struct drm_hdcp_hdcp1_receiver_reg_lut 
-> drm_hdcp_hdcp1_ddc_lut = {
-> +	.bksv = DRM_HDCP_DDC_BKSV,
-> +	.ri = DRM_HDCP_DDC_RI_PRIME,
-> +	.aksv = DRM_HDCP_DDC_AKSV,
-> +	.an = DRM_HDCP_DDC_AN,
-> +	.ainfo = DRM_HDCP_DDC_AINFO,
-> +	.v = { DRM_HDCP_DDC_V_PRIME(0), DRM_HDCP_DDC_V_PRIME(1),
-> +	       DRM_HDCP_DDC_V_PRIME(2), DRM_HDCP_DDC_V_PRIME(3),
-> +	       DRM_HDCP_DDC_V_PRIME(4) },
-> +	.bcaps = DRM_HDCP_DDC_BCAPS,
-> +	.bcaps_mask_repeater_present = DRM_HDCP_DDC_BCAPS_REPEATER_PRESENT,
-> +	.bstatus = DRM_HDCP_DDC_BSTATUS,
-> +};
-> +
-> +static const struct drm_hdcp_hdcp1_receiver_reg_lut 
-> drm_hdcp_hdcp1_dpcd_lut = {
-> +	.bksv = DP_AUX_HDCP_BKSV,
-> +	.ri = DP_AUX_HDCP_RI_PRIME,
-> +	.aksv = DP_AUX_HDCP_AKSV,
-> +	.an = DP_AUX_HDCP_AN,
-> +	.ainfo = DP_AUX_HDCP_AINFO,
-> +	.v = { DP_AUX_HDCP_V_PRIME(0), DP_AUX_HDCP_V_PRIME(1),
-> +	       DP_AUX_HDCP_V_PRIME(2), DP_AUX_HDCP_V_PRIME(3),
-> +	       DP_AUX_HDCP_V_PRIME(4) },
-> +	.bcaps = DP_AUX_HDCP_BCAPS,
-> +	.bcaps_mask_repeater_present = DP_BCAPS_REPEATER_PRESENT,
-> +
-> +	/*
-> +	 * For some reason the HDMI and DP HDCP specs call this register
-> +	 * definition by different names. In the HDMI spec, it's called 
-> BSTATUS,
-> +	 * but in DP it's called BINFO.
-> +	 */
-> +	.bstatus = DP_AUX_HDCP_BINFO,
-> +};
-> +
-> +static int drm_hdcp_remote_ddc_read(struct i2c_adapter *i2c,
-> +				    unsigned int offset, u8 *value, size_t len)
-> +{
-> +	int ret;
-> +	u8 start = offset & 0xff;
-> +	struct i2c_msg msgs[] = {
-> +		{
-> +			.addr = DRM_HDCP_DDC_ADDR,
-> +			.flags = 0,
-> +			.len = 1,
-> +			.buf = &start,
-> +		},
-> +		{
-> +			.addr = DRM_HDCP_DDC_ADDR,
-> +			.flags = I2C_M_RD,
-> +			.len = len,
-> +			.buf = value
-> +		}
-> +	};
-> +	ret = i2c_transfer(i2c, msgs, ARRAY_SIZE(msgs));
-> +	if (ret == ARRAY_SIZE(msgs))
-> +		return 0;
-> +	return ret >= 0 ? -EIO : ret;
-> +}
-> +
-> +static int drm_hdcp_remote_dpcd_read(struct drm_dp_aux *aux,
-> +				     unsigned int offset, u8 *value,
-> +				     size_t len)
-> +{
-> +	ssize_t ret;
-> +
-> +	ret = drm_dp_dpcd_read(aux, offset, value, len);
-> +	if (ret != len) {
-> +		if (ret >= 0)
-> +			return -EIO;
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int drm_hdcp_remote_read(struct drm_hdcp_helper_data *data,
-> +				unsigned int offset, u8 *value, u8 len)
-> +{
-> +	if (data->aux)
-> +		return drm_hdcp_remote_dpcd_read(data->aux, offset, value, len);
-> +	else
-> +		return drm_hdcp_remote_ddc_read(data->connector->ddc, offset, value, 
-> len);
-> +}
-> +
-> +static int drm_hdcp_remote_ddc_write(struct i2c_adapter *i2c,
-> +				     unsigned int offset, u8 *buffer,
-> +				     size_t size)
-> +{
-> +	int ret;
-> +	u8 *write_buf;
-> +	struct i2c_msg msg;
-> +
-> +	write_buf = kzalloc(size + 1, GFP_KERNEL);
-> +	if (!write_buf)
-> +		return -ENOMEM;
-> +
-> +	write_buf[0] = offset & 0xff;
-> +	memcpy(&write_buf[1], buffer, size);
-> +
-> +	msg.addr = DRM_HDCP_DDC_ADDR;
-> +	msg.flags = 0,
-> +	msg.len = size + 1,
-> +	msg.buf = write_buf;
-> +
-> +	ret = i2c_transfer(i2c, &msg, 1);
-> +	if (ret == 1)
-> +		ret = 0;
-> +	else if (ret >= 0)
-> +		ret = -EIO;
-> +
-> +	kfree(write_buf);
-> +	return ret;
-> +}
-> +
-> +static int drm_hdcp_remote_dpcd_write(struct drm_dp_aux *aux,
-> +				     unsigned int offset, u8 *value,
-> +				     size_t len)
-> +{
-> +	ssize_t ret;
-> +
-> +	ret = drm_dp_dpcd_write(aux, offset, value, len);
-> +	if (ret != len) {
-> +		if (ret >= 0)
-> +			return -EIO;
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int drm_hdcp_remote_write(struct drm_hdcp_helper_data *data,
-> +				 unsigned int offset, u8 *value, u8 len)
-> +{
-> +	if (data->aux)
-> +		return drm_hdcp_remote_dpcd_write(data->aux, offset, value, len);
-> +	else
-> +		return drm_hdcp_remote_ddc_write(data->connector->ddc, offset,
-> +						 value, len);
-> +}
-> +
-> +static bool drm_hdcp_is_ksv_valid(struct drm_hdcp_ksv *ksv)
-> +{
-> +	/* Valid Ksv has 20 0's and 20 1's */
-> +	return hweight32(ksv->words[0]) + hweight32(ksv->words[1]) == 20;
-> +}
-> +
-> +static int drm_hdcp_read_valid_bksv(struct drm_hdcp_helper_data *data,
-> +				    struct drm_hdcp_ksv *bksv)
-> +{
-> +	int ret, i, tries = 2;
-> +
-> +	/* HDCP spec states that we must retry the bksv if it is invalid */
-> +	for (i = 0; i < tries; i++) {
-> +		ret = drm_hdcp_remote_read(data, data->hdcp1_lut->bksv,
-> +					   bksv->bytes, DRM_HDCP_KSV_LEN);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (drm_hdcp_is_ksv_valid(bksv))
-> +			break;
-> +	}
-> +	if (i == tries) {
-> +		drm_dbg_kms(data->connector->dev, "Bksv is invalid %*ph\n",
-> +			    DRM_HDCP_KSV_LEN, bksv->bytes);
-> +		return -ENODEV;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * drm_hdcp_helper_hdcp1_capable - Checks if the sink is capable of 
-> HDCP 1.x.
-> + *
-> + * @data: pointer to the HDCP helper data.
-> + * @capable: pointer to a bool which will contain true if the sink is 
-> capable.
-> + *
-> + * Returns:
-> + * -errno if the transacation between source and sink fails.
-> + */
-> +int drm_hdcp_helper_hdcp1_capable(struct drm_hdcp_helper_data *data,
-> +				  bool *capable)
-> +{
-> +	/*
-> +	 * DisplayPort has a dedicated bit for this in DPCD whereas HDMI spec
-> +	 * states that transmitters should use bksv to determine capability.
-> +	 */
-> +	if (data->aux) {
-> +		int ret;
-> +		u8 bcaps;
-> +
-> +		ret = drm_hdcp_remote_read(data, data->hdcp1_lut->bcaps,
-> +					   &bcaps, 1);
-> +		*capable = !ret && (bcaps & DP_BCAPS_HDCP_CAPABLE);
-> +	} else {
-> +		struct drm_hdcp_ksv bksv;
-> +
-> +		*capable = drm_hdcp_read_valid_bksv(data, &bksv) == 0;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_hdcp_helper_hdcp1_capable);
-> +
-> +static void drm_hdcp_update_value(struct drm_hdcp_helper_data *data,
-> +				  u64 value, bool update_property)
-> +{
-> +	WARN_ON(!mutex_is_locked(&data->mutex));
-> +
-> +	data->value = value;
-> +	if (update_property) {
-> +		drm_connector_get(data->connector);
-> +		schedule_work(&data->prop_work);
-> +	}
-> +}
-> +
-> +static int
-> +drm_hdcp_helper_hdcp1_ksv_fifo_ready(struct drm_hdcp_helper_data 
-> *data)
-> +{
-> +	int ret;
-> +	u8 val, mask;
-> +
-> +	/* KSV FIFO ready bit is stored in different locations on DP v. HDMI 
-> */
-> +	if (data->aux) {
-> +		ret = drm_hdcp_remote_dpcd_read(data->aux, DP_AUX_HDCP_BSTATUS,
-> +						&val, 1);
-> +		mask = DP_BSTATUS_READY;
-> +	} else {
-> +		ret = drm_hdcp_remote_ddc_read(data->connector->ddc,
-> +					       DRM_HDCP_DDC_BCAPS, &val, 1);
-> +		mask = DRM_HDCP_DDC_BCAPS_KSV_FIFO_READY;
-> +	}
-> +	if (ret)
-> +		return ret;
-> +	if (val & mask)
-> +		return 0;
-> +
-> +	return -EAGAIN;
-> +}
-> +
-> +static int
-> +drm_hdcp_helper_hdcp1_read_ksv_fifo(struct drm_hdcp_helper_data
-> *data, u8 *fifo,
-> +				    u8 num_downstream)
-> +{
-> +	struct drm_device *dev = data->connector->dev;
-> +	int ret, i;
-> +
-> +	/* Over HDMI, read the whole thing at once */
-> +	if (data->connector->ddc) {
-> +		ret = drm_hdcp_remote_ddc_read(data->connector->ddc,
-> +					       DRM_HDCP_DDC_KSV_FIFO, fifo,
-> +					       num_downstream * DRM_HDCP_KSV_LEN);
-> +		if (ret)
-> +			drm_err(dev, "DDC ksv fifo read failed (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Over DP, read via 15 byte window (3 entries @ 5 bytes each) */
-> +	for (i = 0; i < num_downstream; i += 3) {
-> +		size_t len = min(num_downstream - i, 3) * DRM_HDCP_KSV_LEN;
-> +		ret = drm_hdcp_remote_dpcd_read(data->aux, DP_AUX_HDCP_KSV_FIFO,
-> +						fifo + i * DRM_HDCP_KSV_LEN,
-> +						len);
-> +		if (ret) {
-> +			drm_err(dev, "Read ksv[%d] from DP/AUX failed (%d)\n",
-> +				i, ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int drm_hdcp_helper_hdcp1_read_v_prime(struct
-> drm_hdcp_helper_data *data,
-> +					      u32 *v_prime)
-> +{
-> +	struct drm_device *dev = data->connector->dev;
-> +	int ret, i;
-> +
-> +	for (i = 0; i < DRM_HDCP_V_PRIME_NUM_PARTS; i++) {
-> +		ret = drm_hdcp_remote_read(data, data->hdcp1_lut->v[i],
-> +					   (u8 *)&v_prime[i],
-> +					   DRM_HDCP_V_PRIME_PART_LEN);
-> +		if (ret) {
-> +			drm_dbg_kms(dev, "Read v'[%d] from failed (%d)\n", i, ret);
-> +			return ret >= 0 ? -EIO : ret;
-> +		}
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int
-> +drm_hdcp_helper_hdcp1_authenticate_downstream(struct
-> drm_hdcp_helper_data *data)
-> +{
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_device *dev = connector->dev;
-> +	u32 v_prime[DRM_HDCP_V_PRIME_NUM_PARTS];
-> +	u8 bstatus[DRM_HDCP_BSTATUS_LEN];
-> +	u8 num_downstream, *ksv_fifo;
-> +	int ret, i, tries = 3;
-> +
-> +	ret = read_poll_timeout(drm_hdcp_helper_hdcp1_ksv_fifo_ready, ret, 
-> !ret,
-> +				10 * 1000, 5 * 1000 * 1000, false, data);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to poll ksv ready, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = drm_hdcp_remote_read(data, data->hdcp1_lut->bstatus,
-> +				   bstatus, DRM_HDCP_BSTATUS_LEN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * When repeater reports 0 device count, HDCP1.4 spec allows 
-> disabling
-> +	 * the HDCP encryption. That implies that repeater can't have its own
-> +	 * display. As there is no consumption of encrypted content in the
-> +	 * repeater with 0 downstream devices, we are failing the
-> +	 * authentication.
-> +	 */
-> +	num_downstream = DRM_HDCP_NUM_DOWNSTREAM(bstatus[0]);
-> +	if (num_downstream == 0) {
-> +		drm_err(dev, "Repeater with zero downstream devices, %*ph\n",
-> +			DRM_HDCP_BSTATUS_LEN, bstatus);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ksv_fifo = kcalloc(DRM_HDCP_KSV_LEN, num_downstream, GFP_KERNEL);
-> +	if (!ksv_fifo)
-> +		return -ENOMEM;
-> +
-> +	ret = drm_hdcp_helper_hdcp1_read_ksv_fifo(data, ksv_fifo,
-> +						  num_downstream);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to read ksv fifo, %d/%d\n", num_downstream,
-> +			ret);
-> +		goto out;
-> +	}
-> +
-> +	if (drm_hdcp_check_ksvs_revoked(dev, ksv_fifo, num_downstream)) {
-> +		drm_err(dev, "Revoked Ksv(s) in ksv_fifo\n");
-> +		ret = -EPERM;
-> +		goto out;
-> +	}
-> +
-> +	/*
-> +	 * When V prime mismatches, DP Spec mandates re-read of
-> +	 * V prime atleast twice.
-> +	 */
-> +	for (i = 0; i < tries; i++) {
-> +		ret = drm_hdcp_helper_hdcp1_read_v_prime(data, v_prime);
-> +		if (ret)
-> +			continue;
-> +
-> +		ret = data->funcs->hdcp1_store_ksv_fifo(connector, ksv_fifo,
-> +							num_downstream,
-> +							bstatus, v_prime);
-> +		if (!ret)
-> +			break;
-> +	}
-> +	if (ret)
-> +		drm_err(dev, "Could not validate KSV FIFO with V' %d\n", ret);
-> +
-> +out:
-> +	if (!ret)
-> +		drm_dbg_kms(dev, "HDCP is enabled (%d downstream devices)\n",
-> +			    num_downstream);
-> +
-> +	kfree(ksv_fifo);
-> +	return ret;
-> +}
-> +
-> +static int drm_hdcp_helper_hdcp1_validate_ri(struct 
-> drm_hdcp_helper_data *data)
-> +{
-> +	union {
-> +		u32 word;
-> +		u8 bytes[DRM_HDCP_RI_LEN];
-> +	} ri_prime = { .word = 0 };
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_device *dev = connector->dev;
-> +	int ret;
-> +
-> +	ret = drm_hdcp_remote_read(data, data->hdcp1_lut->ri, ri_prime.bytes,
-> +				   DRM_HDCP_RI_LEN);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to read R0' %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return data->funcs->hdcp1_match_ri(connector, ri_prime.word);
-> +}
-> +
-> +static int drm_hdcp_helper_hdcp1_authenticate(struct
-> drm_hdcp_helper_data *data)
-> +{
-> +	union {
-> +		u32 word;
-> +		u8 bytes[DRM_HDCP_BSTATUS_LEN];
-> +	} bstatus;
-> +	const struct drm_hdcp_helper_funcs *funcs = data->funcs;
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_device *dev = connector->dev;
-> +	unsigned long r0_prime_timeout, r0_prime_remaining_us = 0, 
-> tmp_jiffies;
-> +	struct drm_hdcp_ksv aksv;
-> +	struct drm_hdcp_ksv bksv;
-> +	struct drm_hdcp_an an;
-> +	bool repeater_present;
-> +	int ret, i, tries = 3;
-> +	u8 bcaps;
-> +
-> +	if (funcs->hdcp1_read_an_aksv) {
-> +		ret = funcs->hdcp1_read_an_aksv(connector, an.words, aksv.words);
-> +		if (ret) {
-> +			drm_err(dev, "Failed to read An/Aksv values, %d\n", ret);
-> +			return ret;
-> +		}
-> +
-> +		ret = drm_hdcp_remote_write(data, data->hdcp1_lut->an, an.bytes,
-> +					DRM_HDCP_AN_LEN);
-> +		if (ret) {
-> +			drm_err(dev, "Failed to write An to receiver, %d\n", ret);
-> +			return ret;
-> +		}
-> +
-> +		ret = drm_hdcp_remote_write(data, data->hdcp1_lut->aksv, aksv.bytes,
-> +					DRM_HDCP_KSV_LEN);
-> +		if (ret) {
-> +			drm_err(dev, "Failed to write Aksv to receiver, %d\n", ret);
-> +			return ret;
-> +		}
-> +	} else {
-> +		ret = funcs->hdcp1_send_an_aksv(connector);
-> +		if (ret) {
-> +			drm_err(dev, "Failed to read An/Aksv values, %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/*
-> +	 * Timeout for R0' to become available. The spec says 100ms from 
-> Aksv,
-> +	 * but some monitors can take longer than this. We'll set the timeout 
-> at
-> +	 * 300ms just to be sure.
-> +	 */
-> +	r0_prime_timeout = jiffies + msecs_to_jiffies(300);
-> +
-> +	memset(&bksv, 0, sizeof(bksv));
-> +
-> +	ret = drm_hdcp_read_valid_bksv(data, &bksv);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (drm_hdcp_check_ksvs_revoked(dev, bksv.bytes, 1)) {
-> +		drm_err(dev, "BKSV is revoked\n");
-> +		return -EPERM;
-> +	}
-> +
-> +	ret = drm_hdcp_remote_read(data, data->hdcp1_lut->bcaps, &bcaps, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	memset(&bstatus, 0, sizeof(bstatus));
-> +
-> +	ret = drm_hdcp_remote_read(data, data->hdcp1_lut->bstatus,
-> +				   bstatus.bytes, DRM_HDCP_BSTATUS_LEN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (DRM_HDCP_MAX_DEVICE_EXCEEDED(bstatus.bytes[0]) ||
-> +	    DRM_HDCP_MAX_CASCADE_EXCEEDED(bstatus.bytes[1])) {
-> +		drm_err(dev, "Max Topology Limit Exceeded, bstatus=%*ph\n",
-> +			DRM_HDCP_BSTATUS_LEN, bstatus.bytes);
-> +		return -EPERM;
-> +	}
-> +
-> +	repeater_present = bcaps & 
-> data->hdcp1_lut->bcaps_mask_repeater_present;
-> +
-> +	ret = funcs->hdcp1_store_receiver_info(connector, bksv.words,
-> +					       bstatus.word, bcaps,
-> +					       repeater_present);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to store bksv, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = funcs->hdcp1_enable_encryption(connector);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = funcs->hdcp1_wait_for_r0(connector);
-> +	if (ret)
-> +		return ret;
-> +
-> +	tmp_jiffies = jiffies;
-> +	if (time_before(tmp_jiffies, r0_prime_timeout))
-> +		r0_prime_remaining_us = jiffies_to_usecs(r0_prime_timeout - 
-> tmp_jiffies);
-> +
-> +	/*
-> +	 * Wait for R0' to become available.
-> +	 *
-> +	 * On DP, there's an R0_READY bit available but no such bit
-> +	 * exists on HDMI. So poll the ready bit for DP and just wait the
-> +	 * remainder of the 300 ms timeout for HDMI.
-> +	 */
-> +	if (data->aux) {
-> +		u8 val;
-> +		ret = read_poll_timeout(drm_hdcp_remote_dpcd_read, ret,
-> +					!ret && (val & DP_BSTATUS_R0_PRIME_READY),
-> +					1000, r0_prime_remaining_us, false,
-> +					data->aux, DP_AUX_HDCP_BSTATUS, &val, 1);
-> +		if (ret) {
-> +			drm_err(dev, "R0' did not become ready %d\n", ret);
-> +			return ret;
-> +		}
-> +	} else {
-> +		usleep_range(r0_prime_remaining_us,
-> +			     r0_prime_remaining_us + 1000);
-> +	}
-> +
-> +	/*
-> +	 * DP HDCP Spec mandates the two more reattempt to read R0, incase
-> +	 * of R0 mismatch.
-> +	 */
-> +	for (i = 0; i < tries; i++) {
-> +		ret = drm_hdcp_helper_hdcp1_validate_ri(data);
-> +		if (!ret)
-> +			break;
-> +	}
-> +	if (ret) {
-> +		drm_err(dev, "Failed to match R0/R0', aborting HDCP %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (repeater_present)
-> +		return drm_hdcp_helper_hdcp1_authenticate_downstream(data);
-> +
-> +	drm_dbg_kms(dev, "HDCP is enabled (no repeater present)\n");
-> +	return 0;
-> +}
-> +
-> +static int drm_hdcp_helper_hdcp1_enable(struct drm_hdcp_helper_data 
-> *data)
-> +{
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_device *dev = connector->dev;
-> +	int i, ret, tries = 3;
-> +
-> +	drm_dbg_kms(dev, "[%s:%d] HDCP is being enabled...\n", 
-> connector->name,
-> +		    connector->base.id);
-> +
-> +	/* Incase of authentication failures, HDCP spec expects reauth. */
-> +	for (i = 0; i < tries; i++) {
-> +		ret = drm_hdcp_helper_hdcp1_authenticate(data);
-> +		if (!ret)
-> +			return 0;
-> +
-> +		drm_dbg_kms(dev, "HDCP Auth failure (%d)\n", ret);
-> +
-> +		/* Ensuring HDCP encryption and signalling are stopped. */
-> +		data->funcs->hdcp1_disable(data->connector);
-> +	}
-> +
-> +	drm_err(dev, "HDCP authentication failed (%d tries/%d)\n", tries, 
-> ret);
-> +	return ret;
-> +}
-> +
-> +static inline
-> +void drm_hdcp_helper_driver_lock(struct drm_hdcp_helper_data *data)
-> +{
-> +	if (data->driver_mutex)
-> +		mutex_lock(data->driver_mutex);
-> +}
-> +
-> +static inline
-> +void drm_hdcp_helper_driver_unlock(struct drm_hdcp_helper_data *data)
-> +{
-> +	if (data->driver_mutex)
-> +		mutex_unlock(data->driver_mutex);
-> +}
-> +
-> +static int drm_hdcp_helper_enable_hdcp(struct drm_hdcp_helper_data 
-> *data,
-> +				       struct drm_atomic_state *state,
-> +				       struct mutex *driver_mutex)
-> +{
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_connector_state *conn_state;
-> +	struct drm_device *dev = connector->dev;
-> +	unsigned long check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
-> +	bool capable;
-> +	int ret = 0;
-> +
-> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
-> +
-> +	mutex_lock(&data->mutex);
-> +
-> +	if (data->value == DRM_MODE_CONTENT_PROTECTION_ENABLED) {
-> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_ENABLED,
-> +				      true);
-> +		goto out_data_mutex;
-> +	}
-> +
-> +	drm_WARN_ON(dev, data->driver_mutex != NULL);
-> +	data->driver_mutex = driver_mutex;
-> +
-> +	drm_hdcp_helper_driver_lock(data);
-> +
-> +	if (data->funcs->setup) {
-> +		ret = data->funcs->setup(connector, state);
-> +		if (ret) {
-> +			drm_err(dev, "Failed to setup HDCP %d\n", ret);
-> +			goto out;
-> +		}
-> +	}
-> +
-> +	if (!data->funcs->are_keys_valid ||
-> +	    !data->funcs->are_keys_valid(connector)) {
-> +		if (data->funcs->load_keys) {
-> +			ret = data->funcs->load_keys(connector);
-> +			if (ret) {
-> +				drm_err(dev, "Failed to load HDCP keys %d\n", ret);
-> +				goto out;
-> +			}
-> +		}
-> +	}
-> +
-> +	/*
-> +	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the setup
-> +	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
-> +	 */
-> +	ret = data->funcs->hdcp2_capable(connector, &capable);
-> +	if (ret) {
-> +		drm_err(dev, "HDCP 2.x capability check failed %d\n", ret);
-> +		goto out;
-> +	}
-> +	if (capable) {
-> +		data->enabled_type = DRM_MODE_HDCP_CONTENT_TYPE1;
-> +		ret = data->funcs->hdcp2_enable(connector);
-> +		if (!ret) {
-> +			check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
-> +			goto out;
-> +		}
-> +	}
-> +
-> +	/*
-> +	 * When HDCP2.2 fails and Content Type is not Type1, HDCP1.4 will
-> +	 * be attempted.
-> +	 */
-> +	ret = drm_hdcp_helper_hdcp1_capable(data, &capable);
-> +	if (ret) {
-> +		drm_err(dev, "HDCP 1.x capability check failed %d\n", ret);
-> +		goto out;
-> +	}
-> +	if (capable && conn_state->content_type != 
-> DRM_MODE_HDCP_CONTENT_TYPE1) {
-> +		data->enabled_type = DRM_MODE_HDCP_CONTENT_TYPE0;
-> +		ret = drm_hdcp_helper_hdcp1_enable(data);
-> +		if (!ret)
-> +			check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
-> +	}
-> +
-> +out:
-> +	if (!ret) {
-> +		schedule_delayed_work(&data->check_work, check_link_interval);
-> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_ENABLED,
-> +				      true);
-> +	}
-> +
-> +	drm_hdcp_helper_driver_unlock(data);
-> +	if (ret)
-> +		data->driver_mutex = NULL;
-> +
-> +out_data_mutex:
-> +	mutex_unlock(&data->mutex);
-> +	return ret;
-> +}
-> +
-> +static int drm_hdcp_helper_disable_hdcp(struct drm_hdcp_helper_data 
-> *data)
-> +{
-> +	int ret = 0;
-> +
-> +	mutex_lock(&data->mutex);
-> +	drm_hdcp_helper_driver_lock(data);
-> +
-> +	if (data->value == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
-> +		goto out;
-> +
-> +	drm_dbg_kms(data->connector->dev, "[%s:%d] HDCP is being 
-> disabled...\n",
-> +		    data->connector->name, data->connector->base.id);
-> +
-> +	drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_UNDESIRED, 
-> true);
-> +
-> +	if (data->enabled_type == DRM_MODE_HDCP_CONTENT_TYPE1)
-> +		ret = data->funcs->hdcp2_disable(data->connector);
-> +	else
-> +		ret = data->funcs->hdcp1_disable(data->connector);
-> +
-> +	drm_dbg_kms(data->connector->dev, "HDCP is disabled\n");
-> +
-> +out:
-> +	drm_hdcp_helper_driver_unlock(data);
-> +	data->driver_mutex = NULL;
-> +	mutex_unlock(&data->mutex);
-> +	cancel_delayed_work_sync(&data->check_work);
-> +	return ret;
-> +}
-> +
-> +/**
-> + * drm_hdcp_helper_atomic_commit - Helper for drivers to call during 
-> commit to
-> + * enable/disable HDCP
-> + *
-> + * @data: pointer to the @drm_hdcp_helper_data for the connector
-> + * @state: pointer to the atomic state being committed
-> + * @driver_mutex: driver-provided lock to be used while interacting
-> with the driver
-> + *
-> + * This function can be used by display drivers to determine when
-> HDCP should be
-> + * enabled or disabled based on the connector state. It should be 
-> called during
-> + * steady-state commits as well as connector enable/disable. The 
-> function will
-> + * handle the HDCP authentication/encryption logic, calling back into
-> the driver
-> + * when source operations are necessary.
-> + *
-> + * @driver_mutex will be retained and used for the duration of the 
-> HDCP session
-> + * since it will be needed for link checks and retries. This mutex is 
-> useful if
-> + * the driver has shared resources across connectors which must be 
-> serialized.
-> + * For example, driver_mutex can be used for MST connectors sharing a 
-> common
-> + * encoder which should not be accessed/changed concurrently. When the
-> + * connector's session is torn down, the mutex will be forgotten by 
-> the helper
-> + * for this connector until the next session.
-> + */
-> +void drm_hdcp_helper_atomic_commit(struct drm_hdcp_helper_data *data,
-> +				   struct drm_atomic_state *state,
-> +				   struct mutex *driver_mutex)
-> +{
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_connector_state *conn_state;
-> +	bool type_changed;
-> +
-> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
-> +
-> +	type_changed = conn_state->hdcp_content_type != data->enabled_type;
-> +
-> +	if (conn_state->content_protection == 
-> DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
-> +		drm_hdcp_helper_disable_hdcp(data);
-> +		return;
-> +	}
-> +
-> +	if (!conn_state->crtc) {
-> +		drm_hdcp_helper_disable_hdcp(data);
-> +
-> +		/* Restore property to DESIRED so it's retried later */
-> +		if (conn_state->content_protection == 
-> DRM_MODE_CONTENT_PROTECTION_ENABLED) {
-> +			mutex_lock(&data->mutex);
-> +			drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
-> +					true);
-> +			mutex_unlock(&data->mutex);
-> +		}
-> +		return;
-> +	}
-> +
-> +	/* Already enabled */
-> +	if (conn_state->content_protection == 
-> DRM_MODE_CONTENT_PROTECTION_ENABLED)
-> +		return;
-> +
-> +	/* Disable and re-enable HDCP on content type change */
-> +	if (type_changed)
-> +		drm_hdcp_helper_disable_hdcp(data);
-> +
-> +	drm_hdcp_helper_enable_hdcp(data, state, driver_mutex);
-> +}
-> +EXPORT_SYMBOL(drm_hdcp_helper_atomic_commit);
-> +
-> +static void drm_hdcp_helper_prop_work(struct work_struct *work)
-> +{
-> +	struct drm_hdcp_helper_data *data = container_of(work,
-> +							 struct drm_hdcp_helper_data,
-> +							 prop_work);
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_device *dev = connector->dev;
-> +
-> +	drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
-> +	mutex_lock(&data->mutex);
-> +
-> +	/*
-> +	 * This worker is only used to flip between ENABLED/DESIRED. Either 
-> of
-> +	 * those to UNDESIRED is handled by core. If value == UNDESIRED,
-> +	 * we're running just after hdcp has been disabled, so just exit
-> +	 */
-> +	if (data->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
-> +		drm_hdcp_update_content_protection(connector, data->value);
-> +
-> +	mutex_unlock(&data->mutex);
-> +	drm_modeset_unlock(&dev->mode_config.connection_mutex);
-> +}
-> +
-> +static int drm_hdcp_hdcp1_check_link(struct drm_hdcp_helper_data 
-> *data)
-> +{
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_device *dev = connector->dev;
-> +	int ret;
-> +
-> +	if (data->funcs->hdcp1_check_link) {
-> +		ret = data->funcs->hdcp1_check_link(connector);
-> +		if (ret)
-> +			goto retry;
-> +	}
-> +
-> +	/* The link is checked differently for DP and HDMI */
-> +	if (data->aux) {
-> +		u8 bstatus;
-> +		ret = drm_hdcp_remote_dpcd_read(data->aux, DP_AUX_HDCP_BSTATUS,
-> +						&bstatus, 1);
-> +		if (ret) {
-> +			drm_err(dev, "Failed to read dpcd bstatus, %d\n", ret);
-> +			return ret;
-> +		}
-> +		if (bstatus & (DP_BSTATUS_LINK_FAILURE | DP_BSTATUS_REAUTH_REQ))
-> +			ret = -EINVAL;
-> +	} else {
-> +		ret = drm_hdcp_helper_hdcp1_validate_ri(data);
-> +		if (ret)
-> +			drm_err(dev,"Ri' mismatch, check failed (%d)\n", ret);
-> +	}
-> +	if (!ret)
-> +		return 0;
-> +
-> +retry:
-> +	drm_err(dev, "[%s:%d] HDCP link failed, retrying authentication\n",
-> +		connector->name, connector->base.id);
-> +
-> +	ret = data->funcs->hdcp1_disable(connector);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to disable hdcp (%d)\n", ret);
-> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
-> +				      true);
-> +		return ret;
-> +	}
-> +
-> +	ret = drm_hdcp_helper_hdcp1_enable(data);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to enable hdcp (%d)\n", ret);
-> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
-> +				      true);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int drm_hdcp_hdcp2_check_link(struct drm_hdcp_helper_data 
-> *data)
-> +{
-> +	struct drm_connector *connector = data->connector;
-> +	struct drm_device *dev = connector->dev;
-> +	int ret;
-> +
-> +	ret = data->funcs->hdcp2_check_link(connector);
-> +	if (!ret)
-> +		return 0;
-> +
-> +	drm_err(dev, "[%s:%d] HDCP2 link failed, retrying authentication\n",
-> +		connector->name, connector->base.id);
-> +
-> +	ret = data->funcs->hdcp2_disable(connector);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to disable hdcp2 (%d)\n", ret);
-> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
-> +				      true);
-> +		return ret;
-> +	}
-> +
-> +	ret = data->funcs->hdcp2_enable(connector);
-> +	if (ret) {
-> +		drm_err(dev, "Failed to enable hdcp2 (%d)\n", ret);
-> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
-> +				      true);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void drm_hdcp_helper_check_work(struct work_struct *work)
-> +{
-> +	struct drm_hdcp_helper_data *data = 
-> container_of(to_delayed_work(work),
-> +							 struct drm_hdcp_helper_data,
-> +							 check_work);
-> +	unsigned long check_link_interval;
-> +
-> +	mutex_lock(&data->mutex);
-> +	if (data->value != DRM_MODE_CONTENT_PROTECTION_ENABLED)
-> +		goto out_data_mutex;
-> +
-> +	drm_hdcp_helper_driver_lock(data);
-> +
-> +	if (data->enabled_type == DRM_MODE_HDCP_CONTENT_TYPE1) {
-> +		if (drm_hdcp_hdcp2_check_link(data))
-> +			goto out;
-> +		check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
-> +	} else {
-> +		if (drm_hdcp_hdcp1_check_link(data))
-> +			goto out;
-> +		check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
-> +	}
-> +	schedule_delayed_work(&data->check_work, check_link_interval);
-> +
-> +out:
-> +	drm_hdcp_helper_driver_unlock(data);
-> +out_data_mutex:
-> +	mutex_unlock(&data->mutex);
-> +}
-> +
-> +/**
-> + * drm_hdcp_helper_schedule_hdcp_check - Schedule a check link cycle.
-> + *
-> + * @data: Pointer to the HDCP helper data.
-> + *
-> + * This function will kick off a check link cycle on behalf of the 
-> caller. This
-> + * can be used by DP short hpd interrupt handlers, where the driver 
-> must poke
-> + * the helper to check the link is still valid.
-> + */
-> +void drm_hdcp_helper_schedule_hdcp_check(struct drm_hdcp_helper_data 
-> *data)
-> +{
-> +	schedule_delayed_work(&data->check_work, 0);
-> +}
-> +EXPORT_SYMBOL(drm_hdcp_helper_schedule_hdcp_check);
-> +
-> +static struct drm_hdcp_helper_data *
-> +drm_hdcp_helper_initialize(struct drm_connector *connector,
-> +			   const struct drm_hdcp_helper_funcs *funcs,
-> +			   bool attach_content_type_property)
-> +{
-> +	struct drm_hdcp_helper_data *out;
-> +	int ret;
-> +
-> +	out = kzalloc(sizeof(*out), GFP_KERNEL);
-> +	if (!out)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	out->connector = connector;
-> +	out->funcs = funcs;
-> +
-> +	mutex_init(&out->mutex);
-> +	out->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-> +
-> +	INIT_DELAYED_WORK(&out->check_work, drm_hdcp_helper_check_work);
-> +	INIT_WORK(&out->prop_work, drm_hdcp_helper_prop_work);
-> +
-> +	ret = drm_connector_attach_content_protection_property(connector,
-> +			attach_content_type_property);
-> +	if (ret) {
-> +		drm_hdcp_helper_destroy(out);
-> +		return ERR_PTR(ret);
-> +	}
-> +
-> +	return out;
-> +}
-> +
-> +/**
-> + * drm_hdcp_helper_initialize_dp - Initializes the HDCP helpers for a
-> + * DisplayPort connector
-> + *
-> + * @connector: pointer to the DisplayPort connector.
-> + * @funcs: pointer to the vtable of HDCP helper funcs for this 
-> connector.
-> + * @attach_content_type_property: True if the content_type property 
-> should be
-> + * attached.
-> + *
-> + * This function intializes the HDCP helper for the given DisplayPort
-> connector.
-> + * This involves creating the Content Protection property as well as
-> the Content
-> + * Type property (if desired). Upon success, it will return a pointer 
-> to the
-> + * HDCP helper data. Ownership of the underlaying memory is transfered 
-> to the
-> + * caller and should be freed using drm_hdcp_helper_destroy().
-> + *
-> + * Returns:
-> + * Pointer to newly created HDCP helper data. PTR_ERR on failure.
-> + */
-> +struct drm_hdcp_helper_data *
-> +drm_hdcp_helper_initialize_dp(struct drm_connector *connector,
-> +			      struct drm_dp_aux *aux,
-> +			      const struct drm_hdcp_helper_funcs *funcs,
-> +			      bool attach_content_type_property)
-> +{
-> +	struct drm_hdcp_helper_data *out;
-> +
-> +	out = drm_hdcp_helper_initialize(connector, funcs,
-> +					 attach_content_type_property);
-> +	if (IS_ERR(out))
-> +		return out;
-> +
-> +	out->aux = aux;
-> +	out->hdcp1_lut = &drm_hdcp_hdcp1_dpcd_lut;
-> +
-> +	return out;
-> +}
-> +EXPORT_SYMBOL(drm_hdcp_helper_initialize_dp);
-> +
-> +/**
-> + * drm_hdcp_helper_initialize_hdmi - Initializes the HDCP helpers for 
-> an HDMI
-> + * connector
-> + *
-> + * @connector: pointer to the HDMI connector.
-> + * @funcs: pointer to the vtable of HDCP helper funcs for this 
-> connector.
-> + * @attach_content_type_property: True if the content_type property 
-> should be
-> + * attached.
-> + *
-> + * This function intializes the HDCP helper for the given HDMI 
-> connector. This
-> + * involves creating the Content Protection property as well as the
-> Content Type
-> + * property (if desired). Upon success, it will return a pointer to 
-> the HDCP
-> + * helper data. Ownership of the underlaying memory is transfered to 
-> the caller
-> + * and should be freed using drm_hdcp_helper_destroy().
-> + *
-> + * Returns:
-> + * Pointer to newly created HDCP helper data. PTR_ERR on failure.
-> + */
-> +struct drm_hdcp_helper_data *
-> +drm_hdcp_helper_initialize_hdmi(struct drm_connector *connector,
-> +				const struct drm_hdcp_helper_funcs *funcs,
-> +				bool attach_content_type_property)
-> +{
-> +	struct drm_hdcp_helper_data *out;
-> +
-> +	out = drm_hdcp_helper_initialize(connector, funcs,
-> +					 attach_content_type_property);
-> +	if (IS_ERR(out))
-> +		return out;
-> +
-> +	out->hdcp1_lut = &drm_hdcp_hdcp1_ddc_lut;
-> +
-> +	return out;
-> +}
-> +EXPORT_SYMBOL(drm_hdcp_helper_initialize_hdmi);
-> +
-> +/**
-> + * drm_hdcp_helper_destroy - Destroys the given HDCP helper data.
-> + *
-> + * @data: Pointer to the HDCP helper data.
-> + *
-> + * This function cleans up and destroys the HDCP helper data created 
-> by
-> + * drm_hdcp_helper_initialize_dp() or 
-> drm_hdcp_helper_initialize_hdmi().
-> + */
-> +void drm_hdcp_helper_destroy(struct drm_hdcp_helper_data *data)
-> +{
-> +	struct drm_connector *connector;
-> +
-> +	if (!data)
-> +		return;
-> +
-> +	connector = data->connector;
-> +
-> +	/*
-> +	 * If the connector is registered, it's possible userspace could kick
-> +	 * off another HDCP enable, which would re-spawn the workers.
-> +	 */
-> +	drm_WARN_ON(connector->dev,
-> +		    connector->registration_state == DRM_CONNECTOR_REGISTERED);
-> +
-> +	/*
-> +	 * Now that the connector is not registered, check_work won't be run,
-> +	 * but cancel any outstanding instances of it
-> +	 */
-> +	cancel_delayed_work_sync(&data->check_work);
-> +
-> +	/*
-> +	 * We don't cancel prop_work in the same way as check_work since it
-> +	 * requires connection_mutex which could be held while calling this
-> +	 * function. Instead, we rely on the connector references grabbed 
-> before
-> +	 * scheduling prop_work to ensure the connector is alive when 
-> prop_work
-> +	 * is run. So if we're in the destroy path (which is where this
-> +	 * function should be called), we're "guaranteed" that prop_work is 
-> not
-> +	 * active (tl;dr This Should Never Happen).
-> +	 */
-> +	drm_WARN_ON(connector->dev, work_pending(&data->prop_work));
-> +
-> +	kfree(data);
-> +}
-> +EXPORT_SYMBOL(drm_hdcp_helper_destroy);
-> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
-> index e6e3d16bc7d3..69c6405db5d1 100644
-> --- a/include/drm/drm_hdcp.h
-> +++ b/include/drm/drm_hdcp.h
-> @@ -36,6 +36,7 @@
->  #define DRM_HDCP_DDC_BKSV			0x00
->  #define DRM_HDCP_DDC_RI_PRIME			0x08
->  #define DRM_HDCP_DDC_AKSV			0x10
-> +#define DRM_HDCP_DDC_AINFO			0x15
->  #define DRM_HDCP_DDC_AN				0x18
->  #define DRM_HDCP_DDC_V_PRIME(h)			(0x20 + h * 4)
->  #define DRM_HDCP_DDC_BCAPS			0x40
-> @@ -295,6 +296,19 @@ struct drm_atomic_state;
->  struct drm_device;
->  struct drm_connector;
-> 
-> +struct drm_hdcp_ksv {
-> +	union {
-> +		u32 words[2];
-> +		u8 bytes[DRM_HDCP_KSV_LEN];
-> +	};
-> +};
-> +struct drm_hdcp_an {
-> +	union {
-> +		u32 words[2];
-> +		u8 bytes[DRM_HDCP_AN_LEN];
-> +	};
-> +};
-> +
->  int drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
->  				u8 *ksvs, u32 ksv_count);
->  int drm_connector_attach_content_protection_property(
-> @@ -303,9 +317,186 @@ void drm_hdcp_update_content_protection(struct
-> drm_connector *connector,
->  					u64 val);
->  bool drm_hdcp_atomic_check(struct drm_connector *connector,
->  			   struct drm_atomic_state *state);
-> +void drm_hdcp_atomic_commit(struct drm_atomic_state *state,
-> +			    struct drm_connector *connector);
-> 
->  /* Content Type classification for HDCP2.2 vs others */
->  #define DRM_MODE_HDCP_CONTENT_TYPE0		0
->  #define DRM_MODE_HDCP_CONTENT_TYPE1		1
-> 
-> +/**
-> + * struct drm_hdcp_helper_funcs - A vtable of function hooks for the
-> hdcp helper
-> + *
-> + * These hooks are used by the hdcp helper to call into the 
-> driver/connector
-> + * code to read/write to hw.
-> + */
-> +struct drm_hdcp_helper_funcs {
-> +	/**
-> +	 * @setup - Performs driver-specific setup before hdcp is enabled
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*setup)(struct drm_connector *connector,
-> +		     struct drm_atomic_state *state);
-> +
-> +	/**
-> +	 * @are_keys_valid - Checks if the HDCP transmitter keys are valid
-> +	 *
-> +	 * Returns: true if the display controller has valid keys loaded
-> +	 */
-> +	bool (*are_keys_valid)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @load_keys - Instructs the driver to load its HDCP transmitter 
-> keys
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*load_keys)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp2_capable - Checks if both source and sink support HDCP 2.x
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp2_capable)(struct drm_connector *connector, bool *capable);
-> +
-> +	/**
-> +	 * @hdcp2_enable - Enables HDCP 2.x on the specified connector
-> +	 *
-> +	 * Since we don't have multiple examples of HDCP 2.x enablement, we
-> +	 * provide the bare minimum support for HDCP 2.x help. Once we have
-> +	 * more examples, perhaps we can be more helpful.
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp2_enable)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp2_check_link - Checks the HDCP 2.x link on a specified 
-> connector
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp2_check_link)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp2_disable - Disables HDCP 2.x on the specified connector
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp2_disable)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp1_read_an_aksv - Reads transmitter's An & Aksv from hardware
-> +	 *
-> +	 * Use this function if hardware allows reading the transmitter's An 
-> and
-> +	 * Aksv values from the kernel. If your hardware will not allow this,
-> +	 * use hdcp1_send_an_aksv() and implement the transmission in the
-> +	 * driver.
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_read_an_aksv)(struct drm_connector *connector, u32 *an,
-> +				  u32 *aksv);
-> +
-> +	/**
-> +	 * @hdcp1_send_an_aksv - Sends transmitter's An & Aksv to the 
-> receiver
-> +	 *
-> +	 * Only implement this on hardware where An or Aksv are not 
-> accessible
-> +	 * from the kernel. If these values can be read, use
-> +	 * hdcp1_read_an_aksv() instead.
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_send_an_aksv)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp1_store_receiver_info - Stores the receiver's info in the 
-> transmitter
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_store_receiver_info)(struct drm_connector *connector,
-> +					 u32 *ksv, u32 status, u8 caps,
-> +					 bool repeater_present);
-> +
-> +	/**
-> +	 * @hdcp1_enable_encryption - Enables encryption of the outgoing 
-> signal
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_enable_encryption)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp1_wait_for_r0 - Wait for transmitter to calculate R0
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_wait_for_r0)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp1_match_ri - Matches the given Ri from the receiver with Ri 
-> in
-> +	 * the transmitter
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_match_ri)(struct drm_connector *connector, u32 ri_prime);
-> +
-> +	/**
-> +	 * @hdcp1_post_encryption - Allows the driver to confirm encryption 
-> and
-> +	 * perform any post-processing
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_post_encryption)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp1_store_ksv_fifo - Write the receiver's KSV list to 
-> transmitter
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_store_ksv_fifo)(struct drm_connector *connector,
-> +				    u8 *ksv_fifo, u8 num_downstream,
-> +				    u8 *bstatus, u32 *vprime);
-> +
-> +	/**
-> +	 * @hdcp1_check_link - Allows the driver to check the HDCP 1.x status
-> +	 * on a specified connector
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_check_link)(struct drm_connector *connector);
-> +
-> +	/**
-> +	 * @hdcp1_disable - Disables HDCP 1.x on the specified connector
-> +	 *
-> +	 * Returns: 0 on success, -errno on failure
-> +	 */
-> +	int (*hdcp1_disable)(struct drm_connector *connector);
-> +};
-> +
-> +struct drm_hdcp_helper_data;
-> +struct drm_dp_aux;
-> +struct i2c_adapter;
-> +struct mutex;
-> +
-> +struct drm_hdcp_helper_data *
-> +drm_hdcp_helper_initialize_dp(struct drm_connector *connector,
-> +			      struct drm_dp_aux *aux,
-> +			      const struct drm_hdcp_helper_funcs *funcs,
-> +			      bool attach_content_type_property);
-> +
-> +struct drm_hdcp_helper_data *
-> +drm_hdcp_helper_initialize_hdmi(struct drm_connector *connector,
-> +				const struct drm_hdcp_helper_funcs *funcs,
-> +				bool attach_content_type_property);
-> +
-> +void drm_hdcp_helper_destroy(struct drm_hdcp_helper_data *data);
-> +
-> +int drm_hdcp_helper_hdcp1_capable(struct drm_hdcp_helper_data *data,
-> +				  bool *capable);
-> +void drm_hdcp_helper_atomic_commit(struct drm_hdcp_helper_data *data,
-> +				   struct drm_atomic_state *state,
-> +				   struct mutex *driver_mutex);
-> +
-> +void drm_hdcp_helper_schedule_hdcp_check(struct drm_hdcp_helper_data 
-> *data);
-> +
->  #endif
+T24gV2VkLCAyMDIxLTEwLTIwIGF0IDE5OjE5ICswMDAwLCBTb3V6YSwgSm9zZSB3cm90ZToNCj4g
+T24gV2VkLCAyMDIxLTEwLTIwIGF0IDE1OjAwICswMDAwLCBZb2tveWFtYSwgQ2F6IHdyb3RlOg0K
+PiA+IE9uIFR1ZSwgMjAyMS0xMC0xOSBhdCAxNzoyMyAtMDcwMCwgSm9zw6kgUm9iZXJ0byBkZSBT
+b3V6YSB3cm90ZToNCj4gPiA+IEFkZGluZyBhIHN0cnVjdHVyZSB0byBzdGFuZGFyZGl6ZSBhY2Nl
+c3MgdG8gSVAgdmVyc2lvbmluZyBhcw0KPiA+ID4gZnV0dXJlDQo+ID4gPiBwbGF0Zm9ybXMgd2ls
+bCBoYXZlIHRoaXMgaW5mb3JtYXRpb24gcG9wdWxhdGVkIGF0IHJ1bnRpbWUuDQo+ID4gPiANCj4g
+PiA+IFRoZSBjb25zdGFudCBwbGF0Zm9ybSBkaXNwbGF5IHZlcnNpb24gaXMgbm90IHVzaW5nIHRo
+aXMgbmV3DQo+ID4gPiBzdHJ1Y3QNCj4gPiA+IGJ1dA0KPiA+ID4gdGhlIHJ1bnRpbWUgdmFyaWFu
+dCB3aWxsIGRlZmluaXRlbHkgdXNlIGl0Lg0KPiA+ID4gDQo+ID4gPiBDYzogUmFkaGFrcmlzaG5h
+IFNyaXBhZGEgPHJhZGhha3Jpc2huYS5zcmlwYWRhQGludGVsLmNvbT4NCj4gPiA+IENjOiBNYXR0
+IEF0d29vZCA8bWF0dGhldy5zLmF0d29vZEBpbnRlbC5jb20+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5
+OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiA+IC0t
+LQ0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgICAgICAgICAgICAgICB8
+ICAyICstDQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAg
+ICAgIHwgMTIgKysrKysrLS0tLS0tDQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9w
+Y2kuYyAgICAgICAgICAgICAgIHwgMTggKysrKysrKysrLS0NCj4gPiA+IC0tLS0NCj4gPiA+IC0t
+LQ0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMgICAgICB8
+IDE5ICsrKysrKysrKysrKy0NCj4gPiA+IC0tLS0NCj4gPiA+IC0tDQo+ID4gPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCAgICAgIHwgMTIgKysrKysrKystLS0tDQo+
+ID4gPiAgLi4uL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvbW9ja19nZW1fZGV2aWNlLmMgIHwgIDIg
+Ky0NCj4gPiA+ICA2IGZpbGVzIGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKyksIDI4IGRlbGV0aW9u
+cygtKQ0KPiA+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuYw0KPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+ID4gPiBp
+bmRleCAxZTViNzVhZTk5MzI5Li5iZGY4NWQyMDJjNTVjIDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9kcnYuYw0KPiA+ID4gQEAgLTgwOCw3ICs4MDgsNyBAQCBpbnQgaTkxNV9kcml2
+ZXJfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsDQo+ID4gPiBjb25zdA0KPiA+ID4gc3RydWN0
+IHBjaV9kZXZpY2VfaWQgKmVudCkNCj4gPiA+ICAgICAgICAgICAgICAgcmV0dXJuIFBUUl9FUlIo
+aTkxNSk7DQo+ID4gPiANCj4gPiA+ICAgICAgIC8qIERpc2FibGUgbnVjbGVhciBwYWdlZmxpcCBi
+eSBkZWZhdWx0IG9uIHByZS1JTEsgKi8NCj4gPiA+IC0gICAgIGlmICghaTkxNS0+cGFyYW1zLm51
+Y2xlYXJfcGFnZWZsaXAgJiYgbWF0Y2hfaW5mby0NCj4gPiA+ID5ncmFwaGljc192ZXINCj4gPiA+
+IDwgNSkNCj4gPiA+ICsgICAgIGlmICghaTkxNS0+cGFyYW1zLm51Y2xlYXJfcGFnZWZsaXAgJiYg
+bWF0Y2hfaW5mby0NCj4gPiA+ID5ncmFwaGljcy52ZXINCj4gPiA+IDwgNSkNCj4gPiBJIGRvbid0
+IGZpbmQgYW55IGRpZmZlcmVuY2Ugb24gdGhpcyBhbmQgdGhlIHNpbWlsYXIgbW9kaWZpY2F0aW9u
+cw0KPiA+IGJlbG93LiBBbSBJIG1pc3Npbmcgc29tZXRoaW5nPw0KPiANCj4gQ2hhbmdpbmcgdTgg
+Z3JhcGhpY3NfdmVyIHRvIHN0cnVjdCBpcF92ZXJzaW9uIHRoYXQgY29udGFpbnMgYSBtZW1iZXIN
+Cj4gY2FsbGVkIHZlci4NCj4gU28gb25seSBjaGFuZ2luZyAnXycgdG8gJy4nIGluIG1vc3QgcGxh
+Y2VzLg0KPiANCj4gPiAtY2F6DQo+ID4gDQo+ID4gPiAgICAgICAgICAgICAgIGk5MTUtPmRybS5k
+cml2ZXJfZmVhdHVyZXMgJj0gfkRSSVZFUl9BVE9NSUM7DQo+ID4gPiANCj4gPiA+ICAgICAgIC8q
+DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaA0KPiA+
+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+ID4gPiBpbmRleCAxMjI1NjIx
+ODYzNGY0Li4yNmI2ZTJiOGJiNWU4IDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9kcnYuaA0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
+cnYuaA0KPiA+ID4gQEAgLTEzMjcsMTUgKzEzMjcsMTUgQEAgc3RhdGljIGlubGluZSBzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZQ0KPiA+ID4gKnBkZXZfdG9faTkxNShzdHJ1Y3QgcGNpX2RldiAqcGRl
+dikNCj4gPiA+IA0KPiA+ID4gICNkZWZpbmUgSVBfVkVSKHZlciwgcmVsKSAgICAgICAgICAgICAo
+KHZlcikgPDwgOCB8IChyZWwpKQ0KPiA+ID4gDQo+ID4gPiAtI2RlZmluZSBHUkFQSElDU19WRVIo
+aTkxNSkgICAgICAgICAgIChJTlRFTF9JTkZPKGk5MTUpLQ0KPiA+ID4gPiBncmFwaGljc192ZXIp
+DQo+ID4gPiAtI2RlZmluZQ0KPiA+ID4gR1JBUEhJQ1NfVkVSX0ZVTEwoaTkxNSkgICAgICAgICAg
+ICAgIElQX1ZFUihJTlRFTF9JTkZPKGk5MTUpDQo+ID4gPiAtPmdyYXBoaWNzX3ZlciwgXA0KPiA+
+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgSU5URUxfSU5G
+TyhpOTE1KS0NCj4gPiA+ID4gZ3JhcGhpY3NfcmVsKQ0KPiA+ID4gKyNkZWZpbmUgR1JBUEhJQ1Nf
+VkVSKGk5MTUpICAgICAgICAgICAoSU5URUxfSU5GTyhpOTE1KS0NCj4gPiA+ID4gZ3JhcGhpY3Mu
+dmVyKQ0KPiA+ID4gKyNkZWZpbmUNCj4gPiA+IEdSQVBISUNTX1ZFUl9GVUxMKGk5MTUpICAgICAg
+ICAgICAgICBJUF9WRVIoSU5URUxfSU5GTyhpOTE1KQ0KPiA+ID4gLT5ncmFwaGljcy52ZXIsIFwN
+Cj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIElOVEVM
+X0lORk8oaTkxNSktDQo+ID4gPiA+IGdyYXBoaWNzLnJlbCkNCj4gPiA+ICAjZGVmaW5lIElTX0dS
+QVBISUNTX1ZFUihpOTE1LCBmcm9tLCB1bnRpbCkgXA0KPiA+ID4gICAgICAgKEdSQVBISUNTX1ZF
+UihpOTE1KSA+PSAoZnJvbSkgJiYgR1JBUEhJQ1NfVkVSKGk5MTUpIDw9DQo+ID4gPiAodW50aWwp
+KQ0KPiA+ID4gDQo+ID4gPiAtI2RlZmluZSBNRURJQV9WRVIoaTkxNSkgICAgICAgICAgICAgICAg
+ICAgICAgKElOVEVMX0lORk8oaTkxNSktDQo+ID4gPiA+IG1lZGlhX3ZlcikNCj4gPiA+IC0jZGVm
+aW5lIE1FRElBX1ZFUl9GVUxMKGk5MTUpICAgICAgICAgSVBfVkVSKElOVEVMX0lORk8oaTkxNSkt
+DQo+ID4gPiA+IG1lZGlhX3ZlciwgXA0KPiA+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgSU5URUxfSU5GTyhpOTE1KS0NCj4gPiA+ID4gbWVkaWFfcmVsKQ0K
+PiA+ID4gKyNkZWZpbmUgTUVESUFfVkVSKGk5MTUpICAgICAgICAgICAgICAgICAgICAgIChJTlRF
+TF9JTkZPKGk5MTUpLQ0KPiA+ID4gPiBtZWRpYS52ZXIpDQo+ID4gPiArI2RlZmluZSBNRURJQV9W
+RVJfRlVMTChpOTE1KSAgICAgICAgIElQX1ZFUihJTlRFTF9JTkZPKGk5MTUpLQ0KPiA+ID4gPiBt
+ZWRpYS5hcmNoLCBcDQo+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBJTlRFTF9JTkZPKGk5MTUpLQ0KPiA+ID4gPiBtZWRpYS5yZWwpDQo+ID4gPiAgI2Rl
+ZmluZSBJU19NRURJQV9WRVIoaTkxNSwgZnJvbSwgdW50aWwpIFwNCj4gPiA+ICAgICAgIChNRURJ
+QV9WRVIoaTkxNSkgPj0gKGZyb20pICYmIE1FRElBX1ZFUihpOTE1KSA8PSAodW50aWwpKQ0KPiA+
+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0K
+PiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jDQo+ID4gPiBpbmRleCAxNjk4
+MzdkZTM5NWQzLi41ZTY3OTU4NTNkYzMxIDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9wY2kuYw0KPiA+ID4gQEAgLTMyLDggKzMyLDggQEANCj4gPiA+IA0KPiA+ID4gICNkZWZpbmUg
+UExBVEZPUk0oeCkgLnBsYXRmb3JtID0gKHgpDQo+ID4gPiAgI2RlZmluZSBHRU4oeCkgXA0KPiA+
+ID4gLSAgICAgLmdyYXBoaWNzX3ZlciA9ICh4KSwgXA0KPiA+ID4gLSAgICAgLm1lZGlhX3ZlciA9
+ICh4KSwgXA0KPiA+ID4gKyAgICAgLmdyYXBoaWNzLnZlciA9ICh4KSwgXA0KPiA+ID4gKyAgICAg
+Lm1lZGlhLnZlciA9ICh4KSwgXA0KPiA+ID4gICAgICAgLmRpc3BsYXkudmVyID0gKHgpDQo+ID4g
+PiANCj4gPiA+ICAjZGVmaW5lIEk4NDVfUElQRV9PRkZTRVRTIFwNCj4gPiA+IEBAIC04OTksNyAr
+ODk5LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbw0KPiA+ID4gcmts
+X2luZm8gPQ0KPiA+ID4gew0KPiA+ID4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNl
+X2luZm8gZGcxX2luZm8gPSB7DQo+ID4gPiAgICAgICBHRU4xMl9GRUFUVVJFUywNCj4gPiA+ICAg
+ICAgIERHRlhfRkVBVFVSRVMsDQo+ID4gPiAtICAgICAuZ3JhcGhpY3NfcmVsID0gMTAsDQo+ID4g
+PiArICAgICAuZ3JhcGhpY3MucmVsID0gMTAsDQo+ID4gPiAgICAgICBQTEFURk9STShJTlRFTF9E
+RzEpLA0KPiA+ID4gICAgICAgLnBpcGVfbWFzayA9IEJJVChQSVBFX0EpIHwgQklUKFBJUEVfQikg
+fCBCSVQoUElQRV9DKSB8DQo+ID4gPiBCSVQoUElQRV9EKSwNCj4gPiA+ICAgICAgIC5yZXF1aXJl
+X2ZvcmNlX3Byb2JlID0gMSwNCj4gPiA+IEBAIC05ODYsOCArOTg2LDggQEAgc3RhdGljIGNvbnN0
+IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbw0KPiA+ID4gYWRsX3BfaW5mbw0KPiA+ID4gPSB7DQo+
+ID4gPiAgICAgICAgICAgICAgICAgICAgIEk5MTVfR1RUX1BBR0VfU0laRV8yTQ0KPiA+ID4gDQo+
+ID4gPiAgI2RlZmluZSBYRV9IUF9GRUFUVVJFUyBcDQo+ID4gPiAtICAgICAuZ3JhcGhpY3NfdmVy
+ID0gMTIsIFwNCj4gPiA+IC0gICAgIC5ncmFwaGljc19yZWwgPSA1MCwgXA0KPiA+ID4gKyAgICAg
+LmdyYXBoaWNzLnZlciA9IDEyLCBcDQo+ID4gPiArICAgICAuZ3JhcGhpY3MucmVsID0gNTAsIFwN
+Cj4gPiA+ICAgICAgIFhFX0hQX1BBR0VfU0laRVMsIFwNCj4gPiA+ICAgICAgIC5kbWFfbWFza19z
+aXplID0gNDYsIFwNCj4gPiA+ICAgICAgIC5oYXNfNjRiaXRfcmVsb2MgPSAxLCBcDQo+ID4gPiBA
+QCAtMTAwNSw4ICsxMDA1LDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5m
+bw0KPiA+ID4gYWRsX3BfaW5mbyA9IHsNCj4gPiA+ICAgICAgIC5wcGd0dF90eXBlID0gSU5URUxf
+UFBHVFRfRlVMTA0KPiA+ID4gDQo+ID4gPiAgI2RlZmluZSBYRV9IUE1fRkVBVFVSRVMgXA0KPiA+
+ID4gLSAgICAgLm1lZGlhX3ZlciA9IDEyLCBcDQo+ID4gPiAtICAgICAubWVkaWFfcmVsID0gNTAN
+Cj4gPiA+ICsgICAgIC5tZWRpYS52ZXIgPSAxMiwgXA0KPiA+ID4gKyAgICAgLm1lZGlhLnJlbCA9
+IDUwDQo+ID4gPiANCj4gPiA+ICBfX21heWJlX3VudXNlZA0KPiA+ID4gIHN0YXRpYyBjb25zdCBz
+dHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8geGVocHNkdl9pbmZvID0gew0KPiA+ID4gQEAgLTEwMzAs
+OCArMTAzMCw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8NCj4gPiA+
+IGRnMl9pbmZvDQo+ID4gPiA9IHsNCj4gPiA+ICAgICAgIFhFX0hQTV9GRUFUVVJFUywNCj4gPiA+
+ICAgICAgIFhFX0xQRF9GRUFUVVJFUywNCj4gPiA+ICAgICAgIERHRlhfRkVBVFVSRVMsDQo+ID4g
+PiAtICAgICAuZ3JhcGhpY3NfcmVsID0gNTUsDQo+ID4gPiAtICAgICAubWVkaWFfcmVsID0gNTUs
+DQo+ID4gPiArICAgICAuZ3JhcGhpY3MucmVsID0gNTUsDQo+ID4gPiArICAgICAubWVkaWEucmVs
+ID0gNTUsDQo+ID4gPiAgICAgICBQTEFURk9STShJTlRFTF9ERzIpLA0KPiA+ID4gICAgICAgLnBs
+YXRmb3JtX2VuZ2luZV9tYXNrID0NCj4gPiA+ICAgICAgICAgICAgICAgQklUKFJDUzApIHwgQklU
+KEJDUzApIHwNCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
+ZXZpY2VfaW5mby5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9p
+bmZvLmMNCj4gPiA+IGluZGV4IDMwNWZhY2VkZDI4NDEuLjZlNmIzMTdiYzMzY2UgMTAwNjQ0DQo+
+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jDQo+ID4g
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jDQo+ID4gPiBA
+QCAtOTcsMTcgKzk3LDIyIEBAIHN0YXRpYyBjb25zdCBjaGFyICppb21tdV9uYW1lKHZvaWQpDQo+
+ID4gPiAgdm9pZCBpbnRlbF9kZXZpY2VfaW5mb19wcmludF9zdGF0aWMoY29uc3Qgc3RydWN0DQo+
+ID4gPiBpbnRlbF9kZXZpY2VfaW5mbw0KPiA+ID4gKmluZm8sDQo+ID4gPiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRybV9wcmludGVyICpwKQ0KPiA+ID4gIHsNCj4g
+PiA+IC0gICAgIGlmIChpbmZvLT5ncmFwaGljc19yZWwpDQo+ID4gPiAtICAgICAgICAgICAgIGRy
+bV9wcmludGYocCwgImdyYXBoaWNzIHZlcnNpb246ICV1LiUwMnVcbiIsIGluZm8tDQo+ID4gPiA+
+IGdyYXBoaWNzX3ZlciwgaW5mby0+Z3JhcGhpY3NfcmVsKTsNCj4gPiA+ICsgICAgIGlmIChpbmZv
+LT5ncmFwaGljcy5yZWwpDQo+ID4gPiArICAgICAgICAgICAgIGRybV9wcmludGYocCwgImdyYXBo
+aWNzIHZlcnNpb246ICV1LiUwMnVcbiIsIGluZm8tDQo+ID4gPiA+IGdyYXBoaWNzLnZlciwNCj4g
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICBpbmZvLT5ncmFwaGljcy5yZWwpOw0KPiA+ID4g
+ICAgICAgZWxzZQ0KPiA+ID4gLSAgICAgICAgICAgICBkcm1fcHJpbnRmKHAsICJncmFwaGljcyB2
+ZXJzaW9uOiAldVxuIiwgaW5mby0NCj4gPiA+ID4gZ3JhcGhpY3NfdmVyKTsNCj4gPiA+ICsgICAg
+ICAgICAgICAgZHJtX3ByaW50ZihwLCAiZ3JhcGhpY3MgdmVyc2lvbjogJXVcbiIsIGluZm8tDQo+
+ID4gPiA+IGdyYXBoaWNzLnZlcik7DQo+ID4gPiANCj4gPiA+IC0gICAgIGlmIChpbmZvLT5tZWRp
+YV9yZWwpDQo+ID4gPiAtICAgICAgICAgICAgIGRybV9wcmludGYocCwgIm1lZGlhIHZlcnNpb246
+ICV1LiUwMnVcbiIsIGluZm8tDQo+ID4gPiA+IG1lZGlhX3ZlciwgaW5mby0+bWVkaWFfcmVsKTsN
+Cj4gPiA+ICsgICAgIGlmIChpbmZvLT5tZWRpYS5yZWwpDQo+ID4gPiArICAgICAgICAgICAgIGRy
+bV9wcmludGYocCwgIm1lZGlhIHZlcnNpb246ICV1LiUwMnVcbiIsIGluZm8tDQo+ID4gPiA+IG1l
+ZGlhLnZlciwgaW5mby0+bWVkaWEucmVsKTsNCj4gPiA+ICAgICAgIGVsc2UNCj4gPiA+IC0gICAg
+ICAgICAgICAgZHJtX3ByaW50ZihwLCAibWVkaWEgdmVyc2lvbjogJXVcbiIsIGluZm8tDQo+ID4g
+PiA+bWVkaWFfdmVyKTsNCj4gPiA+ICsgICAgICAgICAgICAgZHJtX3ByaW50ZihwLCAibWVkaWEg
+dmVyc2lvbjogJXVcbiIsIGluZm8tDQo+ID4gPiA+bWVkaWEudmVyKTsNCj4gPiA+ICsNCj4gPiA+
+ICsgICAgIGlmIChpbmZvLT5kaXNwbGF5LnJlbCkNCj4gPiA+ICsgICAgICAgICAgICAgZHJtX3By
+aW50ZihwLCAiZGlzcGxheSB2ZXJzaW9uOiAldS4lMDJ1XG4iLCBpbmZvLQ0KPiA+ID4gPiBkaXNw
+bGF5LnZlciwgaW5mby0+ZGlzcGxheS5yZWwpOw0KPiA+ID4gKyAgICAgZWxzZQ0KPiA+ID4gKyAg
+ICAgICAgICAgICBkcm1fcHJpbnRmKHAsICJkaXNwbGF5IHZlcnNpb246ICV1XG4iLCBpbmZvLQ0K
+PiA+ID4gPiBkaXNwbGF5LnZlcik7DQo+ID4gPiANCj4gPiA+IC0gICAgIGRybV9wcmludGYocCwg
+ImRpc3BsYXkgdmVyc2lvbjogJXVcbiIsIGluZm8tPmRpc3BsYXkudmVyKTsNCj4gPiA+ICAgICAg
+IGRybV9wcmludGYocCwgImd0OiAlZFxuIiwgaW5mby0+Z3QpOw0KPiA+ID4gICAgICAgZHJtX3By
+aW50ZihwLCAiaW9tbXU6ICVzXG4iLCBpb21tdV9uYW1lKCkpOw0KPiA+ID4gICAgICAgZHJtX3By
+aW50ZihwLCAibWVtb3J5LXJlZ2lvbnM6ICV4XG4iLCBpbmZvLQ0KPiA+ID4gPm1lbW9yeV9yZWdp
+b25zKTsNCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZp
+Y2VfaW5mby5oDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZv
+LmgNCj4gPiA+IGluZGV4IDhlNmY0OGQxZWI3YmMuLjY2OWYwZDI2YzNjMzggMTAwNjQ0DQo+ID4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+ID4gPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+ID4gPiBAQCAt
+MTY2LDExICsxNjYsMTQgQEAgZW51bSBpbnRlbF9wcGd0dF90eXBlIHsNCj4gPiA+ICAgICAgIGZ1
+bmMob3ZlcmxheV9uZWVkc19waHlzaWNhbCk7IFwNCj4gPiA+ICAgICAgIGZ1bmMoc3VwcG9ydHNf
+dHYpOw0KPiA+ID4gDQo+ID4gPiArc3RydWN0IGlwX3ZlcnNpb24gew0KPiA+ID4gKyAgICAgdTgg
+dmVyOw0KPiA+ID4gKyAgICAgdTggcmVsOw0KPiA+ID4gK307DQo+ID4gPiArDQo+ID4gPiAgc3Ry
+dWN0IGludGVsX2RldmljZV9pbmZvIHsNCj4gPiA+IC0gICAgIHU4IGdyYXBoaWNzX3ZlcjsNCj4g
+PiA+IC0gICAgIHU4IGdyYXBoaWNzX3JlbDsNCj4gPiA+IC0gICAgIHU4IG1lZGlhX3ZlcjsNCj4g
+PiA+IC0gICAgIHU4IG1lZGlhX3JlbDsNCj4gPiA+ICsgICAgIHN0cnVjdCBpcF92ZXJzaW9uIGdy
+YXBoaWNzOw0KPiA+ID4gKyAgICAgc3RydWN0IGlwX3ZlcnNpb24gbWVkaWE7DQo+ID4gPiANCj4g
+PiA+ICAgICAgIGludGVsX2VuZ2luZV9tYXNrX3QgcGxhdGZvcm1fZW5naW5lX21hc2s7IC8qIEVu
+Z2luZXMNCj4gPiA+IHN1cHBvcnRlZA0KPiA+ID4gYnkgdGhlIEhXICovDQo+ID4gPiANCj4gPiA+
+IEBAIC0yMDAsNiArMjAzLDcgQEAgc3RydWN0IGludGVsX2RldmljZV9pbmZvIHsNCj4gPiA+IA0K
+PiA+ID4gICAgICAgc3RydWN0IHsNCj4gPiA+ICAgICAgICAgICAgICAgdTggdmVyOw0KPiA+ID4g
+KyAgICAgICAgICAgICB1OCByZWw7DQpFdmVuIHRoaXMgaXMgbWVudGlvbmVkIGluIHRoZSBjb21t
+ZW50IGFzICJuZWVkIGZvciBydW50aW1lIHZhcmlhbnQiLCBJDQpoYXZlIG5vIGlkZWEgd2h5IGl0
+IGlzIG5lZWRlZCBiZWNhdXNlIGl0IGlzIGNvcGllZCBvbiBpOTE1X2Rydi5jIGFuZA0Kc2hvd24g
+YnkgZHJtX3ByaW50ZigpIGluIGludGVsX2RldmljZV9pbmZvLmMuDQpJZiBpdCBpcyByZWFsbHkg
+bmVlZGVkLA0KUmV2aWV3ZWQtYnk6IENheiBZb2tveWFtYSA8Y2F6Lnlva295YW1hQGludGVsLmNv
+bT4NCi1jYXoNCg0KPiA+ID4gDQo+ID4gPiAgI2RlZmluZSBERUZJTkVfRkxBRyhuYW1lKSB1OCBu
+YW1lOjENCj4gPiA+ICAgICAgICAgICAgICAgREVWX0lORk9fRElTUExBWV9GT1JfRUFDSF9GTEFH
+KERFRklORV9GTEFHKTsNCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9z
+ZWxmdGVzdHMvbW9ja19nZW1fZGV2aWNlLmMNCj4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+c2VsZnRlc3RzL21vY2tfZ2VtX2RldmljZS5jDQo+ID4gPiBpbmRleCA0ZjgxODAxNDY4ODgxLi45
+YWIzZjI4NGQxZGQ5IDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2Vs
+ZnRlc3RzL21vY2tfZ2VtX2RldmljZS5jDQo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9zZWxmdGVzdHMvbW9ja19nZW1fZGV2aWNlLmMNCj4gPiA+IEBAIC0xNjUsNyArMTY1LDcgQEAg
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4gPiA+ICptb2NrX2dlbV9kZXZpY2Uodm9pZCkNCj4g
+PiA+ICAgICAgIC8qIFVzaW5nIHRoZSBnbG9iYWwgR1RUIG1heSBhc2sgcXVlc3Rpb25zIGFib3V0
+IEtNUyB1c2VycywNCj4gPiA+IHNvDQo+ID4gPiBwcmVwYXJlICovDQo+ID4gPiAgICAgICBkcm1f
+bW9kZV9jb25maWdfaW5pdCgmaTkxNS0+ZHJtKTsNCj4gPiA+IA0KPiA+ID4gLSAgICAgbWt3cml0
+ZV9kZXZpY2VfaW5mbyhpOTE1KS0+Z3JhcGhpY3NfdmVyID0gLTE7DQo+ID4gPiArICAgICBta3dy
+aXRlX2RldmljZV9pbmZvKGk5MTUpLT5ncmFwaGljcy52ZXIgPSAtMTsNCj4gPiA+IA0KPiA+ID4g
+ICAgICAgbWt3cml0ZV9kZXZpY2VfaW5mbyhpOTE1KS0+cGFnZV9zaXplcyA9DQo+ID4gPiAgICAg
+ICAgICAgICAgIEk5MTVfR1RUX1BBR0VfU0laRV80SyB8DQo=
