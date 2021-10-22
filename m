@@ -2,44 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA3D437EBE
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 21:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12863437F18
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 22:04:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93D056EDCA;
-	Fri, 22 Oct 2021 19:38:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E8F66EDD3;
+	Fri, 22 Oct 2021 20:04:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2180F6EDC8;
- Fri, 22 Oct 2021 19:38:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10145"; a="229239098"
-X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="229239098"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 12:38:41 -0700
-X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="576762206"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 12:38:41 -0700
-Date: Fri, 22 Oct 2021 12:51:12 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
- Daniel Stone <daniels@collabora.com>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <20211022195112.GA1609@labuser-Z97X-UD5H>
-References: <20211004115913.23889-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 99E806EDCF;
+ Fri, 22 Oct 2021 20:04:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 91C7AA0169;
+ Fri, 22 Oct 2021 20:04:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211004115913.23889-1-manasi.d.navare@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/atomic: Add the crtc to affected
- crtc only if uapi.enable = true
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 22 Oct 2021 20:04:28 -0000
+Message-ID: <163493306856.14704.11066095902622654305@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1634917858.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1634917858.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_split_out_i915=5Fdriver=2E=5Bch=5D?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,71 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi Ville,
+Series: drm/i915: split out i915_driver.[ch]
+URL   : https://patchwork.freedesktop.org/series/96194/
+State : warning
 
-Could you take a look at this, this addresses teh review comments from prev version
+== Summary ==
 
-Manasi
+$ dim checkpatch origin/drm-tip
+1dcd9a363633 drm/i915/driver: rename i915_drv.c to i915_driver.c
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+rename from drivers/gpu/drm/i915/i915_drv.c
 
-On Mon, Oct 04, 2021 at 04:59:13AM -0700, Manasi Navare wrote:
-> In case of a modeset where a mode gets split across mutiple CRTCs
-> in the driver specific implementation (bigjoiner in i915) we wrongly count
-> the affected CRTCs based on the drm_crtc_mask and indicate the stolen CRTC as
-> an affected CRTC in atomic_check_only().
-> This triggers a warning since affected CRTCs doent match requested CRTC.
-> 
-> To fix this in such bigjoiner configurations, we should only
-> increment affected crtcs if that CRTC is enabled in UAPI not
-> if it is just used internally in the driver to split the mode.
-> 
-> v3: Add the same uapi crtc_state->enable check in requested
-> crtc calc (Ville)
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Simon Ser <contact@emersion.fr>
-> Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> Cc: Daniel Stone <daniels@collabora.com>
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/drm_atomic.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index ff1416cd609a..a1e4c7905ebb 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -1310,8 +1310,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->  
->  	DRM_DEBUG_ATOMIC("checking %p\n", state);
->  
-> -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> -		requested_crtc |= drm_crtc_mask(crtc);
-> +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		if (new_crtc_state->enable)
-> +			requested_crtc |= drm_crtc_mask(crtc);
-> +	}
->  
->  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
->  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
-> @@ -1360,8 +1362,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->  		}
->  	}
->  
-> -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> -		affected_crtc |= drm_crtc_mask(crtc);
-> +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		if (new_crtc_state->enable)
-> +			affected_crtc |= drm_crtc_mask(crtc);
-> +	}
->  
->  	/*
->  	 * For commits that allow modesets drivers can add other CRTCs to the
-> -- 
-> 2.19.1
-> 
+total: 0 errors, 1 warnings, 0 checks, 88 lines checked
+a95d351734b4 drm/i915/driver: rename driver to i915_drm_driver
+
+
