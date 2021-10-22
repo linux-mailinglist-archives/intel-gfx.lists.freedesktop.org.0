@@ -1,45 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E364375D2
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 13:03:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B91A4375D8
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 13:05:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E77D6ED15;
-	Fri, 22 Oct 2021 11:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 026DA6ED15;
+	Fri, 22 Oct 2021 11:05:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A61206ED05;
- Fri, 22 Oct 2021 11:03:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="209385327"
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="209385327"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 201E66ED15;
+ Fri, 22 Oct 2021 11:05:02 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="228049753"
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="228049753"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 04:03:30 -0700
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="484642229"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 04:05:01 -0700
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="484642515"
 Received: from dkarner-mobl.ger.corp.intel.com (HELO [10.252.48.154])
  ([10.252.48.154])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 04:03:28 -0700
+ 22 Oct 2021 04:05:00 -0700
 To: Matthew Auld <matthew.william.auld@gmail.com>
 Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
- <20211021103605.735002-8-maarten.lankhorst@linux.intel.com>
- <CAM0jSHN7htNjZORSqA=YDRP3TuWq6Xs+su8wF_hBqcu0qukvpA@mail.gmail.com>
+ <20211021103605.735002-10-maarten.lankhorst@linux.intel.com>
+ <CAM0jSHO+A=Ocop-xirPeWxjaYvQ8w-K76jkCWvwOwXPgAkVuYA@mail.gmail.com>
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <15e82490-c797-0c76-473d-abb00b53f854@linux.intel.com>
-Date: Fri, 22 Oct 2021 13:03:26 +0200
+Message-ID: <5fde1d14-4e06-b49a-6075-b514e201c75d@linux.intel.com>
+Date: Fri, 22 Oct 2021 13:04:58 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHN7htNjZORSqA=YDRP3TuWq6Xs+su8wF_hBqcu0qukvpA@mail.gmail.com>
+In-Reply-To: <CAM0jSHO+A=Ocop-xirPeWxjaYvQ8w-K76jkCWvwOwXPgAkVuYA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 08/28] drm/i915: Create a full object for
- mock_ring, v2.
+Subject: Re: [Intel-gfx] [PATCH 10/28] drm/i915: Change shrink ordering to
+ use locking around unbinding.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,113 +56,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 21-10-2021 om 17:57 schreef Matthew Auld:
-> On Thu, 21 Oct 2021 at 11:36, Maarten Lankhorst
+Op 21-10-2021 om 18:12 schreef Matthew Auld:
+> On Thu, 21 Oct 2021 at 11:37, Maarten Lankhorst
 > <maarten.lankhorst@linux.intel.com> wrote:
->> This allows us to finally get rid of all the assumptions that vma->obj is NULL.
+>> Call drop_pages with the gem object lock held, instead of the other
+>> way around. This will allow us to drop the vma bindings with the
+>> gem object lock held.
 >>
->> Changes since v1:
->> - Ensure the mock_ring vma is pinned to prevent a fault.
->> - Pin it high to avoid failure in evict_for_vma selftest.
+>> We plan to require the object lock for unpinning in the future,
+>> and this is an easy target.
 >>
 >> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 >> ---
->>  drivers/gpu/drm/i915/gt/mock_engine.c | 38 ++++++++++++++++++++-------
->>  1 file changed, 28 insertions(+), 10 deletions(-)
+>>  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 42 ++++++++++----------
+>>  1 file changed, 22 insertions(+), 20 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
->> index 8b89215afe46..bb99fc03f503 100644
->> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
->> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
->> @@ -35,9 +35,31 @@ static void mock_timeline_unpin(struct intel_timeline *tl)
->>         atomic_dec(&tl->pin_count);
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> index af3eb7fd951d..d3f29a66cb36 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+>> @@ -36,8 +36,8 @@ static bool can_release_pages(struct drm_i915_gem_object *obj)
+>>         return swap_available() || obj->mm.madv == I915_MADV_DONTNEED;
 >>  }
 >>
->> +static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
->> +{
->> +       struct i915_address_space *vm = &ggtt->vm;
->> +       struct drm_i915_private *i915 = vm->i915;
->> +       struct drm_i915_gem_object *obj;
->> +       struct i915_vma *vma;
->> +
->> +       obj = i915_gem_object_create_internal(i915, size);
->> +       if (IS_ERR(obj))
->> +               return ERR_CAST(obj);
-> We didn't want to use the dummy object here also? I guess meh?
->
->> +
->> +       vma = i915_vma_instance(obj, vm, NULL);
->> +       if (IS_ERR(vma))
->> +               goto err;
->> +
->> +       return vma;
->> +
->> +err:
->> +       i915_gem_object_put(obj);
->> +       return vma;
->> +}
->> +
->>  static struct intel_ring *mock_ring(struct intel_engine_cs *engine)
+>> -static bool unsafe_drop_pages(struct drm_i915_gem_object *obj,
+>> -                             unsigned long shrink, bool trylock_vm)
+>> +static int drop_pages(struct drm_i915_gem_object *obj,
+>> +                      unsigned long shrink, bool trylock_vm)
 >>  {
->> -       const unsigned long sz = PAGE_SIZE / 2;
->> +       const unsigned long sz = PAGE_SIZE;
-> Is that significant?
->
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->
-
-vma->node.size has to be page aligned, since we create an actual vma, it was required to bump the size.
-
-~Maarten
-
->>         struct intel_ring *ring;
+>>         unsigned long flags;
 >>
->>         ring = kzalloc(sizeof(*ring) + sz, GFP_KERNEL);
->> @@ -50,15 +72,11 @@ static struct intel_ring *mock_ring(struct intel_engine_cs *engine)
->>         ring->vaddr = (void *)(ring + 1);
->>         atomic_set(&ring->pin_count, 1);
+>> @@ -208,26 +208,28 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
 >>
->> -       ring->vma = i915_vma_alloc();
->> -       if (!ring->vma) {
->> +       ring->vma = create_ring_vma(engine->gt->ggtt, PAGE_SIZE);
->> +       if (IS_ERR(ring->vma)) {
->>                 kfree(ring);
->>                 return NULL;
->>         }
->> -       i915_active_init(&ring->vma->active, NULL, NULL, 0);
->> -       __set_bit(I915_VMA_GGTT_BIT, __i915_vma_flags(ring->vma));
->> -       __set_bit(DRM_MM_NODE_ALLOCATED_BIT, &ring->vma->node.flags);
->> -       ring->vma->node.size = sz;
+>>                         spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
 >>
->>         intel_ring_update_space(ring);
+>> -                       err = 0;
+>> -                       if (unsafe_drop_pages(obj, shrink, trylock_vm)) {
+>> -                               /* May arrive from get_pages on another bo */
+>> -                               if (!ww) {
+>> -                                       if (!i915_gem_object_trylock(obj))
+>> -                                               goto skip;
+>> -                               } else {
+>> -                                       err = i915_gem_object_lock(obj, ww);
+>> -                                       if (err)
+>> -                                               goto skip;
+>> -                               }
+>> -
+>> -                               if (!__i915_gem_object_put_pages(obj)) {
+>> -                                       try_to_writeback(obj, shrink);
+>> -                                       count += obj->base.size >> PAGE_SHIFT;
+>> -                               }
+>> -                               if (!ww)
+>> -                                       i915_gem_object_unlock(obj);
+>> +                       /* May arrive from get_pages on another bo */
+>> +                       if (!ww) {
+>> +                               if (!i915_gem_object_trylock(obj))
+>> +                                       goto skip;
+>> +                       } else {
+>> +                               err = i915_gem_object_lock(obj, ww);
+>> +                               if (err)
+>> +                                       goto skip;
+>>                         }
 >>
->> @@ -67,8 +85,7 @@ static struct intel_ring *mock_ring(struct intel_engine_cs *engine)
->>
->>  static void mock_ring_free(struct intel_ring *ring)
->>  {
->> -       i915_active_fini(&ring->vma->active);
->> -       i915_vma_free(ring->vma);
->> +       i915_vma_put(ring->vma);
->>
->>         kfree(ring);
->>  }
->> @@ -125,6 +142,7 @@ static void mock_context_unpin(struct intel_context *ce)
->>
->>  static void mock_context_post_unpin(struct intel_context *ce)
->>  {
->> +       i915_vma_unpin(ce->ring->vma);
->>  }
->>
->>  static void mock_context_destroy(struct kref *ref)
->> @@ -169,7 +187,7 @@ static int mock_context_alloc(struct intel_context *ce)
->>  static int mock_context_pre_pin(struct intel_context *ce,
->>                                 struct i915_gem_ww_ctx *ww, void **unused)
->>  {
->> -       return 0;
->> +       return i915_vma_pin_ww(ce->ring->vma, ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
->>  }
->>
->>  static int mock_context_pin(struct intel_context *ce, void *unused)
+>> +                       if (drop_pages(obj, shrink, trylock_vm) &&
+>> +                           !__i915_gem_object_put_pages(obj)) {
+>> +                               try_to_writeback(obj, shrink);
+>> +                               count += obj->base.size >> PAGE_SHIFT;
+>> +                       }
+>> +
+>> +                       if (dma_resv_test_signaled(obj->base.resv, true))
+>> +                               dma_resv_add_excl_fence(obj->base.resv, NULL);
+> I assume we want to rip out resv_prune here in the series, or
+> something? Instead of randomly adding this back here.
+Oh yeah, this hunk can be removed safely. It's stale and shouldn't be here. :)
+>> +
+>> +                       if (!ww)
+>> +                               i915_gem_object_unlock(obj);
+>> +
+>>                         scanned += obj->base.size >> PAGE_SHIFT;
+>>  skip:
+>>                         i915_gem_object_put(obj);
 >> --
 >> 2.33.0
 >>
