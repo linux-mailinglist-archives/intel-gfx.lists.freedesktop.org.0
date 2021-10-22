@@ -1,35 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AB243750C
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 11:50:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B239437501
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 11:47:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815A46E939;
-	Fri, 22 Oct 2021 09:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311AD6E939;
+	Fri, 22 Oct 2021 09:47:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A54A76E939
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 09:50:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="252771423"
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="252771423"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50F0B6E928;
+ Fri, 22 Oct 2021 09:47:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="229214191"
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="229214191"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 02:50:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="445227353"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga006.jf.intel.com with ESMTP; 22 Oct 2021 02:50:04 -0700
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Oct 2021 15:13:36 +0530
-Message-Id: <20211022094336.3384885-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 02:47:22 -0700
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="445226439"
+Received: from bkokkula-mobl1.ger.corp.intel.com (HELO [10.252.0.159])
+ ([10.252.0.159])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 02:47:21 -0700
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+References: <20211021125332.2455288-1-matthew.auld@intel.com>
+ <20211021125332.2455288-2-matthew.auld@intel.com>
+ <c8e40d5f-beda-d5fd-9aa7-df951ba819b2@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <337c653c-4074-9e67-e8c1-04d0d21830da@intel.com>
+Date: Fri, 22 Oct 2021 10:47:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
+In-Reply-To: <c8e40d5f-beda-d5fd-9aa7-df951ba819b2@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/pxp: run CI with PXP and MEI_PXP
- enabled.
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dmabuf: drop the flush on
+ discrete
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,26 +55,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-By default it will be off in normal builds.
+On 22/10/2021 10:26, Thomas Hellström wrote:
+> Hi, Matt
+> 
+> On 10/21/21 14:53, Matthew Auld wrote:
+>> We were overzealous here; even though discrete is non-LLC, it should
+>> still be always coherent.
+>>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> index a45d0ec2c5b6..848e81368043 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> @@ -251,7 +251,8 @@ static int i915_gem_object_get_pages_dmabuf(struct 
+>> drm_i915_gem_object *obj)
+>>           return PTR_ERR(pages);
+>>       /* XXX: consider doing a vmap flush or something */
+>> -    if (!HAS_LLC(i915) || i915_gem_object_can_bypass_llc(obj))
+>> +    if ((!HAS_LLC(i915) && !IS_DGFX(i915)) ||
+> 
+> Q: I notice that DG1 at least has HAS_SNOOP. Would it be incorrect to 
+> use that in this case?
 
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/Kconfig.debug | 2 ++
- 1 file changed, 2 insertions(+)
+AFAIK DG1 is special in that CACHE_NONE will still snoop transactions, 
+which is not the case for other HAS_SNOOP platforms. AFAIK that is part 
+of the reason why we also just force CACHE_LLC everywhere on DG1.
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index e7fd3e76f8a2..fa181693184b 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -48,6 +48,8 @@ config DRM_I915_DEBUG
- 	select DRM_I915_DEBUG_RUNTIME_PM
- 	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
- 	select DRM_I915_SELFTEST
-+	select INTEL_MEI_PXP # used by igt/gem_pxp
-+	select DRM_I915_PXP # used by igt/gem_pxp
- 	select BROKEN # for prototype uAPI
- 	default n
- 	help
--- 
-2.31.1
+Could maybe do s/IS_DGFX/IS_DG1/ here? In case that changes on other 
+discrete platforms. And then add a comment.
 
+> 
+> /Thomas
+> 
+> 
+> 
+>> +        i915_gem_object_can_bypass_llc(obj))
+>>           wbinvd_on_all_cpus();
+>>       sg_page_sizes = i915_sg_dma_sizes(pages->sgl);
