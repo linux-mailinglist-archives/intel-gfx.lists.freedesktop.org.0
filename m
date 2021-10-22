@@ -2,41 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB77437586
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 12:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E7F437587
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 12:33:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2342C6ED04;
-	Fri, 22 Oct 2021 10:33:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12B826ED05;
+	Fri, 22 Oct 2021 10:33:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEAB06ED04
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 10:33:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="252777771"
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="252777771"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 03:33:17 -0700
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3D036ED05
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 10:33:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="210066654"
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="210066654"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 03:33:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="527884962"
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; d="scan'208";a="463999300"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 22 Oct 2021 03:33:14 -0700
+ by orsmga002.jf.intel.com with SMTP; 22 Oct 2021 03:33:18 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 22 Oct 2021 13:33:13 +0300
+ Fri, 22 Oct 2021 13:33:17 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>
-Date: Fri, 22 Oct 2021 13:32:58 +0300
-Message-Id: <20211022103304.24164-4-ville.syrjala@linux.intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Date: Fri, 22 Oct 2021 13:32:59 +0300
+Message-Id: <20211022103304.24164-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211022103304.24164-1-ville.syrjala@linux.intel.com>
 References: <20211022103304.24164-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/9] drm/i915: Disable all planes before
- modesetting any pipes
+Subject: [Intel-gfx] [PATCH v2 4/9] drm/i915: Introduce intel_master_crtc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,94 +52,185 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Let's disable planes on all pipes affected by the modeset before
-we start doing the actual modeset. This means we have less
-random planes enabled during the modeset, and it also mirrors
-what we already do when enabling pipes on skl+ since we enable
-planes on all pipes as the very last step. As a bonus we also
-nuke a bunch og bigjoiner special casing.
+Add a helper to determine the master crtc for bigjoiner usage.
+Also name the variables consistently.
 
-I've occasionally pondered about going even furher here and
-doing the pre_plane_update() stuff for all pipes first, then
-actually disabling the planes, and finally running the rest
-of the modeset sequence. This would potentially allow
-parallelizing all the extra vblank waits across multiple pipes,
-and would make the plane disable even more atomic. But let's
-go one step a time here.
-
-Cc: José Roberto de Souza <jose.souza@intel.com>
 Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++++-----------
- 1 file changed, 13 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c     |  6 +--
+ drivers/gpu/drm/i915/display/intel_display.c | 57 +++++++++++---------
+ 2 files changed, 33 insertions(+), 30 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 6c11992496f2..f8d07689d20c 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2825,12 +2825,10 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+ 	}
+ 
+ 	if (old_crtc_state->bigjoiner_linked_crtc) {
+-		struct intel_atomic_state *state =
+-			to_intel_atomic_state(old_crtc_state->uapi.state);
+-		struct intel_crtc *slave =
++		struct intel_crtc *slave_crtc =
+ 			old_crtc_state->bigjoiner_linked_crtc;
+ 		const struct intel_crtc_state *old_slave_crtc_state =
+-			intel_atomic_get_old_crtc_state(state, slave);
++			intel_atomic_get_old_crtc_state(state, slave_crtc);
+ 
+ 		intel_crtc_vblank_off(old_slave_crtc_state);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 3d2a1cba78c1..1d920ba83521 100644
+index 1d920ba83521..640d87a00e15 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8251,18 +8251,13 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
+@@ -335,6 +335,14 @@ is_trans_port_sync_mode(const struct intel_crtc_state *crtc_state)
+ 		is_trans_port_sync_slave(crtc_state);
+ }
  
- 	drm_WARN_ON(&dev_priv->drm, old_crtc_state->bigjoiner_slave);
- 
--	intel_crtc_disable_planes(state, crtc);
--
- 	/*
- 	 * We still need special handling for disabling bigjoiner master
- 	 * and slaves since for slave we do not have encoder or plls
- 	 * so we dont need to disable those.
- 	 */
--	if (old_crtc_state->bigjoiner) {
--		intel_crtc_disable_planes(state,
--					  old_crtc_state->bigjoiner_linked_crtc);
-+	if (old_crtc_state->bigjoiner)
- 		old_crtc_state->bigjoiner_linked_crtc->active = false;
--	}
- 
- 	/*
- 	 * We need to disable pipe CRC before disabling the pipe,
-@@ -8288,6 +8283,18 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 	u32 handled = 0;
++static struct intel_crtc *intel_master_crtc(const struct intel_crtc_state *crtc_state)
++{
++	if (crtc_state->bigjoiner_slave)
++		return crtc_state->bigjoiner_linked_crtc;
++	else
++		return to_intel_crtc(crtc_state->uapi.crtc);
++}
++
+ static bool pipe_scanline_is_moving(struct drm_i915_private *dev_priv,
+ 				    enum pipe pipe)
+ {
+@@ -1947,21 +1955,19 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
+ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
+ 					 const struct intel_crtc_state *crtc_state)
+ {
+-	struct intel_crtc *master = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *dev_priv = to_i915(master->base.dev);
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_crtc_state *master_crtc_state;
++	struct intel_crtc *master_crtc;
+ 	struct drm_connector_state *conn_state;
+ 	struct drm_connector *conn;
+ 	struct intel_encoder *encoder = NULL;
  	int i;
  
-+	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-+					    new_crtc_state, i) {
-+		if (!intel_crtc_needs_modeset(new_crtc_state))
-+			continue;
-+
-+		if (!old_crtc_state->hw.active)
-+			continue;
-+
-+		intel_pre_plane_update(state, crtc);
-+		intel_crtc_disable_planes(state, crtc);
-+	}
-+
- 	/* Only disable port sync and MST slaves */
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
-@@ -8306,7 +8313,6 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 		    !intel_dp_mst_is_slave_trans(old_crtc_state))
+-	if (crtc_state->bigjoiner_slave)
+-		master = crtc_state->bigjoiner_linked_crtc;
+-
+-	master_crtc_state = intel_atomic_get_new_crtc_state(state, master);
++	master_crtc = intel_master_crtc(crtc_state);
++	master_crtc_state = intel_atomic_get_new_crtc_state(state, master_crtc);
+ 
+ 	for_each_new_connector_in_state(&state->base, conn, conn_state, i) {
+-		if (conn_state->crtc != &master->base)
++		if (conn_state->crtc != &master_crtc->base)
  			continue;
  
--		intel_pre_plane_update(state, crtc);
- 		intel_old_crtc_state_disables(state, old_crtc_state,
- 					      new_crtc_state, crtc);
- 		handled |= BIT(crtc->pipe);
-@@ -8320,14 +8326,6 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 		    old_crtc_state->bigjoiner_slave)
- 			continue;
+ 		encoder = to_intel_encoder(conn_state->best_encoder);
+@@ -1975,10 +1981,10 @@ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
+ 		/*
+ 		 * Enable sequence steps 1-7 on bigjoiner master
+ 		 */
+-		intel_encoders_pre_pll_enable(state, master);
++		intel_encoders_pre_pll_enable(state, master_crtc);
+ 		if (master_crtc_state->shared_dpll)
+ 			intel_enable_shared_dpll(master_crtc_state);
+-		intel_encoders_pre_enable(state, master);
++		intel_encoders_pre_enable(state, master_crtc);
  
--		intel_pre_plane_update(state, crtc);
--		if (old_crtc_state->bigjoiner) {
--			struct intel_crtc *slave =
--				old_crtc_state->bigjoiner_linked_crtc;
--
--			intel_pre_plane_update(state, slave);
--		}
--
- 		if (old_crtc_state->hw.active)
- 			intel_old_crtc_state_disables(state, old_crtc_state,
- 						      new_crtc_state, crtc);
+ 		/* and DSC on slave */
+ 		intel_dsc_enable(NULL, crtc_state);
+@@ -6877,7 +6883,7 @@ verify_crtc_state(struct intel_crtc *crtc,
+ 	struct intel_encoder *encoder;
+ 	struct intel_crtc_state *pipe_config = old_crtc_state;
+ 	struct drm_atomic_state *state = old_crtc_state->uapi.state;
+-	struct intel_crtc *master = crtc;
++	struct intel_crtc *master_crtc;
+ 
+ 	__drm_atomic_helper_crtc_destroy_state(&old_crtc_state->uapi);
+ 	intel_crtc_free_hw_state(old_crtc_state);
+@@ -6905,10 +6911,9 @@ verify_crtc_state(struct intel_crtc *crtc,
+ 			"(expected %i, found %i)\n",
+ 			new_crtc_state->hw.active, crtc->active);
+ 
+-	if (new_crtc_state->bigjoiner_slave)
+-		master = new_crtc_state->bigjoiner_linked_crtc;
++	master_crtc = intel_master_crtc(new_crtc_state);
+ 
+-	for_each_encoder_on_crtc(dev, &master->base, encoder) {
++	for_each_encoder_on_crtc(dev, &master_crtc->base, encoder) {
+ 		enum pipe pipe;
+ 		bool active;
+ 
+@@ -6918,7 +6923,7 @@ verify_crtc_state(struct intel_crtc *crtc,
+ 				encoder->base.base.id, active,
+ 				new_crtc_state->hw.active);
+ 
+-		I915_STATE_WARN(active && master->pipe != pipe,
++		I915_STATE_WARN(active && master_crtc->pipe != pipe,
+ 				"Encoder connected to wrong pipe %c\n",
+ 				pipe_name(pipe));
+ 
+@@ -7590,13 +7595,13 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 					struct intel_crtc_state *new_crtc_state)
+ {
+ 	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
+-	struct intel_crtc *slave, *master;
++	struct intel_crtc *slave_crtc, *master_crtc;
+ 
+ 	/* slave being enabled, is master is still claiming this crtc? */
+ 	if (old_crtc_state->bigjoiner_slave) {
+-		slave = crtc;
+-		master = old_crtc_state->bigjoiner_linked_crtc;
+-		master_crtc_state = intel_atomic_get_new_crtc_state(state, master);
++		slave_crtc = crtc;
++		master_crtc = old_crtc_state->bigjoiner_linked_crtc;
++		master_crtc_state = intel_atomic_get_new_crtc_state(state, master_crtc);
+ 		if (!master_crtc_state || !intel_crtc_needs_modeset(master_crtc_state))
+ 			goto claimed;
+ 	}
+@@ -7604,17 +7609,17 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 	if (!new_crtc_state->bigjoiner)
+ 		return 0;
+ 
+-	slave = intel_dsc_get_bigjoiner_secondary(crtc);
+-	if (!slave) {
++	slave_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
++	if (!slave_crtc) {
+ 		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
+ 			      "CRTC + 1 to be used, doesn't exist\n",
+ 			      crtc->base.base.id, crtc->base.name);
+ 		return -EINVAL;
+ 	}
+ 
+-	new_crtc_state->bigjoiner_linked_crtc = slave;
+-	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave);
+-	master = crtc;
++	new_crtc_state->bigjoiner_linked_crtc = slave_crtc;
++	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave_crtc);
++	master_crtc = crtc;
+ 	if (IS_ERR(slave_crtc_state))
+ 		return PTR_ERR(slave_crtc_state);
+ 
+@@ -7623,15 +7628,15 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 		goto claimed;
+ 
+ 	DRM_DEBUG_KMS("[CRTC:%d:%s] Used as slave for big joiner\n",
+-		      slave->base.base.id, slave->base.name);
++		      slave_crtc->base.base.id, slave_crtc->base.name);
+ 
+ 	return copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_state);
+ 
+ claimed:
+ 	DRM_DEBUG_KMS("[CRTC:%d:%s] Slave is enabled as normal CRTC, but "
+ 		      "[CRTC:%d:%s] claiming this CRTC for bigjoiner.\n",
+-		      slave->base.base.id, slave->base.name,
+-		      master->base.base.id, master->base.name);
++		      slave_crtc->base.base.id, slave_crtc->base.name,
++		      master_crtc->base.base.id, master_crtc->base.name);
+ 	return -EINVAL;
+ }
+ 
 -- 
 2.32.0
 
