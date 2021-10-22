@@ -2,46 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE97436F25
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 02:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6FA3436F3D
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 03:03:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C046E50B;
-	Fri, 22 Oct 2021 00:53:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD3CC6E50B;
+	Fri, 22 Oct 2021 01:03:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6744D6E50B;
- Fri, 22 Oct 2021 00:53:46 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Hb5Sf3L14z4xfH;
- Fri, 22 Oct 2021 11:53:37 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1634864021;
- bh=d6ItCl+Efl1Nk/5Rb/6mxbH0xgfWmTzJa5UQ5hcJI44=;
- h=Date:From:To:Cc:Subject:From;
- b=I7VGwtVF4rpm9XyA+1CHWDHQgD42WZWwLp9vQDO4xcYhgWdqkhiqZ7hDLEz6zQuw7
- 1PSIvn6OpB+vNWAZzxpt2mTJntN7g97Ow6pef2HgWUbkG6GV2+loZaWvnA+Mao0w75
- dPY9dl+XKJAf5cqqbJEfOEtpC19n6LP8cQ2OgGr3vIlZ6/43YM6MBB5JPm2l1fFtU7
- 17ZlM71G1MtxC4OAerNqdhgTLov9UVo+ny7FsdObSIOcnd3SvSTLRAUwtuXi0ZAss9
- nBFGTNjMBJ7+oD9aUk2bwdXFxkbCPggEgUqNKFCj6aGX1Ark4JAviqCM25oItPwQWm
- LcfA+KEEvb8Ew==
-Date: Fri, 22 Oct 2021 11:53:36 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-Cc: Bryant Mairs <bryant@mai.rs>, Hans de Goede <hdegoede@redhat.com>, Linux
- Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <20211022115336.28e41185@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 561F16E50B;
+ Fri, 22 Oct 2021 01:03:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 50BEBA7DFB;
+ Fri, 22 Oct 2021 01:03:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/QAgoVkw4C2wHzZH=MYSvvXG";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
- drm-misc-fixes tree
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mullati Siva" <siva.mullati@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 22 Oct 2021 01:03:39 -0000
+Message-ID: <163486461929.14706.9378662823208390926@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211021183704.1171140-1-siva.mullati@intel.com>
+In-Reply-To: <20211021183704.1171140-1-siva.mullati@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_abstraction_for_iosf_to_compile_on_all_archs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,89 +41,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/QAgoVkw4C2wHzZH=MYSvvXG
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: drm/i915: abstraction for iosf to compile on all archs
+URL   : https://patchwork.freedesktop.org/series/96149/
+State : warning
 
-Today's linux-next merge of the drm tree got a conflict in:
+== Summary ==
 
-  drivers/gpu/drm/drm_panel_orientation_quirks.c
+$ dim checkpatch origin/drm-tip
+5d51c1a421c4 drm/i915: abstraction for iosf to compile on all archs
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
 
-between commit:
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
 
-  def0c3697287 ("drm: panel-orientation-quirks: Add quirk for Aya Neo 2021")
 
-from the drm-misc-fixes tree and commits:
-
-  072e70d52372 ("drm: panel-orientation-quirks: Add quirk for the Chuwi Hi1=
-0 Pro")
-  63a4881572d7 ("drm: panel-orientation-quirks: Add quirk for the Chuwi HiB=
-ook")
-
-from the drm tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/drm_panel_orientation_quirks.c
-index 30c17a76f49a,62e8ccc7ab9c..000000000000
---- a/drivers/gpu/drm/drm_panel_orientation_quirks.c
-+++ b/drivers/gpu/drm/drm_panel_orientation_quirks.c
-@@@ -134,12 -140,20 +140,26 @@@ static const struct dmi_system_id orien
-  		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "T103HAF"),
-  		},
-  		.driver_data =3D (void *)&lcd800x1280_rightside_up,
- +	}, {	/* AYA NEO 2021 */
- +		.matches =3D {
- +		  DMI_EXACT_MATCH(DMI_SYS_VENDOR, "AYADEVICE"),
- +		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "AYA NEO 2021"),
- +		},
- +		.driver_data =3D (void *)&lcd800x1280_rightside_up,
-+ 	}, {	/* Chuwi HiBook (CWI514) */
-+ 		.matches =3D {
-+ 			DMI_MATCH(DMI_BOARD_VENDOR, "Hampoo"),
-+ 			DMI_MATCH(DMI_BOARD_NAME, "Cherry Trail CR"),
-+ 			/* Above matches are too generic, add bios-date match */
-+ 			DMI_MATCH(DMI_BIOS_DATE, "05/07/2016"),
-+ 		},
-+ 		.driver_data =3D (void *)&lcd1200x1920_rightside_up,
-+ 	}, {	/* Chuwi Hi10 Pro (CWI529) */
-+ 		.matches =3D {
-+ 		  DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Hampoo"),
-+ 		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "Hi10 pro tablet"),
-+ 		},
-+ 		.driver_data =3D (void *)&lcd1200x1920_rightside_up,
-  	}, {	/* GPD MicroPC (generic strings, also match on bios date) */
-  		.matches =3D {
-  		  DMI_EXACT_MATCH(DMI_SYS_VENDOR, "Default string"),
-
---Sig_/QAgoVkw4C2wHzZH=MYSvvXG
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFyC5AACgkQAVBC80lX
-0Gwwlgf/YzLzI7xb2reXJgvWAk/JLKFVEQOBWx5cYdRpFA/w00uo87yKWUQqkdFv
-lR2dIpDjd5fsc4EFRkblAZikNZiazEVj43NWlfd2eRQdlrsgYNWiu5j82bDqinTh
-QcIDAmZp8WNSh4AUTCCk/Su/nJGKKj/4bpdRoIeQS9fsQEKUEKUQ2tqgraUkLdeR
-EEP36LkbPTlrHmOVyFD1sjrz+f1G5/p+rY46yE/4QZTauvAOrhx1+e9ubsYg5Max
-YKD4wiGIMasfF3dHm2O8ZJ86wPoqgx0CrISFQr3H+R15GVLgdSkavfe5moJGmavr
-zs3JA1680M2oqshbADaN03MaGyEOPg==
-=Njwx
------END PGP SIGNATURE-----
-
---Sig_/QAgoVkw4C2wHzZH=MYSvvXG--
