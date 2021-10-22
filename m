@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC5C437B1A
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 18:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1808A437B1D
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 18:50:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23D236E7D1;
-	Fri, 22 Oct 2021 16:49:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 811B06ED9E;
+	Fri, 22 Oct 2021 16:50:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5CEB6EDAD
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 16:48:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10145"; a="252844198"
-X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="252844198"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 09:48:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="484745670"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 22 Oct 2021 09:48:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 22 Oct 2021 19:48:29 +0300
-Date: Fri, 22 Oct 2021 19:48:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, airlied@gmail.com, daniel@ffwll.ch,
- lucas.demarchi@intel.com, Dave Airlie <airlied@redhat.com>
-Message-ID: <YXLrXQR23uCHOIpb@intel.com>
-References: <cover.1634918767.git.jani.nikula@intel.com>
- <0ab63181bce3bf6a2ef2a04cb738bf5002029edd.1634918767.git.jani.nikula@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4711F6E5D4;
+ Fri, 22 Oct 2021 16:50:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10145"; a="226794291"
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="226794291"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 09:50:08 -0700
+X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="595602363"
+Received: from bkokkula-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.0.159])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2021 09:50:06 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Ramalingam C <ramalingam.c@intel.com>
+Date: Fri, 22 Oct 2021 17:48:46 +0100
+Message-Id: <20211022164847.2632366-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0ab63181bce3bf6a2ef2a04cb738bf5002029edd.1634918767.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/audio: move intel_audio_funcs
- internal to intel_audio.c
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gtt: flush the scratch page
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,75 +50,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 22, 2021 at 07:27:58PM +0300, Jani Nikula wrote:
-> It's all internal to intel_audio.c.
-> 
-> Cc: Dave Airlie <airlied@redhat.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+The scratch page is directly visible in the users address space, and
+while this is forced as CACHE_LLC, by the kernel, we still have to
+contend with things like "Bypass-LLC" MOCS. So just flush no matter
+what.
 
-I've toyed around with similar stuff myself before
-(moving bunch of .av_foo/.audio_foo to .audio.foo) just
-never bothered sending it out. So very much like the idea.
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gtt.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Series is
-Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_audio.c |  9 +++++++++
->  drivers/gpu/drm/i915/i915_drv.h            | 10 +---------
->  2 files changed, 10 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index b46f6539b9ab..39246f64fb39 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -62,6 +62,15 @@
->   * struct &i915_audio_component_audio_ops @audio_ops is called from i915 driver.
->   */
->  
-> +struct intel_audio_funcs {
-> +	void (*audio_codec_enable)(struct intel_encoder *encoder,
-> +				   const struct intel_crtc_state *crtc_state,
-> +				   const struct drm_connector_state *conn_state);
-> +	void (*audio_codec_disable)(struct intel_encoder *encoder,
-> +				    const struct intel_crtc_state *old_crtc_state,
-> +				    const struct drm_connector_state *old_conn_state);
-> +};
-> +
->  /* DP N/M table */
->  #define LC_810M	810000
->  #define LC_540M	540000
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index ed86633a587b..bb023b909e86 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -364,15 +364,6 @@ struct intel_color_funcs {
->  	void (*read_luts)(struct intel_crtc_state *crtc_state);
->  };
->  
-> -struct intel_audio_funcs {
-> -	void (*audio_codec_enable)(struct intel_encoder *encoder,
-> -				   const struct intel_crtc_state *crtc_state,
-> -				   const struct drm_connector_state *conn_state);
-> -	void (*audio_codec_disable)(struct intel_encoder *encoder,
-> -				    const struct intel_crtc_state *old_crtc_state,
-> -				    const struct drm_connector_state *old_conn_state);
-> -};
-> -
->  struct intel_cdclk_funcs {
->  	void (*get_cdclk)(struct drm_i915_private *dev_priv,
->  			  struct intel_cdclk_config *cdclk_config);
-> @@ -829,6 +820,7 @@ struct i915_selftest_stash {
->  };
->  
->  /* intel_audio.c private */
-> +struct intel_audio_funcs;
->  struct intel_audio_private {
->  	/* Display internal audio functions */
->  	const struct intel_audio_funcs *funcs;
-> -- 
-> 2.30.2
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 67d14afa6623..b6c088423319 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -273,6 +273,7 @@ static void poison_scratch_page(struct drm_i915_gem_object *scratch)
+ 		val = POISON_FREE;
+ 
+ 	memset(vaddr, val, scratch->base.size);
++	clflush_cache_range(vaddr, scratch->base.size);
+ }
+ 
+ int setup_scratch_page(struct i915_address_space *vm)
 -- 
-Ville Syrj‰l‰
-Intel
+2.26.3
+
