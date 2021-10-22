@@ -2,71 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3B943970E
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 15:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE7D439711
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 15:05:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64A1B89FD9;
-	Mon, 25 Oct 2021 13:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF7389F71;
+	Mon, 25 Oct 2021 13:05:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4E446ED8E;
- Fri, 22 Oct 2021 13:17:20 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id z14so3793900wrg.6;
- Fri, 22 Oct 2021 06:17:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=xzYyGlNbpTpvd6sNJdRWzkh7BYc81KJzN7aG/37+xnw=;
- b=Wb0IMU0euio0jP04+Ag5kuxoh1MQufsfd2QRp3sI+Az4W30cmQtw3AWAzQ9kufl2u6
- T86AdjyQRsKxL0Rcub27Y0pvseoX06QIabpUUcugftBPPSM1+G3HKXi3jxAVB3sxQlFt
- W1vsR38o56VZW/+5lP81/Wf3mpI513KMR752iV2YyVphELCzOlCQE9+Aj3M51BR8tLed
- xv4dgzu/VuEVzqrD2vZqfgrnRnCEfuCraK+xC+IQNEFburrJFRj1zZI7w16LzDJXKMxl
- WnLkXpRDcn7OfkNHVwIMTI/9CfkObryOC6dmedqohvuRhKWAuH+ZnLdOVk+A0Gz8jMnc
- FMUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=xzYyGlNbpTpvd6sNJdRWzkh7BYc81KJzN7aG/37+xnw=;
- b=fouoyzA0trXipuneY+/rIWOaV5sH9xSt/x7g+209/KMftAcWlRw9VCs1DSvwtv/I8m
- Jg4wuR6LgZuo4z87UoR062ON9+5dVYc3I7bWHiMdllVMiJHzrxSyYhxrO3EHRyFzb/Zj
- 5GzQ51IGnKiFNHAD++GEJUujDzNlB1uG/6OLhxvb0ObvE5UBFKmQBQRRHjBLZinLKZGl
- TfL/J0Xy1gcum/QOjrW/GE2K5rBHvcYvyznQPRXqE7iQxYhWW4UuQmG6sY9WSxRwuFhC
- 7f5Tf/AMlxIWGMEaM207rDZETtWvVVvtG7vFseee25+CztKeu1ymk8t/Ivmhwi0J2/kg
- YNGg==
-X-Gm-Message-State: AOAM530q5KoguoYelYWsCyhPL5TntIGEOBkppEe2oyGG+LpqmTpGkQnF
- m7khEuzWZVQEZGWuXaKEz/BhvDsCdDs=
-X-Google-Smtp-Source: ABdhPJz1bcP9pVdKxvZWKI3UICXsg+Jou2mv8pwgCLGrQkQRbz9ygCJr3KFv1jOtT9CfdADeNSXIRA==
-X-Received: by 2002:adf:ab1c:: with SMTP id q28mr15823427wrc.39.1634908639344; 
- Fri, 22 Oct 2021 06:17:19 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:a39f:d981:e7cb:e6dc?
- ([2a02:908:1252:fb60:a39f:d981:e7cb:e6dc])
- by smtp.gmail.com with ESMTPSA id e2sm3047986wrt.8.2021.10.22.06.17.18
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 22 Oct 2021 06:17:18 -0700 (PDT)
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- tvrtko.ursulin@linux.intel.com
-References: <20211005113742.1101-1-christian.koenig@amd.com>
- <20211005113742.1101-27-christian.koenig@amd.com>
- <YWbtV2ZVHg7n1xpm@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <cca39a70-5820-18e2-8bda-a4a0d7ad2c31@gmail.com>
-Date: Fri, 22 Oct 2021 15:17:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <YWbtV2ZVHg7n1xpm@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2046.outbound.protection.outlook.com [40.107.244.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400116E570;
+ Fri, 22 Oct 2021 21:13:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y9iqctxsMYwcVtvGnMFGGymC+7a33HeWT0yfnh46pjO7hnftyfmyUHfQBgOmuFSeVTfTuymV5/KXaN5l9dU63bvUeBdoJcZLTL89G8x1B4Wy3fhvwFWfiQ47tka2PsHOKSJmgwLit9CY3bazaTK1Y7lFE7BiEGY3MMDTSwDNGQJC29oBGtB0Cjsd0g8gr8iVsL/WGlAoxeUBUvwxrmvnhErkeuqVxm6ilguVYdF4G6VupF3mQSoU7sUU/tYwMZ+q6VgXZxopLvYgTEj9Yay+rPuW+Y0OqqiZrHIZ6rjicaJ+r5dTeJB/yW8FnaInzya9ghAAzUwcvfDptXxc+dXSZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SMqnFc9OeZY1BWjfSx0l0GnvB+fA2em+4mrN2q1N7RU=;
+ b=V7CtoxW4VaFYyeqKyM8S7log8zEj6KaSPpeFEnVo8gniP5RXtnryEUsQgzFjqBmseFYXR+7XZbSFrOstQcjsp9heZSTqHj7jW4kq65/5YFQ4sT8YH2QnKEXohuDD3kjbJjYk0bKb/2+tWMR1WsbUXfGmS0f9NvUFxBsqx9wxZXeRS85fX2RerjqDSZqt1mB2zylQypqeJpbWPFATGSApiazK2pUdCy0l+F42ePWHRtAPxBpEojNdBGKQWo+hluSQub+mmegx8fE2+8EtwHlTkU1Q8OR7zPTdd6YqgCD6hBs7tz5iBlxpZ0qGwdZKLBh7qUfpZlFvuqZdK7r1UrW9Dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SMqnFc9OeZY1BWjfSx0l0GnvB+fA2em+4mrN2q1N7RU=;
+ b=vT2KVTPKrF4npTHj6M4VzyIQHhAU0ZA7i6105IpI87UheMy1c5MlEhTkl5H7MH5ftfLZ2lAcNNmHdO7yrf3xBI7qe/T3Z6aoyci3Gb3iUk6t9IgAzRCl9216xah9Eo8P4KWvIO4eF/jeBgDR+a48i2bCAu6kflywX8b+kvj3awU=
+Authentication-Results: suse.de; dkim=none (message not signed)
+ header.d=none;suse.de; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by MN2PR12MB4000.namprd12.prod.outlook.com (2603:10b6:208:16b::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Fri, 22 Oct
+ 2021 21:13:54 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6972:7084:df02:6dc3]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6972:7084:df02:6dc3%9]) with mapi id 15.20.4628.018; Fri, 22 Oct 2021
+ 21:13:53 +0000
+Message-ID: <aef9bba4-cc5f-bcfa-1ccb-33483b4507fc@amd.com>
+Date: Sat, 23 Oct 2021 02:52:39 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
 Content-Language: en-US
+To: Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ daniel@ffwll.ch
+Cc: christian.koenig@amd.com, matthew.auld@intel.com, alexander.deucher@amd.com
+References: <20211019225409.569355-1-Arunpravin.PaneerSelvam@amd.com>
+ <20211019225409.569355-4-Arunpravin.PaneerSelvam@amd.com>
+ <84ff2d86-345c-8bcf-81c6-467b9737f652@suse.de>
+From: Arunpravin <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <84ff2d86-345c-8bcf-81c6-467b9737f652@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA1PR01CA0077.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00::17)
+ To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
+MIME-Version: 1.0
+Received: from [10.138.142.32] (165.204.156.251) by
+ MA1PR01CA0077.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4628.18 via Frontend Transport; Fri, 22 Oct 2021 21:13:50 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f0aad228-e076-40ce-eb5c-08d995a0d9cf
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4000:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB40006E140C3EE20722E28BB6E4809@MN2PR12MB4000.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1122;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 66mbz8zzkgVaqepZZTt/yrZhegaqCzBkm9kLDLOQhRrbkforVDgXhF+0mQG/jgMR/ljPOVgVGqKfnDRETDwtbv1BXG0EVu9Ha6ZKbvgLAUkP2AqhNpudClVWIcg6m51QALcxuPSGGjcI1gwLbHy8DyxTwX9DbyjxQaYfLFJd4V4SHT+L6gvNEhxcOpb0iofiZV7CBlPGC2dqdQ6EiOxhOvcrImrfMxSZWGHgAx3+xGpnnxSzzRWDHcLR7McTGn1mIlwHjMY+AZOshBOe3AS15lCgU8GRsgNJvF9OCIcG8t6i2YZoBjmaGF1tqjileWT0VLRFn2w5L1zyRsMpe09XBL9dybJZ51A0ON3ccZ5alWpHVPCqr5dGP1di/z3MwT+OYz/TwXRpPjhCg/Fe0sO1S3Bf9DmTwBTfqrV9Hdkleg+29feSaTXxQOSTKru6wlPR6sQJoAwHvfzvALh6e1YYYC0mlwNfL5BhvBTSVTqUT66vGI6LvFq3JUTDBW8/J/xOkiofWPsTGO422BSAlIaEnQiF/JFpw2PSmBmE2XTiEOnxI+6J9v1Uzl98YCgQpH/twFuCr69WqJP4PDhhLooKT+k65oOmMgRnxyPv3Etd2HQdnIIia4ycLLXc6D2JAkjBO7+DUN61jVWtLL2N2yIGnLaPjemCtXDOuylnqtd8geBNSBYlIo4bLDHpejKxapQN0hwZH5A1aBL0gu0zIgyBvbX8HAX+qCaEdnc3jo4d6WkDcNCDa692mM5y1uKEeZIr
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(38100700002)(36756003)(16576012)(4326008)(316002)(66556008)(8676002)(186003)(86362001)(2906002)(508600001)(31686004)(956004)(6486002)(53546011)(26005)(83380400001)(31696002)(5660300002)(66476007)(6666004)(8936002)(66946007)(2616005)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TERYZjhEeU9UR2UwV2c2VW40TDFZbTNJL3VWVkxsdUVHU085QndldjA0bEh5?=
+ =?utf-8?B?RDN3S01XRThqUVZyK2tnZlZBSmNJcHNiZ0hpNnJsM3BSWTZZZ05vSktHZmdj?=
+ =?utf-8?B?R2tGZ0dIbWdZb0pYbGtxdzdFWWpkL1ZSVk1iVWFHSEtJU1pibzJFN01CMVpR?=
+ =?utf-8?B?bUNPV3pHNmMxZWRZc1N0UnNqb1E0TXorbUR2M1l6bzdQRUhFRE4wNkJ6MUs5?=
+ =?utf-8?B?bG8rcU5HMngxOVJGTm5KRDllNmxsMVkzSDVqSkI2c21HL1I3amxDd20xaWUv?=
+ =?utf-8?B?K0JGWVJkSStRRmdwSDc0TmxRS0lNR2dZRkhQODJmd3JEcysxZ0ozU3o5cWJp?=
+ =?utf-8?B?M2RROWhxcVpVMWlBL3c3QUlKWkJWeE1DeUJKSGNpNnRrTENSbVUwOGxJb1hy?=
+ =?utf-8?B?MU52RElZdXY5VGpBV2p1ZjdPVXpLRXdiK0NYMVh0NFh0WWI0akltWldlSyt5?=
+ =?utf-8?B?WWZyeHZPdHZ3cWxSOHBMTzBLRERQbGswUm1ScElpNVUzMy9wOUw1Vzd4T3pR?=
+ =?utf-8?B?MFdxSWJVSXJDSS9tamtYZDZyTlRPb0JoQmhpMHZMZ1VsTldlczljdTdMRnc2?=
+ =?utf-8?B?Y2dqOUphWXFHTXZZRXd5UmdWQVlISWtXaW03dDNNNlpOV3VJcTQycTR6ZGk3?=
+ =?utf-8?B?NXU0NXNaeS9lOXQ1bElGY0J4bWZETi93S0g1ck9aY3BZL2ZabTZOeU1Hekdh?=
+ =?utf-8?B?b0NuWXZ4Y0FyU3krYTB0cG5kT2xFZXIzUnRISjhHeVN2UFZXcTF3TDdyRmp6?=
+ =?utf-8?B?ZlZDcTZFb25TamhFdjRQOTA4RnFtcGJseTJtL2xWMy8yS09DajRpN2VaelhM?=
+ =?utf-8?B?clRyclBqckl0L1RpSUNReHlyMDR5b0ViWi90WFNGa2ZvbTN5OE5DdkdYNENk?=
+ =?utf-8?B?ZTdzcld1WWZYdWZmVkhXQUt5MXgxNDJpTSs0bXVJazdHY1BVeHhYMjI3c1Bt?=
+ =?utf-8?B?SmtjM2NiNVd4ZTc5b01ycE9ENlRGTlduYXprSHZYeEdLSjQ4YnZoL1dQcUJh?=
+ =?utf-8?B?dVFTSlZPa3o2WElDc3l4QURBQjhGYmowNCtLWXdWazJPZktIMUF5N3VWUWJ3?=
+ =?utf-8?B?d3BZR2FtbEs2ZTZPTVBMM01YWWFDR2dhNTBUOW45UTYyaDFRRG43QnhMYmts?=
+ =?utf-8?B?L1pBa2lJVTNMYnBmNU9STUxQMXkrOVYyVEhiV2lqMWJYc2xWeElkMU96dVFs?=
+ =?utf-8?B?aXZxV1VlUGFPY25ERjFHc280UDNWckRGUDBVS2JQSVhZR09xN2JVcVRQd1da?=
+ =?utf-8?B?ZlpRNlpxeXB1ZnVMWXp0TEpnRzlkMWRrN1Fkek9Qd2Y4QUoyZmI4VFhjaEQv?=
+ =?utf-8?B?cGI2eC9rcmZvcFNYcUJGZlZ5cU5kV3dVMldqM2hOS1MxU1Ewc2ppOFBtN3Vz?=
+ =?utf-8?B?ZW9NSy9Yd2cySzlVRTc3OEFtRi9ZQWkrT01XWCtxbkU0VWhEQ3pvUWtkOENC?=
+ =?utf-8?B?SHpmejN6US91NjJIOU90eUkyVGEvdEVucU1XS1RWTElVTCtyWEpnM0xOMUNW?=
+ =?utf-8?B?Nyttc0pOUUxkbFNqQjNDczhJakZCd2tBSm10RjJUc2ljZW4xdnJiSDQ4NDdw?=
+ =?utf-8?B?Z2ZqdWhHaFg2YU8yOGdEOXZYU2dheUtUNUpyTXNLczlhSTVXcEdvZG5XTHdG?=
+ =?utf-8?B?cjVyM1RNZ3A2RlFNWnVGNGJWV0JERTRoejlKR3dBdWRhWkREdWliY0gzQXVZ?=
+ =?utf-8?B?SlBod2JnQThkMmgya1NnUlVBN0czT2VLYXhYWU1DbHVEdnhTNllEWUhKNEcv?=
+ =?utf-8?Q?8/tXizg9whWwL57XXRdpa8lRjisMr0eUUBuqQjj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0aad228-e076-40ce-eb5c-08d995a0d9cf
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2021 21:13:53.5525 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: apaneers@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4000
 X-Mailman-Approved-At: Mon, 25 Oct 2021 13:04:53 +0000
-Subject: Re: [Intel-gfx] [PATCH 26/28] drm/nouveau: use the new interator in
- nv50_wndw_prepare_fb
+Subject: Re: [Intel-gfx] [PATCH 03/13] drm: add Makefile support for drm
+ buddy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,60 +135,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 13.10.21 um 16:29 schrieb Daniel Vetter:
-> On Tue, Oct 05, 2021 at 01:37:40PM +0200, Christian König wrote:
->> Makes the handling a bit more complex, but avoids the use of
->> dma_resv_get_excl_unlocked().
+
+
+On 20/10/21 1:51 pm, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 20.10.21 um 00:53 schrieb Arunpravin:
+>> - Include drm buddy to DRM root Makefile
+>> - Add drm buddy init and exit function calls
+>>    to drm core
+> 
+> Is there a hard requirement to have this code in the core?
+> 
+> IMHO there's already too much code in the DRM core that should rather go 
+> into helpers. The allocator should live in it's own module and driver 
+> should init it if needed.
+> 
+Hi Thomas,
+I will check on this
+@Daniel, Could you please share your opinion
+
+Regards,
+Arun
 >>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
 >> ---
->>   drivers/gpu/drm/nouveau/dispnv50/wndw.c | 10 +++++++++-
->>   1 file changed, 9 insertions(+), 1 deletion(-)
+>>   drivers/gpu/drm/Makefile  | 2 +-
+>>   drivers/gpu/drm/drm_drv.c | 3 +++
+>>   2 files changed, 4 insertions(+), 1 deletion(-)
 >>
->> diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
->> index 8d048bacd6f0..30712a681e2a 100644
->> --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
->> +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
->> @@ -539,6 +539,8 @@ nv50_wndw_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
->>   	struct nouveau_bo *nvbo;
->>   	struct nv50_head_atom *asyh;
->>   	struct nv50_wndw_ctxdma *ctxdma;
->> +	struct dma_resv_iter cursor;
->> +	struct dma_fence *fence;
->>   	int ret;
+>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>> index 0dff40bb863c..dc61e91a3154 100644
+>> --- a/drivers/gpu/drm/Makefile
+>> +++ b/drivers/gpu/drm/Makefile
+>> @@ -18,7 +18,7 @@ drm-y       :=	drm_aperture.o drm_auth.o drm_cache.o \
+>>   		drm_dumb_buffers.o drm_mode_config.o drm_vblank.o \
+>>   		drm_syncobj.o drm_lease.o drm_writeback.o drm_client.o \
+>>   		drm_client_modeset.o drm_atomic_uapi.o drm_hdcp.o \
+>> -		drm_managed.o drm_vblank_work.o
+>> +		drm_managed.o drm_vblank_work.o drm_buddy.o
 >>   
->>   	NV_ATOMIC(drm, "%s prepare: %p\n", plane->name, fb);
->> @@ -561,7 +563,13 @@ nv50_wndw_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
->>   			asyw->image.handle[0] = ctxdma->object.handle;
->>   	}
+>>   drm-$(CONFIG_DRM_LEGACY) += drm_agpsupport.o drm_bufs.o drm_context.o drm_dma.o \
+>>   			    drm_legacy_misc.o drm_lock.o drm_memory.o drm_scatter.o \
+>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>> index 7a5097467ba5..6707eec21bef 100644
+>> --- a/drivers/gpu/drm/drm_drv.c
+>> +++ b/drivers/gpu/drm/drm_drv.c
+>> @@ -43,6 +43,7 @@
+>>   #include <drm/drm_managed.h>
+>>   #include <drm/drm_mode_object.h>
+>>   #include <drm/drm_print.h>
+>> +#include <drm/drm_buddy.h>
+> 
+> In alphabetical order please. Here and everywhere else.
+> 
+> Best regards
+> Thomas
+> 
 >>   
->> -	asyw->state.fence = dma_resv_get_excl_unlocked(nvbo->bo.base.resv);
->> +	dma_resv_iter_begin(&cursor, nvbo->bo.base.resv, false);
->> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
->> +		/* TODO: We only use the first writer here */
-> Same thing as with the atomic core helper. This is actually broken,
-> because for atomic we really do _not_ want to wait for any shared fences.
-> Which this will do, if there's no exclusive fence attached.
->
-> So upgrading my general concern on this and the atomic helper patch to a
-> reject, since I think it's broken.
-
-Since we simply had a misunderstanding with that could I get an rb for 
-that now?
-
-Thanks,
-Christian.
-
-> -Daniel
->
->> +		asyw->state.fence = dma_fence_get(fence);
->> +		break;
->> +	}
->> +	dma_resv_iter_end(&cursor);
->>   	asyw->image.offset[0] = nvbo->offset;
+>>   #include "drm_crtc_internal.h"
+>>   #include "drm_internal.h"
+>> @@ -1034,6 +1035,7 @@ static void drm_core_exit(void)
+>>   	drm_sysfs_destroy();
+>>   	idr_destroy(&drm_minors_idr);
+>>   	drm_connector_ida_destroy();
+>> +	drm_buddy_module_exit();
+>>   }
 >>   
->>   	if (wndw->func->prepare) {
->> -- 
->> 2.25.1
+>>   static int __init drm_core_init(void)
+>> @@ -1043,6 +1045,7 @@ static int __init drm_core_init(void)
+>>   	drm_connector_ida_init();
+>>   	idr_init(&drm_minors_idr);
+>>   	drm_memcpy_init_early();
+>> +	drm_buddy_module_init();
+>>   
+>>   	ret = drm_sysfs_init();
+>>   	if (ret < 0) {
 >>
-
+> 
