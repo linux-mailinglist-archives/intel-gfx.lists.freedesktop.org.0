@@ -1,40 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E1B8437F4B
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 22:23:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12AF437F5F
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 22:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F20589C94;
-	Fri, 22 Oct 2021 20:23:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0BFF6E027;
+	Fri, 22 Oct 2021 20:32:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 755F389C94
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 20:23:14 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10145"; a="229324621"
-X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="229324621"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 13:23:12 -0700
-X-IronPort-AV: E=Sophos;i="5.87,173,1631602800"; d="scan'208";a="484812000"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2021 13:23:09 -0700
-Date: Fri, 22 Oct 2021 23:23:05 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
- matthew.d.roper@intel.com, ville.syrjala@linux.intel.com
-Message-ID: <20211022202305.GA1980572@ideak-desk.fi.intel.com>
-References: <20211019151435.20477-1-vandita.kulkarni@intel.com>
- <20211019151435.20477-4-vandita.kulkarni@intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46DAA6E027;
+ Fri, 22 Oct 2021 20:32:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description;
+ bh=+lVnXP4L/xjopCY7F+iPyZIxE9scXC9YT+WrXjVhLK8=; b=IlPh6IKUYOtRL3+sWnXyOLoPp7
+ DFp0B4GxlovDXICqHVZd3s4/OnjqPJ0n1GuFAYDmf0ei7EZUR+BTWxebXOXscBpuo8WJCLyvXayxY
+ OllTK7++fyC6OW+g2sPD29BLyKrgJQBC+ia3pIBPKXELu/fyex2MxszfedVcjYC2SALyLW2QH9l5L
+ k27VVJecaQi9DvxwO9IoeCmrAQUEwBrtkq8CNXk+r9YSPaRT8oSJu6NW6aJ6y3SsaiaJKJjT5TxrN
+ h1bJdoXiBF7y+Em9k/s5Qjj6j2R8hmv7/7oy56Vd7KpM955DB3Jb8zBk1oZA5MF3Lr3PNTdwAXeqW
+ Ybe6WInQ==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1me1De-00Bwwj-Mk; Fri, 22 Oct 2021 20:32:50 +0000
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>
+References: <20211022201533.6085b17f@canb.auug.org.au>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <2cef7eff-e594-db38-176a-c017c8610b6a@infradead.org>
+Date: Fri, 22 Oct 2021 13:32:50 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211019151435.20477-4-vandita.kulkarni@intel.com>
-Subject: Re: [Intel-gfx] [V2 3/4] drm/i915/dsi/xelpd: Disable DC states in
- Video mode
+In-Reply-To: <20211022201533.6085b17f@canb.auug.org.au>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] linux-next: Tree for Oct 22
+ (drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,41 +59,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 19, 2021 at 08:44:34PM +0530, Vandita Kulkarni wrote:
-> MIPI DSI transcoder cannot be in video mode to support any of the
-> display C states.
+On 10/22/21 2:15 AM, Stephen Rothwell wrote:
+> Hi all,
 > 
-> Bspec: 49195 (For DC*co DSI transcoders cannot be in video mode)
-> Bspec: 49193 (Hardware does not support DC5 or DC6 with MIPI DSI enabled)
-> Bspec: 49188 (desc of DSI_DCSTATE_CTL talks about cmd mode PM control
+> Changes since 20211021:
+> 
 
-So none of the DC states (except DC6v which the driver doesn't support)
-are supported in DSI video mode and DC3co is supported in command mode.
-The selection between video vs. command mode happens using a VBT flag
-and I can't see anything that would prevent using command mode on XELPD.
-If the support for it is missing, should it be disabled explicitly or at
-least a notice printed that DC states are not yet supported?
+on x86_64:
 
-> v2: Align to the power domain ordering (Jani)
->     Add bspec references (Imre)
-> 
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index d88da0d0f05a..b989ddd3d023 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -3106,6 +3106,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
->  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
->  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
->  	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
-> +	BIT_ULL(POWER_DOMAIN_PORT_DSI) |		\
->  	BIT_ULL(POWER_DOMAIN_INIT))
->  
->  #define XELPD_AUX_IO_D_XELPD_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_D_XELPD)
-> -- 
-> 2.32.0
-> 
+../drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c: In function ‘i915_gem_object_get_pages_dmabuf’:
+../drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:248:3: error: implicit declaration of function ‘wbinvd_on_all_cpus’; did you mean ‘wrmsr_on_cpus’? [-Werror=implicit-function-declaration]
+    wbinvd_on_all_cpus();
+    ^~~~~~~~~~~~~~~~~~
+    wrmsr_on_cpus
+
+
+-- 
+~Randy
