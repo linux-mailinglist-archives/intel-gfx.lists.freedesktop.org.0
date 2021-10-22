@@ -2,39 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C469B43701C
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 04:40:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C592B43701F
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Oct 2021 04:44:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2CD76E544;
-	Fri, 22 Oct 2021 02:40:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F806E53C;
+	Fri, 22 Oct 2021 02:44:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C6B6E527;
- Fri, 22 Oct 2021 02:40:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10144"; a="252707257"
-X-IronPort-AV: E=Sophos;i="5.87,171,1631602800"; d="scan'208";a="252707257"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 19:40:22 -0700
-X-IronPort-AV: E=Sophos;i="5.87,171,1631602800"; d="scan'208";a="527768610"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2021 19:40:21 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Cc: <daniel.vetter@ffwll.ch>, <daniele.ceraolospurio@intel.com>,
- <john.c.harrison@intel.com>
-Date: Thu, 21 Oct 2021 19:35:38 -0700
-Message-Id: <20211022023538.20908-3-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211022023538.20908-1-matthew.brost@intel.com>
-References: <20211022023538.20908-1-matthew.brost@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 76D706E53C;
+ Fri, 22 Oct 2021 02:44:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 67BEEA9932;
+ Fri, 22 Oct 2021 02:44:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3446221238931965576=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Add delay to disable
- scheduling after pin count goes to zero
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 22 Oct 2021 02:44:10 -0000
+Message-ID: <163487065039.14705.12784625538362908189@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211021214040.33292-1-matthew.brost@intel.com>
+In-Reply-To: <20211021214040.33292-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Update_live=2Eevict_to_wait_on_requests_/_id?=
+ =?utf-8?q?le_GPU_after_each_loop?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,431 +42,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a delay, configurable via debugs (default 100ms), to disable
-scheduling of a context after the pin count goes to zero. Disable
-scheduling is somewhat costly operation so the idea is a delay allows
-the resubmit something before doing this operation. This delay is only
-done if the context isn't close and less than 3/4 of the guc_ids are in
-use.
+--===============3446221238931965576==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-As temporary WA disable this feature for the selftests. Selftests are
-very timing sensitive and any change in timing can cause failure. A
-follow up patch will fixup the selftests to understand this delay.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |   2 +-
- drivers/gpu/drm/i915/gt/intel_context.h       |   9 ++
- drivers/gpu/drm/i915/gt/intel_context_types.h |   7 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  10 ++
- .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    |  28 ++++
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 127 ++++++++++++++----
- drivers/gpu/drm/i915/i915_selftest.h          |   2 +
- drivers/gpu/drm/i915/i915_trace.h             |  10 ++
- 8 files changed, 170 insertions(+), 25 deletions(-)
+Series: drm/i915/selftests: Update live.evict to wait on requests / idle GPU after each loop
+URL   : https://patchwork.freedesktop.org/series/96157/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index ebd775cb1661..761d25d11864 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1393,7 +1393,7 @@ static void engines_idle_release(struct i915_gem_context *ctx,
- 		int err;
- 
- 		/* serialises with execbuf */
--		set_bit(CONTEXT_CLOSED_BIT, &ce->flags);
-+		intel_context_close(ce);
- 		if (!intel_context_pin_if_active(ce))
- 			continue;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index 246c37d72cd7..291b6d0d49c3 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -273,6 +273,15 @@ static inline bool intel_context_is_barrier(const struct intel_context *ce)
- 	return test_bit(CONTEXT_BARRIER_BIT, &ce->flags);
- }
- 
-+static inline void intel_context_close(struct intel_context *ce)
-+{
-+	set_bit(CONTEXT_CLOSED_BIT, &ce->flags);
-+
-+	trace_intel_context_close(ce);
-+	if (ce->ops->close)
-+		ce->ops->close(ce);
-+}
-+
- static inline bool intel_context_is_closed(const struct intel_context *ce)
- {
- 	return test_bit(CONTEXT_CLOSED_BIT, &ce->flags);
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 9e0177dc5484..3874a4efcda0 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -38,6 +38,7 @@ struct intel_context_ops {
- 	int (*alloc)(struct intel_context *ce);
- 
- 	void (*ban)(struct intel_context *ce, struct i915_request *rq);
-+	void (*close)(struct intel_context *ce);
- 
- 	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
- 	int (*pin)(struct intel_context *ce, void *vaddr);
-@@ -225,6 +226,12 @@ struct intel_context {
- 	 */
- 	struct list_head destroyed_link;
- 
-+	/**
-+	 * @guc_sched_disable_delay: worker to disable scheduling on this
-+	 * context
-+	 */
-+	struct delayed_work guc_sched_disable_delay;
-+
- 	/** @parallel: sub-structure for parallel submission members */
- 	struct {
- 		union {
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 31cf9fb48c7e..5d651f876dd7 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -103,6 +103,10 @@ struct intel_guc {
- 		 * refs
- 		 */
- 		struct list_head guc_id_list;
-+		/**
-+		 * @guc_ids_in_use: Number single-lrc guc_ids in use
-+		 */
-+		u16 guc_ids_in_use;
- 		/**
- 		 * @destroyed_contexts: list of contexts waiting to be destroyed
- 		 * (deregistered with the GuC)
-@@ -114,6 +118,12 @@ struct intel_guc {
- 		 * function as it might be in an atomic context (no sleeping)
- 		 */
- 		struct work_struct destroyed_worker;
-+#define SCHED_DISABLE_DELAY_MS	100
-+		/**
-+		 * @sched_disable_delay_ms: schedule disable delay, in ms, for
-+		 * contexts
-+		 */
-+		u64 sched_disable_delay_ms;
- 	} submission_state;
- 
- 	/**
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
-index 25f09a420561..28470fc67b6d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
-@@ -71,12 +71,40 @@ static bool intel_eval_slpc_support(void *data)
- 	return intel_guc_slpc_is_used(guc);
- }
- 
-+static int guc_sched_disable_delay_ms_get(void *data, u64 *val)
-+{
-+	struct intel_guc *guc = data;
-+
-+	if (!intel_guc_submission_is_used(guc))
-+		return -ENODEV;
-+
-+	*val = guc->submission_state.sched_disable_delay_ms;
-+
-+	return 0;
-+}
-+
-+static int guc_sched_disable_delay_ms_set(void *data, u64 val)
-+{
-+	struct intel_guc *guc = data;
-+
-+	if (!intel_guc_submission_is_used(guc))
-+		return -ENODEV;
-+
-+	guc->submission_state.sched_disable_delay_ms = val;
-+
-+	return 0;
-+}
-+DEFINE_SIMPLE_ATTRIBUTE(guc_sched_disable_delay_ms_fops,
-+			guc_sched_disable_delay_ms_get,
-+			guc_sched_disable_delay_ms_set, "%lld\n");
-+
- void intel_guc_debugfs_register(struct intel_guc *guc, struct dentry *root)
- {
- 	static const struct intel_gt_debugfs_file files[] = {
- 		{ "guc_info", &guc_info_fops, NULL },
- 		{ "guc_registered_contexts", &guc_registered_contexts_fops, NULL },
- 		{ "guc_slpc_info", &guc_slpc_info_fops, &intel_eval_slpc_support},
-+		{ "guc_sched_disable_delay_ms", &guc_sched_disable_delay_ms_fops, NULL },
- 	};
- 
- 	if (!intel_guc_is_supported(guc))
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index d7710debcd47..9e5fef453f8c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -60,7 +60,13 @@
-  * corresponding G2H returns indicating the scheduling disable operation has
-  * completed it is safe to unpin the context. While a disable is in flight it
-  * isn't safe to resubmit the context so a fence is used to stall all future
-- * requests of that context until the G2H is returned.
-+ * requests of that context until the G2H is returned. Because this interaction
-+ * with the GuC takes a non-zero amount of time / GuC cycles we delay the
-+ * disabling of scheduling after the pin count goes to zero by configurable
-+ * (default 100 ms) period of time. The thought is this gives the user a window
-+ * of time to resubmit something on the context before doing a somewhat costly
-+ * operation. This delay is only done if the context is close and less than 3/4
-+ * of the guc_ids are in use.
-  *
-  * Context deregistration:
-  * Before a context can be destroyed or if we steal its guc_id we must
-@@ -1506,6 +1512,7 @@ int intel_guc_submission_init(struct intel_guc *guc)
- 	INIT_LIST_HEAD(&guc->submission_state.destroyed_contexts);
- 	INIT_WORK(&guc->submission_state.destroyed_worker,
- 		  destroyed_worker_func);
-+	guc->submission_state.sched_disable_delay_ms = SCHED_DISABLE_DELAY_MS;
- 
- 	guc->submission_state.guc_ids_bitmap =
- 		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID, GFP_KERNEL);
-@@ -1610,6 +1617,9 @@ static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
- 	if (unlikely(ret < 0))
- 		return ret;
- 
-+	if (!intel_context_is_parent(ce))
-+		guc->submission_state.guc_ids_in_use++;
-+
- 	ce->guc_id.id = ret;
- 	return 0;
- }
-@@ -1619,14 +1629,16 @@ static void __release_guc_id(struct intel_guc *guc, struct intel_context *ce)
- 	GEM_BUG_ON(intel_context_is_child(ce));
- 
- 	if (!context_guc_id_invalid(ce)) {
--		if (intel_context_is_parent(ce))
-+		if (intel_context_is_parent(ce)) {
- 			bitmap_release_region(guc->submission_state.guc_ids_bitmap,
- 					      ce->guc_id.id,
- 					      order_base_2(ce->parallel.number_children
- 							   + 1));
--		else
-+		} else {
-+			guc->submission_state.guc_ids_in_use--;
- 			ida_simple_remove(&guc->submission_state.guc_ids,
- 					  ce->guc_id.id);
-+		}
- 		reset_lrc_desc(guc, ce->guc_id.id);
- 		set_context_guc_id_invalid(ce);
- 	}
-@@ -2329,41 +2341,98 @@ static void guc_context_ban(struct intel_context *ce, struct i915_request *rq)
- 	}
- }
- 
--static void guc_context_sched_disable(struct intel_context *ce)
-+static void do_sched_disable(struct intel_guc *guc, struct intel_context *ce,
-+			     unsigned long flags)
-+	__releases(ce->guc_state.lock)
- {
--	struct intel_guc *guc = ce_to_guc(ce);
--	unsigned long flags;
- 	struct intel_runtime_pm *runtime_pm = &ce->engine->gt->i915->runtime_pm;
- 	intel_wakeref_t wakeref;
- 	u16 guc_id;
- 
-+	lockdep_assert_held(&ce->guc_state.lock);
-+	guc_id = prep_context_pending_disable(ce);
-+
-+	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-+
-+	with_intel_runtime_pm(runtime_pm, wakeref)
-+		__guc_context_sched_disable(guc, ce, guc_id);
-+}
-+
-+static bool bypass_sched_disable(struct intel_guc *guc,
-+				 struct intel_context *ce)
-+{
-+	lockdep_assert_held(&ce->guc_state.lock);
- 	GEM_BUG_ON(intel_context_is_child(ce));
- 
-+	if (submission_disabled(guc) || context_guc_id_invalid(ce) ||
-+	    !lrc_desc_registered(guc, ce->guc_id.id)) {
-+		clr_context_enabled(ce);
-+		return true;
-+	}
-+
-+	return !context_enabled(ce);
-+}
-+
-+static void __delay_sched_disable(struct work_struct *wrk)
-+{
-+	struct intel_context *ce =
-+		container_of(wrk, typeof(*ce), guc_sched_disable_delay.work);
-+	struct intel_guc *guc = ce_to_guc(ce);
-+	unsigned long flags;
-+
- 	spin_lock_irqsave(&ce->guc_state.lock, flags);
- 
--	/*
--	 * We have to check if the context has been disabled by another thread,
--	 * check if submssion has been disabled to seal a race with reset and
--	 * finally check if any more requests have been committed to the
--	 * context ensursing that a request doesn't slip through the
--	 * 'context_pending_disable' fence.
--	 */
--	if (unlikely(!context_enabled(ce) || submission_disabled(guc) ||
--		     context_has_committed_requests(ce))) {
--		clr_context_enabled(ce);
-+	if (bypass_sched_disable(guc, ce)) {
- 		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
--		goto unpin;
-+		intel_context_sched_disable_unpin(ce);
-+	} else {
-+		do_sched_disable(guc, ce, flags);
- 	}
--	guc_id = prep_context_pending_disable(ce);
-+}
- 
--	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-+static bool guc_id_pressure(struct intel_guc *guc, struct intel_context *ce)
-+{
-+	/*
-+	 * parent contexts are perma-pinned, if we are unpinning do schedule
-+	 * disable immediately.
-+	 */
-+	if (intel_context_is_parent(ce))
-+		return true;
- 
--	with_intel_runtime_pm(runtime_pm, wakeref)
--		__guc_context_sched_disable(guc, ce, guc_id);
-+	/*
-+	 * If more than 3/4 of guc_ids in use, do schedule disable immediately.
-+	 */
-+	return guc->submission_state.guc_ids_in_use >
-+		((GUC_MAX_LRC_DESCRIPTORS - NUMBER_MULTI_LRC_GUC_ID) / 4) * 3;
-+}
-+
-+static void guc_context_sched_disable(struct intel_context *ce)
-+{
-+	struct intel_guc *guc = ce_to_guc(ce);
-+	u64 delay = guc->submission_state.sched_disable_delay_ms;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ce->guc_state.lock, flags);
-+
-+	if (bypass_sched_disable(guc, ce)) {
-+		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-+		intel_context_sched_disable_unpin(ce);
-+	} else if (!intel_context_is_closed(ce) && !guc_id_pressure(guc, ce) &&
-+		   delay) {
-+		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-+		mod_delayed_work(system_unbound_wq,
-+				 &ce->guc_sched_disable_delay,
-+				 msecs_to_jiffies(delay));
-+	} else {
-+		do_sched_disable(guc, ce, flags);
-+	}
-+}
- 
--	return;
--unpin:
--	intel_context_sched_disable_unpin(ce);
-+static void guc_context_close(struct intel_context *ce)
-+{
-+	if (test_bit(CONTEXT_GUC_INIT, &ce->flags) &&
-+	    cancel_delayed_work(&ce->guc_sched_disable_delay))
-+		__delay_sched_disable(&ce->guc_sched_disable_delay.work);
- }
- 
- static inline void guc_lrc_desc_unpin(struct intel_context *ce)
-@@ -2662,6 +2731,7 @@ static const struct intel_context_ops guc_context_ops = {
- 	.post_unpin = guc_context_post_unpin,
- 
- 	.ban = guc_context_ban,
-+	.close = guc_context_close,
- 
- 	.cancel_request = guc_context_cancel_request,
- 
-@@ -2738,6 +2808,10 @@ static void guc_context_init(struct intel_context *ce)
- 	rcu_read_unlock();
- 
- 	ce->guc_state.prio = map_i915_prio_to_guc_prio(prio);
-+
-+	INIT_DELAYED_WORK(&ce->guc_sched_disable_delay,
-+			  __delay_sched_disable);
-+
- 	set_bit(CONTEXT_GUC_INIT, &ce->flags);
- }
- 
-@@ -2775,6 +2849,9 @@ static int guc_request_alloc(struct i915_request *rq)
- 	if (unlikely(!test_bit(CONTEXT_GUC_INIT, &ce->flags)))
- 		guc_context_init(ce);
- 
-+	if (cancel_delayed_work(&ce->guc_sched_disable_delay))
-+		intel_context_sched_disable_unpin(ce);
-+
- 	/*
- 	 * Call pin_guc_id here rather than in the pinning step as with
- 	 * dma_resv, contexts can be repeatedly pinned / unpinned trashing the
-@@ -2911,6 +2988,7 @@ static const struct intel_context_ops virtual_guc_context_ops = {
- 	.post_unpin = guc_context_post_unpin,
- 
- 	.ban = guc_context_ban,
-+	.close = guc_context_close,
- 
- 	.cancel_request = guc_context_cancel_request,
- 
-@@ -3002,6 +3080,7 @@ static const struct intel_context_ops virtual_parent_context_ops = {
- 	.post_unpin = guc_context_post_unpin,
- 
- 	.ban = guc_context_ban,
-+	.close = guc_context_close,
- 
- 	.cancel_request = guc_context_cancel_request,
- 
-diff --git a/drivers/gpu/drm/i915/i915_selftest.h b/drivers/gpu/drm/i915/i915_selftest.h
-index f54de0499be7..9e5d84c425a5 100644
---- a/drivers/gpu/drm/i915/i915_selftest.h
-+++ b/drivers/gpu/drm/i915/i915_selftest.h
-@@ -92,12 +92,14 @@ int __i915_subtests(const char *caller,
- 			T, ARRAY_SIZE(T), data)
- #define i915_live_subtests(T, data) ({ \
- 	typecheck(struct drm_i915_private *, data); \
-+	(data)->gt.uc.guc.submission_state.sched_disable_delay_ms = 0; \
- 	__i915_subtests(__func__, \
- 			__i915_live_setup, __i915_live_teardown, \
- 			T, ARRAY_SIZE(T), data); \
- })
- #define intel_gt_live_subtests(T, data) ({ \
- 	typecheck(struct intel_gt *, data); \
-+	(data)->uc.guc.submission_state.sched_disable_delay_ms = 0; \
- 	__i915_subtests(__func__, \
- 			__intel_gt_live_setup, __intel_gt_live_teardown, \
- 			T, ARRAY_SIZE(T), data); \
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-index 9795f456cccf..dd30396704b1 100644
---- a/drivers/gpu/drm/i915/i915_trace.h
-+++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -929,6 +929,11 @@ DEFINE_EVENT(intel_context, intel_context_reset,
- 	     TP_ARGS(ce)
- );
- 
-+DEFINE_EVENT(intel_context, intel_context_close,
-+	     TP_PROTO(struct intel_context *ce),
-+	     TP_ARGS(ce)
-+);
-+
- DEFINE_EVENT(intel_context, intel_context_ban,
- 	     TP_PROTO(struct intel_context *ce),
- 	     TP_ARGS(ce)
-@@ -1031,6 +1036,11 @@ trace_intel_context_reset(struct intel_context *ce)
- {
- }
- 
-+static inline void
-+trace_intel_context_close(struct intel_context *ce)
-+{
-+}
-+
- static inline void
- trace_intel_context_ban(struct intel_context *ce)
- {
--- 
-2.32.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_10773 -> Patchwork_21414
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21414:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {fi-hsw-gt1}:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21414 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-apl-guc:         NOTRUN -> [SKIP][3] ([fdo#109271]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][4] ([i915#1610])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+
+  * igt@runner@aborted:
+    - fi-apl-guc:         NOTRUN -> [FAIL][5] ([i915#2426] / [i915#3363] / [i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-apl-guc/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [FAIL][6] ([i915#579]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bdw-samus:       [DMESG-FAIL][8] ([i915#541]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][10] ([i915#3303]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp2:
+    - fi-cfl-8109u:       [DMESG-WARN][12] ([i915#165]) -> [PASS][13] +2 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][14] ([i915#165] / [i915#295]) -> [PASS][15] +20 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (39 -> 37)
+------------------------------
+
+  Additional (1): fi-apl-guc 
+  Missing    (3): fi-ctg-p8600 fi-bsw-cyan fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10773 -> Patchwork_21414
+
+  CI-20190529: 20190529
+  CI_DRM_10773: fa267509357bd9eb021c3d474fe0980cde18de62 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21414: 54e24a3adb4a5f5f613b5cdb16474a7832a91b5d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+54e24a3adb4a drm/i915/selftests: Update live.evict to wait on requests / idle GPU after each loop
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/index.html
+
+--===============3446221238931965576==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Update live.evict to wait on requests / idle GPU after each loop</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96157/">https://patchwork.freedesktop.org/series/96157/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10773 -&gt; Patchwork_21414</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21414:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21414 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bdw-samus:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-bdw-samus/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp2:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp2.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10773/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21414/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +20 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 37)</h2>
+<p>Additional (1): fi-apl-guc <br />
+  Missing    (3): fi-ctg-p8600 fi-bsw-cyan fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10773 -&gt; Patchwork_21414</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10773: fa267509357bd9eb021c3d474fe0980cde18de62 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6258: 4c80c71d7dec29b6376846ae96bd04dc0b6e34d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21414: 54e24a3adb4a5f5f613b5cdb16474a7832a91b5d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>54e24a3adb4a drm/i915/selftests: Update live.evict to wait on requests / idle GPU after each loop</p>
+
+</body>
+</html>
+
+--===============3446221238931965576==--
