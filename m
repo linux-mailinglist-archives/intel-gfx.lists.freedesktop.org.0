@@ -2,73 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B3A4394A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 13:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A3B943970E
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 15:05:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B277C89E11;
-	Mon, 25 Oct 2021 11:20:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64A1B89FD9;
+	Mon, 25 Oct 2021 13:04:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A10189E0E;
- Mon, 25 Oct 2021 11:20:16 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id a26so17162200edy.11;
- Mon, 25 Oct 2021 04:20:16 -0700 (PDT)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E446ED8E;
+ Fri, 22 Oct 2021 13:17:20 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id z14so3793900wrg.6;
+ Fri, 22 Oct 2021 06:17:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=zAWkQGbOaZKbHWppqd+rLJs80WGOQG4H53gr2sV0vAQ=;
- b=ID59gtr8f5xxJGnGvueDL1ILVtTOzGCrTqfDtDUPaDjfeCMKykIHmSCoT4bFRbtmu5
- wpFOaCdtv65eLNkjdDy9eu4C4l39ZxEeRfU/WxrePOWUCeg86EfSas5In+rWFGu4CW9e
- cZ+0KmssTd6fjcBjmc4QdcUniFpY5uhhGUQINIjzlHI69gxK2rRYk7fFnyE/AY59MEA4
- WnahY4Ilpm6fnr9PaqnK/u5JrnV3odFsEojxOZjXGiZKmrHoujlEmZV3gt6xg/o0beqH
- MxjJI5y4VYDHheC47EWctklA1WMnQIlEdKtYIhbxg1Btv1XOtkENHCFs6UW7tT5LAg2c
- t39w==
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=xzYyGlNbpTpvd6sNJdRWzkh7BYc81KJzN7aG/37+xnw=;
+ b=Wb0IMU0euio0jP04+Ag5kuxoh1MQufsfd2QRp3sI+Az4W30cmQtw3AWAzQ9kufl2u6
+ T86AdjyQRsKxL0Rcub27Y0pvseoX06QIabpUUcugftBPPSM1+G3HKXi3jxAVB3sxQlFt
+ W1vsR38o56VZW/+5lP81/Wf3mpI513KMR752iV2YyVphELCzOlCQE9+Aj3M51BR8tLed
+ xv4dgzu/VuEVzqrD2vZqfgrnRnCEfuCraK+xC+IQNEFburrJFRj1zZI7w16LzDJXKMxl
+ WnLkXpRDcn7OfkNHVwIMTI/9CfkObryOC6dmedqohvuRhKWAuH+ZnLdOVk+A0Gz8jMnc
+ FMUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=zAWkQGbOaZKbHWppqd+rLJs80WGOQG4H53gr2sV0vAQ=;
- b=bPYaxRX1U3CbQqbY9FqBAfOq7ORwk5osp4by4+qT0onQcIi3jdVHnJf1+lG4w73oik
- VUxmeQ4LPjpvSH5itlxEfyq3z2E+yxAJ/MUcHP5zswgKeI0kvm9C1MhQFXJfJ/6CB7dZ
- pgF0oAgZ97GB/ArhZG5/33TtOxrsa/EDSr5QauC2QGDm9kQvuMz4r1yPPveYtjsjbYHf
- lc9rLW9hMlnBcWIh3drRl3wpDhLDCCB+8rur31M7xE74tHbBWcuf57C5KGtnJKlbjMQb
- Daac50tTnkvEI4WYF9lT49dfUl4z9kP+X9XfyG7s+IAl15wJLT+utYdMoQ0oGqWTV7Da
- Pb4g==
-X-Gm-Message-State: AOAM531D8F6760THpsP/X6LiRTW14/2LJEmT5w8EkQz3QPbk5i9tUSfu
- 9FEuRX7dXbjDEmQT4r4reGg=
-X-Google-Smtp-Source: ABdhPJyWolZaNeYs6hLCgbIy8OFyS2r8sI+XXWlxCE7+b7RQkIICzRZWDbBkkYUk6wDyHxsA5dNUkQ==
-X-Received: by 2002:aa7:d556:: with SMTP id u22mr25631139edr.226.1635160814573; 
- Mon, 25 Oct 2021 04:20:14 -0700 (PDT)
-Received: from [0.0.0.0] ([134.134.137.89])
- by smtp.googlemail.com with ESMTPSA id n8sm771738edy.59.2021.10.25.04.20.08
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=xzYyGlNbpTpvd6sNJdRWzkh7BYc81KJzN7aG/37+xnw=;
+ b=fouoyzA0trXipuneY+/rIWOaV5sH9xSt/x7g+209/KMftAcWlRw9VCs1DSvwtv/I8m
+ Jg4wuR6LgZuo4z87UoR062ON9+5dVYc3I7bWHiMdllVMiJHzrxSyYhxrO3EHRyFzb/Zj
+ 5GzQ51IGnKiFNHAD++GEJUujDzNlB1uG/6OLhxvb0ObvE5UBFKmQBQRRHjBLZinLKZGl
+ TfL/J0Xy1gcum/QOjrW/GE2K5rBHvcYvyznQPRXqE7iQxYhWW4UuQmG6sY9WSxRwuFhC
+ 7f5Tf/AMlxIWGMEaM207rDZETtWvVVvtG7vFseee25+CztKeu1ymk8t/Ivmhwi0J2/kg
+ YNGg==
+X-Gm-Message-State: AOAM530q5KoguoYelYWsCyhPL5TntIGEOBkppEe2oyGG+LpqmTpGkQnF
+ m7khEuzWZVQEZGWuXaKEz/BhvDsCdDs=
+X-Google-Smtp-Source: ABdhPJz1bcP9pVdKxvZWKI3UICXsg+Jou2mv8pwgCLGrQkQRbz9ygCJr3KFv1jOtT9CfdADeNSXIRA==
+X-Received: by 2002:adf:ab1c:: with SMTP id q28mr15823427wrc.39.1634908639344; 
+ Fri, 22 Oct 2021 06:17:19 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:a39f:d981:e7cb:e6dc?
+ ([2a02:908:1252:fb60:a39f:d981:e7cb:e6dc])
+ by smtp.gmail.com with ESMTPSA id e2sm3047986wrt.8.2021.10.22.06.17.18
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Oct 2021 04:20:13 -0700 (PDT)
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Ramalingam C <ramalingam.c@intel.com>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Daniel Vetter
- <daniel@ffwll.ch>, CQ Tang <cq.tang@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <ppaalanen@gmail.com>
-References: <20211021142627.31058-1-ramalingam.c@intel.com>
- <20211021142627.31058-15-ramalingam.c@intel.com> <YXF6tItZLX4Cn6Aw@intel.com>
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Message-ID: <4b263070-a30e-85fb-d3d7-6983b05ec323@gmail.com>
-Date: Mon, 25 Oct 2021 14:20:02 +0300
+ Fri, 22 Oct 2021 06:17:18 -0700 (PDT)
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ tvrtko.ursulin@linux.intel.com
+References: <20211005113742.1101-1-christian.koenig@amd.com>
+ <20211005113742.1101-27-christian.koenig@amd.com>
+ <YWbtV2ZVHg7n1xpm@phenom.ffwll.local>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <cca39a70-5820-18e2-8bda-a4a0d7ad2c31@gmail.com>
+Date: Fri, 22 Oct 2021 15:17:17 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <YXF6tItZLX4Cn6Aw@intel.com>
+In-Reply-To: <YWbtV2ZVHg7n1xpm@phenom.ffwll.local>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 14/17] uapi/drm/dg2: Format modifier for
- DG2 unified compression and clear color
+Content-Language: en-US
+X-Mailman-Approved-At: Mon, 25 Oct 2021 13:04:53 +0000
+Subject: Re: [Intel-gfx] [PATCH 26/28] drm/nouveau: use the new interator in
+ nv50_wndw_prepare_fb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,61 +79,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21.10.2021 17.35, Ville Syrjälä wrote:
-> On Thu, Oct 21, 2021 at 07:56:24PM +0530, Ramalingam C wrote:
->> From: Matt Roper <matthew.d.roper@intel.com>
+Am 13.10.21 um 16:29 schrieb Daniel Vetter:
+> On Tue, Oct 05, 2021 at 01:37:40PM +0200, Christian König wrote:
+>> Makes the handling a bit more complex, but avoids the use of
+>> dma_resv_get_excl_unlocked().
 >>
->> DG2 unifies render compression and media compression into a single
->> format for the first time.  The programming and buffer layout is
->> supposed to match compression on older gen12 platforms, but the
->> actual compression algorithm is different from any previous platform; as
->> such, we need a new framebuffer modifier to represent buffers in this
->> format, but otherwise we can re-use the existing gen12 compression driver
->> logic.
->>
->> DG2 clear color render compression uses Tile4 layout. Therefore, we need
->> to define a new format modifier for uAPI to support clear color rendering.
->>
->> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Mika Kahola <mika.kahola@intel.com> (v2)
->> Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
->> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
->> cc: Simon Ser <contact@emersion.fr>
->> Cc: Pekka Paalanen <ppaalanen@gmail.com>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_display.c  |  3 ++
->>   .../drm/i915/display/intel_display_types.h    | 10 +++-
->>   drivers/gpu/drm/i915/display/intel_fb.c       |  7 +++
->>   .../drm/i915/display/skl_universal_plane.c    | 49 +++++++++++++++++--
->>   include/uapi/drm/drm_fourcc.h                 | 30 ++++++++++++
->>   5 files changed, 94 insertions(+), 5 deletions(-)
+>>   drivers/gpu/drm/nouveau/dispnv50/wndw.c | 10 +++++++++-
+>>   1 file changed, 9 insertions(+), 1 deletion(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 9b678839bf2b..2949fe9f5b9f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -1013,6 +1013,9 @@ intel_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
->>   					  cmd->pixel_format);
->>   	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
->>   	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
->> +	case I915_FORMAT_MOD_F_TILED_DG2_RC_CCS:
->> +	case I915_FORMAT_MOD_F_TILED_DG2_MC_CCS:
->> +	case I915_FORMAT_MOD_F_TILED_DG2_RC_CCS_CC:
->>   		return lookup_format_info(gen12_ccs_formats,
->>   					  ARRAY_SIZE(gen12_ccs_formats),
->>   					  cmd->pixel_format);
-> 
-> That seems not right. Flat CCS is invisible to the user so the format
-> info should not include a CCS plane.
-> 
+>> diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+>> index 8d048bacd6f0..30712a681e2a 100644
+>> --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+>> +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+>> @@ -539,6 +539,8 @@ nv50_wndw_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
+>>   	struct nouveau_bo *nvbo;
+>>   	struct nv50_head_atom *asyh;
+>>   	struct nv50_wndw_ctxdma *ctxdma;
+>> +	struct dma_resv_iter cursor;
+>> +	struct dma_fence *fence;
+>>   	int ret;
+>>   
+>>   	NV_ATOMIC(drm, "%s prepare: %p\n", plane->name, fb);
+>> @@ -561,7 +563,13 @@ nv50_wndw_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
+>>   			asyw->image.handle[0] = ctxdma->object.handle;
+>>   	}
+>>   
+>> -	asyw->state.fence = dma_resv_get_excl_unlocked(nvbo->bo.base.resv);
+>> +	dma_resv_iter_begin(&cursor, nvbo->bo.base.resv, false);
+>> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>> +		/* TODO: We only use the first writer here */
+> Same thing as with the atomic core helper. This is actually broken,
+> because for atomic we really do _not_ want to wait for any shared fences.
+> Which this will do, if there's no exclusive fence attached.
+>
+> So upgrading my general concern on this and the atomic helper patch to a
+> reject, since I think it's broken.
 
-I had cleaned out those rc and mc ccs from here long time ago, I wonder 
-where did they come back from? On my development tree they're not there. 
-Also I915_FORMAT_MOD_F_TILED_DG2_RC_CCS_CC is here in totally wrong 
-place, it should have its own gen12_flat_ccs_cc_formats table.
+Since we simply had a misunderstanding with that could I get an rb for 
+that now?
 
-/Juha-Pekka
+Thanks,
+Christian.
+
+> -Daniel
+>
+>> +		asyw->state.fence = dma_fence_get(fence);
+>> +		break;
+>> +	}
+>> +	dma_resv_iter_end(&cursor);
+>>   	asyw->image.offset[0] = nvbo->offset;
+>>   
+>>   	if (wndw->func->prepare) {
+>> -- 
+>> 2.25.1
+>>
+
