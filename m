@@ -1,35 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F5B438EE3
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 07:34:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A452438F5F
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 08:23:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A83F89D5F;
-	Mon, 25 Oct 2021 05:34:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93C8389DBD;
+	Mon, 25 Oct 2021 06:23:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2035789D5F;
- Mon, 25 Oct 2021 05:34:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 19713A7DFB;
- Mon, 25 Oct 2021 05:34:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5094337113885430490=="
+Received: from msg-4.mailo.com (ip-15.mailobj.net [213.182.54.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4F389D9A;
+ Mon, 25 Oct 2021 06:23:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1635113882; bh=uw6jUOdznN5Fu1cmQxsbGLSaS5P2w7SplYgPex568YQ=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To;
+ b=kpn3YOQUKeK9qDpnf0StFTwdc4WJreIl9JR8oi4rUbw2RZC0IEtUV7NQk5CjR3JWj
+ AEBLg5lA/FkJuQmNxIv/k09YqvRAHZmzYfR2B2Hv/gSnP/O9JktEiJjGBVqLmzKzGR
+ /BmdwJXbj2xTfAUE0fjrTjyaO9MnP/V/8Ufrnq/A=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Mon, 25 Oct 2021 00:17:45 +0200 (CEST)
+X-EA-Auth: tM23DGE6RIEgIBepFFyFZ3U+VcDqeb1NZ+9uNCAhSimMRHbJIRvea/6qSymDwthzabP0gvaNwIR0mJ56UkO3tKDYzFIv2ik3
+Date: Mon, 25 Oct 2021 00:17:37 +0200
+From: Claudio Suarez <cssk@net-c.es>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
+Message-ID: <YXXbgWNHts9CMJXD@gineta.localdomain>
+References: <20211016184226.3862-1-cssk@net-c.es>
+ <20211016184226.3862-14-cssk@net-c.es> <YW8QYsmkm3ZrBAx3@intel.com>
+ <YW9L6d7e+RO29VJu@gineta.localdomain> <YXFwB7rN4bvR0Z+m@intel.com>
+ <YXKRnUHWuboQKBF1@zorro.micasa> <YXKoMEF/gU98cL9n@intel.com>
+ <YXKtIUDk+f2Bnn++@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cooper Chiou" <cooper.chiou@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Oct 2021 05:34:56 -0000
-Message-ID: <163514009608.17089.10922536757697274207@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200916180745.627-1-cooper.chiou@intel.com>
-In-Reply-To: <20200916180745.627-1-cooper.chiou@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Enable_WaProgramMgsrForCorrectSliceSpecificMmioReads_f?=
- =?utf-8?q?or_Gen9_=28rev10=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YXKtIUDk+f2Bnn++@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 13/13] drm/i915: replace
+ drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,287 +71,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5094337113885430490==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Oct 22, 2021 at 03:22:57PM +0300, Ville Syrjälä wrote:
+> On Fri, Oct 22, 2021 at 03:01:52PM +0300, Ville Syrjälä wrote:
+> > On Fri, Oct 22, 2021 at 12:25:33PM +0200, Claudio Suarez wrote:
+> > > On Thu, Oct 21, 2021 at 04:49:59PM +0300, Ville Syrjälä wrote:
+> > > > On Wed, Oct 20, 2021 at 12:51:21AM +0200, Claudio Suarez wrote:
+> > > > > drm_get_edid() internally calls to drm_connector_update_edid_property()
+> > > > > and then drm_add_display_info(), which parses the EDID.
+> > > > > This happens in the function intel_hdmi_set_edid() and
+> > > > > intel_sdvo_tmds_sink_detect() (via intel_sdvo_get_edid()).
+> > > > > 
+> > > > > Once EDID is parsed, the monitor HDMI support information is available
+> > > > > through drm_display_info.is_hdmi. Retriving the same information with
+> > > > > drm_detect_hdmi_monitor() is less efficient. Change to
+> > > > > drm_display_info.is_hdmi
+> > > > 
+> > > > I meant we need to examine all call chains that can lead to
+> > > > .detect() to make sure all of them do in fact update the
+> > > > display_info beforehand.
+> > > 
+> > > Well, I studied it carefully and, yes, all call chains that can lead to
+> > > drm_display_info.is_hdmi / drm_detect_hdmi_monitor() update display_info
+> > > beforehand. In the case that this doesn't happen, the code is unchanged.
+> > > 
+> > > Do you want I explain the changes in the code here again ? Or do you want
+> > > to me change the commit message to be more clear ? In the first case, I can
+> > > write here a detailed explanation. In the second case I can make a longer commit
+> > > message.
+> > > 
+> > > Or both?
+> > 
+> > I want all those call chains explained in the commit message,
+> > otherwise I have no easy way to confirm whether the change
+> > is correct or not.
+> 
+> Hmm. OK, so I had a bit of a dig around and seems that what we do now
+> .detect()->drm_get_edid()->drm_connector_update_edid_property()->drm_add_display_info()
 
-== Series Details ==
+Yes. I said before that I felt something was wrong when I read the
+documentation and then the code. To be more explicit now, I expected that
+drm_connector_update_edid_property() will be done in the
+fill_modes/get_modes phase instead of when reading the edid.
+The documentation suggests that but the code reads the edid in the
+detect phase.
+Now, since drm_connector_update_edid_property() is called in the detect
+phase, it is not necessary to keep the edid data in the private connector
+struct. It is in struct drm_connector from the beginning.
+But this is topic for another patch.
 
-Series: drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9 (rev10)
-URL   : https://patchwork.freedesktop.org/series/81764/
-State : failure
+> Now the question is when did that start happening? Looks like it was
+> commit 4b4df570b41d ("drm: Update edid-derived drm_display_info fields
+> at edid property set [v2]") that started to call drm_add_display_info()
+> from drm_connector_update_edid_property(), and then commit 5186421cbfe2
+> ("drm: Introduce epoch counter to drm_connector") started to call
+> drm_connector_update_edid_property() from drm_get_edid(). Before both
+> of those commits were in place display_info would still contain
+> some stale garbage during .detect().
+>
+> That is the story I think we want in these commit messages since it
+> a) explains why the old code was directly parsing the edid instead
+> b) why it's now safe to change this
 
-== Summary ==
+------------------commit-message?--------------------
 
-CI Bug Log - changes from CI_DRM_10782 -> Patchwork_21433
-====================================================
+drm/i915: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 
-Summary
--------
+Commit a92d083d08b0 created the new flag is_hdmi in drm_display_info
+which is set when sink compliant with CEA-861 (EDID) shall be treated
+as an HDMI sink.
 
-  **FAILURE**
+From that day, this value can be used in some cases instead of
+calling drm_detect_hdmi_monitor() and a second parse is avoided
+because drm_detect_hdmi_monitor() parses. A TODO task was
+registered in Documentation/gpu/todo.rst to perform that task in
+the future.
 
-  Serious unknown changes coming with Patchwork_21433 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21433, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+The flag drm_display_info.is_hdmi is set in the function
+drm_add_display_info(), which is called from
+drm_connector_update_edid_property(). Since commit 5186421cbfe2,
+drm_get_edid() calls drm_connector_update_edid_property() when
+reading the edid data from an i2c adapter. Therefore, in these
+cases drm_display_info.is_hdmi is updated to its correct
+value when returning from drm_get_edid().
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/index.html
+Replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+in the cases when drm_detect_hdmi_monitor() is called after a
+read from an i2c adapter using drm_get_edid() in the i915 driver.
+-----------------------------------------------
 
-Participating hosts (38 -> 34)
-------------------------------
+> 
+> PS. connector->force handling in drm_get_edid() looks a bit busted
+> since it doesn't call drm_connector_update_edid_property() at all
+> in some cases. I think there might be some path that leads there
+> anywya if/when we change connector->force, but we should fix
+> drm_get_edid() to do the right thing regarless.
 
-  Additional (1): fi-tgl-1115g4 
-  Missing    (5): bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 
+In those cases, the edid isn't read and NULL is returned by drm_get_edid().
+No problem because display_info.is_hdmi is inside an if (edid != NULL).
 
-Possible new issues
--------------------
+BTW, struct intel_connector is allocated with kzalloc, so the initial
+value of is_hdmi is zero. The connector isn't HDMI by default.
 
-  Here are the unknown changes that may have been introduced in Patchwork_21433:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10782/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21433 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_cs_nop@nop-gfx0:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([fdo#109315] / [i915#2575]) +16 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][5] ([fdo#109271]) +17 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#2190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([i915#1155])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#4103]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([fdo#109285])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#1072]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([i915#3301])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][13] ([i915#3921]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10782/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+BR.
+Claudio Suarez.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_10782 -> Patchwork_21433
-
-  CI-20190529: 20190529
-  CI_DRM_10782: 6eff63a9b932a4aa1e1f6e521cd919aaf57c058f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6259: 89629f64da9f12b144f913865b08d2c9efcd10d7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21433: 0e9f22704d1907a5f599a89cff100bb5f14155be @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0e9f22704d19 drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/index.html
-
---===============5094337113885430490==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9 (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81764/">https://patchwork.freedesktop.org/series/81764/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10782 -&gt; Patchwork_21433</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21433 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21433, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/index.html</p>
-<h2>Participating hosts (38 -&gt; 34)</h2>
-<p>Additional (1): fi-tgl-1115g4 <br />
-  Missing    (5): bat-dg1-6 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21433:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10782/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21433 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10782/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21433/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10782 -&gt; Patchwork_21433</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10782: 6eff63a9b932a4aa1e1f6e521cd919aaf57c058f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6259: 89629f64da9f12b144f913865b08d2c9efcd10d7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21433: 0e9f22704d1907a5f599a89cff100bb5f14155be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0e9f22704d19 drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9</p>
-
-</body>
-</html>
-
---===============5094337113885430490==--
