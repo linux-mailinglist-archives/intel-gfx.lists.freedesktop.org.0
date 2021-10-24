@@ -1,60 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A309438A76
-	for <lists+intel-gfx@lfdr.de>; Sun, 24 Oct 2021 17:50:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03CCC438A86
+	for <lists+intel-gfx@lfdr.de>; Sun, 24 Oct 2021 17:59:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 488E36E15D;
-	Sun, 24 Oct 2021 15:50:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 669486E16D;
+	Sun, 24 Oct 2021 15:59:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 297116E15D
- for <intel-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 15:50:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1635090632;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=bfLfimrUvqbu/6ah4vDLzD9ejhn1HthsyzwipdT3dvI=;
- b=NcHqGz+bMIC9nGkK+8xfjESrt7GQsLrIqUWbJQyE3OQPm5EAnN4fB+C6zK66pLIS8rvNNz
- xFves7X1dnfiA6jKS93XEdqCGVn+T1CG9Ndv0CyRzXp3Kbrre1FxU09+4Crth3/ribUaoS
- UHzjXKFXtEgVTtC3CNORNeyu4mOYtqc=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-552-981J1C4XMROBq5PU68ZtjA-1; Sun, 24 Oct 2021 11:50:26 -0400
-X-MC-Unique: 981J1C4XMROBq5PU68ZtjA-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
- [10.5.11.14])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5124510A8E02;
- Sun, 24 Oct 2021 15:50:25 +0000 (UTC)
-Received: from x1.localdomain (unknown [10.39.192.91])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 8C55717CDB;
- Sun, 24 Oct 2021 15:50:21 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, Tsuchiya Yuto <kitakar@gmail.com>
-Date: Sun, 24 Oct 2021 17:50:20 +0200
-Message-Id: <20211024155020.126328-1-hdegoede@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49A426E156;
+ Sun, 24 Oct 2021 15:59:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F44AA0169;
+ Sun, 24 Oct 2021 15:59:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH] drm/i915/vlv_dsi: Double pixelclock on
- read-back for dual-link panels
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sun, 24 Oct 2021 15:59:52 -0000
+Message-ID: <163509119222.27628.11726919402235205438@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211024155010.126275-1-hdegoede@redhat.com>
+In-Reply-To: <20211024155010.126275-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_NO=5FVLV=5FDISP=5FPW=5FDPIO=5FCMN=5FBC=5FIN?=
+ =?utf-8?q?IT_quirk?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,57 +42,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In intel_dsi_get_config() double the pclk returned by foo_dsi_get_pclk()
-for dual-link panels. This fixes the following WARN triggering:
+== Series Details ==
 
- i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in pixel_rate (expected 235710, found 118056)
- i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in hw.pipe_mode.crtc_clock (expected 235710, found 118056)
- i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in hw.adjusted_mode.crtc_clock (expected 235710, found 118056)
- i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in port_clock (expected 235710, found 118056)
- ------------[ cut here ]------------
- pipe state doesn't match!
- WARNING: CPU: 3 PID: 136 at drivers/gpu/drm/i915/display/intel_display.c:9125 intel_display_finish_reset+0x1bd3/0x2050 [i915]
- ...
+Series: drm/i915: Add NO_VLV_DISP_PW_DPIO_CMN_BC_INIT quirk
+URL   : https://patchwork.freedesktop.org/series/96220/
+State : warning
 
-This has been tested on a Xiaomi Mi Pad 2 (with CHT x5-Z8500 SoC) tablet,
-with a 1536x2048 dual-link DSI panel.
+== Summary ==
 
-Note this fix was taken from icl_dsi.c which does the same in
-its get_config().
+$ dim checkpatch origin/drm-tip
+ba397ea89951 drm/i915: Add NO_VLV_DISP_PW_DPIO_CMN_BC_INIT quirk
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#21: 
+ i915 0000:00:02.0: [drm] *ERROR* timeout setting power well state 00000000 (fffff3ff)
 
-Cc: Tsuchiya Yuto <kitakar@gmail.com>
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/vlv_dsi.c | 5 +++++
- 1 file changed, 5 insertions(+)
+-:153: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#153: FILE: drivers/gpu/drm/i915/i915_drv.h:544:
++#define QUIRK_NO_VLV_DISP_PW_DPIO_CMN_BC_INIT (1<<9)
+                                                 ^
 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 3e646a58b38a..2b7909bc52ff 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -1265,7 +1265,9 @@ static void intel_dsi_get_config(struct intel_encoder *encoder,
- 				 struct intel_crtc_state *pipe_config)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 	u32 pclk;
-+
- 	drm_dbg_kms(&dev_priv->drm, "\n");
- 
- 	pipe_config->output_types |= BIT(INTEL_OUTPUT_DSI);
-@@ -1277,6 +1279,9 @@ static void intel_dsi_get_config(struct intel_encoder *encoder,
- 		pclk = vlv_dsi_get_pclk(encoder, pipe_config);
- 	}
- 
-+	if (intel_dsi->dual_link)
-+		pclk *= 2;
-+
- 	if (pclk) {
- 		pipe_config->hw.adjusted_mode.crtc_clock = pclk;
- 		pipe_config->port_clock = pclk;
--- 
-2.31.1
+total: 0 errors, 1 warnings, 1 checks, 75 lines checked
+
 
