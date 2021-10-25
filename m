@@ -2,39 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 454C7439864
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 16:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2382E4398F7
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 16:46:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5802B89FE8;
-	Mon, 25 Oct 2021 14:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F71389F71;
+	Mon, 25 Oct 2021 14:46:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8855D89FE8
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Oct 2021 14:21:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10147"; a="229521283"
-X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="229521283"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 07:21:50 -0700
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DD1A89F71;
+ Mon, 25 Oct 2021 14:46:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="229936490"
+X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="229936490"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 07:46:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="493740148"
+X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="634762348"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga007.fm.intel.com with SMTP; 25 Oct 2021 07:21:48 -0700
+ by fmsmga001.fm.intel.com with SMTP; 25 Oct 2021 07:46:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 25 Oct 2021 17:21:47 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org,
-	Randy Dunlap <rdunlap@infradead.org>
-Date: Mon, 25 Oct 2021 17:21:47 +0300
-Message-Id: <20211025142147.23897-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+ Mon, 25 Oct 2021 17:46:26 +0300
+Date: Mon, 25 Oct 2021 17:46:26 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: He Ying <heying24@huawei.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
+ lyude@redhat.com, anshuman.gupta@intel.com,
+ matthew.d.roper@intel.com, nikola.cornij@amd.com,
+ jose.souza@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Message-ID: <YXbDQrH1/rpA8xL2@intel.com>
+References: <20211022022243.138860-1-heying24@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix type1 DVI DP dual mode adapter
- heuristic for modern platforms
+In-Reply-To: <20211022022243.138860-1-heying24@huawei.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH -next] drm: Small optimization to
+ intel_dp_mst_atomic_master_trans_check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,148 +57,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, Oct 21, 2021 at 10:22:43PM -0400, He Ying wrote:
+> If we want to return from for_each_intel_connector_iter(), one
+> way is calling drm_connector_list_iter_end() before returning
+> to avoid memleak. The other way is just breaking from the bracket
+> and then returning after the outside drm_connector_list_iter_end().
+> Obviously, the second way makes code smaller and more clear.
+> Apply it to the function intel_dp_mst_atomic_master_trans_check().
 
-Looks like we never updated intel_bios_is_port_dp_dual_mode() when
-the VBT port mapping became erratic on modern platforms. This
-is causing us to look up the wrong child device and thus throwing
-the heuristic off (ie. we might end looking at a child device for
-a genuine DP++ port when we were supposed to look at one for a
-native HDMI port).
+Matches what we seem to be doing everywhere else.
+Applied to drm-intel-next. Thanks.
 
-Fix it up by not using the outdated port_mapping[] in
-intel_bios_is_port_dp_dual_mode() and rely on
-intel_bios_encoder_data_lookup() instead.
+> 
+> Signed-off-by: He Ying <heying24@huawei.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 18 ++++++++----------
+>  1 file changed, 8 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 8d13d7b26a25..bbecbbbcb10d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -231,6 +231,7 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+>  	struct drm_connector_list_iter connector_list_iter;
+>  	struct intel_connector *connector_iter;
+> +	int ret = 0;
+>  
+>  	if (DISPLAY_VER(dev_priv) < 12)
+>  		return  0;
+> @@ -243,7 +244,6 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+>  		struct intel_digital_connector_state *conn_iter_state;
+>  		struct intel_crtc_state *crtc_state;
+>  		struct intel_crtc *crtc;
+> -		int ret;
+>  
+>  		if (connector_iter->mst_port != connector->mst_port ||
+>  		    connector_iter == connector)
+> @@ -252,8 +252,8 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+>  		conn_iter_state = intel_atomic_get_digital_connector_state(state,
+>  									   connector_iter);
+>  		if (IS_ERR(conn_iter_state)) {
+> -			drm_connector_list_iter_end(&connector_list_iter);
+> -			return PTR_ERR(conn_iter_state);
+> +			ret = PTR_ERR(conn_iter_state);
+> +			break;
+>  		}
+>  
+>  		if (!conn_iter_state->base.crtc)
+> @@ -262,20 +262,18 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+>  		crtc = to_intel_crtc(conn_iter_state->base.crtc);
+>  		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
+>  		if (IS_ERR(crtc_state)) {
+> -			drm_connector_list_iter_end(&connector_list_iter);
+> -			return PTR_ERR(crtc_state);
+> +			ret = PTR_ERR(crtc_state);
+> +			break;
+>  		}
+>  
+>  		ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
+> -		if (ret) {
+> -			drm_connector_list_iter_end(&connector_list_iter);
+> -			return ret;
+> -		}
+> +		if (ret)
+> +			break;
+>  		crtc_state->uapi.mode_changed = true;
+>  	}
+>  	drm_connector_list_iter_end(&connector_list_iter);
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  static int
+> -- 
+> 2.17.1
 
-Cc: stable@vger.kernel.org
-Tested-by: Randy Dunlap <rdunlap@infradead.org>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4138
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 85 +++++++++++++++++------
- 1 file changed, 63 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index f9776ca85de3..2b1423a43437 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1707,6 +1707,39 @@ static void sanitize_aux_ch(struct intel_bios_encoder_data *devdata,
- 	child->aux_channel = 0;
- }
- 
-+static u8 dvo_port_type(u8 dvo_port)
-+{
-+	switch (dvo_port) {
-+	case DVO_PORT_HDMIA:
-+	case DVO_PORT_HDMIB:
-+	case DVO_PORT_HDMIC:
-+	case DVO_PORT_HDMID:
-+	case DVO_PORT_HDMIE:
-+	case DVO_PORT_HDMIF:
-+	case DVO_PORT_HDMIG:
-+	case DVO_PORT_HDMIH:
-+	case DVO_PORT_HDMII:
-+		return DVO_PORT_HDMIA;
-+	case DVO_PORT_DPA:
-+	case DVO_PORT_DPB:
-+	case DVO_PORT_DPC:
-+	case DVO_PORT_DPD:
-+	case DVO_PORT_DPE:
-+	case DVO_PORT_DPF:
-+	case DVO_PORT_DPG:
-+	case DVO_PORT_DPH:
-+	case DVO_PORT_DPI:
-+		return DVO_PORT_DPA;
-+	case DVO_PORT_MIPIA:
-+	case DVO_PORT_MIPIB:
-+	case DVO_PORT_MIPIC:
-+	case DVO_PORT_MIPID:
-+		return DVO_PORT_MIPIA;
-+	default:
-+		return dvo_port;
-+	}
-+}
-+
- static enum port __dvo_port_to_port(int n_ports, int n_dvo,
- 				    const int port_mapping[][3], u8 dvo_port)
- {
-@@ -2623,35 +2656,17 @@ bool intel_bios_is_port_edp(struct drm_i915_private *i915, enum port port)
- 	return false;
- }
- 
--static bool child_dev_is_dp_dual_mode(const struct child_device_config *child,
--				      enum port port)
-+static bool child_dev_is_dp_dual_mode(const struct child_device_config *child)
- {
--	static const struct {
--		u16 dp, hdmi;
--	} port_mapping[] = {
--		/*
--		 * Buggy VBTs may declare DP ports as having
--		 * HDMI type dvo_port :( So let's check both.
--		 */
--		[PORT_B] = { DVO_PORT_DPB, DVO_PORT_HDMIB, },
--		[PORT_C] = { DVO_PORT_DPC, DVO_PORT_HDMIC, },
--		[PORT_D] = { DVO_PORT_DPD, DVO_PORT_HDMID, },
--		[PORT_E] = { DVO_PORT_DPE, DVO_PORT_HDMIE, },
--		[PORT_F] = { DVO_PORT_DPF, DVO_PORT_HDMIF, },
--	};
--
--	if (port == PORT_A || port >= ARRAY_SIZE(port_mapping))
--		return false;
--
- 	if ((child->device_type & DEVICE_TYPE_DP_DUAL_MODE_BITS) !=
- 	    (DEVICE_TYPE_DP_DUAL_MODE & DEVICE_TYPE_DP_DUAL_MODE_BITS))
- 		return false;
- 
--	if (child->dvo_port == port_mapping[port].dp)
-+	if (dvo_port_type(child->dvo_port) == DVO_PORT_DPA)
- 		return true;
- 
- 	/* Only accept a HDMI dvo_port as DP++ if it has an AUX channel */
--	if (child->dvo_port == port_mapping[port].hdmi &&
-+	if (dvo_port_type(child->dvo_port) == DVO_PORT_HDMIA &&
- 	    child->aux_channel != 0)
- 		return true;
- 
-@@ -2661,10 +2676,36 @@ static bool child_dev_is_dp_dual_mode(const struct child_device_config *child,
- bool intel_bios_is_port_dp_dual_mode(struct drm_i915_private *i915,
- 				     enum port port)
- {
-+	static const struct {
-+		u16 dp, hdmi;
-+	} port_mapping[] = {
-+		/*
-+		 * Buggy VBTs may declare DP ports as having
-+		 * HDMI type dvo_port :( So let's check both.
-+		 */
-+		[PORT_B] = { DVO_PORT_DPB, DVO_PORT_HDMIB, },
-+		[PORT_C] = { DVO_PORT_DPC, DVO_PORT_HDMIC, },
-+		[PORT_D] = { DVO_PORT_DPD, DVO_PORT_HDMID, },
-+		[PORT_E] = { DVO_PORT_DPE, DVO_PORT_HDMIE, },
-+		[PORT_F] = { DVO_PORT_DPF, DVO_PORT_HDMIF, },
-+	};
- 	const struct intel_bios_encoder_data *devdata;
- 
-+	if (HAS_DDI(i915)) {
-+		const struct intel_bios_encoder_data *devdata;
-+
-+		devdata = intel_bios_encoder_data_lookup(i915, port);
-+
-+		return devdata && child_dev_is_dp_dual_mode(&devdata->child);
-+	}
-+
-+	if (port == PORT_A || port >= ARRAY_SIZE(port_mapping))
-+		return false;
-+
- 	list_for_each_entry(devdata, &i915->vbt.display_devices, node) {
--		if (child_dev_is_dp_dual_mode(&devdata->child, port))
-+		if ((devdata->child.dvo_port == port_mapping[port].dp ||
-+		     devdata->child.dvo_port == port_mapping[port].hdmi) &&
-+		    child_dev_is_dp_dual_mode(&devdata->child))
- 			return true;
- 	}
- 
 -- 
-2.32.0
-
+Ville Syrj�l�
+Intel
