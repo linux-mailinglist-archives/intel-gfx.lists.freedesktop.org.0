@@ -1,34 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 378B44399C3
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 17:12:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB5E439A50
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 17:19:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EEDB6E063;
-	Mon, 25 Oct 2021 15:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5C1E6E16D;
+	Mon, 25 Oct 2021 15:19:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3F58B6E049;
- Mon, 25 Oct 2021 15:12:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3B59EAA917;
- Mon, 25 Oct 2021 15:12:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7455414397595017032=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBD236E170;
+ Mon, 25 Oct 2021 15:19:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="315879786"
+X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="315879786"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 08:19:47 -0700
+X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="578154445"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 08:19:47 -0700
+Date: Mon, 25 Oct 2021 08:15:09 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ daniele.ceraolospurio@intel.com, john.c.harrison@intel.com
+Message-ID: <20211025151506.GA10182@jons-linux-dev-box>
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <163489530491.10153.576017085715728906@jlahtine-mobl.ger.corp.intel.com>
+ <20211022164219.GA23160@jons-linux-dev-box>
+ <163515462275.3804.10893210486918669519@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Oct 2021 15:12:05 -0000
-Message-ID: <163517472523.17090.8903076453808751222@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211025134907.20078-1-joonas.lahtinen@linux.intel.com>
-In-Reply-To: <20211025134907.20078-1-joonas.lahtinen@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTUFJ?=
- =?utf-8?q?NTAINERS=3A_Add_Tvrtko_as_drm/i915_co-maintainer?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <163515462275.3804.10893210486918669519@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 00/47] GuC submission support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,197 +50,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7455414397595017032==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Oct 25, 2021 at 12:37:02PM +0300, Joonas Lahtinen wrote:
+> Quoting Matthew Brost (2021-10-22 19:42:19)
+> > On Fri, Oct 22, 2021 at 12:35:04PM +0300, Joonas Lahtinen wrote:
+> > > Hi Matt & John,
+> > > 
+> > > Can you please queue patches with the right Fixes: references to convert
+> > > all the GuC tracepoints to be protected by the LOW_LEVEL_TRACEPOINTS
+> > > protection for now. Please do so before next Wednesday so we get it
+> > > queued in drm-intel-next-fixes.
+> > > 
+> > 
+> > Don't we already do that? I checked i915_trace.h and every tracepoint I
+> > added (intel_context class, i915_request_guc_submit) is protected by
+> > LOW_LEVEL_TRACEPOINTS.
+> > 
+> > The only thing I changed outside of that protection is adding the guc_id
+> > field to existing i915_request class tracepoints.
+> 
+> It's the first search hit for "guc" inside the i915_trace.h file :)
+> 
+> > Without the guc_id in
+> > those tracepoints these are basically useless with GuC submission. We
+> > could revert that if it is a huge deal but as I said then they are
+> > useless...
+> 
+> Let's eliminate it for now and restore the tracepoint exactly as it was.
+> 
 
-== Series Details ==
+Don't really agree - let's render tracepoints to be useless? Are
+tracepoints ABI? I googled this and couldn't really find a definie
+answer. If tracepoints are ABI, then OK I can revert this change but
+still this is a poor technical decision (tracepoints should not be ABI).
 
-Series: MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer
-URL   : https://patchwork.freedesktop.org/series/96247/
-State : success
+> If there is an immediate need, we should instead have an auxilary tracepoint
+> which is enabled only through LOW_LEVEL_TRACEPOINTS and that amends the
+> information of the basic tracepoint.
+> 
 
-== Summary ==
+Regardless of what I said above, I'll post 2 patches. The 1st just
+remove the GuC, the 2nd modify the tracepoint to include guc_id if
+LOW_LEVEL_TRACEPOINTS is defined.
 
-CI Bug Log - changes from CI_DRM_10784 -> Patchwork_21438
-====================================================
+> For the longer term solution we should align towards the dma fence
+> tracepoints. When those are combined with the OA information, one should
+> be able to get a good understanding of both the software and hardware
+> scheduling decisions.
+> 
 
-Summary
--------
+Not sure about this either. I use these tracepoins to correlate things
+to the GuC log. Between the 2, if you know what you are doing you
+basically can figure out everything that is happening. Fields in the
+trace translate directly to fields in the GuC log. Some of these fields
+are backend specific, not sure how these could be pushed the dma fence
+tracepoints. For what it is worth, without these tracepoints we'd likely
+still have a bunch of bugs in the GuC firmware. I understand these
+points, several other i915 developers do, and several of the GuC
+firmware developers do too.
 
-  **SUCCESS**
+Matt
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html
-
-Participating hosts (42 -> 36)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21438:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {fi-hsw-gt1}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10784/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21438 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_ctx_create@basic:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][3] ([fdo#109271]) +4 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_ctx_create@basic.html
-
-  * igt@gem_exec_parallel@engines@userptr:
-    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][4] ([i915#299])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][5] ([i915#2403] / [i915#2722] / [i915#4312])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10784 -> Patchwork_21438
-
-  CI-20190529: 20190529
-  CI_DRM_10784: 4afbf8baed08e569711f413cce2ccd415b1a51c9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6260: 46994310410404a07d142f33fab220d718c27f64 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21438: f6ff060dd9a1872af489e8ad4890ca43a07cf8b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f6ff060dd9a1 MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html
-
---===============7455414397595017032==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96247/">https://patchwork.freedesktop.org/series/96247/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10784 -&gt; Patchwork_21438</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html</p>
-<h2>Participating hosts (42 -&gt; 36)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21438:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10784/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21438 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_create@basic:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_ctx_create@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_parallel@engines@userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10784 -&gt; Patchwork_21438</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10784: 4afbf8baed08e569711f413cce2ccd415b1a51c9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6260: 46994310410404a07d142f33fab220d718c27f64 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21438: f6ff060dd9a1872af489e8ad4890ca43a07cf8b0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f6ff060dd9a1 MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer</p>
-
-</body>
-</html>
-
---===============7455414397595017032==--
+> Regards, Joonas
+> 
+> > 
+> > Matt
+> > 
+> > > There's the orthogonal track to discuss what would be the stable set of
+> > > tracepoints we could expose. However, before that discussion is closed,
+> > > let's keep a rather strict line to avoid potential maintenance burned.
+> > > 
+> > > We can then relax in the future as needed.
+> > > 
+> > > Regards, Joonas
+> > > 
+> > > Quoting Matthew Brost (2021-06-24 10:04:29)
+> > > > As discussed in [1], [2] we are enabling GuC submission support in the
+> > > > i915. This is a subset of the patches in step 5 described in [1],
+> > > > basically it is absolute to enable CI with GuC submission on gen11+
+> > > > platforms.
+> > > > 
+> > > > This series itself will likely be broken down into smaller patch sets to
+> > > > merge. Likely into CTBs changes, basic submission, virtual engines, and
+> > > > resets.
+> > > > 
+> > > > A following series will address the missing patches remaining from [1].
+> > > > 
+> > > > Locally tested on TGL machine and basic tests seem to be passing.
+> > > > 
+> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > 
+> > > > [1] https://patchwork.freedesktop.org/series/89844/
+> > > > [2] https://patchwork.freedesktop.org/series/91417/
+> > > > 
+> > > > Daniele Ceraolo Spurio (1):
+> > > >   drm/i915/guc: Unblock GuC submission on Gen11+
+> > > > 
+> > > > John Harrison (10):
+> > > >   drm/i915/guc: Module load failure test for CT buffer creation
+> > > >   drm/i915: Track 'serial' counts for virtual engines
+> > > >   drm/i915/guc: Provide mmio list to be saved/restored on engine reset
+> > > >   drm/i915/guc: Don't complain about reset races
+> > > >   drm/i915/guc: Enable GuC engine reset
+> > > >   drm/i915/guc: Fix for error capture after full GPU reset with GuC
+> > > >   drm/i915/guc: Hook GuC scheduling policies up
+> > > >   drm/i915/guc: Connect reset modparam updates to GuC policy flags
+> > > >   drm/i915/guc: Include scheduling policies in the debugfs state dump
+> > > >   drm/i915/guc: Add golden context to GuC ADS
+> > > > 
+> > > > Matthew Brost (36):
+> > > >   drm/i915/guc: Relax CTB response timeout
+> > > >   drm/i915/guc: Improve error message for unsolicited CT response
+> > > >   drm/i915/guc: Increase size of CTB buffers
+> > > >   drm/i915/guc: Add non blocking CTB send function
+> > > >   drm/i915/guc: Add stall timer to non blocking CTB send function
+> > > >   drm/i915/guc: Optimize CTB writes and reads
+> > > >   drm/i915/guc: Add new GuC interface defines and structures
+> > > >   drm/i915/guc: Remove GuC stage descriptor, add lrc descriptor
+> > > >   drm/i915/guc: Add lrc descriptor context lookup array
+> > > >   drm/i915/guc: Implement GuC submission tasklet
+> > > >   drm/i915/guc: Add bypass tasklet submission path to GuC
+> > > >   drm/i915/guc: Implement GuC context operations for new inteface
+> > > >   drm/i915/guc: Insert fence on context when deregistering
+> > > >   drm/i915/guc: Defer context unpin until scheduling is disabled
+> > > >   drm/i915/guc: Disable engine barriers with GuC during unpin
+> > > >   drm/i915/guc: Extend deregistration fence to schedule disable
+> > > >   drm/i915: Disable preempt busywait when using GuC scheduling
+> > > >   drm/i915/guc: Ensure request ordering via completion fences
+> > > >   drm/i915/guc: Disable semaphores when using GuC scheduling
+> > > >   drm/i915/guc: Ensure G2H response has space in buffer
+> > > >   drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC
+> > > >   drm/i915/guc: Update GuC debugfs to support new GuC
+> > > >   drm/i915/guc: Add several request trace points
+> > > >   drm/i915: Add intel_context tracing
+> > > >   drm/i915/guc: GuC virtual engines
+> > > >   drm/i915: Hold reference to intel_context over life of i915_request
+> > > >   drm/i915/guc: Disable bonding extension with GuC submission
+> > > >   drm/i915/guc: Direct all breadcrumbs for a class to single breadcrumbs
+> > > >   drm/i915/guc: Reset implementation for new GuC interface
+> > > >   drm/i915: Reset GPU immediately if submission is disabled
+> > > >   drm/i915/guc: Add disable interrupts to guc sanitize
+> > > >   drm/i915/guc: Suspend/resume implementation for new interface
+> > > >   drm/i915/guc: Handle context reset notification
+> > > >   drm/i915/guc: Handle engine reset failure notification
+> > > >   drm/i915/guc: Enable the timer expired interrupt for GuC
+> > > >   drm/i915/guc: Capture error state on context reset
+> > > > 
+> > > >  drivers/gpu/drm/i915/gem/i915_gem_context.c   |   30 +-
+> > > >  drivers/gpu/drm/i915/gem/i915_gem_context.h   |    1 +
+> > > >  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |    3 +-
+> > > >  drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |    6 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   |   41 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_breadcrumbs.h   |   14 +-
+> > > >  .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |    7 +
+> > > >  drivers/gpu/drm/i915/gt/intel_context.c       |   41 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_context.h       |   31 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_context_types.h |   49 +
+> > > >  drivers/gpu/drm/i915/gt/intel_engine.h        |   72 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  182 +-
+> > > >  .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |   71 +-
+> > > >  .../gpu/drm/i915/gt/intel_engine_heartbeat.h  |    4 +
+> > > >  drivers/gpu/drm/i915/gt/intel_engine_types.h  |   12 +-
+> > > >  .../drm/i915/gt/intel_execlists_submission.c  |  234 +-
+> > > >  .../drm/i915/gt/intel_execlists_submission.h  |   11 -
+> > > >  drivers/gpu/drm/i915/gt/intel_gt.c            |   21 +
+> > > >  drivers/gpu/drm/i915/gt/intel_gt.h            |    2 +
+> > > >  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |    6 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_gt_requests.c   |   22 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_gt_requests.h   |    9 +-
+> > > >  drivers/gpu/drm/i915/gt/intel_lrc_reg.h       |    1 -
+> > > >  drivers/gpu/drm/i915/gt/intel_reset.c         |   20 +-
+> > > >  .../gpu/drm/i915/gt/intel_ring_submission.c   |   28 +
+> > > >  drivers/gpu/drm/i915/gt/intel_rps.c           |    4 +
+> > > >  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   46 +-
+> > > >  .../gpu/drm/i915/gt/intel_workarounds_types.h |    1 +
+> > > >  drivers/gpu/drm/i915/gt/mock_engine.c         |   41 +-
+> > > >  drivers/gpu/drm/i915/gt/selftest_context.c    |   10 +
+> > > >  drivers/gpu/drm/i915/gt/selftest_execlists.c  |   20 +-
+> > > >  .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   15 +
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   82 +-
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  106 +-
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  460 +++-
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h    |    3 +
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  318 ++-
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |   22 +-
+> > > >  .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    |   25 +-
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   88 +-
+> > > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 2197 +++++++++++++++--
+> > > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.h |   17 +-
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  102 +-
+> > > >  drivers/gpu/drm/i915/gt/uc/intel_uc.h         |   11 +
+> > > >  drivers/gpu/drm/i915/i915_debugfs.c           |    2 +
+> > > >  drivers/gpu/drm/i915/i915_debugfs_params.c    |   31 +
+> > > >  drivers/gpu/drm/i915/i915_gem_evict.c         |    1 +
+> > > >  drivers/gpu/drm/i915/i915_gpu_error.c         |   25 +-
+> > > >  drivers/gpu/drm/i915/i915_reg.h               |    2 +
+> > > >  drivers/gpu/drm/i915/i915_request.c           |  159 +-
+> > > >  drivers/gpu/drm/i915/i915_request.h           |   21 +
+> > > >  drivers/gpu/drm/i915/i915_scheduler.c         |    6 +
+> > > >  drivers/gpu/drm/i915/i915_scheduler.h         |    6 +
+> > > >  drivers/gpu/drm/i915/i915_scheduler_types.h   |    5 +
+> > > >  drivers/gpu/drm/i915/i915_trace.h             |  197 +-
+> > > >  .../gpu/drm/i915/selftests/igt_live_test.c    |    2 +-
+> > > >  .../gpu/drm/i915/selftests/mock_gem_device.c  |    3 +-
+> > > >  57 files changed, 4159 insertions(+), 787 deletions(-)
+> > > > 
+> > > > -- 
+> > > > 2.28.0
+> > > > 
