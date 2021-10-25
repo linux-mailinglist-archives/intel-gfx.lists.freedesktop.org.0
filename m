@@ -1,59 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52FBA4399C1
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 17:11:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 378B44399C3
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 17:12:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26C2E6E0B7;
-	Mon, 25 Oct 2021 15:11:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EEDB6E063;
+	Mon, 25 Oct 2021 15:12:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
- [IPv6:2607:f8b0:4864:20::72e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E01C6E049;
- Mon, 25 Oct 2021 15:11:29 +0000 (UTC)
-Received: by mail-qk1-x72e.google.com with SMTP id bl14so12102779qkb.4;
- Mon, 25 Oct 2021 08:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=9U69ZOR0qEZGqZ3DsVw2NfIxCFPxdN0F2cnCNMl6Iak=;
- b=fg+IQGs9heYtILJy4/zLtJSbWGpYAGrffxBJORwpE/5NJxQJ7ZShT/R82uHE91vqGK
- JLd9LfQe9RXsQT81hzvfe+0vzOI0sGZooQQ1HXgZWfQbQMz49YFSjP6ylSGdHwC7QYbb
- iseexKjF9Ttlw0si0Xfa9nI0rKOePg5AqywbEmqaSnTXSNDR+MZFSe4++RLBo2I9PKY1
- mfPvKdXSyfJy9yRvfzU1T10ODEHVBuK58f2hJ/Ncfg9oRHAtggCKtKxB6DcxO+Hoz9uL
- L6XVRYQnH2+mx+d6Bkn9C+VGxAJySEHP3uwVxxlaebwyp0c2GtJ99JjjW8JdcQQKUdtG
- Tukg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=9U69ZOR0qEZGqZ3DsVw2NfIxCFPxdN0F2cnCNMl6Iak=;
- b=Cby9W9sAkG89ap2F4BMaC7UgQnu5ouDLYmGtljPUYP8WCAhs8M64hJsjES2q0VRi0R
- AXQo5/WDnC2C4snauN84X2+W1jE7Mu1/fyQCKLH+EQVrUKS+FPFOgBs5jiIGaDYJbzRc
- icgiUump0aFyC10+1K/sZ0g7bNQmI4vhZn7Lyav3HeA0Fdv7E18yMqtMOUNkstMaknSw
- Kzb7/aA9GWFU3CeD2TmF87npWqbTLXLUZ889F2Ks/R8ZwSTzi/6AvlnNiOz+nPIsO2sS
- 3PFvps9831rwzEzh0kUxBEgOLZnvEi81Oje0gDKs5vnliyP4p1d6Mwph2T5QZoNL9oia
- fx+g==
-X-Gm-Message-State: AOAM5314FXtaKwvrY4ZOhhb3W53tYmJgLTeubPtY3GwdzRfVv94Ca9GK
- N1OWaE2aF0YWeRW7FsgqMVAkiKSlLqIc0oK32B/lvtK8xio=
-X-Google-Smtp-Source: ABdhPJzg23SOIxQnbfR1Rj65XxVrhY7bg8zzZRa97Fr5o4AOKfdOMqKRKIfxSbU1gRdkJHFNaeZDu/m4am7qgAzxkMk=
-X-Received: by 2002:a05:620a:2686:: with SMTP id
- c6mr5867315qkp.223.1635174687495; 
- Mon, 25 Oct 2021 08:11:27 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3F58B6E049;
+ Mon, 25 Oct 2021 15:12:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3B59EAA917;
+ Mon, 25 Oct 2021 15:12:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7455414397595017032=="
 MIME-Version: 1.0
-References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
- <20211021103605.735002-21-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211021103605.735002-21-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 25 Oct 2021 16:11:00 +0100
-Message-ID: <CAM0jSHOKbNtCCOtF+EAjaEWfW3tQ_NHVqejz5gfmpqy3XLg0kw@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 21/28] drm/i915: Drain the ttm delayed
- workqueue too
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Oct 2021 15:12:05 -0000
+Message-ID: <163517472523.17090.8903076453808751222@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211025134907.20078-1-joonas.lahtinen@linux.intel.com>
+In-Reply-To: <20211025134907.20078-1-joonas.lahtinen@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTUFJ?=
+ =?utf-8?q?NTAINERS=3A_Add_Tvrtko_as_drm/i915_co-maintainer?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +41,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Oct 2021 at 11:37, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> Be thorough..
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+--===============7455414397595017032==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Is this strictly needed for something? Needs a proper commit message anyway.
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/i915/i915_drv.h | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 22c891720c6d..7c5ed5957fe2 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1819,6 +1819,7 @@ static inline void i915_gem_drain_freed_objects(struct drm_i915_private *i915)
->          */
->         while (atomic_read(&i915->mm.free_count)) {
->                 flush_work(&i915->mm.free_work);
-> +               flush_delayed_work(&i915->bdev.wq);
->                 rcu_barrier();
->         }
->  }
-> --
-> 2.33.0
->
+Series: MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer
+URL   : https://patchwork.freedesktop.org/series/96247/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10784 -> Patchwork_21438
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html
+
+Participating hosts (42 -> 36)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21438:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {fi-hsw-gt1}:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10784/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21438 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_create@basic:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][3] ([fdo#109271]) +4 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_ctx_create@basic.html
+
+  * igt@gem_exec_parallel@engines@userptr:
+    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][4] ([i915#299])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][5] ([i915#2403] / [i915#2722] / [i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10784 -> Patchwork_21438
+
+  CI-20190529: 20190529
+  CI_DRM_10784: 4afbf8baed08e569711f413cce2ccd415b1a51c9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6260: 46994310410404a07d142f33fab220d718c27f64 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21438: f6ff060dd9a1872af489e8ad4890ca43a07cf8b0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f6ff060dd9a1 MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html
+
+--===============7455414397595017032==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96247/">https://patchwork.freedesktop.org/series/96247/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10784 -&gt; Patchwork_21438</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/index.html</p>
+<h2>Participating hosts (42 -&gt; 36)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (7): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21438:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10784/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21438 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_ctx_create@basic:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_ctx_create@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_parallel@engines@userptr:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21438/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10784 -&gt; Patchwork_21438</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10784: 4afbf8baed08e569711f413cce2ccd415b1a51c9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6260: 46994310410404a07d142f33fab220d718c27f64 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21438: f6ff060dd9a1872af489e8ad4890ca43a07cf8b0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f6ff060dd9a1 MAINTAINERS: Add Tvrtko as drm/i915 co-maintainer</p>
+
+</body>
+</html>
+
+--===============7455414397595017032==--
