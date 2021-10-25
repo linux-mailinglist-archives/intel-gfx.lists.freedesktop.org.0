@@ -2,49 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF633439AAE
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 17:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA76E439BBD
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Oct 2021 18:38:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E46D89F89;
-	Mon, 25 Oct 2021 15:44:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3E06E17A;
+	Mon, 25 Oct 2021 16:38:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0C1589F89;
- Mon, 25 Oct 2021 15:44:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="229541446"
-X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="229541446"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 08:42:38 -0700
-X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; d="scan'208";a="446684809"
-Received: from dscaswel-mobl2.ger.corp.intel.com (HELO [10.213.242.254])
- ([10.213.242.254])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 08:42:29 -0700
-To: Wan Jiabing <wanjiabing@vivo.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jason Ekstrand <jason@jlekstrand.net>,
- Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: kael_w@yeah.net
-References: <20211025113316.24424-1-wanjiabing@vivo.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <58331d3d-c3e3-0e82-eb7a-469c6e72d7a7@intel.com>
-Date: Mon, 25 Oct 2021 16:42:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16BD06E174;
+ Mon, 25 Oct 2021 16:38:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="210479314"
+X-IronPort-AV: E=Sophos;i="5.87,181,1631602800"; d="scan'208";a="210479314"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 09:38:44 -0700
+X-IronPort-AV: E=Sophos;i="5.87,181,1631602800"; d="scan'208";a="571695932"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 09:38:44 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Cc: <joonas.lahtinen@linux.intel.com>, <daniele.ceraolospurio@intel.com>,
+ <john.c.harrison@intel.com>
+Date: Mon, 25 Oct 2021 09:34:04 -0700
+Message-Id: <20211025163404.2774-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20211025113316.24424-1-wanjiabing@vivo.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use ERR_CAST instead of
- ERR_PTR(PTR_ERR())
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/trace: Hide backend specific fields
+ behind Kconfig
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,30 +48,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 25/10/2021 12:32, Wan Jiabing wrote:
-> Fix following coccicheck warning:
-> ./drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3117:15-22: WARNING:
-> ERR_CAST can be used with eb->requests[i].
-> 
-> Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
+Hide the guc_id and tail fields, for request trace points, behind
+CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS Kconfig option. Trace points
+are ABI (maybe?) so don't change them without kernel developers Kconfig
+options.
 
-Pushed to drm-intel-gt-next. Thanks.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/i915_trace.h | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 4d7da07442f2..eb2dcaf78d08 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -3114,7 +3114,7 @@ eb_requests_create(struct i915_execbuffer *eb, struct dma_fence *in_fence,
->   		/* Allocate a request for this batch buffer nice and early. */
->   		eb->requests[i] = i915_request_create(eb_find_context(eb, i));
->   		if (IS_ERR(eb->requests[i])) {
-> -			out_fence = ERR_PTR(PTR_ERR(eb->requests[i]));
-> +			out_fence = ERR_CAST(eb->requests[i]);
->   			eb->requests[i] = NULL;
->   			return out_fence;
->   		}
-> 
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+index 9795f456cccf..4f5238d02b51 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -787,6 +787,7 @@ TRACE_EVENT(i915_request_queue,
+ 		      __entry->ctx, __entry->seqno, __entry->flags)
+ );
+ 
++#if defined(CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS)
+ DECLARE_EVENT_CLASS(i915_request,
+ 	    TP_PROTO(struct i915_request *rq),
+ 	    TP_ARGS(rq),
+@@ -816,6 +817,32 @@ DECLARE_EVENT_CLASS(i915_request,
+ 		      __entry->guc_id, __entry->ctx, __entry->seqno,
+ 		      __entry->tail)
+ );
++#else
++DECLARE_EVENT_CLASS(i915_request,
++	    TP_PROTO(struct i915_request *rq),
++	    TP_ARGS(rq),
++
++	    TP_STRUCT__entry(
++			     __field(u32, dev)
++			     __field(u64, ctx)
++			     __field(u16, class)
++			     __field(u16, instance)
++			     __field(u32, seqno)
++			     ),
++
++	    TP_fast_assign(
++			   __entry->dev = rq->engine->i915->drm.primary->index;
++			   __entry->class = rq->engine->uabi_class;
++			   __entry->instance = rq->engine->uabi_instance;
++			   __entry->ctx = rq->fence.context;
++			   __entry->seqno = rq->fence.seqno;
++			   ),
++
++	    TP_printk("dev=%u, engine=%u:%u, ctx=%llu, seqno=%u",
++		      __entry->dev, __entry->class, __entry->instance,
++		      __entry->ctx, __entry->seqno)
++);
++#endif
+ 
+ DEFINE_EVENT(i915_request, i915_request_add,
+ 	     TP_PROTO(struct i915_request *rq),
+-- 
+2.32.0
+
