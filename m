@@ -2,79 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7B043A9BC
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 03:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16B9A43ABE0
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 07:52:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEC936E1F2;
-	Tue, 26 Oct 2021 01:30:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18BDE6E2B4;
+	Tue, 26 Oct 2021 05:52:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92B3E6E1F7
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 01:30:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1635211817;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=tgXMA3BrRhOniqxXRIBV1pJtvUVvtvT46cVR8aAsSEQ=;
- b=aUafzLPwDYab+bat/3L3EUbqbaXeZsXTBKyYLxpY2/EsNTe4rGcOBhSfPyoKxx0J9rlCwF
- t6ed2xO5IO/d92Phcw39//35n0fC4TMe+Q8L2BF+PFymImvA2S+Bc4l1menbkWGa1Hsopn
- DggasnXAtGoMNDYvSRvFCpqk7UgYWCM=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-551-nY6_5XKsOsWImRQYJuaLmA-1; Mon, 25 Oct 2021 21:30:16 -0400
-X-MC-Unique: nY6_5XKsOsWImRQYJuaLmA-1
-Received: by mail-qt1-f198.google.com with SMTP id
- l14-20020ac8458e000000b002a7829805b8so6758281qtn.22
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Oct 2021 18:30:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:organization
- :user-agent:mime-version:content-transfer-encoding;
- bh=tgXMA3BrRhOniqxXRIBV1pJtvUVvtvT46cVR8aAsSEQ=;
- b=7N5eTOaVZb0+jGTKiVqV8xeqzpx+M3+q81n4MfGDw5iANGFner9Ct0svnKWfr7ZFk4
- GV5nLy0ll/xPYvN/nY2UGbc22kIQp3ZmmziMnpqykVswD4ZuST4/vWGik8jJfpTAXFMd
- lwFS4QYQ8UY8ZjC47CvpOZpb2723Gw7pDRRkR/ZZFeHZEtQsWHQI815i+WQIgAvonQc5
- lQeDbA3SQgNsOg0Jfs7QOWyUIseGSkhUo44vYOWV6Daem5SRd1xmAipnOkzL9MGJhIHb
- ZwBzu5eazZGqyAi1boJBsD0Sspm/STLhfp5c9Hs6LtkR4I3+rF0m62PvP3+nQjFz3d2x
- oRvg==
-X-Gm-Message-State: AOAM530ckWkfOa1Tx2UbmyBFK2seluRBS9m6cLV7ldY7ogqIjVbcp1m0
- 1Tz0+Fx8j5eSxe6Zvb69ACNoQgaUSy/kod423HeDTUt9E1Ypd4i3k9Y2IHCjxB9+2TxElryaJ7E
- FqgtmR2e1MlTVpGxPnz3mlOFJFtCl
-X-Received: by 2002:a05:620a:4621:: with SMTP id
- br33mr14286637qkb.436.1635211815865; 
- Mon, 25 Oct 2021 18:30:15 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzFScchRf0T8WqzucShcSUH6rIDZE5L50dgnvYrs/YJkClN+IHMF49zWA6iuJF9H4xehg+inA==
-X-Received: by 2002:a05:620a:4621:: with SMTP id
- br33mr14286612qkb.436.1635211815617; 
- Mon, 25 Oct 2021 18:30:15 -0700 (PDT)
-Received: from [192.168.8.138] (pool-96-230-249-157.bstnma.fios.verizon.net.
- [96.230.249.157])
- by smtp.gmail.com with ESMTPSA id h25sm9390294qkk.65.2021.10.25.18.30.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 Oct 2021 18:30:15 -0700 (PDT)
-Message-ID: <e0e3cb4ea8b6f2d08e8d07a2ad3b25a2dca4570e.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Sean Paul <sean@poorly.run>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- dri-devel@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Date: Mon, 25 Oct 2021 21:30:14 -0400
-Organization: Red Hat
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41F846E2B4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 05:52:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="227282535"
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="227282535"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 22:52:10 -0700
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="446951162"
+Received: from linux-z370-aorus-gaming-5.iind.intel.com ([10.223.34.160])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 22:52:08 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: imre.deak@intel.com, uma.shankar@intel.com, jani.nikula@linux.intel.com,
+ animesh.manna@intel.com
+Date: Tue, 26 Oct 2021 11:08:21 +0530
+Message-Id: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] topic/amdgpu-dp2.0-mst
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Remove check for low voltage
+ sku for max dp source rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,75 +47,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-topic/amdgpu-dp2.0-mst-2021-10-25:
-UAPI Changes:
-Nope!
+The low voltage sku check can be ignored as OEMs need to consider that
+when designing the board and then put any limits in VBT.
 
-Cross-subsystem Changes:
-drm_dp_update_payload_part1() takes a new argument for specifying what the
-VCPI slot start is
+Same is now changed in Bspec pages.
 
-Core Changes:
-Make the DP MST helpers aware of the current starting VCPI slot/VCPI total
-slot count...
+v2: Added debug print for combo PHY procmon reference values
+to get voltage configuration of combo PHY ports. (Imre)
 
-Driver Changes:
-...and then add support for taking advantage of this for 128b/132b links on DP
-2.0 for amdgpu
-The following changes since commit 6f2f7c83303d2227f47551423e507d77d9ea01c7:
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  4 +++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 32 ++-----------------
+ 2 files changed, 7 insertions(+), 29 deletions(-)
 
-  Merge tag 'drm-intel-gt-next-2021-10-21' of
-git://anongit.freedesktop.org/drm/drm-intel into drm-next (2021-10-22 06:30:34
-+1000)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/topic/amdgpu-dp2.0-mst-2021-
-10-25
-
-for you to fetch changes up to 41724ea273cdda5261db4fabd6bfb1375fbc96b2:
-
-  drm/amd/display: Add DP 2.0 MST DM Support (2021-10-25 21:21:09 -0400)
-
-----------------------------------------------------------------
-UAPI Changes:
-Nope!
-
-Cross-subsystem Changes:
-drm_dp_update_payload_part1() takes a new argument for specifying what the
-VCPI slot start is
-
-Core Changes:
-Make the DP MST helpers aware of the current starting VCPI slot/VCPI total
-slot count...
-
-Driver Changes:
-...and then add support for taking advantage of this for 128b/132b links on DP
-2.0 for amdgpu
-
-----------------------------------------------------------------
-Bhawanpreet Lakha (3):
-      drm: Remove slot checks in dp mst topology during commit
-      drm: Update MST First Link Slot Information Based on Encoding Format
-      drm/amd/display: Add DP 2.0 MST DM Support
-
-Fangzhi Zuo (1):
-      drm/amd/display: Add DP 2.0 MST DC Support
-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  29 ++
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c  |   3 +
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  |   5 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c           |  14 +
- drivers/gpu/drm/amd/display/dc/core/dc_link.c      | 292
-+++++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c   |  19 ++
- drivers/gpu/drm/amd/display/dc/dc_link.h           |   7 +
- drivers/gpu/drm/amd/display/dc/dc_stream.h         |  13 +
- drivers/gpu/drm/drm_dp_mst_topology.c              |  42 ++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   4 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c            |   2 +-
- drivers/gpu/drm/radeon/radeon_dp_mst.c             |   4 +-
- include/drm/drm_dp_mst_helper.h                    |   5 +-
- 13 files changed, 423 insertions(+), 16 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index 634e8d449457..01ff86b3ff91 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -112,6 +112,10 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
+ 
+ 	procmon = icl_get_procmon_ref_values(dev_priv, phy);
+ 
++	drm_dbg(&dev_priv->drm,
++		"Combo PHY %c PROCMON values : 0x%x, 0x%x, 0x%x\n",
++		phy_name(phy), procmon->dw1, procmon->dw9, procmon->dw10);
++
+ 	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
+ 			    (0xff << 16) | 0xff, procmon->dw1);
+ 	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f5dc2126d140..693d7e097295 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -385,23 +385,13 @@ static int dg2_max_source_rate(struct intel_dp *intel_dp)
+ 	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
+ }
+ 
+-static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
+-{
+-	u32 voltage;
+-
+-	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
+-
+-	return voltage == VOLTAGE_INFO_0_85V;
+-}
+-
+ static int icl_max_source_rate(struct intel_dp *intel_dp)
+ {
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+ 	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+ 
+-	if (intel_phy_is_combo(dev_priv, phy) &&
+-	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
++	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(intel_dp))
+ 		return 540000;
+ 
+ 	return 810000;
+@@ -409,23 +399,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+ 
+ static int ehl_max_source_rate(struct intel_dp *intel_dp)
+ {
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+-	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+-
+-	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
+-		return 540000;
+-
+-	return 810000;
+-}
+-
+-static int dg1_max_source_rate(struct intel_dp *intel_dp)
+-{
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+-	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+-
+-	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
++	if (intel_dp_is_edp(intel_dp))
+ 		return 540000;
+ 
+ 	return 810000;
+@@ -468,7 +442,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+ 			max_rate = dg2_max_source_rate(intel_dp);
+ 		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
+ 			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+-			max_rate = dg1_max_source_rate(intel_dp);
++			max_rate = 810000;
+ 		else if (IS_JSL_EHL(dev_priv))
+ 			max_rate = ehl_max_source_rate(intel_dp);
+ 		else
+-- 
+2.25.1
 
