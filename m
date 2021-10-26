@@ -1,44 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B646943AEC0
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 11:11:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5568943AEC6
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 11:13:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD6FD6E413;
-	Tue, 26 Oct 2021 09:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A527C6E413;
+	Tue, 26 Oct 2021 09:13:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1BF89EA9;
- Tue, 26 Oct 2021 09:11:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="217029911"
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="217029911"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 02:11:15 -0700
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="446654974"
-Received: from scelesti-mobl.amr.corp.intel.com (HELO localhost)
- ([10.249.254.162])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 02:11:13 -0700
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA4D6E41D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 09:13:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="293321966"
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="293321966"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 02:13:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="497232820"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 26 Oct 2021 02:13:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 26 Oct 2021 12:13:46 +0300
+Date: Tue, 26 Oct 2021 12:13:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <YXfGymgYFioIlZMu@intel.com>
+References: <20211026084208.2574-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <fd148c6c-4bd9-6a28-f096-80d9a41778fc@intel.com>
-References: <20211025163404.2774-1-matthew.brost@intel.com>
- <fd148c6c-4bd9-6a28-f096-80d9a41778fc@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: daniele.ceraolospurio@intel.com
-To: John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <163523947144.6968.10786796223069147391@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 26 Oct 2021 12:11:11 +0300
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/trace: Hide backend specific
- fields behind Kconfig
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211026084208.2574-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: fix integer overflow in
+ 128b/132b data rate calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,103 +52,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting John Harrison (2021-10-26 00:06:54)
-> On 10/25/2021 09:34, Matthew Brost wrote:
-> > Hide the guc_id and tail fields, for request trace points, behind
-> > CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS Kconfig option. Trace points
-> > are ABI (maybe?) so don't change them without kernel developers Kconfig
-> > options.
-> The i915 sw arch team have previously hard blocked requests for changes=20
-> to trace points from user land tool developers on the grounds that trace =
+On Tue, Oct 26, 2021 at 11:42:07AM +0300, Jani Nikula wrote:
+> The intermediate value 1000000 * 10 * 9671 overflows 32 bits, so force
+> promotion to a bigger type.
+> 
+> >From the logs:
+> 
+> [drm:intel_dp_compute_config [i915]] DP link rate required 3657063 available -580783288
+> 
+> Fixes: 48efd014f0ea ("drm/i915/dp: add max data rate calculation for UHBR rates")
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f5dc2126d140..9a0cd2e1ebea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -352,7 +352,7 @@ intel_dp_max_data_rate(int max_link_rate, int max_lanes)
+>  		 */
+>  		int max_link_rate_kbps = max_link_rate * 10;
+>  
+> -		max_link_rate_kbps = DIV_ROUND_CLOSEST_ULL(max_link_rate_kbps * 9671, 10000);
+> +		max_link_rate_kbps = DIV_ROUND_CLOSEST_ULL(max_link_rate_kbps * 9671UL, 10000UL);
 
-> points are not ABI and are free to change at whim as and when the i915=20
-> internal implementation changes. They are purely for use of developers=20
-> to debug the i915 driver as the i915 driver currently stands at any=20
-> given instant.
+UL is not 64bit on 32bit architectures. Also having a 64bit divisor
+would be wasteful.
 
-Correct. That is indicated by the LOW_LEVEL_TRACEPOINTS.
+DIV_ROUND_CLOSEST_ULL(mul_u32_u32(...), 10000);
 
-All the discussions about stable usage really revolve around the low level
-backend specific scheduling tracepoints to analyze hardware utilization.
-And those even become infeasible to expose when GuC scheduling is enabled
-as the information really goes to GuC log.
+>  		max_link_rate = max_link_rate_kbps / 8;
+>  	}
+>  
+> -- 
+> 2.30.2
 
-Luckily we have added the mechanism to get the actual utilization
-through OA via gpuvis tool, so we don't have to guesstimate it from the
-KMD scheduling tracepoints (which are for KMD debugging).
-
-> So I don't see how it can be argued that we must not update any trace=20
-> points to allow for debugging of i915 scheduling issues on current=20
-> platforms. And having to enable extra config options just to keep=20
-> existing higher level trace points usable seems broken.
-
-We can update them (even outside LOW_LEVEL_TRACEPOINTS) but there should
-not be any backend specific data added outside the LOW_LEVEL_TRACEPOINTS,
-just to prevent anyone from starting to use them in some
-visualization/analysis tooling.
-
-If you have the energy to drive the general LKML/Linux Plumbers level
-discussion about tracepoint stability limbo into a conclusion, I'll be
-more than happy to see it resolved :)
-
-Regards, Joonas
-
->=20
-> John.
->=20
->=20
-> >
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/i915_trace.h | 27 +++++++++++++++++++++++++++
-> >   1 file changed, 27 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i=
-915_trace.h
-> > index 9795f456cccf..4f5238d02b51 100644
-> > --- a/drivers/gpu/drm/i915/i915_trace.h
-> > +++ b/drivers/gpu/drm/i915/i915_trace.h
-> > @@ -787,6 +787,7 @@ TRACE_EVENT(i915_request_queue,
-> >                     __entry->ctx, __entry->seqno, __entry->flags)
-> >   );
-> >  =20
-> > +#if defined(CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS)
-> >   DECLARE_EVENT_CLASS(i915_request,
-> >           TP_PROTO(struct i915_request *rq),
-> >           TP_ARGS(rq),
-> > @@ -816,6 +817,32 @@ DECLARE_EVENT_CLASS(i915_request,
-> >                     __entry->guc_id, __entry->ctx, __entry->seqno,
-> >                     __entry->tail)
-> >   );
-> > +#else
-> > +DECLARE_EVENT_CLASS(i915_request,
-> > +         TP_PROTO(struct i915_request *rq),
-> > +         TP_ARGS(rq),
-> > +
-> > +         TP_STRUCT__entry(
-> > +                          __field(u32, dev)
-> > +                          __field(u64, ctx)
-> > +                          __field(u16, class)
-> > +                          __field(u16, instance)
-> > +                          __field(u32, seqno)
-> > +                          ),
-> > +
-> > +         TP_fast_assign(
-> > +                        __entry->dev =3D rq->engine->i915->drm.primary=
-->index;
-> > +                        __entry->class =3D rq->engine->uabi_class;
-> > +                        __entry->instance =3D rq->engine->uabi_instanc=
-e;
-> > +                        __entry->ctx =3D rq->fence.context;
-> > +                        __entry->seqno =3D rq->fence.seqno;
-> > +                        ),
-> > +
-> > +         TP_printk("dev=3D%u, engine=3D%u:%u, ctx=3D%llu, seqno=3D%u",
-> > +                   __entry->dev, __entry->class, __entry->instance,
-> > +                   __entry->ctx, __entry->seqno)
-> > +);
-> > +#endif
-> >  =20
-> >   DEFINE_EVENT(i915_request, i915_request_add,
-> >            TP_PROTO(struct i915_request *rq),
->=20
+-- 
+Ville Syrjälä
+Intel
