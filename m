@@ -2,38 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF4843AC7C
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 08:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F9243AC6C
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 08:50:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6245689EBD;
-	Tue, 26 Oct 2021 06:53:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E4C689EBD;
+	Tue, 26 Oct 2021 06:49:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3287489EBD
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 06:53:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="293298010"
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="293298010"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 23:53:12 -0700
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="572259412"
-Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 23:53:07 -0700
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>
-Date: Mon, 25 Oct 2021 23:38:11 -0700
-Message-Id: <20211026063811.1375040-1-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C0E5489EBD;
+ Tue, 26 Oct 2021 06:49:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B69B4AA917;
+ Tue, 26 Oct 2021 06:49:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6612902560438667376=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Don't try to map and fence
- 8K/bigjoiner scanout buffers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Oct 2021 06:49:57 -0000
+Message-ID: <163523099771.9777.14707331946303888055@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Remove_check_for_low_voltage_sku_for_max_dp_so?=
+ =?utf-8?q?urce_rate_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,171 +42,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
-more framebuffers/scanout buffers results in only one that is mappable/
-fenceable. Therefore, pageflipping between these 2 FBs where only one
-is mappable/fenceable creates latencies large enough to miss alternate
-vblanks thereby producing less optimal framerate.
+--===============6612902560438667376==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This mainly happens because when i915_gem_object_pin_to_display_plane()
-is called to pin one of the FB objs, the associated vma is identified
-as misplaced and therefore i915_vma_unbind() is called which unbinds and
-evicts it. This misplaced vma gets subseqently pinned only when
-i915_gem_object_ggtt_pin_ww() is called without the mappable flag. This
-results in a latency of ~10ms and happens every other vblank/repaint cycle.
+== Series Details ==
 
-Testcase:
-Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
-with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
-a frame ~7ms before the next vblank, the latencies seen between atomic
-commit and flip event is 7, 24 (7 + 16.66), 7, 24..... suggesting that
-it misses the vblank every other frame.
+Series: drm/i915/display: Remove check for low voltage sku for max dp source rate (rev4)
+URL   : https://patchwork.freedesktop.org/series/95444/
+State : success
 
-Here is the ftrace snippet that shows the source of the ~10ms latency:
-              i915_gem_object_pin_to_display_plane() {
-0.102 us   |    i915_gem_object_set_cache_level();
-                i915_gem_object_ggtt_pin_ww() {
-0.390 us   |      i915_vma_instance();
-0.178 us   |      i915_vma_misplaced();
-                  i915_vma_unbind() {
-                  __i915_active_wait() {
-0.082 us   |        i915_active_acquire_if_busy();
-0.475 us   |      }
-                  intel_runtime_pm_get() {
-0.087 us   |        intel_runtime_pm_acquire();
-0.259 us   |      }
-                  __i915_active_wait() {
-0.085 us   |        i915_active_acquire_if_busy();
-0.240 us   |      }
-                  __i915_vma_evict() {
-                    ggtt_unbind_vma() {
-                      gen8_ggtt_clear_range() {
-10507.255 us |        }
-10507.689 us |      }
-10508.516 us |   }
+== Summary ==
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fb_pin.c  | 11 +++++++++--
- drivers/gpu/drm/i915/display/intel_overlay.c | 11 ++++++++---
- drivers/gpu/drm/i915/gem/i915_gem_domain.c   |  6 ++++--
- drivers/gpu/drm/i915/gem/i915_gem_object.h   |  3 ++-
- 4 files changed, 23 insertions(+), 8 deletions(-)
+CI Bug Log - changes from CI_DRM_10788 -> Patchwork_21441
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index 3f77f3013584..53c156d9a9f9 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -144,7 +144,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 
- 	if (!ret) {
- 		vma = i915_gem_object_pin_to_display_plane(obj, &ww, alignment,
--							   view, pinctl);
-+							   view, pinctl, uses_fence);
- 		if (IS_ERR(vma)) {
- 			ret = PTR_ERR(vma);
- 			goto err_unpin;
-@@ -218,9 +218,16 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
- 		INTEL_INFO(dev_priv)->display.cursor_needs_physical;
- 
- 	if (!intel_fb_uses_dpt(fb)) {
-+		struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
-+		struct intel_crtc_state *crtc_state =
-+					to_intel_crtc_state(crtc->base.state);
-+		bool uses_fence = intel_plane_uses_fence(plane_state);
-+		bool is_bigjoiner = crtc_state->bigjoiner ||
-+				    crtc_state->bigjoiner_slave;
-+
- 		vma = intel_pin_and_fence_fb_obj(fb, phys_cursor,
- 						 &plane_state->view.gtt,
--						 intel_plane_uses_fence(plane_state),
-+						 uses_fence && !is_bigjoiner,
- 						 &plane_state->flags);
- 		if (IS_ERR(vma))
- 			return PTR_ERR(vma);
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 7e3f5c6ca484..e9563b40b911 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -755,10 +755,14 @@ static u32 overlay_cmd_reg(struct drm_intel_overlay_put_image *params)
- 	return cmd;
- }
- 
--static struct i915_vma *intel_overlay_pin_fb(struct drm_i915_gem_object *new_bo)
-+static struct i915_vma *intel_overlay_pin_fb(struct drm_i915_gem_object *new_bo,
-+					     struct intel_overlay *overlay)
- {
- 	struct i915_gem_ww_ctx ww;
- 	struct i915_vma *vma;
-+	const struct intel_plane_state *plane_state =
-+		to_intel_plane_state(overlay->crtc->base.primary->state);
-+	bool uses_fence = intel_plane_uses_fence(plane_state);
- 	int ret;
- 
- 	i915_gem_ww_ctx_init(&ww, true);
-@@ -766,7 +770,8 @@ static struct i915_vma *intel_overlay_pin_fb(struct drm_i915_gem_object *new_bo)
- 	ret = i915_gem_object_lock(new_bo, &ww);
- 	if (!ret) {
- 		vma = i915_gem_object_pin_to_display_plane(new_bo, &ww, 0,
--							   NULL, PIN_MAPPABLE);
-+							   NULL, PIN_MAPPABLE,
-+							   uses_fence);
- 		ret = PTR_ERR_OR_ZERO(vma);
- 	}
- 	if (ret == -EDEADLK) {
-@@ -802,7 +807,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 
- 	atomic_inc(&dev_priv->gpu_error.pending_fb_pin);
- 
--	vma = intel_overlay_pin_fb(new_bo);
-+	vma = intel_overlay_pin_fb(new_bo, overlay);
- 	if (IS_ERR(vma)) {
- 		ret = PTR_ERR(vma);
- 		goto out_pin_section;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index b684a62bf3b0..b9108f13cc49 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -375,7 +375,8 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 				     struct i915_gem_ww_ctx *ww,
- 				     u32 alignment,
- 				     const struct i915_ggtt_view *view,
--				     unsigned int flags)
-+				     unsigned int flags,
-+				     bool uses_fence)
- {
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	struct i915_vma *vma;
-@@ -411,7 +412,8 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 	 */
- 	vma = ERR_PTR(-ENOSPC);
- 	if ((flags & PIN_MAPPABLE) == 0 &&
--	    (!view || view->type == I915_GGTT_VIEW_NORMAL))
-+	    (!view || view->type == I915_GGTT_VIEW_NORMAL) &&
-+	    uses_fence)
- 		vma = i915_gem_object_ggtt_pin_ww(obj, ww, view, 0, alignment,
- 						  flags | PIN_MAPPABLE |
- 						  PIN_NONBLOCK);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index a5479ac7a4ad..e83564fa57ca 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -534,7 +534,8 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 				     struct i915_gem_ww_ctx *ww,
- 				     u32 alignment,
- 				     const struct i915_ggtt_view *view,
--				     unsigned int flags);
-+				     unsigned int flags,
-+				     bool uses_fence);
- 
- void i915_gem_object_make_unshrinkable(struct drm_i915_gem_object *obj);
- void i915_gem_object_make_shrinkable(struct drm_i915_gem_object *obj);
--- 
-2.31.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/index.html
+
+Participating hosts (39 -> 34)
+------------------------------
+
+  Missing    (5): fi-tgl-dsi bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21441 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +27 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][3] -> [INCOMPLETE][4] ([i915#2940])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@c-dp1:
+    - fi-cfl-8109u:       [PASS][6] -> [FAIL][7] ([i915#4165]) +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [PASS][8] -> [DMESG-WARN][9] ([i915#295]) +18 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  * igt@runner@aborted:
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bdw-5557u:       [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [INCOMPLETE][13] ([i915#2940]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#4165]: https://gitlab.freedesktop.org/drm/intel/issues/4165
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10788 -> Patchwork_21441
+
+  CI-20190529: 20190529
+  CI_DRM_10788: e5d0af998bc3f676208222233aa9a6acb06b3e01 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6261: 0433f0d6063d8450af1e8518047d3679b9e5a6c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21441: 016eabc98af5b08ee7859a5907701a03dde85847 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+016eabc98af5 drm/i915/display: Remove check for low voltage sku for max dp source rate
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/index.html
+
+--===============6612902560438667376==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Remove check for low voltage sku for max dp source rate (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95444/">https://patchwork.freedesktop.org/series/95444/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10788 -&gt; Patchwork_21441</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/index.html</p>
+<h2>Participating hosts (39 -&gt; 34)</h2>
+<p>Missing    (5): fi-tgl-dsi bat-dg1-6 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21441 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@c-dp1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-modeset@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4165">i915#4165</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +18 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10788/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21441/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10788 -&gt; Patchwork_21441</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10788: e5d0af998bc3f676208222233aa9a6acb06b3e01 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6261: 0433f0d6063d8450af1e8518047d3679b9e5a6c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21441: 016eabc98af5b08ee7859a5907701a03dde85847 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>016eabc98af5 drm/i915/display: Remove check for low voltage sku for max dp source rate</p>
+
+</body>
+</html>
+
+--===============6612902560438667376==--
