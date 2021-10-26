@@ -2,40 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B7443B8A2
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 19:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2602343BA99
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 21:21:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0823089DED;
-	Tue, 26 Oct 2021 17:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB806E489;
+	Tue, 26 Oct 2021 19:21:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCFF889DED
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 17:53:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="227429346"
-X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="227429346"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 10:53:37 -0700
-X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="486291719"
-Received: from flaboura-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.214.127])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 10:53:35 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Satadru Pramanik <satadru@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org, "Deak\, Imre" <imre.deak@intel.com>
-In-Reply-To: <CAFrh3J_JQEcniOUunvm1hv4R12qhw=s8vWFJ4CWMoB8zPkGRpw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <CAFrh3J8jue=s56T-55DCVYYwxJd=4y9LdT2m26rabFvPtRW=8A@mail.gmail.com>
- <874k93kack.fsf@intel.com>
- <CAFrh3J_JQEcniOUunvm1hv4R12qhw=s8vWFJ4CWMoB8zPkGRpw@mail.gmail.com>
-Date: Tue, 26 Oct 2021 20:53:32 +0300
-Message-ID: <87v91jisf7.fsf@intel.com>
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com
+ [IPv6:2607:f8b0:4864:20::82c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D98E66E85A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 19:21:08 +0000 (UTC)
+Received: by mail-qt1-x82c.google.com with SMTP id c28so223253qtv.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 12:21:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=127m+2Fwn/io7KvRr/KOS7xqYguoXNnwDnCZDuDXMls=;
+ b=RjhlVtWGRH4NjzWs8qEsffk9kM4I6eskC3WyXwXekquU/6FsHhbHoDWqRQ38FJhFj3
+ OVKmUSkhG6dYmEXVnhONtOqwcfox1NOnxhpB5SyqTHS8vqpmAtEDeKS6Yv22i/k1TPDq
+ Opcyro3k6lKG+TnIb7/tD9lpHOawtLLtfNAr8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=127m+2Fwn/io7KvRr/KOS7xqYguoXNnwDnCZDuDXMls=;
+ b=DBrMVg4cfUKHxQs3uTt1KUQ9wXGUtbvvambp+OMxsZvDQ6MWF/ly8QqvpD7+I1Yih2
+ k6hQ61bhRDcyxvC5Q5QpprHOxgas0J+HTvnaroDkXZ69+8YTnwDow3wQhxQx5qXsUwo0
+ 8kMYUorHT4iGFjK8PCeTMz+s0T8FJTeEAfxz6D41M/SZhVoCWaZtc4ck+21BuFb1Zio3
+ QuYGuP8KpFQAmzKmXuV6dfrn4iFldyrVZ6V+80DiPxa8/RKnB4iV6bsg7VYSzpyo7WwQ
+ 6Lqe6/oJRfW6wklrEqjK5i7/go8/GDD7VEqV43BMqKT9iZVUnB7Kqf1W5/CtPF1frahh
+ Rrpw==
+X-Gm-Message-State: AOAM5301hYXXTcKlrKRCpBCKyKSBF+SeBGLR3Im6P/x8O+JKx1b4vJQy
+ DsyizE3lL7Hy8roWBx7qSbKeHA==
+X-Google-Smtp-Source: ABdhPJxIvSKMXHMgOqR+0IzuDBjRv51mc+McEVmOd74PDkMDAluxSEORKPdsy6BHd6I0NnJCw5RNHQ==
+X-Received: by 2002:ac8:7087:: with SMTP id y7mr3457600qto.112.1635276067936; 
+ Tue, 26 Oct 2021 12:21:07 -0700 (PDT)
+Received: from markyacoub.nyc.corp.google.com
+ ([2620:0:1003:314:6c5e:8134:a5e1:b63b])
+ by smtp.gmail.com with ESMTPSA id c13sm2284643qtc.42.2021.10.26.12.21.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 Oct 2021 12:21:07 -0700 (PDT)
+From: Mark Yacoub <markyacoub@chromium.org>
+To: 
+Cc: seanpaul@chromium.org, pmenzel@molgen.mpg.de,
+ Mark Yacoub <markyacoub@google.com>, Mark Yacoub <markyacoub@chromium.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Oct 2021 15:21:00 -0400
+Message-Id: <20211026192104.1860504-1-markyacoub@chromium.org>
+X-Mailer: git-send-email 2.33.0.1079.g6e70778dc9-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] intel_dp_sync_state+oxeo/oxfo boot failures after
- 5.15-rc3
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 1/3] drm: Rename lut check functions to lut
+ channel checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,14 +76,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 26 Oct 2021, Satadru Pramanik <satadru@gmail.com> wrote:
-> That appears to do the trick.
+From: Mark Yacoub <markyacoub@google.com>
 
-Thanks for confirming.
+[Why]
+This function and enum do not do generic checking on the luts but they
+test color channels in the LUTs.
+Keeping the name explicit as more generic LUT checks will follow.
 
-BR,
-Jani.
+Tested on Eldrid ChromeOS (TGL).
 
+Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+---
+ drivers/gpu/drm/drm_color_mgmt.c           | 12 ++++++------
+ drivers/gpu/drm/i915/display/intel_color.c | 10 +++++-----
+ include/drm/drm_color_mgmt.h               |  7 ++++---
+ 3 files changed, 15 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
+index bb14f488c8f6c..6f4e04746d90f 100644
+--- a/drivers/gpu/drm/drm_color_mgmt.c
++++ b/drivers/gpu/drm/drm_color_mgmt.c
+@@ -585,17 +585,17 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
+ EXPORT_SYMBOL(drm_plane_create_color_properties);
+ 
+ /**
+- * drm_color_lut_check - check validity of lookup table
++ * drm_color_lut_channels_check - check validity of the channels in the lookup table
+  * @lut: property blob containing LUT to check
+  * @tests: bitmask of tests to run
+  *
+- * Helper to check whether a userspace-provided lookup table is valid and
+- * satisfies hardware requirements.  Drivers pass a bitmask indicating which of
+- * the tests in &drm_color_lut_tests should be performed.
++ * Helper to check whether each color channel of userspace-provided lookup table is valid and
++ * satisfies hardware requirements. Drivers pass a bitmask indicating which of in
++ * &drm_color_lut_channels_tests should be performed.
+  *
+  * Returns 0 on success, -EINVAL on failure.
+  */
+-int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
++int drm_color_lut_channels_check(const struct drm_property_blob *lut, u32 tests)
+ {
+ 	const struct drm_color_lut *entry;
+ 	int i;
+@@ -625,4 +625,4 @@ int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
+ 
+ 	return 0;
+ }
+-EXPORT_SYMBOL(drm_color_lut_check);
++EXPORT_SYMBOL(drm_color_lut_channels_check);
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index dab892d2251ba..4bb1bc76c4de9 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1285,7 +1285,7 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
+ 	const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
+ 	const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
+ 	int gamma_length, degamma_length;
+-	u32 gamma_tests, degamma_tests;
++	u32 gamma_channels_tests, degamma_channels_tests;
+ 
+ 	/* Always allow legacy gamma LUT with no further checking. */
+ 	if (crtc_state_is_legacy_gamma(crtc_state))
+@@ -1300,15 +1300,15 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
+ 
+ 	degamma_length = INTEL_INFO(dev_priv)->color.degamma_lut_size;
+ 	gamma_length = INTEL_INFO(dev_priv)->color.gamma_lut_size;
+-	degamma_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
+-	gamma_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
++	degamma_channels_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
++	gamma_channels_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
+ 
+ 	if (check_lut_size(degamma_lut, degamma_length) ||
+ 	    check_lut_size(gamma_lut, gamma_length))
+ 		return -EINVAL;
+ 
+-	if (drm_color_lut_check(degamma_lut, degamma_tests) ||
+-	    drm_color_lut_check(gamma_lut, gamma_tests))
++	if (drm_color_lut_channels_check(degamma_lut, degamma_channels_tests) ||
++	    drm_color_lut_channels_check(gamma_lut, gamma_channels_tests))
+ 		return -EINVAL;
+ 
+ 	return 0;
+diff --git a/include/drm/drm_color_mgmt.h b/include/drm/drm_color_mgmt.h
+index 81c298488b0c8..cb1bf361ad3e3 100644
+--- a/include/drm/drm_color_mgmt.h
++++ b/include/drm/drm_color_mgmt.h
+@@ -94,12 +94,12 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
+ 				      enum drm_color_range default_range);
+ 
+ /**
+- * enum drm_color_lut_tests - hw-specific LUT tests to perform
++ * enum drm_color_lut_channels_tests - hw-specific LUT tests to perform
+  *
+  * The drm_color_lut_check() function takes a bitmask of the values here to
+  * determine which tests to apply to a userspace-provided LUT.
+  */
+-enum drm_color_lut_tests {
++enum drm_color_lut_channels_tests {
+ 	/**
+ 	 * @DRM_COLOR_LUT_EQUAL_CHANNELS:
+ 	 *
+@@ -119,5 +119,6 @@ enum drm_color_lut_tests {
+ 	DRM_COLOR_LUT_NON_DECREASING = BIT(1),
+ };
+ 
+-int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests);
++int drm_color_lut_channels_check(const struct drm_property_blob *lut,
++				 u32 tests);
+ #endif
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.33.0.1079.g6e70778dc9-goog
+
