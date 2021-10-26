@@ -2,36 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB58C43BD70
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 00:51:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 504F943BD75
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 00:51:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 093C26E4CA;
-	Tue, 26 Oct 2021 22:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AEFA6E4D4;
+	Tue, 26 Oct 2021 22:51:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17FD96E4CA
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 22:51:11 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="217203167"
-X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="217203167"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48ED26E4CB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 22:51:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="217203169"
+X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="217203169"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 15:51:10 -0700
-X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="497574320"
+ 26 Oct 2021 15:51:12 -0700
+X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="497574326"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 15:51:10 -0700
+ 26 Oct 2021 15:51:11 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Oct 2021 01:50:59 +0300
-Message-Id: <20211026225105.2783797-2-imre.deak@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date: Wed, 27 Oct 2021 01:51:00 +0300
+Message-Id: <20211026225105.2783797-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20211026225105.2783797-1-imre.deak@intel.com>
 References: <20211026225105.2783797-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/7] drm/i915/fb: Fix rounding error in
- subsampled plane size calculation
+Subject: [Intel-gfx] [PATCH 2/7] drm/i915/adlp/fb: Prevent the mapping of
+ redundant trailing padding NULL pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,32 +48,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For NV12 FBs with odd main surface tile-row height the CCS surface
-height was incorrectly calculated 1 less than the actual value. Fix this
-by rounding up the result of divison. For consistency do the same for
-the CCS surface width calculation.
+So far the remapped view size in GTT/DPT was padded to the next aligned
+offset unnecessarily after the last color plane with an unaligned size.
+Remove the unnecessary padding.
 
-Fixes: b3e57bccd68a ("drm/i915/tgl: Gen-12 render decompression")
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Fixes: 3d1adc3d64cf ("drm/i915/adlp: Add support for remapping CCS FBs")
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 9 ++++++++-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c         | 3 +++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 9ce1d273dc7e1..c3fb7d7366f58 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -816,8 +816,8 @@ static void intel_fb_plane_dims(const struct intel_framebuffer *fb, int color_pl
- 	intel_fb_plane_get_subsampling(&main_hsub, &main_vsub, &fb->base, main_plane);
- 	intel_fb_plane_get_subsampling(&hsub, &vsub, &fb->base, color_plane);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 2b97c87971773..f9c6d5aab8bf3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -612,9 +612,16 @@ unsigned int intel_remapped_info_size(const struct intel_remapped_info *rem_info
+ 	int i;
  
--	*w = main_width / main_hsub / hsub;
--	*h = main_height / main_vsub / vsub;
-+	*w = DIV_ROUND_UP(main_width, main_hsub * hsub);
-+	*h = DIV_ROUND_UP(main_height, main_vsub * vsub);
- }
+ 	for (i = 0 ; i < ARRAY_SIZE(rem_info->plane); i++) {
++		unsigned int plane_size;
++
++		plane_size = rem_info->plane[i].dst_stride * rem_info->plane[i].height;
++		if (plane_size == 0)
++			continue;
++
+ 		if (rem_info->plane_alignment)
+ 			size = ALIGN(size, rem_info->plane_alignment);
+-		size += rem_info->plane[i].dst_stride * rem_info->plane[i].height;
++
++		size += plane_size;
+ 	}
  
- static u32 intel_adjust_tile_offset(int *x, int *y,
+ 	return size;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index f17383e76eb71..57c97554393b9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -1396,6 +1396,9 @@ remap_pages(struct drm_i915_gem_object *obj,
+ {
+ 	unsigned int row;
+ 
++	if (!width || !height)
++		return sg;
++
+ 	if (alignment_pad) {
+ 		st->nents++;
+ 
 -- 
 2.27.0
 
