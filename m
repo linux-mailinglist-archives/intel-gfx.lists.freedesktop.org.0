@@ -1,37 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B9A43ABE0
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 07:52:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF4843AC7C
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 08:53:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18BDE6E2B4;
-	Tue, 26 Oct 2021 05:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6245689EBD;
+	Tue, 26 Oct 2021 06:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41F846E2B4
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 05:52:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="227282535"
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="227282535"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 22:52:10 -0700
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="446951162"
-Received: from linux-z370-aorus-gaming-5.iind.intel.com ([10.223.34.160])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 22:52:08 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3287489EBD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 06:53:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="293298010"
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="293298010"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 23:53:12 -0700
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="572259412"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 23:53:07 -0700
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: imre.deak@intel.com, uma.shankar@intel.com, jani.nikula@linux.intel.com,
- animesh.manna@intel.com
-Date: Tue, 26 Oct 2021 11:08:21 +0530
-Message-Id: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
+Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Manasi Navare <manasi.d.navare@intel.com>
+Date: Mon, 25 Oct 2021 23:38:11 -0700
+Message-Id: <20211026063811.1375040-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Remove check for low voltage
- sku for max dp source rate
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Don't try to map and fence
+ 8K/bigjoiner scanout buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,98 +49,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The low voltage sku check can be ignored as OEMs need to consider that
-when designing the board and then put any limits in VBT.
+On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
+more framebuffers/scanout buffers results in only one that is mappable/
+fenceable. Therefore, pageflipping between these 2 FBs where only one
+is mappable/fenceable creates latencies large enough to miss alternate
+vblanks thereby producing less optimal framerate.
 
-Same is now changed in Bspec pages.
+This mainly happens because when i915_gem_object_pin_to_display_plane()
+is called to pin one of the FB objs, the associated vma is identified
+as misplaced and therefore i915_vma_unbind() is called which unbinds and
+evicts it. This misplaced vma gets subseqently pinned only when
+i915_gem_object_ggtt_pin_ww() is called without the mappable flag. This
+results in a latency of ~10ms and happens every other vblank/repaint cycle.
 
-v2: Added debug print for combo PHY procmon reference values
-to get voltage configuration of combo PHY ports. (Imre)
+Testcase:
+Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
+with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
+a frame ~7ms before the next vblank, the latencies seen between atomic
+commit and flip event is 7, 24 (7 + 16.66), 7, 24..... suggesting that
+it misses the vblank every other frame.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Here is the ftrace snippet that shows the source of the ~10ms latency:
+              i915_gem_object_pin_to_display_plane() {
+0.102 us   |    i915_gem_object_set_cache_level();
+                i915_gem_object_ggtt_pin_ww() {
+0.390 us   |      i915_vma_instance();
+0.178 us   |      i915_vma_misplaced();
+                  i915_vma_unbind() {
+                  __i915_active_wait() {
+0.082 us   |        i915_active_acquire_if_busy();
+0.475 us   |      }
+                  intel_runtime_pm_get() {
+0.087 us   |        intel_runtime_pm_acquire();
+0.259 us   |      }
+                  __i915_active_wait() {
+0.085 us   |        i915_active_acquire_if_busy();
+0.240 us   |      }
+                  __i915_vma_evict() {
+                    ggtt_unbind_vma() {
+                      gen8_ggtt_clear_range() {
+10507.255 us |        }
+10507.689 us |      }
+10508.516 us |   }
+
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- .../gpu/drm/i915/display/intel_combo_phy.c    |  4 +++
- drivers/gpu/drm/i915/display/intel_dp.c       | 32 ++-----------------
- 2 files changed, 7 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb_pin.c  | 11 +++++++++--
+ drivers/gpu/drm/i915/display/intel_overlay.c | 11 ++++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c   |  6 ++++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.h   |  3 ++-
+ 4 files changed, 23 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index 634e8d449457..01ff86b3ff91 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -112,6 +112,10 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index 3f77f3013584..53c156d9a9f9 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -144,7 +144,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
  
- 	procmon = icl_get_procmon_ref_values(dev_priv, phy);
+ 	if (!ret) {
+ 		vma = i915_gem_object_pin_to_display_plane(obj, &ww, alignment,
+-							   view, pinctl);
++							   view, pinctl, uses_fence);
+ 		if (IS_ERR(vma)) {
+ 			ret = PTR_ERR(vma);
+ 			goto err_unpin;
+@@ -218,9 +218,16 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+ 		INTEL_INFO(dev_priv)->display.cursor_needs_physical;
  
-+	drm_dbg(&dev_priv->drm,
-+		"Combo PHY %c PROCMON values : 0x%x, 0x%x, 0x%x\n",
-+		phy_name(phy), procmon->dw1, procmon->dw9, procmon->dw10);
+ 	if (!intel_fb_uses_dpt(fb)) {
++		struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
++		struct intel_crtc_state *crtc_state =
++					to_intel_crtc_state(crtc->base.state);
++		bool uses_fence = intel_plane_uses_fence(plane_state);
++		bool is_bigjoiner = crtc_state->bigjoiner ||
++				    crtc_state->bigjoiner_slave;
 +
- 	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
- 			    (0xff << 16) | 0xff, procmon->dw1);
- 	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f5dc2126d140..693d7e097295 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -385,23 +385,13 @@ static int dg2_max_source_rate(struct intel_dp *intel_dp)
- 	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
+ 		vma = intel_pin_and_fence_fb_obj(fb, phys_cursor,
+ 						 &plane_state->view.gtt,
+-						 intel_plane_uses_fence(plane_state),
++						 uses_fence && !is_bigjoiner,
+ 						 &plane_state->flags);
+ 		if (IS_ERR(vma))
+ 			return PTR_ERR(vma);
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index 7e3f5c6ca484..e9563b40b911 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -755,10 +755,14 @@ static u32 overlay_cmd_reg(struct drm_intel_overlay_put_image *params)
+ 	return cmd;
  }
  
--static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
--{
--	u32 voltage;
--
--	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
--
--	return voltage == VOLTAGE_INFO_0_85V;
--}
--
- static int icl_max_source_rate(struct intel_dp *intel_dp)
+-static struct i915_vma *intel_overlay_pin_fb(struct drm_i915_gem_object *new_bo)
++static struct i915_vma *intel_overlay_pin_fb(struct drm_i915_gem_object *new_bo,
++					     struct intel_overlay *overlay)
  {
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
- 	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+ 	struct i915_gem_ww_ctx ww;
+ 	struct i915_vma *vma;
++	const struct intel_plane_state *plane_state =
++		to_intel_plane_state(overlay->crtc->base.primary->state);
++	bool uses_fence = intel_plane_uses_fence(plane_state);
+ 	int ret;
  
--	if (intel_phy_is_combo(dev_priv, phy) &&
--	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
-+	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(intel_dp))
- 		return 540000;
+ 	i915_gem_ww_ctx_init(&ww, true);
+@@ -766,7 +770,8 @@ static struct i915_vma *intel_overlay_pin_fb(struct drm_i915_gem_object *new_bo)
+ 	ret = i915_gem_object_lock(new_bo, &ww);
+ 	if (!ret) {
+ 		vma = i915_gem_object_pin_to_display_plane(new_bo, &ww, 0,
+-							   NULL, PIN_MAPPABLE);
++							   NULL, PIN_MAPPABLE,
++							   uses_fence);
+ 		ret = PTR_ERR_OR_ZERO(vma);
+ 	}
+ 	if (ret == -EDEADLK) {
+@@ -802,7 +807,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
  
- 	return 810000;
-@@ -409,23 +399,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+ 	atomic_inc(&dev_priv->gpu_error.pending_fb_pin);
  
- static int ehl_max_source_rate(struct intel_dp *intel_dp)
+-	vma = intel_overlay_pin_fb(new_bo);
++	vma = intel_overlay_pin_fb(new_bo, overlay);
+ 	if (IS_ERR(vma)) {
+ 		ret = PTR_ERR(vma);
+ 		goto out_pin_section;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+index b684a62bf3b0..b9108f13cc49 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+@@ -375,7 +375,8 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+ 				     struct i915_gem_ww_ctx *ww,
+ 				     u32 alignment,
+ 				     const struct i915_ggtt_view *view,
+-				     unsigned int flags)
++				     unsigned int flags,
++				     bool uses_fence)
  {
--	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
--	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
--
--	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
--		return 540000;
--
--	return 810000;
--}
--
--static int dg1_max_source_rate(struct intel_dp *intel_dp)
--{
--	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
--	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
--
--	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
-+	if (intel_dp_is_edp(intel_dp))
- 		return 540000;
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 	struct i915_vma *vma;
+@@ -411,7 +412,8 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+ 	 */
+ 	vma = ERR_PTR(-ENOSPC);
+ 	if ((flags & PIN_MAPPABLE) == 0 &&
+-	    (!view || view->type == I915_GGTT_VIEW_NORMAL))
++	    (!view || view->type == I915_GGTT_VIEW_NORMAL) &&
++	    uses_fence)
+ 		vma = i915_gem_object_ggtt_pin_ww(obj, ww, view, 0, alignment,
+ 						  flags | PIN_MAPPABLE |
+ 						  PIN_NONBLOCK);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index a5479ac7a4ad..e83564fa57ca 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -534,7 +534,8 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+ 				     struct i915_gem_ww_ctx *ww,
+ 				     u32 alignment,
+ 				     const struct i915_ggtt_view *view,
+-				     unsigned int flags);
++				     unsigned int flags,
++				     bool uses_fence);
  
- 	return 810000;
-@@ -468,7 +442,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
- 			max_rate = dg2_max_source_rate(intel_dp);
- 		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
- 			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
--			max_rate = dg1_max_source_rate(intel_dp);
-+			max_rate = 810000;
- 		else if (IS_JSL_EHL(dev_priv))
- 			max_rate = ehl_max_source_rate(intel_dp);
- 		else
+ void i915_gem_object_make_unshrinkable(struct drm_i915_gem_object *obj);
+ void i915_gem_object_make_shrinkable(struct drm_i915_gem_object *obj);
 -- 
-2.25.1
+2.31.1
 
