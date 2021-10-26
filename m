@@ -2,39 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F5E43AD94
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 09:54:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4C443ADB3
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 09:57:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 429396E400;
-	Tue, 26 Oct 2021 07:54:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 073646E400;
+	Tue, 26 Oct 2021 07:57:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05D146E400
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 07:53:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="316052188"
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="316052188"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 00:53:57 -0700
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="486037266"
-Received: from flaboura-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.214.127])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 00:53:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: imre.deak@intel.com, uma.shankar@intel.com, animesh.manna@intel.com
-In-Reply-To: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
-Date: Tue, 26 Oct 2021 10:53:52 +0300
-Message-ID: <87lf2gjk6n.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2286B6E400;
+ Tue, 26 Oct 2021 07:57:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1BC39A00E8;
+ Tue, 26 Oct 2021 07:57:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Remove check for low
- voltage sku for max dp source rate
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Oct 2021 07:57:02 -0000
+Message-ID: <163523502208.9778.6140439843870021586@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211026070744.337554-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211026070744.337554-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Prepare_error_capture_for_asynchronous_migration?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,111 +41,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 26 Oct 2021, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> The low voltage sku check can be ignored as OEMs need to consider that
-> when designing the board and then put any limits in VBT.
->
-> Same is now changed in Bspec pages.
->
-> v2: Added debug print for combo PHY procmon reference values
-> to get voltage configuration of combo PHY ports. (Imre)
+== Series Details ==
 
-Seems useful, but out of place in *this* patch.
+Series: Prepare error capture for asynchronous migration
+URL   : https://patchwork.freedesktop.org/series/96281/
+State : warning
 
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_combo_phy.c    |  4 +++
->  drivers/gpu/drm/i915/display/intel_dp.c       | 32 ++-----------------
->  2 files changed, 7 insertions(+), 29 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> index 634e8d449457..01ff86b3ff91 100644
-> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> @@ -112,6 +112,10 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
->  
->  	procmon = icl_get_procmon_ref_values(dev_priv, phy);
->  
-> +	drm_dbg(&dev_priv->drm,
+== Summary ==
 
-drm_dbg_kms please.
+$ dim checkpatch origin/drm-tip
+75857b20e47c drm/i915: Introduce refcounted sg-tables
+91f817d8b76b drm/i915: Update error capture code to avoid using the current vma state
+-:803: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#803: 
+new file mode 100644
 
-BR,
-Jani.
+total: 0 errors, 1 warnings, 0 checks, 958 lines checked
+9f3a797fb542 drm/i915: Initial introduction of vma resources
 
-> +		"Combo PHY %c PROCMON values : 0x%x, 0x%x, 0x%x\n",
-> +		phy_name(phy), procmon->dw1, procmon->dw9, procmon->dw10);
-> +
->  	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
->  			    (0xff << 16) | 0xff, procmon->dw1);
->  	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index f5dc2126d140..693d7e097295 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -385,23 +385,13 @@ static int dg2_max_source_rate(struct intel_dp *intel_dp)
->  	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
->  }
->  
-> -static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
-> -{
-> -	u32 voltage;
-> -
-> -	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
-> -
-> -	return voltage == VOLTAGE_INFO_0_85V;
-> -}
-> -
->  static int icl_max_source_rate(struct intel_dp *intel_dp)
->  {
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
->  
-> -	if (intel_phy_is_combo(dev_priv, phy) &&
-> -	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
-> +	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(intel_dp))
->  		return 540000;
->  
->  	return 810000;
-> @@ -409,23 +399,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
->  
->  static int ehl_max_source_rate(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
-> -	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
-> -
-> -	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
-> -		return 540000;
-> -
-> -	return 810000;
-> -}
-> -
-> -static int dg1_max_source_rate(struct intel_dp *intel_dp)
-> -{
-> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> -	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
-> -
-> -	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
-> +	if (intel_dp_is_edp(intel_dp))
->  		return 540000;
->  
->  	return 810000;
-> @@ -468,7 +442,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
->  			max_rate = dg2_max_source_rate(intel_dp);
->  		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
->  			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
-> -			max_rate = dg1_max_source_rate(intel_dp);
-> +			max_rate = 810000;
->  		else if (IS_JSL_EHL(dev_priv))
->  			max_rate = ehl_max_source_rate(intel_dp);
->  		else
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
