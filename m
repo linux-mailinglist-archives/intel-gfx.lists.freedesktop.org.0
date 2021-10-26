@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5568943AEC6
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 11:13:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E57443AECC
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 11:16:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A527C6E413;
-	Tue, 26 Oct 2021 09:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19D7F6E416;
+	Tue, 26 Oct 2021 09:16:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA4D6E41D
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 09:13:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="293321966"
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="293321966"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 02:13:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="497232820"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 26 Oct 2021 02:13:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 26 Oct 2021 12:13:46 +0300
-Date: Tue, 26 Oct 2021 12:13:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <YXfGymgYFioIlZMu@intel.com>
-References: <20211026084208.2574-1-jani.nikula@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88CFF6E413;
+ Tue, 26 Oct 2021 09:16:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10148"; a="217030882"
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="217030882"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 02:15:59 -0700
+X-IronPort-AV: E=Sophos;i="5.87,182,1631602800"; d="scan'208";a="537002362"
+Received: from scelesti-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.249.254.162])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 02:15:56 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211026084208.2574-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: fix integer overflow in
- 128b/132b data rate calculation
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211025171321.GA9338@jons-linux-dev-box>
+References: <20211020192147.8048-1-matthew.brost@intel.com>
+ <a2d6a96b3f360991511e6e4969de83cea2f5a97a.camel@linux.intel.com>
+ <163516458029.3804.14322548249266136569@jlahtine-mobl.ger.corp.intel.com>
+ <20211025171321.GA9338@jons-linux-dev-box>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, daniele.ceraolospurio@intel.com, john.c.harrison@intel.com
+To: Matthew Brost <matthew.brost@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <163523975442.6968.9660235537397634312@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Tue, 26 Oct 2021 12:15:54 +0300
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Fix recursive lock in GuC
+ submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,44 +54,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 26, 2021 at 11:42:07AM +0300, Jani Nikula wrote:
-> The intermediate value 1000000 * 10 * 9671 overflows 32 bits, so force
-> promotion to a bigger type.
-> 
-> >From the logs:
-> 
-> [drm:intel_dp_compute_config [i915]] DP link rate required 3657063 available -580783288
-> 
-> Fixes: 48efd014f0ea ("drm/i915/dp: add max data rate calculation for UHBR rates")
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index f5dc2126d140..9a0cd2e1ebea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -352,7 +352,7 @@ intel_dp_max_data_rate(int max_link_rate, int max_lanes)
->  		 */
->  		int max_link_rate_kbps = max_link_rate * 10;
->  
-> -		max_link_rate_kbps = DIV_ROUND_CLOSEST_ULL(max_link_rate_kbps * 9671, 10000);
-> +		max_link_rate_kbps = DIV_ROUND_CLOSEST_ULL(max_link_rate_kbps * 9671UL, 10000UL);
+Quoting Matthew Brost (2021-10-25 20:13:22)
+> On Mon, Oct 25, 2021 at 03:23:00PM +0300, Joonas Lahtinen wrote:
+> > Quoting Thomas Hellstr=C3=B6m (2021-10-21 08:39:48)
+> > > On Wed, 2021-10-20 at 12:21 -0700, Matthew Brost wrote:
+> >=20
+> > <SNIP>
+> >=20
+> > > > Fixes: 1a52faed31311 ("drm/i915/guc: Take engine PM when a context =
+is
+> > > > pinned with GuC submission")
+> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > Cc: stable@vger.kernel.org
+> >=20
+> > This Cc: stable annotation is unnecessary.
+> >=20
+> > Please always use "dim fixes 1a52faed31311" for helping to decide which
+> > Cc's are needed. In this case stable is not needed. If it was, there
+> > would be an indication of kernel version. In this case this is fine to
+> > be picked up by in drm-intel-next-fixes PR.
+> >=20
+> > Let's pay attention to the right Fixes: annotation while submitting and
+> > reviewing patches.
+> >=20
+>=20
+> Will do. Working on getting push rights. Is there any documentation with
+> all the rules when pushing as it seems like there are a lot of rules.
 
-UL is not 64bit on 32bit architectures. Also having a 64bit divisor
-would be wasteful.
+Yes, we have the documentation here:
 
-DIV_ROUND_CLOSEST_ULL(mul_u32_u32(...), 10000);
+https://drm.pages.freedesktop.org/maintainer-tools/committer-guidelines.html
 
->  		max_link_rate = max_link_rate_kbps / 8;
->  	}
->  
-> -- 
-> 2.30.2
+And more specifically this topic:
 
--- 
-Ville Syrj‰l‰
-Intel
+https://drm.pages.freedesktop.org/maintainer-tools/committer-drm-intel.html=
+#labeling-fixes-before-pushing
+
+I could even recommend to at least do a cursory read through the wider
+documentation about how the different trees interact:
+
+https://drm.pages.freedesktop.org/maintainer-tools/index.html
+
+Makes it easier to understand how the tags are used.
+
+Regards, Joonas
+
+>=20
+> Matt=20
+>=20
+> > Regards, Joonas
