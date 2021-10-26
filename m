@@ -2,68 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26EF043BAC0
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 21:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5503043BB14
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Oct 2021 21:39:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0B6B6E85F;
-	Tue, 26 Oct 2021 19:27:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D524D6E865;
+	Tue, 26 Oct 2021 19:39:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78C0B6E85F
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 19:27:01 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id j21so1184547lfe.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 12:27:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tb8F7ypwNh/ccIQWIcT0YthA9rXh1673rz3hH/DXVqs=;
- b=YfqoGxifi+mBR+7/Mz10ODvp8GfD6ugGv0Eu6C3bn8ocaQdbvpEgozjw2/8hQLQIR7
- co1WBDdovhDNtbMl1sd2lyKH7nuUbJlOEUoqbeDJbOyNYabbW4Les4ws0UG7PTpQKV6Q
- t+o0LuGq8WsipY7G+uOttXQ3OJwml3wgrGzKQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tb8F7ypwNh/ccIQWIcT0YthA9rXh1673rz3hH/DXVqs=;
- b=2cNmJMPQFqwJ5kqDLS9lk2b8+ZCima+9Lzh3c5kMRiz6yWxPyn/1gTQHjef5WiAyFH
- AyAXtLL/eD3SUBTWjgUyeQZ6ouhj2ASJG71XJjHP0YLCZocrKDi+quCpSj1QYXgl8xGu
- 3a5f9j1yv3Iy3fuNacupPy2jPWH1oap9Eev3KPW0VH+Dd6Rpy9qfDguJzLz1I1tCFfwt
- 7s7QX//tZf8oRZteUXwOcc4k2b7Ru7w/qKIW7ktSCZJX94KvQYSfEsW+NGmBehZnj5bd
- k2peNxV902g4k76PrH3d6JiRG9+kpcG/hjkZdiST9r2G2SXlco4ssCLWdjOTvRWT/w1T
- ZXHw==
-X-Gm-Message-State: AOAM533QuVvVO6bMb2SAsESE9UGD0s+BpT9VNVqW8Zh8VDGiB1LTUNP2
- L7TME6oeCoQyDPD2VB67bLv2uERwZ2bczvifwCjSmQ==
-X-Google-Smtp-Source: ABdhPJwyP+Yu/V1vJZk5sAZ/p9xSqZa+cHLXITs+ykY7LjYVT4XwYM5c42m56pBV0PTTH1vmEdd4NVJ3t0dS1sXNHDc=
-X-Received: by 2002:a05:6512:12c9:: with SMTP id
- p9mr25472977lfg.236.1635276419590; 
- Tue, 26 Oct 2021 12:26:59 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B21C089D5F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Oct 2021 19:39:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="210081006"
+X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="210081006"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 12:39:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; d="scan'208";a="447244097"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga003.jf.intel.com with ESMTP; 26 Oct 2021 12:39:28 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 26 Oct 2021 12:39:28 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 26 Oct 2021 12:39:28 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Tue, 26 Oct 2021 12:39:27 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 2/9] Revert "drm/i915/display: Disable audio, DRRS and
+ PSR before planes"
+Thread-Index: AQHXxzA3rdgoOPviBEKzB3Qid8hkm6vmKx0A
+Date: Tue, 26 Oct 2021 19:39:27 +0000
+Message-ID: <2e2e91157104791c5c209b4123084f1a4c6608bd.camel@intel.com>
+References: <20211022103304.24164-1-ville.syrjala@linux.intel.com>
+ <20211022103304.24164-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211022103304.24164-3-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BECAAF11AB0274428F9CBA05BAABE0B2@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210929194012.3433306-1-markyacoub@chromium.org>
- <20211013181228.1578201-1-markyacoub@chromium.org>
- <cb482b45-d98c-1860-6cf2-313b831e6066@molgen.mpg.de>
- <CAJUqKUoLYogBbUKoVVDMQErdx3tFEpLBtKDfgYtHSPOVDnEs0Q@mail.gmail.com>
-In-Reply-To: <CAJUqKUoLYogBbUKoVVDMQErdx3tFEpLBtKDfgYtHSPOVDnEs0Q@mail.gmail.com>
-From: Mark Yacoub <markyacoub@chromium.org>
-Date: Tue, 26 Oct 2021 15:26:48 -0400
-Message-ID: <CAJUqKUoT3vid8ZmJw4tp8WqYFH31hYhn7Ad+dQDMLMj-bFt+YA@mail.gmail.com>
-To: Paul Menzel <pmenzel@molgen.mpg.de>
-Cc: seanpaul@chromium.org, harry.wentland@amd.com, 
- Mark Yacoub <markyacoub@google.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm: Add Gamma and Degamma LUT sizes
- props to drm_crtc to validate.
+Subject: Re: [Intel-gfx] [PATCH v2 2/9] Revert "drm/i915/display: Disable
+ audio, DRRS and PSR before planes"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,302 +69,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-new patch: https://patchwork.freedesktop.org/series/96314/
-
-On Tue, Oct 26, 2021 at 3:24 PM Mark Yacoub <markyacoub@chromium.org> wrote:
->
-> On Tue, Oct 26, 2021 at 8:02 AM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
-> >
-> > Dear Mark,
-> >
-> >
-> > Thank you for your patch.
-> >
-> > On 13.10.21 20:12, Mark Yacoub wrote:
-> > > From: Mark Yacoub <markyacoub@google.com>
-> > >
-> > > [Why]
-> > > 1. drm_atomic_helper_check doesn't check for the LUT sizes of either Gamma
-> > > or Degamma props in the new CRTC state, allowing any invalid size to
-> > > be passed on.
-> > > 2. Each driver has its own LUT size, which could also be different for
-> > > legacy users.
-> >
-> > How can the problem be reproduced?
-> It was caught using igt@kms_color@pipe-A-invalid-gamma-lut-sizes.
-> it validates that drivers will only LUTs of their expected size not
-> any random (smaller or larger) number.
-> >
-> > > [How]
-> > > 1. Create |degamma_lut_size| and |gamma_lut_size| to save the LUT sizes
-> > > assigned by the driver when it's initializing its color and CTM
-> > > management.
-> > > 2. Create drm_atomic_helper_check_crtc which is called by
-> > > drm_atomic_helper_check to check the LUT sizes saved in drm_crtc that
-> > > they match the sizes in the new CRTC state.
-> > > 3. Rename older lut checks that test for the color channels to indicate
-> > > it's a channel check. It's not included in drm_atomic_helper_check_crtc
-> > > as it's hardware specific and is to be called by the driver.
-> > > 4. As the LUT size check now happens in drm_atomic_helper_check, remove
-> > > the lut check in intel_color.c
-> > >
-> > > Fixes: igt@kms_color@pipe-A-invalid-gamma-lut-sizes on MTK
-> >
-> > If I am not mistaken, the Fixes tag is used for commits I believe. Maybe
-> > use Resolves or something similar?
-> fixed!
-> >
-> > > Tested on Zork(amdgpu) and Jacuzzi(mediatek), volteer(TGL)
-> >
-> > Please add a space before the (.
-my apologies i missed this. I'll update it if another version is
-needed or if the committer can do it for me when they apply it.
-> >
-> > How did you test this?
-> smoke test on both MTK and TGL devices along with running
-> igt@kms_color on both devices.
-> >
-> > > v1:
-> > > 1. Fix typos
-> > > 2. Remove the LUT size check from intel driver
-> > > 3. Rename old LUT check to indicate it's a channel change
-> > >
-> > > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> > > ---
-> > >   drivers/gpu/drm/drm_atomic_helper.c        | 60 ++++++++++++++++++++++
-> > >   drivers/gpu/drm/drm_color_mgmt.c           | 14 ++---
-> > >   drivers/gpu/drm/i915/display/intel_color.c | 14 ++---
-> > >   include/drm/drm_atomic_helper.h            |  1 +
-> > >   include/drm/drm_color_mgmt.h               |  7 +--
-> > >   include/drm/drm_crtc.h                     | 11 ++++
-> > >   6 files changed, 89 insertions(+), 18 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> > > index bc3487964fb5e..5feb2ad0209c3 100644
-> > > --- a/drivers/gpu/drm/drm_atomic_helper.c
-> > > +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> > > @@ -929,6 +929,62 @@ drm_atomic_helper_check_planes(struct drm_device *dev,
-> > >   }
-> > >   EXPORT_SYMBOL(drm_atomic_helper_check_planes);
-> > >
-> > > +/**
-> > > + * drm_atomic_helper_check_crtcs - validate state object for CRTC changes
-> > > + * @state: the driver state object
-> > > + *
-> > > + * Check the CRTC state object such as the Gamma/Degamma LUT sizes if the new
-> > > + * state holds them.
-> > > + *
-> > > + * RETURNS:
-> > > + * Zero for success or -errno
-> > > + */
-> > > +int drm_atomic_helper_check_crtcs(struct drm_atomic_state *state)
-> > > +{
-> > > +     struct drm_crtc *crtc;
-> > > +     struct drm_crtc_state *new_crtc_state;
-> > > +     int i;
-> > > +
-> > > +     for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
-> > > +             if (new_crtc_state->color_mgmt_changed &&
-> > > +                 new_crtc_state->gamma_lut) {
-> > > +                     uint64_t supported_lut_size = crtc->gamma_lut_size;
-> > > +                     uint32_t supported_legacy_lut_size = crtc->gamma_size;
-> > > +                     uint32_t new_state_lut_size =
-> > > +                             drm_color_lut_size(new_crtc_state->gamma_lut);
-> > > +
-> > > +                     if (new_state_lut_size != supported_lut_size &&
-> > > +                         new_state_lut_size != supported_legacy_lut_size) {
-> > > +                             drm_dbg_state(
-> > > +                                     state->dev,
-> > > +                                     "Invalid Gamma LUT size. Should be %u (or %u for legacy) but got %u.\n",
-> > > +                                     supported_lut_size,
-> > > +                                     supported_legacy_lut_size,
-> > > +                                     new_state_lut_size);
-> > > +                             return -EINVAL;
-> > > +                     }
-> > > +             }
-> > > +
-> > > +             if (new_crtc_state->color_mgmt_changed &&
-> > > +                 new_crtc_state->degamma_lut) {
-> > > +                     uint32_t new_state_lut_size =
-> > > +                             drm_color_lut_size(new_crtc_state->degamma_lut);
-> > > +                     uint64_t supported_lut_size = crtc->degamma_lut_size;
-> > > +
-> > > +                     if (new_state_lut_size != supported_lut_size) {
-> > > +                             drm_dbg_state(
-> > > +                                     state->dev,
-> > > +                                     "Invalid Degamma LUT size. Should be %u but got %u.\n",
-> > > +                                     supported_lut_size, new_state_lut_size);
-> > > +                             return -EINVAL;
-> > > +                     }
-> > > +             }
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_atomic_helper_check_crtcs);
-> > > +
-> > >   /**
-> > >    * drm_atomic_helper_check - validate state object
-> > >    * @dev: DRM device
-> > > @@ -974,6 +1030,10 @@ int drm_atomic_helper_check(struct drm_device *dev,
-> > >       if (ret)
-> > >               return ret;
-> > >
-> > > +     ret = drm_atomic_helper_check_crtcs(state);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
-> > >       if (state->legacy_cursor_update)
-> > >               state->async_update = !drm_atomic_helper_async_check(dev, state);
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
-> > > index bb14f488c8f6c..e5b820ce823bf 100644
-> > > --- a/drivers/gpu/drm/drm_color_mgmt.c
-> > > +++ b/drivers/gpu/drm/drm_color_mgmt.c
-> > > @@ -166,6 +166,7 @@ void drm_crtc_enable_color_mgmt(struct drm_crtc *crtc,
-> > >       struct drm_mode_config *config = &dev->mode_config;
-> > >
-> > >       if (degamma_lut_size) {
-> > > +             crtc->degamma_lut_size = degamma_lut_size;
-> > >               drm_object_attach_property(&crtc->base,
-> > >                                          config->degamma_lut_property, 0);
-> > >               drm_object_attach_property(&crtc->base,
-> > > @@ -178,6 +179,7 @@ void drm_crtc_enable_color_mgmt(struct drm_crtc *crtc,
-> > >                                          config->ctm_property, 0);
-> > >
-> > >       if (gamma_lut_size) {
-> > > +             crtc->gamma_lut_size = gamma_lut_size;
-> > >               drm_object_attach_property(&crtc->base,
-> > >                                          config->gamma_lut_property, 0);
-> > >               drm_object_attach_property(&crtc->base,
-> > > @@ -585,17 +587,17 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
-> > >   EXPORT_SYMBOL(drm_plane_create_color_properties);
-> > >
-> > >   /**
-> > > - * drm_color_lut_check - check validity of lookup table
-> > > + * drm_color_lut_channels_check - check validity of the channels in the lookup table
-> > >    * @lut: property blob containing LUT to check
-> > >    * @tests: bitmask of tests to run
-> > >    *
-> > > - * Helper to check whether a userspace-provided lookup table is valid and
-> > > - * satisfies hardware requirements.  Drivers pass a bitmask indicating which of
-> > > - * the tests in &drm_color_lut_tests should be performed.
-> > > + * Helper to check whether each color channel of userspace-provided lookup table is valid and
-> > > + * satisfies hardware requirements. Drivers pass a bitmask indicating which of in
-> > > + * &drm_color_lut_channels_tests should be performed.
-> > >    *
-> > >    * Returns 0 on success, -EINVAL on failure.
-> > >    */
-> > > -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
-> > > +int drm_color_lut_channels_check(const struct drm_property_blob *lut, u32 tests)
-> > >   {
-> > >       const struct drm_color_lut *entry;
-> > >       int i;
-> > > @@ -625,4 +627,4 @@ int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
-> > >
-> > >       return 0;
-> > >   }
-> > > -EXPORT_SYMBOL(drm_color_lut_check);
-> > > +EXPORT_SYMBOL(drm_color_lut_channels_check);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> > > index dab892d2251ba..a308fe52746ac 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > > @@ -1285,7 +1285,7 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
-> > >       const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
-> > >       const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
-> > >       int gamma_length, degamma_length;
-> > > -     u32 gamma_tests, degamma_tests;
-> > > +     u32 gamma_channels_tests, degamma_channels_tests;
-> > >
-> > >       /* Always allow legacy gamma LUT with no further checking. */
-> > >       if (crtc_state_is_legacy_gamma(crtc_state))
-> > > @@ -1300,15 +1300,11 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
-> > >
-> > >       degamma_length = INTEL_INFO(dev_priv)->color.degamma_lut_size;
-> > >       gamma_length = INTEL_INFO(dev_priv)->color.gamma_lut_size;
-> > > -     degamma_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
-> > > -     gamma_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
-> > > +     degamma_channels_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
-> > > +     gamma_channels_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
-> > >
-> > > -     if (check_lut_size(degamma_lut, degamma_length) ||
-> > > -         check_lut_size(gamma_lut, gamma_length))
-> > > -             return -EINVAL;
-> > > -
-> > > -     if (drm_color_lut_check(degamma_lut, degamma_tests) ||
-> > > -         drm_color_lut_check(gamma_lut, gamma_tests))
-> > > +     if (drm_color_lut_channels_check(degamma_lut, degamma_channels_tests) ||
-> > > +         drm_color_lut_channels_check(gamma_lut, gamma_channels_tests))
-> > >               return -EINVAL;
-> > >
-> > >       return 0;
-> > > diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
-> > > index 4045e2507e11c..a22d32a7a8719 100644
-> > > --- a/include/drm/drm_atomic_helper.h
-> > > +++ b/include/drm/drm_atomic_helper.h
-> > > @@ -38,6 +38,7 @@ struct drm_atomic_state;
-> > >   struct drm_private_obj;
-> > >   struct drm_private_state;
-> > >
-> > > +int drm_atomic_helper_check_crtcs(struct drm_atomic_state *state);
-> > >   int drm_atomic_helper_check_modeset(struct drm_device *dev,
-> > >                               struct drm_atomic_state *state);
-> > >   int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
-> > > diff --git a/include/drm/drm_color_mgmt.h b/include/drm/drm_color_mgmt.h
-> > > index 81c298488b0c8..cb1bf361ad3e3 100644
-> > > --- a/include/drm/drm_color_mgmt.h
-> > > +++ b/include/drm/drm_color_mgmt.h
-> > > @@ -94,12 +94,12 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
-> > >                                     enum drm_color_range default_range);
-> > >
-> > >   /**
-> > > - * enum drm_color_lut_tests - hw-specific LUT tests to perform
-> > > + * enum drm_color_lut_channels_tests - hw-specific LUT tests to perform
-> > >    *
-> > >    * The drm_color_lut_check() function takes a bitmask of the values here to
-> > >    * determine which tests to apply to a userspace-provided LUT.
-> > >    */
-> > > -enum drm_color_lut_tests {
-> > > +enum drm_color_lut_channels_tests {
-> > >       /**
-> > >        * @DRM_COLOR_LUT_EQUAL_CHANNELS:
-> > >        *
-> > > @@ -119,5 +119,6 @@ enum drm_color_lut_tests {
-> > >       DRM_COLOR_LUT_NON_DECREASING = BIT(1),
-> > >   };
-> > >
-> > > -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests);
-> > > +int drm_color_lut_channels_check(const struct drm_property_blob *lut,
-> > > +                              u32 tests);
-> > >   #endif
-> > > diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> > > index 2deb15d7e1610..cabd3ef1a6e32 100644
-> > > --- a/include/drm/drm_crtc.h
-> > > +++ b/include/drm/drm_crtc.h
-> > > @@ -1072,6 +1072,17 @@ struct drm_crtc {
-> > >       /** @funcs: CRTC control functions */
-> > >       const struct drm_crtc_funcs *funcs;
-> > >
-> > > +     /**
-> > > +      * @degamma_lut_size: Size of degamma LUT.
-> > > +      */
-> > > +     uint32_t degamma_lut_size;
-> > > +
-> > > +     /**
-> > > +      * @gamma_lut_size: Size of Gamma LUT. Not used by legacy userspace such as
-> > > +      * X, which doesn't support large lut sizes.
-> > > +      */
-> > > +     uint32_t gamma_lut_size;
-> > > +
-> > >       /**
-> > >        * @gamma_size: Size of legacy gamma ramp reported to userspace. Set up
-> > >        * by calling drm_mode_crtc_set_gamma_size().
-> > >
-> >
-> > Acked-by: Paul Menzel <pmenzel@molgen.mpg.de>
-> >
-> >
-> > Kind regards,
-> >
-> > Paul
+T24gRnJpLCAyMDIxLTEwLTIyIGF0IDEzOjMyICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gRGlzYWJsaW5nIHBsYW5lcyBpbiB0aGUgbWlkZGxlIG9mIHRoZSBtb2Rlc2V0IHNldXFu
+ZWNlIGRvZXMgbm90IG1ha2UNCj4gc2Vuc2Ugc2luY2UgdXNlcnNwYWNlIGNhbiBhbnl3YXkgZGlz
+YWJsZSBwbGFuZXMgYmVmb3JlIHRoZSBtb2Rlc2V0DQo+IGV2ZW4gc3RhcnRzLiBTbyB3aGVuIHRo
+ZSBtb2Rlc2V0IHNldXFlbmNlIHN0YXJ0cyB0aGUgc2V0IG9mIGVuYWJsZWQNCj4gcGxhbmVzIGlz
+IGVudGlyZWx5IGFyYml0cmFyeS4gVHJ5aW5nIHRvIHNwcmlua2xlIHRoZSBwbGFuZSBkaXNhYmxp
+bmcNCj4gaW50byB0aGUgbW9kZXNldCBzZXF1ZW5jZSBqdXN0IG1lYW5zIG1vcmUgcmFuZG9tbmVz
+cyBhbmQgcG90ZW50aWFsDQo+IGZvciBoYXJkIHRvIHJlcHJvZHVjZSBidWdzLg0KPiANCj4gU28g
+aXQgbWFrZXMgbW9zdCBzZW5zZSB0byBqdXN0IGRpc2FibGUgYWxsIHBsYW5lcyBmaXJzdCBzbyB0
+aGF0IHRoZQ0KPiByZXN0IG9mIHRoZSBtb2Rlc2V0IHNlcXVlbmNlIHJlbWFpbnMgaWRlbnRpY2Fs
+IHJlZ2FyZGxlc3Mgb2Ygd2hpY2gNCj4gcGxhbmVzIGhhcHBlbiB0byBiZSBlbmFibGVkIGJ5IHVz
+ZXJzcGFjZSBhdCB0aGUgdGltZS4NCj4gDQo+IFRoaXMgcmV2ZXJ0cyBjb21taXQgODQwMzBhZGI5
+ZTI3ZDIwMmE2NjAyMjQ4OGJmMDM0OWE4YmQ0NTIxMy4NCg0KV2l0aCB0aGUgJ2RybS9pOTE1L3Bz
+cjogRGlzYWJsZSBQU1IgYmVmb3JlIG1vZGVzZXRzIHR1cm4gb2ZmIGFsbCBwbGFuZXMnIGl0IGlz
+IG5vdyBva2F5IHRvIHJldmVydCB0aGlzLg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBk
+ZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+IENjOiBKb3PDqSBSb2JlcnRv
+IGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUg
+U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICAgfCAzMCArKysrKysrLS0t
+LS0tLS0tLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+YyAgfCAyNCAtLS0tLS0tLS0tLS0tLS0NCj4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXlfdHlwZXMuaCAgICB8ICA0IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kcF9tc3QuYyAgIHwgMTQgKystLS0tLS0tDQo+ICA0IGZpbGVzIGNoYW5nZWQsIDEz
+IGluc2VydGlvbnMoKyksIDU5IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+IGluZGV4IGFiNTJlYWIzNDZmZS4uNmMxMTk5MjQ5NmYy
+IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5j
+DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gQEAg
+LTMwNjEsNiArMzA2MSwxMiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kaXNhYmxlX2RkaV9kcChzdHJ1
+Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gIA0KPiAgCWludGVsX2RwLT5saW5rX3Ry
+YWluZWQgPSBmYWxzZTsNCj4gIA0KPiArCWlmIChvbGRfY3J0Y19zdGF0ZS0+aGFzX2F1ZGlvKQ0K
+PiArCQlpbnRlbF9hdWRpb19jb2RlY19kaXNhYmxlKGVuY29kZXIsDQo+ICsJCQkJCSAgb2xkX2Ny
+dGNfc3RhdGUsIG9sZF9jb25uX3N0YXRlKTsNCj4gKw0KPiArCWludGVsX2RycnNfZGlzYWJsZShp
+bnRlbF9kcCwgb2xkX2NydGNfc3RhdGUpOw0KPiArCWludGVsX3Bzcl9kaXNhYmxlKGludGVsX2Rw
+LCBvbGRfY3J0Y19zdGF0ZSk7DQo+ICAJaW50ZWxfZWRwX2JhY2tsaWdodF9vZmYob2xkX2Nvbm5f
+c3RhdGUpOw0KPiAgCS8qIERpc2FibGUgdGhlIGRlY29tcHJlc3Npb24gaW4gRFAgU2luayAqLw0K
+PiAgCWludGVsX2RwX3Npbmtfc2V0X2RlY29tcHJlc3Npb25fc3RhdGUoaW50ZWxfZHAsIG9sZF9j
+cnRjX3N0YXRlLA0KPiBAQCAtMzA3OCw2ICszMDg0LDEwIEBAIHN0YXRpYyB2b2lkIGludGVsX2Rp
+c2FibGVfZGRpX2hkbWkoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJc3Ry
+dWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2KTsN
+Cj4gIAlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gb2xkX2Nvbm5fc3RhdGUtPmNv
+bm5lY3RvcjsNCj4gIA0KPiArCWlmIChvbGRfY3J0Y19zdGF0ZS0+aGFzX2F1ZGlvKQ0KPiArCQlp
+bnRlbF9hdWRpb19jb2RlY19kaXNhYmxlKGVuY29kZXIsDQo+ICsJCQkJCSAgb2xkX2NydGNfc3Rh
+dGUsIG9sZF9jb25uX3N0YXRlKTsNCj4gKw0KPiAgCWlmICghaW50ZWxfaGRtaV9oYW5kbGVfc2lu
+a19zY3JhbWJsaW5nKGVuY29kZXIsIGNvbm5lY3RvciwNCj4gIAkJCQkJICAgICAgIGZhbHNlLCBm
+YWxzZSkpDQo+ICAJCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sDQo+IEBAIC0zMDg1LDI1ICszMDk1
+LDYgQEAgc3RhdGljIHZvaWQgaW50ZWxfZGlzYWJsZV9kZGlfaGRtaShzdHJ1Y3QgaW50ZWxfYXRv
+bWljX3N0YXRlICpzdGF0ZSwNCj4gIAkJCSAgICBjb25uZWN0b3ItPmJhc2UuaWQsIGNvbm5lY3Rv
+ci0+bmFtZSk7DQo+ICB9DQo+ICANCj4gLXN0YXRpYyB2b2lkIGludGVsX3ByZV9kaXNhYmxlX2Rk
+aShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gLQkJCQkgIHN0cnVjdCBpbnRl
+bF9lbmNvZGVyICplbmNvZGVyLA0KPiAtCQkJCSAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKm9sZF9jcnRjX3N0YXRlLA0KPiAtCQkJCSAgY29uc3Qgc3RydWN0IGRybV9jb25uZWN0b3Jf
+c3RhdGUgKm9sZF9jb25uX3N0YXRlKQ0KPiAtew0KPiAtCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
+ZHA7DQo+IC0NCj4gLQlpZiAob2xkX2NydGNfc3RhdGUtPmhhc19hdWRpbykNCj4gLQkJaW50ZWxf
+YXVkaW9fY29kZWNfZGlzYWJsZShlbmNvZGVyLCBvbGRfY3J0Y19zdGF0ZSwNCj4gLQkJCQkJICBv
+bGRfY29ubl9zdGF0ZSk7DQo+IC0NCj4gLQlpZiAoaW50ZWxfY3J0Y19oYXNfdHlwZShvbGRfY3J0
+Y19zdGF0ZSwgSU5URUxfT1VUUFVUX0hETUkpKQ0KPiAtCQlyZXR1cm47DQo+IC0NCj4gLQlpbnRl
+bF9kcCA9IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gLQlpbnRlbF9kcnJzX2Rpc2FibGUo
+aW50ZWxfZHAsIG9sZF9jcnRjX3N0YXRlKTsNCj4gLQlpbnRlbF9wc3JfZGlzYWJsZShpbnRlbF9k
+cCwgb2xkX2NydGNfc3RhdGUpOw0KPiAtfQ0KPiAtDQo+ICBzdGF0aWMgdm9pZCBpbnRlbF9kaXNh
+YmxlX2RkaShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gIAkJCSAgICAgIHN0
+cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiAgCQkJICAgICAgY29uc3Qgc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlLA0KPiBAQCAtNDQzNyw3ICs0NDI4LDYgQEAg
+dm9pZCBpbnRlbF9kZGlfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGVu
+dW0gcG9ydCBwb3J0KQ0KPiAgCWVuY29kZXItPmVuYWJsZSA9IGludGVsX2VuYWJsZV9kZGk7DQo+
+ICAJZW5jb2Rlci0+cHJlX3BsbF9lbmFibGUgPSBpbnRlbF9kZGlfcHJlX3BsbF9lbmFibGU7DQo+
+ICAJZW5jb2Rlci0+cHJlX2VuYWJsZSA9IGludGVsX2RkaV9wcmVfZW5hYmxlOw0KPiAtCWVuY29k
+ZXItPnByZV9kaXNhYmxlID0gaW50ZWxfcHJlX2Rpc2FibGVfZGRpOw0KPiAgCWVuY29kZXItPmRp
+c2FibGUgPSBpbnRlbF9kaXNhYmxlX2RkaTsNCj4gIAllbmNvZGVyLT5wb3N0X2Rpc2FibGUgPSBp
+bnRlbF9kZGlfcG9zdF9kaXNhYmxlOw0KPiAgCWVuY29kZXItPnVwZGF0ZV9waXBlID0gaW50ZWxf
+ZGRpX3VwZGF0ZV9waXBlOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Rpc3BsYXkuYw0KPiBpbmRleCA1MjAxZDZjZGQ1ZGIuLjNkMmExY2JhNzhjMSAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTE2
+OTMsMjggKzE2OTMsNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9lbmNvZGVyc19lbmFibGUoc3RydWN0
+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJfQ0KPiAgfQ0KPiAgDQo+IC1zdGF0aWMg
+dm9pZCBpbnRlbF9lbmNvZGVyc19wcmVfZGlzYWJsZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
+ICpzdGF0ZSwNCj4gLQkJCQkgICAgICAgc3RydWN0IGludGVsX2NydGMgKmNydGMpDQo+IC17DQo+
+IC0JY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlID0NCj4gLQkJ
+aW50ZWxfYXRvbWljX2dldF9vbGRfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7DQo+IC0JY29uc3Qg
+c3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm9sZF9jb25uX3N0YXRlOw0KPiAtCXN0cnVjdCBk
+cm1fY29ubmVjdG9yICpjb25uOw0KPiAtCWludCBpOw0KPiAtDQo+IC0JZm9yX2VhY2hfb2xkX2Nv
+bm5lY3Rvcl9pbl9zdGF0ZSgmc3RhdGUtPmJhc2UsIGNvbm4sIG9sZF9jb25uX3N0YXRlLCBpKSB7
+DQo+IC0JCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyID0NCj4gLQkJCXRvX2ludGVsX2Vu
+Y29kZXIob2xkX2Nvbm5fc3RhdGUtPmJlc3RfZW5jb2Rlcik7DQo+IC0NCj4gLQkJaWYgKG9sZF9j
+b25uX3N0YXRlLT5jcnRjICE9ICZjcnRjLT5iYXNlKQ0KPiAtCQkJY29udGludWU7DQo+IC0NCj4g
+LQkJaWYgKGVuY29kZXItPnByZV9kaXNhYmxlKQ0KPiAtCQkJZW5jb2Rlci0+cHJlX2Rpc2FibGUo
+c3RhdGUsIGVuY29kZXIsIG9sZF9jcnRjX3N0YXRlLA0KPiAtCQkJCQkgICAgIG9sZF9jb25uX3N0
+YXRlKTsNCj4gLQl9DQo+IC19DQo+IC0NCj4gIHN0YXRpYyB2b2lkIGludGVsX2VuY29kZXJzX2Rp
+c2FibGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJCQkJICAgc3RydWN0
+IGludGVsX2NydGMgKmNydGMpDQo+ICB7DQo+IEBAIC04MjczLDggKzgyNTEsNiBAQCBzdGF0aWMg
+dm9pZCBpbnRlbF9vbGRfY3J0Y19zdGF0ZV9kaXNhYmxlcyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0
+YXRlICpzdGF0ZSwNCj4gIA0KPiAgCWRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCBvbGRfY3J0
+Y19zdGF0ZS0+Ymlnam9pbmVyX3NsYXZlKTsNCj4gIA0KPiAtCWludGVsX2VuY29kZXJzX3ByZV9k
+aXNhYmxlKHN0YXRlLCBjcnRjKTsNCj4gLQ0KPiAgCWludGVsX2NydGNfZGlzYWJsZV9wbGFuZXMo
+c3RhdGUsIGNydGMpOw0KPiAgDQo+ICAJLyoNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4gaW5kZXggODVjYjU1MDM0YmIwLi4z
+NTY4ZDMzYmUwOTYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+IEBAIC0xOTQsMTAgKzE5NCw2IEBAIHN0cnVjdCBp
+bnRlbF9lbmNvZGVyIHsNCj4gIAl2b2lkICgqdXBkYXRlX2NvbXBsZXRlKShzdHJ1Y3QgaW50ZWxf
+YXRvbWljX3N0YXRlICosDQo+ICAJCQkJc3RydWN0IGludGVsX2VuY29kZXIgKiwNCj4gIAkJCQlz
+dHJ1Y3QgaW50ZWxfY3J0YyAqKTsNCj4gLQl2b2lkICgqcHJlX2Rpc2FibGUpKHN0cnVjdCBpbnRl
+bF9hdG9taWNfc3RhdGUgKiwNCj4gLQkJCSAgICBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqLA0KPiAt
+CQkJICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICosDQo+IC0JCQkgICAgY29uc3Qg
+c3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKik7DQo+ICAJdm9pZCAoKmRpc2FibGUpKHN0cnVj
+dCBpbnRlbF9hdG9taWNfc3RhdGUgKiwNCj4gIAkJCXN0cnVjdCBpbnRlbF9lbmNvZGVyICosDQo+
+ICAJCQljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqLA0KPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMNCj4gaW5kZXggMGRlMGI0ZmY0ZDczLi4yODlh
+OGEwYTNhMDEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHBfbXN0LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+cF9tc3QuYw0KPiBAQCAtMzQ4LDE2ICszNDgsNiBAQCBzdGF0aWMgdm9pZCB3YWl0X2Zvcl9hY3Rf
+c2VudChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIAlkcm1fZHBfY2hlY2tfYWN0
+X3N0YXR1cygmaW50ZWxfZHAtPm1zdF9tZ3IpOw0KPiAgfQ0KPiAgDQo+IC1zdGF0aWMgdm9pZCBp
+bnRlbF9tc3RfcHJlX2Rpc2FibGVfZHAoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUs
+DQo+IC0JCQkJICAgICBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gLQkJCQkgICAg
+IGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0Y19zdGF0ZSwNCj4gLQkJCQkg
+ICAgIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfY29ubl9zdGF0ZSkNCj4g
+LXsNCj4gLQlpZiAob2xkX2NydGNfc3RhdGUtPmhhc19hdWRpbykNCj4gLQkJaW50ZWxfYXVkaW9f
+Y29kZWNfZGlzYWJsZShlbmNvZGVyLCBvbGRfY3J0Y19zdGF0ZSwNCj4gLQkJCQkJICBvbGRfY29u
+bl9zdGF0ZSk7DQo+IC19DQo+IC0NCj4gIHN0YXRpYyB2b2lkIGludGVsX21zdF9kaXNhYmxlX2Rw
+KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCQkJCSBzdHJ1Y3QgaW50ZWxf
+ZW5jb2RlciAqZW5jb2RlciwNCj4gIAkJCQkgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUg
+Km9sZF9jcnRjX3N0YXRlLA0KPiBAQCAtMzgyLDYgKzM3Miw5IEBAIHN0YXRpYyB2b2lkIGludGVs
+X21zdF9kaXNhYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCWlm
+IChyZXQpIHsNCj4gIAkJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgImZhaWxlZCB0byB1cGRhdGUg
+cGF5bG9hZCAlZFxuIiwgcmV0KTsNCj4gIAl9DQo+ICsJaWYgKG9sZF9jcnRjX3N0YXRlLT5oYXNf
+YXVkaW8pDQo+ICsJCWludGVsX2F1ZGlvX2NvZGVjX2Rpc2FibGUoZW5jb2RlciwNCj4gKwkJCQkJ
+ICBvbGRfY3J0Y19zdGF0ZSwgb2xkX2Nvbm5fc3RhdGUpOw0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMg
+dm9pZCBpbnRlbF9tc3RfcG9zdF9kaXNhYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUg
+KnN0YXRlLA0KPiBAQCAtOTE2LDcgKzkwOSw2IEBAIGludGVsX2RwX2NyZWF0ZV9mYWtlX21zdF9l
+bmNvZGVyKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LCBlbnVtIHBpcGUNCj4g
+IA0KPiAgCWludGVsX2VuY29kZXItPmNvbXB1dGVfY29uZmlnID0gaW50ZWxfZHBfbXN0X2NvbXB1
+dGVfY29uZmlnOw0KPiAgCWludGVsX2VuY29kZXItPmNvbXB1dGVfY29uZmlnX2xhdGUgPSBpbnRl
+bF9kcF9tc3RfY29tcHV0ZV9jb25maWdfbGF0ZTsNCj4gLQlpbnRlbF9lbmNvZGVyLT5wcmVfZGlz
+YWJsZSA9IGludGVsX21zdF9wcmVfZGlzYWJsZV9kcDsNCj4gIAlpbnRlbF9lbmNvZGVyLT5kaXNh
+YmxlID0gaW50ZWxfbXN0X2Rpc2FibGVfZHA7DQo+ICAJaW50ZWxfZW5jb2Rlci0+cG9zdF9kaXNh
+YmxlID0gaW50ZWxfbXN0X3Bvc3RfZGlzYWJsZV9kcDsNCj4gIAlpbnRlbF9lbmNvZGVyLT51cGRh
+dGVfcGlwZSA9IGludGVsX2RkaV91cGRhdGVfcGlwZTsNCg0K
