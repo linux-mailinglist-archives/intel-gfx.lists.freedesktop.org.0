@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70A2043C1CF
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 06:44:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 664A143C242
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 07:37:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34B5C899D5;
-	Wed, 27 Oct 2021 04:44:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91EC289DC1;
+	Wed, 27 Oct 2021 05:37:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8DD9E899D5;
- Wed, 27 Oct 2021 04:44:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6C699A66C9;
- Wed, 27 Oct 2021 04:44:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E05F89DC1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 05:37:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="228831733"
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="228831733"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 22:37:01 -0700
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="555110699"
+Received: from dzhang-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.251.142.134])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 22:37:01 -0700
+Date: Tue, 26 Oct 2021 22:36:58 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Mullati Siva <siva.mullati@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com
+Message-ID: <20211027053658.z7wubvbg3nigklql@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20211022192756.1228354-1-siva.mullati@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jim Cromie" <jim.cromie@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Oct 2021 04:44:28 -0000
-Message-ID: <163530986840.4640.12838442851823966758@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211027043645.153133-1-jim.cromie@gmail.com>
-In-Reply-To: <20211027043645.153133-1-jim.cromie@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciB1?=
- =?utf-8?q?se_DYNAMIC=5FDEBUG_to_implement_DRM=2Edebug_=26_DRM=2Etrace?=
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20211022192756.1228354-1-siva.mullati@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: abstraction for iosf to compile
+ on all archs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,30 +47,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: use DYNAMIC_DEBUG to implement DRM.debug & DRM.trace
-URL   : https://patchwork.freedesktop.org/series/96327/
-State : failure
-
-== Summary ==
-
-Applying: dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES macro and callbacks
-Applying: drm: fix doc grammar
-Applying: amdgpu: use dyndbg.CATEGORIES to control existing pr_dbgs
-Applying: i915/gvt: trim spaces from pr_debug "gvt: core:" prefixes
-Applying: i915/gvt: use dyndbg.CATEGORIES for existing pr_debugs
-Applying: drm_print: add choice to use dynamic debug in drm-debug
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/Makefile).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0006 drm_print: add choice to use dynamic debug in drm-debug
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+On Sat, Oct 23, 2021 at 12:57:56AM +0530, Mullati Siva wrote:
+>From: "Mullati, Siva" <siva.mullati@intel.com>
+>
+>The asm/iosf_mbi.h header is x86-only. Let's make IOSF_MBI kconfig
+>selection conditional to x86 and provide a header with stubs for other
+>architectures. This helps getting i915 available for other
+>architectures in future.
+>
+>Signed-off-by: Mullati, Siva <siva.mullati@intel.com>
 
 
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
