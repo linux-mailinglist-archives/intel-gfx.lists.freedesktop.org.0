@@ -2,43 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B92F43D2A4
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 22:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E27E143D2C5
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 22:22:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17656E8E5;
-	Wed, 27 Oct 2021 20:14:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EB746E8F7;
+	Wed, 27 Oct 2021 20:22:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18CA46E8E5;
- Wed, 27 Oct 2021 20:14:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="291095614"
-X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="291095614"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 13:14:38 -0700
-X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="447369447"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 13:14:38 -0700
-Date: Wed, 27 Oct 2021 13:10:01 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- tvrtko.ursulin@intel.com, daniele.ceraolospurio@intel.com
-Message-ID: <20211027201001.GA16265@jons-linux-dev-box>
-References: <20211020214751.34602-1-matthew.brost@intel.com>
- <c9a1cd3e-dc3a-2b2b-ee37-73c0c50f3f60@intel.com>
- <20211027191732.GA16188@jons-linux-dev-box>
- <af017ae0-e826-7b6a-03d7-0e422030da02@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5D0576E8F7;
+ Wed, 27 Oct 2021 20:22:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 54E79A47EB;
+ Wed, 27 Oct 2021 20:22:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7511199908674582064=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <af017ae0-e826-7b6a-03d7-0e422030da02@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Weak parallel
- submission support for execlists
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 27 Oct 2021 20:22:10 -0000
+Message-ID: <163536613031.4640.2570875576856896486@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211027180545.55660-1-jose.souza@intel.com>
+In-Reply-To: <20211027180545.55660-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/adlp=3A_Extend_PSR2_support_in_transcoder_B_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,204 +41,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 27, 2021 at 01:04:49PM -0700, John Harrison wrote:
-> On 10/27/2021 12:17, Matthew Brost wrote:
-> > On Tue, Oct 26, 2021 at 02:58:00PM -0700, John Harrison wrote:
-> > > On 10/20/2021 14:47, Matthew Brost wrote:
-> > > > A weak implementation of parallel submission (multi-bb execbuf IOCTL) for
-> > > > execlists. Doing as little as possible to support this interface for
-> > > > execlists - basically just passing submit fences between each request
-> > > > generated and virtual engines are not allowed. This is on par with what
-> > > > is there for the existing (hopefully soon deprecated) bonding interface.
-> > > > 
-> > > > We perma-pin these execlists contexts to align with GuC implementation.
-> > > > 
-> > > > v2:
-> > > >    (John Harrison)
-> > > >     - Drop siblings array as num_siblings must be 1
-> > > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/i915/gem/i915_gem_context.c   | 10 +++--
-> > > >    drivers/gpu/drm/i915/gt/intel_context.c       |  4 +-
-> > > >    .../drm/i915/gt/intel_execlists_submission.c  | 44 ++++++++++++++++++-
-> > > >    drivers/gpu/drm/i915/gt/intel_lrc.c           |  2 +
-> > > >    .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 -
-> > > >    5 files changed, 52 insertions(+), 10 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > > index fb33d0322960..35e87a7d0ea9 100644
-> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > > @@ -570,10 +570,6 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
-> > > >    	struct intel_engine_cs **siblings = NULL;
-> > > >    	intel_engine_mask_t prev_mask;
-> > > > -	/* FIXME: This is NIY for execlists */
-> > > > -	if (!(intel_uc_uses_guc_submission(&i915->gt.uc)))
-> > > > -		return -ENODEV;
-> > > > -
-> > > >    	if (get_user(slot, &ext->engine_index))
-> > > >    		return -EFAULT;
-> > > > @@ -583,6 +579,12 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
-> > > >    	if (get_user(num_siblings, &ext->num_siblings))
-> > > >    		return -EFAULT;
-> > > > +	if (!intel_uc_uses_guc_submission(&i915->gt.uc) && num_siblings != 1) {
-> > > > +		drm_dbg(&i915->drm, "Only 1 sibling (%d) supported in non-GuC mode\n",
-> > > > +			num_siblings);
-> > > > +		return -EINVAL;
-> > > > +	}
-> > > > +
-> > > >    	if (slot >= set->num_engines) {
-> > > >    		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
-> > > >    			slot, set->num_engines);
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > index 5634d14052bc..1bec92e1d8e6 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > > @@ -79,7 +79,8 @@ static int intel_context_active_acquire(struct intel_context *ce)
-> > > >    	__i915_active_acquire(&ce->active);
-> > > > -	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine))
-> > > > +	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine) ||
-> > > > +	    intel_context_is_parallel(ce))
-> > > >    		return 0;
-> > > >    	/* Preallocate tracking nodes */
-> > > > @@ -563,7 +564,6 @@ void intel_context_bind_parent_child(struct intel_context *parent,
-> > > >    	 * Callers responsibility to validate that this function is used
-> > > >    	 * correctly but we use GEM_BUG_ON here ensure that they do.
-> > > >    	 */
-> > > > -	GEM_BUG_ON(!intel_engine_uses_guc(parent->engine));
-> > > >    	GEM_BUG_ON(intel_context_is_pinned(parent));
-> > > >    	GEM_BUG_ON(intel_context_is_child(parent));
-> > > >    	GEM_BUG_ON(intel_context_is_pinned(child));
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > index bedb80057046..2865b422300d 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > @@ -927,8 +927,7 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
-> > > >    static bool ctx_single_port_submission(const struct intel_context *ce)
-> > > >    {
-> > > > -	return (IS_ENABLED(CONFIG_DRM_I915_GVT) &&
-> > > > -		intel_context_force_single_submission(ce));
-> > > > +	return intel_context_force_single_submission(ce);
-> > > I think this is actually going to break GVT.
-> > > 
-> > > Not so much this change here but the whole use of single submission outside
-> > > of GVT. It looks like the GVT driver overloads the single submission flag to
-> > > tag requests that it owns. If we start using that flag elsewhere when GVT is
-> > > active, I think that will cause much confusion within the GVT code.
-> > > 
-> > > The correct fix would be to create a new flag just for GVT usage alongside
-> > > the single submission one. GVT would then set both but only check for its
-> > > own private flag. The parallel code would obviously only set the existing
-> > > single submission flag.
-> > > 
-> > Ok, see below.
-> > 
-> > > >    }
-> > > >    static bool can_merge_ctx(const struct intel_context *prev,
-> > > > @@ -2598,6 +2597,46 @@ static void execlists_context_cancel_request(struct intel_context *ce,
-> > > >    				      current->comm);
-> > > >    }
-> > > > +static struct intel_context *
-> > > > +execlists_create_parallel(struct intel_engine_cs **engines,
-> > > > +			  unsigned int num_siblings,
-> > > > +			  unsigned int width)
-> > > > +{
-> > > > +	struct intel_context *parent = NULL, *ce, *err;
-> > > > +	int i;
-> > > > +
-> > > > +	GEM_BUG_ON(num_siblings != 1);
-> > > > +
-> > > > +	for (i = 0; i < width; ++i) {
-> > > > +		ce = intel_context_create(engines[i]);
-> > > > +		if (!ce) {
-> > > > +			err = ERR_PTR(-ENOMEM);
-> > > > +			goto unwind;
-> > > > +		}
-> > > > +
-> > > > +		if (i == 0)
-> > > > +			parent = ce;
-> > > > +		else
-> > > > +			intel_context_bind_parent_child(parent, ce);
-> > > > +	}
-> > > > +
-> > > > +	parent->parallel.fence_context = dma_fence_context_alloc(1);
-> > > > +
-> > > > +	intel_context_set_nopreempt(parent);
-> > > > +	intel_context_set_single_submission(parent);
-> > > Can you explain the need for setting single submission?
-> > > 
-> > I think I can actually pull this out. This was needed when I tried to
-> > truely implement a guarante that all the parallel requests would be
-> > running simultaneously. Couldn't ever to get that working because of the
-> > mess that is the execlists scheduler - a simple wait at the head of
-> > queue until everyone joined just blew up for whatever reason. I don't
-> > believe this servers a purpose anymore, so I'll just drop it.
-> > 
-> > Matt
-> Is that not going to be a problem? I thought concurrent execution was a
-> fundamental requirement?
-> 
+--===============7511199908674582064==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I don't think so. See the commit message. This implmementation is on par
-with the bonding interface - there is no guarantee whatsoever that with
-the bonding interface bonded requests actually run at the same time. It
-says hopefully these submissions run together. That's what I do in this
-patch too for execlists, hence the 'weak' clause in the commit message.
+== Series Details ==
 
-Matt
+Series: drm/i915/adlp: Extend PSR2 support in transcoder B (rev2)
+URL   : https://patchwork.freedesktop.org/series/96321/
+State : success
 
-> John.
-> 
-> > 
-> > > John.
-> > > 
-> > > > +	for_each_child(parent, ce) {
-> > > > +		intel_context_set_nopreempt(ce);
-> > > > +		intel_context_set_single_submission(ce);
-> > > > +	}
-> > > > +
-> > > > +	return parent;
-> > > > +
-> > > > +unwind:
-> > > > +	if (parent)
-> > > > +		intel_context_put(parent);
-> > > > +	return err;
-> > > > +}
-> > > > +
-> > > >    static const struct intel_context_ops execlists_context_ops = {
-> > > >    	.flags = COPS_HAS_INFLIGHT,
-> > > > @@ -2616,6 +2655,7 @@ static const struct intel_context_ops execlists_context_ops = {
-> > > >    	.reset = lrc_reset,
-> > > >    	.destroy = lrc_destroy,
-> > > > +	.create_parallel = execlists_create_parallel,
-> > > >    	.create_virtual = execlists_create_virtual,
-> > > >    };
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > > > index 56156cf18c41..70f4b309522d 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > > > @@ -1065,6 +1065,8 @@ lrc_pin(struct intel_context *ce,
-> > > >    void lrc_unpin(struct intel_context *ce)
-> > > >    {
-> > > > +	if (unlikely(ce->parallel.last_rq))
-> > > > +		i915_request_put(ce->parallel.last_rq);
-> > > >    	check_redzone((void *)ce->lrc_reg_state - LRC_STATE_OFFSET,
-> > > >    		      ce->engine);
-> > > >    }
-> > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > index 1341752dc70e..ddc9a97fcc8f 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > @@ -2961,8 +2961,6 @@ static void guc_parent_context_unpin(struct intel_context *ce)
-> > > >    	GEM_BUG_ON(!intel_context_is_parent(ce));
-> > > >    	GEM_BUG_ON(!intel_engine_is_virtual(ce->engine));
-> > > > -	if (ce->parallel.last_rq)
-> > > > -		i915_request_put(ce->parallel.last_rq);
-> > > >    	unpin_guc_id(guc, ce);
-> > > >    	lrc_unpin(ce);
-> > > >    }
-> 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10798 -> Patchwork_21467
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/index.html
+
+Participating hosts (39 -> 34)
+------------------------------
+
+  Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21467 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2] ([i915#2539])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10798/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-1115g4:      [FAIL][3] ([i915#1888]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10798/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][5] ([i915#3303]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10798/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2539]: https://gitlab.freedesktop.org/drm/intel/issues/2539
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10798 -> Patchwork_21467
+
+  CI-20190529: 20190529
+  CI_DRM_10798: ba1fb06a82376e048ef2d790bfcfd74341ddefa4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6262: d1c793b26e31cc6ae3f9fa3239805a9bbcc749fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21467: ad0feea20024aa9fa63151fad642ab2b860df358 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ad0feea20024 drm/i915/adlp: Extend PSR2 support in transcoder B
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/index.html
+
+--===============7511199908674582064==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/adlp: Extend PSR2 support in transcoder B (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96321/">https://patchwork.freedesktop.org/series/96321/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10798 -&gt; Patchwork_21467</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/index.html</p>
+<h2>Participating hosts (39 -&gt; 34)</h2>
+<p>Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21467 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s0:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10798/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2539">i915#2539</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10798/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10798/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21467/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10798 -&gt; Patchwork_21467</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10798: ba1fb06a82376e048ef2d790bfcfd74341ddefa4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6262: d1c793b26e31cc6ae3f9fa3239805a9bbcc749fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21467: ad0feea20024aa9fa63151fad642ab2b860df358 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ad0feea20024 drm/i915/adlp: Extend PSR2 support in transcoder B</p>
+
+</body>
+</html>
+
+--===============7511199908674582064==--
