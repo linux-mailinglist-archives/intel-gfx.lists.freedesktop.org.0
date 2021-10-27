@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF97943D17D
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 21:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C65543D1E3
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 21:50:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F230C6E54C;
-	Wed, 27 Oct 2021 19:14:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07CD86E8DA;
+	Wed, 27 Oct 2021 19:50:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11BFC6E54C
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 19:14:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="217155000"
-X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="217155000"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA92F6E560
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 19:50:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="253804435"
+X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="253804435"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 12:14:06 -0700
-X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="665114205"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 12:30:03 -0700
+X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="665119873"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
  ([10.165.21.211])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 12:14:06 -0700
-Date: Wed, 27 Oct 2021 12:26:47 -0700
+ 27 Oct 2021 12:30:03 -0700
+Date: Wed, 27 Oct 2021 12:42:44 -0700
 From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com
-Message-ID: <20211027192642.GA22973@labuser-Z97X-UD5H>
-References: <20211027095316.9579-1-vandita.kulkarni@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <20211027194244.GA23036@labuser-Z97X-UD5H>
+References: <20211027135900.6329-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211027095316.9579-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20211027135900.6329-1-jani.nikula@intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Fix the usage of uncompressed
- bpp
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dcs: demote noisy drm_info() to
+ drm_kms_dbg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,63 +50,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 27, 2021 at 03:23:16PM +0530, Vandita Kulkarni wrote:
-> DP 1.4 spec limits max compression bpp to
-> uncompressed bpp -1, which is supported from
-> XELPD onwards.
-> Instead of uncompressed bpp, max dsc input bpp
-> was being used to limit the max compression bpp.
+On Wed, Oct 27, 2021 at 04:59:00PM +0300, Jani Nikula wrote:
+> The PPS, RC_RANGE_PARAM, and RC_BUF_THRESH logging are clearly for
+> debugging, and should not be info level messages.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-So the input Pipe BPP which is the uncompressed bpp is decided by the input bpc
-and when this was initially written, we had designed it to respect the max_req_bpc by the user.
-So that is what we use to decide the input bpc and hence the pipe_bpp
-This input pipe_bpp decides the compressed bpp that we calculate based on all the supported output bpps
-which are supported all the way upto uncompressed_output_bpp - 1.
+I think in the patch commit title there is a typo 'dcs' i think you meant drm/i915/dsc:
+Other than that I agree with having these as debug messages rather than info.
 
-So I dont see the need to change the logic here. Moreover I dont see any change in the dsc_compute_bpp function
-So I dont understand the purpose of introducing the new max_dsc_pipe_bpp variable here
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
 Manasi
 
-> 
-> Fixes: 831d5aa96c97 ("drm/i915/xelpd: Support DP1.4 compression BPPs")
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 32 +++++++++++------------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 9d8132dd4cc5..1f7e666ae490 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1322,7 +1322,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  	const struct drm_display_mode *adjusted_mode =
->  		&pipe_config->hw.adjusted_mode;
-> -	int pipe_bpp;
-> +	int pipe_bpp, max_dsc_pipe_bpp;
->  	int ret;
->  
->  	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
-> @@ -1331,7 +1331,8 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
->  		return -EINVAL;
->  
-> -	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
-> +	pipe_bpp = pipe_config->pipe_bpp;
-> +	max_dsc_pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
->  
->  	/* Min Input BPC for ICL+ is 8 */
->  	if (pipe_bpp < 8 * 3) {
-> @@ -1345,7 +1346,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  	 * Optimize this later for the minimum possible link rate/lane count
->  	 * with DSC enabled for the requested mode.
->  	 */
-> -	pipe_config->pipe_bpp = pipe_bpp;
-> +	pipe_config->pipe_bpp = max_dsc_pipe_bpp;
->  	pipe_config->port_clock = limits->max_rate;
->  	pipe_config->lane_count = limits->max_lane_count;
->  
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index fa84be609d5d..bf8d3c7ca2d9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -598,7 +598,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  		pps_val |= DSC_422_ENABLE;
+>  	if (vdsc_cfg->vbr_enable)
+>  		pps_val |= DSC_VBR_ENABLE;
+> -	drm_info(&dev_priv->drm, "PPS0 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS0 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_0,
+>  			       pps_val);
+> @@ -622,7 +622,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	/* Populate PICTURE_PARAMETER_SET_1 registers */
+>  	pps_val = 0;
+>  	pps_val |= DSC_BPP(vdsc_cfg->bits_per_pixel);
+> -	drm_info(&dev_priv->drm, "PPS1 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS1 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_1,
+>  			       pps_val);
+> @@ -647,7 +647,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	pps_val = 0;
+>  	pps_val |= DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
+>  		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
+> -	drm_info(&dev_priv->drm, "PPS2 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS2 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_2,
+>  			       pps_val);
+> @@ -672,7 +672,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	pps_val = 0;
+>  	pps_val |= DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
+>  		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
+> -	drm_info(&dev_priv->drm, "PPS3 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS3 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_3,
+>  			       pps_val);
+> @@ -697,7 +697,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	pps_val = 0;
+>  	pps_val |= DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
+>  		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
+> -	drm_info(&dev_priv->drm, "PPS4 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS4 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_4,
+>  			       pps_val);
+> @@ -722,7 +722,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	pps_val = 0;
+>  	pps_val |= DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
+>  		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
+> -	drm_info(&dev_priv->drm, "PPS5 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS5 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_5,
+>  			       pps_val);
+> @@ -749,7 +749,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  		DSC_FIRST_LINE_BPG_OFFSET(vdsc_cfg->first_line_bpg_offset) |
+>  		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
+>  		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
+> -	drm_info(&dev_priv->drm, "PPS6 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS6 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_6,
+>  			       pps_val);
+> @@ -774,7 +774,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	pps_val = 0;
+>  	pps_val |= DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
+>  		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
+> -	drm_info(&dev_priv->drm, "PPS7 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS7 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_7,
+>  			       pps_val);
+> @@ -799,7 +799,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	pps_val = 0;
+>  	pps_val |= DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
+>  		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
+> -	drm_info(&dev_priv->drm, "PPS8 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS8 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_8,
+>  			       pps_val);
+> @@ -824,7 +824,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  	pps_val = 0;
+>  	pps_val |= DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
+>  		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
+> -	drm_info(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_9,
+>  			       pps_val);
+> @@ -851,7 +851,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  		DSC_RC_QUANT_INC_LIMIT1(vdsc_cfg->rc_quant_incr_limit1) |
+>  		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
+>  		DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
+> -	drm_info(&dev_priv->drm, "PPS10 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS10 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_10,
+>  			       pps_val);
+> @@ -879,7 +879,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  				   vdsc_cfg->slice_width) |
+>  		DSC_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
+>  					vdsc_cfg->slice_height);
+> -	drm_info(&dev_priv->drm, "PPS16 = 0x%08x\n", pps_val);
+> +	drm_dbg_kms(&dev_priv->drm, "PPS16 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_16,
+>  			       pps_val);
+> @@ -906,8 +906,8 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  		rc_buf_thresh_dword[i / 4] |=
+>  			(u32)(vdsc_cfg->rc_buf_thresh[i] <<
+>  			      BITS_PER_BYTE * (i % 4));
+> -		drm_info(&dev_priv->drm, " RC_BUF_THRESH%d = 0x%08x\n", i,
+> -			 rc_buf_thresh_dword[i / 4]);
+> +		drm_dbg_kms(&dev_priv->drm, "RC_BUF_THRESH_%d = 0x%08x\n", i,
+> +			    rc_buf_thresh_dword[i / 4]);
+>  	}
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0,
+> @@ -963,8 +963,8 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>  				RC_MAX_QP_SHIFT) |
+>  			       (vdsc_cfg->rc_range_params[i].range_min_qp <<
+>  				RC_MIN_QP_SHIFT)) << 16 * (i % 2));
+> -		drm_info(&dev_priv->drm, " RC_RANGE_PARAM_%d = 0x%08x\n", i,
+> -			 rc_range_params_dword[i / 2]);
+> +		drm_dbg_kms(&dev_priv->drm, "RC_RANGE_PARAM_%d = 0x%08x\n", i,
+> +			    rc_range_params_dword[i / 2]);
+>  	}
+>  	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>  		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0,
 > -- 
-> 2.32.0
+> 2.30.2
 > 
