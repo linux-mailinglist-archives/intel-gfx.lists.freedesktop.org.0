@@ -2,43 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD8F43C639
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 11:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD4E343C652
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 11:19:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0F3F89CB8;
-	Wed, 27 Oct 2021 09:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1A6E6E875;
+	Wed, 27 Oct 2021 09:19:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AB9C89CB8
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 09:12:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="290952657"
-X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="290952657"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 02:12:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="635656429"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 27 Oct 2021 02:12:03 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Oct 2021 12:12:03 +0300
-Date: Wed, 27 Oct 2021 12:12:03 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <YXkX4zWnnVxbhuU1@intel.com>
-References: <20211025142147.23897-1-ville.syrjala@linux.intel.com>
- <87cznsjbic.fsf@intel.com>
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com
+ [IPv6:2607:f8b0:4864:20::f35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B2706E874;
+ Wed, 27 Oct 2021 09:19:13 +0000 (UTC)
+Received: by mail-qv1-xf35.google.com with SMTP id h11so1279840qvk.4;
+ Wed, 27 Oct 2021 02:19:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=PstuwOjEdggQPxV8zHw/FQFt2fDJhQssjTXiFmUOTB4=;
+ b=Uh9XxdgBj3vPf3YDNI+Iiz1O3rjT23rqlpINjIJO+1iO4CqtM+MwuK9cys+iB2KhU/
+ pFR5zw7wkORq6pTV/lQeeslQ2WcW53kkcqqO5zeGpxPbnfM2WYoZC+8GPSkaMMMVLz1G
+ rfA6HdixgLut3WHzq7CZA+5gJv4pBOyD4bUsqCWxULo5Yv74NgcXyAJyFmj65XlbWeVB
+ pkPZgB6amfrYG0H9zTPTbwUgZ88kS1D1dA9RkajnXRgw/KoyamwlE8xk9xza8J1/7Aqg
+ zkrEEZeXza00Xjz0WCK2tBOzv0ALToRlnxb5htR2alwGy/r4QVZ59+81XumMh1fQO1lz
+ esYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=PstuwOjEdggQPxV8zHw/FQFt2fDJhQssjTXiFmUOTB4=;
+ b=m9WMymFUjh3RK3J++XjG/T04EWQsl37kBjX4fDFc1hfwSTQ4813CJfUsUdrdwXuEAg
+ d1kkvtCc5gjAXpLZfpwJoPs82UyHfLtVCu/x1CRNGDjgyw/ZUCwgk2w9d5T6IUssbb+s
+ 3OpGYyrdnAUHFCSGd4LC2mkb52QYZ8bQkiI0VxCsQwF3264mCeUksgSi7VhnTYyIwfvG
+ Dwabcuzo3GQ2X7xOf+TP2JO2cTz175A9/msTb2JMksFdM9QcAXIZ0ccxRJ95GccYVjZF
+ 2r/uOFDKVnZENpUdzjBDjSF+i6rAw4fCulv7oiKB7UQwlqnFVfGcUeiozrBYQ1W6Fdic
+ sN8w==
+X-Gm-Message-State: AOAM530DO4QLPTIljNbMi+v6AWBrYgmjl8vJ/q4m/cOlILEfsHVWkq5h
+ ePjYL9Fvm3cIhD1lwSZs4/Xmii+FxNGKfsNvW8SlErB7snDMFA==
+X-Google-Smtp-Source: ABdhPJxWf3zYTBrKjLNq1PS3rUK15ZN5+iiOKw/a+Np86gZvfJfPxg0q0pl7UWYLEl8MQoG0Snv4AXatJqDea+DhB+Q=
+X-Received: by 2002:a0c:cd88:: with SMTP id v8mr20560105qvm.1.1635326352100;
+ Wed, 27 Oct 2021 02:19:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87cznsjbic.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix type1 DVI DP dual mode
- adapter heuristic for modern platforms
+References: <20211027083608.394152-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211027083608.394152-1-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 27 Oct 2021 10:18:44 +0100
+Message-ID: <CAM0jSHNPYXchrz860n2qxEh+2zGooU2iwV65ns41dBpKT6MqBQ@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ ML dri-devel <dri-devel@lists.freedesktop.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Remove gpu reloc workaround
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,177 +70,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 26, 2021 at 02:01:15PM +0300, Jani Nikula wrote:
-> On Mon, 25 Oct 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Looks like we never updated intel_bios_is_port_dp_dual_mode() when
-> > the VBT port mapping became erratic on modern platforms. This
-> > is causing us to look up the wrong child device and thus throwing
-> > the heuristic off (ie. we might end looking at a child device for
-> > a genuine DP++ port when we were supposed to look at one for a
-> > native HDMI port).
-> >
-> > Fix it up by not using the outdated port_mapping[] in
-> > intel_bios_is_port_dp_dual_mode() and rely on
-> > intel_bios_encoder_data_lookup() instead.
-> 
-> It's just crazy, we have like 7 port_mapping tables in intel_bios.c,
-> what happened?!
-> 
-> I wish we could unify all of this more.
-> 
-> >
-> > Cc: stable@vger.kernel.org
-> > Tested-by: Randy Dunlap <rdunlap@infradead.org>
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4138
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bios.c | 85 +++++++++++++++++------
-> >  1 file changed, 63 insertions(+), 22 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> > index f9776ca85de3..2b1423a43437 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -1707,6 +1707,39 @@ static void sanitize_aux_ch(struct intel_bios_encoder_data *devdata,
-> >  	child->aux_channel = 0;
-> >  }
-> >  
-> > +static u8 dvo_port_type(u8 dvo_port)
-> > +{
-> > +	switch (dvo_port) {
-> > +	case DVO_PORT_HDMIA:
-> > +	case DVO_PORT_HDMIB:
-> > +	case DVO_PORT_HDMIC:
-> > +	case DVO_PORT_HDMID:
-> > +	case DVO_PORT_HDMIE:
-> > +	case DVO_PORT_HDMIF:
-> > +	case DVO_PORT_HDMIG:
-> > +	case DVO_PORT_HDMIH:
-> > +	case DVO_PORT_HDMII:
-> > +		return DVO_PORT_HDMIA;
-> > +	case DVO_PORT_DPA:
-> > +	case DVO_PORT_DPB:
-> > +	case DVO_PORT_DPC:
-> > +	case DVO_PORT_DPD:
-> > +	case DVO_PORT_DPE:
-> > +	case DVO_PORT_DPF:
-> > +	case DVO_PORT_DPG:
-> > +	case DVO_PORT_DPH:
-> > +	case DVO_PORT_DPI:
-> > +		return DVO_PORT_DPA;
-> > +	case DVO_PORT_MIPIA:
-> > +	case DVO_PORT_MIPIB:
-> > +	case DVO_PORT_MIPIC:
-> > +	case DVO_PORT_MIPID:
-> > +		return DVO_PORT_MIPIA;
-> > +	default:
-> > +		return dvo_port;
-> > +	}
-> > +}
-> > +
-> >  static enum port __dvo_port_to_port(int n_ports, int n_dvo,
-> >  				    const int port_mapping[][3], u8 dvo_port)
-> >  {
-> > @@ -2623,35 +2656,17 @@ bool intel_bios_is_port_edp(struct drm_i915_private *i915, enum port port)
-> >  	return false;
-> >  }
-> >  
-> > -static bool child_dev_is_dp_dual_mode(const struct child_device_config *child,
-> > -				      enum port port)
-> > +static bool child_dev_is_dp_dual_mode(const struct child_device_config *child)
-> >  {
-> > -	static const struct {
-> > -		u16 dp, hdmi;
-> > -	} port_mapping[] = {
-> > -		/*
-> > -		 * Buggy VBTs may declare DP ports as having
-> > -		 * HDMI type dvo_port :( So let's check both.
-> > -		 */
-> > -		[PORT_B] = { DVO_PORT_DPB, DVO_PORT_HDMIB, },
-> > -		[PORT_C] = { DVO_PORT_DPC, DVO_PORT_HDMIC, },
-> > -		[PORT_D] = { DVO_PORT_DPD, DVO_PORT_HDMID, },
-> > -		[PORT_E] = { DVO_PORT_DPE, DVO_PORT_HDMIE, },
-> > -		[PORT_F] = { DVO_PORT_DPF, DVO_PORT_HDMIF, },
-> > -	};
-> > -
-> > -	if (port == PORT_A || port >= ARRAY_SIZE(port_mapping))
-> > -		return false;
-> > -
-> >  	if ((child->device_type & DEVICE_TYPE_DP_DUAL_MODE_BITS) !=
-> >  	    (DEVICE_TYPE_DP_DUAL_MODE & DEVICE_TYPE_DP_DUAL_MODE_BITS))
-> >  		return false;
-> >  
-> > -	if (child->dvo_port == port_mapping[port].dp)
-> > +	if (dvo_port_type(child->dvo_port) == DVO_PORT_DPA)
-> >  		return true;
-> 
-> I wonder, why do we care about dvo_port here, while we ignore the dvo
-> port DP/HDMI/DSI difference in parse_ddi_port()? I'm not really entirely
-> happy about adding another dvo port check method. :/
+On Wed, 27 Oct 2021 at 09:36, Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> GPU relocs are gone. There should be no need for this workaround anymore.
+> Remove it.
+>
+> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-Because VBTs suck and sometimes a DP++ port is declared as DP (as
-it should) but sometimes it's declared as HDMI instead. Hence the
-additional "do we has aux ch?" check for the dvo_port==HDMI case to
-make it at least try not to match native HDMI ports. I'm not sure
-whether we could just always do the AUX CH check and ignore the
-dvo_port entirely. Would need to look through a bunch of VBTs to
-get some idea I suppose. But that would be too much change for a
-bugfix anyway.
+I was completely wrong here, sorry. Digging through the git history it
+looks like this came from:
 
-IIRC the other idea of just looking at the device_type bits was a
-bust on at least vlv/chv.
+Commit 149c84077fe717af883bae459623ef1cebd86388
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date:   Wed Feb 15 23:50:23 2012 +0100
 
-> 
-> >  
-> >  	/* Only accept a HDMI dvo_port as DP++ if it has an AUX channel */
-> > -	if (child->dvo_port == port_mapping[port].hdmi &&
-> > +	if (dvo_port_type(child->dvo_port) == DVO_PORT_HDMIA &&
-> >  	    child->aux_channel != 0)
-> >  		return true;
-> >  
-> > @@ -2661,10 +2676,36 @@ static bool child_dev_is_dp_dual_mode(const struct child_device_config *child,
-> >  bool intel_bios_is_port_dp_dual_mode(struct drm_i915_private *i915,
-> >  				     enum port port)
-> >  {
-> > +	static const struct {
-> > +		u16 dp, hdmi;
-> > +	} port_mapping[] = {
-> > +		/*
-> > +		 * Buggy VBTs may declare DP ports as having
-> > +		 * HDMI type dvo_port :( So let's check both.
-> > +		 */
-> > +		[PORT_B] = { DVO_PORT_DPB, DVO_PORT_HDMIB, },
-> > +		[PORT_C] = { DVO_PORT_DPC, DVO_PORT_HDMIC, },
-> > +		[PORT_D] = { DVO_PORT_DPD, DVO_PORT_HDMID, },
-> > +		[PORT_E] = { DVO_PORT_DPE, DVO_PORT_HDMIE, },
-> > +		[PORT_F] = { DVO_PORT_DPF, DVO_PORT_HDMIF, },
-> > +	};
-> >  	const struct intel_bios_encoder_data *devdata;
-> >  
-> > +	if (HAS_DDI(i915)) {
-> > +		const struct intel_bios_encoder_data *devdata;
-> > +
-> > +		devdata = intel_bios_encoder_data_lookup(i915, port);
-> > +
-> > +		return devdata && child_dev_is_dp_dual_mode(&devdata->child);
-> > +	}
-> > +
-> > +	if (port == PORT_A || port >= ARRAY_SIZE(port_mapping))
-> > +		return false;
-> > +
-> >  	list_for_each_entry(devdata, &i915->vbt.display_devices, node) {
-> > -		if (child_dev_is_dp_dual_mode(&devdata->child, port))
-> > +		if ((devdata->child.dvo_port == port_mapping[port].dp ||
-> > +		     devdata->child.dvo_port == port_mapping[port].hdmi) &&
-> > +		    child_dev_is_dp_dual_mode(&devdata->child))
-> >  			return true;
-> >  	}
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+    drm/i915: implement SNB workaround for lazy global gtt
 
--- 
-Ville Syrjälä
-Intel
+    PIPE_CONTROL on snb needs global gtt mappings in place to workaround a
+    hw gotcha. No other commands need such a workaround. Luckily we can
+    detect a PIPE_CONTROL commands easily because they have a write_domain
+    =3D I915_GEM_DOMAIN_INSTRUCTION (and nothing else has that).
+
+so it looks to be unrelated to GPU relocs, which AFAIK didn't exist at
+the time. I just saw the MI comment and assumed it was talking about
+the MI_STORE_DWORD...
+
+> ---
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 19 +------------------
+>  1 file changed, 1 insertion(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu=
+/drm/i915/gem/i915_gem_execbuffer.c
+> index 1231224728e4..04af88e6d453 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1327,7 +1327,6 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+>  {
+>         struct drm_i915_private *i915 =3D eb->i915;
+>         struct eb_vma *target;
+> -       int err;
+>
+>         /* we've already hold a reference to all valid objects */
+>         target =3D eb_get_vma(eb, reloc->target_handle);
+> @@ -1357,25 +1356,9 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+>                 return -EINVAL;
+>         }
+>
+> -       if (reloc->write_domain) {
+> +       if (reloc->write_domain)
+>                 target->flags |=3D EXEC_OBJECT_WRITE;
+>
+> -               /*
+> -                * Sandybridge PPGTT errata: We need a global gtt mapping
+> -                * for MI and pipe_control writes because the gpu doesn't
+> -                * properly redirect them through the ppgtt for non_secur=
+e
+> -                * batchbuffers.
+> -                */
+> -               if (reloc->write_domain =3D=3D I915_GEM_DOMAIN_INSTRUCTIO=
+N &&
+> -                   GRAPHICS_VER(eb->i915) =3D=3D 6) {
+> -                       err =3D i915_vma_bind(target->vma,
+> -                                           target->vma->obj->cache_level=
+,
+> -                                           PIN_GLOBAL, NULL);
+> -                       if (err)
+> -                               return err;
+> -               }
+> -       }
+> -
+>         /*
+>          * If the relocation already has the right value in it, no
+>          * more work needs to be done.
+> --
+> 2.31.1
+>
