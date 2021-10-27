@@ -2,58 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFC743D19B
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 21:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF97943D17D
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 21:14:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE9196E558;
-	Wed, 27 Oct 2021 19:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F230C6E54C;
+	Wed, 27 Oct 2021 19:14:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0D7B6E558;
- Wed, 27 Oct 2021 19:26:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
- Subject:Sender:Reply-To:Content-ID:Content-Description;
- bh=g0dH9lUH9vPuYQ5RBQpLLtCKZuNR2X5ACKtS00x71Kw=; b=PxUBtFESwlvjxxr6Dimbwj55Tl
- eW5mYYUtBZSQwqGOGj647EFkxq6N6Znmn7EJYhiMZd2ZgrOngPZJkot34TISXBQbg4OK0I5sf66VN
- LABs5hSzkQddb7+0GC1ZYeytLjXzCf45XXjkePzy0HEeO8ce0X3yZob7Z8uKfSGoowKKTMLhiFAQJ
- gwNmPL9VIJIOZ2sNP06QvlTJywZOd+CUGxgEB6o8CAe9aSQlHwo57Vba6AMhUCJk9v7cjlT8x545C
- 7BuNJyH/0fCMqkEk+fkIrymdMpf6ZOPiGZ8P7Nd+iLGltiWJ9hyV0CcOBSnHowTDGLUliTjlpqQDA
- y0jXwaoA==;
-Received: from [2601:1c0:6280:3f0::aa0b]
- by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mfoYX-005url-4B; Wed, 27 Oct 2021 19:25:49 +0000
-To: Arnd Bergmann <arnd@kernel.org>, dri-devel@lists.freedesktop.org
-Cc: linux-fbdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>, Arnd Bergmann <arnd@arndb.de>,
- Miguel Ojeda <ojeda@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jens Frederich <jfrederich@gmail.com>,
- Jon Nettleton <jon.nettleton@gmail.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Lars Poeschel <poeschel@lemonage.de>,
- Robin van der Gracht <robin@protonic.nl>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andy Shevchenko <andy.shevchenko@gmail.com>, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-staging@lists.linux.dev
-References: <20211027132732.3993279-1-arnd@kernel.org>
- <20211027132732.3993279-2-arnd@kernel.org>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <e19f3eeb-e1c4-ff0e-cf97-f98bd420f842@infradead.org>
-Date: Wed, 27 Oct 2021 12:25:47 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11BFC6E54C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 19:14:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="217155000"
+X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="217155000"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 12:14:06 -0700
+X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="665114205"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 12:14:06 -0700
+Date: Wed, 27 Oct 2021 12:26:47 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com
+Message-ID: <20211027192642.GA22973@labuser-Z97X-UD5H>
+References: <20211027095316.9579-1-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20211027132732.3993279-2-arnd@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/3] fbdev: rework backlight dependencies
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211027095316.9579-1-vandita.kulkarni@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Fix the usage of uncompressed
+ bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,28 +50,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/27/21 6:27 AM, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
+On Wed, Oct 27, 2021 at 03:23:16PM +0530, Vandita Kulkarni wrote:
+> DP 1.4 spec limits max compression bpp to
+> uncompressed bpp -1, which is supported from
+> XELPD onwards.
+> Instead of uncompressed bpp, max dsc input bpp
+> was being used to limit the max compression bpp.
+
+So the input Pipe BPP which is the uncompressed bpp is decided by the input bpc
+and when this was initially written, we had designed it to respect the max_req_bpc by the user.
+So that is what we use to decide the input bpc and hence the pipe_bpp
+This input pipe_bpp decides the compressed bpp that we calculate based on all the supported output bpps
+which are supported all the way upto uncompressed_output_bpp - 1.
+
+So I dont see the need to change the logic here. Moreover I dont see any change in the dsc_compute_bpp function
+So I dont understand the purpose of introducing the new max_dsc_pipe_bpp variable here
+
+Manasi
+
 > 
-> Rather than having CONFIG_FB_BACKLIGHT select CONFIG_BACKLIGHT_CLASS_DEVICE,
-> make any driver that needs it have a dependency on the class device
-> being available, to prevent circular dependencies.
-> 
-> This is the same way that the backlight is already treated for the DRM
-> subsystem.
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> Fixes: 831d5aa96c97 ("drm/i915/xelpd: Support DP1.4 compression BPPs")
+> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 > ---
->   drivers/auxdisplay/Kconfig        |  1 +
->   drivers/macintosh/Kconfig         |  1 +
->   drivers/staging/fbtft/Kconfig     |  1 +
->   drivers/staging/olpc_dcon/Kconfig |  2 +-
->   drivers/video/fbdev/Kconfig       | 14 +++++++++++---
->   5 files changed, 15 insertions(+), 4 deletions(-)
-
-Acked-by: Randy Dunlap <rdunlap@infraded.org>
-
-Thanks.
-
--- 
-~Randy
+>  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 9d8132dd4cc5..1f7e666ae490 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1322,7 +1322,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&pipe_config->hw.adjusted_mode;
+> -	int pipe_bpp;
+> +	int pipe_bpp, max_dsc_pipe_bpp;
+>  	int ret;
+>  
+>  	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
+> @@ -1331,7 +1331,8 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+>  		return -EINVAL;
+>  
+> -	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
+> +	pipe_bpp = pipe_config->pipe_bpp;
+> +	max_dsc_pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
+>  
+>  	/* Min Input BPC for ICL+ is 8 */
+>  	if (pipe_bpp < 8 * 3) {
+> @@ -1345,7 +1346,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  	 * Optimize this later for the minimum possible link rate/lane count
+>  	 * with DSC enabled for the requested mode.
+>  	 */
+> -	pipe_config->pipe_bpp = pipe_bpp;
+> +	pipe_config->pipe_bpp = max_dsc_pipe_bpp;
+>  	pipe_config->port_clock = limits->max_rate;
+>  	pipe_config->lane_count = limits->max_lane_count;
+>  
+> -- 
+> 2.32.0
+> 
