@@ -2,139 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F251343CA0D
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 14:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C818943CA1B
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 14:51:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5CC56E7D2;
-	Wed, 27 Oct 2021 12:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 424CA6E7E5;
+	Wed, 27 Oct 2021 12:51:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2051.outbound.protection.outlook.com [40.107.237.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 852E16E7DC;
- Wed, 27 Oct 2021 12:48:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iCpdtPaU8NICreolmBGWipMjDUG7yK8pw2/ngxmDaQBgkQ4FGbcYaDN1RuW0B+Lsp+lydpmX+XG8gOVn7x17yQ3V7WJgQBbGxyumBI6jGdivLZ8cbDqJpCocIWkJIT3BOmBVHzf5iylQDWAgsX5wyQXZyZoMAIjckuwb8wU0tbxm3QM3jryJIqlCZNHn5Mc96edMsp23e059qBKbHED0Mh6nojxkvSVGewJ1UigfIoqia+M6s7mQfXTQFtsdOwlPk4TH1HeAQTHEqF/zsAQ6PM+0Kmik+6Ha/PtPUmvGvDx4qnPYQ0YSWBjBcEaH/UCo+QmJJmkKNbmRbV6zsQ+XRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HyBfV4HighF3fOfP1mBAx+x71FVENpAMSyeDRf7Q/L8=;
- b=L50gfdiVHWKOjQBp0RvFRFhuF1OOgcTO+duDUOR5IuYi6OmJuyiHDzPNyWN1s+mn29JKtOhJUUTwMpEgzATO/CJeR6wmdb4w9VbS9SwI2JkKaDMumjaSzbQsABxgno4iG3rUEbjtT4BxC3jUoNTPt1zeQSDfGwc+kwOKWKy/N3V+XbuaORv2Rl9jrd4rRruMfoxr2E/kkDGtpi9JW0oc/dWtpR+XNP/U/YBONpSdVOFQMcwY0SFHWwG533F3KhlauSQA9andMERyN47Bg6CiFlPS5KGjBFP7eDWUXArQHRrXTYaccwCFrvz1hYwigyMxXEdScsgEYZJPJd25vhgTdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HyBfV4HighF3fOfP1mBAx+x71FVENpAMSyeDRf7Q/L8=;
- b=NJ5Z37ZdUZxqt13qo0qTzYHoKKHVWq3w3wVWmDOJvfsVreTAJvgGFVY4nJQnT8Ud4STTTsKkdJ7rTG6NzeQNPbeHWySdbOzenMIJRbNXh1vNO2R9OYFd9FHH8VhZfKcD0rFJl0UEueWm0qNo7DzGP0HzZGfnxQ2fYXaosNnId3s=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by CO6PR12MB5460.namprd12.prod.outlook.com (2603:10b6:5:357::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.14; Wed, 27 Oct
- 2021 12:48:17 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d095:131a:b99a:9975]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d095:131a:b99a:9975%3]) with mapi id 15.20.4649.014; Wed, 27 Oct 2021
- 12:48:17 +0000
-Message-ID: <a65548cd-2499-804a-895c-b1e723973f17@amd.com>
-Date: Wed, 27 Oct 2021 08:48:13 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-US
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Cc: "Shankar, Uma" <uma.shankar@intel.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "brian.starkey@arm.com" <brian.starkey@arm.com>,
- "sebastian@sebastianwick.net" <sebastian@sebastianwick.net>,
- "Shashank.Sharma@amd.com" <Shashank.Sharma@amd.com>,
- "Cyr, Aric" <Aric.Cyr@amd.com>
-References: <20210906213904.27918-1-uma.shankar@intel.com>
- <20210906213904.27918-2-uma.shankar@intel.com>
- <20211006155559.606521de@eldfell>
- <92af78eb53c04d67ac66b77f8b098cc0@intel.com>
- <20211013113046.7ace2dbd@eldfell>
- <8c1d39bf5d034595aafd8937df259547@intel.com>
- <2df20264-6800-56ec-3ec7-5a319c9c2296@amd.com>
- <20211027110057.72db81fa@eldfell>
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <20211027110057.72db81fa@eldfell>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR01CA0069.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:2::41) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 905406E7E5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 12:51:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="210931251"
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="210931251"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 05:51:54 -0700
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="497852467"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 05:51:52 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Date: Wed, 27 Oct 2021 15:51:50 +0300
+Message-Id: <20211027125150.2891371-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20211026161517.2694067-4-imre.deak@intel.com>
+References: <20211026161517.2694067-4-imre.deak@intel.com>
 MIME-Version: 1.0
-Received: from [192.168.50.4] (198.200.67.104) by
- YQBPR01CA0069.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:2::41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4649.14 via Frontend Transport; Wed, 27 Oct 2021 12:48:15 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f39b1b8f-67e2-4a74-39db-08d999480c28
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5460:
-X-Microsoft-Antispam-PRVS: <CO6PR12MB54604BC88F50179AB0E8AEB38C859@CO6PR12MB5460.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c+HzBNO9hCou7+g06BvWHViaU1+tYuQ/SdV7gYYYTDkq1GYbLo7+G3LvCOUIRjH2829nFJWO7S8osoL1ncH7moQdF6ku89GqKgNPDhQaALFRtibhJccPbg2Y3AnjhtrHW2Rp9Q3Vw8q9xSLXWzeb6o4D+Z/k4gi4EXNZfzJ0Nx+vac5nb9uCDZRQP80DYcuBXWZDNE1fE8UGTvqc31OWU/NH+2j/2/e0HaSSU9/cScDY8b2tzYmMLV2xKBUmw/KGIHV7B4rfQd6Hs2dsw3xpszAEnSy8wLb59kiYYCjDNok44Z36zXlcbAgNTW1cpztlbSXB10W4NYO7r77XLSpWPHUqZccXKLVA54LDcCxBH0a3osdIgY3AdNmgQ4vQk0P2gjgXhLwqlTXAXWE9qoIJH4M1bhEJ7aJCroeYOihMAQC8ELRqLHy4bvoSY57QKfq+UKxgu88H7oHAseVsPQHdaJLqrSTSI2oHHtudEmBvSjNRzhnVIMKYO6ea4BL5GawysqcrkziERMp6H9RFO3prF+K/YwVJRo1dZ+jtUqnSXOtksBR1BXyLUG9lQSBnvzakJ9JkNal+mH2Nm5YS1dawDmYzXG08XJ5VRorDXjOHfcqZesD2RBL100JIRQ7t4xkXAAj+ZqNXhzTcKWam2XWqNMIGD8ch7k+p4xwVSRuV6cJzRi/cKQhx5ysGbwMKoaMUh2uB0rtkghpUyxg0CpK+INrIVudhI1ZV/WRPolh5FpE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(31686004)(38100700002)(508600001)(2616005)(4326008)(36756003)(54906003)(2906002)(5660300002)(86362001)(66556008)(66476007)(66946007)(44832011)(4001150100001)(956004)(316002)(31696002)(26005)(53546011)(83380400001)(186003)(16576012)(8676002)(6916009)(8936002)(6486002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?THJWL1Zvc1JORFErWjJGc052YktDUk5vOUhMVy9ISUdPenNFRzhLRC81NXgw?=
- =?utf-8?B?N1VhdTJ5dVlsT01HM1lTYnJZVDRrTDB1QU1mQXZCcHl6RVhqbkpHZ2JRVy9v?=
- =?utf-8?B?QmFiVjJORDRUT3laQ2h3ajNzZUFxTEhTT3RmYXdGUGpRdXBJd2RwZHgvdDJt?=
- =?utf-8?B?OVlBY1pyLzFORTU3dEkxcEd0L1FwTzhCR2txalV2Q0Rwc3ovRURNeDBxcEpy?=
- =?utf-8?B?aE5rVUVtZWZiZkNEQXdwVndMdW1OYzZYbHh2UC9TdjhPaktFWHZxWVgyMzZL?=
- =?utf-8?B?Y0gvUWdpclFWOW5LMjBnbDJONVdkVit0UUJqaTJ6OU1YdWVsRnFDcnJscTlz?=
- =?utf-8?B?Rk1jdy9RQUYwTC9ZaVpOS0huemlreGNGbUUyb2ZJU3p4b0xmRVRUN21yRHIz?=
- =?utf-8?B?YnNUVWF2ay9sZGxnWTk5NlhDUTNwbU9WR0JvTjRGSVlaeFpVYjdGRDlqUFpq?=
- =?utf-8?B?cG0wVGx4RGJiT0RYSE1FU1dCWGxIVTl1NE9wZklLekk2SkZUNENEQlBKWSt3?=
- =?utf-8?B?Sk9INTVUR3l4TGZHNVJGOUlRQzdOMXEvZDl1Y0FaRkJwbXd2VUsyRVlOelRS?=
- =?utf-8?B?OE9BaE9COGRFc0NrcXV1U3lXMWNHV3VPWTZOcmRaTHV0UVpQUGdsR0w2QklO?=
- =?utf-8?B?ak9qZ3RpVTUveEJrczFwMllkRmgzZldPTnBySjBKZEliK05JWFpuZzBWRXhX?=
- =?utf-8?B?Um1URmlsbHJ1ZE0rSHQ0WEMzakJvS3VpQ3lxRG03cnIvT2IwaGpJcXFuSVMz?=
- =?utf-8?B?K0dkSTkyazkzczJOWDRTeFBMNkM2N1dLWTh4eFJkUWM5TkFEU3BPMEF0dnkv?=
- =?utf-8?B?UkhtVVJvWmNkUXVkR1VPR1o1R3pSY1hRNmxUL3krV01tSEFsdUNrVytEV0sw?=
- =?utf-8?B?cVVkZit5SGpvUDlQNGNkUGszSk1KY1YxbTdsSmNHNUNOSEJXa1lrMzVwaVVM?=
- =?utf-8?B?L3RXbmlyNDQyT3dGNUh0enNmeEd3dVFYTUxmRVdsdXV1Zmh1b3IveGtxVElx?=
- =?utf-8?B?c0lPMnd0TFI1R24xREw3UXAwa2ZGV2dOZ1VWS2hmNzFnY3FrNit5RERiR0Nz?=
- =?utf-8?B?SS9FUTJNZnRSSkdjYmVZSFNEMllUaGlNL3lmaGp2MjJzcDNjWTN3b1RXZklP?=
- =?utf-8?B?UDNRdkNrZ3orcnE0UFo0ZmRoL3hjbWtYNkZOOU10aEFhbjRlYWpQNWViVDhl?=
- =?utf-8?B?M0tYUmhnWDNYalE4ODBZS0k2YWNUWHA3c2htSktDdmM2WHJidloxNm1EaFRV?=
- =?utf-8?B?U3UrUXBMRWszTU1TaUNaQTlxWjRBME14UjlLZnRWanR1bWtxZ1lVL3YxWkFa?=
- =?utf-8?B?cjNncUtqN1ovRmdUazEzWWY1SFM4cnhRVlZ4ZEhFZ2xseHoyTDcvRmZnTEkz?=
- =?utf-8?B?NnNuVjM0SDJHUWdvUS9ueEhjTDZ6N0tyQ1BRWiswc1l4SXpNOVpYUlVvZDJp?=
- =?utf-8?B?TzRBUG9uNlpOZ3FvYTRMMjRUS3pFb0xhSlZnQnJnVlFMNGttNEEwZDQ0OHAz?=
- =?utf-8?B?YUoxRytoUHdJVllnL2d2QnlLdmpudSt0K2ROV3dVME5GV3hhRnRhaytud2hY?=
- =?utf-8?B?MXdFb1VIZUpFWXpCdXIrbjZyUGdkWXZpeUdOU0dmYzh4ZFZXVUpwcVpPUmFK?=
- =?utf-8?B?TTVBTGhtd3FERnBZZWtjdVlqc1cwQWhDU1lsWVNIKzd2cGNWdTdQb1d4ZnRs?=
- =?utf-8?B?WXo3RmxNV2h4NnFGVVF2MVZPRTh0bEt0RkxJWnZzQ1VCRWYwQnk0WnNZbE8z?=
- =?utf-8?B?bHcxZzZ5ZzRtam9sY2pKaWZEclI5STIvRG80TlY0Qms1dWx1MEIrb0d0REQ0?=
- =?utf-8?B?aW5NM3g4TVB3TmNlU3FrU3VvcXg3R05VMUF0RXZxZXVzVmc3OFhQS2w0UGN0?=
- =?utf-8?B?Y2Fnd20rSWkzY0xZRTJjQTBzL25xdnZaY1dCNDU4WWt0bGRIQXl4WWcxdHVS?=
- =?utf-8?B?MkxGdXJKWEx2SUY4WCswcFdRVWNtOEo1OWJ0STZWL0FYbTFWQU1zY01lZkVz?=
- =?utf-8?B?cWlRUUhRWnNxTUxvelplVkhwdWt4SmxzeGxid3RRcjhDNElQTElSeUpHaGhI?=
- =?utf-8?B?d0hmUmFJOEQxc09nNG52MjQxa21zYlJvMFVrUERMdjhqYmxXaThIUGQ1WnRO?=
- =?utf-8?B?TXkwUmMwZHJrMENMb010VDJSK1crOVVGZ3psWFNoekh4VlVIRndzWG5vZlNG?=
- =?utf-8?Q?GB9fV9bq2mRYa2UGEGyUXRs=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f39b1b8f-67e2-4a74-39db-08d999480c28
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2021 12:48:17.2185 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4Fzl57U49Pc5kcw1e2++dCiuRWwAL/u3ur6eJH8JrgpSnW5M/tJ0QAo0+eFehft3OJA369AeDAZ8YsPTXZ4dLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5460
-Subject: Re: [Intel-gfx] [RFC v2 01/22] drm: RFC for Plane Color Hardware
- Pipeline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/fb: Fold modifier CCS
+ type/tiling attribute to plane caps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,85 +51,368 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+By using the modifier plane capability flags to encode the modifiers'
+CCS type and tiling attributes, it becomes simpler to the check for
+any of these capabilities when providing the list of supported
+modifiers.
 
+This also allows distinguishing modifiers on future platforms where
+platforms with the same display version support different modifiers. An
+example is DG2 and ADLP, both being D13, where DG2 supports only F and X
+tiling, while ADLP supports only Y and X tiling. With the
+INTEL_PLANE_CAP_TILING_* flags added in this patch we can provide
+the correct modifiers for each platform.
 
-On 2021-10-27 04:00, Pekka Paalanen wrote:
-> On Tue, 26 Oct 2021 11:36:33 -0400
-> Harry Wentland <harry.wentland@amd.com> wrote:
-> 
->> On 2021-10-14 15:44, Shankar, Uma wrote:
->>>
-> 
+v2:
+- Define PLANE_HAS_* with macros instead of an enum. (Jani)
+- Rename PLANE_HAS_*_ANY to PLANE_HAS_*_MASK. (Jani)
+- Rename PLANE_HAS_* to INTEL_PLANE_CAP_*.
+- Set the CCS_RC_CC cap only for DISPLAY_VER >= 12.
+- Set the TILING_Y cap only for DISPLAY_VER < 13 || ADLP.
+- Simplify the SKL plane cap display version checks and move them
+  to a separate function.
 
-...
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       | 88 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_fb.h       | 13 +--
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  2 +-
+ .../drm/i915/display/skl_universal_plane.c    | 33 +++++--
+ 6 files changed, 81 insertions(+), 59 deletions(-)
 
->> FWIW, AMD HW (depending on generation) can do these operations
->> (in this order):
->>
->> 1) 1D LUT (fixed or PWL programmable)
->> 2) simple multiplier (for scaling SDR content to HDR output)
->> 3) CTM matrix
->> 4) 1D LUT (shaper LUT to non-linearize for more effective 3D LUT transform)
->> 5) 3D LUT
->> 6) 1D LUT (for non-linear blending, or to linearize after 3D LUT)
->> 7) blending
->> 8) CTM matrix
->> 9) 1D LUT (shaper LUT like above)
->> 10) 3D LUT
->> 11) 1D LUT (generally for EOTF^-1 for display EOTF)
->>
->> Not all blocks are available on all (current and future) HW.
->>
->> I sketched a few diagrams that show how these might be used by
->> a compositor if we exposed all of these blocks and should
->> really try to add some of them to the color-and-hdr docs
->> repo.
-> 
-> Yes, please.
-> 
-> That pipeline looks pretty comprehensive.
-> 
-> Btw. how about YUV<->RGB conversion? Where would that matrix go? It
-> needs to operate on non-linear values, while a color space conversion
-> matrix needs to operate on linear color values.
-> 
-
-That is communicated via drm_framebuffer.format, and drm_plane's
-color_range and color_encoding. I expect it to happen before
-everything else, i.e. at step 0. It seems like any color management
-implementation I've seen is always operating in RGB.
-
-Harry
-
->>>>>>> +	* This can be used to perform a color space conversion like
->>>>>>> +	* BT2020 to BT709 or BT601 etc.
->>>>>>> +	* This block is generally kept after the degamma unit so that  
->>>>>>
->>>>>> Not "generally". If blocks can change places, then it becomes 
->>>>>> intractable for generic userspace to program.  
->>>>>
->>>>> Sure, will drop this wording here. But one open will still remain 
->>>>> for userspace, as to how it gets the pipeline dynamically for a respective hardware.
->>>>> Currently we have assumed that this would be the logical fixed order 
->>>>> of hardware units.  
->>>>
->>>> If we cannot model the abstract KMS pipeline as a fixed order of units 
->>>> (where each unit may exist or not), we need to take a few steps back 
->>>> here and look at what do we actually want to expose. That is a much 
->>>> bigger design problem which we are currently not even considering.  
->>>
->>> I think most of the hardware vendor platforms have this pipeline, so we can implement the properties which include all the possible hardware blocks. If certain units don't exist, the respective properties should not be exposed which will make things easier for userspace.  
->>
->> I think the color pipeline should be modeled in a way that makes
->> sense from a color science standpoint and in a way that makes sense
->> for compositor implementations. Fortunately HW design generally
->> aligns with these intentions but we should be careful to not
->> let HW design dictate KMS interfaces.
-> 
-> I'm so happy to hear that!
-> 
-> 
-> Thanks,
-> pq
-> 
+diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+index a939accff7ee2..2e16a66e8f9e7 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
++++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+@@ -860,7 +860,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 		plane->disable_flip_done = ilk_primary_disable_flip_done;
+ 	}
+ 
+-	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
++	modifiers = intel_fb_plane_get_modifiers(dev_priv, INTEL_PLANE_CAP_TILING_X);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
+ 		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 6b08d8bca5cd4..5ddd3c8fbc634 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -782,7 +782,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+ 	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
+ 		cursor->cursor.size = ~0;
+ 
+-	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_NO_CAPS);
++	modifiers = intel_fb_plane_get_modifiers(dev_priv, INTEL_PLANE_CAP_NONE);
+ 
+ 	ret = drm_universal_plane_init(&dev_priv->drm, &cursor->base,
+ 				       0, &intel_cursor_plane_funcs,
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 6b68f69940f0b..117e32fb3648e 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -120,29 +120,29 @@ struct intel_modifier_desc {
+ 	.formats = format_list, \
+ 	.format_count = ARRAY_SIZE(format_list)
+ 
+-	u8 tiling;
+-	u8 is_linear:1;
++	u8 plane_caps;
+ 
+ 	struct {
+-#define INTEL_CCS_RC		BIT(0)
+-#define INTEL_CCS_RC_CC		BIT(1)
+-#define INTEL_CCS_MC		BIT(2)
+-
+-#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
+-		u8 type:3;
+ 		u8 cc_planes:3;
+ 		u8 packed_aux_planes:4;
+ 		u8 planar_aux_planes:4;
+ 	} ccs;
+ };
+ 
++#define INTEL_PLANE_CAP_CCS_MASK	(INTEL_PLANE_CAP_CCS_RC | \
++					 INTEL_PLANE_CAP_CCS_RC_CC | \
++					 INTEL_PLANE_CAP_CCS_MC)
++#define INTEL_PLANE_CAP_TILING_MASK	(INTEL_PLANE_CAP_TILING_X | \
++					 INTEL_PLANE_CAP_TILING_Y | \
++					 INTEL_PLANE_CAP_TILING_Yf)
++#define INTEL_PLANE_CAP_TILING_NONE	0
++
+ static const struct intel_modifier_desc intel_modifiers[] = {
+ 	{
+ 		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+ 		.display_ver = { 12, 13 },
+-		.tiling = I915_TILING_Y,
++		.plane_caps = INTEL_PLANE_CAP_TILING_Y | INTEL_PLANE_CAP_CCS_MC,
+ 
+-		.ccs.type = INTEL_CCS_MC,
+ 		.ccs.packed_aux_planes = BIT(1),
+ 		.ccs.planar_aux_planes = BIT(2) | BIT(3),
+ 
+@@ -150,18 +150,16 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+ 		.display_ver = { 12, 13 },
+-		.tiling = I915_TILING_Y,
++		.plane_caps = INTEL_PLANE_CAP_TILING_Y | INTEL_PLANE_CAP_CCS_RC,
+ 
+-		.ccs.type = INTEL_CCS_RC,
+ 		.ccs.packed_aux_planes = BIT(1),
+ 
+ 		FORMAT_OVERRIDE(gen12_ccs_formats),
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+ 		.display_ver = { 12, 13 },
+-		.tiling = I915_TILING_Y,
++		.plane_caps = INTEL_PLANE_CAP_TILING_Y | INTEL_PLANE_CAP_CCS_RC_CC,
+ 
+-		.ccs.type = INTEL_CCS_RC_CC,
+ 		.ccs.cc_planes = BIT(2),
+ 		.ccs.packed_aux_planes = BIT(1),
+ 
+@@ -169,39 +167,34 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_Yf_TILED_CCS,
+ 		.display_ver = { 9, 11 },
+-		.tiling = I915_TILING_NONE,
++		.plane_caps = INTEL_PLANE_CAP_TILING_Yf | INTEL_PLANE_CAP_CCS_RC,
+ 
+-		.ccs.type = INTEL_CCS_RC,
+ 		.ccs.packed_aux_planes = BIT(1),
+ 
+ 		FORMAT_OVERRIDE(skl_ccs_formats),
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_Y_TILED_CCS,
+ 		.display_ver = { 9, 11 },
+-		.tiling = I915_TILING_Y,
++		.plane_caps = INTEL_PLANE_CAP_TILING_Y | INTEL_PLANE_CAP_CCS_RC,
+ 
+-		.ccs.type = INTEL_CCS_RC,
+ 		.ccs.packed_aux_planes = BIT(1),
+ 
+ 		FORMAT_OVERRIDE(skl_ccs_formats),
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_Yf_TILED,
+ 		.display_ver = { 9, 11 },
+-		.tiling = I915_TILING_NONE,
++		.plane_caps = INTEL_PLANE_CAP_TILING_Yf,
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_Y_TILED,
+ 		.display_ver = { 9, 13 },
+-		.tiling = I915_TILING_Y,
++		.plane_caps = INTEL_PLANE_CAP_TILING_Y,
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_X_TILED,
+ 		.display_ver = DISPLAY_VER_ALL,
+-		.tiling = I915_TILING_X,
++		.plane_caps = INTEL_PLANE_CAP_TILING_X,
+ 	}, {
+ 		.modifier = DRM_FORMAT_MOD_LINEAR,
+ 		.display_ver = DISPLAY_VER_ALL,
+-		.tiling = I915_TILING_NONE,
+-
+-		.is_linear = true,
+ 	},
+ };
+ 
+@@ -259,9 +252,14 @@ intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+ 	return lookup_format_info(md->formats, md->format_count, cmd->pixel_format);
+ }
+ 
+-static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_type)
++static bool plane_caps_contain_any(u8 caps, u8 mask)
+ {
+-	return md->ccs.type & ccs_type;
++	return caps & mask;
++}
++
++static bool plane_caps_contain_all(u8 caps, u8 mask)
++{
++	return (caps & mask) == mask;
+ }
+ 
+ /**
+@@ -274,7 +272,8 @@ static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_ty
+  */
+ bool intel_fb_is_ccs_modifier(u64 modifier)
+ {
+-	return is_ccs_type_modifier(lookup_modifier(modifier), INTEL_CCS_ANY);
++	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
++				      INTEL_PLANE_CAP_CCS_MASK);
+ }
+ 
+ /**
+@@ -286,7 +285,8 @@ bool intel_fb_is_ccs_modifier(u64 modifier)
+  */
+ bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier)
+ {
+-	return is_ccs_type_modifier(lookup_modifier(modifier), INTEL_CCS_RC_CC);
++	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
++				      INTEL_PLANE_CAP_CCS_RC_CC);
+ }
+ 
+ /**
+@@ -298,7 +298,8 @@ bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier)
+  */
+ bool intel_fb_is_mc_ccs_modifier(u64 modifier)
+ {
+-	return is_ccs_type_modifier(lookup_modifier(modifier), INTEL_CCS_MC);
++	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
++				      INTEL_PLANE_CAP_CCS_MC);
+ }
+ 
+ static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
+@@ -315,16 +316,7 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
+ 	if (!IS_DISPLAY_VER(i915, md->display_ver.from, md->display_ver.until))
+ 		return false;
+ 
+-	if (!md->is_linear &&
+-	    !(plane_caps & PLANE_HAS_TILING))
+-		return false;
+-
+-	if (is_ccs_type_modifier(md, INTEL_CCS_RC | INTEL_CCS_RC_CC) &&
+-	    !(plane_caps & PLANE_HAS_CCS_RC))
+-		return false;
+-
+-	if (is_ccs_type_modifier(md, INTEL_CCS_MC) &&
+-	    !(plane_caps & PLANE_HAS_CCS_MC))
++	if (!plane_caps_contain_all(plane_caps, md->plane_caps))
+ 		return false;
+ 
+ 	return true;
+@@ -392,7 +384,7 @@ static bool format_is_yuv_semiplanar(const struct intel_modifier_desc *md,
+ 	if (!info->is_yuv)
+ 		return false;
+ 
+-	if (is_ccs_type_modifier(md, INTEL_CCS_ANY))
++	if (plane_caps_contain_any(md->plane_caps, INTEL_PLANE_CAP_CCS_MASK))
+ 		yuv_planes = 4;
+ 	else
+ 		yuv_planes = 2;
+@@ -672,7 +664,21 @@ intel_fb_align_height(const struct drm_framebuffer *fb,
+ 
+ static unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
+ {
+-	return lookup_modifier(fb_modifier)->tiling;
++	u8 tiling_caps = lookup_modifier(fb_modifier)->plane_caps &
++			 INTEL_PLANE_CAP_TILING_MASK;
++
++	switch (tiling_caps) {
++	case INTEL_PLANE_CAP_TILING_Y:
++		return I915_TILING_Y;
++	case INTEL_PLANE_CAP_TILING_X:
++		return I915_TILING_X;
++	case INTEL_PLANE_CAP_TILING_Yf:
++	case INTEL_PLANE_CAP_TILING_NONE:
++		return I915_TILING_NONE;
++	default:
++		MISSING_CASE(tiling_caps);
++		return I915_TILING_NONE;
++	}
+ }
+ 
+ unsigned int intel_cursor_alignment(const struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+index 19f46144474d8..b54997175d6da 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fb.h
+@@ -20,12 +20,13 @@ struct intel_framebuffer;
+ struct intel_plane;
+ struct intel_plane_state;
+ 
+-enum intel_plane_caps {
+-	PLANE_HAS_NO_CAPS = 0,
+-	PLANE_HAS_TILING = BIT(0),
+-	PLANE_HAS_CCS_RC = BIT(1),
+-	PLANE_HAS_CCS_MC = BIT(2),
+-};
++#define INTEL_PLANE_CAP_NONE		0
++#define INTEL_PLANE_CAP_CCS_RC		BIT(0)
++#define INTEL_PLANE_CAP_CCS_RC_CC	BIT(1)
++#define INTEL_PLANE_CAP_CCS_MC		BIT(2)
++#define INTEL_PLANE_CAP_TILING_X	BIT(3)
++#define INTEL_PLANE_CAP_TILING_Y	BIT(4)
++#define INTEL_PLANE_CAP_TILING_Yf	BIT(5)
+ 
+ bool intel_fb_is_ccs_modifier(u64 modifier);
+ bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 2f4f47ab9da03..367515a70ac4c 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -1810,7 +1810,7 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+ 	plane->id = PLANE_SPRITE0 + sprite;
+ 	plane->frontbuffer_bit = INTEL_FRONTBUFFER(pipe, plane->id);
+ 
+-	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
++	modifiers = intel_fb_plane_get_modifiers(dev_priv, INTEL_PLANE_CAP_TILING_X);
+ 
+ 	ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+ 				       0, plane_funcs,
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 317108e009bba..ef7856db09f79 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2016,6 +2016,28 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
+ 	return plane_id < PLANE_SPRITE4;
+ }
+ 
++static u8 skl_get_plane_caps(struct drm_i915_private *i915,
++			     enum pipe pipe, enum plane_id plane_id)
++{
++	u8 caps = INTEL_PLANE_CAP_TILING_X;
++
++	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
++		caps |= INTEL_PLANE_CAP_TILING_Y;
++	if (DISPLAY_VER(i915) < 12)
++		caps |= INTEL_PLANE_CAP_TILING_Yf;
++
++	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
++		caps |= INTEL_PLANE_CAP_CCS_RC;
++		if (DISPLAY_VER(i915) >= 12)
++			caps |= INTEL_PLANE_CAP_CCS_RC_CC;
++	}
++
++	if (gen12_plane_has_mc_ccs(i915, plane_id))
++		caps |= INTEL_PLANE_CAP_CCS_MC;
++
++	return caps;
++}
++
+ struct intel_plane *
+ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 			   enum pipe pipe, enum plane_id plane_id)
+@@ -2023,7 +2045,6 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	const struct drm_plane_funcs *plane_funcs;
+ 	struct intel_plane *plane;
+ 	enum drm_plane_type plane_type;
+-	u8 plane_caps;
+ 	unsigned int supported_rotations;
+ 	unsigned int supported_csc;
+ 	const u64 *modifiers;
+@@ -2095,14 +2116,8 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	else
+ 		plane_type = DRM_PLANE_TYPE_OVERLAY;
+ 
+-	plane_caps = PLANE_HAS_TILING;
+-	if (skl_plane_has_rc_ccs(dev_priv, pipe, plane_id))
+-		plane_caps |= PLANE_HAS_CCS_RC;
+-
+-	if (gen12_plane_has_mc_ccs(dev_priv, plane_id))
+-		plane_caps |= PLANE_HAS_CCS_MC;
+-
+-	modifiers = intel_fb_plane_get_modifiers(dev_priv, plane_caps);
++	modifiers = intel_fb_plane_get_modifiers(dev_priv,
++						 skl_get_plane_caps(dev_priv, pipe, plane_id));
+ 
+ 	ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+ 				       0, plane_funcs,
+-- 
+2.27.0
 
