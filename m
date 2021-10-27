@@ -1,41 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA88343CE72
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 18:13:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 132E543CE94
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 18:19:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 767A489DAB;
-	Wed, 27 Oct 2021 16:13:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5A5A6E5A9;
+	Wed, 27 Oct 2021 16:19:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E73106E5A9
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 16:13:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="230147218"
-X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="230147218"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD8606E5A9;
+ Wed, 27 Oct 2021 16:19:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="291038180"
+X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="291038180"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 09:13:26 -0700
-X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="597415097"
-Received: from unknown (HELO intel.com) ([10.237.72.167])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 09:19:47 -0700
+X-IronPort-AV: E=Sophos;i="5.87,187,1631602800"; d="scan'208";a="597417902"
+Received: from shetherx-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.218.37])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 09:13:25 -0700
-Date: Wed, 27 Oct 2021 19:12:52 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Karthik B S <karthik.b.s@intel.com>
-Message-ID: <20211027161252.GA5980@intel.com>
-References: <20211018115030.3547-1-ville.syrjala@linux.intel.com>
- <20211018115030.3547-2-ville.syrjala@linux.intel.com>
+ 27 Oct 2021 09:19:45 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Wed, 27 Oct 2021 17:18:10 +0100
+Message-Id: <20211027161813.3094681-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211018115030.3547-2-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: Reject planar formats when
- doing async flips
+Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/clflush: fixup handling of
+ cache_dirty
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,56 +49,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 18, 2021 at 02:50:22PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> 
-> Async flips are only capable of changing PLANE_SURF, hence we
-> they can't easily be used with planar formats.
-> 
-> Older platforms could require updating AUX_DIST as well, which
-> is not possible. We'd have to make sure AUX_DIST doesn't change
-> before allowing the async flip through. If we could get async
-> flips with CCS then that might be interesting, but since the hw
-> doesn't allow async flips with CCS I don't see much point in
-> allowing this for planar formats either. No one renders their
-> game content in YUV anyway.
-> 
-> icl+ could in theory do this I suppose since each color plane
-> has its own PLANE_SURF register, but I don't know if there is
-> some magic to guarantee that both the Y and UV plane would
-> async flip synchronously if you will. Ie. beyond just a clean
-> tear we'd potentially get some kind of weird tear with some
-> random mix of luma and chroma from the old and new frames.
-> 
-> So let's just say no to async flips when scanning out planar
-> formats.
-> 
-> Cc: Karthik B S <karthik.b.s@intel.com>
-> Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+In theory if clflush_work_create() somehow fails here, and we don't yet
+have mm.pages populated then we end up resetting cache_dirty, which is
+likely wrong, since that will potentially skip the flush-on-acquire, if
+it was needed.
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+It looks like intel_user_framebuffer_dirty() can arrive here before the
+pages are populated.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ce5d6633029a..8bb87e839f4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8884,6 +8884,12 @@ static int intel_atomic_check_async(struct intel_atomic_state *state)
->  			return -EINVAL;
->  		}
->  
-> +		if (new_plane_state->hw.fb->format->num_planes > 1) {
-> +			drm_dbg_kms(&i915->drm,
-> +				    "Planar formats not supported with async flips\n");
-> +			return -EINVAL;
-> +		}
-> +
->  		if (old_plane_state->view.color_plane[0].stride !=
->  		    new_plane_state->view.color_plane[0].stride) {
->  			drm_dbg_kms(&i915->drm, "Stride cannot be changed in async flip\n");
-> -- 
-> 2.32.0
-> 
+v2(Thomas):
+  - Move setting cache_dirty out of the async portion, also add a
+    comment for why that should still be safe.
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+index f0435c6feb68..47586a8a1b73 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+@@ -109,12 +109,20 @@ bool i915_gem_clflush_object(struct drm_i915_gem_object *obj,
+ 						I915_FENCE_GFP);
+ 		dma_resv_add_excl_fence(obj->base.resv, &clflush->base.dma);
+ 		dma_fence_work_commit(&clflush->base);
++		/*
++		 * We must have successfully populated the pages(since we are
++		 * holding a pin on the pages as per the flush worker) to reach
++		 * this point, which must mean we have already done the required
++		 * flush-on-acquire, hence resetting cache_dirty here should be
++		 * safe.
++		 */
++		obj->cache_dirty = false;
+ 	} else if (obj->mm.pages) {
+ 		__do_clflush(obj);
++		obj->cache_dirty = false;
+ 	} else {
+ 		GEM_BUG_ON(obj->write_domain != I915_GEM_DOMAIN_CPU);
+ 	}
+ 
+-	obj->cache_dirty = false;
+ 	return true;
+ }
+-- 
+2.26.3
+
