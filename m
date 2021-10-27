@@ -2,42 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E49BE43C30B
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 08:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDF4943C311
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 08:37:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C99546E52E;
-	Wed, 27 Oct 2021 06:33:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 930E86E52E;
+	Wed, 27 Oct 2021 06:36:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 322966E52E
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 06:33:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="227541466"
-X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="227541466"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 23:33:48 -0700
-X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="447083588"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 23:33:46 -0700
-Date: Wed, 27 Oct 2021 09:33:42 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211027063342.GA2792152@ideak-desk.fi.intel.com>
-References: <20211026161517.2694067-1-imre.deak@intel.com>
- <20211026161517.2694067-4-imre.deak@intel.com>
- <87y26fishf.fsf@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB1BF6E52E;
+ Wed, 27 Oct 2021 06:36:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="229944572"
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="229944572"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 23:36:58 -0700
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="465614762"
+Received: from shishpan-mobl2.ccr.corp.intel.com (HELO [10.249.254.198])
+ ([10.249.254.198])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 23:36:57 -0700
+Message-ID: <5af5389a-2f42-16ad-90d2-d329801a882f@linux.intel.com>
+Date: Wed, 27 Oct 2021 08:36:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211011234705.30853-1-matthew.brost@intel.com>
+ <f8f1ae021e8cabc2c6d76996b5e74912cb0913db.camel@linux.intel.com>
+ <20211021203747.GA27209@jons-linux-dev-box>
+ <ee989711-779e-874f-6737-ab9288557d1a@linux.intel.com>
+ <5deddbeb-328c-62b3-38e2-d855fc99668b@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <5deddbeb-328c-62b3-38e2-d855fc99668b@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87y26fishf.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/fb: Fold modifier CCS
- type/tiling attribute to plane caps
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Allow engine reset
+ failure to do a GT reset in hangcheck selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,315 +57,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 26, 2021 at 08:52:12PM +0300, Jani Nikula wrote:
-> On Tue, 26 Oct 2021, Imre Deak <imre.deak@intel.com> wrote:
-> > By using the modifier plane capability flags to encode the modifiers'
-> > CCS type and tiling attributes, it becomes simpler to the check for
-> > any of these capabilities when providing the list of supported
-> > modifiers.
-> >
-> > This also allows distinguishing modifiers on future platforms where
-> > platforms with the same display version support different modifiers. An
-> > example is DG2 and ADLP, both being D13, where DG2 supports only F and X
-> > tiling, while ADLP supports only Y and X tiling. With the
-> > PLANE_HAS_TILING_* plane caps added in this patch we can provide the
-> > correct modifiers for each platform.
-> >
-> > Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_fb.c       | 80 +++++++++----------
-> >  drivers/gpu/drm/i915/display/intel_fb.h       | 11 ++-
-> >  drivers/gpu/drm/i915/display/intel_sprite.c   |  2 +-
-> >  .../drm/i915/display/skl_universal_plane.c    |  7 +-
-> >  5 files changed, 53 insertions(+), 49 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > index a939accff7ee2..fdb857df8b0be 100644
-> > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > @@ -860,7 +860,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
-> >  		plane->disable_flip_done = ilk_primary_disable_flip_done;
-> >  	}
-> >  
-> > -	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
-> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING_X);
-> >  
-> >  	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
-> >  		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> > index 6b68f69940f0b..6339669d86df5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > @@ -120,29 +120,25 @@ struct intel_modifier_desc {
-> >  	.formats = format_list, \
-> >  	.format_count = ARRAY_SIZE(format_list)
-> >  
-> > -	u8 tiling;
-> > -	u8 is_linear:1;
-> > +	u8 plane_caps;
-> >  
-> >  	struct {
-> > -#define INTEL_CCS_RC		BIT(0)
-> > -#define INTEL_CCS_RC_CC		BIT(1)
-> > -#define INTEL_CCS_MC		BIT(2)
-> > -
-> > -#define INTEL_CCS_ANY		(INTEL_CCS_RC | INTEL_CCS_RC_CC | INTEL_CCS_MC)
-> > -		u8 type:3;
-> >  		u8 cc_planes:3;
-> >  		u8 packed_aux_planes:4;
-> >  		u8 planar_aux_planes:4;
-> >  	} ccs;
-> >  };
-> >  
-> > +#define PLANE_HAS_CCS_ANY	(PLANE_HAS_CCS_RC | PLANE_HAS_CCS_RC_CC | PLANE_HAS_CCS_MC)
-> > +#define PLANE_HAS_TILING_ANY	(PLANE_HAS_TILING_X | PLANE_HAS_TILING_Y | PLANE_HAS_TILING_Yf)
-> 
-> _MASK seems like the customary suffix for things that are masks.
+Hi, John,
 
-Ok, will rename this.
+On 10/26/21 21:55, John Harrison wrote:
+> On 10/21/2021 23:23, Thomas HellstrÃ¶m wrote:
+>> On 10/21/21 22:37, Matthew Brost wrote:
+>>> On Thu, Oct 21, 2021 at 08:15:49AM +0200, Thomas HellstrÃ¶m wrote:
+>>>> Hi, Matthew,
+>>>>
+>>>> On Mon, 2021-10-11 at 16:47 -0700, Matthew Brost wrote:
+>>>>> The hangcheck selftest blocks per engine resets by setting magic bits
+>>>>> in
+>>>>> the reset flags. This is incorrect for GuC submission because if the
+>>>>> GuC
+>>>>> fails to reset an engine we would like to do a full GT reset. Do no
+>>>>> set
+>>>>> these magic bits when using GuC submission.
+>>>>>
+>>>>> Side note this lockless algorithm with magic bits to block resets
+>>>>> really
+>>>>> should be ripped out.
+>>>>>
+>>>> Lockless algorithm aside, from a quick look at the code in
+>>>> intel_reset.c it appears to me like the interface that falls back to a
+>>>> full GT reset is intel_gt_handle_error() whereas intel_engine_reset()
+>>>> is explicitly intended to not do that, so is there a discrepancy
+>>>> between GuC and non-GuC here?
+>>>>
+>>> With GuC submission when an engine reset fails, we get an engine reset
+>>> failure notification which triggers a full GT reset
+>>> (intel_guc_engine_failure_process_msg in intel_guc_submission.c). That
+>>> reset is blocking by setting these magic bits. Clearing the bits in 
+>>> this
+>>> function doesn't seem to unblock that reset either, the driver tries to
+>>> unload with a worker blocked, and results in the blow up. Something 
+>>> with
+>>> this lockless algorithm could be wrong as clear of the bit should
+>>> unlblock the reset but it is doesn't. We can look into that but in the
+>>> meantime we need to fix this test to be able to fail gracefully and not
+>>> crash CI.
+>>
+>> Yeah, for that lockless algorithm if needed, we might want to use a 
+>> ww_mutex per engine or something,
+>> but point was that AFAICT at least one of the tests that set those 
+>> flags explicitly tested the functionality that no other engines than 
+>> the intended one was reset when the intel_engine_reset() function was 
+>> used, and then if GuC submission doesn't honor that, wouldn't a 
+>> better approach be to make a code comment around intel_engine_reset() 
+>> to explain the differences and disable that particular test for GuC?. 
+>> Also wouldn't we for example we see a duplicated full GT reset with 
+>> GuC if intel_engine_reset() fails as part of the 
+>> intel_gt_handle_error() function?
+> Re-reading this thread, I think there is a misunderstanding.
+>
+> The selftests themselves have already been updated to support GuC 
+> based engine resets. That is done by submitting a hanging context and 
+> letting the GuC detect the hang and issue a reset. There is no 
+> mechanism available for i915 to directly issue or request an engine 
+> based reset (because i915 does not know what is running on any given 
+> engine at any given time, being disconnected from the scheduler).
+>
+> So the tests are already correctly testing per engine resets and do 
+> not go anywhere near either intel_engine_reset() or 
+> intel_gt_handle_error() when GuC submission is used. The problem is 
+> what happens if the engine reset fails (which supposedly can only 
+> happen with broken hardware). In that scenario, there is an 
+> asynchronous message from GuC to i915 to notify us of the failure. The 
+> KMD receives that notification and then (eventually) calls 
+> intel_gt_handle_error() to issue a full GT reset. However, that is 
+> blocked because the selftest is not expecting it and has vetoed the 
+> possibility.
 
-> > +#define PLANE_HAS_TILING_NONE	0
-> > +
-> >  static const struct intel_modifier_desc intel_modifiers[] = {
-> >  	{
-> >  		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
-> >  		.display_ver = { 12, 13 },
-> > -		.tiling = I915_TILING_Y,
-> > +		.plane_caps = PLANE_HAS_TILING_Y | PLANE_HAS_CCS_MC,
-> >  
-> > -		.ccs.type = INTEL_CCS_MC,
-> >  		.ccs.packed_aux_planes = BIT(1),
-> >  		.ccs.planar_aux_planes = BIT(2) | BIT(3),
-> >  
-> > @@ -150,18 +146,16 @@ static const struct intel_modifier_desc intel_modifiers[] = {
-> >  	}, {
-> >  		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-> >  		.display_ver = { 12, 13 },
-> > -		.tiling = I915_TILING_Y,
-> > +		.plane_caps = PLANE_HAS_TILING_Y | PLANE_HAS_CCS_RC,
-> >  
-> > -		.ccs.type = INTEL_CCS_RC,
-> >  		.ccs.packed_aux_planes = BIT(1),
-> >  
-> >  		FORMAT_OVERRIDE(gen12_ccs_formats),
-> >  	}, {
-> >  		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
-> >  		.display_ver = { 12, 13 },
-> > -		.tiling = I915_TILING_Y,
-> > +		.plane_caps = PLANE_HAS_TILING_Y | PLANE_HAS_CCS_RC_CC,
-> >  
-> > -		.ccs.type = INTEL_CCS_RC_CC,
-> >  		.ccs.cc_planes = BIT(2),
-> >  		.ccs.packed_aux_planes = BIT(1),
-> >  
-> > @@ -169,39 +163,34 @@ static const struct intel_modifier_desc intel_modifiers[] = {
-> >  	}, {
-> >  		.modifier = I915_FORMAT_MOD_Yf_TILED_CCS,
-> >  		.display_ver = { 9, 11 },
-> > -		.tiling = I915_TILING_NONE,
-> > +		.plane_caps = PLANE_HAS_TILING_Yf | PLANE_HAS_CCS_RC,
-> >  
-> > -		.ccs.type = INTEL_CCS_RC,
-> >  		.ccs.packed_aux_planes = BIT(1),
-> >  
-> >  		FORMAT_OVERRIDE(skl_ccs_formats),
-> >  	}, {
-> >  		.modifier = I915_FORMAT_MOD_Y_TILED_CCS,
-> >  		.display_ver = { 9, 11 },
-> > -		.tiling = I915_TILING_Y,
-> > +		.plane_caps = PLANE_HAS_TILING_Y | PLANE_HAS_CCS_RC,
-> >  
-> > -		.ccs.type = INTEL_CCS_RC,
-> >  		.ccs.packed_aux_planes = BIT(1),
-> >  
-> >  		FORMAT_OVERRIDE(skl_ccs_formats),
-> >  	}, {
-> >  		.modifier = I915_FORMAT_MOD_Yf_TILED,
-> >  		.display_ver = { 9, 11 },
-> > -		.tiling = I915_TILING_NONE,
-> > +		.plane_caps = PLANE_HAS_TILING_Yf,
-> >  	}, {
-> >  		.modifier = I915_FORMAT_MOD_Y_TILED,
-> >  		.display_ver = { 9, 13 },
-> > -		.tiling = I915_TILING_Y,
-> > +		.plane_caps = PLANE_HAS_TILING_Y,
-> >  	}, {
-> >  		.modifier = I915_FORMAT_MOD_X_TILED,
-> >  		.display_ver = DISPLAY_VER_ALL,
-> > -		.tiling = I915_TILING_X,
-> > +		.plane_caps = PLANE_HAS_TILING_X,
-> >  	}, {
-> >  		.modifier = DRM_FORMAT_MOD_LINEAR,
-> >  		.display_ver = DISPLAY_VER_ALL,
-> > -		.tiling = I915_TILING_NONE,
-> > -
-> > -		.is_linear = true,
-> >  	},
-> >  };
-> >  
-> > @@ -259,9 +248,14 @@ intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
-> >  	return lookup_format_info(md->formats, md->format_count, cmd->pixel_format);
-> >  }
-> >  
-> > -static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_type)
-> > +static bool plane_caps_contain_any(u8 caps, u8 mask)
-> >  {
-> > -	return md->ccs.type & ccs_type;
-> > +	return caps & mask;
-> > +}
-> > +
-> > +static bool plane_caps_contain_all(u8 caps, u8 mask)
-> > +{
-> > +	return (caps & mask) == mask;
-> >  }
-> >  
-> >  /**
-> > @@ -274,7 +268,7 @@ static bool is_ccs_type_modifier(const struct intel_modifier_desc *md, u8 ccs_ty
-> >   */
-> >  bool intel_fb_is_ccs_modifier(u64 modifier)
-> >  {
-> > -	return is_ccs_type_modifier(lookup_modifier(modifier), INTEL_CCS_ANY);
-> > +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps, PLANE_HAS_CCS_ANY);
-> >  }
-> >  
-> >  /**
-> > @@ -286,7 +280,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier)
-> >   */
-> >  bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier)
-> >  {
-> > -	return is_ccs_type_modifier(lookup_modifier(modifier), INTEL_CCS_RC_CC);
-> > +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps, PLANE_HAS_CCS_RC_CC);
-> >  }
-> >  
-> >  /**
-> > @@ -298,7 +292,7 @@ bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier)
-> >   */
-> >  bool intel_fb_is_mc_ccs_modifier(u64 modifier)
-> >  {
-> > -	return is_ccs_type_modifier(lookup_modifier(modifier), INTEL_CCS_MC);
-> > +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps, PLANE_HAS_CCS_MC);
-> >  }
-> >  
-> >  static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
-> > @@ -315,16 +309,7 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
-> >  	if (!IS_DISPLAY_VER(i915, md->display_ver.from, md->display_ver.until))
-> >  		return false;
-> >  
-> > -	if (!md->is_linear &&
-> > -	    !(plane_caps & PLANE_HAS_TILING))
-> > -		return false;
-> > -
-> > -	if (is_ccs_type_modifier(md, INTEL_CCS_RC | INTEL_CCS_RC_CC) &&
-> > -	    !(plane_caps & PLANE_HAS_CCS_RC))
-> > -		return false;
-> > -
-> > -	if (is_ccs_type_modifier(md, INTEL_CCS_MC) &&
-> > -	    !(plane_caps & PLANE_HAS_CCS_MC))
-> > +	if (!plane_caps_contain_all(plane_caps, md->plane_caps))
-> >  		return false;
-> >  
-> >  	return true;
-> > @@ -392,7 +377,7 @@ static bool format_is_yuv_semiplanar(const struct intel_modifier_desc *md,
-> >  	if (!info->is_yuv)
-> >  		return false;
-> >  
-> > -	if (is_ccs_type_modifier(md, INTEL_CCS_ANY))
-> > +	if (plane_caps_contain_any(md->plane_caps, PLANE_HAS_CCS_ANY))
-> >  		yuv_planes = 4;
-> >  	else
-> >  		yuv_planes = 2;
-> > @@ -672,7 +657,20 @@ intel_fb_align_height(const struct drm_framebuffer *fb,
-> >  
-> >  static unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
-> >  {
-> > -	return lookup_modifier(fb_modifier)->tiling;
-> > +	u8 tiling_caps = lookup_modifier(fb_modifier)->plane_caps & PLANE_HAS_TILING_ANY;
-> > +
-> > +	switch (tiling_caps) {
-> > +	case PLANE_HAS_TILING_Y:
-> > +		return I915_TILING_Y;
-> > +	case PLANE_HAS_TILING_X:
-> > +		return I915_TILING_X;
-> > +	case PLANE_HAS_TILING_Yf:
-> > +	case PLANE_HAS_TILING_NONE:
-> > +		return I915_TILING_NONE;
-> > +	default:
-> > +		MISSING_CASE(tiling_caps);
-> > +		return I915_TILING_NONE;
-> > +	}
-> >  }
-> >  
-> >  unsigned int intel_cursor_alignment(const struct drm_i915_private *i915)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-> > index 19f46144474d8..0bd285f6a69f0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-> > @@ -21,10 +21,13 @@ struct intel_plane;
-> >  struct intel_plane_state;
-> >  
-> >  enum intel_plane_caps {
-> > -	PLANE_HAS_NO_CAPS = 0,
-> > -	PLANE_HAS_TILING = BIT(0),
-> > -	PLANE_HAS_CCS_RC = BIT(1),
-> > -	PLANE_HAS_CCS_MC = BIT(2),
-> > +	PLANE_HAS_NO_CAPS	= 0,
-> > +	PLANE_HAS_CCS_RC	= BIT(0),
-> > +	PLANE_HAS_CCS_RC_CC	= BIT(1),
-> > +	PLANE_HAS_CCS_MC	= BIT(2),
-> > +	PLANE_HAS_TILING_X	= BIT(3),
-> > +	PLANE_HAS_TILING_Y	= BIT(4),
-> > +	PLANE_HAS_TILING_Yf	= BIT(5),
-> >  };
-> 
-> AFAICT there are no intel_plane_caps references anywhere after this, and
-> it no longer looks like an enum, so perhaps it just shouldn't be an enum
-> anymore? Just make them macros?
+This is where my understanding of the discussion differs. According to 
+Matthew, the selftest actually proceeds to clear the bits, but the 
+worker that calls into intel_gt_handle_error() never wakes up. (and 
+that's probably due to clear_bit() being used instead of 
+clear_and_wake_up_bit()).
 
-There are other instances of bitfield enums in the kernel, but yes in C
-there's no benefit of enums for this over the simpler macro approach.
-Will change this.
+And my problem with this particular patch is that it adds even more "if 
+(!guc_submission)" which is already sprinkled all over the place in the 
+selftests to the point that it becomes difficult to see what (if 
+anything) the tests are really testing. For example 
+igt_reset_nop_engine() from a cursory look looks like it's doing 
+something but inside the engine loop it becomes clear that the test 
+doesn't do *anything* except iterate over engines. Same for 
+igt_reset_engines() in the !TEST_ACTIVE case and for 
+igt_reset_idle_engine(). For some other tests the reset_count checks are 
+gone, leaving only a test that we actually do a reset.
 
-> BR,
-> Jani.
-> 
-> 
-> >  
-> >  bool intel_fb_is_ccs_modifier(u64 modifier);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > index 2f4f47ab9da03..8aa6c2f5e77d1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > @@ -1810,7 +1810,7 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
-> >  	plane->id = PLANE_SPRITE0 + sprite;
-> >  	plane->frontbuffer_bit = INTEL_FRONTBUFFER(pipe, plane->id);
-> >  
-> > -	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING);
-> > +	modifiers = intel_fb_plane_get_modifiers(dev_priv, PLANE_HAS_TILING_X);
-> >  
-> >  	ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> >  				       0, plane_funcs,
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > index 317108e009bba..45f0225ec59dd 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -2095,9 +2095,12 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> >  	else
-> >  		plane_type = DRM_PLANE_TYPE_OVERLAY;
-> >  
-> > -	plane_caps = PLANE_HAS_TILING;
-> > +	plane_caps = PLANE_HAS_TILING_X | PLANE_HAS_TILING_Y;
-> > +	if (IS_DISPLAY_VER(dev_priv, 9, 11))
-> > +		plane_caps |= PLANE_HAS_TILING_Yf;
-> > +
-> >  	if (skl_plane_has_rc_ccs(dev_priv, pipe, plane_id))
-> > -		plane_caps |= PLANE_HAS_CCS_RC;
-> > +		plane_caps |= PLANE_HAS_CCS_RC | PLANE_HAS_CCS_RC_CC;
-> >  
-> >  	if (gen12_plane_has_mc_ccs(dev_priv, plane_id))
-> >  		plane_caps |= PLANE_HAS_CCS_MC;
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+So if possible, as previously mentioned, I think a solution without 
+adding more of this in the selftests is preferrable. To me the best 
+option is probably be the one you suggest in your previous email: Don't 
+wait on the I915_RESET_ENGINE bits with GuC in intel_gt_handle_error(), 
+(or perhaps extract what's left in a separate function called from the 
+GuC handler).
+
+Thanks,
+
+Thomas
+
+
+
