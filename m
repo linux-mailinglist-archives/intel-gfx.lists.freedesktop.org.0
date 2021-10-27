@@ -2,33 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB2A43CC7D
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 16:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78D2B43CC96
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 16:42:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3FE66E8B1;
-	Wed, 27 Oct 2021 14:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53CFF6E8AF;
+	Wed, 27 Oct 2021 14:42:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3A68D6E8B1;
- Wed, 27 Oct 2021 14:40:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31ECEA47EB;
- Wed, 27 Oct 2021 14:40:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 912016E8AF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 14:42:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="293635741"
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="293635741"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 07:42:54 -0700
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="497896000"
+Received: from smaharan-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.251.214.195])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 07:42:51 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Hogander\, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Souza\,
+ Jose" <jose.souza@intel.com>
+Cc: "Kahola\, Mika" <mika.kahola@intel.com>
+In-Reply-To: <a36cf418169109b18845eac552d450dadee1e6ca.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211026223329.116104-1-jose.souza@intel.com>
+ <a36cf418169109b18845eac552d450dadee1e6ca.camel@intel.com>
+Date: Wed, 27 Oct 2021 17:42:48 +0300
+Message-ID: <87k0hyh6l3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Oct 2021 14:40:46 -0000
-Message-ID: <163534564619.4642.8024923496551480013@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211027105211.485125-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211027105211.485125-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Prepare_error_capture_for_asynchronous_migration_=28rev2=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/adlp: Extend PSR2 support in
+ transcoder B
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,36 +50,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 27 Oct 2021, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Tue, 2021-10-26 at 15:33 -0700, Jos=C3=A9 Roberto de Souza wrote:
+>> PSR2 is supported in transcoder A and B on Alderlake-P.
+>>=20
+>> BSpec: 49185
+>> Cc: Mika Kahola <mika.kahola@intel.com>
+>> Cc: Jouni Hogander <jouni.hogander@intel.com>
+>> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+>
+> LGTM
+>
+> Reviewed-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 
-Series: Prepare error capture for asynchronous migration (rev2)
-URL   : https://patchwork.freedesktop.org/series/96281/
-State : warning
+Since INVALID_TRANSCODER is a thing, I'd actually prefer:
 
-== Summary ==
+	trans =3D=3D TRANSCODER_A || trans =3D=3D TRANSCODER_B
 
-$ dim checkpatch origin/drm-tip
-bf0df3812af8 drm/i915: Introduce refcounted sg-tables
-69d21354f04a drm/i915: Update error capture code to avoid using the current vma state
--:803: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#803: 
-new file mode 100644
+It's not likely INVALID_TRANSCODER will ever end up here, but I tried to
+look and it's actually not trivial to say this will never happen. I
+prefer the defensive approach.
 
-total: 0 errors, 1 warnings, 0 checks, 958 lines checked
-ff852d0fa9df drm/i915: Initial introduction of vma resources
--:144: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'vma->resource'
-#144: FILE: drivers/gpu/drm/i915/i915_vma.c:439:
-+	if ((vma->resource) || !vma_res) {
-
--:564: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#564: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:1493:
- 
-+
-
-total: 0 errors, 0 warnings, 2 checks, 543 lines checked
+BR,
+Jani.
 
 
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_psr.c | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>> b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index d35db50ef967a..710b911b065b9 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -588,7 +588,9 @@ static void hsw_activate_psr2(struct intel_dp
+>> *intel_dp)
+>>  static bool
+>>  transcoder_has_psr2(struct drm_i915_private *dev_priv, enum
+>> transcoder trans)
+>>  {
+>> -	if (DISPLAY_VER(dev_priv) >=3D 12)
+>> +	if (IS_ALDERLAKE_P(dev_priv))
+>> +		return trans <=3D TRANSCODER_B;
+>> +	else if (DISPLAY_VER(dev_priv) >=3D 12)
+>>  		return trans =3D=3D TRANSCODER_A;
+>>  	else
+>>  		return trans =3D=3D TRANSCODER_EDP;
+>
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
