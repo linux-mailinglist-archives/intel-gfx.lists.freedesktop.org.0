@@ -2,39 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E997543E06D
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 14:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 967A443E0B0
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 14:17:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 516676E953;
-	Thu, 28 Oct 2021 12:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCE746E835;
+	Thu, 28 Oct 2021 12:17:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D9F06E950;
- Thu, 28 Oct 2021 12:01:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="230243785"
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="230243785"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 05:01:45 -0700
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="498371740"
-Received: from jxu13-mobl.amr.corp.intel.com (HELO thellstr-mobl1.intel.com)
- ([10.249.254.218])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 05:01:43 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 28 Oct 2021 14:01:25 +0200
-Message-Id: <20211028120128.13490-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94AC6899E6;
+ Wed, 27 Oct 2021 13:49:16 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6611660D43;
+ Wed, 27 Oct 2021 13:49:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1635342556;
+ bh=fYZWrsKGlOp7lc/xKrJeyNzK/8u8cgiGUJ+/2sKfEe4=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=U77fnHxIIXJm4+qiC90pNvz1GrZM8catxUQG7co8cVjv+UYRYVBKwCeKgPPwHViuj
+ xoJ27M5dFmNBhFvyMPli6fYHsUydemysyTGE9Ebf0eWT8F2Ulk9F04sK1UnFnlhiJF
+ 0vm6HcrSv3i8ETCP2piQNWl+EDlH3FTJ1cAzruc0ybYXacPFwluwmr2EdnzUyJ+Iep
+ +SOUOC4U5ZF59ELZ475X7m09U5PLF/OnvDVfcHidoo8TzjjHp+FUfWWfgMQ007IbRo
+ b5gi4tQFssHjeeHLKRHrH2Yns7c+HmBmUHKYMHTx4ccmilVI/ycU+QmygFQ9Kvxseo
+ FxFxqsIBUdY9A==
+Received: by mail-wr1-f53.google.com with SMTP id d10so4352608wrb.1;
+ Wed, 27 Oct 2021 06:49:16 -0700 (PDT)
+X-Gm-Message-State: AOAM530yXlueA8L5xb3BCgfjGYvpyza8pXcxgxKj0P4KU6+T/aIMMnVp
+ mmYCF815j0JO0Dqj8R3QOd/bZf6BCQvzTpMTqgU=
+X-Google-Smtp-Source: ABdhPJwyFrogSswX9aFMchaesz3OloZkKeoRK58xGE8J8a1euHLGUsdWENXaWPhRgbPktw6Hq/mkQOMklICoHioJnp4=
+X-Received: by 2002:a5d:4692:: with SMTP id u18mr210674wrq.428.1635342554955; 
+ Wed, 27 Oct 2021 06:49:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 0/3] Prepare error capture for asynchronous
- migration
+References: <20211027132732.3993279-1-arnd@kernel.org>
+ <20211027132732.3993279-3-arnd@kernel.org>
+ <87r1c6h9ek.fsf@intel.com>
+In-Reply-To: <87r1c6h9ek.fsf@intel.com>
+From: Arnd Bergmann <arnd@kernel.org>
+Date: Wed, 27 Oct 2021 15:48:59 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0Lcwb4mROKt-sZHYFfCF2ji-dAbpWyy5_f7v6SHnzpjQ@mail.gmail.com>
+Message-ID: <CAK8P3a0Lcwb4mROKt-sZHYFfCF2ji-dAbpWyy5_f7v6SHnzpjQ@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, 
+ Linux Fbdev development list <linux-fbdev@vger.kernel.org>, 
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, Arnd Bergmann <arnd@arndb.de>,
+ Matthew Auld <matthew.auld@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>, 
+ Alex Williamson <alex.williamson@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Thu, 28 Oct 2021 12:17:23 +0000
+Subject: Re: [Intel-gfx] [PATCH 3/3] [v2] i915: fix backlight configuration
+ issue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,72 +70,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch series prepares error capture for asynchronous migration,
-where the vma pages may not reflect the pages the GPU is currently
-executing from but may be several migrations ahead.
+On Wed, Oct 27, 2021 at 3:41 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> > @@ -16,10 +18,6 @@ config DRM_I915
+> >       select IRQ_WORK
+> >       # i915 depends on ACPI_VIDEO when ACPI is enabled
+> >       # but for select to work, need to select ACPI_VIDEO's dependencies, ick
+>
+> The comment needs updating as well.
 
-The first patch deals with refcounting sg-list so that they don't
-disappear under the capture code, which typically otherwise happens at
-put_pages() time.
+Right, I've removed that comment now.
 
-The second patch introduces vma state snapshots that record the vma state
-at request submission time. It also updates the memory allocation mode to
-reflect that error capture may and will happen in the dma-fence signalling
-critical path, and finally takes additional measures to make sure that
-the capture list and request is not disappearing from under us while
-capturing. The latter may otherwise happen if a heartbeat triggered parallel
-capture is running during a manual reset which retires the request.
+> Other than that,
+>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>
+> on the series.
 
-Finally the last patch is more of a POC patch and not strictly needed yet,
-but will be (or at least something very similar) soon for async unbinding.
-It will make sure that unbinding doesn't complete or signal completion
-before capture is done. Async reuse of memory can't happen until unbinding
-signals complete and without waiting for capture done, we might capture
-contents of reused memory.
-Before the last patch the vma active is instead still keeping the vma alive,
-but that will not work with async unbinding anymore, and also it is still
-not clear how we guarantee keeping the vma alive long enough to even
-grab an active reference during capture.
+Thanks!
 
-v2:
-- Mostly Fixes for selftests and rebinding. See patch 3. 
-v3:
-- Honor the unbind fence also when evicting for suspend on gen6.
-- Cleanups on patch 1
-- Minor cleanups on patch 3.
-
-Thomas Hellström (3):
-  drm/i915: Introduce refcounted sg-tables
-  drm/i915: Update error capture code to avoid using the current vma
-    state
-  drm/i915: Initial introduction of vma resources
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 137 ++++++++++--
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +-
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |   3 +-
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  49 ++---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 186 +++++++++-------
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   8 +-
- .../drm/i915/gt/intel_execlists_submission.c  |   2 +-
- drivers/gpu/drm/i915/i915_gpu_error.c         | 180 ++++++++++-----
- drivers/gpu/drm/i915/i915_request.c           |  63 ++++--
- drivers/gpu/drm/i915/i915_request.h           |  18 +-
- drivers/gpu/drm/i915/i915_scatterlist.c       |  62 ++++--
- drivers/gpu/drm/i915/i915_scatterlist.h       |  76 ++++++-
- drivers/gpu/drm/i915/i915_vma.c               | 206 +++++++++++++++++-
- drivers/gpu/drm/i915/i915_vma.h               |  20 +-
- drivers/gpu/drm/i915/i915_vma_snapshot.c      | 131 +++++++++++
- drivers/gpu/drm/i915/i915_vma_snapshot.h      | 112 ++++++++++
- drivers/gpu/drm/i915/i915_vma_types.h         |   5 +
- drivers/gpu/drm/i915/intel_region_ttm.c       |  15 +-
- drivers/gpu/drm/i915/intel_region_ttm.h       |   5 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  98 +++++----
- drivers/gpu/drm/i915/selftests/mock_region.c  |  12 +-
- 22 files changed, 1111 insertions(+), 290 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.c
- create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.h
-
--- 
-2.31.1
-
+         Arnd
