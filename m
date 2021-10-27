@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD6143C5A6
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 10:54:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6544F43C5DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Oct 2021 10:58:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50BC26E832;
-	Wed, 27 Oct 2021 08:54:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AC556E846;
+	Wed, 27 Oct 2021 08:58:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 406266E832
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 08:54:28 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="227569393"
-X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="227569393"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 01:54:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="529550828"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 27 Oct 2021 01:54:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Oct 2021 11:54:23 +0300
-Date: Wed, 27 Oct 2021 11:54:23 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Uma Shankar <uma.shankar@intel.com>
-Message-ID: <YXkTvw2SQCxIFm+S@intel.com>
-References: <20211015133921.4609-1-ville.syrjala@linux.intel.com>
- <20211015133921.4609-21-ville.syrjala@linux.intel.com>
- <d86a25b8-b68a-5e2e-f4ae-c539ddf12885@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C1466E832;
+ Wed, 27 Oct 2021 08:58:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="316318819"
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="316318819"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 01:58:35 -0700
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; d="scan'208";a="497775836"
+Received: from smaharan-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.251.214.195])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2021 01:58:32 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, ML
+ dri-devel <dri-devel@lists.freedesktop.org>, kernel test robot
+ <lkp@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <CAM0jSHNig=n9cw0CCNhWHnLn5hLPYFFQR4D9OgZ-QavgyJGJpg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211021125332.2455288-1-matthew.auld@intel.com>
+ <CAM0jSHNig=n9cw0CCNhWHnLn5hLPYFFQR4D9OgZ-QavgyJGJpg@mail.gmail.com>
+Date: Wed, 27 Oct 2021 11:58:28 +0300
+Message-ID: <87k0hyj13f.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d86a25b8-b68a-5e2e-f4ae-c539ddf12885@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 20/20] drm/i915/dp: Disable DFP RGB->YCbCr
- conversion for now
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dmabuf: fix broken build
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,66 +54,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 27, 2021 at 12:57:37PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 10/15/2021 7:09 PM, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > We lack sufficient state tracking to figure out whether
-> > we want the DFP to perform the RGB->YCbCr conversion for us
-> > or not. So currently we are blindly just enabling that all the
-> > time when supported by the DFP. That is nonsense. So until
-> > we imporve our state tracking for this just disable the feature.
-> >
-> > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > Cc: Uma Shankar <uma.shankar@intel.com>
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++++
-> >   1 file changed, 10 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 29b12456c461..3e2a29b589a9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1107,6 +1107,7 @@ static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
-> >   static bool intel_dp_is_ycbcr420(struct intel_dp *intel_dp,
-> >   				 const struct intel_crtc_state *crtc_state)
-> >   {
-> > +	/* FIXME see intel_dp_update_420() regarding rgb_to_ycbcr */
-> >   	return crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> >   		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
-> >   		 intel_dp->dfp.ycbcr_444_to_420);
-> > @@ -2456,6 +2457,7 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
-> >   			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
-> >   			    enabledisable(intel_dp->dfp.ycbcr_444_to_420));
-> >   
-> > +	/* FIXME see intel_dp_update_420() regarding rgb_to_ycbcr */
-> >   	tmp = intel_dp->dfp.rgb_to_ycbcr ?
-> >   		DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
-> >   
-> > @@ -4261,6 +4263,14 @@ intel_dp_update_420(struct intel_dp *intel_dp)
-> >   	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
-> >   								 intel_dp->downstream_ports,
-> >   								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
-> > +	/*
-> > +	 * FIXME need to actually track whether we're really
-> > +	 * going to be doing the RGB->YCbCr connversion or not.
-> > +	 * We can't tell by simply looking at intel_dp->dfp.rgb_to_ycbcr.
-> > +	 * Readout is going to annoying due to having to read that
-> > +	 * state from external hardware that may vanish at any time :(
-> > +	 */
-> 
-> 
-> Hmm right. Do you have any suggestion what should be the better place 
-> for defining the policy for using DFPs CSC or use our own HW, in case of 
-> YCbCr 420 output?
+On Wed, 27 Oct 2021, Matthew Auld <matthew.william.auld@gmail.com> wrote:
+> On Thu, 21 Oct 2021 at 13:54, Matthew Auld <matthew.auld@intel.com> wrote:
+>>
+>> wbinvd_on_all_cpus() is only defined on x86 it seems, plus we need to
+>> include asm/smp.h here.
+>>
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>
+> Jani, would it make sense to cherry-pick this to -fixes? The offending
+> commit is in drm-next, and there have been a few reports around this.
+>
+> Fixes: a035154da45d ("drm/i915/dmabuf: add paranoid flush-on-acquire")
 
-One idea that came to mind was just adding some kind of
-sink_format thing into the crtc_state, and computing that appropriately
-during .compute_config(). But as mentioned the readout part is going to
-be annoying. Maybe we just won't have readout for it.
+If the Fixes: tag is in place, our tooling will cherry-pick it where it
+belongs. (In this case, drm-intel-next-fixes, not drm-intel-fixes.)
 
--- 
-Ville Syrjälä
-Intel
+Cc: Rodrigo who covers drm-intel-next-fixes atm.
+
+BR,
+Jani.
+
+
+
+>
+>
+>> ---
+>>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/dr=
+m/i915/gem/i915_gem_dmabuf.c
+>> index 1adcd8e02d29..a45d0ec2c5b6 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> @@ -12,6 +12,13 @@
+>>  #include "i915_gem_object.h"
+>>  #include "i915_scatterlist.h"
+>>
+>> +#if defined(CONFIG_X86)
+>> +#include <asm/smp.h>
+>> +#else
+>> +#define wbinvd_on_all_cpus() \
+>> +       pr_warn(DRIVER_NAME ": Missing cache flush in %s\n", __func__)
+>> +#endif
+>> +
+>>  I915_SELFTEST_DECLARE(static bool force_different_devices;)
+>>
+>>  static struct drm_i915_gem_object *dma_buf_to_obj(struct dma_buf *buf)
+>> --
+>> 2.26.3
+>>
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
