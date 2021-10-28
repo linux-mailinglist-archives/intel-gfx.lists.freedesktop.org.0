@@ -2,60 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D2F343E9C6
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 22:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB1943E9E5
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 22:51:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE876E82E;
-	Thu, 28 Oct 2021 20:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36FAB6E830;
+	Thu, 28 Oct 2021 20:51:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC9026E82E
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 20:38:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="210560299"
-X-IronPort-AV: E=Sophos;i="5.87,190,1631602800"; d="scan'208";a="210560299"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 13:18:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,190,1631602800"; d="scan'208";a="530152307"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by orsmga001.jf.intel.com with ESMTP; 28 Oct 2021 13:18:51 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 28 Oct 2021 21:18:50 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Thu, 28 Oct 2021 13:18:48 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kahola, Mika" <mika.kahola@intel.com>, "Hogander, Jouni"
- <jouni.hogander@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/psr2: Do full fetches when doing
- async flips
-Thread-Index: AQHXy2JsUvo0zFK/Z0CWP/vcGcJ2s6vo3ycAgAA8cQCAAAgpAIAAA1mA////BoCAACxEgA==
-Date: Thu, 28 Oct 2021 20:18:48 +0000
-Message-ID: <d42046795c78321ab4aa11d634e040d0f36d9723.camel@intel.com>
-References: <20211027184855.108731-1-jose.souza@intel.com>
- <YXqmfPPnSr3j/mDe@intel.com>
- <ff05e4fa04fe0ebcc79c9b86e249bd5ab5392529.camel@intel.com>
- <YXrgCBB53Zj86a4C@intel.com>
- <bfd7f8ca64b41e4c49d341a5cbcbe761dc471af6.camel@intel.com>
- <YXriBYJxFXJ0KUqn@intel.com>
-In-Reply-To: <YXriBYJxFXJ0KUqn@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4B2F2B16EE9CF34AA9262CA2A03C2D26@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 715B86E82E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 20:51:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="227963287"
+X-IronPort-AV: E=Sophos;i="5.87,190,1631602800"; d="scan'208";a="227963287"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 13:28:00 -0700
+X-IronPort-AV: E=Sophos;i="5.87,190,1631602800"; d="scan'208";a="487294316"
+Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
+ ([10.24.14.60])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 13:28:00 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Karthik B S <karthik.b.s@intel.com>,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Date: Thu, 28 Oct 2021 13:34:18 -0700
+Message-Id: <20211028203418.69680-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/psr2: Do full fetches when doing
- async flips
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Check async flip state of
+ every crtc and plane once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,103 +51,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTEwLTI4IGF0IDIwOjQ2ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFRodSwgT2N0IDI4LCAyMDIxIGF0IDA1OjQzOjUxUE0gKzAwMDAsIFNvdXphLCBKb3Nl
-IHdyb3RlOg0KPiA+IE9uIFRodSwgMjAyMS0xMC0yOCBhdCAyMDozOCArMDMwMCwgVmlsbGUgU3ly
-asOkbMOkIHdyb3RlOg0KPiA+ID4gT24gVGh1LCBPY3QgMjgsIDIwMjEgYXQgMDU6MDI6NDFQTSAr
-MDAwMCwgU291emEsIEpvc2Ugd3JvdGU6DQo+ID4gPiA+IE9uIFRodSwgMjAyMS0xMC0yOCBhdCAx
-NjozMiArMDMwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOg0KPiA+ID4gPiA+IE9uIFdlZCwgT2N0
-IDI3LCAyMDIxIGF0IDExOjQ4OjU1QU0gLTA3MDAsIEpvc8OpIFJvYmVydG8gZGUgU291emEgd3Jv
-dGU6DQo+ID4gPiA+ID4gPiBBc3luYyBmbGlwcyBhcmUgbm90IHN1cHBvcnRlZCBieSBzZWxlY3Rp
-dmUgZmV0Y2ggYW5kIHdlIGhhZCBhIGNoZWNrDQo+ID4gPiA+ID4gPiBmb3IgdGhhdCBidXQgdGhh
-dCBjaGVjayB3YXMgb25seSBleGVjdXRlZCB3aGVuIGRvaW5nIG1vZGVzZXRzLg0KPiA+ID4gPiA+
-ID4gU28gbW92aW5nIHRoaXMgY2hlY2sgdG8gdGhlIHBhZ2UgZmxpcCBwYXRoLCBzbyBpdCBjYW4g
-YmUgcHJvcGVybHkNCj4gPiA+ID4gPiA+IGhhbmRsZWQuDQo+ID4gPiA+ID4gPiANCj4gPiA+ID4g
-PiA+IFRoaXMgZml4IGEgZmFpbHVyZSBpbiBrbXNfYXN5bmNfZmxpcHNAdGVzdC1jdXJzb3IuDQo+
-ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+IENjOiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFAaW50
-ZWwuY29tPg0KPiA+ID4gPiA+ID4gQ2M6IEpvdW5pIEhvZ2FuZGVyIDxqb3VuaS5ob2dhbmRlckBp
-bnRlbC5jb20+DQo+ID4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNv
-dXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiA+ID4gPiA+IC0tLQ0KPiA+ID4gPiA+ID4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCA4ICsrLS0tLS0tDQo+
-ID4gPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMo
-LSkNCj4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Bzci5jDQo+ID4gPiA+ID4gPiBpbmRleCA4ZDA4ZTNjZjA4YzFmLi5jZTY4NTBlZDcy
-YzYwIDEwMDY0NA0KPiA+ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9wc3IuYw0KPiA+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wc3IuYw0KPiA+ID4gPiA+ID4gQEAgLTcyOSwxMiArNzI5LDYgQEAgc3RhdGlj
-IGJvb2wgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfY29uZmlnX3ZhbGlkKHN0cnVjdCBpbnRlbF9kcCAq
-aW50ZWxfZHAsDQo+ID4gPiA+ID4gPiAgCQlyZXR1cm4gZmFsc2U7DQo+ID4gPiA+ID4gPiAgCX0N
-Cj4gPiA+ID4gPiA+ICANCj4gPiA+ID4gPiA+IC0JaWYgKGNydGNfc3RhdGUtPnVhcGkuYXN5bmNf
-ZmxpcCkgew0KPiA+ID4gPiA+ID4gLQkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+ID4g
-PiA+ID4gPiAtCQkJICAgICJQU1IyIHNlbCBmZXRjaCBub3QgZW5hYmxlZCwgYXN5bmMgZmxpcCBl
-bmFibGVkXG4iKTsNCj4gPiA+ID4gPiA+IC0JCXJldHVybiBmYWxzZTsNCj4gPiA+ID4gPiA+IC0J
-fQ0KPiA+ID4gPiA+ID4gLQ0KPiA+ID4gPiA+ID4gIAkvKiBXYV8xNDAxMDI1NDE4NSBXYV8xNDAx
-MDEwMzc5MiAqLw0KPiA+ID4gPiA+ID4gIAlpZiAoSVNfVEdMX0RJU1BMQVlfU1RFUChkZXZfcHJp
-diwgU1RFUF9BMCwgU1RFUF9DMCkpIHsNCj4gPiA+ID4gPiA+ICAJCWRybV9kYmdfa21zKCZkZXZf
-cHJpdi0+ZHJtLA0KPiA+ID4gPiA+ID4gQEAgLTE1OTIsNiArMTU4Niw4IEBAIHN0YXRpYyBib29s
-IHBzcjJfc2VsX2ZldGNoX3BpcGVfc3RhdGVfc3VwcG9ydGVkKGNvbnN0IHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlICpjDQo+ID4gPiA+ID4gPiAgew0KPiA+ID4gPiA+ID4gIAlpZiAoY3J0Y19zdGF0
-ZS0+c2NhbGVyX3N0YXRlLnNjYWxlcl9pZCA+PSAwKQ0KPiA+ID4gPiA+ID4gIAkJcmV0dXJuIGZh
-bHNlOw0KPiA+ID4gPiA+ID4gKwlpZiAoY3J0Y19zdGF0ZS0+dWFwaS5hc3luY19mbGlwKQ0KPiA+
-ID4gPiA+ID4gKwkJcmV0dXJuIGZhbHNlOw0KPiA+ID4gPiA+IA0KPiA+ID4gPiA+IFRoaXMgbG9v
-a3MgZG9kZ3kuIFByZXR0eSBzdXJlIHdlIGNhbid0IHR1cm4gb2ZmIHRoaXMgdGhpbmcgZHVyaW5n
-DQo+ID4gPiA+ID4gYW4gYXN5bmMgZmxpcC4gU28gSSB0aGluayB0aGUgY29ycmVjdCBzaG9ydCB0
-ZXJtIGZpeCBpcyB0byBub3QgZG8NCj4gPiA+ID4gPiBhc3luYyBmbGlwcyB3aXRoIHBzcjIgZW5h
-YmxlZC4gVGhlIGxvbmdlciB0ZXJtIGZpeCB3b3VsZCBpbnZvbHZlDQo+ID4gPiA+ID4gdXNpbmcg
-dGhlIHNhbWUgYXBwcm9hY2ggU3RhbiBpcyBwcmVwYXJpbmcgZm9yIHRoZSBhc3luYyBmbGlwDQo+
-ID4gPiA+ID4gd2F0ZXJtYXJrIHR3ZWFraW5nLCB3aGljaCBpcyB0byBjb252ZXJ0IHRoZSBmaXJz
-dCBhc3luYyBmbGlwIGludG8NCj4gPiA+ID4gPiBhIHN5bmMgZmxpcC4NCg0KWW91IG1lYW4gZG8g
-c29tZXRoaW5nIGxpa2UgdGhpcz8NCg0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuYw0KaW5kZXggM2I1YThlOTcxMzQzZi4uN2QyOWY4YzlkZTBkYSAxMDA2
-NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KQEAgLTc3
-MTAsNyArNzcxMCw4IEBAIHN0YXRpYyB2b2lkIGtpbGxfYmlnam9pbmVyX3NsYXZlKHN0cnVjdCBp
-bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KIHN0YXRpYyBpbnQgaW50ZWxfYXRvbWljX2NoZWNr
-X2FzeW5jKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLCBzdHJ1Y3QgaW50ZWxfY3J0
-YyAqY3J0YykNCiB7DQogICAgICAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9f
-aTkxNShzdGF0ZS0+YmFzZS5kZXYpOw0KLSAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19z
-dGF0ZSAqb2xkX2NydGNfc3RhdGUsICpuZXdfY3J0Y19zdGF0ZTsNCisgICAgICAgY29uc3Qgc3Ry
-dWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlOw0KKyAgICAgICBzdHJ1Y3QgaW50
-ZWxfY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGU7DQogICAgICAgIGNvbnN0IHN0cnVjdCBpbnRl
-bF9wbGFuZV9zdGF0ZSAqbmV3X3BsYW5lX3N0YXRlLCAqb2xkX3BsYW5lX3N0YXRlOw0KICAgICAg
-ICBzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lOw0KICAgICAgICBpbnQgaTsNCkBAIC03NzE4LDYg
-Kzc3MTksMTIgQEAgc3RhdGljIGludCBpbnRlbF9hdG9taWNfY2hlY2tfYXN5bmMoc3RydWN0IGlu
-dGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsIHN0cnVjdCBpbnQNCiAgICAgICAgb2xkX2NydGNfc3Rh
-dGUgPSBpbnRlbF9hdG9taWNfZ2V0X29sZF9jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsNCiAgICAg
-ICAgbmV3X2NydGNfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKHN0YXRl
-LCBjcnRjKTsNCg0KKyAgICAgICBpZiAobmV3X2NydGNfc3RhdGUtPmVuYWJsZV9wc3IyX3NlbF9m
-ZXRjaCkgew0KKyAgICAgICAgICAgICAgIGRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJQU1IyIHNl
-bGVjdGl2ZSBmZXRjaCBub3QgY29tcGF0aWJsZSB3aXRoIGFzeW5jIGZsaXAsIGRvaW5nIGEgc3lu
-YyBmbGlwIGluc3RlYWRcbiIpOw0KKyAgICAgICAgICAgICAgIG5ld19jcnRjX3N0YXRlLT51YXBp
-LmFzeW5jX2ZsaXAgPSBmYWxzZTsNCisgICAgICAgICAgICAgICByZXR1cm4gMDsNCisgICAgICAg
-fQ0KKw0KICAgICAgICBpZiAoaW50ZWxfY3J0Y19uZWVkc19tb2Rlc2V0KG5ld19jcnRjX3N0YXRl
-KSkgew0KICAgICAgICAgICAgICAgIGRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJNb2Rlc2V0IFJl
-cXVpcmVkLiBBc3luYyBmbGlwIG5vdCBzdXBwb3J0ZWRcbiIpOw0KICAgICAgICAgICAgICAgIHJl
-dHVybiAtRUlOVkFMOw0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQpp
-bmRleCBjZTY4NTBlZDcyYzYwLi4wMGU2OTQyMWI5NjQ4IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KQEAgLTE1ODYsOCArMTU4Niw2IEBAIHN0YXRpYyBib29s
-IHBzcjJfc2VsX2ZldGNoX3BpcGVfc3RhdGVfc3VwcG9ydGVkKGNvbnN0IHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlICpjDQogew0KICAgICAgICBpZiAoY3J0Y19zdGF0ZS0+c2NhbGVyX3N0YXRlLnNj
-YWxlcl9pZCA+PSAwKQ0KICAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsNCi0gICAgICAgaWYg
-KGNydGNfc3RhdGUtPnVhcGkuYXN5bmNfZmxpcCkNCi0gICAgICAgICAgICAgICByZXR1cm4gZmFs
-c2U7DQoNCiAgICAgICAgcmV0dXJuIHRydWU7DQogfQ0KDQpUaGlzIGlzIGNhdXNpbmcgb3RoZXIg
-a21zX2FzeW5jX2ZsaXBzIHRlc3RzIHRvIGZhaWwsIHRoZSBvbmVzIHRoYXQgY2hlY2tzIHRoZSBh
-c3luYyBmbGlwIHRpbWUgaW50ZXJ2YWwuDQoNCg0KPiA+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+
-ID4gSXQgaXMgbm90IHR1cm5pbmcgUFNSMiBvZmYsIGl0IGlzIHRlbGxpbmcgaGFyZHdhcmUgdG8g
-ZmV0Y2ggdGhlIHdob2xlIG1lbW9yeSBvZiBhbGwgcGxhbmVzIGFuZCBzZW5kIHRoZSB3aG9sZSBz
-Y3JlZW4gdG8gcGFuZWwgaW5zdGVhZCBvZiBmZXRjaGluZyBhbmQNCj4gPiA+ID4gc2VuZGluZyBh
-IHNtYWxsZXIgYXJlYSBmb3IgdGhpcyBmcmFtZSwgd2UgYWxzbyBkbyB0aGF0IHdoZW4gYSBwbGFu
-ZSBpcyBtb3ZlZCB0byBhIG5lZ2F0aXZlIGNvb3JkaW5hdGUuDQo+ID4gPiANCj4gPiA+IERvZXNu
-J3QgbWF0dGVyLiBXaGF0ZXZlciByZWdpc3RlciBpcyByc3BvbnNpYmxlIGZvciB0aGlzIGlzIHBy
-ZXN1bWFibHkgbGF0Y2hlZA0KPiA+ID4gYXQgdGhlIG5leHQgdmJsYW5rIHdoaWNoIGlzIGFmdGVy
-IHRoZSBhc3luYyBmbGlwIGFscmVhZHkgaGFwcGVuZWQuDQo+ID4gPiANCj4gPiANCj4gPiBUaGF0
-IGlzIGV4YWN0bHkgd2hhdCBCU3BlYyA1NTIyOSBhc2tzIHVzIHRvIGRvOg0KPiA+IA0KPiA+IE5v
-dCBzdXBwb3J0ZWQgd2l0aCBhc3luYyBmbGlwcy4gVGhlIHBsYW5lIHNpemUgYW5kIHBvc2l0aW9u
-IGNhbm5vdCBiZSBjaGFuZ2VkIHdpdGggYXN5bmMgZmxpcHMsIHNvIHNlbGVjdGl2ZSBmZXRjaCBj
-YW5ub3QgYmUgdXNlZC4gU29mdHdhcmUgbXVzdA0KPiA+IG91dHB1dCBhIGZ1bGwgZnJhbWUgZm9y
-IGFzeW5jIGZsaXBzLg0KPiANCj4gSXQgZG9lc24ndCB0ZWxsIHVzIHRvIGRvIGl0IHdyb25nLg0K
-PiANCg0K
+For every crtc in state, intel_atomic_check_async() was checking all
+the crtc and plane states again.
+
+Cc: Karthik B S <karthik.b.s@intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 38 ++++++++++----------
+ 1 file changed, 20 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 79cd158503b37..3b5a8e971343f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7707,35 +7707,37 @@ static void kill_bigjoiner_slave(struct intel_atomic_state *state,
+  * correspond to the last vblank and have no relation to the actual time when
+  * the flip done event was sent.
+  */
+-static int intel_atomic_check_async(struct intel_atomic_state *state)
++static int intel_atomic_check_async(struct intel_atomic_state *state, struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	const struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+ 	const struct intel_plane_state *new_plane_state, *old_plane_state;
+-	struct intel_crtc *crtc;
+ 	struct intel_plane *plane;
+ 	int i;
+ 
+-	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+-					    new_crtc_state, i) {
+-		if (intel_crtc_needs_modeset(new_crtc_state)) {
+-			drm_dbg_kms(&i915->drm, "Modeset Required. Async flip not supported\n");
+-			return -EINVAL;
+-		}
++	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
++	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+ 
+-		if (!new_crtc_state->hw.active) {
+-			drm_dbg_kms(&i915->drm, "CRTC inactive\n");
+-			return -EINVAL;
+-		}
+-		if (old_crtc_state->active_planes != new_crtc_state->active_planes) {
+-			drm_dbg_kms(&i915->drm,
+-				    "Active planes cannot be changed during async flip\n");
+-			return -EINVAL;
+-		}
++	if (intel_crtc_needs_modeset(new_crtc_state)) {
++		drm_dbg_kms(&i915->drm, "Modeset Required. Async flip not supported\n");
++		return -EINVAL;
++	}
++
++	if (!new_crtc_state->hw.active) {
++		drm_dbg_kms(&i915->drm, "CRTC inactive\n");
++		return -EINVAL;
++	}
++	if (old_crtc_state->active_planes != new_crtc_state->active_planes) {
++		drm_dbg_kms(&i915->drm,
++			    "Active planes cannot be changed during async flip\n");
++		return -EINVAL;
+ 	}
+ 
+ 	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
+ 					     new_plane_state, i) {
++		if (plane->base.crtc != &crtc->base)
++			continue;
++
+ 		/*
+ 		 * TODO: Async flip is only supported through the page flip IOCTL
+ 		 * as of now. So support currently added for primary plane only.
+@@ -8054,7 +8056,7 @@ static int intel_atomic_check(struct drm_device *dev,
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 					    new_crtc_state, i) {
+ 		if (new_crtc_state->uapi.async_flip) {
+-			ret = intel_atomic_check_async(state);
++			ret = intel_atomic_check_async(state, crtc);
+ 			if (ret)
+ 				goto fail;
+ 		}
+-- 
+2.33.1
+
