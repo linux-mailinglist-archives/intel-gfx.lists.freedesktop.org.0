@@ -2,48 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7823643E575
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 17:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 473FE43E584
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 17:54:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D005F6E037;
-	Thu, 28 Oct 2021 15:49:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98A606E05A;
+	Thu, 28 Oct 2021 15:54:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 7.mo575.mail-out.ovh.net (7.mo575.mail-out.ovh.net
- [46.105.63.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACAAC6E037
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 15:49:40 +0000 (UTC)
-Received: from player691.ha.ovh.net (unknown [10.110.115.111])
- by mo575.mail-out.ovh.net (Postfix) with ESMTP id 8CE3722906
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 15:41:34 +0000 (UTC)
-Received: from etezian.org (unknown [31.22.57.166])
- (Authenticated sender: andi@etezian.org)
- by player691.ha.ovh.net (Postfix) with ESMTPSA id 4171223CBD75E;
- Thu, 28 Oct 2021 15:41:27 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass
- (GARM-99G003462af2d0-e618-41f7-ba9d-dd66c1adb7c7,
- 19738AB094897BD963DB89D239EF437C7015E8F6) smtp.auth=andi@etezian.org
-X-OVh-ClientIp: 31.22.57.166
-Date: Thu, 28 Oct 2021 17:41:26 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Andi Shyti <andi@etezian.org>
-Message-ID: <YXrEpoZ1YZtuPADx@jack.zhora.eu>
-References: <20211008215635.2026385-1-matthew.d.roper@intel.com>
- <20211008215635.2026385-7-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0C0156E05A;
+ Thu, 28 Oct 2021 15:54:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 047B9AA01E;
+ Thu, 28 Oct 2021 15:54:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211008215635.2026385-7-matthew.d.roper@intel.com>
-X-Ovh-Tracer-Id: 14172265078894823946
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvtddrvdegfedgtdeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnheptdfgudduhfefueeujeefieehtdeftefggeevhefgueellefhudetgeeikeduieefnecukfhppedtrddtrddtrddtpdefuddrvddvrdehjedrudeiieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrieeluddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH 06/11] drm/i915: Initial support for
- per-tile uncore
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 Oct 2021 15:54:28 -0000
+Message-ID: <163543646801.4340.6523329152294519945@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211028125855.3281674-1-matthew.auld@intel.com>
+In-Reply-To: <20211028125855.3281674-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/11=5D_drm/i915=3A_Remove_unused_?=
+ =?utf-8?q?bits_of_i915=5Fvma/active_api?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,19 +42,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniele and Matt,
+== Series Details ==
 
-> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> Initialization and suspend/resume is replicated per-tile.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Series: series starting with [01/11] drm/i915: Remove unused bits of i915_vma/active api
+URL   : https://patchwork.freedesktop.org/series/96388/
+State : warning
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Andi
+$ dim checkpatch origin/drm-tip
+519f1b79715b drm/i915: Remove unused bits of i915_vma/active api
+859ebdaed34f drm/i915: Slightly rework EXEC_OBJECT_CAPTURE handling, v2.
+2cc880ac8715 drm/i915: Remove gen6_ppgtt_unpin_all
+f628515bdd18 drm/i915: Create a dummy object for gen6 ppgtt
+-:183: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#183: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.c:375:
++static void pd_dummy_obj_put_pages(struct drm_i915_gem_object *obj,
++				     struct sg_table *pages)
+
+total: 0 errors, 0 warnings, 1 checks, 257 lines checked
+235d744f7802 drm/i915: Create a full object for mock_ring, v2.
+8f45390b0673 drm/i915: vma is always backed by an object.
+e5995e0bc118 drm/i915/pm: Move CONTEXT_VALID_BIT check
+b0ecd3b6fd29 drm/i915: Remove resv from i915_vma
+b456d8359429 drm/i915: Rework context handling in hugepages selftests
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#15: 
+  - Make hugepage_ctx static. Reported-by: kernel test robot <lkp@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 258 lines checked
+3efce6d7a223 drm/i915: Drain the ttm delayed workqueue too
+78ee5be15b08 drm/i915: Require object lock when freeing pages during destruction
+
+
