@@ -1,47 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6086743E1E5
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 15:20:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A9DF43E1FA
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 15:25:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0223B6E97B;
-	Thu, 28 Oct 2021 13:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 266306E824;
+	Thu, 28 Oct 2021 13:25:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72CB86E971;
- Thu, 28 Oct 2021 13:20:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="211173879"
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="211173879"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 06:20:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="487124569"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 28 Oct 2021 06:20:31 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 28 Oct 2021 16:20:31 +0300
-Date: Thu, 28 Oct 2021 16:20:31 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Message-ID: <YXqjnyedcljkaZE/@intel.com>
-References: <8735olh27y.fsf@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C727B6E824
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 13:25:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="217316438"
+X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="217316438"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 06:25:40 -0700
+X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="597793176"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 06:25:39 -0700
+Date: Thu, 28 Oct 2021 16:25:35 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <20211028132535.GA3069912@ideak-desk.fi.intel.com>
+References: <20211006204937.30774-1-ville.syrjala@linux.intel.com>
+ <20211006204937.30774-17-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <8735olh27y.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes
+In-Reply-To: <20211006204937.30774-17-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 16/16] drm/i915: Fix icl+ combo phy static
+ lane power down setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,77 +50,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 28, 2021 at 01:29:21PM +0300, Jani Nikula wrote:
+On Wed, Oct 06, 2021 at 11:49:37PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Hi Dave & Daniel -
+> Our lane power down defines already include the necessary shift,
+> don't shit them a second time.
 > 
-> Certainly more than I'd like at this stage, but it's mostly Cc: stable
-> material, and the tracepoint change is a last minute revert to dodge a
-> potential "tracepoints are uabi" bullet before it hits the final
-> release.
+> Fortunately we masked off the correct bits, so we accidentally
+> left all lanes powered up all the time.
 > 
+> Bits 8-11 where we end up writing our misdirected lane mask are
+> documented as MBZ, but looks like you can actually write there
+> so they're not read only bits. No idea what side effect the
+> bogus register write might have.
 > 
-> BR,
-> Jani.
-> 
-> 
-> drm-intel-fixes-2021-10-28:
-> drm/i915 fixes for v5.15 final:
-> - Remove unconditional clflushes
-> - Fix oops on boot due to sync state on disabled DP encoders
-> - Revert backend specific data added to tracepoints
-> - Remove useless and incorrect memory frequence calculation
-> 
-> BR,
-> Jani.
-> 
-> The following changes since commit 519d81956ee277b4419c723adfb154603c2565ba:
-> 
->   Linux 5.15-rc6 (2021-10-17 20:00:13 -1000)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-10-28
-> 
-> for you to fetch changes up to 9a4aa3a2f1606a03c220b21049baa4a2b6169626:
-> 
->   drm/i915: Revert 'guc_id' from i915_request tracepoint (2021-10-28 11:45:11 +0300)
-> 
-> ----------------------------------------------------------------
-> drm/i915 fixes for v5.15 final:
-> - Remove unconditional clflushes
-> - Fix oops on boot due to sync state on disabled DP encoders
-> - Revert backend specific data added to tracepoints
-> - Remove useless and incorrect memory frequence calculation
-> 
-> ----------------------------------------------------------------
-> Imre Deak (1):
->       drm/i915/dp: Skip the HW readout of DPCD on disabled encoders
-> 
-> Joonas Lahtinen (1):
->       drm/i915: Revert 'guc_id' from i915_request tracepoint
-> 
-> José Roberto de Souza (1):
->       drm/i915: Remove memory frequency calculation
-> 
-> Ville Syrjälä (2):
->       drm/i915: Convert unconditional clflush to drm_clflush_virt_range()
->       drm/i915: Catch yet another unconditioal clflush
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4151
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Where did the third one go?
-commit ef7ec41f17cb ("drm/i915: Replace the unconditional clflush with drm_clflush_virt_range()")
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/display/intel_combo_phy.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->  drivers/gpu/drm/i915/display/intel_dp.c  |  3 +++
->  drivers/gpu/drm/i915/gt/intel_timeline.c |  4 ++--
->  drivers/gpu/drm/i915/i915_reg.h          |  8 --------
->  drivers/gpu/drm/i915/i915_trace.h        |  7 ++-----
->  drivers/gpu/drm/i915/intel_dram.c        | 30 ++----------------------------
->  5 files changed, 9 insertions(+), 43 deletions(-)
-> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> index 634e8d449457..f628e0542933 100644
+> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> @@ -301,7 +301,7 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
+>  
+>  	val = intel_de_read(dev_priv, ICL_PORT_CL_DW10(phy));
+>  	val &= ~PWR_DOWN_LN_MASK;
+> -	val |= lane_mask << PWR_DOWN_LN_SHIFT;
+> +	val |= lane_mask;
+>  	intel_de_write(dev_priv, ICL_PORT_CL_DW10(phy), val);
+>  }
+>  
 > -- 
-> Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Ville Syrjälä
-Intel
+> 2.32.0
+> 
