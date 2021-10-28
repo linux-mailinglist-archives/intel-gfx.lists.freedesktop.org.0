@@ -2,42 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1981943E02B
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 13:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E997543E06D
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 14:01:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEBEC6E090;
-	Thu, 28 Oct 2021 11:43:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 516676E953;
+	Thu, 28 Oct 2021 12:01:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64316E090
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 11:43:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="211158574"
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="211158574"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D9F06E950;
+ Thu, 28 Oct 2021 12:01:45 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="230243785"
+X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="230243785"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 04:43:13 -0700
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="498366682"
-Received: from ralfseng-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.214.156])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 05:01:45 -0700
+X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="498371740"
+Received: from jxu13-mobl.amr.corp.intel.com (HELO thellstr-mobl1.intel.com)
+ ([10.249.254.218])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 04:43:11 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: imre.deak@intel.com, matthew.d.roper@intel.com,
- ville.syrjala@linux.intel.com, Vandita
- Kulkarni <vandita.kulkarni@intel.com>
-In-Reply-To: <20211019151435.20477-5-vandita.kulkarni@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211019151435.20477-1-vandita.kulkarni@intel.com>
- <20211019151435.20477-5-vandita.kulkarni@intel.com>
-Date: Thu, 28 Oct 2021 14:43:08 +0300
-Message-ID: <87zgqtfk8j.fsf@intel.com>
+ 28 Oct 2021 05:01:43 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 28 Oct 2021 14:01:25 +0200
+Message-Id: <20211028120128.13490-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [V2 4/4] drm/i915/dsi: Ungate clock before enabling
- the phy
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/3] Prepare error capture for asynchronous
+ migration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,67 +50,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> For the PHY enable/disable signalling to propagate
-> between Dispaly and PHY, DDI clocks need to be running when
-> enabling the PHY.
->
-> Bspec: 49188 says gate the clocks after enabling the
->        DDI Buffer.
->        We also have a commit 991d9557b0c4 ("drm/i915/tgl/dsi: Gate the ddi
->        clocks after pll mapping") which gates the clocks much before,
->        as per the older spec. This commit nullifies its effect and makes
->        sure that the clocks are not gated while we enable the DDI
->        buffer.
-> v2: Bspec ref, add a comment wrt earlier clock gating sequence (Jani)
->
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 63dd75c6448a..e5ef5c4a32d7 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1135,8 +1135,6 @@ static void
->  gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -
->  	/* step 4a: power up all lanes of the DDI used by DSI */
->  	gen11_dsi_power_up_lanes(encoder);
->  
-> @@ -1146,6 +1144,8 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
->  	/* step 4c: configure voltage swing and skew */
->  	gen11_dsi_voltage_swing_program_seq(encoder);
->  
-> +	gen11_dsi_ungate_clocks(encoder);
-> +
+This patch series prepares error capture for asynchronous migration,
+where the vma pages may not reflect the pages the GPU is currently
+executing from but may be several migrations ahead.
 
-What about the changes to gen11_dsi_map_pll() in commit 991d9557b0c4
-("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")? It starts
-off with clocks gated for gen12+, ungated otherwise.
+The first patch deals with refcounting sg-list so that they don't
+disappear under the capture code, which typically otherwise happens at
+put_pages() time.
 
-BR,
-Jani.
+The second patch introduces vma state snapshots that record the vma state
+at request submission time. It also updates the memory allocation mode to
+reflect that error capture may and will happen in the dma-fence signalling
+critical path, and finally takes additional measures to make sure that
+the capture list and request is not disappearing from under us while
+capturing. The latter may otherwise happen if a heartbeat triggered parallel
+capture is running during a manual reset which retires the request.
 
+Finally the last patch is more of a POC patch and not strictly needed yet,
+but will be (or at least something very similar) soon for async unbinding.
+It will make sure that unbinding doesn't complete or signal completion
+before capture is done. Async reuse of memory can't happen until unbinding
+signals complete and without waiting for capture done, we might capture
+contents of reused memory.
+Before the last patch the vma active is instead still keeping the vma alive,
+but that will not work with async unbinding anymore, and also it is still
+not clear how we guarantee keeping the vma alive long enough to even
+grab an active reference during capture.
 
->  	/* enable DDI buffer */
->  	gen11_dsi_enable_ddi_buffer(encoder);
->  
-> @@ -1161,9 +1161,7 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
->  	/* Step (4h, 4i, 4j, 4k): Configure transcoder */
->  	gen11_dsi_configure_transcoder(encoder, crtc_state);
->  
-> -	/* Step 4l: Gate DDI clocks */
-> -	if (DISPLAY_VER(dev_priv) == 11)
-> -		gen11_dsi_gate_clocks(encoder);
-> +	gen11_dsi_gate_clocks(encoder);
->  }
->  
->  static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+v2:
+- Mostly Fixes for selftests and rebinding. See patch 3. 
+v3:
+- Honor the unbind fence also when evicting for suspend on gen6.
+- Cleanups on patch 1
+- Minor cleanups on patch 3.
+
+Thomas Hellström (3):
+  drm/i915: Introduce refcounted sg-tables
+  drm/i915: Update error capture code to avoid using the current vma
+    state
+  drm/i915: Initial introduction of vma resources
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 137 ++++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  49 ++---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 186 +++++++++-------
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   8 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |   2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         | 180 ++++++++++-----
+ drivers/gpu/drm/i915/i915_request.c           |  63 ++++--
+ drivers/gpu/drm/i915/i915_request.h           |  18 +-
+ drivers/gpu/drm/i915/i915_scatterlist.c       |  62 ++++--
+ drivers/gpu/drm/i915/i915_scatterlist.h       |  76 ++++++-
+ drivers/gpu/drm/i915/i915_vma.c               | 206 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_vma.h               |  20 +-
+ drivers/gpu/drm/i915/i915_vma_snapshot.c      | 131 +++++++++++
+ drivers/gpu/drm/i915/i915_vma_snapshot.h      | 112 ++++++++++
+ drivers/gpu/drm/i915/i915_vma_types.h         |   5 +
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  15 +-
+ drivers/gpu/drm/i915/intel_region_ttm.h       |   5 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  98 +++++----
+ drivers/gpu/drm/i915/selftests/mock_region.c  |  12 +-
+ 22 files changed, 1111 insertions(+), 290 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.c
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.h
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.31.1
+
