@@ -1,43 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA0443E24D
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 15:33:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B1D843E2B9
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 15:53:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 861A46E971;
-	Thu, 28 Oct 2021 13:32:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 834BF6E825;
+	Thu, 28 Oct 2021 13:53:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2D8B6E971
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 13:32:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="217580674"
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="217580674"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 06:32:47 -0700
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B46846E825
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 13:53:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10150"; a="293866870"
+X-IronPort-AV: E=Sophos;i="5.87,190,1631602800"; d="scan'208";a="293866870"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 06:53:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; d="scan'208";a="447692516"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 28 Oct 2021 06:32:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 28 Oct 2021 16:32:44 +0300
-Date: Thu, 28 Oct 2021 16:32:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Mika Kahola <mika.kahola@intel.com>,
- Jouni Hogander <jouni.hogander@intel.com>
-Message-ID: <YXqmfPPnSr3j/mDe@intel.com>
-References: <20211027184855.108731-1-jose.souza@intel.com>
+X-IronPort-AV: E=Sophos;i="5.87,190,1631602800"; d="scan'208";a="530022710"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga001.jf.intel.com with ESMTP; 28 Oct 2021 06:53:27 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Thu, 28 Oct 2021 06:53:26 -0700
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Thu, 28 Oct 2021 06:53:24 -0700
+Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
+ BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.012;
+ Thu, 28 Oct 2021 19:23:23 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nikula, Jani" <jani.nikula@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>, "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>
+Thread-Topic: [V2 3/4] drm/i915/dsi/xelpd: Disable DC states in Video mode
+Thread-Index: AQHXxPv+qLhRm2uVvEqnftkbFXFa4qvfHxGAgAlcU3A=
+Date: Thu, 28 Oct 2021 13:53:22 +0000
+Message-ID: <def6b5da53104ee595a3d624cf1c6fd7@intel.com>
+References: <20211019151435.20477-1-vandita.kulkarni@intel.com>
+ <20211019151435.20477-4-vandita.kulkarni@intel.com>
+ <20211022202305.GA1980572@ideak-desk.fi.intel.com>
+In-Reply-To: <20211022202305.GA1980572@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211027184855.108731-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/psr2: Do full fetches when doing
- async flips
+Subject: Re: [Intel-gfx] [V2 3/4] drm/i915/dsi/xelpd: Disable DC states in
+ Video mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,52 +74,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 27, 2021 at 11:48:55AM -0700, José Roberto de Souza wrote:
-> Async flips are not supported by selective fetch and we had a check
-> for that but that check was only executed when doing modesets.
-> So moving this check to the page flip path, so it can be properly
-> handled.
-> 
-> This fix a failure in kms_async_flips@test-cursor.
-> 
-> Cc: Mika Kahola <mika.kahola@intel.com>
-> Cc: Jouni Hogander <jouni.hogander@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 8d08e3cf08c1f..ce6850ed72c60 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -729,12 +729,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
->  		return false;
->  	}
->  
-> -	if (crtc_state->uapi.async_flip) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "PSR2 sel fetch not enabled, async flip enabled\n");
-> -		return false;
-> -	}
-> -
->  	/* Wa_14010254185 Wa_14010103792 */
->  	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
->  		drm_dbg_kms(&dev_priv->drm,
-> @@ -1592,6 +1586,8 @@ static bool psr2_sel_fetch_pipe_state_supported(const struct intel_crtc_state *c
->  {
->  	if (crtc_state->scaler_state.scaler_id >= 0)
->  		return false;
-> +	if (crtc_state->uapi.async_flip)
-> +		return false;
+> -----Original Message-----
+> From: Deak, Imre <imre.deak@intel.com>
+> Sent: Saturday, October 23, 2021 1:53 AM
+> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>=
+;
+> Roper, Matthew D <matthew.d.roper@intel.com>;
+> ville.syrjala@linux.intel.com
+> Subject: Re: [V2 3/4] drm/i915/dsi/xelpd: Disable DC states in Video mode
+>=20
+> On Tue, Oct 19, 2021 at 08:44:34PM +0530, Vandita Kulkarni wrote:
+> > MIPI DSI transcoder cannot be in video mode to support any of the
+> > display C states.
+> >
+> > Bspec: 49195 (For DC*co DSI transcoders cannot be in video mode)
+> > Bspec: 49193 (Hardware does not support DC5 or DC6 with MIPI DSI
+> > enabled)
+> > Bspec: 49188 (desc of DSI_DCSTATE_CTL talks about cmd mode PM control
+>=20
+> So none of the DC states (except DC6v which the driver doesn't support) a=
+re
+> supported in DSI video mode and DC3co is supported in command mode.
+> The selection between video vs. command mode happens using a VBT flag
+> and I can't see anything that would prevent using command mode on XELPD.
+> If the support for it is missing, should it be disabled explicitly or at =
+least a
+> notice printed that DC states are not yet supported?
 
-This looks dodgy. Pretty sure we can't turn off this thing during
-an async flip. So I think the correct short term fix is to not do
-async flips with psr2 enabled. The longer term fix would involve
-using the same approach Stan is preparing for the async flip
-watermark tweaking, which is to convert the first async flip into
-a sync flip.
+Since we haven't enabled and tried dsi cmd mode on xelpd and in DC3co DMC
+Would monitor the idleness of the transcoder, until that is enabled, we can=
+ disable
+Cmd mode for now.
+Will send out a patch to disable cmd mode on xelpd, as it would by default =
+depend on
+Vbt like you have mentioned above.
 
--- 
-Ville Syrjälä
-Intel
+Thanks,
+Vandita
+=20
+>=20
+> > v2: Align to the power domain ordering (Jani)
+> >     Add bspec references (Imre)
+> >
+> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display_power.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index d88da0d0f05a..b989ddd3d023 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -3106,6 +3106,7 @@ intel_display_power_put_mask_in_set(struct
+> drm_i915_private *i915,
+> >  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+> >  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> >  	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
+> > +	BIT_ULL(POWER_DOMAIN_PORT_DSI) |		\
+> >  	BIT_ULL(POWER_DOMAIN_INIT))
+> >
+> >  #define XELPD_AUX_IO_D_XELPD_POWER_DOMAINS
+> 	BIT_ULL(POWER_DOMAIN_AUX_D_XELPD)
+> > --
+> > 2.32.0
+> >
