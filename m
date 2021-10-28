@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473FE43E584
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 17:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8568243E58C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Oct 2021 17:55:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98A606E05A;
-	Thu, 28 Oct 2021 15:54:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0983E6E087;
+	Thu, 28 Oct 2021 15:55:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0C0156E05A;
- Thu, 28 Oct 2021 15:54:28 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C204F6E05A;
+ Thu, 28 Oct 2021 15:55:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 047B9AA01E;
- Thu, 28 Oct 2021 15:54:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B71CFA00A0;
+ Thu, 28 Oct 2021 15:55:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Oct 2021 15:54:28 -0000
-Message-ID: <163543646801.4340.6523329152294519945@emeril.freedesktop.org>
+Date: Thu, 28 Oct 2021 15:55:55 -0000
+Message-ID: <163543655574.4340.13135850464093658229@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211028125855.3281674-1-matthew.auld@intel.com>
 In-Reply-To: <20211028125855.3281674-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/11=5D_drm/i915=3A_Remove_unused_?=
- =?utf-8?q?bits_of_i915=5Fvma/active_api?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B01/11=5D_drm/i915=3A_Remove_unused_bits?=
+ =?utf-8?q?_of_i915=5Fvma/active_api?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,28 +54,34 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-519f1b79715b drm/i915: Remove unused bits of i915_vma/active api
-859ebdaed34f drm/i915: Slightly rework EXEC_OBJECT_CAPTURE handling, v2.
-2cc880ac8715 drm/i915: Remove gen6_ppgtt_unpin_all
-f628515bdd18 drm/i915: Create a dummy object for gen6 ppgtt
--:183: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#183: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.c:375:
-+static void pd_dummy_obj_put_pages(struct drm_i915_gem_object *obj,
-+				     struct sg_table *pages)
-
-total: 0 errors, 0 warnings, 1 checks, 257 lines checked
-235d744f7802 drm/i915: Create a full object for mock_ring, v2.
-8f45390b0673 drm/i915: vma is always backed by an object.
-e5995e0bc118 drm/i915/pm: Move CONTEXT_VALID_BIT check
-b0ecd3b6fd29 drm/i915: Remove resv from i915_vma
-b456d8359429 drm/i915: Rework context handling in hugepages selftests
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-  - Make hugepage_ctx static. Reported-by: kernel test robot <lkp@intel.com>
-
-total: 0 errors, 1 warnings, 0 checks, 258 lines checked
-3efce6d7a223 drm/i915: Drain the ttm delayed workqueue too
-78ee5be15b08 drm/i915: Require object lock when freeing pages during destruction
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:418:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
 
 
