@@ -2,44 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204C143F3C6
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 02:16:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0038F43F3E7
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 02:29:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 752726E96B;
-	Fri, 29 Oct 2021 00:16:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C20276E959;
+	Fri, 29 Oct 2021 00:29:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 668966E96B;
- Fri, 29 Oct 2021 00:16:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="228006155"
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="228006155"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 17:16:16 -0700
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="498650985"
-Received: from roymalle-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.249.32.55])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 17:16:13 -0700
-Date: Fri, 29 Oct 2021 02:16:10 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Andi Shyti <andi@etezian.org>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Paulo Zanoni <paulo.r.zanoni@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <YXs9Sq87Lukml5wr@intel.intel>
-References: <20211008215635.2026385-1-matthew.d.roper@intel.com>
- <20211008215635.2026385-9-matthew.d.roper@intel.com>
- <YXrQEb1Isc+n9dAO@jack.zhora.eu>
- <20211028232053.GG602200@mdroper-desk1.amr.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A2DA6E0E8;
+ Fri, 29 Oct 2021 00:29:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4EEB8A00A0;
+ Fri, 29 Oct 2021 00:29:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211028232053.GG602200@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 08/11] drm/i915/xehp: Make IRQ reset and
- postinstall multi-tile aware
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Oct 2021 00:29:30 -0000
+Message-ID: <163546737028.1912.395266251159561136@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211025071317.3393329-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20211025071317.3393329-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBF?=
+ =?utf-8?q?nable_PXP_support_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,31 +41,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+== Series Details ==
 
-> > > -	dg1_master_intr_enable(uncore->regs);
-> > > -	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
-> > > +	dg1_master_intr_enable(dev_priv->gt.uncore->regs);
-> > > +	intel_uncore_posting_read(dev_priv->gt.uncore, DG1_MSTR_TILE_INTR);
-> > 
-> > I guess this should also go under a for_each_gt()
-> 
-> DG1_MSTR_TILE_INTR (0x190008) is the top-level, one-per-PCI device
-> interrupt register; we always access it via tile0's MMIO .  So in this
-> case we do want to do this outside the loop since it's not a per-tile
-> operation.
+Series: Enable PXP support (rev2)
+URL   : https://patchwork.freedesktop.org/series/96232/
+State : failure
 
-yes of course... we are writing to the master interrupt.
+== Summary ==
 
-> We could probably simplify the dev_priv->gt.uncore parameter to just
-> dev_priv->uncore to make this more obvious.
+Applying: drm/i915/pxp: run CI with PXP and MEI_PXP enabled.
+Applying: drm/i915/gt: Hold RPM wakelock during PXP suspend
+error: git diff header lacks filename information when removing 1 leading pathname component (line 2)
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0002 drm/i915/gt: Hold RPM wakelock during PXP suspend
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-... it would be a nitpick, but nice to have.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Thanks,
-Andi
