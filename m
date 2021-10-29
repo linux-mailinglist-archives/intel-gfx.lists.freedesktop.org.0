@@ -1,64 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8177D43F529
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 05:04:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 290DD43F56B
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 05:29:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5497F6E9B2;
-	Fri, 29 Oct 2021 03:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF8D6E9C1;
+	Fri, 29 Oct 2021 03:28:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A1306E9B2
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 03:04:07 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id u21so18015941lff.8
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 20:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sz/ywpybSJaNoGZvXE51S8svzpVWcQnnlH6Pn9KYkKs=;
- b=ZmEiiWHwwmH9sspvNf9mrhJ2ObRJ3h0nMIjxiw96VyoUUf9YSApSJZfqOXVvoxC9o2
- 2nNTRvI+hOfArkWqypwmgKHyrVVKMwWTM00K9H7hhtbiIoc8SL9+33+ElDW6nyEssJBo
- JBmzSYJX96qhj2o4D4Ul/QQM756ARdbZUdL8Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sz/ywpybSJaNoGZvXE51S8svzpVWcQnnlH6Pn9KYkKs=;
- b=Y4v0WwdFczWmpRG6Wgx4K73eIbb5vaYdCqyrUYbtHkrCU8KT4Gk4iKA0YK6pbqKeJm
- 1DjuMtFMGVy0mKknhjylSqRM/1HGU57EyZrZN7NfMuUSXGHx0myqzq7vXXPubHd875+4
- u4KB0VfUq2bSz1a2Yo8XOGfEqPTjzF2Y4gZOM8I4rnLJnR6eXZHIaENyGp/Ss8++e4Kg
- +5Mlfu8fUQHAGEl7wUFavm8apkuCZCgXxSMfOaKubeOLbuDO9t7OIEUGNH/+cD9nbKj9
- Sz/uEQ5KXe9iYMwxCxgHq0vJUxuBQjPZBS9335KtYUOlAPhvgr486ru/cuapCSx4nL6W
- j/Lg==
-X-Gm-Message-State: AOAM531Ym9qk5fPZqRd8rNrlJIpHh+K1AOk7EOUSatYgTdw+/OGqJuRc
- WofvsRXwr9Z28sctZMks0iSfuc24hL+GhXGPqhJ0HA==
-X-Google-Smtp-Source: ABdhPJxC0NS1t4ZTrK/U/w98ca7x/r/R5fRiRRC7PwYozOenIJEgQ0sp7JZwf/0TjkDGytKndTNOyCau++3Cm6xcZng=
-X-Received: by 2002:a19:c1c2:: with SMTP id r185mr7493994lff.275.1635476645375; 
- Thu, 28 Oct 2021 20:04:05 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39F66E9B9;
+ Fri, 29 Oct 2021 03:28:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="230438542"
+X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="230438542"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 20:28:35 -0700
+X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="538557445"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 20:28:34 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, andi.shyti@intel.com,
+ Matt Roper <matthew.d.roper@intel.com>
+Date: Thu, 28 Oct 2021 20:28:07 -0700
+Message-Id: <20211029032817.3747750-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20211026192104.1860504-1-markyacoub@chromium.org>
- <20211029004220.GA10475@art_vandelay>
-In-Reply-To: <20211029004220.GA10475@art_vandelay>
-From: Mark Yacoub <markyacoub@chromium.org>
-Date: Thu, 28 Oct 2021 23:03:54 -0400
-Message-ID: <CAJUqKUpop4JodJjT+HBR7ayq2=G_8UdJatLFhty5XZTZ7xL8QQ@mail.gmail.com>
-To: Sean Paul <sean@poorly.run>
-Cc: seanpaul@chromium.org, pmenzel@molgen.mpg.de, 
- Mark Yacoub <markyacoub@google.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm: Rename lut check functions to
- lut channel checks
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 00/10] i915: Initial multi-tile support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,137 +47,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 28, 2021 at 8:42 PM Sean Paul <sean@poorly.run> wrote:
->
-> On Tue, Oct 26, 2021 at 03:21:00PM -0400, Mark Yacoub wrote:
-> > From: Mark Yacoub <markyacoub@google.com>
-> >
-> > [Why]
-> > This function and enum do not do generic checking on the luts but they
-> > test color channels in the LUTs.
->
-> I'm not sure there's anything inherently specific to channels, it seems like
-> one could add a new test to reflect a HW limitation and it would fit pretty well
-> in the lut check function. I wonder if it would be better to expose the types of
-> tests required by the crtc such that the atomic_check could also do the test?
->
-So the tests of the color are pretty unique to intel devices, no other
-device is using it so I didn't think it adds a lot of benefit adding
-it to the lut check. However, it's still in DRM because technically it
-can be supported by any driver. But once it is, the driver will have
-to expose the tests it wants so we can check it in atomic_check. but
-given that no one does expose any test but intel, i just left it only
-used by them.
+Some of our upcoming platforms, including the Xe_HP SDV, support a
+"multi-tile" design.  A multi-tile platform is effectively a platform
+with multiple GT instances and local memory regions, all behind a single
+PCI device.  From an i915 perspective, this translates to multiple
+intel_gt structures per drm_i915_private.  This series provides the
+initial refactoring to support multiple independent GTs per card, but
+further work (especially related to local memory) will be required to
+fully enable a multi-tile platform.
 
-> Sean
->
-> > Keeping the name explicit as more generic LUT checks will follow.
-> >
-> > Tested on Eldrid ChromeOS (TGL).
-> >
-> > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> > ---
-> >  drivers/gpu/drm/drm_color_mgmt.c           | 12 ++++++------
-> >  drivers/gpu/drm/i915/display/intel_color.c | 10 +++++-----
-> >  include/drm/drm_color_mgmt.h               |  7 ++++---
-> >  3 files changed, 15 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
-> > index bb14f488c8f6c..6f4e04746d90f 100644
-> > --- a/drivers/gpu/drm/drm_color_mgmt.c
-> > +++ b/drivers/gpu/drm/drm_color_mgmt.c
-> > @@ -585,17 +585,17 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
-> >  EXPORT_SYMBOL(drm_plane_create_color_properties);
-> >
-> >  /**
-> > - * drm_color_lut_check - check validity of lookup table
-> > + * drm_color_lut_channels_check - check validity of the channels in the lookup table
-> >   * @lut: property blob containing LUT to check
-> >   * @tests: bitmask of tests to run
-> >   *
-> > - * Helper to check whether a userspace-provided lookup table is valid and
-> > - * satisfies hardware requirements.  Drivers pass a bitmask indicating which of
-> > - * the tests in &drm_color_lut_tests should be performed.
-> > + * Helper to check whether each color channel of userspace-provided lookup table is valid and
-> > + * satisfies hardware requirements. Drivers pass a bitmask indicating which of in
-> > + * &drm_color_lut_channels_tests should be performed.
-> >   *
-> >   * Returns 0 on success, -EINVAL on failure.
-> >   */
-> > -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
-> > +int drm_color_lut_channels_check(const struct drm_property_blob *lut, u32 tests)
-> >  {
-> >       const struct drm_color_lut *entry;
-> >       int i;
-> > @@ -625,4 +625,4 @@ int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
-> >
-> >       return 0;
-> >  }
-> > -EXPORT_SYMBOL(drm_color_lut_check);
-> > +EXPORT_SYMBOL(drm_color_lut_channels_check);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> > index dab892d2251ba..4bb1bc76c4de9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -1285,7 +1285,7 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
-> >       const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
-> >       const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
-> >       int gamma_length, degamma_length;
-> > -     u32 gamma_tests, degamma_tests;
-> > +     u32 gamma_channels_tests, degamma_channels_tests;
-> >
-> >       /* Always allow legacy gamma LUT with no further checking. */
-> >       if (crtc_state_is_legacy_gamma(crtc_state))
-> > @@ -1300,15 +1300,15 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
-> >
-> >       degamma_length = INTEL_INFO(dev_priv)->color.degamma_lut_size;
-> >       gamma_length = INTEL_INFO(dev_priv)->color.gamma_lut_size;
-> > -     degamma_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
-> > -     gamma_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
-> > +     degamma_channels_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
-> > +     gamma_channels_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
-> >
-> >       if (check_lut_size(degamma_lut, degamma_length) ||
-> >           check_lut_size(gamma_lut, gamma_length))
-> >               return -EINVAL;
-> >
-> > -     if (drm_color_lut_check(degamma_lut, degamma_tests) ||
-> > -         drm_color_lut_check(gamma_lut, gamma_tests))
-> > +     if (drm_color_lut_channels_check(degamma_lut, degamma_channels_tests) ||
-> > +         drm_color_lut_channels_check(gamma_lut, gamma_channels_tests))
-> >               return -EINVAL;
-> >
-> >       return 0;
-> > diff --git a/include/drm/drm_color_mgmt.h b/include/drm/drm_color_mgmt.h
-> > index 81c298488b0c8..cb1bf361ad3e3 100644
-> > --- a/include/drm/drm_color_mgmt.h
-> > +++ b/include/drm/drm_color_mgmt.h
-> > @@ -94,12 +94,12 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
-> >                                     enum drm_color_range default_range);
-> >
-> >  /**
-> > - * enum drm_color_lut_tests - hw-specific LUT tests to perform
-> > + * enum drm_color_lut_channels_tests - hw-specific LUT tests to perform
-> >   *
-> >   * The drm_color_lut_check() function takes a bitmask of the values here to
-> >   * determine which tests to apply to a userspace-provided LUT.
-> >   */
-> > -enum drm_color_lut_tests {
-> > +enum drm_color_lut_channels_tests {
-> >       /**
-> >        * @DRM_COLOR_LUT_EQUAL_CHANNELS:
-> >        *
-> > @@ -119,5 +119,6 @@ enum drm_color_lut_tests {
-> >       DRM_COLOR_LUT_NON_DECREASING = BIT(1),
-> >  };
-> >
-> > -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests);
-> > +int drm_color_lut_channels_check(const struct drm_property_blob *lut,
-> > +                              u32 tests);
-> >  #endif
-> > --
-> > 2.33.0.1079.g6e70778dc9-goog
-> >
->
-> --
-> Sean Paul, Software Engineer, Google / Chromium OS
+Note that the presence of multiple GTs is largely transparent to
+userspace.  A multi-tile platform will advertise a larger list of
+engines to userspace, but the concept of "tile" is not something
+userspace has to worry about directly.  There will be some uapi
+implications later due to the devices having multiple local memory
+regions, but that aspect of multi-tile is not covered by this patch
+series and will show up in future work.
+
+v2:
+ - Include some additional tile setup refactoring that got missed in v1.
+
+v3:
+ - Fix GEM_BUG_ON() assertion on pre-gen9 platforms; the assertion was
+   only meant for multi-tile platforms and will always fail on old
+   platforms that have a BAR0 smaller than 16MB.
+ - Rename some of the gt/tile initialization functions.  (Lucas/Jani)
+ - Move top-level tile memory init to i915_drv.c since it isn't directly
+   related to the GT.  (Lucas)
+ - Squash per-gt cleanup into the patch that introduces the per-gt
+   setup.
+ - Fix handling of display and GSE interrupts (our current multi-tile
+   platforms don't have display, but we can't count on that being true
+   in the future).
+
+Daniele Ceraolo Spurio (2):
+  drm/i915: split general MMIO setup from per-GT uncore init
+  drm/i915: Initial support for per-tile uncore
+
+Matt Roper (1):
+  drm/i915: Restructure probe to handle multi-tile platforms
+
+Michal Wajdeczko (1):
+  drm/i915/guc: Update CT debug macro for multi-tile
+
+Michał Winiarski (1):
+  drm/i915: Store backpointer to GT in uncore
+
+Paulo Zanoni (3):
+  drm/i915: rework some irq functions to take intel_gt as argument
+  drm/i915/xehp: Determine which tile raised an interrupt
+  drm/i915/xehp: Make IRQ reset and postinstall multi-tile aware
+
+Tvrtko Ursulin (2):
+  drm/i915: Prepare for multiple gts
+  drm/i915/xehpsdv: Initialize multi-tiles
+
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 177 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gt.h            |  11 ++
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   9 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |  10 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   6 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |   5 +-
+ drivers/gpu/drm/i915/i915_drv.c               | 102 ++++++++--
+ drivers/gpu/drm/i915/i915_drv.h               |   9 +
+ drivers/gpu/drm/i915/i915_irq.c               |  77 +++++---
+ drivers/gpu/drm/i915/i915_pci.c               |  40 +++-
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ drivers/gpu/drm/i915/intel_device_info.h      |  15 ++
+ drivers/gpu/drm/i915/intel_memory_region.h    |   3 +
+ drivers/gpu/drm/i915/intel_uncore.c           |  36 ++--
+ drivers/gpu/drm/i915/intel_uncore.h           |   6 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |   3 +-
+ drivers/gpu/drm/i915/selftests/mock_uncore.c  |   2 +-
+ 18 files changed, 423 insertions(+), 94 deletions(-)
+
+-- 
+2.33.0
+
