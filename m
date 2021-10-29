@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E68343F4EE
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 04:19:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE50943F4F9
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 04:25:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89FE76E9AC;
-	Fri, 29 Oct 2021 02:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A23D6E9AF;
+	Fri, 29 Oct 2021 02:25:00 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFFCD6E9AC;
- Fri, 29 Oct 2021 02:19:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="228024445"
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="228024445"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 19:19:27 -0700
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="538277611"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C687C6E9AF;
+ Fri, 29 Oct 2021 02:24:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="217485133"
+X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="217485133"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 19:24:59 -0700
+X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="580857201"
 Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
  ([10.1.27.20])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 19:19:27 -0700
-Date: Thu, 28 Oct 2021 19:14:51 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 19:24:57 -0700
+Date: Thu, 28 Oct 2021 19:20:22 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: John.C.Harrison@Intel.com
 Cc: IGT-Dev@Lists.FreeDesktop.Org, Intel-GFX@Lists.FreeDesktop.Org
-Message-ID: <20211029021451.GA33110@jons-linux-dev-box>
+Message-ID: <20211029022021.GA33127@jons-linux-dev-box>
 References: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
- <20211021234044.3071069-2-John.C.Harrison@Intel.com>
+ <20211021234044.3071069-6-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211021234044.3071069-2-John.C.Harrison@Intel.com>
+In-Reply-To: <20211021234044.3071069-6-John.C.Harrison@Intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/8]
- tests/i915/gem_exec_capture: Remove pointless assert
+Subject: Re: [Intel-gfx] [PATCH i-g-t 5/8] tests/i915/gem_exec_capture:
+ Check for memory allocation failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,40 +51,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 21, 2021 at 04:40:37PM -0700, John.C.Harrison@Intel.com wrote:
+On Thu, Oct 21, 2021 at 04:40:41PM -0700, John.C.Harrison@Intel.com wrote:
 > From: John Harrison <John.C.Harrison@Intel.com>
 > 
-> The 'many' test ended with an 'assert(count)', presumably meaning to
-> ensure that some objects were actually captured. However, 'count' is
-> the number of objects created not how many were captured. Plus, there
-> is already a 'require(count > 1)' at the start and count is invarient
-> so the final assert is basically pointless.
-> 
-> General concensus appears to be that the test should not fail
-> irrespective of how many blobs are captured as low memory situations
-> could cause the capture to be abbreviated. So just remove the
-> pointless assert completely.
+> The sysfs file read helper does not actually report any errors if a
+> realloc fails. It just silently returns a 'valid' but truncated
+> buffer. This then leads to the decode of the buffer failing in random
+> ways. So, add a check for ENOMEM being generated during the read.
 > 
 > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  tests/i915/gem_exec_capture.c | 1 -
->  1 file changed, 1 deletion(-)
+>  tests/i915/gem_exec_capture.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 > diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-> index 7e0a8b8ad..53649cdb2 100644
+> index e373d24ed..8997125ee 100644
 > --- a/tests/i915/gem_exec_capture.c
 > +++ b/tests/i915/gem_exec_capture.c
-> @@ -524,7 +524,6 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  	}
->  	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
->  		 blobs, size >> 12, count);
-> -	igt_assert(count);
+> @@ -131,9 +131,11 @@ static int check_error_state(int dir, struct offset *obj_offsets, int obj_count,
+>  	char *error, *str;
+>  	int blobs = 0;
 >  
->  	free(error);
->  	free(offsets);
+> +	errno = 0;
+>  	error = igt_sysfs_get(dir, "error");
+>  	igt_sysfs_set(dir, "error", "Begone!");
+>  	igt_assert(error);
+> +	igt_assert(errno != ENOMEM);
+>  	igt_debug("%s\n", error);
+>  
+>  	/* render ring --- user = 0x00000000 ffffd000 */
 > -- 
 > 2.25.1
 > 
