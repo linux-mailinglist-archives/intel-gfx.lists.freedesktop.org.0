@@ -1,41 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695E4440306
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 21:18:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FDB844031D
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 21:25:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A345D6EA81;
-	Fri, 29 Oct 2021 19:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4EF26EA7D;
+	Fri, 29 Oct 2021 19:25:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C90126EA83
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 19:18:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10152"; a="229461438"
-X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; d="scan'208";a="229461438"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2021 12:18:08 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37B6C6EA7D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 19:25:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10152"; a="217918066"
+X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; d="scan'208";a="217918066"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2021 12:25:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; d="scan'208";a="581196056"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 29 Oct 2021 12:18:06 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 29 Oct 2021 22:18:05 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Date: Fri, 29 Oct 2021 22:18:02 +0300
-Message-Id: <20211029191802.18448-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211029191802.18448-1-ville.syrjala@linux.intel.com>
-References: <20211029191802.18448-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; d="scan'208";a="466629002"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
+ by orsmga002.jf.intel.com with ESMTP; 29 Oct 2021 12:25:19 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 29 Oct 2021 20:25:17 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Fri, 29 Oct 2021 12:25:15 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Hogander, Jouni" <jouni.hogander@intel.com>
+CC: "Kahola, Mika" <mika.kahola@intel.com>
+Thread-Topic: [PATCH 1/2] drm/i915/display: Add initial selective fetch
+ support for biplanar formats
+Thread-Index: AQHXxmPw39R35lpG60Os/t8lI5DV5avq38IA
+Date: Fri, 29 Oct 2021 19:25:15 +0000
+Message-ID: <f44923b4fda2403776d530ebe2615e2c0276002b.camel@intel.com>
+References: <20211021101024.13112-1-jouni.hogander@intel.com>
+ <20211021101024.13112-2-jouni.hogander@intel.com>
+In-Reply-To: <20211021101024.13112-2-jouni.hogander@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E9CF91914B8D7C48BCA5FC1AC347AC4E@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/hdmi: Turn DP++ TMDS output
- buffers back on in encoder->shutdown()
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: Add initial selective
+ fetch support for biplanar formats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,122 +66,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-Looks like our VBIOS/GOP generally fail to turn the DP dual mode adater
-TMDS output buffers back on after a reboot. This leads to a black screen
-after reboot if we turned the TMDS output buffers off prior to reboot.
-And if i915 decides to do a fastboot the black screen will persist even
-after i915 takes over.
-
-Apparently this has been a problem ever since commit b2ccb822d376 ("drm/i915:
-Enable/disable TMDS output buffers in DP++ adaptor as needed") if one
-rebooted while the display was turned off. And things became worse with
-commit fe0f1e3bfdfe ("drm/i915: Shut down displays gracefully on reboot")
-since now we always turn the display off before a reboot.
-
-This was reported on a RKL, but I confirmed the same behaviour on my
-SNB as well. So looks pretty universal.
-
-Let's fix this by explicitly turning the TMDS output buffers back on
-in the encoder->shutdown() hook. Note that this gets called after irqs
-have been disabled, so the i2c communication with the DP dual mode
-adapter has to be performed via polling (which the gmbus code is
-perfectly happy to do for us).
-
-We also need a bit of care in handling DDI encoders which may or may
-not be set up for HDMI output. Specifically ddc_pin will not be
-populated for a DP only DDI encoder, in which case we don't want to
-call intel_gmbus_get_adapter(). We can handle that by simply doing
-the dual mode adapter type check before calling
-intel_gmbus_get_adapter().
-
-Cc: stable@vger.kernel.org
-Fixes: b2ccb822d376 ("drm/i915: Enable/disable TMDS output buffers in DP++ adaptor as needed")
-Fixes: fe0f1e3bfdfe ("drm/i915: Shut down displays gracefully on reboot")
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4371
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/g4x_hdmi.c   |  1 +
- drivers/gpu/drm/i915/display/intel_ddi.c  |  1 +
- drivers/gpu/drm/i915/display/intel_hdmi.c | 16 ++++++++++++++--
- drivers/gpu/drm/i915/display/intel_hdmi.h |  1 +
- 4 files changed, 17 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 88c427f3c346..f5b4dd5b4275 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -584,6 +584,7 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
- 		else
- 			intel_encoder->enable = g4x_enable_hdmi;
- 	}
-+	intel_encoder->shutdown = intel_hdmi_encoder_shutdown;
- 
- 	intel_encoder->type = INTEL_OUTPUT_HDMI;
- 	intel_encoder->power_domain = intel_port_to_power_domain(port);
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 9fb99b09fff8..5ef2882727e1 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4312,6 +4312,7 @@ static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
- 	enum phy phy = intel_port_to_phy(i915, encoder->port);
- 
- 	intel_dp_encoder_shutdown(encoder);
-+	intel_hdmi_encoder_shutdown(encoder);
- 
- 	if (!intel_phy_is_tc(i915, phy))
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 7e6af959bf83..3b5b9e7b05b7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1246,12 +1246,13 @@ static void hsw_set_infoframes(struct intel_encoder *encoder,
- void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
- {
- 	struct drm_i915_private *dev_priv = intel_hdmi_to_i915(hdmi);
--	struct i2c_adapter *adapter =
--		intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
-+	struct i2c_adapter *adapter;
- 
- 	if (hdmi->dp_dual_mode.type < DRM_DP_DUAL_MODE_TYPE2_DVI)
- 		return;
- 
-+	adapter = intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
-+
- 	drm_dbg_kms(&dev_priv->drm, "%s DP dual mode adaptor TMDS output\n",
- 		    enable ? "Enabling" : "Disabling");
- 
-@@ -2285,6 +2286,17 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 	return 0;
- }
- 
-+void intel_hdmi_encoder_shutdown(struct intel_encoder *encoder)
-+{
-+	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
-+
-+	/*
-+	 * Give a hand to buggy BIOSen which forget to turn
-+	 * the TMDS output buffers back on after a reboot.
-+	 */
-+	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
-+}
-+
- static void
- intel_hdmi_unset_edid(struct drm_connector *connector)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index b43a180d007e..2bf440eb400a 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -28,6 +28,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
- 			      struct drm_connector_state *conn_state);
-+void intel_hdmi_encoder_shutdown(struct intel_encoder *encoder);
- bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
- 				       struct drm_connector *connector,
- 				       bool high_tmds_clock_ratio,
--- 
-2.32.0
-
+T24gVGh1LCAyMDIxLTEwLTIxIGF0IDEzOjEwICswMzAwLCBKb3VuaSBIw7ZnYW5kZXIgd3JvdGU6
+DQo+IEJpcGxhbmFyIGZvcm1hdHMgYXJlIHVzaW5nIHR3byBwbGFuZXMgKFkgYW5kIFVWKS4gVGhp
+cyBwYXRjaCBhZGRzIGhhbmRsaW5nDQo+IG9mIFkgc2VsZWN0aXZlIGZldGNoIGFyZWEgYnkgdXRp
+bGl6aW5nIGV4aXN0aW5nIGxpbmtlZCBwbGFuZSBtZWNoYW5pc20uDQo+IEFsc28gVVYgcGxhbmUg
+WSBvZmZzZXQgY29uZmlndXJhdGlvbiBpcyBtb2RpZmllZCBhY2NvcmRpbmcgdG8gQnNwZWMuDQo+
+IA0KPiBTaWduZWQtb2ZmLWJ5OiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVs
+LmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+IHwgMzAgKysrKysrKysrKysrKysrKysrKysrLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMjcgaW5z
+ZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCA0OWMyZGZiZDQwNTUuLjQ2OWJmOTUxNzhmMyAxMDA2
+NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC0xNDY3
+LDEwICsxNDY3LDE5IEBAIHZvaWQgaW50ZWxfcHNyMl9wcm9ncmFtX3BsYW5lX3NlbF9mZXRjaChz
+dHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lLA0KPiAgCXZhbCB8PSBwbGFuZV9zdGF0ZS0+dWFwaS5k
+c3QueDE7DQo+ICAJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsIFBMQU5FX1NFTF9GRVRDSF9Q
+T1MocGlwZSwgcGxhbmUtPmlkKSwgdmFsKTsNCj4gIA0KPiAtCS8qIFRPRE86IGNvbnNpZGVyIGF1
+eGlsaWFyeSBzdXJmYWNlcyAqLw0KPiAtCXggPSBwbGFuZV9zdGF0ZS0+dWFwaS5zcmMueDEgPj4g
+MTY7DQo+IC0JeSA9IChwbGFuZV9zdGF0ZS0+dWFwaS5zcmMueTEgPj4gMTYpICsgY2xpcC0+eTE7
+DQo+ICsJeCA9IHBsYW5lX3N0YXRlLT52aWV3LmNvbG9yX3BsYW5lW2NvbG9yX3BsYW5lXS54Ow0K
+PiArDQo+ICsJLyoNCj4gKwkgKiBGcm9tIEJzcGVjOiBVViBzdXJmYWNlIFN0YXJ0IFkgUG9zaXRp
+b24gPSBoYWxmIG9mIFkgcGxhbmUgWQ0KPiArCSAqIHN0YXJ0IHBvc2l0aW9uLg0KPiArCSAqLw0K
+PiArCWlmICghY29sb3JfcGxhbmUpDQo+ICsJCXkgPSBwbGFuZV9zdGF0ZS0+dmlldy5jb2xvcl9w
+bGFuZVtjb2xvcl9wbGFuZV0ueSArIGNsaXAtPnkxOw0KPiArCWVsc2UNCj4gKwkJeSA9IHBsYW5l
+X3N0YXRlLT52aWV3LmNvbG9yX3BsYW5lW2NvbG9yX3BsYW5lXS55ICsgY2xpcC0+eTEgLyAyOw0K
+DQpNYXRjaGVzIGJzcGVjIGJ1dCBJJ20gbm90IGFuIGV4cGVydCBpbiBjb2xvcmltZXRyeSBub3Qg
+c3VyZSBpZiBpdCBpcyBtaXNzaW5nIGhhbmRsaW5nIGZvciBvdGhlciBub24tUkdCIGZvcm1hdC4N
+CkxldCBzaGlwIHdpdGggaXQgYW5kIGZpeCBvbiB0b3AgYnV0IHdvdWxkIGJlIG5pY2UgdG8gYXNr
+IGFyb3VuZCBpZiB3ZSBhcmUgbWlzc2luZyBjYXNlcyBmb3Igb3RoZXIgZm9ybWF0cy4NCg0KPiAr
+DQo+ICAJdmFsID0geSA8PCAxNiB8IHg7DQo+ICsNCj4gIAlpbnRlbF9kZV93cml0ZV9mdyhkZXZf
+cHJpdiwgUExBTkVfU0VMX0ZFVENIX09GRlNFVChwaXBlLCBwbGFuZS0+aWQpLA0KPiAgCQkJICB2
+YWwpOw0KPiAgDQo+IEBAIC0xNzAwLDYgKzE3MDksNyBAQCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0
+Y2hfdXBkYXRlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCWZvcl9lYWNo
+X29sZG5ld19pbnRlbF9wbGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUsIG9sZF9wbGFuZV9zdGF0
+ZSwNCj4gIAkJCQkJICAgICBuZXdfcGxhbmVfc3RhdGUsIGkpIHsNCj4gIAkJc3RydWN0IGRybV9y
+ZWN0ICpzZWxfZmV0Y2hfYXJlYSwgaW50ZXI7DQo+ICsJCXN0cnVjdCBpbnRlbF9wbGFuZSAqbGlu
+a2VkID0gbmV3X3BsYW5lX3N0YXRlLT5wbGFuYXJfbGlua2VkX3BsYW5lOw0KPiAgDQo+ICAJCWlm
+IChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuY3J0YyAhPSBjcnRjX3N0YXRlLT51YXBpLmNydGMgfHwN
+Cj4gIAkJICAgICFuZXdfcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSkNCj4gQEAgLTE3MTgsNiAr
+MTcyOCwyMCBAQCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRlKHN0cnVjdCBpbnRlbF9h
+dG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCQlzZWxfZmV0Y2hfYXJlYS0+eTEgPSBpbnRlci55MSAt
+IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7DQo+ICAJCXNlbF9mZXRjaF9hcmVhLT55MiA9
+IGludGVyLnkyIC0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MTsNCj4gIAkJY3J0Y19zdGF0
+ZS0+dXBkYXRlX3BsYW5lcyB8PSBCSVQocGxhbmUtPmlkKTsNCj4gKw0KPiArCQkvKg0KPiArCQkg
+KiBTZWxfZmV0Y2hfYXJlYSBpcyBjYWxjdWxhdGVkIGZvciBVViBwbGFuZS4gVXNlDQo+ICsJCSAq
+IHNhbWUgYXJlYSBmb3IgWSBwbGFuZSBhcyB3ZWxsLg0KPiArCQkgKi8NCj4gKwkJaWYgKGxpbmtl
+ZCkgew0KPiArCQkJc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpsaW5rZWRfbmV3X3BsYW5lX3N0
+YXRlID0NCj4gKwkJCSAgaW50ZWxfYXRvbWljX2dldF9uZXdfcGxhbmVfc3RhdGUoc3RhdGUsIGxp
+bmtlZCk7DQo+ICsJCQlzdHJ1Y3QgZHJtX3JlY3QgKmxpbmtlZF9zZWxfZmV0Y2hfYXJlYSA9DQo+
+ICsJCQkgICZsaW5rZWRfbmV3X3BsYW5lX3N0YXRlLT5wc3IyX3NlbF9mZXRjaF9hcmVhOw0KPiAr
+DQo+ICsJCQlsaW5rZWRfc2VsX2ZldGNoX2FyZWEtPnkxID0gc2VsX2ZldGNoX2FyZWEtPnkxOw0K
+PiArCQkJbGlua2VkX3NlbF9mZXRjaF9hcmVhLT55MiA9IHNlbF9mZXRjaF9hcmVhLT55MjsNCg0K
+T2theSB0aGlzIGlzIG5lZWRlZCBiZWNhdXNlIHRoZSBzbGF2ZSBwbGFuZSBoYXMgdmlzaWJsZSA9
+IGZhbHNlLg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6
+YUBpbnRlbC5jb20+DQoNCj4gKwkJfQ0KPiAgCX0NCj4gIA0KPiAgc2tpcF9zZWxfZmV0Y2hfc2V0
+X2xvb3A6DQoNCg==
