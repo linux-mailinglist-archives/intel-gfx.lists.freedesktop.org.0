@@ -1,43 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FE3C43F850
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 09:57:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3295243F84A
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 09:56:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 851106EA1E;
-	Fri, 29 Oct 2021 07:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D8106EA1C;
+	Fri, 29 Oct 2021 07:56:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 521A26EA1D
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 07:57:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="291451070"
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="291451070"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2021 00:57:33 -0700
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="580939992"
-Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2021 00:57:31 -0700
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>
-Date: Fri, 29 Oct 2021 00:43:03 -0700
-Message-Id: <20211029074303.1566344-1-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <YXqdNxrTCGS40jNZ@intel.com>
-References: <YXqdNxrTCGS40jNZ@intel.com>
+X-Greylist: delayed 636 seconds by postgrey-1.36 at gabe;
+ Fri, 29 Oct 2021 07:56:22 UTC
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 651336EA19;
+ Fri, 29 Oct 2021 07:56:22 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.nyi.internal (Postfix) with ESMTP id A540158040D;
+ Fri, 29 Oct 2021 03:45:43 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute1.internal (MEProxy); Fri, 29 Oct 2021 03:45:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=2Qr7yp3VVFxWnNP0fkutA51R9FY
+ qy6LYwE1X+yQ1EW0=; b=tKwuYb/Wq0dgJ2YXW12P/sqAtQl/PBCZkonpsrUxp7H
+ Wm2yBGvFgMPEOO0AT+QjNvcylVqGy1hoFDE8uUX+lqdJit4FBWpWtVXSNF5n7y51
+ jAekYKlXIAYkuc+BAy+YZoAwpsrD2KfF2i1Ykb1+en3CJkudi6kNXxAN3Q3CqJan
+ 5uPI6UU/OY9YwNw6yuigw5KQC2aEjlDqFzWGh8gWql1SCdbN6ij5zSZcI2PpD5kq
+ 78IQfpMsEjzwCgmCUSHbKIxwrw0mtknZZrT9OZ8Vq1mYqyEfiIFGA3dtvF8e06ia
+ iA8DH/DUP16G3rWU5JiK+iTzvWAJoMSPoHyEAYsYdGg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=2Qr7yp
+ 3VVFxWnNP0fkutA51R9FYqy6LYwE1X+yQ1EW0=; b=Lj6hdvJOKSLvMmQnSku3FE
+ t22vZTkube23+oegCpP03OcB+QevKkrrsBNT/rqk6xlMqhrt2khuOIcCNdAvQaj5
+ dcMWP0vK5sg9ATJ+XRaRlDIRAXzsaxa7PASj5MhfM8PMhN4+VxKYkq0fKtQwfpZo
+ 0MhLd/Ll3Gd8k98+3bH5KsCYFxDYZSv85KpwS2RGinyUL/lpUdOxprYCqIDyIZ2I
+ wh2OR1DdrSlylMJllP01oG54xRpOTiqwayZRnEUKCI6T02ZCA0c7oLVhUCxUi6b6
+ ZdWEXxs+IwI/NubGA7IXxBPYo2IXP64pPljh8nq3NgAHXjZDDy7wf+QNeBdphLtw
+ ==
+X-ME-Sender: <xms:pqZ7YQXi92jW380JZJh63OKDNrFAWXl7ZAcDlYO2_asZL5yy0u5Zxw>
+ <xme:pqZ7YUnWLWF86o-SWtc15aWM4Iolev2tg-Cp5EAu44b3twZ3-5ncqOHHd-HtMnXE2
+ GxdluszqNPOEA>
+X-ME-Received: <xmr:pqZ7YUYrtl9v1zrxsLcrpIARTYqQ1u943mMezwzv4O-Tb_kVgsHd4CqOFWrDe7hdECnhJB3UEYSki4Fx758BWlV5NTVkudGW>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdeggedguddulecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
+ ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepveeuhe
+ ejgfffgfeivddukedvkedtleelleeghfeljeeiueeggeevueduudekvdetnecuvehluhhs
+ thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
+ hhrdgtohhm
+X-ME-Proxy: <xmx:pqZ7YfW83EidWM-94C0OPFMqWKu9Dcdx9KyqddFR7Ezt4iFrOOEqcg>
+ <xmx:pqZ7YalW4Ds4QeO0Cl41yG4gd5AOa0Ar81mIXB3nz7dLavyOhgj5_A>
+ <xmx:pqZ7YUdYE_89SKS_M6R1sovAQXh7P5snpzkZHXCmXupgxjD9n141XQ>
+ <xmx:p6Z7YSEEpUeSCm1kmoQzZT6ywDBp9pqUBR0bGNMQt3FQxiFyxyXXRw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 29 Oct 2021 03:45:41 -0400 (EDT)
+Date: Fri, 29 Oct 2021 09:45:40 +0200
+From: Greg KH <greg@kroah.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Arnd Bergmann <arnd@arndb.de>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Message-ID: <YXumpITANOVt3oaJ@kroah.com>
+References: <20211028182753.56b6a174@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Don't try to map and fence large
- scanout buffers (v3)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211028182753.56b6a174@canb.auug.org.au>
+Subject: Re: [Intel-gfx] linux-next: manual merge of the char-misc tree with
+ the drm-intel tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,165 +93,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
-more framebuffers/scanout buffers results in only one that is mappable/
-fenceable. Therefore, pageflipping between these 2 FBs where only one
-is mappable/fenceable creates latencies large enough to miss alternate
-vblanks thereby producing less optimal framerate.
+On Thu, Oct 28, 2021 at 06:27:53PM +1100, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Today's linux-next merge of the char-misc tree got a conflict in:
+> 
+>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> 
+> between commit:
+> 
+>   5740211ea442 ("drm/i915/dmabuf: fix broken build")
+> 
+> from the drm-intel tree and commit:
+> 
+>   16b0314aa746 ("dma-buf: move dma-buf symbols into the DMA_BUF module namespace")
+> 
+> from the char-misc tree.
+> 
+> I fixed it up (see below) and can carry the fix as necessary. This
+> is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
+> 
+> -- 
+> Cheers,
+> Stephen Rothwell
+> 
+> diff --cc drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> index a45d0ec2c5b6,abb854281347..000000000000
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> @@@ -12,13 -13,8 +13,15 @@@
+>   #include "i915_gem_object.h"
+>   #include "i915_scatterlist.h"
+>   
+>  +#if defined(CONFIG_X86)
+>  +#include <asm/smp.h>
+>  +#else
+>  +#define wbinvd_on_all_cpus() \
+>  +	pr_warn(DRIVER_NAME ": Missing cache flush in %s\n", __func__)
+>  +#endif
+>  +
+> + MODULE_IMPORT_NS(DMA_BUF);
+> + 
+>   I915_SELFTEST_DECLARE(static bool force_different_devices;)
+>   
+>   static struct drm_i915_gem_object *dma_buf_to_obj(struct dma_buf *buf)
 
-This mainly happens because when i915_gem_object_pin_to_display_plane()
-is called to pin one of the FB objs, the associated vma is identified
-as misplaced and therefore i915_vma_unbind() is called which unbinds and
-evicts it. This misplaced vma gets subseqently pinned only when
-i915_gem_object_ggtt_pin_ww() is called without the mappable flag. This
-results in a latency of ~10ms and happens every other vblank/repaint cycle.
 
-Testcase:
-Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
-with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
-a frame ~7ms before the next vblank, the latencies seen between atomic
-commit and flip event are 7, 24 (7 + 16.66), 7, 24..... suggesting that
-it misses the vblank every other frame.
 
-Here is the ftrace snippet that shows the source of the ~10ms latency:
-              i915_gem_object_pin_to_display_plane() {
-0.102 us   |    i915_gem_object_set_cache_level();
-                i915_gem_object_ggtt_pin_ww() {
-0.390 us   |      i915_vma_instance();
-0.178 us   |      i915_vma_misplaced();
-                  i915_vma_unbind() {
-                  __i915_active_wait() {
-0.082 us   |        i915_active_acquire_if_busy();
-0.475 us   |      }
-                  intel_runtime_pm_get() {
-0.087 us   |        intel_runtime_pm_acquire();
-0.259 us   |      }
-                  __i915_active_wait() {
-0.085 us   |        i915_active_acquire_if_busy();
-0.240 us   |      }
-                  __i915_vma_evict() {
-                    ggtt_unbind_vma() {
-                      gen8_ggtt_clear_range() {
-10507.255 us |        }
-10507.689 us |      }
-10508.516 us |   }
-
-v2: Instead of using bigjoiner checks, determine whether a scanout
-    buffer is too big by checking to see if it is possible to map
-    two of them into the ggtt.
-
-v3 (Ville):
-- Count how many fb objects can be fit into the available holes
-  instead of checking for a hole twice the object size.
-- Take alignment constraints into account.
-- Limit this large scanout buffer check to >= Gen 12 platforms.
-
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
----
- drivers/gpu/drm/i915/i915_gem.c | 65 ++++++++++++++++++++++++++++-----
- drivers/gpu/drm/i915/i915_vma.c |  2 +-
- 2 files changed, 57 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 981e383d1a5d..761dc385fbfc 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -866,6 +866,61 @@ static void discard_ggtt_vma(struct i915_vma *vma)
- 	spin_unlock(&obj->vma.lock);
- }
- 
-+static bool i915_gem_obj_too_big(struct drm_i915_gem_object *obj,
-+				 u64 alignment)
-+{
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	struct i915_ggtt *ggtt = &i915->ggtt;
-+	struct drm_mm_node *hole;
-+	u64 hole_start, hole_end, start, end;
-+	u64 fence_size, fence_alignment;
-+	unsigned int count = 0;
-+
-+	/*
-+	 * If the required space is larger than the available
-+	 * aperture, we will not able to find a slot for the
-+	 * object and unbinding the object now will be in
-+	 * vain. Worse, doing so may cause us to ping-pong
-+	 * the object in and out of the Global GTT and
-+	 * waste a lot of cycles under the mutex.
-+	 */
-+	if (obj->base.size > ggtt->mappable_end)
-+		return true;
-+
-+	if (HAS_GMCH(i915) || DISPLAY_VER(i915) < 11 ||
-+	    !i915_gem_object_is_framebuffer(obj))
-+		return false;
-+
-+	fence_size = i915_gem_fence_size(i915, obj->base.size,
-+					 i915_gem_object_get_tiling(obj),
-+					 i915_gem_object_get_stride(obj));
-+	fence_alignment = i915_gem_fence_alignment(i915, obj->base.size,
-+					 i915_gem_object_get_tiling(obj),
-+					 i915_gem_object_get_stride(obj));
-+	alignment = max_t(u64, alignment, fence_alignment);
-+
-+	/*
-+	 * Assuming this object is a large scanout buffer, we try to find
-+	 * out if there is room to map at-least two of them. There could
-+	 * be space available to map one but to be consistent, we try to
-+	 * avoid mapping/fencing any of them.
-+	 */
-+	drm_mm_for_each_hole(hole, &ggtt->vm.mm, hole_start, hole_end) {
-+		do {
-+			start = round_up(hole_start, alignment);
-+			end = min_t(u64, hole_end, ggtt->mappable_end);
-+
-+			if (range_overflows(start, fence_size, end))
-+				break;
-+
-+			count++;
-+			hole_start = start + fence_size;
-+		} while (1);
-+	}
-+
-+	return count < 2;
-+}
-+
- struct i915_vma *
- i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
- 			    struct i915_gem_ww_ctx *ww,
-@@ -879,15 +934,7 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
- 
- 	if (flags & PIN_MAPPABLE &&
- 	    (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
--		/*
--		 * If the required space is larger than the available
--		 * aperture, we will not able to find a slot for the
--		 * object and unbinding the object now will be in
--		 * vain. Worse, doing so may cause us to ping-pong
--		 * the object in and out of the Global GTT and
--		 * waste a lot of cycles under the mutex.
--		 */
--		if (obj->base.size > ggtt->mappable_end)
-+		if (i915_gem_obj_too_big(obj, alignment))
- 			return ERR_PTR(-E2BIG);
- 
- 		/*
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 90546fa58fc1..551644dbfa8a 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -977,7 +977,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 		if (err)
- 			goto err_active;
- 
--		if (i915_is_ggtt(vma->vm))
-+		if (i915_is_ggtt(vma->vm) && flags & PIN_MAPPABLE)
- 			__i915_vma_set_map_and_fenceable(vma);
- 	}
- 
--- 
-2.31.1
-
+Fix looks good, thanks!
