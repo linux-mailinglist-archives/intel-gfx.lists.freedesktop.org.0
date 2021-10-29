@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399FF43F802
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 09:48:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA02F43F8BE
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 10:22:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 793BA6EA06;
-	Fri, 29 Oct 2021 07:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0D8989C96;
+	Fri, 29 Oct 2021 08:22:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2EAD86EA05;
- Fri, 29 Oct 2021 07:48:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2666AA47EB;
- Fri, 29 Oct 2021 07:48:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7829174377433897976=="
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27F4088071;
+ Fri, 29 Oct 2021 08:22:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="230571119"
+X-IronPort-AV: E=Sophos;i="5.87,192,1631602800"; d="scan'208";a="230571119"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2021 01:22:06 -0700
+X-IronPort-AV: E=Sophos;i="5.87,192,1631602800"; d="scan'208";a="448038474"
+Received: from ekolpasx-mobl.ccr.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.219])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2021 01:22:05 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 29 Oct 2021 10:21:52 +0200
+Message-Id: <20211029082156.194003-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Oct 2021 07:48:35 -0000
-Message-ID: <163549371515.1910.7387973105807432435@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211029060154.110038-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20211029060154.110038-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU29t?=
- =?utf-8?q?e_fixes_in_HDMI2=2E1_PCON_FRL_configuration?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/4] Prepare error capture for asynchronous
+ migration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,219 +47,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7829174377433897976==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patch series prepares error capture for asynchronous migration,
+where the vma pages may not reflect the pages the GPU is currently
+executing from but may be several migrations ahead.
 
-== Series Details ==
+The first patch deals with refcounting sg-list so that they don't
+disappear under the capture code, which typically otherwise happens at
+put_pages() time.
 
-Series: Some fixes in HDMI2.1 PCON FRL configuration
-URL   : https://patchwork.freedesktop.org/series/96411/
-State : success
+The second patch introduces vma state snapshots that record the vma state
+at request submission time.
+It also takes additional measures to make sure that
+the capture list and request is not disappearing from under us while
+capturing. The latter may otherwise happen if a heartbeat triggered parallel
+capture is running during a manual reset which retires the request.
 
-== Summary ==
+The third patch changes the allocation mode during capture to reflect that
+capturing is typically done in the fence signalling critical path. More
+details on the patch itself.
 
-CI Bug Log - changes from CI_DRM_10810 -> Patchwork_21486
-====================================================
+Finally the last patch is more of a POC patch and not strictly needed yet,
+but will be (or at least something very similar) soon for async unbinding.
+It will make sure that unbinding doesn't complete or signal completion
+before capture is done. Async reuse of memory can't happen until unbinding
+signals complete and without waiting for capture done, we might capture
+contents of reused memory.
+Before the last patch the vma active is instead still keeping the vma alive,
+but that will not work with async unbinding anymore, and also it is still
+not clear how we guarantee keeping the vma alive long enough to even
+grab an active reference during capture.
 
-Summary
--------
+v2:
+- Mostly Fixes for selftests and rebinding. See patch 3. 
+v3:
+- Honor the unbind fence also when evicting for suspend on gen6.
+- Cleanups on patch 1
+- Minor cleanups on patch 3.
+v4:
+- Break out patch 3 from patch 2.
+- Move a fix from patch 4 to patch 1.
 
-  **SUCCESS**
+Thomas Hellström (4):
+  drm/i915: Introduce refcounted sg-tables
+  drm/i915: Update error capture code to avoid using the current vma
+    state
+  drm/i915: Use GFP_NOWAIT in the capture code
+  drm/i915: Initial introduction of vma resources
 
-  No regressions found.
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 137 ++++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  49 ++---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 186 +++++++++-------
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   8 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |   2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         | 180 ++++++++++-----
+ drivers/gpu/drm/i915/i915_request.c           |  63 ++++--
+ drivers/gpu/drm/i915/i915_request.h           |  18 +-
+ drivers/gpu/drm/i915/i915_scatterlist.c       |  62 ++++--
+ drivers/gpu/drm/i915/i915_scatterlist.h       |  76 ++++++-
+ drivers/gpu/drm/i915/i915_vma.c               | 206 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_vma.h               |  20 +-
+ drivers/gpu/drm/i915/i915_vma_snapshot.c      | 131 +++++++++++
+ drivers/gpu/drm/i915/i915_vma_snapshot.h      | 112 ++++++++++
+ drivers/gpu/drm/i915/i915_vma_types.h         |   5 +
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  15 +-
+ drivers/gpu/drm/i915/intel_region_ttm.h       |   5 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  98 +++++----
+ drivers/gpu/drm/i915/selftests/mock_region.c  |  12 +-
+ 22 files changed, 1111 insertions(+), 290 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.c
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.h
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/index.html
+-- 
+2.31.1
 
-Participating hosts (36 -> 33)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (4): fi-icl-u2 bat-adlp-4 bat-dg1-6 bat-dg1-5 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21486 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#4269])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10810/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +53 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [FAIL][7] ([i915#1888]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10810/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][9] ([i915#3921]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10810/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4290]: https://gitlab.freedesktop.org/drm/intel/issues/4290
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10810 -> Patchwork_21486
-
-  CI-20190529: 20190529
-  CI_DRM_10810: f457c83514a267bdc096c6fdd2a8895fa1ec405c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6264: 3458490c14afe3cb8aa873fa9e520e1c815ea068 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21486: 8fc3317933579e5aa5b1c17e163008c0f93846f9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8fc331793357 drm/i915/dp: For PCON TMDS mode set only the relavant bits in config DPCD
-d9eaad135f81 drm/i915/dp: Optimize the FRL configuration for HDMI2.1 PCON
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/index.html
-
---===============7829174377433897976==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Some fixes in HDMI2.1 PCON FRL configuration</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96411/">https://patchwork.freedesktop.org/series/96411/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10810 -&gt; Patchwork_21486</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/index.html</p>
-<h2>Participating hosts (36 -&gt; 33)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): fi-icl-u2 bat-adlp-4 bat-dg1-6 bat-dg1-5 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21486 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10810/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +53 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10810/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10810/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21486/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10810 -&gt; Patchwork_21486</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10810: f457c83514a267bdc096c6fdd2a8895fa1ec405c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6264: 3458490c14afe3cb8aa873fa9e520e1c815ea068 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21486: 8fc3317933579e5aa5b1c17e163008c0f93846f9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8fc331793357 drm/i915/dp: For PCON TMDS mode set only the relavant bits in config DPCD<br />
-d9eaad135f81 drm/i915/dp: Optimize the FRL configuration for HDMI2.1 PCON</p>
-
-</body>
-</html>
-
---===============7829174377433897976==--
