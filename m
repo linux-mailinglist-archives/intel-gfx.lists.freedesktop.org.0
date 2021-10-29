@@ -1,50 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FEE843F71A
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 08:22:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E19943F71F
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 08:24:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 172066E9B4;
-	Fri, 29 Oct 2021 06:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71CA56E9EA;
+	Fri, 29 Oct 2021 06:24:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADEA36E9B4
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 06:22:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="217783278"
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="217783278"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 23:22:54 -0700
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6DC06E9EA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 06:24:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="291436045"
+X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="291436045"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2021 23:24:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="487461007"
+X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="448007120"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 28 Oct 2021 23:22:52 -0700
+ by orsmga006.jf.intel.com with SMTP; 28 Oct 2021 23:24:33 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 29 Oct 2021 09:22:51 +0300
-Date: Fri, 29 Oct 2021 09:22:51 +0300
+ Fri, 29 Oct 2021 09:24:33 +0300
+Date: Fri, 29 Oct 2021 09:24:33 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kahola, Mika" <mika.kahola@intel.com>,
- "Hogander, Jouni" <jouni.hogander@intel.com>
-Message-ID: <YXuTO0b8GrnhTut7@intel.com>
-References: <20211027184855.108731-1-jose.souza@intel.com>
- <YXqmfPPnSr3j/mDe@intel.com>
- <ff05e4fa04fe0ebcc79c9b86e249bd5ab5392529.camel@intel.com>
- <YXrgCBB53Zj86a4C@intel.com>
- <bfd7f8ca64b41e4c49d341a5cbcbe761dc471af6.camel@intel.com>
- <YXriBYJxFXJ0KUqn@intel.com>
- <d42046795c78321ab4aa11d634e040d0f36d9723.camel@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Karthik B S <karthik.b.s@intel.com>,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>
+Message-ID: <YXuToZWS85LP7ftd@intel.com>
+References: <20211028203418.69680-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d42046795c78321ab4aa11d634e040d0f36d9723.camel@intel.com>
+In-Reply-To: <20211028203418.69680-1-jose.souza@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/psr2: Do full fetches when doing
- async flips
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Check async flip state of
+ every crtc and plane once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,88 +53,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 28, 2021 at 08:18:48PM +0000, Souza, Jose wrote:
-> On Thu, 2021-10-28 at 20:46 +0300, Ville Syrjälä wrote:
-> > On Thu, Oct 28, 2021 at 05:43:51PM +0000, Souza, Jose wrote:
-> > > On Thu, 2021-10-28 at 20:38 +0300, Ville Syrjälä wrote:
-> > > > On Thu, Oct 28, 2021 at 05:02:41PM +0000, Souza, Jose wrote:
-> > > > > On Thu, 2021-10-28 at 16:32 +0300, Ville Syrjälä wrote:
-> > > > > > On Wed, Oct 27, 2021 at 11:48:55AM -0700, José Roberto de Souza wrote:
-> > > > > > > Async flips are not supported by selective fetch and we had a check
-> > > > > > > for that but that check was only executed when doing modesets.
-> > > > > > > So moving this check to the page flip path, so it can be properly
-> > > > > > > handled.
-> > > > > > > 
-> > > > > > > This fix a failure in kms_async_flips@test-cursor.
-> > > > > > > 
-> > > > > > > Cc: Mika Kahola <mika.kahola@intel.com>
-> > > > > > > Cc: Jouni Hogander <jouni.hogander@intel.com>
-> > > > > > > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> > > > > > > ---
-> > > > > > >  drivers/gpu/drm/i915/display/intel_psr.c | 8 ++------
-> > > > > > >  1 file changed, 2 insertions(+), 6 deletions(-)
-> > > > > > > 
-> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > > > index 8d08e3cf08c1f..ce6850ed72c60 100644
-> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > > > @@ -729,12 +729,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
-> > > > > > >  		return false;
-> > > > > > >  	}
-> > > > > > >  
-> > > > > > > -	if (crtc_state->uapi.async_flip) {
-> > > > > > > -		drm_dbg_kms(&dev_priv->drm,
-> > > > > > > -			    "PSR2 sel fetch not enabled, async flip enabled\n");
-> > > > > > > -		return false;
-> > > > > > > -	}
-> > > > > > > -
-> > > > > > >  	/* Wa_14010254185 Wa_14010103792 */
-> > > > > > >  	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
-> > > > > > >  		drm_dbg_kms(&dev_priv->drm,
-> > > > > > > @@ -1592,6 +1586,8 @@ static bool psr2_sel_fetch_pipe_state_supported(const struct intel_crtc_state *c
-> > > > > > >  {
-> > > > > > >  	if (crtc_state->scaler_state.scaler_id >= 0)
-> > > > > > >  		return false;
-> > > > > > > +	if (crtc_state->uapi.async_flip)
-> > > > > > > +		return false;
-> > > > > > 
-> > > > > > This looks dodgy. Pretty sure we can't turn off this thing during
-> > > > > > an async flip. So I think the correct short term fix is to not do
-> > > > > > async flips with psr2 enabled. The longer term fix would involve
-> > > > > > using the same approach Stan is preparing for the async flip
-> > > > > > watermark tweaking, which is to convert the first async flip into
-> > > > > > a sync flip.
+On Thu, Oct 28, 2021 at 01:34:18PM -0700, José Roberto de Souza wrote:
+> For every crtc in state, intel_atomic_check_async() was checking all
+> the crtc and plane states again.
 > 
-> You mean do something like this?
-> 
+> Cc: Karthik B S <karthik.b.s@intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 38 ++++++++++----------
+>  1 file changed, 20 insertions(+), 18 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 3b5a8e971343f..7d29f8c9de0da 100644
+> index 79cd158503b37..3b5a8e971343f 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7710,7 +7710,8 @@ static void kill_bigjoiner_slave(struct intel_atomic_state *state,
->  static int intel_atomic_check_async(struct intel_atomic_state *state, struct intel_crtc *crtc)
+> @@ -7707,35 +7707,37 @@ static void kill_bigjoiner_slave(struct intel_atomic_state *state,
+>   * correspond to the last vblank and have no relation to the actual time when
+>   * the flip done event was sent.
+>   */
+> -static int intel_atomic_check_async(struct intel_atomic_state *state)
+> +static int intel_atomic_check_async(struct intel_atomic_state *state, struct intel_crtc *crtc)
 >  {
->         struct drm_i915_private *i915 = to_i915(state->base.dev);
-> -       const struct intel_crtc_state *old_crtc_state, *new_crtc_state;
-> +       const struct intel_crtc_state *old_crtc_state;
-> +       struct intel_crtc_state *new_crtc_state;
->         const struct intel_plane_state *new_plane_state, *old_plane_state;
->         struct intel_plane *plane;
->         int i;
-> @@ -7718,6 +7719,12 @@ static int intel_atomic_check_async(struct intel_atomic_state *state, struct int
->         old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
->         new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-> 
-> +       if (new_crtc_state->enable_psr2_sel_fetch) {
-> +               drm_dbg_kms(&i915->drm, "PSR2 selective fetch not compatible with async flip, doing a sync flip instead\n");
-> +               new_crtc_state->uapi.async_flip = false;
-> +               return 0;
-> +       }
+>  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+>  	const struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+>  	const struct intel_plane_state *new_plane_state, *old_plane_state;
+> -	struct intel_crtc *crtc;
+>  	struct intel_plane *plane;
+>  	int i;
+>  
+> -	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> -					    new_crtc_state, i) {
+> -		if (intel_crtc_needs_modeset(new_crtc_state)) {
+> -			drm_dbg_kms(&i915->drm, "Modeset Required. Async flip not supported\n");
+> -			return -EINVAL;
+> -		}
+> +	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+> +	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+>  
+> -		if (!new_crtc_state->hw.active) {
+> -			drm_dbg_kms(&i915->drm, "CRTC inactive\n");
+> -			return -EINVAL;
+> -		}
+> -		if (old_crtc_state->active_planes != new_crtc_state->active_planes) {
+> -			drm_dbg_kms(&i915->drm,
+> -				    "Active planes cannot be changed during async flip\n");
+> -			return -EINVAL;
+> -		}
+> +	if (intel_crtc_needs_modeset(new_crtc_state)) {
+> +		drm_dbg_kms(&i915->drm, "Modeset Required. Async flip not supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!new_crtc_state->hw.active) {
+> +		drm_dbg_kms(&i915->drm, "CRTC inactive\n");
+> +		return -EINVAL;
+> +	}
+> +	if (old_crtc_state->active_planes != new_crtc_state->active_planes) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "Active planes cannot be changed during async flip\n");
+> +		return -EINVAL;
+>  	}
+>  
+>  	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
+>  					     new_plane_state, i) {
+> +		if (plane->base.crtc != &crtc->base)
+> +			continue;
 
-It should just return -EINVAL here. And I'd put the somewhere after the
-needs_modeset/hw.active checks to keep things in some kind of
-reasonable order.
+Not the pointer you want to be looking at.
+
+> +
+>  		/*
+>  		 * TODO: Async flip is only supported through the page flip IOCTL
+>  		 * as of now. So support currently added for primary plane only.
+> @@ -8054,7 +8056,7 @@ static int intel_atomic_check(struct drm_device *dev,
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>  					    new_crtc_state, i) {
+>  		if (new_crtc_state->uapi.async_flip) {
+> -			ret = intel_atomic_check_async(state);
+> +			ret = intel_atomic_check_async(state, crtc);
+>  			if (ret)
+>  				goto fail;
+>  		}
+> -- 
+> 2.33.1
 
 -- 
 Ville Syrjälä
