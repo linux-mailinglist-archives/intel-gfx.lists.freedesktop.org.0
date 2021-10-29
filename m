@@ -1,59 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2DF044051D
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 23:53:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CF0440520
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 23:53:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6106EA85;
-	Fri, 29 Oct 2021 21:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E77256EA8B;
+	Fri, 29 Oct 2021 21:53:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D41856EA85
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 21:53:09 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10152"; a="211530306"
-X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; d="scan'208";a="211530306"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2021 14:53:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; d="scan'208";a="499080863"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga008.jf.intel.com with ESMTP; 29 Oct 2021 14:53:08 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 29 Oct 2021 14:53:08 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 29 Oct 2021 14:53:08 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Fri, 29 Oct 2021 14:53:08 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 07/16] drm/i915: Stop using group access when
- progrmming icl combo phy TX
-Thread-Index: AQHXuvPE/wGfH1zVnkypla1BlYmefavrH/IA
-Date: Fri, 29 Oct 2021 21:53:07 +0000
-Message-ID: <e535dea541d1b435ad578e179d32c0db1c3620c0.camel@intel.com>
-References: <20211006204937.30774-1-ville.syrjala@linux.intel.com>
- <20211006204937.30774-8-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211006204937.30774-8-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A40B55966235B24BA00C601C00D42FEE@intel.com>
-Content-Transfer-Encoding: base64
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5C1116EA8B;
+ Fri, 29 Oct 2021 21:53:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4D62DA66C9;
+ Fri, 29 Oct 2021 21:53:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0592568107327133332=="
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 07/16] drm/i915: Stop using group access
- when progrmming icl combo phy TX
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Oct 2021 21:53:28 -0000
+Message-ID: <163554440830.1909.1545298267494684451@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211029202432.140745-1-jose.souza@intel.com>
+In-Reply-To: <20211029202432.140745-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Check_async_flip_state_of_every_crtc_and_plane?=
+ =?utf-8?q?_once_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,56 +42,247 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTEwLTA2IGF0IDIzOjQ5ICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gUHJvZ3JhbSBlYWNoIFRYIGxhbmUgaW5kaXZpZHVhbGx5IHNvIHRoYXQgd2UgY2FuIHN0
-YXJ0IHRvIHVzZSBwZXItbGFuZQ0KPiBkcml2ZSBzZXR0aW5ncy4NCj4gDQo+IFNpZ25lZC1vZmYt
-Ynk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IC0t
-LQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDI4ICsrKysr
-KysrKysrKysrLS0tLS0tLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKyks
-IDEyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RkaS5jDQo+IGluZGV4IGQwNmM3NjY5NGEwOC4uYWE3ODljYWJjNTViIDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gQEAgLTEwNjgsMTQgKzEwNjgs
-MTYgQEAgc3RhdGljIHZvaWQgaWNsX2RkaV9jb21ib192c3dpbmdfcHJvZ3JhbShzdHJ1Y3QgaW50
-ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIAlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgSUNMX1BP
-UlRfVFhfRFc1X0dSUChwaHkpLCB2YWwpOw0KPiAgDQo+ICAJLyogUHJvZ3JhbSBQT1JUX1RYX0RX
-MiAqLw0KPiAtCXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIElDTF9QT1JUX1RYX0RXMl9M
-TigwLCBwaHkpKTsNCj4gLQl2YWwgJj0gfihTV0lOR19TRUxfTE9XRVJfTUFTSyB8IFNXSU5HX1NF
-TF9VUFBFUl9NQVNLIHwNCj4gLQkJIFJDT01QX1NDQUxBUl9NQVNLKTsNCj4gLQl2YWwgfD0gU1dJ
-TkdfU0VMX1VQUEVSKHRyYW5zLT5lbnRyaWVzW2xldmVsXS5pY2wuZHcyX3N3aW5nX3NlbCk7DQo+
-IC0JdmFsIHw9IFNXSU5HX1NFTF9MT1dFUih0cmFucy0+ZW50cmllc1tsZXZlbF0uaWNsLmR3Ml9z
-d2luZ19zZWwpOw0KPiAtCS8qIFByb2dyYW0gUmNvbXAgc2NhbGFyIGZvciBldmVyeSB0YWJsZSBl
-bnRyeSAqLw0KPiAtCXZhbCB8PSBSQ09NUF9TQ0FMQVIoMHg5OCk7DQo+IC0JaW50ZWxfZGVfd3Jp
-dGUoZGV2X3ByaXYsIElDTF9QT1JUX1RYX0RXMl9HUlAocGh5KSwgdmFsKTsNCj4gKwlmb3IgKGxu
-ID0gMDsgbG4gPCA0OyBsbisrKSB7DQo+ICsJCXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYs
-IElDTF9QT1JUX1RYX0RXMl9MTihsbiwgcGh5KSk7DQo+ICsJCXZhbCAmPSB+KFNXSU5HX1NFTF9M
-T1dFUl9NQVNLIHwgU1dJTkdfU0VMX1VQUEVSX01BU0sgfA0KPiArCQkJIFJDT01QX1NDQUxBUl9N
-QVNLKTsNCj4gKwkJdmFsIHw9IFNXSU5HX1NFTF9VUFBFUih0cmFucy0+ZW50cmllc1tsZXZlbF0u
-aWNsLmR3Ml9zd2luZ19zZWwpOw0KPiArCQl2YWwgfD0gU1dJTkdfU0VMX0xPV0VSKHRyYW5zLT5l
-bnRyaWVzW2xldmVsXS5pY2wuZHcyX3N3aW5nX3NlbCk7DQo+ICsJCS8qIFByb2dyYW0gUmNvbXAg
-c2NhbGFyIGZvciBldmVyeSB0YWJsZSBlbnRyeSAqLw0KPiArCQl2YWwgfD0gUkNPTVBfU0NBTEFS
-KDB4OTgpOw0KPiArCQlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgSUNMX1BPUlRfVFhfRFcyX0xO
-KGxuLCBwaHkpLCB2YWwpOw0KPiArCX0NCj4gIA0KPiAgCS8qIFByb2dyYW0gUE9SVF9UWF9EVzQg
-Ki8NCj4gIAkvKiBXZSBjYW5ub3Qgd3JpdGUgdG8gR1JQLiBJdCB3b3VsZCBvdmVyd3JpdGUgaW5k
-aXZpZHVhbCBsb2FkZ2VuLiAqLw0KPiBAQCAtMTA5MCwxMCArMTA5MiwxMiBAQCBzdGF0aWMgdm9p
-ZCBpY2xfZGRpX2NvbWJvX3Zzd2luZ19wcm9ncmFtKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNv
-ZGVyLA0KPiAgCX0NCj4gIA0KPiAgCS8qIFByb2dyYW0gUE9SVF9UWF9EVzcgKi8NCj4gLQl2YWwg
-PSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBJQ0xfUE9SVF9UWF9EVzdfTE4oMCwgcGh5KSk7DQo+
-IC0JdmFsICY9IH5OX1NDQUxBUl9NQVNLOw0KPiAtCXZhbCB8PSBOX1NDQUxBUih0cmFucy0+ZW50
-cmllc1tsZXZlbF0uaWNsLmR3N19uX3NjYWxhcik7DQo+IC0JaW50ZWxfZGVfd3JpdGUoZGV2X3By
-aXYsIElDTF9QT1JUX1RYX0RXN19HUlAocGh5KSwgdmFsKTsNCj4gKwlmb3IgKGxuID0gMDsgbG4g
-PCA0OyBsbisrKSB7DQo+ICsJCXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIElDTF9QT1JU
-X1RYX0RXN19MTihsbiwgcGh5KSk7DQo+ICsJCXZhbCAmPSB+Tl9TQ0FMQVJfTUFTSzsNCj4gKwkJ
-dmFsIHw9IE5fU0NBTEFSKHRyYW5zLT5lbnRyaWVzW2xldmVsXS5pY2wuZHc3X25fc2NhbGFyKTsN
-Cj4gKwkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIElDTF9QT1JUX1RYX0RXN19MTihsbiwgcGh5
-KSwgdmFsKTsNCj4gKwl9DQo+ICB9DQoNCk1pc3NpbmcgRFNJIGNvbnZlcnNpb24gYnV0IGZyb20g
-d2hhdCBJIHVuZGVyc3Rvb2QgdGhpcyBjb252ZXJzaW9uIGZyb20gZ3JvdXAgdG8gbGFuZSBpcyB0
-byBzdXBwb3J0IERQIDIuMCBzbyB3ZSBjYW4ga2VlcCB0aGUgZ3JvdXAgd3JpdGUgZm9yIERTSS4N
-Cg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwu
-Y29tPg0KDQo+ICANCj4gIHN0YXRpYyB2b2lkIGljbF9jb21ib19waHlfc2V0X3NpZ25hbF9sZXZl
-bHMoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQoNCg==
+--===============0592568107327133332==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: Check async flip state of every crtc and plane once (rev2)
+URL   : https://patchwork.freedesktop.org/series/96402/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10817 -> Patchwork_21492
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/index.html
+
+Participating hosts (34 -> 32)
+------------------------------
+
+  Additional (1): fi-tgl-1115g4 
+  Missing    (3): fi-icl-u2 bat-dg1-6 bat-adlp-4 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21492 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([fdo#109315])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_cs_nop@nop-gfx0:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][2] ([fdo#109315] / [i915#2575]) +16 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([i915#1155])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][5] -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10817/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#4103]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([fdo#109285])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#1072]) +3 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#3301])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10817 -> Patchwork_21492
+
+  CI-20190529: 20190529
+  CI_DRM_10817: 65a93baa82ce4caaeeb34c6602e8c55dcb441b84 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6264: 3458490c14afe3cb8aa873fa9e520e1c815ea068 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21492: 0b4a5fc38a6c45220aff999312a27ed55e3f10c1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0b4a5fc38a6c drm/i915/display: Check async flip state of every crtc and plane once
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/index.html
+
+--===============0592568107327133332==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Check async flip state of every crtc and plane once (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96402/">https://patchwork.freedesktop.org/series/96402/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10817 -&gt; Patchwork_21492</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/index.html</p>
+<h2>Participating hosts (34 -&gt; 32)</h2>
+<p>Additional (1): fi-tgl-1115g4 <br />
+  Missing    (3): fi-icl-u2 bat-dg1-6 bat-adlp-4 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21492 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10817/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21492/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10817 -&gt; Patchwork_21492</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10817: 65a93baa82ce4caaeeb34c6602e8c55dcb441b84 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6264: 3458490c14afe3cb8aa873fa9e520e1c815ea068 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21492: 0b4a5fc38a6c45220aff999312a27ed55e3f10c1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>0b4a5fc38a6c drm/i915/display: Check async flip state of every crtc and plane once</p>
+
+</body>
+</html>
+
+--===============0592568107327133332==--
