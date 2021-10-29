@@ -1,41 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3085443F51C
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 04:59:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8177D43F529
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 05:04:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0B6D6E9B1;
-	Fri, 29 Oct 2021 02:59:05 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2CAF6E9B1;
- Fri, 29 Oct 2021 02:59:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="230434963"
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="230434963"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 19:59:04 -0700
-X-IronPort-AV: E=Sophos;i="5.87,191,1631602800"; d="scan'208";a="538424149"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2021 19:59:03 -0700
-Date: Thu, 28 Oct 2021 19:54:28 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John.C.Harrison@Intel.com
-Cc: IGT-Dev@Lists.FreeDesktop.Org, Intel-GFX@Lists.FreeDesktop.Org
-Message-ID: <20211029025428.GA33214@jons-linux-dev-box>
-References: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
- <20211021234044.3071069-9-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5497F6E9B2;
+	Fri, 29 Oct 2021 03:04:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
+ [IPv6:2a00:1450:4864:20::12b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A1306E9B2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 03:04:07 +0000 (UTC)
+Received: by mail-lf1-x12b.google.com with SMTP id u21so18015941lff.8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 20:04:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sz/ywpybSJaNoGZvXE51S8svzpVWcQnnlH6Pn9KYkKs=;
+ b=ZmEiiWHwwmH9sspvNf9mrhJ2ObRJ3h0nMIjxiw96VyoUUf9YSApSJZfqOXVvoxC9o2
+ 2nNTRvI+hOfArkWqypwmgKHyrVVKMwWTM00K9H7hhtbiIoc8SL9+33+ElDW6nyEssJBo
+ JBmzSYJX96qhj2o4D4Ul/QQM756ARdbZUdL8Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sz/ywpybSJaNoGZvXE51S8svzpVWcQnnlH6Pn9KYkKs=;
+ b=Y4v0WwdFczWmpRG6Wgx4K73eIbb5vaYdCqyrUYbtHkrCU8KT4Gk4iKA0YK6pbqKeJm
+ 1DjuMtFMGVy0mKknhjylSqRM/1HGU57EyZrZN7NfMuUSXGHx0myqzq7vXXPubHd875+4
+ u4KB0VfUq2bSz1a2Yo8XOGfEqPTjzF2Y4gZOM8I4rnLJnR6eXZHIaENyGp/Ss8++e4Kg
+ +5Mlfu8fUQHAGEl7wUFavm8apkuCZCgXxSMfOaKubeOLbuDO9t7OIEUGNH/+cD9nbKj9
+ Sz/uEQ5KXe9iYMwxCxgHq0vJUxuBQjPZBS9335KtYUOlAPhvgr486ru/cuapCSx4nL6W
+ j/Lg==
+X-Gm-Message-State: AOAM531Ym9qk5fPZqRd8rNrlJIpHh+K1AOk7EOUSatYgTdw+/OGqJuRc
+ WofvsRXwr9Z28sctZMks0iSfuc24hL+GhXGPqhJ0HA==
+X-Google-Smtp-Source: ABdhPJxC0NS1t4ZTrK/U/w98ca7x/r/R5fRiRRC7PwYozOenIJEgQ0sp7JZwf/0TjkDGytKndTNOyCau++3Cm6xcZng=
+X-Received: by 2002:a19:c1c2:: with SMTP id r185mr7493994lff.275.1635476645375; 
+ Thu, 28 Oct 2021 20:04:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211021234044.3071069-9-John.C.Harrison@Intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH i-g-t 8/8] tests/i915/gem_exec_capture:
- Update to support GuC based resets
+References: <20211026192104.1860504-1-markyacoub@chromium.org>
+ <20211029004220.GA10475@art_vandelay>
+In-Reply-To: <20211029004220.GA10475@art_vandelay>
+From: Mark Yacoub <markyacoub@chromium.org>
+Date: Thu, 28 Oct 2021 23:03:54 -0400
+Message-ID: <CAJUqKUpop4JodJjT+HBR7ayq2=G_8UdJatLFhty5XZTZ7xL8QQ@mail.gmail.com>
+To: Sean Paul <sean@poorly.run>
+Cc: seanpaul@chromium.org, pmenzel@molgen.mpg.de, 
+ Mark Yacoub <markyacoub@google.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm: Rename lut check functions to
+ lut channel checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,208 +74,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 21, 2021 at 04:40:44PM -0700, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> When GuC submission is enabled, GuC itself manages hang detection and
-> recovery. Therefore, any test that relies on being able to trigger an
-> engine reset in the driver will fail. Full GT resets can still be
-> triggered by the driver. However, in that situation detecting the
-> specific context that caused a hang is not possible as the driver has
-> no information about what is actually running on the hardware at any
-> given time. Plus of course, there was no context that caused the hang
-> because the hang was triggered manually, so it's basically a bogus
-> mechanism in the first place!
-> 
-> Update the capture test to cause a reset via a the hangcheck mechanism
-> by submitting a hanging batch and waiting. That way it is guaranteed to
-> be testing the correct reset code paths for the current platform,
-> whether that is GuC enabled or not.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+On Thu, Oct 28, 2021 at 8:42 PM Sean Paul <sean@poorly.run> wrote:
+>
+> On Tue, Oct 26, 2021 at 03:21:00PM -0400, Mark Yacoub wrote:
+> > From: Mark Yacoub <markyacoub@google.com>
+> >
+> > [Why]
+> > This function and enum do not do generic checking on the luts but they
+> > test color channels in the LUTs.
+>
+> I'm not sure there's anything inherently specific to channels, it seems like
+> one could add a new test to reflect a HW limitation and it would fit pretty well
+> in the lut check function. I wonder if it would be better to expose the types of
+> tests required by the crtc such that the atomic_check could also do the test?
+>
+So the tests of the color are pretty unique to intel devices, no other
+device is using it so I didn't think it adds a lot of benefit adding
+it to the lut check. However, it's still in DRM because technically it
+can be supported by any driver. But once it is, the driver will have
+to expose the tests it wants so we can check it in atomic_check. but
+given that no one does expose any test but intel, i just left it only
+used by them.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
-> ---
->  tests/i915/gem_exec_capture.c | 65 ++++++++++++++++++++++++++++-------
->  1 file changed, 53 insertions(+), 12 deletions(-)
-> 
-> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-> index 8997125ee..dda6e6a8f 100644
-> --- a/tests/i915/gem_exec_capture.c
-> +++ b/tests/i915/gem_exec_capture.c
-> @@ -23,6 +23,7 @@
->  
->  #include <sys/poll.h>
->  #include <zlib.h>
-> +#include <sched.h>
->  
->  #include "i915/gem.h"
->  #include "i915/gem_create.h"
-> @@ -31,6 +32,8 @@
->  #include "igt_rand.h"
->  #include "igt_sysfs.h"
->  
-> +#define MAX_RESET_TIME	600
-> +
->  IGT_TEST_DESCRIPTION("Check that we capture the user specified objects on a hang");
->  
->  struct offset {
-> @@ -213,7 +216,29 @@ static void configure_hangs(int fd, const struct intel_execution_engine2 *e, int
->  	gem_engine_property_printf(fd, e->name, "heartbeat_interval_ms", "%d", 500);
->  
->  	/* Allow engine based resets and disable banning */
-> -	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE);
-> +	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
-> +}
-> +
-> +static bool fence_busy(int fence)
-> +{
-> +	return poll(&(struct pollfd){fence, POLLIN}, 1, 0) == 0;
-> +}
-> +
-> +static void wait_to_die(int fence_out)
-> +{
-> +	struct timeval before, after, delta;
-> +
-> +	/* Wait for a reset to occur */
-> +	gettimeofday(&before, NULL);
-> +	while (fence_busy(fence_out)) {
-> +		gettimeofday(&after, NULL);
-> +		timersub(&after, &before, &delta);
-> +		igt_assert(delta.tv_sec < MAX_RESET_TIME);
-> +		sched_yield();
-> +	}
-> +	gettimeofday(&after, NULL);
-> +	timersub(&after, &before, &delta);
-> +	igt_info("Target died after %ld.%06lds\n", delta.tv_sec, delta.tv_usec);
->  }
->  
->  static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
-> @@ -230,7 +255,7 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	struct drm_i915_gem_execbuffer2 execbuf;
->  	uint32_t *batch, *seqno;
->  	struct offset offset;
-> -	int i;
-> +	int i, fence_out;
->  
->  	configure_hangs(fd, e, ctx->id);
->  
-> @@ -315,18 +340,25 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	execbuf.flags = e->flags;
->  	if (gen > 3 && gen < 6)
->  		execbuf.flags |= I915_EXEC_SECURE;
-> +	execbuf.flags |= I915_EXEC_FENCE_OUT;
->  	execbuf.rsvd1 = ctx->id;
-> +	execbuf.rsvd2 = ~0UL;
->  
->  	igt_assert(!READ_ONCE(*seqno));
-> -	gem_execbuf(fd, &execbuf);
-> +	gem_execbuf_wr(fd, &execbuf);
-> +
-> +	fence_out = execbuf.rsvd2 >> 32;
-> +	igt_assert(fence_out >= 0);
->  
->  	/* Wait for the request to start */
->  	while (READ_ONCE(*seqno) != 0xc0ffee)
->  		igt_assert(gem_bo_busy(fd, obj[SCRATCH].handle));
->  	munmap(seqno, 4096);
->  
-> +	/* Wait for a reset to occur */
-> +	wait_to_die(fence_out);
-> +
->  	/* Check that only the buffer we marked is reported in the error */
-> -	igt_force_gpu_reset(fd);
->  	memset(&offset, 0, sizeof(offset));
->  	offset.addr = obj[CAPTURE].offset;
->  	igt_assert_eq(check_error_state(dir, &offset, 1, target_size, false), 1);
-> @@ -373,7 +405,8 @@ static int cmp(const void *A, const void *B)
->  static struct offset *
->  __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	   const struct intel_execution_engine2 *e,
-> -	   unsigned int size, int count, unsigned int flags)
-> +	   unsigned int size, int count,
-> +	   unsigned int flags, int *_fence_out)
->  #define INCREMENTAL 0x1
->  #define ASYNC 0x2
->  {
-> @@ -383,7 +416,7 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	struct drm_i915_gem_execbuffer2 execbuf;
->  	uint32_t *batch, *seqno;
->  	struct offset *offsets;
-> -	int i;
-> +	int i, fence_out;
->  
->  	configure_hangs(fd, e, ctx->id);
->  
-> @@ -491,10 +524,17 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	execbuf.flags = e->flags;
->  	if (gen > 3 && gen < 6)
->  		execbuf.flags |= I915_EXEC_SECURE;
-> +	execbuf.flags |= I915_EXEC_FENCE_OUT;
->  	execbuf.rsvd1 = ctx->id;
-> +	execbuf.rsvd2 = ~0UL;
->  
->  	igt_assert(!READ_ONCE(*seqno));
-> -	gem_execbuf(fd, &execbuf);
-> +	gem_execbuf_wr(fd, &execbuf);
-> +
-> +	fence_out = execbuf.rsvd2 >> 32;
-> +	igt_assert(fence_out >= 0);
-> +	if (_fence_out)
-> +		*_fence_out = fence_out;
->  
->  	/* Wait for the request to start */
->  	while (READ_ONCE(*seqno) != 0xc0ffee)
-> @@ -502,7 +542,7 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	munmap(seqno, 4096);
->  
->  	if (!(flags & ASYNC)) {
-> -		igt_force_gpu_reset(fd);
-> +		wait_to_die(fence_out);
->  		gem_sync(fd, obj[count + 1].handle);
->  	}
->  
-> @@ -549,7 +589,7 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  	intel_require_memory(count, size, CHECK_RAM);
->  	ahnd = get_reloc_ahnd(fd, ctx->id);
->  
-> -	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags);
-> +	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags, NULL);
->  
->  	blobs = check_error_state(dir, offsets, count, size, !!(flags & INCREMENTAL));
->  	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
-> @@ -602,6 +642,7 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  	igt_assert(pipe(link) == 0);
->  	igt_fork(child, 1) {
->  		const intel_ctx_t *ctx2;
-> +		int fence_out;
->  		fd = gem_reopen_driver(fd);
->  		igt_debug("Submitting large capture [%ld x %dMiB objects]\n",
->  			  count, (int)(size >> 20));
-> @@ -613,11 +654,11 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  		/* Reopen the allocator in the new process. */
->  		ahnd = get_reloc_ahnd(fd, ctx2->id);
->  
-> -		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC));
-> +		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC, &fence_out));
->  		put_ahnd(ahnd);
->  
->  		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
-> -		igt_force_gpu_reset(fd);
-> +		wait_to_die(fence_out);
->  		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
->  	}
->  	read(link[0], &dummy, sizeof(dummy));
-> @@ -714,7 +755,7 @@ igt_main
->  		gem_require_mmap_wc(fd);
->  		igt_require(has_capture(fd));
->  		ctx = intel_ctx_create_all_physical(fd);
-> -		igt_allow_hang(fd, ctx->id, HANG_ALLOW_CAPTURE);
-> +		igt_allow_hang(fd, ctx->id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
->  
->  		dir = igt_sysfs_open(fd);
->  		igt_require(igt_sysfs_set(dir, "error", "Begone!"));
-> -- 
-> 2.25.1
-> 
+> Sean
+>
+> > Keeping the name explicit as more generic LUT checks will follow.
+> >
+> > Tested on Eldrid ChromeOS (TGL).
+> >
+> > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> > ---
+> >  drivers/gpu/drm/drm_color_mgmt.c           | 12 ++++++------
+> >  drivers/gpu/drm/i915/display/intel_color.c | 10 +++++-----
+> >  include/drm/drm_color_mgmt.h               |  7 ++++---
+> >  3 files changed, 15 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
+> > index bb14f488c8f6c..6f4e04746d90f 100644
+> > --- a/drivers/gpu/drm/drm_color_mgmt.c
+> > +++ b/drivers/gpu/drm/drm_color_mgmt.c
+> > @@ -585,17 +585,17 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
+> >  EXPORT_SYMBOL(drm_plane_create_color_properties);
+> >
+> >  /**
+> > - * drm_color_lut_check - check validity of lookup table
+> > + * drm_color_lut_channels_check - check validity of the channels in the lookup table
+> >   * @lut: property blob containing LUT to check
+> >   * @tests: bitmask of tests to run
+> >   *
+> > - * Helper to check whether a userspace-provided lookup table is valid and
+> > - * satisfies hardware requirements.  Drivers pass a bitmask indicating which of
+> > - * the tests in &drm_color_lut_tests should be performed.
+> > + * Helper to check whether each color channel of userspace-provided lookup table is valid and
+> > + * satisfies hardware requirements. Drivers pass a bitmask indicating which of in
+> > + * &drm_color_lut_channels_tests should be performed.
+> >   *
+> >   * Returns 0 on success, -EINVAL on failure.
+> >   */
+> > -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
+> > +int drm_color_lut_channels_check(const struct drm_property_blob *lut, u32 tests)
+> >  {
+> >       const struct drm_color_lut *entry;
+> >       int i;
+> > @@ -625,4 +625,4 @@ int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
+> >
+> >       return 0;
+> >  }
+> > -EXPORT_SYMBOL(drm_color_lut_check);
+> > +EXPORT_SYMBOL(drm_color_lut_channels_check);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > index dab892d2251ba..4bb1bc76c4de9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -1285,7 +1285,7 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
+> >       const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
+> >       const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
+> >       int gamma_length, degamma_length;
+> > -     u32 gamma_tests, degamma_tests;
+> > +     u32 gamma_channels_tests, degamma_channels_tests;
+> >
+> >       /* Always allow legacy gamma LUT with no further checking. */
+> >       if (crtc_state_is_legacy_gamma(crtc_state))
+> > @@ -1300,15 +1300,15 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
+> >
+> >       degamma_length = INTEL_INFO(dev_priv)->color.degamma_lut_size;
+> >       gamma_length = INTEL_INFO(dev_priv)->color.gamma_lut_size;
+> > -     degamma_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
+> > -     gamma_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
+> > +     degamma_channels_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
+> > +     gamma_channels_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
+> >
+> >       if (check_lut_size(degamma_lut, degamma_length) ||
+> >           check_lut_size(gamma_lut, gamma_length))
+> >               return -EINVAL;
+> >
+> > -     if (drm_color_lut_check(degamma_lut, degamma_tests) ||
+> > -         drm_color_lut_check(gamma_lut, gamma_tests))
+> > +     if (drm_color_lut_channels_check(degamma_lut, degamma_channels_tests) ||
+> > +         drm_color_lut_channels_check(gamma_lut, gamma_channels_tests))
+> >               return -EINVAL;
+> >
+> >       return 0;
+> > diff --git a/include/drm/drm_color_mgmt.h b/include/drm/drm_color_mgmt.h
+> > index 81c298488b0c8..cb1bf361ad3e3 100644
+> > --- a/include/drm/drm_color_mgmt.h
+> > +++ b/include/drm/drm_color_mgmt.h
+> > @@ -94,12 +94,12 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
+> >                                     enum drm_color_range default_range);
+> >
+> >  /**
+> > - * enum drm_color_lut_tests - hw-specific LUT tests to perform
+> > + * enum drm_color_lut_channels_tests - hw-specific LUT tests to perform
+> >   *
+> >   * The drm_color_lut_check() function takes a bitmask of the values here to
+> >   * determine which tests to apply to a userspace-provided LUT.
+> >   */
+> > -enum drm_color_lut_tests {
+> > +enum drm_color_lut_channels_tests {
+> >       /**
+> >        * @DRM_COLOR_LUT_EQUAL_CHANNELS:
+> >        *
+> > @@ -119,5 +119,6 @@ enum drm_color_lut_tests {
+> >       DRM_COLOR_LUT_NON_DECREASING = BIT(1),
+> >  };
+> >
+> > -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests);
+> > +int drm_color_lut_channels_check(const struct drm_property_blob *lut,
+> > +                              u32 tests);
+> >  #endif
+> > --
+> > 2.33.0.1079.g6e70778dc9-goog
+> >
+>
+> --
+> Sean Paul, Software Engineer, Google / Chromium OS
