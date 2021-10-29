@@ -1,35 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF0843F3EA
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 02:30:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2107343F40D
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Oct 2021 02:42:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82C3D6E96B;
-	Fri, 29 Oct 2021 00:30:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA296E959;
+	Fri, 29 Oct 2021 00:42:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D7DB76E959;
- Fri, 29 Oct 2021 00:30:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D464EA363C;
- Fri, 29 Oct 2021 00:30:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8829080540895520921=="
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
+ [IPv6:2607:f8b0:4864:20::72a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBF526E96B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 00:42:23 +0000 (UTC)
+Received: by mail-qk1-x72a.google.com with SMTP id br18so7743157qkb.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 17:42:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=wk10kPylzBJAVzPjmuOajrIPnS3gajWmticxWTOdCuY=;
+ b=UbAcK1rAc/ZIqWaaPEXhVFTwgPW8BtT5uQ8dGUkH61jG8rRp5vvh4wNS5S4TYbaKTl
+ M2cp+j9/QV33S23r0odikBILIduyC+WGtPUiWYgiCBq7mGbHifDzz1rZZ4uE9wDE1gnw
+ q4GuSwKQ6o8lhL6CFTKh7LIqeVwAVOj/hPPC45mDJtkVEtRo7Ci7rcgtEVPaj+nu0TY+
+ STgzmS9/UzOCMwr7QuN217+UUyfZKxYr0TQcRFLPNacVmrZHBEVuLDjI4cLkUUnPE8nf
+ NaenDDVwI9G8L5qfwzzAnP8z/eCS2vuHm6Q5Z9012iopBJOVnb/rnaWloXy6WXgxbpSg
+ 8/aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=wk10kPylzBJAVzPjmuOajrIPnS3gajWmticxWTOdCuY=;
+ b=h5RAhpZDxK/oIlykDXp1TsHjoq59JNn22ETq4OyiMGLsfJ4TxqMwo80oFD18fSRE0g
+ KHAKQ9JV+Z9GEZBtYViZIZea8sWZZjAseFXLQ6E180cRkr/8cKmqJtHZYGPs3F4Vykug
+ RxPf8hCpGnt7TRE51KcBGA+Fw5rVwI1eqK/DHMmeFZ10PCd84ks/dGmhq8Rhq7Iqnb1Y
+ wnHeFE3SigMq6pJmgRB59Gla5UGjeYeRCAvv28wXdhlqduu7Acmesdzg2VG89hM351L1
+ INyxlCFQn+HuvB2b/u171X2taSp1Gk722qCSoQ2Xmipma1Y7MSJ9mksVvsDkyxU9Ukxi
+ olEQ==
+X-Gm-Message-State: AOAM5336cF1xXqRZ/NFEb8LTa2U5cmuoAQSrh727OYTxrEmX3F0U0qeg
+ T33hvSROkaOkOZK4Fduz75cDgQ==
+X-Google-Smtp-Source: ABdhPJxV670d+nO1mBi8BXtGvwgleipuVr6xHBTlgZ0eFfTCnePRbf6oyR5UrIWB5wpz+O69dy68Vg==
+X-Received: by 2002:a37:8244:: with SMTP id e65mr6246239qkd.141.1635468141844; 
+ Thu, 28 Oct 2021 17:42:21 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+ by smtp.gmail.com with ESMTPSA id bs34sm3043788qkb.97.2021.10.28.17.42.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 28 Oct 2021 17:42:21 -0700 (PDT)
+Date: Thu, 28 Oct 2021 20:42:20 -0400
+From: Sean Paul <sean@poorly.run>
+To: Mark Yacoub <markyacoub@chromium.org>
+Cc: seanpaul@chromium.org, pmenzel@molgen.mpg.de,
+ Mark Yacoub <markyacoub@google.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <20211029004220.GA10475@art_vandelay>
+References: <20211026192104.1860504-1-markyacoub@chromium.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Oct 2021 00:30:51 -0000
-Message-ID: <163546745186.1909.10175645606806274250@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211028224224.32693-1-matthew.brost@intel.com>
-In-Reply-To: <20211028224224.32693-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/resets=3A_Don=27t_set_/_test_for_per-engine_reset_bits_wi?=
- =?utf-8?q?th_GuC_submission?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211026192104.1860504-1-markyacoub@chromium.org>
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm: Rename lut check functions to
+ lut channel checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,180 +79,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8829080540895520921==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Oct 26, 2021 at 03:21:00PM -0400, Mark Yacoub wrote:
+> From: Mark Yacoub <markyacoub@google.com>
+> 
+> [Why]
+> This function and enum do not do generic checking on the luts but they
+> test color channels in the LUTs.
 
-== Series Details ==
+I'm not sure there's anything inherently specific to channels, it seems like
+one could add a new test to reflect a HW limitation and it would fit pretty well
+in the lut check function. I wonder if it would be better to expose the types of
+tests required by the crtc such that the atomic_check could also do the test?
 
-Series: drm/i915/resets: Don't set / test for per-engine reset bits with GuC submission
-URL   : https://patchwork.freedesktop.org/series/96406/
-State : success
+Sean
 
-== Summary ==
+> Keeping the name explicit as more generic LUT checks will follow.
+> 
+> Tested on Eldrid ChromeOS (TGL).
+> 
+> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> ---
+>  drivers/gpu/drm/drm_color_mgmt.c           | 12 ++++++------
+>  drivers/gpu/drm/i915/display/intel_color.c | 10 +++++-----
+>  include/drm/drm_color_mgmt.h               |  7 ++++---
+>  3 files changed, 15 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
+> index bb14f488c8f6c..6f4e04746d90f 100644
+> --- a/drivers/gpu/drm/drm_color_mgmt.c
+> +++ b/drivers/gpu/drm/drm_color_mgmt.c
+> @@ -585,17 +585,17 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
+>  EXPORT_SYMBOL(drm_plane_create_color_properties);
+>  
+>  /**
+> - * drm_color_lut_check - check validity of lookup table
+> + * drm_color_lut_channels_check - check validity of the channels in the lookup table
+>   * @lut: property blob containing LUT to check
+>   * @tests: bitmask of tests to run
+>   *
+> - * Helper to check whether a userspace-provided lookup table is valid and
+> - * satisfies hardware requirements.  Drivers pass a bitmask indicating which of
+> - * the tests in &drm_color_lut_tests should be performed.
+> + * Helper to check whether each color channel of userspace-provided lookup table is valid and
+> + * satisfies hardware requirements. Drivers pass a bitmask indicating which of in
+> + * &drm_color_lut_channels_tests should be performed.
+>   *
+>   * Returns 0 on success, -EINVAL on failure.
+>   */
+> -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
+> +int drm_color_lut_channels_check(const struct drm_property_blob *lut, u32 tests)
+>  {
+>  	const struct drm_color_lut *entry;
+>  	int i;
+> @@ -625,4 +625,4 @@ int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
+>  
+>  	return 0;
+>  }
+> -EXPORT_SYMBOL(drm_color_lut_check);
+> +EXPORT_SYMBOL(drm_color_lut_channels_check);
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> index dab892d2251ba..4bb1bc76c4de9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -1285,7 +1285,7 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
+>  	const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
+>  	const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
+>  	int gamma_length, degamma_length;
+> -	u32 gamma_tests, degamma_tests;
+> +	u32 gamma_channels_tests, degamma_channels_tests;
+>  
+>  	/* Always allow legacy gamma LUT with no further checking. */
+>  	if (crtc_state_is_legacy_gamma(crtc_state))
+> @@ -1300,15 +1300,15 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
+>  
+>  	degamma_length = INTEL_INFO(dev_priv)->color.degamma_lut_size;
+>  	gamma_length = INTEL_INFO(dev_priv)->color.gamma_lut_size;
+> -	degamma_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
+> -	gamma_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
+> +	degamma_channels_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
+> +	gamma_channels_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
+>  
+>  	if (check_lut_size(degamma_lut, degamma_length) ||
+>  	    check_lut_size(gamma_lut, gamma_length))
+>  		return -EINVAL;
+>  
+> -	if (drm_color_lut_check(degamma_lut, degamma_tests) ||
+> -	    drm_color_lut_check(gamma_lut, gamma_tests))
+> +	if (drm_color_lut_channels_check(degamma_lut, degamma_channels_tests) ||
+> +	    drm_color_lut_channels_check(gamma_lut, gamma_channels_tests))
+>  		return -EINVAL;
+>  
+>  	return 0;
+> diff --git a/include/drm/drm_color_mgmt.h b/include/drm/drm_color_mgmt.h
+> index 81c298488b0c8..cb1bf361ad3e3 100644
+> --- a/include/drm/drm_color_mgmt.h
+> +++ b/include/drm/drm_color_mgmt.h
+> @@ -94,12 +94,12 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
+>  				      enum drm_color_range default_range);
+>  
+>  /**
+> - * enum drm_color_lut_tests - hw-specific LUT tests to perform
+> + * enum drm_color_lut_channels_tests - hw-specific LUT tests to perform
+>   *
+>   * The drm_color_lut_check() function takes a bitmask of the values here to
+>   * determine which tests to apply to a userspace-provided LUT.
+>   */
+> -enum drm_color_lut_tests {
+> +enum drm_color_lut_channels_tests {
+>  	/**
+>  	 * @DRM_COLOR_LUT_EQUAL_CHANNELS:
+>  	 *
+> @@ -119,5 +119,6 @@ enum drm_color_lut_tests {
+>  	DRM_COLOR_LUT_NON_DECREASING = BIT(1),
+>  };
+>  
+> -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests);
+> +int drm_color_lut_channels_check(const struct drm_property_blob *lut,
+> +				 u32 tests);
+>  #endif
+> -- 
+> 2.33.0.1079.g6e70778dc9-goog
+> 
 
-CI Bug Log - changes from CI_DRM_10809 -> Patchwork_21483
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/index.html
-
-Participating hosts (36 -> 33)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (4): fi-icl-u2 bat-adlp-4 bat-dg1-6 bat-dg1-5 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21483 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-8809g:       [PASS][1] -> [INCOMPLETE][2] ([i915#4221])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10809/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][3] ([fdo#109271]) +53 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [FAIL][4] ([i915#1888]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10809/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][6] ([i915#4269]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10809/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#4221]: https://gitlab.freedesktop.org/drm/intel/issues/4221
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10809 -> Patchwork_21483
-
-  CI-20190529: 20190529
-  CI_DRM_10809: 9959c5de92d04f2336d749a5a331799aa41cfb1f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6264: 3458490c14afe3cb8aa873fa9e520e1c815ea068 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21483: 6fcf82dce6043d2695dbd1492971c5b76c1f6ea4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6fcf82dce604 drm/i915/resets: Don't set / test for per-engine reset bits with GuC submission
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/index.html
-
---===============8829080540895520921==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/resets: Don&#39;t set / test for per-engine reset bits with GuC submission</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96406/">https://patchwork.freedesktop.org/series/96406/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10809 -&gt; Patchwork_21483</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/index.html</p>
-<h2>Participating hosts (36 -&gt; 33)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): fi-icl-u2 bat-adlp-4 bat-dg1-6 bat-dg1-5 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21483 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10809/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-kbl-8809g/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4221">i915#4221</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +53 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10809/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10809/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21483/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10809 -&gt; Patchwork_21483</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10809: 9959c5de92d04f2336d749a5a331799aa41cfb1f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6264: 3458490c14afe3cb8aa873fa9e520e1c815ea068 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21483: 6fcf82dce6043d2695dbd1492971c5b76c1f6ea4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6fcf82dce604 drm/i915/resets: Don't set / test for per-engine reset bits with GuC submission</p>
-
-</body>
-</html>
-
---===============8829080540895520921==--
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
