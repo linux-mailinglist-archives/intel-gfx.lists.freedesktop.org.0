@@ -1,46 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6926441A36
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 11:49:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8D3441B13
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 13:22:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9CF289971;
-	Mon,  1 Nov 2021 10:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CCD789C1F;
+	Mon,  1 Nov 2021 12:22:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4994D89971
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 10:49:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="294448918"
-X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="294448918"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 03:49:34 -0700
-X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="499987594"
-Received: from lellis-mobl.ger.corp.intel.com (HELO [10.213.243.87])
- ([10.213.243.87])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 03:49:33 -0700
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20200916180745.627-1-cooper.chiou@intel.com>
- <20211025042623.3876-1-cooper.chiou@intel.com>
- <42d4ab18-97b7-bb80-cef9-0d779007b9e2@linux.intel.com>
- <163576323499.3344.4388287606987057365@jlahtine-mobl.ger.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a0e17b30-31a9-1bc8-7cda-6888b76bd4c0@linux.intel.com>
-Date: Mon, 1 Nov 2021 10:49:30 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4B166EAA8;
+ Sat, 30 Oct 2021 07:52:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1635580322;
+ bh=tRYXYZmrS5UzHZaytjPgUmYfGMtddVsiz5chbN/g1nE=;
+ h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=ZS/ODmCs482V3SpxH25vrML4x5dds+3uYEe8wvjip6cW1O8r3AvRXIgJZXxFTMwYT
+ WJM8Vo/8XuHBe7Qu1rRO6qeQgpyS5TfmjZVONae5xkarCCHl50UIPPRT0HHQNKTqMa
+ yRkkEimwCBtutUcU3+E47yivnvxfN95l2uOZDtWg=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from titan ([79.150.72.99]) by mail.gmx.net (mrgmx105
+ [212.227.17.174]) with ESMTPSA (Nemesis) id 1MEm27-1mS5tp1Wup-00GKuV; Sat, 30
+ Oct 2021 09:52:02 +0200
+Date: Sat, 30 Oct 2021 09:51:50 +0200
+From: Len Baker <len.baker@gmx.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20211030075150.GA3486@titan>
+References: <20211003104258.18550-1-len.baker@gmx.com>
+ <20211011092304.GA5790@titan> <87k0ihxj56.fsf@intel.com>
+ <YWbIQmD1TGikpRm2@phenom.ffwll.local> <20211016111602.GA1996@titan>
+ <877deatzz2.fsf@intel.com> <20211023115020.GC4145@titan>
+ <87ee86h5hn.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <163576323499.3344.4388287606987057365@jlahtine-mobl.ger.corp.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v8] drm/i915: Enable
- WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87ee86h5hn.fsf@intel.com>
+X-Provags-ID: V03:K1:nJ+E6kO3kOeE/a6RCjnW0DGdYOtTwFmROUmXqmeyhKg0w81ta51
+ UWWXofq+Ois/ee5qtQOAXJfYrZMkixOzgipT0KsyAQOf64vsMWexSTylpDka0dxCArAJupy
+ HSPyTUZ2L2NdgWYuuEo6P2Fq17hx2GeoNrRfvO0XBGRegmpb1Rac3A2H6RRJ7SeHW6egZ1f
+ LZsO/+fVFR+K8WaBlLhUw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+wnPXYv7YIc=:80wL/GovvA07EHIiq5dqX0
+ Gf3hHtnGYTiBu/a0boBPCpKGGLBOkbqL6p4GqfvwsMjMDynTlkEYplRtuVRlqHXuargyItWot
+ kIV7prFDNMHaNYiC0IY5xRyC1shRJSHUlKU4qQ35yamZ/A3ipdX31UqGTJSMriSeRLBwgGWAy
+ ZWz6MvaHkM+hl+RRa0ZNj+qX2dxCb0nfsaQHCqYyUKzFN2wDSClr8Y17PV5FfPgCc3uQGLBeH
+ R5Fjp7se7sB++gInzHkMB38hYCqDJy3CcSrjyN1vqbyl12wDEDYd8PTgHF/lYV5aunwqpD6qH
+ psGyekfWSpVO8JMwvHTOG2EracReQV3WtC+hffLgWbACY/h/kL2dEDZwOtFs+LfE3yRJounjR
+ FotQWpLaaWCxdcYpNYN5BUb84y9F9yguZZ/9HggzyhZo00ZGxRcG+3KxGdMp+3KuMAFFObmlJ
+ e6r7zKsoV/VRuZS5FAWmUIHSnT9w2b0POgiTF+nopvjclbvWpwNoyULfGAUVf2KjCrrOqD2pI
+ 29HL3p/p2xPF2sCsGFRpwUtVJfVRZhZpAjFt9t0C5f3NNdmGwKbkMUeBJp/J7vmb0/+4nyY6O
+ L9IvO4NRpPTIUGz6fwf1wWndwMJt4YtiiNuN6HolzUg////3BxQJIxXiYG4Cz3LnI18uYX4E9
+ 1CycwSqjVT2CKw/7+FS8Z7krPTUur1eXRTKS0cJkMF63E4ZM6f7ArpAfp+kxO3kAKzQPyfZy6
+ O08Ku9WP/aThUMpcfqY4yBjGeM9UpFQ9Sjve2UJVjoA5xf6tjgSWbYk9soIphseOKBEzdTXJ4
+ maOZ62AZBeDwLY3i1RrT1+22Av2hZMuhK/Z8jwEoCJILYjapTV36uAYL6t4liZT1NnxmKryP2
+ KXh0fEDqXzciMo2Iik4R5bbHbR2b+QPPiY2JQXvA8yU0OUzrnDVs9bHJjPvtEOnucnneJBp+k
+ qjXWkgsUyUSxbJQiml4QAEs/EILlTTpkANXQr9mdAeN+SShK9wgdcq9Gf43FLuw2IQ/Yg6a/U
+ SwzkBbK/s2JQ8X+zKG0iOt1UIBLIpMrOJnhdCl+EhnVIlHj8WPSmJB6si6P5iO0zATrE91BS2
+ 1GeaKat8KIQbZQ=
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 01 Nov 2021 12:22:45 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Prefer struct_size over open
+ coded arithmetic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,62 +74,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- William Tseng <william.tseng@intel.com>, Pawel Wilma <pawel.wilma@intel.com>
+Cc: Kees Cook <keescook@chromium.org>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Len Baker <len.baker@gmx.com>, linux-hardening@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 01/11/2021 10:40, Joonas Lahtinen wrote:
-> Quoting Tvrtko Ursulin (2021-11-01 12:15:19)
->>
->> On 25/10/2021 05:26, Cooper Chiou wrote:
->>> This implements WaProgramMgsrForCorrectSliceSpecificMmioReads which
->>> was omitted by mistake from Gen9 documentation, while it is actually
->>> applicable to fused off parts.
->>>
->>> Workaround consists of making sure MCR packet control register is
->>> programmed to point to enabled slice/subslice pair before doing any
->>> MMIO reads from the affected registers.
->>>
->>> Failure do to this can result in complete system hangs when running
->>> certain workloads. Two known cases which can cause system hangs are:
->>>
->>> 1. "test_basic progvar_prog_scope_uninit" test which is part of
->>>       Khronos OpenCL conformance suite
->>>       (https://github.com/KhronosGroup/OpenCL-CTS) with the Intel
->>>       OpenCL driver (https://github.com/intel/compute-runtime).
->>>
->>> 2. VP8 media hardware encoding using the full-feature build of the
->>>       Intel media-driver (https://github.com/intel/media-driver) and
->>>       ffmpeg.
->>>
->>> For the former case patch was verified to fix the hard system hang
->>> when executing the OCL test on Intel Pentium CPU 6405U which contains
->>> fused off GT1 graphics.
->>>
->>> Reference: HSD#1508045018,1405586840, BSID#0575
->>>
->>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Jani Nikula <jani.nikula@intel.com>
->>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->>> Cc: William Tseng <william.tseng@intel.com>
->>> Cc: Shawn C Lee <shawn.c.lee@intel.com>
->>> Cc: Pawel Wilma <pawel.wilma@intel.com>
->>> Signed-off-by: Cooper Chiou <cooper.chiou@intel.com>
->>
->> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Thanks for following through with all the testing and validation for the
-> patch!
-> 
-> Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+On Wed, Oct 27, 2021 at 06:06:28PM +0300, Jani Nikula wrote:
+> On Sat, 23 Oct 2021, Len Baker <len.baker@gmx.com> wrote:
+> > Sorry, but I'm missing something here. In linux-next this is the commi=
+t
+> > history of include/linux/stddef.h file:
+> >
+> > 3080ea5553cc stddef: Introduce DECLARE_FLEX_ARRAY() helper
+> > 50d7bd38c3aa stddef: Introduce struct_group() helper macro
+> > e7f18c22e6be stddef: Fix kerndoc for sizeof_field() and offsetofend()
+> > 4229a470175b stddef.h: Introduce sizeof_field()
+> > ...
+> >
+> > But in drm-tip this is the commit history:
+> >
+> > 4229a470175b stddef.h: Introduce sizeof_field()
+> > ...
+> >
+> > For this patch the DECLARE_FLEX_ARRAY() helper is needed. But the buil=
+d
+> > fails due to the last tree commits for stddef.h file are not present.
+> > So, if I understand correctly, drm-tip is not up to date with linux-ne=
+xt.
+>
+> linux-next is an ephemeral integration branch for most arch, subsystem
+> and driver -next branches.
+>
+> drm-tip is an ephemeral integration branch for drm subsystem and driver
+> -next branches.
+>
+> They contain different sets of branches. They are constantly
+> rebuilt. They are not the end result or end goal.
+>
+> If a problem (or a solution, for that matter) only exists in the merge
+> of some of those branches, you can't actually fix it until such a merge
+> exists somewhere more permanent than an ephemeral integration branch.
 
-I've pushed it, thanks!
+Ok, understood. Thanks for the clarification.
 
 Regards,
-
-Tvrtko
+Len
