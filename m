@@ -1,47 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F6034419FE
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 11:35:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D63AA441A0C
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 11:40:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6533489BB0;
-	Mon,  1 Nov 2021 10:35:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93CF3897C5;
+	Mon,  1 Nov 2021 10:40:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A49E989BAB;
- Mon,  1 Nov 2021 10:35:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="231252918"
-X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="231252918"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 03:35:13 -0700
-X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="499984499"
-Received: from lellis-mobl.ger.corp.intel.com (HELO [10.213.243.87])
- ([10.213.243.87])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 03:35:11 -0700
-To: Matthew Brost <matthew.brost@intel.com>,
- John Harrison <john.c.harrison@intel.com>
-References: <20211020214751.34602-1-matthew.brost@intel.com>
- <c9a1cd3e-dc3a-2b2b-ee37-73c0c50f3f60@intel.com>
- <20211027191732.GA16188@jons-linux-dev-box>
- <af017ae0-e826-7b6a-03d7-0e422030da02@intel.com>
- <20211027201001.GA16265@jons-linux-dev-box>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a86e7ea7-3c70-2540-9538-44adc3d12e52@linux.intel.com>
-Date: Mon, 1 Nov 2021 10:35:09 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42CDD897C5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 10:40:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="217902020"
+X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="217902020"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 03:40:39 -0700
+X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="467267016"
+Received: from vkubarev-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.249.254.35])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 03:40:37 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20211027201001.GA16265@jons-linux-dev-box>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Weak parallel
- submission support for execlists
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <42d4ab18-97b7-bb80-cef9-0d779007b9e2@linux.intel.com>
+References: <20200916180745.627-1-cooper.chiou@intel.com>
+ <20211025042623.3876-1-cooper.chiou@intel.com>
+ <42d4ab18-97b7-bb80-cef9-0d779007b9e2@linux.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Cooper Chiou <cooper.chiou@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <163576323499.3344.4388287606987057365@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Mon, 01 Nov 2021 12:40:34 +0200
+Subject: Re: [Intel-gfx] [PATCH v8] drm/i915: Enable
+ WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,216 +51,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ William Tseng <william.tseng@intel.com>, Pawel Wilma <pawel.wilma@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Tvrtko Ursulin (2021-11-01 12:15:19)
+>=20
+> On 25/10/2021 05:26, Cooper Chiou wrote:
+> > This implements WaProgramMgsrForCorrectSliceSpecificMmioReads which
+> > was omitted by mistake from Gen9 documentation, while it is actually
+> > applicable to fused off parts.
+> >=20
+> > Workaround consists of making sure MCR packet control register is
+> > programmed to point to enabled slice/subslice pair before doing any
+> > MMIO reads from the affected registers.
+> >=20
+> > Failure do to this can result in complete system hangs when running
+> > certain workloads. Two known cases which can cause system hangs are:
+> >=20
+> > 1. "test_basic progvar_prog_scope_uninit" test which is part of
+> >      Khronos OpenCL conformance suite
+> >      (https://github.com/KhronosGroup/OpenCL-CTS) with the Intel
+> >      OpenCL driver (https://github.com/intel/compute-runtime).
+> >=20
+> > 2. VP8 media hardware encoding using the full-feature build of the
+> >      Intel media-driver (https://github.com/intel/media-driver) and
+> >      ffmpeg.
+> >=20
+> > For the former case patch was verified to fix the hard system hang
+> > when executing the OCL test on Intel Pentium CPU 6405U which contains
+> > fused off GT1 graphics.
+> >=20
+> > Reference: HSD#1508045018,1405586840, BSID#0575
+> >=20
+> > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > Cc: William Tseng <william.tseng@intel.com>
+> > Cc: Shawn C Lee <shawn.c.lee@intel.com>
+> > Cc: Pawel Wilma <pawel.wilma@intel.com>
+> > Signed-off-by: Cooper Chiou <cooper.chiou@intel.com>
+>=20
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 27/10/2021 21:10, Matthew Brost wrote:
-> On Wed, Oct 27, 2021 at 01:04:49PM -0700, John Harrison wrote:
->> On 10/27/2021 12:17, Matthew Brost wrote:
->>> On Tue, Oct 26, 2021 at 02:58:00PM -0700, John Harrison wrote:
->>>> On 10/20/2021 14:47, Matthew Brost wrote:
->>>>> A weak implementation of parallel submission (multi-bb execbuf IOCTL) for
->>>>> execlists. Doing as little as possible to support this interface for
->>>>> execlists - basically just passing submit fences between each request
->>>>> generated and virtual engines are not allowed. This is on par with what
->>>>> is there for the existing (hopefully soon deprecated) bonding interface.
->>>>>
->>>>> We perma-pin these execlists contexts to align with GuC implementation.
->>>>>
->>>>> v2:
->>>>>     (John Harrison)
->>>>>      - Drop siblings array as num_siblings must be 1
->>>>>
->>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>> ---
->>>>>     drivers/gpu/drm/i915/gem/i915_gem_context.c   | 10 +++--
->>>>>     drivers/gpu/drm/i915/gt/intel_context.c       |  4 +-
->>>>>     .../drm/i915/gt/intel_execlists_submission.c  | 44 ++++++++++++++++++-
->>>>>     drivers/gpu/drm/i915/gt/intel_lrc.c           |  2 +
->>>>>     .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 -
->>>>>     5 files changed, 52 insertions(+), 10 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>>> index fb33d0322960..35e87a7d0ea9 100644
->>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>>> @@ -570,10 +570,6 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
->>>>>     	struct intel_engine_cs **siblings = NULL;
->>>>>     	intel_engine_mask_t prev_mask;
->>>>> -	/* FIXME: This is NIY for execlists */
->>>>> -	if (!(intel_uc_uses_guc_submission(&i915->gt.uc)))
->>>>> -		return -ENODEV;
->>>>> -
->>>>>     	if (get_user(slot, &ext->engine_index))
->>>>>     		return -EFAULT;
->>>>> @@ -583,6 +579,12 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
->>>>>     	if (get_user(num_siblings, &ext->num_siblings))
->>>>>     		return -EFAULT;
->>>>> +	if (!intel_uc_uses_guc_submission(&i915->gt.uc) && num_siblings != 1) {
->>>>> +		drm_dbg(&i915->drm, "Only 1 sibling (%d) supported in non-GuC mode\n",
->>>>> +			num_siblings);
->>>>> +		return -EINVAL;
->>>>> +	}
->>>>> +
->>>>>     	if (slot >= set->num_engines) {
->>>>>     		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
->>>>>     			slot, set->num_engines);
->>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
->>>>> index 5634d14052bc..1bec92e1d8e6 100644
->>>>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
->>>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
->>>>> @@ -79,7 +79,8 @@ static int intel_context_active_acquire(struct intel_context *ce)
->>>>>     	__i915_active_acquire(&ce->active);
->>>>> -	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine))
->>>>> +	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine) ||
->>>>> +	    intel_context_is_parallel(ce))
->>>>>     		return 0;
->>>>>     	/* Preallocate tracking nodes */
->>>>> @@ -563,7 +564,6 @@ void intel_context_bind_parent_child(struct intel_context *parent,
->>>>>     	 * Callers responsibility to validate that this function is used
->>>>>     	 * correctly but we use GEM_BUG_ON here ensure that they do.
->>>>>     	 */
->>>>> -	GEM_BUG_ON(!intel_engine_uses_guc(parent->engine));
->>>>>     	GEM_BUG_ON(intel_context_is_pinned(parent));
->>>>>     	GEM_BUG_ON(intel_context_is_child(parent));
->>>>>     	GEM_BUG_ON(intel_context_is_pinned(child));
->>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>>>> index bedb80057046..2865b422300d 100644
->>>>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>>>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>>>> @@ -927,8 +927,7 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
->>>>>     static bool ctx_single_port_submission(const struct intel_context *ce)
->>>>>     {
->>>>> -	return (IS_ENABLED(CONFIG_DRM_I915_GVT) &&
->>>>> -		intel_context_force_single_submission(ce));
->>>>> +	return intel_context_force_single_submission(ce);
->>>> I think this is actually going to break GVT.
->>>>
->>>> Not so much this change here but the whole use of single submission outside
->>>> of GVT. It looks like the GVT driver overloads the single submission flag to
->>>> tag requests that it owns. If we start using that flag elsewhere when GVT is
->>>> active, I think that will cause much confusion within the GVT code.
->>>>
->>>> The correct fix would be to create a new flag just for GVT usage alongside
->>>> the single submission one. GVT would then set both but only check for its
->>>> own private flag. The parallel code would obviously only set the existing
->>>> single submission flag.
->>>>
->>> Ok, see below.
->>>
->>>>>     }
->>>>>     static bool can_merge_ctx(const struct intel_context *prev,
->>>>> @@ -2598,6 +2597,46 @@ static void execlists_context_cancel_request(struct intel_context *ce,
->>>>>     				      current->comm);
->>>>>     }
->>>>> +static struct intel_context *
->>>>> +execlists_create_parallel(struct intel_engine_cs **engines,
->>>>> +			  unsigned int num_siblings,
->>>>> +			  unsigned int width)
->>>>> +{
->>>>> +	struct intel_context *parent = NULL, *ce, *err;
->>>>> +	int i;
->>>>> +
->>>>> +	GEM_BUG_ON(num_siblings != 1);
->>>>> +
->>>>> +	for (i = 0; i < width; ++i) {
->>>>> +		ce = intel_context_create(engines[i]);
->>>>> +		if (!ce) {
->>>>> +			err = ERR_PTR(-ENOMEM);
->>>>> +			goto unwind;
->>>>> +		}
->>>>> +
->>>>> +		if (i == 0)
->>>>> +			parent = ce;
->>>>> +		else
->>>>> +			intel_context_bind_parent_child(parent, ce);
->>>>> +	}
->>>>> +
->>>>> +	parent->parallel.fence_context = dma_fence_context_alloc(1);
->>>>> +
->>>>> +	intel_context_set_nopreempt(parent);
->>>>> +	intel_context_set_single_submission(parent);
->>>> Can you explain the need for setting single submission?
->>>>
->>> I think I can actually pull this out. This was needed when I tried to
->>> truely implement a guarante that all the parallel requests would be
->>> running simultaneously. Couldn't ever to get that working because of the
->>> mess that is the execlists scheduler - a simple wait at the head of
->>> queue until everyone joined just blew up for whatever reason. I don't
->>> believe this servers a purpose anymore, so I'll just drop it.
->>>
->>> Matt
->> Is that not going to be a problem? I thought concurrent execution was a
->> fundamental requirement?
->>
-> 
-> I don't think so. See the commit message. This implmementation is on par
-> with the bonding interface - there is no guarantee whatsoever that with
-> the bonding interface bonded requests actually run at the same time. It
-> says hopefully these submissions run together. That's what I do in this
-> patch too for execlists, hence the 'weak' clause in the commit message.
+Thanks for following through with all the testing and validation for the
+patch!
 
-With the new uapi definition implying a stricter guarantee - why not 
-have this patch use special bb semaphore pre/post-ambles so scheduling 
-behaviour is closer between the two backends?
+Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 
-Regards,
+Regards, Joonas
 
-Tvrtko
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
+> P.S. You could have preserved my r-b from an earlier version since it is =
 
-> 
-> Matt
-> 
->> John.
->>
->>>
->>>> John.
->>>>
->>>>> +	for_each_child(parent, ce) {
->>>>> +		intel_context_set_nopreempt(ce);
->>>>> +		intel_context_set_single_submission(ce);
->>>>> +	}
->>>>> +
->>>>> +	return parent;
->>>>> +
->>>>> +unwind:
->>>>> +	if (parent)
->>>>> +		intel_context_put(parent);
->>>>> +	return err;
->>>>> +}
->>>>> +
->>>>>     static const struct intel_context_ops execlists_context_ops = {
->>>>>     	.flags = COPS_HAS_INFLIGHT,
->>>>> @@ -2616,6 +2655,7 @@ static const struct intel_context_ops execlists_context_ops = {
->>>>>     	.reset = lrc_reset,
->>>>>     	.destroy = lrc_destroy,
->>>>> +	.create_parallel = execlists_create_parallel,
->>>>>     	.create_virtual = execlists_create_virtual,
->>>>>     };
->>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>>>> index 56156cf18c41..70f4b309522d 100644
->>>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->>>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>>>> @@ -1065,6 +1065,8 @@ lrc_pin(struct intel_context *ce,
->>>>>     void lrc_unpin(struct intel_context *ce)
->>>>>     {
->>>>> +	if (unlikely(ce->parallel.last_rq))
->>>>> +		i915_request_put(ce->parallel.last_rq);
->>>>>     	check_redzone((void *)ce->lrc_reg_state - LRC_STATE_OFFSET,
->>>>>     		      ce->engine);
->>>>>     }
->>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>> index 1341752dc70e..ddc9a97fcc8f 100644
->>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>> @@ -2961,8 +2961,6 @@ static void guc_parent_context_unpin(struct intel_context *ce)
->>>>>     	GEM_BUG_ON(!intel_context_is_parent(ce));
->>>>>     	GEM_BUG_ON(!intel_engine_is_virtual(ce->engine));
->>>>> -	if (ce->parallel.last_rq)
->>>>> -		i915_request_put(ce->parallel.last_rq);
->>>>>     	unpin_guc_id(guc, ce);
->>>>>     	lrc_unpin(ce);
->>>>>     }
->>
+> the same code, just different commit message.
+>=20
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_workarounds.c | 41 +++++++++++++++++++++
+> >   1 file changed, 41 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/=
+drm/i915/gt/intel_workarounds.c
+> > index e1f362530889..8ae24da601b0 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > @@ -877,11 +877,52 @@ hsw_gt_workarounds_init(struct intel_gt *gt, stru=
+ct i915_wa_list *wal)
+> >       wa_write_clr(wal, GEN7_FF_THREAD_MODE, GEN7_FF_VS_REF_CNT_FFME);
+> >   }
+> >  =20
+> > +static void
+> > +gen9_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *w=
+al)
+> > +{
+> > +     const struct sseu_dev_info *sseu =3D &i915->gt.info.sseu;
+> > +     unsigned int slice, subslice;
+> > +     u32 mcr, mcr_mask;
+> > +
+> > +     GEM_BUG_ON(GRAPHICS_VER(i915) !=3D 9);
+> > +
+> > +     /*
+> > +      * WaProgramMgsrForCorrectSliceSpecificMmioReads:gen9,glk,kbl,cml
+> > +      * Before any MMIO read into slice/subslice specific registers, M=
+CR
+> > +      * packet control register needs to be programmed to point to any
+> > +      * enabled s/ss pair. Otherwise, incorrect values will be returne=
+d.
+> > +      * This means each subsequent MMIO read will be forwarded to an
+> > +      * specific s/ss combination, but this is OK since these registers
+> > +      * are consistent across s/ss in almost all cases. In the rare
+> > +      * occasions, such as INSTDONE, where this value is dependent
+> > +      * on s/ss combo, the read should be done with read_subslice_reg.
+> > +      */
+> > +     slice =3D ffs(sseu->slice_mask) - 1;
+> > +     GEM_BUG_ON(slice >=3D ARRAY_SIZE(sseu->subslice_mask));
+> > +     subslice =3D ffs(intel_sseu_get_subslices(sseu, slice));
+> > +     GEM_BUG_ON(!subslice);
+> > +     subslice--;
+> > +
+> > +     /*
+> > +      * We use GEN8_MCR..() macros to calculate the |mcr| value for
+> > +      * Gen9 to address WaProgramMgsrForCorrectSliceSpecificMmioReads
+> > +      */
+> > +     mcr =3D GEN8_MCR_SLICE(slice) | GEN8_MCR_SUBSLICE(subslice);
+> > +     mcr_mask =3D GEN8_MCR_SLICE_MASK | GEN8_MCR_SUBSLICE_MASK;
+> > +
+> > +     drm_dbg(&i915->drm, "MCR slice:%d/subslice:%d =3D %x\n", slice, s=
+ubslice, mcr);
+> > +
+> > +     wa_write_clr_set(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
+> > +}
+> > +
+> >   static void
+> >   gen9_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wa=
+l)
+> >   {
+> >       struct drm_i915_private *i915 =3D gt->i915;
+> >  =20
+> > +     /* WaProgramMgsrForCorrectSliceSpecificMmioReads:glk,kbl,cml,gen9=
+ */
+> > +     gen9_wa_init_mcr(i915, wal);
+> > +
+> >       /* WaDisableKillLogic:bxt,skl,kbl */
+> >       if (!IS_COFFEELAKE(i915) && !IS_COMETLAKE(i915))
+> >               wa_write_or(wal,
+> >=20
