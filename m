@@ -2,66 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8D3441B13
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 13:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B20FA441AC3
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 12:38:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CCD789C1F;
-	Mon,  1 Nov 2021 12:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A339D89FA0;
+	Mon,  1 Nov 2021 11:38:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4B166EAA8;
- Sat, 30 Oct 2021 07:52:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1635580322;
- bh=tRYXYZmrS5UzHZaytjPgUmYfGMtddVsiz5chbN/g1nE=;
- h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
- b=ZS/ODmCs482V3SpxH25vrML4x5dds+3uYEe8wvjip6cW1O8r3AvRXIgJZXxFTMwYT
- WJM8Vo/8XuHBe7Qu1rRO6qeQgpyS5TfmjZVONae5xkarCCHl50UIPPRT0HHQNKTqMa
- yRkkEimwCBtutUcU3+E47yivnvxfN95l2uOZDtWg=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from titan ([79.150.72.99]) by mail.gmx.net (mrgmx105
- [212.227.17.174]) with ESMTPSA (Nemesis) id 1MEm27-1mS5tp1Wup-00GKuV; Sat, 30
- Oct 2021 09:52:02 +0200
-Date: Sat, 30 Oct 2021 09:51:50 +0200
-From: Len Baker <len.baker@gmx.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20211030075150.GA3486@titan>
-References: <20211003104258.18550-1-len.baker@gmx.com>
- <20211011092304.GA5790@titan> <87k0ihxj56.fsf@intel.com>
- <YWbIQmD1TGikpRm2@phenom.ffwll.local> <20211016111602.GA1996@titan>
- <877deatzz2.fsf@intel.com> <20211023115020.GC4145@titan>
- <87ee86h5hn.fsf@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABE9789FA0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 11:38:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="294454375"
+X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="294454375"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 04:38:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="500001547"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 01 Nov 2021 04:38:28 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 01 Nov 2021 13:38:27 +0200
+Date: Mon, 1 Nov 2021 13:38:27 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <YX/Rs64T4e4rpiEM@intel.com>
+References: <20211029202432.140745-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <87ee86h5hn.fsf@intel.com>
-X-Provags-ID: V03:K1:nJ+E6kO3kOeE/a6RCjnW0DGdYOtTwFmROUmXqmeyhKg0w81ta51
- UWWXofq+Ois/ee5qtQOAXJfYrZMkixOzgipT0KsyAQOf64vsMWexSTylpDka0dxCArAJupy
- HSPyTUZ2L2NdgWYuuEo6P2Fq17hx2GeoNrRfvO0XBGRegmpb1Rac3A2H6RRJ7SeHW6egZ1f
- LZsO/+fVFR+K8WaBlLhUw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:+wnPXYv7YIc=:80wL/GovvA07EHIiq5dqX0
- Gf3hHtnGYTiBu/a0boBPCpKGGLBOkbqL6p4GqfvwsMjMDynTlkEYplRtuVRlqHXuargyItWot
- kIV7prFDNMHaNYiC0IY5xRyC1shRJSHUlKU4qQ35yamZ/A3ipdX31UqGTJSMriSeRLBwgGWAy
- ZWz6MvaHkM+hl+RRa0ZNj+qX2dxCb0nfsaQHCqYyUKzFN2wDSClr8Y17PV5FfPgCc3uQGLBeH
- R5Fjp7se7sB++gInzHkMB38hYCqDJy3CcSrjyN1vqbyl12wDEDYd8PTgHF/lYV5aunwqpD6qH
- psGyekfWSpVO8JMwvHTOG2EracReQV3WtC+hffLgWbACY/h/kL2dEDZwOtFs+LfE3yRJounjR
- FotQWpLaaWCxdcYpNYN5BUb84y9F9yguZZ/9HggzyhZo00ZGxRcG+3KxGdMp+3KuMAFFObmlJ
- e6r7zKsoV/VRuZS5FAWmUIHSnT9w2b0POgiTF+nopvjclbvWpwNoyULfGAUVf2KjCrrOqD2pI
- 29HL3p/p2xPF2sCsGFRpwUtVJfVRZhZpAjFt9t0C5f3NNdmGwKbkMUeBJp/J7vmb0/+4nyY6O
- L9IvO4NRpPTIUGz6fwf1wWndwMJt4YtiiNuN6HolzUg////3BxQJIxXiYG4Cz3LnI18uYX4E9
- 1CycwSqjVT2CKw/7+FS8Z7krPTUur1eXRTKS0cJkMF63E4ZM6f7ArpAfp+kxO3kAKzQPyfZy6
- O08Ku9WP/aThUMpcfqY4yBjGeM9UpFQ9Sjve2UJVjoA5xf6tjgSWbYk9soIphseOKBEzdTXJ4
- maOZ62AZBeDwLY3i1RrT1+22Av2hZMuhK/Z8jwEoCJILYjapTV36uAYL6t4liZT1NnxmKryP2
- KXh0fEDqXzciMo2Iik4R5bbHbR2b+QPPiY2JQXvA8yU0OUzrnDVs9bHJjPvtEOnucnneJBp+k
- qjXWkgsUyUSxbJQiml4QAEs/EILlTTpkANXQr9mdAeN+SShK9wgdcq9Gf43FLuw2IQ/Yg6a/U
- SwzkBbK/s2JQ8X+zKG0iOt1UIBLIpMrOJnhdCl+EhnVIlHj8WPSmJB6si6P5iO0zATrE91BS2
- 1GeaKat8KIQbZQ=
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 01 Nov 2021 12:22:45 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Prefer struct_size over open
- coded arithmetic
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211029202432.140745-1-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Check async flip state
+ of every crtc and plane once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,52 +48,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Len Baker <len.baker@gmx.com>, linux-hardening@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, Oct 29, 2021 at 01:24:32PM -0700, José Roberto de Souza wrote:
+> For every crtc in state, intel_atomic_check_async() was checking all
+> the crtc and plane states again.
+> 
+> v2: comparing pipe ids instead of crtc pointers when iterating over
+> planes
+> 
+> Cc: Karthik B S <karthik.b.s@intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 
-On Wed, Oct 27, 2021 at 06:06:28PM +0300, Jani Nikula wrote:
-> On Sat, 23 Oct 2021, Len Baker <len.baker@gmx.com> wrote:
-> > Sorry, but I'm missing something here. In linux-next this is the commi=
-t
-> > history of include/linux/stddef.h file:
-> >
-> > 3080ea5553cc stddef: Introduce DECLARE_FLEX_ARRAY() helper
-> > 50d7bd38c3aa stddef: Introduce struct_group() helper macro
-> > e7f18c22e6be stddef: Fix kerndoc for sizeof_field() and offsetofend()
-> > 4229a470175b stddef.h: Introduce sizeof_field()
-> > ...
-> >
-> > But in drm-tip this is the commit history:
-> >
-> > 4229a470175b stddef.h: Introduce sizeof_field()
-> > ...
-> >
-> > For this patch the DECLARE_FLEX_ARRAY() helper is needed. But the buil=
-d
-> > fails due to the last tree commits for stddef.h file are not present.
-> > So, if I understand correctly, drm-tip is not up to date with linux-ne=
-xt.
->
-> linux-next is an ephemeral integration branch for most arch, subsystem
-> and driver -next branches.
->
-> drm-tip is an ephemeral integration branch for drm subsystem and driver
-> -next branches.
->
-> They contain different sets of branches. They are constantly
-> rebuilt. They are not the end result or end goal.
->
-> If a problem (or a solution, for that matter) only exists in the merge
-> of some of those branches, you can't actually fix it until such a merge
-> exists somewhere more permanent than an ephemeral integration branch.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Ok, understood. Thanks for the clarification.
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 38 ++++++++++----------
+>  1 file changed, 20 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 79cd158503b37..e494028260621 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7707,35 +7707,37 @@ static void kill_bigjoiner_slave(struct intel_atomic_state *state,
+>   * correspond to the last vblank and have no relation to the actual time when
+>   * the flip done event was sent.
+>   */
+> -static int intel_atomic_check_async(struct intel_atomic_state *state)
+> +static int intel_atomic_check_async(struct intel_atomic_state *state, struct intel_crtc *crtc)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+>  	const struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+>  	const struct intel_plane_state *new_plane_state, *old_plane_state;
+> -	struct intel_crtc *crtc;
+>  	struct intel_plane *plane;
+>  	int i;
+>  
+> -	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> -					    new_crtc_state, i) {
+> -		if (intel_crtc_needs_modeset(new_crtc_state)) {
+> -			drm_dbg_kms(&i915->drm, "Modeset Required. Async flip not supported\n");
+> -			return -EINVAL;
+> -		}
+> +	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+> +	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+>  
+> -		if (!new_crtc_state->hw.active) {
+> -			drm_dbg_kms(&i915->drm, "CRTC inactive\n");
+> -			return -EINVAL;
+> -		}
+> -		if (old_crtc_state->active_planes != new_crtc_state->active_planes) {
+> -			drm_dbg_kms(&i915->drm,
+> -				    "Active planes cannot be changed during async flip\n");
+> -			return -EINVAL;
+> -		}
+> +	if (intel_crtc_needs_modeset(new_crtc_state)) {
+> +		drm_dbg_kms(&i915->drm, "Modeset Required. Async flip not supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!new_crtc_state->hw.active) {
+> +		drm_dbg_kms(&i915->drm, "CRTC inactive\n");
+> +		return -EINVAL;
+> +	}
+> +	if (old_crtc_state->active_planes != new_crtc_state->active_planes) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "Active planes cannot be changed during async flip\n");
+> +		return -EINVAL;
+>  	}
+>  
+>  	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
+>  					     new_plane_state, i) {
+> +		if (plane->pipe != crtc->pipe)
+> +			continue;
+> +
+>  		/*
+>  		 * TODO: Async flip is only supported through the page flip IOCTL
+>  		 * as of now. So support currently added for primary plane only.
+> @@ -8054,7 +8056,7 @@ static int intel_atomic_check(struct drm_device *dev,
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>  					    new_crtc_state, i) {
+>  		if (new_crtc_state->uapi.async_flip) {
+> -			ret = intel_atomic_check_async(state);
+> +			ret = intel_atomic_check_async(state, crtc);
+>  			if (ret)
+>  				goto fail;
+>  		}
+> -- 
+> 2.33.1
 
-Regards,
-Len
+-- 
+Ville Syrjälä
+Intel
