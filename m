@@ -1,49 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2ABF44180D
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 10:41:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB468441937
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 10:57:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 416E6899A5;
-	Mon,  1 Nov 2021 09:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C92189A16;
+	Mon,  1 Nov 2021 09:56:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4256899A7;
- Mon,  1 Nov 2021 09:41:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="218170669"
-X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="218170669"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 02:41:24 -0700
-X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="499971520"
-Received: from lellis-mobl.ger.corp.intel.com (HELO [10.213.243.87])
- ([10.213.243.87])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 02:41:23 -0700
-To: Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
- <20211021103605.735002-2-maarten.lankhorst@linux.intel.com>
- <022f8ecb-37c0-3d67-563f-012f0a3651df@amd.com>
- <c7c82fa5-6fe5-33e2-e224-c5433020100c@linux.intel.com>
- <007050d3-0207-5226-0cbe-7a3d8679811c@linux.intel.com>
- <810de535-0902-04ef-be13-35c978fd80bc@amd.com>
- <YXrCAaGhLVtduUfa@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <f62922a7-344d-3e81-b391-840298f833d4@linux.intel.com>
-Date: Mon, 1 Nov 2021 09:41:17 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18352899B5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 09:56:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="211750787"
+X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="211750787"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 02:56:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="488567557"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 01 Nov 2021 02:56:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 01 Nov 2021 11:56:54 +0200
+Date: Mon, 1 Nov 2021 11:56:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <YX+55t2bLt0EfHmy@intel.com>
+References: <20211006204937.30774-1-ville.syrjala@linux.intel.com>
+ <20211006204937.30774-10-ville.syrjala@linux.intel.com>
+ <d1b010a61022dd0e80ec7f075fee40473b8b7bc1.camel@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YXrCAaGhLVtduUfa@phenom.ffwll.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 02/28] drm/i915: use new iterator in
- i915_gem_object_wait_reservation
+In-Reply-To: <d1b010a61022dd0e80ec7f075fee40473b8b7bc1.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 09/16] drm/i915: Query the vswing levels
+ per-lane for icl mg phy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,66 +50,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 28/10/2021 16:30, Daniel Vetter wrote:
-> On Thu, Oct 28, 2021 at 10:41:38AM +0200, Christian KÃ¶nig wrote:
->> Am 21.10.21 um 13:13 schrieb Tvrtko Ursulin:
->>>
->>> On 21/10/2021 12:06, Maarten Lankhorst wrote:
->>>> Op 21-10-2021 om 12:38 schreef Christian KÃ¶nig:
->>>>> Am 21.10.21 um 12:35 schrieb Maarten Lankhorst:
->>>>>> From: Christian KÃ¶nig <christian.koenig@amd.com>
->>>>>>
->>>>>> Simplifying the code a bit.
->>>>>>
->>>>>> Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
->>>>>> [mlankhorst: Handle timeout = 0 correctly, use new
->>>>>> i915_request_wait_timeout.]
->>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>>>
->>>>> LGTM, do you want to push it or should I pick it up into drm-misc-next?
->>>>
->>>> I think it can be applied to drm-intel-gt-next, after a backmerge.
->>>> It needs patch 1 too, which fixes
->>>>
->>>> i915_request_wait semantics when used in dma-fence. It exports a
->>>> dma-fence compatible i915_request_wait_timeout function, used in
->>>> this patch.
->>
->> What about the other i915 patches? I guess you then want to merge them
->> through drm-intel-gt-next as well.
->>
->>> I don't think my open has been resolved, at least I haven't seen a reply
->>> from Daniel on the topic of potential for infinite waits with untrusted
->>> clients after this change. +Daniel
->>
->> Please resolve that internally and let me know the result. I'm fine to use
->> any of the possible approaches, I just need to know which one.
+On Fri, Oct 29, 2021 at 09:59:11PM +0000, Souza, Jose wrote:
+> On Wed, 2021-10-06 at 23:49 +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Prepare for per-lane drive settings by querying the desired vswing
+> > level per-lane.
+> > 
+> > Note that the code only does two loops, with each one writing the
+> > levels for two TX lanes.
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 13 ++++++++++++-
+> >  1 file changed, 12 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 4c400f0e7347..1874a2ca8f3b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -1163,7 +1163,6 @@ static void icl_mg_phy_set_signal_levels(struct intel_encoder *encoder,
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> >  	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
+> > -	int level = intel_ddi_level(encoder, crtc_state, 0);
+> >  	const struct intel_ddi_buf_trans *trans;
+> >  	int n_entries, ln;
+> >  	u32 val;
+> > @@ -1188,12 +1187,18 @@ static void icl_mg_phy_set_signal_levels(struct intel_encoder *encoder,
+> >  
+> >  	/* Program MG_TX_SWINGCTRL with values from vswing table */
+> >  	for (ln = 0; ln < 2; ln++) {
+> > +		int level;
+> > +
+> > +		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
+> > +
+> >  		val = intel_de_read(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port));
+> >  		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
+> >  		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
+> >  			trans->entries[level].mg.cri_txdeemph_override_17_12);
+> >  		intel_de_write(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port), val);
+> >  
+> > +		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
+> > +
+> >  		val = intel_de_read(dev_priv, MG_TX2_SWINGCTRL(ln, tc_port));
+> >  		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
+> >  		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
+> > @@ -1203,6 +1208,10 @@ static void icl_mg_phy_set_signal_levels(struct intel_encoder *encoder,
+> >  
+> >  	/* Program MG_TX_DRVCTRL with values from vswing table */
+> >  	for (ln = 0; ln < 2; ln++) {
+> > +		int level;
+> > +
+> > +		level = intel_ddi_level(encoder, crtc_state, 2*ln+0);
+> > +
+> >  		val = intel_de_read(dev_priv, MG_TX1_DRVCTRL(ln, tc_port));
+> >  		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
+> >  			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
+> > @@ -1213,6 +1222,8 @@ static void icl_mg_phy_set_signal_levels(struct intel_encoder *encoder,
+> >  			CRI_TXDEEMPH_OVERRIDE_EN;
+> >  		intel_de_write(dev_priv, MG_TX1_DRVCTRL(ln, tc_port), val);
+> >  
+> > +		level = intel_ddi_level(encoder, crtc_state, 2*ln+1);
 > 
-> I thought I explained this in the patch set from Maarten. This isn't an
-> issue, since the exact same thing can happen if you get interrupts and
-> stuff.
+> I believe our code style requires that we have spaces, so it should be (2 * ln + 1).
 
-Ah were you trying to point out all this time the infinite wait just got 
-moved from inside the "old" dma_resv_get_fences to the new iterator caller?
-
-Regards,
-
-Tvrtko
+Neither is really good, but the one with spaces just looks ugly IMO.
 
 > 
-> The only proper fix for bounding the waits is a) compositor grabs a stable
-> set of dma_fence from the dma-buf through the proposed fence export ioctl
-> b) compositor waits on that fence (or drm_syncobj).
+> With the answers requested in the previous patch:
 > 
-> Everything else is cargo-culted nonsense, and very much includes that igt
-> patch that's floating around internally.
+> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 > 
-> I can also whack this into drm-next if this is stuck in this silly
-> bikeshed.
-> -Daniel
 > 
+> > +
+> >  		val = intel_de_read(dev_priv, MG_TX2_DRVCTRL(ln, tc_port));
+> >  		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
+> >  			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
+> 
+
+-- 
+Ville Syrjälä
+Intel
