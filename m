@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36263441567
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 09:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C75004415A2
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 09:46:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CEB36E084;
-	Mon,  1 Nov 2021 08:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1067D6E176;
+	Mon,  1 Nov 2021 08:46:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF326E084
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 08:37:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="317171400"
-X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="317171400"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 01:37:03 -0700
-X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="488548522"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 318C66E176
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 08:46:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="211027269"
+X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="211027269"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 01:46:45 -0700
+X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="499956695"
 Received: from unknown (HELO intel.com) ([10.237.72.167])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 01:37:02 -0700
-Date: Mon, 1 Nov 2021 10:36:31 +0200
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 01:46:44 -0700
+Date: Mon, 1 Nov 2021 10:41:58 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20211101083631.GA8827@intel.com>
+Message-ID: <20211101084158.GA8858@intel.com>
 References: <20211029191802.18448-1-ville.syrjala@linux.intel.com>
- <20211029191802.18448-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211029191802.18448-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211029191802.18448-1-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/hdmi: Turn DP++ TMDS output
- buffers back on in encoder->shutdown()
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Don't request GMBUS to
+ generate irqs when called while irqs are off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,130 +46,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 29, 2021 at 10:18:02PM +0300, Ville Syrjala wrote:
+On Fri, Oct 29, 2021 at 10:18:01PM +0300, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Looks like our VBIOS/GOP generally fail to turn the DP dual mode adater
-> TMDS output buffers back on after a reboot. This leads to a black screen
-> after reboot if we turned the TMDS output buffers off prior to reboot.
-> And if i915 decides to do a fastboot the black screen will persist even
-> after i915 takes over.
+> We will need to do some i2c poking from the encoder->shutdown() hook.
+> Currently that gets called after irqs have been turned off. We still
+> poll the gmbus status bits even if the interrupt never arrives so
+> things will work just fine. But seems like asking gmbus to generate
+> interrupts we will never see is a bit pointless, so don't.
 > 
-> Apparently this has been a problem ever since commit b2ccb822d376 ("drm/i915:
-> Enable/disable TMDS output buffers in DP++ adaptor as needed") if one
-> rebooted while the display was turned off. And things became worse with
-> commit fe0f1e3bfdfe ("drm/i915: Shut down displays gracefully on reboot")
-> since now we always turn the display off before a reboot.
-> 
-> This was reported on a RKL, but I confirmed the same behaviour on my
-> SNB as well. So looks pretty universal.
-> 
-> Let's fix this by explicitly turning the TMDS output buffers back on
-> in the encoder->shutdown() hook. Note that this gets called after irqs
-> have been disabled, so the i2c communication with the DP dual mode
-> adapter has to be performed via polling (which the gmbus code is
-> perfectly happy to do for us).
-> 
-> We also need a bit of care in handling DDI encoders which may or may
-> not be set up for HDMI output. Specifically ddc_pin will not be
-> populated for a DP only DDI encoder, in which case we don't want to
-> call intel_gmbus_get_adapter(). We can handle that by simply doing
-> the dual mode adapter type check before calling
-> intel_gmbus_get_adapter().
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: b2ccb822d376 ("drm/i915: Enable/disable TMDS output buffers in DP++ adaptor as needed")
-> Fixes: fe0f1e3bfdfe ("drm/i915: Shut down displays gracefully on reboot")
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4371
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/g4x_hdmi.c   |  1 +
->  drivers/gpu/drm/i915/display/intel_ddi.c  |  1 +
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 16 ++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_hdmi.h |  1 +
->  4 files changed, 17 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_gmbus.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> index 88c427f3c346..f5b4dd5b4275 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> @@ -584,6 +584,7 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
->  		else
->  			intel_encoder->enable = g4x_enable_hdmi;
->  	}
-> +	intel_encoder->shutdown = intel_hdmi_encoder_shutdown;
->  
->  	intel_encoder->type = INTEL_OUTPUT_HDMI;
->  	intel_encoder->power_domain = intel_port_to_power_domain(port);
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 9fb99b09fff8..5ef2882727e1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4312,6 +4312,7 @@ static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
->  	enum phy phy = intel_port_to_phy(i915, encoder->port);
->  
->  	intel_dp_encoder_shutdown(encoder);
-> +	intel_hdmi_encoder_shutdown(encoder);
->  
->  	if (!intel_phy_is_tc(i915, phy))
->  		return;
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 7e6af959bf83..3b5b9e7b05b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1246,12 +1246,13 @@ static void hsw_set_infoframes(struct intel_encoder *encoder,
->  void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
->  {
->  	struct drm_i915_private *dev_priv = intel_hdmi_to_i915(hdmi);
-> -	struct i2c_adapter *adapter =
-> -		intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
-> +	struct i2c_adapter *adapter;
->  
->  	if (hdmi->dp_dual_mode.type < DRM_DP_DUAL_MODE_TYPE2_DVI)
->  		return;
->  
-> +	adapter = intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
-> +
->  	drm_dbg_kms(&dev_priv->drm, "%s DP dual mode adaptor TMDS output\n",
->  		    enable ? "Enabling" : "Disabling");
->  
-> @@ -2285,6 +2286,17 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  	return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> index ceb1bf8a8c3c..3b8b84177085 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> @@ -334,6 +334,15 @@ intel_gpio_setup(struct intel_gmbus *bus, unsigned int pin)
+>  	algo->data = bus;
 >  }
 >  
-> +void intel_hdmi_encoder_shutdown(struct intel_encoder *encoder)
+> +static bool has_gmbus_irq(struct drm_i915_private *i915)
 > +{
-> +	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
-> +
 > +	/*
-> +	 * Give a hand to buggy BIOSen which forget to turn
-> +	 * the TMDS output buffers back on after a reboot.
+> +	 * encoder->shutdown() may want to use GMBUS
+> +	 * after irqs have already been disabled.
 > +	 */
-> +	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
+> +	return HAS_GMBUS_IRQ(i915) && intel_irqs_enabled(i915);
 > +}
 > +
->  static void
->  intel_hdmi_unset_edid(struct drm_connector *connector)
+>  static int gmbus_wait(struct drm_i915_private *dev_priv, u32 status, u32 irq_en)
 >  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-> index b43a180d007e..2bf440eb400a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-> @@ -28,6 +28,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
->  int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  			      struct intel_crtc_state *pipe_config,
->  			      struct drm_connector_state *conn_state);
-> +void intel_hdmi_encoder_shutdown(struct intel_encoder *encoder);
->  bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
->  				       struct drm_connector *connector,
->  				       bool high_tmds_clock_ratio,
+>  	DEFINE_WAIT(wait);
+> @@ -344,7 +353,7 @@ static int gmbus_wait(struct drm_i915_private *dev_priv, u32 status, u32 irq_en)
+>  	 * we also need to check for NAKs besides the hw ready/idle signal, we
+>  	 * need to wake up periodically and check that ourselves.
+>  	 */
+> -	if (!HAS_GMBUS_IRQ(dev_priv))
+> +	if (!has_gmbus_irq(dev_priv))
+>  		irq_en = 0;
+>  
+>  	add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
+> @@ -375,7 +384,7 @@ gmbus_wait_idle(struct drm_i915_private *dev_priv)
+>  
+>  	/* Important: The hw handles only the first bit, so set only one! */
+>  	irq_enable = 0;
+> -	if (HAS_GMBUS_IRQ(dev_priv))
+> +	if (has_gmbus_irq(dev_priv))
+>  		irq_enable = GMBUS_IDLE_EN;
+>  
+>  	add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
 > -- 
 > 2.32.0
 > 
