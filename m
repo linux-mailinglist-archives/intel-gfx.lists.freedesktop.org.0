@@ -1,39 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD36D441B08
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 13:16:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DFFD441B1A
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 13:25:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6510E89FC8;
-	Mon,  1 Nov 2021 12:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 736E16E0EF;
+	Mon,  1 Nov 2021 12:24:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1784689FC8
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 12:15:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="230953009"
-X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="230953009"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 05:15:58 -0700
-X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="500019015"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 05:15:57 -0700
-Date: Mon, 1 Nov 2021 14:15:53 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20211101121553.GA3367933@ideak-desk.fi.intel.com>
-References: <20211006204547.669464-1-anusha.srivatsa@intel.com>
- <163546034594.4342.15802191645879463581@emeril.freedesktop.org>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E18A46E0EB;
+ Mon,  1 Nov 2021 12:24:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="291841005"
+X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="291841005"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 05:24:55 -0700
+X-IronPort-AV: E=Sophos;i="5.87,199,1631602800"; d="scan'208";a="727345909"
+Received: from unknown (HELO thellstr-mobl1.intel.com) ([10.249.254.21])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 05:24:53 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon,  1 Nov 2021 13:24:44 +0100
+Message-Id: <20211101122444.114607-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <163546034594.4342.15802191645879463581@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgaTkx?=
- =?utf-8?q?5/display/dmc=3A_Add_Support_for_PipeC_and_PipeD_DMC_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5] drm/i915: Introduce refcounted sg-tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,455 +43,986 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 28, 2021 at 10:32:25PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: i915/display/dmc: Add Support for PipeC and PipeD DMC (rev2)
-> URL   : https://patchwork.freedesktop.org/series/95532/
-> State : success
+As we start to introduce asynchronous failsafe object migration,
+where we update the object state and then submit asynchronous
+commands we need to record what memory resources are actually used
+by various part of the command stream. Initially for three purposes:
 
-Thanks for the patch, pushed to drm-intel-next.
+1) Error capture.
+2) Asynchronous migration error recovery.
+3) Asynchronous vma bind.
 
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_10807_full -> Patchwork_21477_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **SUCCESS**
-> 
->   No regressions found.
-> 
->   
-> 
-> Participating hosts (10 -> 10)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_21477_full that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_ctx_isolation@preservation-s3@vecs0:
->     - shard-kbl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180]) +4 similar issues
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl6/igt@gem_ctx_isolation@preservation-s3@vecs0.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl1/igt@gem_ctx_isolation@preservation-s3@vecs0.html
-> 
->   * igt@gem_exec_fair@basic-deadline:
->     - shard-apl:          NOTRUN -> [FAIL][3] ([i915#2846])
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@gem_exec_fair@basic-deadline.html
-> 
->   * igt@gem_exec_fair@basic-flow@rcs0:
->     - shard-tglb:         [PASS][4] -> [FAIL][5] ([i915#2842]) +2 similar issues
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-tglb2/igt@gem_exec_fair@basic-flow@rcs0.html
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-tglb7/igt@gem_exec_fair@basic-flow@rcs0.html
-> 
->   * igt@gem_exec_fair@basic-none-rrul@rcs0:
->     - shard-kbl:          NOTRUN -> [FAIL][6] ([i915#2842])
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@gem_exec_fair@basic-none-rrul@rcs0.html
-> 
->   * igt@gem_exec_fair@basic-none-share@rcs0:
->     - shard-iclb:         [PASS][7] -> [FAIL][8] ([i915#2842])
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb7/igt@gem_exec_fair@basic-none-share@rcs0.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb6/igt@gem_exec_fair@basic-none-share@rcs0.html
->     - shard-apl:          [PASS][9] -> [SKIP][10] ([fdo#109271])
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl4/igt@gem_exec_fair@basic-none-share@rcs0.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl1/igt@gem_exec_fair@basic-none-share@rcs0.html
-> 
->   * igt@gem_exec_fair@basic-pace@rcs0:
->     - shard-kbl:          [PASS][11] -> [FAIL][12] ([i915#2842]) +1 similar issue
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl7/igt@gem_exec_fair@basic-pace@rcs0.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl7/igt@gem_exec_fair@basic-pace@rcs0.html
-> 
->   * igt@gem_huc_copy@huc-copy:
->     - shard-apl:          NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#2190])
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@gem_huc_copy@huc-copy.html
-> 
->   * igt@gem_workarounds@suspend-resume-context:
->     - shard-apl:          [PASS][14] -> [DMESG-WARN][15] ([i915#180]) +1 similar issue
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl3/igt@gem_workarounds@suspend-resume-context.html
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl4/igt@gem_workarounds@suspend-resume-context.html
-> 
->   * igt@gen9_exec_parse@allowed-single:
->     - shard-skl:          [PASS][16] -> [DMESG-WARN][17] ([i915#1436] / [i915#716])
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl4/igt@gen9_exec_parse@allowed-single.html
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@gen9_exec_parse@allowed-single.html
-> 
->   * igt@i915_suspend@debugfs-reader:
->     - shard-tglb:         [PASS][18] -> [INCOMPLETE][19] ([i915#456])
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-tglb5/igt@i915_suspend@debugfs-reader.html
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-tglb7/igt@i915_suspend@debugfs-reader.html
-> 
->   * igt@kms_async_flips@crc:
->     - shard-skl:          NOTRUN -> [FAIL][20] ([i915#4272])
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_async_flips@crc.html
-> 
->   * igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip:
->     - shard-skl:          NOTRUN -> [SKIP][21] ([fdo#109271] / [i915#3777])
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip.html
-> 
->   * igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip:
->     - shard-apl:          NOTRUN -> [SKIP][22] ([fdo#109271] / [i915#3777]) +2 similar issues
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip.html
-> 
->   * igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:
->     - shard-kbl:          NOTRUN -> [SKIP][23] ([fdo#109271]) +114 similar issues
->    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl4/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
-> 
->   * igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0:
->     - shard-apl:          NOTRUN -> [SKIP][24] ([fdo#109271]) +195 similar issues
->    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0.html
-> 
->   * igt@kms_ccs@pipe-a-bad-rotation-90-y_tiled_ccs:
->     - shard-snb:          NOTRUN -> [SKIP][25] ([fdo#109271]) +39 similar issues
->    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-snb5/igt@kms_ccs@pipe-a-bad-rotation-90-y_tiled_ccs.html
-> 
->   * igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_gen12_rc_ccs_cc:
->     - shard-kbl:          NOTRUN -> [SKIP][26] ([fdo#109271] / [i915#3886]) +7 similar issues
->    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl7/igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_gen12_rc_ccs_cc.html
-> 
->   * igt@kms_ccs@pipe-b-crc-primary-basic-y_tiled_gen12_mc_ccs:
->     - shard-skl:          NOTRUN -> [SKIP][27] ([fdo#109271] / [i915#3886]) +2 similar issues
->    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_ccs@pipe-b-crc-primary-basic-y_tiled_gen12_mc_ccs.html
-> 
->   * igt@kms_ccs@pipe-c-bad-rotation-90-y_tiled_gen12_mc_ccs:
->     - shard-apl:          NOTRUN -> [SKIP][28] ([fdo#109271] / [i915#3886]) +10 similar issues
->    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@kms_ccs@pipe-c-bad-rotation-90-y_tiled_gen12_mc_ccs.html
-> 
->   * igt@kms_chamelium@hdmi-crc-nonplanar-formats:
->     - shard-iclb:         NOTRUN -> [SKIP][29] ([fdo#109284] / [fdo#111827])
->    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@kms_chamelium@hdmi-crc-nonplanar-formats.html
-> 
->   * igt@kms_chamelium@hdmi-hpd-storm:
->     - shard-kbl:          NOTRUN -> [SKIP][30] ([fdo#109271] / [fdo#111827]) +8 similar issues
->    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@kms_chamelium@hdmi-hpd-storm.html
-> 
->   * igt@kms_chamelium@vga-edid-read:
->     - shard-apl:          NOTRUN -> [SKIP][31] ([fdo#109271] / [fdo#111827]) +14 similar issues
->    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@kms_chamelium@vga-edid-read.html
-> 
->   * igt@kms_chamelium@vga-frame-dump:
->     - shard-skl:          NOTRUN -> [SKIP][32] ([fdo#109271] / [fdo#111827]) +2 similar issues
->    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_chamelium@vga-frame-dump.html
-> 
->   * igt@kms_color_chamelium@pipe-d-ctm-blue-to-red:
->     - shard-snb:          NOTRUN -> [SKIP][33] ([fdo#109271] / [fdo#111827]) +2 similar issues
->    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-snb5/igt@kms_color_chamelium@pipe-d-ctm-blue-to-red.html
-> 
->   * igt@kms_content_protection@atomic:
->     - shard-kbl:          NOTRUN -> [TIMEOUT][34] ([i915#1319]) +1 similar issue
->    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@kms_content_protection@atomic.html
-> 
->   * igt@kms_cursor_legacy@pipe-d-single-bo:
->     - shard-kbl:          NOTRUN -> [SKIP][35] ([fdo#109271] / [i915#533]) +1 similar issue
->    [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl3/igt@kms_cursor_legacy@pipe-d-single-bo.html
-> 
->   * igt@kms_draw_crc@draw-method-rgb565-pwrite-xtiled:
->     - shard-glk:          [PASS][36] -> [DMESG-WARN][37] ([i915#118])
->    [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-glk3/igt@kms_draw_crc@draw-method-rgb565-pwrite-xtiled.html
->    [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-glk5/igt@kms_draw_crc@draw-method-rgb565-pwrite-xtiled.html
-> 
->   * igt@kms_flip@2x-plain-flip-ts-check-interruptible:
->     - shard-iclb:         NOTRUN -> [SKIP][38] ([fdo#109274])
->    [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@kms_flip@2x-plain-flip-ts-check-interruptible.html
-> 
->   * igt@kms_flip@flip-vs-expired-vblank@c-edp1:
->     - shard-skl:          [PASS][39] -> [FAIL][40] ([i915#79])
->    [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl2/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
->    [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl4/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-> 
->   * igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1:
->     - shard-skl:          [PASS][41] -> [FAIL][42] ([i915#2122]) +1 similar issue
->    [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl7/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html
->    [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html
-> 
->   * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile:
->     - shard-iclb:         [PASS][43] -> [SKIP][44] ([i915#3701])
->    [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb3/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile.html
->    [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile.html
-> 
->   * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-spr-indfb-draw-blt:
->     - shard-iclb:         NOTRUN -> [SKIP][45] ([fdo#109280])
->    [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-spr-indfb-draw-blt.html
-> 
->   * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-indfb-msflip-blt:
->     - shard-skl:          NOTRUN -> [SKIP][46] ([fdo#109271]) +51 similar issues
->    [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-indfb-msflip-blt.html
-> 
->   * igt@kms_pipe_crc_basic@disable-crc-after-crtc-pipe-d:
->     - shard-apl:          NOTRUN -> [SKIP][47] ([fdo#109271] / [i915#533]) +1 similar issue
->    [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl1/igt@kms_pipe_crc_basic@disable-crc-after-crtc-pipe-d.html
-> 
->   * igt@kms_pipe_crc_basic@hang-read-crc-pipe-d:
->     - shard-skl:          NOTRUN -> [SKIP][48] ([fdo#109271] / [i915#533]) +1 similar issue
->    [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_pipe_crc_basic@hang-read-crc-pipe-d.html
-> 
->   * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:
->     - shard-skl:          [PASS][49] -> [INCOMPLETE][50] ([i915#198] / [i915#2828])
->    [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
->    [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-> 
->   * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d:
->     - shard-tglb:         [PASS][51] -> [INCOMPLETE][52] ([i915#4184] / [i915#456])
->    [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-tglb3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html
->    [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-tglb7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html
-> 
->   * igt@kms_plane@plane-panning-bottom-right-suspend@pipe-b-planes:
->     - shard-kbl:          NOTRUN -> [DMESG-WARN][53] ([i915#180]) +3 similar issues
->    [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend@pipe-b-planes.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
->     - shard-skl:          [PASS][54] -> [FAIL][55] ([fdo#108145] / [i915#265])
->    [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
->    [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-c-alpha-7efc:
->     - shard-apl:          NOTRUN -> [FAIL][56] ([fdo#108145] / [i915#265])
->    [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-c-alpha-opaque-fb:
->     - shard-kbl:          NOTRUN -> [FAIL][57] ([fdo#108145] / [i915#265]) +2 similar issues
->    [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@kms_plane_alpha_blend@pipe-c-alpha-opaque-fb.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-c-alpha-transparent-fb:
->     - shard-apl:          NOTRUN -> [FAIL][58] ([i915#265])
->    [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl7/igt@kms_plane_alpha_blend@pipe-c-alpha-transparent-fb.html
->     - shard-kbl:          NOTRUN -> [FAIL][59] ([i915#265])
->    [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@kms_plane_alpha_blend@pipe-c-alpha-transparent-fb.html
-> 
->   * igt@kms_plane_lowres@pipe-c-tiling-yf:
->     - shard-iclb:         NOTRUN -> [SKIP][60] ([i915#3536])
->    [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@kms_plane_lowres@pipe-c-tiling-yf.html
-> 
->   * igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1:
->     - shard-apl:          NOTRUN -> [SKIP][61] ([fdo#109271] / [i915#658]) +2 similar issues
->    [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1.html
-> 
->   * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-5:
->     - shard-kbl:          NOTRUN -> [SKIP][62] ([fdo#109271] / [i915#658])
->    [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl7/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-5.html
->     - shard-iclb:         NOTRUN -> [SKIP][63] ([i915#658])
->    [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-5.html
-> 
->   * igt@kms_psr@psr2_primary_render:
->     - shard-iclb:         NOTRUN -> [SKIP][64] ([fdo#109441])
->    [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@kms_psr@psr2_primary_render.html
-> 
->   * igt@kms_psr@psr2_sprite_mmap_gtt:
->     - shard-iclb:         [PASS][65] -> [SKIP][66] ([fdo#109441]) +1 similar issue
->    [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html
->    [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb3/igt@kms_psr@psr2_sprite_mmap_gtt.html
-> 
->   * igt@kms_sysfs_edid_timing:
->     - shard-kbl:          NOTRUN -> [FAIL][67] ([IGT#2])
->    [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl7/igt@kms_sysfs_edid_timing.html
-> 
->   * igt@kms_universal_plane@universal-plane-gen9-features-pipe-d:
->     - shard-iclb:         NOTRUN -> [SKIP][68] ([fdo#109278])
->    [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@kms_universal_plane@universal-plane-gen9-features-pipe-d.html
-> 
->   * igt@kms_writeback@writeback-check-output:
->     - shard-kbl:          NOTRUN -> [SKIP][69] ([fdo#109271] / [i915#2437])
->    [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@kms_writeback@writeback-check-output.html
-> 
->   * igt@kms_writeback@writeback-pixel-formats:
->     - shard-skl:          NOTRUN -> [SKIP][70] ([fdo#109271] / [i915#2437])
->    [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@kms_writeback@writeback-pixel-formats.html
-> 
->   * igt@perf@polling-parameterized:
->     - shard-skl:          [PASS][71] -> [FAIL][72] ([i915#1542])
->    [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl6/igt@perf@polling-parameterized.html
->    [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl9/igt@perf@polling-parameterized.html
-> 
->   * igt@prime_nv_test@i915_import_gtt_mmap:
->     - shard-iclb:         NOTRUN -> [SKIP][73] ([fdo#109291])
->    [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb7/igt@prime_nv_test@i915_import_gtt_mmap.html
-> 
->   * igt@sysfs_clients@create:
->     - shard-apl:          NOTRUN -> [SKIP][74] ([fdo#109271] / [i915#2994]) +2 similar issues
->    [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl7/igt@sysfs_clients@create.html
-> 
->   * igt@sysfs_clients@recycle:
->     - shard-kbl:          NOTRUN -> [SKIP][75] ([fdo#109271] / [i915#2994]) +1 similar issue
->    [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl3/igt@sysfs_clients@recycle.html
-> 
->   * igt@sysfs_clients@split-25:
->     - shard-skl:          NOTRUN -> [SKIP][76] ([fdo#109271] / [i915#2994])
->    [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@sysfs_clients@split-25.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@feature_discovery@psr2:
->     - shard-iclb:         [SKIP][77] ([i915#658]) -> [PASS][78]
->    [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb5/igt@feature_discovery@psr2.html
->    [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb2/igt@feature_discovery@psr2.html
-> 
->   * igt@gem_ctx_isolation@preservation-s3@bcs0:
->     - shard-kbl:          [DMESG-WARN][79] ([i915#180]) -> [PASS][80] +7 similar issues
->    [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl6/igt@gem_ctx_isolation@preservation-s3@bcs0.html
->    [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl1/igt@gem_ctx_isolation@preservation-s3@bcs0.html
-> 
->   * igt@gem_exec_fair@basic-none-vip@rcs0:
->     - shard-glk:          [FAIL][81] ([i915#2842]) -> [PASS][82]
->    [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-glk8/igt@gem_exec_fair@basic-none-vip@rcs0.html
->    [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-glk7/igt@gem_exec_fair@basic-none-vip@rcs0.html
-> 
->   * igt@gem_exec_fair@basic-none@vcs0:
->     - shard-apl:          [FAIL][83] ([i915#2842]) -> [PASS][84]
->    [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl3/igt@gem_exec_fair@basic-none@vcs0.html
->    [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl3/igt@gem_exec_fair@basic-none@vcs0.html
-> 
->   * igt@gem_exec_fair@basic-pace@vecs0:
->     - shard-kbl:          [FAIL][85] ([i915#2842]) -> [PASS][86]
->    [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl7/igt@gem_exec_fair@basic-pace@vecs0.html
->    [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl7/igt@gem_exec_fair@basic-pace@vecs0.html
-> 
->   * igt@gem_exec_fair@basic-sync@rcs0:
->     - shard-kbl:          [SKIP][87] ([fdo#109271]) -> [PASS][88]
->    [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl4/igt@gem_exec_fair@basic-sync@rcs0.html
->    [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@gem_exec_fair@basic-sync@rcs0.html
-> 
->   * igt@i915_pm_dc@dc6-psr:
->     - shard-iclb:         [FAIL][89] ([i915#454]) -> [PASS][90]
->    [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb3/igt@i915_pm_dc@dc6-psr.html
->    [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb6/igt@i915_pm_dc@dc6-psr.html
-> 
->   * igt@i915_selftest@live@hangcheck:
->     - shard-snb:          [INCOMPLETE][91] ([i915#3921]) -> [PASS][92]
->    [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-snb2/igt@i915_selftest@live@hangcheck.html
->    [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-snb5/igt@i915_selftest@live@hangcheck.html
-> 
->   * igt@i915_suspend@fence-restore-tiled2untiled:
->     - shard-apl:          [DMESG-WARN][93] ([i915#180]) -> [PASS][94] +8 similar issues
->    [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl1/igt@i915_suspend@fence-restore-tiled2untiled.html
->    [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl1/igt@i915_suspend@fence-restore-tiled2untiled.html
-> 
->   * igt@kms_color@pipe-b-ctm-0-75:
->     - shard-skl:          [DMESG-WARN][95] ([i915#1982]) -> [PASS][96]
->    [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl1/igt@kms_color@pipe-b-ctm-0-75.html
->    [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl7/igt@kms_color@pipe-b-ctm-0-75.html
-> 
->   * igt@kms_cursor_crc@pipe-a-cursor-suspend:
->     - shard-apl:          [INCOMPLETE][97] ([i915#2828]) -> [PASS][98]
->    [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl2/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
->    [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl7/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-> 
->   * igt@kms_cursor_crc@pipe-b-cursor-256x256-sliding:
->     - shard-kbl:          [INCOMPLETE][99] ([i915#4393]) -> [PASS][100]
->    [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl6/igt@kms_cursor_crc@pipe-b-cursor-256x256-sliding.html
->    [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl7/igt@kms_cursor_crc@pipe-b-cursor-256x256-sliding.html
-> 
->   * igt@kms_flip@flip-vs-expired-vblank@a-edp1:
->     - shard-skl:          [FAIL][101] ([i915#2122]) -> [PASS][102] +1 similar issue
->    [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl2/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
->    [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl4/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-> 
->   * igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile:
->     - shard-iclb:         [SKIP][103] ([i915#3701]) -> [PASS][104]
->    [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb2/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile.html
->    [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb3/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile.html
-> 
->   * igt@kms_hdr@bpc-switch-dpms:
->     - shard-skl:          [FAIL][105] ([i915#1188]) -> [PASS][106] +1 similar issue
->    [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html
->    [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl1/igt@kms_hdr@bpc-switch-dpms.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
->     - shard-skl:          [FAIL][107] ([fdo#108145] / [i915#265]) -> [PASS][108]
->    [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl10/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
->    [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl6/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-> 
->   * igt@kms_psr@psr2_sprite_plane_move:
->     - shard-iclb:         [SKIP][109] ([fdo#109441]) -> [PASS][110] +3 similar issues
->    [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb3/igt@kms_psr@psr2_sprite_plane_move.html
->    [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
-> 
->   
-> #### Warnings ####
-> 
->   * igt@i915_pm_dc@dc9-dpms:
->     - shard-iclb:         [SKIP][111] ([i915#4281]) -> [FAIL][112] ([i915#4275])
->    [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb3/igt@i915_pm_dc@dc9-dpms.html
->    [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb2/igt@i915_pm_dc@dc9-dpms.html
-> 
->   * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-3:
->     - shard-iclb:         [SKIP][113] ([i915#2920]) -> [SKIP][114] ([i915#658]) +1 similar issue
->    [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb2/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-3.html
->    [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb6/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-3.html
-> 
->   * igt@kms_psr2_sf@plane-move-sf-dmg-area-3:
->     - shard-iclb:         [SKIP][115] ([i915#658]) -> [SKIP][116] ([i915#2920]) +2 similar issues
->    [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-iclb5/igt@kms_psr2_sf@plane-move-sf-dmg-area-3.html
->    [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-iclb2/igt@kms_psr2_sf@plane-move-sf-dmg-area-3.html
-> 
->   * igt@runner@aborted:
->     - shard-kbl:          ([FAIL][117], [FAIL][118], [FAIL][119], [FAIL][120], [FAIL][121], [FAIL][122], [FAIL][123], [FAIL][124], [FAIL][125], [FAIL][126], [FAIL][127], [FAIL][128]) ([fdo#109271] / [i915#1436] / [i915#180] / [i915#1814] / [i915#3002] / [i915#3363] / [i915#4312] / [i915#602] / [i915#92]) -> ([FAIL][129], [FAIL][130], [FAIL][131], [FAIL][132], [FAIL][133], [FAIL][134], [FAIL][135], [FAIL][136], [FAIL][137], [FAIL][138], [FAIL][139]) ([i915#1436] / [i915#180] / [i915#1814] / [i915#3002] / [i915#3363] / [i915#4312] / [i915#92])
->    [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl3/igt@runner@aborted.html
->    [118]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl6/igt@runner@aborted.html
->    [119]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl7/igt@runner@aborted.html
->    [120]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl7/igt@runner@aborted.html
->    [121]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl1/igt@runner@aborted.html
->    [122]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl3/igt@runner@aborted.html
->    [123]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl6/igt@runner@aborted.html
->    [124]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl6/igt@runner@aborted.html
->    [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl1/igt@runner@aborted.html
->    [126]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl7/igt@runner@aborted.html
->    [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl6/igt@runner@aborted.html
->    [128]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-kbl7/igt@runner@aborted.html
->    [129]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl3/igt@runner@aborted.html
->    [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl1/igt@runner@aborted.html
->    [131]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl1/igt@runner@aborted.html
->    [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl1/igt@runner@aborted.html
->    [133]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl1/igt@runner@aborted.html
->    [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@runner@aborted.html
->    [135]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@runner@aborted.html
->    [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@runner@aborted.html
->    [137]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@runner@aborted.html
->    [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl6/igt@runner@aborted.html
->    [139]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-kbl7/igt@runner@aborted.html
->     - shard-apl:          ([FAIL][140], [FAIL][141], [FAIL][142], [FAIL][143], [FAIL][144], [FAIL][145], [FAIL][146], [FAIL][147]) ([i915#180] / [i915#3002] / [i915#3363] / [i915#4312]) -> ([FAIL][148], [FAIL][149], [FAIL][150]) ([fdo#109271] / [i915#180] / [i915#1814] / [i915#3002] / [i915#3363] / [i915#4312])
->    [140]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl1/igt@runner@aborted.html
->    [141]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl4/igt@runner@aborted.html
->    [142]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl8/igt@runner@aborted.html
->    [143]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl1/igt@runner@aborted.html
->    [144]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl2/igt@runner@aborted.html
->    [145]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl8/igt@runner@aborted.html
->    [146]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl8/igt@runner@aborted.html
->    [147]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-apl4/igt@runner@aborted.html
->    [148]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl4/igt@runner@aborted.html
->    [149]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl6/igt@runner@aborted.html
->    [150]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-apl8/igt@runner@aborted.html
->     - shard-skl:          [FAIL][151] ([i915#3002] / [i915#3363] / [i915#4312]) -> ([FAIL][152], [FAIL][153]) ([i915#1436] / [i915#3002] / [i915#3363] / [i915#4312])
->    [151]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10807/shard-skl1/igt@runner@aborted.html
->    [152]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl7/igt@runner@aborted.html
->    [153]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/shard-skl10/igt@runner@aborted.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [IGT#2]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/2
->   [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
->   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->   [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
->   [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
->   [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
->   [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
->   [
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21477/index.html
+At the time where these happens, the object state may have been updated
+to be several migrations ahead and object sg-tables discarded.
+
+In order to make it possible to keep sg-tables with memory resource
+information for these operations, introduce refcounted sg-tables that
+aren't freed until the last user is done with them.
+
+The alternative would be to reference information sitting on the
+corresponding ttm_resources which typically have the same lifetime as
+these refcountes sg_tables, but that leads to other awkward constructs:
+Due to the design direction chosen for ttm resource managers that would
+lead to diamond-style inheritance, the LMEM resources may sometimes be
+prematurely freed, and finally the subclassed struct ttm_resource would
+have to bleed into the asynchronous vma bind code.
+
+v3:
+- Address a number of style issues (Matthew Auld)
+v4:
+- Dont check for st->sgl being NULL in i915_ttm_tt__shmem_unpopulate(),
+  that should never happen. (Matthew Auld)
+v5:
+- Fix a Potential double-free (Matthew Auld)
+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  53 +++--
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 186 ++++++++++--------
+ drivers/gpu/drm/i915/i915_scatterlist.c       |  62 ++++--
+ drivers/gpu/drm/i915/i915_scatterlist.h       |  76 ++++++-
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  15 +-
+ drivers/gpu/drm/i915/intel_region_ttm.h       |   5 +-
+ drivers/gpu/drm/i915/selftests/mock_region.c  |  12 +-
+ 9 files changed, 277 insertions(+), 147 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index a5479ac7a4ad..ba224598ed69 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -620,12 +620,12 @@ int i915_gem_object_wait_migration(struct drm_i915_gem_object *obj,
+ bool i915_gem_object_placement_possible(struct drm_i915_gem_object *obj,
+ 					enum intel_memory_type type);
+ 
+-struct sg_table *shmem_alloc_st(struct drm_i915_private *i915,
+-				size_t size, struct intel_memory_region *mr,
+-				struct address_space *mapping,
+-				unsigned int max_segment);
+-void shmem_free_st(struct sg_table *st, struct address_space *mapping,
+-		   bool dirty, bool backup);
++int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
++			 size_t size, struct intel_memory_region *mr,
++			 struct address_space *mapping,
++			 unsigned int max_segment);
++void shmem_sg_free_table(struct sg_table *st, struct address_space *mapping,
++			 bool dirty, bool backup);
+ void __shmem_writeback(size_t size, struct address_space *mapping);
+ 
+ #ifdef CONFIG_MMU_NOTIFIER
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index a4b69a43b898..604ed5ad77f5 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -544,6 +544,7 @@ struct drm_i915_gem_object {
+ 		 */
+ 		struct list_head region_link;
+ 
++		struct i915_refct_sgt *rsgt;
+ 		struct sg_table *pages;
+ 		void *mapping;
+ 
+@@ -597,7 +598,7 @@ struct drm_i915_gem_object {
+ 	} mm;
+ 
+ 	struct {
+-		struct sg_table *cached_io_st;
++		struct i915_refct_sgt *cached_io_rsgt;
+ 		struct i915_gem_object_page_iter get_io_page;
+ 		struct drm_i915_gem_object *backup;
+ 		bool created:1;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index 01f332d8dbde..4a88c89b7a14 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -25,8 +25,8 @@ static void check_release_pagevec(struct pagevec *pvec)
+ 	cond_resched();
+ }
+ 
+-void shmem_free_st(struct sg_table *st, struct address_space *mapping,
+-		   bool dirty, bool backup)
++void shmem_sg_free_table(struct sg_table *st, struct address_space *mapping,
++			 bool dirty, bool backup)
+ {
+ 	struct sgt_iter sgt_iter;
+ 	struct pagevec pvec;
+@@ -49,17 +49,15 @@ void shmem_free_st(struct sg_table *st, struct address_space *mapping,
+ 		check_release_pagevec(&pvec);
+ 
+ 	sg_free_table(st);
+-	kfree(st);
+ }
+ 
+-struct sg_table *shmem_alloc_st(struct drm_i915_private *i915,
+-				size_t size, struct intel_memory_region *mr,
+-				struct address_space *mapping,
+-				unsigned int max_segment)
++int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
++			 size_t size, struct intel_memory_region *mr,
++			 struct address_space *mapping,
++			 unsigned int max_segment)
+ {
+ 	const unsigned long page_count = size / PAGE_SIZE;
+ 	unsigned long i;
+-	struct sg_table *st;
+ 	struct scatterlist *sg;
+ 	struct page *page;
+ 	unsigned long last_pfn = 0;	/* suppress gcc warning */
+@@ -71,16 +69,10 @@ struct sg_table *shmem_alloc_st(struct drm_i915_private *i915,
+ 	 * object, bail early.
+ 	 */
+ 	if (size > resource_size(&mr->region))
+-		return ERR_PTR(-ENOMEM);
+-
+-	st = kmalloc(sizeof(*st), GFP_KERNEL);
+-	if (!st)
+-		return ERR_PTR(-ENOMEM);
++		return -ENOMEM;
+ 
+-	if (sg_alloc_table(st, page_count, GFP_KERNEL)) {
+-		kfree(st);
+-		return ERR_PTR(-ENOMEM);
+-	}
++	if (sg_alloc_table(st, page_count, GFP_KERNEL))
++		return -ENOMEM;
+ 
+ 	/*
+ 	 * Get the list of pages out of our struct file.  They'll be pinned
+@@ -167,15 +159,14 @@ struct sg_table *shmem_alloc_st(struct drm_i915_private *i915,
+ 	/* Trim unused sg entries to avoid wasting memory. */
+ 	i915_sg_trim(st);
+ 
+-	return st;
++	return 0;
+ err_sg:
+ 	sg_mark_end(sg);
+ 	if (sg != st->sgl) {
+-		shmem_free_st(st, mapping, false, false);
++		shmem_sg_free_table(st, mapping, false, false);
+ 	} else {
+ 		mapping_clear_unevictable(mapping);
+ 		sg_free_table(st);
+-		kfree(st);
+ 	}
+ 
+ 	/*
+@@ -190,7 +181,7 @@ struct sg_table *shmem_alloc_st(struct drm_i915_private *i915,
+ 	if (ret == -ENOSPC)
+ 		ret = -ENOMEM;
+ 
+-	return ERR_PTR(ret);
++	return ret;
+ }
+ 
+ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+@@ -214,11 +205,14 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	GEM_BUG_ON(obj->write_domain & I915_GEM_GPU_DOMAINS);
+ 
+ rebuild_st:
+-	st = shmem_alloc_st(i915, obj->base.size, mem, mapping, max_segment);
+-	if (IS_ERR(st)) {
+-		ret = PTR_ERR(st);
++	st = kmalloc(sizeof(*st), GFP_KERNEL);
++	if (!st)
++		return -ENOMEM;
++
++	ret = shmem_sg_alloc_table(i915, st, obj->base.size, mem, mapping,
++				   max_segment);
++	if (ret)
+ 		goto err_st;
+-	}
+ 
+ 	ret = i915_gem_gtt_prepare_pages(obj, st);
+ 	if (ret) {
+@@ -254,7 +248,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	return 0;
+ 
+ err_pages:
+-	shmem_free_st(st, mapping, false, false);
++	shmem_sg_free_table(st, mapping, false, false);
+ 	/*
+ 	 * shmemfs first checks if there is enough memory to allocate the page
+ 	 * and reports ENOSPC should there be insufficient, along with the usual
+@@ -268,6 +262,8 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	if (ret == -ENOSPC)
+ 		ret = -ENOMEM;
+ 
++	kfree(st);
++
+ 	return ret;
+ }
+ 
+@@ -374,8 +370,9 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
+ 	if (i915_gem_object_needs_bit17_swizzle(obj))
+ 		i915_gem_object_save_bit_17_swizzle(obj, pages);
+ 
+-	shmem_free_st(pages, file_inode(obj->base.filp)->i_mapping,
+-		      obj->mm.dirty, obj->mm.madv == I915_MADV_WILLNEED);
++	shmem_sg_free_table(pages, file_inode(obj->base.filp)->i_mapping,
++			    obj->mm.dirty, obj->mm.madv == I915_MADV_WILLNEED);
++	kfree(pages);
+ 	obj->mm.dirty = false;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 4fd2edb20dd9..6a05369e2705 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -34,7 +34,7 @@
+  * struct i915_ttm_tt - TTM page vector with additional private information
+  * @ttm: The base TTM page vector.
+  * @dev: The struct device used for dma mapping and unmapping.
+- * @cached_st: The cached scatter-gather table.
++ * @cached_rsgt: The cached scatter-gather table.
+  * @is_shmem: Set if using shmem.
+  * @filp: The shmem file, if using shmem backend.
+  *
+@@ -47,7 +47,7 @@
+ struct i915_ttm_tt {
+ 	struct ttm_tt ttm;
+ 	struct device *dev;
+-	struct sg_table *cached_st;
++	struct i915_refct_sgt cached_rsgt;
+ 
+ 	bool is_shmem;
+ 	struct file *filp;
+@@ -217,18 +217,16 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+ 		i915_tt->filp = filp;
+ 	}
+ 
+-	st = shmem_alloc_st(i915, size, mr, filp->f_mapping, max_segment);
+-	if (IS_ERR(st))
+-		return PTR_ERR(st);
++	st = &i915_tt->cached_rsgt.table;
++	err = shmem_sg_alloc_table(i915, st, size, mr, filp->f_mapping,
++				   max_segment);
++	if (err)
++		return err;
+ 
+-	err = dma_map_sg_attrs(i915_tt->dev,
+-			       st->sgl, st->nents,
+-			       DMA_BIDIRECTIONAL,
+-			       DMA_ATTR_SKIP_CPU_SYNC);
+-	if (err <= 0) {
+-		err = -EINVAL;
++	err = dma_map_sgtable(i915_tt->dev, st, DMA_BIDIRECTIONAL,
++			      DMA_ATTR_SKIP_CPU_SYNC);
++	if (err)
+ 		goto err_free_st;
+-	}
+ 
+ 	i = 0;
+ 	for_each_sgt_page(page, sgt_iter, st)
+@@ -237,11 +235,11 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+ 	if (ttm->page_flags & TTM_TT_FLAG_SWAPPED)
+ 		ttm->page_flags &= ~TTM_TT_FLAG_SWAPPED;
+ 
+-	i915_tt->cached_st = st;
+ 	return 0;
+ 
+ err_free_st:
+-	shmem_free_st(st, filp->f_mapping, false, false);
++	shmem_sg_free_table(st, filp->f_mapping, false, false);
++
+ 	return err;
+ }
+ 
+@@ -249,16 +247,27 @@ static void i915_ttm_tt_shmem_unpopulate(struct ttm_tt *ttm)
+ {
+ 	struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
+ 	bool backup = ttm->page_flags & TTM_TT_FLAG_SWAPPED;
++	struct sg_table *st = &i915_tt->cached_rsgt.table;
++
++	shmem_sg_free_table(st, file_inode(i915_tt->filp)->i_mapping,
++			    backup, backup);
++}
+ 
+-	dma_unmap_sg(i915_tt->dev, i915_tt->cached_st->sgl,
+-		     i915_tt->cached_st->nents,
+-		     DMA_BIDIRECTIONAL);
++static void i915_ttm_tt_release(struct kref *ref)
++{
++	struct i915_ttm_tt *i915_tt =
++		container_of(ref, typeof(*i915_tt), cached_rsgt.kref);
++	struct sg_table *st = &i915_tt->cached_rsgt.table;
+ 
+-	shmem_free_st(fetch_and_zero(&i915_tt->cached_st),
+-		      file_inode(i915_tt->filp)->i_mapping,
+-		      backup, backup);
++	GEM_WARN_ON(st->sgl);
++
++	kfree(i915_tt);
+ }
+ 
++static const struct i915_refct_sgt_ops tt_rsgt_ops = {
++	.release = i915_ttm_tt_release
++};
++
+ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
+ 					 uint32_t page_flags)
+ {
+@@ -287,6 +296,9 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
+ 	if (ret)
+ 		goto err_free;
+ 
++	__i915_refct_sgt_init(&i915_tt->cached_rsgt, bo->base.size,
++			      &tt_rsgt_ops);
++
+ 	i915_tt->dev = obj->base.dev->dev;
+ 
+ 	return &i915_tt->ttm;
+@@ -311,17 +323,15 @@ static int i915_ttm_tt_populate(struct ttm_device *bdev,
+ static void i915_ttm_tt_unpopulate(struct ttm_device *bdev, struct ttm_tt *ttm)
+ {
+ 	struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
++	struct sg_table *st = &i915_tt->cached_rsgt.table;
++
++	if (st->sgl)
++		dma_unmap_sgtable(i915_tt->dev, st, DMA_BIDIRECTIONAL, 0);
+ 
+ 	if (i915_tt->is_shmem) {
+ 		i915_ttm_tt_shmem_unpopulate(ttm);
+ 	} else {
+-		if (i915_tt->cached_st) {
+-			dma_unmap_sgtable(i915_tt->dev, i915_tt->cached_st,
+-					  DMA_BIDIRECTIONAL, 0);
+-			sg_free_table(i915_tt->cached_st);
+-			kfree(i915_tt->cached_st);
+-			i915_tt->cached_st = NULL;
+-		}
++		sg_free_table(st);
+ 		ttm_pool_free(&bdev->pool, ttm);
+ 	}
+ }
+@@ -334,7 +344,7 @@ static void i915_ttm_tt_destroy(struct ttm_device *bdev, struct ttm_tt *ttm)
+ 		fput(i915_tt->filp);
+ 
+ 	ttm_tt_fini(ttm);
+-	kfree(i915_tt);
++	i915_refct_sgt_put(&i915_tt->cached_rsgt);
+ }
+ 
+ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
+@@ -376,12 +386,12 @@ static int i915_ttm_move_notify(struct ttm_buffer_object *bo)
+ 	return 0;
+ }
+ 
+-static void i915_ttm_free_cached_io_st(struct drm_i915_gem_object *obj)
++static void i915_ttm_free_cached_io_rsgt(struct drm_i915_gem_object *obj)
+ {
+ 	struct radix_tree_iter iter;
+ 	void __rcu **slot;
+ 
+-	if (!obj->ttm.cached_io_st)
++	if (!obj->ttm.cached_io_rsgt)
+ 		return;
+ 
+ 	rcu_read_lock();
+@@ -389,9 +399,8 @@ static void i915_ttm_free_cached_io_st(struct drm_i915_gem_object *obj)
+ 		radix_tree_delete(&obj->ttm.get_io_page.radix, iter.index);
+ 	rcu_read_unlock();
+ 
+-	sg_free_table(obj->ttm.cached_io_st);
+-	kfree(obj->ttm.cached_io_st);
+-	obj->ttm.cached_io_st = NULL;
++	i915_refct_sgt_put(obj->ttm.cached_io_rsgt);
++	obj->ttm.cached_io_rsgt = NULL;
+ }
+ 
+ static void
+@@ -477,7 +486,7 @@ static int i915_ttm_purge(struct drm_i915_gem_object *obj)
+ 	obj->write_domain = 0;
+ 	obj->read_domains = 0;
+ 	i915_ttm_adjust_gem_after_move(obj);
+-	i915_ttm_free_cached_io_st(obj);
++	i915_ttm_free_cached_io_rsgt(obj);
+ 	obj->mm.madv = __I915_MADV_PURGED;
+ 	return 0;
+ }
+@@ -532,7 +541,7 @@ static void i915_ttm_swap_notify(struct ttm_buffer_object *bo)
+ 	int ret = i915_ttm_move_notify(bo);
+ 
+ 	GEM_WARN_ON(ret);
+-	GEM_WARN_ON(obj->ttm.cached_io_st);
++	GEM_WARN_ON(obj->ttm.cached_io_rsgt);
+ 	if (!ret && obj->mm.madv != I915_MADV_WILLNEED)
+ 		i915_ttm_purge(obj);
+ }
+@@ -543,7 +552,7 @@ static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
+ 
+ 	if (likely(obj)) {
+ 		__i915_gem_object_pages_fini(obj);
+-		i915_ttm_free_cached_io_st(obj);
++		i915_ttm_free_cached_io_rsgt(obj);
+ 	}
+ }
+ 
+@@ -563,40 +572,35 @@ i915_ttm_region(struct ttm_device *bdev, int ttm_mem_type)
+ 					  ttm_mem_type - I915_PL_LMEM0);
+ }
+ 
+-static struct sg_table *i915_ttm_tt_get_st(struct ttm_tt *ttm)
++static struct i915_refct_sgt *i915_ttm_tt_get_st(struct ttm_tt *ttm)
+ {
+ 	struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
+ 	struct sg_table *st;
+ 	int ret;
+ 
+-	if (i915_tt->cached_st)
+-		return i915_tt->cached_st;
+-
+-	st = kzalloc(sizeof(*st), GFP_KERNEL);
+-	if (!st)
+-		return ERR_PTR(-ENOMEM);
++	if (i915_tt->cached_rsgt.table.sgl)
++		return i915_refct_sgt_get(&i915_tt->cached_rsgt);
+ 
++	st = &i915_tt->cached_rsgt.table;
+ 	ret = sg_alloc_table_from_pages_segment(st,
+ 			ttm->pages, ttm->num_pages,
+ 			0, (unsigned long)ttm->num_pages << PAGE_SHIFT,
+ 			i915_sg_segment_size(), GFP_KERNEL);
+ 	if (ret) {
+-		kfree(st);
++		st->sgl = NULL;
+ 		return ERR_PTR(ret);
+ 	}
+ 
+ 	ret = dma_map_sgtable(i915_tt->dev, st, DMA_BIDIRECTIONAL, 0);
+ 	if (ret) {
+ 		sg_free_table(st);
+-		kfree(st);
+ 		return ERR_PTR(ret);
+ 	}
+ 
+-	i915_tt->cached_st = st;
+-	return st;
++	return i915_refct_sgt_get(&i915_tt->cached_rsgt);
+ }
+ 
+-static struct sg_table *
++static struct i915_refct_sgt *
+ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
+ 			 struct ttm_resource *res)
+ {
+@@ -610,7 +614,21 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
+ 	 * the resulting st. Might make sense for GGTT.
+ 	 */
+ 	GEM_WARN_ON(!cpu_maps_iomem(res));
+-	return intel_region_ttm_resource_to_st(obj->mm.region, res);
++	if (bo->resource == res) {
++		if (!obj->ttm.cached_io_rsgt) {
++			struct i915_refct_sgt *rsgt;
++
++			rsgt = intel_region_ttm_resource_to_rsgt(obj->mm.region,
++								 res);
++			if (IS_ERR(rsgt))
++				return rsgt;
++
++			obj->ttm.cached_io_rsgt = rsgt;
++		}
++		return i915_refct_sgt_get(obj->ttm.cached_io_rsgt);
++	}
++
++	return intel_region_ttm_resource_to_rsgt(obj->mm.region, res);
+ }
+ 
+ static int i915_ttm_accel_move(struct ttm_buffer_object *bo,
+@@ -621,10 +639,7 @@ static int i915_ttm_accel_move(struct ttm_buffer_object *bo,
+ {
+ 	struct drm_i915_private *i915 = container_of(bo->bdev, typeof(*i915),
+ 						     bdev);
+-	struct ttm_resource_manager *src_man =
+-		ttm_manager_type(bo->bdev, bo->resource->mem_type);
+ 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+-	struct sg_table *src_st;
+ 	struct i915_request *rq;
+ 	struct ttm_tt *src_ttm = bo->ttm;
+ 	enum i915_cache_level src_level, dst_level;
+@@ -650,17 +665,22 @@ static int i915_ttm_accel_move(struct ttm_buffer_object *bo,
+ 		}
+ 		intel_engine_pm_put(i915->gt.migrate.context->engine);
+ 	} else {
+-		src_st = src_man->use_tt ? i915_ttm_tt_get_st(src_ttm) :
+-			obj->ttm.cached_io_st;
++		struct i915_refct_sgt *src_rsgt =
++			i915_ttm_resource_get_st(obj, bo->resource);
++
++		if (IS_ERR(src_rsgt))
++			return PTR_ERR(src_rsgt);
+ 
+ 		src_level = i915_ttm_cache_level(i915, bo->resource, src_ttm);
+ 		intel_engine_pm_get(i915->gt.migrate.context->engine);
+ 		ret = intel_context_migrate_copy(i915->gt.migrate.context,
+-						 NULL, src_st->sgl, src_level,
++						 NULL, src_rsgt->table.sgl,
++						 src_level,
+ 						 gpu_binds_iomem(bo->resource),
+ 						 dst_st->sgl, dst_level,
+ 						 gpu_binds_iomem(dst_mem),
+ 						 &rq);
++		i915_refct_sgt_put(src_rsgt);
+ 		if (!ret && rq) {
+ 			i915_request_wait(rq, 0, MAX_SCHEDULE_TIMEOUT);
+ 			i915_request_put(rq);
+@@ -674,13 +694,14 @@ static int i915_ttm_accel_move(struct ttm_buffer_object *bo,
+ static void __i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
+ 			    struct ttm_resource *dst_mem,
+ 			    struct ttm_tt *dst_ttm,
+-			    struct sg_table *dst_st,
++			    struct i915_refct_sgt *dst_rsgt,
+ 			    bool allow_accel)
+ {
+ 	int ret = -EINVAL;
+ 
+ 	if (allow_accel)
+-		ret = i915_ttm_accel_move(bo, clear, dst_mem, dst_ttm, dst_st);
++		ret = i915_ttm_accel_move(bo, clear, dst_mem, dst_ttm,
++					  &dst_rsgt->table);
+ 	if (ret) {
+ 		struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+ 		struct intel_memory_region *dst_reg, *src_reg;
+@@ -697,12 +718,13 @@ static void __i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
+ 		dst_iter = !cpu_maps_iomem(dst_mem) ?
+ 			ttm_kmap_iter_tt_init(&_dst_iter.tt, dst_ttm) :
+ 			ttm_kmap_iter_iomap_init(&_dst_iter.io, &dst_reg->iomap,
+-						 dst_st, dst_reg->region.start);
++						 &dst_rsgt->table,
++						 dst_reg->region.start);
+ 
+ 		src_iter = !cpu_maps_iomem(bo->resource) ?
+ 			ttm_kmap_iter_tt_init(&_src_iter.tt, bo->ttm) :
+ 			ttm_kmap_iter_iomap_init(&_src_iter.io, &src_reg->iomap,
+-						 obj->ttm.cached_io_st,
++						 &obj->ttm.cached_io_rsgt->table,
+ 						 src_reg->region.start);
+ 
+ 		ttm_move_memcpy(clear, dst_mem->num_pages, dst_iter, src_iter);
+@@ -718,7 +740,7 @@ static int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+ 	struct ttm_resource_manager *dst_man =
+ 		ttm_manager_type(bo->bdev, dst_mem->mem_type);
+ 	struct ttm_tt *ttm = bo->ttm;
+-	struct sg_table *dst_st;
++	struct i915_refct_sgt *dst_rsgt;
+ 	bool clear;
+ 	int ret;
+ 
+@@ -744,22 +766,24 @@ static int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+ 			return ret;
+ 	}
+ 
+-	dst_st = i915_ttm_resource_get_st(obj, dst_mem);
+-	if (IS_ERR(dst_st))
+-		return PTR_ERR(dst_st);
++	dst_rsgt = i915_ttm_resource_get_st(obj, dst_mem);
++	if (IS_ERR(dst_rsgt))
++		return PTR_ERR(dst_rsgt);
+ 
+ 	clear = !cpu_maps_iomem(bo->resource) && (!ttm || !ttm_tt_is_populated(ttm));
+ 	if (!(clear && ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC)))
+-		__i915_ttm_move(bo, clear, dst_mem, bo->ttm, dst_st, true);
++		__i915_ttm_move(bo, clear, dst_mem, bo->ttm, dst_rsgt, true);
+ 
+ 	ttm_bo_move_sync_cleanup(bo, dst_mem);
+ 	i915_ttm_adjust_domains_after_move(obj);
+-	i915_ttm_free_cached_io_st(obj);
++	i915_ttm_free_cached_io_rsgt(obj);
+ 
+ 	if (gpu_binds_iomem(dst_mem) || cpu_maps_iomem(dst_mem)) {
+-		obj->ttm.cached_io_st = dst_st;
+-		obj->ttm.get_io_page.sg_pos = dst_st->sgl;
++		obj->ttm.cached_io_rsgt = dst_rsgt;
++		obj->ttm.get_io_page.sg_pos = dst_rsgt->table.sgl;
+ 		obj->ttm.get_io_page.sg_idx = 0;
++	} else {
++		i915_refct_sgt_put(dst_rsgt);
+ 	}
+ 
+ 	i915_ttm_adjust_lru(obj);
+@@ -825,7 +849,6 @@ static int __i915_ttm_get_pages(struct drm_i915_gem_object *obj,
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
+ 	};
+-	struct sg_table *st;
+ 	int real_num_busy;
+ 	int ret;
+ 
+@@ -862,12 +885,16 @@ static int __i915_ttm_get_pages(struct drm_i915_gem_object *obj,
+ 	}
+ 
+ 	if (!i915_gem_object_has_pages(obj)) {
+-		/* Object either has a page vector or is an iomem object */
+-		st = bo->ttm ? i915_ttm_tt_get_st(bo->ttm) : obj->ttm.cached_io_st;
+-		if (IS_ERR(st))
+-			return PTR_ERR(st);
++		struct i915_refct_sgt *rsgt =
++			i915_ttm_resource_get_st(obj, bo->resource);
++
++		if (IS_ERR(rsgt))
++			return PTR_ERR(rsgt);
+ 
+-		__i915_gem_object_set_pages(obj, st, i915_sg_dma_sizes(st->sgl));
++		GEM_BUG_ON(obj->mm.rsgt);
++		obj->mm.rsgt = rsgt;
++		__i915_gem_object_set_pages(obj, &rsgt->table,
++					    i915_sg_dma_sizes(rsgt->table.sgl));
+ 	}
+ 
+ 	i915_ttm_adjust_lru(obj);
+@@ -941,6 +968,9 @@ static void i915_ttm_put_pages(struct drm_i915_gem_object *obj,
+ 	 * If the object is not destroyed next, The TTM eviction logic
+ 	 * and shrinkers will move it out if needed.
+ 	 */
++
++	if (obj->mm.rsgt)
++		i915_refct_sgt_put(fetch_and_zero(&obj->mm.rsgt));
+ }
+ 
+ static void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj)
+@@ -1278,7 +1308,7 @@ int i915_gem_obj_copy_ttm(struct drm_i915_gem_object *dst,
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = intr,
+ 	};
+-	struct sg_table *dst_st;
++	struct i915_refct_sgt *dst_rsgt;
+ 	int ret;
+ 
+ 	assert_object_held(dst);
+@@ -1293,11 +1323,11 @@ int i915_gem_obj_copy_ttm(struct drm_i915_gem_object *dst,
+ 	if (ret)
+ 		return ret;
+ 
+-	dst_st = gpu_binds_iomem(dst_bo->resource) ?
+-		dst->ttm.cached_io_st : i915_ttm_tt_get_st(dst_bo->ttm);
+-
++	dst_rsgt = i915_ttm_resource_get_st(dst, dst_bo->resource);
+ 	__i915_ttm_move(src_bo, false, dst_bo->resource, dst_bo->ttm,
+-			dst_st, allow_accel);
++			dst_rsgt, allow_accel);
++
++	i915_refct_sgt_put(dst_rsgt);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_scatterlist.c b/drivers/gpu/drm/i915/i915_scatterlist.c
+index 4a6712dca838..41f2adb6a583 100644
+--- a/drivers/gpu/drm/i915/i915_scatterlist.c
++++ b/drivers/gpu/drm/i915/i915_scatterlist.c
+@@ -41,8 +41,32 @@ bool i915_sg_trim(struct sg_table *orig_st)
+ 	return true;
+ }
+ 
++static void i915_refct_sgt_release(struct kref *ref)
++{
++	struct i915_refct_sgt *rsgt =
++		container_of(ref, typeof(*rsgt), kref);
++
++	sg_free_table(&rsgt->table);
++	kfree(rsgt);
++}
++
++static const struct i915_refct_sgt_ops rsgt_ops = {
++	.release = i915_refct_sgt_release
++};
++
++/**
++ * i915_refct_sgt_init - Initialize a struct i915_refct_sgt with default ops
++ * @rsgt: The struct i915_refct_sgt to initialize.
++ * size: The size of the underlying memory buffer.
++ */
++void i915_refct_sgt_init(struct i915_refct_sgt *rsgt, size_t size)
++{
++	__i915_refct_sgt_init(rsgt, size, &rsgt_ops);
++}
++
+ /**
+- * i915_sg_from_mm_node - Create an sg_table from a struct drm_mm_node
++ * i915_rsgt_from_mm_node - Create a refcounted sg_table from a struct
++ * drm_mm_node
+  * @node: The drm_mm_node.
+  * @region_start: An offset to add to the dma addresses of the sg list.
+  *
+@@ -50,25 +74,28 @@ bool i915_sg_trim(struct sg_table *orig_st)
+  * taking a maximum segment length into account, splitting into segments
+  * if necessary.
+  *
+- * Return: A pointer to a kmalloced struct sg_table on success, negative
++ * Return: A pointer to a kmalloced struct i915_refct_sgt on success, negative
+  * error code cast to an error pointer on failure.
+  */
+-struct sg_table *i915_sg_from_mm_node(const struct drm_mm_node *node,
+-				      u64 region_start)
++struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
++					      u64 region_start)
+ {
+ 	const u64 max_segment = SZ_1G; /* Do we have a limit on this? */
+ 	u64 segment_pages = max_segment >> PAGE_SHIFT;
+ 	u64 block_size, offset, prev_end;
++	struct i915_refct_sgt *rsgt;
+ 	struct sg_table *st;
+ 	struct scatterlist *sg;
+ 
+-	st = kmalloc(sizeof(*st), GFP_KERNEL);
+-	if (!st)
++	rsgt = kmalloc(sizeof(*rsgt), GFP_KERNEL);
++	if (!rsgt)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	i915_refct_sgt_init(rsgt, node->size << PAGE_SHIFT);
++	st = &rsgt->table;
+ 	if (sg_alloc_table(st, DIV_ROUND_UP(node->size, segment_pages),
+ 			   GFP_KERNEL)) {
+-		kfree(st);
++		i915_refct_sgt_put(rsgt);
+ 		return ERR_PTR(-ENOMEM);
+ 	}
+ 
+@@ -104,11 +131,11 @@ struct sg_table *i915_sg_from_mm_node(const struct drm_mm_node *node,
+ 	sg_mark_end(sg);
+ 	i915_sg_trim(st);
+ 
+-	return st;
++	return rsgt;
+ }
+ 
+ /**
+- * i915_sg_from_buddy_resource - Create an sg_table from a struct
++ * i915_rsgt_from_buddy_resource - Create a refcounted sg_table from a struct
+  * i915_buddy_block list
+  * @res: The struct i915_ttm_buddy_resource.
+  * @region_start: An offset to add to the dma addresses of the sg list.
+@@ -117,11 +144,11 @@ struct sg_table *i915_sg_from_mm_node(const struct drm_mm_node *node,
+  * taking a maximum segment length into account, splitting into segments
+  * if necessary.
+  *
+- * Return: A pointer to a kmalloced struct sg_table on success, negative
++ * Return: A pointer to a kmalloced struct i915_refct_sgts on success, negative
+  * error code cast to an error pointer on failure.
+  */
+-struct sg_table *i915_sg_from_buddy_resource(struct ttm_resource *res,
+-					     u64 region_start)
++struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
++						     u64 region_start)
+ {
+ 	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
+ 	const u64 size = res->num_pages << PAGE_SHIFT;
+@@ -129,18 +156,21 @@ struct sg_table *i915_sg_from_buddy_resource(struct ttm_resource *res,
+ 	struct i915_buddy_mm *mm = bman_res->mm;
+ 	struct list_head *blocks = &bman_res->blocks;
+ 	struct i915_buddy_block *block;
++	struct i915_refct_sgt *rsgt;
+ 	struct scatterlist *sg;
+ 	struct sg_table *st;
+ 	resource_size_t prev_end;
+ 
+ 	GEM_BUG_ON(list_empty(blocks));
+ 
+-	st = kmalloc(sizeof(*st), GFP_KERNEL);
+-	if (!st)
++	rsgt = kmalloc(sizeof(*rsgt), GFP_KERNEL);
++	if (!rsgt)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	i915_refct_sgt_init(rsgt, size);
++	st = &rsgt->table;
+ 	if (sg_alloc_table(st, res->num_pages, GFP_KERNEL)) {
+-		kfree(st);
++		i915_refct_sgt_put(rsgt);
+ 		return ERR_PTR(-ENOMEM);
+ 	}
+ 
+@@ -181,7 +211,7 @@ struct sg_table *i915_sg_from_buddy_resource(struct ttm_resource *res,
+ 	sg_mark_end(sg);
+ 	i915_sg_trim(st);
+ 
+-	return st;
++	return rsgt;
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
+index b8bd5925b03f..12c6a1684081 100644
+--- a/drivers/gpu/drm/i915/i915_scatterlist.h
++++ b/drivers/gpu/drm/i915/i915_scatterlist.h
+@@ -144,10 +144,78 @@ static inline unsigned int i915_sg_segment_size(void)
+ 
+ bool i915_sg_trim(struct sg_table *orig_st);
+ 
+-struct sg_table *i915_sg_from_mm_node(const struct drm_mm_node *node,
+-				      u64 region_start);
++/**
++ * struct i915_refct_sgt_ops - Operations structure for struct i915_refct_sgt
++ */
++struct i915_refct_sgt_ops {
++	/**
++	 * release() - Free the memory of the struct i915_refct_sgt
++	 * @ref: struct kref that is embedded in the struct i915_refct_sgt
++	 */
++	void (*release)(struct kref *ref);
++};
++
++/**
++ * struct i915_refct_sgt - A refcounted scatter-gather table
++ * @kref: struct kref for refcounting
++ * @table: struct sg_table holding the scatter-gather table itself. Note that
++ * @table->sgl = NULL can be used to determine whether a scatter-gather table
++ * is present or not.
++ * @size: The size in bytes of the underlying memory buffer
++ * @ops: The operations structure.
++ */
++struct i915_refct_sgt {
++	struct kref kref;
++	struct sg_table table;
++	size_t size;
++	const struct i915_refct_sgt_ops *ops;
++};
++
++/**
++ * i915_refct_sgt_put - Put a refcounted sg-table
++ * @rsgt the struct i915_refct_sgt to put.
++ */
++static inline void i915_refct_sgt_put(struct i915_refct_sgt *rsgt)
++{
++	if (rsgt)
++		kref_put(&rsgt->kref, rsgt->ops->release);
++}
++
++/**
++ * i915_refct_sgt_get - Get a refcounted sg-table
++ * @rsgt the struct i915_refct_sgt to get.
++ */
++static inline struct i915_refct_sgt *
++i915_refct_sgt_get(struct i915_refct_sgt *rsgt)
++{
++	kref_get(&rsgt->kref);
++	return rsgt;
++}
++
++/**
++ * __i915_refct_sgt_init - Initialize a refcounted sg-list with a custom
++ * operations structure
++ * @rsgt The struct i915_refct_sgt to initialize.
++ * @size: Size in bytes of the underlying memory buffer.
++ * @ops: A customized operations structure in case the refcounted sg-list
++ * is embedded into another structure.
++ */
++static inline void __i915_refct_sgt_init(struct i915_refct_sgt *rsgt,
++					 size_t size,
++					 const struct i915_refct_sgt_ops *ops)
++{
++	kref_init(&rsgt->kref);
++	rsgt->table.sgl = NULL;
++	rsgt->size = size;
++	rsgt->ops = ops;
++}
++
++void i915_refct_sgt_init(struct i915_refct_sgt *rsgt, size_t size);
++
++struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
++					      u64 region_start);
+ 
+-struct sg_table *i915_sg_from_buddy_resource(struct ttm_resource *res,
+-					     u64 region_start);
++struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
++						     u64 region_start);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i915/intel_region_ttm.c
+index 98c7339bf8ba..2e901a27e259 100644
+--- a/drivers/gpu/drm/i915/intel_region_ttm.c
++++ b/drivers/gpu/drm/i915/intel_region_ttm.c
+@@ -115,8 +115,8 @@ void intel_region_ttm_fini(struct intel_memory_region *mem)
+ }
+ 
+ /**
+- * intel_region_ttm_resource_to_st - Convert an opaque TTM resource manager resource
+- * to an sg_table.
++ * intel_region_ttm_resource_to_rsgt -
++ * Convert an opaque TTM resource manager resource to a refcounted sg_table.
+  * @mem: The memory region.
+  * @res: The resource manager resource obtained from the TTM resource manager.
+  *
+@@ -126,17 +126,18 @@ void intel_region_ttm_fini(struct intel_memory_region *mem)
+  *
+  * Return: A malloced sg_table on success, an error pointer on failure.
+  */
+-struct sg_table *intel_region_ttm_resource_to_st(struct intel_memory_region *mem,
+-						 struct ttm_resource *res)
++struct i915_refct_sgt *
++intel_region_ttm_resource_to_rsgt(struct intel_memory_region *mem,
++				  struct ttm_resource *res)
+ {
+ 	if (mem->is_range_manager) {
+ 		struct ttm_range_mgr_node *range_node =
+ 			to_ttm_range_mgr_node(res);
+ 
+-		return i915_sg_from_mm_node(&range_node->mm_nodes[0],
+-					    mem->region.start);
++		return i915_rsgt_from_mm_node(&range_node->mm_nodes[0],
++					      mem->region.start);
+ 	} else {
+-		return i915_sg_from_buddy_resource(res, mem->region.start);
++		return i915_rsgt_from_buddy_resource(res, mem->region.start);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/intel_region_ttm.h b/drivers/gpu/drm/i915/intel_region_ttm.h
+index 6f44075920f2..7bbe2b46b504 100644
+--- a/drivers/gpu/drm/i915/intel_region_ttm.h
++++ b/drivers/gpu/drm/i915/intel_region_ttm.h
+@@ -22,8 +22,9 @@ int intel_region_ttm_init(struct intel_memory_region *mem);
+ 
+ void intel_region_ttm_fini(struct intel_memory_region *mem);
+ 
+-struct sg_table *intel_region_ttm_resource_to_st(struct intel_memory_region *mem,
+-						 struct ttm_resource *res);
++struct i915_refct_sgt *
++intel_region_ttm_resource_to_rsgt(struct intel_memory_region *mem,
++				  struct ttm_resource *res);
+ 
+ void intel_region_ttm_resource_free(struct intel_memory_region *mem,
+ 				    struct ttm_resource *res);
+diff --git a/drivers/gpu/drm/i915/selftests/mock_region.c b/drivers/gpu/drm/i915/selftests/mock_region.c
+index 75793008c4ef..7ec5037eaa58 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_region.c
++++ b/drivers/gpu/drm/i915/selftests/mock_region.c
+@@ -15,9 +15,9 @@
+ static void mock_region_put_pages(struct drm_i915_gem_object *obj,
+ 				  struct sg_table *pages)
+ {
++	i915_refct_sgt_put(obj->mm.rsgt);
++	obj->mm.rsgt = NULL;
+ 	intel_region_ttm_resource_free(obj->mm.region, obj->mm.res);
+-	sg_free_table(pages);
+-	kfree(pages);
+ }
+ 
+ static int mock_region_get_pages(struct drm_i915_gem_object *obj)
+@@ -36,12 +36,14 @@ static int mock_region_get_pages(struct drm_i915_gem_object *obj)
+ 	if (IS_ERR(obj->mm.res))
+ 		return PTR_ERR(obj->mm.res);
+ 
+-	pages = intel_region_ttm_resource_to_st(obj->mm.region, obj->mm.res);
+-	if (IS_ERR(pages)) {
+-		err = PTR_ERR(pages);
++	obj->mm.rsgt = intel_region_ttm_resource_to_rsgt(obj->mm.region,
++							 obj->mm.res);
++	if (IS_ERR(obj->mm.rsgt)) {
++		err = PTR_ERR(obj->mm.rsgt);
+ 		goto err_free_resource;
+ 	}
+ 
++	pages = &obj->mm.rsgt->table;
+ 	__i915_gem_object_set_pages(obj, pages, i915_sg_dma_sizes(pages->sgl));
+ 
+ 	return 0;
+-- 
+2.31.1
+
