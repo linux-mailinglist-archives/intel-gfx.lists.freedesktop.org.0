@@ -1,39 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75004415A2
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 09:46:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB4E441584
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 09:42:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1067D6E176;
-	Mon,  1 Nov 2021 08:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D187B89FD3;
+	Mon,  1 Nov 2021 08:42:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 318C66E176
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Nov 2021 08:46:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="211027269"
-X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="211027269"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 01:46:45 -0700
-X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="499956695"
-Received: from unknown (HELO intel.com) ([10.237.72.167])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 01:46:44 -0700
-Date: Mon, 1 Nov 2021 10:41:58 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20211101084158.GA8858@intel.com>
-References: <20211029191802.18448-1-ville.syrjala@linux.intel.com>
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org
+ [IPv6:2404:9400:2:0:216:3eff:fee2:21ea])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F40F6E054;
+ Mon,  1 Nov 2021 08:42:31 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4HjRNx3Hdrz4xbC;
+ Mon,  1 Nov 2021 19:42:24 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1635756147;
+ bh=zeBNRU97MSWpu1D2Ts3/Tp8r/3C233Ohd7glZC2TBJw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=c52KPRl251BVXF489gMOE2VQI7MZgyoDLzJR7/hJJw61N/sIcR+X2cZkA3e9+Od/q
+ 83luLwx7TN40+DeG5r6cy3xpqNlsdB7JEC8Haxg/ezWyt3B69aQPAujy1QGIKhnTB6
+ fmhTXJxaLsj5ytHwOIM8EnCDvfrBYzdDRTC+0bphfvdP9LM5bxlAOfOhgwEcZulc18
+ pZxc4s937mKthLXnaZXV/csQ+icDoiAPfVBEiTtiZFI1xAbqHvtKhCv7CABnS7SyAS
+ k79pQEW9a95T8fstx62jFvezS5/CbcdL/1rS0sc+5XA8GaHdBGrqxddI+s5w/4baWV
+ NI4GDm8Me8WbQ==
+Date: Mon, 1 Nov 2021 19:42:23 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20211101194223.749197c5@canb.auug.org.au>
+In-Reply-To: <20211015202648.258445ef@canb.auug.org.au>
+References: <20211015202648.258445ef@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211029191802.18448-1-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Don't request GMBUS to
- generate irqs when called while irqs are off
+Content-Type: multipart/signed; boundary="Sig_/AvYxcYE9xVAnbawWvDaH9ME";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,65 +53,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 29, 2021 at 10:18:01PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> We will need to do some i2c poking from the encoder->shutdown() hook.
-> Currently that gets called after irqs have been turned off. We still
-> poll the gmbus status bits even if the interrupt never arrives so
-> things will work just fine. But seems like asking gmbus to generate
-> interrupts we will never see is a bit pointless, so don't.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--Sig_/AvYxcYE9xVAnbawWvDaH9ME
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Hi all,
 
+On Fri, 15 Oct 2021 20:26:48 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> After merging the drm-misc tree, today's linux-next build (arm
+> multi_v7_defconfig) failed like this:
+>=20
+> drivers/gpu/drm/drm_modeset_lock.c:111:29: error: conflicting types for '=
+__stack_depot_save'
+>   111 | static depot_stack_handle_t __stack_depot_save(void)
+>       |                             ^~~~~~~~~~~~~~~~~~
+> In file included from include/linux/page_ext.h:7,
+>                  from include/linux/mm.h:25,
+>                  from include/linux/kallsyms.h:13,
+>                  from include/linux/bpf.h:20,
+>                  from include/linux/bpf-cgroup.h:5,
+>                  from include/linux/cgroup-defs.h:22,
+>                  from include/linux/cgroup.h:28,
+>                  from include/linux/memcontrol.h:13,
+>                  from include/linux/swap.h:9,
+>                  from include/linux/suspend.h:5,
+>                  from include/linux/regulator/consumer.h:35,
+>                  from include/linux/i2c.h:18,
+>                  from include/drm/drm_crtc.h:28,
+>                  from include/drm/drm_atomic.h:31,
+>                  from drivers/gpu/drm/drm_modeset_lock.c:24:
+> include/linux/stackdepot.h:18:22: note: previous declaration of '__stack_=
+depot_save' was here
+>    18 | depot_stack_handle_t __stack_depot_save(unsigned long *entries,
+>       |                      ^~~~~~~~~~~~~~~~~~
+>=20
+> Caused by commit
+>=20
+>   cd06ab2fd48f ("drm/locking: add backtrace for locking contended locks w=
+ithout backoff")
+>=20
+> This may only have been revealed because of another fix I have had to
+> apply today.
+>=20
+> I have applied the following patch for today.
+>=20
+> From: Stephen Rothwell <sfr@canb.auug.org.au>
+> Date: Fri, 15 Oct 2021 20:17:52 +1100
+> Subject: [PATCH] drm/locking: fix for name conflict
+>=20
+> Fixes: cd06ab2fd48f ("drm/locking: add backtrace for locking contended lo=
+cks without backoff")
+> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
 > ---
->  drivers/gpu/drm/i915/display/intel_gmbus.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> index ceb1bf8a8c3c..3b8b84177085 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> @@ -334,6 +334,15 @@ intel_gpio_setup(struct intel_gmbus *bus, unsigned int pin)
->  	algo->data = bus;
->  }
->  
-> +static bool has_gmbus_irq(struct drm_i915_private *i915)
-> +{
-> +	/*
-> +	 * encoder->shutdown() may want to use GMBUS
-> +	 * after irqs have already been disabled.
-> +	 */
-> +	return HAS_GMBUS_IRQ(i915) && intel_irqs_enabled(i915);
-> +}
-> +
->  static int gmbus_wait(struct drm_i915_private *dev_priv, u32 status, u32 irq_en)
+>  drivers/gpu/drm/drm_modeset_lock.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_mod=
+eset_lock.c
+> index 4d32b61fa1fd..ee36dd20900d 100644
+> --- a/drivers/gpu/drm/drm_modeset_lock.c
+> +++ b/drivers/gpu/drm/drm_modeset_lock.c
+> @@ -79,7 +79,7 @@
+>  static DEFINE_WW_CLASS(crtc_ww_class);
+> =20
+>  #if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
+> -static noinline depot_stack_handle_t __stack_depot_save(void)
+> +static noinline depot_stack_handle_t __drm_stack_depot_save(void)
 >  {
->  	DEFINE_WAIT(wait);
-> @@ -344,7 +353,7 @@ static int gmbus_wait(struct drm_i915_private *dev_priv, u32 status, u32 irq_en)
->  	 * we also need to check for NAKs besides the hw ready/idle signal, we
->  	 * need to wake up periodically and check that ourselves.
->  	 */
-> -	if (!HAS_GMBUS_IRQ(dev_priv))
-> +	if (!has_gmbus_irq(dev_priv))
->  		irq_en = 0;
->  
->  	add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
-> @@ -375,7 +384,7 @@ gmbus_wait_idle(struct drm_i915_private *dev_priv)
->  
->  	/* Important: The hw handles only the first bit, so set only one! */
->  	irq_enable = 0;
-> -	if (HAS_GMBUS_IRQ(dev_priv))
-> +	if (has_gmbus_irq(dev_priv))
->  		irq_enable = GMBUS_IDLE_EN;
->  
->  	add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
-> -- 
-> 2.32.0
-> 
+>  	unsigned long entries[8];
+>  	unsigned int n;
+> @@ -108,7 +108,7 @@ static void __stack_depot_print(depot_stack_handle_t =
+stack_depot)
+>  	kfree(buf);
+>  }
+>  #else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+> -static depot_stack_handle_t __stack_depot_save(void)
+> +static depot_stack_handle_t __drm_stack_depot_save(void)
+>  {
+>  	return 0;
+>  }
+> @@ -317,7 +317,7 @@ static inline int modeset_lock(struct drm_modeset_loc=
+k *lock,
+>  		ret =3D 0;
+>  	} else if (ret =3D=3D -EDEADLK) {
+>  		ctx->contended =3D lock;
+> -		ctx->stack_depot =3D __stack_depot_save();
+> +		ctx->stack_depot =3D __drm_stack_depot_save();
+>  	}
+> =20
+>  	return ret;
+> --=20
+> 2.33.0
+
+This has reappeared today.  I don't know what happened to the drm-misc
+tree over the weeked :-(
+
+I have reapplied the above fix.
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/AvYxcYE9xVAnbawWvDaH9ME
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmF/qG8ACgkQAVBC80lX
+0GyNiAf+Ms39LuFBShnOv9eD0ADdpHrEZTj45+fbpivngOM/Ezt/r5mrf5QEI2VN
+DW6TpcExT8EnKmA6OmOVwJ8aoGfZagU6iyFOLd7JZ3rjxpJJTxTmzAPn8YQmBRAh
+4Vkgl2CHv73+J6ptIuu+cHeqB75mIRsUJJ3Ig7sjhhdWncF7OQrWWXhLMSE0M6Lm
+WQOzGOQm13QUKhGupADWHq1a5NoRiKpHR+dI6DnmgM0PTgM1PoVxqnfZ3UvGOQmi
+eXsyUZbaK4EHqo5cn/0+p8/K6MpjVCupcrIr+dlJ9JPntducoFS3OzDpIhzgTBJL
+kvN4/iz2JTwrvuMjVbDwdedpmJAi3w==
+=9avb
+-----END PGP SIGNATURE-----
+
+--Sig_/AvYxcYE9xVAnbawWvDaH9ME--
