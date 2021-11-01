@@ -2,44 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE30A4415F4
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 10:18:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2ABF44180D
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Nov 2021 10:41:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3342C89BD5;
-	Mon,  1 Nov 2021 09:18:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 416E6899A5;
+	Mon,  1 Nov 2021 09:41:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D182489BD5;
- Mon,  1 Nov 2021 09:17:59 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4HjS9v4w2Pz4xbM;
- Mon,  1 Nov 2021 20:17:55 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1635758276;
- bh=3PZGj0sci0bcIw2HkwJH0u3E+keMCC3880sW+RDPpLA=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=Sz8NDmRJfupih7wwXJd+Z+oIWl/sTJIaYi4SfEV/BOmIogtNZiLSOL0OSX/cfTk4A
- LcUra4B1MNgSrhpstI9NTJ074f+vZ5MN49AzZEIgZ5N/IK6nPq9fmBZareLVWZe888
- i/lctwsHkNXVLVQSSQb0Pt6u2QojcRa1ucVykkpsOGvPJztdKS198eFFz7X+suQ0f5
- grkcAPcNq3jvKtDMfecwfbb1y9FwlCBK8Fi2cec4GRUNv9CfPx3uKqMjsRxT0f8IlF
- tzXMJAsJpoGipTQ9l5xgOIzjs9rBxUh176JQcM1mGhGHhbEhh3ZzpPmyGuGFwVa4ZK
- Y3gIANeGopJ+w==
-Date: Mon, 1 Nov 2021 20:17:54 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20211101201754.53c6c148@canb.auug.org.au>
-In-Reply-To: <20211005185940.382720e7@canb.auug.org.au>
-References: <20211005185940.382720e7@canb.auug.org.au>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4256899A7;
+ Mon,  1 Nov 2021 09:41:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10154"; a="218170669"
+X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="218170669"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 02:41:24 -0700
+X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; d="scan'208";a="499971520"
+Received: from lellis-mobl.ger.corp.intel.com (HELO [10.213.243.87])
+ ([10.213.243.87])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 02:41:23 -0700
+To: Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
+ <20211021103605.735002-2-maarten.lankhorst@linux.intel.com>
+ <022f8ecb-37c0-3d67-563f-012f0a3651df@amd.com>
+ <c7c82fa5-6fe5-33e2-e224-c5433020100c@linux.intel.com>
+ <007050d3-0207-5226-0cbe-7a3d8679811c@linux.intel.com>
+ <810de535-0902-04ef-be13-35c978fd80bc@amd.com>
+ <YXrCAaGhLVtduUfa@phenom.ffwll.local>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <f62922a7-344d-3e81-b391-840298f833d4@linux.intel.com>
+Date: Mon, 1 Nov 2021 09:41:17 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/pPtQHmT5cGItirLOVele=Cw";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-misc tree
+In-Reply-To: <YXrCAaGhLVtduUfa@phenom.ffwll.local>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 02/28] drm/i915: use new iterator in
+ i915_gem_object_wait_reservation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,55 +56,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/pPtQHmT5cGItirLOVele=Cw
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
 
-Hi Stephen,
+On 28/10/2021 16:30, Daniel Vetter wrote:
+> On Thu, Oct 28, 2021 at 10:41:38AM +0200, Christian König wrote:
+>> Am 21.10.21 um 13:13 schrieb Tvrtko Ursulin:
+>>>
+>>> On 21/10/2021 12:06, Maarten Lankhorst wrote:
+>>>> Op 21-10-2021 om 12:38 schreef Christian König:
+>>>>> Am 21.10.21 um 12:35 schrieb Maarten Lankhorst:
+>>>>>> From: Christian König <christian.koenig@amd.com>
+>>>>>>
+>>>>>> Simplifying the code a bit.
+>>>>>>
+>>>>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>>>>> [mlankhorst: Handle timeout = 0 correctly, use new
+>>>>>> i915_request_wait_timeout.]
+>>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>>>
+>>>>> LGTM, do you want to push it or should I pick it up into drm-misc-next?
+>>>>
+>>>> I think it can be applied to drm-intel-gt-next, after a backmerge.
+>>>> It needs patch 1 too, which fixes
+>>>>
+>>>> i915_request_wait semantics when used in dma-fence. It exports a
+>>>> dma-fence compatible i915_request_wait_timeout function, used in
+>>>> this patch.
+>>
+>> What about the other i915 patches? I guess you then want to merge them
+>> through drm-intel-gt-next as well.
+>>
+>>> I don't think my open has been resolved, at least I haven't seen a reply
+>>> from Daniel on the topic of potential for infinite waits with untrusted
+>>> clients after this change. +Daniel
+>>
+>> Please resolve that internally and let me know the result. I'm fine to use
+>> any of the possible approaches, I just need to know which one.
+> 
+> I thought I explained this in the patch set from Maarten. This isn't an
+> issue, since the exact same thing can happen if you get interrupts and
+> stuff.
 
-On Tue, 5 Oct 2021 18:59:40 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
->
-> Hi all,
->=20
-> After merging the drm-misc tree, today's linux-next build (htmldocs)
-> produced this warning:
->=20
-> include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_in=
-' not described in 'dma_buf'
-> include/linux/dma-buf.h:456: warning: Function parameter or member 'cb_ou=
-t' not described in 'dma_buf'
->=20
-> Introduced by commit
->=20
->   6b51b02a3a0a ("dma-buf: fix and rework dma_buf_poll v7")
+Ah were you trying to point out all this time the infinite wait just got 
+moved from inside the "old" dma_resv_get_fences to the new iterator caller?
 
-This is back again as well :-(
+Regards,
 
---=20
-Cheers,
-Stephen Rothwell
+Tvrtko
 
---Sig_/pPtQHmT5cGItirLOVele=Cw
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmF/sMIACgkQAVBC80lX
-0GzqjAgAoHMxsBNaMEZw8e0gYsvplWSyRZUsYI9du1Og34jxHCucN+9CRgFHjflb
-sBjS5ZJzVSGYeT+igTiHoq3m/kHtJP2IcxuRPDaUQCT/SVGowUwCLgL8nZAbWunc
-rlB922IvJU14KTCQ8CFhptddX4LE9RwP2mHoHlmd8E6QnZBvR1Im2qWBgCtb4lWr
-YdljQP8dYl/Uw1Kj/XexiLEhVX92yakc/tZuqiC4Fyy07k1IbPehqn4LG7jxfgBY
-FieVWxLHqyPtpcVwWZUPhqCpxYJ6VXZJZ021HYGIr05bYfSZFrRGtZCqBATQBB2X
-/Mzeq3fVoPI3L6NBsUqX/BQCEjh+qQ==
-=wLoe
------END PGP SIGNATURE-----
-
---Sig_/pPtQHmT5cGItirLOVele=Cw--
+> 
+> The only proper fix for bounding the waits is a) compositor grabs a stable
+> set of dma_fence from the dma-buf through the proposed fence export ioctl
+> b) compositor waits on that fence (or drm_syncobj).
+> 
+> Everything else is cargo-culted nonsense, and very much includes that igt
+> patch that's floating around internally.
+> 
+> I can also whack this into drm-next if this is stuck in this silly
+> bikeshed.
+> -Daniel
+> 
