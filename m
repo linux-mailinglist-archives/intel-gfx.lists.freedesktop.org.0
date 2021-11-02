@@ -2,75 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B644E443114
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 16:00:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 688A94430EF
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 15:57:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A693872E6B;
-	Tue,  2 Nov 2021 14:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67B136FF98;
+	Tue,  2 Nov 2021 14:57:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
- [66.111.4.221])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A487C72E66;
- Tue,  2 Nov 2021 14:59:53 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id EA46B580749;
- Tue,  2 Nov 2021 10:59:52 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Tue, 02 Nov 2021 10:59:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
- 0rItuH1D1Um19LY8C97JBMbr4ytaW/WENRWdGOHvCn0=; b=RJBy6ktp/D8Go4xE
- xTDLGvqvcRrnCSOCDdeFHDK5tP1knfteICl8k7+PVLWVC+bp5vV4ON+N4xI5cx7z
- sBakpWe0Jk2c2QVG5J0sSk29yueFwEuQKckH6JnMPE1zlQEd9vUX0hLjkjRYple1
- AI8ZZrXUqOcOBLdGtLVEHpiATgkl9TVfGaXY0wczqBMdnEO1ZyG61hfevsXDV9xf
- CbB0cNggISWuZM0ohpUFCqj1FCEt7xJuGWc4oW3Dp4ILHuvBMXBI6wsKz/fLgzY9
- HxynAgxa3R1MqIw6LEdSIu1b5L5TrE6LkmtdeobbmGJShuYF1IHJduqPJsZj2HIZ
- bJQSeA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:content-type
- :date:from:in-reply-to:message-id:mime-version:references
- :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
- :x-sasl-enc; s=fm1; bh=0rItuH1D1Um19LY8C97JBMbr4ytaW/WENRWdGOHvC
- n0=; b=VDIISEiAZetymQV0OYVCVgeJqh1q1yMNBmMNt6W1YmRncuXv3Yv6WBXLk
- o47iGGMv0639GonWfMr3EMRcPWOp2Zju8IhQoKg50N7lQ78fdeu0ejjSAZ4G80En
- CvQCBjF7RniWaCOYe08owFWr+XSK2wwcL2QyCtjR5jLJyqoDFrEe/t+4X/1hdrFt
- CuabTUwVD6U1lmlgBgjUiqOIXFeQjKHvuIzObqasahJulsQfEiun3HPMLraxopG9
- T+YJq2QQF5FfFF9p/4brfEiiEDBq94v0nbVegoKzqa3mMQaazj9hLlp0uNCKEWli
- YLWGgNSZUOEneC6JaFOAf/+/9yfHA==
-X-ME-Sender: <xms:Z1KBYda53Um-xQMCPll9-fUs3-jWyVbtteywWWeErohtnmxCHo-yNw>
- <xme:Z1KBYUaAnNW2BELEhw9ufe7R_qw33RALFQdkZsh3Cp0B5J-7CvC1j4amiWUN6Dhmn
- qAPeIV02yh2Sl2zits>
-X-ME-Received: <xmr:Z1KBYf_ZyXo4m3OjIeHbFMsUQ8CpjugFonZ4OzKIyiG8cxJnI-_UPsN9ChImoC40r7aAKTC61PuqwCDER02O0X-yks4IqdJaDNApNbhi>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrtddtgdeghecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
- keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:Z1KBYbpXxP-_3AkV_vncwHU8hQKTeOh8ImGX5OVMtY5aUpPXZt7CrQ>
- <xmx:Z1KBYYo6JrW3yDl6DHgNjSy2howJSIBBXnLCjM9zAV3l5RigV6_6Hg>
- <xmx:Z1KBYRSF_Z2ARBakAhzXiZvYSVEVecIGeX1ir2IFn8JOWimAi3Pwtg>
- <xmx:aFKBYV7DKzYa2YO0wBpn7BsnkKue3UZvbiphle3I94sO1ucCjdFiCA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 2 Nov 2021 10:59:50 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
-To: Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <maxime@cerno.tech>
-Date: Tue,  2 Nov 2021 15:59:32 +0100
-Message-Id: <20211102145944.259181-2-maxime@cerno.tech>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211102145944.259181-1-maxime@cerno.tech>
-References: <20211102145944.259181-1-maxime@cerno.tech>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A7976FD1C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 14:57:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="292112388"
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="292112388"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 07:57:00 -0700
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="577123971"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 07:57:00 -0700
+Date: Tue, 2 Nov 2021 08:09:51 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+Message-ID: <20211102150946.GA17970@labuser-Z97X-UD5H>
+References: <20211027095316.9579-1-vandita.kulkarni@intel.com>
+ <20211027192642.GA22973@labuser-Z97X-UD5H>
+ <7d0b19226c71402199351b7e8514c041@intel.com>
+ <20211029231251.GA1790@labuser-Z97X-UD5H>
+ <b1ad2556bc3b442f9cb2ed1b47cb9d50@intel.com>
+ <20211102044041.GA15244@labuser-Z97X-UD5H>
+ <e7c3f25dc1374a7383bf554ee7a31cac@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 01/13] drm/connector: Add define for HDMI 1.4
- Maximum Pixel Rate
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e7c3f25dc1374a7383bf554ee7a31cac@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Fix the usage of uncompressed
+ bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,235 +52,270 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, Neil Armstrong <narmstrong@baylibre.com>,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Phil Elwell <phil@raspberrypi.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Kevin Hilman <khilman@baylibre.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Jonas Karlman <jonas@kwiboo.se>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- intel-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, Dom Cobley <dom@raspberrypi.com>, "Pan, 
- Xinhui" <Xinhui.Pan@amd.com>, Robert Foss <robert.foss@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A lot of drivers open-code the HDMI 1.4 maximum pixel rate in their
-driver to test whether the resolutions are supported or if the
-scrambling needs to be enabled.
+On Mon, Nov 01, 2021 at 09:35:32PM -0700, Kulkarni, Vandita wrote:
+> > -----Original Message-----
+> > From: Navare, Manasi D <manasi.d.navare@intel.com>
+> > Sent: Tuesday, November 2, 2021 10:11 AM
+> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
+> > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed bpp
+> > 
+> > On Mon, Nov 01, 2021 at 09:45:23AM -0700, Kulkarni, Vandita wrote:
+> > > > -----Original Message-----
+> > > > From: Navare, Manasi D <manasi.d.navare@intel.com>
+> > > > Sent: Saturday, October 30, 2021 4:43 AM
+> > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> > > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
+> > > > <jani.nikula@intel.com>
+> > > > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed bpp
+> > > >
+> > > > On Wed, Oct 27, 2021 at 09:37:10PM -0700, Kulkarni, Vandita wrote:
+> > > > > > -----Original Message-----
+> > > > > > From: Navare, Manasi D <manasi.d.navare@intel.com>
+> > > > > > Sent: Thursday, October 28, 2021 12:57 AM
+> > > > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> > > > > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
+> > > > > > <jani.nikula@intel.com>
+> > > > > > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed
+> > > > > > bpp
+> > > > > >
+> > > > > > On Wed, Oct 27, 2021 at 03:23:16PM +0530, Vandita Kulkarni wrote:
+> > > > > > > DP 1.4 spec limits max compression bpp to uncompressed bpp -1,
+> > > > > > > which is supported from XELPD onwards.
+> > > > > > > Instead of uncompressed bpp, max dsc input bpp was being used
+> > > > > > > to limit the max compression bpp.
+> > > > > >
+> > > > > > So the input Pipe BPP which is the uncompressed bpp is decided
+> > > > > > by the input bpc and when this was initially written, we had
+> > > > > > designed it to respect the max_req_bpc by the user.
+> > > > > > So that is what we use to decide the input bpc and hence the
+> > > > > > pipe_bpp This input pipe_bpp decides the compressed bpp that we
+> > > > > > calculate based on all the supported output bpps which are
+> > > > > > supported all the way upto uncompressed_output_bpp - 1.
+> > > > > >
+> > > > > > So I dont see the need to change the logic here. Moreover I dont
+> > > > > > see any change in the dsc_compute_bpp function So I dont
+> > > > > > understand the purpose of introducing the new max_dsc_pipe_bpp
+> > > > > > variable here
+> > > > >
+> > > > > Thanks for the comments, I had few more opens around this along
+> > > > > with
+> > > > this patch.
+> > > > >
+> > > > > AFAIU about max_requested_bpc it is to limit the max_bpc
+> > > > > "drm: Add connector property to limit max bpc"
+> > > > > And the driver is supposed to program the default bpc as per the
+> > > > > connector
+> > > > limitation.
+> > > > > Which is 12 as per the current driver implementation.
+> > > > >
+> > > > > I had few queries around this design:
+> > > > > So it means that max_dsc_input_bpp would be set to 36 if supported
+> > > > > by the
+> > > > sink and the platform.
+> > > > > And now we make this as our pipe_bpp, 1. Does this mean that we
+> > > > > are assuming 12bpc as i/p always?
+> > > > > 2. What happens to those with formats 8bpc, 10 bpc?
+> > > > >
+> > > >
+> > > > Yes so this driver policy was decided based on some feedback that I
+> > > > had got from the community as well as internal feedback from Ville
+> > > > that the decision of input_bpc should be based on max_bpc requested
+> > > > by the user through the connector property and max_bpc supported by
+> > the platform.
+> > > > Here we take the min of the two so that we dont violate either of
+> > > > the max constrains.
+> > > > This was primarily suggested by Ville since he said that we should
+> > > > always respect what user has set as the upper limit in the bpc
+> > > > because this could be for example driven by the fact that OEM's
+> > > > panel has a limitation or issues with higher bpcs or a display requirement
+> > for certain use case.
+> > > > Hence while we want to support as high bpc as supported by the
+> > > > platform and sink to have better display quality, it should not
+> > > > exceed the max limit set by the user through the property.
+> > > >
+> > > > 8 and 10bpc will be supported but we want to start with supporting
+> > > > the max we can, going down from there if needed.
+> > > > So for compression, we chose the maximum input bpc and determine the
+> > > > compressed bpp for that.
+> > > >
+> > > >
+> > > > > We do not consider the actual pipe_bpp while computing the
+> > > > > compression_bpp, We reverse calculate it from the link_rate,  and
+> > > > > small
+> > > > joiner bpp limits.
+> > > > > In cases of forcing dsc, we might have a situation where the link
+> > > > > can
+> > > > actually support the current bpp, or even more.
+> > > > > But we are forcing the dsc enable.
+> > > > > In such cases we might end up with a compression bpp which is
+> > > > > higher than
+> > > > the actual i/p bpp.
+> > > >
+> > > > Well the only time we force the dsc_enable is for IGT DSC tests and
+> > > > thats okay for compression bpp to be higher since there we are just
+> > > > validation the functionality and its not for actual user/use case.
+> > >
+> > > We are having these test cases as part of CI. We hit FIFO underrun in such
+> > cases and that's  treated as a fail.
+> > 
+> > >
+> > > >
+> > > > In the actual use case we will only enable DSC when the available
+> > > > max link rate/lane count does not support the minimum bpp of 18 (min
+> > > > bpc of 6 * 3) So then in that case we say that lets keep the
+> > > > pipe_bpp or input bpp as max_supported_input_bpc * 3
+> > > > >
+> > > > > Now, even if we take a min of  higher compression bpp against
+> > > > > max_requested_bpc *3 -1, we still have Compression bpp > actual
+> > > > > pipe_bpp
+> > > > >
+> > > > > As per the spec when they say uncompressed bpp, they actually mean
+> > > > > 3 * bpc If we go ahead with this approach of using
+> > > > > max_requested_bpc , which is 12 always we cannot adhere to the spec.
+> > > >
+> > > > So the Bspec says that if the input BPP is (8 * 3) = 24, then based
+> > > > on the engine's compression ratio capability it can support output
+> > > > compressed BPP
+> > > > of: 8 - 23 in the increments of 1 BPP And the maximum that we can
+> > > > pick between 8 - 23 will depend on the min(max bits_per_pixel that
+> > > > the max link rate, lane count can handle, max bits per pixel by small joiner
+> > RAM calc).
+> > >
+> > > In case of force dsc, as part of  the IGT tests, the link can actually
+> > > support more than 24bpp, since we are forcing have seen a case where it
+> > could support 28bpp.
+> > >
+> > 
+> > From IGT we are forcing DSC for all supported input BPCs right, so for bpc =
+> > 8, so input bpp = 24. So IMO in the kernel code, when we calculate pipe_bpp
+> > when force_dsc is set in that case we should use the bpc requested from IGT
+> > as inpput bpc and not care for max_connector_bpc So then input bpp = 24
+> > and the limits of compressed bpp would be 8 - 23
+> Right, had thought of this 
+> Adding a check on force_dsc_en before doing this
+> pipe_config->pipe_bpp = max_dsc_pipe_bpp;
+> 
+> but since you said that the design was to respect the max_requested_bpc from the user
+> should we use max_requested_bpc property in the igt  to say that set the max to 8bpc
+> since this test simulates a situation of testing 8bpc panel?
+> Similarly for 10bpc?
+> 
+> Thanks
+> Vandita
 
-Let's create a common define for everyone to use it.
+Yes that would be a better way than adding a special force_dsc_en case
+in the kernel.
+We can set the max_requested_bpc to 8, 10, 12 then the pipe_bpp will get
+set to 8/10/12 respectively as per the current logic and the compressed bpp
+will get capped at pipe_bpp -1
+So I think here since we would still use max link rate/ max lane count
+we will still have much higher available link BW but we will just be 
+validating the functionality of 24 bpp to 23 bpp compression.
+This sounds like a good approach.
 
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: Andrzej Hajda <a.hajda@samsung.com>
-Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Emma Anholt <emma@anholt.net>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-tegra@vger.kernel.org
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Cc: Robert Foss <robert.foss@linaro.org>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c  | 4 ++--
- drivers/gpu/drm/drm_edid.c                 | 2 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c  | 2 +-
- drivers/gpu/drm/meson/meson_dw_hdmi.c      | 4 ++--
- drivers/gpu/drm/radeon/radeon_encoders.c   | 2 +-
- drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c | 2 +-
- drivers/gpu/drm/tegra/sor.c                | 8 ++++----
- drivers/gpu/drm/vc4/vc4_hdmi.c             | 4 ++--
- include/drm/drm_connector.h                | 2 ++
- 9 files changed, 16 insertions(+), 14 deletions(-)
+Manasi
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 62ae63565d3a..3a58db357be0 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -46,7 +46,7 @@
- /* DW-HDMI Controller >= 0x200a are at least compliant with SCDC version 1 */
- #define SCDC_MIN_SOURCE_VERSION	0x1
- 
--#define HDMI14_MAX_TMDSCLK	340000000
-+#define HDMI14_MAX_TMDSCLK	(DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
- 
- enum hdmi_datamap {
- 	RGB444_8B = 0x01,
-@@ -1264,7 +1264,7 @@ static bool dw_hdmi_support_scdc(struct dw_hdmi *hdmi,
- 	 * for low rates is not supported either
- 	 */
- 	if (!display->hdmi.scdc.scrambling.low_rates &&
--	    display->max_tmds_clock <= 340000)
-+	    display->max_tmds_clock <= DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
- 		return false;
- 
- 	return true;
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 7aa2a56a71c8..ec8fb2d098ae 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
- 		u32 max_tmds_clock = hf_vsdb[5] * 5000;
- 		struct drm_scdc *scdc = &hdmi->scdc;
- 
--		if (max_tmds_clock > 340000) {
-+		if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
- 			display->max_tmds_clock = max_tmds_clock;
- 			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
- 				display->max_tmds_clock);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index d2e61f6c6e08..0666203d52b7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		if (scdc->scrambling.low_rates)
- 			pipe_config->hdmi_scrambling = true;
- 
--		if (pipe_config->port_clock > 340000) {
-+		if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
- 			pipe_config->hdmi_scrambling = true;
- 			pipe_config->hdmi_high_tmds_clock_ratio = true;
- 		}
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 0afbd1e70bfc..8078667aea0e 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -434,7 +434,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
- 
- 	DRM_DEBUG_DRIVER("\"%s\" div%d\n", mode->name,
--			 mode->clock > 340000 ? 40 : 10);
-+			 mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ ? 40 : 10);
- 
- 	/* Enable clocks */
- 	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
-@@ -457,7 +457,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
- 
- 	/* TMDS pattern setup */
--	if (mode->clock > 340000 &&
-+	if (mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ &&
- 	    dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_YUV8_1X24) {
- 		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
- 				  0);
-diff --git a/drivers/gpu/drm/radeon/radeon_encoders.c b/drivers/gpu/drm/radeon/radeon_encoders.c
-index 46549d5179ee..ddd8100e699f 100644
---- a/drivers/gpu/drm/radeon/radeon_encoders.c
-+++ b/drivers/gpu/drm/radeon/radeon_encoders.c
-@@ -384,7 +384,7 @@ bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
- 		if (radeon_connector->use_digital) {
- 			/* HDMI 1.3 supports up to 340 Mhz over single link */
- 			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
--				if (pixel_clock > 340000)
-+				if (pixel_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
- 					return true;
- 				else
- 					return false;
-diff --git a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c b/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
-index d25ecd4f4b67..bc213232a875 100644
---- a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
-+++ b/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
-@@ -102,7 +102,7 @@ static bool sti_hdmi_tx3g4c28phy_start(struct sti_hdmi *hdmi)
- 	tmdsck = ckpxpll;
- 	pllctrl |= 40 << PLL_CFG_NDIV_SHIFT;
- 
--	if (tmdsck > 340000000) {
-+	if (tmdsck > (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
- 		DRM_ERROR("output TMDS clock (%d) out of range\n", tmdsck);
- 		goto err;
- 	}
-diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
-index 0ea320c1092b..99a2d627bfeb 100644
---- a/drivers/gpu/drm/tegra/sor.c
-+++ b/drivers/gpu/drm/tegra/sor.c
-@@ -1814,7 +1814,7 @@ tegra_sor_encoder_atomic_check(struct drm_encoder *encoder,
- 	 * For HBR2 modes, the SOR brick needs to use the x20 multiplier, so
- 	 * the pixel clock must be corrected accordingly.
- 	 */
--	if (pclk >= 340000000) {
-+	if (pclk >= (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
- 		state->link_speed = 20;
- 		state->pclk = pclk / 2;
- 	} else {
-@@ -2196,7 +2196,7 @@ static void tegra_sor_hdmi_scdc_start(struct tegra_sor *sor)
- 
- 	mode = &sor->output.encoder.crtc->state->adjusted_mode;
- 
--	if (mode->clock >= 340000 && scdc->supported) {
-+	if (mode->clock >= DRM_HDMI_14_MAX_TMDS_CLK_KHZ && scdc->supported) {
- 		schedule_delayed_work(&sor->scdc, msecs_to_jiffies(5000));
- 		tegra_sor_hdmi_scdc_enable(sor);
- 		sor->scdc_enabled = true;
-@@ -2340,7 +2340,7 @@ static void tegra_sor_hdmi_enable(struct drm_encoder *encoder)
- 	value &= ~SOR_CLK_CNTRL_DP_LINK_SPEED_MASK;
- 	value &= ~SOR_CLK_CNTRL_DP_CLK_SEL_MASK;
- 
--	if (mode->clock < 340000) {
-+	if (mode->clock < DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
- 		DRM_DEBUG_KMS("setting 2.7 GHz link speed\n");
- 		value |= SOR_CLK_CNTRL_DP_LINK_SPEED_G2_70;
- 	} else {
-@@ -2423,7 +2423,7 @@ static void tegra_sor_hdmi_enable(struct drm_encoder *encoder)
- 	/* adjust clock rate for HDMI 2.0 modes */
- 	rate = clk_get_rate(sor->clk_parent);
- 
--	if (mode->clock >= 340000)
-+	if (mode->clock >= DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
- 		rate /= 2;
- 
- 	DRM_DEBUG_KMS("setting clock to %lu Hz, mode: %lu Hz\n", rate, pclk);
-diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-index fab9b93e1b84..fc7247cc1022 100644
---- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-+++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -97,11 +97,11 @@
- #define HSM_MIN_CLOCK_FREQ	120000000
- #define CEC_CLOCK_FREQ 40000
- 
--#define HDMI_14_MAX_TMDS_CLK   (340 * 1000 * 1000)
-+#define HDMI_14_MAX_TMDS_CLK	(DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
- 
- static bool vc4_hdmi_mode_needs_scrambling(const struct drm_display_mode *mode)
- {
--	return (mode->clock * 1000) > HDMI_14_MAX_TMDS_CLK;
-+	return mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ;
- }
- 
- static int vc4_hdmi_debugfs_regs(struct seq_file *m, void *unused)
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-index b501d0badaea..030636635af1 100644
---- a/include/drm/drm_connector.h
-+++ b/include/drm/drm_connector.h
-@@ -260,6 +260,8 @@ struct drm_hdmi_info {
- 	struct drm_hdmi_dsc_cap dsc_cap;
- };
- 
-+#define DRM_HDMI_14_MAX_TMDS_CLK_KHZ	(340 * 1000)
-+
- /**
-  * enum drm_link_status - connector's link_status property value
-  *
--- 
-2.32.0
-
+> 
+> > 
+> > Ideally now the link rate and lane count should be lowered to use the least
+> > required to support that compressed bpp Then we wont see any underruns.
+> > 
+> > Manasi
+> > 
+> > > So min of (28,(36-1)) would be 28 and not as per the spec.
+> > >
+> > > Hence in either of the places, kernel or igt we need to honour the
+> > > limits Of bpc*3 as per the DP 1.4 spec.
+> > >
+> > > If you look at the IGT we have cases of 8bpc, 10 bpc We need to
+> > > address this either in the driver by getting the actual uncompressed
+> > > bpp limits Or in the user space by changing the max_requested_bpc for
+> > 8bpc and 10bpc cases.
+> > >
+> > > This patch is tested and resolves the FIFO underruns, in force dsc cases.
+> > > The problem is only when we are forcing DSC and the link rate can actually
+> > support higher bpp.
+> > > And we have multiple igts trying to use 8bpc and 10bpc.
+> > >
+> > > Thanks
+> > > Vandita
+> > >
+> > > >
+> > > > So we are good here in terms of how we calculate our compressed bpp.
+> > > > However what you should once double check is for XeLPD (>=13)
+> > > > platforms, you just pick min (bits_per_pixel, pipe_bpp - 1) But I
+> > > > remember seeing that the spec still says target bpp has to be 8 to
+> > > > 27 even when supported input bpc are 8/10/12 (please check if it
+> > > > actually goes all the way from 8 to 35)
+> > > >
+> > > > Manasi
+> > > >
+> > > > >
+> > > > > Thanks,
+> > > > > Vandita
+> > > > >
+> > > > > > Manasi
+> > > > > >
+> > > > > > >
+> > > > > > > Fixes: 831d5aa96c97 ("drm/i915/xelpd: Support DP1.4
+> > > > > > > compression
+> > > > > > > BPPs")
+> > > > > > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > > > > > > ---
+> > > > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
+> > > > > > >  1 file changed, 4 insertions(+), 3 deletions(-)
+> > > > > > >
+> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > index 9d8132dd4cc5..1f7e666ae490 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > @@ -1322,7 +1322,7 @@ static int
+> > > > > > > intel_dp_dsc_compute_config(struct
+> > > > > > intel_dp *intel_dp,
+> > > > > > >  	struct drm_i915_private *dev_priv = to_i915(dig_port-
+> > > > > > >base.base.dev);
+> > > > > > >  	const struct drm_display_mode *adjusted_mode =
+> > > > > > >  		&pipe_config->hw.adjusted_mode;
+> > > > > > > -	int pipe_bpp;
+> > > > > > > +	int pipe_bpp, max_dsc_pipe_bpp;
+> > > > > > >  	int ret;
+> > > > > > >
+> > > > > > >  	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
+> > @@ -
+> > > > > > 1331,7
+> > > > > > > +1331,8 @@ static int intel_dp_dsc_compute_config(struct
+> > > > > > > +intel_dp
+> > > > > > *intel_dp,
+> > > > > > >  	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+> > > > > > >  		return -EINVAL;
+> > > > > > >
+> > > > > > > -	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state-
+> > > > > > >max_requested_bpc);
+> > > > > > > +	pipe_bpp = pipe_config->pipe_bpp;
+> > > > > > > +	max_dsc_pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp,
+> > > > > > > +conn_state->max_requested_bpc);
+> > > > > > >
+> > > > > > >  	/* Min Input BPC for ICL+ is 8 */
+> > > > > > >  	if (pipe_bpp < 8 * 3) {
+> > > > > > > @@ -1345,7 +1346,7 @@ static int
+> > > > > > > intel_dp_dsc_compute_config(struct
+> > > > > > intel_dp *intel_dp,
+> > > > > > >  	 * Optimize this later for the minimum possible link rate/lane
+> > count
+> > > > > > >  	 * with DSC enabled for the requested mode.
+> > > > > > >  	 */
+> > > > > > > -	pipe_config->pipe_bpp = pipe_bpp;
+> > > > > > > +	pipe_config->pipe_bpp = max_dsc_pipe_bpp;
+> > > > > > >  	pipe_config->port_clock = limits->max_rate;
+> > > > > > >  	pipe_config->lane_count = limits->max_lane_count;
+> > > > > > >
+> > > > > > > --
+> > > > > > > 2.32.0
+> > > > > > >
