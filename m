@@ -2,42 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 193DC442666
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 05:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFBAF4426D0
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 06:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8905E6F9B4;
-	Tue,  2 Nov 2021 04:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABC316FA80;
+	Tue,  2 Nov 2021 05:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA1AB6F9B4
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 04:27:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="292017942"
-X-IronPort-AV: E=Sophos;i="5.87,201,1631602800"; d="scan'208";a="292017942"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 21:27:56 -0700
-X-IronPort-AV: E=Sophos;i="5.87,201,1631602800"; d="scan'208";a="449229382"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2021 21:27:56 -0700
-Date: Mon, 1 Nov 2021 21:40:46 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-Message-ID: <20211102044041.GA15244@labuser-Z97X-UD5H>
-References: <20211027095316.9579-1-vandita.kulkarni@intel.com>
- <20211027192642.GA22973@labuser-Z97X-UD5H>
- <7d0b19226c71402199351b7e8514c041@intel.com>
- <20211029231251.GA1790@labuser-Z97X-UD5H>
- <b1ad2556bc3b442f9cb2ed1b47cb9d50@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6997F6FA80
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 05:33:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="317387461"
+X-IronPort-AV: E=Sophos;i="5.87,201,1631602800"; d="scan'208";a="317387461"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2021 22:33:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,201,1631602800"; d="scan'208";a="540728675"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by fmsmga008.fm.intel.com with ESMTP; 01 Nov 2021 22:33:53 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 1 Nov 2021 22:33:53 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Mon, 1 Nov 2021 22:33:52 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Mon, 1 Nov 2021 22:33:52 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, "De Marchi,
+ Lucas" <lucas.demarchi@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
+Thread-Index: AQHXxUfp90zJKsmfc0KKIjZpNBUnJqvcGbGAgACkkICAASbWAIACCM+AgAP7fwCADFmiAA==
+Date: Tue, 2 Nov 2021 05:33:52 +0000
+Message-ID: <90ce635eef9e3280fefcab43df32082f69e80df6.camel@intel.com>
+References: <20211020002353.193893-1-jose.souza@intel.com>
+ <87tuhcni3k.fsf@intel.com>
+ <74cc5b4a8ebe2a5f7ae01994c6782124328a2e0e.camel@intel.com>
+ <87zgr2ldz5.fsf@intel.com> <20211022201529.w56cpg67bxupfbyh@ldmartin-desk2>
+ <874k95lbl3.fsf@intel.com>
+In-Reply-To: <874k95lbl3.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BC25CD3B973AE846846E0108ADBAFC6C@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b1ad2556bc3b442f9cb2ed1b47cb9d50@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Fix the usage of uncompressed
- bpp
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Add struct to hold IP version
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,214 +67,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+Cc: "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 01, 2021 at 09:45:23AM -0700, Kulkarni, Vandita wrote:
-> > -----Original Message-----
-> > From: Navare, Manasi D <manasi.d.navare@intel.com>
-> > Sent: Saturday, October 30, 2021 4:43 AM
-> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
-> > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed bpp
-> > 
-> > On Wed, Oct 27, 2021 at 09:37:10PM -0700, Kulkarni, Vandita wrote:
-> > > > -----Original Message-----
-> > > > From: Navare, Manasi D <manasi.d.navare@intel.com>
-> > > > Sent: Thursday, October 28, 2021 12:57 AM
-> > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
-> > > > <jani.nikula@intel.com>
-> > > > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed bpp
-> > > >
-> > > > On Wed, Oct 27, 2021 at 03:23:16PM +0530, Vandita Kulkarni wrote:
-> > > > > DP 1.4 spec limits max compression bpp to uncompressed bpp -1,
-> > > > > which is supported from XELPD onwards.
-> > > > > Instead of uncompressed bpp, max dsc input bpp was being used to
-> > > > > limit the max compression bpp.
-> > > >
-> > > > So the input Pipe BPP which is the uncompressed bpp is decided by
-> > > > the input bpc and when this was initially written, we had designed
-> > > > it to respect the max_req_bpc by the user.
-> > > > So that is what we use to decide the input bpc and hence the
-> > > > pipe_bpp This input pipe_bpp decides the compressed bpp that we
-> > > > calculate based on all the supported output bpps which are supported
-> > > > all the way upto uncompressed_output_bpp - 1.
-> > > >
-> > > > So I dont see the need to change the logic here. Moreover I dont see
-> > > > any change in the dsc_compute_bpp function So I dont understand the
-> > > > purpose of introducing the new max_dsc_pipe_bpp variable here
-> > >
-> > > Thanks for the comments, I had few more opens around this along with
-> > this patch.
-> > >
-> > > AFAIU about max_requested_bpc it is to limit the max_bpc
-> > > "drm: Add connector property to limit max bpc"
-> > > And the driver is supposed to program the default bpc as per the connector
-> > limitation.
-> > > Which is 12 as per the current driver implementation.
-> > >
-> > > I had few queries around this design:
-> > > So it means that max_dsc_input_bpp would be set to 36 if supported by the
-> > sink and the platform.
-> > > And now we make this as our pipe_bpp,
-> > > 1. Does this mean that we are assuming 12bpc as i/p always?
-> > > 2. What happens to those with formats 8bpc, 10 bpc?
-> > >
-> > 
-> > Yes so this driver policy was decided based on some feedback that I had got
-> > from the community as well as internal feedback from Ville that the decision
-> > of input_bpc should be based on max_bpc requested by the user through the
-> > connector property and max_bpc supported by the platform.
-> > Here we take the min of the two so that we dont violate either of the max
-> > constrains.
-> > This was primarily suggested by Ville since he said that we should always
-> > respect what user has set as the upper limit in the bpc because this could be
-> > for example driven by the fact that OEM's panel has a limitation or issues
-> > with higher bpcs or a display requirement for certain use case.
-> > Hence while we want to support as high bpc as supported by the platform
-> > and sink to have better display quality, it should not exceed the max limit set
-> > by the user through the property.
-> > 
-> > 8 and 10bpc will be supported but we want to start with supporting the max
-> > we can, going down from there if needed.
-> > So for compression, we chose the maximum input bpc and determine the
-> > compressed bpp for that.
-> > 
-> > 
-> > > We do not consider the actual pipe_bpp while computing the
-> > > compression_bpp, We reverse calculate it from the link_rate,  and small
-> > joiner bpp limits.
-> > > In cases of forcing dsc, we might have a situation where the link can
-> > actually support the current bpp, or even more.
-> > > But we are forcing the dsc enable.
-> > > In such cases we might end up with a compression bpp which is higher than
-> > the actual i/p bpp.
-> > 
-> > Well the only time we force the dsc_enable is for IGT DSC tests and thats
-> > okay for compression bpp to be higher since there we are just validation the
-> > functionality and its not for actual user/use case.
-> 
-> We are having these test cases as part of CI. We hit FIFO underrun in such cases and that's  treated as a fail.
-
-> 
-> > 
-> > In the actual use case we will only enable DSC when the available max link
-> > rate/lane count does not support the minimum bpp of 18 (min bpc of 6 * 3)
-> > So then in that case we say that lets keep the pipe_bpp or input bpp as
-> > max_supported_input_bpc * 3
-> > >
-> > > Now, even if we take a min of  higher compression bpp against
-> > > max_requested_bpc *3 -1, we still have Compression bpp > actual
-> > > pipe_bpp
-> > >
-> > > As per the spec when they say uncompressed bpp, they actually mean 3 *
-> > > bpc If we go ahead with this approach of using max_requested_bpc ,
-> > > which is 12 always we cannot adhere to the spec.
-> > 
-> > So the Bspec says that if the input BPP is (8 * 3) = 24, then based on the
-> > engine's compression ratio capability it can support output compressed BPP
-> > of: 8 - 23 in the increments of 1 BPP And the maximum that we can pick
-> > between 8 - 23 will depend on the min(max bits_per_pixel that the max link
-> > rate, lane count can handle, max bits per pixel by small joiner RAM calc).
-> 
-> In case of force dsc, as part of  the IGT tests, the link can actually support more than
-> 24bpp, since we are forcing have seen a case where it could support 28bpp.
->
-
-From IGT we are forcing DSC for all supported input BPCs right, so for bpc = 8, 
-so input bpp = 24. So IMO in the kernel code, when we calculate pipe_bpp when force_dsc is set in that case we should use the bpc requested
-from IGT as inpput bpc and not care for max_connector_bpc
-So then input bpp = 24 and the limits of compressed bpp would be 8 - 23
-
-Ideally now the link rate and lane count should be lowered to use the least required to support that compressed bpp 
-Then we wont see any underruns.
-
-Manasi
-
-> So min of (28,(36-1)) would be 28 and not as per the spec.
-> 
-> Hence in either of the places, kernel or igt we need to honour the limits
-> Of bpc*3 as per the DP 1.4 spec.
-> 
-> If you look at the IGT we have cases of 8bpc, 10 bpc
-> We need to address this either in the driver by getting the actual uncompressed bpp limits
-> Or in the user space by changing the max_requested_bpc for 8bpc and 10bpc cases.
-> 
-> This patch is tested and resolves the FIFO underruns, in force dsc cases.
-> The problem is only when we are forcing DSC and the link rate can actually support higher bpp.
-> And we have multiple igts trying to use 8bpc and 10bpc.
-> 
-> Thanks
-> Vandita
-> 
-> > 
-> > So we are good here in terms of how we calculate our compressed bpp.
-> > However what you should once double check is for XeLPD (>=13) platforms,
-> > you just pick min (bits_per_pixel, pipe_bpp - 1) But I remember seeing that
-> > the spec still says target bpp has to be 8 to 27 even when supported input bpc
-> > are 8/10/12 (please check if it actually goes all the way from 8 to 35)
-> > 
-> > Manasi
-> > 
-> > >
-> > > Thanks,
-> > > Vandita
-> > >
-> > > > Manasi
-> > > >
-> > > > >
-> > > > > Fixes: 831d5aa96c97 ("drm/i915/xelpd: Support DP1.4 compression
-> > > > > BPPs")
-> > > > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
-> > > > >  1 file changed, 4 insertions(+), 3 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > index 9d8132dd4cc5..1f7e666ae490 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > @@ -1322,7 +1322,7 @@ static int
-> > > > > intel_dp_dsc_compute_config(struct
-> > > > intel_dp *intel_dp,
-> > > > >  	struct drm_i915_private *dev_priv = to_i915(dig_port-
-> > > > >base.base.dev);
-> > > > >  	const struct drm_display_mode *adjusted_mode =
-> > > > >  		&pipe_config->hw.adjusted_mode;
-> > > > > -	int pipe_bpp;
-> > > > > +	int pipe_bpp, max_dsc_pipe_bpp;
-> > > > >  	int ret;
-> > > > >
-> > > > >  	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) && @@ -
-> > > > 1331,7
-> > > > > +1331,8 @@ static int intel_dp_dsc_compute_config(struct intel_dp
-> > > > *intel_dp,
-> > > > >  	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
-> > > > >  		return -EINVAL;
-> > > > >
-> > > > > -	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state-
-> > > > >max_requested_bpc);
-> > > > > +	pipe_bpp = pipe_config->pipe_bpp;
-> > > > > +	max_dsc_pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp,
-> > > > > +conn_state->max_requested_bpc);
-> > > > >
-> > > > >  	/* Min Input BPC for ICL+ is 8 */
-> > > > >  	if (pipe_bpp < 8 * 3) {
-> > > > > @@ -1345,7 +1346,7 @@ static int
-> > > > > intel_dp_dsc_compute_config(struct
-> > > > intel_dp *intel_dp,
-> > > > >  	 * Optimize this later for the minimum possible link rate/lane count
-> > > > >  	 * with DSC enabled for the requested mode.
-> > > > >  	 */
-> > > > > -	pipe_config->pipe_bpp = pipe_bpp;
-> > > > > +	pipe_config->pipe_bpp = max_dsc_pipe_bpp;
-> > > > >  	pipe_config->port_clock = limits->max_rate;
-> > > > >  	pipe_config->lane_count = limits->max_lane_count;
-> > > > >
-> > > > > --
-> > > > > 2.32.0
-> > > > >
+T24gTW9uLCAyMDIxLTEwLTI1IGF0IDEyOjA0ICswMzAwLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4g
+T24gRnJpLCAyMiBPY3QgMjAyMSwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
+bC5jb20+IHdyb3RlOg0KPiA+IE9uIFRodSwgT2N0IDIxLCAyMDIxIGF0IDA0OjExOjI2UE0gKzAz
+MDAsIEphbmkgTmlrdWxhIHdyb3RlOg0KPiA+ID4gT24gV2VkLCAyMCBPY3QgMjAyMSwgIlNvdXph
+LCBKb3NlIiA8am9zZS5zb3V6YUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+ID4gPiBPbiBXZWQsIDIw
+MjEtMTAtMjAgYXQgMTI6NDcgKzAzMDAsIEphbmkgTmlrdWxhIHdyb3RlOg0KPiA+ID4gPiA+IE9u
+IFR1ZSwgMTkgT2N0IDIwMjEsIEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50
+ZWwuY29tPiB3cm90ZToNCj4gPiA+ID4gPiA+IFRoZSBjb25zdGFudCBwbGF0Zm9ybSBkaXNwbGF5
+IHZlcnNpb24gaXMgbm90IHVzaW5nIHRoaXMgbmV3IHN0cnVjdCBidXQNCj4gPiA+ID4gPiA+IHRo
+ZSBydW50aW1lIHZhcmlhbnQgd2lsbCBkZWZpbml0ZWx5IHVzZSBpdC4NCj4gPiA+ID4gPiANCj4g
+PiA+ID4gPiBDYzogU29tZSBtb3JlIGZvbGtzIHRvIGhpamFjayB0aGlzIHRocmVhZC4gU29ycnkh
+IDspDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gV2UgYWRkZWQgcnVudGltZSBpbmZvIHRvIGk5MTUs
+IGJlY2F1c2Ugd2UgaGFkIHRoaXMgaWRlYSBhbmQgZ29hbCBvZg0KPiA+ID4gPiA+IHR1cm5pbmcg
+dGhlIGRldmljZSBpbmZvIHRvIGEgdHJ1bHkgY29uc3QgcG9pbnRlciB0byB0aGUgaW5mbyBzdHJ1
+Y3R1cmVzDQo+ID4gPiA+ID4gaW4gaTkxNV9wY2kuYyB0aGF0IGFyZSBzdG9yZWQgaW4gcm9kYXRh
+LiBUaGUgaWRlYSB3YXMgdGhhdCB3ZSdsbCBoYXZlIGENCj4gPiA+ID4gPiBjb21wbGV0ZSBzcGxp
+dCBvZiBtdXRhYmxlIGFuZCBpbW11dGFibGUgZGV2aWNlIGRhdGEsIHdpdGggYWxsIHRoZQ0KPiA+
+ID4gPiA+IG11dGFibGUgZGF0YSBpbiBydW50aW1lIGluZm8uDQo+ID4gPiA+ID4gDQo+ID4gPiA+
+ID4gQWxhcywgd2UgbmV2ZXIgZ290IHRoZXJlLiBNb3JlIGFuZCBtb3JlIGRhdGEgdGhhdCB3YXMg
+bW9zdGx5IGNvbnN0IGJ1dA0KPiA+ID4gPiA+IHNvbWV0aW1lcyBuZWVkZWQgdHdlYWtpbmcga2Vw
+dCBwaWxpbmcgdXAuIG1rd3JpdGVfZGV2aWNlX2luZm8oKSB3YXMNCj4gPiA+ID4gPiBzdXBwb3Nl
+ZCB0byBiZSBhIGNsdWUgbm90IHRvIG1vZGlmeSBkZXZpY2UgaW5mbyBydW50aW1lLCBidXQgaW5z
+dGVhZCBpdA0KPiA+ID4gPiA+IHByb2xpZmVyYXRlZC4gTm93IHdlIGhhdmUgcGxhY2VzIGxpa2Ug
+aW50ZWxfZmJjX2luaXQoKSBkaXNhYmxpbmcgRkJDDQo+ID4gPiA+ID4gdGhyb3VnaCB0aGF0LiBC
+dXQgbW9zdCBpbXBvcnRhbnRseSwgd2UgaGF2ZSBmdXNpbmcgdGhhdCBjb25zaWRlcmFibHkNCj4g
+PiA+ID4gPiBjaGFuZ2VzIHRoZSBkZXZpY2UgaW5mbywgYW5kIHRoZSBjb3B5aW5nIGFsbCBvZiB0
+aGF0IGRhdGEgb3ZlciB0bw0KPiA+ID4gPiA+IHJ1bnRpbWUgaW5mbyBwcm9iYWJseSBpc24ndCB3
+b3J0aCBpdC4NCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBTaG91bGQgd2UganVzdCBhY2tub3dsZWRn
+ZSB0aGF0IHRoZSBydW50aW1lIGluZm8gaXMgdXNlbGVzcywgYW5kIG1vdmUNCj4gPiA+ID4gPiBz
+b21lIG9mIHRoYXQgZGF0YSB0byBpbnRlbF9kZXZpY2VfaW5mbyBhbmQgc29tZSBvZiBpdCBlbHNl
+d2hlcmUgaW4gaTkxNT8NCj4gPiA+ID4gDQo+ID4gPiA+IFdpdGggbmV3ZXIgcGxhdGZvcm1zIGdl
+dHRpbmcgbW9yZSBhbmQgbW9yZSBtb2R1bGFyLCBJIGJlbGlldmUgd2Ugd2lsbA0KPiA+ID4gPiBu
+ZWVkIHRvIHN0b3JlIGV2ZW4gbW9yZSBtdXRhYmxlIHBsYXRmb3JtIGluZm9ybWF0aW9uLg0KPiA+
+ID4gPiANCj4gPiA+ID4gSW4gbXkgb3BpbmlvbiBhIHNlcGFyYXRpb24gb2YgaW1tdXRhYmxlIGFu
+ZCBtdXRhYmxlIHBsYXRmb3JtDQo+ID4gPiA+IGluZm9ybWF0aW9uIGlzIGNsZWFuZXIgYW5kIGVh
+c2llciB0byBtYWludGFpbi4NCj4gPiA+IA0KPiA+ID4gWWVhaCwgdGhhdCdzIGtpbmQgb2Ygd2hh
+dCB0aGUgb3JpZ2luYWwgcG9pbnQgd2FzIHdpdGggZGV2aWNlIGFuZCBydW50aW1lDQo+ID4gPiBp
+bmZvIHNwbGl0LiBJdCdzIGp1c3QgdGhhdCBhIGxvdCBvZiB0aGUgc3VwcG9zZWRseSBpbW11dGFi
+bGUgcGxhdGZvcm0NCj4gPiA+IGluZm8gaGFzIHR1cm5lZCBpbnRvIG11dGFibGUgaW5mb3JtYXRp
+b24uDQo+ID4gPiANCj4gPiA+IEkgdGhpbmsgZWl0aGVyIHdlIG5lZWQgdG8gcHJvcGVybHkgZm9s
+bG93IHRocm91Z2ggd2l0aCB0aGF0IGlkZWEsIGFuZA0KPiA+ID4gb25seSBzdG9yZSBhIGNvbnN0
+IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyAqIHRvIHRoZSByb2RhdGEgaW4NCj4gPiA+IGk5MTVf
+cGNpLmMsIG9yIGp1c3Qgc2NyYXAgaXQuIE5vbmUgb2YgdGhpcyAiYWxtb3N0IGltbXV0YWJsZSIg
+YnVzaW5lc3MNCj4gPiA+IHRoYXQgd2UgY3VycmVudGx5IGhhdmUuICJBbG1vc3QgaW1tdXRhYmxl
+IiBtZWFucyAibXV0YWJsZSIuDQo+ID4gPiANCj4gPiA+IFRoZSBtYWluIHByb2JsZW0gaXMgdGhh
+dCB3ZSdsbCBzdGlsbCB3YW50IHRvIGhhdmUgdGhlIGluaXRpYWwgdmFsdWVzIGluDQo+ID4gPiBz
+dGF0aWMgZGF0YS4gT25lIGlkZWEgaXMgc29tZXRoaW5nIGxpa2UgdGhpczoNCj4gPiA+IA0KPiA+
+ID4gc3RydWN0IGludGVsX2RldmljZV9pbmZvIHsNCj4gPiA+IAljb25zdCBzdHJ1Y3QgaW50ZWxf
+cnVudGltZV9pbmZvICpydW50aW1lX2luZm87DQo+ID4gPiAgICAgICAgLyogLi4uICovDQo+ID4g
+PiB9Ow0KPiA+ID4gDQo+ID4gPiBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZv
+IGk5NjVnX2luZm8gPSB7DQo+ID4gPiAJLnJ1bnRpbWVfaW5mbyA9ICZpOTY1Z19pbml0aWFsX3J1
+bnRpbWVfaW5mbzsNCj4gPiA+ICAgICAgICAvKiAuLi4gKi8NCj4gPiA+IH07DQo+ID4gPiANCj4g
+PiA+IEFuZCB0aGluZ3MgbGlrZSAucGlwZV9tYXNrIHdvdWxkIGJlIHBhcnQgb2Ygc3RydWN0DQo+
+ID4gPiBpbnRlbF9ydW50aW1lX2luZm8uIFlvdSdkIGNvcHkgdGhlIHN0dWZmIG92ZXIgZnJvbSBp
+bnRlbF9kZXZpY2VfaW5mbw0KPiA+ID4gcnVudGltZV9pbmZvIG1lbWJlciB0byBpOTE1LT5fX3J1
+bnRpbWUsIGJ1dCBpOTE1LT5fX2luZm8gd291bGQgYmUgYQ0KPiA+ID4gY29uc3QgcG9pbnRlciB0
+byB0aGUgZGV2aWNlIGluZm8uIFlvdSdkIG5ldmVyIGFjY2VzcyB0aGUgcnVudGltZV9pbmZvDQo+
+ID4gPiBtZW1iZXIgYWZ0ZXIgb2YgaW50ZWxfZGV2aWNlX2luZm8gYWZ0ZXIgcHJvYmUuDQo+ID4g
+DQo+ID4gDQo+ID4gSSBsaWtlIHRoaXMgYXBwcm9hY2guIEkgdGhpbmsgdGhlIG9ubHkgcHJvYmxl
+bSB3b3VsZCBiZSB0aGF0IGlmIHNvbWVvbmUNCj4gPiBpbmFkdmVydGVudGx5IGRvIGEgaTkxNS0+
+X19pbmZvLT5ydW50aW1lX2luZm8gdGhleSB3aWxsIGJlIGFjY2Vzc2luZyB0aGUNCj4gPiB3cm9u
+ZyBkYXRhLiBTbyBtYXliZSB0byBiZSBjbGVhciBkbw0KPiA+IA0KPiA+IAlzdHJ1Y3QgaW50ZWxf
+ZGV2aWNlX2luZm8gew0KPiA+IAkJY29uc3Qgdm9pZCAqaW5pdGlhbF9ydW50aW1lX2luZm87DQo+
+ID4gCQkvKiAuLi4gKi8NCj4gPiAJfTsNCj4gPiANCj4gPiAJc3RhdGljIGNvbnN0IHN0cnVjdCBp
+bnRlbF9kZXZpY2VfaW5mbyBpOTY1Z19pbmZvID0gew0KPiA+IAkJLmluaXRpYWxfcnVudGltZV9p
+bmZvID0gJmk5NjVnX2luaXRpYWxfcnVudGltZV9pbmZvOw0KPiA+IAkJLyogLi4uICovDQo+ID4g
+CX07DQo+ID4gDQo+ID4gdGhpcyB3b3VsZCBtYWtlIGl0IG9wYXF1ZSBhbmQgZXZlbiBoaW50IGJ5
+IHRoZSBuYW1lIHNvIHRoZSBkZXZlbG9wZXIgaXMNCj4gPiBub3QgdGVtcHRlZCB0byBhZGQgYSBj
+YXN0Lg0KPiANCj4gSSB0aGluayB0aGF0J3MgYWxsIGZhaXJseSBzdHJhaWdodGZvcndhcmQuIEFu
+eSBpZGVhcyBvbiBob3cgdG8gZG8gdGhlDQo+IGZsYWdzIHNwbGl0IGNsZWFubHksIHRob3VnaD8g
+SSBhbHJlYWR5IGRpc2xpa2UgdGhlDQo+IERFVl9JTkZPX0ZPUl9FQUNIX0ZMQUcoKSBhbmQgREVW
+X0lORk9fRElTUExBWV9GT1JfRUFDSF9GTEFHKCkgc3BsaXQuDQoNCkp1c3QgdG8gYmUgc3VyZSwg
+dGhpcyBkaXNjdXNzaW9uIHRoYXQgSmFuaSBzdGFydGVkIGNhbiBiZSBidWlsZCBvbiB0b3Agb2Yg
+dGhpcyBwYXRjaCByaWdodD8NCg0KV2lsbCB0cnkgdG8gZ2V0IHNvbWVvbmUgdG8gcmV2aWV3IHRo
+ZSByZW1haW5pbmcgcGF0Y2ggb2YgdGhpcyBzZXJpZXMgdG8gbWVyZ2UgaXQuDQoNCj4gDQo+IEJS
+LA0KPiBKYW5pLg0KPiANCj4gDQo+IA0KPiA+IA0KPiA+IEx1Y2FzIERlIE1hcmNoaQ0KPiA+IA0K
+PiA+ID4gDQo+ID4gPiBJdCdzIGp1c3QgcmVhbGx5IHBhaW5mdWwsIGZvciBpbnN0YW5jZSBiZWNh
+dXNlIHdlIGFscmVhZHkgaGF2ZSB0d28gc2V0cw0KPiA+ID4gb2YgZmxhZ3MsIGRpc3BsYXkgYW5k
+IG5vbi1kaXNwbGF5LCBhbmQgdGhvc2Ugd291bGQgYmUgbXVsdGlwbGllZCB0bw0KPiA+ID4gbXV0
+YWJsZS9pbW11dGFibGUuIEFuZCB3ZSBzaG91bGQgcHJvYmFibHkgaW5jcmVhc2UsIG5vdCBkZWNy
+ZWFzZSwgdGhlDQo+ID4gPiBzcGxpdCBiZXR3ZWVuIGRpc3BsYXkgYW5kIG5vbi1kaXNwbGF5LiBU
+aGUgbWFjcm8gaG9ycm9yIHNob3cgb2YNCj4gPiA+IGk5MTVfcGNpLmMgd291bGQganVzdCBncm93
+IHdvcnNlLg0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IEJSLA0KPiA+ID4gSmFuaS4NCj4gPiA+IA0K
+PiA+ID4gDQo+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gDQo+ID4gPiA+
+ID4gQlIsDQo+ID4gPiA+ID4gSmFuaS4NCj4gPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiANCj4g
+PiA+IC0tIA0KPiA+ID4gSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENl
+bnRlcg0KPiANCg0K
