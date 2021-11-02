@@ -2,62 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E5FE4434D3
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 18:50:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 018724434D7
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 18:50:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7F073496;
-	Tue,  2 Nov 2021 17:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CAFD73499;
+	Tue,  2 Nov 2021 17:50:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E10773496
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 17:50:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="228781110"
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; 
- d="scan'208,217";a="228781110"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 10:50:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; 
- d="scan'208,217";a="583733075"
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
- by fmsmga002.fm.intel.com with ESMTP; 02 Nov 2021 10:50:17 -0700
-Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
- IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 2 Nov 2021 17:50:15 +0000
-Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
- pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2242.012;
- Wed, 3 Nov 2021 01:50:13 +0800
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Latvala, Petri" <petri.latvala@intel.com>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTU6IFByZXBhcmUg?=
- =?utf-8?Q?error_capture_for_asynchronous_migration?=
-Thread-Index: AQHX0Aa1ICKry9icLEilJXMkBRIk8qvwg5wQ
-Date: Tue, 2 Nov 2021 17:50:12 +0000
-Message-ID: <7f7570cd26ef46af82d9f881cc5c55fa@intel.com>
-References: <20211102102827.442902-1-thomas.hellstrom@linux.intel.com>
- <163586892316.15504.7857015548691913286@emeril.freedesktop.org>
- <4767cf8b-7c53-72fe-a781-1d7223ab6e50@linux.intel.com>
-In-Reply-To: <4767cf8b-7c53-72fe-a781-1d7223ab6e50@linux.intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-Mentions: petri.latvala@intel.com
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.22.254.132]
-Content-Type: multipart/alternative;
- boundary="_000_7f7570cd26ef46af82d9f881cc5c55faintelcom_"
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
+ [IPv6:2607:f8b0:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 898AE7349A;
+ Tue,  2 Nov 2021 17:50:38 +0000 (UTC)
+Received: by mail-ot1-x336.google.com with SMTP id
+ c2-20020a056830348200b0055a46c889a8so10355280otu.5; 
+ Tue, 02 Nov 2021 10:50:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=JCnH8IVQSN/Tydtefp2s0zrp4McuTwvXnflW3E4hZFk=;
+ b=VdBLOAQmTW8IYQmzlxua3oCaylRz+xtYXTY/C+2FP3cDsBBqJC/OlAfidpp+sAYfWh
+ XZpOlzP9xIk4Vl25k7NFe9yrLOeWEoVdATlZYJ26fpbAEB29KxhDAWnAZSxunMaT21vy
+ hovCeL8T24CqDQlv/nSLcDx0HVEb+OmzGUI5ZifOQetoIW7x0EMiF+Lx0Tjq9eWFMmAq
+ +uypRNFbpVFIVTg3XXzms1kY+gwaskiDyGaj1ikcUZqT3D6v9UkQmRHG5parwKYwV+i1
+ UKIZVaz02RXWOmjbe9NrrRmxgvtKjbwudjuwd84JzgQdu8Gtook+wRkf5xYqIxbAdgY0
+ bC/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=JCnH8IVQSN/Tydtefp2s0zrp4McuTwvXnflW3E4hZFk=;
+ b=HK3lw0Zk/JMp7TD5NdxD5LJVOn09fkIY1roNDmYQ22J6S+a6LPLf5ryTtnWgXZOg5Q
+ VfkMpuaorK7sQil8DeLgxLJe/34zF4yjFCQW0UzRBOJk08nbCCkNzQ/4YeyWi7wzKdZ+
+ GF2XEJ4ec4QrVHhP7qcJu5DaMJ7r7Kf0Osxhi4ikAE83j24bag8HHQNKgSHgDvaV8flp
+ iH8WCwwI+8cPvEpJZ3XAkxBQFEYznLdO+cKnLehlS9cBO+jBKmmhaxY+CB0aa3Q70K4q
+ g/N4nQPpCBHYTboMxDj6MAYu4CaY0LcbKqXpT8IvipbUA6aGS5nGSpiLXeljKcQAFZln
+ 8MbA==
+X-Gm-Message-State: AOAM531kbW3CH1CnXAb95Qpx/QZZsi4LNwL0UXFZw3Qw9GRFSmdcohYd
+ dn6xMr6nArpUKD7W5R1vwPgEw1oGUPNVpkD8DnY=
+X-Google-Smtp-Source: ABdhPJylgDZ1V00UpveCgBw7YMyDGwlexpSVyGJmOUKlwqguIVRxCkdmleuRmNBGUuHIPNCqVvqSPwGYxIIoWRPWgiY=
+X-Received: by 2002:a9d:1b4f:: with SMTP id l73mr28917145otl.200.1635875437736; 
+ Tue, 02 Nov 2021 10:50:37 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Prepare_error_capture_for_asynchronous_migration?=
+References: <20211102145944.259181-1-maxime@cerno.tech>
+ <20211102145944.259181-2-maxime@cerno.tech>
+In-Reply-To: <20211102145944.259181-2-maxime@cerno.tech>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 2 Nov 2021 13:50:26 -0400
+Message-ID: <CADnq5_Ne-t8QpdnxRjyyRNazus9pRtOzgA6Xd6HK=sjQg6xNtg@mail.gmail.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 01/13] drm/connector: Add define for HDMI
+ 1.4 Maximum Pixel Rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,218 +66,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Emma Anholt <emma@anholt.net>, Neil Armstrong <narmstrong@baylibre.com>,
+ David Airlie <airlied@linux.ie>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Phil Elwell <phil@raspberrypi.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Tim Gover <tim.gover@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Dom Cobley <dom@raspberrypi.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Robert Foss <robert.foss@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_7f7570cd26ef46af82d9f881cc5c55faintelcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Tue, Nov 2, 2021 at 10:59 AM Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> A lot of drivers open-code the HDMI 1.4 maximum pixel rate in their
+> driver to test whether the resolutions are supported or if the
+> scrambling needs to be enabled.
+>
+> Let's create a common define for everyone to use it.
+>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: Andrzej Hajda <a.hajda@samsung.com>
+> Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: Emma Anholt <emma@anholt.net>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-tegra@vger.kernel.org
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c  | 4 ++--
+>  drivers/gpu/drm/drm_edid.c                 | 2 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c  | 2 +-
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c      | 4 ++--
+>  drivers/gpu/drm/radeon/radeon_encoders.c   | 2 +-
 
-V2UgZG9u4oCZdCBoYXZlIHRoZSB0ZXN0IGluIG91ciBkYiDigJxzcGVjQGFyYl9ncHVfc2hhZGVy
-NUB0ZXh0dXJlZ2F0aGVyQGZzLXItMC11bm9ybS0yZGFycmF54oCdLiBTbywgSSBjYW5ub3QgcmVh
-bGx5IGFkZHJlc3MgdGhpcyBpc3N1ZS4NCg0KRllJIEBMYXR2YWxhLCBQZXRyaTxtYWlsdG86cGV0
-cmkubGF0dmFsYUBpbnRlbC5jb20+DQoNCkZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMu
-aGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4NClNlbnQ6IFR1ZXNkYXksIE5vdmVtYmVyIDIsIDIw
-MjEgOToyOSBBTQ0KVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IFZ1ZHVtLCBM
-YWtzaG1pbmFyYXlhbmEgPGxha3NobWluYXJheWFuYS52dWR1bUBpbnRlbC5jb20+DQpTdWJqZWN0
-OiBSZTog4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTU6IFByZXBhcmUgZXJyb3Ig
-Y2FwdHVyZSBmb3IgYXN5bmNocm9ub3VzIG1pZ3JhdGlvbg0KDQoNCg0KT24gMTEvMi8yMSAxNzow
-MiwgUGF0Y2h3b3JrIHdyb3RlOg0KUGF0Y2ggRGV0YWlscw0KU2VyaWVzOg0KDQpkcm0vaTkxNTog
-UHJlcGFyZSBlcnJvciBjYXB0dXJlIGZvciBhc3luY2hyb25vdXMgbWlncmF0aW9uDQoNClVSTDoN
-Cg0KaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy85NjQ5My8NCg0KU3Rh
-dGU6DQoNCmZhaWx1cmUNCg0KRGV0YWlsczoNCg0KaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjE1MDMvaW5kZXguaHRtbA0KDQpDSSBCdWcgTG9nIC0g
-Y2hhbmdlcyBmcm9tIENJX0RSTV8xMDgyN19mdWxsIC0+IFBhdGNod29ya18yMTUwM19mdWxsDQpT
-dW1tYXJ5DQoNCkZBSUxVUkUNCg0KU2VyaW91cyB1bmtub3duIGNoYW5nZXMgY29taW5nIHdpdGgg
-UGF0Y2h3b3JrXzIxNTAzX2Z1bGwgYWJzb2x1dGVseSBuZWVkIHRvIGJlDQp2ZXJpZmllZCBtYW51
-YWxseS4NCg0KSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0
-byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQppbnRyb2R1Y2VkIGluIFBhdGNod29ya18yMTUwM19mdWxs
-LCBwbGVhc2Ugbm90aWZ5IHlvdXIgYnVnIHRlYW0gdG8gYWxsb3cgdGhlbQ0KdG8gZG9jdW1lbnQg
-dGhpcyBuZXcgZmFpbHVyZSBtb2RlLCB3aGljaCB3aWxsIHJlZHVjZSBmYWxzZSBwb3NpdGl2ZXMg
-aW4gQ0kuDQoNClBhcnRpY2lwYXRpbmcgaG9zdHMgKDEwIC0+IDEwKQ0KDQpObyBjaGFuZ2VzIGlu
-IHBhcnRpY2lwYXRpbmcgaG9zdHMNCg0KUG9zc2libGUgbmV3IGlzc3Vlcw0KDQpIZXJlIGFyZSB0
-aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUgYmVlbiBpbnRyb2R1Y2VkIGluIFBhdGNo
-d29ya18yMTUwM19mdWxsOg0KDQpQaWdsaXQgY2hhbmdlcw0KUG9zc2libGUgcmVncmVzc2lvbnMN
-Cg0KICAqICAgc3BlY0BhcmJfZ3B1X3NoYWRlcjVAdGV4dHVyZWdhdGhlckBmcy1yLTAtdW5vcm0t
-MmRhcnJheSAoTkVXKToNCg0KICAgICAqICAgcGlnLWtibC1pcmlzOiBOT1RSVU4gLT4gSU5DT01Q
-TEVURTxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18y
-MTUwMy9waWcta2JsLWlyaXMvc3BlY0BhcmJfZ3B1X3NoYWRlcjVAdGV4dHVyZWdhdGhlckBmcy1y
-LTAtdW5vcm0tMmRhcnJheS5odG1sPiArNSBzaW1pbGFyIGlzc3Vlcw0KDQpMYWtzaG1pLCBUaGlz
-IGZhaWx1cmUgaXMgdW5yZWxhdGVkLg0KDQpUaGFua3MsDQoNClRob21hcw0KDQoNCg==
+For radeon:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
---_000_7f7570cd26ef46af82d9f881cc5c55faintelcom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Note that there are several instances of this in amdgpu as well:
+drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c:                if
+(pixel_clock > 340000)
+drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c:                if
+(pixel_clock > 340000)
+drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c:            if
+(mode->clock > 340000)
+drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c:                if
+(mode->clock > 340000)
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHRpdGxl
-PlByb2plY3QgTGlzdCAtIFBhdGNod29yazwvdGl0bGU+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBE
-ZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFu
-b3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAgMDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJD
-YW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlNlZ29lIFVJIFN5bWJvbCI7DQoJcGFub3Nl
-LTE6MiAxMSA1IDIgNCAyIDQgMiAyIDM7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
-Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250
-LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmgxDQoJ
-e21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFkaW5nIDEgQ2hhciI7
-DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFy
-Z2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjI0LjBw
-dDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglmb250LXdlaWdodDpib2xk
-O30NCmgyDQoJe21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFkaW5n
-IDIgQ2hhciI7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsN
-Cgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1z
-aXplOjE4LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglmb250LXdl
-aWdodDpib2xkO30NCmgzDQoJe21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5r
-OiJIZWFkaW5nIDMgQ2hhciI7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJp
-Z2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47
-DQoJZm9udC1zaXplOjEzLjVwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsN
-Cglmb250LXdlaWdodDpib2xkO30NCmg0DQoJe21zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1z
-dHlsZS1saW5rOiJIZWFkaW5nIDQgQ2hhciI7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJ
-bWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4t
-bGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fu
-cy1zZXJpZjsNCglmb250LXdlaWdodDpib2xkO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkhlYWRpbmcxQ2hhcg0KCXttc28tc3R5bGUtbmFtZToiSGVhZGlu
-ZyAxIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFk
-aW5nIDEiOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIExpZ2h0IixzYW5zLXNlcmlmOw0KCWNvbG9y
-OiMyRjU0OTY7fQ0Kc3Bhbi5IZWFkaW5nMkNoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhlYWRpbmcg
-MiBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTsNCgltc28tc3R5bGUtbGluazoiSGVhZGlu
-ZyAyIjsNCglmb250LWZhbWlseToiQ2FsaWJyaSBMaWdodCIsc2Fucy1zZXJpZjsNCgljb2xvcjoj
-MkY1NDk2O30NCnNwYW4uSGVhZGluZzNDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJIZWFkaW5nIDMg
-Q2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk7DQoJbXNvLXN0eWxlLWxpbms6IkhlYWRpbmcg
-MyI7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkgTGlnaHQiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFG
-Mzc2Mzt9DQpzcGFuLkhlYWRpbmc0Q2hhcg0KCXttc28tc3R5bGUtbmFtZToiSGVhZGluZyA0IENo
-YXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5Ow0KCW1zby1zdHlsZS1saW5rOiJIZWFkaW5nIDQi
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIExpZ2h0IixzYW5zLXNlcmlmOw0KCWNvbG9yOiMyRjU0
-OTY7DQoJZm9udC1zdHlsZTppdGFsaWM7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjQNCgl7bXNvLXN0eWxl
-LXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
-DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
-eHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
-aXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2
-LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25z
-ICovDQpAbGlzdCBsMA0KCXttc28tbGlzdC1pZDo5MDEzMjM3MTsNCgltc28tbGlzdC10ZW1wbGF0
-ZS1pZHM6LTQ4MDYyMjY4O30NCkBsaXN0IGwwOmxldmVsMQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZv
-cm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDou
-NWluOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1
-aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0K
-QGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28t
-bGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDoxLjBpbjsNCgltc28tbGV2ZWwtbnVt
-YmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCW1zby1hbnNpLWZvbnQt
-c2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3IjsNCgltc28tYmlkaS1mb250
-LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIjt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVs
-LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwt
-dGFiLXN0b3A6MS41aW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
-aW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5
-OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6
-YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6Mi4waW47
-DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsN
-Cgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpA
-bGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1s
-ZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6Mi41aW47DQoJbXNvLWxldmVsLW51
-bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250
-LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDYN
-Cgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsN
-Cgltc28tbGV2ZWwtdGFiLXN0b3A6My4waW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjps
-ZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0K
-CWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDcNCgl7bXNvLWxldmVsLW51
-bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFi
-LXN0b3A6My41aW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5k
-ZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5Oldp
-bmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVs
-bGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6NC4waW47DQoJ
-bXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglt
-c28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlz
-dCBsMDpsZXZlbDkNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
-bC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6NC41aW47DQoJbXNvLWxldmVsLW51bWJl
-ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNp
-emU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpvbA0KCXttYXJnaW4tYm90dG9t
-OjBpbjt9DQp1bA0KCXttYXJnaW4tYm90dG9tOjBpbjt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3Rl
-IG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAy
-NiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hh
-cGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+
-DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5n
-PSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3JhcDpicmVh
-ay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5XZSBkb27igJl0IGhhdmUgdGhlIHRlc3QgaW4gb3VyIGRiIOKAnHNwZWNAYXJiX2dwdV9zaGFk
-ZXI1QHRleHR1cmVnYXRoZXJAZnMtci0wLXVub3JtLTJkYXJyYXnigJ0uIFNvLCBJIGNhbm5vdCBy
-ZWFsbHkgYWRkcmVzcyB0aGlzIGlzc3VlLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5GWUkgPGEg
-aWQ9Ik9XQUFNMzlBQTIwOEQ4RTc1NEU3OTk4NzRFQjZCQjcxOUExNTQiIGhyZWY9Im1haWx0bzpw
-ZXRyaS5sYXR2YWxhQGludGVsLmNvbSI+DQo8c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO3RleHQtZGVjb3JhdGlvbjpub25lIj5ATGF0dmFsYSwg
-UGV0cmk8L3NwYW4+PC9hPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
-LXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IFRob21hcyBIZWxsc3Ryw7ZtICZsdDt0aG9t
-YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbSZndDsNCjxicj4NCjxiPlNlbnQ6PC9iPiBUdWVz
-ZGF5LCBOb3ZlbWJlciAyLCAyMDIxIDk6MjkgQU08YnI+DQo8Yj5Ubzo8L2I+IGludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmc7IFZ1ZHVtLCBMYWtzaG1pbmFyYXlhbmEgJmx0O2xha3NobWlu
-YXJheWFuYS52dWR1bUBpbnRlbC5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiA8c3Bh
-biBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LHNhbnMtc2Vy
-aWYiPuKclzwvc3Bhbj4gRmkuQ0kuSUdUOiBmYWlsdXJlIGZvciBkcm0vaTkxNTogUHJlcGFyZSBl
-cnJvciBjYXB0dXJlIGZvciBhc3luY2hyb25vdXMgbWlncmF0aW9uPG86cD48L286cD48L3A+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
-DQo8cD48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5P
-biAxMS8yLzIxIDE3OjAyLCBQYXRjaHdvcmsgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQi
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+UGF0Y2ggRGV0YWlsczwvYj4gPG86cD48L286cD48
-L3A+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjAiIGNlbGxwYWRkaW5n
-PSIwIj4NCjx0Ym9keT4NCjx0cj4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBw
-dCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5TZXJpZXM6PC9iPjxvOnA+PC9vOnA+
-PC9wPg0KPC90ZD4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAyLjBwdCI+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5kcm0vaTkxNTogUHJlcGFyZSBlcnJvciBjYXB0dXJlIGZv
-ciBhc3luY2hyb25vdXMgbWlncmF0aW9uPG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0
-cj4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAyLjBwdCI+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48Yj5VUkw6PC9iPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjx0ZCBzdHls
-ZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48YSBocmVmPSJodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzk2NDkz
-LyI+aHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy85NjQ5My88L2E+PG86
-cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0cj4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBw
-dCAyLjBwdCAyLjBwdCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5TdGF0ZTo8L2I+
-PG86cD48L286cD48L3A+DQo8L3RkPg0KPHRkIHN0eWxlPSJwYWRkaW5nOjIuMHB0IDIuMHB0IDIu
-MHB0IDIuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmZhaWx1cmU8bzpwPjwvbzpwPjwvcD4N
-CjwvdGQ+DQo8L3RyPg0KPHRyPg0KPHRkIHN0eWxlPSJwYWRkaW5nOjIuMHB0IDIuMHB0IDIuMHB0
-IDIuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkRldGFpbHM6PC9iPjxvOnA+PC9vOnA+
-PC9wPg0KPC90ZD4NCjx0ZCBzdHlsZT0icGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAyLjBwdCI+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMTUwMy9pbmRleC5odG1sIj5odHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMTUwMy9pbmRleC5odG1sPC9h
-PjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjxoMT5D
-SSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV8xMDgyN19mdWxsIC0mZ3Q7IFBhdGNod29y
-a18yMTUwM19mdWxsPG86cD48L286cD48L2gxPg0KPGgyPlN1bW1hcnk8bzpwPjwvbzpwPjwvaDI+
-DQo8cD48c3Ryb25nPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWYiPkZBSUxVUkU8L3NwYW4+PC9zdHJvbmc+PG86cD48L286cD48L3A+DQo8cD5T
-ZXJpb3VzIHVua25vd24gY2hhbmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMjE1MDNfZnVsbCBh
-YnNvbHV0ZWx5IG5lZWQgdG8gYmU8YnI+DQp2ZXJpZmllZCBtYW51YWxseS48bzpwPjwvbzpwPjwv
-cD4NCjxwPklmIHlvdSB0aGluayB0aGUgcmVwb3J0ZWQgY2hhbmdlcyBoYXZlIG5vdGhpbmcgdG8g
-ZG8gd2l0aCB0aGUgY2hhbmdlczxicj4NCmludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzIxNTAzX2Z1
-bGwsIHBsZWFzZSBub3RpZnkgeW91ciBidWcgdGVhbSB0byBhbGxvdyB0aGVtPGJyPg0KdG8gZG9j
-dW1lbnQgdGhpcyBuZXcgZmFpbHVyZSBtb2RlLCB3aGljaCB3aWxsIHJlZHVjZSBmYWxzZSBwb3Np
-dGl2ZXMgaW4gQ0kuPG86cD48L286cD48L3A+DQo8aDI+UGFydGljaXBhdGluZyBob3N0cyAoMTAg
-LSZndDsgMTApPG86cD48L286cD48L2gyPg0KPHA+Tm8gY2hhbmdlcyBpbiBwYXJ0aWNpcGF0aW5n
-IGhvc3RzPG86cD48L286cD48L3A+DQo8aDI+UG9zc2libGUgbmV3IGlzc3VlczxvOnA+PC9vOnA+
-PC9oMj4NCjxwPkhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVu
-IGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzIxNTAzX2Z1bGw6PG86cD48L286cD48L3A+DQo8aDM+
-UGlnbGl0IGNoYW5nZXM8bzpwPjwvbzpwPjwvaDM+DQo8aDQ+UG9zc2libGUgcmVncmVzc2lvbnM8
-bzpwPjwvbzpwPjwvaDQ+DQo8dWwgdHlwZT0iZGlzYyI+DQo8bGkgY2xhc3M9Ik1zb05vcm1hbCIg
-c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
-O21zby1saXN0OmwwIGxldmVsMSBsZm8xIj4NCnNwZWNAYXJiX2dwdV9zaGFkZXI1QHRleHR1cmVn
-YXRoZXJAZnMtci0wLXVub3JtLTJkYXJyYXkgKE5FVyk6IDxvOnA+PC9vOnA+PC9saT48L3VsPg0K
-PHVsIHR5cGU9ImRpc2MiPg0KPHVsIHR5cGU9ImNpcmNsZSI+DQo8bGkgY2xhc3M9Ik1zb05vcm1h
-bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
-dXRvO21zby1saXN0OmwwIGxldmVsMiBsZm8xIj4NCnBpZy1rYmwtaXJpczogTk9UUlVOIC0mZ3Q7
-IDxhIGhyZWY9Imh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3
-b3JrXzIxNTAzL3BpZy1rYmwtaXJpcy9zcGVjQGFyYl9ncHVfc2hhZGVyNUB0ZXh0dXJlZ2F0aGVy
-QGZzLXItMC11bm9ybS0yZGFycmF5Lmh0bWwiPg0KSU5DT01QTEVURTwvYT4gJiM0Mzs1IHNpbWls
-YXIgaXNzdWVzPG86cD48L286cD48L2xpPjwvdWw+DQo8L3VsPg0KPC9ibG9ja3F1b3RlPg0KPHA+
-TGFrc2htaSwgVGhpcyBmYWlsdXJlIGlzIHVucmVsYXRlZC48bzpwPjwvbzpwPjwvcD4NCjxwPlRo
-YW5rcyw8bzpwPjwvbzpwPjwvcD4NCjxwPlRob21hczxvOnA+PC9vOnA+PC9wPg0KPHA+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+Alex
 
---_000_7f7570cd26ef46af82d9f881cc5c55faintelcom_--
+>  drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c | 2 +-
+>  drivers/gpu/drm/tegra/sor.c                | 8 ++++----
+>  drivers/gpu/drm/vc4/vc4_hdmi.c             | 4 ++--
+>  include/drm/drm_connector.h                | 2 ++
+>  9 files changed, 16 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/=
+bridge/synopsys/dw-hdmi.c
+> index 62ae63565d3a..3a58db357be0 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -46,7 +46,7 @@
+>  /* DW-HDMI Controller >=3D 0x200a are at least compliant with SCDC versi=
+on 1 */
+>  #define SCDC_MIN_SOURCE_VERSION        0x1
+>
+> -#define HDMI14_MAX_TMDSCLK     340000000
+> +#define HDMI14_MAX_TMDSCLK     (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
+>
+>  enum hdmi_datamap {
+>         RGB444_8B =3D 0x01,
+> @@ -1264,7 +1264,7 @@ static bool dw_hdmi_support_scdc(struct dw_hdmi *hd=
+mi,
+>          * for low rates is not supported either
+>          */
+>         if (!display->hdmi.scdc.scrambling.low_rates &&
+> -           display->max_tmds_clock <=3D 340000)
+> +           display->max_tmds_clock <=3D DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
+>                 return false;
+>
+>         return true;
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 7aa2a56a71c8..ec8fb2d098ae 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_co=
+nnector *connector,
+>                 u32 max_tmds_clock =3D hf_vsdb[5] * 5000;
+>                 struct drm_scdc *scdc =3D &hdmi->scdc;
+>
+> -               if (max_tmds_clock > 340000) {
+> +               if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
+>                         display->max_tmds_clock =3D max_tmds_clock;
+>                         DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
+>                                 display->max_tmds_clock);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index d2e61f6c6e08..0666203d52b7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_encoder =
+*encoder,
+>                 if (scdc->scrambling.low_rates)
+>                         pipe_config->hdmi_scrambling =3D true;
+>
+> -               if (pipe_config->port_clock > 340000) {
+> +               if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KH=
+Z) {
+>                         pipe_config->hdmi_scrambling =3D true;
+>                         pipe_config->hdmi_high_tmds_clock_ratio =3D true;
+>                 }
+> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meso=
+n/meson_dw_hdmi.c
+> index 0afbd1e70bfc..8078667aea0e 100644
+> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> @@ -434,7 +434,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, voi=
+d *data,
+>                 readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
+>
+>         DRM_DEBUG_DRIVER("\"%s\" div%d\n", mode->name,
+> -                        mode->clock > 340000 ? 40 : 10);
+> +                        mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ ? 40 =
+: 10);
+>
+>         /* Enable clocks */
+>         regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+> @@ -457,7 +457,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, voi=
+d *data,
+>         dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
+>
+>         /* TMDS pattern setup */
+> -       if (mode->clock > 340000 &&
+> +       if (mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ &&
+>             dw_hdmi->output_bus_fmt =3D=3D MEDIA_BUS_FMT_YUV8_1X24) {
+>                 dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTT=
+N_01,
+>                                   0);
+> diff --git a/drivers/gpu/drm/radeon/radeon_encoders.c b/drivers/gpu/drm/r=
+adeon/radeon_encoders.c
+> index 46549d5179ee..ddd8100e699f 100644
+> --- a/drivers/gpu/drm/radeon/radeon_encoders.c
+> +++ b/drivers/gpu/drm/radeon/radeon_encoders.c
+> @@ -384,7 +384,7 @@ bool radeon_dig_monitor_is_duallink(struct drm_encode=
+r *encoder,
+>                 if (radeon_connector->use_digital) {
+>                         /* HDMI 1.3 supports up to 340 Mhz over single li=
+nk */
+>                         if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor=
+(radeon_connector_edid(connector))) {
+> -                               if (pixel_clock > 340000)
+> +                               if (pixel_clock > DRM_HDMI_14_MAX_TMDS_CL=
+K_KHZ)
+>                                         return true;
+>                                 else
+>                                         return false;
+> diff --git a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c b/drivers/gpu/drm=
+/sti/sti_hdmi_tx3g4c28phy.c
+> index d25ecd4f4b67..bc213232a875 100644
+> --- a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
+> +++ b/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
+> @@ -102,7 +102,7 @@ static bool sti_hdmi_tx3g4c28phy_start(struct sti_hdm=
+i *hdmi)
+>         tmdsck =3D ckpxpll;
+>         pllctrl |=3D 40 << PLL_CFG_NDIV_SHIFT;
+>
+> -       if (tmdsck > 340000000) {
+> +       if (tmdsck > (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
+>                 DRM_ERROR("output TMDS clock (%d) out of range\n", tmdsck=
+);
+>                 goto err;
+>         }
+> diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
+> index 0ea320c1092b..99a2d627bfeb 100644
+> --- a/drivers/gpu/drm/tegra/sor.c
+> +++ b/drivers/gpu/drm/tegra/sor.c
+> @@ -1814,7 +1814,7 @@ tegra_sor_encoder_atomic_check(struct drm_encoder *=
+encoder,
+>          * For HBR2 modes, the SOR brick needs to use the x20 multiplier,=
+ so
+>          * the pixel clock must be corrected accordingly.
+>          */
+> -       if (pclk >=3D 340000000) {
+> +       if (pclk >=3D (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
+>                 state->link_speed =3D 20;
+>                 state->pclk =3D pclk / 2;
+>         } else {
+> @@ -2196,7 +2196,7 @@ static void tegra_sor_hdmi_scdc_start(struct tegra_=
+sor *sor)
+>
+>         mode =3D &sor->output.encoder.crtc->state->adjusted_mode;
+>
+> -       if (mode->clock >=3D 340000 && scdc->supported) {
+> +       if (mode->clock >=3D DRM_HDMI_14_MAX_TMDS_CLK_KHZ && scdc->suppor=
+ted) {
+>                 schedule_delayed_work(&sor->scdc, msecs_to_jiffies(5000))=
+;
+>                 tegra_sor_hdmi_scdc_enable(sor);
+>                 sor->scdc_enabled =3D true;
+> @@ -2340,7 +2340,7 @@ static void tegra_sor_hdmi_enable(struct drm_encode=
+r *encoder)
+>         value &=3D ~SOR_CLK_CNTRL_DP_LINK_SPEED_MASK;
+>         value &=3D ~SOR_CLK_CNTRL_DP_CLK_SEL_MASK;
+>
+> -       if (mode->clock < 340000) {
+> +       if (mode->clock < DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
+>                 DRM_DEBUG_KMS("setting 2.7 GHz link speed\n");
+>                 value |=3D SOR_CLK_CNTRL_DP_LINK_SPEED_G2_70;
+>         } else {
+> @@ -2423,7 +2423,7 @@ static void tegra_sor_hdmi_enable(struct drm_encode=
+r *encoder)
+>         /* adjust clock rate for HDMI 2.0 modes */
+>         rate =3D clk_get_rate(sor->clk_parent);
+>
+> -       if (mode->clock >=3D 340000)
+> +       if (mode->clock >=3D DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
+>                 rate /=3D 2;
+>
+>         DRM_DEBUG_KMS("setting clock to %lu Hz, mode: %lu Hz\n", rate, pc=
+lk);
+> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdm=
+i.c
+> index fab9b93e1b84..fc7247cc1022 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> @@ -97,11 +97,11 @@
+>  #define HSM_MIN_CLOCK_FREQ     120000000
+>  #define CEC_CLOCK_FREQ 40000
+>
+> -#define HDMI_14_MAX_TMDS_CLK   (340 * 1000 * 1000)
+> +#define HDMI_14_MAX_TMDS_CLK   (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
+>
+>  static bool vc4_hdmi_mode_needs_scrambling(const struct drm_display_mode=
+ *mode)
+>  {
+> -       return (mode->clock * 1000) > HDMI_14_MAX_TMDS_CLK;
+> +       return mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ;
+>  }
+>
+>  static int vc4_hdmi_debugfs_regs(struct seq_file *m, void *unused)
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index b501d0badaea..030636635af1 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -260,6 +260,8 @@ struct drm_hdmi_info {
+>         struct drm_hdmi_dsc_cap dsc_cap;
+>  };
+>
+> +#define DRM_HDMI_14_MAX_TMDS_CLK_KHZ   (340 * 1000)
+> +
+>  /**
+>   * enum drm_link_status - connector's link_status property value
+>   *
+> --
+> 2.32.0
+>
