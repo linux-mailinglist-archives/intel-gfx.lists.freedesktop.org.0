@@ -2,33 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D27C4430F0
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 15:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B644E443114
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 16:00:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6736C6FD1C;
-	Tue,  2 Nov 2021 14:57:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A693872E6B;
+	Tue,  2 Nov 2021 14:59:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 34B196FF99;
- Tue,  2 Nov 2021 14:57:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25DA2AADDC;
- Tue,  2 Nov 2021 14:57:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3850212096932125457=="
+Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
+ [66.111.4.221])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A487C72E66;
+ Tue,  2 Nov 2021 14:59:53 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id EA46B580749;
+ Tue,  2 Nov 2021 10:59:52 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Tue, 02 Nov 2021 10:59:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
+ 0rItuH1D1Um19LY8C97JBMbr4ytaW/WENRWdGOHvCn0=; b=RJBy6ktp/D8Go4xE
+ xTDLGvqvcRrnCSOCDdeFHDK5tP1knfteICl8k7+PVLWVC+bp5vV4ON+N4xI5cx7z
+ sBakpWe0Jk2c2QVG5J0sSk29yueFwEuQKckH6JnMPE1zlQEd9vUX0hLjkjRYple1
+ AI8ZZrXUqOcOBLdGtLVEHpiATgkl9TVfGaXY0wczqBMdnEO1ZyG61hfevsXDV9xf
+ CbB0cNggISWuZM0ohpUFCqj1FCEt7xJuGWc4oW3Dp4ILHuvBMXBI6wsKz/fLgzY9
+ HxynAgxa3R1MqIw6LEdSIu1b5L5TrE6LkmtdeobbmGJShuYF1IHJduqPJsZj2HIZ
+ bJQSeA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :date:from:in-reply-to:message-id:mime-version:references
+ :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm1; bh=0rItuH1D1Um19LY8C97JBMbr4ytaW/WENRWdGOHvC
+ n0=; b=VDIISEiAZetymQV0OYVCVgeJqh1q1yMNBmMNt6W1YmRncuXv3Yv6WBXLk
+ o47iGGMv0639GonWfMr3EMRcPWOp2Zju8IhQoKg50N7lQ78fdeu0ejjSAZ4G80En
+ CvQCBjF7RniWaCOYe08owFWr+XSK2wwcL2QyCtjR5jLJyqoDFrEe/t+4X/1hdrFt
+ CuabTUwVD6U1lmlgBgjUiqOIXFeQjKHvuIzObqasahJulsQfEiun3HPMLraxopG9
+ T+YJq2QQF5FfFF9p/4brfEiiEDBq94v0nbVegoKzqa3mMQaazj9hLlp0uNCKEWli
+ YLWGgNSZUOEneC6JaFOAf/+/9yfHA==
+X-ME-Sender: <xms:Z1KBYda53Um-xQMCPll9-fUs3-jWyVbtteywWWeErohtnmxCHo-yNw>
+ <xme:Z1KBYUaAnNW2BELEhw9ufe7R_qw33RALFQdkZsh3Cp0B5J-7CvC1j4amiWUN6Dhmn
+ qAPeIV02yh2Sl2zits>
+X-ME-Received: <xmr:Z1KBYf_ZyXo4m3OjIeHbFMsUQ8CpjugFonZ4OzKIyiG8cxJnI-_UPsN9ChImoC40r7aAKTC61PuqwCDER02O0X-yks4IqdJaDNApNbhi>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrtddtgdeghecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
+ keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+ grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:Z1KBYbpXxP-_3AkV_vncwHU8hQKTeOh8ImGX5OVMtY5aUpPXZt7CrQ>
+ <xmx:Z1KBYYo6JrW3yDl6DHgNjSy2howJSIBBXnLCjM9zAV3l5RigV6_6Hg>
+ <xmx:Z1KBYRSF_Z2ARBakAhzXiZvYSVEVecIGeX1ir2IFn8JOWimAi3Pwtg>
+ <xmx:aFKBYV7DKzYa2YO0wBpn7BsnkKue3UZvbiphle3I94sO1ucCjdFiCA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 2 Nov 2021 10:59:50 -0400 (EDT)
+From: Maxime Ripard <maxime@cerno.tech>
+To: Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <maxime@cerno.tech>
+Date: Tue,  2 Nov 2021 15:59:32 +0100
+Message-Id: <20211102145944.259181-2-maxime@cerno.tech>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211102145944.259181-1-maxime@cerno.tech>
+References: <20211102145944.259181-1-maxime@cerno.tech>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Claudio Suarez" <cssk@net-c.es>
-Date: Tue, 02 Nov 2021 14:57:04 -0000
-Message-ID: <163586502415.15504.11807712195168408221@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211016184226.3862-1-cssk@net-c.es>
-In-Reply-To: <20211016184226.3862-1-cssk@net-c.es>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgcmVw?=
- =?utf-8?q?lace_drm=5Fdetect=5Fhdmi=5Fmonitor=28=29_with_drm=5Fdisplay=5Fi?=
- =?utf-8?b?bmZvLmlzX2hkbWkgKHJldjYp?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 01/13] drm/connector: Add define for HDMI 1.4
+ Maximum Pixel Rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,312 +83,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Emma Anholt <emma@anholt.net>, Neil Armstrong <narmstrong@baylibre.com>,
+ dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Phil Elwell <phil@raspberrypi.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Tim Gover <tim.gover@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ intel-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, Dom Cobley <dom@raspberrypi.com>, "Pan, 
+ Xinhui" <Xinhui.Pan@amd.com>, Robert Foss <robert.foss@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3850212096932125457==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+A lot of drivers open-code the HDMI 1.4 maximum pixel rate in their
+driver to test whether the resolutions are supported or if the
+scrambling needs to be enabled.
 
-== Series Details ==
+Let's create a common define for everyone to use it.
 
-Series: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi (rev6)
-URL   : https://patchwork.freedesktop.org/series/95880/
-State : success
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Andrzej Hajda <a.hajda@samsung.com>
+Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Emma Anholt <emma@anholt.net>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>
+Cc: Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-tegra@vger.kernel.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c  | 4 ++--
+ drivers/gpu/drm/drm_edid.c                 | 2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c  | 2 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c      | 4 ++--
+ drivers/gpu/drm/radeon/radeon_encoders.c   | 2 +-
+ drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c | 2 +-
+ drivers/gpu/drm/tegra/sor.c                | 8 ++++----
+ drivers/gpu/drm/vc4/vc4_hdmi.c             | 4 ++--
+ include/drm/drm_connector.h                | 2 ++
+ 9 files changed, 16 insertions(+), 14 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index 62ae63565d3a..3a58db357be0 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -46,7 +46,7 @@
+ /* DW-HDMI Controller >= 0x200a are at least compliant with SCDC version 1 */
+ #define SCDC_MIN_SOURCE_VERSION	0x1
+ 
+-#define HDMI14_MAX_TMDSCLK	340000000
++#define HDMI14_MAX_TMDSCLK	(DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
+ 
+ enum hdmi_datamap {
+ 	RGB444_8B = 0x01,
+@@ -1264,7 +1264,7 @@ static bool dw_hdmi_support_scdc(struct dw_hdmi *hdmi,
+ 	 * for low rates is not supported either
+ 	 */
+ 	if (!display->hdmi.scdc.scrambling.low_rates &&
+-	    display->max_tmds_clock <= 340000)
++	    display->max_tmds_clock <= DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
+ 		return false;
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 7aa2a56a71c8..ec8fb2d098ae 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
+ 		u32 max_tmds_clock = hf_vsdb[5] * 5000;
+ 		struct drm_scdc *scdc = &hdmi->scdc;
+ 
+-		if (max_tmds_clock > 340000) {
++		if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
+ 			display->max_tmds_clock = max_tmds_clock;
+ 			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
+ 				display->max_tmds_clock);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index d2e61f6c6e08..0666203d52b7 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		if (scdc->scrambling.low_rates)
+ 			pipe_config->hdmi_scrambling = true;
+ 
+-		if (pipe_config->port_clock > 340000) {
++		if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
+ 			pipe_config->hdmi_scrambling = true;
+ 			pipe_config->hdmi_high_tmds_clock_ratio = true;
+ 		}
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 0afbd1e70bfc..8078667aea0e 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -434,7 +434,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+ 		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
+ 
+ 	DRM_DEBUG_DRIVER("\"%s\" div%d\n", mode->name,
+-			 mode->clock > 340000 ? 40 : 10);
++			 mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ ? 40 : 10);
+ 
+ 	/* Enable clocks */
+ 	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+@@ -457,7 +457,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+ 	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
+ 
+ 	/* TMDS pattern setup */
+-	if (mode->clock > 340000 &&
++	if (mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ &&
+ 	    dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_YUV8_1X24) {
+ 		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
+ 				  0);
+diff --git a/drivers/gpu/drm/radeon/radeon_encoders.c b/drivers/gpu/drm/radeon/radeon_encoders.c
+index 46549d5179ee..ddd8100e699f 100644
+--- a/drivers/gpu/drm/radeon/radeon_encoders.c
++++ b/drivers/gpu/drm/radeon/radeon_encoders.c
+@@ -384,7 +384,7 @@ bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
+ 		if (radeon_connector->use_digital) {
+ 			/* HDMI 1.3 supports up to 340 Mhz over single link */
+ 			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
+-				if (pixel_clock > 340000)
++				if (pixel_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
+ 					return true;
+ 				else
+ 					return false;
+diff --git a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c b/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
+index d25ecd4f4b67..bc213232a875 100644
+--- a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
++++ b/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
+@@ -102,7 +102,7 @@ static bool sti_hdmi_tx3g4c28phy_start(struct sti_hdmi *hdmi)
+ 	tmdsck = ckpxpll;
+ 	pllctrl |= 40 << PLL_CFG_NDIV_SHIFT;
+ 
+-	if (tmdsck > 340000000) {
++	if (tmdsck > (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
+ 		DRM_ERROR("output TMDS clock (%d) out of range\n", tmdsck);
+ 		goto err;
+ 	}
+diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
+index 0ea320c1092b..99a2d627bfeb 100644
+--- a/drivers/gpu/drm/tegra/sor.c
++++ b/drivers/gpu/drm/tegra/sor.c
+@@ -1814,7 +1814,7 @@ tegra_sor_encoder_atomic_check(struct drm_encoder *encoder,
+ 	 * For HBR2 modes, the SOR brick needs to use the x20 multiplier, so
+ 	 * the pixel clock must be corrected accordingly.
+ 	 */
+-	if (pclk >= 340000000) {
++	if (pclk >= (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
+ 		state->link_speed = 20;
+ 		state->pclk = pclk / 2;
+ 	} else {
+@@ -2196,7 +2196,7 @@ static void tegra_sor_hdmi_scdc_start(struct tegra_sor *sor)
+ 
+ 	mode = &sor->output.encoder.crtc->state->adjusted_mode;
+ 
+-	if (mode->clock >= 340000 && scdc->supported) {
++	if (mode->clock >= DRM_HDMI_14_MAX_TMDS_CLK_KHZ && scdc->supported) {
+ 		schedule_delayed_work(&sor->scdc, msecs_to_jiffies(5000));
+ 		tegra_sor_hdmi_scdc_enable(sor);
+ 		sor->scdc_enabled = true;
+@@ -2340,7 +2340,7 @@ static void tegra_sor_hdmi_enable(struct drm_encoder *encoder)
+ 	value &= ~SOR_CLK_CNTRL_DP_LINK_SPEED_MASK;
+ 	value &= ~SOR_CLK_CNTRL_DP_CLK_SEL_MASK;
+ 
+-	if (mode->clock < 340000) {
++	if (mode->clock < DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
+ 		DRM_DEBUG_KMS("setting 2.7 GHz link speed\n");
+ 		value |= SOR_CLK_CNTRL_DP_LINK_SPEED_G2_70;
+ 	} else {
+@@ -2423,7 +2423,7 @@ static void tegra_sor_hdmi_enable(struct drm_encoder *encoder)
+ 	/* adjust clock rate for HDMI 2.0 modes */
+ 	rate = clk_get_rate(sor->clk_parent);
+ 
+-	if (mode->clock >= 340000)
++	if (mode->clock >= DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
+ 		rate /= 2;
+ 
+ 	DRM_DEBUG_KMS("setting clock to %lu Hz, mode: %lu Hz\n", rate, pclk);
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+index fab9b93e1b84..fc7247cc1022 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -97,11 +97,11 @@
+ #define HSM_MIN_CLOCK_FREQ	120000000
+ #define CEC_CLOCK_FREQ 40000
+ 
+-#define HDMI_14_MAX_TMDS_CLK   (340 * 1000 * 1000)
++#define HDMI_14_MAX_TMDS_CLK	(DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
+ 
+ static bool vc4_hdmi_mode_needs_scrambling(const struct drm_display_mode *mode)
+ {
+-	return (mode->clock * 1000) > HDMI_14_MAX_TMDS_CLK;
++	return mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ;
+ }
+ 
+ static int vc4_hdmi_debugfs_regs(struct seq_file *m, void *unused)
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index b501d0badaea..030636635af1 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -260,6 +260,8 @@ struct drm_hdmi_info {
+ 	struct drm_hdmi_dsc_cap dsc_cap;
+ };
+ 
++#define DRM_HDMI_14_MAX_TMDS_CLK_KHZ	(340 * 1000)
++
+ /**
+  * enum drm_link_status - connector's link_status property value
+  *
+-- 
+2.32.0
 
-CI Bug Log - changes from CI_DRM_10828 -> Patchwork_21504
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Additional (2): fi-kbl-soraka fi-pnv-d510 
-  Missing    (3): fi-bsw-cyan bat-dg1-6 bat-adlp-4 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21504 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271]) +8 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][4] ([i915#1886] / [i915#2291])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#533])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][7] ([fdo#109271]) +53 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][8] ([i915#1602] / [i915#2426] / [i915#4312])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [FAIL][9] ([i915#1888]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [INCOMPLETE][11] ([i915#146]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-tgl-dsi/igt@i915_module_load@reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-tgl-dsi/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][15] ([i915#3921]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {fi-hsw-gt1}:       [DMESG-WARN][17] ([i915#4290]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4290]: https://gitlab.freedesktop.org/drm/intel/issues/4290
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10828 -> Patchwork_21504
-
-  CI-20190529: 20190529
-  CI_DRM_10828: 7689dc2b255a118e7b60bfb188b54b314f70a3c4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6267: 5c3b8f7ad9a5cfe1f0e747d92da7910243cf287d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21504: aa8dfbaac97bb4d9bff5abe7fa56ff9be57e3fbc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-aa8dfbaac97b drm/i915: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-77cf5cf45f0c drm/nouveau: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-4c8140582eeb drm/bridge: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-3c336a5dca86 drm/rockchip: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-0a69a03128bc drm/sti: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-4a13b1f0c49c drm/sun4i: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-b86160a2fbe3 drm/msm: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-a020dbb5ce04 drm/exynos: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-43f3a7df7086 drm/gma500: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-c3a418e934c6 drm/tegra: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-94bf3778a86a drm/radeon: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-003659b18480 drm/vc4: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
-eb299b5af8c2 gpu/drm: make drm_add_edid_modes() consistent when updating connector->display_info
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/index.html
-
---===============3850212096932125457==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95880/">https://patchwork.freedesktop.org/series/95880/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10828 -&gt; Patchwork_21504</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Additional (2): fi-kbl-soraka fi-pnv-d510 <br />
-  Missing    (3): fi-bsw-cyan bat-dg1-6 bat-adlp-4 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21504 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +53 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-tgl-dsi/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-tgl-dsi/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10828/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4290">i915#4290</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21504/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10828 -&gt; Patchwork_21504</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10828: 7689dc2b255a118e7b60bfb188b54b314f70a3c4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6267: 5c3b8f7ad9a5cfe1f0e747d92da7910243cf287d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21504: aa8dfbaac97bb4d9bff5abe7fa56ff9be57e3fbc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>aa8dfbaac97b drm/i915: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-77cf5cf45f0c drm/nouveau: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-4c8140582eeb drm/bridge: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-3c336a5dca86 drm/rockchip: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-0a69a03128bc drm/sti: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-4a13b1f0c49c drm/sun4i: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-b86160a2fbe3 drm/msm: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-a020dbb5ce04 drm/exynos: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-43f3a7df7086 drm/gma500: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-c3a418e934c6 drm/tegra: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-94bf3778a86a drm/radeon: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-003659b18480 drm/vc4: replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi<br />
-eb299b5af8c2 gpu/drm: make drm_add_edid_modes() consistent when updating connector-&gt;display_info</p>
-
-</body>
-</html>
-
---===============3850212096932125457==--
