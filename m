@@ -2,44 +2,116 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688A94430EF
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 15:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2FB54431CA
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 16:36:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67B136FF98;
-	Tue,  2 Nov 2021 14:57:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA87972F90;
+	Tue,  2 Nov 2021 15:36:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A7976FD1C
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 14:57:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="292112388"
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="292112388"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 07:57:00 -0700
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="577123971"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 07:57:00 -0700
-Date: Tue, 2 Nov 2021 08:09:51 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-Message-ID: <20211102150946.GA17970@labuser-Z97X-UD5H>
-References: <20211027095316.9579-1-vandita.kulkarni@intel.com>
- <20211027192642.GA22973@labuser-Z97X-UD5H>
- <7d0b19226c71402199351b7e8514c041@intel.com>
- <20211029231251.GA1790@labuser-Z97X-UD5H>
- <b1ad2556bc3b442f9cb2ed1b47cb9d50@intel.com>
- <20211102044041.GA15244@labuser-Z97X-UD5H>
- <e7c3f25dc1374a7383bf554ee7a31cac@intel.com>
-MIME-Version: 1.0
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7FC972F8F;
+ Tue,  2 Nov 2021 15:36:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UqF0zjxcVgShwpWiSA2aiAefFU8+phP5RCxdZ5eupZDfLyHhBbhlIT72wpJDFVdgQHrQB/2WhIqRNZvPTHaiFPAdV80NazIONheMR0B6IvtiBr1Gy6cllNf7jjZ/CbL5ZQJYyCl5LXexON0G0ID1P9Se6ydXX2PGjZb/sygdUNM5PIWHTaXyPHUxQBWDjYebcKqayaAXGwqYLxihl5ap75SAnMC9O6hm91m1vAGOmyMxIlWoQv39M7yCsgSkx/A3uOHGxP6u4J8EpRWDLwoCbq264HF7vGwFBKzCrAuqcXCie/xo4VUKrxgYYv5bGkTbw4ECTqygr982ysav83hHug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ENzRM79VX7MqD30fE5giVyaiviLZ1bCUkk+lGeQ+vbs=;
+ b=iZP6xXWZlO+2RtETOsyCvgg6JXE5VnnxQNg6UJPx+w2n1TUKlmCcstM57x0Bj3sLfRZncu4F/3NoyvgqplvxDmNzUarLNTL71pvKMZExS0uZU1NHEXlCGG4htBPEsgRO6gk6mt2cbk/pp7Yg1fzyv4+tK1iOXkSyHnOy/vEBK+Wf3KcOS22H4IlywV9lqXh1cBl+zB/2s4IkAc4mD0BqNph75x2nR39shu5J58muPJ5cqfEpEw0vivym3opR1J+AnbFhxUWtVQB3RvD0HR1w5CtupMBAfxltYlglIAZAskIn57dGmPrvEb7w+SYPOC0vKoVNO5pdmfiqgC8uwKZXrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ENzRM79VX7MqD30fE5giVyaiviLZ1bCUkk+lGeQ+vbs=;
+ b=cbTNZ3itZjjJtUOunBA5IaY9UnNZZd7Pybkbyy/9egh9/flIKRsBLEe26fEO79JTVKwdgeZ6ikxBQ4PNT35sEHC/Go+3gyaNpUZths0RF7TH6sndqBrSIdpe38EKKJGaxSf85mLefWmugmvJ5COD1ON20Cn/2NNccpKWJwP0xZroUvenkATMfXWTWoWFeSSLawIeVWctdxGHt2PiF2cEuC7q/4wC+YTeMAIySb2knYQv9yhSY1AK+95YBFibMTBSO6F5Pf3Q1P2LIiRTdz0rRRbbEb098RRI8sLHKUEdbd2OvscvGGmPwdCyksobIF9manmtxNVfwcQX1r/uxxPg+w==
+Authentication-Results: lst.de; dkim=none (message not signed)
+ header.d=none;lst.de; dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
+ by BL1PR12MB5361.namprd12.prod.outlook.com (2603:10b6:208:31f::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10; Tue, 2 Nov
+ 2021 15:36:03 +0000
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::e8af:232:915e:2f95]) by BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::e8af:232:915e:2f95%8]) with mapi id 15.20.4649.020; Tue, 2 Nov 2021
+ 15:36:03 +0000
+Date: Tue, 2 Nov 2021 12:36:02 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20211102153602.GH2744544@nvidia.com>
+References: <20211102070601.155501-1-hch@lst.de>
+ <20211102070601.155501-4-hch@lst.de>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e7c3f25dc1374a7383bf554ee7a31cac@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Fix the usage of uncompressed
- bpp
+In-Reply-To: <20211102070601.155501-4-hch@lst.de>
+X-ClientProxiedBy: BLAPR03CA0128.namprd03.prod.outlook.com
+ (2603:10b6:208:32e::13) To BL0PR12MB5506.namprd12.prod.outlook.com
+ (2603:10b6:208:1cb::22)
+MIME-Version: 1.0
+Received: from mlx.ziepe.ca (142.162.113.129) by
+ BLAPR03CA0128.namprd03.prod.outlook.com (2603:10b6:208:32e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15 via Frontend
+ Transport; Tue, 2 Nov 2021 15:36:03 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1mhvpS-0059nI-Ib; Tue, 02 Nov 2021 12:36:02 -0300
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 20d75093-ace5-4b99-00e4-08d99e167a8e
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5361:
+X-Microsoft-Antispam-PRVS: <BL1PR12MB53615836EC31F9B8A8002259C28B9@BL1PR12MB5361.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dTxKQYs2NuPVDGUa1G2zfzSRrhvbDFZXkXuzvKAqUrmTNlYBWISzud4zILmqY/Q3IPRWGpYWIp9zlQXYp4YywAVMGY4jpcCRuuoXT5CmEiJef+GDpG8wSD8PC9/I7DMVbAHKO8ny+lh03tRUZlRg93N5K0D/sK+w2n3yJfhgMBJ82lDc29gdZ9ZgVrXup/VSdR11A/90joEObJ3GIO3dHre1DmkERmHczU8RWRFWrusngY2ctHYdbCjN+9ckdRAg01cxlceA0DgRvU838nXQvkwHYWZNxt7XIf0vdxadt9gpbMUJeUfQgBfmwvysfYhU865J03dDuUpcqRVmHxNEuTIE+LqKV3uDnWckhILjw7SCMwBT5rTD8cEiveMQ+dSHwMH5IK+ktw2HCgg8n4hyf7rGlcbWQVezyXDIiD1IEvIzHeF1f29rC5qh0eeUdSybee/GnDNiOGbVtpriiRNv0dXsG1vSm1VleT8UEr9posJWuL51R5PsprdCG1/gBc9Va9yutWCCqw1MvvWcQqZUxaaKBtSDFdiWMKtz9pxx8wofKmUBABdMGT2e24q/LovEIohdPl+yp0oi4ncQmIhc0gVBO42Ap+NGkF1/V0S/PEtbF+wecj59KuwW27My0dG6aGEgroFWeml2Aclq4KmxWQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(66556008)(1076003)(66476007)(8676002)(33656002)(4744005)(426003)(186003)(38100700002)(36756003)(5660300002)(6916009)(7416002)(9786002)(9746002)(54906003)(4326008)(508600001)(86362001)(2906002)(26005)(2616005)(316002)(66946007)(8936002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?y+lLpPufRL2a3IAnMibxe3Ee2fyfoUJCiYGsegY8A/jB6F1Nnv86OBMZUcSQ?=
+ =?us-ascii?Q?4VMRyoeCGYOhsCfsUpDqsg/TZMJzcCjnn2mhXj61XdMftsrcdyam/HaJs8nP?=
+ =?us-ascii?Q?/OGWZCE1t2wrFy6V0aYKrJeAnoXVVWQFiQmru5LHLb8CtAKZYXq1weIYJJz4?=
+ =?us-ascii?Q?cPIok4MitZkNUWFikdHiPtycqrtIpil8NF8dg1ocY9bOIhp/cUNceJpWUZi1?=
+ =?us-ascii?Q?xM4wN+zsHt1yUB9VY1yBCiF3YroALWvWHzvcfRzUM78nS2Evfl4A9U52GMqV?=
+ =?us-ascii?Q?01eD/t23avmSGS1vR6CTYDncBoHImxEJv4Z0srNdOg8dtUo8EQqc+taZC7Mk?=
+ =?us-ascii?Q?jGZZ65Zu217v7CaFVwK0rmzqxOQSPmrntyrrxS0DxRzV/nH5GgRZvgncgtZZ?=
+ =?us-ascii?Q?NEDCd4Lu9MldvJg36QT0w6EAZ8fPu1tPjb/BCYusvL4HmaorargwPJOc32fV?=
+ =?us-ascii?Q?5QcJrVbwvOvE7YW0kiz8YfwzMahUBptMKjfZ1KVyU5kVXCaMSw4gdrfblVMh?=
+ =?us-ascii?Q?yakTZ+lAt5Z5nF10zH9zdgD6a6qYa+AVIeT2EwwWRI8Kmi59ddipUnB0tySI?=
+ =?us-ascii?Q?JqmsZCn8ekgMQOwDj8OnsPvXAFUnxRrqLUfkClvrH9MPqGFYaZUU7yf/fap8?=
+ =?us-ascii?Q?hTmtf/tp7vuQ1syXWAWE5psH+xGx+/as91asJoRhLEiDJsHY5aBDEdBPUD1k?=
+ =?us-ascii?Q?G1nj/er03xhsIl4L62K40sWSE0q1vw5XSqi2UepKzu2EeQVj4dOkBnAjXRff?=
+ =?us-ascii?Q?TsRA2tDXGNNb0crvzvN4gzKw7x+y7wbMtP9VO0xX34Q1ETQHScrVTlg/I8iq?=
+ =?us-ascii?Q?QhXtt8ln5/l8Fv1prc/Ucczn9jMr49scvnKpy9P0qoyXIrGV3GPTg1eVMUci?=
+ =?us-ascii?Q?n4ByZ7rzMTqsxzXelgFR9Vi0antloOkR7Cm8ZZCLRK7pM4vh8h/N/iuv2unT?=
+ =?us-ascii?Q?P+PQcxesELpS+MlF/t/RPYaGgTqVVtXlQMnxez76ROOJ2sXznxsMxbRDGEEa?=
+ =?us-ascii?Q?BjapVSRchSTZoUnnZzz8o5GzBOgoHczesHQAQuTrnljXG/sZiOREQ6ScS5IP?=
+ =?us-ascii?Q?cKKfve14mkXXkJttTGGMlw5DZJ6PKtsxa1zVXyKQ1CbwPjYy+LieBtvodXfa?=
+ =?us-ascii?Q?elSkRPZQCOlE5Sx6mE5vS84kfFdO26YamnO0Bz134pwI9vL0fTSQ8Plt2HNb?=
+ =?us-ascii?Q?pfKIzsF6VdNFXN3SYkKWcVk6zQq25hayahKU4nODGke8GXf6R219dTWQ19Bp?=
+ =?us-ascii?Q?EtdGakvVREhJSJgMASdCnJDFPP2k9wRWfby35qKumcRk1zOMSSk7bY/0cmfb?=
+ =?us-ascii?Q?D+Zy3RtYT+LW1yACbGBqNl/E10AKXSl5RqFh9lNWQ/6A68jtaDidPzWdLQJQ?=
+ =?us-ascii?Q?VVtGtRycH14eEQqPRA5L0JoqXAxealiG7NiMr2/MPAbTzRU4pCqAPsIr6M2t?=
+ =?us-ascii?Q?x21XQWo5ySLQht/NeVYBiV7+hgvYMlXw+IwdY7jbpxcesa3cXKSsYM/rHOdJ?=
+ =?us-ascii?Q?ICwG5THuhwt96kkB+YzS75OsRFsYxzroj90d0offfS6SjSrE6A7JFEshQNdh?=
+ =?us-ascii?Q?zfKNOpKZkioVesWABBA=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20d75093-ace5-4b99-00e4-08d99e167a8e
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2021 15:36:03.3983 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: txZfwG23qtVzsOL1B/5BZu/qYCKvkKE/f06FaDUSSQVVd4pCT3PdWg/D2LHR9GOU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5361
+Subject: Re: [Intel-gfx] [PATCH 03/29] drm/i915/gvt: remove module
+ refcounting in intel_gvt_{, un}register_hypervisor
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,270 +124,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 01, 2021 at 09:35:32PM -0700, Kulkarni, Vandita wrote:
-> > -----Original Message-----
-> > From: Navare, Manasi D <manasi.d.navare@intel.com>
-> > Sent: Tuesday, November 2, 2021 10:11 AM
-> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
-> > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed bpp
-> > 
-> > On Mon, Nov 01, 2021 at 09:45:23AM -0700, Kulkarni, Vandita wrote:
-> > > > -----Original Message-----
-> > > > From: Navare, Manasi D <manasi.d.navare@intel.com>
-> > > > Sent: Saturday, October 30, 2021 4:43 AM
-> > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
-> > > > <jani.nikula@intel.com>
-> > > > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed bpp
-> > > >
-> > > > On Wed, Oct 27, 2021 at 09:37:10PM -0700, Kulkarni, Vandita wrote:
-> > > > > > -----Original Message-----
-> > > > > > From: Navare, Manasi D <manasi.d.navare@intel.com>
-> > > > > > Sent: Thursday, October 28, 2021 12:57 AM
-> > > > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > > > > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
-> > > > > > <jani.nikula@intel.com>
-> > > > > > Subject: Re: [PATCH] drm/i915/dsc: Fix the usage of uncompressed
-> > > > > > bpp
-> > > > > >
-> > > > > > On Wed, Oct 27, 2021 at 03:23:16PM +0530, Vandita Kulkarni wrote:
-> > > > > > > DP 1.4 spec limits max compression bpp to uncompressed bpp -1,
-> > > > > > > which is supported from XELPD onwards.
-> > > > > > > Instead of uncompressed bpp, max dsc input bpp was being used
-> > > > > > > to limit the max compression bpp.
-> > > > > >
-> > > > > > So the input Pipe BPP which is the uncompressed bpp is decided
-> > > > > > by the input bpc and when this was initially written, we had
-> > > > > > designed it to respect the max_req_bpc by the user.
-> > > > > > So that is what we use to decide the input bpc and hence the
-> > > > > > pipe_bpp This input pipe_bpp decides the compressed bpp that we
-> > > > > > calculate based on all the supported output bpps which are
-> > > > > > supported all the way upto uncompressed_output_bpp - 1.
-> > > > > >
-> > > > > > So I dont see the need to change the logic here. Moreover I dont
-> > > > > > see any change in the dsc_compute_bpp function So I dont
-> > > > > > understand the purpose of introducing the new max_dsc_pipe_bpp
-> > > > > > variable here
-> > > > >
-> > > > > Thanks for the comments, I had few more opens around this along
-> > > > > with
-> > > > this patch.
-> > > > >
-> > > > > AFAIU about max_requested_bpc it is to limit the max_bpc
-> > > > > "drm: Add connector property to limit max bpc"
-> > > > > And the driver is supposed to program the default bpc as per the
-> > > > > connector
-> > > > limitation.
-> > > > > Which is 12 as per the current driver implementation.
-> > > > >
-> > > > > I had few queries around this design:
-> > > > > So it means that max_dsc_input_bpp would be set to 36 if supported
-> > > > > by the
-> > > > sink and the platform.
-> > > > > And now we make this as our pipe_bpp, 1. Does this mean that we
-> > > > > are assuming 12bpc as i/p always?
-> > > > > 2. What happens to those with formats 8bpc, 10 bpc?
-> > > > >
-> > > >
-> > > > Yes so this driver policy was decided based on some feedback that I
-> > > > had got from the community as well as internal feedback from Ville
-> > > > that the decision of input_bpc should be based on max_bpc requested
-> > > > by the user through the connector property and max_bpc supported by
-> > the platform.
-> > > > Here we take the min of the two so that we dont violate either of
-> > > > the max constrains.
-> > > > This was primarily suggested by Ville since he said that we should
-> > > > always respect what user has set as the upper limit in the bpc
-> > > > because this could be for example driven by the fact that OEM's
-> > > > panel has a limitation or issues with higher bpcs or a display requirement
-> > for certain use case.
-> > > > Hence while we want to support as high bpc as supported by the
-> > > > platform and sink to have better display quality, it should not
-> > > > exceed the max limit set by the user through the property.
-> > > >
-> > > > 8 and 10bpc will be supported but we want to start with supporting
-> > > > the max we can, going down from there if needed.
-> > > > So for compression, we chose the maximum input bpc and determine the
-> > > > compressed bpp for that.
-> > > >
-> > > >
-> > > > > We do not consider the actual pipe_bpp while computing the
-> > > > > compression_bpp, We reverse calculate it from the link_rate,  and
-> > > > > small
-> > > > joiner bpp limits.
-> > > > > In cases of forcing dsc, we might have a situation where the link
-> > > > > can
-> > > > actually support the current bpp, or even more.
-> > > > > But we are forcing the dsc enable.
-> > > > > In such cases we might end up with a compression bpp which is
-> > > > > higher than
-> > > > the actual i/p bpp.
-> > > >
-> > > > Well the only time we force the dsc_enable is for IGT DSC tests and
-> > > > thats okay for compression bpp to be higher since there we are just
-> > > > validation the functionality and its not for actual user/use case.
-> > >
-> > > We are having these test cases as part of CI. We hit FIFO underrun in such
-> > cases and that's  treated as a fail.
-> > 
-> > >
-> > > >
-> > > > In the actual use case we will only enable DSC when the available
-> > > > max link rate/lane count does not support the minimum bpp of 18 (min
-> > > > bpc of 6 * 3) So then in that case we say that lets keep the
-> > > > pipe_bpp or input bpp as max_supported_input_bpc * 3
-> > > > >
-> > > > > Now, even if we take a min of  higher compression bpp against
-> > > > > max_requested_bpc *3 -1, we still have Compression bpp > actual
-> > > > > pipe_bpp
-> > > > >
-> > > > > As per the spec when they say uncompressed bpp, they actually mean
-> > > > > 3 * bpc If we go ahead with this approach of using
-> > > > > max_requested_bpc , which is 12 always we cannot adhere to the spec.
-> > > >
-> > > > So the Bspec says that if the input BPP is (8 * 3) = 24, then based
-> > > > on the engine's compression ratio capability it can support output
-> > > > compressed BPP
-> > > > of: 8 - 23 in the increments of 1 BPP And the maximum that we can
-> > > > pick between 8 - 23 will depend on the min(max bits_per_pixel that
-> > > > the max link rate, lane count can handle, max bits per pixel by small joiner
-> > RAM calc).
-> > >
-> > > In case of force dsc, as part of  the IGT tests, the link can actually
-> > > support more than 24bpp, since we are forcing have seen a case where it
-> > could support 28bpp.
-> > >
-> > 
-> > From IGT we are forcing DSC for all supported input BPCs right, so for bpc =
-> > 8, so input bpp = 24. So IMO in the kernel code, when we calculate pipe_bpp
-> > when force_dsc is set in that case we should use the bpc requested from IGT
-> > as inpput bpc and not care for max_connector_bpc So then input bpp = 24
-> > and the limits of compressed bpp would be 8 - 23
-> Right, had thought of this 
-> Adding a check on force_dsc_en before doing this
-> pipe_config->pipe_bpp = max_dsc_pipe_bpp;
-> 
-> but since you said that the design was to respect the max_requested_bpc from the user
-> should we use max_requested_bpc property in the igt  to say that set the max to 8bpc
-> since this test simulates a situation of testing 8bpc panel?
-> Similarly for 10bpc?
-> 
-> Thanks
-> Vandita
+On Tue, Nov 02, 2021 at 08:05:35AM +0100, Christoph Hellwig wrote:
+> THIS_MODULE always is reference when a symbol called by it is used, so
+> don't bother with the additional reference.
 
-Yes that would be a better way than adding a special force_dsc_en case
-in the kernel.
-We can set the max_requested_bpc to 8, 10, 12 then the pipe_bpp will get
-set to 8/10/12 respectively as per the current logic and the compressed bpp
-will get capped at pipe_bpp -1
-So I think here since we would still use max link rate/ max lane count
-we will still have much higher available link BW but we will just be 
-validating the functionality of 24 bpp to 23 bpp compression.
-This sounds like a good approach.
+heh, these functions are only called from a module init/exit even
 
-Manasi
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-> 
-> > 
-> > Ideally now the link rate and lane count should be lowered to use the least
-> > required to support that compressed bpp Then we wont see any underruns.
-> > 
-> > Manasi
-> > 
-> > > So min of (28,(36-1)) would be 28 and not as per the spec.
-> > >
-> > > Hence in either of the places, kernel or igt we need to honour the
-> > > limits Of bpc*3 as per the DP 1.4 spec.
-> > >
-> > > If you look at the IGT we have cases of 8bpc, 10 bpc We need to
-> > > address this either in the driver by getting the actual uncompressed
-> > > bpp limits Or in the user space by changing the max_requested_bpc for
-> > 8bpc and 10bpc cases.
-> > >
-> > > This patch is tested and resolves the FIFO underruns, in force dsc cases.
-> > > The problem is only when we are forcing DSC and the link rate can actually
-> > support higher bpp.
-> > > And we have multiple igts trying to use 8bpc and 10bpc.
-> > >
-> > > Thanks
-> > > Vandita
-> > >
-> > > >
-> > > > So we are good here in terms of how we calculate our compressed bpp.
-> > > > However what you should once double check is for XeLPD (>=13)
-> > > > platforms, you just pick min (bits_per_pixel, pipe_bpp - 1) But I
-> > > > remember seeing that the spec still says target bpp has to be 8 to
-> > > > 27 even when supported input bpc are 8/10/12 (please check if it
-> > > > actually goes all the way from 8 to 35)
-> > > >
-> > > > Manasi
-> > > >
-> > > > >
-> > > > > Thanks,
-> > > > > Vandita
-> > > > >
-> > > > > > Manasi
-> > > > > >
-> > > > > > >
-> > > > > > > Fixes: 831d5aa96c97 ("drm/i915/xelpd: Support DP1.4
-> > > > > > > compression
-> > > > > > > BPPs")
-> > > > > > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > > > > > > ---
-> > > > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
-> > > > > > >  1 file changed, 4 insertions(+), 3 deletions(-)
-> > > > > > >
-> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > index 9d8132dd4cc5..1f7e666ae490 100644
-> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > @@ -1322,7 +1322,7 @@ static int
-> > > > > > > intel_dp_dsc_compute_config(struct
-> > > > > > intel_dp *intel_dp,
-> > > > > > >  	struct drm_i915_private *dev_priv = to_i915(dig_port-
-> > > > > > >base.base.dev);
-> > > > > > >  	const struct drm_display_mode *adjusted_mode =
-> > > > > > >  		&pipe_config->hw.adjusted_mode;
-> > > > > > > -	int pipe_bpp;
-> > > > > > > +	int pipe_bpp, max_dsc_pipe_bpp;
-> > > > > > >  	int ret;
-> > > > > > >
-> > > > > > >  	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
-> > @@ -
-> > > > > > 1331,7
-> > > > > > > +1331,8 @@ static int intel_dp_dsc_compute_config(struct
-> > > > > > > +intel_dp
-> > > > > > *intel_dp,
-> > > > > > >  	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
-> > > > > > >  		return -EINVAL;
-> > > > > > >
-> > > > > > > -	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state-
-> > > > > > >max_requested_bpc);
-> > > > > > > +	pipe_bpp = pipe_config->pipe_bpp;
-> > > > > > > +	max_dsc_pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp,
-> > > > > > > +conn_state->max_requested_bpc);
-> > > > > > >
-> > > > > > >  	/* Min Input BPC for ICL+ is 8 */
-> > > > > > >  	if (pipe_bpp < 8 * 3) {
-> > > > > > > @@ -1345,7 +1346,7 @@ static int
-> > > > > > > intel_dp_dsc_compute_config(struct
-> > > > > > intel_dp *intel_dp,
-> > > > > > >  	 * Optimize this later for the minimum possible link rate/lane
-> > count
-> > > > > > >  	 * with DSC enabled for the requested mode.
-> > > > > > >  	 */
-> > > > > > > -	pipe_config->pipe_bpp = pipe_bpp;
-> > > > > > > +	pipe_config->pipe_bpp = max_dsc_pipe_bpp;
-> > > > > > >  	pipe_config->port_clock = limits->max_rate;
-> > > > > > >  	pipe_config->lane_count = limits->max_lane_count;
-> > > > > > >
-> > > > > > > --
-> > > > > > > 2.32.0
-> > > > > > >
+Jason
