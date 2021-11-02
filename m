@@ -2,38 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB32443076
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 15:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2808443078
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 15:34:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2507C6FE01;
-	Tue,  2 Nov 2021 14:32:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0DAA6E953;
+	Tue,  2 Nov 2021 14:34:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A57356FF93
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 14:32:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="294725660"
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="294725660"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 07:32:53 -0700
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="500577023"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 07:32:49 -0700
-Date: Tue, 2 Nov 2021 16:32:45 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211102143245.GE3598655@ideak-desk.fi.intel.com>
-References: <20211101183551.3580546-1-imre.deak@intel.com>
- <YYFH9qH5ImqS/xVM@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 938256E953
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 14:34:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="317471726"
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="317471726"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 07:34:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="467758020"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 02 Nov 2021 07:34:15 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 02 Nov 2021 16:34:15 +0200
+Date: Tue, 2 Nov 2021 16:34:15 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>
+Message-ID: <YYFMZ4ke4qIvI4ku@intel.com>
+References: <YXqdNxrTCGS40jNZ@intel.com>
+ <20211029074303.1566344-1-vivek.kasireddy@intel.com>
+ <YX+/oVeiLMbJF/hq@intel.com>
+ <bbdb0ef427534d38b3dbaeddf849f134@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YYFH9qH5ImqS/xVM@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Factor out
- i915_ggtt_suspend_vm/i915_ggtt_resume_vm()
+In-Reply-To: <bbdb0ef427534d38b3dbaeddf849f134@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Don't try to map and fence
+ large scanout buffers (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,184 +51,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 02, 2021 at 04:15:18PM +0200, Ville Syrjälä wrote:
-> On Mon, Nov 01, 2021 at 08:35:50PM +0200, Imre Deak wrote:
-> > Factor out functions that are needed by the next patch to suspend/resume
-> > the memory mappings for DPT FBs.
-> > 
-> > No functional change, except reordering during suspend the
-> > ggtt->invalidate(ggtt) call wrt. atomic_set(&ggtt->vm.open, open) and
-> > mutex_unlock(&ggtt->vm.mutex). This shouldn't matter due to the i915
-> > suspend sequence being single threaded.
-> > 
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_ggtt.c | 71 +++++++++++++++++++++-------
-> >  drivers/gpu/drm/i915/gt/intel_gtt.h  |  2 +
-> >  2 files changed, 56 insertions(+), 17 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > index f17383e76eb71..834dc1b6a0729 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > @@ -116,17 +116,26 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
-> >  	return false;
-> >  }
-> >  
-> > -void i915_ggtt_suspend(struct i915_ggtt *ggtt)
-> > +/**
-> > + * i915_ggtt_suspend_vm - Suspend the memory mappings for a GGTT or DPT VM
-> > + * @vm: The VM to suspend the mappings for
-> > + *
-> > + * Suspend the memory mappings for all objects mapped to HW via the GGTT or a
-> > + * DPT page table.
-> > + */
-> > +void i915_ggtt_suspend_vm(struct i915_address_space *vm)
-> >  {
-> >  	struct i915_vma *vma, *vn;
-> >  	int open;
-> >  
-> > -	mutex_lock(&ggtt->vm.mutex);
-> > +	drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
-> > +
-> > +	mutex_lock(&vm->mutex);
-> >  
-> >  	/* Skip rewriting PTE on VMA unbind. */
-> > -	open = atomic_xchg(&ggtt->vm.open, 0);
-> > +	open = atomic_xchg(&vm->open, 0);
-> >  
-> > -	list_for_each_entry_safe(vma, vn, &ggtt->vm.bound_list, vm_link) {
-> > +	list_for_each_entry_safe(vma, vn, &vm->bound_list, vm_link) {
-> >  		GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
-> >  		i915_vma_wait_for_bind(vma);
-> >  
-> > @@ -139,11 +148,17 @@ void i915_ggtt_suspend(struct i915_ggtt *ggtt)
-> >  		}
-> >  	}
-> >  
-> > -	ggtt->vm.clear_range(&ggtt->vm, 0, ggtt->vm.total);
-> > +	vm->clear_range(vm, 0, vm->total);
-> > +
-> > +	atomic_set(&vm->open, open);
-> > +
-> > +	mutex_unlock(&vm->mutex);
-> > +}
-> > +
-> > +void i915_ggtt_suspend(struct i915_ggtt *ggtt)
-> > +{
-> > +	i915_ggtt_suspend_vm(&ggtt->vm);
-> >  	ggtt->invalidate(ggtt);
-> > -	atomic_set(&ggtt->vm.open, open);
-> > -
-> > -	mutex_unlock(&ggtt->vm.mutex);
-> >  
-> >  	intel_gt_check_and_clear_faults(ggtt->vm.gt);
-> >  }
-> > @@ -1253,37 +1268,59 @@ void i915_ggtt_disable_guc(struct i915_ggtt *ggtt)
-> >  	ggtt->invalidate(ggtt);
-> >  }
-> >  
-> > -void i915_ggtt_resume(struct i915_ggtt *ggtt)
-> > +/**
-> > + * i915_ggtt_resume_vm - Restore the memory mappings for a GGTT or DPT VM
-> > + * @vm: The VM to restore the mappings for
-> > + *
-> > + * Restore the memory mappings for all objects mapped to HW via the GGTT or a
-> > + * DPT page table.
-> > + *
-> > + * Returns %true if restoring the mapping for any object that was in a write
-> > + * domain before suspend.
-> > + */
-> > +bool i915_ggtt_resume_vm(struct i915_address_space *vm)
-> >  {
-> >  	struct i915_vma *vma;
-> > -	bool flush = false;
-> > +	bool write_domain_objs = false;
-> >  	int open;
-> >  
-> > -	intel_gt_check_and_clear_faults(ggtt->vm.gt);
-> > +	drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
-> >  
-> >  	/* First fill our portion of the GTT with scratch pages */
-> > -	ggtt->vm.clear_range(&ggtt->vm, 0, ggtt->vm.total);
-> > +	vm->clear_range(vm, 0, vm->total);
-> >  
-> >  	/* Skip rewriting PTE on VMA unbind. */
-> > -	open = atomic_xchg(&ggtt->vm.open, 0);
-> > +	open = atomic_xchg(&vm->open, 0);
-> >  
-> >  	/* clflush objects bound into the GGTT and rebind them. */
-> > -	list_for_each_entry(vma, &ggtt->vm.bound_list, vm_link) {
-> > +	list_for_each_entry(vma, &vm->bound_list, vm_link) {
-> >  		struct drm_i915_gem_object *obj = vma->obj;
-> >  		unsigned int was_bound =
-> >  			atomic_read(&vma->flags) & I915_VMA_BIND_MASK;
-> >  
-> >  		GEM_BUG_ON(!was_bound);
-> > -		vma->ops->bind_vma(&ggtt->vm, NULL, vma,
-> > +		vma->ops->bind_vma(vm, NULL, vma,
-> >  				   obj ? obj->cache_level : 0,
-> >  				   was_bound);
+On Mon, Nov 01, 2021 at 09:27:30PM +0000, Kasireddy, Vivek wrote:
+> Hi Ville,
 > 
-> Can we even get here with DPT? Ie. shouldn't everything have been 
-> thrown out during suspend?
+> > 
+> > On Fri, Oct 29, 2021 at 12:43:03AM -0700, Vivek Kasireddy wrote:
+> > > On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
+> > > more framebuffers/scanout buffers results in only one that is mappable/
+> > > fenceable. Therefore, pageflipping between these 2 FBs where only one
+> > > is mappable/fenceable creates latencies large enough to miss alternate
+> > > vblanks thereby producing less optimal framerate.
+> > >
+> > > This mainly happens because when i915_gem_object_pin_to_display_plane()
+> > > is called to pin one of the FB objs, the associated vma is identified
+> > > as misplaced and therefore i915_vma_unbind() is called which unbinds and
+> > > evicts it. This misplaced vma gets subseqently pinned only when
+> > > i915_gem_object_ggtt_pin_ww() is called without the mappable flag. This
+> > > results in a latency of ~10ms and happens every other vblank/repaint cycle.
+> > >
+> > > Testcase:
+> > > Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
+> > > with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
+> > > a frame ~7ms before the next vblank, the latencies seen between atomic
+> > > commit and flip event are 7, 24 (7 + 16.66), 7, 24..... suggesting that
+> > > it misses the vblank every other frame.
+> > >
+> > > Here is the ftrace snippet that shows the source of the ~10ms latency:
+> > >               i915_gem_object_pin_to_display_plane() {
+> > > 0.102 us   |    i915_gem_object_set_cache_level();
+> > >                 i915_gem_object_ggtt_pin_ww() {
+> > > 0.390 us   |      i915_vma_instance();
+> > > 0.178 us   |      i915_vma_misplaced();
+> > >                   i915_vma_unbind() {
+> > >                   __i915_active_wait() {
+> > > 0.082 us   |        i915_active_acquire_if_busy();
+> > > 0.475 us   |      }
+> > >                   intel_runtime_pm_get() {
+> > > 0.087 us   |        intel_runtime_pm_acquire();
+> > > 0.259 us   |      }
+> > >                   __i915_active_wait() {
+> > > 0.085 us   |        i915_active_acquire_if_busy();
+> > > 0.240 us   |      }
+> > >                   __i915_vma_evict() {
+> > >                     ggtt_unbind_vma() {
+> > >                       gen8_ggtt_clear_range() {
+> > > 10507.255 us |        }
+> > > 10507.689 us |      }
+> > > 10508.516 us |   }
+> > >
+> > > v2: Instead of using bigjoiner checks, determine whether a scanout
+> > >     buffer is too big by checking to see if it is possible to map
+> > >     two of them into the ggtt.
+> > >
+> > > v3 (Ville):
+> > > - Count how many fb objects can be fit into the available holes
+> > >   instead of checking for a hole twice the object size.
+> > > - Take alignment constraints into account.
+> > > - Limit this large scanout buffer check to >= Gen 12 platforms.
+> > >
+> > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > > Cc: Manasi Navare <manasi.d.navare@intel.com>
+> > > Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_gem.c | 65 ++++++++++++++++++++++++++++-----
+> > >  drivers/gpu/drm/i915/i915_vma.c |  2 +-
+> > >  2 files changed, 57 insertions(+), 10 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> > > index 981e383d1a5d..761dc385fbfc 100644
+> > > --- a/drivers/gpu/drm/i915/i915_gem.c
+> > > +++ b/drivers/gpu/drm/i915/i915_gem.c
+> > > @@ -866,6 +866,61 @@ static void discard_ggtt_vma(struct i915_vma *vma)
+> > >  	spin_unlock(&obj->vma.lock);
+> > >  }
+> > >
+> > > +static bool i915_gem_obj_too_big(struct drm_i915_gem_object *obj,
+> > > +				 u64 alignment)
+> > > +{
+> > > +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> > > +	struct i915_ggtt *ggtt = &i915->ggtt;
+> > > +	struct drm_mm_node *hole;
+> > > +	u64 hole_start, hole_end, start, end;
+> > > +	u64 fence_size, fence_alignment;
+> > > +	unsigned int count = 0;
+> > > +
+> > > +	/*
+> > > +	 * If the required space is larger than the available
+> > > +	 * aperture, we will not able to find a slot for the
+> > > +	 * object and unbinding the object now will be in
+> > > +	 * vain. Worse, doing so may cause us to ping-pong
+> > > +	 * the object in and out of the Global GTT and
+> > > +	 * waste a lot of cycles under the mutex.
+> > > +	 */
+> > > +	if (obj->base.size > ggtt->mappable_end)
+> > > +		return true;
+> > > +
+> > > +	if (HAS_GMCH(i915) || DISPLAY_VER(i915) < 11 ||
+> > > +	    !i915_gem_object_is_framebuffer(obj))
+> > > +		return false;
+> > > +
+> > > +	fence_size = i915_gem_fence_size(i915, obj->base.size,
+> > > +					 i915_gem_object_get_tiling(obj),
+> > > +					 i915_gem_object_get_stride(obj));
+> > > +	fence_alignment = i915_gem_fence_alignment(i915, obj->base.size,
+> > > +					 i915_gem_object_get_tiling(obj),
+> > > +					 i915_gem_object_get_stride(obj));
+> > > +	alignment = max_t(u64, alignment, fence_alignment);
+> > > +
+> > > +	/*
+> > > +	 * Assuming this object is a large scanout buffer, we try to find
+> > > +	 * out if there is room to map at-least two of them. There could
+> > > +	 * be space available to map one but to be consistent, we try to
+> > > +	 * avoid mapping/fencing any of them.
+> > > +	 */
+> > > +	drm_mm_for_each_hole(hole, &ggtt->vm.mm, hole_start, hole_end) {
+> > > +		do {
+> > > +			start = round_up(hole_start, alignment);
+> > > +			end = min_t(u64, hole_end, ggtt->mappable_end);
+> > > +
+> > > +			if (range_overflows(start, fence_size, end))
+> > > +				break;
+> > > +
+> > > +			count++;
+> > > +			hole_start = start + fence_size;
+> > > +		} while (1);
+> > > +	}
+> > > +
+> > > +	return count < 2;
+> > > +}
+> > > +
+> > >  struct i915_vma *
+> > >  i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+> > >  			    struct i915_gem_ww_ctx *ww,
+> > > @@ -879,15 +934,7 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object
+> > *obj,
+> > >
+> > >  	if (flags & PIN_MAPPABLE &&
+> > >  	    (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
+> > > -		/*
+> > > -		 * If the required space is larger than the available
+> > > -		 * aperture, we will not able to find a slot for the
+> > > -		 * object and unbinding the object now will be in
+> > > -		 * vain. Worse, doing so may cause us to ping-pong
+> > > -		 * the object in and out of the Global GTT and
+> > > -		 * waste a lot of cycles under the mutex.
+> > > -		 */
+> > > -		if (obj->base.size > ggtt->mappable_end)
+> > > +		if (i915_gem_obj_too_big(obj, alignment))
+> > >  			return ERR_PTR(-E2BIG);
+> > >
+> > >  		/*
+> > 
+> > As I pointed out we already have the current ping-pong heuristic
+> > right here. You should adjust that instead of adding yet another
+> > heuristic in parallel.
+> [Kasireddy, Vivek] I think the heuristic you are referring to is:
+> obj->base.size > ggtt->mappable_end / 2
+> 
+> Are you saying that I should do something like
+> obj->base.size > ggtt->mappable_end / 4
+> and return early? I guess I could do that and it would work in this case
+> but I thought it would make more sense to look at the available space
+> dynamically given that both the 8K FBs fail the
+> obj->base.size > ggtt->mappable_end / 2 check.
 
-After calling vma->ops->unbind_vma() the DPT object still remains on the
-vm->bound_list, it's only supposed to clear the PTE entries (atm we're
-not doing that for DPT). Here we re-instate the PTEs for the same
-objects still on the bound_list.
+No. I'm saying you do roughly what you do here, but do it in the right
+place (ie. replace the /2 heuristic with this fancier one).
 
-> Maybe we should WARN if any DPT stuff is still bound during resume?
-> 
-> Other than that this looks good to me. Series is
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> >  		if (obj) { /* only used during resume => exclusive access */
-> > -			flush |= fetch_and_zero(&obj->write_domain);
-> > +			write_domain_objs |= fetch_and_zero(&obj->write_domain);
-> >  			obj->read_domains |= I915_GEM_DOMAIN_GTT;
-> >  		}
-> >  	}
-> >  
-> > -	atomic_set(&ggtt->vm.open, open);
-> > +	atomic_set(&vm->open, open);
-> > +
-> > +	return write_domain_objs;
-> > +}
-> > +
-> > +void i915_ggtt_resume(struct i915_ggtt *ggtt)
-> > +{
-> > +	bool flush;
-> > +
-> > +	intel_gt_check_and_clear_faults(ggtt->vm.gt);
-> > +
-> > +	flush = i915_ggtt_resume_vm(&ggtt->vm);
-> > +
-> >  	ggtt->invalidate(ggtt);
-> >  
-> >  	if (flush)
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > index bc67502633599..dfeaef680aacd 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > @@ -544,6 +544,8 @@ int i915_ppgtt_init_hw(struct intel_gt *gt);
-> >  struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt,
-> >  				     unsigned long lmem_pt_obj_flags);
-> >  
-> > +void i915_ggtt_suspend_vm(struct i915_address_space *vm);
-> > +bool i915_ggtt_resume_vm(struct i915_address_space *vm);
-> >  void i915_ggtt_suspend(struct i915_ggtt *gtt);
-> >  void i915_ggtt_resume(struct i915_ggtt *ggtt);
-> >  
-> > -- 
-> > 2.27.0
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+-- 
+Ville Syrjälä
+Intel
