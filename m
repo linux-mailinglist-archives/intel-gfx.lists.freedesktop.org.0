@@ -2,55 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7BB442B8E
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 11:22:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B9B442BA6
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 11:28:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 224A46E91F;
-	Tue,  2 Nov 2021 10:22:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B2776FCA4;
+	Tue,  2 Nov 2021 10:28:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E939B6E85B
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 10:22:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="231182646"
-X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="231182646"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 03:22:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="667059571"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by orsmga005.jf.intel.com with ESMTP; 02 Nov 2021 03:22:40 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 2 Nov 2021 10:22:39 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Tue, 2 Nov 2021 15:52:37 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3] drm/i915/display: program audio CDCLK-TS for
- keepalives
-Thread-Index: AQHXxmuwa0qgLapor0e5M0qIKWEj86vwGdzQ
-Date: Tue, 2 Nov 2021 10:22:37 +0000
-Message-ID: <3f615e660b424a1bb12f6b3f2bfe75a7@intel.com>
-References: <20211021105915.4128635-1-kai.vehmanen@linux.intel.com>
-In-Reply-To: <20211021105915.4128635-1-kai.vehmanen@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0778D6FCA4;
+ Tue,  2 Nov 2021 10:28:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="229949833"
+X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="229949833"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 03:28:42 -0700
+X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="467652448"
+Received: from vanderss-mobl.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.234])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 03:28:40 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue,  2 Nov 2021 11:28:24 +0100
+Message-Id: <20211102102827.442902-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: program audio CDCLK-TS
- for keepalives
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 0/3] drm/i915: Prepare error capture for
+ asynchronous migration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,116 +45,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula,
- Jani" <jani.nikula@intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2FpIFZlaG1hbmVuIDxr
-YWkudmVobWFuZW5AbGludXguaW50ZWwuY29tPg0KPiBTZW50OiBUaHVyc2RheSwgT2N0b2JlciAy
-MSwgMjAyMSA0OjI5IFBNDQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+
-IENjOiBTaGFua2FyLCBVbWEgPHVtYS5zaGFua2FyQGludGVsLmNvbT47IHZpbGxlLnN5cmphbGFA
-bGludXguaW50ZWwuY29tOyBOaWt1bGEsDQo+IEphbmkgPGphbmkubmlrdWxhQGludGVsLmNvbT47
-IEthaSBWZWhtYW5lbiA8a2FpLnZlaG1hbmVuQGxpbnV4LmludGVsLmNvbT4NCj4gU3ViamVjdDog
-W1BBVENIIHYzXSBkcm0vaTkxNS9kaXNwbGF5OiBwcm9ncmFtIGF1ZGlvIENEQ0xLLVRTIGZvciBr
-ZWVwYWxpdmVzDQo+IA0KPiBYRV9MUEQgZGlzcGxheSBhZGRzIHN1cHBvcnQgZm9yIGRpc3BsYXkg
-YXVkaW8gY29kZWMga2VlcGFsaXZlIGZlYXR1cmUuDQo+IFRoaXMgZmVhdHVyZSB3b3JrcyBhbHNv
-IHdoZW4gZGlzcGxheSBjb2RlYyBpcyBpbiBEMyBzdGF0ZSBhbmQgdGhlIGF1ZGlvIGxpbmsgaXMg
-b2ZmDQo+IChCQ0xLIG9mZikuIFRvIGVuYWJsZSB0aGlzIGZ1bmN0aW9uYWxpdHksIGRpc3BsYXkg
-ZHJpdmVyIG11c3QgdXBkYXRlIHRoZQ0KPiBBVURfVFNfQ0RDTEtfTS9OIHJlZ2lzdGVycyB3aGVu
-ZXZlciBDRENMSyBpcyBjaGFuZ2VkLg0KPiBBY3R1YWwgdGltZXN0YW1wcyBhcmUgZ2VuZXJhdGVk
-IG9ubHkgd2hlbiB0aGUgYXVkaW8gY29kZWMgZHJpdmVyIHNwZWNpZmljYWxseQ0KPiBlbmFibGVz
-IHRoZSBLZWVwQWxpdmUgKEtBRSkgZmVhdHVyZS4NCj4gDQo+IFRoaXMgcGF0Y2ggYWRkcyBuZXcg
-aG9va3MgdG8gaW50ZWxfc2V0X2NkY2xrKCkgaW4gb3JkZXIgdG8gaW5mb3JtIGRpc3BsYXkgYXVk
-aW8gZHJpdmVyDQo+IHdoZW4gQ0RDTEsgY2hhbmdlIGlzIHN0YXJ0ZWQgYW5kIHdoZW4gaXQgaXMg
-Y29tcGxldGUuDQo+IA0KPiBCc3BlYzogNTM2NzkNCj4gU2lnbmVkLW9mZi1ieTogS2FpIFZlaG1h
-bmVuIDxrYWkudmVobWFuZW5AbGludXguaW50ZWwuY29tPg0KPiBSZXZpZXdlZC1ieTogVW1hIFNo
-YW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4NCj4gQWNrZWQtYnk6IFZpbGxlIFN5cmrDpGzD
-pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQoNClB1c2hlZCB0aGUgY2hhbmdlIHRv
-IGRybS1pbnRlbC1uZXh0LiBUaGFua3MgZm9yIHRoZSBwYXRjaC4NCg0KUmVnYXJkcywNClVtYSBT
-aGFua2FyDQoNCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F1
-ZGlvLmMgfCAzNyArKysrKysrKysrKysrKysrKysrKysrDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfYXVkaW8uaCB8ICAyICsrDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfY2RjbGsuYyB8ICA1ICsrKw0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9yZWcuaCAgICAgICAgICAgIHwgIDQgKysrDQo+ICA0IGZpbGVzIGNoYW5nZWQsIDQ4IGluc2Vy
-dGlvbnMoKykNCj4gDQo+IENoYW5nZXMgVjItPlYzOg0KPiAgLSBhZGRlZCByZXZpZXcgc2lnbi1v
-ZmZzIGJ5IFVtYSBhbmQgVmlsbGUNCj4gIC0gcmViYXNlIHRvIGxhdGVzdCB1cHN0cmVhbSwgbm8g
-b3RoZXIgY2hhbmdlcyBDaGFuZ2VzIFYxLT5WMjoNCj4gIC0gYWRkcmVzc2VkIHJldmlldyBjb21t
-ZW50cyBKYW5pIE5pa3VsYSAoU2VwIDEwKQ0KPiAgLSBhZGRlZCBhbiBpbml0aWFsIGNhbGwgdG8g
-aW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3Bvc3QoKSBzbw0KPiAgICB0aGF0IEFVRF9DRENMSyBp
-bml0aWFsIGNvbmZpZ3VyYXRpb24gaXMgYWx3YXlzIHBlcmZvcm1hbmNlDQo+IA0KPiANCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBpbmRleCAwM2U4
-YzA1YTc0ZjYuLmE5NjUyM2YxYjA1MiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBAQCAtOTQ3LDYgKzk0Nyw0MCBAQCB2b2lkIGludGVsX2lu
-aXRfYXVkaW9faG9va3Moc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4gKmRldl9wcml2KQ0KPiAg
-CX0NCj4gIH0NCj4gDQo+ICtzdHJ1Y3QgYXVkX3RzX2NkY2xrX21fbiB7DQo+ICsJdTggbTsNCj4g
-Kwl1MTYgbjsNCj4gK307DQo+ICsNCj4gK3ZvaWQgaW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3By
-ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkgew0KPiArCWlmIChESVNQTEFZX1ZFUihp
-OTE1KSA+PSAxMykNCj4gKwkJaW50ZWxfZGVfcm13KGk5MTUsIEFVRF9UU19DRENMS19NLCBBVURf
-VFNfQ0RDTEtfTV9FTiwgMCk7DQo+IH0NCj4gKw0KPiArc3RhdGljIHZvaWQgZ2V0X2F1ZF90c19j
-ZGNsa19tX24oaW50IHJlZmNsaywgaW50IGNkY2xrLCBzdHJ1Y3QNCj4gK2F1ZF90c19jZGNsa19t
-X24gKmF1ZF90cykgew0KPiArCWlmIChyZWZjbGsgPT0gMjQwMDApDQo+ICsJCWF1ZF90cy0+bSA9
-IDEyOw0KPiArCWVsc2UNCj4gKwkJYXVkX3RzLT5tID0gMTU7DQo+ICsNCj4gKwlhdWRfdHMtPm4g
-PSBjZGNsayAqIGF1ZF90cy0+bSAvIDI0MDAwOyB9DQo+ICsNCj4gK3ZvaWQgaW50ZWxfYXVkaW9f
-Y2RjbGtfY2hhbmdlX3Bvc3Qoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpIHsNCj4gKwlz
-dHJ1Y3QgYXVkX3RzX2NkY2xrX21fbiBhdWRfdHM7DQo+ICsNCj4gKwlpZiAoRElTUExBWV9WRVIo
-aTkxNSkgPj0gMTMpIHsNCj4gKwkJZ2V0X2F1ZF90c19jZGNsa19tX24oaTkxNS0+Y2RjbGsuaHcu
-cmVmLCBpOTE1LT5jZGNsay5ody5jZGNsaywNCj4gKyZhdWRfdHMpOw0KPiArDQo+ICsJCWludGVs
-X2RlX3dyaXRlKGk5MTUsIEFVRF9UU19DRENMS19OLCBhdWRfdHMubik7DQo+ICsJCWludGVsX2Rl
-X3dyaXRlKGk5MTUsIEFVRF9UU19DRENMS19NLCBhdWRfdHMubSB8DQo+IEFVRF9UU19DRENMS19N
-X0VOKTsNCj4gKwkJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgImF1ZF90c19jZGNsayBzZXQgdG8g
-TT0ldSwgTj0ldVxuIiwNCj4gYXVkX3RzLm0sIGF1ZF90cy5uKTsNCj4gKwl9DQo+ICt9DQo+ICsN
-Cj4gIHN0YXRpYyBpbnQgZ2xrX2ZvcmNlX2F1ZGlvX2NkY2xrX2NvbW1pdChzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gIAkJCQkJc3RydWN0IGludGVsX2NydGMgKmNydGMsDQo+
-ICAJCQkJCWJvb2wgZW5hYmxlKQ0KPiBAQCAtMTMzMCw2ICsxMzY0LDkgQEAgc3RhdGljIHZvaWQg
-aTkxNV9hdWRpb19jb21wb25lbnRfaW5pdChzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYpDQo+ICAJCWRldl9wcml2LT5hdWRpb19mcmVxX2NudHJsID0gYXVkX2ZyZXE7DQo+ICAJ
-fQ0KPiANCj4gKwkvKiBpbml0IHdpdGggY3VycmVudCBjZGNsayAqLw0KPiArCWludGVsX2F1ZGlv
-X2NkY2xrX2NoYW5nZV9wb3N0KGRldl9wcml2KTsNCj4gKw0KPiAgCWRldl9wcml2LT5hdWRpb19j
-b21wb25lbnRfcmVnaXN0ZXJlZCA9IHRydWU7ICB9DQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5oDQo+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5oDQo+IGluZGV4IGEzNjU3YzdhN2JhMi4uZGNiMjU5
-ZGQyZGE3IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2F1ZGlvLmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRp
-by5oDQo+IEBAIC0xOCw2ICsxOCw4IEBAIHZvaWQgaW50ZWxfYXVkaW9fY29kZWNfZW5hYmxlKHN0
-cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiB2b2lkIGludGVsX2F1ZGlvX2NvZGVjX2Rp
-c2FibGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCQkgICAgICAgY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlLA0KPiAgCQkJICAgICAgIGNv
-bnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfY29ubl9zdGF0ZSk7DQo+ICt2b2lk
-IGludGVsX2F1ZGlvX2NkY2xrX2NoYW5nZV9wcmUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2KTsNCj4gK3ZvaWQgaW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3Bvc3Qoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsNCj4gIHZvaWQgaW50ZWxfYXVkaW9faW5pdChzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOyAgdm9pZA0KPiBpbnRlbF9hdWRpb19kZWlu
-aXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsNCj4gDQo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gaW5kZXggOWU0NjZkODI5MDE5
-Li42M2QxZTNiMjI1YzYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfY2RjbGsuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2NkY2xrLmMNCj4gQEAgLTI0LDYgKzI0LDcgQEANCj4gICNpbmNsdWRlIDxsaW51eC90aW1l
-Lmg+DQo+IA0KPiAgI2luY2x1ZGUgImludGVsX2F0b21pYy5oIg0KPiArI2luY2x1ZGUgImludGVs
-X2F1ZGlvLmgiDQo+ICAjaW5jbHVkZSAiaW50ZWxfYncuaCINCj4gICNpbmNsdWRlICJpbnRlbF9j
-ZGNsay5oIg0KPiAgI2luY2x1ZGUgImludGVsX2RlLmgiDQo+IEBAIC0xOTc1LDYgKzE5NzYsOCBA
-QCBzdGF0aWMgdm9pZCBpbnRlbF9zZXRfY2RjbGsoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4g
-KmRldl9wcml2LA0KPiAgCQlpbnRlbF9wc3JfcGF1c2UoaW50ZWxfZHApOw0KPiAgCX0NCj4gDQo+
-ICsJaW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3ByZShkZXZfcHJpdik7DQo+ICsNCj4gIAkvKg0K
-PiAgCSAqIExvY2sgYXV4L2dtYnVzIHdoaWxlIHdlIGNoYW5nZSBjZGNsayBpbiBjYXNlIHRob3Nl
-DQo+ICAJICogZnVuY3Rpb25zIHVzZSBjZGNsay4gTm90IGFsbCBwbGF0Zm9ybXMvcG9ydHMgZG8s
-IEBAIC0yMDAzLDYgKzIwMDYsOCBAQA0KPiBzdGF0aWMgdm9pZCBpbnRlbF9zZXRfY2RjbGsoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiAgCQlpbnRlbF9wc3JfcmVzdW1lKGlu
-dGVsX2RwKTsNCj4gIAl9DQo+IA0KPiArCWludGVsX2F1ZGlvX2NkY2xrX2NoYW5nZV9wb3N0KGRl
-dl9wcml2KTsNCj4gKw0KPiAgCWlmIChkcm1fV0FSTigmZGV2X3ByaXYtPmRybSwNCj4gIAkJICAg
-ICBpbnRlbF9jZGNsa19jaGFuZ2VkKCZkZXZfcHJpdi0+Y2RjbGsuaHcsIGNkY2xrX2NvbmZpZyks
-DQo+ICAJCSAgICAgImNkY2xrIHN0YXRlIGRvZXNuJ3QgbWF0Y2ghXG4iKSkgeyBkaWZmIC0tZ2l0
-DQo+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfcmVnLmggaW5kZXgNCj4gZDlmN2E3MjkzMzNmLi42NmI5OWRmYzllOWQgMTAwNjQ0
-DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiBAQCAtOTc4MSw2ICs5NzgxLDEwIEBAIGVudW0g
-ew0KPiAgI2RlZmluZSBBVURfUElOX0JVRl9DVEwJCV9NTUlPKDB4NDg0MTQpDQo+ICAjZGVmaW5l
-ICAgQVVEX1BJTl9CVUZfRU5BQkxFCQlSRUdfQklUKDMxKQ0KPiANCj4gKyNkZWZpbmUgQVVEX1RT
-X0NEQ0xLX00JCQlfTU1JTygweDY1ZWEwKQ0KPiArI2RlZmluZSAgIEFVRF9UU19DRENMS19NX0VO
-CQlSRUdfQklUKDMxKQ0KPiArI2RlZmluZSBBVURfVFNfQ0RDTEtfTgkJCV9NTUlPKDB4NjVlYTQp
-DQo+ICsNCj4gIC8qIERpc3BsYXkgQXVkaW8gQ29uZmlnIFJlZyAqLw0KPiAgI2RlZmluZSBBVURf
-Q09ORklHX0JFCQkJX01NSU8oMHg2NWVmMCkNCj4gICNkZWZpbmUgSEJMQU5LX0VBUkxZX0VOQUJM
-RV9JQ0wocGlwZSkJCSgweDEgPDwgKDIwIC0gKHBpcGUpKSkNCj4gLS0NCj4gMi4zMy4wDQoNCg==
+This patch series prepares error capture for asynchronous migration,
+where the vma pages may not reflect the pages the GPU is currently
+executing from but may be several migrations ahead.
+
+The first patch introduces vma state snapshots that record the vma state
+at request submission time.
+It also takes additional measures to make sure that
+the capture list and request is not disappearing from under us while
+capturing. The latter may otherwise happen if a heartbeat triggered parallel
+capture is running during a manual reset which retires the request.
+
+The second patch changes the allocation mode during capture to reflect that
+capturing is typically done in the fence signalling critical path. More
+details on the patch itself.
+
+Finally the last patch is more of a POC patch and not strictly needed yet,
+but will be (or at least something very similar) soon for async unbinding.
+It will make sure that unbinding doesn't complete or signal completion
+before capture is done. Async reuse of memory can't happen until unbinding
+signals complete and without waiting for capture done, we might capture
+contents of reused memory.
+Before the last patch the vma active is instead still keeping the vma alive,
+but that will not work with async unbinding anymore, and also it is still
+not clear how we guarantee keeping the vma alive long enough to even
+grab an active reference during capture.
+
+v2:
+- Mostly Fixes for selftests and rebinding. See patch 3. 
+v3:
+- Honor the unbind fence also when evicting for suspend on gen6.
+- Minor cleanups on patch 3.
+v4:
+- Break out patch 2 from patch 1.
+v5:
+- Ditch a patch from the since it's already commited.
+- Use __GFP_KSWAPD_RECLAIM rather than GFP_NOWAIT in patch 2.
+
+Thomas Hellström (3):
+  drm/i915: Update error capture code to avoid using the current vma
+    state
+  drm/i915: Use __GFP_KSWAPD_RECLAIM in the capture code
+  drm/i915: Initial introduction of vma resources
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 137 ++++++++++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   8 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |   2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         | 180 ++++++++++-----
+ drivers/gpu/drm/i915/i915_request.c           |  63 ++++--
+ drivers/gpu/drm/i915/i915_request.h           |  20 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 206 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_vma.h               |  20 +-
+ drivers/gpu/drm/i915/i915_vma_snapshot.c      | 131 +++++++++++
+ drivers/gpu/drm/i915/i915_vma_snapshot.h      | 112 ++++++++++
+ drivers/gpu/drm/i915/i915_vma_types.h         |   5 +
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  98 +++++----
+ 13 files changed, 837 insertions(+), 146 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.c
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.h
+
+-- 
+2.31.1
+
