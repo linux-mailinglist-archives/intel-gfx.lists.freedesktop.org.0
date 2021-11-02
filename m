@@ -1,33 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6059F44271E
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 07:29:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB0E442775
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 08:06:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0866E04A;
-	Tue,  2 Nov 2021 06:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD076FAAB;
+	Tue,  2 Nov 2021 07:06:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D2A636E047;
- Tue,  2 Nov 2021 06:29:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C9AA6A00A0;
- Tue,  2 Nov 2021 06:29:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4493139652696997340=="
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 041796FAA7;
+ Tue,  2 Nov 2021 07:06:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=iSMKRB1ypj4SY7bifdaR84NOhT38ADMlZ3HEJkbTNbE=; b=M9SAJkXgnmnpT24mLBYSbsvtyy
+ AmLXr7WkmOZO1YP+7nBAUKFqJpfL1L4075C3FSNOdXbY+6HmCIRbHYDqV/e7DspfeVwUtW7VobI1t
+ Bv2uCewjW8M0DKCdQU2ubIv6IItT83fF6hAhXOUgCbxaybxiXfQoM/FM0ZqdaPm592hBtVaocQxf2
+ BEcge4KYu0gA3VMhkfdP0tQnSf0VijX7WQs/LwXihTx95QfopVWHWnEANjFN+Ftk0Q1uyhEQTII4T
+ OvrffEwsT+UNTgsrzWPRT/EzxtmG+nyIybLisnvg+7jE41njR3HxfHrb1zXSkISyi8eDVaTlL1QPd
+ Mo6u4AiQ==;
+Received: from 213-225-15-89.nat.highway.a1.net ([213.225.15.89]
+ helo=localhost)
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mhnry-000hyd-I7; Tue, 02 Nov 2021 07:06:07 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
+Date: Tue,  2 Nov 2021 08:05:32 +0100
+Message-Id: <20211102070601.155501-1-hch@lst.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 02 Nov 2021 06:29:27 -0000
-Message-ID: <163583456779.15505.15732406955813209576@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211101183851.291015-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211101183851.291015-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Failsafe_migration_blits_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Intel-gfx] refactor the i915 GVT support and move to the modern
+ mdev API v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,169 +53,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Jason Gunthorpe <jgg@nvidia.com>,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4493139652696997340==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi all,
 
-== Series Details ==
+the GVT code in the i915 is a bit of a mess right now due to strange
+abstractions and lots of indirect calls.  This series refactors various
+bits to clean that up.  The main user visible change is that almost all
+of the GVT code moves out of the main i915 driver and into the kvmgt
+module.
 
-Series: drm/i915: Failsafe migration blits (rev3)
-URL   : https://patchwork.freedesktop.org/series/95617/
-State : success
+Tested on my Thinkpad with a Kaby Lake CPU and integrated graphics.
 
-== Summary ==
+Git tree:
 
-CI Bug Log - changes from CI_DRM_10826 -> Patchwork_21501
-====================================================
+    git://git.infradead.org/users/hch/misc.git i915-gvt
 
-Summary
--------
+Gitweb:
 
-  **SUCCESS**
+    http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/i915-gvt
 
-  No regressions found.
+Changes since v1:
+ - rebased on Linux 5.15
+ - allow the kvmgvt module to be loaded at any time and thus solve
+   the deadlock when both i915 amd kvmgvt are modular
+ - include the conversion to the modern mdev API
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/index.html
+Note that I do expect to rebased this again against 5.16-rc1 once
+released, but I'd like to get this out for review ASAP.
 
-Participating hosts (40 -> 33)
-------------------------------
-
-  Missing    (7): fi-kbl-soraka bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-4 fi-elk-e7500 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21501 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10826/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#1602] / [i915#2426] / [i915#4312])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [INCOMPLETE][4] ([i915#146]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10826/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-
-  
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10826 -> Patchwork_21501
-
-  CI-20190529: 20190529
-  CI_DRM_10826: 8b8fbc1dc64274b9eed192df4bfaeced03bdf0ae @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6266: fa0291675a7a3ade6c219cc52fceac9a0a4a63d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21501: 3806353c151f44ab58fd3224470b834cb70edb5c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3806353c151f drm/i915/ttm: Failsafe migration blits
-5fe248ea3330 drm/i915/ttm: Reorganize the ttm move code
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/index.html
-
---===============4493139652696997340==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Failsafe migration blits (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95617/">https://patchwork.freedesktop.org/series/95617/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10826 -&gt; Patchwork_21501</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/index.html</p>
-<h2>Participating hosts (40 -&gt; 33)</h2>
-<p>Missing    (7): fi-kbl-soraka bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-4 fi-elk-e7500 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21501 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10826/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10826/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21501/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10826 -&gt; Patchwork_21501</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10826: 8b8fbc1dc64274b9eed192df4bfaeced03bdf0ae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6266: fa0291675a7a3ade6c219cc52fceac9a0a4a63d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21501: 3806353c151f44ab58fd3224470b834cb70edb5c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3806353c151f drm/i915/ttm: Failsafe migration blits<br />
-5fe248ea3330 drm/i915/ttm: Reorganize the ttm move code</p>
-
-</body>
-</html>
-
---===============4493139652696997340==--
+Diffstat:
+ b/drivers/gpu/drm/i915/Kconfig          |   33 
+ b/drivers/gpu/drm/i915/Makefile         |   31 
+ b/drivers/gpu/drm/i915/gvt/cfg_space.c  |   89 --
+ b/drivers/gpu/drm/i915/gvt/cmd_parser.c |    4 
+ b/drivers/gpu/drm/i915/gvt/dmabuf.c     |   36 -
+ b/drivers/gpu/drm/i915/gvt/execlist.c   |   12 
+ b/drivers/gpu/drm/i915/gvt/gtt.c        |   55 +
+ b/drivers/gpu/drm/i915/gvt/gvt.h        |  125 ++-
+ b/drivers/gpu/drm/i915/gvt/interrupt.c  |   38 +
+ b/drivers/gpu/drm/i915/gvt/kvmgt.c      | 1099 +++++++++++++++-----------------
+ b/drivers/gpu/drm/i915/gvt/mmio.c       |    4 
+ b/drivers/gpu/drm/i915/gvt/opregion.c   |  148 ----
+ b/drivers/gpu/drm/i915/gvt/page_track.c |    8 
+ b/drivers/gpu/drm/i915/gvt/scheduler.c  |   37 -
+ b/drivers/gpu/drm/i915/gvt/trace.h      |    2 
+ b/drivers/gpu/drm/i915/gvt/vgpu.c       |   22 
+ b/drivers/gpu/drm/i915/i915_drv.c       |    7 
+ b/drivers/gpu/drm/i915/i915_drv.h       |    1 
+ b/drivers/gpu/drm/i915/i915_trace.h     |    1 
+ b/drivers/gpu/drm/i915/intel_gvt.c      |  162 +++-
+ b/drivers/gpu/drm/i915/intel_gvt.h      |   17 
+ drivers/gpu/drm/i915/gvt/Makefile       |    9 
+ drivers/gpu/drm/i915/gvt/gvt.c          |  340 ---------
+ drivers/gpu/drm/i915/gvt/hypercall.h    |   82 --
+ drivers/gpu/drm/i915/gvt/mpt.h          |  400 -----------
+ 25 files changed, 929 insertions(+), 1833 deletions(-)
