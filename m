@@ -1,43 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C7E442A94
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 10:43:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7BB442B8E
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Nov 2021 11:22:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F3C172E19;
-	Tue,  2 Nov 2021 09:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 224A46E91F;
+	Tue,  2 Nov 2021 10:22:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD9B72E19
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 09:43:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="294676415"
-X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="294676415"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 02:42:58 -0700
-X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="500468667"
-Received: from sohamdas-mobl.gar.corp.intel.com (HELO localhost)
- ([10.249.32.13])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 02:42:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kulkarni\, Vandita" <vandita.kulkarni@intel.com>,
- "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <613940207027480ebc94a6f0d2ce0f6b@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211019151435.20477-1-vandita.kulkarni@intel.com>
- <20211019151435.20477-5-vandita.kulkarni@intel.com>
- <87zgqtfk8j.fsf@intel.com> <122a37fb754049608841b35115f6f594@intel.com>
- <87mtmtfc90.fsf@intel.com> <fddde7f0495645f79730c2f48bdbf468@intel.com>
- <87fssgdqqq.fsf@intel.com> <613940207027480ebc94a6f0d2ce0f6b@intel.com>
-Date: Tue, 02 Nov 2021 11:42:48 +0200
-Message-ID: <87sfwedhbb.fsf@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E939B6E85B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Nov 2021 10:22:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10155"; a="231182646"
+X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="231182646"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 03:22:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,202,1631602800"; d="scan'208";a="667059571"
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
+ by orsmga005.jf.intel.com with ESMTP; 02 Nov 2021 03:22:40 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 2 Nov 2021 10:22:39 +0000
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
+ Tue, 2 Nov 2021 15:52:37 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v3] drm/i915/display: program audio CDCLK-TS for
+ keepalives
+Thread-Index: AQHXxmuwa0qgLapor0e5M0qIKWEj86vwGdzQ
+Date: Tue, 2 Nov 2021 10:22:37 +0000
+Message-ID: <3f615e660b424a1bb12f6b3f2bfe75a7@intel.com>
+References: <20211021105915.4128635-1-kai.vehmanen@linux.intel.com>
+In-Reply-To: <20211021105915.4128635-1-kai.vehmanen@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [V2 4/4] drm/i915/dsi: Ungate clock before enabling
- the phy
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: program audio CDCLK-TS
+ for keepalives
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,215 +63,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Nikula,
+ Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Nov 2021, "Kulkarni, Vandita" <vandita.kulkarni@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Monday, November 1, 2021 5:37 PM
->> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
->> <matthew.d.roper@intel.com>; ville.syrjala@linux.intel.com
->> Subject: RE: [V2 4/4] drm/i915/dsi: Ungate clock before enabling the phy
->> 
->> On Thu, 28 Oct 2021, "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
->> wrote:
->> >> -----Original Message-----
->> >> From: Nikula, Jani <jani.nikula@intel.com>
->> >> Sent: Thursday, October 28, 2021 8:06 PM
->> >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
->> >> gfx@lists.freedesktop.org
->> >> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
->> >> <matthew.d.roper@intel.com>; ville.syrjala@linux.intel.com
->> >> Subject: RE: [V2 4/4] drm/i915/dsi: Ungate clock before enabling the
->> >> phy
->> >>
->> >> On Thu, 28 Oct 2021, "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
->> >> wrote:
->> >> >> -----Original Message-----
->> >> >> From: Nikula, Jani <jani.nikula@intel.com>
->> >> >> Sent: Thursday, October 28, 2021 5:13 PM
->> >> >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
->> >> >> gfx@lists.freedesktop.org
->> >> >> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
->> >> >> <matthew.d.roper@intel.com>; ville.syrjala@linux.intel.com;
->> >> >> Kulkarni, Vandita <vandita.kulkarni@intel.com>
->> >> >> Subject: Re: [V2 4/4] drm/i915/dsi: Ungate clock before enabling
->> >> >> the phy
->> >> >>
->> >> >> On Tue, 19 Oct 2021, Vandita Kulkarni <vandita.kulkarni@intel.com>
->> >> wrote:
->> >> >> > For the PHY enable/disable signalling to propagate between
->> >> >> > Dispaly and PHY, DDI clocks need to be running when enabling the
->> PHY.
->> >> >> >
->> >> >> > Bspec: 49188 says gate the clocks after enabling the
->> >> >> >        DDI Buffer.
->> >> >> >        We also have a commit 991d9557b0c4 ("drm/i915/tgl/dsi:
->> >> >> > Gate the
->> >> ddi
->> >> >> >        clocks after pll mapping") which gates the clocks much before,
->> >> >> >        as per the older spec. This commit nullifies its effect and makes
->> >> >> >        sure that the clocks are not gated while we enable the DDI
->> >> >> >        buffer.
->> >> >> > v2: Bspec ref, add a comment wrt earlier clock gating sequence
->> >> >> > (Jani)
->> >> >> >
->> >> >> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
->> >> >> > ---
->> >> >> >  drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
->> >> >> >  1 file changed, 3 insertions(+), 5 deletions(-)
->> >> >> >
->> >> >> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
->> >> >> > b/drivers/gpu/drm/i915/display/icl_dsi.c
->> >> >> > index 63dd75c6448a..e5ef5c4a32d7 100644
->> >> >> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
->> >> >> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
->> >> >> > @@ -1135,8 +1135,6 @@ static void
->> >> >> > gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
->> >> >> >  			      const struct intel_crtc_state *crtc_state)
->> {
->> >> >> > -	struct drm_i915_private *dev_priv = to_i915(encoder-
->> >base.dev);
->> >> >> > -
->> >> >> >  	/* step 4a: power up all lanes of the DDI used by DSI */
->> >> >> >  	gen11_dsi_power_up_lanes(encoder);
->> >> >> >
->> >> >> > @@ -1146,6 +1144,8 @@ gen11_dsi_enable_port_and_phy(struct
->> >> >> intel_encoder *encoder,
->> >> >> >  	/* step 4c: configure voltage swing and skew */
->> >> >> >  	gen11_dsi_voltage_swing_program_seq(encoder);
->> >> >> >
->> >> >> > +	gen11_dsi_ungate_clocks(encoder);
->> >> >> > +
->> >> >>
->> >> >> What about the changes to gen11_dsi_map_pll() in commit
->> >> >> 991d9557b0c4
->> >> >> ("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")? It
->> >> >> starts off with clocks gated for gen12+, ungated otherwise.
->> >> >
->> >> > Now the same spec is updated with the gate step after ddi buffer
->> enable.
->> >> > And the one before is marked with remove tag.
->> >> > That makes all gen12+ align with gen 11.
->> >> > You suggested to update the same in the commit message on v1.
->> >> > Should I still consider just reverting that commit?
->> >>
->> >> I'm just royally confused about the sequence myself, so I'm asking
->> >> you. ;)
->> >>
->> >> It doesn't help that the code has step references to gen 11 mode set
->> >> that are completely different from the steps in gen 12 sequence.
->> >
->> > Right, they have lot of different steps coming in.
->> > As per gen11 sequence, we were gating pll after enabling ddi buffer.
->> >
->> > Initially when there was only gen12 in the bspec, it stated to gate the pll
->> after mapping.
->> > Hence we had that commit  991d9557b0c4.
->> > Then Gen12's mipi dsi sequence was carried fwd for all later platforms as
->> well.
->> >  with the modification saying that
->> > Do not gate the pll until we enable the ddi buffer.
->> > And this applies to gen 12 as well because they have marked the
->> > earlier mentioned step of gating pll after pll mapping as removed on all
->> gen12 and later platforms.
->> >
->> > This patch now is keeping the older step as is, but making sure that clocks
->> are ungated while enabling ddi buffer.
->> 
->> Where does it say for gen12+ that clocks should be ungated at any point?
->> 
->> My reading of the spec:
->> 
->> Gen11, bspec 20845 and 20597:
->> - start with clocks ungated at mapping
->> - gate after port/phy enabling (step 4m in gen11 mode set sequence)
->> 
->> Gen12, bspec 49204, 49188 and 55316:
->> - start with clocks gated at mapping
->> - gate *if* not already gated (steps 4c and 4i in gen12 mode set sequence)
->
-> Right the ungate step is not mentioned in the bspec.
-> Instead the step 4.c is marked as Removed.
-> I had added ungate just to make sure we are addressing the issue mentioned in front of removed tag while
-> Retaining the old sequence of 4.c
->
-> In order to completely adhere to the current bspec, I can
-> 1. submit a patch removing 4.c
-> or
-> 2.  submit a revert of the patch which was adding 4.c
-> ("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")
-
-I think if you remove the call to gen11_dsi_ungate_clocks(encoder) from
-this patch, the sequence matches bspec.
-
-But this means the sequence is different between display 11 and 12+, and
-the clock will be gated for the entire enabling sequence on 12+. That's
-my reading of bspec, anyway.
-
-BR,
-Jani.
-
-
-
->
-> Thanks,
-> Vandita
->> 
->> It may be that your patch is correct, but IMO it does not match bspec.
->> 
->> 
->> BR,
->> Jani.
->> 
->> 
->> 
->> >
->> > Thanks
->> > Vandita
->> >>
->> >> BR,
->> >> Jani.
->> >>
->> >>
->> >>
->> >> >
->> >> > Thanks,
->> >> > Vandita
->> >> >
->> >> >>
->> >> >> BR,
->> >> >> Jani.
->> >> >>
->> >> >>
->> >> >> >  	/* enable DDI buffer */
->> >> >> >  	gen11_dsi_enable_ddi_buffer(encoder);
->> >> >> >
->> >> >> > @@ -1161,9 +1161,7 @@ gen11_dsi_enable_port_and_phy(struct
->> >> >> intel_encoder *encoder,
->> >> >> >  	/* Step (4h, 4i, 4j, 4k): Configure transcoder */
->> >> >> >  	gen11_dsi_configure_transcoder(encoder, crtc_state);
->> >> >> >
->> >> >> > -	/* Step 4l: Gate DDI clocks */
->> >> >> > -	if (DISPLAY_VER(dev_priv) == 11)
->> >> >> > -		gen11_dsi_gate_clocks(encoder);
->> >> >> > +	gen11_dsi_gate_clocks(encoder);
->> >> >> >  }
->> >> >> >
->> >> >> >  static void gen11_dsi_powerup_panel(struct intel_encoder
->> >> >> > *encoder)
->> >> >>
->> >> >> --
->> >> >> Jani Nikula, Intel Open Source Graphics Center
->> >>
->> >> --
->> >> Jani Nikula, Intel Open Source Graphics Center
->> 
->> --
->> Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2FpIFZlaG1hbmVuIDxr
+YWkudmVobWFuZW5AbGludXguaW50ZWwuY29tPg0KPiBTZW50OiBUaHVyc2RheSwgT2N0b2JlciAy
+MSwgMjAyMSA0OjI5IFBNDQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+
+IENjOiBTaGFua2FyLCBVbWEgPHVtYS5zaGFua2FyQGludGVsLmNvbT47IHZpbGxlLnN5cmphbGFA
+bGludXguaW50ZWwuY29tOyBOaWt1bGEsDQo+IEphbmkgPGphbmkubmlrdWxhQGludGVsLmNvbT47
+IEthaSBWZWhtYW5lbiA8a2FpLnZlaG1hbmVuQGxpbnV4LmludGVsLmNvbT4NCj4gU3ViamVjdDog
+W1BBVENIIHYzXSBkcm0vaTkxNS9kaXNwbGF5OiBwcm9ncmFtIGF1ZGlvIENEQ0xLLVRTIGZvciBr
+ZWVwYWxpdmVzDQo+IA0KPiBYRV9MUEQgZGlzcGxheSBhZGRzIHN1cHBvcnQgZm9yIGRpc3BsYXkg
+YXVkaW8gY29kZWMga2VlcGFsaXZlIGZlYXR1cmUuDQo+IFRoaXMgZmVhdHVyZSB3b3JrcyBhbHNv
+IHdoZW4gZGlzcGxheSBjb2RlYyBpcyBpbiBEMyBzdGF0ZSBhbmQgdGhlIGF1ZGlvIGxpbmsgaXMg
+b2ZmDQo+IChCQ0xLIG9mZikuIFRvIGVuYWJsZSB0aGlzIGZ1bmN0aW9uYWxpdHksIGRpc3BsYXkg
+ZHJpdmVyIG11c3QgdXBkYXRlIHRoZQ0KPiBBVURfVFNfQ0RDTEtfTS9OIHJlZ2lzdGVycyB3aGVu
+ZXZlciBDRENMSyBpcyBjaGFuZ2VkLg0KPiBBY3R1YWwgdGltZXN0YW1wcyBhcmUgZ2VuZXJhdGVk
+IG9ubHkgd2hlbiB0aGUgYXVkaW8gY29kZWMgZHJpdmVyIHNwZWNpZmljYWxseQ0KPiBlbmFibGVz
+IHRoZSBLZWVwQWxpdmUgKEtBRSkgZmVhdHVyZS4NCj4gDQo+IFRoaXMgcGF0Y2ggYWRkcyBuZXcg
+aG9va3MgdG8gaW50ZWxfc2V0X2NkY2xrKCkgaW4gb3JkZXIgdG8gaW5mb3JtIGRpc3BsYXkgYXVk
+aW8gZHJpdmVyDQo+IHdoZW4gQ0RDTEsgY2hhbmdlIGlzIHN0YXJ0ZWQgYW5kIHdoZW4gaXQgaXMg
+Y29tcGxldGUuDQo+IA0KPiBCc3BlYzogNTM2NzkNCj4gU2lnbmVkLW9mZi1ieTogS2FpIFZlaG1h
+bmVuIDxrYWkudmVobWFuZW5AbGludXguaW50ZWwuY29tPg0KPiBSZXZpZXdlZC1ieTogVW1hIFNo
+YW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4NCj4gQWNrZWQtYnk6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQoNClB1c2hlZCB0aGUgY2hhbmdlIHRv
+IGRybS1pbnRlbC1uZXh0LiBUaGFua3MgZm9yIHRoZSBwYXRjaC4NCg0KUmVnYXJkcywNClVtYSBT
+aGFua2FyDQoNCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F1
+ZGlvLmMgfCAzNyArKysrKysrKysrKysrKysrKysrKysrDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfYXVkaW8uaCB8ICAyICsrDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfY2RjbGsuYyB8ICA1ICsrKw0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9yZWcuaCAgICAgICAgICAgIHwgIDQgKysrDQo+ICA0IGZpbGVzIGNoYW5nZWQsIDQ4IGluc2Vy
+dGlvbnMoKykNCj4gDQo+IENoYW5nZXMgVjItPlYzOg0KPiAgLSBhZGRlZCByZXZpZXcgc2lnbi1v
+ZmZzIGJ5IFVtYSBhbmQgVmlsbGUNCj4gIC0gcmViYXNlIHRvIGxhdGVzdCB1cHN0cmVhbSwgbm8g
+b3RoZXIgY2hhbmdlcyBDaGFuZ2VzIFYxLT5WMjoNCj4gIC0gYWRkcmVzc2VkIHJldmlldyBjb21t
+ZW50cyBKYW5pIE5pa3VsYSAoU2VwIDEwKQ0KPiAgLSBhZGRlZCBhbiBpbml0aWFsIGNhbGwgdG8g
+aW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3Bvc3QoKSBzbw0KPiAgICB0aGF0IEFVRF9DRENMSyBp
+bml0aWFsIGNvbmZpZ3VyYXRpb24gaXMgYWx3YXlzIHBlcmZvcm1hbmNlDQo+IA0KPiANCj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBpbmRleCAwM2U4
+YzA1YTc0ZjYuLmE5NjUyM2YxYjA1MiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBAQCAtOTQ3LDYgKzk0Nyw0MCBAQCB2b2lkIGludGVsX2lu
+aXRfYXVkaW9faG9va3Moc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4gKmRldl9wcml2KQ0KPiAg
+CX0NCj4gIH0NCj4gDQo+ICtzdHJ1Y3QgYXVkX3RzX2NkY2xrX21fbiB7DQo+ICsJdTggbTsNCj4g
+Kwl1MTYgbjsNCj4gK307DQo+ICsNCj4gK3ZvaWQgaW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3By
+ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkgew0KPiArCWlmIChESVNQTEFZX1ZFUihp
+OTE1KSA+PSAxMykNCj4gKwkJaW50ZWxfZGVfcm13KGk5MTUsIEFVRF9UU19DRENMS19NLCBBVURf
+VFNfQ0RDTEtfTV9FTiwgMCk7DQo+IH0NCj4gKw0KPiArc3RhdGljIHZvaWQgZ2V0X2F1ZF90c19j
+ZGNsa19tX24oaW50IHJlZmNsaywgaW50IGNkY2xrLCBzdHJ1Y3QNCj4gK2F1ZF90c19jZGNsa19t
+X24gKmF1ZF90cykgew0KPiArCWlmIChyZWZjbGsgPT0gMjQwMDApDQo+ICsJCWF1ZF90cy0+bSA9
+IDEyOw0KPiArCWVsc2UNCj4gKwkJYXVkX3RzLT5tID0gMTU7DQo+ICsNCj4gKwlhdWRfdHMtPm4g
+PSBjZGNsayAqIGF1ZF90cy0+bSAvIDI0MDAwOyB9DQo+ICsNCj4gK3ZvaWQgaW50ZWxfYXVkaW9f
+Y2RjbGtfY2hhbmdlX3Bvc3Qoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpIHsNCj4gKwlz
+dHJ1Y3QgYXVkX3RzX2NkY2xrX21fbiBhdWRfdHM7DQo+ICsNCj4gKwlpZiAoRElTUExBWV9WRVIo
+aTkxNSkgPj0gMTMpIHsNCj4gKwkJZ2V0X2F1ZF90c19jZGNsa19tX24oaTkxNS0+Y2RjbGsuaHcu
+cmVmLCBpOTE1LT5jZGNsay5ody5jZGNsaywNCj4gKyZhdWRfdHMpOw0KPiArDQo+ICsJCWludGVs
+X2RlX3dyaXRlKGk5MTUsIEFVRF9UU19DRENMS19OLCBhdWRfdHMubik7DQo+ICsJCWludGVsX2Rl
+X3dyaXRlKGk5MTUsIEFVRF9UU19DRENMS19NLCBhdWRfdHMubSB8DQo+IEFVRF9UU19DRENMS19N
+X0VOKTsNCj4gKwkJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgImF1ZF90c19jZGNsayBzZXQgdG8g
+TT0ldSwgTj0ldVxuIiwNCj4gYXVkX3RzLm0sIGF1ZF90cy5uKTsNCj4gKwl9DQo+ICt9DQo+ICsN
+Cj4gIHN0YXRpYyBpbnQgZ2xrX2ZvcmNlX2F1ZGlvX2NkY2xrX2NvbW1pdChzdHJ1Y3QgaW50ZWxf
+YXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gIAkJCQkJc3RydWN0IGludGVsX2NydGMgKmNydGMsDQo+
+ICAJCQkJCWJvb2wgZW5hYmxlKQ0KPiBAQCAtMTMzMCw2ICsxMzY0LDkgQEAgc3RhdGljIHZvaWQg
+aTkxNV9hdWRpb19jb21wb25lbnRfaW5pdChzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
+X3ByaXYpDQo+ICAJCWRldl9wcml2LT5hdWRpb19mcmVxX2NudHJsID0gYXVkX2ZyZXE7DQo+ICAJ
+fQ0KPiANCj4gKwkvKiBpbml0IHdpdGggY3VycmVudCBjZGNsayAqLw0KPiArCWludGVsX2F1ZGlv
+X2NkY2xrX2NoYW5nZV9wb3N0KGRldl9wcml2KTsNCj4gKw0KPiAgCWRldl9wcml2LT5hdWRpb19j
+b21wb25lbnRfcmVnaXN0ZXJlZCA9IHRydWU7ICB9DQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5oDQo+IGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5oDQo+IGluZGV4IGEzNjU3YzdhN2JhMi4uZGNiMjU5
+ZGQyZGE3IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2F1ZGlvLmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRp
+by5oDQo+IEBAIC0xOCw2ICsxOCw4IEBAIHZvaWQgaW50ZWxfYXVkaW9fY29kZWNfZW5hYmxlKHN0
+cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiB2b2lkIGludGVsX2F1ZGlvX2NvZGVjX2Rp
+c2FibGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCQkgICAgICAgY29uc3Qg
+c3RydWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlLA0KPiAgCQkJICAgICAgIGNv
+bnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfY29ubl9zdGF0ZSk7DQo+ICt2b2lk
+IGludGVsX2F1ZGlvX2NkY2xrX2NoYW5nZV9wcmUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2KTsNCj4gK3ZvaWQgaW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3Bvc3Qoc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsNCj4gIHZvaWQgaW50ZWxfYXVkaW9faW5pdChzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOyAgdm9pZA0KPiBpbnRlbF9hdWRpb19kZWlu
+aXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsNCj4gDQo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gaW5kZXggOWU0NjZkODI5MDE5
+Li42M2QxZTNiMjI1YzYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfY2RjbGsuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2NkY2xrLmMNCj4gQEAgLTI0LDYgKzI0LDcgQEANCj4gICNpbmNsdWRlIDxsaW51eC90aW1l
+Lmg+DQo+IA0KPiAgI2luY2x1ZGUgImludGVsX2F0b21pYy5oIg0KPiArI2luY2x1ZGUgImludGVs
+X2F1ZGlvLmgiDQo+ICAjaW5jbHVkZSAiaW50ZWxfYncuaCINCj4gICNpbmNsdWRlICJpbnRlbF9j
+ZGNsay5oIg0KPiAgI2luY2x1ZGUgImludGVsX2RlLmgiDQo+IEBAIC0xOTc1LDYgKzE5NzYsOCBA
+QCBzdGF0aWMgdm9pZCBpbnRlbF9zZXRfY2RjbGsoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4g
+KmRldl9wcml2LA0KPiAgCQlpbnRlbF9wc3JfcGF1c2UoaW50ZWxfZHApOw0KPiAgCX0NCj4gDQo+
+ICsJaW50ZWxfYXVkaW9fY2RjbGtfY2hhbmdlX3ByZShkZXZfcHJpdik7DQo+ICsNCj4gIAkvKg0K
+PiAgCSAqIExvY2sgYXV4L2dtYnVzIHdoaWxlIHdlIGNoYW5nZSBjZGNsayBpbiBjYXNlIHRob3Nl
+DQo+ICAJICogZnVuY3Rpb25zIHVzZSBjZGNsay4gTm90IGFsbCBwbGF0Zm9ybXMvcG9ydHMgZG8s
+IEBAIC0yMDAzLDYgKzIwMDYsOCBAQA0KPiBzdGF0aWMgdm9pZCBpbnRlbF9zZXRfY2RjbGsoc3Ry
+dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiAgCQlpbnRlbF9wc3JfcmVzdW1lKGlu
+dGVsX2RwKTsNCj4gIAl9DQo+IA0KPiArCWludGVsX2F1ZGlvX2NkY2xrX2NoYW5nZV9wb3N0KGRl
+dl9wcml2KTsNCj4gKw0KPiAgCWlmIChkcm1fV0FSTigmZGV2X3ByaXYtPmRybSwNCj4gIAkJICAg
+ICBpbnRlbF9jZGNsa19jaGFuZ2VkKCZkZXZfcHJpdi0+Y2RjbGsuaHcsIGNkY2xrX2NvbmZpZyks
+DQo+ICAJCSAgICAgImNkY2xrIHN0YXRlIGRvZXNuJ3QgbWF0Y2ghXG4iKSkgeyBkaWZmIC0tZ2l0
+DQo+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfcmVnLmggaW5kZXgNCj4gZDlmN2E3MjkzMzNmLi42NmI5OWRmYzllOWQgMTAwNjQ0
+DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiBAQCAtOTc4MSw2ICs5NzgxLDEwIEBAIGVudW0g
+ew0KPiAgI2RlZmluZSBBVURfUElOX0JVRl9DVEwJCV9NTUlPKDB4NDg0MTQpDQo+ICAjZGVmaW5l
+ICAgQVVEX1BJTl9CVUZfRU5BQkxFCQlSRUdfQklUKDMxKQ0KPiANCj4gKyNkZWZpbmUgQVVEX1RT
+X0NEQ0xLX00JCQlfTU1JTygweDY1ZWEwKQ0KPiArI2RlZmluZSAgIEFVRF9UU19DRENMS19NX0VO
+CQlSRUdfQklUKDMxKQ0KPiArI2RlZmluZSBBVURfVFNfQ0RDTEtfTgkJCV9NTUlPKDB4NjVlYTQp
+DQo+ICsNCj4gIC8qIERpc3BsYXkgQXVkaW8gQ29uZmlnIFJlZyAqLw0KPiAgI2RlZmluZSBBVURf
+Q09ORklHX0JFCQkJX01NSU8oMHg2NWVmMCkNCj4gICNkZWZpbmUgSEJMQU5LX0VBUkxZX0VOQUJM
+RV9JQ0wocGlwZSkJCSgweDEgPDwgKDIwIC0gKHBpcGUpKSkNCj4gLS0NCj4gMi4zMy4wDQoNCg==
