@@ -2,60 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5B144405D
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 12:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8C5444060
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 12:14:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 241AB6FF7F;
-	Wed,  3 Nov 2021 11:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6B87303B;
+	Wed,  3 Nov 2021 11:14:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFA446FF7F
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 11:11:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="255100743"
-X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="255100743"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2021 04:11:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="667489668"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga005.jf.intel.com with ESMTP; 03 Nov 2021 04:11:07 -0700
-Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 3 Nov 2021 04:11:06 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 3 Nov 2021 16:41:04 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Wed, 3 Nov 2021 16:41:04 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 1/2] drm/i915/dp: Optimize the FRL configuration for
- HDMI2.1 PCON
-Thread-Index: AQHXzIxtqgrZg3x2KEC2I5BfyU62nqvxrW3A
-Date: Wed, 3 Nov 2021 11:11:03 +0000
-Message-ID: <5aa10065ba374dbba4af4f1ee42c6e9d@intel.com>
-References: <20211029060154.110038-1-ankit.k.nautiyal@intel.com>
- <20211029060154.110038-2-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20211029060154.110038-2-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1A5D6FFA9;
+ Wed,  3 Nov 2021 11:14:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="231728132"
+X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="231728132"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 04:14:30 -0700
+X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="560850386"
+Received: from gzuchow-mobl.ger.corp.intel.com (HELO thellstr-mobl1.intel.com)
+ ([10.249.254.54])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 04:14:28 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed,  3 Nov 2021 12:14:17 +0100
+Message-Id: <20211103111419.536191-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Optimize the FRL
- configuration for HDMI2.1 PCON
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/2] drm/i915: Failsafe migration blits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,137 +44,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This patch series introduces failsafe migration blits.
+The reason for this seemingly strange concept is that if the initial
+clearing or readback of LMEM fails for some reason[1], and we then set up
+either GPU- or CPU ptes to the allocated LMEM, we can expose old
+contents from other clients.
 
+So after each migration blit to LMEM, attach a dma-fence callback that
+checks the migration fence error value and if it's an error,
+performs a memcpy blit, instead.
 
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: Friday, October 29, 2021 11:32 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Sharma, Swati2 <swati2.sharma@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>
-> Subject: [PATCH 1/2] drm/i915/dp: Optimize the FRL configuration for HDMI=
-2.1
-> PCON
->=20
-> Currently the HDMI2.1 PCON's frl link config DPCD registers are reset and=
- configured
-> even if they are already configured.
-> Also the HDMI Link Mode does not settle to FRL MODE immediately after HDM=
-I Link
-> Status is active.
->=20
-> This patch:
-> -Checks if the PCON is already configured for FRL.
-> -Include HDMI Link Mode in wait for loop along with HDMI Link status DPCD=
-.
+Patch 1 splits out the TTM move code into separate files
+Patch 2 implements the failsafe blits and related self-tests
 
-Looks good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+[1] There are at least two ways we could trigger exposure of uninitialized
+LMEM assuming the migration blits themselves never trigger a gpu hang.
 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 37 +++++++++++++++----------
->  1 file changed, 23 insertions(+), 14 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 6d5988f0f067..f5fd106e555c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2198,6 +2198,18 @@ static int intel_dp_hdmi_sink_max_frl(struct intel=
-_dp
-> *intel_dp)
->  	return max_frl_rate;
->  }
->=20
-> +static bool
-> +intel_dp_pcon_is_frl_trained(struct intel_dp *intel_dp,
-> +			     u8 max_frl_bw_mask, u8 *frl_trained_mask) {
-> +	if (drm_dp_pcon_hdmi_link_active(&intel_dp->aux) &&
-> +	    drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, frl_trained_mask) =3D=3D
-> DP_PCON_HDMI_MODE_FRL &&
-> +	    *frl_trained_mask >=3D max_frl_bw_mask)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  static int intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)  =
-{  #define
-> TIMEOUT_FRL_READY_MS 500 @@ -2208,10 +2220,6 @@ static int
-> intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)
->  	u8 max_frl_bw_mask =3D 0, frl_trained_mask;
->  	bool is_active;
->=20
-> -	ret =3D drm_dp_pcon_reset_frl_config(&intel_dp->aux);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	max_pcon_frl_bw =3D intel_dp->dfp.pcon_max_frl_bw;
->  	drm_dbg(&i915->drm, "PCON max rate =3D %d Gbps\n", max_pcon_frl_bw);
->=20
-> @@ -2223,6 +2231,12 @@ static int intel_dp_pcon_start_frl_training(struct=
- intel_dp
-> *intel_dp)
->  	if (max_frl_bw <=3D 0)
->  		return -EINVAL;
->=20
-> +	max_frl_bw_mask =3D intel_dp_pcon_set_frl_mask(max_frl_bw);
-> +	drm_dbg(&i915->drm, "MAX_FRL_BW_MASK =3D %u\n", max_frl_bw_mask);
-> +
-> +	if (intel_dp_pcon_is_frl_trained(intel_dp, max_frl_bw_mask,
-> &frl_trained_mask))
-> +		goto frl_trained;
-> +
->  	ret =3D drm_dp_pcon_frl_prepare(&intel_dp->aux, false);
->  	if (ret < 0)
->  		return ret;
-> @@ -2232,7 +2246,6 @@ static int intel_dp_pcon_start_frl_training(struct =
-intel_dp
-> *intel_dp)
->  	if (!is_active)
->  		return -ETIMEDOUT;
->=20
-> -	max_frl_bw_mask =3D intel_dp_pcon_set_frl_mask(max_frl_bw);
->  	ret =3D drm_dp_pcon_frl_configure_1(&intel_dp->aux, max_frl_bw,
->  					  DP_PCON_ENABLE_SEQUENTIAL_LINK);
->  	if (ret < 0)
-> @@ -2248,19 +2261,15 @@ static int intel_dp_pcon_start_frl_training(struc=
-t
-> intel_dp *intel_dp)
->  	 * Wait for FRL to be completed
->  	 * Check if the HDMI Link is up and active.
->  	 */
-> -	wait_for(is_active =3D drm_dp_pcon_hdmi_link_active(&intel_dp->aux) =3D=
-=3D
-> true, TIMEOUT_HDMI_LINK_ACTIVE_MS);
-> +	wait_for(is_active =3D
-> +		 intel_dp_pcon_is_frl_trained(intel_dp, max_frl_bw_mask,
-> &frl_trained_mask),
-> +		 TIMEOUT_HDMI_LINK_ACTIVE_MS);
->=20
->  	if (!is_active)
->  		return -ETIMEDOUT;
->=20
-> -	/* Verify HDMI Link configuration shows FRL Mode */
-> -	if (drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask) !=3D
-> -	    DP_PCON_HDMI_MODE_FRL) {
-> -		drm_dbg(&i915->drm, "HDMI couldn't be trained in FRL Mode\n");
-> -		return -EINVAL;
-> -	}
-> -	drm_dbg(&i915->drm, "MAX_FRL_MASK =3D %u, FRL_TRAINED_MASK =3D
-> %u\n", max_frl_bw_mask, frl_trained_mask);
-> -
-> +frl_trained:
-> +	drm_dbg(&i915->drm, "FRL_TRAINED_MASK =3D %u\n", frl_trained_mask);
->  	intel_dp->frl.trained_rate_gbps =3D
-> intel_dp_pcon_get_frl_mask(frl_trained_mask);
->  	intel_dp->frl.is_trained =3D true;
->  	drm_dbg(&i915->drm, "FRL trained with : %d Gbps\n", intel_dp-
-> >frl.trained_rate_gbps);
-> --
-> 2.25.1
+a) A gpu operation preceding a pipelined eviction blit resets and sets the
+error fence to -EIO, and the error is propagated across the TTM manager to
+the clear / swapin blit of a newly allocated TTM resource. It aborts and
+leaves the memory uninitialized.
+
+b) Something wedges the GT while a migration blit is submitted. It ends up
+never executed and TTM can fault user-space cpu-ptes into uninitialized
+memory.
+
+v3:
+- Style fixes in second patch (Matthew Auld)
+v4:
+- More style fixes in second patch (Matthew Auld)
+
+Thomas Hellström (2):
+  drm/i915/ttm: Reorganize the ttm move code
+  drm/i915/ttm: Failsafe migration blits
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 328 ++---------
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h       |  35 ++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 520 ++++++++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.h  |  43 ++
+ .../drm/i915/gem/selftests/i915_gem_migrate.c |  24 +-
+ 6 files changed, 670 insertions(+), 281 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm_move.h
+
+-- 
+2.31.1
 
