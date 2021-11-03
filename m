@@ -2,38 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1775044427E
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 14:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3AE4442A6
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 14:50:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3ACB6E895;
-	Wed,  3 Nov 2021 13:34:43 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA4FC6E11A;
- Wed,  3 Nov 2021 13:34:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="212245653"
-X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="212245653"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2021 06:34:30 -0700
-X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="501063969"
-Received: from bmagdala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.215.42])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2021 06:34:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org
-In-Reply-To: <20211103122809.1040754-2-javierm@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211103122809.1040754-1-javierm@redhat.com>
- <20211103122809.1040754-2-javierm@redhat.com>
-Date: Wed, 03 Nov 2021 15:34:22 +0200
-Message-ID: <87r1bxbbxd.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D52916EA1E;
+	Wed,  3 Nov 2021 13:50:41 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F22A6EA1E;
+ Wed,  3 Nov 2021 13:50:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="211549650"
+X-IronPort-AV: E=Sophos;i="5.87,206,1631602800"; d="scan'208";a="211549650"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 06:50:40 -0700
+X-IronPort-AV: E=Sophos;i="5.87,206,1631602800"; d="scan'208";a="489570101"
+Received: from murphyjo-mobl1.ger.corp.intel.com (HELO [10.213.220.152])
+ ([10.213.220.152])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 06:50:39 -0700
+To: John.C.Harrison@Intel.com, IGT-Dev@Lists.FreeDesktop.Org
+References: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
+ <20211021234044.3071069-2-John.C.Harrison@Intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <426daa00-746e-31d5-d90b-9cf161738b9d@linux.intel.com>
+Date: Wed, 3 Nov 2021 13:50:37 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RESEND PATCH 1/5] drm/i915: Fix comment about
- modeset parameters
+In-Reply-To: <20211021234044.3071069-2-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/8] tests/i915/gem_exec_capture:
+ Remove pointless assert
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,49 +50,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>,
- Javier Martinez Canillas <javierm@redhat.com>, dri-devel@lists.freedesktop.org,
- Peter Robinson <pbrobinson@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Neal Gompa <ngompa13@gmail.com>, intel-gfx@lists.freedesktop.org
+Cc: Intel-GFX@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Nov 2021, Javier Martinez Canillas <javierm@redhat.com> wrote:
-> The comment mentions that the KMS is enabled by default unless either the
-> i915.modeset module parameter or vga_text_mode_force boot option are used.
->
-> But the latter does not exist and instead the nomodeset option was meant.
->
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 
-Thanks for the patch. I've picked this up to drm-intel-next as a
-non-functional change independent from the rest of the series.
+On 22/10/2021 00:40, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> The 'many' test ended with an 'assert(count)', presumably meaning to
+> ensure that some objects were actually captured. However, 'count' is
+> the number of objects created not how many were captured. Plus, there
+> is already a 'require(count > 1)' at the start and count is invarient
+> so the final assert is basically pointless.
+> 
+> General concensus appears to be that the test should not fail
+> irrespective of how many blobs are captured as low memory situations
+> could cause the capture to be abbreviated. So just remove the
+> pointless assert completely.
 
-BR,
-Jani.
+Hm the test appears to be using intel_get_avail_ram_mb() to size the 
+working set. Suggesting problems with low memory situations should not 
+apply unless bugs. In which case would a better fix be improving the 
+sizing logic and changing the assert to igt_assert(blobs)?
 
+Regards,
+
+Tvrtko
+
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 > ---
->
->  drivers/gpu/drm/i915/i915_module.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
-> index ab2295dd4500..c7507266aa83 100644
-> --- a/drivers/gpu/drm/i915/i915_module.c
-> +++ b/drivers/gpu/drm/i915/i915_module.c
-> @@ -24,8 +24,8 @@ static int i915_check_nomodeset(void)
->  
->  	/*
->  	 * Enable KMS by default, unless explicitly overriden by
-> -	 * either the i915.modeset prarameter or by the
-> -	 * vga_text_mode_force boot option.
-> +	 * either the i915.modeset parameter or by the
-> +	 * nomodeset boot option.
->  	 */
->  
->  	if (i915_modparams.modeset == 0)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>   tests/i915/gem_exec_capture.c | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
+> index 7e0a8b8ad..53649cdb2 100644
+> --- a/tests/i915/gem_exec_capture.c
+> +++ b/tests/i915/gem_exec_capture.c
+> @@ -524,7 +524,6 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
+>   	}
+>   	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
+>   		 blobs, size >> 12, count);
+> -	igt_assert(count);
+>   
+>   	free(error);
+>   	free(offsets);
+> 
