@@ -1,154 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB0A0443B19
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 02:45:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 112C9443B3C
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 03:16:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFBDC73992;
-	Wed,  3 Nov 2021 01:45:47 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8347398D;
- Wed,  3 Nov 2021 01:45:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="218604315"
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="218604315"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 18:45:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="531763097"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga001.jf.intel.com with ESMTP; 02 Nov 2021 18:45:45 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 2 Nov 2021 18:45:45 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 2 Nov 2021 18:45:44 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Tue, 2 Nov 2021 18:45:44 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.46) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Tue, 2 Nov 2021 18:45:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JOsyitxYLq44LZWKS9JRp456c/o3SUBI/jm2C/XB90HP2/GmCUIxpGdtMYnkpw7PMcm+/oSILIjBNDTCy0v7CBjVUbEzbWTTjt7lLzIY32ZGvOWNC5V9hRB+kmpyVp0+OQEqJhRqsqr0lMUa4x6KWgSlk4dFnDcwBzPpqjVucwCmd2k2nFTRWL23Yk6E3mvw5+okrGicjzGwGm5hRyCE42f8qugIsb9JzZ0F4V9/PIYRZdf11lwyBpUQS4nip5WQI1Y1ZU3Mdf/bNEe4bCyWwSvyUNA4ujjl3rjaldTq7bjMeg7SOp/E1mroKtX5LEPnJxERi/oHrsA/vVrQPAdBIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aJpP/HILZTwwUwY0DpPCZS6//g+Z3Jsoe3Hx3OV4kFE=;
- b=fcGU0xXzvI0ROxoCHGrvwEVPwP27HqrDHBdcCYxxlKdYUO82Xc31GxmpIjGXaDVN1zfEnMhxuDA2s7nQ8MMcWvGZbCTRmDTS8lljMeoJE8jeyKJly8UxcsvThG526CwyAEzrZ8zd4lO/Qb4wG6uXvoihjprsLT4u0QSpFfCEp6CWguWFPsa/M5arPZnCExGp+iM7qe9P6t0uyqj3jjhXPPAeKDgZ99ZBahTtL3Xg966XeWmRq/ZKkVWBGzoMP29Vw+dqfq3mCG96aQc5qz5ZZ3qkpExhF1wQO0Rh0PNZsRCNl8+pIKQkRi4ucnHWJ5cBZ4b26rIkC89Dq6xg752C7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aJpP/HILZTwwUwY0DpPCZS6//g+Z3Jsoe3Hx3OV4kFE=;
- b=zQ3D7nIBtKPoLgarzIs/IuZaf/28NsEBNRQnK0Plnu1jhDkb1n31fxM3s2qdqKDs8x5j807HmGgqJ/k25Wr6xdKYKewjBJeAlG8P+9eV4tKkwfc0ysWLIDzpGQUgAatHsVg/MGSC67K3DZxITJb0w5Ql+5ROkXweJ/VkaWbfq80=
-Authentication-Results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com (2603:10b6:510:e5::13)
- by PH0PR11MB5626.namprd11.prod.outlook.com (2603:10b6:510:ee::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15; Wed, 3 Nov
- 2021 01:45:41 +0000
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::ad26:6540:dce1:9f81]) by PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::ad26:6540:dce1:9f81%3]) with mapi id 15.20.4649.019; Wed, 3 Nov 2021
- 01:45:41 +0000
-Message-ID: <4adc8d9a-8393-2774-2c67-a93083240795@intel.com>
-Date: Tue, 2 Nov 2021 18:45:38 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.2.1
-Content-Language: en-GB
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
- <20211021234044.3071069-5-John.C.Harrison@Intel.com>
- <20211102233442.GA16356@jons-linux-dev-box>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20211102233442.GA16356@jons-linux-dev-box>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CO2PR18CA0043.namprd18.prod.outlook.com
- (2603:10b6:104:2::11) To PH0PR11MB5642.namprd11.prod.outlook.com
- (2603:10b6:510:e5::13)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A93573A0E;
+	Wed,  3 Nov 2021 02:16:44 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E5D1C73A0E;
+ Wed,  3 Nov 2021 02:16:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC7C9A00A0;
+ Wed,  3 Nov 2021 02:16:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5754625420436620103=="
 MIME-Version: 1.0
-Received: from [192.168.1.106] (73.157.192.58) by
- CO2PR18CA0043.namprd18.prod.outlook.com (2603:10b6:104:2::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4669.10 via Frontend Transport; Wed, 3 Nov 2021 01:45:40 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d0ff69dd-da28-4ea4-d3b9-08d99e6ba4a6
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5626:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-Microsoft-Antispam-PRVS: <PH0PR11MB5626F8BD49B7FCB4CEC51348BD8C9@PH0PR11MB5626.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Wq5rsagEBGChaIzZY8BzZauZR1dxa0EmM80yl1F1/ODzg9JA6bMViRcYGA/LGpZGyR7kHLs7WtHMjPVV/Qw2UgtSXnS1BslUAypuwOw0Bpf9KluusVbMFmmM7Dirm7UCAtc68YT9ReNseTMJvIuLaQ+fP4K5NWNft1xKH7aKmJYHrkgmEb+OBBKfq2cZvVxz+txT2r0u2HvHavTu9SEL9j+bgtuCSQpKmLo9MnkEWEHSOui7wzoq6cRQG6bjhMO8LHCtBgU/XVobZ7uKltSmes+ILz8NGig5DNhdBYqtanEj6nLamKCYhK4WQTp+gasFEhlf1P0GombgT4LebvS32ZixEXoHElqAkYfA7La7EGN7nI2Lgq3fdOxvjaT4hJ5St1D161ecmCb7OC66l0C61IwgMzZjaDYZcKBxMEBSAK208rHXDpwBHtCHeHPA/063tlBzoWQD4SFdZj1XVQJeBxjz9C6/Z1eYCo9nVRP3G0MAB8wYmhFamnULLWsnBpS7iIeQl1vYhU1o4HrwbHRv43Zl4zXtOtnU/rLTb2VlhO+IcwwKC5l40vGOhLLyjOb3e8Bgve7AHIXOFDGxKpcq8961gDnOigEfUlD0lovrHexWpKJKmHcP3rrGh4mcbzjIFl6BOL+P6sbyAAytV7yGoAZp/zg0umptJDGAtJh5eLnqhIc3UhQVAhciKeP03ibZt1t5Y6mMpOgknKDHUJ7wUrgtLwiJsezHu4Nzj2BBkXw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB5642.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(66556008)(66476007)(450100002)(26005)(2906002)(31686004)(83380400001)(508600001)(956004)(186003)(66946007)(2616005)(6636002)(31696002)(36756003)(38100700002)(82960400001)(86362001)(6486002)(53546011)(8676002)(5660300002)(37006003)(4326008)(6862004)(16576012)(316002)(8936002)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NW5qUGRjZjBkc1paNHZRVmdLUnJqWjBTT3dFY0c2cUgxUTljeDZlS2tneGpT?=
- =?utf-8?B?blFQU0gwYjVYTXlpWU9QWFd1N3FEODUrQ0RFbkwzRUgzb3BldUpmTEl6a2Rn?=
- =?utf-8?B?bjFuZDRsU0FEUmQ1NjdGUkZ4UlNGYklDbVNiY0s2NlZDaEJjL3oySTRENG9n?=
- =?utf-8?B?ZmI2VElLdTh3cE9MSzdIRS81Zmlwdnd5cDNCTHBmb3B2UzFFT1c4dUl6OEJ3?=
- =?utf-8?B?VzQ1bzYyN1BOVVAwWW40cCttcUpkTVpoMG55Ykk2RmpraUx4SzFLRnpPay9F?=
- =?utf-8?B?K2U4ZGs4NjE3M3dtZHJLc3dkUnVxZklkUnZ6dUFPZWVGdURmNUJBd1VnYjB0?=
- =?utf-8?B?ZHc5bzVPY3Y5aWhJMVJqbzNWTHJib1Y2TlVHdVdqUllxcXFxNlI4VEJmMnNC?=
- =?utf-8?B?L0QrOW52bUVPODUyOXlHT1gxQ0hEMTNacUpyWnozcVF0Zkt2ZS9hUThNc21I?=
- =?utf-8?B?WUpoKzJZQk1GSlRMZDBRL2ZOTnphRGhkNjc2TVQ3TUxQYWpacjNFZG1FK3pi?=
- =?utf-8?B?dTRkSTJqVlErMEhkTlFyeHBISVRtb1BZZTM2UjZmV0FFV0w2TU53emVNZUZI?=
- =?utf-8?B?anliT3RXMmdpdTFsYy9QL1MzaWdoNHFHcW5PeTFHOU1qbWJoYzZ0Z25qb1NS?=
- =?utf-8?B?QnlLYlo1Mmd5MUdvOUFFTXRQNjI3ZEt0NUpXUmV0blpUZTE5bC84blpaRytz?=
- =?utf-8?B?OGJKeXNTN0FhaVJvNkRIR2ozbElsWnJHMkxkeHgxRDVuSDA2ckZMRlFqRkVO?=
- =?utf-8?B?eUhEdDIzbzhHY1B2RXJDL3NJc3R2MXlkOVJ4S0VoYU9wRG1sclFDNjJkTWtq?=
- =?utf-8?B?dms3WXBQcnRYaTMyZjZ1VUYwVnVSOFM0dndFb2RBeUE5VWZ0MVR6Nk9zdi9h?=
- =?utf-8?B?VHBBOFYxSVJzNTdreFBDY1ZCNlZSYXJKekhyWmp5cmpVSzZ2S0tZU21kRFNx?=
- =?utf-8?B?R2hMUHdoeGxFT0gyK2V3dy9HWkFZQkVuZFZiT3gyYzBVeVpTTVNSQWNHc3Y4?=
- =?utf-8?B?emxXQisxK2VpU0xpbFlJMUExLzlxNklZUFdmTWdqcTBKNzQ4eDk5Y3grTmpC?=
- =?utf-8?B?THQ3cTViMFNkOG5CZVh0OXBUZy9weXU3cmRFNmJQL3JzblJNTGR5OXJ1OUl0?=
- =?utf-8?B?am9HM0VKQXVzQjhHT25ud2llSUF5andVQnFPY0hJakc0NGxaWUFrR2xuRFZW?=
- =?utf-8?B?UWp3b2NTUEpBdGhtZmNCUm1sK1M1aTI1NStzU1ZGWUhmanBkMFQxRUVtaktk?=
- =?utf-8?B?ejV4RHA5NFlNYTNhYXJ6djQxQS9ocDJFcXRSd2lzT2xDbHhvTTc0ZGljbXFh?=
- =?utf-8?B?anJSdFZEdUo2QkliMzlJdmNIMXlRcFk3RUUwaW4vT0FLK090VmY5c3B6TTFW?=
- =?utf-8?B?M016RGFFc3Q4bUprY3F2Rkg4SGpwNkduVkRsQWJhV0hyck42QlZQLzR4SmJx?=
- =?utf-8?B?T0dpYVRGMGRMUDkyN3hGSVVmbWUyZk9CTERLeG9sYUtOTXc5di9WQjFyT1c3?=
- =?utf-8?B?MjJQa0FkZXZOZmVXQnZMdFpFWDZpNytuSDAvQXVpV283c2FqNTI3RU5TdDAy?=
- =?utf-8?B?anVJKzg2bS9Hd0l5ZGlDb2VEOEp1NXh3VU91THBRNlJ6dkdDK01rU0tZWFM5?=
- =?utf-8?B?QmpRQUhYNkJ5eDBoY0NZQXdTaWpPRkxlY0J1L2R3VVQ4bGpHcGdBd0JSQkxk?=
- =?utf-8?B?c0pvNWNySys3dkhHeHFQM0VpekJJZHcxZEQ3QkRKMmtvdEJoQ0RCQ3dSdmhZ?=
- =?utf-8?B?Z1JwaXo5SnZQYXNlYUZPL2lZWUNJaWxkNVo3TVQ2NW1BNUo1MXJXeVdNZkE0?=
- =?utf-8?B?end3Zk9qTHpVc01hWWtKLzVoWEFqY1l6NUNQQ0dvWmhSMFFQZTRiclJrYllN?=
- =?utf-8?B?NGNpczRKMjhIdzJXdVpwUTBEMTJ6YkdJbC9RalpGYzNacWFWeHMxOE8rYm9q?=
- =?utf-8?B?b2ZSa0Zvd0t6VjE4UVMvaUduTVVxSHdkVVBwVEVpWUlsZ25EcmkydGxpV0xG?=
- =?utf-8?B?ZXJnN25CM1JXSzNmTVd0bWVnbDBpZU1GUmNUS1ZtMnJjd0c2U2dMSks1b2Zq?=
- =?utf-8?B?N0xhbjNLeGZjakY2WjdSUEg4YXc0TVoxcW5NTnUzSVI5ZWE4Z2k0S2F6dEc3?=
- =?utf-8?B?bjFjK3VaYi8zSzN0S3VTdTBhU2lZWVZOR254OE5aSDNLMDhGVVd3b3JIQy9m?=
- =?utf-8?B?aldLTkg5SFhUaDRydEJLMmdFL3VVK1B4aERHOFlXM01zS0k4c2xCbDVub050?=
- =?utf-8?Q?SC6smM7F76RSxTY4Ma2TIwOCmxbrxuJKt5WF9TTKmk=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0ff69dd-da28-4ea4-d3b9-08d99e6ba4a6
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5642.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2021 01:45:41.2503 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ofujR4fBnrFQVvZsPRNjbNZxOAIOr1NAm1VT9FZrtm7RmOJmvq8AqlfHoFj4n+5LUEpCuoh3sg73ci1Zs5ylmtNsyMoNe25AAJy10O9+dX0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5626
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH i-g-t 4/8] tests/i915/gem_exec_capture: Use
- contexts and engines properly
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Wed, 03 Nov 2021 02:16:42 -0000
+Message-ID: <163590580286.11278.13067637281447506289@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211102222511.534310-1-matthew.d.roper@intel.com>
+In-Reply-To: <20211102222511.534310-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgaTkx?=
+ =?utf-8?q?5=3A_Initial_workarounds_for_Xe=5FHP_SDV_and_DG2?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,273 +40,3388 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: IGT-Dev@Lists.FreeDesktop.Org, Intel-GFX@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/2/2021 16:34, Matthew Brost wrote:
-> On Thu, Oct 21, 2021 at 04:40:40PM -0700, John.C.Harrison@Intel.com wrote:
->> From: John Harrison <John.C.Harrison@Intel.com>
->>
->> Some of the capture tests were using explicit contexts, some not. Some
->> were poking the per engine pre-emption timeout, some not. This would
->> lead to sporadic failures due to random timeouts, contexts being
->> banned depending upon how many subtests were run and/or how many
->> engines a given platform has, and other such failures.
->>
->> So, update all tests to be conistent.
->>
->> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->> ---
->>   tests/i915/gem_exec_capture.c | 80 +++++++++++++++++++++++++----------
->>   1 file changed, 58 insertions(+), 22 deletions(-)
->>
->> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
->> index c85c198f7..e373d24ed 100644
->> --- a/tests/i915/gem_exec_capture.c
->> +++ b/tests/i915/gem_exec_capture.c
->> @@ -204,8 +204,19 @@ static int check_error_state(int dir, struct offset *obj_offsets, int obj_count,
->>   	return blobs;
->>   }
->>   
->> +static void configure_hangs(int fd, const struct intel_execution_engine2 *e, int ctxt_id)
->> +{
->> +	/* Ensure fast hang detection */
->> +	gem_engine_property_printf(fd, e->name, "preempt_timeout_ms", "%d", 250);
->> +	gem_engine_property_printf(fd, e->name, "heartbeat_interval_ms", "%d", 500);
-> #define for 250, 500?
-Is there any point? There is no special reason for the values other than 
-small enough to be fast and long enough to not be too small to be 
-usable. So there isn't really any particular name to give them beyond 
-'SHORT_PREEMPT_TIMEOUT' or some such. And the whole point of the helper 
-function is that the values are programmed in one place only and not 
-used anywhere else. So there is no worry about repetition of magic numbers.
+--===============5754625420436620103==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: i915: Initial workarounds for Xe_HP SDV and DG2
+URL   : https://patchwork.freedesktop.org/series/96513/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10830_full -> Patchwork_21509_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_21509_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21509_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (10 -> 11)
+------------------------------
+
+  Additional (1): pig-snb-2600 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21509_full:
+
+### Piglit changes ###
+
+#### Possible regressions ####
+
+  * spec@arb_gpu_shader_fp64@execution@built-in-functions@fs-abs-dvec3 (NEW):
+    - pig-snb-2600:       NOTRUN -> [FAIL][1] +25298 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21509/pig-snb-2600/spec@arb_gpu_shader_fp64@execution@built-in-functions@fs-abs-dvec3.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_10830_full and Patchwork_21509_full:
+
+### New Piglit tests (24855) ###
+
+  * fast_color_clear@all-colors:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * fast_color_clear@fast-slow-clear-interaction:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * fast_color_clear@fcc-blit-between-clears:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * fast_color_clear@fcc-read-after-clear blit rb:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * fast_color_clear@fcc-read-after-clear blit tex:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * fast_color_clear@fcc-read-after-clear copy rb:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * fast_color_clear@fcc-read-after-clear copy tex:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * fast_color_clear@fcc-read-after-clear read_pixels rb:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * fast_color_clear@fcc-read-after-clear read_pixels tex:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * fast_color_clear@fcc-read-after-clear sample tex:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * fast_color_clear@fcc-read-to-pbo-after-clear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * fast_color_clear@non-redundant-clear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * fast_color_clear@redundant-clear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * hiz@hiz-depth-read-fbo-d24-s0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-depth-read-fbo-d24-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * hiz@hiz-depth-read-fbo-d24s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-depth-read-window-stencil0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * hiz@hiz-depth-read-window-stencil1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-depth-stencil-test-fbo-d0-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-depth-stencil-test-fbo-d24-s0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * hiz@hiz-depth-stencil-test-fbo-d24-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * hiz@hiz-depth-stencil-test-fbo-d24s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * hiz@hiz-depth-test-fbo-d24-s0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-depth-test-fbo-d24-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * hiz@hiz-depth-test-fbo-d24s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * hiz@hiz-depth-test-window-stencil0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * hiz@hiz-depth-test-window-stencil1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-stencil-read-fbo-d0-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-stencil-read-fbo-d24-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * hiz@hiz-stencil-read-fbo-d24s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * hiz@hiz-stencil-read-window-depth0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-stencil-read-window-depth1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * hiz@hiz-stencil-test-fbo-d0-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * hiz@hiz-stencil-test-fbo-d24-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * hiz@hiz-stencil-test-fbo-d24s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * hiz@hiz-stencil-test-window-depth0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * hiz@hiz-stencil-test-window-depth1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@buffer with glbitmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@buffer with glblitframebuffer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@buffer with glclear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@buffer with glcleartexsubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@buffer with glcopyimagesubdata:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@buffer with glcopypixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@buffer with glcopytexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@buffer with gldrawpixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * object namespace pollution@buffer with glgeneratemipmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@buffer with glgetteximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@buffer with glgetteximage-compressed:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@buffer with gltexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@framebuffer with glbitmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@framebuffer with glblitframebuffer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@framebuffer with glclear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * object namespace pollution@framebuffer with glcleartexsubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * object namespace pollution@framebuffer with glcopyimagesubdata:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@framebuffer with glcopypixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@framebuffer with glcopytexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@framebuffer with gldrawpixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@framebuffer with glgeneratemipmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * object namespace pollution@framebuffer with glgetteximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * object namespace pollution@framebuffer with glgetteximage-compressed:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@framebuffer with gltexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@program with glbitmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@program with glblitframebuffer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@program with glclear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * object namespace pollution@program with glcleartexsubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * object namespace pollution@program with glcopyimagesubdata:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@program with glcopypixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@program with glcopytexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * object namespace pollution@program with glgeneratemipmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@program with glgetteximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * object namespace pollution@program with glgetteximage-compressed:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * object namespace pollution@program with gltexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * object namespace pollution@renderbuffer with glbitmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@renderbuffer with glblitframebuffer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * object namespace pollution@renderbuffer with glclear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@renderbuffer with glcleartexsubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@renderbuffer with glcopyimagesubdata:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@renderbuffer with glcopypixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@renderbuffer with glcopytexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@renderbuffer with gldrawpixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * object namespace pollution@renderbuffer with glgeneratemipmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * object namespace pollution@renderbuffer with glgetteximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@texture with glcleartexsubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * object namespace pollution@texture with glcopyimagesubdata:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * object namespace pollution@texture with glcopypixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@texture with glcopytexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@texture with gldrawpixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@texture with glgeneratemipmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@texture with glgetteximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@texture with glgetteximage-compressed:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@texture with gltexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * object namespace pollution@vertex-array with glbitmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * object namespace pollution@vertex-array with glblitframebuffer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * object namespace pollution@vertex-array with glclear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * object namespace pollution@vertex-array with glcleartexsubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@vertex-array with glcopyimagesubdata:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@vertex-array with glcopypixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@vertex-array with glcopytexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@vertex-array with gldrawpixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@vertex-array with glgeneratemipmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * object namespace pollution@vertex-array with glgetteximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * object namespace pollution@vertex-array with glgetteximage-compressed:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * object namespace pollution@vertex-array with gltexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * security@initialized-fbo:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * security@initialized-vbo:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@activeprogram-bad-program:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * shaders@activeprogram-get:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * shaders@attribute0:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@complex-loop-analysis-bug:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@createshaderprogram-attached-shaders:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@createshaderprogram-bad-type:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * shaders@dead-code-break-interaction:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@dependency-hints@exp2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@fragcoord_w:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@getuniform-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * shaders@getuniform-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@getuniform-03:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl link two programs, global initializer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-algebraic-add-add-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-add-add-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-add-add-3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-add-add-4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-algebraic-add-sub-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-algebraic-add-sub-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-add-zero:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-add-zero-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-div-one:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-div-one-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-algebraic-logicand-false:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-algebraic-logicand-false-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-logicand-true:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-logicand-true-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-algebraic-logicor-false:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-logicor-false-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-logicor-true:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-algebraic-logicor-true-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-logicxor-false:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-algebraic-logicxor-true:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-mul-mul-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-mul-one:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-mul-one-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-mul-zero:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-algebraic-neg-neg:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-not-equals:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-not-notequals:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-pow-two:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-rcp-rcp:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-rcp-rsq:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-rcp-sqrt:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-rcp-sqrt-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-algebraic-sub-sub-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-sub-zero:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-algebraic-sub-zero-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-algebraic-sub-zero-3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-algebraic-sub-zero-4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-arb-fragment-coord-conventions:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * shaders@glsl-array-bounds-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-array-bounds-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-array-bounds-03:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-array-bounds-04:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-array-bounds-05:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-array-bounds-06:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-array-bounds-07:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-array-bounds-08:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-array-bounds-09:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-array-bounds-10:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-array-bounds-11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-array-bounds-12:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-array-bounds-13:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-array-compare:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-array-compare-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-array-length:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-array-uniform:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-array-uniform-length:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-array-varying-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-bindattriblocation:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-bug-22603:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-cache-fallback-shader-source:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * shaders@glsl-clamp-vertex-color:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-complex-subscript:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-abs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-acos:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-const-builtin-all:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-any:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-asin:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-atan:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-ceil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-const-builtin-clamp:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-cos:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-cosh:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-cross:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-const-builtin-degrees:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-const-builtin-derivatives:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-distance:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-const-builtin-dot:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-const-builtin-equal:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-equal-bool:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * shaders@glsl-const-builtin-exp:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-exp2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-faceforward:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-floor:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-fract:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-greaterthan:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-greaterthanequal:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-inversesqrt:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-length:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-const-builtin-lessthan:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-lessthanequal:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-const-builtin-log:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-log2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-matrixcompmult:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-max:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-min:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-mix:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-mod:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-normalize:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-not:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-outerproduct:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-pow:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-const-builtin-radians:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-reflect:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-refract:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-sign:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-sin:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-builtin-smoothstep:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-const-builtin-sqrt:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-step:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-tan:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-builtin-transpose:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-const-folding-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-initializer-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-const-initializer-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-const-initializer-03:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-constant-folding-call-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-copy-propagation-if-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-copy-propagation-if-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-copy-propagation-if-3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-copy-propagation-loop-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-copy-propagation-loop-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-copy-propagation-self-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-copy-propagation-self-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-copy-propagation-vector-indexing:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-cos:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * shaders@glsl-deadcode-call:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-deadcode-self-assign:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-deadcode-varying:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-derivs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-derivs-abs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-derivs-abs-sign:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-derivs-sign:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-derivs-swizzle:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-derivs-varyings:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-dlist-getattriblocation:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-empty-vs-no-fs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-floating-constant-120:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-abs-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-abs-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-abs-03:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-abs-04:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-abs-neg:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-fs-abs-neg-with-intermediate:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-add-masked:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-all-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-fs-all-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-fs-any:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-array-redeclaration:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-asin:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-atan-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-atan-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-atan-3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-bit-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-bit-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-bug25902:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * shaders@glsl-fs-ceil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-fs-clamp-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-fs-clamp-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-fs-clamp-3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-clamp-4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-clamp-5:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-color-matrix:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * shaders@glsl-fs-conditional-output-write:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-continue-in-switch-in-do-while:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-fs-continue-inside-do-while:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-convolution-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-convolution-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-copy-propagation-texcoords-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-copy-propagation-texcoords-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-fs-cross:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-fs-cross-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-cross-3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-discard-01:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * shaders@glsl-fs-discard-02:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * shaders@glsl-fs-discard-03:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  * shaders@glsl-fs-discard-04:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.06] s
+
+  * shaders@glsl-fs-dot-vec2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * shaders@glsl-fs-dot-vec2-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.04] s
+
+  * shaders@glsl-
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21509/index.html
+
+--===============5754625420436620103==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
->
->> +
->> +	/* Allow engine based resets and disable banning */
->> +	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE);
->> +}
->> +
->>   static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->> -		       unsigned ring, uint32_t target, uint64_t target_size)
->> +		       const struct intel_execution_engine2 *e,
->> +		       uint32_t target, uint64_t target_size)
->>   {
->>   	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
->>   	struct drm_i915_gem_exec_object2 obj[4];
->> @@ -219,6 +230,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->>   	struct offset offset;
->>   	int i;
->>   
->> +	configure_hangs(fd, e, ctx->id);
->> +
->>   	memset(obj, 0, sizeof(obj));
->>   	obj[SCRATCH].handle = gem_create(fd, 4096);
->>   	obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
->> @@ -297,7 +310,7 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->>   	memset(&execbuf, 0, sizeof(execbuf));
->>   	execbuf.buffers_ptr = (uintptr_t)obj;
->>   	execbuf.buffer_count = ARRAY_SIZE(obj);
->> -	execbuf.flags = ring;
->> +	execbuf.flags = e->flags;
->>   	if (gen > 3 && gen < 6)
->>   		execbuf.flags |= I915_EXEC_SECURE;
->>   	execbuf.rsvd1 = ctx->id;
->> @@ -326,7 +339,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->>   	gem_close(fd, obj[SCRATCH].handle);
->>   }
->>   
->> -static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
->> +static void capture(int fd, int dir, const intel_ctx_t *ctx,
->> +		    const struct intel_execution_engine2 *e)
->>   {
->>   	uint32_t handle;
->>   	uint64_t ahnd;
->> @@ -335,7 +349,7 @@ static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
->>   	handle = gem_create(fd, obj_size);
->>   	ahnd = get_reloc_ahnd(fd, ctx->id);
->>   
->> -	__capture1(fd, dir, ahnd, ctx, ring, handle, obj_size);
->> +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
->>   
->>   	gem_close(fd, handle);
->>   	put_ahnd(ahnd);
->> @@ -355,9 +369,9 @@ static int cmp(const void *A, const void *B)
->>   }
->>   
->>   static struct offset *
->> -__captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->> -	      unsigned int size, int count,
->> -	      unsigned int flags)
->> +__captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->> +	   const struct intel_execution_engine2 *e,
->> +	   unsigned int size, int count, unsigned int flags)
->>   #define INCREMENTAL 0x1
->>   #define ASYNC 0x2
->>   {
->> @@ -369,6 +383,8 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->>   	struct offset *offsets;
->>   	int i;
->>   
->> +	configure_hangs(fd, e, ctx->id);
->> +
->>   	offsets = calloc(count, sizeof(*offsets));
->>   	igt_assert(offsets);
->>   
->> @@ -470,9 +486,10 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->>   	memset(&execbuf, 0, sizeof(execbuf));
->>   	execbuf.buffers_ptr = (uintptr_t)obj;
->>   	execbuf.buffer_count = count + 2;
->> -	execbuf.flags = ring;
->> +	execbuf.flags = e->flags;
->>   	if (gen > 3 && gen < 6)
->>   		execbuf.flags |= I915_EXEC_SECURE;
->> +	execbuf.rsvd1 = ctx->id;
->>   
->>   	igt_assert(!READ_ONCE(*seqno));
->>   	gem_execbuf(fd, &execbuf);
->> @@ -505,10 +522,20 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->>   
->>   static void many(int fd, int dir, uint64_t size, unsigned int flags)
->>   {
->> +	const struct intel_execution_engine2 *e;
->> +	const intel_ctx_t *ctx;
->>   	uint64_t ram, gtt, ahnd;
->>   	unsigned long count, blobs;
->>   	struct offset *offsets;
->>   
->> +	/* Find the first available engine: */
->> +	ctx = intel_ctx_create_all_physical(fd);
->> +	igt_assert(ctx);
->> +	for_each_ctx_engine(fd, ctx, e)
->> +		for_each_if(gem_class_can_store_dword(fd, e->class))
->> +			break;
->> +	igt_assert(e);
-> Duplicated below. Helper for this?
->
-> Matt
-Sure.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-John.
 
->> +
->>   	gtt = gem_aperture_size(fd) / size;
->>   	ram = (intel_get_avail_ram_mb() << 20) / size;
->>   	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
->> @@ -518,9 +545,9 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->>   	igt_require(count > 1);
->>   
->>   	intel_require_memory(count, size, CHECK_RAM);
->> -	ahnd = get_reloc_ahnd(fd, 0);
->> +	ahnd = get_reloc_ahnd(fd, ctx->id);
->>   
->> -	offsets = __captureN(fd, dir, ahnd, 0, size, count, flags);
->> +	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags);
->>   
->>   	blobs = check_error_state(dir, offsets, count, size, !!(flags & INCREMENTAL));
->>   	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
->> @@ -531,7 +558,7 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->>   }
->>   
->>   static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->> -		    unsigned ring, const char *name)
->> +		    const struct intel_execution_engine2 *e)
->>   {
->>   	const uint32_t bbe = MI_BATCH_BUFFER_END;
->>   	struct drm_i915_gem_exec_object2 obj = {
->> @@ -540,7 +567,7 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->>   	struct drm_i915_gem_execbuffer2 execbuf = {
->>   		.buffers_ptr = to_user_pointer(&obj),
->>   		.buffer_count = 1,
->> -		.flags = ring,
->> +		.flags = e->flags,
->>   		.rsvd1 = ctx->id,
->>   	};
->>   	int64_t timeout = NSEC_PER_SEC; /* 1s, feeling generous, blame debug */
->> @@ -555,10 +582,6 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->>   	igt_require(igt_params_set(fd, "reset", "%u", -1)); /* engine resets! */
->>   	igt_require(gem_gpu_reset_type(fd) > 1);
->>   
->> -	/* Needs to be fast enough for the hangcheck to return within 1s */
->> -	igt_require(gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 0) > 0);
->> -	gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 500);
->> -
->>   	gtt = gem_aperture_size(fd) / size;
->>   	ram = (intel_get_avail_ram_mb() << 20) / size;
->>   	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
->> @@ -576,15 +599,19 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->>   
->>   	igt_assert(pipe(link) == 0);
->>   	igt_fork(child, 1) {
->> +		const intel_ctx_t *ctx2;
->>   		fd = gem_reopen_driver(fd);
->>   		igt_debug("Submitting large capture [%ld x %dMiB objects]\n",
->>   			  count, (int)(size >> 20));
->>   
->> +		ctx2 = intel_ctx_create_all_physical(fd);
->> +		igt_assert(ctx2);
->> +
->>   		intel_allocator_init();
->>   		/* Reopen the allocator in the new process. */
->> -		ahnd = get_reloc_ahnd(fd, 0);
->> +		ahnd = get_reloc_ahnd(fd, ctx2->id);
->>   
->> -		free(__captureN(fd, dir, ahnd, ring, size, count, ASYNC));
->> +		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC));
->>   		put_ahnd(ahnd);
->>   
->>   		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
->> @@ -615,18 +642,27 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->>   
->>   static void userptr(int fd, int dir)
->>   {
->> -	const intel_ctx_t *ctx = intel_ctx_0(fd);
->> +	const struct intel_execution_engine2 *e;
->> +	const intel_ctx_t *ctx;
->>   	uint32_t handle;
->>   	uint64_t ahnd;
->>   	void *ptr;
->>   	int obj_size = 4096;
->>   
->> +	/* Find the first available engine: */
->> +	ctx = intel_ctx_create_all_physical(fd);
->> +	igt_assert(ctx);
->> +	for_each_ctx_engine(fd, ctx, e)
->> +		for_each_if(gem_class_can_store_dword(fd, e->class))
->> +			break;
->> +	igt_assert(e);
->> +
->>   	igt_assert(posix_memalign(&ptr, obj_size, obj_size) == 0);
->>   	memset(ptr, 0, obj_size);
->>   	igt_require(__gem_userptr(fd, ptr, obj_size, 0, 0, &handle) == 0);
->>   	ahnd = get_reloc_ahnd(fd, ctx->id);
->>   
->> -	__capture1(fd, dir, ahnd, intel_ctx_0(fd), 0, handle, obj_size);
->> +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
->>   
->>   	gem_close(fd, handle);
->>   	put_ahnd(ahnd);
->> @@ -684,7 +720,7 @@ igt_main
->>   	}
->>   
->>   	test_each_engine("capture", fd, ctx, e)
->> -		capture(fd, dir, ctx, e->flags);
->> +		capture(fd, dir, ctx, e);
->>   
->>   	igt_subtest_f("many-4K-zero") {
->>   		igt_require(gem_can_store_dword(fd, 0));
->> @@ -719,7 +755,7 @@ igt_main
->>   	}
->>   
->>   	test_each_engine("pi", fd, ctx, e)
->> -		prioinv(fd, dir, ctx, e->flags, e->name);
->> +		prioinv(fd, dir, ctx, e);
->>   
->>   	igt_fixture {
->>   		close(dir);
->> -- 
->> 2.25.1
->>
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>i915: Initial workarounds for Xe_HP SDV and DG2</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96513/">https://patchwork.freedesktop.org/series/96513/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
 
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21509/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21509/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10830_full -&gt; Patchwork_21509_full</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21509_full absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21509_full, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (10 -&gt; 11)</h2>
+<p>Additional (1): pig-snb-2600 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21509_full:</p>
+<h3>Piglit changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>spec@arb_gpu_shader_fp64@execution@built-in-functions@fs-abs-dvec3 (NEW):<ul>
+<li>pig-snb-2600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21509/pig-snb-2600/spec@arb_gpu_shader_fp64@execution@built-in-functions@fs-abs-dvec3.html">FAIL</a> +25298 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_10830_full and Patchwork_21509_full:</p>
+<h3>New Piglit tests (24855)</h3>
+<ul>
+<li>
+<p>fast_color_clear@all-colors:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fast-slow-clear-interaction:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-blit-between-clears:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-after-clear blit rb:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-after-clear blit tex:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-after-clear copy rb:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-after-clear copy tex:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-after-clear read_pixels rb:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-after-clear read_pixels tex:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-after-clear sample tex:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@fcc-read-to-pbo-after-clear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@non-redundant-clear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>fast_color_clear@redundant-clear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-read-fbo-d24-s0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-read-fbo-d24-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-read-fbo-d24s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-read-window-stencil0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-read-window-stencil1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-stencil-test-fbo-d0-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-stencil-test-fbo-d24-s0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-stencil-test-fbo-d24-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.09] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-stencil-test-fbo-d24s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-test-fbo-d24-s0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-test-fbo-d24-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-test-fbo-d24s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-test-window-stencil0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.09] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-depth-test-window-stencil1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-read-fbo-d0-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-read-fbo-d24-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-read-fbo-d24s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-read-window-depth0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-read-window-depth1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-test-fbo-d0-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-test-fbo-d24-s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-test-fbo-d24s8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-test-window-depth0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>hiz@hiz-stencil-test-window-depth1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glbitmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glblitframebuffer:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glclear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glcleartexsubimage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glcopyimagesubdata:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glcopypixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glcopytexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with gldrawpixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glgeneratemipmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glgetteximage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with glgetteximage-compressed:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@buffer with gltexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glbitmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glblitframebuffer:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glclear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.08] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glcleartexsubimage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glcopyimagesubdata:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glcopypixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glcopytexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with gldrawpixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glgeneratemipmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.08] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glgetteximage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.08] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with glgetteximage-compressed:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@framebuffer with gltexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glbitmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glblitframebuffer:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glclear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glcleartexsubimage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glcopyimagesubdata:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glcopypixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glcopytexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glgeneratemipmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glgetteximage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with glgetteximage-compressed:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@program with gltexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glbitmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glblitframebuffer:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glclear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glcleartexsubimage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glcopyimagesubdata:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glcopypixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glcopytexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with gldrawpixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glgeneratemipmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@renderbuffer with glgetteximage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with glcleartexsubimage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with glcopyimagesubdata:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with glcopypixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with glcopytexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with gldrawpixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with glgeneratemipmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with glgetteximage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with glgetteximage-compressed:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@texture with gltexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glbitmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glblitframebuffer:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glclear:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glcleartexsubimage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glcopyimagesubdata:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glcopypixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glcopytexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with gldrawpixels:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glgeneratemipmap:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glgetteximage:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with glgetteximage-compressed:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>object namespace pollution@vertex-array with gltexsubimage2d:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>security@initialized-fbo:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.09] s</li>
+</ul>
+</li>
+<li>
+<p>security@initialized-vbo:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@activeprogram-bad-program:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.08] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@activeprogram-get:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.08] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@attribute0:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@complex-loop-analysis-bug:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@createshaderprogram-attached-shaders:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@createshaderprogram-bad-type:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.11] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@dead-code-break-interaction:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@dependency-hints@exp2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@fragcoord_w:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@getuniform-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.09] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@getuniform-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@getuniform-03:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl link two programs, global initializer:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-add-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-add-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-add-3:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-add-4:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-sub-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-sub-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-zero:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-add-zero-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-div-one:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-div-one-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicand-false:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicand-false-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicand-true:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicand-true-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicor-false:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicor-false-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicor-true:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicor-true-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicxor-false:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-logicxor-true:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-mul-mul-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-mul-one:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-mul-one-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-mul-zero:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-neg-neg:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-not-equals:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-not-notequals:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-pow-two:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-rcp-rcp:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-rcp-rsq:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-rcp-sqrt:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-rcp-sqrt-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-sub-sub-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-sub-zero:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-sub-zero-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-sub-zero-3:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-algebraic-sub-zero-4:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-arb-fragment-coord-conventions:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.08] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-03:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-04:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-05:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-06:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-07:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-08:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-09:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-10:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-11:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-12:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-bounds-13:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-compare:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-compare-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-length:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-uniform:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-uniform-length:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-array-varying-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-bindattriblocation:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-bug-22603:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-cache-fallback-shader-source:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.09] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-clamp-vertex-color:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-complex-subscript:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-abs:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-acos:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-all:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-any:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-asin:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-atan:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-ceil:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-clamp:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-cos:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-cosh:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-cross:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-degrees:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-derivatives:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-distance:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-dot:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-equal:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-equal-bool:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.08] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-exp:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-exp2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-faceforward:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-floor:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-fract:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-greaterthan:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-greaterthanequal:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-inversesqrt:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-length:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-lessthan:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-lessthanequal:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-log:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-log2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-matrixcompmult:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-max:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-min:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-mix:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-mod:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-normalize:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-not:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-outerproduct:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-pow:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-radians:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-reflect:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-refract:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-sign:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-sin:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-smoothstep:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-sqrt:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-step:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-tan:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-builtin-transpose:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-folding-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-initializer-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-initializer-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-const-initializer-03:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-constant-folding-call-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-if-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-if-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-if-3:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-loop-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-loop-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-self-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-self-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-copy-propagation-vector-indexing:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-cos:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.09] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-deadcode-call:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-deadcode-self-assign:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-deadcode-varying:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-derivs:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-derivs-abs:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-derivs-abs-sign:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-derivs-sign:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-derivs-swizzle:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-derivs-varyings:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-dlist-getattriblocation:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-empty-vs-no-fs:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-floating-constant-120:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-abs-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-abs-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-abs-03:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-abs-04:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-abs-neg:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-abs-neg-with-intermediate:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-add-masked:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-all-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-all-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-any:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-array-redeclaration:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-asin:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-atan-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-atan-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-atan-3:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-bit-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-bit-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-bug25902:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.10] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-ceil:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-clamp-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-clamp-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-clamp-3:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-clamp-4:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-clamp-5:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-color-matrix:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.11] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-conditional-output-write:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-continue-in-switch-in-do-while:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-continue-inside-do-while:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-convolution-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-convolution-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-copy-propagation-texcoords-1:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-copy-propagation-texcoords-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-cross:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-cross-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-cross-3:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-discard-01:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-discard-02:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.12] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-discard-03:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-discard-04:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.06] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-dot-vec2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.07] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-fs-dot-vec2-2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.04] s</li>
+</ul>
+</li>
+<li>
+<p>shaders@glsl-</p>
+</li>
+</ul>
+
+</body>
+</html>
+
+--===============5754625420436620103==--
