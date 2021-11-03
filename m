@@ -1,78 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CC7444234
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 14:09:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1775044427E
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 14:34:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 645E96E9BD;
-	Wed,  3 Nov 2021 13:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3ACB6E895;
+	Wed,  3 Nov 2021 13:34:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB8DD6E10D
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 13:09:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1635944953;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iHMsC1oUCRsjBOtz0WOghUbDKMYwj98GGeuEKoCFpno=;
- b=fPsP8DDQy0q+RAOb36usAocXMsytjJ/04QMj8SnnJLZWgIJ9/qRkv7kGkQVrL+MDHd6LGN
- NiEV8jgIlN2FVyJVWx/QviIon5h24BlEJnr7fzTVZc4ig8C47dBoF0XGdsaXAdiE/2tZqb
- laxXMP3bD7bLVMd3BAWPSRDa1hP022Q=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-577-hG8xMivlPXOqBULGtKUOBg-1; Wed, 03 Nov 2021 09:09:10 -0400
-X-MC-Unique: hG8xMivlPXOqBULGtKUOBg-1
-Received: by mail-wm1-f71.google.com with SMTP id
- k6-20020a7bc306000000b0030d92a6bdc7so1078742wmj.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 03 Nov 2021 06:09:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=iHMsC1oUCRsjBOtz0WOghUbDKMYwj98GGeuEKoCFpno=;
- b=604apeFtB6fkMhL1/c4TcuJUgxURnRSsZF05Z6SAKl2D0kp7h0cWfqMN8Fz7cqHSua
- l1V6BpREuMRYEkG2toCx3HOMa6u6MqfKnhRhxi+nqVdSZlxYXR5omkMM534ofetNiJii
- HuGJ/V/dykFrxJ4/BeUtg+SZtAqob8ot5Mg1FFOvyoAgDx5J6dL15DA26ToLtJ7oZk0V
- AdbcYhZ10ccQOKdxa2ssQLsrmFtxD1XLJaCOo/IlJobDVHqaGKOTA60Xu6oZte1A5EgB
- HqTwu6b5sNdJmufzggE9Wt+6TFN7biRW8FMNznx9hrkQeid57GOVZ5nZ3Ce3H44DbkLk
- Q5jg==
-X-Gm-Message-State: AOAM530fxXR+wBkOBgHb/+5VPl+DgJ5oovMwYyE+JrZbFs/0RsTLy9xO
- umXE1ynDa4hVwrtta0tfxO4UOcVLVDNdgUoArGGdOKoRSTLNQ6T43uq9CcK+U8t91Lyw35XNBBM
- /T57z8cbusl3xP83xe6LDCNdPiQKy
-X-Received: by 2002:a5d:69ca:: with SMTP id s10mr31884111wrw.312.1635944948944; 
- Wed, 03 Nov 2021 06:09:08 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzHrEigoCAeSjtml4DqbOgRDb3rC6POB4cYQ/OE3/fS74/sMET7hHGSgDw+3c9Pc+WnqHoSzQ==
-X-Received: by 2002:a5d:69ca:: with SMTP id s10mr31884038wrw.312.1635944948667; 
- Wed, 03 Nov 2021 06:09:08 -0700 (PDT)
-Received: from [192.168.1.128] ([92.176.231.106])
- by smtp.gmail.com with ESMTPSA id c11sm2186397wmq.27.2021.11.03.06.09.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 03 Nov 2021 06:09:08 -0700 (PDT)
-Message-ID: <33807d3c-9dd1-241a-ad23-0e0d4fba13e1@redhat.com>
-Date: Wed, 3 Nov 2021 14:09:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-To: Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA4FC6E11A;
+ Wed,  3 Nov 2021 13:34:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="212245653"
+X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="212245653"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 06:34:30 -0700
+X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="501063969"
+Received: from bmagdala-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.215.42])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 06:34:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org
+In-Reply-To: <20211103122809.1040754-2-javierm@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20211103122809.1040754-1-javierm@redhat.com>
- <20211103122809.1040754-3-javierm@redhat.com> <87tugtbdob.fsf@intel.com>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <87tugtbdob.fsf@intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RESEND PATCH 2/5] drm: Move nomodeset kernel
- parameter handler to the DRM subsystem
+ <20211103122809.1040754-2-javierm@redhat.com>
+Date: Wed, 03 Nov 2021 15:34:22 +0200
+Message-ID: <87r1bxbbxd.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RESEND PATCH 1/5] drm/i915: Fix comment about
+ modeset parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,66 +46,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Gerd Hoffmann <kraxel@redhat.com>, amd-gfx@lists.freedesktop.org,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Peter Robinson <pbrobinson@gmail.com>, Neal Gompa <ngompa13@gmail.com>,
- Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Zack Rusin <zackr@vmware.com>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>,
+ Javier Martinez Canillas <javierm@redhat.com>, dri-devel@lists.freedesktop.org,
+ Peter Robinson <pbrobinson@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Neal Gompa <ngompa13@gmail.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Jani,
-
-On 11/3/21 13:56, Jani Nikula wrote:
-
-[snip]
-
->>  
->> +obj-y += drm_nomodeset.o
-> 
-> This is a subtle functional change. With this, you'll always have
-> __setup("nomodeset", text_mode) builtin and the parameter available. And
-> using nomodeset will print out the pr_warn() splat from text_mode(). But
-> removing nomodeset will have no impact if CONFIG_VGA_CONSOLE=n as that
-> leads to vgacon_text_force() always returning false.
+On Wed, 03 Nov 2021, Javier Martinez Canillas <javierm@redhat.com> wrote:
+> The comment mentions that the KMS is enabled by default unless either the
+> i915.modeset module parameter or vga_text_mode_force boot option are used.
 >
-
-Yes, that's what I decided at the end to make it unconditional. That
-way the same behaviour is preserved (even when only DRM drivers are
-using the exported symbol).
- 
-> To not make functional changes, this should be:
-> 
-> obj-$(CONFIG_VGA_CONSOLE) += drm_nomodeset.o
+> But the latter does not exist and instead the nomodeset option was meant.
 >
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 
-Right, that should work.
+Thanks for the patch. I've picked this up to drm-intel-next as a
+non-functional change independent from the rest of the series.
 
-> Now, going with the cleanup in this series, maybe we should make the
-> functional change, and break the connection to CONFIG_VGA_CONSOLE
-> altogether, also in the header?
-> 
-> (Maybe we'll also need a proxy drm kconfig option to only have
-> drm_modeset.o builtin when CONFIG_DRM != n.)
+BR,
+Jani.
+
+> ---
 >
+>  drivers/gpu/drm/i915/i915_module.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+> index ab2295dd4500..c7507266aa83 100644
+> --- a/drivers/gpu/drm/i915/i915_module.c
+> +++ b/drivers/gpu/drm/i915/i915_module.c
+> @@ -24,8 +24,8 @@ static int i915_check_nomodeset(void)
+>  
+>  	/*
+>  	 * Enable KMS by default, unless explicitly overriden by
+> -	 * either the i915.modeset prarameter or by the
+> -	 * vga_text_mode_force boot option.
+> +	 * either the i915.modeset parameter or by the
+> +	 * nomodeset boot option.
+>  	 */
+>  
+>  	if (i915_modparams.modeset == 0)
 
-See my other email. I believe the issue is drivers/gpu/drm always
-being included even when CONFIG_DRM is not set.
-
-Best regards, -- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
