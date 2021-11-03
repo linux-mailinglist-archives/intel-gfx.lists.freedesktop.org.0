@@ -1,40 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B59464447AD
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 18:48:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33AA14447E6
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 19:06:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF7473D25;
-	Wed,  3 Nov 2021 17:47:59 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 489A173D25;
- Wed,  3 Nov 2021 17:47:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="231404710"
-X-IronPort-AV: E=Sophos;i="5.87,206,1631602800"; d="scan'208";a="231404710"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2021 10:47:57 -0700
-X-IronPort-AV: E=Sophos;i="5.87,206,1631602800"; d="scan'208";a="532013823"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2021 10:47:57 -0700
-Date: Wed, 3 Nov 2021 10:43:24 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John.C.Harrison@Intel.com
-Message-ID: <20211103174324.GA15958@jons-linux-dev-box>
-References: <20211103170449.1614314-1-John.C.Harrison@Intel.com>
- <20211103170449.1614314-5-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEC9E73DBD;
+	Wed,  3 Nov 2021 18:05:58 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA54473DC0;
+ Wed,  3 Nov 2021 18:05:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="230281851"
+X-IronPort-AV: E=Sophos;i="5.87,206,1631602800"; d="scan'208";a="230281851"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 11:05:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,206,1631602800"; d="scan'208";a="501192085"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 03 Nov 2021 11:05:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 Nov 2021 20:05:16 +0200
+Date: Wed, 3 Nov 2021 20:05:16 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Message-ID: <YYLPXJoC7TZcwejb@intel.com>
+References: <20211102145944.259181-1-maxime@cerno.tech>
+ <20211102145944.259181-2-maxime@cerno.tech>
+ <YYJsM6/hZ43b1tm9@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211103170449.1614314-5-John.C.Harrison@Intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 i-g-t 4/8] tests/i915/gem_exec_capture:
- Use contexts and engines properly
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YYJsM6/hZ43b1tm9@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/13] drm/connector: Add define for HDMI
+ 1.4 Maximum Pixel Rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,258 +50,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: IGT-Dev@Lists.FreeDesktop.Org, Intel-GFX@Lists.FreeDesktop.Org
+Cc: Tim Gover <tim.gover@raspberrypi.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>,
+ amd-gfx@lists.freedesktop.org,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Phil Elwell <phil@raspberrypi.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Emma Anholt <emma@anholt.net>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ intel-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Robert Foss <robert.foss@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 03, 2021 at 10:04:45AM -0700, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
+On Wed, Nov 03, 2021 at 01:02:11PM +0200, Ville Syrjälä wrote:
+> On Tue, Nov 02, 2021 at 03:59:32PM +0100, Maxime Ripard wrote:
+> > --- a/drivers/gpu/drm/drm_edid.c
+> > +++ b/drivers/gpu/drm/drm_edid.c
+> > @@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
+> >  		u32 max_tmds_clock = hf_vsdb[5] * 5000;
+> >  		struct drm_scdc *scdc = &hdmi->scdc;
+> >  
+> > -		if (max_tmds_clock > 340000) {
+> > +		if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
+> >  			display->max_tmds_clock = max_tmds_clock;
+> >  			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
+> >  				display->max_tmds_clock);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > index d2e61f6c6e08..0666203d52b7 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > @@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+> >  		if (scdc->scrambling.low_rates)
+> >  			pipe_config->hdmi_scrambling = true;
+> >  
+> > -		if (pipe_config->port_clock > 340000) {
+> > +		if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
+> >  			pipe_config->hdmi_scrambling = true;
+> >  			pipe_config->hdmi_high_tmds_clock_ratio = true;
+> >  		}
 > 
-> Some of the capture tests were using explicit contexts, some not. Some
-> were poking the per engine pre-emption timeout, some not. This would
-> lead to sporadic failures due to random timeouts, contexts being
-> banned depending upon how many subtests were run and/or how many
-> engines a given platform has, and other such failures.
-> 
-> So, update all tests to be conistent.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> All of that is HDMI 2.0 stuff. So this just makes it all super
+> confusing IMO. Nak.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+So reading throgh HDMI 1.4 again it does specify 340 MHz as some kind
+of upper limit for the physical cable. But nowhere else is that number
+really mentioned AFAICS. HDMI 2.0 does talk quite a bit about the 340
+Mcsc limit in various places.
 
-> ---
->  tests/i915/gem_exec_capture.c | 79 +++++++++++++++++++++++++----------
->  1 file changed, 57 insertions(+), 22 deletions(-)
-> 
-> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-> index c85c198f7..11c348d3b 100644
-> --- a/tests/i915/gem_exec_capture.c
-> +++ b/tests/i915/gem_exec_capture.c
-> @@ -204,8 +204,19 @@ static int check_error_state(int dir, struct offset *obj_offsets, int obj_count,
->  	return blobs;
->  }
->  
-> +static void configure_hangs(int fd, const struct intel_execution_engine2 *e, int ctxt_id)
-> +{
-> +	/* Ensure fast hang detection */
-> +	gem_engine_property_printf(fd, e->name, "preempt_timeout_ms", "%d", 250);
-> +	gem_engine_property_printf(fd, e->name, "heartbeat_interval_ms", "%d", 500);
-> +
-> +	/* Allow engine based resets and disable banning */
-> +	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE);
-> +}
-> +
->  static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
-> -		       unsigned ring, uint32_t target, uint64_t target_size)
-> +		       const struct intel_execution_engine2 *e,
-> +		       uint32_t target, uint64_t target_size)
->  {
->  	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
->  	struct drm_i915_gem_exec_object2 obj[4];
-> @@ -219,6 +230,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	struct offset offset;
->  	int i;
->  
-> +	configure_hangs(fd, e, ctx->id);
-> +
->  	memset(obj, 0, sizeof(obj));
->  	obj[SCRATCH].handle = gem_create(fd, 4096);
->  	obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
-> @@ -297,7 +310,7 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	memset(&execbuf, 0, sizeof(execbuf));
->  	execbuf.buffers_ptr = (uintptr_t)obj;
->  	execbuf.buffer_count = ARRAY_SIZE(obj);
-> -	execbuf.flags = ring;
-> +	execbuf.flags = e->flags;
->  	if (gen > 3 && gen < 6)
->  		execbuf.flags |= I915_EXEC_SECURE;
->  	execbuf.rsvd1 = ctx->id;
-> @@ -326,7 +339,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	gem_close(fd, obj[SCRATCH].handle);
->  }
->  
-> -static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
-> +static void capture(int fd, int dir, const intel_ctx_t *ctx,
-> +		    const struct intel_execution_engine2 *e)
->  {
->  	uint32_t handle;
->  	uint64_t ahnd;
-> @@ -335,7 +349,7 @@ static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
->  	handle = gem_create(fd, obj_size);
->  	ahnd = get_reloc_ahnd(fd, ctx->id);
->  
-> -	__capture1(fd, dir, ahnd, ctx, ring, handle, obj_size);
-> +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
->  
->  	gem_close(fd, handle);
->  	put_ahnd(ahnd);
-> @@ -355,9 +369,9 @@ static int cmp(const void *A, const void *B)
->  }
->  
->  static struct offset *
-> -__captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
-> -	      unsigned int size, int count,
-> -	      unsigned int flags)
-> +__captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
-> +	   const struct intel_execution_engine2 *e,
-> +	   unsigned int size, int count, unsigned int flags)
->  #define INCREMENTAL 0x1
->  #define ASYNC 0x2
->  {
-> @@ -369,6 +383,8 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->  	struct offset *offsets;
->  	int i;
->  
-> +	configure_hangs(fd, e, ctx->id);
-> +
->  	offsets = calloc(count, sizeof(*offsets));
->  	igt_assert(offsets);
->  
-> @@ -470,9 +486,10 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->  	memset(&execbuf, 0, sizeof(execbuf));
->  	execbuf.buffers_ptr = (uintptr_t)obj;
->  	execbuf.buffer_count = count + 2;
-> -	execbuf.flags = ring;
-> +	execbuf.flags = e->flags;
->  	if (gen > 3 && gen < 6)
->  		execbuf.flags |= I915_EXEC_SECURE;
-> +	execbuf.rsvd1 = ctx->id;
->  
->  	igt_assert(!READ_ONCE(*seqno));
->  	gem_execbuf(fd, &execbuf);
-> @@ -503,12 +520,27 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->  	return offsets;
->  }
->  
-> +#define find_first_available_engine(fd, ctx, e) \
-> +	do { \
-> +		ctx = intel_ctx_create_all_physical(fd); \
-> +		igt_assert(ctx); \
-> +		for_each_ctx_engine(fd, ctx, e) \
-> +			for_each_if(gem_class_can_store_dword(fd, e->class)) \
-> +				break; \
-> +		igt_assert(e); \
-> +		configure_hangs(fd, e, ctx->id); \
-> +	} while(0)
-> +
->  static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  {
-> +	const struct intel_execution_engine2 *e;
-> +	const intel_ctx_t *ctx;
->  	uint64_t ram, gtt, ahnd;
->  	unsigned long count, blobs;
->  	struct offset *offsets;
->  
-> +	find_first_available_engine(fd, ctx, e);
-> +
->  	gtt = gem_aperture_size(fd) / size;
->  	ram = (intel_get_avail_ram_mb() << 20) / size;
->  	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
-> @@ -518,9 +550,9 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  	igt_require(count > 1);
->  
->  	intel_require_memory(count, size, CHECK_RAM);
-> -	ahnd = get_reloc_ahnd(fd, 0);
-> +	ahnd = get_reloc_ahnd(fd, ctx->id);
->  
-> -	offsets = __captureN(fd, dir, ahnd, 0, size, count, flags);
-> +	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags);
->  
->  	blobs = check_error_state(dir, offsets, count, size, !!(flags & INCREMENTAL));
->  	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
-> @@ -531,7 +563,7 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  }
->  
->  static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
-> -		    unsigned ring, const char *name)
-> +		    const struct intel_execution_engine2 *e)
->  {
->  	const uint32_t bbe = MI_BATCH_BUFFER_END;
->  	struct drm_i915_gem_exec_object2 obj = {
-> @@ -540,7 +572,7 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  	struct drm_i915_gem_execbuffer2 execbuf = {
->  		.buffers_ptr = to_user_pointer(&obj),
->  		.buffer_count = 1,
-> -		.flags = ring,
-> +		.flags = e->flags,
->  		.rsvd1 = ctx->id,
->  	};
->  	int64_t timeout = NSEC_PER_SEC; /* 1s, feeling generous, blame debug */
-> @@ -555,10 +587,6 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  	igt_require(igt_params_set(fd, "reset", "%u", -1)); /* engine resets! */
->  	igt_require(gem_gpu_reset_type(fd) > 1);
->  
-> -	/* Needs to be fast enough for the hangcheck to return within 1s */
-> -	igt_require(gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 0) > 0);
-> -	gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 500);
-> -
->  	gtt = gem_aperture_size(fd) / size;
->  	ram = (intel_get_avail_ram_mb() << 20) / size;
->  	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
-> @@ -576,15 +604,19 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  
->  	igt_assert(pipe(link) == 0);
->  	igt_fork(child, 1) {
-> +		const intel_ctx_t *ctx2;
->  		fd = gem_reopen_driver(fd);
->  		igt_debug("Submitting large capture [%ld x %dMiB objects]\n",
->  			  count, (int)(size >> 20));
->  
-> +		ctx2 = intel_ctx_create_all_physical(fd);
-> +		igt_assert(ctx2);
-> +
->  		intel_allocator_init();
->  		/* Reopen the allocator in the new process. */
-> -		ahnd = get_reloc_ahnd(fd, 0);
-> +		ahnd = get_reloc_ahnd(fd, ctx2->id);
->  
-> -		free(__captureN(fd, dir, ahnd, ring, size, count, ASYNC));
-> +		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC));
->  		put_ahnd(ahnd);
->  
->  		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
-> @@ -615,18 +647,21 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  
->  static void userptr(int fd, int dir)
->  {
-> -	const intel_ctx_t *ctx = intel_ctx_0(fd);
-> +	const struct intel_execution_engine2 *e;
-> +	const intel_ctx_t *ctx;
->  	uint32_t handle;
->  	uint64_t ahnd;
->  	void *ptr;
->  	int obj_size = 4096;
->  
-> +	find_first_available_engine(fd, ctx, e);
-> +
->  	igt_assert(posix_memalign(&ptr, obj_size, obj_size) == 0);
->  	memset(ptr, 0, obj_size);
->  	igt_require(__gem_userptr(fd, ptr, obj_size, 0, 0, &handle) == 0);
->  	ahnd = get_reloc_ahnd(fd, ctx->id);
->  
-> -	__capture1(fd, dir, ahnd, intel_ctx_0(fd), 0, handle, obj_size);
-> +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
->  
->  	gem_close(fd, handle);
->  	put_ahnd(ahnd);
-> @@ -684,7 +719,7 @@ igt_main
->  	}
->  
->  	test_each_engine("capture", fd, ctx, e)
-> -		capture(fd, dir, ctx, e->flags);
-> +		capture(fd, dir, ctx, e);
->  
->  	igt_subtest_f("many-4K-zero") {
->  		igt_require(gem_can_store_dword(fd, 0));
-> @@ -719,7 +754,7 @@ igt_main
->  	}
->  
->  	test_each_engine("pi", fd, ctx, e)
-> -		prioinv(fd, dir, ctx, e->flags, e->name);
-> +		prioinv(fd, dir, ctx, e);
->  
->  	igt_fixture {
->  		close(dir);
-> -- 
-> 2.25.1
-> 
+I wonder what people would think of a couple of helpers like:
+- drm_hdmi_{can,must}_use_scrambling()
+- drm_hdmi_is_high_tmds_clock_ratio()
+or something along those lines? At least with those the code would
+read decently and I wouldn't have to wonder what this HDMI 1.4 TMDS
+clock limit really is.
+
+-- 
+Ville Syrjälä
+Intel
