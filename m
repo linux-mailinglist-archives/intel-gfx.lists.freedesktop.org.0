@@ -1,87 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B872444D2D
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 03:01:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B64C6444D2E
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 03:01:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63A8D6FA73;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51DD66FA56;
 	Thu,  4 Nov 2021 02:01:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1951 seconds by postgrey-1.36 at gabe;
- Wed, 03 Nov 2021 16:30:50 UTC
-Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
- [IPv6:2620:100:9001:583::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59AE773950;
- Wed,  3 Nov 2021 16:30:50 +0000 (UTC)
-Received: from pps.filterd (m0122332.ppops.net [127.0.0.1])
- by mx0a-00190b01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1A3EFwAM004710;
- Wed, 3 Nov 2021 15:58:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
- h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=jan2016.eng;
- bh=K5MB/afSy0GjtB5qyrUWeIQGAcQDhFtW4eDszHTa6tY=;
- b=fQu/eDLXkxof7l6jV9tpylDxn6MmJ1jx9fH6syLPFjfsnnBJTNEUzulHhB0ZHGjmtvWp
- NyGAWtR2AFR46DYveuJUohDKb1gTE4j3EmZNHWS1dAUtlcz9Xyc/Qv3sP50Ghda7dUJO
- ErdNEYLj758LBwpLNR1lUlg3ccoRtqb7h7y6Khd3MTNu4xHtHqIBEt4+Ga9TaLJAR+Le
- UFrhsAVgb95meWrCfkXBj0x/xQ6n/32ZOZnT1bh2DjMLpIPAnvQjpLHnCQ9xQ/Cy0CML
- YTwJgilx+TnnyHmzWXcVYbW8yGCiiavU+ZVqcbGqfGI9zdrsedEi2W0IFGBzbgPZXgLz 1g== 
-Received: from prod-mail-ppoint8
- (a72-247-45-34.deploy.static.akamaitechnologies.com [72.247.45.34] (may be
- forged))
- by mx0a-00190b01.pphosted.com (PPS) with ESMTPS id 3c3dchdntc-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 03 Nov 2021 15:58:12 +0000
-Received: from pps.filterd (prod-mail-ppoint8.akamai.com [127.0.0.1])
- by prod-mail-ppoint8.akamai.com (8.16.1.2/8.16.1.2) with SMTP id
- 1A3FoKtI012361; Wed, 3 Nov 2021 11:58:11 -0400
-Received: from prod-mail-relay18.dfw02.corp.akamai.com ([172.27.165.172])
- by prod-mail-ppoint8.akamai.com with ESMTP id 3c39aux7e9-1;
- Wed, 03 Nov 2021 11:58:11 -0400
-Received: from [0.0.0.0] (unknown [172.27.119.138])
- by prod-mail-relay18.dfw02.corp.akamai.com (Postfix) with ESMTP id 7D857168;
- Wed,  3 Nov 2021 15:58:10 +0000 (GMT)
-To: Jim Cromie <jim.cromie@gmail.com>, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, linux@rasmusvillemoes.dk,
- daniel.vetter@ffwll.ch, seanpaul@chromium.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20211027043645.153133-1-jim.cromie@gmail.com>
- <20211027043645.153133-11-jim.cromie@gmail.com>
-From: Jason Baron <jbaron@akamai.com>
-Message-ID: <3a55ab9c-8109-8025-21e3-e3635bd891b2@akamai.com>
-Date: Wed, 3 Nov 2021 11:58:10 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com
+ [IPv6:2607:f8b0:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D85E27AC4D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 23:16:58 +0000 (UTC)
+Received: by mail-pl1-x635.google.com with SMTP id s24so4198716plp.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 Nov 2021 16:16:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=nPUeRo4P9qCmQn4DuIC8HZxfw8STfSLwfGHQpdZPJK0=;
+ b=lJ54p1bpc5dNl1qn8G0PyZcQQ7nf9cImYbZNUZZkV6erYIXEvTEB00hKRtK8Ja949x
+ EenvlthZ4PQ7D4q4Q2o2XFB3ae/TwEvA5VLlTp1v2abwL+aRNFIM2+Xza+cDzM8juKZx
+ PBoqhnkoOoQYYQ7bCuwPRnxEx3AvxOFeYzV15E9Q4RrHQHyk+JAlSpokM4XRZU0/CMVm
+ GGjMga7P9p4fylESj1nA8LSyrtIG1KMBuLloG2wXMoh74Y1vDYwWiYAd4xa7Gfy5Ps1o
+ 0RPm6Nq9q+fjGbGRES2xEmSTx/xMzj1FuO65R0ubXTEYQfauL8bo9RK61PldfsQ0PXhd
+ sgnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=nPUeRo4P9qCmQn4DuIC8HZxfw8STfSLwfGHQpdZPJK0=;
+ b=0zppxUUY6krEgTMiMh5ywvSilwxZ1cZICj5oxkEji2EspI0L/bURcr6bYlidH4/6UP
+ KV4rT1/BJ10b7mPSfkonQ6eAkh5UPV3/fEBwaHxLJXnA5yJcHjsFZfeAydvDV11Z0B+N
+ VZSGEf1qrmAJ9Flzwegi3B0Au/wl6ejyp6CaTN1mkASf5K1PbwcmwAqrmfYdKgzO3NJr
+ 2DqtOmvr7FcL70zcBhoqc0ipiScbj3+7vywIxPjC/H+YIVloRjYjH4SntBkLbY7Xj+Jn
+ +NY/CwnjMgNNnSA8v5/sOPr3unG5vHDt74sDU0n3D/V8w2jSN8C6K2SY+tnba9j2boh8
+ Pb4A==
+X-Gm-Message-State: AOAM531L+Kfr2OGbqJup246dz3pddzGBPcYYwy7mw24VhDB1URsk6xLi
+ hEfYZNFHJqKvED+Kzqck4uL7ecF0GVBvAfgHgml4AQ==
+X-Google-Smtp-Source: ABdhPJzKhlfXKTBHLc2xE+rbAQct0n9ITCxXdeR2vJAAU+30V1dqR+a5D2swN4o40sRQWrb/PdQWaP7KzvwMnJMl7aY=
+X-Received: by 2002:a17:90a:db81:: with SMTP id
+ h1mr18291271pjv.46.1635981418075; 
+ Wed, 03 Nov 2021 16:16:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20211027043645.153133-11-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425, 18.0.790
- definitions=2021-11-03_05:2021-11-03,
- 2021-11-03 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
- phishscore=0
- mlxlogscore=999 bulkscore=0 adultscore=0 spamscore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2111030090
-X-Proofpoint-GUID: LdcoH8ebA5GhSST3D52LB7GgMum2xmNl
-X-Proofpoint-ORIG-GUID: LdcoH8ebA5GhSST3D52LB7GgMum2xmNl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-03_05,2021-11-03_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
- spamscore=0
- lowpriorityscore=0 mlxlogscore=999 adultscore=0 clxscore=1011
- priorityscore=1501 suspectscore=0 phishscore=0 malwarescore=0
- impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2110150000 definitions=main-2111030090
+References: <20211005202322.700909-1-hdegoede@redhat.com>
+ <20211005202322.700909-11-hdegoede@redhat.com>
+ <YWdWyTVXMA3907no@intel.com>
+In-Reply-To: <YWdWyTVXMA3907no@intel.com>
+From: Rajat Jain <rajatja@google.com>
+Date: Wed, 3 Nov 2021 16:16:21 -0700
+Message-ID: <CACK8Z6GPu=Y_-0rrgN-S=HUrgqn_OoU0XroxAp--N0JKZxOnEQ@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 04 Nov 2021 02:01:45 +0000
-Subject: Re: [Intel-gfx] [PATCH v9 10/10] drm: use
- DEFINE_DYNAMIC_DEBUG_TRACE_CATEGORIES bitmap to tracefs
+Subject: Re: [Intel-gfx] [PATCH 10/10] drm/i915: Add privacy-screen support
+ (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,68 +68,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Mark Pearson <markpearson@lenovo.com>,
+ Marco Trevisan <marco.trevisan@canonical.com>,
+ Sebastien Bacher <seb128@ubuntu.com>, David Airlie <airlied@linux.ie>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ platform-driver-x86@vger.kernel.org, Mark Gross <markgross@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Mario Limonciello <mario.limonciello@outlook.com>,
+ Andy Shevchenko <andy@infradead.org>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hello Hans,
 
+Thanks a lot for working on this diligently and getting almost all of
+it finally merged!
 
-On 10/27/21 12:36 AM, Jim Cromie wrote:
-> Use new macro to create a sysfs control bitmap knob to control
-> print-to-trace in: /sys/module/drm/parameters/trace
-> 
-> todo: reconsider this api, ie a single macro expecting both debug &
-> trace terms (2 each), followed by a single description and the
-> bitmap-spec::
-> 
-> Good: declares bitmap once for both interfaces
-> 
-> Bad: arg-type/count handling (expecting 4 args) is ugly,
->      especially preceding the bitmap-init var-args.
-> 
+On Wed, Oct 13, 2021 at 2:59 PM Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Tue, Oct 05, 2021 at 10:23:22PM +0200, Hans de Goede wrote:
+> > Add support for eDP panels with a built-in privacy screen using the
+> > new drm_privacy_screen class.
+> >
+> > Changes in v3:
+> > - Move drm_privacy_screen_get() call to intel_ddi_init_dp_connector()
+> >
+> > Changes in v2:
+> > - Call drm_connector_update_privacy_screen() from
+> >   intel_enable_ddi_dp() / intel_ddi_update_pipe_dp() instead of adding =
+a
+> >   for_each_new_connector_in_state() loop to intel_atomic_commit_tail()
+> > - Move the probe-deferral check to the intel_modeset_probe_defer() help=
+er
+> >
+> > Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_atomic.c  |  1 +
+> >  drivers/gpu/drm/i915/display/intel_ddi.c     | 16 ++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+> >  3 files changed, 27 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/=
+drm/i915/display/intel_atomic.c
+> > index b4e7ac51aa31..a62550711e98 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> > @@ -139,6 +139,7 @@ int intel_digital_connector_atomic_check(struct drm=
+_connector *conn,
+> >           new_conn_state->base.picture_aspect_ratio !=3D old_conn_state=
+->base.picture_aspect_ratio ||
+> >           new_conn_state->base.content_type !=3D old_conn_state->base.c=
+ontent_type ||
+> >           new_conn_state->base.scaling_mode !=3D old_conn_state->base.s=
+caling_mode ||
+> > +         new_conn_state->base.privacy_screen_sw_state !=3D old_conn_st=
+ate->base.privacy_screen_sw_state ||
+> >           !drm_connector_atomic_hdr_metadata_equal(old_state, new_state=
+))
+> >               crtc_state->mode_changed =3D true;
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm=
+/i915/display/intel_ddi.c
+> > index 0d4cf7fa8720..272714e07cc6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -25,6 +25,7 @@
+> >   *
+> >   */
+> >
+> > +#include <drm/drm_privacy_screen_consumer.h>
+> >  #include <drm/drm_scdc_helper.h>
+> >
+> >  #include "i915_drv.h"
+> > @@ -2946,6 +2947,7 @@ static void intel_enable_ddi_dp(struct intel_atom=
+ic_state *state,
+> >       if (port =3D=3D PORT_A && DISPLAY_VER(dev_priv) < 9)
+> >               intel_dp_stop_link_train(intel_dp, crtc_state);
+> >
+> > +     drm_connector_update_privacy_screen(conn_state);
+> >       intel_edp_backlight_on(crtc_state, conn_state);
+> >
+> >       if (!dig_port->lspcon.active || dig_port->dp.has_hdmi_sink)
+> > @@ -3161,6 +3163,7 @@ static void intel_ddi_update_pipe_dp(struct intel=
+_atomic_state *state,
+> >       intel_drrs_update(intel_dp, crtc_state);
+> >
+> >       intel_backlight_update(state, encoder, crtc_state, conn_state);
+> > +     drm_connector_update_privacy_screen(conn_state);
+> >  }
+> >
+> >  void intel_ddi_update_pipe(struct intel_atomic_state *state,
+> > @@ -3979,6 +3982,19 @@ intel_ddi_init_dp_connector(struct intel_digital=
+_port *dig_port)
+> >               return NULL;
+> >       }
+> >
+> > +     if (dig_port->base.type =3D=3D INTEL_OUTPUT_EDP) {
+>
+> Connector type check would be a bit more consistent with what this is
+> about I think. But there's is 1:1 correspondence with the encoder type
+> for eDP so not a particularly important point.
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Hi Jim,
+I see only 8 out of 10 patches in this series were applied to drm-tip.
+I'm curious if there is any reason for which the last 2 patches were
+not applied:
 
-I agree having the bitmap declared twice seems redundant. But I like having fewer args and not necessarily combining the trace/log variants of
-DEBUG_CATEGORIES. hmmm...what if the DEFINE_DYNAMIC_DEBUG_CATEGORIES() took a pointer to the array of struct dyndbg_bitdesc map[] directly as the
-final argument instead of the __VA_ARGS__? Then, we could just declare the map once?
+[Patch 9/10]: drm/i915: Add intel_modeset_probe_defer() helper
+[Patch 10/10]: drm/i915: Add privacy-screen support (v3)
 
-Thanks,
+I look forward to getting them merged so that I can use them.
 
--Jason
+Thanks & Best regards,
 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
->  drivers/gpu/drm/drm_print.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-> index ce662d0f339b..7b49fbc5e21d 100644
-> --- a/drivers/gpu/drm/drm_print.c
-> +++ b/drivers/gpu/drm/drm_print.c
-> @@ -73,6 +73,25 @@ DEFINE_DYNAMIC_DEBUG_CATEGORIES(debug, __drm_debug,
->  				[7] = { DRM_DBG_CAT_LEASE },
->  				[8] = { DRM_DBG_CAT_DP },
->  				[9] = { DRM_DBG_CAT_DRMRES });
-> +
-> +#ifdef CONFIG_TRACING
-> +unsigned long __drm_trace;
-> +EXPORT_SYMBOL(__drm_trace);
-> +DEFINE_DYNAMIC_DEBUG_TRACE_CATEGORIES(trace, __drm_trace,
-> +				      DRM_DEBUG_DESC,
-> +				      [0] = { DRM_DBG_CAT_CORE },
-> +				      [1] = { DRM_DBG_CAT_DRIVER },
-> +				      [2] = { DRM_DBG_CAT_KMS },
-> +				      [3] = { DRM_DBG_CAT_PRIME },
-> +				      [4] = { DRM_DBG_CAT_ATOMIC },
-> +				      [5] = { DRM_DBG_CAT_VBL },
-> +				      [6] = { DRM_DBG_CAT_STATE },
-> +				      [7] = { DRM_DBG_CAT_LEASE },
-> +				      [8] = { DRM_DBG_CAT_DP },
-> +				      [9] = { DRM_DBG_CAT_DRMRES });
-> +
-> +struct trace_array *trace_arr;
-> +#endif
->  #endif
->  
->  void __drm_puts_coredump(struct drm_printer *p, const char *str)
-> 
+Rajat
+
+>
+> > +             struct drm_device *dev =3D dig_port->base.base.dev;
+> > +             struct drm_privacy_screen *privacy_screen;
+> > +
+> > +             privacy_screen =3D drm_privacy_screen_get(dev->dev, NULL)=
+;
+> > +             if (!IS_ERR(privacy_screen)) {
+> > +                     drm_connector_attach_privacy_screen_provider(&con=
+nector->base,
+> > +                                                                  priv=
+acy_screen);
+> > +             } else if (PTR_ERR(privacy_screen) !=3D -ENODEV) {
+> > +                     drm_warn(dev, "Error getting privacy-screen\n");
+> > +             }
+> > +     }
+> > +
+> >       return connector;
+> >  }
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 86dbe366a907..84715a779d9d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -42,6 +42,7 @@
+> >  #include <drm/drm_edid.h>
+> >  #include <drm/drm_fourcc.h>
+> >  #include <drm/drm_plane_helper.h>
+> > +#include <drm/drm_privacy_screen_consumer.h>
+> >  #include <drm/drm_probe_helper.h>
+> >  #include <drm/drm_rect.h>
+> >
+> > @@ -12769,6 +12770,8 @@ void intel_modeset_driver_remove_nogem(struct d=
+rm_i915_private *i915)
+> >
+> >  bool intel_modeset_probe_defer(struct pci_dev *pdev)
+> >  {
+> > +     struct drm_privacy_screen *privacy_screen;
+> > +
+> >       /*
+> >        * apple-gmux is needed on dual GPU MacBook Pro
+> >        * to probe the panel if we're the inactive GPU.
+> > @@ -12776,6 +12779,13 @@ bool intel_modeset_probe_defer(struct pci_dev =
+*pdev)
+> >       if (vga_switcheroo_client_probe_defer(pdev))
+> >               return true;
+> >
+> > +     /* If the LCD panel has a privacy-screen, wait for it */
+> > +     privacy_screen =3D drm_privacy_screen_get(&pdev->dev, NULL);
+> > +     if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) =3D=3D -EPR=
+OBE_DEFER)
+> > +             return true;
+> > +
+> > +     drm_privacy_screen_put(privacy_screen);
+> > +
+> >       return false;
+> >  }
+> >
+> > --
+> > 2.31.1
+>
+> --
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
