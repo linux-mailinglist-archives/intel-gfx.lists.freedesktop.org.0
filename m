@@ -1,40 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AA24439E6
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 00:39:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BBEE443A5B
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 01:18:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F7E37369C;
-	Tue,  2 Nov 2021 23:39:48 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3262F7344E;
- Tue,  2 Nov 2021 23:39:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="231646685"
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="231646685"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 16:39:15 -0700
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="467918843"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2021 16:39:15 -0700
-Date: Tue, 2 Nov 2021 16:34:42 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: John.C.Harrison@Intel.com
-Message-ID: <20211102233442.GA16356@jons-linux-dev-box>
-References: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
- <20211021234044.3071069-5-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 782A173924;
+	Wed,  3 Nov 2021 00:18:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 573A2720A7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 00:18:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="230118467"
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="230118467"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 17:18:46 -0700
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; d="scan'208";a="638398071"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2021 17:18:45 -0700
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  2 Nov 2021 17:04:18 -0700
+Message-Id: <20211103000418.1740797-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <YYFMZ4ke4qIvI4ku@intel.com>
+References: <YYFMZ4ke4qIvI4ku@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211021234044.3071069-5-John.C.Harrison@Intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH i-g-t 4/8] tests/i915/gem_exec_capture: Use
- contexts and engines properly
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Don't try to map and fence large
+ scanout buffers (v4)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,262 +45,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: IGT-Dev@Lists.FreeDesktop.Org, Intel-GFX@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 21, 2021 at 04:40:40PM -0700, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Some of the capture tests were using explicit contexts, some not. Some
-> were poking the per engine pre-emption timeout, some not. This would
-> lead to sporadic failures due to random timeouts, contexts being
-> banned depending upon how many subtests were run and/or how many
-> engines a given platform has, and other such failures.
-> 
-> So, update all tests to be conistent.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->  tests/i915/gem_exec_capture.c | 80 +++++++++++++++++++++++++----------
->  1 file changed, 58 insertions(+), 22 deletions(-)
-> 
-> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-> index c85c198f7..e373d24ed 100644
-> --- a/tests/i915/gem_exec_capture.c
-> +++ b/tests/i915/gem_exec_capture.c
-> @@ -204,8 +204,19 @@ static int check_error_state(int dir, struct offset *obj_offsets, int obj_count,
->  	return blobs;
->  }
->  
-> +static void configure_hangs(int fd, const struct intel_execution_engine2 *e, int ctxt_id)
-> +{
-> +	/* Ensure fast hang detection */
-> +	gem_engine_property_printf(fd, e->name, "preempt_timeout_ms", "%d", 250);
-> +	gem_engine_property_printf(fd, e->name, "heartbeat_interval_ms", "%d", 500);
+On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
+more framebuffers/scanout buffers results in only one that is mappable/
+fenceable. Therefore, pageflipping between these 2 FBs where only one
+is mappable/fenceable creates latencies large enough to miss alternate
+vblanks thereby producing less optimal framerate.
 
-#define for 250, 500?
+This mainly happens because when i915_gem_object_pin_to_display_plane()
+is called to pin one of the FB objs, the associated vma is identified
+as misplaced and therefore i915_vma_unbind() is called which unbinds and
+evicts it. This misplaced vma gets subseqently pinned only when
+i915_gem_object_ggtt_pin_ww() is called without PIN_MAPPABLE. This
+results in a latency of ~10ms and happens every other vblank/repaint cycle.
+Therefore, to fix this issue, we try to see if there is space to map
+at-least two objects of a given size and return early if there isn't. This
+would ensure that we do not try with PIN_MAPPABLE for any objects that
+are too big to map thereby preventing unncessary unbind.
 
-> +
-> +	/* Allow engine based resets and disable banning */
-> +	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE);
-> +}
-> +
->  static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
-> -		       unsigned ring, uint32_t target, uint64_t target_size)
-> +		       const struct intel_execution_engine2 *e,
-> +		       uint32_t target, uint64_t target_size)
->  {
->  	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
->  	struct drm_i915_gem_exec_object2 obj[4];
-> @@ -219,6 +230,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	struct offset offset;
->  	int i;
->  
-> +	configure_hangs(fd, e, ctx->id);
-> +
->  	memset(obj, 0, sizeof(obj));
->  	obj[SCRATCH].handle = gem_create(fd, 4096);
->  	obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
-> @@ -297,7 +310,7 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	memset(&execbuf, 0, sizeof(execbuf));
->  	execbuf.buffers_ptr = (uintptr_t)obj;
->  	execbuf.buffer_count = ARRAY_SIZE(obj);
-> -	execbuf.flags = ring;
-> +	execbuf.flags = e->flags;
->  	if (gen > 3 && gen < 6)
->  		execbuf.flags |= I915_EXEC_SECURE;
->  	execbuf.rsvd1 = ctx->id;
-> @@ -326,7 +339,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
->  	gem_close(fd, obj[SCRATCH].handle);
->  }
->  
-> -static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
-> +static void capture(int fd, int dir, const intel_ctx_t *ctx,
-> +		    const struct intel_execution_engine2 *e)
->  {
->  	uint32_t handle;
->  	uint64_t ahnd;
-> @@ -335,7 +349,7 @@ static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
->  	handle = gem_create(fd, obj_size);
->  	ahnd = get_reloc_ahnd(fd, ctx->id);
->  
-> -	__capture1(fd, dir, ahnd, ctx, ring, handle, obj_size);
-> +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
->  
->  	gem_close(fd, handle);
->  	put_ahnd(ahnd);
-> @@ -355,9 +369,9 @@ static int cmp(const void *A, const void *B)
->  }
->  
->  static struct offset *
-> -__captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
-> -	      unsigned int size, int count,
-> -	      unsigned int flags)
-> +__captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
-> +	   const struct intel_execution_engine2 *e,
-> +	   unsigned int size, int count, unsigned int flags)
->  #define INCREMENTAL 0x1
->  #define ASYNC 0x2
->  {
-> @@ -369,6 +383,8 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->  	struct offset *offsets;
->  	int i;
->  
-> +	configure_hangs(fd, e, ctx->id);
-> +
->  	offsets = calloc(count, sizeof(*offsets));
->  	igt_assert(offsets);
->  
-> @@ -470,9 +486,10 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->  	memset(&execbuf, 0, sizeof(execbuf));
->  	execbuf.buffers_ptr = (uintptr_t)obj;
->  	execbuf.buffer_count = count + 2;
-> -	execbuf.flags = ring;
-> +	execbuf.flags = e->flags;
->  	if (gen > 3 && gen < 6)
->  		execbuf.flags |= I915_EXEC_SECURE;
-> +	execbuf.rsvd1 = ctx->id;
->  
->  	igt_assert(!READ_ONCE(*seqno));
->  	gem_execbuf(fd, &execbuf);
-> @@ -505,10 +522,20 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
->  
->  static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  {
-> +	const struct intel_execution_engine2 *e;
-> +	const intel_ctx_t *ctx;
->  	uint64_t ram, gtt, ahnd;
->  	unsigned long count, blobs;
->  	struct offset *offsets;
->  
-> +	/* Find the first available engine: */
-> +	ctx = intel_ctx_create_all_physical(fd);
-> +	igt_assert(ctx);
-> +	for_each_ctx_engine(fd, ctx, e)
-> +		for_each_if(gem_class_can_store_dword(fd, e->class))
-> +			break;
-> +	igt_assert(e);
+Testcase:
+Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
+with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
+a frame ~7ms before the next vblank, the latencies seen between atomic
+commit and flip event are 7, 24 (7 + 16.66), 7, 24..... suggesting that
+it misses the vblank every other frame.
 
-Duplicated below. Helper for this?
+Here is the ftrace snippet that shows the source of the ~10ms latency:
+              i915_gem_object_pin_to_display_plane() {
+0.102 us   |    i915_gem_object_set_cache_level();
+                i915_gem_object_ggtt_pin_ww() {
+0.390 us   |      i915_vma_instance();
+0.178 us   |      i915_vma_misplaced();
+                  i915_vma_unbind() {
+                  __i915_active_wait() {
+0.082 us   |        i915_active_acquire_if_busy();
+0.475 us   |      }
+                  intel_runtime_pm_get() {
+0.087 us   |        intel_runtime_pm_acquire();
+0.259 us   |      }
+                  __i915_active_wait() {
+0.085 us   |        i915_active_acquire_if_busy();
+0.240 us   |      }
+                  __i915_vma_evict() {
+                    ggtt_unbind_vma() {
+                      gen8_ggtt_clear_range() {
+10507.255 us |        }
+10507.689 us |      }
+10508.516 us |   }
 
-Matt
+v2: Instead of using bigjoiner checks, determine whether a scanout
+    buffer is too big by checking to see if it is possible to map
+    two of them into the ggtt.
 
-> +
->  	gtt = gem_aperture_size(fd) / size;
->  	ram = (intel_get_avail_ram_mb() << 20) / size;
->  	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
-> @@ -518,9 +545,9 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  	igt_require(count > 1);
->  
->  	intel_require_memory(count, size, CHECK_RAM);
-> -	ahnd = get_reloc_ahnd(fd, 0);
-> +	ahnd = get_reloc_ahnd(fd, ctx->id);
->  
-> -	offsets = __captureN(fd, dir, ahnd, 0, size, count, flags);
-> +	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags);
->  
->  	blobs = check_error_state(dir, offsets, count, size, !!(flags & INCREMENTAL));
->  	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
-> @@ -531,7 +558,7 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
->  }
->  
->  static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
-> -		    unsigned ring, const char *name)
-> +		    const struct intel_execution_engine2 *e)
->  {
->  	const uint32_t bbe = MI_BATCH_BUFFER_END;
->  	struct drm_i915_gem_exec_object2 obj = {
-> @@ -540,7 +567,7 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  	struct drm_i915_gem_execbuffer2 execbuf = {
->  		.buffers_ptr = to_user_pointer(&obj),
->  		.buffer_count = 1,
-> -		.flags = ring,
-> +		.flags = e->flags,
->  		.rsvd1 = ctx->id,
->  	};
->  	int64_t timeout = NSEC_PER_SEC; /* 1s, feeling generous, blame debug */
-> @@ -555,10 +582,6 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  	igt_require(igt_params_set(fd, "reset", "%u", -1)); /* engine resets! */
->  	igt_require(gem_gpu_reset_type(fd) > 1);
->  
-> -	/* Needs to be fast enough for the hangcheck to return within 1s */
-> -	igt_require(gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 0) > 0);
-> -	gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 500);
-> -
->  	gtt = gem_aperture_size(fd) / size;
->  	ram = (intel_get_avail_ram_mb() << 20) / size;
->  	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
-> @@ -576,15 +599,19 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  
->  	igt_assert(pipe(link) == 0);
->  	igt_fork(child, 1) {
-> +		const intel_ctx_t *ctx2;
->  		fd = gem_reopen_driver(fd);
->  		igt_debug("Submitting large capture [%ld x %dMiB objects]\n",
->  			  count, (int)(size >> 20));
->  
-> +		ctx2 = intel_ctx_create_all_physical(fd);
-> +		igt_assert(ctx2);
-> +
->  		intel_allocator_init();
->  		/* Reopen the allocator in the new process. */
-> -		ahnd = get_reloc_ahnd(fd, 0);
-> +		ahnd = get_reloc_ahnd(fd, ctx2->id);
->  
-> -		free(__captureN(fd, dir, ahnd, ring, size, count, ASYNC));
-> +		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC));
->  		put_ahnd(ahnd);
->  
->  		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
-> @@ -615,18 +642,27 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->  
->  static void userptr(int fd, int dir)
->  {
-> -	const intel_ctx_t *ctx = intel_ctx_0(fd);
-> +	const struct intel_execution_engine2 *e;
-> +	const intel_ctx_t *ctx;
->  	uint32_t handle;
->  	uint64_t ahnd;
->  	void *ptr;
->  	int obj_size = 4096;
->  
-> +	/* Find the first available engine: */
-> +	ctx = intel_ctx_create_all_physical(fd);
-> +	igt_assert(ctx);
-> +	for_each_ctx_engine(fd, ctx, e)
-> +		for_each_if(gem_class_can_store_dword(fd, e->class))
-> +			break;
-> +	igt_assert(e);
-> +
->  	igt_assert(posix_memalign(&ptr, obj_size, obj_size) == 0);
->  	memset(ptr, 0, obj_size);
->  	igt_require(__gem_userptr(fd, ptr, obj_size, 0, 0, &handle) == 0);
->  	ahnd = get_reloc_ahnd(fd, ctx->id);
->  
-> -	__capture1(fd, dir, ahnd, intel_ctx_0(fd), 0, handle, obj_size);
-> +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
->  
->  	gem_close(fd, handle);
->  	put_ahnd(ahnd);
-> @@ -684,7 +720,7 @@ igt_main
->  	}
->  
->  	test_each_engine("capture", fd, ctx, e)
-> -		capture(fd, dir, ctx, e->flags);
-> +		capture(fd, dir, ctx, e);
->  
->  	igt_subtest_f("many-4K-zero") {
->  		igt_require(gem_can_store_dword(fd, 0));
-> @@ -719,7 +755,7 @@ igt_main
->  	}
->  
->  	test_each_engine("pi", fd, ctx, e)
-> -		prioinv(fd, dir, ctx, e->flags, e->name);
-> +		prioinv(fd, dir, ctx, e);
->  
->  	igt_fixture {
->  		close(dir);
-> -- 
-> 2.25.1
-> 
+v3 (Ville):
+- Count how many fb objects can be fit into the available holes
+  instead of checking for a hole twice the object size.
+- Take alignment constraints into account.
+- Limit this large scanout buffer check to >= Gen 11 platforms.
+
+v4:
+- Remove existing heuristic that checks just for size. (Ville)
+- Return early if we find space to map at-least two objects. (Tvrtko)
+- Slightly update the commit message.
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+---
+ drivers/gpu/drm/i915/i915_gem.c | 87 ++++++++++++++++++++++-----------
+ drivers/gpu/drm/i915/i915_vma.c |  2 +-
+ 2 files changed, 59 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index d0e642c82064..287508c37a9a 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -866,6 +866,63 @@ static void discard_ggtt_vma(struct i915_vma *vma)
+ 	spin_unlock(&obj->vma.lock);
+ }
+ 
++static bool i915_gem_obj_too_big(struct drm_i915_gem_object *obj,
++				 u64 alignment)
++{
++	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++	struct i915_ggtt *ggtt = &i915->ggtt;
++	struct drm_mm_node *hole;
++	u64 hole_start, hole_end, start, end;
++	u64 fence_size, fence_alignment;
++	unsigned int count = 0;
++
++	/*
++	 * If the required space is larger than the available
++	 * aperture, we will not able to find a slot for the
++	 * object and unbinding the object now will be in
++	 * vain. Worse, doing so may cause us to ping-pong
++	 * the object in and out of the Global GTT and
++	 * waste a lot of cycles under the mutex.
++	 */
++	if (obj->base.size > ggtt->mappable_end)
++		return true;
++
++	if (HAS_GMCH(i915) || DISPLAY_VER(i915) < 11 ||
++	    !i915_gem_object_is_framebuffer(obj))
++		return false;
++
++	fence_size = i915_gem_fence_size(i915, obj->base.size,
++					 i915_gem_object_get_tiling(obj),
++					 i915_gem_object_get_stride(obj));
++	fence_alignment = i915_gem_fence_alignment(i915, obj->base.size,
++						   i915_gem_object_get_tiling(obj),
++						   i915_gem_object_get_stride(obj));
++	alignment = max_t(u64, alignment, fence_alignment);
++
++	/*
++	 * Assuming this object is a large scanout buffer, we try to find
++	 * out if there is room to map at-least two of them. There could
++	 * be space available to map one but to be consistent, we try to
++	 * avoid mapping/fencing any of them.
++	 */
++	drm_mm_for_each_hole(hole, &ggtt->vm.mm, hole_start, hole_end) {
++		do {
++			start = round_up(hole_start, alignment);
++			end = min_t(u64, hole_end, ggtt->mappable_end);
++
++			if (range_overflows(start, fence_size, end))
++				break;
++
++			if (++count >= 2)
++				return false;
++
++			hole_start = start + fence_size;
++		} while (1);
++	}
++
++	return true;
++}
++
+ struct i915_vma *
+ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+ 			    struct i915_gem_ww_ctx *ww,
+@@ -879,36 +936,8 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+ 
+ 	if (flags & PIN_MAPPABLE &&
+ 	    (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
+-		/*
+-		 * If the required space is larger than the available
+-		 * aperture, we will not able to find a slot for the
+-		 * object and unbinding the object now will be in
+-		 * vain. Worse, doing so may cause us to ping-pong
+-		 * the object in and out of the Global GTT and
+-		 * waste a lot of cycles under the mutex.
+-		 */
+-		if (obj->base.size > ggtt->mappable_end)
++		if (i915_gem_obj_too_big(obj, alignment))
+ 			return ERR_PTR(-E2BIG);
+-
+-		/*
+-		 * If NONBLOCK is set the caller is optimistically
+-		 * trying to cache the full object within the mappable
+-		 * aperture, and *must* have a fallback in place for
+-		 * situations where we cannot bind the object. We
+-		 * can be a little more lax here and use the fallback
+-		 * more often to avoid costly migrations of ourselves
+-		 * and other objects within the aperture.
+-		 *
+-		 * Half-the-aperture is used as a simple heuristic.
+-		 * More interesting would to do search for a free
+-		 * block prior to making the commitment to unbind.
+-		 * That caters for the self-harm case, and with a
+-		 * little more heuristics (e.g. NOFAULT, NOEVICT)
+-		 * we could try to minimise harm to others.
+-		 */
+-		if (flags & PIN_NONBLOCK &&
+-		    obj->base.size > ggtt->mappable_end / 2)
+-			return ERR_PTR(-ENOSPC);
+ 	}
+ 
+ new_vma:
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 90546fa58fc1..551644dbfa8a 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -977,7 +977,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ 		if (err)
+ 			goto err_active;
+ 
+-		if (i915_is_ggtt(vma->vm))
++		if (i915_is_ggtt(vma->vm) && flags & PIN_MAPPABLE)
+ 			__i915_vma_set_map_and_fenceable(vma);
+ 	}
+ 
+-- 
+2.31.1
+
