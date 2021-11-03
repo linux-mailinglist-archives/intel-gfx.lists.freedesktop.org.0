@@ -1,74 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D692443EFC
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 10:08:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B380443F77
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Nov 2021 10:37:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00AC3733B5;
-	Wed,  3 Nov 2021 09:08:09 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2D377336D
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 09:08:07 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id
- z11-20020a1c7e0b000000b0030db7b70b6bso4009075wmc.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 03 Nov 2021 02:08:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=eFr0MuK80sKSXpSZTrUSk/rMt2BKi1X4nDoh2mUFIHY=;
- b=uRyskjYqUvgMOoiU+1zlKsd9kv5YpO3lo1A9csznrYcKjUku7eQdnf3D5ZDrb/dwKq
- zhr99WsHvAUVD9YpRRmoTzZhT2T5akTvwbgcWuT2m4QKuK2XBjN8U9tDkELNnuWHdQgC
- lytbElbu9WlBOcypjL5G7C0QQ+Y7J+4pO8UDvG6dzY1QhNjsofgizCQk5PicG6wTEtZ+
- 5Y4ls/pZ2soaDE99YDNXiioPvSd30HnOy1CjrK21t0HZAzdOyAgkHLNcqitOQ3o7cNlk
- KoFPIFG3TywvwNvHs/iYC5gJ7MH16RbWdngvVzG/RF9Qct/Ij0lSmgMVrgT2UQK+vbJA
- osBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=eFr0MuK80sKSXpSZTrUSk/rMt2BKi1X4nDoh2mUFIHY=;
- b=D1Gk0iSmf0HP7djf3Z3D+4KGi6WQjcFgiqc+aHRd/xi/wfVnuzVWJpOOI0KpMaCeyU
- KhuQPWJCbDPHR8CIzWbyqW3EbR10B2Fh4K+QYdImvNTElpgXe/Jz9hBUpj1OPwv2e0xa
- GVUD0s++A/i+zq7lZyzyk0YZP7JIxZaW3GI4+YMS93fsyl1F9amNDX9It4JJFuFJtLdY
- SFPpSni8FNjA+HLpYsnAuYGdE7bbpBmU/Fm5NDfF8zmHFuk4aw0Z3SCPaUzxXEkh+EFl
- nBkGWQ/epN2HJxCNLXI46K0YvTlUVmFnIzC67Nu/vTzsTJlEsqSoFtIpj2ab6ST0c9pW
- lSxA==
-X-Gm-Message-State: AOAM532JlXE9fs+lQ5oGOpW7+XwxqlbcZ0zX3LVryY+zrqFnJswCeVYZ
- GjyA/lABk909TkoyH9e1UhENsw==
-X-Google-Smtp-Source: ABdhPJyrv1rX0YZQOr2V4htvr1foMnpLq2JA5R60y4Kzi7A1xCjWBzT8xCEKS+ChoNgoJej+8prcPQ==
-X-Received: by 2002:a7b:c7d5:: with SMTP id z21mr14026261wmk.40.1635930484902; 
- Wed, 03 Nov 2021 02:08:04 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:aeb4:bd52:fec9:f300?
- ([2001:861:44c0:66c0:aeb4:bd52:fec9:f300])
- by smtp.gmail.com with ESMTPSA id r10sm1340427wrl.92.2021.11.03.02.08.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 03 Nov 2021 02:08:04 -0700 (PDT)
-To: Maxime Ripard <maxime@cerno.tech>, Daniel Vetter
- <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-References: <20211102145944.259181-1-maxime@cerno.tech>
- <20211102145944.259181-2-maxime@cerno.tech>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <484395cc-8b47-7dec-71a0-707cc5d18cdf@baylibre.com>
-Date: Wed, 3 Nov 2021 10:08:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 599397306D;
+	Wed,  3 Nov 2021 09:37:48 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0E7F7306D;
+ Wed,  3 Nov 2021 09:37:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="231311365"
+X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="231311365"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 02:37:47 -0700
+X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="489474574"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.72.185])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2021 02:37:45 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1miCh3-0001g4-QX; Wed, 03 Nov 2021 11:36:29 +0200
+Date: Wed, 3 Nov 2021 11:36:29 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Message-ID: <YYJYHYT1YrwVikLo@platvala-desk.ger.corp.intel.com>
+References: <20211021234044.3071069-1-John.C.Harrison@Intel.com>
+ <20211021234044.3071069-5-John.C.Harrison@Intel.com>
+ <20211102233442.GA16356@jons-linux-dev-box>
+ <4adc8d9a-8393-2774-2c67-a93083240795@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20211102145944.259181-2-maxime@cerno.tech>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 01/13] drm/connector: Add define for HDMI
- 1.4 Maximum Pixel Rate
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4adc8d9a-8393-2774-2c67-a93083240795@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH i-g-t 4/8] tests/i915/gem_exec_capture: Use
+ contexts and engines properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,240 +51,258 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <a.hajda@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Phil Elwell <phil@raspberrypi.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Kevin Hilman <khilman@baylibre.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Jonas Karlman <jonas@kwiboo.se>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- intel-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, Dom Cobley <dom@raspberrypi.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Robert Foss <robert.foss@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: IGT-Dev@lists.freedesktop.org, Intel-GFX@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 02/11/2021 15:59, Maxime Ripard wrote:
-> A lot of drivers open-code the HDMI 1.4 maximum pixel rate in their
-> driver to test whether the resolutions are supported or if the
-> scrambling needs to be enabled.
-> 
-> Let's create a common define for everyone to use it.
-> 
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: Andrzej Hajda <a.hajda@samsung.com>
-> Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: Emma Anholt <emma@anholt.net>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jonathan Hunter <jonathanh@nvidia.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: linux-amlogic@lists.infradead.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-tegra@vger.kernel.org
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c  | 4 ++--
->  drivers/gpu/drm/drm_edid.c                 | 2 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c  | 2 +-
->  drivers/gpu/drm/meson/meson_dw_hdmi.c      | 4 ++--
->  drivers/gpu/drm/radeon/radeon_encoders.c   | 2 +-
->  drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c | 2 +-
->  drivers/gpu/drm/tegra/sor.c                | 8 ++++----
->  drivers/gpu/drm/vc4/vc4_hdmi.c             | 4 ++--
->  include/drm/drm_connector.h                | 2 ++
->  9 files changed, 16 insertions(+), 14 deletions(-)
+On Tue, Nov 02, 2021 at 06:45:38PM -0700, John Harrison wrote:
+> On 11/2/2021 16:34, Matthew Brost wrote:
+> > On Thu, Oct 21, 2021 at 04:40:40PM -0700, John.C.Harrison@Intel.com wrote:
+> > > From: John Harrison <John.C.Harrison@Intel.com>
+> > > 
+> > > Some of the capture tests were using explicit contexts, some not. Some
+> > > were poking the per engine pre-emption timeout, some not. This would
+> > > lead to sporadic failures due to random timeouts, contexts being
+> > > banned depending upon how many subtests were run and/or how many
+> > > engines a given platform has, and other such failures.
+> > > 
+> > > So, update all tests to be conistent.
+> > > 
+> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > ---
+> > >   tests/i915/gem_exec_capture.c | 80 +++++++++++++++++++++++++----------
+> > >   1 file changed, 58 insertions(+), 22 deletions(-)
+> > > 
+> > > diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
+> > > index c85c198f7..e373d24ed 100644
+> > > --- a/tests/i915/gem_exec_capture.c
+> > > +++ b/tests/i915/gem_exec_capture.c
+> > > @@ -204,8 +204,19 @@ static int check_error_state(int dir, struct offset *obj_offsets, int obj_count,
+> > >   	return blobs;
+> > >   }
+> > > +static void configure_hangs(int fd, const struct intel_execution_engine2 *e, int ctxt_id)
+> > > +{
+> > > +	/* Ensure fast hang detection */
+> > > +	gem_engine_property_printf(fd, e->name, "preempt_timeout_ms", "%d", 250);
+> > > +	gem_engine_property_printf(fd, e->name, "heartbeat_interval_ms", "%d", 500);
+> > #define for 250, 500?
+> Is there any point? There is no special reason for the values other than
+> small enough to be fast and long enough to not be too small to be usable. So
+> there isn't really any particular name to give them beyond
+> 'SHORT_PREEMPT_TIMEOUT' or some such. And the whole point of the helper
+> function is that the values are programmed in one place only and not used
+> anywhere else. So there is no worry about repetition of magic numbers.
 
-For meson & bridge/synopsys/dw-hdmi:
+In about one year everyone has forgotten this explanation and will
+wonder if it's related to some in-kernel behaviour or if there's some
+other reason these values have been chosen.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+So at least a comment why the values are these, please.
+
+
+-- 
+Petri Latvala
+
 
 > 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index 62ae63565d3a..3a58db357be0 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -46,7 +46,7 @@
->  /* DW-HDMI Controller >= 0x200a are at least compliant with SCDC version 1 */
->  #define SCDC_MIN_SOURCE_VERSION	0x1
->  
-> -#define HDMI14_MAX_TMDSCLK	340000000
-> +#define HDMI14_MAX_TMDSCLK	(DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
->  
->  enum hdmi_datamap {
->  	RGB444_8B = 0x01,
-> @@ -1264,7 +1264,7 @@ static bool dw_hdmi_support_scdc(struct dw_hdmi *hdmi,
->  	 * for low rates is not supported either
->  	 */
->  	if (!display->hdmi.scdc.scrambling.low_rates &&
-> -	    display->max_tmds_clock <= 340000)
-> +	    display->max_tmds_clock <= DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
->  		return false;
->  
->  	return true;
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 7aa2a56a71c8..ec8fb2d098ae 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
->  		u32 max_tmds_clock = hf_vsdb[5] * 5000;
->  		struct drm_scdc *scdc = &hdmi->scdc;
->  
-> -		if (max_tmds_clock > 340000) {
-> +		if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
->  			display->max_tmds_clock = max_tmds_clock;
->  			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
->  				display->max_tmds_clock);
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index d2e61f6c6e08..0666203d52b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  		if (scdc->scrambling.low_rates)
->  			pipe_config->hdmi_scrambling = true;
->  
-> -		if (pipe_config->port_clock > 340000) {
-> +		if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
->  			pipe_config->hdmi_scrambling = true;
->  			pipe_config->hdmi_high_tmds_clock_ratio = true;
->  		}
-> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 0afbd1e70bfc..8078667aea0e 100644
-> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -434,7 +434,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
->  		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
->  
->  	DRM_DEBUG_DRIVER("\"%s\" div%d\n", mode->name,
-> -			 mode->clock > 340000 ? 40 : 10);
-> +			 mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ ? 40 : 10);
->  
->  	/* Enable clocks */
->  	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
-> @@ -457,7 +457,7 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
->  	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
->  
->  	/* TMDS pattern setup */
-> -	if (mode->clock > 340000 &&
-> +	if (mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ &&
->  	    dw_hdmi->output_bus_fmt == MEDIA_BUS_FMT_YUV8_1X24) {
->  		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
->  				  0);
-> diff --git a/drivers/gpu/drm/radeon/radeon_encoders.c b/drivers/gpu/drm/radeon/radeon_encoders.c
-> index 46549d5179ee..ddd8100e699f 100644
-> --- a/drivers/gpu/drm/radeon/radeon_encoders.c
-> +++ b/drivers/gpu/drm/radeon/radeon_encoders.c
-> @@ -384,7 +384,7 @@ bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
->  		if (radeon_connector->use_digital) {
->  			/* HDMI 1.3 supports up to 340 Mhz over single link */
->  			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-> -				if (pixel_clock > 340000)
-> +				if (pixel_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
->  					return true;
->  				else
->  					return false;
-> diff --git a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c b/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
-> index d25ecd4f4b67..bc213232a875 100644
-> --- a/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
-> +++ b/drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c
-> @@ -102,7 +102,7 @@ static bool sti_hdmi_tx3g4c28phy_start(struct sti_hdmi *hdmi)
->  	tmdsck = ckpxpll;
->  	pllctrl |= 40 << PLL_CFG_NDIV_SHIFT;
->  
-> -	if (tmdsck > 340000000) {
-> +	if (tmdsck > (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
->  		DRM_ERROR("output TMDS clock (%d) out of range\n", tmdsck);
->  		goto err;
->  	}
-> diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
-> index 0ea320c1092b..99a2d627bfeb 100644
-> --- a/drivers/gpu/drm/tegra/sor.c
-> +++ b/drivers/gpu/drm/tegra/sor.c
-> @@ -1814,7 +1814,7 @@ tegra_sor_encoder_atomic_check(struct drm_encoder *encoder,
->  	 * For HBR2 modes, the SOR brick needs to use the x20 multiplier, so
->  	 * the pixel clock must be corrected accordingly.
->  	 */
-> -	if (pclk >= 340000000) {
-> +	if (pclk >= (DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)) {
->  		state->link_speed = 20;
->  		state->pclk = pclk / 2;
->  	} else {
-> @@ -2196,7 +2196,7 @@ static void tegra_sor_hdmi_scdc_start(struct tegra_sor *sor)
->  
->  	mode = &sor->output.encoder.crtc->state->adjusted_mode;
->  
-> -	if (mode->clock >= 340000 && scdc->supported) {
-> +	if (mode->clock >= DRM_HDMI_14_MAX_TMDS_CLK_KHZ && scdc->supported) {
->  		schedule_delayed_work(&sor->scdc, msecs_to_jiffies(5000));
->  		tegra_sor_hdmi_scdc_enable(sor);
->  		sor->scdc_enabled = true;
-> @@ -2340,7 +2340,7 @@ static void tegra_sor_hdmi_enable(struct drm_encoder *encoder)
->  	value &= ~SOR_CLK_CNTRL_DP_LINK_SPEED_MASK;
->  	value &= ~SOR_CLK_CNTRL_DP_CLK_SEL_MASK;
->  
-> -	if (mode->clock < 340000) {
-> +	if (mode->clock < DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
->  		DRM_DEBUG_KMS("setting 2.7 GHz link speed\n");
->  		value |= SOR_CLK_CNTRL_DP_LINK_SPEED_G2_70;
->  	} else {
-> @@ -2423,7 +2423,7 @@ static void tegra_sor_hdmi_enable(struct drm_encoder *encoder)
->  	/* adjust clock rate for HDMI 2.0 modes */
->  	rate = clk_get_rate(sor->clk_parent);
->  
-> -	if (mode->clock >= 340000)
-> +	if (mode->clock >= DRM_HDMI_14_MAX_TMDS_CLK_KHZ)
->  		rate /= 2;
->  
->  	DRM_DEBUG_KMS("setting clock to %lu Hz, mode: %lu Hz\n", rate, pclk);
-> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> index fab9b93e1b84..fc7247cc1022 100644
-> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> @@ -97,11 +97,11 @@
->  #define HSM_MIN_CLOCK_FREQ	120000000
->  #define CEC_CLOCK_FREQ 40000
->  
-> -#define HDMI_14_MAX_TMDS_CLK   (340 * 1000 * 1000)
-> +#define HDMI_14_MAX_TMDS_CLK	(DRM_HDMI_14_MAX_TMDS_CLK_KHZ * 1000)
->  
->  static bool vc4_hdmi_mode_needs_scrambling(const struct drm_display_mode *mode)
->  {
-> -	return (mode->clock * 1000) > HDMI_14_MAX_TMDS_CLK;
-> +	return mode->clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ;
->  }
->  
->  static int vc4_hdmi_debugfs_regs(struct seq_file *m, void *unused)
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index b501d0badaea..030636635af1 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -260,6 +260,8 @@ struct drm_hdmi_info {
->  	struct drm_hdmi_dsc_cap dsc_cap;
->  };
->  
-> +#define DRM_HDMI_14_MAX_TMDS_CLK_KHZ	(340 * 1000)
-> +
->  /**
->   * enum drm_link_status - connector's link_status property value
->   *
 > 
-
+> > 
+> > > +
+> > > +	/* Allow engine based resets and disable banning */
+> > > +	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE);
+> > > +}
+> > > +
+> > >   static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
+> > > -		       unsigned ring, uint32_t target, uint64_t target_size)
+> > > +		       const struct intel_execution_engine2 *e,
+> > > +		       uint32_t target, uint64_t target_size)
+> > >   {
+> > >   	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+> > >   	struct drm_i915_gem_exec_object2 obj[4];
+> > > @@ -219,6 +230,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
+> > >   	struct offset offset;
+> > >   	int i;
+> > > +	configure_hangs(fd, e, ctx->id);
+> > > +
+> > >   	memset(obj, 0, sizeof(obj));
+> > >   	obj[SCRATCH].handle = gem_create(fd, 4096);
+> > >   	obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
+> > > @@ -297,7 +310,7 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
+> > >   	memset(&execbuf, 0, sizeof(execbuf));
+> > >   	execbuf.buffers_ptr = (uintptr_t)obj;
+> > >   	execbuf.buffer_count = ARRAY_SIZE(obj);
+> > > -	execbuf.flags = ring;
+> > > +	execbuf.flags = e->flags;
+> > >   	if (gen > 3 && gen < 6)
+> > >   		execbuf.flags |= I915_EXEC_SECURE;
+> > >   	execbuf.rsvd1 = ctx->id;
+> > > @@ -326,7 +339,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
+> > >   	gem_close(fd, obj[SCRATCH].handle);
+> > >   }
+> > > -static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
+> > > +static void capture(int fd, int dir, const intel_ctx_t *ctx,
+> > > +		    const struct intel_execution_engine2 *e)
+> > >   {
+> > >   	uint32_t handle;
+> > >   	uint64_t ahnd;
+> > > @@ -335,7 +349,7 @@ static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
+> > >   	handle = gem_create(fd, obj_size);
+> > >   	ahnd = get_reloc_ahnd(fd, ctx->id);
+> > > -	__capture1(fd, dir, ahnd, ctx, ring, handle, obj_size);
+> > > +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
+> > >   	gem_close(fd, handle);
+> > >   	put_ahnd(ahnd);
+> > > @@ -355,9 +369,9 @@ static int cmp(const void *A, const void *B)
+> > >   }
+> > >   static struct offset *
+> > > -__captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
+> > > -	      unsigned int size, int count,
+> > > -	      unsigned int flags)
+> > > +__captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
+> > > +	   const struct intel_execution_engine2 *e,
+> > > +	   unsigned int size, int count, unsigned int flags)
+> > >   #define INCREMENTAL 0x1
+> > >   #define ASYNC 0x2
+> > >   {
+> > > @@ -369,6 +383,8 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
+> > >   	struct offset *offsets;
+> > >   	int i;
+> > > +	configure_hangs(fd, e, ctx->id);
+> > > +
+> > >   	offsets = calloc(count, sizeof(*offsets));
+> > >   	igt_assert(offsets);
+> > > @@ -470,9 +486,10 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
+> > >   	memset(&execbuf, 0, sizeof(execbuf));
+> > >   	execbuf.buffers_ptr = (uintptr_t)obj;
+> > >   	execbuf.buffer_count = count + 2;
+> > > -	execbuf.flags = ring;
+> > > +	execbuf.flags = e->flags;
+> > >   	if (gen > 3 && gen < 6)
+> > >   		execbuf.flags |= I915_EXEC_SECURE;
+> > > +	execbuf.rsvd1 = ctx->id;
+> > >   	igt_assert(!READ_ONCE(*seqno));
+> > >   	gem_execbuf(fd, &execbuf);
+> > > @@ -505,10 +522,20 @@ __captureN(int fd, int dir, uint64_t ahnd, unsigned ring,
+> > >   static void many(int fd, int dir, uint64_t size, unsigned int flags)
+> > >   {
+> > > +	const struct intel_execution_engine2 *e;
+> > > +	const intel_ctx_t *ctx;
+> > >   	uint64_t ram, gtt, ahnd;
+> > >   	unsigned long count, blobs;
+> > >   	struct offset *offsets;
+> > > +	/* Find the first available engine: */
+> > > +	ctx = intel_ctx_create_all_physical(fd);
+> > > +	igt_assert(ctx);
+> > > +	for_each_ctx_engine(fd, ctx, e)
+> > > +		for_each_if(gem_class_can_store_dword(fd, e->class))
+> > > +			break;
+> > > +	igt_assert(e);
+> > Duplicated below. Helper for this?
+> > 
+> > Matt
+> Sure.
+> 
+> John.
+> 
+> > > +
+> > >   	gtt = gem_aperture_size(fd) / size;
+> > >   	ram = (intel_get_avail_ram_mb() << 20) / size;
+> > >   	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
+> > > @@ -518,9 +545,9 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
+> > >   	igt_require(count > 1);
+> > >   	intel_require_memory(count, size, CHECK_RAM);
+> > > -	ahnd = get_reloc_ahnd(fd, 0);
+> > > +	ahnd = get_reloc_ahnd(fd, ctx->id);
+> > > -	offsets = __captureN(fd, dir, ahnd, 0, size, count, flags);
+> > > +	offsets = __captureN(fd, dir, ahnd, ctx, e, size, count, flags);
+> > >   	blobs = check_error_state(dir, offsets, count, size, !!(flags & INCREMENTAL));
+> > >   	igt_info("Captured %lu %"PRId64"-blobs out of a total of %lu\n",
+> > > @@ -531,7 +558,7 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
+> > >   }
+> > >   static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
+> > > -		    unsigned ring, const char *name)
+> > > +		    const struct intel_execution_engine2 *e)
+> > >   {
+> > >   	const uint32_t bbe = MI_BATCH_BUFFER_END;
+> > >   	struct drm_i915_gem_exec_object2 obj = {
+> > > @@ -540,7 +567,7 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
+> > >   	struct drm_i915_gem_execbuffer2 execbuf = {
+> > >   		.buffers_ptr = to_user_pointer(&obj),
+> > >   		.buffer_count = 1,
+> > > -		.flags = ring,
+> > > +		.flags = e->flags,
+> > >   		.rsvd1 = ctx->id,
+> > >   	};
+> > >   	int64_t timeout = NSEC_PER_SEC; /* 1s, feeling generous, blame debug */
+> > > @@ -555,10 +582,6 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
+> > >   	igt_require(igt_params_set(fd, "reset", "%u", -1)); /* engine resets! */
+> > >   	igt_require(gem_gpu_reset_type(fd) > 1);
+> > > -	/* Needs to be fast enough for the hangcheck to return within 1s */
+> > > -	igt_require(gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 0) > 0);
+> > > -	gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 500);
+> > > -
+> > >   	gtt = gem_aperture_size(fd) / size;
+> > >   	ram = (intel_get_avail_ram_mb() << 20) / size;
+> > >   	igt_debug("Available objects in GTT:%"PRIu64", RAM:%"PRIu64"\n",
+> > > @@ -576,15 +599,19 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
+> > >   	igt_assert(pipe(link) == 0);
+> > >   	igt_fork(child, 1) {
+> > > +		const intel_ctx_t *ctx2;
+> > >   		fd = gem_reopen_driver(fd);
+> > >   		igt_debug("Submitting large capture [%ld x %dMiB objects]\n",
+> > >   			  count, (int)(size >> 20));
+> > > +		ctx2 = intel_ctx_create_all_physical(fd);
+> > > +		igt_assert(ctx2);
+> > > +
+> > >   		intel_allocator_init();
+> > >   		/* Reopen the allocator in the new process. */
+> > > -		ahnd = get_reloc_ahnd(fd, 0);
+> > > +		ahnd = get_reloc_ahnd(fd, ctx2->id);
+> > > -		free(__captureN(fd, dir, ahnd, ring, size, count, ASYNC));
+> > > +		free(__captureN(fd, dir, ahnd, ctx2, e, size, count, ASYNC));
+> > >   		put_ahnd(ahnd);
+> > >   		write(link[1], &fd, sizeof(fd)); /* wake the parent up */
+> > > @@ -615,18 +642,27 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
+> > >   static void userptr(int fd, int dir)
+> > >   {
+> > > -	const intel_ctx_t *ctx = intel_ctx_0(fd);
+> > > +	const struct intel_execution_engine2 *e;
+> > > +	const intel_ctx_t *ctx;
+> > >   	uint32_t handle;
+> > >   	uint64_t ahnd;
+> > >   	void *ptr;
+> > >   	int obj_size = 4096;
+> > > +	/* Find the first available engine: */
+> > > +	ctx = intel_ctx_create_all_physical(fd);
+> > > +	igt_assert(ctx);
+> > > +	for_each_ctx_engine(fd, ctx, e)
+> > > +		for_each_if(gem_class_can_store_dword(fd, e->class))
+> > > +			break;
+> > > +	igt_assert(e);
+> > > +
+> > >   	igt_assert(posix_memalign(&ptr, obj_size, obj_size) == 0);
+> > >   	memset(ptr, 0, obj_size);
+> > >   	igt_require(__gem_userptr(fd, ptr, obj_size, 0, 0, &handle) == 0);
+> > >   	ahnd = get_reloc_ahnd(fd, ctx->id);
+> > > -	__capture1(fd, dir, ahnd, intel_ctx_0(fd), 0, handle, obj_size);
+> > > +	__capture1(fd, dir, ahnd, ctx, e, handle, obj_size);
+> > >   	gem_close(fd, handle);
+> > >   	put_ahnd(ahnd);
+> > > @@ -684,7 +720,7 @@ igt_main
+> > >   	}
+> > >   	test_each_engine("capture", fd, ctx, e)
+> > > -		capture(fd, dir, ctx, e->flags);
+> > > +		capture(fd, dir, ctx, e);
+> > >   	igt_subtest_f("many-4K-zero") {
+> > >   		igt_require(gem_can_store_dword(fd, 0));
+> > > @@ -719,7 +755,7 @@ igt_main
+> > >   	}
+> > >   	test_each_engine("pi", fd, ctx, e)
+> > > -		prioinv(fd, dir, ctx, e->flags, e->name);
+> > > +		prioinv(fd, dir, ctx, e);
+> > >   	igt_fixture {
+> > >   		close(dir);
+> > > -- 
+> > > 2.25.1
+> > > 
+> 
