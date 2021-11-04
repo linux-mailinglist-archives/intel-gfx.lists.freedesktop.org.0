@@ -1,43 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EBB4458C2
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 18:37:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D5BE44590A
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 18:53:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB8EF736B5;
-	Thu,  4 Nov 2021 17:37:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09E3A7376D;
+	Thu,  4 Nov 2021 17:53:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 019C4736B5
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 17:37:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="255400762"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="255400762"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 10:37:40 -0700
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="450302741"
-Received: from jrgrant-mobl.ger.corp.intel.com (HELO [10.213.221.26])
- ([10.213.221.26])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 10:37:39 -0700
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20211103224708.1931-1-umesh.nerlige.ramappa@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <68f76da9-6b70-fee4-6cc6-17e74c867bd2@linux.intel.com>
-Date: Thu, 4 Nov 2021 17:37:37 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+X-Greylist: delayed 964 seconds by postgrey-1.36 at gabe;
+ Thu, 04 Nov 2021 17:53:53 UTC
+Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com
+ [91.221.196.228])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6002473708
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 17:53:53 +0000 (UTC)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+ by mx2.smtp.larsendata.com (Halon) with ESMTPS
+ id f930fe11-3d95-11ec-ac3c-0050568cd888;
+ Thu, 04 Nov 2021 17:38:08 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
+ [80.162.45.141])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: sam@ravnborg.org)
+ by mail01.mxhotel.dk (Postfix) with ESMTPSA id 0354C194B43;
+ Thu,  4 Nov 2021 18:37:40 +0100 (CET)
+Date: Thu, 4 Nov 2021 18:37:38 +0100
+X-Report-Abuse-To: abuse@mxhotel.dk
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Message-ID: <YYQaYsCr+piMlRpS@ravnborg.org>
+References: <20211104160707.1407052-1-javierm@redhat.com>
+ <20211104160707.1407052-2-javierm@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20211103224708.1931-1-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Fix synchronization of PMU
- callback with reset
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211104160707.1407052-2-javierm@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Add a drm_drv_enabled() to
+ check if drivers should be enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,79 +51,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, amd-gfx@lists.freedesktop.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
+ Peter Robinson <pbrobinson@gmail.com>,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
+ virtualization@lists.linux-foundation.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ spice-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Javier,
 
-On 03/11/2021 22:47, Umesh Nerlige Ramappa wrote:
-> Since the PMU callback runs in irq context, it synchronizes with gt
-> reset using the reset count. We could run into a case where the PMU
-> callback could read the reset count before it is updated. This has a
-> potential of corrupting the busyness stats.
+On Thu, Nov 04, 2021 at 05:07:06PM +0100, Javier Martinez Canillas wrote:
+> Some DRM drivers check the vgacon_text_force() function return value as an
+> indication on whether they should be allowed to be enabled or not.
 > 
-> In addition to the reset count, check if the reset bit is set before
-> capturing busyness.
+> This function returns true if the nomodeset kernel command line parameter
+> was set. But there may be other conditions besides this to determine if a
+> driver should be enabled.
 > 
-> In addition save the previous stats only if you intend to update them.
+> Let's add a drm_drv_enabled() helper function to encapsulate that logic so
+> can be later extended if needed, without having to modify all the drivers.
 > 
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> Also, while being there do some cleanup. The vgacon_text_force() function
+> is guarded by CONFIG_VGA_CONSOLE and there's no need for callers to do it.
+> 
+> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 ++++++++----
->   1 file changed, 8 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 5cc49c0b3889..d83ade77ca07 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1183,6 +1183,7 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
->   	u64 total, gt_stamp_saved;
->   	unsigned long flags;
->   	u32 reset_count;
-> +	bool in_reset;
->   
->   	spin_lock_irqsave(&guc->timestamp.lock, flags);
->   
-> @@ -1191,7 +1192,9 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
->   	 * engine busyness from GuC, so we just use the driver stored
->   	 * copy of busyness. Synchronize with gt reset using reset_count.
->   	 */
-> -	reset_count = i915_reset_count(gpu_error);
-> +	rcu_read_lock();
-> +	in_reset = test_bit(I915_RESET_BACKOFF, &gt->reset.flags);
-> +	rcu_read_unlock();
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 8214a0b1ab7f..3fb567d62881 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -975,6 +975,26 @@ int drm_dev_set_unique(struct drm_device *dev, const char *name)
+>  }
+>  EXPORT_SYMBOL(drm_dev_set_unique);
+>  
+> +/**
+> + * drm_drv_enabled - Checks if a DRM driver can be enabled
+> + * @driver: DRM driver to check
+> + *
+> + * Checks whether a DRM driver can be enabled or not. This may be the case
+> + * if the "nomodeset" kernel command line parameter is used.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int drm_drv_enabled(const struct drm_driver *driver)
+> +{
+> +	if (vgacon_text_force()) {
+> +		DRM_INFO("%s driver is disabled\n", driver->name);
 
-I don't really understand the point of rcu_read_lock over test_bit but I 
-guess you copied it from the trylock loop.
+DRM_INFO is deprecated, please do not use it in new code.
+Also other users had an error message and not just info - is info
+enough?
 
->   
->   	*now = ktime_get();
->   
-> @@ -1201,9 +1204,10 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
->   	 * start_gt_clk is derived from GuC state. To get a consistent
->   	 * view of activity, we query the GuC state only if gt is awake.
->   	 */
-> -	stats_saved = *stats;
-> -	gt_stamp_saved = guc->timestamp.gt_stamp;
-> -	if (intel_gt_pm_get_if_awake(gt)) {
-> +	if (intel_gt_pm_get_if_awake(gt) && !in_reset) {
 
-What is the point of looking at the old value of in_reset here?  Gut 
-feeling says if there is a race this does not fix it.
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_drv_enabled);
+> +
+>  /*
+>   * DRM Core
+>   * The DRM core module initializes all global DRM objects and makes them
+> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+> index ab2295dd4500..45cb3e540eff 100644
+> --- a/drivers/gpu/drm/i915/i915_module.c
+> +++ b/drivers/gpu/drm/i915/i915_module.c
+> @@ -18,9 +18,12 @@
+>  #include "i915_selftest.h"
+>  #include "i915_vma.h"
+>  
+> +static const struct drm_driver driver;
+Hmmm...
 
-I did not figure out from the commit message what does "could read the 
-reset count before it is updated" mean? I thought the point of reading 
-the reset count twice was that you are sure there was no reset while in 
-here, in which case it is safe to update the software copy. I don't 
-easily see what test_bit does on top.
+> +
+>  static int i915_check_nomodeset(void)
+>  {
+>  	bool use_kms = true;
+> +	int ret;
+>  
+>  	/*
+>  	 * Enable KMS by default, unless explicitly overriden by
+> @@ -31,7 +34,8 @@ static int i915_check_nomodeset(void)
+>  	if (i915_modparams.modeset == 0)
+>  		use_kms = false;
+>  
+> -	if (vgacon_text_force() && i915_modparams.modeset == -1)
+> +	ret = drm_drv_enabled(&driver);
 
-Regards,
+You pass the local driver variable here - which looks wrong as this is
+not the same as the driver variable declared in another file.
 
-Tvrtko
+Maybe move the check to new function you can add to init_funcs,
+and locate the new function in i915_drv - so it has access to driver?
 
-> +		stats_saved = *stats;
-> +		gt_stamp_saved = guc->timestamp.gt_stamp;
-> +		reset_count = i915_reset_count(gpu_error);
->   		guc_update_engine_gt_clks(engine);
->   		guc_update_pm_timestamp(guc, engine, now);
->   		intel_gt_pm_put_async(gt);
-> 
+
+	Sam
