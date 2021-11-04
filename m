@@ -2,37 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 504F6445902
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 18:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3FCC445918
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 18:56:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 552DA6FA66;
-	Thu,  4 Nov 2021 17:52:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F78A6E9B1;
+	Thu,  4 Nov 2021 17:56:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1D76F98E;
- Thu,  4 Nov 2021 17:52:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="231707784"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="231707784"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F07816E9B1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 17:56:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="229223026"
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="229223026"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 10:52:25 -0700
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="501632247"
-Received: from mihaelac-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.32.21])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 10:52:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mark Yacoub <markyacoub@chromium.org>
-In-Reply-To: <20211104165046.4115042-1-markyacoub@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211104165046.4115042-1-markyacoub@chromium.org>
-Date: Thu, 04 Nov 2021 19:52:18 +0200
-Message-ID: <87tugrajvx.fsf@intel.com>
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 10:56:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="501633373"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga008.jf.intel.com with ESMTP; 04 Nov 2021 10:56:54 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Thu, 4 Nov 2021 10:56:53 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Thu, 4 Nov 2021 10:56:53 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Thu, 4 Nov 2021 10:56:52 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v3] drm/i915/display: Exit PSR when doing async flips
+Thread-Index: AQHX0B92nRX8l2W6FEaCArnarxX/56vz4H4AgABBIAA=
+Date: Thu, 4 Nov 2021 17:56:52 +0000
+Message-ID: <50dd687c006667f95dab06cfbcfbef8a6e193496.camel@intel.com>
+References: <20211102193214.99448-1-jose.souza@intel.com>
+ <YYPpysij7Oovwzhx@intel.com>
+In-Reply-To: <YYPpysij7Oovwzhx@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F6CEFCD155C68F4EAC5836AB294F8073@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v4 1/3] drm: Move drm_color_lut_check
- implementation internal to intel_color
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Exit PSR when doing
+ async flips
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,300 +64,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pmenzel@molgen.mpg.de, David Airlie <airlied@linux.ie>,
- Mark Yacoub <markyacoub@chromium.org>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- seanpaul@chromium.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Mark Yacoub <markyacoub@google.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 Nov 2021, Mark Yacoub <markyacoub@chromium.org> wrote:
-> From: Mark Yacoub <markyacoub@google.com>
->
-> [Why]
-> The tests of LUT_EQUAL_CHANNELS and LUT_NON_DECREASING are currently
-> unique to i915 driver.
-> Freeing up the function name for the more generic LUT checks to folllow
->
-> Tested on Eldrid ChromeOS (TGL).
->
-> v1:
-> Stuff the test function from DRM to intel driver.
->
-> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> ---
->  drivers/gpu/drm/drm_color_mgmt.c           | 43 ----------------------
->  drivers/gpu/drm/i915/display/intel_color.c | 43 +++++++++++++++++++---
->  drivers/gpu/drm/i915/display/intel_color.h | 27 ++++++++++++++
->  drivers/gpu/drm/i915/i915_pci.c            | 27 ++++++++------
->  include/drm/drm_color_mgmt.h               | 27 --------------
->  5 files changed, 81 insertions(+), 86 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
-> index bb14f488c8f6c..16a07f84948f3 100644
-> --- a/drivers/gpu/drm/drm_color_mgmt.c
-> +++ b/drivers/gpu/drm/drm_color_mgmt.c
-> @@ -583,46 +583,3 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
->  	return 0;
->  }
->  EXPORT_SYMBOL(drm_plane_create_color_properties);
-> -
-> -/**
-> - * drm_color_lut_check - check validity of lookup table
-> - * @lut: property blob containing LUT to check
-> - * @tests: bitmask of tests to run
-> - *
-> - * Helper to check whether a userspace-provided lookup table is valid and
-> - * satisfies hardware requirements.  Drivers pass a bitmask indicating which of
-> - * the tests in &drm_color_lut_tests should be performed.
-> - *
-> - * Returns 0 on success, -EINVAL on failure.
-> - */
-> -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests)
-> -{
-> -	const struct drm_color_lut *entry;
-> -	int i;
-> -
-> -	if (!lut || !tests)
-> -		return 0;
-> -
-> -	entry = lut->data;
-> -	for (i = 0; i < drm_color_lut_size(lut); i++) {
-> -		if (tests & DRM_COLOR_LUT_EQUAL_CHANNELS) {
-> -			if (entry[i].red != entry[i].blue ||
-> -			    entry[i].red != entry[i].green) {
-> -				DRM_DEBUG_KMS("All LUT entries must have equal r/g/b\n");
-> -				return -EINVAL;
-> -			}
-> -		}
-> -
-> -		if (i > 0 && tests & DRM_COLOR_LUT_NON_DECREASING) {
-> -			if (entry[i].red < entry[i - 1].red ||
-> -			    entry[i].green < entry[i - 1].green ||
-> -			    entry[i].blue < entry[i - 1].blue) {
-> -				DRM_DEBUG_KMS("LUT entries must never decrease.\n");
-> -				return -EINVAL;
-> -			}
-> -		}
-> -	}
-> -
-> -	return 0;
-> -}
-> -EXPORT_SYMBOL(drm_color_lut_check);
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index dab892d2251ba..bde98a155c9f3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1279,13 +1279,46 @@ static int check_lut_size(const struct drm_property_blob *lut, int expected)
->  	return 0;
->  }
->  
-> +static int test_luts(const struct drm_property_blob *lut, u32 tests)
-> +{
-> +	const struct drm_color_lut *entry;
-> +	int i;
-> +
-> +	if (!lut || !tests)
-> +		return 0;
-> +
-> +	entry = lut->data;
-> +	for (i = 0; i < drm_color_lut_size(lut); i++) {
-> +		if (tests & LUT_EQUAL_CHANNELS) {
-> +			if (entry[i].red != entry[i].blue ||
-> +			    entry[i].red != entry[i].green) {
-> +				DRM_DEBUG_KMS(
-> +					"All LUT entries must have equal r/g/b\n");
-> +				return -EINVAL;
-> +			}
-> +		}
-> +
-> +		if (i > 0 && tests & LUT_NON_DECREASING) {
-> +			if (entry[i].red < entry[i - 1].red ||
-> +			    entry[i].green < entry[i - 1].green ||
-> +			    entry[i].blue < entry[i - 1].blue) {
-> +				DRM_DEBUG_KMS(
-> +					"LUT entries must never decrease.\n");
-> +				return -EINVAL;
-> +			}
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int check_luts(const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
->  	const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
->  	const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
->  	int gamma_length, degamma_length;
-> -	u32 gamma_tests, degamma_tests;
-> +	u32 gamma_channels_tests, degamma_channels_tests;
->  
->  	/* Always allow legacy gamma LUT with no further checking. */
->  	if (crtc_state_is_legacy_gamma(crtc_state))
-> @@ -1300,15 +1333,15 @@ static int check_luts(const struct intel_crtc_state *crtc_state)
->  
->  	degamma_length = INTEL_INFO(dev_priv)->color.degamma_lut_size;
->  	gamma_length = INTEL_INFO(dev_priv)->color.gamma_lut_size;
-> -	degamma_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
-> -	gamma_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
-> +	degamma_channels_tests = INTEL_INFO(dev_priv)->color.degamma_lut_tests;
-> +	gamma_channels_tests = INTEL_INFO(dev_priv)->color.gamma_lut_tests;
->  
->  	if (check_lut_size(degamma_lut, degamma_length) ||
->  	    check_lut_size(gamma_lut, gamma_length))
->  		return -EINVAL;
->  
-> -	if (drm_color_lut_check(degamma_lut, degamma_tests) ||
-> -	    drm_color_lut_check(gamma_lut, gamma_tests))
-> +	if (test_luts(degamma_lut, degamma_channels_tests) ||
-> +	    test_luts(gamma_lut, gamma_channels_tests))
->  		return -EINVAL;
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
-> index 173727aaa24d2..621f8f2c95467 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.h
-> +++ b/drivers/gpu/drm/i915/display/intel_color.h
-> @@ -7,11 +7,38 @@
->  #define __INTEL_COLOR_H__
->  
->  #include <linux/types.h>
-> +#include <linux/bits.h>
->  
->  struct intel_crtc_state;
->  struct intel_crtc;
->  struct drm_property_blob;
->  
-> +/**
-> + * enum lut_channels_tests - hw-specific LUT tests to perform
-> + *
-> + * The test_luts() function takes a bitmask of the values here to
-> + * determine which tests to apply to a userspace-provided LUT.
-> + */
-> +enum lut_channels_tests {
-> +	/**
-> +	 * @LUT_EQUAL_CHANNELS:
-> +	 *
-> +	 * Checks whether the entries of a LUT all have equal values for the
-> +	 * red, green, and blue channels.  Intended for hardware that only
-> +	 * accepts a single value per LUT entry and assumes that value applies
-> +	 * to all three color components.
-> +	 */
-> +	LUT_EQUAL_CHANNELS = BIT(0),
-> +
-> +	/**
-> +	 * @LUT_NON_DECREASING:
-> +	 *
-> +	 * Checks whether the entries of a LUT are always flat or increasing
-> +	 * (never decreasing).
-> +	 */
-> +	LUT_NON_DECREASING = BIT(1),
-> +};
-
-IMO using enums for defining bits is semantically wrong. These are not
-enumerations. The enum as a type is not used for anything. I'd just make
-these macros.
-
-Everything defined here should be prefixed intel_color_ or INTEL_COLOR_.
-
-BR,
-Jani.
-
-
-> +
->  void intel_color_init(struct intel_crtc *crtc);
->  int intel_color_check(struct intel_crtc_state *crtc_state);
->  void intel_color_commit(const struct intel_crtc_state *crtc_state);
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 5e8348f506b8d..17798cfc13eb4 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -29,6 +29,7 @@
->  #include <drm/i915_pciids.h>
->  
->  #include "display/intel_fbdev.h"
-> +#include "display/intel_color.h"
->  
->  #include "i915_drv.h"
->  #include "i915_perf.h"
-> @@ -132,23 +133,27 @@
->  
->  #define I9XX_COLORS \
->  	.color = { .gamma_lut_size = 256 }
-> -#define I965_COLORS \
-> -	.color = { .gamma_lut_size = 129, \
-> -		   .gamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
-> +#define I965_COLORS                                                            \
-> +	.color = {                                                             \
-> +		.gamma_lut_size = 129,                                         \
-> +		.gamma_lut_tests = LUT_NON_DECREASING,                         \
->  	}
->  #define ILK_COLORS \
->  	.color = { .gamma_lut_size = 1024 }
->  #define IVB_COLORS \
->  	.color = { .degamma_lut_size = 1024, .gamma_lut_size = 1024 }
-> -#define CHV_COLORS \
-> -	.color = { .degamma_lut_size = 65, .gamma_lut_size = 257, \
-> -		   .degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
-> -		   .gamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
-> +#define CHV_COLORS                                                             \
-> +	.color = {                                                             \
-> +		.degamma_lut_size = 65,                                        \
-> +		.gamma_lut_size = 257,                                         \
-> +		.degamma_lut_tests = LUT_NON_DECREASING,                       \
-> +		.gamma_lut_tests = LUT_NON_DECREASING,                         \
->  	}
-> -#define GLK_COLORS \
-> -	.color = { .degamma_lut_size = 33, .gamma_lut_size = 1024, \
-> -		   .degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING | \
-> -					DRM_COLOR_LUT_EQUAL_CHANNELS, \
-> +#define GLK_COLORS                                                             \
-> +	.color = {                                                             \
-> +		.degamma_lut_size = 33,                                        \
-> +		.gamma_lut_size = 1024,                                        \
-> +		.degamma_lut_tests = LUT_NON_DECREASING | LUT_EQUAL_CHANNELS,  \
->  	}
->  
->  /* Keep in gen based order, and chronological order within a gen */
-> diff --git a/include/drm/drm_color_mgmt.h b/include/drm/drm_color_mgmt.h
-> index 81c298488b0c8..3537f3eeb3872 100644
-> --- a/include/drm/drm_color_mgmt.h
-> +++ b/include/drm/drm_color_mgmt.h
-> @@ -93,31 +93,4 @@ int drm_plane_create_color_properties(struct drm_plane *plane,
->  				      enum drm_color_encoding default_encoding,
->  				      enum drm_color_range default_range);
->  
-> -/**
-> - * enum drm_color_lut_tests - hw-specific LUT tests to perform
-> - *
-> - * The drm_color_lut_check() function takes a bitmask of the values here to
-> - * determine which tests to apply to a userspace-provided LUT.
-> - */
-> -enum drm_color_lut_tests {
-> -	/**
-> -	 * @DRM_COLOR_LUT_EQUAL_CHANNELS:
-> -	 *
-> -	 * Checks whether the entries of a LUT all have equal values for the
-> -	 * red, green, and blue channels.  Intended for hardware that only
-> -	 * accepts a single value per LUT entry and assumes that value applies
-> -	 * to all three color components.
-> -	 */
-> -	DRM_COLOR_LUT_EQUAL_CHANNELS = BIT(0),
-> -
-> -	/**
-> -	 * @DRM_COLOR_LUT_NON_DECREASING:
-> -	 *
-> -	 * Checks whether the entries of a LUT are always flat or increasing
-> -	 * (never decreasing).
-> -	 */
-> -	DRM_COLOR_LUT_NON_DECREASING = BIT(1),
-> -};
-> -
-> -int drm_color_lut_check(const struct drm_property_blob *lut, u32 tests);
->  #endif
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+T24gVGh1LCAyMDIxLTExLTA0IGF0IDE2OjEwICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFR1ZSwgTm92IDAyLCAyMDIxIGF0IDEyOjMyOjE0UE0gLTA3MDAsIEpvc8OpIFJvYmVy
+dG8gZGUgU291emEgd3JvdGU6DQo+ID4gQ2hhbmdpbmcgdGhlIGJ1ZmZlciBpbiB0aGUgbWlkZGxl
+IG9mIHRoZSBzY2Fub3V0IHRoZW4gZW50ZXJpbmcgYW4NCj4gPiBwZXJpb2Qgb2YgZmxpcCBpZGxl
+bmVzcyB3aWxsIGNhdXNlIHBhcnQgb2YgdGhlIHByZXZpb3VzIGJ1ZmZlciBiZWluZw0KPiA+IGRp
+cGxheWVkIHRvIHVzZXIgd2hlbiBQU1IgaXMgZW5hYmxlZC4NCj4gPiANCj4gPiBTbyBoZXJlIGRp
+c2FibGluZyBQU1IgYW5kIHNjaGVkdWxpbmcgYWN0aXZhdGlvbiBkdXJpbmcgdGhlIG5leHQNCj4g
+PiBzeW5jIGZsaXAuDQo+ID4gDQo+ID4gVGhlIGFzeW5jIGZsaXAgY2hlY2sgdGhhdCB3ZSBoYWQg
+aW4gUFNSIGNvbXB1dGUgaXMgbm90IGV4ZWN1dGVkIGF0DQo+ID4gZXZlcnkgZmxpcCBzbyBpdCB3
+YXMgbm90IGRvaW5nIGFueXRoaW5nIHVzZWZ1bCBhbmQgaXMgYWxzbyBiZWluZw0KPiA+IGRyb3Bw
+ZWQgaGVyZS4NCj4gPiANCj4gPiB2MjoNCj4gPiAtIHNjaGVkdWxpbmcgdGhlIFBTUiB3b3JrIGlu
+IF9pbnRlbF9wc3JfcG9zdF9wbGFuZV91cGRhdGUoKQ0KPiA+IA0KPiA+IHYzOg0KPiA+IC0gb25s
+eSByZSBlbmFibGluZyBQU1Igd2hlbiBkb2luZyBhIHN5bmMgZmxpcA0KPiA+IA0KPiA+IENjOiBL
+YXJ0aGlrIEIgUyA8a2FydGhpay5iLnNAaW50ZWwuY29tPg0KPiA+IENjOiBWYW5kaXRhIEt1bGth
+cm5pIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4NCj4gPiBDYzogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gPiBDYzogUm9kcmlnbyBWaXZpIDxy
+b2RyaWdvLnZpdmlAaW50ZWwuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8g
+ZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgMzcgKysrKysrKysrKysrKystLS0tLS0t
+LS0tDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspLCAxNiBkZWxldGlvbnMo
+LSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4g
+PiBpbmRleCA5ZDU4OWQ0NzFlMzM1Li5iOGZhYzUzZDU3ZGYxIDEwMDY0NA0KPiA+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gQEAgLTczMSwxMiArNzMxLDYg
+QEAgc3RhdGljIGJvb2wgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfY29uZmlnX3ZhbGlkKHN0cnVjdCBp
+bnRlbF9kcCAqaW50ZWxfZHAsDQo+ID4gIAkJcmV0dXJuIGZhbHNlOw0KPiA+ICAJfQ0KPiA+ICAN
+Cj4gPiAtCWlmIChjcnRjX3N0YXRlLT51YXBpLmFzeW5jX2ZsaXApIHsNCj4gPiAtCQlkcm1fZGJn
+X2ttcygmZGV2X3ByaXYtPmRybSwNCj4gPiAtCQkJICAgICJQU1IyIHNlbCBmZXRjaCBub3QgZW5h
+YmxlZCwgYXN5bmMgZmxpcCBlbmFibGVkXG4iKTsNCj4gPiAtCQlyZXR1cm4gZmFsc2U7DQo+ID4g
+LQl9DQo+ID4gLQ0KPiA+ICAJLyogV2FfMTQwMTAyNTQxODUgV2FfMTQwMTAxMDM3OTIgKi8NCj4g
+PiAgCWlmIChJU19UR0xfRElTUExBWV9TVEVQKGRldl9wcml2LCBTVEVQX0EwLCBTVEVQX0MwKSkg
+ew0KPiA+ICAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLA0KPiA+IEBAIC0xNzgwLDM2ICsx
+Nzc0LDQ3IEBAIHZvaWQgaW50ZWxfcHNyX3ByZV9wbGFuZV91cGRhdGUoc3RydWN0IGludGVsX2F0
+b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gIAkJaWYgKHBzci0+ZW5hYmxlZCAmJiBuZWVkc190b19k
+aXNhYmxlKQ0KPiA+ICAJCQlpbnRlbF9wc3JfZGlzYWJsZV9sb2NrZWQoaW50ZWxfZHApOw0KPiA+
+ICANCj4gPiArCQlpZiAocHNyLT5lbmFibGVkICYmIGNydGNfc3RhdGUtPnVhcGkuYXN5bmNfZmxp
+cCkNCj4gPiArCQkJaW50ZWxfcHNyX2V4aXQoaW50ZWxfZHApOw0KPiA+ICsNCj4gPiAgCQltdXRl
+eF91bmxvY2soJnBzci0+bG9jayk7DQo+ID4gIAl9DQo+ID4gIH0NCj4gPiAgDQo+ID4gIHN0YXRp
+YyB2b2lkIF9pbnRlbF9wc3JfcG9zdF9wbGFuZV91cGRhdGUoY29uc3Qgc3RydWN0IGludGVsX2F0
+b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gLQkJCQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
+YXRlICpjcnRjX3N0YXRlKQ0KPiA+ICsJCQkJCSBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
+ZSAqb2xkX2NydGNfc3RhdGUsDQo+ID4gKwkJCQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
+YXRlICpuZXdfY3J0Y19zdGF0ZSkNCj4gDQo+IE1pZ2h0IG1ha2Ugc2Vuc2UgdG8gY2hhbmdlIHRo
+aXMgdG8gbWF0Y2ggaG93IHBzcl9wcmVfcGxhbmVfdXBkYXRlKCkNCj4gd29ya3MgdGhlc2UgZGF5
+cy4NCg0KV2lsbCBkbyBhcyBmb2xsb3cgdXAuDQoNCj4gDQo+ID4gIHsNCj4gPiAgCXN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsNCj4g
+PiAgCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyOw0KPiA+ICANCj4gPiAtCWlmICghY3J0
+Y19zdGF0ZS0+aGFzX3BzcikNCj4gPiArCWlmICghbmV3X2NydGNfc3RhdGUtPmhhc19wc3IpDQo+
+ID4gIAkJcmV0dXJuOw0KPiA+ICANCj4gPiAgCWZvcl9lYWNoX2ludGVsX2VuY29kZXJfbWFza193
+aXRoX3BzcihzdGF0ZS0+YmFzZS5kZXYsIGVuY29kZXIsDQo+ID4gLQkJCQkJICAgICBjcnRjX3N0
+YXRlLT51YXBpLmVuY29kZXJfbWFzaykgew0KPiA+ICsJCQkJCSAgICAgbmV3X2NydGNfc3RhdGUt
+PnVhcGkuZW5jb2Rlcl9tYXNrKSB7DQo+ID4gIAkJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9
+IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gPiAgCQlzdHJ1Y3QgaW50ZWxfcHNyICpwc3Ig
+PSAmaW50ZWxfZHAtPnBzcjsNCj4gPiAgDQo+ID4gIAkJbXV0ZXhfbG9jaygmcHNyLT5sb2NrKTsN
+Cj4gPiAgDQo+ID4gLQkJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sIHBzci0+ZW5hYmxlZCAm
+JiAhY3J0Y19zdGF0ZS0+YWN0aXZlX3BsYW5lcyk7DQo+ID4gKwkJZHJtX1dBUk5fT04oJmRldl9w
+cml2LT5kcm0sIHBzci0+ZW5hYmxlZCAmJg0KPiA+ICsJCQkgICAgIW5ld19jcnRjX3N0YXRlLT5h
+Y3RpdmVfcGxhbmVzKTsNCj4gPiAgDQo+ID4gIAkJLyogT25seSBlbmFibGUgaWYgdGhlcmUgaXMg
+YWN0aXZlIHBsYW5lcyAqLw0KPiA+IC0JCWlmICghcHNyLT5lbmFibGVkICYmIGNydGNfc3RhdGUt
+PmFjdGl2ZV9wbGFuZXMpDQo+ID4gLQkJCWludGVsX3Bzcl9lbmFibGVfbG9ja2VkKGludGVsX2Rw
+LCBjcnRjX3N0YXRlKTsNCj4gPiArCQlpZiAoIXBzci0+ZW5hYmxlZCAmJiBuZXdfY3J0Y19zdGF0
+ZS0+YWN0aXZlX3BsYW5lcykNCj4gPiArCQkJaW50ZWxfcHNyX2VuYWJsZV9sb2NrZWQoaW50ZWxf
+ZHAsIG5ld19jcnRjX3N0YXRlKTsNCj4gDQo+IFdoYXQgcHJldmVudHMgdGhpcyBndXkgZnJvbSBh
+Y3RpdmF0aW5nIFBTUiB3aGlsZSB3ZSdyZSBkb2luZw0KPiBhbiBhc3luYyBmbGlwPw0KDQplbmFi
+bGVkICE9IGFjdGl2ZSwgd2hlbiBkb2luZyBhIGFzeW5jIGZsaXAgaXQgd2lsbCBzZXQgYWN0aXZl
+ID0gZmFsc2UgYnV0IGVuYWJsZWQgd2lsbCBiZSBrZXB0IG9uLg0KDQpBbmQgdG8gY2hhbmdlIHRo
+ZSBudW1iZXIgb2YgYWN0aXZlX3BsYW5lcyBpdCB3aWxsIG5lZWQgdG8gZG8gYSBzeW5jIGZsaXAs
+IHNvIHdlIGFyZSBzYWZlLg0KDQo+IA0KPiA+ICANCj4gPiAgCQkvKiBGb3JjZSBhIFBTUiBleGl0
+IHdoZW4gZW5hYmxpbmcgQ1JDIHRvIGF2b2lkIENSQyB0aW1lb3V0cyAqLw0KPiA+IC0JCWlmIChj
+cnRjX3N0YXRlLT5jcmNfZW5hYmxlZCAmJiBwc3ItPmVuYWJsZWQpDQo+ID4gKwkJaWYgKG5ld19j
+cnRjX3N0YXRlLT5jcmNfZW5hYmxlZCAmJiBwc3ItPmVuYWJsZWQpDQo+ID4gIAkJCXBzcl9mb3Jj
+ZV9od190cmFja2luZ19leGl0KGludGVsX2RwKTsNCj4gPiAgDQo+ID4gKwkJLyogT25seSByZSBl
+bmFibGluZyBQU1Igd2hlbiBkb2luZyBhIHN5bmMgZmxpcCAqLw0KPiA+ICsJCWlmIChwc3ItPmVu
+YWJsZWQgJiYgIXBzci0+YWN0aXZlICYmDQo+ID4gKwkJICAgIG9sZF9jcnRjX3N0YXRlLT51YXBp
+LmFzeW5jX2ZsaXAgJiYNCj4gPiArCQkgICAgIW5ld19jcnRjX3N0YXRlLT51YXBpLmFzeW5jX2Zs
+aXApDQo+ID4gKwkJCXNjaGVkdWxlX3dvcmsoJmludGVsX2RwLT5wc3Iud29yayk7DQo+ID4gKw0K
+PiA+ICAJCW11dGV4X3VubG9jaygmcHNyLT5sb2NrKTsNCj4gPiAgCX0NCj4gPiAgfQ0KPiA+IEBA
+IC0xODE3LDE1ICsxODIyLDE1IEBAIHN0YXRpYyB2b2lkIF9pbnRlbF9wc3JfcG9zdF9wbGFuZV91
+cGRhdGUoY29uc3Qgc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gIHZvaWQg
+aW50ZWxfcHNyX3Bvc3RfcGxhbmVfdXBkYXRlKGNvbnN0IHN0cnVjdCBpbnRlbF9hdG9taWNfc3Rh
+dGUgKnN0YXRlKQ0KPiA+ICB7DQo+ID4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYgPSB0b19pOTE1KHN0YXRlLT5iYXNlLmRldik7DQo+ID4gLQlzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZTsNCj4gPiArCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0
+Y19zdGF0ZSwgKm5ld19jcnRjX3N0YXRlOw0KPiA+ICAJc3RydWN0IGludGVsX2NydGMgKmNydGM7
+DQo+ID4gIAlpbnQgaTsNCj4gPiAgDQo+ID4gIAlpZiAoIUhBU19QU1IoZGV2X3ByaXYpKQ0KPiA+
+ICAJCXJldHVybjsNCj4gPiAgDQo+ID4gLQlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0Y19pbl9zdGF0
+ZShzdGF0ZSwgY3J0YywgY3J0Y19zdGF0ZSwgaSkNCj4gPiAtCQlfaW50ZWxfcHNyX3Bvc3RfcGxh
+bmVfdXBkYXRlKHN0YXRlLCBjcnRjX3N0YXRlKTsNCj4gPiArCWZvcl9lYWNoX29sZG5ld19pbnRl
+bF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBvbGRfY3J0Y19zdGF0ZSwgbmV3X2NydGNfc3Rh
+dGUsIGkpDQo+ID4gKwkJX2ludGVsX3Bzcl9wb3N0X3BsYW5lX3VwZGF0ZShzdGF0ZSwgb2xkX2Ny
+dGNfc3RhdGUsIG5ld19jcnRjX3N0YXRlKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgc3RhdGljIGlu
+dCBfcHNyMl9yZWFkeV9mb3JfcGlwZV91cGRhdGVfbG9ja2VkKHN0cnVjdCBpbnRlbF9kcCAqaW50
+ZWxfZHApDQo+ID4gLS0gDQo+ID4gMi4zMy4xDQo+IA0KDQo=
