@@ -1,41 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA754454E7
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 15:16:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB31A445541
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 15:23:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9DA9892E6;
-	Thu,  4 Nov 2021 14:15:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF5A96F42D;
+	Thu,  4 Nov 2021 14:23:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9CB6F39F
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 14:15:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="255352028"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="255352028"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 07:10:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="542242373"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 04 Nov 2021 07:10:19 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Nov 2021 16:10:18 +0200
-Date: Thu, 4 Nov 2021 16:10:18 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <YYPpysij7Oovwzhx@intel.com>
-References: <20211102193214.99448-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8B43D6F42D;
+ Thu,  4 Nov 2021 14:23:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8329AA00C9;
+ Thu,  4 Nov 2021 14:23:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211102193214.99448-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Exit PSR when doing
- async flips
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 04 Nov 2021 14:23:22 -0000
+Message-ID: <163603580253.6349.5716895153304860317@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211104110718.688420-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211104110718.688420-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Failsafe_migration_blits_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,139 +40,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 02, 2021 at 12:32:14PM -0700, José Roberto de Souza wrote:
-> Changing the buffer in the middle of the scanout then entering an
-> period of flip idleness will cause part of the previous buffer being
-> diplayed to user when PSR is enabled.
-> 
-> So here disabling PSR and scheduling activation during the next
-> sync flip.
-> 
-> The async flip check that we had in PSR compute is not executed at
-> every flip so it was not doing anything useful and is also being
-> dropped here.
-> 
-> v2:
-> - scheduling the PSR work in _intel_psr_post_plane_update()
-> 
-> v3:
-> - only re enabling PSR when doing a sync flip
-> 
-> Cc: Karthik B S <karthik.b.s@intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 37 ++++++++++++++----------
->  1 file changed, 21 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 9d589d471e335..b8fac53d57df1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -731,12 +731,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
->  		return false;
->  	}
->  
-> -	if (crtc_state->uapi.async_flip) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "PSR2 sel fetch not enabled, async flip enabled\n");
-> -		return false;
-> -	}
-> -
->  	/* Wa_14010254185 Wa_14010103792 */
->  	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
->  		drm_dbg_kms(&dev_priv->drm,
-> @@ -1780,36 +1774,47 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
->  		if (psr->enabled && needs_to_disable)
->  			intel_psr_disable_locked(intel_dp);
->  
-> +		if (psr->enabled && crtc_state->uapi.async_flip)
-> +			intel_psr_exit(intel_dp);
-> +
->  		mutex_unlock(&psr->lock);
->  	}
->  }
->  
->  static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
-> -					 const struct intel_crtc_state *crtc_state)
-> +					 const struct intel_crtc_state *old_crtc_state,
-> +					 const struct intel_crtc_state *new_crtc_state)
+== Series Details ==
 
-Might make sense to change this to match how psr_pre_plane_update()
-works these days.
+Series: drm/i915: Failsafe migration blits (rev7)
+URL   : https://patchwork.freedesktop.org/series/95617/
+State : warning
 
->  {
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->  	struct intel_encoder *encoder;
->  
-> -	if (!crtc_state->has_psr)
-> +	if (!new_crtc_state->has_psr)
->  		return;
->  
->  	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
-> -					     crtc_state->uapi.encoder_mask) {
-> +					     new_crtc_state->uapi.encoder_mask) {
->  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  		struct intel_psr *psr = &intel_dp->psr;
->  
->  		mutex_lock(&psr->lock);
->  
-> -		drm_WARN_ON(&dev_priv->drm, psr->enabled && !crtc_state->active_planes);
-> +		drm_WARN_ON(&dev_priv->drm, psr->enabled &&
-> +			    !new_crtc_state->active_planes);
->  
->  		/* Only enable if there is active planes */
-> -		if (!psr->enabled && crtc_state->active_planes)
-> -			intel_psr_enable_locked(intel_dp, crtc_state);
-> +		if (!psr->enabled && new_crtc_state->active_planes)
-> +			intel_psr_enable_locked(intel_dp, new_crtc_state);
+== Summary ==
 
-What prevents this guy from activating PSR while we're doing
-an async flip?
+$ dim checkpatch origin/drm-tip
+7fdc5097e400 drm/i915/ttm: Reorganize the ttm move code
+-:511: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#511: 
+new file mode 100644
 
->  
->  		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
-> -		if (crtc_state->crc_enabled && psr->enabled)
-> +		if (new_crtc_state->crc_enabled && psr->enabled)
->  			psr_force_hw_tracking_exit(intel_dp);
->  
-> +		/* Only re enabling PSR when doing a sync flip */
-> +		if (psr->enabled && !psr->active &&
-> +		    old_crtc_state->uapi.async_flip &&
-> +		    !new_crtc_state->uapi.async_flip)
-> +			schedule_work(&intel_dp->psr.work);
-> +
->  		mutex_unlock(&psr->lock);
->  	}
->  }
-> @@ -1817,15 +1822,15 @@ static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
->  void intel_psr_post_plane_update(const struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> -	struct intel_crtc_state *crtc_state;
-> +	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
->  	struct intel_crtc *crtc;
->  	int i;
->  
->  	if (!HAS_PSR(dev_priv))
->  		return;
->  
-> -	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i)
-> -		_intel_psr_post_plane_update(state, crtc_state);
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i)
-> +		_intel_psr_post_plane_update(state, old_crtc_state, new_crtc_state);
->  }
->  
->  static int _psr2_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
-> -- 
-> 2.33.1
+total: 0 errors, 1 warnings, 0 checks, 807 lines checked
+ddd7a78265a3 drm/i915/ttm: Failsafe migration blits
 
--- 
-Ville Syrjälä
-Intel
+
