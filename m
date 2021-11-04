@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990C044559C
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 15:45:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEC444559D
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 15:45:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7579E6E49C;
-	Thu,  4 Nov 2021 14:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4D96E4AF;
+	Thu,  4 Nov 2021 14:45:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB7C6E455
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 14:45:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="212463184"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="212463184"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 07:45:39 -0700
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 662316E4AF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 14:45:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="218618369"
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="218618369"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 07:45:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="450222732"
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="532287757"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 04 Nov 2021 07:45:36 -0700
+ by orsmga001.jf.intel.com with SMTP; 04 Nov 2021 07:45:39 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Nov 2021 16:45:35 +0200
+ Thu, 04 Nov 2021 16:45:39 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Nov 2021 16:45:08 +0200
-Message-Id: <20211104144520.22605-6-ville.syrjala@linux.intel.com>
+Date: Thu,  4 Nov 2021 16:45:09 +0200
+Message-Id: <20211104144520.22605-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211104144520.22605-1-ville.syrjala@linux.intel.com>
 References: <20211104144520.22605-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 05/17] drm/i915/fbc: Extract helpers to compute
- FBC control register values
+Subject: [Intel-gfx] [PATCH 06/17] drm/i915/fbc: Introduce intel_fbc_funcs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,256 +51,178 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Declutter the *_fbc_activate() functions by pulling all the
-control register value computations into helpers.
-
-I left the enable bit in *_fbc_activate() in the hopes of maybe
-using the helpers in the *_fbc_deactivate() paths as well instead
-of the current rmw approach. That won't be possible at least
-quite yet since we clobber the fbc->params before deactivating
-FBC so we could end up changing some of the values live, which
-given FBC's lack of/poor double buffering would likely not go
-so well.
+Replace the "if-ladders everywhere" approach with vfuncs.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 162 +++++++++++++----------
- 1 file changed, 94 insertions(+), 68 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 80 +++++++++++++++---------
+ drivers/gpu/drm/i915/i915_drv.h          |  3 +
+ 2 files changed, 55 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 4d7b156e46db..fbb96f6aaacd 100644
+index fbb96f6aaacd..a2e09b6d21c7 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -142,6 +142,48 @@ static unsigned int intel_fbc_cfb_size(struct drm_i915_private *dev_priv,
- 	return lines * intel_fbc_cfb_stride(dev_priv, cache);
+@@ -48,6 +48,13 @@
+ #include "intel_fbc.h"
+ #include "intel_frontbuffer.h"
+ 
++struct intel_fbc_funcs {
++	void (*activate)(struct drm_i915_private *i915);
++	void (*deactivate)(struct drm_i915_private *i915);
++	bool (*is_active)(struct drm_i915_private *i915);
++	bool (*is_compressing)(struct drm_i915_private *i915);
++};
++
+ /*
+  * For SKL+, the plane source size used by the hardware is based on the value we
+  * write to the PLANE_SIZE register. For BDW-, the hardware looks at the value
+@@ -236,6 +243,13 @@ static bool i8xx_fbc_is_compressing(struct drm_i915_private *i915)
+ 		(FBC_STAT_COMPRESSING | FBC_STAT_COMPRESSED);
  }
  
-+static u32 i8xx_fbc_ctl(struct drm_i915_private *i915)
-+{
-+	struct intel_fbc *fbc = &i915->fbc;
-+	const struct intel_fbc_reg_params *params = &fbc->params;
-+	unsigned int cfb_stride;
-+	u32 fbc_ctl;
++static const struct intel_fbc_funcs i8xx_fbc_funcs = {
++	.activate = i8xx_fbc_activate,
++	.deactivate = i8xx_fbc_deactivate,
++	.is_active = i8xx_fbc_is_active,
++	.is_compressing = i8xx_fbc_is_compressing,
++};
 +
-+	cfb_stride = params->cfb_stride / fbc->limit;
-+
-+	/* FBC_CTL wants 32B or 64B units */
-+	if (DISPLAY_VER(i915) == 2)
-+		cfb_stride = (cfb_stride / 32) - 1;
-+	else
-+		cfb_stride = (cfb_stride / 64) - 1;
-+
-+	fbc_ctl = FBC_CTL_PERIODIC |
-+		FBC_CTL_INTERVAL(params->interval) |
-+		FBC_CTL_STRIDE(cfb_stride);
-+
-+	if (IS_I945GM(i915))
-+		fbc_ctl |= FBC_CTL_C3_IDLE; /* 945 needs special SR handling */
-+
-+	if (params->fence_id >= 0)
-+		fbc_ctl |= FBC_CTL_FENCENO(params->fence_id);
-+
-+	return fbc_ctl;
-+}
-+
-+static u32 i965_fbc_ctl2(struct drm_i915_private *i915)
-+{
-+	const struct intel_fbc_reg_params *params = &i915->fbc.params;
-+	u32 fbc_ctl2;
-+
-+	fbc_ctl2 = FBC_CTL_FENCE_DBL | FBC_CTL_IDLE_IMM |
-+		FBC_CTL_PLANE(params->crtc.i9xx_plane);
-+
-+	if (params->fence_id >= 0)
-+		fbc_ctl2 |= FBC_CTL_CPU_FENCE;
-+
-+	return fbc_ctl2;
-+}
-+
- static void i8xx_fbc_deactivate(struct drm_i915_private *dev_priv)
+ static u32 g4x_dpfc_ctl_limit(struct drm_i915_private *i915)
  {
- 	u32 fbc_ctl;
-@@ -166,44 +208,21 @@ static void i8xx_fbc_activate(struct drm_i915_private *dev_priv)
- {
- 	struct intel_fbc *fbc = &dev_priv->fbc;
- 	const struct intel_fbc_reg_params *params = &fbc->params;
--	int cfb_pitch;
- 	int i;
--	u32 fbc_ctl;
--
--	cfb_pitch = params->cfb_stride / fbc->limit;
--
--	/* FBC_CTL wants 32B or 64B units */
--	if (DISPLAY_VER(dev_priv) == 2)
--		cfb_pitch = (cfb_pitch / 32) - 1;
--	else
--		cfb_pitch = (cfb_pitch / 64) - 1;
- 
- 	/* Clear old tags */
- 	for (i = 0; i < (FBC_LL_SIZE / 32) + 1; i++)
- 		intel_de_write(dev_priv, FBC_TAG(i), 0);
- 
- 	if (DISPLAY_VER(dev_priv) == 4) {
--		u32 fbc_ctl2;
--
--		/* Set it up... */
--		fbc_ctl2 = FBC_CTL_FENCE_DBL | FBC_CTL_IDLE_IMM;
--		fbc_ctl2 |= FBC_CTL_PLANE(params->crtc.i9xx_plane);
--		if (params->fence_id >= 0)
--			fbc_ctl2 |= FBC_CTL_CPU_FENCE;
--		intel_de_write(dev_priv, FBC_CONTROL2, fbc_ctl2);
-+		intel_de_write(dev_priv, FBC_CONTROL2,
-+			       i965_fbc_ctl2(dev_priv));
- 		intel_de_write(dev_priv, FBC_FENCE_OFF,
- 			       params->fence_y_offset);
- 	}
- 
--	/* enable it... */
--	fbc_ctl = FBC_CTL_INTERVAL(params->interval);
--	fbc_ctl |= FBC_CTL_EN | FBC_CTL_PERIODIC;
--	if (IS_I945GM(dev_priv))
--		fbc_ctl |= FBC_CTL_C3_IDLE; /* 945 needs special SR handling */
--	fbc_ctl |= FBC_CTL_STRIDE(cfb_pitch & 0xff);
--	if (params->fence_id >= 0)
--		fbc_ctl |= FBC_CTL_FENCENO(params->fence_id);
--	intel_de_write(dev_priv, FBC_CONTROL, fbc_ctl);
-+	intel_de_write(dev_priv, FBC_CONTROL,
-+		       FBC_CTL_EN | i8xx_fbc_ctl(dev_priv));
+ 	switch (i915->fbc.limit) {
+@@ -305,6 +319,13 @@ static bool g4x_fbc_is_compressing(struct drm_i915_private *i915)
+ 	return intel_de_read(i915, DPFC_STATUS) & DPFC_COMP_SEG_MASK;
  }
  
- static bool i8xx_fbc_is_active(struct drm_i915_private *dev_priv)
-@@ -232,23 +251,36 @@ static u32 g4x_dpfc_ctl_limit(struct drm_i915_private *i915)
- 	}
- }
- 
-+static u32 g4x_dpfc_ctl(struct drm_i915_private *i915)
-+{
-+	const struct intel_fbc_reg_params *params = &i915->fbc.params;
-+	u32 dpfc_ctl;
++static const struct intel_fbc_funcs g4x_fbc_funcs = {
++	.activate = g4x_fbc_activate,
++	.deactivate = g4x_fbc_deactivate,
++	.is_active = g4x_fbc_is_active,
++	.is_compressing = g4x_fbc_is_compressing,
++};
 +
-+	dpfc_ctl = g4x_dpfc_ctl_limit(i915) |
-+		DPFC_CTL_PLANE(params->crtc.i9xx_plane);
-+
-+	if (IS_G4X(i915))
-+		dpfc_ctl |= DPFC_SR_EN;
-+
-+	if (params->fence_id >= 0) {
-+		dpfc_ctl |= DPFC_CTL_FENCE_EN;
-+
-+		if (DISPLAY_VER(i915) < 6)
-+			dpfc_ctl |= params->fence_id;
-+	}
-+
-+	return dpfc_ctl;
-+}
-+
- static void g4x_fbc_activate(struct drm_i915_private *dev_priv)
- {
--	struct intel_fbc_reg_params *params = &dev_priv->fbc.params;
--	u32 dpfc_ctl;
--
--	dpfc_ctl = DPFC_CTL_PLANE(params->crtc.i9xx_plane) | DPFC_SR_EN;
--
--	dpfc_ctl |= g4x_dpfc_ctl_limit(dev_priv);
--
--	if (params->fence_id >= 0)
--		dpfc_ctl |= DPFC_CTL_FENCE_EN | params->fence_id;
-+	const struct intel_fbc_reg_params *params = &dev_priv->fbc.params;
- 
- 	intel_de_write(dev_priv, DPFC_FENCE_YOFF,
- 		       params->fence_y_offset);
- 
--	/* enable it... */
--	intel_de_write(dev_priv, DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
-+	intel_de_write(dev_priv, DPFC_CONTROL,
-+		       DPFC_CTL_EN | g4x_dpfc_ctl(dev_priv));
- }
- 
- static void g4x_fbc_deactivate(struct drm_i915_private *dev_priv)
-@@ -331,25 +363,15 @@ static void snb_fbc_program_fence(struct drm_i915_private *i915)
- static void ilk_fbc_activate(struct drm_i915_private *dev_priv)
+ static void i8xx_fbc_recompress(struct drm_i915_private *dev_priv)
  {
  	struct intel_fbc_reg_params *params = &dev_priv->fbc.params;
--	u32 dpfc_ctl;
--
--	dpfc_ctl = DPFC_CTL_PLANE(params->crtc.i9xx_plane);
--
--	dpfc_ctl |= g4x_dpfc_ctl_limit(dev_priv);
--
--	if (params->fence_id >= 0) {
--		dpfc_ctl |= DPFC_CTL_FENCE_EN;
--		if (IS_IRONLAKE(dev_priv))
--			dpfc_ctl |= params->fence_id;
--	}
- 
- 	if (IS_SANDYBRIDGE(dev_priv))
- 		snb_fbc_program_fence(dev_priv);
- 
- 	intel_de_write(dev_priv, ILK_DPFC_FENCE_YOFF,
- 		       params->fence_y_offset);
--	/* enable it... */
--	intel_de_write(dev_priv, ILK_DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
-+
-+	intel_de_write(dev_priv, ILK_DPFC_CONTROL,
-+		       DPFC_CTL_EN | g4x_dpfc_ctl(dev_priv));
+@@ -396,6 +417,13 @@ static bool ilk_fbc_is_compressing(struct drm_i915_private *i915)
+ 	return intel_de_read(i915, ILK_DPFC_STATUS) & ILK_DPFC_COMP_SEG_MASK;
  }
  
- static void ilk_fbc_deactivate(struct drm_i915_private *dev_priv)
-@@ -403,33 +425,37 @@ static void skl_fbc_program_cfb_stride(struct drm_i915_private *i915)
- 		     CHICKEN_FBC_STRIDE_MASK, val);
- }
- 
-+static u32 gen7_dpfc_ctl(struct drm_i915_private *i915)
-+{
-+	const struct intel_fbc_reg_params *params = &i915->fbc.params;
-+	u32 dpfc_ctl;
++static const struct intel_fbc_funcs ilk_fbc_funcs = {
++	.activate = ilk_fbc_activate,
++	.deactivate = ilk_fbc_deactivate,
++	.is_active = ilk_fbc_is_active,
++	.is_compressing = ilk_fbc_is_compressing,
++};
 +
-+	dpfc_ctl = g4x_dpfc_ctl_limit(i915);
-+
-+	if (IS_IVYBRIDGE(i915))
-+		dpfc_ctl |= IVB_DPFC_CTL_PLANE(params->crtc.i9xx_plane);
-+
-+	if (params->fence_id >= 0)
-+		dpfc_ctl |= IVB_DPFC_CTL_FENCE_EN;
-+
-+	if (i915->fbc.false_color)
-+		dpfc_ctl |= FBC_CTL_FALSE_COLOR;
-+
-+	return dpfc_ctl;
-+}
-+
- static void gen7_fbc_activate(struct drm_i915_private *dev_priv)
+ static void glk_fbc_program_cfb_stride(struct drm_i915_private *i915)
  {
--	struct intel_fbc *fbc = &dev_priv->fbc;
--	const struct intel_fbc_reg_params *params = &fbc->params;
--	u32 dpfc_ctl;
--
- 	if (DISPLAY_VER(dev_priv) >= 10)
- 		glk_fbc_program_cfb_stride(dev_priv);
- 	else if (DISPLAY_VER(dev_priv) == 9)
- 		skl_fbc_program_cfb_stride(dev_priv);
- 
--	dpfc_ctl = 0;
--	if (IS_IVYBRIDGE(dev_priv))
--		dpfc_ctl |= IVB_DPFC_CTL_PLANE(params->crtc.i9xx_plane);
--
--	dpfc_ctl |= g4x_dpfc_ctl_limit(dev_priv);
--
--	if (params->fence_id >= 0)
--		dpfc_ctl |= IVB_DPFC_CTL_FENCE_EN;
--
--	if (dev_priv->fbc.false_color)
--		dpfc_ctl |= FBC_CTL_FALSE_COLOR;
--
- 	if (dev_priv->ggtt.num_fences)
- 		snb_fbc_program_fence(dev_priv);
- 
--	intel_de_write(dev_priv, ILK_DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
-+	intel_de_write(dev_priv, ILK_DPFC_CONTROL,
-+		       DPFC_CTL_EN | gen7_dpfc_ctl(dev_priv));
+ 	struct intel_fbc *fbc = &i915->fbc;
+@@ -466,14 +494,18 @@ static bool gen7_fbc_is_compressing(struct drm_i915_private *i915)
+ 		return intel_de_read(i915, IVB_FBC_STATUS2) & IVB_FBC_COMP_SEG_MASK;
  }
  
- static bool gen7_fbc_is_compressing(struct drm_i915_private *i915)
++static const struct intel_fbc_funcs gen7_fbc_funcs = {
++	.activate = gen7_fbc_activate,
++	.deactivate = ilk_fbc_deactivate,
++	.is_active = ilk_fbc_is_active,
++	.is_compressing = gen7_fbc_is_compressing,
++};
++
+ static bool intel_fbc_hw_is_active(struct drm_i915_private *dev_priv)
+ {
+-	if (DISPLAY_VER(dev_priv) >= 5)
+-		return ilk_fbc_is_active(dev_priv);
+-	else if (IS_GM45(dev_priv))
+-		return g4x_fbc_is_active(dev_priv);
+-	else
+-		return i8xx_fbc_is_active(dev_priv);
++	struct intel_fbc *fbc = &dev_priv->fbc;
++
++	return fbc->funcs->is_active(dev_priv);
+ }
+ 
+ static void intel_fbc_hw_activate(struct drm_i915_private *dev_priv)
+@@ -485,14 +517,7 @@ static void intel_fbc_hw_activate(struct drm_i915_private *dev_priv)
+ 	fbc->active = true;
+ 	fbc->activated = true;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 7)
+-		gen7_fbc_activate(dev_priv);
+-	else if (DISPLAY_VER(dev_priv) >= 5)
+-		ilk_fbc_activate(dev_priv);
+-	else if (IS_GM45(dev_priv))
+-		g4x_fbc_activate(dev_priv);
+-	else
+-		i8xx_fbc_activate(dev_priv);
++	fbc->funcs->activate(dev_priv);
+ }
+ 
+ static void intel_fbc_hw_deactivate(struct drm_i915_private *dev_priv)
+@@ -503,24 +528,14 @@ static void intel_fbc_hw_deactivate(struct drm_i915_private *dev_priv)
+ 
+ 	fbc->active = false;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 5)
+-		ilk_fbc_deactivate(dev_priv);
+-	else if (IS_GM45(dev_priv))
+-		g4x_fbc_deactivate(dev_priv);
+-	else
+-		i8xx_fbc_deactivate(dev_priv);
++	fbc->funcs->deactivate(dev_priv);
+ }
+ 
+ bool intel_fbc_is_compressing(struct drm_i915_private *i915)
+ {
+-	if (DISPLAY_VER(i915) >= 7)
+-		return gen7_fbc_is_compressing(i915);
+-	else if (DISPLAY_VER(i915) >= 5)
+-		return ilk_fbc_is_compressing(i915);
+-	else if (IS_G4X(i915))
+-		return g4x_fbc_is_compressing(i915);
+-	else
+-		return i8xx_fbc_is_compressing(i915);
++	struct intel_fbc *fbc = &i915->fbc;
++
++	return fbc->funcs->is_compressing(i915);
+ }
+ 
+ /**
+@@ -1650,6 +1665,15 @@ void intel_fbc_init(struct drm_i915_private *dev_priv)
+ 		return;
+ 	}
+ 
++	if (DISPLAY_VER(dev_priv) >= 7)
++		fbc->funcs = &gen7_fbc_funcs;
++	else if (DISPLAY_VER(dev_priv) >= 5)
++		fbc->funcs = &ilk_fbc_funcs;
++	else if (IS_G4X(dev_priv))
++		fbc->funcs = &g4x_fbc_funcs;
++	else
++		fbc->funcs = &i8xx_fbc_funcs;
++
+ 	/* We still don't have any sort of hardware state readout for FBC, so
+ 	 * deactivate it in case the BIOS activated it to make sure software
+ 	 * matches the hardware state. */
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index e967cd08f23e..e5d57c2a8506 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -409,10 +409,13 @@ struct drm_i915_display_funcs {
+ 	void (*commit_modeset_enables)(struct intel_atomic_state *state);
+ };
+ 
++struct intel_fbc_funcs;
+ 
+ #define I915_COLOR_UNEVICTABLE (-1) /* a non-vma sharing the address space */
+ 
+ struct intel_fbc {
++	const struct intel_fbc_funcs *funcs;
++
+ 	/* This is always the inner lock when overlapping with struct_mutex and
+ 	 * it's the outer lock when overlapping with stolen_lock. */
+ 	struct mutex lock;
 -- 
 2.32.0
 
