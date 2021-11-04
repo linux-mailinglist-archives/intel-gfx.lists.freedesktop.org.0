@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C23D0445727
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 17:19:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1849F445739
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 17:24:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE01A6FA58;
-	Thu,  4 Nov 2021 16:19:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16BB26FA8A;
+	Thu,  4 Nov 2021 16:24:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6845D6FA58
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 16:19:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="295183171"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="295183171"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 09:19:28 -0700
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="450269339"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 404C66FA8A;
+ Thu,  4 Nov 2021 16:24:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="317940202"
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="317940202"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 09:24:12 -0700
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="501602671"
 Received: from mihaelac-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.32.21])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 09:19:27 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Nov 2021 18:18:58 +0200
-Message-Id: <20211104161858.21786-6-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211104161858.21786-1-jani.nikula@intel.com>
-References: <20211104161858.21786-1-jani.nikula@intel.com>
-MIME-Version: 1.0
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 09:24:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org
+In-Reply-To: <20211104160707.1407052-2-javierm@redhat.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 6/6] drm/i915/audio: rename
- intel_init_audio_hooks to intel_audio_hooks_init
+References: <20211104160707.1407052-1-javierm@redhat.com>
+ <20211104160707.1407052-2-javierm@redhat.com>
+Date: Thu, 04 Nov 2021 18:24:01 +0200
+Message-ID: <87zgqjanz2.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Add a drm_drv_enabled() to
+ check if drivers should be enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,62 +46,340 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>,
+ Maxime Ripard <mripard@kernel.org>, virtualization@lists.linux-foundation.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the filename based prefix naming.
+On Thu, 04 Nov 2021, Javier Martinez Canillas <javierm@redhat.com> wrote:
+> Some DRM drivers check the vgacon_text_force() function return value as an
+> indication on whether they should be allowed to be enabled or not.
+>
+> This function returns true if the nomodeset kernel command line parameter
+> was set. But there may be other conditions besides this to determine if a
+> driver should be enabled.
+>
+> Let's add a drm_drv_enabled() helper function to encapsulate that logic so
+> can be later extended if needed, without having to modify all the drivers.
+>
+> Also, while being there do some cleanup. The vgacon_text_force() function
+> is guarded by CONFIG_VGA_CONSOLE and there's no need for callers to do it.
+>
+> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> ---
+>
+> Changes in v2:
+> - Squash patch to add drm_drv_enabled() and make drivers use it.
+> - Make the drivers changes before moving nomodeset logic to DRM.
+> - Make drm_drv_enabled() return an errno and -ENODEV if nomodeset.
+> - Remove debug and error messages in drivers.
+>
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  7 +++----
+>  drivers/gpu/drm/ast/ast_drv.c           |  7 +++++--
+>  drivers/gpu/drm/drm_drv.c               | 20 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_module.c      |  6 +++++-
+>  drivers/gpu/drm/mgag200/mgag200_drv.c   |  7 +++++--
+>  drivers/gpu/drm/nouveau/nouveau_drm.c   |  5 ++++-
+>  drivers/gpu/drm/qxl/qxl_drv.c           |  7 +++++--
+>  drivers/gpu/drm/radeon/radeon_drv.c     |  6 ++++--
+>  drivers/gpu/drm/tiny/bochs.c            |  7 +++++--
+>  drivers/gpu/drm/tiny/cirrus.c           |  8 ++++++--
+>  drivers/gpu/drm/vboxvideo/vbox_drv.c    |  9 +++++----
+>  drivers/gpu/drm/virtio/virtgpu_drv.c    |  5 +++--
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     |  5 +++--
+>  include/drm/drm_drv.h                   |  1 +
+>  14 files changed, 74 insertions(+), 26 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index c718fb5f3f8a..7fde40d06181 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -2514,10 +2514,9 @@ static int __init amdgpu_init(void)
+>  {
+>  	int r;
+>  
+> -	if (vgacon_text_force()) {
+> -		DRM_ERROR("VGACON disables amdgpu kernel modesetting.\n");
+> -		return -EINVAL;
+> -	}
+> +	r = drm_drv_enabled(&amdgpu_kms_driver)
+> +	if (r)
+> +		return r;
+>  
+>  	r = amdgpu_sync_init();
+>  	if (r)
+> diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
+> index 86d5cd7b6318..802063279b86 100644
+> --- a/drivers/gpu/drm/ast/ast_drv.c
+> +++ b/drivers/gpu/drm/ast/ast_drv.c
+> @@ -233,8 +233,11 @@ static struct pci_driver ast_pci_driver = {
+>  
+>  static int __init ast_init(void)
+>  {
+> -	if (vgacon_text_force() && ast_modeset == -1)
+> -		return -EINVAL;
+> +	int ret;
+> +
+> +	ret = drm_drv_enabled(&ast_driver);
+> +	if (ret && ast_modeset == -1)
+> +		return ret;
+>  
+>  	if (ast_modeset == 0)
+>  		return -EINVAL;
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 8214a0b1ab7f..3fb567d62881 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -975,6 +975,26 @@ int drm_dev_set_unique(struct drm_device *dev, const char *name)
+>  }
+>  EXPORT_SYMBOL(drm_dev_set_unique);
+>  
+> +/**
+> + * drm_drv_enabled - Checks if a DRM driver can be enabled
+> + * @driver: DRM driver to check
+> + *
+> + * Checks whether a DRM driver can be enabled or not. This may be the case
+> + * if the "nomodeset" kernel command line parameter is used.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int drm_drv_enabled(const struct drm_driver *driver)
+> +{
+> +	if (vgacon_text_force()) {
+> +		DRM_INFO("%s driver is disabled\n", driver->name);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_drv_enabled);
+> +
+>  /*
+>   * DRM Core
+>   * The DRM core module initializes all global DRM objects and makes them
+> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+> index ab2295dd4500..45cb3e540eff 100644
+> --- a/drivers/gpu/drm/i915/i915_module.c
+> +++ b/drivers/gpu/drm/i915/i915_module.c
+> @@ -18,9 +18,12 @@
+>  #include "i915_selftest.h"
+>  #include "i915_vma.h"
+>  
+> +static const struct drm_driver driver;
+> +
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c   | 4 ++--
- drivers/gpu/drm/i915/display/intel_audio.h   | 2 +-
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+No, this makes absolutely no sense, and will also oops on nomodeset.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index aa7037021376..74d56487267c 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -940,10 +940,10 @@ static const struct intel_audio_funcs hsw_audio_funcs = {
- };
- 
- /**
-- * intel_init_audio_hooks - Set up chip specific audio hooks
-+ * intel_audio_hooks_init - Set up chip specific audio hooks
-  * @dev_priv: device private
-  */
--void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
-+void intel_audio_hooks_init(struct drm_i915_private *dev_priv)
- {
- 	if (IS_G4X(dev_priv)) {
- 		dev_priv->audio.funcs = &g4x_audio_funcs;
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
-index dcb259dd2da7..63b22131dc45 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.h
-+++ b/drivers/gpu/drm/i915/display/intel_audio.h
-@@ -11,7 +11,7 @@ struct drm_i915_private;
- struct intel_crtc_state;
- struct intel_encoder;
- 
--void intel_init_audio_hooks(struct drm_i915_private *dev_priv);
-+void intel_audio_hooks_init(struct drm_i915_private *dev_priv);
- void intel_audio_codec_enable(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state,
- 			      const struct drm_connector_state *conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 29392dfc46c8..25c3a44ed693 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -9486,7 +9486,7 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
- 		return;
- 
- 	intel_init_cdclk_hooks(dev_priv);
--	intel_init_audio_hooks(dev_priv);
-+	intel_audio_hooks_init(dev_priv);
- 
- 	intel_dpll_init_clock_hook(dev_priv);
- 
+BR,
+Jani.
+
+
+>  static int i915_check_nomodeset(void)
+>  {
+>  	bool use_kms = true;
+> +	int ret;
+>  
+>  	/*
+>  	 * Enable KMS by default, unless explicitly overriden by
+> @@ -31,7 +34,8 @@ static int i915_check_nomodeset(void)
+>  	if (i915_modparams.modeset == 0)
+>  		use_kms = false;
+>  
+> -	if (vgacon_text_force() && i915_modparams.modeset == -1)
+> +	ret = drm_drv_enabled(&driver);
+> +	if (ret && i915_modparams.modeset == -1)
+>  		use_kms = false;
+>  
+>  	if (!use_kms) {
+> diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.c b/drivers/gpu/drm/mgag200/mgag200_drv.c
+> index 6b9243713b3c..2a581094ba2b 100644
+> --- a/drivers/gpu/drm/mgag200/mgag200_drv.c
+> +++ b/drivers/gpu/drm/mgag200/mgag200_drv.c
+> @@ -378,8 +378,11 @@ static struct pci_driver mgag200_pci_driver = {
+>  
+>  static int __init mgag200_init(void)
+>  {
+> -	if (vgacon_text_force() && mgag200_modeset == -1)
+> -		return -EINVAL;
+> +	int ret;
+> +
+> +	ret = drm_drv_enabled(&mgag200_driver);
+> +	if (ret && mgag200_modeset == -1)
+> +		return ret;
+>  
+>  	if (mgag200_modeset == 0)
+>  		return -EINVAL;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 1f828c9f691c..8844d3602d87 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -1316,13 +1316,16 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
+>  static int __init
+>  nouveau_drm_init(void)
+>  {
+> +	int ret;
+> +
+>  	driver_pci = driver_stub;
+>  	driver_platform = driver_stub;
+>  
+>  	nouveau_display_options();
+>  
+>  	if (nouveau_modeset == -1) {
+> -		if (vgacon_text_force())
+> +		ret = drm_drv_enabled(&driver_stub);
+> +		if (ret)
+>  			nouveau_modeset = 0;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
+> index fc47b0deb021..3ac2ef2bf545 100644
+> --- a/drivers/gpu/drm/qxl/qxl_drv.c
+> +++ b/drivers/gpu/drm/qxl/qxl_drv.c
+> @@ -295,8 +295,11 @@ static struct drm_driver qxl_driver = {
+>  
+>  static int __init qxl_init(void)
+>  {
+> -	if (vgacon_text_force() && qxl_modeset == -1)
+> -		return -EINVAL;
+> +	int ret;
+> +
+> +	ret = drm_drv_enabled(&qxl_driver);
+> +	if (ret && qxl_modeset == -1)
+> +		return ret;
+>  
+>  	if (qxl_modeset == 0)
+>  		return -EINVAL;
+> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+> index b74cebca1f89..56d688c04346 100644
+> --- a/drivers/gpu/drm/radeon/radeon_drv.c
+> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
+> @@ -637,8 +637,10 @@ static struct pci_driver radeon_kms_pci_driver = {
+>  
+>  static int __init radeon_module_init(void)
+>  {
+> -	if (vgacon_text_force() && radeon_modeset == -1) {
+> -		DRM_INFO("VGACON disable radeon kernel modesetting.\n");
+> +	int ret;
+> +
+> +	ret = drm_drv_enabled(&kms_driver)
+> +	if (ret && radeon_modeset == -1) {
+>  		radeon_modeset = 0;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.c
+> index 2ce3bd903b70..ee6b1ff9128b 100644
+> --- a/drivers/gpu/drm/tiny/bochs.c
+> +++ b/drivers/gpu/drm/tiny/bochs.c
+> @@ -719,8 +719,11 @@ static struct pci_driver bochs_pci_driver = {
+>  
+>  static int __init bochs_init(void)
+>  {
+> -	if (vgacon_text_force() && bochs_modeset == -1)
+> -		return -EINVAL;
+> +	int ret;
+> +
+> +	ret = drm_drv_enabled(&bochs_driver);
+> +	if (ret && bochs_modeset == -1)
+> +		return ret;
+>  
+>  	if (bochs_modeset == 0)
+>  		return -EINVAL;
+> diff --git a/drivers/gpu/drm/tiny/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
+> index 4611ec408506..4706c5bc3067 100644
+> --- a/drivers/gpu/drm/tiny/cirrus.c
+> +++ b/drivers/gpu/drm/tiny/cirrus.c
+> @@ -636,8 +636,12 @@ static struct pci_driver cirrus_pci_driver = {
+>  
+>  static int __init cirrus_init(void)
+>  {
+> -	if (vgacon_text_force())
+> -		return -EINVAL;
+> +	int ret;
+> +
+> +	ret = drm_drv_enabled(&cirrus_driver);
+> +	if (ret)
+> +		return ret;
+> +
+>  	return pci_register_driver(&cirrus_pci_driver);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> index a6c81af37345..e4377c37cf33 100644
+> --- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> @@ -193,10 +193,11 @@ static const struct drm_driver driver = {
+>  
+>  static int __init vbox_init(void)
+>  {
+> -#ifdef CONFIG_VGA_CONSOLE
+> -	if (vgacon_text_force() && vbox_modeset == -1)
+> -		return -EINVAL;
+> -#endif
+> +	int ret;
+> +
+> +	ret = drm_drv_enabled(&driver);
+> +	if (ret && vbox_modeset == -1)
+> +		return ret;
+>  
+>  	if (vbox_modeset == 0)
+>  		return -EINVAL;
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.c b/drivers/gpu/drm/virtio/virtgpu_drv.c
+> index 749db18dcfa2..28200dfba2d1 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_drv.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_drv.c
+> @@ -104,8 +104,9 @@ static int virtio_gpu_probe(struct virtio_device *vdev)
+>  	struct drm_device *dev;
+>  	int ret;
+>  
+> -	if (vgacon_text_force() && virtio_gpu_modeset == -1)
+> -		return -EINVAL;
+> +	ret = drm_drv_enabled(&driver);
+> +	if (ret && virtio_gpu_modeset == -1)
+> +		return ret;
+>  
+>  	if (virtio_gpu_modeset == 0)
+>  		return -EINVAL;
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> index ab9a1750e1df..05e9949293d5 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> @@ -1651,8 +1651,9 @@ static int __init vmwgfx_init(void)
+>  {
+>  	int ret;
+>  
+> -	if (vgacon_text_force())
+> -		return -EINVAL;
+> +	ret = drm_drv_enabled(&driver);
+> +	if (ret)
+> +		return ret;
+>  
+>  	ret = pci_register_driver(&vmw_pci_driver);
+>  	if (ret)
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 0cd95953cdf5..77abfc7e078b 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -598,5 +598,6 @@ static inline bool drm_drv_uses_atomic_modeset(struct drm_device *dev)
+>  
+>  int drm_dev_set_unique(struct drm_device *dev, const char *name);
+>  
+> +int drm_drv_enabled(const struct drm_driver *driver);
+>  
+>  #endif
+
 -- 
-2.30.2
-
+Jani Nikula, Intel Open Source Graphics Center
