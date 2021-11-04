@@ -2,32 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB31A445541
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 15:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A74E445599
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 15:45:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF5A96F42D;
-	Thu,  4 Nov 2021 14:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4661E6E424;
+	Thu,  4 Nov 2021 14:45:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8B43D6F42D;
- Thu,  4 Nov 2021 14:23:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8329AA00C9;
- Thu,  4 Nov 2021 14:23:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2C186E424
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 14:45:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="231663905"
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="231663905"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 07:45:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="585964812"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga002.fm.intel.com with SMTP; 04 Nov 2021 07:45:21 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 04 Nov 2021 16:45:20 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 Nov 2021 16:45:03 +0200
+Message-Id: <20211104144520.22605-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 04 Nov 2021 14:23:22 -0000
-Message-ID: <163603580253.6349.5716895153304860317@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211104110718.688420-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211104110718.688420-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Failsafe_migration_blits_=28rev7=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/17] drm/i915/fbc: Prep work for multiple FBC
+ instances
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +45,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/i915: Failsafe migration blits (rev7)
-URL   : https://patchwork.freedesktop.org/series/95617/
-State : warning
+Bunch of refactoring and cleanups, mainly as prep work
+for introducing multiple FBC instances in the future.
 
-== Summary ==
+Ville Syrjälä (17):
+  drm/i915/fbc: Exract snb_fbc_program_fence()
+  drm/i915/fbc: Extract {skl,glk}_fbc_program_cfb_stride()
+  drm/i915/fbc: Just use params->fence_y_offset always
+  drm/i915/fbc: Introduce intel_fbc_is_compressing()
+  drm/i915/fbc: Extract helpers to compute FBC control register values
+  drm/i915/fbc: Introduce intel_fbc_funcs
+  drm/i915/fbc: Introduce .nuke() vfunc
+  drm/i915/fbc: s/gen7/ivb/
+  drm/i915/fbc: Introduce .program_cfb() vfunc
+  drm/i915/fbc: Introduce intel_fbc_set_false_color()
+  drm/i915/fbc: Nuke BDW_FBC_COMP_SEG_MASK
+  drm/i915/fbc: Clean up all register defines
+  drm/i915/fbc: Finish polishing FBC1 registers
+  drm/i915: Relocate FBC_LLC_READ_CTRL
+  drm/i915/fbc: s/dev_priv/i915/
+  drm/i915/fbc: Start passing around intel_fbc
+  drm/1915/fbc: Replace plane->has_fbc with a pointer to the fbc
+    instance
 
-$ dim checkpatch origin/drm-tip
-7fdc5097e400 drm/i915/ttm: Reorganize the ttm move code
--:511: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#511: 
-new file mode 100644
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  10 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  43 +-
+ .../drm/i915/display/intel_display_types.h    |   4 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 996 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_fbc.h      |  11 +-
+ .../drm/i915/display/intel_fifo_underrun.c    |   2 +-
+ .../drm/i915/display/skl_universal_plane.c    |  10 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   4 +
+ drivers/gpu/drm/i915/i915_reg.h               | 154 +--
+ drivers/gpu/drm/i915/intel_pm.c               |  16 +-
+ 11 files changed, 695 insertions(+), 559 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 807 lines checked
-ddd7a78265a3 drm/i915/ttm: Failsafe migration blits
-
+-- 
+2.32.0
 
