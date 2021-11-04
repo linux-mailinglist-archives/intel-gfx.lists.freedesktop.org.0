@@ -2,129 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C74444FB6
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 08:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A3044507A
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 09:38:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5A26E8A7;
-	Thu,  4 Nov 2021 07:35:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356806EBA2;
+	Thu,  4 Nov 2021 08:38:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D57556E895;
- Thu,  4 Nov 2021 07:34:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TgXGSWxQfjOtLj8ZWCtUbhDAJTtRfyRx3Oz2t2BaS/KCiERNg9nMmVCQH3nVzzzRjF7VJXQ2JY4vGu6SBV+ZFshqsqEmTWr2Oo3el+PWi01+YldC+S0nNkX1OYrlWKwZofW9HoegLU7+DHhsD5UTbFZ6lnQNQpsbgVOOXYRF9HB3kBWrdlGBjZBF6CS9wTf9Bb/e14sTs8P5kqEWXtiTB+KGq25D/ov0xUR1CGT4s9nyof6ume2fmEnDtXPgTxQCCTBGmQMKSJLbUbirVwno22RGLWeh7y8ZdAlKRVYBMJMT7vOwzJyC61MHvJyMacOA41eTkZPTBYtlJSd++PHJ1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1C6kdU9pfF/e0y4w4E/s2GNMvgyYzs6Od0qQXHlTPVM=;
- b=fKCn5NBKkoXZYXq0ssZpmveR082H3LVKXoprkkiOSR0Bmy4KTD7wy1M2YyKA8g0kw8mgEgXwiOG50VgwuL0Um3Vixr87kKCdv9pRkTJfY7r8+kg6AlzANUqZyVDn37sfl6rsFj15Xk4uujVrCIdu1gCFkQIJn3Q2iIfHQfI1Cv1ZCN+wwRwxMhLLPJiylFMjQkucjo9kusNi8WbfBnkdfXkSSrLqScpN1EXedVcDa4k1ezwhGPq1zgSE93Ilvi1NwWdR3MtQ6n75Js3CKV/fxGt8lV2dFff7VigXKEgJVNDkgiaq1Eb3FVvuvM2MafLUpnoQHmr7L/EdI7/YFJq2ZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1C6kdU9pfF/e0y4w4E/s2GNMvgyYzs6Od0qQXHlTPVM=;
- b=32FxcVFtbY6iYPHIqQ0HqweweIdgphsou6f+CV5VLKCMj9oOlE1qHH99Z7E5BNcFcjOKfutRiUw4X8DhMQo9DdRwkOgyjeRX/YuWziqp5lA65WPo9EdSLHFST8UHoUCCWXy5XoUdHhkahxxMDU1AaQbVynVAmdL3qy97YgDTCag=
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14) by MW3PR12MB4410.namprd12.prod.outlook.com
- (2603:10b6:303:5b::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15; Thu, 4 Nov
- 2021 07:34:53 +0000
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::2d02:26e7:a2d0:3769]) by MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::2d02:26e7:a2d0:3769%5]) with mapi id 15.20.4649.020; Thu, 4 Nov 2021
- 07:34:53 +0000
-To: Matthew Auld <matthew.auld@intel.com>,
- Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20211025130033.1547667-1-Arunpravin.PaneerSelvam@amd.com>
- <20211025130033.1547667-6-Arunpravin.PaneerSelvam@amd.com>
- <55adb714-45f9-5af5-33df-ce4f4526a8c8@intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <3b5fb9bb-13a0-a7db-cea2-1515aec96742@amd.com>
-Date: Thu, 4 Nov 2021 08:34:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <55adb714-45f9-5af5-33df-ce4f4526a8c8@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: AM6PR01CA0062.eurprd01.prod.exchangelabs.com
- (2603:10a6:20b:e0::39) To MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
+ [IPv6:2a00:1450:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BF056E8A5;
+ Thu,  4 Nov 2021 08:38:41 +0000 (UTC)
+Received: by mail-lj1-x22b.google.com with SMTP id g3so8231568ljm.8;
+ Thu, 04 Nov 2021 01:38:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=y6c0lX9YO0GagXVF8wdjl89BQqUBHzqARgOtyubUOyo=;
+ b=bfg7QPZY0SJCj5pBe2sU+KkbiDT+UJCY9VxbsO40hDbuJzzGJmg4MfMP1V69wjqt+U
+ /Q0bmljNlqnVjYzH+/2YYO0kOhjMEPme56OpC0VFoqBXNf+KzkPQW/LWWvDZ9Hrq0oKC
+ dwFhZrYTibCZoVKh2JimrmWaBcemhsrYkCFARuZcSzMwgb1p4vu92bwo5qYO5YLu1tcE
+ DJouwHqLuI7EE37SNtAudbkyK+ymDq5sfZMbJ/d2e0NrCpcyXdWUeEKteeIWK85FOVah
+ G3zXDpNckchDR6bZk9sZXOGcrhEz5NXrM0O19TEEedg4i6cKiWrnStmgTK7Xjx6PrBWs
+ NBXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=y6c0lX9YO0GagXVF8wdjl89BQqUBHzqARgOtyubUOyo=;
+ b=swswOYTx4TBTQEbFQP3fnvScP5FbIiI6l3R8SA6v8s8Bul39rfG/1PAK5kzqf8x7oD
+ 0ZeyPGZpFqnLxgOHirzQ4trE3J4nMimROiuWbu8KhHlJstOV3r3bTUZlrSIvwH4NocVI
+ jt8Kfvr5Halw4PhSbNdizl+8aKYBOcoI2Wa6zSFoDk22RV/2yyMBEqv3NpUwZO0rnM+K
+ 1EZOiAFzIfgMb1URgkuIA298N532eBGkA1QwK3IftT6uMKSnGT7hmSS7Q99JNE/qO7JR
+ E+KaRXHNDTscNH1Lkycwr0DzavXWAhy4xDkTCexPYONkUgNtAtwDxC3yt9n8MKKkCksc
+ YZhQ==
+X-Gm-Message-State: AOAM530VbCaDLOF8VOnMghBeIJrMfEtnNMdr4IWuZUV2PkoINRwY8AwO
+ JejLu1aiKQvuMM37XTVFKGQ=
+X-Google-Smtp-Source: ABdhPJwUFvilVG25JkxnNxp/kfYGB+eNnwG8co332jw67Bl8KU4nmzXNwtzfrt0hT4O7hnV0von0wQ==
+X-Received: by 2002:a2e:9e93:: with SMTP id f19mr52998335ljk.196.1636015118421; 
+ Thu, 04 Nov 2021 01:38:38 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id s3sm403337lfr.13.2021.11.04.01.38.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 04 Nov 2021 01:38:38 -0700 (PDT)
+Date: Thu, 4 Nov 2021 10:38:27 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>
+Message-ID: <20211104103827.2cf48bb7@eldfell>
+In-Reply-To: <d67a9761-91b4-3432-dd55-f85bb0657b68@amd.com>
+References: <20210906213904.27918-1-uma.shankar@intel.com>
+ <20210906213904.27918-3-uma.shankar@intel.com>
+ <d67a9761-91b4-3432-dd55-f85bb0657b68@amd.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: from [192.168.178.21] (91.14.161.181) by
- AM6PR01CA0062.eurprd01.prod.exchangelabs.com (2603:10a6:20b:e0::39) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11 via Frontend
- Transport; Thu, 4 Nov 2021 07:34:50 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 71865c35-fdfb-4864-b9d7-08d99f659792
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4410:
-X-Microsoft-Antispam-PRVS: <MW3PR12MB44104FCA8909CCA9C52E8D37838D9@MW3PR12MB4410.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hi4IOokaMj15CbERCMEeaRqNe6Ka7T0+cfao/P81elCsOBjg1VCmCsBAgwoFXceAYVoteislJ9EJLFl+fifB92R4/xs8Nlysn8XJrzYKhSxogk+4MrZg4CkdgYq5D7vBvX1Es5+v5i00i0uLQHX8GdH7i4whNmSefMeNSiuidYIVPW2CzpEG4IUZmoUdwF+CU6PHnfpuC+ad/3E7/SP5Sje/sO/n713GlEk3gFfBWOmi/aE+FvrO0vWZZQwN1evqj1wF1uxG69t2OOjmLan6o0yCRFhHNehOEt+xgf9jgsQofbujecbURe1EWFan5MdkQJb12LzwBbc9F/2/gia7KH+q0e8Ab8O0V7mR9bQskRbv/uhCGf8xBRRB8gtwMczvJF9lFHNCwqBuZNuE2vfewPLhHYbIaB4n5QNXP5RPHFCfYr/csTXJBQ3dwBat4ql/K6VSYtG97tt5RPvtqH0R/1WE4h5SveYwBcH/BwYSGatRNTgxyoSUB5ziZpgdHDC5IG8/AhT6U3sMK2pUnwOm9UyliUmEkaXthii2o2KWTMwgLFecwVeEkKatCzR7KPg0ercdR99N9rbOqUKx6JZQtPqxde3F+uZidqPpmuAxw1pAPwiA4AkftKZbJbsv93qMEmq876x6Xk7keWjFthyMLFYFo7bQJuB+ig1WfX70G7xdOO1QtZbJJjBtGu3HixHyz25dRcpBVCc5iNS9UJY6fA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(4326008)(31686004)(31696002)(508600001)(6486002)(316002)(36756003)(26005)(186003)(110136005)(83380400001)(16576012)(86362001)(6666004)(38100700002)(53546011)(66476007)(8936002)(66556008)(956004)(2616005)(5660300002)(2906002)(66946007)(8676002)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZkNvbm41TUhla2xranBGVTdIS0R0OWN6dDl0d1VrUEtWdms4cjRnRWhNMzdL?=
- =?utf-8?B?N2NwYWdBVUpqbHJEbGMrRytYSXVMeWQ1bCtlRE5uL1RQeHlHSTBLalEyZ0Va?=
- =?utf-8?B?S1Vvb1d2akFYNFd0TzJmeHNMWDJSbXR5Q1BOeUsya00ra0V5TTBGa2JodFgw?=
- =?utf-8?B?ZnNNb0ZDUWUya1JQVFl3eWw2SS9Jdm9XSGZyanhBSVhTMnBlOXNWMmVycm5s?=
- =?utf-8?B?T2pqNU10VHZFZGhxZ0lFS1dlQVpWa2pnMmJrOHVDc2p3VThMaklKYmZSZ09v?=
- =?utf-8?B?QWJNcWEzdVRScDZ2UGZvUERZYWpuRUtwd2ZsZVhGRCtINWQ5TEhYMzU2bzdr?=
- =?utf-8?B?SjZDcnpwUjU2aVQ5YmhmYzNCNGlIVWJJeHVHY3lGQzVqckdsS296WEp5MG0z?=
- =?utf-8?B?aWE4MFFmdUdpMHZ1MGY2UlQ0aHRrR0RrWUlEQm1uNHNFYS9VcG01bWFPVUVr?=
- =?utf-8?B?SkwrYWtJTzVyQTNCMWdXYTlPZUIwaGkvMjhSY2NYeEl5SExiRjFWNWVZeUlw?=
- =?utf-8?B?MVlGc0IybW9ldzRrQ0VEZU8xaVhVK1ZodnFxU2krR2E3cXI3SEtiMWxrM0Vq?=
- =?utf-8?B?ejA5SUk5dHdVYVNpd0JyZ1p4cFZhVUk3ZDBkdUE0RFFpeWJNdFFjWVN6UUdm?=
- =?utf-8?B?L0Z6KzErdVZJd1hjS1EwS3B6cTdwajlsY1lkcmlTK3d3ZDJubEpuRHZwU3d1?=
- =?utf-8?B?ZS93aEsybTF4TGEzREFjSGIzVFJUeHhDOUdWditkWGI0YUF4aWNBVC9VNTd2?=
- =?utf-8?B?ejYxL3M0dUFEZ3g2MWh0Zld3TWhOVEMxTXRVN3VEekV4dnVCVVFCUWRGREJs?=
- =?utf-8?B?WnJ4ZGtTdHBMOGxYc3gwRzcwdHFrUHppMnhzN2h5THVPYkhJVVRSeFZ6S2JN?=
- =?utf-8?B?SWFWM3VMQ0pUaC9rWHB6Y3dHSU9iN2E4S3hLd1VlWnVYd2hqZldXYTV5NWM5?=
- =?utf-8?B?Q2RZRzNXVWgxcnNOc2hHdmJqZHZ1eXhKOHlmeHpRbzBuUlF0WEJsUzVxQ1hZ?=
- =?utf-8?B?NkdRUFc0ZlMvU1hsZXJQNXhDZThVa2tWZHIvVFpPdG5CanJpTFpMdzlUZDNW?=
- =?utf-8?B?T1c1NkpxbDUxQTloaitUWE8wRmlJQ3I5T3VTeWJWcHVHNHZtVlgyRTIvYzdH?=
- =?utf-8?B?b2xTRVMwaUYvQitWTWhHWlRHeC9uei9NY3BYYnNaRUFSRjA1VnJOS1hvMkZr?=
- =?utf-8?B?dGg2ckpXMUgzSkJNY1p5d25TVDltUnFSdEZqMzJFb3RYWW1pRnlPSFIwaVEw?=
- =?utf-8?B?SWY5Rmp4bm9vUXNQclBGTURkbFY4VUFPaW1BYTB1eDAvQXErNjBISis4ZHpD?=
- =?utf-8?B?T1hZNjRONDdvZzFpK0w5MnRGb3RiODhnamNEdEJZRGp1M0I5MnZpb1FIUS8r?=
- =?utf-8?B?cys3czRpTWFkbmNHeElQcmpoQlhlTmFCOFE0R2IrR1ZmMmJjT0xSNGt2clZG?=
- =?utf-8?B?a2hRYXpTT0NaNktLMDVsSzdic2JuWDI3ckZ5aTBhaUJpYUJsMFlLUHhCNHpp?=
- =?utf-8?B?TE5Ec21EOUltSHhBUkRnVm9GNGE5bTY1ZHJKY3RjZ2ZaeW5iQm4wNlZGYTZh?=
- =?utf-8?B?SFMrOWk2VW9zTEtCcTBIMm4vdjNiUWRwOEdmYW9BU1l1L01sSnBzZ2RoSkdq?=
- =?utf-8?B?M2szWEtMOVNidHdjU3pteXdJSm1PcHQveW01L0lMelluRXZtTVNnWGwrUVNi?=
- =?utf-8?B?SGlmSTB3YkpncllCMnFzditINURxMDRkSXFoWkJSQ29TL2VFMTJhZUtwMnRt?=
- =?utf-8?B?cWdieVl6cW1mNUlCQnpQWk5NNEVZRC9JMjUveWRnOU1wVGtaYnZoN2ZRZzVI?=
- =?utf-8?B?dnZYREMvQldZUjA5WjJtSENSNFpuZ1NOVEkwYzFRZkFwUnNHUUI1VmdRcEJi?=
- =?utf-8?B?QzI0SnBGelFrSzc1dFNJanRJdXVwaHQ5TXVDQU41K0VucndjdnBpOE5yUUtP?=
- =?utf-8?B?VUR0MjdxSVp6UjRNWStKUlIwRFl0TWxBK1puTlRNKzFIeDhJd3ZmVmhoZU9O?=
- =?utf-8?B?dXZ6MDVQZEMxMDEyWVEvQ0VqekcyR3BmOGJ1bFFBU1Z3aTI2N2tuT1lqQnRN?=
- =?utf-8?B?dlBEMWxSOTRXNE5uTTJPejhBMlBWOEdTY3QwK0hpTitDSWtpYVE5TTJDL0Iz?=
- =?utf-8?Q?ZdAM=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71865c35-fdfb-4864-b9d7-08d99f659792
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 07:34:53.5293 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vX9JppMV/ZNNvRBKPElFniU85wpVeSbt8Xz7t12jusqI60o9/0DWEhvJ4l7UAcrn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4410
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/amdgpu: add drm buddy support to
- amdgpu
+Content-Type: multipart/signed; boundary="Sig_/Qb_O9J89kTOH9Qm=6+y9Tv_";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] [RFC v2 02/22] drm: Add Enhanced Gamma and color
+ lut range attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,56 +70,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, tzimmermann@suse.de
+Cc: "Cyr, Aric" <Aric.Cyr@amd.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, sebastian@sebastianwick.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--Sig_/Qb_O9J89kTOH9Qm=6+y9Tv_
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 3 Nov 2021 11:08:13 -0400
+Harry Wentland <harry.wentland@amd.com> wrote:
+
+> On 2021-09-06 17:38, Uma Shankar wrote:
+> > Existing LUT precision structure is having only 16 bit
+> > precision. This is not enough for upcoming enhanced hardwares
+> > and advance usecases like HDR processing. Hence added a new
+> > structure with 32 bit precision values.
+> >=20
+> > This also defines a new structure to define color lut ranges,
+> > along with related macro definitions and enums. This will help
+> > describe multi segmented lut ranges in the hardware.
+> >=20
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  include/uapi/drm/drm_mode.h | 58 +++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 58 insertions(+)
+> >=20
+> > diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> > index 90c55383f1ee..1079794c86c3 100644
+> > --- a/include/uapi/drm/drm_mode.h
+> > +++ b/include/uapi/drm/drm_mode.h
+> > @@ -903,6 +903,64 @@ struct hdr_output_metadata {
+> >  	};
+> >  };
+> > =20
+> > +/*
+> > + * DRM_MODE_LUT_GAMMA|DRM_MODE_LUT_DEGAMMA is legal and means the LUT
+> > + * can be used for either purpose, but not simultaneously. To expose
+> > + * modes that support gamma and degamma simultaneously the gamma mode
+> > + * must declare distinct DRM_MODE_LUT_GAMMA and DRM_MODE_LUT_DEGAMMA
+> > + * ranges.
+> > + */
+> > +/* LUT is for gamma (after CTM) */
+> > +#define DRM_MODE_LUT_GAMMA BIT(0)
+> > +/* LUT is for degamma (before CTM) */
+> > +#define DRM_MODE_LUT_DEGAMMA BIT(1)
+> > +/* linearly interpolate between the points */
+> > +#define DRM_MODE_LUT_INTERPOLATE BIT(2)
+> > +/*
+> > + * the last value of the previous range is the
+> > + * first value of the current range.
+> > + */
+> > +#define DRM_MODE_LUT_REUSE_LAST BIT(3)
+> > +/* the curve must be non-decreasing */
+> > +#define DRM_MODE_LUT_NON_DECREASING BIT(4)
+> > +/* the curve is reflected across origin for negative inputs */
+> > +#define DRM_MODE_LUT_REFLECT_NEGATIVE BIT(5)
+> > +/* the same curve (red) is used for blue and green channels as well */
+> > +#define DRM_MODE_LUT_SINGLE_CHANNEL BIT(6)
+> > +
+> > +struct drm_color_lut_range {
+> > +	/* DRM_MODE_LUT_* */
+> > +	__u32 flags;
+> > +	/* number of points on the curve */
+> > +	__u16 count;
+> > +	/* input/output bits per component */
+> > +	__u8 input_bpc, output_bpc;
+> > +	/* input start/end values */
+> > +	__s32 start, end;
+> > +	/* output min/max values */
+> > +	__s32 min, max;
+> > +};
+> > +
+> > +enum lut_type {
+> > +	LUT_TYPE_DEGAMMA =3D 0,
+> > +	LUT_TYPE_GAMMA =3D 1,
+> > +};
+> > +
+> > +/*
+> > + * Creating 64 bit palette entries for better data
+> > + * precision. This will be required for HDR and
+> > + * similar color processing usecases.
+> > + */
+> > +struct drm_color_lut_ext {
+> > +	/*
+> > +	 * Data is U32.32 fixed point format.
+> > +	 */
+> > +	__u64 red;
+> > +	__u64 green;
+> > +	__u64 blue;
+> > +	__u64 reserved;
+> > +}; =20
+>=20
+> I've been drawing out examples of drm_color_lut_range defined PWLs
+> and understand a bit better what you and Ville are trying to accomplish
+> with it. It actually makes a lot of sense and would allow for a generic
+> way to populate different PWL definitions with a generic function.
+>=20
+> But I still have some key questions that either are not answered in these
+> patch sets or that I somehow overlooked.
+>=20
+> Can you explain how the U32.32 fixed point format relates to the input_bpc
+> and output_bpc in drm_color_lut_range, as we as to the pixel coming in fr=
+om
+> the framebuffer.
+>=20
+> E.g. if we have ARGB2101010 what happens to a 0x3ff red value (assuming a=
+lpha
+> is non-multiplied)?
+>=20
+> If the drm_color_lut_range segments are defined with input_bpc of 24 bpc =
+will
+> 0x3ff be zero-expanded to 24-bit? Is the 24 bpc an integer? I.e. would ou=
+r 3xff
+> be interpreted as 0x3ff << (24-10)?=20
+>=20
+> Assuming the output_bpc is 16 bpc and the programmed LUT makes this 1-to-=
+1 would
+> the output value be 0x3ff << (16-10)?
+>=20
+> On AMD HW the pipe-internal format is a custom floating point format. We =
+could
+> probably express that in terms of input/output_bpc and do the translation=
+ in our
+> driver between that and the internal floating point format, depending on =
+the
+> framebuffer format, but there is the added complication of the magnitude =
+of the
+> pixel data and correlating HDR with SDR planes.
+>=20
+> E.g. any SDR data would map from 0.0 to 1.0 floating point, while HDR con=
+tent would
+> map from 0.0 to some value larger than 1.0. I don't (yet) have a clear pi=
+cture how
+> to represent that with the drm_color_lut_range definition.
 
 
-Am 03.11.21 um 20:25 schrieb Matthew Auld:
-> On 25/10/2021 14:00, Arunpravin wrote:
->> - Remove drm_mm references and replace with drm buddy functionalities
->> - Add res cursor support for drm buddy
->>
->> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
->
-> <snip>
->
->> +        spin_lock(&mgr->lock);
->> +        r = drm_buddy_alloc(mm, (uint64_t)place->fpfn << PAGE_SHIFT,
->> +                    (uint64_t)lpfn << PAGE_SHIFT,
->> +                    (uint64_t)n_pages << PAGE_SHIFT,
->> +                     min_page_size, &node->blocks,
->> +                     node->flags);
->
->
-> Is spinlock + GFP_KERNEL allowed?
+Hi Harry,
 
-Nope it isn't, but does that function really calls kmalloc()?
+I think you just would not. Conceptually an SDR plane gets its very own
+LUT that converts the FB [0.0, 1.0] range to any appropriate [a >=3D 0.0,
+b <=3D 1.0] range in HDR. This is purely conceptual, in the terms of the
+abstract KMS color pipeline, where [0.0, 1.0] is always the full
+dynamic range at any point of the pipeline, meaning it is relative to
+its placement in the pipeline. If you want to use values >1.0 in hw,
+you can do so under the hood.
 
-Christian.
+At least that is how I would imagine things. With LUTs in general, I
+don't think I have ever seen LUT input domain being explicitly defined
+to something else than [0.0, 1.0] relative to the elements in the LUT
+where 0.0 maps exactly to the first element and 1.0 maps exactly to the
+last element.
 
->
->> +        spin_unlock(&mgr->lock);
->> +
->> +        if (unlikely(r))
->> +            goto error_free_blocks;
->> +
->>           pages_left -= pages;
->>           ++i;
->>             if (pages > pages_left)
->>               pages = pages_left;
->>       }
->> -    spin_unlock(&mgr->lock);
->> +
->> +    /* Free unused pages for contiguous allocation */
->> +    if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
->> +        uint64_t actual_size = (uint64_t)node->base.num_pages << 
->> PAGE_SHIFT;
->> +
->> +        r = drm_buddy_free_unused_pages(mm,
->> +                        actual_size,
->> +                        &node->blocks);
->
-> Needs some locking.
+I'm of course open to other suggestions, but having values outside of
+[0.0, 1.0] range in the abstract pipeline will always raise the
+question: how do you feed those to the LUT next in the pipeline.
 
+Yeah, I have no idea what it should mean if an FB has a format that
+allows values beyond [0.0, 1.0].
+
+
+Thanks,
+pq
+
+
+> If some of these questions should be obvious I apologize for being a bit =
+dense,
+> though it helps to make this accessible to the lowest common denominator
+> to ensure not only the smartest devs can work with this.
+>=20
+> Harry
+>=20
+> > +
+> >  #define DRM_MODE_PAGE_FLIP_EVENT 0x01
+> >  #define DRM_MODE_PAGE_FLIP_ASYNC 0x02
+> >  #define DRM_MODE_PAGE_FLIP_TARGET_ABSOLUTE 0x4
+> >  =20
+>=20
+
+
+--Sig_/Qb_O9J89kTOH9Qm=6+y9Tv_
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmGDnAMACgkQI1/ltBGq
+qqeHbA/9FiFxfGVmxxpzvXkcPI35jn7YcJTvba8VWsaI1dTDFlbnLAtMfBuEhpFc
+4PPz7W0OzOzaH1Oquy30QrUnPNSL5I2BK/3yHMvLZLCzc3StlvCojLuvWiXNfc8R
+ZlJIJZkTs3MdGzPdfRpOME9/zZufLdFCkPFV16CEqcVWHXCEXkExrVNXiPUQJj0V
+4NO2MD5Y9q/tKIrDBGgbrUM+PuCU2YUXYN+GaUwFYEmurjc2tcGomYm2FsE3q3A7
+867AoIQov0ZpzSbmD+c8WZcQRKOdca3DOoimda26FeonlB/eC1VC2yNgWZ8iKPoY
+DdFL23TKOj+jlJ7WwjQgqCgZADZ1bSleL+iuP+e73lD39T/9OciJvJPGAcbS1Yf8
+yU9mMlQLX/qJ5FiBZRiTQZIUdYZS01q8THKlB3eSgjelSCGldnzxfwEIEXcF1WOG
+pR4PKYt7vuhuesqCe+Px91PmCb1FXDw+a+/tFlTNva/CJd/K6aeDL+SkPKVA8cFU
+RgIze85TEsXpM9+h/w255b4MNOzgb/n1cvNpikePXgV7LzE4Z3r8o2jN+xY0WRHZ
+7XrLMb2cFjt7eKNoQLsgL931Sp+IVamKnCmobELjefUmvvWijIfgFtpaG0o3sXpf
+0HFlgWni7BVYmZC0z/P1iStyOEyXV0NOiF8bdrOC2boiBf9iTO0=
+=HtZf
+-----END PGP SIGNATURE-----
+
+--Sig_/Qb_O9J89kTOH9Qm=6+y9Tv_--
