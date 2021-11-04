@@ -2,56 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3FCC445918
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 18:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9073D445921
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Nov 2021 18:57:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F78A6E9B1;
-	Thu,  4 Nov 2021 17:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 440D073774;
+	Thu,  4 Nov 2021 17:57:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F07816E9B1
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 17:56:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="229223026"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="229223026"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA84E73723;
+ Thu,  4 Nov 2021 17:57:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="232007463"
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="232007463"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2021 10:56:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="501633373"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga008.jf.intel.com with ESMTP; 04 Nov 2021 10:56:54 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 4 Nov 2021 10:56:53 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 4 Nov 2021 10:56:53 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Thu, 4 Nov 2021 10:56:52 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH v3] drm/i915/display: Exit PSR when doing async flips
-Thread-Index: AQHX0B92nRX8l2W6FEaCArnarxX/56vz4H4AgABBIAA=
-Date: Thu, 4 Nov 2021 17:56:52 +0000
-Message-ID: <50dd687c006667f95dab06cfbcfbef8a6e193496.camel@intel.com>
-References: <20211102193214.99448-1-jose.souza@intel.com>
- <YYPpysij7Oovwzhx@intel.com>
-In-Reply-To: <YYPpysij7Oovwzhx@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F6CEFCD155C68F4EAC5836AB294F8073@intel.com>
-Content-Transfer-Encoding: base64
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 10:57:39 -0700
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; d="scan'208";a="501633554"
+Received: from mihaelac-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.32.21])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 10:57:31 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sam Ravnborg <sam@ravnborg.org>,
+ Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <YYQaYsCr+piMlRpS@ravnborg.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211104160707.1407052-1-javierm@redhat.com>
+ <20211104160707.1407052-2-javierm@redhat.com> <YYQaYsCr+piMlRpS@ravnborg.org>
+Date: Thu, 04 Nov 2021 19:57:29 +0200
+Message-ID: <87r1bvajna.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Exit PSR when doing
- async flips
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Add a drm_drv_enabled() to
+ check if drivers should be enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,101 +47,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ amd-gfx@lists.freedesktop.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>,
+ Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>,
+ virtualization@lists.linux-foundation.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, "Pan, 
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTExLTA0IGF0IDE2OjEwICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFR1ZSwgTm92IDAyLCAyMDIxIGF0IDEyOjMyOjE0UE0gLTA3MDAsIEpvc8OpIFJvYmVy
-dG8gZGUgU291emEgd3JvdGU6DQo+ID4gQ2hhbmdpbmcgdGhlIGJ1ZmZlciBpbiB0aGUgbWlkZGxl
-IG9mIHRoZSBzY2Fub3V0IHRoZW4gZW50ZXJpbmcgYW4NCj4gPiBwZXJpb2Qgb2YgZmxpcCBpZGxl
-bmVzcyB3aWxsIGNhdXNlIHBhcnQgb2YgdGhlIHByZXZpb3VzIGJ1ZmZlciBiZWluZw0KPiA+IGRp
-cGxheWVkIHRvIHVzZXIgd2hlbiBQU1IgaXMgZW5hYmxlZC4NCj4gPiANCj4gPiBTbyBoZXJlIGRp
-c2FibGluZyBQU1IgYW5kIHNjaGVkdWxpbmcgYWN0aXZhdGlvbiBkdXJpbmcgdGhlIG5leHQNCj4g
-PiBzeW5jIGZsaXAuDQo+ID4gDQo+ID4gVGhlIGFzeW5jIGZsaXAgY2hlY2sgdGhhdCB3ZSBoYWQg
-aW4gUFNSIGNvbXB1dGUgaXMgbm90IGV4ZWN1dGVkIGF0DQo+ID4gZXZlcnkgZmxpcCBzbyBpdCB3
-YXMgbm90IGRvaW5nIGFueXRoaW5nIHVzZWZ1bCBhbmQgaXMgYWxzbyBiZWluZw0KPiA+IGRyb3Bw
-ZWQgaGVyZS4NCj4gPiANCj4gPiB2MjoNCj4gPiAtIHNjaGVkdWxpbmcgdGhlIFBTUiB3b3JrIGlu
-IF9pbnRlbF9wc3JfcG9zdF9wbGFuZV91cGRhdGUoKQ0KPiA+IA0KPiA+IHYzOg0KPiA+IC0gb25s
-eSByZSBlbmFibGluZyBQU1Igd2hlbiBkb2luZyBhIHN5bmMgZmxpcA0KPiA+IA0KPiA+IENjOiBL
-YXJ0aGlrIEIgUyA8a2FydGhpay5iLnNAaW50ZWwuY29tPg0KPiA+IENjOiBWYW5kaXRhIEt1bGth
-cm5pIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4NCj4gPiBDYzogVmlsbGUgU3lyasOkbMOk
-IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gPiBDYzogUm9kcmlnbyBWaXZpIDxy
-b2RyaWdvLnZpdmlAaW50ZWwuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8g
-ZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgMzcgKysrKysrKysrKysrKystLS0tLS0t
-LS0tDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspLCAxNiBkZWxldGlvbnMo
-LSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4g
-PiBpbmRleCA5ZDU4OWQ0NzFlMzM1Li5iOGZhYzUzZDU3ZGYxIDEwMDY0NA0KPiA+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gQEAgLTczMSwxMiArNzMxLDYg
-QEAgc3RhdGljIGJvb2wgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfY29uZmlnX3ZhbGlkKHN0cnVjdCBp
-bnRlbF9kcCAqaW50ZWxfZHAsDQo+ID4gIAkJcmV0dXJuIGZhbHNlOw0KPiA+ICAJfQ0KPiA+ICAN
-Cj4gPiAtCWlmIChjcnRjX3N0YXRlLT51YXBpLmFzeW5jX2ZsaXApIHsNCj4gPiAtCQlkcm1fZGJn
-X2ttcygmZGV2X3ByaXYtPmRybSwNCj4gPiAtCQkJICAgICJQU1IyIHNlbCBmZXRjaCBub3QgZW5h
-YmxlZCwgYXN5bmMgZmxpcCBlbmFibGVkXG4iKTsNCj4gPiAtCQlyZXR1cm4gZmFsc2U7DQo+ID4g
-LQl9DQo+ID4gLQ0KPiA+ICAJLyogV2FfMTQwMTAyNTQxODUgV2FfMTQwMTAxMDM3OTIgKi8NCj4g
-PiAgCWlmIChJU19UR0xfRElTUExBWV9TVEVQKGRldl9wcml2LCBTVEVQX0EwLCBTVEVQX0MwKSkg
-ew0KPiA+ICAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLA0KPiA+IEBAIC0xNzgwLDM2ICsx
-Nzc0LDQ3IEBAIHZvaWQgaW50ZWxfcHNyX3ByZV9wbGFuZV91cGRhdGUoc3RydWN0IGludGVsX2F0
-b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gIAkJaWYgKHBzci0+ZW5hYmxlZCAmJiBuZWVkc190b19k
-aXNhYmxlKQ0KPiA+ICAJCQlpbnRlbF9wc3JfZGlzYWJsZV9sb2NrZWQoaW50ZWxfZHApOw0KPiA+
-ICANCj4gPiArCQlpZiAocHNyLT5lbmFibGVkICYmIGNydGNfc3RhdGUtPnVhcGkuYXN5bmNfZmxp
-cCkNCj4gPiArCQkJaW50ZWxfcHNyX2V4aXQoaW50ZWxfZHApOw0KPiA+ICsNCj4gPiAgCQltdXRl
-eF91bmxvY2soJnBzci0+bG9jayk7DQo+ID4gIAl9DQo+ID4gIH0NCj4gPiAgDQo+ID4gIHN0YXRp
-YyB2b2lkIF9pbnRlbF9wc3JfcG9zdF9wbGFuZV91cGRhdGUoY29uc3Qgc3RydWN0IGludGVsX2F0
-b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gLQkJCQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlKQ0KPiA+ICsJCQkJCSBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqb2xkX2NydGNfc3RhdGUsDQo+ID4gKwkJCQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpuZXdfY3J0Y19zdGF0ZSkNCj4gDQo+IE1pZ2h0IG1ha2Ugc2Vuc2UgdG8gY2hhbmdlIHRo
-aXMgdG8gbWF0Y2ggaG93IHBzcl9wcmVfcGxhbmVfdXBkYXRlKCkNCj4gd29ya3MgdGhlc2UgZGF5
-cy4NCg0KV2lsbCBkbyBhcyBmb2xsb3cgdXAuDQoNCj4gDQo+ID4gIHsNCj4gPiAgCXN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsNCj4g
-PiAgCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyOw0KPiA+ICANCj4gPiAtCWlmICghY3J0
-Y19zdGF0ZS0+aGFzX3BzcikNCj4gPiArCWlmICghbmV3X2NydGNfc3RhdGUtPmhhc19wc3IpDQo+
-ID4gIAkJcmV0dXJuOw0KPiA+ICANCj4gPiAgCWZvcl9lYWNoX2ludGVsX2VuY29kZXJfbWFza193
-aXRoX3BzcihzdGF0ZS0+YmFzZS5kZXYsIGVuY29kZXIsDQo+ID4gLQkJCQkJICAgICBjcnRjX3N0
-YXRlLT51YXBpLmVuY29kZXJfbWFzaykgew0KPiA+ICsJCQkJCSAgICAgbmV3X2NydGNfc3RhdGUt
-PnVhcGkuZW5jb2Rlcl9tYXNrKSB7DQo+ID4gIAkJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9
-IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gPiAgCQlzdHJ1Y3QgaW50ZWxfcHNyICpwc3Ig
-PSAmaW50ZWxfZHAtPnBzcjsNCj4gPiAgDQo+ID4gIAkJbXV0ZXhfbG9jaygmcHNyLT5sb2NrKTsN
-Cj4gPiAgDQo+ID4gLQkJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sIHBzci0+ZW5hYmxlZCAm
-JiAhY3J0Y19zdGF0ZS0+YWN0aXZlX3BsYW5lcyk7DQo+ID4gKwkJZHJtX1dBUk5fT04oJmRldl9w
-cml2LT5kcm0sIHBzci0+ZW5hYmxlZCAmJg0KPiA+ICsJCQkgICAgIW5ld19jcnRjX3N0YXRlLT5h
-Y3RpdmVfcGxhbmVzKTsNCj4gPiAgDQo+ID4gIAkJLyogT25seSBlbmFibGUgaWYgdGhlcmUgaXMg
-YWN0aXZlIHBsYW5lcyAqLw0KPiA+IC0JCWlmICghcHNyLT5lbmFibGVkICYmIGNydGNfc3RhdGUt
-PmFjdGl2ZV9wbGFuZXMpDQo+ID4gLQkJCWludGVsX3Bzcl9lbmFibGVfbG9ja2VkKGludGVsX2Rw
-LCBjcnRjX3N0YXRlKTsNCj4gPiArCQlpZiAoIXBzci0+ZW5hYmxlZCAmJiBuZXdfY3J0Y19zdGF0
-ZS0+YWN0aXZlX3BsYW5lcykNCj4gPiArCQkJaW50ZWxfcHNyX2VuYWJsZV9sb2NrZWQoaW50ZWxf
-ZHAsIG5ld19jcnRjX3N0YXRlKTsNCj4gDQo+IFdoYXQgcHJldmVudHMgdGhpcyBndXkgZnJvbSBh
-Y3RpdmF0aW5nIFBTUiB3aGlsZSB3ZSdyZSBkb2luZw0KPiBhbiBhc3luYyBmbGlwPw0KDQplbmFi
-bGVkICE9IGFjdGl2ZSwgd2hlbiBkb2luZyBhIGFzeW5jIGZsaXAgaXQgd2lsbCBzZXQgYWN0aXZl
-ID0gZmFsc2UgYnV0IGVuYWJsZWQgd2lsbCBiZSBrZXB0IG9uLg0KDQpBbmQgdG8gY2hhbmdlIHRo
-ZSBudW1iZXIgb2YgYWN0aXZlX3BsYW5lcyBpdCB3aWxsIG5lZWQgdG8gZG8gYSBzeW5jIGZsaXAs
-IHNvIHdlIGFyZSBzYWZlLg0KDQo+IA0KPiA+ICANCj4gPiAgCQkvKiBGb3JjZSBhIFBTUiBleGl0
-IHdoZW4gZW5hYmxpbmcgQ1JDIHRvIGF2b2lkIENSQyB0aW1lb3V0cyAqLw0KPiA+IC0JCWlmIChj
-cnRjX3N0YXRlLT5jcmNfZW5hYmxlZCAmJiBwc3ItPmVuYWJsZWQpDQo+ID4gKwkJaWYgKG5ld19j
-cnRjX3N0YXRlLT5jcmNfZW5hYmxlZCAmJiBwc3ItPmVuYWJsZWQpDQo+ID4gIAkJCXBzcl9mb3Jj
-ZV9od190cmFja2luZ19leGl0KGludGVsX2RwKTsNCj4gPiAgDQo+ID4gKwkJLyogT25seSByZSBl
-bmFibGluZyBQU1Igd2hlbiBkb2luZyBhIHN5bmMgZmxpcCAqLw0KPiA+ICsJCWlmIChwc3ItPmVu
-YWJsZWQgJiYgIXBzci0+YWN0aXZlICYmDQo+ID4gKwkJICAgIG9sZF9jcnRjX3N0YXRlLT51YXBp
-LmFzeW5jX2ZsaXAgJiYNCj4gPiArCQkgICAgIW5ld19jcnRjX3N0YXRlLT51YXBpLmFzeW5jX2Zs
-aXApDQo+ID4gKwkJCXNjaGVkdWxlX3dvcmsoJmludGVsX2RwLT5wc3Iud29yayk7DQo+ID4gKw0K
-PiA+ICAJCW11dGV4X3VubG9jaygmcHNyLT5sb2NrKTsNCj4gPiAgCX0NCj4gPiAgfQ0KPiA+IEBA
-IC0xODE3LDE1ICsxODIyLDE1IEBAIHN0YXRpYyB2b2lkIF9pbnRlbF9wc3JfcG9zdF9wbGFuZV91
-cGRhdGUoY29uc3Qgc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gIHZvaWQg
-aW50ZWxfcHNyX3Bvc3RfcGxhbmVfdXBkYXRlKGNvbnN0IHN0cnVjdCBpbnRlbF9hdG9taWNfc3Rh
-dGUgKnN0YXRlKQ0KPiA+ICB7DQo+ID4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYgPSB0b19pOTE1KHN0YXRlLT5iYXNlLmRldik7DQo+ID4gLQlzdHJ1Y3QgaW50ZWxfY3J0Y19z
-dGF0ZSAqY3J0Y19zdGF0ZTsNCj4gPiArCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0
-Y19zdGF0ZSwgKm5ld19jcnRjX3N0YXRlOw0KPiA+ICAJc3RydWN0IGludGVsX2NydGMgKmNydGM7
-DQo+ID4gIAlpbnQgaTsNCj4gPiAgDQo+ID4gIAlpZiAoIUhBU19QU1IoZGV2X3ByaXYpKQ0KPiA+
-ICAJCXJldHVybjsNCj4gPiAgDQo+ID4gLQlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0Y19pbl9zdGF0
-ZShzdGF0ZSwgY3J0YywgY3J0Y19zdGF0ZSwgaSkNCj4gPiAtCQlfaW50ZWxfcHNyX3Bvc3RfcGxh
-bmVfdXBkYXRlKHN0YXRlLCBjcnRjX3N0YXRlKTsNCj4gPiArCWZvcl9lYWNoX29sZG5ld19pbnRl
-bF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBvbGRfY3J0Y19zdGF0ZSwgbmV3X2NydGNfc3Rh
-dGUsIGkpDQo+ID4gKwkJX2ludGVsX3Bzcl9wb3N0X3BsYW5lX3VwZGF0ZShzdGF0ZSwgb2xkX2Ny
-dGNfc3RhdGUsIG5ld19jcnRjX3N0YXRlKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgc3RhdGljIGlu
-dCBfcHNyMl9yZWFkeV9mb3JfcGlwZV91cGRhdGVfbG9ja2VkKHN0cnVjdCBpbnRlbF9kcCAqaW50
-ZWxfZHApDQo+ID4gLS0gDQo+ID4gMi4zMy4xDQo+IA0KDQo=
+On Thu, 04 Nov 2021, Sam Ravnborg <sam@ravnborg.org> wrote:
+> Hi Javier,
+>
+> On Thu, Nov 04, 2021 at 05:07:06PM +0100, Javier Martinez Canillas wrote:
+>> Some DRM drivers check the vgacon_text_force() function return value as an
+>> indication on whether they should be allowed to be enabled or not.
+>> 
+>> This function returns true if the nomodeset kernel command line parameter
+>> was set. But there may be other conditions besides this to determine if a
+>> driver should be enabled.
+>> 
+>> Let's add a drm_drv_enabled() helper function to encapsulate that logic so
+>> can be later extended if needed, without having to modify all the drivers.
+>> 
+>> Also, while being there do some cleanup. The vgacon_text_force() function
+>> is guarded by CONFIG_VGA_CONSOLE and there's no need for callers to do it.
+>> 
+>> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+>> ---
+>> 
+>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>> index 8214a0b1ab7f..3fb567d62881 100644
+>> --- a/drivers/gpu/drm/drm_drv.c
+>> +++ b/drivers/gpu/drm/drm_drv.c
+>> @@ -975,6 +975,26 @@ int drm_dev_set_unique(struct drm_device *dev, const char *name)
+>>  }
+>>  EXPORT_SYMBOL(drm_dev_set_unique);
+>>  
+>> +/**
+>> + * drm_drv_enabled - Checks if a DRM driver can be enabled
+>> + * @driver: DRM driver to check
+>> + *
+>> + * Checks whether a DRM driver can be enabled or not. This may be the case
+>> + * if the "nomodeset" kernel command line parameter is used.
+>> + *
+>> + * Return: 0 on success or a negative error code on failure.
+>> + */
+>> +int drm_drv_enabled(const struct drm_driver *driver)
+>> +{
+>> +	if (vgacon_text_force()) {
+>> +		DRM_INFO("%s driver is disabled\n", driver->name);
+>
+> DRM_INFO is deprecated, please do not use it in new code.
+> Also other users had an error message and not just info - is info
+> enough?
+>
+>
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL(drm_drv_enabled);
+>> +
+>>  /*
+>>   * DRM Core
+>>   * The DRM core module initializes all global DRM objects and makes them
+>> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+>> index ab2295dd4500..45cb3e540eff 100644
+>> --- a/drivers/gpu/drm/i915/i915_module.c
+>> +++ b/drivers/gpu/drm/i915/i915_module.c
+>> @@ -18,9 +18,12 @@
+>>  #include "i915_selftest.h"
+>>  #include "i915_vma.h"
+>>  
+>> +static const struct drm_driver driver;
+> Hmmm...
+>
+>> +
+>>  static int i915_check_nomodeset(void)
+>>  {
+>>  	bool use_kms = true;
+>> +	int ret;
+>>  
+>>  	/*
+>>  	 * Enable KMS by default, unless explicitly overriden by
+>> @@ -31,7 +34,8 @@ static int i915_check_nomodeset(void)
+>>  	if (i915_modparams.modeset == 0)
+>>  		use_kms = false;
+>>  
+>> -	if (vgacon_text_force() && i915_modparams.modeset == -1)
+>> +	ret = drm_drv_enabled(&driver);
+>
+> You pass the local driver variable here - which looks wrong as this is
+> not the same as the driver variable declared in another file.
+
+Indeed.
+
+> Maybe move the check to new function you can add to init_funcs,
+> and locate the new function in i915_drv - so it has access to driver?
+
+We don't really want that, though. This check is pretty much as early as
+it can be, and there's a ton of useless initialization that would happen
+if we waited until drm_driver is available.
+
+From my POV, drm_drv_enabled() is a solution that creates a worse
+problem for us than it solves.
+
+
+BR,
+Jani.
+
+
+>
+>
+> 	Sam
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
