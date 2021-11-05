@@ -1,84 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E299C446316
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 13:01:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A314463B0
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 13:59:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1BC89CDE;
-	Fri,  5 Nov 2021 12:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2FD66E212;
+	Fri,  5 Nov 2021 12:59:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE2AD89D02
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 12:01:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1636113674;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=d6mnjEfsvPWlmw0Dlsyl+1vpuoyclHqeKNkGqPRjBhA=;
- b=blUsf+DphCkAa2HzUFHJk6+P+VzzwtzOxDAyn5bgR5WNRZGlPXWs1j2BdkXG88YOnqg8Ay
- TO/sHz4yO/A7M742m4XkmdR1n4lr3z2kNopkY2ejELFhcmmoazFDDpNlPudMu7hH2+8kb4
- SaT2zuHLgAHlqMsJYaQk3CKa5l7A+fk=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-501-Gx4OyDhTOLuyZvyE9hcqag-1; Fri, 05 Nov 2021 08:00:53 -0400
-X-MC-Unique: Gx4OyDhTOLuyZvyE9hcqag-1
-Received: by mail-wm1-f72.google.com with SMTP id
- n16-20020a05600c3b9000b003331973fdbbso189052wms.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Nov 2021 05:00:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=d6mnjEfsvPWlmw0Dlsyl+1vpuoyclHqeKNkGqPRjBhA=;
- b=N0W/Wm//ut9m/4f/W5wpqahel9N/c/ijR9WrhA7QenKaRsQGEAT9XRjEpCU2FDfqq3
- DQTHfFQA6j0qgwVu9yuJzIIJwQ/NM+laGr1n/PwUd60yZ+jOKs+IP/TlF6zRGiqC9KSG
- cwGQ35srw1FGZJnOf/gZdIUv6otaRCMbq/6p0ASLYPzoHcK4mn3yaggzRxZYR1S/fkfS
- r0Pp1x4Ex5JZxaNZaLuxpcb7RBysFvyBP/j5dp+XJEbIzaubJy1AAL99XdgYd8rHmjBc
- TjamHqGwk3EGMUoiZa18BY+PbyQrOsVX9aqFiIe859+O3nP/gJOna6RplWrLeU3bkrUt
- YA1g==
-X-Gm-Message-State: AOAM53114bNWROFOYxICCg5BXNdFjnBmdEIko4XN0G+XSyCV843jajO3
- Aa3k7o1+0CYqcyh8l2qaqBbhaAZ6M9AVHahjwBDbvDfnhyPnatS81u977CrZecoOXCVCM/EHWec
- Z752xkh536+ZoaZhHyBodb2NuSxLX
-X-Received: by 2002:a05:6000:1868:: with SMTP id
- d8mr36559147wri.285.1636113651798; 
- Fri, 05 Nov 2021 05:00:51 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwxlHaNU9FU6Qy+ImAOwcqW/sLneLxZOG0rukxfbYjqJBdrwuSz7fg+xp3pWIymRwt/FJOPRA==
-X-Received: by 2002:a05:6000:1868:: with SMTP id
- d8mr36559073wri.285.1636113651479; 
- Fri, 05 Nov 2021 05:00:51 -0700 (PDT)
-Received: from [192.168.1.128] ([92.176.231.106])
- by smtp.gmail.com with ESMTPSA id m21sm7590336wrb.2.2021.11.05.05.00.50
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 Nov 2021 05:00:51 -0700 (PDT)
-Message-ID: <335a9e0f-cce9-480b-10e0-bd312b81e587@redhat.com>
-Date: Fri, 5 Nov 2021 13:00:49 +0100
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16806E1F6;
+ Fri,  5 Nov 2021 12:59:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="229356195"
+X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="229356195"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2021 05:59:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="450562978"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 05 Nov 2021 05:59:45 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 Nov 2021 14:59:44 +0200
+Date: Fri, 5 Nov 2021 14:59:44 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Harry Wentland <harry.wentland@amd.com>
+Message-ID: <YYUqwCBQwfL0SABl@intel.com>
+References: <20210906213904.27918-1-uma.shankar@intel.com>
+ <20210906213904.27918-6-uma.shankar@intel.com>
+ <bc7e37d4-e8be-73ce-5478-02a0d5474a15@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org
-References: <20211104160707.1407052-1-javierm@redhat.com>
- <20211104160707.1407052-2-javierm@redhat.com> <87ilx7ae3v.fsf@intel.com>
- <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
- <d4a64906-69e5-3250-2362-79f2afac0a23@suse.de>
- <38dbcc8f-2f95-6846-537f-9b85468bfa87@redhat.com> <877ddmapfj.fsf@intel.com>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <877ddmapfj.fsf@intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Add a drm_drv_enabled() to
- check if drivers should be enabled
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bc7e37d4-e8be-73ce-5478-02a0d5474a15@amd.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [RFC v2 05/22] drm/i915/xelpd: Define Degamma Lut
+ range struct for HDR planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,53 +50,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
- Ben Skeggs <bskeggs@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- virtualization@lists.linux-foundation.org, intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Peter Robinson <pbrobinson@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, ppaalanen@gmail.com,
+ dri-devel@lists.freedesktop.org, sebastian@sebastianwick.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/5/21 11:04, Jani Nikula wrote:
-> On Fri, 05 Nov 2021, Javier Martinez Canillas <javierm@redhat.com> wrote:
-
-[snip]
-
->>
->> Do you envision other condition that could be added later to disable a
->> DRM driver ? Or do you think that just from a code readability point of
->> view makes worth it ?
+On Wed, Nov 03, 2021 at 11:10:37AM -0400, Harry Wentland wrote:
 > 
-> Taking a step back for perspective.
 > 
-> I think there's broad consensus in moving the parameter to drm, naming
-> the check function to drm_something_something(), and breaking the ties
-> to CONFIG_VGA_CONSOLE. I appreciate the work you're doing to that
-> effect.
->
+> On 2021-09-06 17:38, Uma Shankar wrote:
+> > Define the structure with XE_LPD degamma lut ranges. HDR and SDR
+> > planes have different capabilities, implemented respective
+> > structure for the HDR planes.
+> > 
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_color.c | 52 ++++++++++++++++++++++
+> >  1 file changed, 52 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > index afcb4bf3826c..6403bd74324b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -2092,6 +2092,58 @@ static void icl_read_luts(struct intel_crtc_state *crtc_state)
+> >  	}
+> >  }
+> >  
+> > + /* FIXME input bpc? */
+> > +__maybe_unused
+> > +static const struct drm_color_lut_range d13_degamma_hdr[] = {
+> > +	/* segment 1 */
+> > +	{
+> > +		.flags = (DRM_MODE_LUT_GAMMA |
+> > +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > +			  DRM_MODE_LUT_INTERPOLATE |
+> > +			  DRM_MODE_LUT_NON_DECREASING),
+> > +		.count = 128,
+> 
+> Is the distribution of the 128 entries uniform?
 
-Thanks, I appreciate your feedback and comments.
- 
-> I think everything beyond that is still a bit vague and/or
-> contentious. So how about making the first 2-3 patches just that?
-> Something we can all agree on, makes good progress, improves the kernel,
-> and gives us something to build on?
->
+I guess this is the plane gamma thing despite being in intel_color.c,
+so yeah I think that's correct.
 
-That works for me. Thomas, do you agree with that approach ?
- 
-Best regards,
+> If so, is a
+> uniform distribution of 128 points across most of the LUT
+> good enough for HDR with 128 entries?
+
+No idea how good this actually is. It is .24 so at least
+it does have a fair bit of precision.
+
+> 
+> > +		.input_bpc = 24, .output_bpc = 16,
+> > +		.start = 0, .end = (1 << 24) - 1,
+> > +		.min = 0, .max = (1 << 24) - 1,
+> > +	},
+> > +	/* segment 2 */
+> > +	{
+> > +		.flags = (DRM_MODE_LUT_GAMMA |
+> > +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > +			  DRM_MODE_LUT_INTERPOLATE |
+> > +			  DRM_MODE_LUT_REUSE_LAST |
+> > +			  DRM_MODE_LUT_NON_DECREASING),
+> > +		.count = 1,
+> > +		.input_bpc = 24, .output_bpc = 16,
+> > +		.start = (1 << 24) - 1, .end = 1 << 24,
+> 
+> .start and .end are only a single entry apart. Is this correct?
+
+One think I wanted to do is simplify this stuff by getting rid of
+.end entirely. So I think this should just be '.start=1<<24' (or
+whatever way we decide to specify the input precision, which is
+I think another slightly open question).
+
+So for this thing we could just have:
+{ .count = 128, .min = 0, .max = (1 << 24) - 1, .start = 0       },
+{ .count = 1,   .min = 0, .max = (7 << 24) - 1, .start = 1 << 24 },
+{ .count = 1,   .min = 0, .max = (7 << 24) - 1, .start = 3 << 24 },
+{ .count = 1,   .min = 0, .max = (7 << 24) - 1, .start = 7 << 24 },
+
++ flags/etc. which I left out for brevity.
+
+So that is trying to indicate that the first 129 entries are equally
+spaced, and would be used to interpolate for input values [0.0,1.0).
+Input values [1.0,3.0) would interpolate between entry 128 and 129,
+and [3.0,7.0) would interpolate between entry 129 and 130.
+
 -- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+Ville Syrjälä
+Intel
