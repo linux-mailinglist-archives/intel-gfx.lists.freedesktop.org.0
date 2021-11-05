@@ -1,42 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 617E9446224
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 11:21:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F224A446280
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 12:03:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8D2F6E086;
-	Fri,  5 Nov 2021 10:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B45A66E12A;
+	Fri,  5 Nov 2021 11:03:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA23D6E086
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 10:21:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="230600933"
-X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="230600933"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B96F26E11F;
+ Fri,  5 Nov 2021 11:03:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="229346059"
+X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="229346059"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2021 03:21:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="501891273"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 05 Nov 2021 03:21:50 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Nov 2021 12:21:49 +0200
-Date: Fri, 5 Nov 2021 12:21:49 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YYUFvepD/DUf5uKv@intel.com>
-References: <20211104161858.21786-1-jani.nikula@intel.com>
- <20211104161858.21786-6-jani.nikula@intel.com>
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2021 04:03:49 -0700
+X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="501901059"
+Received: from jprisaca-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.214.70])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2021 04:03:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>, Dave Airlie <airlied@linux.ie>
+In-Reply-To: <20211105171517.287de894@canb.auug.org.au>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211015202648.258445ef@canb.auug.org.au>
+ <20211101194223.749197c5@canb.auug.org.au>
+ <20211105171517.287de894@canb.auug.org.au>
+Date: Fri, 05 Nov 2021 13:03:43 +0200
+Message-ID: <874k8qampc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211104161858.21786-6-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] drm/i915/audio: rename
- intel_init_audio_hooks to intel_audio_hooks_init
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,69 +47,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 04, 2021 at 06:18:58PM +0200, Jani Nikula wrote:
-> Follow the filename based prefix naming.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, 05 Nov 2021, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> Hi all,
+>
+> On Mon, 1 Nov 2021 19:42:23 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>>
+>> On Fri, 15 Oct 2021 20:26:48 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>> >
+>> > After merging the drm-misc tree, today's linux-next build (arm
+>> > multi_v7_defconfig) failed like this:
+>> > 
+>> > drivers/gpu/drm/drm_modeset_lock.c:111:29: error: conflicting types for '__stack_depot_save'
+>> >   111 | static depot_stack_handle_t __stack_depot_save(void)
+>> >       |                             ^~~~~~~~~~~~~~~~~~
+>> > In file included from include/linux/page_ext.h:7,
+>> >                  from include/linux/mm.h:25,
+>> >                  from include/linux/kallsyms.h:13,
+>> >                  from include/linux/bpf.h:20,
+>> >                  from include/linux/bpf-cgroup.h:5,
+>> >                  from include/linux/cgroup-defs.h:22,
+>> >                  from include/linux/cgroup.h:28,
+>> >                  from include/linux/memcontrol.h:13,
+>> >                  from include/linux/swap.h:9,
+>> >                  from include/linux/suspend.h:5,
+>> >                  from include/linux/regulator/consumer.h:35,
+>> >                  from include/linux/i2c.h:18,
+>> >                  from include/drm/drm_crtc.h:28,
+>> >                  from include/drm/drm_atomic.h:31,
+>> >                  from drivers/gpu/drm/drm_modeset_lock.c:24:
+>> > include/linux/stackdepot.h:18:22: note: previous declaration of '__stack_depot_save' was here
+>> >    18 | depot_stack_handle_t __stack_depot_save(unsigned long *entries,
+>> >       |                      ^~~~~~~~~~~~~~~~~~
+>> > 
+>> > Caused by commit
+>> > 
+>> >   cd06ab2fd48f ("drm/locking: add backtrace for locking contended locks without backoff")
+>> > 
+>> > This may only have been revealed because of another fix I have had to
+>> > apply today.
+>> > 
+>> > I have applied the following patch for today.
+>> > 
+>> > From: Stephen Rothwell <sfr@canb.auug.org.au>
+>> > Date: Fri, 15 Oct 2021 20:17:52 +1100
+>> > Subject: [PATCH] drm/locking: fix for name conflict
+>> > 
+>> > Fixes: cd06ab2fd48f ("drm/locking: add backtrace for locking contended locks without backoff")
+>> > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+>> > ---
+>> >  drivers/gpu/drm/drm_modeset_lock.c | 6 +++---
+>> >  1 file changed, 3 insertions(+), 3 deletions(-)
+>> > 
+>> > diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+>> > index 4d32b61fa1fd..ee36dd20900d 100644
+>> > --- a/drivers/gpu/drm/drm_modeset_lock.c
+>> > +++ b/drivers/gpu/drm/drm_modeset_lock.c
+>> > @@ -79,7 +79,7 @@
+>> >  static DEFINE_WW_CLASS(crtc_ww_class);
+>> >  
+>> >  #if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
+>> > -static noinline depot_stack_handle_t __stack_depot_save(void)
+>> > +static noinline depot_stack_handle_t __drm_stack_depot_save(void)
+>> >  {
+>> >  	unsigned long entries[8];
+>> >  	unsigned int n;
+>> > @@ -108,7 +108,7 @@ static void __stack_depot_print(depot_stack_handle_t stack_depot)
+>> >  	kfree(buf);
+>> >  }
+>> >  #else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
+>> > -static depot_stack_handle_t __stack_depot_save(void)
+>> > +static depot_stack_handle_t __drm_stack_depot_save(void)
+>> >  {
+>> >  	return 0;
+>> >  }
+>> > @@ -317,7 +317,7 @@ static inline int modeset_lock(struct drm_modeset_lock *lock,
+>> >  		ret = 0;
+>> >  	} else if (ret == -EDEADLK) {
+>> >  		ctx->contended = lock;
+>> > -		ctx->stack_depot = __stack_depot_save();
+>> > +		ctx->stack_depot = __drm_stack_depot_save();
+>> >  	}
+>> >  
+>> >  	return ret;
+>> 
+>> This has reappeared today.  I don't know what happened to the drm-misc
+>> tree over the weeked :-(
+>> 
+>> I have reapplied the above fix.
+>
+> So the above drm-misc commit is now in the drm tree, but its fix up
+> commit vanished from the drm-misc tree over the past weekend :-(
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: drm-misc maintainers.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_audio.c   | 4 ++--
->  drivers/gpu/drm/i915/display/intel_audio.h   | 2 +-
->  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
->  3 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index aa7037021376..74d56487267c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -940,10 +940,10 @@ static const struct intel_audio_funcs hsw_audio_funcs = {
->  };
->  
->  /**
-> - * intel_init_audio_hooks - Set up chip specific audio hooks
-> + * intel_audio_hooks_init - Set up chip specific audio hooks
->   * @dev_priv: device private
->   */
-> -void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
-> +void intel_audio_hooks_init(struct drm_i915_private *dev_priv)
->  {
->  	if (IS_G4X(dev_priv)) {
->  		dev_priv->audio.funcs = &g4x_audio_funcs;
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
-> index dcb259dd2da7..63b22131dc45 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.h
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.h
-> @@ -11,7 +11,7 @@ struct drm_i915_private;
->  struct intel_crtc_state;
->  struct intel_encoder;
->  
-> -void intel_init_audio_hooks(struct drm_i915_private *dev_priv);
-> +void intel_audio_hooks_init(struct drm_i915_private *dev_priv);
->  void intel_audio_codec_enable(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *crtc_state,
->  			      const struct drm_connector_state *conn_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 29392dfc46c8..25c3a44ed693 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9486,7 +9486,7 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
->  		return;
->  
->  	intel_init_cdclk_hooks(dev_priv);
-> -	intel_init_audio_hooks(dev_priv);
-> +	intel_audio_hooks_init(dev_priv);
->  
->  	intel_dpll_init_clock_hook(dev_priv);
->  
-> -- 
-> 2.30.2
+We normally point drm-misc/for-linux-next at drm-misc-next, *except* to
+drm-misc-next-fixes during the merge window. This is because
+drm-misc-next already starts accumulating stuff that's headed to one
+release later, e.g. currently v5.17. I think that's part of the reason.
+
+I probably should have pushed c4f08d7246a5 ("drm/locking: fix
+__stack_depot_* name conflict") to drm-misc-next-fixes.
+
+There's still something funny going on, because the drm-misc-next pull
+request [1] isn't part of the drm pull request for v5.16 [2]. Is there
+going to be another drm pull?
+
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/20211014120452.2wicnt6hobu3kbwb@gilmour
+[2] https://lore.kernel.org/r/CAPM=9tyOyz4_-OdjDduFkponSXycO6maBDFsWGTLv+j=_Vp6ww@mail.gmail.com
+
+
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
