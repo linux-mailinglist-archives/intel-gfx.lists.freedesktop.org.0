@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A0C446223
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 11:21:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 617E9446224
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 11:21:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFFB46E10B;
-	Fri,  5 Nov 2021 10:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D2F6E086;
+	Fri,  5 Nov 2021 10:21:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F1056E086
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 10:21:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="292710467"
-X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="292710467"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2021 03:21:17 -0700
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA23D6E086
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 10:21:52 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="230600933"
+X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="230600933"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2021 03:21:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="639734138"
+X-IronPort-AV: E=Sophos;i="5.87,211,1631602800"; d="scan'208";a="501891273"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 05 Nov 2021 03:21:15 -0700
+ by orsmga008.jf.intel.com with SMTP; 05 Nov 2021 03:21:50 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Nov 2021 12:21:14 +0200
-Date: Fri, 5 Nov 2021 12:21:14 +0200
+ Fri, 05 Nov 2021 12:21:49 +0200
+Date: Fri, 5 Nov 2021 12:21:49 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YYUFmkGqEIDpkH8N@intel.com>
+Message-ID: <YYUFvepD/DUf5uKv@intel.com>
 References: <20211104161858.21786-1-jani.nikula@intel.com>
- <20211104161858.21786-5-jani.nikula@intel.com>
+ <20211104161858.21786-6-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211104161858.21786-5-jani.nikula@intel.com>
+In-Reply-To: <20211104161858.21786-6-jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 5/6] drm/i915/audio: clean up LPE audio
- init/cleanup calls
+Subject: Re: [Intel-gfx] [PATCH v3 6/6] drm/i915/audio: rename
+ intel_init_audio_hooks to intel_audio_hooks_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,101 +53,62 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 04, 2021 at 06:18:57PM +0200, Jani Nikula wrote:
-> Unify audio init/cleanup paths wrt LPE audio, and base the logic on the
-> return values from LPE audio calls. Move the platform device check on
-> cleanup to intel_lpe_audio.c, thereby limiting all audio.lpe substruct
-> access to that file.
+On Thu, Nov 04, 2021 at 06:18:58PM +0200, Jani Nikula wrote:
+> Follow the filename based prefix naming.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_audio.c     | 14 ++++++++------
->  drivers/gpu/drm/i915/display/intel_lpe_audio.c |  6 ++++--
->  drivers/gpu/drm/i915/display/intel_lpe_audio.h |  4 ++--
->  3 files changed, 14 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_audio.c   | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_audio.h   | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index 24e76657d561..aa7037021376 100644
+> index aa7037021376..74d56487267c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_audio.c
 > +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -1403,8 +1403,10 @@ static void i915_audio_component_cleanup(struct drm_i915_private *dev_priv)
->   */
->  void intel_audio_init(struct drm_i915_private *dev_priv)
->  {
-> -	if (intel_lpe_audio_init(dev_priv) < 0)
-> -		i915_audio_component_init(dev_priv);
-> +	if (!intel_lpe_audio_init(dev_priv))
-> +		return;
-> +
-> +	i915_audio_component_init(dev_priv);
-
-The logic here is already a bit funky. Technically we should not
-init the component stuff except when LPE audio is not present.
-Ie. we should only do it when intel_lpe_audio_init() returns
--ENODEV.
-
->  }
+> @@ -940,10 +940,10 @@ static const struct intel_audio_funcs hsw_audio_funcs = {
+>  };
 >  
 >  /**
-> @@ -1414,8 +1416,8 @@ void intel_audio_init(struct drm_i915_private *dev_priv)
+> - * intel_init_audio_hooks - Set up chip specific audio hooks
+> + * intel_audio_hooks_init - Set up chip specific audio hooks
+>   * @dev_priv: device private
 >   */
->  void intel_audio_deinit(struct drm_i915_private *dev_priv)
+> -void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
+> +void intel_audio_hooks_init(struct drm_i915_private *dev_priv)
 >  {
-> -	if ((dev_priv)->audio.lpe.platdev != NULL)
-> -		intel_lpe_audio_teardown(dev_priv);
-> -	else
-> -		i915_audio_component_cleanup(dev_priv);
-> +	if (!intel_lpe_audio_teardown(dev_priv))
-> +		return;
-> +
-> +	i915_audio_component_cleanup(dev_priv);
-
-Here it would probably make more sense to just call both
-unconditionally so we don't have to care what happened during
-init.
-
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> index 4970bf146c4a..a2984718d136 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> @@ -296,10 +296,10 @@ int intel_lpe_audio_init(struct drm_i915_private *dev_priv)
->   *
->   * release all the resources for LPE audio <-> i915 bridge.
->   */
-> -void intel_lpe_audio_teardown(struct drm_i915_private *dev_priv)
-> +int intel_lpe_audio_teardown(struct drm_i915_private *dev_priv)
->  {
->  	if (!HAS_LPE_AUDIO(dev_priv))
-> -		return;
-> +		return -ENODEV;
+>  	if (IS_G4X(dev_priv)) {
+>  		dev_priv->audio.funcs = &g4x_audio_funcs;
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
+> index dcb259dd2da7..63b22131dc45 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.h
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.h
+> @@ -11,7 +11,7 @@ struct drm_i915_private;
+>  struct intel_crtc_state;
+>  struct intel_encoder;
 >  
->  	lpe_audio_platdev_destroy(dev_priv);
+> -void intel_init_audio_hooks(struct drm_i915_private *dev_priv);
+> +void intel_audio_hooks_init(struct drm_i915_private *dev_priv);
+>  void intel_audio_codec_enable(struct intel_encoder *encoder,
+>  			      const struct intel_crtc_state *crtc_state,
+>  			      const struct drm_connector_state *conn_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 29392dfc46c8..25c3a44ed693 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -9486,7 +9486,7 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
+>  		return;
 >  
-> @@ -307,6 +307,8 @@ void intel_lpe_audio_teardown(struct drm_i915_private *dev_priv)
+>  	intel_init_cdclk_hooks(dev_priv);
+> -	intel_init_audio_hooks(dev_priv);
+> +	intel_audio_hooks_init(dev_priv);
 >  
->  	dev_priv->audio.lpe.irq = -1;
->  	dev_priv->audio.lpe.platdev = NULL;
-> +
-> +	return 0;
->  }
+>  	intel_dpll_init_clock_hook(dev_priv);
 >  
->  /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.h b/drivers/gpu/drm/i915/display/intel_lpe_audio.h
-> index f848c5038714..030874623872 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.h
-> @@ -12,8 +12,8 @@ enum pipe;
->  enum port;
->  struct drm_i915_private;
->  
-> -int  intel_lpe_audio_init(struct drm_i915_private *dev_priv);
-> -void intel_lpe_audio_teardown(struct drm_i915_private *dev_priv);
-> +int intel_lpe_audio_init(struct drm_i915_private *dev_priv);
-> +int intel_lpe_audio_teardown(struct drm_i915_private *dev_priv);
->  void intel_lpe_audio_irq_handler(struct drm_i915_private *dev_priv);
->  void intel_lpe_audio_notify(struct drm_i915_private *dev_priv,
->  			    enum pipe pipe, enum port port,
 > -- 
 > 2.30.2
 
