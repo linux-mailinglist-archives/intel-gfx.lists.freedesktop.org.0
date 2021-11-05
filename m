@@ -1,70 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EEEC446039
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 08:43:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A07EC4460CD
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 09:44:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59A566E14D;
-	Fri,  5 Nov 2021 07:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE3906E5C1;
+	Fri,  5 Nov 2021 08:44:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA8616E14D;
- Fri,  5 Nov 2021 07:43:26 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id 702452B01266;
- Fri,  5 Nov 2021 03:43:23 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute5.internal (MEProxy); Fri, 05 Nov 2021 03:43:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=Efzn8vluX4PQyP9OF4+SHfXpVAWxFIj8lk5k1rdqvHM=; b=EnMY3D8U
- m9ceBwUM4/H6iCTGCp4px/G1RFgL0fjcuNBUVJ/eg5wGjpTEu5v0gLt4yWlp0AzQ
- 7Jc1D/JNSYGGrvJOxK9SaEKuzA1PdqiMgvp/L3Eac7ljFQd/0IQrNJ3QCE+nL58M
- /JM2NWwXlW/FgUn3lpsYEjSTIq3ObccK4QqF3KGx4P3raR+hH7obyqr/ZRufzHfV
- VlRHNAWGTDMzX9WnFH+8/TnwJM9ynAk2mC2O0tjrk2oJPkqR9k0l3NJ5d8H6AU2u
- QOVuDc8J8YERtvgtb6AfGlRB38TmNQfnrJ434wYml658ZUwr1uP4gAZKVwD2IWTq
- 8tY6Q0E8Sou86w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=Efzn8vluX4PQyP9OF4+SHfXpVAWxF
- Ij8lk5k1rdqvHM=; b=aoI8idQd49lUJ8ryJbNjPpHM6fy5m4/2zMWx4lF8aewcQ
- 9W3994BWT62vJREA04U11yDKoEBNvgZbtLxOtTj30HPdK0VD3g4xYkYEhTURrxn0
- vX4GkFG3fhs2Dxn240N5ou2XnR+h/xtPLifZKCKxuKmyuiV1QKuLT/+2FJa3HkaX
- i6Pk7wyeHF+kClFMUYweeytPcGu48fkLyjNXz4gcCqofh4vidlCCXovALDF5C8tK
- F72uAFJR1ZY6Z6a8+lYfPKbwUwbqMCwqrx8gfndKFrAVoyFqYTKuZJ2/ns+T2zjt
- 3t5y2Q6SAkwOyCLjMezpgOMYkLqwHHIJToyDP97Qg==
-X-ME-Sender: <xms:meCEYU0tyzrLCSG3ifvgQJ7xNqeJiOH21I7iXa75mfi6IBbAKSyMHA>
- <xme:meCEYfGTJ2RI_lbGfnzfmAm96ojFA6gU2XsApDY1s0D08w6NgbUyagN_uH2ZM-BfW
- 9t1jSDwqiZZz2-S-3g>
-X-ME-Received: <xmr:meCEYc7bUIvdoca40Ac27z6mCvP9QOnGueuFXztCEdsy89wUiDV74WgBkZ2s1jFVWmnIjOg4sADCPs34qWbxttZ967ahtXwTGqHADFuX>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrtdehgddutdejucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggusehgtderredttddunecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhephfehtefggeekteffueeileekfeegteetfffggfekleehkeffvedvgedtieetvddu
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
- iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
- vggthh
-X-ME-Proxy: <xmx:meCEYd0WtIHFbERWxqetIm84uQJlExOMucWhErS7sNrvsfHABkM5Hg>
- <xmx:meCEYXEOOPzefwxF-rDms4TOR7fenxliTNUi8O-eOSGGCoAQlSySYg>
- <xmx:meCEYW9I6o_bvm9W71xJVnyD5oPqxNwQnuCXckNdq1od48rfiuL9bQ>
- <xmx:muCEYeCoILA1tuYOKwl8n2wS6zmjWKGq-lbq7UYAhBYseqjh4_LXis6sEXw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 5 Nov 2021 03:43:21 -0400 (EDT)
-Date: Fri, 5 Nov 2021 08:43:18 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20211105074318.oy6rwjr5wcw6qpjj@gilmour>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3E266E5BF;
+ Fri,  5 Nov 2021 08:44:02 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 2048A1FD36;
+ Fri,  5 Nov 2021 08:44:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1636101841; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=zQvV0RpnV8EUYUIoohmo0C8M2wV3xBUo8DuodBf76C4=;
+ b=eTlz+S0jycepgNsob78MKh4XqFhLNLCBkiIXR7cIQjUrRLttxjEV35SzM17aB7X/Aq8Q9g
+ Rk8guvmEMZQRqwKh9VYHbXpzxvIlbKhWlvDHRUNFqDCPpToag3DU6D9Pt1xdAhvsPzF/fy
+ RlM/dMl6+kLggHMJjWth6hZA3HwzvW0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1636101841;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=zQvV0RpnV8EUYUIoohmo0C8M2wV3xBUo8DuodBf76C4=;
+ b=m9PBG70y1HJQ3NdFv3Y52DwBrceLS2o02joRV4AN9NFw8O9DlICQhvumT7MryI9A/s/Fqq
+ lUR+gRyGmDZsfmBQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 9C2D213DFC;
+ Fri,  5 Nov 2021 08:44:00 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id mTUmJdDuhGHoTwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Fri, 05 Nov 2021 08:44:00 +0000
+Message-ID: <d4a64906-69e5-3250-2362-79f2afac0a23@suse.de>
+Date: Fri, 5 Nov 2021 09:43:59 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="pqq25x2c4mvy4ds7"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
+References: <20211104160707.1407052-1-javierm@redhat.com>
+ <20211104160707.1407052-2-javierm@redhat.com> <87ilx7ae3v.fsf@intel.com>
+ <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------Gnx82v0TLFu0h6IXui8hbh2N"
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Add a drm_drv_enabled() to
+ check if drivers should be enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,60 +73,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ virtualization@lists.linux-foundation.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
+ Peter Robinson <pbrobinson@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------Gnx82v0TLFu0h6IXui8hbh2N
+Content-Type: multipart/mixed; boundary="------------S0Y95QrnJLrUy0Fvjfwzofm3";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, amd-gfx@lists.freedesktop.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
+ =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
+ Hans de Goede <hdegoede@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ virtualization@lists.linux-foundation.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <d4a64906-69e5-3250-2362-79f2afac0a23@suse.de>
+Subject: Re: [PATCH v2 1/2] drm: Add a drm_drv_enabled() to check if drivers
+ should be enabled
+References: <20211104160707.1407052-1-javierm@redhat.com>
+ <20211104160707.1407052-2-javierm@redhat.com> <87ilx7ae3v.fsf@intel.com>
+ <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
+In-Reply-To: <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
 
---pqq25x2c4mvy4ds7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--------------S0Y95QrnJLrUy0Fvjfwzofm3
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Hi Dave, Daniel,
+SGkNCg0KQW0gMDQuMTEuMjEgdW0gMjE6MDkgc2NocmllYiBKYXZpZXIgTWFydGluZXogQ2Fu
+aWxsYXM6DQo+IEhlbGxvIEphbmksDQo+IA0KPiBPbiAxMS80LzIxIDIwOjU3LCBKYW5pIE5p
+a3VsYSB3cm90ZToNCj4+IE9uIFRodSwgMDQgTm92IDIwMjEsIEphdmllciBNYXJ0aW5leiBD
+YW5pbGxhcyA8amF2aWVybUByZWRoYXQuY29tPiB3cm90ZToNCj4+PiArLyoqDQo+Pj4gKyAq
+IGRybV9kcnZfZW5hYmxlZCAtIENoZWNrcyBpZiBhIERSTSBkcml2ZXIgY2FuIGJlIGVuYWJs
+ZWQNCj4+PiArICogQGRyaXZlcjogRFJNIGRyaXZlciB0byBjaGVjaw0KPj4+ICsgKg0KPj4+
+ICsgKiBDaGVja3Mgd2hldGhlciBhIERSTSBkcml2ZXIgY2FuIGJlIGVuYWJsZWQgb3Igbm90
+LiBUaGlzIG1heSBiZSB0aGUgY2FzZQ0KPj4+ICsgKiBpZiB0aGUgIm5vbW9kZXNldCIga2Vy
+bmVsIGNvbW1hbmQgbGluZSBwYXJhbWV0ZXIgaXMgdXNlZC4NCj4+PiArICoNCj4+PiArICog
+UmV0dXJuOiAwIG9uIHN1Y2Nlc3Mgb3IgYSBuZWdhdGl2ZSBlcnJvciBjb2RlIG9uIGZhaWx1
+cmUuDQo+Pj4gKyAqLw0KPj4+ICtpbnQgZHJtX2Rydl9lbmFibGVkKGNvbnN0IHN0cnVjdCBk
+cm1fZHJpdmVyICpkcml2ZXIpDQoNCkphbmkgbWVudGlvbmVkIHRoYXQgaTkxNSBhYnNvbHV0
+ZWx5IHdhbnRzIHRoaXMgdG8gcnVuIGZyb20gdGhlIA0KbW9kdWxlX2luaXQgZnVuY3Rpb24u
+IEJlc3QgaXMgdG8gZHJvcCB0aGUgcGFyYW1ldGVyLg0KDQo+Pj4gK3sNCj4+PiArCWlmICh2
+Z2Fjb25fdGV4dF9mb3JjZSgpKSB7DQo+Pj4gKwkJRFJNX0lORk8oIiVzIGRyaXZlciBpcyBk
+aXNhYmxlZFxuIiwgZHJpdmVyLT5uYW1lKTsNCj4+PiArCQlyZXR1cm4gLUVOT0RFVjsNCj4+
+PiArCX0NCg0KSWYgd2UgcnVuIHRoaXMgZnJvbSB3aXRoaW4gYSBtb2R1bGVfaW5pdCBmdW5j
+dGlvbiwgd2UnZCBnZXQgcGxlbnR5IG9mIA0KdGhlc2Ugd2FybmluZ3MgaWYgZHJpdmVycyBh
+cmUgY29tcGlsZWQgaW50byB0aGUga2VybmVsLiBNYXliZSBzaW1wbHkgDQpyZW1vdmUgdGhl
+IG1lc3NhZ2UuIFRoZXJlJ3MgYWxyZWFkeSBhIHdhcm5pbmcgcHJpbnRlZCBieSB0aGUgbm9t
+b2Rlc2V0IA0KaGFuZGxlci4NCg0KPj4+ICsNCj4+PiArCXJldHVybiAwOw0KPj4+ICt9DQo+
+Pj4gK0VYUE9SVF9TWU1CT0woZHJtX2Rydl9lbmFibGVkKTsNCj4+DQo+PiBUaGUgbmFtZSBp
+bXBsaWVzIGEgYm9vbCByZXR1cm4sIGJ1dCBpdCdzIG5vdC4NCj4+DQo+PiAJaWYgKGRybV9k
+cnZfZW5hYmxlZCguLi4pKSB7DQo+PiAJCS8qIHN1cnByaXNlLCBpdCdzIGRpc2FibGVkISAq
+Lw0KPj4gCX0NCj4+DQo+IA0KPiBJdCB1c2VkIHRvIHJldHVybiBhIGJvb2wgaW4gdjIgYnV0
+IFRob21hcyBzdWdnZXN0ZWQgYW4gaW50IGluc3RlYWQgdG8NCj4gaGF2ZSBjb25zaXN0ZW5j
+eSBvbiB0aGUgZXJybm8gY29kZSB0aGF0IHdhcyByZXR1cm5lZCBieSB0aGUgY2FsbGVycy4N
+Cj4gDQo+IEkgc2hvdWxkIHByb2JhYmx5IG5hbWUgdGhhdCBmdW5jdGlvbiBkaWZmZXJlbnRs
+eSB0byBhdm9pZCBjb25mdXNpb24uDQoNClllcywgcGxlYXNlLg0KDQpCZXN0IHJlZ2FyZHMN
+ClRob21hcw0KDQo+IA0KPiBCdXQgSSB0aGluayB5b3UgYXJlIGNvcnJlY3QgYW5kIHRoaXMg
+Y2hhbmdlIGlzIGNhdXNlZCB0b28gbXVjaCBjaHVybg0KPiBmb3Igbm90IHRoYXQgbXVjaCBi
+ZW5lZml0LCBzcGVjaWFsbHkgc2luY2UgaXMgdW5jbGVhciB0aGF0IHRoZXJlIG1pZ2h0DQo+
+IGJlIGFub3RoZXIgY29uZGl0aW9uIHRvIHByZXZlbnQgYSBEUk0gZHJpdmVyIHRvIGxvYWQg
+YmVzaWRlcyBub21vZGVzZXQuDQo+IA0KPiBJJ2xsIGp1c3QgZHJvcCB0aGlzIHBhdGNoIGFu
+ZCBwb3N0IG9ubHkgIzIgYnV0IG1ha2luZyBkcml2ZXJzIHRvIHRlc3QNCj4gdXNpbmcgdGhl
+IGRybV9jaGVja19tb2Rlc2V0KCkgZnVuY3Rpb24gKHdoaWNoIGRvZXNuJ3QgaGF2ZSBhIG5h
+bWUgdGhhdA0KPiBpbXBsaWVzIGEgYm9vbCByZXR1cm4pLg0KPiANCj4+DQo+PiBCUiwNCj4+
+IEphbmkuDQo+Pg0KPj4NCj4+DQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IA0KDQotLSANClRo
+b21hcyBaaW1tZXJtYW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3
+YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJu
+YmVyZywgR2VybWFueQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bD
+vGhyZXI6IEl2byBUb3Rldg0K
 
-Here's this week drm-misc-next-fixes PR
+--------------S0Y95QrnJLrUy0Fvjfwzofm3--
 
-Thanks!
-Maxime
-
-drm-misc-next-fixes-2021-11-05:
-A refcounting fix for outstanding fence callbacks.
-The following changes since commit b3ec8cdf457e5e63d396fe1346cc788cf7c1b578:
-
-  fbdev: Garbage collect fbdev scrolling acceleration, part 1 (from TODO li=
-st) (2021-10-13 15:29:23 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-=
-11-05
-
-for you to fetch changes up to ff2d23843f7fb4f13055be5a4a9a20ddd04e6e9c:
-
-  dma-buf/poll: Get a file reference for outstanding fence callbacks (2021-=
-11-04 09:18:57 +0100)
-
-----------------------------------------------------------------
-A refcounting fix for outstanding fence callbacks.
-
-----------------------------------------------------------------
-Michel D=E4nzer (1):
-      dma-buf/poll: Get a file reference for outstanding fence callbacks
-
- drivers/dma-buf/dma-buf.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
-
---pqq25x2c4mvy4ds7
-Content-Type: application/pgp-signature; name="signature.asc"
+--------------Gnx82v0TLFu0h6IXui8hbh2N
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYYTglgAKCRDj7w1vZxhR
-xWE9AQD+Kj/8Jmi4OqfndOFRHQ3YVLa5fzLQ17bKv8EbexKJqwD9F2Xz6eazU6r6
-KMGL5gKxqPsOceKAYa0zCEjYMedsaAc=
-=BFuV
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmGE7tAFAwAAAAAACgkQlh/E3EQov+Dl
+bg//cjmCiaEMPBZ1qlC4+qaeVbOgw8v0hjbuBm9Cg4XoweogzTTpY4npuFRLWWBrEY3Hcw8TPwAk
+JCMZWbomGwXQA8tWC8c5Ayz/QZvtQVilB+XLkNsFqF9ITTv2E/y28kzePIZxkuf8C8nYIUyoaTRH
+iQmuE3Ca7kW1tGzeb/8xSJLrdhcPv8kWw4WPg4IoIRF/C1azNP6Pf0dWLiW7eZ+Yy84P8Szr9/g7
+vooHXvLMOR+qWYkO/461OWxfu1vS9H+N3lvBWfAq8yd7/GSPLZh0IOkJmdoZJ3bZNZFJWvbjGjRs
+WsWjGk/Io2sxQADehobRX7tny2bxpYLrTGWClTU6L38A1RgkgvP9+SI7Wdv5PDdC0nMCcjgxLElp
+CMBKsUwxrfjoSJi6wkn14r/WWns2JIaehUyZNCrCPa05IZE/4Ij5ewMqseDPJC9uLIZPFCPLxxRh
+w99cKoTylarSKm4InhWCzj7xRTerGJ/6IQbZsb2B7SFdHfeSWpcCwz3KoUvY1WRWaNDZfrC9YRFH
+Bhxgp9mZAltoDQjhWw5tpSwwLnFwsBEzK5ImsDXcJy+EYfWBWdkULkpdtte1J6i2R7q/+Zy4pViq
+dxVWPB2anCkHMxF9hQGq67Dnsr7WMXX9/qCw1HRYB3dtS5r1UqjL7Ua8qpySVXUjBDQACd4gK+gY
+FNc=
+=a6ez
 -----END PGP SIGNATURE-----
 
---pqq25x2c4mvy4ds7--
+--------------Gnx82v0TLFu0h6IXui8hbh2N--
