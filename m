@@ -2,44 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B8444682F
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 18:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07008446866
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 19:34:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32BD16EC68;
-	Fri,  5 Nov 2021 17:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B04E6EB6B;
+	Fri,  5 Nov 2021 18:34:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AD9C6EC69
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 17:55:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10159"; a="255603584"
-X-IronPort-AV: E=Sophos;i="5.87,212,1631602800"; d="scan'208";a="255603584"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2021 10:55:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,212,1631602800"; d="scan'208";a="450661923"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 05 Nov 2021 10:55:21 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Nov 2021 19:55:20 +0200
-Date: Fri, 5 Nov 2021 19:55:20 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YYVwCOe/xyeOlTSZ@intel.com>
-References: <20211102193214.99448-1-jose.souza@intel.com>
- <YYPpysij7Oovwzhx@intel.com>
- <50dd687c006667f95dab06cfbcfbef8a6e193496.camel@intel.com>
- <YYU1u4fu75vdK1PT@intel.com>
- <38902e7a71287702db079f0c0ca5c35eabafa4b4.camel@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA80F6EB65
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 18:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1636137243;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=sLobVIUbaKMz6LiSgKJDhvPHikWx1fKXWii3cOCYfjY=;
+ b=cKrUfU14IlG8WQgTNBHvcKE/PPfKKJv3lHzvwVeIBVgoZPDLpxKgoI8j5bGlStdAjC72V1
+ XrPc3MdYQ9bfN4gL3gr8ifdE2dzuyNqwsOEpfqiFLlb3Yy6xgqOST77MKuI94dXwTwxYAb
+ /eG2XwQjF4nF/rOvuLpxtjRI0dNRqoE=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-162-O1TvOONXNMW5HQKUWRP3gA-1; Fri, 05 Nov 2021 14:33:59 -0400
+X-MC-Unique: O1TvOONXNMW5HQKUWRP3gA-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E3A1B8066F5;
+ Fri,  5 Nov 2021 18:33:58 +0000 (UTC)
+Received: from emerald.lyude.net (unknown [10.22.16.200])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E61375C23A;
+ Fri,  5 Nov 2021 18:33:57 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Date: Fri,  5 Nov 2021 14:33:37 -0400
+Message-Id: <20211105183342.130810-1-lyude@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <38902e7a71287702db079f0c0ca5c35eabafa4b4.camel@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Exit PSR when doing
- async flips
+Subject: [Intel-gfx] [PATCH v5 0/5] drm/dp,
+ drm/i915: Finish basic PWM support for VESA backlight helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,161 +62,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 05, 2021 at 05:44:21PM +0000, Souza, Jose wrote:
-> On Fri, 2021-11-05 at 15:46 +0200, Ville Syrjälä wrote:
-> > On Thu, Nov 04, 2021 at 05:56:52PM +0000, Souza, Jose wrote:
-> > > On Thu, 2021-11-04 at 16:10 +0200, Ville Syrjälä wrote:
-> > > > On Tue, Nov 02, 2021 at 12:32:14PM -0700, José Roberto de Souza wrote:
-> > > > > Changing the buffer in the middle of the scanout then entering an
-> > > > > period of flip idleness will cause part of the previous buffer being
-> > > > > diplayed to user when PSR is enabled.
-> > > > > 
-> > > > > So here disabling PSR and scheduling activation during the next
-> > > > > sync flip.
-> > > > > 
-> > > > > The async flip check that we had in PSR compute is not executed at
-> > > > > every flip so it was not doing anything useful and is also being
-> > > > > dropped here.
-> > > > > 
-> > > > > v2:
-> > > > > - scheduling the PSR work in _intel_psr_post_plane_update()
-> > > > > 
-> > > > > v3:
-> > > > > - only re enabling PSR when doing a sync flip
-> > > > > 
-> > > > > Cc: Karthik B S <karthik.b.s@intel.com>
-> > > > > Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_psr.c | 37 ++++++++++++++----------
-> > > > >  1 file changed, 21 insertions(+), 16 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > index 9d589d471e335..b8fac53d57df1 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > > @@ -731,12 +731,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
-> > > > >  		return false;
-> > > > >  	}
-> > > > >  
-> > > > > -	if (crtc_state->uapi.async_flip) {
-> > > > > -		drm_dbg_kms(&dev_priv->drm,
-> > > > > -			    "PSR2 sel fetch not enabled, async flip enabled\n");
-> > > > > -		return false;
-> > > > > -	}
-> > > > > -
-> > > > >  	/* Wa_14010254185 Wa_14010103792 */
-> > > > >  	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
-> > > > >  		drm_dbg_kms(&dev_priv->drm,
-> > > > > @@ -1780,36 +1774,47 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
-> > > > >  		if (psr->enabled && needs_to_disable)
-> > > > >  			intel_psr_disable_locked(intel_dp);
-> > > > >  
-> > > > > +		if (psr->enabled && crtc_state->uapi.async_flip)
-> > > > > +			intel_psr_exit(intel_dp);
-> > > > > +
-> > > > >  		mutex_unlock(&psr->lock);
-> > > > >  	}
-> > > > >  }
-> > > > >  
-> > > > >  static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
-> > > > > -					 const struct intel_crtc_state *crtc_state)
-> > > > > +					 const struct intel_crtc_state *old_crtc_state,
-> > > > > +					 const struct intel_crtc_state *new_crtc_state)
-> > > > 
-> > > > Might make sense to change this to match how psr_pre_plane_update()
-> > > > works these days.
-> > > 
-> > > Will do as follow up.
-> > > 
-> > > > 
-> > > > >  {
-> > > > >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> > > > >  	struct intel_encoder *encoder;
-> > > > >  
-> > > > > -	if (!crtc_state->has_psr)
-> > > > > +	if (!new_crtc_state->has_psr)
-> > > > >  		return;
-> > > > >  
-> > > > >  	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
-> > > > > -					     crtc_state->uapi.encoder_mask) {
-> > > > > +					     new_crtc_state->uapi.encoder_mask) {
-> > > > >  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > > > >  		struct intel_psr *psr = &intel_dp->psr;
-> > > > >  
-> > > > >  		mutex_lock(&psr->lock);
-> > > > >  
-> > > > > -		drm_WARN_ON(&dev_priv->drm, psr->enabled && !crtc_state->active_planes);
-> > > > > +		drm_WARN_ON(&dev_priv->drm, psr->enabled &&
-> > > > > +			    !new_crtc_state->active_planes);
-> > > > >  
-> > > > >  		/* Only enable if there is active planes */
-> > > > > -		if (!psr->enabled && crtc_state->active_planes)
-> > > > > -			intel_psr_enable_locked(intel_dp, crtc_state);
-> > > > > +		if (!psr->enabled && new_crtc_state->active_planes)
-> > > > > +			intel_psr_enable_locked(intel_dp, new_crtc_state);
-> > > > 
-> > > > What prevents this guy from activating PSR while we're doing
-> > > > an async flip?
-> > > 
-> > > enabled != active, when doing a async flip it will set active = false but enabled will be kept on.
-> > 
-> > intel_psr_enable_locked() calls intel_psr_activate() uncoditionally.
-> > There is no active=false thing anywhere that I can see.
-> > 
-> > > 
-> > > And to change the number of active_planes it will need to do a sync flip, so we are safe.
-> > 
-> > Why would the number of active planes need to change for this
-> > to get called?
-> 
-> If CRTC is left on but the number of planes goes to 0, PSR is disabled.
-> Then it is enabled again if the number of planes goes to 1 or more.
-> 
-> > 
-> > I guess maybe there's some reason why this can't happen but it is
-> > entirely non-obvious when reading this code. Also seems pretty
-> > fragile if some other code now changes and suddenly causes this
-> > to get called. In fact from the looks of things the only thing
-> > needed would be for someone to call intel_psr_disable_locked()
-> > so that psr->enabled gets cleared.
-> 
-> If someone calls intel_psr_disable_locked() then in the next flip the code above will indeed enable it again but as PSR takes at least 2 frames to
-> actually activate after registers are programmed, we are safe. (see PSR2 EDP_PSR2_FRAME_BEFORE_SU and PSR1 psr_compute_idle_frames())
-> 
-> Then on the next async flip, it will exited again and active set to false.
-> 
-> > 
-> > I might suggest adding crtc_state->psr_active or soemthing along
-> > those lines to make it obvious when we want to have psr logically
-> > enabled, but actually inactive.
-> 
-> Because of the invalidate frontbuffer rendering cases, we can't keep PSR status in atomic state.
+When I originally moved all of the VESA backlight code in i915 into DRM
+helpers, one of the things I didn't have the hardware or time for
+testing was machines that used a combination of PWM and DPCD in order to
+control their backlights. This has since then caused some breakages and
+resulted in us disabling DPCD backlight support on such machines. This
+works fine, unless you have a machine that actually needs this
+functionality for backlight controls to work at all. Additionally, we
+will need to support PWM for when we start adding support for VESA's
+product (as in the product of multiplication) control mode for better
+brightness ranges.
 
-Not fully. But it shouldn't prevent us from having something there as
-well. So if crtc_state says to not activate PSR then don't, otherwise
-let it activate/deactive as needed based on frontbuffer activity.
+So - let's finally finish up implementing basic support for these types
+of backlights to solve these problems in our DP helpers, along with
+implementing support for this in i915. And since digging into this issue
+solved the last questions we really had about probing backlights in i915
+for the most part, let's update some of the comments around that as
+well!
 
-ATM it seems to be kind of ad-hoc when we fully disable vs. just
-deactivate PSR. Dunno how feasible it would be to make that either:
-a) logically enable/disable PSR only during full modesets, and
-   otherwise just activate/deactivate as needed whether it be due to
-   stuff we can calculate based on crtc_state (eg. active_planes or
-   async_flip) or frontbuffer activity
-or
-b) always logically enable/disable PSR based on stuff we can calculate
-   from the crtc state, and leave the activate/deactivate stuff to only
-   frontbuffer rendering activity
+Lyude Paul (5):
+  drm/i915: Add support for panels with VESA backlights with PWM
+    enable/disable
+  drm/nouveau/kms/nv50-: Explicitly check DPCD backlights for aux
+    enable/brightness
+  drm/dp: Don't read back backlight mode in drm_edp_backlight_enable()
+  drm/dp, drm/i915: Add support for VESA backlights using PWM for
+    brightness control
+  drm/i915: Clarify probing order in intel_dp_aux_init_backlight_funcs()
 
-Although there is also the AUX vs. PSR case to consider, but looks like
-that is still not fixed.
+ drivers/gpu/drm/drm_dp_helper.c               | 108 ++++++++++--------
+ .../drm/i915/display/intel_dp_aux_backlight.c |  81 ++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_backlight.c   |   5 +-
+ include/drm/drm_dp_helper.h                   |   7 +-
+ 4 files changed, 132 insertions(+), 69 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.31.1
+
