@@ -2,44 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08261445FA4
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 07:15:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A10445FCD
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 07:40:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F38B6E039;
-	Fri,  5 Nov 2021 06:15:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5EC6E039;
+	Fri,  5 Nov 2021 06:40:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D266E039;
- Fri,  5 Nov 2021 06:15:23 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4HlqxL30X6z4xdL;
- Fri,  5 Nov 2021 17:15:17 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1636092921;
- bh=ABu42RiFT1taPHynORs6qxyIrsgHaPYvXtuZnDvLm28=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=Phd/GLBGSIR5NA6U4OcbR4wyh40bYgco8LL429cImCmDIf0vz8USNvPLk2qJ5FD6p
- pvfgD1rACbzSWc9IssJ45dmK8dw0d2rBhX2clDU05+79FbN3X2PhUFSmaYe7R/Us5j
- RBLCybZssKNtLiIu9PBS57vjQ1Xpt6WBmjvH4SoYkdcePqfzTZxDeqy/ge+GP6qnxh
- MVcz8w4Pmml1mJ033rzesx9tfUYtJLCKmgvSyqnr0iOTpwSN3uK3bSD6LNKQqPjN5z
- BfTOpRZwlQiPkzbnyKGK1ahxgxqv8KX4gQqUNLIUcB1kQ5CnuQDvGAkogZE41Xjz7W
- Iv4D7yeBZwmXw==
-Date: Fri, 5 Nov 2021 17:15:17 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@linux.ie>
-Message-ID: <20211105171517.287de894@canb.auug.org.au>
-In-Reply-To: <20211101194223.749197c5@canb.auug.org.au>
-References: <20211015202648.258445ef@canb.auug.org.au>
- <20211101194223.749197c5@canb.auug.org.au>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16CF6E039
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 06:40:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="231698087"
+X-IronPort-AV: E=Sophos;i="5.87,210,1631602800"; 
+ d="scan'208,217";a="231698087"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 23:40:26 -0700
+X-IronPort-AV: E=Sophos;i="5.87,210,1631602800"; 
+ d="scan'208,217";a="532508746"
+Received: from inechita-mobl1.ger.corp.intel.com (HELO [10.249.254.167])
+ ([10.249.254.167])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2021 23:40:26 -0700
+Content-Type: multipart/alternative;
+ boundary="------------IrO6k1Lzk0OHEVoFRNhKuT1U"
+Message-ID: <99e04830-a92b-11bb-ece9-a5c6065b802b@linux.intel.com>
+Date: Fri, 5 Nov 2021 07:40:23 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/f1z=jp8ned0U5MhcxSkEu39";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org,
+ ", Lakshminarayana Vudum" <lakshminarayana.vudum@intel.com>
+References: <20211104215813.738524-1-thomas.hellstrom@linux.intel.com>
+ <163606687271.6351.10288462232537670965@emeril.freedesktop.org>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <163606687271.6351.10288462232537670965@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/selftests=3A_Use_clear=5Fa?=
+ =?utf-8?q?nd=5Fwake=5Fup=5Fbit=28=29_for_the_per-engine_reset_bitlocks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,136 +54,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/f1z=jp8ned0U5MhcxSkEu39
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------IrO6k1Lzk0OHEVoFRNhKuT1U
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi all,
 
-On Mon, 1 Nov 2021 19:42:23 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
+On 11/5/21 00:01, Patchwork wrote:
+> Project List - Patchwork *Patch Details*
+> *Series:* 	series starting with [1/2] drm/i915/selftests: Use 
+> clear_and_wake_up_bit() for the per-engine reset bitlocks
+> *URL:* 	https://patchwork.freedesktop.org/series/96593/
+> *State:* 	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/index.html
 >
-> On Fri, 15 Oct 2021 20:26:48 +1100 Stephen Rothwell <sfr@canb.auug.org.au=
-> wrote:
-> >
-> > After merging the drm-misc tree, today's linux-next build (arm
-> > multi_v7_defconfig) failed like this:
-> >=20
-> > drivers/gpu/drm/drm_modeset_lock.c:111:29: error: conflicting types for=
- '__stack_depot_save'
-> >   111 | static depot_stack_handle_t __stack_depot_save(void)
-> >       |                             ^~~~~~~~~~~~~~~~~~
-> > In file included from include/linux/page_ext.h:7,
-> >                  from include/linux/mm.h:25,
-> >                  from include/linux/kallsyms.h:13,
-> >                  from include/linux/bpf.h:20,
-> >                  from include/linux/bpf-cgroup.h:5,
-> >                  from include/linux/cgroup-defs.h:22,
-> >                  from include/linux/cgroup.h:28,
-> >                  from include/linux/memcontrol.h:13,
-> >                  from include/linux/swap.h:9,
-> >                  from include/linux/suspend.h:5,
-> >                  from include/linux/regulator/consumer.h:35,
-> >                  from include/linux/i2c.h:18,
-> >                  from include/drm/drm_crtc.h:28,
-> >                  from include/drm/drm_atomic.h:31,
-> >                  from drivers/gpu/drm/drm_modeset_lock.c:24:
-> > include/linux/stackdepot.h:18:22: note: previous declaration of '__stac=
-k_depot_save' was here
-> >    18 | depot_stack_handle_t __stack_depot_save(unsigned long *entries,
-> >       |                      ^~~~~~~~~~~~~~~~~~
-> >=20
-> > Caused by commit
-> >=20
-> >   cd06ab2fd48f ("drm/locking: add backtrace for locking contended locks=
- without backoff")
-> >=20
-> > This may only have been revealed because of another fix I have had to
-> > apply today.
-> >=20
-> > I have applied the following patch for today.
-> >=20
-> > From: Stephen Rothwell <sfr@canb.auug.org.au>
-> > Date: Fri, 15 Oct 2021 20:17:52 +1100
-> > Subject: [PATCH] drm/locking: fix for name conflict
-> >=20
-> > Fixes: cd06ab2fd48f ("drm/locking: add backtrace for locking contended =
-locks without backoff")
-> > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> > ---
-> >  drivers/gpu/drm/drm_modeset_lock.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_m=
-odeset_lock.c
-> > index 4d32b61fa1fd..ee36dd20900d 100644
-> > --- a/drivers/gpu/drm/drm_modeset_lock.c
-> > +++ b/drivers/gpu/drm/drm_modeset_lock.c
-> > @@ -79,7 +79,7 @@
-> >  static DEFINE_WW_CLASS(crtc_ww_class);
-> > =20
-> >  #if IS_ENABLED(CONFIG_DRM_DEBUG_MODESET_LOCK)
-> > -static noinline depot_stack_handle_t __stack_depot_save(void)
-> > +static noinline depot_stack_handle_t __drm_stack_depot_save(void)
-> >  {
-> >  	unsigned long entries[8];
-> >  	unsigned int n;
-> > @@ -108,7 +108,7 @@ static void __stack_depot_print(depot_stack_handle_=
-t stack_depot)
-> >  	kfree(buf);
-> >  }
-> >  #else /* CONFIG_DRM_DEBUG_MODESET_LOCK */
-> > -static depot_stack_handle_t __stack_depot_save(void)
-> > +static depot_stack_handle_t __drm_stack_depot_save(void)
-> >  {
-> >  	return 0;
-> >  }
-> > @@ -317,7 +317,7 @@ static inline int modeset_lock(struct drm_modeset_l=
-ock *lock,
-> >  		ret =3D 0;
-> >  	} else if (ret =3D=3D -EDEADLK) {
-> >  		ctx->contended =3D lock;
-> > -		ctx->stack_depot =3D __stack_depot_save();
-> > +		ctx->stack_depot =3D __drm_stack_depot_save();
-> >  	}
-> > =20
-> >  	return ret;
->=20
-> This has reappeared today.  I don't know what happened to the drm-misc
-> tree over the weeked :-(
->=20
-> I have reapplied the above fix.
+>
+>   CI Bug Log - changes from CI_DRM_10841 -> Patchwork_21521
+>
+>
+>     Summary
+>
+> *FAILURE*
+>
+> Serious unknown changes coming with Patchwork_21521 absolutely need to be
+> verified manually.
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_21521, please notify your bug team to allow them
+> to document this new failure mode, which will reduce false positives 
+> in CI.
+>
+> External URL: 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/index.html
+>
+>
+>     Participating hosts (38 -> 35)
+>
+> Additional (2): fi-tgl-1115g4 fi-tgl-u2
+> Missing (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-icl-u2 bat-adlp-4
+>
+>
+>     Possible new issues
+>
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_21521:
+>
+>
+>       IGT changes
+>
+>
+>         Possible regressions
+>
+>   * igt@i915_selftest@live@migrate:
+>       o fi-bsw-nick: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10841/fi-bsw-nick/igt@i915_selftest@live@migrate.html>
+>         -> DMESG-WARN
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/fi-bsw-nick/igt@i915_selftest@live@migrate.html>
+>
+Lakshmi, this failure is unrelated.
 
-So the above drm-misc commit is now in the drm tree, but its fix up
-commit vanished from the drm-misc tree over the past weekend :-(
+--------------IrO6k1Lzk0OHEVoFRNhKuT1U
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---=20
-Cheers,
-Stephen Rothwell
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 11/5/21 00:01, Patchwork wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:163606687271.6351.10288462232537670965@emeril.freedesktop.org">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Project List - Patchwork</title>
+      <style id="css-table-select" type="text/css">td { padding: 2pt; }</style>
+      <b>Patch Details</b>
+      <table>
+        <tbody>
+          <tr>
+            <td><b>Series:</b></td>
+            <td>series starting with [1/2] drm/i915/selftests: Use
+              clear_and_wake_up_bit() for the per-engine reset bitlocks</td>
+          </tr>
+          <tr>
+            <td><b>URL:</b></td>
+            <td><a
+                href="https://patchwork.freedesktop.org/series/96593/"
+                moz-do-not-send="true" class="moz-txt-link-freetext">https://patchwork.freedesktop.org/series/96593/</a></td>
+          </tr>
+          <tr>
+            <td><b>State:</b></td>
+            <td>failure</td>
+          </tr>
+          <tr>
+            <td><b>Details:</b></td>
+            <td><a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/index.html"
+                moz-do-not-send="true" class="moz-txt-link-freetext">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/index.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>CI Bug Log - changes from CI_DRM_10841 -&gt; Patchwork_21521</h1>
+      <h2>Summary</h2>
+      <p><strong>FAILURE</strong></p>
+      <p>Serious unknown changes coming with Patchwork_21521 absolutely
+        need to be<br>
+        verified manually.</p>
+      <p>If you think the reported changes have nothing to do with the
+        changes<br>
+        introduced in Patchwork_21521, please notify your bug team to
+        allow them<br>
+        to document this new failure mode, which will reduce false
+        positives in CI.</p>
+      <p>External URL:
+        <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/index.html</a></p>
+      <h2>Participating hosts (38 -&gt; 35)</h2>
+      <p>Additional (2): fi-tgl-1115g4 fi-tgl-u2 <br>
+        Missing (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-icl-u2
+        bat-adlp-4 </p>
+      <h2>Possible new issues</h2>
+      <p>Here are the unknown changes that may have been introduced in
+        Patchwork_21521:</p>
+      <h3>IGT changes</h3>
+      <h4>Possible regressions</h4>
+      <ul>
+        <li>igt@i915_selftest@live@migrate:
+          <ul>
+            <li>fi-bsw-nick: <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10841/fi-bsw-nick/igt@i915_selftest@live@migrate.html"
+                moz-do-not-send="true">PASS</a> -&gt; <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21521/fi-bsw-nick/igt@i915_selftest@live@migrate.html"
+                moz-do-not-send="true">DMESG-WARN</a></li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+    <p>Lakshmi, this failure is unrelated.</p>
+  </body>
+</html>
+--------------IrO6k1Lzk0OHEVoFRNhKuT1U--
 
---Sig_/f1z=jp8ned0U5MhcxSkEu39
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmGEy/UACgkQAVBC80lX
-0GwLYgf/YsXemq1FgUmgNNpY1yHPV39pjn7pDRTmtxoFSEa4Fo61slx+DkE9qeRm
-PSH5cAobM2bk8Ir8cG2iuqR2J0A2j1lzwh/FTX0YShmB5sPxYz9NQ1S+Oe8lTUc7
-uhuRJPj/4CDimckFkiYjF5Nwlim0E7sOSapBuFW7RBzcMhRWlXn7foF6xc385mUi
-pQvxiE6TIHzq8NgaFwNyvs9ouVz1dchou+phRXX187ENX958+YHYl9QZLJJ8MMjJ
-kHk+pMN3md6pGWLsu34t1/+9aAqG1aVKChPgRVRotwmKZMj/lJAIrmxE6Is6gdpY
-eVQOAtHXzcLJkDujD2OSOo+RIyHEqQ==
-=q40p
------END PGP SIGNATURE-----
-
---Sig_/f1z=jp8ned0U5MhcxSkEu39--
