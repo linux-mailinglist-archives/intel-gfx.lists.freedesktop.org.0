@@ -1,63 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01529445E58
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 04:05:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD44445E5F
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Nov 2021 04:05:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC7FF6E5B2;
-	Fri,  5 Nov 2021 03:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF7B66E7E2;
+	Fri,  5 Nov 2021 03:05:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
- [IPv6:2607:f8b0:4864:20::832])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFEC06E5B2
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 03:05:32 +0000 (UTC)
-Received: by mail-qt1-x832.google.com with SMTP id w4so5017494qtn.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 Nov 2021 20:05:32 -0700 (PDT)
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com
+ [IPv6:2607:f8b0:4864:20::736])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 109D26E7E2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 03:05:37 +0000 (UTC)
+Received: by mail-qk1-x736.google.com with SMTP id i9so7671753qki.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 Nov 2021 20:05:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=bBrM+10zUcr3Crlf+G77umSyOcr8vD3ZBHHHl7sVh1w=;
- b=AQFSE8l1TBEBpLSWYnXisexuUBd6hoFKen+aTDo8uIgbktzBs1PbYkcuVxA0mBcxP5
- Xfi71e9EIY/cEQtmedKdFbymtILy705bjgXBs/vuLkkDQNquj2REbP6m/BrL3hqWbMxc
- yzCv0Mv3CdQwFUf6XBTFQSOIlHk1tbi6q2XDTnhnIFwTFRigZeLyZ2hxDDMa17YIkd3J
- UEYePZ8lXreVohVj8zPpejAdqBA+vT51P4KFFFGEk891uV5UHwXIpOwLEU1l0Csw3S59
- M93Nnb464SaJJFV6yWa5kocTNhE92nKvOK8BMlGmMmyONUBuwjgJya4xFLO2rdPzBs6D
- Gauw==
+ bh=fZeAoRaneXhhVmezN+qUzGu+KZMu777A5OLUtPhYX7Q=;
+ b=TTN411gYGHkdkJEnoXv3HHeDrn4/Sh7cuo1/f4djeXUF0MbV0TQRlt5xXt6mg5u45I
+ 9nu5UHGjoho96iE2zePTM6WOVDDJDlmuE2qxCbUyRdzlXfFfqCyGbSdAvS18xTb/FJwU
+ SFaIlmtVniR106Q1kFEHxdpqbnKfGcq7dJxfm0L6lfZJkEYfdFz5YGw8a0l2fIuFpiPM
+ f0YpGxmST5HFZkyh+Ue9YG0WnwVUW7vZYSxJuXZEVA7XeSLtQGIPQK0iHxPRpBxfCkOQ
+ tWwY58l5o38XSbjlnqmjA8pnIJePR9Gltxi8mZ+PbamJCb0p+5OmxXURY+J9nZXZu3ym
+ vFJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=bBrM+10zUcr3Crlf+G77umSyOcr8vD3ZBHHHl7sVh1w=;
- b=BMA+ZL/88cIH1ac9xfRFdmTCEyxNRWLI+UP8rzREPpkLBpZlBVYN2hTs7dpWwTS7Jf
- tJkw8gHKgQJy210y//Mir6hrckETt486MSUxVv0hUaRnE2REjmgb2A+YSEvmEenU34q2
- PJF8pFJVKu24K/T71ZUgYcQjXFJYVvsonI7yRLyRYcYjBtRjEZWV1wXsTcPynFpZlBJo
- ejdYREggueaOEt4WjYNQ+gUNfK106+UO81OFGTg+ZrygXPJpEYADDRduCsgm8Xw84/Jl
- v5sKoLr9SmLOUa5VlZ+rI5pFlf5V5V6M8WpL0kAwpTf7aczwAXNBxYYXjyc04wXtH29c
- szdw==
-X-Gm-Message-State: AOAM530/6Y6Gp8wtJ8BIgdOp556vJhPujtLDlImEW1bp101KlD+kwyQb
- BZdryrPSgy7esMXtQTvMc/R9XQ==
-X-Google-Smtp-Source: ABdhPJyEdR52cxyX3J9bQK6t2hPtZmtUmF0WR8nW0o5wVdFAPNLEf5ivgXOnvuKUZNe67k1wbYCtgg==
-X-Received: by 2002:a05:622a:104:: with SMTP id
- u4mr57017431qtw.143.1636081531844; 
- Thu, 04 Nov 2021 20:05:31 -0700 (PDT)
+ bh=fZeAoRaneXhhVmezN+qUzGu+KZMu777A5OLUtPhYX7Q=;
+ b=Avkbo052s90qOzwQ7lSsau/LrYDeHC8k+CcL7yJGbMc7rf7btQOclLFvk7evYtuebL
+ 0qr3VX3pZwy/DvfuWkCdQw38RcIsFRNDkzyZJZL+8aNQneZVDgZmUVy6BCWuqq3niNzL
+ CT8No5dKcFc2BDMgGEFq2LFcOda1zVZyPuSVpAdIYi/xjGZvb5yZyzNQJzZhU4yjFt17
+ kA7z1D3P82cSBjWxu/YgMP8++IAoxb1hefHB1SxJTs9PY9PDw4cAUi6kcHBhvszb6Z5p
+ 4jQ4hL+pM0baxi8SIPxODrfaKz77mlfNzvQOR6CHI7m8zzhCCgZinE8bXqBFSUU4bvJx
+ thYA==
+X-Gm-Message-State: AOAM531h4AjdY867ndw3tOTPraSuehSCodp3eYkaOG1cNQv/1jfRysq0
+ CIbksPZqxQMICbhhcX+gBlX2Sg==
+X-Google-Smtp-Source: ABdhPJyyzcNXoiq2HSJ+ib0DKPgEoUlfPpeHrr1NviCipx7CpPGcswMzYObcOQCBY0FZYF7jb3XdCQ==
+X-Received: by 2002:a05:620a:414e:: with SMTP id
+ k14mr44984285qko.400.1636081536205; 
+ Thu, 04 Nov 2021 20:05:36 -0700 (PDT)
 Received: from localhost ([167.100.64.199])
- by smtp.gmail.com with ESMTPSA id d3sm5398434qte.4.2021.11.04.20.05.31
+ by smtp.gmail.com with ESMTPSA id h66sm4710807qkc.5.2021.11.04.20.05.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Nov 2021 20:05:31 -0700 (PDT)
+ Thu, 04 Nov 2021 20:05:35 -0700 (PDT)
 From: Sean Paul <sean@poorly.run>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  freedreno@lists.freedesktop.org
-Date: Thu,  4 Nov 2021 23:04:28 -0400
-Message-Id: <20211105030434.2828845-12-sean@poorly.run>
+Date: Thu,  4 Nov 2021 23:04:29 -0400
+Message-Id: <20211105030434.2828845-13-sean@poorly.run>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20211105030434.2828845-1-sean@poorly.run>
 References: <20211105030434.2828845-1-sean@poorly.run>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 11/14] drm/msm/dp: Re-order dp_audio_put in
- deinit_sub_modules
+Subject: [Intel-gfx] [PATCH v4 12/14] dt-bindings: msm/dp: Add bindings for
+ HDCP registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,51 +70,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, linux-arm-msm@vger.kernel.org,
- abhinavk@codeaurora.org, swboyd@chromium.org, David Airlie <airlied@linux.ie>,
- Sean Paul <seanpaul@chromium.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, bjorn.andersson@linaro.org
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ jani.nikula@intel.com, linux-arm-msm@vger.kernel.org, abhinavk@codeaurora.org,
+ swboyd@chromium.org, Kuogee Hsieh <khsieh@codeaurora.org>,
+ David Airlie <airlied@linux.ie>, Rob Herring <robh+dt@kernel.org>,
+ Sean Paul <seanpaul@chromium.org>, bjorn.andersson@linaro.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Sean Paul <seanpaul@chromium.org>
 
-Audio is initialized last, it should be de-initialized first to match
-the order in dp_init_sub_modules().
+This patch adds the bindings for the MSM DisplayPort HDCP registers
+which are required to write the HDCP key into the display controller as
+well as the registers to enable HDCP authentication/key
+exchange/encryption.
 
-Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+We'll use a new compatible string for this since the fields are optional.
+
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <swboyd@chromium.org>
 Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-12-sean@poorly.run #v1
-Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-12-sean@poorly.run #v2
-Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-12-sean@poorly.run #v3
+Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-13-sean@poorly.run #v1
+Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-13-sean@poorly.run #v2
+Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-13-sean@poorly.run #v3
 
 Changes in v2:
--None
+-Drop register range names (Stephen)
+-Fix yaml errors (Rob)
 Changes in v3:
--None
+-Add new compatible string for dp-hdcp
+-Add descriptions to reg
+-Add minItems/maxItems to reg
+-Make reg depend on the new hdcp compatible string
 Changes in v4:
--None
+-Rebase on Bjorn's multi-dp patchset
 ---
- drivers/gpu/drm/msm/dp/dp_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/display/msm/dp-controller.yaml    | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index aba8aa47ed76..79412a8fbaff 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -707,9 +707,9 @@ static int dp_irq_hpd_handle(struct dp_display_private *dp, u32 data)
- static void dp_display_deinit_sub_modules(struct dp_display_private *dp)
- {
- 	dp_debug_put(dp->debug);
-+	dp_audio_put(dp->audio);
- 	dp_panel_put(dp->panel);
- 	dp_aux_put(dp->aux);
--	dp_audio_put(dp->audio);
- }
+diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+index b36d74c1da7c..f6e4b102373a 100644
+--- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+@@ -21,12 +21,16 @@ properties:
+       - qcom,sc8180x-edp
  
- static int dp_init_sub_modules(struct dp_display_private *dp)
+   reg:
++    minItems: 5
++    maxItems: 7
+     items:
+       - description: ahb register block
+       - description: aux register block
+       - description: link register block
+       - description: p0 register block
+       - description: p1 register block
++      - description: (Optional) Registers for HDCP device key injection
++      - description: (Optional) Registers for HDCP TrustZone interaction
+ 
+   interrupts:
+     maxItems: 1
+@@ -111,7 +115,9 @@ examples:
+               <0xae90200 0x200>,
+               <0xae90400 0xc00>,
+               <0xae91000 0x400>,
+-              <0xae91400 0x400>;
++              <0xae91400 0x400>,
++              <0x0aed1000 0x174>,
++              <0x0aee1000 0x2c>;
+         interrupt-parent = <&mdss>;
+         interrupts = <12>;
+         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
 -- 
 Sean Paul, Software Engineer, Google / Chromium OS
 
