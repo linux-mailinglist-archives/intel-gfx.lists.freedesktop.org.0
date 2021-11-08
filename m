@@ -1,62 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1084449787
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 16:07:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D93944981E
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 16:26:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADC9C6E422;
-	Mon,  8 Nov 2021 15:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17D0B89CAD;
+	Mon,  8 Nov 2021 15:26:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7D846E406
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 15:07:35 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id i5so27497794wrb.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 08 Nov 2021 07:07:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=8lg8KwNtzJRIF513uzF4weMxv30dO7sh2j/SS7A4utc=;
- b=gH2WxC4TXVmMTZ8FaWBdkoMx6sMitJt1xb5q+GFlb35RZjVQHh94yNNPpBAwznd6YP
- DNmyz0hJ648/jX0WgR51EfL49kZqfQ8G4NJ6S6TX02fP4g7HNIpI8HCJ4GuXmNTuNhGY
- +Mf9m/PZn5sMvtBS1Q6MFahCVV7eSOVDef1qg=
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com
+ [209.85.222.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F0C88987A;
+ Mon,  8 Nov 2021 15:26:01 +0000 (UTC)
+Received: by mail-ua1-f47.google.com with SMTP id b17so32287387uas.0;
+ Mon, 08 Nov 2021 07:26:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=8lg8KwNtzJRIF513uzF4weMxv30dO7sh2j/SS7A4utc=;
- b=c6ag+0g9RkcqFIHY3E7sbBRVrHMXdj4m4rE57goPju9mFpBQFoAgmuC4IDmSiiLCNB
- iFVFUYzQZ36m04lAtfN5kZjCuZyqSYYWTboefGWWoAzK8gCb+9a5nhev2rEpqIjpQK1i
- 8LkdJ+L6Oh2DdvGffJrXc+CpY+2eed9rezpv/f7UsI/RUZnE6u2VWTigPMvqm21vv4uO
- 4r4FvqR/9ZGNzLW5+yxg07KRZHt9IF6US1AMNmtaInKCGkcdphQ6U3Yt6T+TH87lFGBQ
- xezcBY+o+HpnLHQS4UpDhbgbB4K6PpCxOfnUbKad+REzMisPnobQYH5kEZvGbMM5MuEm
- gKlQ==
-X-Gm-Message-State: AOAM5321wHuE8EUEDAH+Utvp8VPYspLroGgC8fx2k5TTU0sDEmbrIDnB
- Cm8sPrl5JddKzHkz7Na3c7/b8A==
-X-Google-Smtp-Source: ABdhPJyfAOtPWlCa0zfg5UoxGeB6o5SqKjdUlo0CGOWzyiEOJGi6owfcMXnmG4aCLM8Z7CpCIzUqCw==
-X-Received: by 2002:a5d:6a4d:: with SMTP id t13mr534564wrw.104.1636384054123; 
- Mon, 08 Nov 2021 07:07:34 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z6sm17543990wrm.93.2021.11.08.07.07.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Nov 2021 07:07:33 -0800 (PST)
-Date: Mon, 8 Nov 2021 16:07:31 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-Message-ID: <YYk9My2TFufdsgym@phenom.ffwll.local>
-References: <20200925084651.3250104-1-daniel.vetter@ffwll.ch>
- <f94cd203-b0a6-bb41-8768-c64d68aac483@amd.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=x4ykPITI22sSh/L6reU4seHVLFfVjdO/v+W3/SN8DUg=;
+ b=dp5XwsT1NdcHW/l1yAVIe5osmCvczvHSfAErAaWGg+t7k9ChgqbLsyd9jtHUyJqGjv
+ QaOUiSOxlXpoRqqbvjej0qujubOC208zlK/131J0FvS9FVeESiu+7pDP98+26rHp1CeH
+ tIbHI2KibTLRm4pEH9f+UfOZDHlWHl7UPgpyGRNy0ZKVBUP29scCifgOSB3RfDee3PVl
+ QeANM5yLBJZh/FIGQQ4u+vTenOaNr5gLm2ZaYbHlDDClYU5iICxYqT2rrzSr8UnCGvFf
+ MDTeqP2SmRUogoBlDs7YBzzTNlMrdiLxSSwspXpyIHoAMwjxMSMMlsDVJfLA7TZtt/br
+ UROw==
+X-Gm-Message-State: AOAM5300UE/DRKAE5qdC6AQjpU//1pJ+IiZhZmKXz6jBbXyFJ79Pr8PR
+ dEAenH8x8ZgjNkhQ8TCO8bmLLupMmQ2Q5KJU
+X-Google-Smtp-Source: ABdhPJwkxFkJeC0mfU1DEGMQSNi9I829a+I+A+7Xr/TZtVs6Sfz8oa1KeI82fmafjkZb0DznshUiMg==
+X-Received: by 2002:a05:6102:c49:: with SMTP id y9mr383307vss.10.1636385159133; 
+ Mon, 08 Nov 2021 07:25:59 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com.
+ [209.85.222.54])
+ by smtp.gmail.com with ESMTPSA id p69sm2866986uap.1.2021.11.08.07.25.58
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 08 Nov 2021 07:25:58 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id b17so32287266uas.0;
+ Mon, 08 Nov 2021 07:25:58 -0800 (PST)
+X-Received: by 2002:a9f:2c98:: with SMTP id w24mr725068uaj.89.1636385158322;
+ Mon, 08 Nov 2021 07:25:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f94cd203-b0a6-bb41-8768-c64d68aac483@amd.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/atomic: document and enforce rules
- around "spurious" EBUSY
+References: <20211108101157.15189-1-bp@alien8.de>
+ <20211108101157.15189-43-bp@alien8.de>
+ <CAMuHMdWH+txiSP_d7Jc4f_bU8Lf9iWpT4E3o5o7BJr-YdA6-VA@mail.gmail.com>
+ <YYkyUEqcsOwQMb1S@zn.tnic>
+In-Reply-To: <YYkyUEqcsOwQMb1S@zn.tnic>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 8 Nov 2021 16:25:47 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXiBEQyEXJagSfpH44hxVA2t0sDH7B7YubLGHrb2MJLLA@mail.gmail.com>
+Message-ID: <CAMuHMdXiBEQyEXJagSfpH44hxVA2t0sDH7B7YubLGHrb2MJLLA@mail.gmail.com>
+To: Borislav Petkov <bp@alien8.de>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v0 42/42] notifier: Return an error when
+ callback is already registered
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,204 +66,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Linux-sh list <linux-sh@vger.kernel.org>, linux-iio@vger.kernel.org,
+ "open list:REMOTE PROCESSOR \(REMOTEPROC\) SUBSYSTEM"
+ <linux-remoteproc@vger.kernel.org>, linux-hyperv@vger.kernel.org,
+ "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+ netdev <netdev@vger.kernel.org>, Ayush Sawal <ayush.sawal@chelsio.com>,
+ sparclinux <sparclinux@vger.kernel.org>, linux-clk <linux-clk@vger.kernel.org>,
+ linux-leds <linux-leds@vger.kernel.org>,
+ linux-s390 <linux-s390@vger.kernel.org>, scsi <linux-scsi@vger.kernel.org>,
+ Rohit Maheshwari <rohitm@chelsio.com>, linux-staging@lists.linux.dev,
+ bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+ openipmi-developer@lists.sourceforge.net, xen-devel@lists.xenproject.org,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
+ Arnd Bergmann <arnd@arndb.de>, Linux PM list <linux-pm@vger.kernel.org>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
- Harry Wentland <harry.wentland@amd.com>
+ Vinay Kumar Yadav <vinay.yadav@chelsio.com>,
+ linux-um <linux-um@lists.infradead.org>, Steven Rostedt <rostedt@goodmis.org>,
+ rcu@vger.kernel.org,
+ Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-edac@vger.kernel.org,
+ Parisc List <linux-parisc@vger.kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ USB list <linux-usb@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ alpha <linux-alpha@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 05, 2021 at 04:47:29PM -0400, Kazlauskas, Nicholas wrote:
-> Hi Daniel,
-> 
-> Just got bitten by this warning when trying to do some refactoring in amdgpu
-> for trying to get rid of the DRM private object we use for our DC state.
-> 
-> From a userspace perspective I understand that we want to avoid judder,
-> -EBUSY and other issues affecting the compositor from kernel having to drag
-> these CRTCs (or their planes) into the atomic state.
-> 
-> For bandwidth validation we need to understand the state of all CRTCs and
-> planes in use. Existing driver code maintains this as part of a global state
-> object in a DRM private atomic state. We have stalls in atomic check (bad)
-> to avoid freeing this state or modifying it at the wrong times which avoid
-> hitting this warning but essentially cause the same judder issue.
-> 
-> While most hardware has independent pipes, I think almost all hardware ends
-> up having the memory interface/bandwidth as a global shared resource that
-> software state can't really abstract around.
-> 
-> There are cases where we know that there will be no (or minimal) impact to
-> the overall memory requirements for particular DRM updates. Our validation
-> already "over-allocates" for common display changes - page flips, some
-> format changes, cursor enable/disable. But for most cases outside of that we
-> do want to pull in _all_ the CRTCs and planes.
-> 
-> On our HW you won't get a blankout unless you're actually modifying a stream
-> timing itself so I think the ALLOW_MODESET flag is overkill here.
-> 
-> Rejecting the commit when the flag isn't set also ends up breaking userspace
-> in the process since it expects commits like pageflips between different
-> tiling modes to succeed with the legacy IOCTLs.
-> 
-> Any ideas about this? I missed the IRC discussion regarding this before so
-> I'm not sure if we have any alternatives that were dropped in favor of this.
+Hi Borislav,
 
-We have, I while ago I had a lengthy discussion with I think Maxime about
-how this is done properly. I think Maxime volunteered to type up some docs
-even. tldr;
+On Mon, Nov 8, 2021 at 3:21 PM Borislav Petkov <bp@alien8.de> wrote:
+> On Mon, Nov 08, 2021 at 03:07:03PM +0100, Geert Uytterhoeven wrote:
+> > I think the addition of __must_check is overkill, leading to the
+> > addition of useless error checks and message printing.
+>
+> See the WARN in notifier_chain_register() - it will already do "message
+> printing".
 
-- Have some global state for this stuff (using the private state helper
-  stuff ideally, handrolling very much not adviced, might even make sense
-  to put some of your dc state/structs in there)
+I mean the addition of useless error checks and message printing _to
+the callers_.
 
-- Both the crtc/plane and the global state hold copies of your limits. The
-  global state in addition also holds the current settings for your
-  derived values (like clocks or allocations or whatever you have).
+> > Many callers call this where it cannot fail, and where nothing can
+> > be done in the very unlikely event that the call would ever start to
+> > fail.
+>
+> This is an attempt to remove this WARN() hack in
+> notifier_chain_register() and have the function return a proper error
+> value instead of this "Currently always returns zero." which is bad
+> design.
+>
+> Some of the registration functions around the tree check that retval and
+> some don't. So if "it cannot fail" those registration either should not
+> return a value or callers should check that return value - what we have
+> now doesn't make a whole lot of sense.
 
-- Rules are that only grabbing the global state is enough to read all your
-  crtc/plane requirements (since you have a read-only copy of that in your
-  global state). Only for changing them do you also have to have the
-  corresponding crtc/plane state. Furthermore you _only_ grab the global
-  objects if the commit reasonably changes your local requirements (i.e.
-  more planes or whatever).
+With __must_check callers are required to check, even if they know
+it cannot fail.
 
-- You might need to have a cascade here (plane -> crtc and crct -> global
-  state), and/or maybe multiple different global states. Don't try to put
-  everything into one, it's better to have a separate private state
-  handling for each separate thing, at least generally.
+> Oh, and then fixing this should avoid stuff like:
+>
+> +       if (notifier_registered == false) {
+> +               mce_register_decode_chain(&amdgpu_bad_page_nb);
+> +               notifier_registered = true;
+> +       }
+>
+> from propagating in the code.
 
-- No more "we have to take all objects all the time, always", so no more
-  over-locking and over-sync.
+That's unrelated to the addition of __must_check.
 
-- Integrating this into DC is probably going to be "fun". Could be that
-  you first need to convert a pile of the dc_ structs into driver private
-  state stuff, similar in spirit to the refactor we've done for plane/crtc
-  state before DC was landed.
+I'm not against returning proper errors codes.  I'm against forcing
+callers to check things that cannot fail and to add individual error
+printing to each and every caller.
 
-Pls check with Maxime that this is documented somewhere as implementation
-pattern (it's really common, and your aproach of "grab all crtc/plane" is
-the really common wrong approach). And ofc happy to discuss how to best
-solve this for DC, but maybe irc is better for that.
+Note that in other areas, we are moving in the other
+direction, to a centralized printing of error messages,
+cfr. e.g. commit 7723f4c5ecdb8d83 ("driver core: platform: Add an
+error message to platform_get_irq*()").
 
-Cheers, Daniel
+Gr{oetje,eeting}s,
 
-> 
-> Regards,
-> Nicholas Kazlauskas
-> 
-> On 2020-09-25 4:46 a.m., Daniel Vetter wrote:
-> > When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
-> > pull in arbitrary other resources, including CRTCs (e.g. when
-> > reconfiguring global resources).
-> > 
-> > But in nonblocking mode userspace has then no idea this happened,
-> > which can lead to spurious EBUSY calls, both:
-> > - when that other CRTC is currently busy doing a page_flip the
-> >    ALLOW_MODESET commit can fail with an EBUSY
-> > - on the other CRTC a normal atomic flip can fail with EBUSY because
-> >    of the additional commit inserted by the kernel without userspace's
-> >    knowledge
-> > 
-> > For blocking commits this isn't a problem, because everyone else will
-> > just block until all the CRTC are reconfigured. Only thing userspace
-> > can notice is the dropped frames without any reason for why frames got
-> > dropped.
-> > 
-> > Consensus is that we need new uapi to handle this properly, but no one
-> > has any idea what exactly the new uapi should look like. Since this
-> > has been shipping for years already compositors need to deal no matter
-> > what, so as a first step just try to enforce this across drivers
-> > better with some checks.
-> > 
-> > v2: Add comments and a WARN_ON to enforce this only when allowed - we
-> > don't want to silently convert page flips into blocking plane updates
-> > just because the driver is buggy.
-> > 
-> > v3: Fix inverted WARN_ON (Pekka).
-> > 
-> > v4: Drop the uapi changes, only add a WARN_ON for now to enforce some
-> > rules for drivers.
-> > 
-> > v5: Make the WARNING more informative (Daniel)
-> > 
-> > v6: Add unconditional debug output for compositor hackers to figure
-> > out what's going on when they get an EBUSY (Daniel)
-> > 
-> > v7: Fix up old/new_crtc_state confusion for real (Pekka/Ville)
-> > 
-> > References: https://lists.freedesktop.org/archives/dri-devel/2018-July/182281.html
-> > Bugzilla: https://gitlab.freedesktop.org/wayland/weston/-/issues/24#note_9568
-> > Cc: Daniel Stone <daniel@fooishbar.org>
-> > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> > Cc: Simon Ser <contact@emersion.fr>
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >   drivers/gpu/drm/drm_atomic.c | 29 +++++++++++++++++++++++++++++
-> >   1 file changed, 29 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> > index 58527f151984..aac9122f1da2 100644
-> > --- a/drivers/gpu/drm/drm_atomic.c
-> > +++ b/drivers/gpu/drm/drm_atomic.c
-> > @@ -281,6 +281,10 @@ EXPORT_SYMBOL(__drm_atomic_state_free);
-> >    * needed. It will also grab the relevant CRTC lock to make sure that the state
-> >    * is consistent.
-> >    *
-> > + * WARNING: Drivers may only add new CRTC states to a @state if
-> > + * drm_atomic_state.allow_modeset is set, or if it's a driver-internal commit
-> > + * not created by userspace through an IOCTL call.
-> > + *
-> >    * Returns:
-> >    *
-> >    * Either the allocated state or the error code encoded into the pointer. When
-> > @@ -1262,10 +1266,15 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
-> >   	struct drm_crtc_state *new_crtc_state;
-> >   	struct drm_connector *conn;
-> >   	struct drm_connector_state *conn_state;
-> > +	unsigned requested_crtc = 0;
-> > +	unsigned affected_crtc = 0;
-> >   	int i, ret = 0;
-> >   	DRM_DEBUG_ATOMIC("checking %p\n", state);
-> > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> > +		requested_crtc |= drm_crtc_mask(crtc);
-> > +
-> >   	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
-> >   		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
-> >   		if (ret) {
-> > @@ -1313,6 +1322,26 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
-> >   		}
-> >   	}
-> > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> > +		affected_crtc |= drm_crtc_mask(crtc);
-> > +
-> > +	/*
-> > +	 * For commits that allow modesets drivers can add other CRTCs to the
-> > +	 * atomic commit, e.g. when they need to reallocate global resources.
-> > +	 * This can cause spurious EBUSY, which robs compositors of a very
-> > +	 * effective sanity check for their drawing loop. Therefor only allow
-> > +	 * drivers to add unrelated CRTC states for modeset commits.
-> > +	 *
-> > +	 * FIXME: Should add affected_crtc mask to the ATOMIC IOCTL as an output
-> > +	 * so compositors know what's going on.
-> > +	 */
-> > +	if (affected_crtc != requested_crtc) {
-> > +		DRM_DEBUG_ATOMIC("driver added CRTC to commit: requested 0x%x, affected 0x%0x\n",
-> > +				 requested_crtc, affected_crtc);
-> > +		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets: requested 0x%x, affected 0x%0x\n",
-> > +		     requested_crtc, affected_crtc);
-> > +	}
-> > +
-> >   	return 0;
-> >   }
-> >   EXPORT_SYMBOL(drm_atomic_check_only);
-> > 
-> 
+                        Geert
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
