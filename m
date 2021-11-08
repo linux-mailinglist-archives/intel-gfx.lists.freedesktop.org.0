@@ -1,43 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A7E447B8F
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 09:08:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AFDA447B95
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 09:10:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3230D6E3D2;
-	Mon,  8 Nov 2021 08:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1353B6E424;
+	Mon,  8 Nov 2021 08:10:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F7386E3D2;
- Mon,  8 Nov 2021 08:08:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10161"; a="232029371"
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="232029371"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5776E424
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 08:10:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10161"; a="219086260"
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; 
+ d="scan'208,217";a="219086260"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2021 00:08:28 -0800
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="491120906"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 00:10:03 -0800
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; 
+ d="scan'208,217";a="491121318"
 Received: from ahedstro-mobl.ger.corp.intel.com (HELO [10.249.254.89])
  ([10.249.254.89])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2021 00:08:26 -0800
-Message-ID: <87b3a865-f152-d5b4-e84d-901ba3644dca@linux.intel.com>
-Date: Mon, 8 Nov 2021 09:08:22 +0100
+ 08 Nov 2021 00:10:02 -0800
+Content-Type: multipart/alternative;
+ boundary="------------J5FFaeQyRTBqPM5BFJnxmYpL"
+Message-ID: <efb2ff5f-acf7-df24-e516-c2fe0df701bd@linux.intel.com>
+Date: Mon, 8 Nov 2021 09:09:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.0
 Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20211105130333.797862-1-thomas.hellstrom@linux.intel.com>
- <32f79f21-b9e2-6df0-63d0-0ff91fe6b31d@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ ", Lakshminarayana Vudum" <lakshminarayana.vudum@intel.com>
+References: <20211105150146.834052-1-thomas.hellstrom@linux.intel.com>
+ <163613135311.30622.5602659017690422551@emeril.freedesktop.org>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <32f79f21-b9e2-6df0-63d0-0ff91fe6b31d@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Fix gem_madvise for ttm+shmem
- objects
+In-Reply-To: <163613135311.30622.5602659017690422551@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_drm/i915/selftests=3A_Use_clea?=
+ =?utf-8?q?r=5Fand=5Fwake=5Fup=5Fbit=28=29_for_the_per-engine_reset_bitloc?=
+ =?utf-8?q?ks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,69 +58,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is a multi-part message in MIME format.
+--------------J5FFaeQyRTBqPM5BFJnxmYpL
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 11/5/21 16:18, Matthew Auld wrote:
-> On 05/11/2021 13:03, Thomas Hellström wrote:
->> Gem-TTM objects that are backed by shmem might have populated
->> page-vectors without having the Gem pages set. Those objects
->> aren't moved to the correct shrinker / purge list by the
->> gem_madvise. Furthermore they are purged directly on
->> MADV_DONTNEED rather than waiting for the shrinker to do that.
->>
->> For such objects, identified by having the
->> _SELF_MANAGED_SHRINK_LIST set, make sure they end up on the
->> correct list and defer purging to the shrinker.
->>
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/i915_gem.c | 6 ++++--
->>   1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_gem.c 
->> b/drivers/gpu/drm/i915/i915_gem.c
->> index d0e642c82064..da972c8d45b1 100644
->> --- a/drivers/gpu/drm/i915/i915_gem.c
->> +++ b/drivers/gpu/drm/i915/i915_gem.c
->> @@ -1005,7 +1005,8 @@ i915_gem_madvise_ioctl(struct drm_device *dev, 
->> void *data,
->>               obj->ops->adjust_lru(obj);
->>       }
->>   -    if (i915_gem_object_has_pages(obj)) {
->> +    if (i915_gem_object_has_pages(obj) ||
->> +        i915_gem_object_has_self_managed_shrink_list(obj)) {
->
-> Makes sense.
->
->>           unsigned long flags;
->>             spin_lock_irqsave(&i915->mm.obj_lock, flags);
->> @@ -1024,7 +1025,8 @@ i915_gem_madvise_ioctl(struct drm_device *dev, 
->> void *data,
->>         /* if the object is no longer attached, discard its backing 
->> storage */
->>       if (obj->mm.madv == I915_MADV_DONTNEED &&
->> -        !i915_gem_object_has_pages(obj))
->> +        !i915_gem_object_has_pages(obj) &&
->> +        !i915_gem_object_has_self_managed_shrink_list(obj))
->>           i915_gem_object_truncate(obj);
->
-> And it looks like this also matches the workings of lmem, where under 
-> memory pressure we also just purge such objects, instead of moving 
-> them, making sure to keep them first in the LRU?
->
-> One thing is to maybe immediately discard already swapped-out objects 
-> here, since the shrinker will be oblivious to them, and they sort of 
-> just linger in swap until the object is destroyed?
 
-This might be a bit ugly if we want to avoid exposing even more gem 
-object ops.
-
-Could we perhaps for the truncate callback only truncate swapped-out 
-objects if we have a self-managed shrinker list? That will match all the 
-current call-sites AFAICT since truncate is never called from the 
-shrinker  with the self-managed shrinker list...
-
-/Thomas
-
+On 11/5/21 17:55, Patchwork wrote:
+> Project List - Patchwork *Patch Details*
+> *Series:* 	series starting with [v3,1/2] drm/i915/selftests: Use 
+> clear_and_wake_up_bit() for the per-engine reset bitlocks
+> *URL:* 	https://patchwork.freedesktop.org/series/96615/
+> *State:* 	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21526/index.html
 >
->>         args->retained = obj->mm.madv != __I915_MADV_PURGED;
->>
+>
+>   CI Bug Log - changes from CI_DRM_10846_full -> Patchwork_21526_full
+>
+>
+>     Summary
+>
+> *FAILURE*
+>
+> Serious unknown changes coming with Patchwork_21526_full absolutely 
+> need to be
+> verified manually.
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_21526_full, please notify your bug team to 
+> allow them
+> to document this new failure mode, which will reduce false positives 
+> in CI.
+>
+>
+>     Participating hosts (11 -> 11)
+>
+> No changes in participating hosts
+>
+>
+>     Possible new issues
+>
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_21526_full:
+>
+>
+>       IGT changes
+>
+>
+>         Possible regressions
+>
+>   * igt@kms_flip@basic-flip-vs-dpms@c-edp1:
+>       o shard-tglb: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10846/shard-tglb3/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html>
+>         -> INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21526/shard-tglb6/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html>
+>
+Lakshmi,
+
+This failure is unrelated.
+
+Thanks,
+
+Thomas
+
+
+--------------J5FFaeQyRTBqPM5BFJnxmYpL
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 11/5/21 17:55, Patchwork wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:163613135311.30622.5602659017690422551@emeril.freedesktop.org">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Project List - Patchwork</title>
+      <style id="css-table-select" type="text/css">td { padding: 2pt; }</style>
+      <b>Patch Details</b>
+      <table>
+        <tbody>
+          <tr>
+            <td><b>Series:</b></td>
+            <td>series starting with [v3,1/2] drm/i915/selftests: Use
+              clear_and_wake_up_bit() for the per-engine reset bitlocks</td>
+          </tr>
+          <tr>
+            <td><b>URL:</b></td>
+            <td><a
+                href="https://patchwork.freedesktop.org/series/96615/"
+                moz-do-not-send="true" class="moz-txt-link-freetext">https://patchwork.freedesktop.org/series/96615/</a></td>
+          </tr>
+          <tr>
+            <td><b>State:</b></td>
+            <td>failure</td>
+          </tr>
+          <tr>
+            <td><b>Details:</b></td>
+            <td><a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21526/index.html"
+                moz-do-not-send="true" class="moz-txt-link-freetext">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21526/index.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>CI Bug Log - changes from CI_DRM_10846_full -&gt;
+        Patchwork_21526_full</h1>
+      <h2>Summary</h2>
+      <p><strong>FAILURE</strong></p>
+      <p>Serious unknown changes coming with Patchwork_21526_full
+        absolutely need to be<br>
+        verified manually.</p>
+      <p>If you think the reported changes have nothing to do with the
+        changes<br>
+        introduced in Patchwork_21526_full, please notify your bug team
+        to allow them<br>
+        to document this new failure mode, which will reduce false
+        positives in CI.</p>
+      <h2>Participating hosts (11 -&gt; 11)</h2>
+      <p>No changes in participating hosts</p>
+      <h2>Possible new issues</h2>
+      <p>Here are the unknown changes that may have been introduced in
+        Patchwork_21526_full:</p>
+      <h3>IGT changes</h3>
+      <h4>Possible regressions</h4>
+      <ul>
+        <li>igt@kms_flip@basic-flip-vs-dpms@c-edp1:
+          <ul>
+            <li>shard-tglb: <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10846/shard-tglb3/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html"
+                moz-do-not-send="true">PASS</a> -&gt; <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21526/shard-tglb6/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html"
+                moz-do-not-send="true">INCOMPLETE</a></li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+    <p>Lakshmi, <br>
+    </p>
+    <p>This failure is unrelated.</p>
+    <p>Thanks,</p>
+    <p>Thomas</p>
+    <p><br>
+    </p>
+  </body>
+</html>
+--------------J5FFaeQyRTBqPM5BFJnxmYpL--
+
