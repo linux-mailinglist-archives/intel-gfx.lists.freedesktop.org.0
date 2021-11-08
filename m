@@ -1,33 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1271447AC3
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 08:22:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A7E447B8F
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 09:08:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D82BA89C3B;
-	Mon,  8 Nov 2021 07:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3230D6E3D2;
+	Mon,  8 Nov 2021 08:08:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0648489C3B;
- Mon,  8 Nov 2021 07:22:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F2FA9AA0EA;
- Mon,  8 Nov 2021 07:22:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8304681228901529527=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F7386E3D2;
+ Mon,  8 Nov 2021 08:08:38 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10161"; a="232029371"
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="232029371"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 00:08:28 -0800
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="491120906"
+Received: from ahedstro-mobl.ger.corp.intel.com (HELO [10.249.254.89])
+ ([10.249.254.89])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 00:08:26 -0800
+Message-ID: <87b3a865-f152-d5b4-e84d-901ba3644dca@linux.intel.com>
+Date: Mon, 8 Nov 2021 09:08:22 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Date: Mon, 08 Nov 2021 07:22:43 -0000
-Message-ID: <163635616396.32038.10148732591591778250@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211029060154.110038-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20211029060154.110038-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU29t?=
- =?utf-8?q?e_fixes_in_HDMI2=2E1_PCON_FRL_configuration_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20211105130333.797862-1-thomas.hellstrom@linux.intel.com>
+ <32f79f21-b9e2-6df0-63d0-0ff91fe6b31d@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <32f79f21-b9e2-6df0-63d0-0ff91fe6b31d@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Fix gem_madvise for ttm+shmem
+ objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,224 +50,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8304681228901529527==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 11/5/21 16:18, Matthew Auld wrote:
+> On 05/11/2021 13:03, Thomas Hellström wrote:
+>> Gem-TTM objects that are backed by shmem might have populated
+>> page-vectors without having the Gem pages set. Those objects
+>> aren't moved to the correct shrinker / purge list by the
+>> gem_madvise. Furthermore they are purged directly on
+>> MADV_DONTNEED rather than waiting for the shrinker to do that.
+>>
+>> For such objects, identified by having the
+>> _SELF_MANAGED_SHRINK_LIST set, make sure they end up on the
+>> correct list and defer purging to the shrinker.
+>>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_gem.c | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_gem.c 
+>> b/drivers/gpu/drm/i915/i915_gem.c
+>> index d0e642c82064..da972c8d45b1 100644
+>> --- a/drivers/gpu/drm/i915/i915_gem.c
+>> +++ b/drivers/gpu/drm/i915/i915_gem.c
+>> @@ -1005,7 +1005,8 @@ i915_gem_madvise_ioctl(struct drm_device *dev, 
+>> void *data,
+>>               obj->ops->adjust_lru(obj);
+>>       }
+>>   -    if (i915_gem_object_has_pages(obj)) {
+>> +    if (i915_gem_object_has_pages(obj) ||
+>> +        i915_gem_object_has_self_managed_shrink_list(obj)) {
+>
+> Makes sense.
+>
+>>           unsigned long flags;
+>>             spin_lock_irqsave(&i915->mm.obj_lock, flags);
+>> @@ -1024,7 +1025,8 @@ i915_gem_madvise_ioctl(struct drm_device *dev, 
+>> void *data,
+>>         /* if the object is no longer attached, discard its backing 
+>> storage */
+>>       if (obj->mm.madv == I915_MADV_DONTNEED &&
+>> -        !i915_gem_object_has_pages(obj))
+>> +        !i915_gem_object_has_pages(obj) &&
+>> +        !i915_gem_object_has_self_managed_shrink_list(obj))
+>>           i915_gem_object_truncate(obj);
+>
+> And it looks like this also matches the workings of lmem, where under 
+> memory pressure we also just purge such objects, instead of moving 
+> them, making sure to keep them first in the LRU?
+>
+> One thing is to maybe immediately discard already swapped-out objects 
+> here, since the shrinker will be oblivious to them, and they sort of 
+> just linger in swap until the object is destroyed?
 
-Series: Some fixes in HDMI2.1 PCON FRL configuration (rev2)
-URL   : https://patchwork.freedesktop.org/series/96411/
-State : success
+This might be a bit ugly if we want to avoid exposing even more gem 
+object ops.
 
-== Summary ==
+Could we perhaps for the truncate callback only truncate swapped-out 
+objects if we have a self-managed shrinker list? That will match all the 
+current call-sites AFAICT since truncate is never called from the 
+shrinker  with the self-managed shrinker list...
 
-CI Bug Log - changes from CI_DRM_10853 -> Patchwork_21531
-====================================================
+/Thomas
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/index.html
-
-Participating hosts (41 -> 34)
-------------------------------
-
-  Additional (1): fi-bdw-samus 
-  Missing    (8): fi-rkl-guc bat-dg1-6 fi-bsw-n3050 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21531 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#146])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][5] -> [INCOMPLETE][6] ([i915#3921])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-bdw-samus:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-bdw-samus/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-bdw-samus:       NOTRUN -> [SKIP][8] ([fdo#109271]) +29 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-bdw-samus/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          [INCOMPLETE][9] ([i915#4006]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][11] ([i915#4269]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10853 -> Patchwork_21531
-
-  CI-20190529: 20190529
-  CI_DRM_10853: 215295e7b0a3deb2015c6d6b343b319e4f6d9a1d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6274: 569de51145fba197a8d93b2417348d47507bf485 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21531: 96e5cce7a1d858c8ffafec758c2cc3f340ea7ca9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-96e5cce7a1d8 drm/i915/dp: For PCON TMDS mode set only the relavant bits in config DPCD
-9fa2322cd7f4 drm/i915/dp: Optimize the FRL configuration for HDMI2.1 PCON
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/index.html
-
---===============8304681228901529527==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Some fixes in HDMI2.1 PCON FRL configuration (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96411/">https://patchwork.freedesktop.org/series/96411/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10853 -&gt; Patchwork_21531</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/index.html</p>
-<h2>Participating hosts (41 -&gt; 34)</h2>
-<p>Additional (1): fi-bdw-samus <br />
-  Missing    (8): fi-rkl-guc bat-dg1-6 fi-bsw-n3050 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21531 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-bdw-samus:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-bdw-samus/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-bdw-samus:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-bdw-samus/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21531/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10853 -&gt; Patchwork_21531</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10853: 215295e7b0a3deb2015c6d6b343b319e4f6d9a1d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6274: 569de51145fba197a8d93b2417348d47507bf485 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21531: 96e5cce7a1d858c8ffafec758c2cc3f340ea7ca9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>96e5cce7a1d8 drm/i915/dp: For PCON TMDS mode set only the relavant bits in config DPCD<br />
-9fa2322cd7f4 drm/i915/dp: Optimize the FRL configuration for HDMI2.1 PCON</p>
-
-</body>
-</html>
-
---===============8304681228901529527==--
+>
+>>         args->retained = obj->mm.madv != __I915_MADV_PURGED;
+>>
