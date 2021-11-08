@@ -1,38 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42255449D49
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 21:54:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E63EF449D61
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 21:59:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F25A36E8F1;
-	Mon,  8 Nov 2021 20:54:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 862646E97D;
+	Mon,  8 Nov 2021 20:59:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB97B6E8F1
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 20:54:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10162"; a="318522074"
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="318522074"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2021 12:54:45 -0800
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="503196271"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2021 12:54:44 -0800
-Date: Mon, 8 Nov 2021 22:54:40 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20211108205440.GB4060668@ideak-desk.fi.intel.com>
-References: <20211105212156.5697-1-ville.syrjala@linux.intel.com>
+Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
+ by gabe.freedesktop.org (Postfix) with SMTP id B2B266E97D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 20:59:27 +0000 (UTC)
+Received: (qmail 1679175 invoked by uid 1000); 8 Nov 2021 15:59:26 -0500
+Date: Mon, 8 Nov 2021 15:59:26 -0500
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Borislav Petkov <bp@alien8.de>
+Message-ID: <20211108205926.GA1678880@rowland.harvard.edu>
+References: <20211108101157.15189-1-bp@alien8.de>
+ <20211108101157.15189-43-bp@alien8.de>
+ <CAMuHMdWH+txiSP_d7Jc4f_bU8Lf9iWpT4E3o5o7BJr-YdA6-VA@mail.gmail.com>
+ <YYkyUEqcsOwQMb1S@zn.tnic>
+ <CAMuHMdXiBEQyEXJagSfpH44hxVA2t0sDH7B7YubLGHrb2MJLLA@mail.gmail.com>
+ <YYlJQYLiIrhjwOmT@zn.tnic>
+ <CAMuHMdXHikGrmUzuq0WG5JRHUUE=5zsaVCTF+e4TiHpM5tc5kA@mail.gmail.com>
+ <YYlOmd0AeA8DSluD@zn.tnic>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211105212156.5697-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Call intel_update_active_dpll()
- for both bigjoiner pipes
+In-Reply-To: <YYlOmd0AeA8DSluD@zn.tnic>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v0 42/42] notifier: Return an error when
+ callback is already registered
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,62 +44,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Linux-sh list <linux-sh@vger.kernel.org>, linux-iio@vger.kernel.org,
+ "open list:REMOTE PROCESSOR \(REMOTEPROC\) SUBSYSTEM"
+ <linux-remoteproc@vger.kernel.org>, linux-hyperv@vger.kernel.org,
+ "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+ netdev <netdev@vger.kernel.org>, Ayush Sawal <ayush.sawal@chelsio.com>,
+ sparclinux <sparclinux@vger.kernel.org>, linux-clk <linux-clk@vger.kernel.org>,
+ linux-leds <linux-leds@vger.kernel.org>,
+ linux-s390 <linux-s390@vger.kernel.org>, scsi <linux-scsi@vger.kernel.org>,
+ Rohit Maheshwari <rohitm@chelsio.com>, linux-staging@lists.linux.dev,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ openipmi-developer@lists.sourceforge.net,
+ bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+ "open list:TENSILICA XTENSA PORT \(xtensa\)" <linux-xtensa@linux-xtensa.org>,
+ Arnd Bergmann <arnd@arndb.de>, Linux PM list <linux-pm@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Vinay Kumar Yadav <vinay.yadav@chelsio.com>,
+ linux-um <linux-um@lists.infradead.org>, Steven Rostedt <rostedt@goodmis.org>,
+ rcu@vger.kernel.org,
+ Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+ xen-devel@lists.xenproject.org, linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-edac@vger.kernel.org,
+ Parisc List <linux-parisc@vger.kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ USB list <linux-usb@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ alpha <linux-alpha@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 05, 2021 at 11:21:56PM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Mon, Nov 08, 2021 at 05:21:45PM +0100, Borislav Petkov wrote:
+> On Mon, Nov 08, 2021 at 05:12:16PM +0100, Geert Uytterhoeven wrote:
+> > Returning void is the other extreme ;-)
+> > 
+> > There are 3 levels (ignoring BUG_ON()/panic () inside the callee):
+> >   1. Return void: no one can check success or failure,
+> >   2. Return an error code: up to the caller to decide,
+> >   3. Return a __must_check error code: every caller must check.
+> > 
+> > I'm in favor of 2, as there are several places where it cannot fail.
 > 
-> Currently we're only calling intel_update_active_dpll() for the
-> bigjoiner master pipe but not for the slave. With TC ports this
-> leads to the two pipes end up trying to use different PLLs
-> (TC vs. TBT). What's worse we're enabling the PLL that didn't get
-> intel_update_active_dpll() called on it at the spot where we
-> need the clocks turned on. So we turn on the wrong PLL and the
-> DDI is now trying to source its clock from the other PLL which is
-> still disabled. Naturally that doesn't end so well and the DDI
-> fails to start up.
-> 
-> The state checker also gets a bit unhappy (which is a good thing)
-> when it notices that one of the pipes was using the wrong PLL.
-> 
-> Let's fix this by remembering to call intel_update_active_dpll()
-> for both pipes. That should get the correct PLL turned on when
-> we need it, and the state checker should also be happy.
-> 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4434
-> Fixes: e12d6218fda2 ("drm/i915: Reduce bigjoiner special casing")
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Makes sense to me. I'll do that in the next iteration.
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+Is there really any reason for returning an error code?  For example, is 
+it anticipated that at some point in the future these registration calls 
+might fail?
 
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 145d51ac43a3..f9e7e3d1c7d0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3140,8 +3140,14 @@ intel_ddi_update_prepare(struct intel_atomic_state *state,
->  
->  	intel_tc_port_get_link(enc_to_dig_port(encoder),
->  		               required_lanes);
-> -	if (crtc_state && crtc_state->hw.active)
-> +	if (crtc_state && crtc_state->hw.active) {
-> +		struct intel_crtc *slave_crtc = crtc_state->bigjoiner_linked_crtc;
-> +
->  		intel_update_active_dpll(state, crtc, encoder);
-> +
-> +		if (slave_crtc)
-> +			intel_update_active_dpll(state, slave_crtc, encoder);
-> +	}
->  }
->  
->  static void
-> -- 
-> 2.32.0
-> 
+Currently, the only reason for failing to register a notifier callback 
+is because the callback is already registered.  In a sense this isn't 
+even an actual failure -- after the registration returns the callback 
+_will_ still be registered.
+
+So if the call can never really fail, why bother with a return code?  
+Especially since the caller can't do anything with such a code value.
+
+Given the current state of affairs, I vote in favor of 1 (plus a WARN or 
+something similar to generate a stack dump in the callee, since double 
+registration really is a bug).
+
+Alan Stern
