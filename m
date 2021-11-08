@@ -2,34 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83755447E64
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 12:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CA05447F17
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 12:44:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B87D6ED1E;
-	Mon,  8 Nov 2021 11:02:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3DB6F5B3;
+	Mon,  8 Nov 2021 11:44:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AF4E6ED1E
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 11:02:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10161"; a="229666729"
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="229666729"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2021 03:02:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="601374253"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga004.jf.intel.com with ESMTP; 08 Nov 2021 03:02:25 -0800
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Nov 2021 16:26:17 +0530
-Message-Id: <20211108105617.3522809-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BF6906F5B9;
+ Mon,  8 Nov 2021 11:44:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B4029A0BCB;
+ Mon,  8 Nov 2021 11:44:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3708042589520814113=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH V2] drm/i915/gt: Hold RPM wakelock during PXP
- suspend
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Mon, 08 Nov 2021 11:44:05 -0000
+Message-ID: <163637184569.32038.12938151862308762516@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211108105617.3522809-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20211108105617.3522809-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Hold_RPM_wakelock_during_PXP_suspend?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,178 +40,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-selftest --r live shows failure in suspend tests when
-RPM wakelock is not acquired during suspend.
+--===============3708042589520814113==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This changes addresses below error :
-<4> [154.177535] RPM wakelock ref not held during HW access
-<4> [154.177575] WARNING: CPU: 4 PID: 5772 at
-drivers/gpu/drm/i915/intel_runtime_pm.h:113
-fwtable_write32+0x240/0x320 [i915]
-<4> [154.177974] Modules linked in: i915(+) vgem drm_shmem_helper
-fuse snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic
-ledtrig_audio mei_hdcp mei_pxp x86_pkg_temp_thermal coretemp
-crct10dif_pclmul crc32_pclmul ghash_clmulni_intel snd_intel_dspcfg
-snd_hda_codec snd_hwdep igc snd_hda_core ttm mei_me ptp
-snd_pcm prime_numbers mei i2c_i801 pps_core i2c_smbus intel_lpss_pci
-btusb btrtl btbcm btintel bluetooth ecdh_generic ecc [last unloaded: i915]
-<4> [154.178143] CPU: 4 PID: 5772 Comm: i915_selftest Tainted: G
-U            5.15.0-rc6-CI-Patchwork_21432+ #1
-<4> [154.178154] Hardware name: ASUS System Product Name/TUF GAMING
-Z590-PLUS WIFI, BIOS 0811 04/06/2021
-<4> [154.178160] RIP: 0010:fwtable_write32+0x240/0x320 [i915]
-<4> [154.178604] Code: 15 7b e1 0f 0b e9 34 fe ff ff 80 3d a9 89 31
-00 00 0f 85 31 fe ff ff 48 c7 c7 88 9e 4f a0 c6 05 95 89 31 00 01 e8
-c0 15 7b e1 <0f> 0b e9 17 fe ff ff 8b 05 0f 83 58 e2 85 c0 0f 85 8d
-00 00 00 48
-<4> [154.178614] RSP: 0018:ffffc900016279f0 EFLAGS: 00010286
-<4> [154.178626] RAX: 0000000000000000 RBX: ffff888204fe0ee0
-RCX: 0000000000000001
-<4> [154.178634] RDX: 0000000080000001 RSI: ffffffff823142b5
-RDI: 00000000ffffffff
-<4> [154.178641] RBP: 00000000000320f0 R08: 0000000000000000
-R09: c0000000ffffcd5a
-<4> [154.178647] R10: 00000000000f8c90 R11: ffffc90001627808
-R12: 0000000000000000
-<4> [154.178654] R13: 0000000040000000 R14: ffffffffa04d12e0
-R15: 0000000000000000
-<4> [154.178660] FS:  00007f7390aa4c00(0000) GS:ffff88844f000000(0000)
-knlGS:0000000000000000
-<4> [154.178669] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [154.178675] CR2: 000055bc40595028 CR3: 0000000204474005
-CR4: 0000000000770ee0
-<4> [154.178682] PKRU: 55555554
-<4> [154.178687] Call Trace:
-<4> [154.178706]  intel_pxp_fini_hw+0x23/0x30 [i915]
-<4> [154.179284]  intel_pxp_suspend+0x1f/0x30 [i915]
-<4> [154.179807]  live_gt_resume+0x5b/0x90 [i915]
+== Series Details ==
 
-Changes since V1 :
-	- split the HW access parts in gt_suspend_late - Daniele
-	- Remove default PXP configs
+Series: drm/i915/gt: Hold RPM wakelock during PXP suspend
+URL   : https://patchwork.freedesktop.org/series/96658/
+State : success
 
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm.c   |  7 ++++---
- drivers/gpu/drm/i915/pxp/intel_pxp_pm.c | 15 ++++++++++++---
- drivers/gpu/drm/i915/pxp/intel_pxp_pm.h | 18 ++++++++++++++++--
- 3 files changed, 32 insertions(+), 8 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index b4a8594bc46c..d4029de1c80d 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -303,7 +303,7 @@ void intel_gt_suspend_prepare(struct intel_gt *gt)
- 	user_forcewake(gt, true);
- 	wait_for_suspend(gt);
- 
--	intel_pxp_suspend(&gt->pxp, false);
-+	intel_pxp_suspend_prepare(&gt->pxp, false);
- }
- 
- static suspend_state_t pm_suspend_target(void)
-@@ -328,6 +328,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 	GEM_BUG_ON(gt->awake);
- 
- 	intel_uc_suspend(&gt->uc);
-+	intel_pxp_suspend(&gt->pxp);
- 
- 	/*
- 	 * On disabling the device, we want to turn off HW access to memory
-@@ -355,7 +356,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 
- void intel_gt_runtime_suspend(struct intel_gt *gt)
- {
--	intel_pxp_suspend(&gt->pxp, true);
-+	intel_pxp_runtime_suspend(&gt->pxp);
- 	intel_uc_runtime_suspend(&gt->uc);
- 
- 	GT_TRACE(gt, "\n");
-@@ -373,7 +374,7 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
- 	if (ret)
- 		return ret;
- 
--	intel_pxp_resume(&gt->pxp);
-+	intel_pxp_runtime_resume(&gt->pxp);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-index 23fd86de5a24..3f91996dc6be 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-@@ -7,8 +7,9 @@
- #include "intel_pxp_irq.h"
- #include "intel_pxp_pm.h"
- #include "intel_pxp_session.h"
-+#include "i915_drv.h"
- 
--void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime)
-+void intel_pxp_suspend_prepare(struct intel_pxp *pxp, bool runtime)
- {
- 	if (!intel_pxp_is_enabled(pxp))
- 		return;
-@@ -23,10 +24,18 @@ void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime)
- 	 */
- 	if (!runtime)
- 		intel_pxp_invalidate(pxp);
-+}
- 
--	intel_pxp_fini_hw(pxp);
-+void intel_pxp_suspend(struct intel_pxp *pxp)
-+{
-+	intel_wakeref_t wakeref;
- 
--	pxp->hw_state_invalidated = false;
-+	if (!intel_pxp_is_enabled(pxp))
-+		return;
-+	with_intel_runtime_pm(&pxp_to_gt(pxp)->i915->runtime_pm, wakeref) {
-+		intel_pxp_fini_hw(pxp);
-+		pxp->hw_state_invalidated = false;
-+	}
- }
- 
- void intel_pxp_resume(struct intel_pxp *pxp)
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-index c89e97a0c3d0..f2cf3117ed93 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-@@ -9,10 +9,15 @@
- #include "intel_pxp_types.h"
- 
- #ifdef CONFIG_DRM_I915_PXP
--void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime);
-+void intel_pxp_suspend_prepare(struct intel_pxp *pxp, bool runtime);
-+void intel_pxp_suspend(struct intel_pxp *pxp);
- void intel_pxp_resume(struct intel_pxp *pxp);
- #else
--static inline void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime)
-+static inline void intel_pxp_suspend_prepare(struct intel_pxp *pxp, bool runtime)
-+{
-+}
-+
-+static inline void intel_pxp_suspend(struct intel_pxp *pxp)
- {
- }
- 
-@@ -20,5 +25,14 @@ static inline void intel_pxp_resume(struct intel_pxp *pxp)
- {
- }
- #endif
-+static inline void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
-+{
-+	intel_pxp_suspend_prepare(pxp, true);
-+	intel_pxp_suspend(pxp);
-+}
- 
-+static inline void intel_pxp_runtime_resume(struct intel_pxp *pxp)
-+{
-+	intel_pxp_resume(pxp);
-+}
- #endif /* __INTEL_PXP_PM_H__ */
--- 
-2.31.1
+CI Bug Log - changes from CI_DRM_10853 -> Patchwork_21532
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/index.html
+
+Participating hosts (41 -> 35)
+------------------------------
+
+  Additional (1): fi-bdw-samus 
+  Missing    (7): fi-kbl-soraka bat-dg1-6 fi-bsw-n3050 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21532 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-bdw-samus:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/fi-bdw-samus/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-bdw-samus:       NOTRUN -> [SKIP][4] ([fdo#109271]) +29 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/fi-bdw-samus/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#4290]: https://gitlab.freedesktop.org/drm/intel/issues/4290
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10853 -> Patchwork_21532
+
+  CI-20190529: 20190529
+  CI_DRM_10853: 215295e7b0a3deb2015c6d6b343b319e4f6d9a1d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6274: 569de51145fba197a8d93b2417348d47507bf485 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21532: 82a6a906546f42485b0774d07b7e0cb86c231de7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+82a6a906546f drm/i915/gt: Hold RPM wakelock during PXP suspend
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/index.html
+
+--===============3708042589520814113==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Hold RPM wakelock during PXP suspend</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96658/">https://patchwork.freedesktop.org/series/96658/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10853 -&gt; Patchwork_21532</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/index.html</p>
+<h2>Participating hosts (41 -&gt; 35)</h2>
+<p>Additional (1): fi-bdw-samus <br />
+  Missing    (7): fi-kbl-soraka bat-dg1-6 fi-bsw-n3050 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21532 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10853/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-bdw-samus:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/fi-bdw-samus/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-bdw-samus:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21532/fi-bdw-samus/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10853 -&gt; Patchwork_21532</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10853: 215295e7b0a3deb2015c6d6b343b319e4f6d9a1d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6274: 569de51145fba197a8d93b2417348d47507bf485 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21532: 82a6a906546f42485b0774d07b7e0cb86c231de7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>82a6a906546f drm/i915/gt: Hold RPM wakelock during PXP suspend</p>
+
+</body>
+</html>
+
+--===============3708042589520814113==--
