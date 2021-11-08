@@ -2,32 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B0C449AD7
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 18:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A45449B2A
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 18:55:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD2389E14;
-	Mon,  8 Nov 2021 17:36:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D51216E16D;
+	Mon,  8 Nov 2021 17:55:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2EB8289E14;
- Mon,  8 Nov 2021 17:36:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2982CA8169;
- Mon,  8 Nov 2021 17:36:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8163106708996853108=="
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3788A6E16D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 17:55:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10162"; a="213020329"
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="213020329"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 09:40:06 -0800
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="503124725"
+Received: from mschuett-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.33.194])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 09:40:03 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Michael Cheng <michael.cheng@outlook.iglb.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211108171922.845020-1-michael.cheng@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211108171922.845020-1-michael.cheng@intel.com>
+Date: Mon, 08 Nov 2021 19:40:00 +0200
+Message-ID: <87mtme7dhr.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "John Harrison" <john.c.harrison@intel.com>
-Date: Mon, 08 Nov 2021 17:36:37 -0000
-Message-ID: <163639299714.32036.9468872492777626017@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211108164054.23588-1-matthew.brost@intel.com>
-In-Reply-To: <20211108164054.23588-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Refcount_context_during_error_capture_=28rev2=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/1] Introduce new i915 macros for checking
+ PTEs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,190 +46,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: michael.cheng@intel.com, wayne.boyer@intel.com, lucas.demarchi@intel.com,
+ siva.mullati@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8163106708996853108==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 08 Nov 2021, Michael Cheng <michael.cheng@outlook.iglb.intel.com> wrote:
+> From: Michael Cheng <michael.cheng@intel.com>
 
-== Series Details ==
+Sender is Michael Cheng <michael.cheng@outlook.iglb.intel.com>, please
+fix your git config.
 
-Series: drm/i915/guc: Refcount context during error capture (rev2)
-URL   : https://patchwork.freedesktop.org/series/94634/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10854 -> Patchwork_21534
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/index.html
-
-Participating hosts (40 -> 34)
-------------------------------
-
-  Missing    (6): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_10854 and Patchwork_21534:
-
-### New IGT tests (1) ###
-
-  * igt@gem_exec_suspend@basic-s0:
-    - Statuses : 1 incomplete(s) 32 pass(s) 1 skip(s)
-    - Exec time: [0.0, 20.57] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21534 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-skl-6600u:       [FAIL][1] ([i915#3239]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][3] ([i915#3303]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {fi-hsw-gt1}:       [DMESG-WARN][5] ([i915#4290]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#3239]: https://gitlab.freedesktop.org/drm/intel/issues/3239
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4290]: https://gitlab.freedesktop.org/drm/intel/issues/4290
+BR,
+Jani.
 
 
-Build changes
--------------
+>
+> This series is to introduce new macros generic to i915 for checking 0 and 1 bits,
+> instead on relying on whats defined by the mmu, since it could be different
+> or non-exisitent between different platforms.
+>
+> Michael Cheng (1):
+>   drm/i915: Introduce new macros for i915 PTE
+>
+>  drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  6 +++---
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_gtt.h  |  3 +++
+>  drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
+>  4 files changed, 13 insertions(+), 10 deletions(-)
 
-  * Linux: CI_DRM_10854 -> Patchwork_21534
-
-  CI-20190529: 20190529
-  CI_DRM_10854: 895fb34d3265137c84fe3e9dd48fb9ad2e00fd36 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6274: 569de51145fba197a8d93b2417348d47507bf485 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21534: 02e9bec284def423e7ac79b06982b1d36e9f162d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-02e9bec284de drm/i915/guc: Refcount context during error capture
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/index.html
-
---===============8163106708996853108==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Refcount context during error capture (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/94634/">https://patchwork.freedesktop.org/series/94634/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10854 -&gt; Patchwork_21534</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/index.html</p>
-<h2>Participating hosts (40 -&gt; 34)</h2>
-<p>Missing    (6): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 </p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_10854 and Patchwork_21534:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0:<ul>
-<li>Statuses : 1 incomplete(s) 32 pass(s) 1 skip(s)</li>
-<li>Exec time: [0.0, 20.57] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21534 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3239">i915#3239</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4290">i915#4290</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21534/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10854 -&gt; Patchwork_21534</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10854: 895fb34d3265137c84fe3e9dd48fb9ad2e00fd36 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6274: 569de51145fba197a8d93b2417348d47507bf485 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21534: 02e9bec284def423e7ac79b06982b1d36e9f162d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>02e9bec284de drm/i915/guc: Refcount context during error capture</p>
-
-</body>
-</html>
-
---===============8163106708996853108==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
