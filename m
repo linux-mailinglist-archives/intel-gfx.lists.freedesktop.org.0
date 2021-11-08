@@ -2,143 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DE29449D05
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 21:18:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFA64449D08
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 21:21:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B16D6E1F8;
-	Mon,  8 Nov 2021 20:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4A4B6E1F8;
+	Mon,  8 Nov 2021 20:21:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84C9C6E1F8
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 20:18:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10162"; a="231036473"
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="231036473"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2021 12:18:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="731416622"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga006.fm.intel.com with ESMTP; 08 Nov 2021 12:18:53 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 8 Nov 2021 12:18:52 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Mon, 8 Nov 2021 12:18:52 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.41) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Mon, 8 Nov 2021 12:18:52 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gSCccDlW/XMx6839RGsdHTe0TELUV5kJdoNt17wGQv6uyvw9Qvrla4Qd+WTYDjbosb7w1teb/TAvyCNZE3IGG/pV851hVekUyOk8a0sCLTkg2L2jl1KzzMquoZjBOzdJ8/C7HM0fwVLbb1uvH+rtWiJ7T8Vxk3RwQyzYrWpUP2DKnKiLHKJnl58qT+yw0sCIQYb9LlyHA1dUAsHdDTBk4ifLJhxdDqATtkVR1g6bCTejCa0f9fV1udRR1oiDDQN1VaG/mUOdQMKuWT9tNh5aSMDdu2RAH7Ecm1Pc3Ccgw7qHMsvJUm1f6lcgm2edcaIQl9HfB0ufMSmwMUYT2mjKHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RalTxLpdF62pR5MZ5HM9Rc91H021eaCN7wogHrf0Te4=;
- b=nttINlBMA2dZH7RaPdu82F74znSZPkCNv0NVCZPKCKBuf8Ia2IUJ61nUvtBvrtUyv+GTpm670/gy/Rfnf2X+j4mX40c9jNzoCfYmStttZAYcG6ogWdDxMGj5VH3NuqYBvo+ZZOUFHpeB6Bm02q6/4HFkI8okpvr64KcQSXDp88v8Plybw9qysQvSXT3768AplxzEaBkkgYWsaOSunpPAe61KGPGANSYDevVSItDR6CXuS2I6GuUXYkwwrjYRhW9htRntDjaqgWmWzehkXmRkmL3u3zNAQehzMs5zxDBVC0z6g29whqqt3DjaHip2P1No9iQpVObtEvOgmu6pvgVPww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RalTxLpdF62pR5MZ5HM9Rc91H021eaCN7wogHrf0Te4=;
- b=vswRIIzTuOZEOO5Dta+N3oeC5kiaeaVkj+qtKY6x+0EtoWQjejE5cnnY2CPnZskEkQ8FuWs3YduTXR5Bz2QFBLoPYCDanbw1oTnqix2nf8WEOtKBrMgeHDXviYJCcyN+03On9iutf7tygYxKRw2MOrt0hvqxVIDTehuvV8FSNoQ=
-Received: from MN2PR11MB4661.namprd11.prod.outlook.com (2603:10b6:208:26b::16)
- by BL0PR11MB2929.namprd11.prod.outlook.com (2603:10b6:208:75::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Mon, 8 Nov
- 2021 20:18:48 +0000
-Received: from MN2PR11MB4661.namprd11.prod.outlook.com
- ([fe80::49d6:ef3:b83:2379]) by MN2PR11MB4661.namprd11.prod.outlook.com
- ([fe80::49d6:ef3:b83:2379%3]) with mapi id 15.20.4669.016; Mon, 8 Nov 2021
- 20:18:48 +0000
-From: "Yokoyama, Caz" <caz.yokoyama@intel.com>
-To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Fix Memory BW formulae for ADL-P
-Thread-Index: AQHX0qZ+HIeyxN4ivU260PFO0Uw/W6v6Fl0A
-Date: Mon, 8 Nov 2021 20:18:48 +0000
-Message-ID: <e27483614ab00fdbfb7c4ff3cc18f4cf20314244.camel@intel.com>
-References: <20211106003714.17894-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20211106003714.17894-1-radhakrishna.sripada@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 272229ec-3a6a-4453-52c5-08d9a2f4f90b
-x-ms-traffictypediagnostic: BL0PR11MB2929:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <BL0PR11MB2929E0E86B159D4C68F2DF3B9F919@BL0PR11MB2929.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3631;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tf0grE0GGyNcKDFasc9Fq6GdtqwfG/UukZhdhfb1x/80Pz2XTiWhw5mPPceI2sEz040sDlA/CflcgwYyV1Bitrqetre4dt4ZKqYsUIb3OTK06k8WcueKxJIWlVrcFukGNLwKV/wMVxHQ4aQnhJgTEh3wudI6sppMyvAgDMe07nDHiomns1A4ulsZfAP/chvq1yfo/VybNEak719o3e7izq66E8eOboRgRsnMsV5m+OSMHKERaculjSOs345QNrD5ZpRaUF4e3ogZoPEx7Ooxf1hqnCitYR3Sj1XR0oHwLc4HEIAKvtFqlaP9l+sSWQtuPsgKpXhVBTR55ricHfr0gdaxUvPC8dLLy5dPuopgaq8yO3XpEyuNcA7dnbpt3eZ7y2jTdf+UqEDstMym/KuCT2s0SIRn719AYD6X45wTXxRY1tkTPKdH5dbn2qJgVd8ju+OyTjD6YHywjYdylNs9DxEYQgz10odCvtPAcVYczSf5dAGPOhh7SQXsumIqewSBtmqD47OaN6Z2VSTb/nsir9mN4Il+hl47eCv80sIx9sUT+zTzY4CFd0k6pqL7Yn8zD4kpg2WLI8VCztVsoTR0XzSHFwWGCiCNgP+jlL/xVZkkfWD97xeZ6hH95w9BiAZoyqr2w2jQKi7axEH4n3Wfn7lzw2wmWYEykiAGX4HYzkT7v+PTuXGQNPnJqakyZxplIfdW5HIiPzz6IO8MlrPmhQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR11MB4661.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(36756003)(66556008)(26005)(66446008)(6486002)(66476007)(8676002)(122000001)(6506007)(64756008)(110136005)(5660300002)(66946007)(91956017)(316002)(186003)(38070700005)(6512007)(82960400001)(83380400001)(76116006)(86362001)(508600001)(2906002)(38100700002)(71200400001)(8936002)(2616005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Vk9WeXVFVXUzWkxXVnNlSjc3b2xuNmk1THh3bkl3QkZpWlZqcEJGRFdxZXp5?=
- =?utf-8?B?cWFPZDZqM2ZHUEpndDdBdy8ySHQxK29UVU5CSWVreFlqdWVGMURHZ2hMZ3lY?=
- =?utf-8?B?a1hvbm0vOTN5OEJzcDQrWkxhV3ZTUUxpSVJlSXZNd2s5T3BwNkM1L212M3M3?=
- =?utf-8?B?cC9rV2JVMHpwUzZpZU5pRE8yN2IrLy9EVmtvWUdoVm1FMEV1ZFhoeEcxRDNP?=
- =?utf-8?B?M0svYXR3enV1c3ViazlhdHdiRE95VmFpTlhWNGxuNmNRellKZ0g5ZGRQck4z?=
- =?utf-8?B?QVIwU251VDNYSkRNS0UwaXJiYmc1aXVmNmxUSHllcjVyNm9xRStDbEtxZDJk?=
- =?utf-8?B?TWNyZEtaYzdiTDlSb0NXR3RuVU5rL0owblpuZmhnNkpqbnU2N0pTdDNQWXlW?=
- =?utf-8?B?QStaSXVkdTNjTVFnekszdElrM3p1Skd2NkZDWnN5U0ZoRjRKTExEaW8wUmIr?=
- =?utf-8?B?MU4xRUJZekNWTEl5SkRVelR0cFo5TmF4dHJBUTIwOTYrNWM4SFpsNm9MSEto?=
- =?utf-8?B?cVZUbWVzRE9LUG1JU2Jybk5wN2M3a0hVdHRvRkNORTdpcllRSytWOUF6Qm5x?=
- =?utf-8?B?R28zQVlNRmZMa01kSjRWSDMreGErSldMS3YrbmEvZ3loL2pMcWpyei9PWmlr?=
- =?utf-8?B?VERPdExWeTE1Rm0zM2ttZGxCK2ZCcndnNjJnT3Z5SmJ1MmdXb2RCUWhMZndj?=
- =?utf-8?B?RUwyYlREbnA3N2cvcmV2T1NYR1hhNVB2c0xMNWc5NnpJUHNQd1pDWS9RWm80?=
- =?utf-8?B?MGNFR3RGL2FLMTVFTXQrTmYvd0VYZytraDVQMWxIRnFLcFpMeHpjRVM5Nzc4?=
- =?utf-8?B?a2FjSWtjQ0N2SkZ3WUdyRVdHTnBWamFFa0JxL0toOWkrRUpNbUJsVWhCaEp1?=
- =?utf-8?B?aGg1M0RueTF6YnpQNUk2SXl6aG5aYWE4Nzk1LzFhdXg0empRZzdLUUJ3OHdO?=
- =?utf-8?B?dXV5OGJiMU9ndkZhb3VFTlQwdVhKL0d3UVJ0WUNCMkh2ZGFDZ0xxc1hRYThB?=
- =?utf-8?B?MmpMa3BGc2l1Y05UQ1FLbTFHOHZONU5CT0h6bUFWc1doT1pybFp1ZVptS0o4?=
- =?utf-8?B?VEU4VjdCaVdXZmVEVTJ0ckkrMkpHcmlUU1pSMC9vcXkzeHdQeEwzMEx2Rmk4?=
- =?utf-8?B?TEEweUVvL29vK28yenhyTitaa3ByQlZUU2xDS2ZUb3N2a2J5dXNkK0UxV2xx?=
- =?utf-8?B?STVZU0JlQ0JQK0lBaUc4YkxlRTFkbnQwZkwzWGl5cUd3NFFpRGtGUC93WE1V?=
- =?utf-8?B?R2pWL3Q3dE1kdHhkM1QrY2pRL0FQdVVkeUIyRkpVYnBOY1YwU0lsbWozWURQ?=
- =?utf-8?B?NnRLY2ZuY2NtMjRHeW1sc09jdDB3dCtuditkem91SkY2N2lUcTRVZ1c4NXZQ?=
- =?utf-8?B?aTFhZzdhc2tkeDIxYmRCSXhlcVBwQnJoRHUrb0lrYVNLWGdQOGxpYURCSUJO?=
- =?utf-8?B?RGp5aHlTcHhYMThmbm11WFJHSENGQWVGMWphL09VbUR2cnF0SmxKbnRFV2Q3?=
- =?utf-8?B?Y294NnJUVG8zdGxHUmllUjZRNlZwQVNtOUNGQVBRWTJ4cUFzaDlvTkRWaUNM?=
- =?utf-8?B?dnhwNVFMbjVOS0w2TEFOamUwZ2pDUW5waUp0cWZ0UFp1bDNmUjczWEdTQmZJ?=
- =?utf-8?B?REI0cnpqTXRmUzExaThDSEZhZ1BQbGFTZmdYcDd1YjJTNnBTOG83b2k4Q1FC?=
- =?utf-8?B?VWFEbGFEL2NsR0N3cXUzc1JXcjY5dWU2MnAxTkZZeGlta3k0V2UvU1NFdURt?=
- =?utf-8?B?ZDdJc2RJdGZDckJWb0pJNEV6VkZJUjV3YnhlYThVajB2clV0aU9QVy9KdnRO?=
- =?utf-8?B?VG5aUmN0RnJVcExQenU3ZVE4bklaVlhaQ3UxVVN1ZHhHSTZ1dDEvQVhFQ3NK?=
- =?utf-8?B?bCtEN0xpS0tIRFkwcng0bHVPVVVnNE5iampaVDNZMFl4OTUxbTQ3SXNreDRZ?=
- =?utf-8?B?bU8wc1VHLytlOHdNbk52anVhQ2lDdDJDbDR3T1RTNktUQkYxU3NxVmR3TlFu?=
- =?utf-8?B?akdWZ3Zmd2RLdDU5L2hUb1hyNGpyOG5ZNmhyQlVycHd5OHZDckhKV1ZXcWN2?=
- =?utf-8?B?ZmxScEVxcU5adWErYUt4M2hlSjh6NGVsbUFycnJEWVlqaFNYaGIwS0VzWmZR?=
- =?utf-8?B?NHM2aW5yM3lxSmlEVEhEbTJ2YUlaQU9RUld4WEh2YndXZyt1cXk5MmdIZlln?=
- =?utf-8?Q?1aAzFiPbTdwFp2magd3Hvbw=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D28779162A140B42A3C9182B6316E534@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D7BD06E082;
+ Mon,  8 Nov 2021 20:21:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CEE93A00C9;
+ Mon,  8 Nov 2021 20:21:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6591530342787874685=="
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4661.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 272229ec-3a6a-4453-52c5-08d9a2f4f90b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2021 20:18:48.3256 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hCXDgpjqQ2gD23VOou8LCBA6Ztm2r+EAVnPCK9zwKAu0JQck0pY+lhQuK8LmSQQtnjMsbAHxjbPE5+W4GPfc6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR11MB2929
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix Memory BW formulae for ADL-P
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 08 Nov 2021 20:21:07 -0000
+Message-ID: <163640286780.32037.16427558183515962238@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211108174547.979714-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211108174547.979714-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Prepare_error_capture_for_asynchronous_migration_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,28 +41,2494 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmV2aWV3ZWQtYnk6IENheiBZb2tveWFtYSA8Y2F6Lnlva295YW1hQGludGVsLmNvbT4NCi1jYXoN
-Cg0KT24gRnJpLCAyMDIxLTExLTA1IGF0IDE3OjM3IC0wNzAwLCBSYWRoYWtyaXNobmEgU3JpcGFk
-YSB3cm90ZToNCj4gVGhlIGVhcmxpZXIgdXBkYXRlIHRvIEJXIGZvcm11bGFlIGJyb2tlIEFETC1Q
-LiBJbmNsdWRlDQo+IEdFTjEzIHRvIHVzZSBUR0wgcGF0aCBmb3IgQlcgcGFyYW1ldGVycy4NCj4g
-DQo+IEZpeGVzOiBjNjRhOWE3YzA1YmUgZHJtL2k5MTU6IFVwZGF0ZSBtZW1vcnkgYmFuZHdpZHRo
-IGZvcm11bGFlDQo+IENjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0K
-PiBSZXBvcnRlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5j
-b20+DQo+IFNpZ25lZC1vZmYtYnk6IFJhZGhha3Jpc2huYSBTcmlwYWRhIDxyYWRoYWtyaXNobmEu
-c3JpcGFkYUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9idy5jIHwgMiArLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAx
-IGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9idy5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9i
-dy5jDQo+IGluZGV4IDE1YzAwNjE5NGM4NS4uYWJlYzM5NGY2ODY5IDEwMDY0NA0KPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jDQo+IEBAIC0xNDcsNyArMTQ3LDcgQEAgc3Rh
-dGljIGludCBpY2xfZ2V0X3Fndl9wb2ludHMoc3RydWN0DQo+IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2LA0KPiAgCXFpLT5udW1fcG9pbnRzID0gZHJhbV9pbmZvLT5udW1fcWd2X3BvaW50czsN
-Cj4gIAlxaS0+bnVtX3BzZl9wb2ludHMgPSBkcmFtX2luZm8tPm51bV9wc2ZfZ3ZfcG9pbnRzOw0K
-PiAgDQo+IC0JaWYgKERJU1BMQVlfVkVSKGRldl9wcml2KSA9PSAxMikNCj4gKwlpZiAoRElTUExB
-WV9WRVIoZGV2X3ByaXYpID49IDEyKQ0KPiAgCQlzd2l0Y2ggKGRyYW1faW5mby0+dHlwZSkgew0K
-PiAgCQljYXNlIElOVEVMX0RSQU1fRERSNDoNCj4gIAkJCXFpLT50X2JsID0gaXNfeV90aWxlID8g
-OCA6IDQ7DQo=
+--===============6591530342787874685==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: Prepare error capture for asynchronous migration (rev2)
+URL   : https://patchwork.freedesktop.org/series/96493/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10854_full -> Patchwork_21535_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 10)
+------------------------------
+
+  Missing    (1): pig-kbl-iris 
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_10854_full and Patchwork_21535_full:
+
+### New IGT tests (190) ###
+
+  * igt@debugfs_test@sysfs:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.01, 0.08] s
+
+  * igt@gem_ctx_exec@basic-nohangcheck:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.05, 0.98] s
+
+  * igt@gem_ctx_persistence@file:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@gem_ctx_persistence@idempotent:
+    - Statuses : 4 pass(s) 1 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_ctx_persistence@process:
+    - Statuses : 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 0.27] s
+
+  * igt@gem_ctx_persistence@processes:
+    - Statuses : 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 0.45] s
+
+  * igt@gem_ctx_persistence@smoketest:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 35.50] s
+
+  * igt@gem_eio@kms:
+    - Statuses : 7 pass(s)
+    - Exec time: [12.03, 17.34] s
+
+  * igt@gem_exec_suspend@basic-s0:
+    - Statuses : 6 pass(s)
+    - Exec time: [1.58, 20.35] s
+
+  * igt@gem_mmap_gtt@close-race:
+    - Statuses : 8 pass(s)
+    - Exec time: [20.06, 20.77] s
+
+  * igt@gem_mmap_gtt@cpuset-basic-small-copy:
+    - Statuses : 7 pass(s)
+    - Exec time: [1.01, 6.44] s
+
+  * igt@gem_mmap_gtt@cpuset-basic-small-copy-odd:
+    - Statuses : 7 pass(s)
+    - Exec time: [1.51, 9.92] s
+
+  * igt@gem_mmap_gtt@cpuset-basic-small-copy-xy:
+    - Statuses : 6 pass(s)
+    - Exec time: [1.03, 7.61] s
+
+  * igt@gem_mmap_gtt@cpuset-big-copy:
+    - Statuses : 7 pass(s)
+    - Exec time: [3.26, 29.09] s
+
+  * igt@gem_mmap_gtt@cpuset-big-copy-odd:
+    - Statuses : 7 pass(s)
+    - Exec time: [3.98, 26.96] s
+
+  * igt@gem_mmap_gtt@cpuset-big-copy-xy:
+    - Statuses : 6 pass(s)
+    - Exec time: [4.30, 30.75] s
+
+  * igt@gem_mmap_gtt@cpuset-medium-copy:
+    - Statuses : 5 pass(s)
+    - Exec time: [1.85, 11.14] s
+
+  * igt@gem_mmap_gtt@cpuset-medium-copy-odd:
+    - Statuses : 7 pass(s)
+    - Exec time: [2.40, 15.09] s
+
+  * igt@gem_mmap_gtt@cpuset-medium-copy-xy:
+    - Statuses : 7 pass(s)
+    - Exec time: [1.95, 15.39] s
+
+  * igt@gem_mmap_gtt@flink-race:
+    - Statuses : 7 pass(s)
+    - Exec time: [20.07, 20.68] s
+
+  * igt@gem_mmap_gtt@isolation:
+    - Statuses : 5 pass(s)
+    - Exec time: [0.00] s
+
+  * igt@gem_pread@exhaustion:
+    - Statuses : 6 warn(s)
+    - Exec time: [2.65, 48.45] s
+
+  * igt@gem_pwrite@basic-exhaustion:
+    - Statuses : 1 skip(s) 7 warn(s)
+    - Exec time: [0.0, 49.60] s
+
+  * igt@gem_pwrite@basic-self:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.05, 0.30] s
+
+  * igt@gem_userptr_blits@nohangcheck:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.05, 0.96] s
+
+  * igt@gem_userptr_blits@stress-purge:
+    - Statuses : 7 pass(s)
+    - Exec time: [5.38, 12.29] s
+
+  * igt@i915_pm_dc@dc5-dpms:
+    - Statuses : 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.23] s
+
+  * igt@i915_pm_dc@dc5-psr:
+    - Statuses : 3 pass(s) 4 skip(s)
+    - Exec time: [0.0, 3.44] s
+
+  * igt@i915_pm_dc@dc6-dpms:
+    - Statuses : 3 fail(s) 1 pass(s) 3 skip(s)
+    - Exec time: [0.0, 3.93] s
+
+  * igt@i915_pm_dc@dc6-psr:
+    - Statuses : 2 fail(s) 1 pass(s) 4 skip(s)
+    - Exec time: [0.0, 3.78] s
+
+  * igt@kms_atomic_interruptible@atomic-setmode@dp-1-pipe-a:
+    - Statuses : 2 pass(s)
+    - Exec time: [6.25, 6.33] s
+
+  * igt@kms_atomic_interruptible@atomic-setmode@edp-1-pipe-a:
+    - Statuses : 2 pass(s)
+    - Exec time: [6.90, 6.91] s
+
+  * igt@kms_atomic_interruptible@atomic-setmode@hdmi-a-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.59] s
+
+  * igt@kms_atomic_interruptible@atomic-setmode@vga-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.15] s
+
+  * igt@kms_atomic_interruptible@legacy-cursor@dp-1-pipe-a:
+    - Statuses : 2 pass(s)
+    - Exec time: [6.22, 6.35] s
+
+  * igt@kms_atomic_interruptible@legacy-cursor@edp-1-pipe-a:
+    - Statuses : 3 pass(s)
+    - Exec time: [7.53, 7.85] s
+
+  * igt@kms_atomic_interruptible@legacy-cursor@hdmi-a-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.60] s
+
+  * igt@kms_atomic_interruptible@legacy-cursor@vga-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.16] s
+
+  * igt@kms_atomic_interruptible@legacy-dpms@dp-1-pipe-a:
+    - Statuses : 2 pass(s)
+    - Exec time: [6.25, 6.36] s
+
+  * igt@kms_atomic_interruptible@legacy-dpms@edp-1-pipe-a:
+    - Statuses : 3 pass(s)
+    - Exec time: [7.53, 7.97] s
+
+  * igt@kms_atomic_interruptible@legacy-dpms@hdmi-a-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.63] s
+
+  * igt@kms_atomic_interruptible@legacy-dpms@vga-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.18] s
+
+  * igt@kms_atomic_interruptible@legacy-pageflip@dp-1-pipe-a:
+    - Statuses : 2 pass(s)
+    - Exec time: [6.26, 6.34] s
+
+  * igt@kms_atomic_interruptible@legacy-pageflip@edp-1-pipe-a:
+    - Statuses : 3 pass(s)
+    - Exec time: [7.51, 7.88] s
+
+  * igt@kms_atomic_interruptible@legacy-pageflip@hdmi-a-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.57] s
+
+  * igt@kms_atomic_interruptible@legacy-pageflip@vga-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.19] s
+
+  * igt@kms_atomic_interruptible@legacy-setmode@dp-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.25] s
+
+  * igt@kms_atomic_interruptible@legacy-setmode@edp-1-pipe-a:
+    - Statuses : 2 pass(s)
+    - Exec time: [6.87, 6.89] s
+
+  * igt@kms_atomic_interruptible@legacy-setmode@hdmi-a-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.52] s
+
+  * igt@kms_atomic_interruptible@legacy-setmode@vga-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.15] s
+
+  * igt@kms_atomic_interruptible@universal-setplane-primary@dp-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.37] s
+
+  * igt@kms_atomic_interruptible@universal-setplane-primary@edp-1-pipe-a:
+    - Statuses : 3 pass(s)
+    - Exec time: [7.49, 7.82] s
+
+  * igt@kms_atomic_interruptible@universal-setplane-primary@hdmi-a-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.62] s
+
+  * igt@kms_atomic_interruptible@universal-setplane-primary@vga-1-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [6.19] s
+
+  * igt@kms_chamelium@dp-mode-timings:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_chamelium@hdmi-aspect-ratio:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_chamelium@hdmi-mode-timings:
+    - Statuses : 6 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_color@pipe-d-ctm-0-25:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.02] s
+
+  * igt@kms_color@pipe-d-ctm-0-5:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.04] s
+
+  * igt@kms_color@pipe-d-ctm-0-75:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.54] s
+
+  * igt@kms_color@pipe-d-ctm-blue-to-red:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.03] s
+
+  * igt@kms_color@pipe-d-ctm-green-to-red:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 1.06] s
+
+  * igt@kms_color@pipe-d-ctm-max:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.05] s
+
+  * igt@kms_color@pipe-d-ctm-negative:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.03] s
+
+  * igt@kms_color@pipe-d-ctm-red-to-blue:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.07] s
+
+  * igt@kms_color@pipe-d-degamma:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 1.34] s
+
+  * igt@kms_color@pipe-d-gamma:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.31] s
+
+  * igt@kms_color@pipe-d-legacy-gamma:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 1.05] s
+
+  * igt@kms_color@pipe-d-legacy-gamma-reset:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 0.02] s
+
+  * igt@kms_content_protection@content_type_change:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0, 0.01] s
+
+  * igt@kms_content_protection@lic:
+    - Statuses : 5 skip(s) 1 timeout(s)
+    - Exec time: [0.0, 120.81] s
+
+  * igt@kms_content_protection@mei_interface:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.00, 0.03] s
+
+  * igt@kms_content_protection@srm:
+    - Statuses : 5 skip(s) 2 timeout(s)
+    - Exec time: [0.00, 121.38] s
+
+  * igt@kms_content_protection@type1:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0, 0.01] s
+
+  * igt@kms_content_protection@uevent:
+    - Statuses : 2 fail(s) 5 skip(s)
+    - Exec time: [0.0, 34.60] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x128-offscreen:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 2.60] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x128-onscreen:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.79] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x128-random:
+    - Statuses : 5 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x128-rapid-movement:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.23] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x128-sliding:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.96] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x42-offscreen:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.58] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x42-onscreen:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.83] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x42-random:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 4.02] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-128x42-sliding:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 4.03] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x256-offscreen:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.58] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x256-onscreen:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x256-random:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 4.04] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x256-rapid-movement:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.33] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x256-sliding:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.89] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x85-offscreen:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 2.60] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x85-onscreen:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.83] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x85-random:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 4.00] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-256x85-sliding:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x170-offscreen:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x170-onscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x170-random:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x170-sliding:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x512-offscreen:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x512-onscreen:
+    - Statuses : 5 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x512-random:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x512-rapid-movement:
+    - Statuses : 6 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-512x512-sliding:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x21-offscreen:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.60] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x21-onscreen:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.88] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x21-random:
+    - Statuses : 1 pass(s) 4 skip(s)
+    - Exec time: [0.0, 4.07] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x21-sliding:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.91] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x64-offscreen:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.58] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x64-onscreen:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.77] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x64-random:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 4.01] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x64-rapid-movement:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 1.24] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-64x64-sliding:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.92] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-alpha-opaque:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.28] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-alpha-transparent:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.29] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-dpms:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.72] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-size-change:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_cursor_crc@pipe-d-cursor-suspend:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 5.87] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-128x128-bottom-edge:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.50] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-128x128-left-edge:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.50] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-128x128-right-edge:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 3.50] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-128x128-top-edge:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.49] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-256x256-bottom-edge:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.51] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-256x256-left-edge:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.54] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-256x256-right-edge:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.51] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-256x256-top-edge:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.47] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-64x64-bottom-edge:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.50] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-64x64-left-edge:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.50] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-64x64-right-edge:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.50] s
+
+  * igt@kms_cursor_edge_walk@pipe-d-64x64-top-edge:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.51] s
+
+  * igt@kms_cursor_legacy@pipe-d-forked-bo:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 21.54] s
+
+  * igt@kms_cursor_legacy@pipe-d-forked-move:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 21.55] s
+
+  * igt@kms_cursor_legacy@pipe-d-single-bo:
+    - Statuses : 3 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_legacy@pipe-d-single-move:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 21.49] s
+
+  * igt@kms_cursor_legacy@pipe-d-torture-bo:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 21.63] s
+
+  * igt@kms_cursor_legacy@pipe-d-torture-move:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 21.64] s
+
+  * igt@kms_dp_tiled_display@basic-test-pattern:
+    - Statuses : 6 skip(s)
+    - Exec time: [0.0, 0.00] s
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.49] s
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 1.46] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-alpha-7efc:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 12.04] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-alpha-basic:
+    - Statuses : 1 pass(s) 4 skip(s)
+    - Exec time: [0.0, 7.19] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-alpha-opaque-fb:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.50] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-constant-alpha-max:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.41] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-constant-alpha-mid:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.94] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-constant-alpha-min:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.96] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-coverage-7efc:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 11.98] s
+
+  * igt@kms_plane_alpha_blend@pipe-d-coverage-vs-premult-vs-constant:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.39] s
+
+  * igt@kms_plane_cursor@pipe-d-overlay-size-128:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 3.02] s
+
+  * igt@kms_plane_cursor@pipe-d-overlay-size-256:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.04] s
+
+  * igt@kms_plane_cursor@pipe-d-overlay-size-64:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.07] s
+
+  * igt@kms_plane_cursor@pipe-d-primary-size-128:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.06] s
+
+  * igt@kms_plane_cursor@pipe-d-primary-size-256:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.07] s
+
+  * igt@kms_plane_cursor@pipe-d-primary-size-64:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 3.07] s
+
+  * igt@kms_plane_cursor@pipe-d-viewport-size-128:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.04] s
+
+  * igt@kms_plane_cursor@pipe-d-viewport-size-256:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 3.07] s
+
+  * igt@kms_plane_cursor@pipe-d-viewport-size-64:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_plane_lowres@pipe-d-tiling-none:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_plane_lowres@pipe-d-tiling-x:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_plane_lowres@pipe-d-tiling-y:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_plane_lowres@pipe-d-tiling-yf:
+    - Statuses : 6 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_plane_multiple@atomic-pipe-d-tiling-none:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 1.44] s
+
+  * igt@kms_plane_multiple@atomic-pipe-d-tiling-x:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 1.42] s
+
+  * igt@kms_plane_multiple@atomic-pipe-d-tiling-y:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.50] s
+
+  * igt@kms_plane_multiple@atomic-pipe-d-tiling-yf:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0, 1.21] s
+
+  * igt@kms_prime@basic-crc:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_universal_plane@universal-plane-pipe-d-functional:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.71] s
+
+  * igt@kms_universal_plane@universal-plane-pipe-d-sanity:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.64] s
+
+  * igt@kms_vblank@pipe-d-accuracy-idle:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.87] s
+
+  * igt@kms_vblank@pipe-d-query-busy:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.00] s
+
+  * igt@kms_vblank@pipe-d-query-busy-hang:
+    - Statuses : 5 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_vblank@pipe-d-query-forked:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.92] s
+
+  * igt@kms_vblank@pipe-d-query-forked-busy:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 3.00] s
+
+  * igt@kms_vblank@pipe-d-query-forked-busy-hang:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.02] s
+
+  * igt@kms_vblank@pipe-d-query-forked-hang:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 16.89] s
+
+  * igt@kms_vblank@pipe-d-query-idle:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.91] s
+
+  * igt@kms_vblank@pipe-d-query-idle-hang:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 16.33] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-dpms-rpm:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 3.64] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-dpms-suspend:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.73] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-idle:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 1.54] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-idle-hang:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 16.44] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-modeset:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.72] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-modeset-hang:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 16.82] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-modeset-rpm:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 3.68] s
+
+  * igt@kms_vblank@pipe-d-ts-continuation-suspend:
+    - Statuses : 1 incomplete(s) 6 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_vblank@pipe-d-wait-busy:
+    - Statuses : 1 pass(s) 7 skip(s)
+    - Exec time: [0.0, 3.03] s
+
+  * igt@kms_vblank@pipe-d-wait-busy-hang:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 16.89] s
+
+  * igt@kms_vblank@pipe-d-wait-forked:
+    - Statuses : 1 pass(s) 5 skip(s)
+    - Exec time: [0.0, 2.91] s
+
+  * igt@kms_vblank@pipe-d-wait-forked-busy:
+    - Statuses :
+    - Exec time: [None] s
+
+  * igt@kms_vblank@pipe-d-wait-forked-busy-hang:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 16.79] s
+
+  * igt@kms_vblank@pipe-d-wait-forked-hang:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 16.71] s
+
+  * igt@kms_vblank@pipe-d-wait-idle:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 2.87] s
+
+  * igt@kms_vblank@pipe-d-wait-idle-hang:
+    - Statuses : 1 pass(s) 6 skip(s)
+    - Exec time: [0.0, 16.87] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21535_full that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - shard-snb:          ([PASS][1], [PASS][2], [PASS][3], [PASS][4], [PASS][5], [PASS][6], [PASS][7], [PASS][8], [PASS][9], [PASS][10], [PASS][11], [PASS][12], [PASS][13], [FAIL][14], [PASS][15], [PASS][16], [PASS][17], [PASS][18], [PASS][19], [PASS][20], [PASS][21], [PASS][22], [PASS][23], [PASS][24], [PASS][25]) ([i915#4338]) -> ([PASS][26], [PASS][27], [PASS][28], [PASS][29], [PASS][30], [PASS][31], [PASS][32], [PASS][33], [PASS][34], [PASS][35], [PASS][36], [PASS][37], [PASS][38], [PASS][39], [PASS][40], [PASS][41], [PASS][42], [PASS][43], [PASS][44], [PASS][45], [PASS][46], [PASS][47], [PASS][48], [PASS][49], [PASS][50])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb6/boot.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb6/boot.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb6/boot.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb6/boot.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb2/boot.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb2/boot.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb2/boot.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb2/boot.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb2/boot.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/boot.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/boot.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/boot.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/boot.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/boot.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/boot.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/boot.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/boot.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/boot.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/boot.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/boot.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/boot.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/boot.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/boot.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/boot.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb2/boot.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb2/boot.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb2/boot.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb2/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@feature_discovery@display-3x:
+    - shard-tglb:         NOTRUN -> [SKIP][51] ([i915#1839])
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-tglb8/igt@feature_discovery@display-3x.html
+
+  * igt@gem_ctx_persistence@hostile:
+    - shard-snb:          NOTRUN -> [SKIP][52] ([fdo#109271] / [i915#1099])
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/igt@gem_ctx_persistence@hostile.html
+
+  * igt@gem_ctx_sseu@engines:
+    - shard-tglb:         NOTRUN -> [SKIP][53] ([i915#280])
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-tglb3/igt@gem_ctx_sseu@engines.html
+
+  * igt@gem_exec_fair@basic-deadline:
+    - shard-glk:          [PASS][54] -> [FAIL][55] ([i915#2846])
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-glk8/igt@gem_exec_fair@basic-deadline.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-glk9/igt@gem_exec_fair@basic-deadline.html
+
+  * igt@gem_exec_fair@basic-flow@rcs0:
+    - shard-tglb:         [PASS][56] -> [FAIL][57] ([i915#2842])
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-tglb5/igt@gem_exec_fair@basic-flow@rcs0.html
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-tglb7/igt@gem_exec_fair@basic-flow@rcs0.html
+
+  * igt@gem_exec_fair@basic-none-vip@rcs0:
+    - shard-tglb:         NOTRUN -> [FAIL][58] ([i915#2842]) +10 similar issues
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-tglb3/igt@gem_exec_fair@basic-none-vip@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace-solo@rcs0:
+    - shard-kbl:          [PASS][59] -> [FAIL][60] ([i915#2842])
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-kbl3/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-kbl7/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace@vecs0:
+    - shard-iclb:         [PASS][61] -> [FAIL][62] ([i915#2842])
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-iclb8/igt@gem_exec_fair@basic-pace@vecs0.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-iclb7/igt@gem_exec_fair@basic-pace@vecs0.html
+
+  * igt@gem_exec_fair@basic-throttle@rcs0:
+    - shard-iclb:         NOTRUN -> [FAIL][63] ([i915#2849])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-iclb6/igt@gem_exec_fair@basic-throttle@rcs0.html
+
+  * igt@gem_pread@exhaustion (NEW):
+    - shard-apl:          NOTRUN -> [WARN][64] ([i915#2658])
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-apl4/igt@gem_pread@exhaustion.html
+
+  * igt@gem_pwrite@basic-exhaustion (NEW):
+    - {shard-rkl}:        NOTRUN -> [SKIP][65] ([i915#3282])
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-rkl-1/igt@gem_pwrite@basic-exhaustion.html
+
+  * igt@gem_pxp@create-protected-buffer:
+    - shard-iclb:         NOTRUN -> [SKIP]
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/index.html
+
+--===============6591530342787874685==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Prepare error capture for asynchro=
+nous migration (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/96493/">https://patchwork.freedesktop.org/series/96493/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_21535/index.html">https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_21535/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10854_full -&gt; Patchwork_21535_f=
+ull</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 10)</h2>
+<p>Missing    (1): pig-kbl-iris </p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_10854_full and Patchwork_2=
+1535_full:</p>
+<h3>New IGT tests (190)</h3>
+<ul>
+<li>
+<p>igt@debugfs_test@sysfs:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.01, 0.08] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_exec@basic-nohangcheck:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.05, 0.98] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@file:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@idempotent:</p>
+<ul>
+<li>Statuses : 4 pass(s) 1 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@process:</p>
+<ul>
+<li>Statuses : 6 pass(s) 1 skip(s)</li>
+<li>Exec time: [0.0, 0.27] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@processes:</p>
+<ul>
+<li>Statuses : 6 pass(s) 1 skip(s)</li>
+<li>Exec time: [0.0, 0.45] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@smoketest:</p>
+<ul>
+<li>Statuses : 7 pass(s) 1 skip(s)</li>
+<li>Exec time: [0.0, 35.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_eio@kms:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [12.03, 17.34] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>Statuses : 6 pass(s)</li>
+<li>Exec time: [1.58, 20.35] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@close-race:</p>
+<ul>
+<li>Statuses : 8 pass(s)</li>
+<li>Exec time: [20.06, 20.77] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-basic-small-copy:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [1.01, 6.44] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-basic-small-copy-odd:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [1.51, 9.92] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-basic-small-copy-xy:</p>
+<ul>
+<li>Statuses : 6 pass(s)</li>
+<li>Exec time: [1.03, 7.61] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-big-copy:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [3.26, 29.09] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-big-copy-odd:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [3.98, 26.96] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-big-copy-xy:</p>
+<ul>
+<li>Statuses : 6 pass(s)</li>
+<li>Exec time: [4.30, 30.75] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-medium-copy:</p>
+<ul>
+<li>Statuses : 5 pass(s)</li>
+<li>Exec time: [1.85, 11.14] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-medium-copy-odd:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [2.40, 15.09] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-medium-copy-xy:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [1.95, 15.39] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@flink-race:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [20.07, 20.68] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@isolation:</p>
+<ul>
+<li>Statuses : 5 pass(s)</li>
+<li>Exec time: [0.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pread@exhaustion:</p>
+<ul>
+<li>Statuses : 6 warn(s)</li>
+<li>Exec time: [2.65, 48.45] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pwrite@basic-exhaustion:</p>
+<ul>
+<li>Statuses : 1 skip(s) 7 warn(s)</li>
+<li>Exec time: [0.0, 49.60] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pwrite@basic-self:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.05, 0.30] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_userptr_blits@nohangcheck:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.05, 0.96] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_userptr_blits@stress-purge:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [5.38, 12.29] s</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc5-dpms:</p>
+<ul>
+<li>Statuses : 6 pass(s) 1 skip(s)</li>
+<li>Exec time: [0.0, 2.23] s</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc5-psr:</p>
+<ul>
+<li>Statuses : 3 pass(s) 4 skip(s)</li>
+<li>Exec time: [0.0, 3.44] s</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-dpms:</p>
+<ul>
+<li>Statuses : 3 fail(s) 1 pass(s) 3 skip(s)</li>
+<li>Exec time: [0.0, 3.93] s</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-psr:</p>
+<ul>
+<li>Statuses : 2 fail(s) 1 pass(s) 4 skip(s)</li>
+<li>Exec time: [0.0, 3.78] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@atomic-setmode@dp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 2 pass(s)</li>
+<li>Exec time: [6.25, 6.33] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@atomic-setmode@edp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 2 pass(s)</li>
+<li>Exec time: [6.90, 6.91] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@atomic-setmode@hdmi-a-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.59] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@atomic-setmode@vga-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.15] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-cursor@dp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 2 pass(s)</li>
+<li>Exec time: [6.22, 6.35] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-cursor@edp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 3 pass(s)</li>
+<li>Exec time: [7.53, 7.85] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-cursor@hdmi-a-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.60] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-cursor@vga-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.16] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-dpms@dp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 2 pass(s)</li>
+<li>Exec time: [6.25, 6.36] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-dpms@edp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 3 pass(s)</li>
+<li>Exec time: [7.53, 7.97] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-dpms@hdmi-a-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.63] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-dpms@vga-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.18] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-pageflip@dp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 2 pass(s)</li>
+<li>Exec time: [6.26, 6.34] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-pageflip@edp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 3 pass(s)</li>
+<li>Exec time: [7.51, 7.88] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-pageflip@hdmi-a-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.57] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-pageflip@vga-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.19] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-setmode@dp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.25] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-setmode@edp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 2 pass(s)</li>
+<li>Exec time: [6.87, 6.89] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-setmode@hdmi-a-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.52] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@legacy-setmode@vga-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.15] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@universal-setplane-primary@dp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.37] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@universal-setplane-primary@edp-1-pipe-a:</p>
+<ul>
+<li>Statuses : 3 pass(s)</li>
+<li>Exec time: [7.49, 7.82] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@universal-setplane-primary@hdmi-a-1-pipe-a:=
+</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.62] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_interruptible@universal-setplane-primary@vga-1-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [6.19] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-mode-timings:</p>
+<ul>
+<li>Statuses : 8 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-aspect-ratio:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-mode-timings:</p>
+<ul>
+<li>Statuses : 6 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-0-25:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-0-5:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-0-75:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.54] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-blue-to-red:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-green-to-red:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 1.06] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-max:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.05] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-negative:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-ctm-red-to-blue:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.07] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-degamma:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 1.34] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-gamma:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.31] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-legacy-gamma:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 1.05] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-d-legacy-gamma-reset:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@content_type_change:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0, 0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@lic:</p>
+<ul>
+<li>Statuses : 5 skip(s) 1 timeout(s)</li>
+<li>Exec time: [0.0, 120.81] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@mei_interface:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.00, 0.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@srm:</p>
+<ul>
+<li>Statuses : 5 skip(s) 2 timeout(s)</li>
+<li>Exec time: [0.00, 121.38] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@type1:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0, 0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@uevent:</p>
+<ul>
+<li>Statuses : 2 fail(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 34.60] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x128-offscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 2.60] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x128-onscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.79] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x128-random:</p>
+<ul>
+<li>Statuses : 5 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x128-rapid-movement:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.23] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x128-sliding:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.96] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x42-offscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.58] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x42-onscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.83] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x42-random:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 4.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-128x42-sliding:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 4.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x256-offscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.58] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x256-onscreen:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x256-random:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 4.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x256-rapid-movement:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.33] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x256-sliding:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.89] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x85-offscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 2.60] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x85-onscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.83] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x85-random:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 4.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-256x85-sliding:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x170-offscreen:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x170-onscreen:</p>
+<ul>
+<li>Statuses : 8 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x170-random:</p>
+<ul>
+<li>Statuses : 8 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x170-sliding:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x512-offscreen:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x512-onscreen:</p>
+<ul>
+<li>Statuses : 5 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x512-random:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x512-rapid-movement:</p>
+<ul>
+<li>Statuses : 6 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-512x512-sliding:</p>
+<ul>
+<li>Statuses : 8 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x21-offscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.60] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x21-onscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.88] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x21-random:</p>
+<ul>
+<li>Statuses : 1 pass(s) 4 skip(s)</li>
+<li>Exec time: [0.0, 4.07] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x21-sliding:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.91] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x64-offscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.58] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x64-onscreen:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.77] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x64-random:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 4.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x64-rapid-movement:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 1.24] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-64x64-sliding:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.92] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-alpha-opaque:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.28] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-alpha-transparent:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.29] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-dpms:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.72] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-size-change:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-suspend:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 5.87] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-128x128-bottom-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-128x128-left-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-128x128-right-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 3.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-128x128-top-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.49] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-256x256-bottom-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.51] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-256x256-left-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.54] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-256x256-right-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.51] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-256x256-top-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.47] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-64x64-bottom-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-64x64-left-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-64x64-right-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-d-64x64-top-edge:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.51] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@pipe-d-forked-bo:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 21.54] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@pipe-d-forked-move:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 21.55] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@pipe-d-single-bo:</p>
+<ul>
+<li>Statuses : 3 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@pipe-d-single-move:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 21.49] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@pipe-d-torture-bo:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 21.63] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@pipe-d-torture-move:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 21.64] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dp_tiled_display@basic-test-pattern:</p>
+<ul>
+<li>Statuses : 6 skip(s)</li>
+<li>Exec time: [0.0, 0.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.49] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 1.46] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-alpha-7efc:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 12.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-alpha-basic:</p>
+<ul>
+<li>Statuses : 1 pass(s) 4 skip(s)</li>
+<li>Exec time: [0.0, 7.19] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-alpha-opaque-fb:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-constant-alpha-max:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.41] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-constant-alpha-mid:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.94] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-constant-alpha-min:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.96] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-coverage-7efc:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 11.98] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-d-coverage-vs-premult-vs-constant:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.39] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-overlay-size-128:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 3.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-overlay-size-256:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-overlay-size-64:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.07] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-primary-size-128:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.06] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-primary-size-256:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.07] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-primary-size-64:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 3.07] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-viewport-size-128:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-viewport-size-256:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 3.07] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@pipe-d-viewport-size-64:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_lowres@pipe-d-tiling-none:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_lowres@pipe-d-tiling-x:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_lowres@pipe-d-tiling-y:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_lowres@pipe-d-tiling-yf:</p>
+<ul>
+<li>Statuses : 6 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_multiple@atomic-pipe-d-tiling-none:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 1.44] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_multiple@atomic-pipe-d-tiling-x:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 1.42] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_multiple@atomic-pipe-d-tiling-y:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.50] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_multiple@atomic-pipe-d-tiling-yf:</p>
+<ul>
+<li>Statuses : 7 skip(s)</li>
+<li>Exec time: [0.0, 1.21] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prime@basic-crc:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_universal_plane@universal-plane-pipe-d-functional:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.71] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_universal_plane@universal-plane-pipe-d-sanity:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.64] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-accuracy-idle:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.87] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-busy:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-busy-hang:</p>
+<ul>
+<li>Statuses : 5 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-forked:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.92] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-forked-busy:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 3.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-forked-busy-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-forked-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 16.89] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-idle:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.91] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-query-idle-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 16.33] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-dpms-rpm:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 3.64] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-dpms-suspend:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.73] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-idle:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 1.54] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-idle-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 16.44] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-modeset:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.72] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-modeset-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 16.82] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-modeset-rpm:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 3.68] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-ts-continuation-suspend:</p>
+<ul>
+<li>Statuses : 1 incomplete(s) 6 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-busy:</p>
+<ul>
+<li>Statuses : 1 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.0, 3.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-busy-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 16.89] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-forked:</p>
+<ul>
+<li>Statuses : 1 pass(s) 5 skip(s)</li>
+<li>Exec time: [0.0, 2.91] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-forked-busy:</p>
+<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-forked-busy-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 16.79] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-forked-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 16.71] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-idle:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 2.87] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-idle-hang:</p>
+<ul>
+<li>Statuses : 1 pass(s) 6 skip(s)</li>
+<li>Exec time: [0.0, 16.87] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21535_full that come from known =
+issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>shard-snb:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
+p/CI_DRM_10854/shard-snb7/boot.html">PASS</a>, <a href=3D"https://intel-gfx=
+-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.html">PASS</a>, <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.=
+html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_=
+10854/shard-snb7/boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.or=
+g/tree/drm-tip/CI_DRM_10854/shard-snb7/boot.html">PASS</a>, <a href=3D"http=
+s://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb6/boot.html">PAS=
+S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/sha=
+rd-snb6/boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
+m-tip/CI_DRM_10854/shard-snb6/boot.html">PASS</a>, <a href=3D"https://intel=
+-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb6/boot.html">PASS</a>, <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/b=
+oot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_=
+DRM_10854/shard-snb5/boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.0=
+1.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html">PASS</a>, <a href=3D"=
+https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb5/boot.html"=
+>PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854=
+/shard-snb5/boot.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/drm-tip/CI_DRM_10854/shard-snb5/boot.html">PASS</a>, <a href=3D"https://i=
+ntel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.html">PASS</a>=
+, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-sn=
+b4/boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_10854/shard-snb4/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb4/boot.h=
+tml">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1=
+0854/shard-snb2/boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/CI_DRM_10854/shard-snb2/boot.html">PASS</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shard-snb2/boot.html">PASS=
+</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10854/shar=
+d-snb2/boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
+-tip/CI_DRM_10854/shard-snb2/boot.html">PASS</a>) ([i915#4338]) -&gt; (<a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb7/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb7/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb7/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb6/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb6/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb6/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb5/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb5/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb4/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb4/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb4/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb2/=
+boot.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_21535/shard-snb2/boot.html">PASS</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb2/boot.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/shard-snb2/=
+boot.html">PASS</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@feature_discovery@display-3x:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_21535/shard-tglb8/igt@feature_discovery@display-3x.=
+html">SKIP</a> ([i915#1839])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@hostile:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_21535/shard-snb6/igt@gem_ctx_persistence@hostile.ht=
+ml">SKIP</a> ([fdo#109271] / [i915#1099])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_sseu@engines:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_21535/shard-tglb3/igt@gem_ctx_sseu@engines.html">SK=
+IP</a> ([i915#280])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-deadline:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_10854/shard-glk8/igt@gem_exec_fair@basic-deadline.html">PASS</a> -&=
+gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/sha=
+rd-glk9/igt@gem_exec_fair@basic-deadline.html">FAIL</a> ([i915#2846])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-flow@rcs0:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_10854/shard-tglb5/igt@gem_exec_fair@basic-flow@rcs0.html">PASS</a> =
+-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/s=
+hard-tglb7/igt@gem_exec_fair@basic-flow@rcs0.html">FAIL</a> ([i915#2842])</=
+li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-vip@rcs0:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_21535/shard-tglb3/igt@gem_exec_fair@basic-none-vip@=
+rcs0.html">FAIL</a> ([i915#2842]) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_10854/shard-kbl3/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS<=
+/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_215=
+35/shard-kbl7/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> ([i915#=
+2842])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@vecs0:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_10854/shard-iclb8/igt@gem_exec_fair@basic-pace@vecs0.html">PASS</a>=
+ -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21535/=
+shard-iclb7/igt@gem_exec_fair@basic-pace@vecs0.html">FAIL</a> ([i915#2842])=
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-throttle@rcs0:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_21535/shard-iclb6/igt@gem_exec_fair@basic-throttle@=
+rcs0.html">FAIL</a> ([i915#2849])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pread@exhaustion (NEW):</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_21535/shard-apl4/igt@gem_pread@exhaustion.html">WAR=
+N</a> ([i915#2658])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pwrite@basic-exhaustion (NEW):</p>
+<ul>
+<li>{shard-rkl}:        NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_21535/shard-rkl-1/igt@gem_pwrite@basic-exhaustion.h=
+tml">SKIP</a> ([i915#3282])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pxp@create-protected-buffer:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; [SKIP]</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
+
+--===============6591530342787874685==--
