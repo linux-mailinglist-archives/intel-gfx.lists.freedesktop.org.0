@@ -1,34 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF7C449BA3
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 19:29:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89957449CA6
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Nov 2021 20:49:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8166E3FC;
-	Mon,  8 Nov 2021 18:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C5E6E930;
+	Mon,  8 Nov 2021 19:49:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 512826E3FC;
- Mon,  8 Nov 2021 18:29:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 48B91A363C;
- Mon,  8 Nov 2021 18:29:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C829A89EB7
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Nov 2021 17:38:05 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10162"; a="231000406"
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="231000406"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 09:19:28 -0800
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; d="scan'208";a="533392666"
+Received: from mwiznero-mobl2.amr.corp.intel.com (HELO
+ mvcheng-desk2.intel.com) ([10.209.22.158])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 09:19:27 -0800
+From: Michael Cheng <"michael.cheng>"@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  8 Nov 2021 09:19:21 -0800
+Message-Id: <20211108171922.845020-1-michael.cheng@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 08 Nov 2021 18:29:34 -0000
-Message-ID: <163639617426.32038.8837151156532083399@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211108174547.979714-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211108174547.979714-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Prepare_error_capture_for_asynchronous_migratio?=
- =?utf-8?q?n_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 08 Nov 2021 19:49:51 +0000
+Subject: [Intel-gfx] [PATCH 0/1] Introduce new i915 macros for checking PTEs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,28 +43,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: michael.cheng@intel.com, wayne.boyer@intel.com, jani.nikula@intel.com,
+ lucas.demarchi@intel.com, siva.mullati@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Michael Cheng <michael.cheng@intel.com>
 
-Series: drm/i915: Prepare error capture for asynchronous migration (rev2)
-URL   : https://patchwork.freedesktop.org/series/96493/
-State : warning
+This series is to introduce new macros generic to i915 for checking 0 and 1 bits,
+instead on relying on whats defined by the mmu, since it could be different
+or non-exisitent between different platforms.
 
-== Summary ==
+Michael Cheng (1):
+  drm/i915: Introduce new macros for i915 PTE
 
-$ dim checkpatch origin/drm-tip
-1948fce512ee drm/i915: Avoid allocating a page array for the gpu coredump
-04cf071c7201 drm/i915: Use __GFP_KSWAPD_RECLAIM in the capture code
-c10709188aa4 drm/i915: Update error capture code to avoid using the current vma state
--:793: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#793: 
-new file mode 100644
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  6 +++---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.h  |  3 +++
+ drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
+ 4 files changed, 13 insertions(+), 10 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 945 lines checked
-6cd0fb32331c drm/i915: Initial introduction of vma resources
-
+-- 
+2.25.1
 
